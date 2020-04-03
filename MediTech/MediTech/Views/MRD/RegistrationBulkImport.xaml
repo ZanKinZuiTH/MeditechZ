@@ -1,0 +1,173 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             x:Class="MediTech.Views.RegistrationBulkImport"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=RegistrationBulkImportViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+
+        <Style x:Key="RowColorCellStyle" TargetType="{x:Type dxg:GridRowContent}">
+            <Setter Property="Foreground" Value="{Binding Row.RowColor}"/>
+        </Style>
+
+        
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="File Location" >
+                    <TextBox IsReadOnly="True" Background="Gainsboro" Text="{Binding FileLoation}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup>
+                    <dx:SimpleButton Width="80" Height="25" Content="เลือกไฟล์" Command="{Binding ChooseCommand}"/>
+                    <dx:SimpleButton Width="80" Height="25" Content="นำเข้าข้อมูล" Command="{Binding ImportCommand}"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
+                    <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <ProgressBar Height="15"  Margin="10,0,10,0" Name="progressBar1"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal" >
+                <dxlc:LayoutItem Label="คนไข้ที่มี BN" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="BlueViolet" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="คนไข้ที่ไม่มี BN" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="DarkBlue" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="คนไข้ที่ข้อมูลไม่ครบ" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="Green" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="คนไข้ที่ข้อมูลซับซ้อน" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="Yellow" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ID Card ไม่ถูกต้อง" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="Red" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="คนไข้ที่มีการสร้าง Visit วันนี้" HorizontalAlignment="Right">
+                    <dxe:TextEdit Background="Orange" IsReadOnly="True" Width="50"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                
+            </dxlc:LayoutItem>
+            <dxg:GridControl x:Name="PatientGrid" ItemsSource="{Binding PatientDataList}" 
+                             SelectedItem="{Binding SelectPatientDataList}">
+                <!--<dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>-->
+                <dxg:GridColumn FieldName="No" Width="30" Fixed="Left"/>
+                <dxg:GridColumn x:Name="Register" Fixed="Left" AllowPrinting="False"   Width="70"
+                               
+                                AllowEditing="True" FieldName="Register"/>
+                <dxg:GridColumn Header="HN" FieldName="BN"/>
+                <dxg:GridColumn Header="Other ID" FieldName="PatientOtherID"/>
+                <dxg:GridColumn Header="PreName" FieldName="PreName"/>
+                <dxg:GridColumn Header="FirstName" FieldName="FirstName"/>
+                <dxg:GridColumn Header="LastName" FieldName="LastName"/>
+                <dxg:GridColumn Header="Sex" FieldName="Gender"/>
+                <dxg:GridColumn Header="BirthDttm" FieldName="DateOfBirth"/>
+                <dxg:GridColumn Header="Age" FieldName="Age"/>
+                <dxg:GridColumn Header="IDCard" FieldName="IDCard"/>
+                <dxg:GridColumn Header="MobilePhone" FieldName="MobilePhone"/>
+                <dxg:GridColumn Header="EN" FieldName="VisitID"/>
+                <dxg:GridColumn Header="Company" FieldName="Company"/>
+                <dxg:GridColumn Header="Program" FieldName="Program"/>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="tableView" ShowGroupPanel="False"
+                                   UseLightweightTemplates="None"
+                                   RowStyle="{StaticResource RowColorCellStyle}"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem HorizontalAlignment="Left"  Label="Select All" >
+                    <CheckBox VerticalAlignment="Center" HorizontalAlignment="Left" Name="SelectAll" IsChecked="{Binding Path=SelectAll,UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" Width="50"></CheckBox>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="จำนวนคนไข้ที่ลงทะเบียนเพิ่ม" >
+                    <TextBox  HorizontalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path = RegisteredCount, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="จำนวนคนไข้ที่มี BN แล้ว" >
+                    <TextBox  HorizontalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path = UpdateCount, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="จำนวน Vist ที่สร้าง">
+                    <TextBox  HorizontalAlignment="Stretch" IsReadOnly="True" Text="{Binding Path = CreateVisitCount, UpdateSourceTrigger=PropertyChanged}" IsEnabled="False"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Left">
+                    <dxlc:LayoutItem Label="Patient Sticker Qty" VerticalAlignment="Center">
+                        <dxe:TextEdit EditValue="{Binding StickerQuantity}" Width="80" MaskType="Numeric" Mask="d"/>
+                    </dxlc:LayoutItem>
+                    <dx:SimpleButton Width="90" Height="25" Content="Print Sticker" Command="{Binding PrintStickerCommand}"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup HorizontalAlignment="Left">
+                    <dxlc:LayoutItem Label="Mobile Sticker">
+
+                        <dxg:LookUpEdit Name="multiSelectLookUpEdit"
+                                    VerticalAlignment="Top"
+                                    Width="150"
+                                    ItemsSource="{Binding MobileStickerSource}"
+                                    EditValue="{Binding SelectMobileStickers}"
+                                    ShowSizeGrip="True"
+                                    AutoPopulateColumns="False"
+                                    IsTextEditable="False"
+                                    IsPopupAutoWidth="False"
+                                    DisplayMember="Display"
+                                    PopupHeight="300"
+                                    PopupMaxWidth="250">
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl" >
+                                        <dxg:GridColumn FieldName="Display" Header="รายการ" ReadOnly="True" Width="Auto"/>
+                                        <dxg:GridColumn FieldName="Key" Header="จำนวน" ReadOnly="False" Width="55">
+                                            <dxg:GridColumn.CellTemplate>
+                                                <DataTemplate>
+                                                    <dxe:TextEdit Text="{Binding RowData.Row.Key,Mode=TwoWay}" 
+                                                                  HorizontalContentAlignment="Right" />
+                                                </DataTemplate>
+                                            </dxg:GridColumn.CellTemplate>
+                                        </dxg:GridColumn>
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView AutoWidth="True" AllowPerPixelScrolling="True" AllowEditing="True"
+                                                           ShowAutoFilterRow="False" AllowChangeBandParent="True"
+                                                           ShowCheckBoxSelectorColumn="True"
+                                                           CheckBoxSelectorColumnWidth="30"
+                                                           AllowChangeColumnParent="True"/>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:MultiSelectLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dx:SimpleButton Width="90" Height="25" Content="Print Sticker" Command="{Binding MobileStickerCommand}"/>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="90" Height="25" Content="Register" Command="{Binding RegisterCommand}"/>
+                    <dx:SimpleButton Width="90" Height="25" Content="Create Visit" Command="{Binding CreateVisitCommand}"/>
+                    <dx:SimpleButton Width="90" Height="25" Content="Export" Command="{Binding ExportCommand}"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

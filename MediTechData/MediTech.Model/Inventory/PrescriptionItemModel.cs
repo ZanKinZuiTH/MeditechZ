@@ -1,0 +1,47 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace MediTech.Model
+{
+    public class PrescriptionItemModel
+    {
+        public long PrescriptionItemUID { get; set; }
+        public long PrescriptionUID { get; set; }
+        public string PrestionItemStatus { get; set; }
+        public string ItemCode { get; set; }
+        public string ItemName { get; set; }
+        public Nullable<int> ROUTEUID { get; set; }
+        public Nullable<int> FRQNCUID { get; set; }
+        public Nullable<int> DFORMUID { get; set; }
+        public string ClinicalComments { get; set; }
+        public string Comments { get; set; }
+        public Nullable<System.DateTime> StartDttm { get; set; }
+        public Nullable<int> DrugDuration { get; set; }
+        public Nullable<double> Quantity { get; set; }
+        public Nullable<double> Dosage { get; set; }
+        public string QuantityUnit { get; set; }
+        public string Frequency { get; set; }
+        public string InstructionRoute { get; set; }
+        public string InstructionText { get; set; }
+        public string LocalInstructionText { get; set; }
+        public Nullable<int> ORDSTUID { get; set; }
+        public Nullable<int> PDSTSUID { get; set; }
+        public Nullable<int> StoreUID { get; set; }
+        public DateTime? ExpiryDate { get; set; }
+        public Nullable<int> ItemMasterUID { get; set; }
+        public int BillableItemUID { get; set; }
+        public string BillingService { get; set; }
+        public string DrugType { get; set; }
+        public long PatientOrderDetailUID { get; set; }
+        public int CUser { get; set; }
+        public System.DateTime CWhen { get; set; }
+        public int MUser { get; set; }
+        public System.DateTime MWhen { get; set; }
+        public string StatusFlag { get; set; }
+        public string StoreName { get; set; }
+        public Nullable<int> OwnerOrganisationUID { get; set; }
+    }
+}

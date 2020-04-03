@@ -1,0 +1,128 @@
+﻿<UserControl xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.PhysicalExam"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=PhysicalExamViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <dxre:RichEditUICommand x:Key="commands"/>
+        <dxre:RichEditStringIdConverter x:Key="stringIdConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxb:BarManager x:Name="barManager1" ToolbarGlyphSize="Small">
+                <dxb:BarManager.Bars>
+                    <dxb:Bar x:Name="barFont" Caption="{Binding ConverterParameter=Caption_GroupFont, Converter={StaticResource stringIdConverter}, Mode=OneTime, Source={StaticResource stringIdConverter}}">
+                        <dxb:Bar.DockInfo>
+                            <dxb:BarDockInfo ContainerType="Top"/>
+                        </dxb:Bar.DockInfo>
+                        <dxb:Bar.ItemLinks>
+                            <dxb:BarButtonItemLink BarItemName="biBookMark"/>
+                            <dxb:BarEditItemLink BarItemName="biFormatFontSize"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatIncreaseFontSize"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatDecreaseFontSize"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatClearFormatting"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatFontBold"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatFontItalic"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatFontUnderline"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatFontDoubleUnderline"/>
+                            <dxb:BarSubItemLink BarItemName="biEditChangeCase"/>
+                            <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatFontHighlightColor"/>
+                            <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatFontForeColor"/>
+                        </dxb:Bar.ItemLinks>
+                    </dxb:Bar>
+                    <dxb:Bar x:Name="barParagraph"  Caption="{Binding ConverterParameter=Caption_GroupParagraph, Converter={StaticResource stringIdConverter}, Mode=OneTime, Source={StaticResource stringIdConverter}}">
+                        <dxb:Bar.DockInfo>
+                            <dxb:BarDockInfo ContainerType="Top"/>
+                        </dxb:Bar.DockInfo>
+                        <dxb:Bar.ItemLinks>
+                            <dxb:BarCheckItemLink BarItemName="biFormatBulletedList"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatNumberingList"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatMultilevelList"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatDecreaseIndent"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatIncreaseIndent"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignLeft"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignCenter"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignRight"/>
+                            <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignJustify"/>
+                            <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatParagraphBackColor"/>
+                            <dxb:BarButtonItemLink BarItemName="biFormatParagraph"/>
+                        </dxb:Bar.ItemLinks>
+                    </dxb:Bar>
+                </dxb:BarManager.Bars>
+                <dxb:BarManager.Items>
+                    <dxb:BarButtonItem x:Name="biBookMark" ToolTip="Add To Favorite" 
+                                       Command="{Binding DataContext.AddToFavoruiteCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PhysicalExam}}}"
+                                       Glyph="/MediTech;component/Resources/Images/Other/Bookmark.png"/>
+                    <dxb:BarEditItem x:Name="biFormatFontSize" Content="" Command="{Binding FormatFontSize, Mode=OneTime, Source={StaticResource commands}}" EditWidth="50">
+                        <dxb:BarEditItem.EditSettings>
+                            <dxre:FontSizeComboBoxEditSettings 
+                                OfficeFontSizeProvider="{Binding ElementName=richEdit}"/>
+                        </dxb:BarEditItem.EditSettings>
+                    </dxb:BarEditItem>
+                    <dxb:BarButtonItem x:Name="biFormatIncreaseFontSize" Command="{Binding FormatIncreaseFontSize, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarButtonItem x:Name="biFormatDecreaseFontSize" Command="{Binding FormatDecreaseFontSize, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarButtonItem x:Name="biFormatClearFormatting" Command="{Binding FormatClearFormatting, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatFontBold" Command="{Binding FormatFontBold, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatFontItalic" Command="{Binding FormatFontItalic, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatFontUnderline" Command="{Binding FormatFontUnderline, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatFontDoubleUnderline" Command="{Binding FormatFontDoubleUnderline, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarSubItem x:Name="biEditChangeCase" Command="{Binding EditChangeCase, Mode=OneTime, Source={StaticResource commands}}">
+                        <dxb:BarSubItem.ItemLinks>
+                            <dxb:BarButtonItemLink BarItemName="biEditMakeUpperCase"/>
+                            <dxb:BarButtonItemLink BarItemName="biEditMakeLowerCase"/>
+                            <dxb:BarButtonItemLink BarItemName="biEditToggleCase"/>
+                        </dxb:BarSubItem.ItemLinks>
+                    </dxb:BarSubItem>
+                    <dxre:BarSplitButtonColorEditItem x:Name="biFormatFontHighlightColor" Command="{Binding FormatFontHighlightColor, Mode=OneTime, Source={StaticResource commands}}">
+                        <dxb:PopupControlContainerInfo>
+                            <dxe:ColorEdit ChipSize="Large" ChipMargin="5" ColumnCount="5" EditValue="{Binding EditValue, ElementName=biFormatFontHighlightColor, Mode=TwoWay}" ShowMoreColorsButton="False" ShowDefaultColorButton="False" ShowNoColorButton="True" ShowBorder="False">
+                                <dxe:ColorEdit.Palettes>
+                                    <dxre:CharactersBackgroundColorPaletteCollection/>
+                                </dxe:ColorEdit.Palettes>
+                            </dxe:ColorEdit>
+                        </dxb:PopupControlContainerInfo>
+                    </dxre:BarSplitButtonColorEditItem>
+                    <dxre:BarSplitButtonColorEditItem x:Name="biFormatFontForeColor" Command="{Binding FormatFontForeColor, Mode=OneTime, Source={StaticResource commands}}">
+                        <dxb:PopupControlContainerInfo>
+                            <dxe:ColorEdit EditValue="{Binding EditValue, ElementName=biFormatFontForeColor, Mode=TwoWay}" ShowBorder="False"/>
+                        </dxb:PopupControlContainerInfo>
+                    </dxre:BarSplitButtonColorEditItem>
+                    <dxb:BarCheckItem x:Name="biFormatBulletedList" Command="{Binding FormatBulletedList, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatNumberingList" Command="{Binding FormatNumberingList, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatMultilevelList" Command="{Binding FormatMultilevelList, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarButtonItem x:Name="biFormatDecreaseIndent" Command="{Binding FormatDecreaseIndent, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarButtonItem x:Name="biFormatIncreaseIndent" Command="{Binding FormatIncreaseIndent, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatParagraphAlignLeft" Command="{Binding FormatParagraphAlignLeft, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatParagraphAlignCenter" Command="{Binding FormatParagraphAlignCenter, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatParagraphAlignRight" Command="{Binding FormatParagraphAlignRight, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxb:BarCheckItem x:Name="biFormatParagraphAlignJustify" Command="{Binding FormatParagraphAlignJustify, Mode=OneTime, Source={StaticResource commands}}"/>
+                    <dxre:BarSplitButtonColorEditItem x:Name="biFormatParagraphBackColor" Command="{Binding FormatParagraphBackColor, Mode=OneTime, Source={StaticResource commands}}">
+                        <dxb:PopupControlContainerInfo>
+                            <dxe:ColorEdit EditValue="{Binding EditValue, ElementName=biFormatParagraphBackColor, Mode=TwoWay}" ShowDefaultColorButton="False" ShowNoColorButton="True" ShowBorder="False"/>
+                        </dxb:PopupControlContainerInfo>
+                    </dxre:BarSplitButtonColorEditItem>
+                    <dxb:BarButtonItem x:Name="biFormatParagraph" Command="{Binding FormatParagraph, Mode=OneTime, Source={StaticResource commands}}"/>
+                </dxb:BarManager.Items>
+                <dxre:RichEditControl x:Name="richEdit" VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"
+                                      FontFamily="AngsanaUPC"
+                                      FontSize="15"
+        			CommandBarStyle="Empty" BarManager="{Binding ElementName=barManager1, Mode=OneTime}"/>
+            </dxb:BarManager>
+            <dxlc:LayoutGroup HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom" >
+                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+</UserControl>

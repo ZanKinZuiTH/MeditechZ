@@ -1,0 +1,289 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ManageItemIssue"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             mc:Ignorable="d"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             DataContext="{Binding Path=ManageItemIssueViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+        <ControlTemplate x:Key="gridItemMasterTemplate">
+            <dxg:GridControl x:Name="PART_GridControl">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="Code" Header="รหัส" Width="50"/>
+                    <dxg:GridColumn FieldName="Name" Header="ชื่อ"  Width="220">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings  TextWrapping="Wrap"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ItemType" Header="ประเภท" Width="90"/>
+                    <!--<dxg:GridColumn FieldName="UnitPrice" Header="ราคาส่งต่อหน่วย" Width="90" />-->
+                    <dxg:GridColumn FieldName="BatchQty" Header="จำนวนคงคลัง" Width="70">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings  HorizontalContentAlignment="Center"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="BatchID" Header="BatchID"/>
+                    <dxg:GridColumn FieldName="ExpiryDttm" Header="วันหมดอายุ"/>
+                    <dxg:GridColumn FieldName="BaseUnit" Header="หน่วย" Width="100"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="viewPopContent"
+                                   ShowGroupPanel="False"/>
+                </dxg:GridControl.View>
+
+            </dxg:GridControl>
+        </ControlTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="จาก สถานประกอบการ" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit Name="lkeOrganisationFrom" ItemsSource="{Binding OrganisationsFrom}" 
+                                      SelectedItem="{Binding SelectOrganisationFrom}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="จาก Store" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit Name="cmbStore" 
+                                      ItemsSource="{Binding StoresFrom}" 
+                                      SelectedItem="{Binding SelectStoreFrom}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="ส่งไป สถานประกอบการ" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit Name="lkeOrganisationTo" ItemsSource="{Binding OrganisationsTo}" 
+                                      SelectedItem="{Binding SelectOrganisationTo}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="ถึง Stroe" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding StoresTo}" 
+                                      SelectedItem="{Binding SelectStoreTo}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="วันที่ส่งออก" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:DateEdit EditValue="{Binding IssueDate,Mode=TwoWay}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="อ้างอิงใบ Request เลขที่" HorizontalAlignment="Left">
+                            <TextBlock Text="{Binding RequestNo}"/>
+                        </dxlc:LayoutItem>
+
+                        <Image Width="30" Height="30" HorizontalAlignment="Right"
+                           Visibility="{Binding VisibilitySearchRequest}"
+                           ToolTip="ค้นหาการร้องขอ"
+                           Cursor="Hand"
+                           Source="/MediTech;component/Resources/Images/Document/Documents01.png" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding SearchRequestCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            <dxg:GridControl x:Name="grdIssueItemList" ItemsSource="{Binding ItemIssueDetail}"
+                                     SelectedItem="{Binding SelectItemIssueDetail}" >
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="No" Width="30" ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="รายการสินค้า" Width="220" FieldName="StockUID">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxg:LookUpEdit Name="PART_Editor" 
+                                                        ItemsSource="{Binding Path=DataContext.ItemMasters,RelativeSource={RelativeSource AncestorType={x:Type vm:ManageItemIssue}}}" 
+                                                        SelectedItem="{Binding RowData.Row.SelectItemMaster}"
+                                                        PopupHeight="400" PopupWidth="900"
+                                                        ValueMember="StockUID"                                                      
+                                                        DisplayMember="Name"
+                                                        PopupContentTemplate="{DynamicResource gridItemMasterTemplate}"
+                                                        AutoPopulateColumns="False" FilterCondition="Contains">
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                    <dxg:LookUpEdit.DisplayTemplate>
+                                        <ControlTemplate>
+                                            <TextBlock TextWrapping="Wrap" Text="{Binding RowData.Row.SelectItemMaster.Name}"/>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.DisplayTemplate>
+                                </dxg:LookUpEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="รหัสของ" FieldName="ItemCode" ReadOnly="True" Width="50"/>
+                    <dxg:GridColumn Header="จำนวนส่งออก" FieldName="Quantity">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="จำนวนคงเหลือ" FieldName="ShowBatchQuantity" ReadOnly="True" Width="80"/>
+                    <!--<dxg:GridColumn Header="ราคาส่งต่อหน่วย" FieldName="UnitPrice">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>-->
+                    <dxg:GridColumn Header="ต้นทุนต่อหน่วย" FieldName="ItemCost" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รวมเป็นเงิน" FieldName="NetCost" ReadOnly="True"/>
+
+                    <dxg:GridColumn Header="หน่วย" FieldName="IMUOMUID">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:ComboBoxEdit x:Name="PART_Editor" 
+                                                          DisplayMember="ConversionUnit"
+                                                          ValueMember="ConversionUOMUID"
+                                                          ItemsSource="{Binding RowData.Row.StoreUOMConverts}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="BatchID" FieldName="BatchID">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="วันหมดอายุ" FieldName="ExpiryDttm">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings MaskType="DateTimeAdvancingCaret" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="view" ShowGroupPanel="False" AllowSorting="False" NewItemRowPosition="Top" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger  EventName="CellValueChanged">
+                                <mvvm:EventToCommand Command="{Binding CellChangeValueCommand}" PassEventArgsToCommand="True" />
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="หมายเหตุ">
+                    <dxe:TextEdit Text="{Binding Comments}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem Label="รวมเป็นเงิน บาท">
+                    <dxe:TextEdit EditValue="{Binding NetAmount}"
+                                  FontWeight="Bold"
+                                  AllowNullInput="True"
+                                  DisplayFormatString="#,0.###"
+                                  IsEnabled="False"
+                                  IsReadOnly="True"
+                                  ShowBorder="False"
+                                HorizontalContentAlignment="Right"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem />
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem Label="ค่าอื่นๆ บาท">
+                    <dxe:TextEdit HorizontalContentAlignment="Right" 
+                            DisplayFormatString="#,0.###"
+                            EditValue="{Binding OtherChages}"
+                            Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
+
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

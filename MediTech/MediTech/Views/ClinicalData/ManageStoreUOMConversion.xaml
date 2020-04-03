@@ -1,0 +1,60 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ManageStoreUOMConversion"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ManageStoreUOMConversionViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Horizontal">
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="หน่อวยหลัก" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      ItemsSource="{Binding StoreUOMs}"
+                                      SelectedItem="{Binding SelectBaseUOM}"
+                                      ValueMember="Key"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="หน่วยแปลง" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit DisplayMember="Display"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      ItemsSource="{Binding StoreUOMs}"
+                                      SelectedItem="{Binding SelectConverionsUOM}"
+                                      ValueMember="Key"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ค่า">
+                    <dxe:TextEdit EditValue="{Binding ConversionValue}" Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,125 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.CCHPI"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             Height="300"
+             Width="600"
+             DataContext="{Binding Path=CCHPIViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="300" d:DesignWidth="600">
+    <Grid>
+        <dxlc:LayoutControl>
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Chief Complaint"             
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Foreground="Blue"/>
+                            <Image Width="25"
+                       Height="25"
+                       Margin="3"
+                       Source="/MediTech;component/Resources/Images/Other/Bookmark.png"
+                       ToolTip="Add To Favourite" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand CommandParameter="CC" Command="{Binding DataContext.AddToFavoruiteCommand
+                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:CCHPI}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
+
+                            <Image Width="25"
+                       Height="25"
+                       Margin="3"
+                       Source="/MediTech;component/Resources/Images/Other/LayoutOptions.png"
+                       ToolTip="Template Setting" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand CommandParameter="CC" Command="{Binding DataContext.TemplateSettingCommand
+                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:CCHPI}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
+                        </StackPanel>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit Name="cmbCCHPIMaster" 
+                                      ItemsSource="{Binding CCHPIMaster}"
+                                      AutoComplete="False"                                    
+                                      IsTextEditable="True"
+                                      AllowNullInput="True"
+                                      ClearSelectionOnBackspace="True"
+                                      ValidateOnTextInput="False"
+                                      ImmediatePopup="True"
+                                      IncrementalFiltering="True"
+                                      DisplayMember="Name"
+                                      ShowEditorButtons="False"
+                                      AssignNullValueOnClearingEditText="True"
+                                      SelectedItem="{Binding SelectCCHPIMaster}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Width="80">
+                        <dxe:TextEdit AllowNullInput="True"
+                                      EditValue="{Binding Period,UpdateSourceTrigger=PropertyChanged}" 
+                                      Mask="\d{0,9}"  
+                                      MaskType="RegEx"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Width="100">
+                        <dxe:ComboBoxEdit Name="cmbUnit" DisplayMember="Display"
+                            ValueMember="Key"
+                            AllowNullInput="True"
+                            NullValueButtonPlacement="EditBox"
+                            ItemsSource="{Binding UnitMeasure}"
+                            SelectedItem="{Binding SelectUnitMeasure}"
+                            />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem >
+                        <StackPanel Orientation="Horizontal">
+                            <TextBlock Text="Present illness"             
+                                   FontWeight="Bold"
+                                   FontSize="15"
+                                   VerticalAlignment="Center"
+                                   Foreground="Blue"/>
+                            <Image Width="25"
+                       Height="25"
+                       Margin="3"
+                       Source="/MediTech;component/Resources/Images/Other/Bookmark.png"
+                       ToolTip="Add To Favourite" >
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand CommandParameter="PI" Command="{Binding DataContext.TemplateSettingCommand
+                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:CCHPI}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
+                        </StackPanel>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxe:TextEdit Text="{Binding Presentillness,Mode=TwoWay
+                    ,UpdateSourceTrigger=PropertyChanged}"
+                    AcceptsReturn="True" 
+                    VerticalContentAlignment="Top"
+                    AcceptsTab="True"
+                    ScrollViewer.VerticalScrollBarVisibility="Auto"
+                    TextWrapping="Wrap"/>
+                <dxlc:LayoutGroup HorizontalAlignment="Right"
+                                  VerticalAlignment="Bottom" >
+                    <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                    <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

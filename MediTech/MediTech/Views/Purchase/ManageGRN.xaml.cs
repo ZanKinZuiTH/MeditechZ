@@ -1,0 +1,115 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Documents;
+using System.Windows.Input;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
+using System.Windows.Shapes;
+using MediTech.ViewModels;
+using MediTech.Models;
+using DevExpress.Xpf.Grid;
+
+namespace MediTech.Views
+{
+    /// <summary>
+    /// Interaction logic for ManageGRN.xaml
+    /// </summary>
+    public partial class ManageGRN : UserControl
+    {
+        public ManageGRN()
+        {
+            InitializeComponent();
+            view.PreviewKeyDown += view_PreviewKeyDown;
+            view.ValidateRow += view_ValidateRow;
+            view.InvalidRowException += view_InvalidRowException;
+            if (this.DataContext is ManageGRNViewModel)
+            {
+                (this.DataContext as ManageGRNViewModel).UpdateEvent += ManageGRNViewModel_UpdateEvent;
+            }
+        }
+
+
+
+        void view_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Delete)
+            {
+                if (view.FocusedRowHandle >= 0)
+                {
+
+                    System.Windows.Forms.DialogResult result = System.Windows.Forms.MessageBox.Show("คุณต้องการลบข้อมูลที่เลือก ใช้หรือไม่ ?", "Question", System.Windows.Forms.MessageBoxButtons.YesNo, System.Windows.Forms.MessageBoxIcon.Question);
+                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    {
+                        view.DeleteRow(view.FocusedRowHandle);
+                        (this.DataContext as ManageGRNViewModel).CalculateNetAmount();
+                        (this.DataContext as ManageGRNViewModel).CalculateVat();
+                    }
+
+
+                }
+            }
+
+        }
+
+        void ManageGRNViewModel_UpdateEvent(object sender, EventArgs e)
+        {
+            grdPurchaseItemList.RefreshData();
+        }
+
+        private void view_ValidateRow(object sender, DevExpress.Xpf.Grid.GridRowValidationEventArgs e)
+        {
+            if (e.Row == null) return;
+            ItemMasterList newItem = (ItemMasterList)e.Row;
+            if (newItem.ItemMasterUID == 0)
+            {
+                e.IsValid = false;
+                MessageBox.Show("กรุณาเลือกรายการสินค้า", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+
+            if ((newItem.FreeQuantity == null || newItem.FreeQuantity <= 0) && (newItem.Quantity == null || newItem.Quantity <= 0))
+            {
+                e.IsValid = false;
+                MessageBox.Show("กรุณาใส่จำนวน", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+            if (newItem.Quantity > 0 && (newItem.UnitPrice == null || newItem.UnitPrice <= 0))
+            {
+                e.IsValid = false;
+                MessageBox.Show("กรุณาใส่ราคา", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+
+            if (newItem.ExpiryDttm == null)
+            {
+                e.IsValid = false;
+                MessageBox.Show("กรุณาใส่วันหมดอายุ", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                e.Handled = true;
+                return;
+            }
+
+            if (String.IsNullOrEmpty(newItem.BatchID))
+            {
+                newItem.BatchID = DateTime.Now.Date.ToString("ddMMyyyy");
+                grdPurchaseItemList.RefreshData();           
+            }
+
+        }
+
+        void view_InvalidRowException(object sender, InvalidRowExceptionEventArgs e)
+        {
+            e.ExceptionMode = ExceptionMode.NoAction;
+        }
+
+    }
+}

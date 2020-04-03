@@ -1,0 +1,592 @@
+﻿<UserControl xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" xmlns:dxre="http://schemas.devexpress.com/winfx/2008/xaml/richedit" xmlns:dxdb="http://schemas.devexpress.com/winfx/2008/xaml/demobase" xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+             x:Class="MediTech.Views.ReviewRISResult"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:s="clr-namespace:System;assembly=mscorlib"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ReviewRISResultViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <s:Boolean x:Key="True">True</s:Boolean>
+        <s:Boolean x:Key="False">False</s:Boolean>
+        <cv:VisibilityConverter x:Key="VisitBilityConvert"/>
+        <dxre:RichEditUICommand x:Key="commands"/>
+        <dxre:RichEditStringIdConverter x:Key="stringIdConverter"/>
+
+        <SolidColorBrush x:Key="FontBrush" Color="#FF302B2B"/>
+
+        <LinearGradientBrush x:Key="BgBrush1" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="White"/>
+            <GradientStop Offset="1" Color="White"/>
+        </LinearGradientBrush>
+
+        <SolidColorBrush x:Key="BorderBrush1" Color="#FF9C9C9C"/>
+        <LinearGradientBrush x:Key="CheckedBrush" StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Offset="0" Color="#FFC3E0F3"/>
+            <GradientStop Offset="1" Color="#FF79A5F1"/>
+        </LinearGradientBrush>
+
+
+
+        <!-- Middle Button(s) Template -->
+        <ControlTemplate x:Key="ToggleButtonStyle" TargetType="{x:Type ToggleButton}">
+            <Border
+                Name="Border"
+                Background="{StaticResource BgBrush1}"
+                BorderBrush="{StaticResource BorderBrush1}"
+                BorderThickness="1,1,1,1"
+                Margin="0.5">
+                <ContentPresenter
+                    HorizontalAlignment="Center"
+                    Margin="2,5,2,0"
+                    VerticalAlignment="Top">
+                    <ContentPresenter.Content>
+                        <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Name}" FontWeight="Bold" FontSize="10" Foreground="Red" TextTrimming="CharacterEllipsis"/>
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                    <Setter TargetName="Border" Property="Background" Value="#FFC0D2EE"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!-- Other code identical to Left Button Template -->
+        </ControlTemplate>
+
+        <ControlTemplate x:Key="ToggleButtonNegativeStyle" TargetType="{x:Type ToggleButton}">
+            <Border
+                Name="Border"
+                Background="{StaticResource BgBrush1}"
+                BorderBrush="{StaticResource BorderBrush1}"
+                BorderThickness="1,1,1,1"
+                Margin="0.5">
+                <ContentPresenter
+                    HorizontalAlignment="Center"
+                    Margin="2,5,2,0"
+                    VerticalAlignment="Top">
+                    <ContentPresenter.Content>
+                        <TextBlock Text="{Binding Path=Name}" ToolTip="{Binding Name}" 
+                                   FontWeight="Bold" 
+                                   FontSize="10" Foreground="Blue" TextTrimming="CharacterEllipsis"/>
+                    </ContentPresenter.Content>
+                </ContentPresenter>
+
+            </Border>
+            <ControlTemplate.Triggers>
+                <Trigger Property="ToggleButton.IsMouseOver" Value="true">
+                    <Setter TargetName="Border" Property="Background" Value="#FFC0D2EE"/>
+                </Trigger>
+            </ControlTemplate.Triggers>
+            <!-- Other code identical to Left Button Template -->
+        </ControlTemplate>
+
+        <Style x:Key="SelecRadioButtonTemplateStyle" TargetType="{x:Type RadioButton}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Path=ResultStatus}" Value="Normal">
+                    <Setter Property="Template" Value="{StaticResource ToggleButtonNegativeStyle}" />
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Path=ResultStatus}" Value="Abnormal">
+                    <Setter Property="Template" Value="{StaticResource ToggleButtonStyle}" />
+                </DataTrigger>
+                <!--  your other Status' here -->
+            </Style.Triggers>
+        </Style>
+
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical"  Padding="5">
+            <dxlc:LayoutItem VerticalAlignment="Top">
+                <Border BorderThickness="0,1,0,1" BorderBrush="Black">
+                    <uc:PatientBanner x:Name="PatientBanner" />
+                </Border>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup  Orientation="Vertical" Width="350">
+                    <dxlc:LayoutItem x:Name="lytResultPri">
+                        <ListBox Height="80" BorderBrush="White"
+                                     ItemsSource="{Binding ResultPrimaryTemplate}"
+                        ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                        ScrollViewer.VerticalScrollBarVisibility="Auto">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="IsSelected" Value="{Binding Content.IsSelected, Mode=TwoWay, RelativeSource={RelativeSource Self}}"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <ContentPresenter Margin="5,3,0,0"/>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemsPanel>
+                                <ItemsPanelTemplate>
+                                    <WrapPanel IsItemsHost="True" HorizontalAlignment="Center"/>
+                                </ItemsPanelTemplate>
+                            </ListBox.ItemsPanel>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <RadioButton GroupName="View"                                            
+                                             Cursor="Hand"
+                                             Content="{Binding Name}"
+                                             Style="{StaticResource SelecRadioButtonTemplateStyle}"
+                                             Width="100">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="Click">
+                                                <mvvm:EventToCommand CommandParameter="{Binding ResultRadiologyTemplateUID}"  
+                                                                 Command="{Binding Path=DataContext.EnterPrimaryTemplateCommand
+                                                ,RelativeSource={RelativeSource AncestorType={x:Type vm:ReviewRISResult}}}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </RadioButton>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl ItemsSource="{Binding Path=PatientRequest.Invenstigation}" Height="120">
+                        <dxg:GridColumn Header="รายการ" FieldName="TestName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="รังสีแพทย์" FieldName="Radiologist" ReadOnly="True"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                    <dxlc:LayoutGroup View="Tabs">
+                        <dxlc:LayoutGroup Header="Template">
+                            <dxg:GridControl x:Name="grdTemplate"
+                                             ItemsSource="{Binding ResultTemplate}" 
+                                             SelectedItem="{Binding SelectResultTemplate}">
+                                <dxg:GridColumn FieldName="Name" Width="*">
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Button Cursor="Hand"  Command="{Binding DataContext.CopyTemplateCommand
+                                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:ReviewRISResult}}}">
+                                                <Button.Template>
+                                                    <ControlTemplate>
+                                                        <Border Margin="5,0,0,0" Background="{x:Null}">
+                                                            <TextBlock Text="{Binding RowData.Row.Name}"
+                                                                       VerticalAlignment="Center">
+                                                                <TextBlock.Style>
+                                                                    <Style TargetType="TextBlock">
+                                                                        <Style.Triggers>
+                                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}, AncestorLevel=1}, Path=IsMouseOver}" Value="True">
+                                                                                <Setter Property="Foreground" Value="Blue"/>
+                                                                                <Setter Property="FontSize" Value="14"/>
+                                                                            </DataTrigger>
+                                                                            <DataTrigger Binding="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type Border}, AncestorLevel=1}, Path=IsMouseOver}" Value="False">
+                                                                                <Setter Property="Foreground" Value="Black"/>
+                                                                                <Setter Property="FontSize" Value="13"/>
+                                                                            </DataTrigger>
+                                                                        </Style.Triggers>
+                                                                    </Style>
+                                                                </TextBlock.Style>
+                                                            </TextBlock>
+                                                        </Border>
+                                                    </ControlTemplate>
+                                                </Button.Template>
+                                            </Button>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Width="30" >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Width="20"
+                                                   Height="20" 
+                                                   Stretch="UniformToFill"
+                                                   Visibility="{Binding RowData.Row.IsPublic,Converter={StaticResource VisitBilityConvert}}"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   Source="/MediTech;component/Resources/Images/Other/UserGroup.png">
+                                            </Image>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Width="30">
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <Image Width="20" Height="20" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"                                  
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/trash.png">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                        <mvvm:EventToCommand Command="{Binding DataContext.DeleteTemplateCommand
+                                                            ,RelativeSource={RelativeSource AncestorType={x:Type vm:ReviewRISResult}}}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"
+                                                   ShowIndicator="False"
+                                                   RowMinHeight="30"
+                                                   ShowColumnHeaders="False"
+                                                   ShowVerticalLines="False"
+                                                   ShowHorizontalLines="False"
+                                                   ShowSearchPanelMode="Always">
+                                        <dxg:TableView.RowStyle>
+                                            <Style TargetType="{x:Type dxg:RowControl}">
+                                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                            </Style>
+                                        </dxg:TableView.RowStyle>
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="ประวัติที่ผ่านมา">
+                            <dxg:GridControl ItemsSource="{Binding Path=PatientRequest.PreviousResult}"
+                                     SelectedItem="{Binding Path=SelectPreviousResult}">
+                                <dxg:GridColumn Header="เวลาออกผล" FieldName="ResultEnteredDttm" ReadOnly="True">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="รายการ" FieldName="TestName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="สถานะ" FieldName="ResultStatus" ReadOnly="True"/>
+                                <dxg:GridColumn >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:HyperlinkEdit EditValue="View">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger  EventName="RequestNavigation">
+                                                        <mvvm:EventToCommand Command="{Binding View.DataContext.ViewOldResultCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </dxe:HyperlinkEdit>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:HyperlinkEdit EditValue="Copy">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger  EventName="RequestNavigation">
+                                                        <mvvm:EventToCommand Command="{Binding View.DataContext.CopyOldResultCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </dxe:HyperlinkEdit>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <dxe:HyperlinkEdit EditValue="PACS Viewer">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger  EventName="RequestNavigation">
+                                                        <mvvm:EventToCommand Command="{Binding View.DataContext.OpenPastPACSCommand}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </dxe:HyperlinkEdit>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem>
+                                <TextBlock Text="{Binding Path=PatientRequest.RequestItemName}" 
+                                   FontWeight="Bold" FontSize="14"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="Executed By :">
+                                    <TextBlock Text="{Binding Path=PatientRequest.PreparedBy}"
+                                           FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="RDU Staff :">
+                                    <TextBlock Text="{Binding Path=PatientRequest.RDUStaff}"
+                                           FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="Order At :">
+                                    <TextBlock Text="{Binding Path=PatientRequest.RequestedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
+                                           FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Executed At :">
+                                    <TextBlock Text="{Binding Path=PatientRequest.PreparedDttm,StringFormat='dd/MM/yyyy HH:mm'}"
+                                           FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal" >
+                                <dxlc:LayoutItem Label="Modality :">
+                                    <TextBlock Text="{Binding Path=PatientRequest.Modality}" FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalContentAlignment="Right">
+                                    <dxe:HyperlinkEdit Text="Request Form" ShowNavigationUrlToolTip="False"
+                                                       ToolTip="View Request Form" Command="{Binding ViewRequestFromCommand}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalContentAlignment="Right">
+                                    <dxe:HyperlinkEdit Text="Previous Film" ShowNavigationUrlToolTip="False" 
+                                                       ToolTip="View Previous Film" Command="{Binding ViewPreviousFilmCommand}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalContentAlignment="Right">
+                                    <dxe:HyperlinkEdit Text="View PACS" ShowNavigationUrlToolTip="False" 
+                                                       ToolTip="View PACS" Command="{Binding ViewPACSCommand}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem Label="Request Number :">
+                                <TextBlock Text="{Binding Path=PatientRequest.RequestNumber}" FontWeight="Bold"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Comments :">
+                                <TextBlock Text="{Binding Path=PatientRequest.ProcessingNote}" FontWeight="Bold"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Note From RDU :">
+                        <TextBlock Text="{Binding Path=PatientRequest.RDUNote}" FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxb:BarManager x:Name="barManager1"
+                                    Margin="2"
+                                    ToolbarGlyphSize="Small">
+                        <dxb:BarManager.Bars>
+                            <dxb:Bar x:Name="barFont" Caption="{Binding ConverterParameter=Caption_GroupFont, Converter={StaticResource stringIdConverter}, Mode=OneTime, Source={StaticResource stringIdConverter}}">
+                                <dxb:Bar.DockInfo>
+                                    <dxb:BarDockInfo ContainerType="Top"/>
+                                </dxb:Bar.DockInfo>
+                                <dxb:Bar.ItemLinks>
+                                    <dxb:BarEditItemLink BarItemName="biFormatFontSize"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatIncreaseFontSize"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatDecreaseFontSize"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatClearFormatting"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatFontBold"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatFontItalic"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatFontUnderline"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatFontDoubleUnderline"/>
+                                    <dxb:BarSubItemLink BarItemName="biEditChangeCase"/>
+                                    <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatFontHighlightColor"/>
+                                    <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatFontForeColor"/>
+                                </dxb:Bar.ItemLinks>
+                            </dxb:Bar>
+                            <dxb:Bar x:Name="barParagraph"  Caption="{Binding ConverterParameter=Caption_GroupParagraph, Converter={StaticResource stringIdConverter}, Mode=OneTime, Source={StaticResource stringIdConverter}}">
+                                <dxb:Bar.DockInfo>
+                                    <dxb:BarDockInfo ContainerType="Top"/>
+                                </dxb:Bar.DockInfo>
+                                <dxb:Bar.ItemLinks>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatBulletedList"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatNumberingList"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatMultilevelList"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatDecreaseIndent"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatIncreaseIndent"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignLeft"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignCenter"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignRight"/>
+                                    <dxb:BarCheckItemLink BarItemName="biFormatParagraphAlignJustify"/>
+                                    <dxre:BarSplitButtonColorEditItemLink BarItemName="biFormatParagraphBackColor"/>
+                                    <dxb:BarButtonItemLink BarItemName="biFormatParagraph"/>
+                                </dxb:Bar.ItemLinks>
+                            </dxb:Bar>
+                        </dxb:BarManager.Bars>
+                        <dxb:BarManager.Items>
+                            <dxb:BarEditItem x:Name="biFormatFontSize" Content="" Command="{Binding FormatFontSize, Mode=OneTime, Source={StaticResource commands}}" EditWidth="50">
+                                <dxb:BarEditItem.EditSettings>
+                                    <dxre:FontSizeComboBoxEditSettings 
+                                OfficeFontSizeProvider="{Binding ElementName=richEdit}"/>
+                                </dxb:BarEditItem.EditSettings>
+                            </dxb:BarEditItem>
+                            <dxb:BarButtonItem x:Name="biFormatIncreaseFontSize" Command="{Binding FormatIncreaseFontSize, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarButtonItem x:Name="biFormatDecreaseFontSize" Command="{Binding FormatDecreaseFontSize, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarButtonItem x:Name="biFormatClearFormatting" Command="{Binding FormatClearFormatting, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatFontBold" Command="{Binding FormatFontBold, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatFontItalic" Command="{Binding FormatFontItalic, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatFontUnderline" Command="{Binding FormatFontUnderline, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatFontDoubleUnderline" Command="{Binding FormatFontDoubleUnderline, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarSubItem x:Name="biEditChangeCase" Command="{Binding EditChangeCase, Mode=OneTime, Source={StaticResource commands}}">
+                                <dxb:BarSubItem.ItemLinks>
+                                    <dxb:BarButtonItemLink BarItemName="biEditMakeUpperCase"/>
+                                    <dxb:BarButtonItemLink BarItemName="biEditMakeLowerCase"/>
+                                    <dxb:BarButtonItemLink BarItemName="biEditToggleCase"/>
+                                </dxb:BarSubItem.ItemLinks>
+                            </dxb:BarSubItem>
+                            <dxre:BarSplitButtonColorEditItem x:Name="biFormatFontHighlightColor" Command="{Binding FormatFontHighlightColor, Mode=OneTime, Source={StaticResource commands}}">
+                                <dxb:PopupControlContainerInfo>
+                                    <dxe:ColorEdit ChipSize="Large" ChipMargin="5" ColumnCount="5" EditValue="{Binding EditValue, ElementName=biFormatFontHighlightColor, Mode=TwoWay}" ShowMoreColorsButton="False" ShowDefaultColorButton="False" ShowNoColorButton="True" ShowBorder="False">
+                                        <dxe:ColorEdit.Palettes>
+                                            <dxre:CharactersBackgroundColorPaletteCollection/>
+                                        </dxe:ColorEdit.Palettes>
+                                    </dxe:ColorEdit>
+                                </dxb:PopupControlContainerInfo>
+                            </dxre:BarSplitButtonColorEditItem>
+                            <dxre:BarSplitButtonColorEditItem x:Name="biFormatFontForeColor" Command="{Binding FormatFontForeColor, Mode=OneTime, Source={StaticResource commands}}">
+                                <dxb:PopupControlContainerInfo>
+                                    <dxe:ColorEdit EditValue="{Binding EditValue, ElementName=biFormatFontForeColor, Mode=TwoWay}" ShowBorder="False"/>
+                                </dxb:PopupControlContainerInfo>
+                            </dxre:BarSplitButtonColorEditItem>
+                            <dxb:BarCheckItem x:Name="biFormatBulletedList" Command="{Binding FormatBulletedList, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatNumberingList" Command="{Binding FormatNumberingList, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatMultilevelList" Command="{Binding FormatMultilevelList, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarButtonItem x:Name="biFormatDecreaseIndent" Command="{Binding FormatDecreaseIndent, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarButtonItem x:Name="biFormatIncreaseIndent" Command="{Binding FormatIncreaseIndent, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatParagraphAlignLeft" Command="{Binding FormatParagraphAlignLeft, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatParagraphAlignCenter" Command="{Binding FormatParagraphAlignCenter, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatParagraphAlignRight" Command="{Binding FormatParagraphAlignRight, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxb:BarCheckItem x:Name="biFormatParagraphAlignJustify" Command="{Binding FormatParagraphAlignJustify, Mode=OneTime, Source={StaticResource commands}}"/>
+                            <dxre:BarSplitButtonColorEditItem x:Name="biFormatParagraphBackColor" Command="{Binding FormatParagraphBackColor, Mode=OneTime, Source={StaticResource commands}}">
+                                <dxb:PopupControlContainerInfo>
+                                    <dxe:ColorEdit EditValue="{Binding EditValue, ElementName=biFormatParagraphBackColor, Mode=TwoWay}" ShowDefaultColorButton="False" ShowNoColorButton="True" ShowBorder="False"/>
+                                </dxb:PopupControlContainerInfo>
+                            </dxre:BarSplitButtonColorEditItem>
+                            <dxb:BarButtonItem x:Name="biFormatParagraph" Command="{Binding FormatParagraph, Mode=OneTime, Source={StaticResource commands}}"/>
+                        </dxb:BarManager.Items>
+                        <dxre:RichEditControl x:Name="richEdit" VerticalAlignment="Stretch"
+                                      HorizontalAlignment="Stretch"
+                                      FontFamily="Cordia New"
+                                      FontSize="18"                                              
+                                      CommandBarStyle="Empty" BarManager="{Binding ElementName=barManager1, Mode=OneTime}">
+                        </dxre:RichEditControl>
+                    </dxb:BarManager>
+                    <dxlc:LayoutGroup HorizontalAlignment="Right">
+                        <dxlc:LayoutItem >
+                            <dxe:TextEdit Text="{Binding TemplateName}" Width="200" Height="25" VerticalContentAlignment="Center"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <Button BorderBrush="Black" Background="White"
+                                    Command="{Binding AddTemplateCommand}" CommandParameter="{StaticResource True}" Width="160" Height="25">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Action/Save.png"/>
+                                        <TextBlock Text="PUBLIC TEMPLATE" Foreground="Blue"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <Button BorderBrush="Black" Background="White"
+                                    Command="{Binding AddTemplateCommand}" CommandParameter="{StaticResource False}" Width="160" Height="25">
+                                <Button.Content>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Action/Save.png"/>
+                                        <TextBlock Text="SAVE AS TEMPLATE" Foreground="Blue"/>
+                                    </StackPanel>
+                                </Button.Content>
+                            </Button>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <Border Padding="10"
+                            Background="White"
+                            BorderBrush="Black" BorderThickness="0,1,0,0">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem >
+                            <dxe:HyperlinkEdit Text="ประวัติการลงผล" Command="{Binding ReviewHistoryCommand}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="รังสีแพทย์" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <cc:MyLookUpEdit     ItemsSource="{Binding Radioligists}"
+                                         SelectedItem="{Binding SelectRaiologist}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupHeight="400"                                        
+                                         AutoPopulateColumns="False"
+                                         IsEnabled="{Binding IsEnabledRadiologist}">
+                                <cc:MyLookUpEdit.ColumnsToFilter>
+                                    <cc:ColumnItem FieldName="FirstName"/>
+                                    <cc:ColumnItem FieldName="LastName"/>
+                                </cc:MyLookUpEdit.ColumnsToFilter>
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl  Name="PART_GridControl" >
+                                            <dxg:GridColumn Header="ชื่อ" FieldName="FullName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                            </cc:MyLookUpEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="สถานะ" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:ComboBoxEdit x:Name="cmbResultStatus" ItemsSource="{Binding ResultStatus}"
+                                              SelectedItem="{Binding SelectResultStatus}"
+                                              DisplayMember="Display"
+                                              ValueMember="Key"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <dxe:CheckEdit IsChecked="{Binding IsCaseStudy}" Content="กรณีศึกษา"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem >
+                            <dxe:CheckEdit IsChecked="{Binding IsCheckPrint}" Content="Print"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutGroup HorizontalAlignment="Right">
+                            <dx:SimpleButton x:Name="btnReview" Content="Review" Command="{Binding ReviewCommand}"
+                                             BorderBrush="Green"
+                                             Foreground="{Binding ReviewColor}" 
+                                             FontWeight="{Binding ReviewFontWeight}"
+                                             Width="80" Height="25"/>
+                            <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                            <dx:SimpleButton Content="Cancel" Command="{Binding CancelCommand}" Width="80" Height="25"/>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </Border>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -1,0 +1,344 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
+             xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             x:Class="MediTech.Views.RadiologyExamList"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=RadiologyExamListViewModel,Source={StaticResource Locator}}"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             d:DesignHeight="800" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+        <!--<Style x:Key="BackgroundStyle"
+               TargetType="{x:Type dxg:GridRowContent}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Row.OrderStatus}" Value="Reviewed">
+                    <Setter Property="Background" Value="LightGreen"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>-->
+
+        <DataTemplate x:Key="CustomNotificationTemplate">
+            <Grid Loaded="Grid_Loaded" Unloaded="Grid_Unloaded">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Border Background="#FF4D4242" CornerRadius="10,0,0,10">
+                    <Image Source="pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG2.png"
+                           Stretch="Uniform" Width="100" Height="100"/>
+                </Border>
+                <Border Grid.Column="1" CornerRadius="0,10,10,0" Background="#FFF7941E">
+                    <StackPanel Margin="10,5,10,10">
+                        <TextBlock x:Name="tbHeader" Text="Notification Alert Service" FontSize="16" FontWeight="Bold" 
+                                   TextWrapping="Wrap" TextTrimming="CharacterEllipsis" />
+                        <TextBlock x:Name="txtTextLine1" Text="{Binding TextLine1}"
+                                   FontSize="16" Foreground="White" FontWeight="SemiBold" Margin="0,2,0,3"/>
+                        <TextBlock x:Name="txtTextLine2" Text="{Binding TextLine2}" 
+                                   FontSize="16" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock x:Name="txtTextLine3" Text="{Binding TextLine3}" 
+                                   FontSize="16" Foreground="Black" FontWeight="SemiBold" Margin="0,0,0,3"/>
+                        <TextBlock x:Name="txtTextLine4" Text="{Binding TextLine4}" 
+                                   FontSize="16" Foreground="Black" FontWeight="SemiBold"/>
+                    </StackPanel>
+                </Border>
+            </Grid>
+        </DataTemplate>
+        <Style x:Key="CustomNotificationStyle" TargetType="ContentControl">
+            <Setter Property="Width" Value="420"/>
+            <Setter Property="Height" Value="132"/>
+        </Style>
+    </UserControl.Resources>
+    <dxmvvm:Interaction.Behaviors>
+        <dxmvvm:NotificationService x:Name="notificationService"
+                                CustomNotificationStyle="{StaticResource CustomNotificationStyle}"
+                                CustomNotificationDuration="00:05:00.0"
+                                CustomNotificationPosition="BottomRight"
+                                CustomNotificationVisibleMaxCount="1"
+                                CustomNotificationScreen="Primary"
+                                CustomNotificationTemplate="{StaticResource CustomNotificationTemplate}">
+        </dxmvvm:NotificationService>
+    </dxmvvm:Interaction.Behaviors>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup VerticalAlignment="Top">
+                <dxa:AccordionControl SelectionMode="None">
+                    <dxa:AccordionItem Header="ค้นหา"  
+                                   Glyph="/MediTech;component/Resources/Images/Action/search.png" 
+                                   IsExpanded="True">
+                        <dxlc:LayoutControl Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="จากวันที่">
+                                        <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="ถึงวันที่">
+                                        <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="สถานะ">
+                                        <dxe:ComboBoxEdit x:Name="cmbStatus" ItemsSource="{Binding RequestStatus}"
+                                                          IsTextEditable="False" 
+                                                          DisplayMember="Display"
+                                                          ValueMember="Key"
+                                                          EditValue="{Binding Path=SelectRequestStatusList}">
+                                            <dxe:ComboBoxEdit.StyleSettings>
+                                                <dxe:CheckedComboBoxStyleSettings />
+                                            </dxe:ComboBoxEdit.StyleSettings>
+                                        </dxe:ComboBoxEdit>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                                        <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
+                                            <cc:AutoCompleteTextBox.InputBindings>
+                                                <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                                            </cc:AutoCompleteTextBox.InputBindings>
+                                        </cc:AutoCompleteTextBox>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="รายการ">
+                                        <dxe:TextEdit Text="{Binding RequestItemName}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="รังสีแพทย์">
+                                        <dxe:ComboBoxEdit x:Name="cmbRadiologist"
+                                              ItemsSource="{Binding Radiologist}"
+                                              SelectedItem="{Binding SelectRadiologist,Mode=TwoWay}"
+                                              IsTextEditable="True"
+                                              NullValueButtonPlacement="EditBox"
+                                              DisplayMember="FullName"
+                                              AllowNullInput="True"
+                                              ValueMember="CareproviderUID"
+                                              IsEnabled="{Binding IsEnabledRadiologist}" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Modality">
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding Modality}"
+                                                          SelectedItem="{Binding SelectModality}"
+                                                          DisplayMember="ValueCode"
+                                                          NullValueButtonPlacement="EditBox"
+                                                          ValueMember="Key"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Priority">
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding Priority}"
+                                                          SelectedItem="{Binding SelectPriority}"
+                                                          DisplayMember="Display"
+                                                          NullValueButtonPlacement="EditBox"
+                                                          ValueMember="Key"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="เจ้าหน้าที่ RDU">
+                                        <dxe:ComboBoxEdit x:Name="cmbRDU"
+                                              ItemsSource="{Binding RDUStaffList}"
+                                              SelectedItem="{Binding SelectRDUStaff}"
+                                              IsTextEditable="True"
+                                              NullValueButtonPlacement="EditBox"
+                                              DisplayMember="FullName"
+                                              AllowNullInput="True"
+                                              ValueMember="CareproviderUID"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Payor">
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding PayorDetails}"
+                                                          SelectedItem="{Binding SelectPayorDetail}"
+                                                          DisplayMember="PayorName"
+                                                          NullValueButtonPlacement="EditBox"
+                                                          ValueMember="PayorDetailUID"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem>
+                                        <dxlc:LayoutGroup Orientation="Horizontal">
+                                            <dxe:CheckEdit x:Name="chkAutoRefersh" Content="Auto Refersh" 
+                                                           EditValue="{Binding IsCheckedAutoRefersh
+                                                ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                           HorizontalAlignment="Left"
+                                                           Visibility="{Binding VisibilityAutuRefersh}"/>
+                                            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                                <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
+                                                <dx:SimpleButton Command="{Binding ClearCommand}" Content="คื่นค่า" Height="25" Width="80"/>
+                                            </dxlc:LayoutGroup>
+
+                                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+
+                                </dxlc:LayoutGroup>
+
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                    </dxa:AccordionItem>
+                </dxa:AccordionControl>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxg:GridControl x:Name="grdExamList" ItemsSource="{Binding RequestExamList}"
+                                 FontSize="16"
+                                 SelectedItem="{Binding SelectRequestExam}" 
+                                 CustomColumnDisplayText="grdExamList_CustomColumnDisplayText">
+                    <dxmvvm:Interaction.Behaviors>
+                        <helper:DeferredColumnFitBehavior/>
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxg:GridControl.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem  Header="View PACS" Command="{Binding ViewPACSCommand}"/>
+                        </ContextMenu>
+                    </dxg:GridControl.ContextMenu>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="No" FieldName="RowHandle" Width="30" Fixed="Left" />
+                        <dxg:GridColumn x:Name="colSelected" 
+                                        Fixed="Left"
+                                        Width="50"
+                                        AllowEditing="True"
+                                        AllowBestFit="False"
+                                        AllowResizing="False"
+                                        AllowGrouping="False"
+                                        AllowSorting="False"
+                                        AllowIncrementalSearch="False"
+                                        AllowMoving="False"
+                                        AllowColumnFiltering="False"
+                                        HorizontalHeaderContentAlignment="Center">
+                            <dxg:GridColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <dxe:CheckEdit
+                                        Cursor="Hand"
+                                        IsChecked="{Binding Path=DataContext.IsSelectedAll
+                                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:RadiologyExamList}}}"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.HeaderTemplate>
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:CheckEdit x:Name="chkIsSelect"
+                                        IsChecked="{Binding RowData.Row.IsSelected}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        EditValueChanged="CheckEdit_EditValueChanged"
+                                        Cursor="Hand">
+                                    </dxe:CheckEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="อายุ" FieldName="PatientAge" ReadOnly="True"/>
+                        <dxg:GridColumn Header="รายการ" FieldName="RequestItemName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วันเวลาที่ Requested" FieldName="RequestedDttm"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" MaskType="DateTime"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="วันเวลาที่ Execute" FieldName="PreparedDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" MaskType="DateTime"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
+                        <dxg:GridColumn Header="สถานะผล" FieldName="ResultStatus" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วันที่ผลออก" FieldName="ResultedDttm" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
+                        <dxg:GridColumn Header="เจ้าหน้าที่ RDU" FieldName="RDUStaff" ReadOnly="True"/>
+                        <dxg:GridColumn Header="รังสีแพทย์" FieldName="DoctorName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="หมายเหตุ" FieldName="ProcessingNote" ReadOnly="True"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="grvExamList"
+                                       NavigationStyle="Cell" 
+                                       ShowGroupPanel="False">
+                            <!--<dxg:TableView.RowStyle>
+                                <Style TargetType="{x:Type dxg:RowControl}">
+                                    <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
+                                    <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
+                                </Style>
+                            </dxg:TableView.RowStyle>
+                            <dxg:TableView.CellStyle>
+                                <Style TargetType="dxg:LightweightCellEditor">
+                                    <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
+                                </Style>
+                            </dxg:TableView.CellStyle>-->
+                            <dxg:TableView.FormatConditions>
+                                <dxg:FormatCondition ApplyToRow="True" Expression="[OrderStatus] = 'Reviewed'" FieldName="OrderStatus">
+                                    <dx:Format Background="#FFC7F765"/>
+                                </dxg:FormatCondition>
+                                <dxg:FormatCondition ApplyToRow="True" Expression="[OrderStatus] = 'Reviewing...'" FieldName="OrderStatus">
+                                    <dx:Format Background="#FFFA9D5A"/>
+                                </dxg:FormatCondition>
+                            </dxg:TableView.FormatConditions>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding OpenPACSWorkListCommand}" Content="PACS WorkList" 
+                                         Width="100" Height="25" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding RDUReviewCommand}"
+                                         Visibility="{Binding VisibilityMassResult}"
+                                         Content="Mass Result (RDU)" Width="125" Height="25" />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem VerticalAlignment="Center">
+                        <TextBlock Text="{Binding CountSelect}"
+                                   Name="txtCountSelect"
+                                   Visibility="{Binding VisibilityCount}" 
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem Label="รายงาน" Width="200">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Reports}"
+                                      SelectedItem="{Binding SelectReport}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Logo" Width="140" >
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Logos}"
+                                      SelectedItem="{Binding SelectLogo}"
+                                      NullValueButtonPlacement="EditBox"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding ExecuteCommand}" Content="Execute" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintPreviewAndAutoCommand}" CommandParameter="preview" Content="Print Preview" Height="25" Width="90"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintPreviewAndAutoCommand}" CommandParameter="autoprint" Content="Print Auto" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

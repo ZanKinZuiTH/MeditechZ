@@ -1,0 +1,294 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.PatientVitalSign"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             x:Name="VitalSign"
+             mc:Ignorable="d"
+             DataContext="{Binding PatientVitalSignModel,Source={StaticResource Locator}}"
+             xmlns:ban="clr-namespace:MediTech.CustomControl.Banner"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <ban:PatientOPBanner x:Name="Banner" PatientVisit="{Binding SelectPatientVisit}" Grid.Row="0"/>
+        <Grid Grid.Row="1">
+            <dx:DXTabControl Name="tabVital" SelectedIndex="{Binding SelectTabIndex}">
+                <dx:DXTabItem Header="Vital Sign" >
+                    <dxlc:LayoutControl 
+                    Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="ส่วนสูง" FontSize="14" />
+                            <dxe:TextEdit  Name="txtHeight" Height="25"  EditValue="{Binding Height}"
+                                 Width="100" 
+                                 VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
+                            <TextBlock Text="เซนติเมตร" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock  />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="น้ำหนัก" FontSize="14" />
+                            <dxe:TextEdit  Name="txtWeight" Height="25"  EditValue="{Binding Weight}"
+                                       Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                       Width="100" 
+                                       VerticalAlignment="Top"/>
+                            <TextBlock Text="กิโลกรัม" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="BMI" FontSize="14" />
+                            <TextBox Height="25" Text="{Binding BMI,UpdateSourceTrigger=PropertyChanged}"
+                                 Name="txtBMI"
+                                 Width="100"
+                                 IsEnabled="False"
+                                 VerticalAlignment="Top" />
+                            <TextBlock Text="" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="BSA" FontSize="14" />
+                            <TextBox Height="25" 
+                                 Name="txtBSA"
+                                 IsEnabled="False" Text="{Binding BSA,UpdateSourceTrigger=PropertyChanged}"
+                                 Width="100" VerticalAlignment="Top"/>
+                            <TextBlock Text="" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="อุณหภูมิ"
+                                       Name="lblTempe"
+                                       FontSize="14" />
+                            <dxe:TextEdit Height="25"
+                                 Name="txtTempe" EditValue="{Binding Tempe}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="100" VerticalAlignment="Top"/>
+                            <TextBlock Name="lblTempUnit"
+                                Text="องศาเซลเซียส" FontSize="14" />
+                            <TextBlock Name="lblTempRage"
+                                Text="36.5-37.5"/>
+                            <TextBlock Name="lblTempStatus" Text="-" 
+                                       FontSize="14" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Name="lblPluse" Text="ชีพจร" 
+                                       FontSize="14" />
+                            <dxe:TextEdit Height="25" 
+                                 Name="txtPluse" EditValue="{Binding Pluse}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="100" VerticalAlignment="Top"/>
+                            <TextBlock Name="lblPluseUnit"
+                                Text="ครั้ง/นาที" 
+                                FontSize="14" />
+                            <TextBlock Name="lblPluseRage" Text="60-100"/>
+                            <TextBlock Name="lblPluseStatus" Text="-" FontSize="14" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Text="อัตราการหายใจ" 
+                                       Name="lblRssRate"
+                                       FontSize="14" />
+                            <dxe:TextEdit Height="25" EditValue="{Binding RespiratoryRate}"
+                                Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtRespiratoryRate"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                            <TextBlock Name="lblRssRateUnit" Text="ครั้ง/นาที" FontSize="14" />
+                            <TextBlock Name="lblRssRateRage" Text="17-22"/>
+                            <TextBlock Name="lblRssRateStatus" Text="-" FontSize="14" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Name="lblSBP" Text="ความดันบน" FontSize="14" />
+                            <dxe:TextEdit Height="25" EditValue="{Binding SBP}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtSBP"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                            <TextBlock Name="lblSBPUnit" Text="mm Hg" FontSize="14" />
+                            <TextBlock Name="lblSBPRage" Text="90-130"/>
+                            <TextBlock Name="lblSBPStatus" Text="-" FontSize="14" />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Name="lblDBP" Text="ความดันล่าง" FontSize="14" />
+                            <dxe:TextEdit  Height="25" EditValue="{Binding DBP}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtDBP"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                            <TextBlock Name="lblDBPUnit" Text="mm Hg" FontSize="14" />
+                            <TextBlock Name="lblDBPRage" Text="60-85"/>
+                            <TextBlock Name="lblDBPStatus" Text="-" FontSize="14" />
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="Recent">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width=".5*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <dxg:GridControl Name="gcRecentVital" 
+                                         ItemsSource="{Binding RecentVitals}"
+                                         SelectedItem="{Binding SelectRecentVital}"
+                                         Grid.Column="0">
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                            <dxg:GridColumn Width="40" >
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Width="25" Height="25" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"                                  
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/delete.png">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                    <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteVitalSignCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ผู้ลงยันทึก" FieldName="RecordedBy"/>
+                            <dxg:GridColumn Header="เวลาที่ลงบันทึก" FieldName="RecordedDttm" >
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                        </dxg:GridControl>
+                        <dxlc:LayoutControl Grid.Column="1" IsEnabled="{Binding IsEditRecent}"
+                    Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Text="ส่วนสูง" FontSize="14" />
+                                <dxe:TextEdit  Name="txtHeightRe"  EditValue="{Binding HeightRe}"
+                                               Height="25" 
+                                 Width="100" 
+                                 VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx" />
+                                <TextBlock Text="เซนติเมตร" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock  />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Text="น้ำหนัก" FontSize="14" />
+                                <dxe:TextEdit  Name="txtWeightRe" Height="25" 
+                                               EditValue="{Binding WeightRe}"
+                                      Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                       Width="100" 
+                                       VerticalAlignment="Top"/>
+                                <TextBlock Text="กิโลกรัม" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Text="BMI" FontSize="14" />
+                                <TextBox Height="25" 
+                                         Text="{Binding BMIRe,UpdateSourceTrigger=PropertyChanged}"
+                                 Name="txtBMIRe"
+                                 Width="100"
+                                 IsEnabled="False"
+                                 VerticalAlignment="Top" />
+                                <TextBlock Text="" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Text="BSA" FontSize="14" />
+                                <TextBox Height="25" 
+                                           Text="{Binding BSARe,UpdateSourceTrigger=PropertyChanged}"
+                                 Name="txtBSARe"
+                                 IsEnabled="False"
+                                 Width="100" VerticalAlignment="Top"/>
+                                <TextBlock Text="" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblTempRe"  Text="อุณหภูมิ" FontSize="14" />
+                                <dxe:TextEdit Height="25"
+                                               EditValue="{Binding TempRe}"
+                                 Name="txtTempeRe"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="100" VerticalAlignment="Top"/>
+                                <TextBlock Name="lblTempReUnit" Text="องศาเซลเซียส" FontSize="14" />
+                                <TextBlock Name="lblTempReRage" Text="36.5-37.5"/>
+                                <TextBlock Name="lblTempReStatus" Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblPluseRe" Text="ชีพจร" FontSize="14" />
+                                <dxe:TextEdit Height="25" EditValue="{Binding PluseRe}"
+                                 Name="txtPluseRe"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="100" VerticalAlignment="Top"/>
+                                <TextBlock Name="lblPluseReUnit"  Text="ครั้ง/นาที" FontSize="14" />
+                                <TextBlock Name="lblPluseReRage"  Text="60-100"/>
+                                <TextBlock Name="lblPluseReStatus"  Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblRssRateRe"
+                                    Text="อัตราการหายใจ" FontSize="14" />
+                                <dxe:TextEdit Height="25"  EditValue="{Binding RssRateRe}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtRespiratoryRateRe"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                                <TextBlock Name="lblRssRateReUnit" Text="ครั้ง/นาที" FontSize="14" />
+                                <TextBlock Name="lblRssRateReRage" Text="17-22"/>
+                                <TextBlock Name="lblRssRateReStatus" Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblSBPRe" Text="ความดันบน" FontSize="14" />
+                                <dxe:TextEdit Height="25" EditValue="{Binding SBPRe}"
+                                Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtSBPRe"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                                <TextBlock Name="lblSBPReUnit" Text="mm Hg" FontSize="14" />
+                                <TextBlock Name="lblSBPReRage" Text="90-130"/>
+                                <TextBlock Name="lblSBPReStatus" Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblDBPRe"  Text="ความดันล่าง" FontSize="14" />
+                                <dxe:TextEdit Height="25" EditValue="{Binding DBPRe}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtDBPRe"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                                <TextBlock Name="lblDBPReUnit"  Text="mm Hg" FontSize="14" />
+                                <TextBlock Name="lblDBPReRage"  Text="60-85"/>
+                                <TextBlock Name="lblDBPReStatus"  Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                    </Grid>
+                </dx:DXTabItem>
+            </dx:DXTabControl>
+        </Grid>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+            Grid.Row="2">
+            <dxlc:LayoutGroup>
+                <Button Name="btnSave" 
+                    Content="บันทึก" Width="80" Height="25" Command="{Binding SaveCommand}"/>
+                <Button Name="btnCancel" 
+                Content="ยกเลิก" Width="80" Height="25" Command="{Binding CancelCommand}"/>
+            </dxlc:LayoutGroup>
+
+        </StackPanel>
+    </Grid>
+</UserControl>

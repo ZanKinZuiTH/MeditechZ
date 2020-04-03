@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="MediTech.Views.RunPatientReports"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             Height="400" Width="500"
+             d:DesignHeight="400" d:DesignWidth="500">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem>
+                <TextBlock Text="พิมพ์เอกสาร" x:Name="txtViewName" Margin="10,0,0,0" 
+                           FontSize="16" FontWeight="Bold"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <Border BorderThickness="0,0,0,1" BorderBrush="Black"/>
+            </dxlc:LayoutItem>
+            <dxg:GridControl ItemsSource="{Binding ListPatientReports}"
+                             SelectedItem="{Binding SelectReport}">
+                <dxg:GridColumn Header="ชื่อเอกสาร" FieldName="Name" Width="*"/>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"
+                                   NavigationStyle="Row"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup  VerticalAlignment="Bottom" Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Left">
+
+                    <dxe:TextEdit Text="{Binding Quantity}" Width="120" MaskType="RegEx" MaskShowPlaceHolders="False" Mask="\d{0,2}"/>
+                    <dx:SimpleButton Width="85" Command="{Binding PrintAutoCommand}"
+                                     Height="25" Content="Print Auto"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup  VerticalAlignment="Bottom" Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Left">
+                    <dxg:LookUpEdit Name="multiSelectLookUpEdit"
+                                    VerticalAlignment="Top"
+                                    Width="120"
+                                    ItemsSource="{Binding MobileStickerSource}"
+                                    EditValue="{Binding SelectMobileStickers}"
+                                    ShowSizeGrip="True"
+                                    AutoPopulateColumns="False"
+                                    IsTextEditable="False"
+                                    IsPopupAutoWidth="False"
+                                    DisplayMember="Display"
+                                    PopupHeight="300"
+                                    PopupMaxWidth="250">
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl x:Name="PART_GridControl" >
+                                    <dxg:GridColumn FieldName="Display" Header="รายการ" ReadOnly="True" Width="Auto"/>
+                                    <dxg:GridColumn FieldName="Key" Header="จำนวน" ReadOnly="False" Width="55">
+                                        <dxg:GridColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <dxe:TextEdit Text="{Binding RowData.Row.Key,Mode=TwoWay}" 
+                                                                  HorizontalContentAlignment="Right" />
+                                            </DataTemplate>
+                                        </dxg:GridColumn.CellTemplate>
+                                    </dxg:GridColumn>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView AutoWidth="True" AllowPerPixelScrolling="True" AllowEditing="True"
+                                                           ShowAutoFilterRow="False" AllowChangeBandParent="True"
+                                                           ShowCheckBoxSelectorColumn="True"
+                                                           CheckBoxSelectorColumnWidth="30"
+                                                           AllowChangeColumnParent="True"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:MultiSelectLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                    <dx:SimpleButton Width="85" Height="25" Content="Print Sticker" Command="{Binding MobileStickerCommand}"/>
+                </dxlc:LayoutGroup>
+
+
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding PreviewReportCommand}"
+                                     Height="25" Content="พิมพ์"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

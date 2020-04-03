@@ -1,0 +1,75 @@
+﻿<UserControl x:Class="MediTech.Views.ScannedDocument"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding ScannedDocumentViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
+                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical"  VerticalAlignment="Top" Width="400" HorizontalAlignment="Left">
+                    <dxlc:LayoutGroup>
+                        <dxe:ListBoxRadioButton Content="Upload Attachment" IsChecked="{Binding UploadAttachment}"/>
+                        <dxe:ListBoxRadioButton Content="Scan Document" IsChecked="{Binding ScanDocument}"/>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="{Binding labelDocumentName}">
+                            <dxe:TextEdit Text="{Binding DocumentName}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dx:SimpleButton Width="80" Height="25" Content="{Binding btnChooseDocument}" Command="{Binding ChooseScanCommand}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="Document Type">
+                        <dxe:ComboBoxEdit DisplayMember="Display" ValueMember="Key"
+                        ItemsSource="{Binding DocumentTypes}"
+                        SelectedItem="{Binding SelectDocumentType}"
+                        />
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Comments">
+                        <dxe:TextEdit Text="{Binding Comments}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutItem VerticalAlignment="Bottom">
+                    <dx:SimpleButton Width="80" Height="25" 
+                                 Command="{Binding UploadDocumentCommand}"
+                                 Content="Upload" 
+                                 HorizontalAlignment="Right"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+
+            <dxg:GridControl ItemsSource="{Binding ScannedDocuments}"
+                             SelectedItem="{Binding SelectScannedDocuments}"
+                             >
+                <dxg:GridColumn Header="Document Name" FieldName="DocumentName"/>
+                <dxg:GridColumn Header="Comments" FieldName="Comments"/>
+                <dxg:GridColumn Header="Uploaded By" FieldName="DocUploadedByName"/>
+                <dxg:GridColumn Header="Uploaded On" FieldName="DocUploadedDttm">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="Document Type" FieldName="ScanDocumentType"/>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+
+            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <dx:SimpleButton Width="80" Height="25" Content="View" Command="{Binding ViewDocumentCommand}"/>
+                <dx:SimpleButton Width="80" Height="25" Content="Delete" Command="{Binding DeleteDocumentCommand}"/>
+                <dx:SimpleButton Width="80" Height="25" Content="Close" Command="{Binding CloseCommand}"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl> 
+    </Grid>
+</UserControl>

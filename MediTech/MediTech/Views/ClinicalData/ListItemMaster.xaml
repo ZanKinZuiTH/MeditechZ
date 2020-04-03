@@ -1,0 +1,63 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="MediTech.Views.ListItemMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ListItemMasterViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="รหัส">
+                    <dxe:TextEdit Text="{Binding ItemCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ชื่อ">
+                    <dxe:TextEdit Text="{Binding ItemName}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ประเภท">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding ItemTypes}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectItemType}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem HorizontalAlignment="Right">
+                <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+            </dxlc:LayoutItem>
+            <dxg:GridControl x:Name="grdItemMaster" ItemsSource="{Binding ItemMasters}"
+                             SelectedItem="{Binding SelectItemMaster}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="Code" FieldName="Code"/>
+                    <dxg:GridColumn Header="Generic Name" FieldName="GenaricName"/>
+                    <dxg:GridColumn Header="Trade Name" FieldName="Name"/>
+                    <dxg:GridColumn Header="ประเภท" FieldName="ItemType"/>
+                    <dxg:GridColumn Header="ตัด Stock" FieldName="IsStock"/>
+                    <dxg:GridColumn Header="หน่วย" FieldName="BaseUnit"/>
+                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
+                    <dxg:GridColumn Header="ปิดการใช้งาน" FieldName="ActiveTo"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"
+                                   AllowEditing="False" >
+                        <dxg:TableView.FormatConditions>
+                            <dxg:FormatCondition ApplyToRow="True" FieldName="ActiveTo" ValueRule="Expression" Value1="{x:Null}" Expression="[ActiveTo] Is Not Null">
+                                <dx:Format Background="#FFA5A5A5"/>
+                            </dxg:FormatCondition>
+                        </dxg:TableView.FormatConditions>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

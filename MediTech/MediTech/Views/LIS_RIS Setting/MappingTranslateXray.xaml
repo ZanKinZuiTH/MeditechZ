@@ -1,0 +1,84 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.MappingTranslateXray"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=MappingTranslateXrayViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl>
+            <dxg:GridControl x:Name="gcMappingXray" ItemsSource="{Binding MappingXrays}"
+                             SelectedItem="{Binding SelectMappingXray}">
+                <dxg:GridColumn >
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <Image Width="25" Height="25" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"                                  
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/delete.png">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteCommand}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                <Image.Style>
+                                    <Style TargetType="{x:Type Image}">
+                                        <Style.Triggers>
+                                            <Trigger Property="IsMouseOver" Value="True">
+                                                <Setter Property="OpacityMask" Value="#A2000000"/>
+                                            </Trigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </Image.Style>
+                            </Image>
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="KeyWord" FieldName="IsKeyword">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:CheckEditSettings />
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="ภาษาอังกฤษ" FieldName="EngResult" Width="270" >
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridColumn Header="ประเภท" FieldName="Type">
+                    <dxg:GridColumn.CellTemplate>
+                        <DataTemplate>
+                            <dxe:ComboBoxEdit x:Name="PART_Editor" 
+                                                DisplayMember="Display"
+                                                ValueMember="Key"
+                                                ItemsSource="{Binding View.DataContext.TranslateTypes}"
+                                              />
+                        </DataTemplate>
+                    </dxg:GridColumn.CellTemplate>
+                </dxg:GridColumn>
+                
+                <dxg:GridColumn Header="ภาษาไทย" FieldName="ThaiResult" Width="330"
+                                ReadOnly="{Binding RowData.row.IsKeyWord}">
+                    <dxg:GridColumn.EditSettings>
+                        <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                    </dxg:GridColumn.EditSettings>
+                </dxg:GridColumn>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="gvMappingXray" ShowGroupPanel="False"  ShowSearchPanelMode="Always"
+                                   NewItemRowPosition="Top"
+                                   SearchPanelNullText="ค้นหา">
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger  EventName="RowUpdated">
+                                <mvvm:EventToCommand Command="{Binding RowUpdatedCommand}" 
+                                                     PassEventArgsToCommand="True"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

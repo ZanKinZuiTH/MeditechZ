@@ -1,0 +1,386 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="MediTech.Views.ManageItemMaster"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ManageItemMasterViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical" Grid.ColumnSpan="2">
+            <dx:DXTabControl>
+                <dx:DXTabItem Header="รายละเอียด">
+                    <dxlc:LayoutControl>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                                <TextBlock Text="Code" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxe:TextEdit Text="{Binding Code}" IsEnabled="{Binding IsEnabledEdit}"/>
+                                    </dxlc:LayoutItem>
+
+                                    <dxlc:LayoutItem HorizontalAlignment="Right" Visibility="{Binding VisibilityAutoCode}">
+                                        <TextBlock Text="Auto Generate" Cursor="Hand" 
+                                       Foreground="Gray"                              
+                                       TextDecorations="Underline">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.GenerateCodeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ManageItemMaster}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                                        </TextBlock>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+                                <dxlc:LayoutItem Label="Generic Name">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding DrugGenarics}"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"
+                                      AllowNullInput="True"
+                                      DisplayMember="Name"
+                                      ValueMember="DrugGenericUID"
+                                      SelectedItem="{Binding SelectDrugGenaric}"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Trade Name" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:TextEdit Text="{Binding Name,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding IsEnabledEdit}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                                <TextBlock Text="Base Unit" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxe:ComboBoxEdit Name="cmbBaseUnit" ItemsSource="{Binding ItemMasterUnits}"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectBaseUnit}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding IsPresVisibility}">
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                                <TextBlock Text="Prescription Unit" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxe:ComboBoxEdit Name="cmbPresUnit" 
+                                                          ItemsSource="{Binding ItemMasterUnits}"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectPresUnit}"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                               
+                                <dxlc:LayoutItem Label="ผู้ผลิต">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding Manufacturers}"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"              
+                                      AllowNullInput="True"
+                                      DisplayMember="CompanyName"
+                                      ValueMember="VendorDetailUID"
+                                      SelectedItem="{Binding SelectManufacturer}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="เปิดใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ปิดการใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Dispensing Label (Eng)">
+                                    <dxe:TextEdit Text="{Binding DispenseEnglish}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Dispensing Label (Thai)">
+                                    <dxe:TextEdit Text="{Binding DispenseLocal}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Ordering Instruction">
+                                    <dxe:TextEdit Text="{Binding OrderInstruction}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Comments" LabelVerticalAlignment="Top">
+                                    <dxe:TextEdit Text="{Binding Comments}"
+                TextWrapping="Wrap" Height="50"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="ประเภท" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding ItemTypes}"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          SelectedItem="{Binding SelectItemType}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="รายละเอียด">
+                                    <dxe:TextEdit Text="{Binding Description}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="VAT (%)">
+                                    <dxe:TextEdit EditValue="{Binding VATPercentage}"
+                                                  AllowNullInput="True"
+                                                  Mask="\d{0,9}(\R.\d{0,2})?"
+                                                  MaskType="RegEx"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="Is Stock">
+                                        <dxe:CheckEdit IsChecked="{Binding IsStock}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Is Batch ID Mandatory">
+                                        <dxe:CheckEdit IsChecked="{Binding IsBatch}" />
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="สารเสพติด">
+                                        <dxe:CheckEdit IsChecked="{Binding IsNarcotic}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="ประเภท">
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding NarcoticTypes}"
+                                          AllowNullInput="True"
+                                          IsEnabled="{Binding IsNarcotic}"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          SelectedItem="{Binding SelectNarcotic}"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="Min. Sales Qty.">
+                                        <dxe:TextEdit EditValue="{Binding MinSalesQty}"
+                                                  Mask="\d{0,9}(\R.\d{0,2})?"
+                                                  MaskType="RegEx"
+                                                  AllowNullInput="True"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Dose Quantity">
+                                        <dxe:TextEdit EditValue="{Binding DoseQuantity}"
+                                                  Mask="\d{0,9}(\R.\d{0,2})?"
+                                                  MaskType="RegEx"
+                                                  AllowNullInput="True"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+     
+                                <dxlc:LayoutItem Label="Form">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding DrugForms}"
+                                          AllowNullInput="True"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          AutoComplete="True" 
+                                          ImmediatePopup="True"
+                                          SelectedItem="{Binding SelectDrugFrom}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="วิธีใช้ยา">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding DrugInstructions}"
+                                         AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"              
+                                      AllowNullInput="True"
+                                          DisplayMember="AlternateName"
+                                          ValueMember="Key"
+                                          SelectedItem="{Binding SelectDrugInstruction}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Frequency">
+                                    <dxg:LookUpEdit ItemsSource="{Binding DrugFrequencys}"
+                                          DisplayMember="Comments"
+                                          ValueMember="FrequencyUID"
+                                          AllowNullInput="True"
+                                          AutoComplete="True" 
+                                          ImmediatePopup="True"
+                                          FindButtonPlacement = "Popup"
+                                          FindMode = "Always"
+                                          PopupMinHeight="100"
+                                          PopupMinWidth="100"
+                                          PopupHeight="400" 
+                                          IsPopupAutoWidth="True"
+                                          AutoPopulateColumns="False"
+                                          SelectedItem="{Binding SelectDrugFrequency}">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl Name="PART_GridControl">
+                                                    <dxg:GridColumn Header="Code" FieldName="Code" ReadOnly="True"/>
+                                                    <dxg:GridColumn Header="ไทย" FieldName="Comments" ReadOnly="True"/>
+                                                    <dxg:GridColumn Header="อังกฤษ" FieldName="Name" ReadOnly="True"/>
+                                                    <dxg:GridColumn Header="จำนวนต่อเวลา" FieldName="AmountPerTimes" ReadOnly="True"/>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView Name="view"
+                                                                       AutoWidth="True"
+                                                                       ShowGroupPanel="False"/>
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                    </dxg:LookUpEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="Can Dispense Without Stock">
+                                        <dxe:CheckEdit IsChecked="{Binding CanDispenseWithOutStock}"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="แปลงหน่วย">
+                    <dxg:GridControl x:Name="grdConvertUOM"
+                                 SelectedItem="{Binding SelectItemUOMConversion}"
+                                 ItemsSource="{Binding ItemUOMConversions,Mode=TwoWay}">
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn Width="40" >
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <Image Width="25" Height="25" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"                                  
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/delete.png">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                    <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteConvertUOMCommand}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Style.Triggers>
+                                                        <Trigger Property="IsMouseOver" Value="True">
+                                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                        </Trigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Base Unit" >
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Path=SelectedItem.Display, ElementName=cmbBaseUnit}"/>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Name="ColUOM" Header="Convert To" FieldName="ConversionUOMUID">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:ComboBoxEditSettings AutoComplete="True" 
+                                                          ImmediatePopup="True" 
+                                                          ValueMember="Key"
+                                                          DisplayMember="Display" 
+                                                          ItemsSource="{Binding Path=DataContext.ItemMasterUnits, RelativeSource={RelativeSource AncestorType={x:Type vm:ManageItemMaster}}}" />
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Name="colValue" Header="Value" FieldName="ConversionValue">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings  Mask="f"  MaskType="Numeric"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                        </dxg:GridControl.Columns>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="viewConvertUnit" ShowGroupPanel="False"
+                                       NewItemRowPosition="Top"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="ผู้จัดจำหน่าย">
+                    <dxg:GridControl x:Name="grdItemVendorDetail"
+                                     SelectedItem="{Binding SelectItemVendorDetail}"
+                                     ItemsSource="{Binding ItemVendorDetails,Mode=TwoWay}">
+                        <dxg:GridColumn Width="40" >
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Width="25" Height="25" Stretch="UniformToFill"
+                                   HorizontalAlignment="Center" VerticalAlignment="Center"                                  
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/delete.png">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                <mvvm:EventToCommand Command="{Binding View.DataContext.DeleteVendorCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ชื่อ" FieldName="VendorDetailUID">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:ComboBoxEditSettings AutoComplete="True" 
+                                                          ImmediatePopup="True" 
+                                                          ValueMember="VendorDetailUID"
+                                                          DisplayMember="CompanyName" 
+                                                          ItemsSource="{Binding Path=DataContext.Vendors, RelativeSource={RelativeSource AncestorType={x:Type vm:ManageItemMaster}}}" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="ItemAmount">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings  Mask="f"  MaskType="Numeric"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="viewVendor" 
+                                       ShowGroupPanel="False"
+                                       NewItemRowPosition="Top"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dx:DXTabItem>
+            </dx:DXTabControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

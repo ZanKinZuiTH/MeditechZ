@@ -1,0 +1,338 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  x:Class="MediTech.Views.CashierWorklist" 
+              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=CashierWorklistViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="700" d:DesignWidth="980">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <dxlc:LayoutControl   Padding="0">
+            <dxlc:LayoutGroup Grid.Column="0" MaxWidth="300" Orientation="Vertical" Header="คนไข้รอคิดเงิน"  View="GroupBox" >
+                <dxlc:LayoutGroup.HeaderTemplate>
+                    <DataTemplate >
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"/>
+                                <ColumnDefinition Width="*"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="คิวผู้ป่วย" />
+                            <Button Name="imaRefersh" Grid.Column="1" 
+                                                      Command="{Binding DataContext.RefershPatientCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:CashierWorklist}}}"
+                                        ToolTip="Refersh"
+                                        HorizontalAlignment="Right">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" Width="20" Height="20"   />
+                            </Button>
+                        </Grid>
+                    </DataTemplate>
+                </dxlc:LayoutGroup.HeaderTemplate>
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="สถานประกอบการ">
+                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem  Label="ชื่อผู้ป่วย">
+                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
+                                                    >
+                        <cc:AutoCompleteTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                        </cc:AutoCompleteTextBox.InputBindings>
+                    </cc:AutoCompleteTextBox>
+                </dxlc:LayoutItem>
+                <dxg:GridControl  x:Name="gPatient" ItemsSource="{Binding PatientCloseMed}"
+                                  SelectedItem="{Binding SelectPatientCloseMed}">
+                    <dxg:GridControl.ContextMenu>
+                        <ContextMenu>
+                            <MenuItem  Header="ส่งกลับ" Command="{Binding ReMedicalCommand}"/>
+                            <MenuItem  Header="คีย์ Order" Command="{Binding CreateOrderCommand}"/>
+                        </ContextMenu>
+                    </dxg:GridControl.ContextMenu>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row"/>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันเวลาจบการรักษา" FieldName="DischargeDttm"  ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"  MaskType="DateTime"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+        <dxlc:LayoutControl Grid.Column="1" Orientation="Vertical" Padding="5,0,5,12">
+            <dxlc:LayoutItem>
+                <uc:PatientBanner PatientVisit="{Binding SelectPatientCloseMed}"/>
+            </dxlc:LayoutItem>
+
+            <dxlc:GroupBox  Header="รายการยา เวชภัณฑ์" Padding="0"  MaxHeight="180">
+                <dxg:GridControl  x:Name="gDrugDetail" ItemsSource="{Binding StoreOrderList}"
+                                 SelectionMode="Row"
+                                 AutoExpandAllGroups="True"
+                                 SelectedItems="{Binding SelectItemStore}">
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="gvDrugDetail"
+                                       AllowCellMerge="True"
+                                       ShowGroupPanel="False"  ShowCheckBoxSelectorColumn="True">
+                            <dxg:TableView.FormatConditions>
+                                <dxg:FormatCondition Expression="[ExpiryDate] &lt; LocalDateTimeToday()" FieldName="ExpiryDate" ApplyToRow="True">
+                                    <dx:Format Background="#FFA5A5A5"/>
+                                </dxg:FormatCondition>
+                            </dxg:TableView.FormatConditions>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ" AllowGrouping="True" FieldName="ItemName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวนคงเหลือ" FieldName="BalQty" ReadOnly="True"/>
+                        <dxg:GridColumn Header="หน่วย" FieldName="QuantityUnit" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วันหมดอายุ" FieldName="ExpiryDate" ReadOnly="True"/>
+                        <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วิธีใช้" FieldName="InstructionRoute" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ปริมาณยาที่กิน" FieldName="Dosage" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Frequency" FieldName="DrugFrequency" ReadOnly="True"/>
+                        <dxg:GridColumn Header="คำแนะนำ" FieldName="LocalInstructionText" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Note" FieldName="ClinicalComments" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ประเภท" FieldName="TypeDrug" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ประเภท Order" FieldName="BillingService" ReadOnly="True"/>
+                    </dxg:GridControl.Columns>
+                </dxg:GridControl>
+            </dxlc:GroupBox>
+
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                <dxlc:LayoutItem>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                      SelectedItem="{Binding SelectPrinter}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                        Width="180" Height="25"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                                     Height="25" >
+                        <StackPanel  Orientation="Horizontal">
+                            <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
+                        </StackPanel>
+
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="ค่าใช้จ่าย" >
+
+                <dxlc:LayoutGroup Orientation="Vertical" >
+                    <dxg:GridControl  x:Name="gTotalCash" ItemsSource="{Binding OrderAllList}" 
+                                              SelectedItem="{Binding SelectItemOrder}" >
+                        <dxg:GridControl.View>
+                            <dxg:TableView Name="gvTotalCash" ShowGroupPanel="False">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="CellValueChanged">
+                                        <mvvm:EventToCommand Command="{Binding ChangeValueCommand}" PassEventArgsToCommand="True" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                        <dxg:GridColumn x:Name="colDescription" Header="รายการ" FieldName="ItemName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวน" FieldName="ItemMutiplier"  ReadOnly="True" />
+                        <dxg:GridColumn Header="ราคา" FieldName="Amount"  ReadOnly="True" >
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ส่วนลด" FieldName= "Discount">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True" DisplayFormat="#,#.00"  MaskType="RegEx"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ราคาขาย" FieldName= "NetAmount" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ประเภท" FieldName="BillingService" ReadOnly="True"/>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="หมายเหตุ" LabelVerticalAlignment="Top"  HorizontalAlignment="Right">
+                            <dxe:TextEdit Text="{Binding Comments}"
+                TextWrapping="Wrap" Height="50" Width="250"
+                AcceptsReturn="True"
+                VerticalScrollBarVisibility="Auto"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                            <dxe:CheckEdit Content="Print" IsChecked="{Binding IsPrint}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right" Width="320">
+                        <dxlc:LayoutGroup  Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="ยอดค่ารักษาพยาบาล"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem>
+                                        <dxe:TextEdit x:Name="txtTotalCash" 
+                                          EditValue="{Binding TotalPrice}"
+                                          FontWeight="Bold"
+                                          AllowNullInput="True"
+                                          DisplayFormatString="#,#.00"
+                                          IsEnabled="False"
+                                          MaskType="Numeric" IsReadOnly="True" 
+                                          ShowBorder="False"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem>
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="ยอดส่วนลด"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem >
+                                        <dxe:TextEdit x:Name="txtDiscount" 
+                                          EditValue="{Binding DiscountAmount}"
+                                          FontWeight="Bold"
+                                          AllowNullInput="True"
+                                          DisplayFormatString="#,#.00"
+                                          IsEnabled="False"
+                                          MaskType="Numeric" IsReadOnly="True" 
+                                          ShowBorder="False"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="ยอดรักษาพยาบาลหลังหักส่วนลด"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem >
+                                        <dxe:TextEdit x:Name="txtTotalAmount"  
+                                                  EditValue="{Binding TotalAmount}"
+                                                  FontWeight="Bold"    
+                                                  AllowNullInput="True"
+                                                  ShowBorder="False"
+                                                  DisplayFormatString="#,#.00"
+                                                  IsEnabled="False"
+                                                  MaskType="Numeric"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="รับเงิน"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem >
+                                        <dxe:TextEdit x:Name="txtPayment"  
+                                                  EditValue="{Binding Payment,UpdateSourceTrigger=PropertyChanged}"
+                                                  FontWeight="Bold"
+                                                  DisplayFormatString="#,#.00"
+                                                  AllowNullInput="True"  MaskType="Numeric"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="เงินทอน"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem  >
+                                        <dxe:TextEdit x:Name="txtReCash"  
+                                          EditValue="{Binding ReCash}"
+                                          FontWeight="Bold"            
+                                          AllowNullInput="True"  
+                                          MaskType="Numeric"
+                                          DisplayFormatString="#,#.00"
+                                          IsEnabled="False"
+                                          ShowBorder="False"
+                                          IsReadOnly="True"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
+
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="30" >
+                                    <StackPanel  Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Menu/CashierWorklist.png" />
+                                        <TextBlock Text="เก็บเงิน" VerticalAlignment="Center"/>
+                                    </StackPanel>
+
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+
+
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+
+    </Grid>
+
+</UserControl>

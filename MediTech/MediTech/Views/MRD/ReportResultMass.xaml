@@ -1,0 +1,217 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ReportResultMass"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=ReportResultMassViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="1200">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
+                <TextBox Text="{Binding FileLocation}" IsReadOnly="True" Background="Gainsboro"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding ChooseCommand}"
+                                     Height="25" Content="เลือกไฟล์"/>
+                <dx:SimpleButton Width="80" Command="{Binding ImportCommand}"
+                                     Height="25" Content="นำเข้าข้อมูล"/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
+                <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="จากวันที่">
+                <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="ถึงวันที่">
+                <dxe:DateEdit EditValue="{Binding DateTo}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="รายการ Item">
+                <dxe:ComboBoxEdit ItemsSource="{Binding OrderItems}"
+                                      SelectedItem="{Binding SelectOrderItem}"
+                                      NullValueButtonPlacement="EditBox"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
+                    <cc:AutoCompleteTextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                    </cc:AutoCompleteTextBox.InputBindings>
+                </cc:AutoCompleteTextBox>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="สถานะ">
+                <dxe:ComboBoxEdit ItemsSource="{Binding ResultStatus}"
+                                      SelectedItem="{Binding SelectResultStatus}"
+                                      NullValueButtonPlacement="EditBox"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Payor">
+                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate>
+                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <dxe:CheckEdit Content="แปลงผลภาษาไทย" 
+                               IsChecked="{Binding IsTranslate,UpdateSourceTrigger=PropertyChanged}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxg:GridControl x:Name="gcPatientXray" ItemsSource="{Binding PatientXrays}"
+                        SelectionMode="Row"
+                        SelectedItems="{Binding SelectPatientXrays}">
+            <dxg:GridColumn x:Name="colNoSequnce" Header="No" FieldName="No" Width="30" Visible="False"/>
+            <dxg:GridColumn x:Name="colNoExcel" Header="No" FieldName="No" Width="30" Visible="False" />
+            <dxg:GridColumn Header="BN" FieldName="HN"/>
+            <dxg:GridColumn Header="OtherID" FieldName="OtherID"/>
+            <dxg:GridColumn Header="คำนำหน้า" FieldName="Title" ReadOnly="True"/>
+            <dxg:GridColumn Header="ชื่อ" FieldName="FirstName" ReadOnly="True"/>
+            <dxg:GridColumn Header="นามสกุล" FieldName="LastName" ReadOnly="True"/>
+            <dxg:GridColumn Header="วัน เดือน ปี เกิด" FieldName="DOBDttm" ReadOnly="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy"/>
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
+            <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
+            <dxg:GridColumn Header="เบอร์โทร" FieldName="MobilePhone" ReadOnly="True"/>
+            <dxg:GridColumn Header="ที่อยู่" FieldName="Address" ReadOnly="True"/>
+            <dxg:GridColumn Header="วันที่ออกผล" FieldName="ResultEnteredDttm" ReadOnly="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
+            <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+            <dxg:GridColumn Header="รังสีแพทย์" FieldName="Doctor" ReadOnly="True"/>
+            <dxg:GridColumn Header="รายการ item" FieldName="RequestItemName" ReadOnly="True"/>
+            <dxg:GridColumn Header="สถานะ" FieldName="ResultStatus" ReadOnly="True"/>
+            <dxg:GridColumn Header="ผลภาษาอังกฤษ" FieldName="ResultValue" ReadOnly="True" />
+            <dxg:GridColumn Header="ผลภาษาไทย" FieldName="ThaiResult" ReadOnly="True"/>
+            <dxg:GridControl.View>
+                <dxg:TableView x:Name="gvPatientXray"
+                               ShowCheckBoxSelectorColumn="True" 
+                               ShowCheckBoxSelectorInGroupRow="True"
+                               ShowGroupPanel="False" />
+            </dxg:GridControl.View>
+        </dxg:GridControl>
+        <dxlc:LayoutItem>
+            <ProgressBar Height="15"   Name="progressBar1"/>
+        </dxlc:LayoutItem>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="ตำแหน่ง Path">
+                <TextBox Text="{Binding ExportFilePath}" IsReadOnly="True" Background="Gainsboro"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="95" Command="{Binding ChooseDicomPathCommand}"
+                                     Height="25" Content="เลือก Path"/>
+                <dx:SimpleButton Width="95" Command="{Binding DownloadDicomCommand}"
+                                     Height="25" Content="ดึงภาพ Dicom"/>
+                <dx:SimpleButton Width="95" Command="{Binding DownloadJPEGCommand}"
+                                     Height="25" Content="ดึงภาพ JPEG"/>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem HorizontalAlignment="Right" Label="เรียงลำดับตาม No" LabelPosition="Left">
+                    <dxe:CheckEdit IsChecked="{Binding IsNumberSequence}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="เรียบร้อย"  HorizontalAlignment="Right">
+                    <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding SucessRecord}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ไม่พบภาพ" HorizontalAlignment="Right">
+                    <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding NotFoundRecord}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup >
+            <dxlc:LayoutGroup HorizontalAlignment="Left">
+                <dxlc:LayoutItem Label="จำนวน">
+                    <dxe:TextEdit EditValue="{Binding StickerQuantity}" Width="50" MaskType="Numeric" Mask="d"/>
+                </dxlc:LayoutItem>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="85" Command="{Binding PrintStickerCommand}"
+                                     Height="25" Content="Print Sticker"/>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="120" Command="{Binding PrintStickerLargeCommand}"
+                                     Height="25" Content="Print Sticker Large"/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dxlc:LayoutItem Label="รายงาน" Width="220">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Reports}"
+                                      SelectedItem="{Binding SelectReport}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Logo" Width="220" Visibility="{Binding LogoVisibility}">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Logos}"
+                                      SelectedItem="{Binding SelectLogo}"
+                                      NullValueButtonPlacement="EditBox"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"/>
+                </dxlc:LayoutItem>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding PrintCommand}"
+                                     Height="25" Content="Print"/>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding PreviewCommand}"
+                                     Height="25" Content="Preview"/>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="90" Command="{Binding PrintToPDFCommand}"
+                                     Height="25" Content="PrintToPDF"/>
+                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding ExportDataCommand}"
+                                     Height="25" Content="ExportData"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+
+</UserControl>

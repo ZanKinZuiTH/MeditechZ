@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="d9c68a1a98864e81b4ccb7b7c660dc25" Name="Diagram1">
+        <EntityTypeShape EntityType="PACSModel.Accounts" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PACSModel.Configs" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PACSModel.Instances" Width="1.5" PointX="0.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PACSModel.Passwords" Width="1.5" PointX="2.75" PointY="3.75" />
+        <EntityTypeShape EntityType="PACSModel.Patients" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PACSModel.Providers" Width="1.5" PointX="4.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PACSModel.SendSettings" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PACSModel.Series" Width="1.5" PointX="6.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PACSModel.Settings" Width="1.5" PointX="2.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PACSModel.Studies" Width="1.5" PointX="8.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PACSModel.Users" Width="1.5" PointX="8.75" PointY="6.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

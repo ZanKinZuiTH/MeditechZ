@@ -1,0 +1,59 @@
+﻿<Application x:Class="MediTech.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             StartupUri="LoginScreen.xaml"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" d1p1:Ignorable="d"
+             xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
+    <Application.Resources>
+        <ResourceDictionary>
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MediTech.ViewModels" />
+            <ControlTemplate  x:Key="ReferencevalueTemplate" x:Name="ReferencevalueTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="Display"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
+            <ControlTemplate  x:Key="HealthOrganisationTemplate" x:Name="HealthOrganisationTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="Name"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
+            <ControlTemplate  x:Key="VendorTemplate" x:Name="VendorTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="CompanyName"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary  Source="Resources/Style/AutoCompleteStyle.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

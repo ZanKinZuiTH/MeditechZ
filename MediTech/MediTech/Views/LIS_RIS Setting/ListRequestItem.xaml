@@ -1,0 +1,37 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ListRequestItem"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ListRequestItemViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+
+            <dxg:GridControl x:Name="grdRequestItem" ItemsSource="{Binding RequestItems}"
+                             SelectedItem="{Binding SelectRequestItem}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="รหัส" FieldName="Code"/>
+                    <dxg:GridColumn Header="ชื่อ" FieldName="ItemName"/>
+                    <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
+                    <dxg:GridColumn Header="ประเภท" FieldName="TestType"/>
+                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="EffectiveFrom"/>
+                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="EffectiveTo"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"  ShowSearchPanelMode="Always" SearchPanelNullText="ค้นหา" AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ"/>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

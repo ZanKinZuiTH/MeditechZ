@@ -1,0 +1,205 @@
+﻿<UserControl xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             x:Class="MediTech.Views.ExecutePopUp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ExecutePopUpViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="รังสีแพทย์">
+                    <cc:MyLookUpEdit     ItemsSource="{Binding Radiologists}"
+                                         SelectedItem="{Binding SelectRaiologist}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupHeight="400"                                        
+                                         AutoPopulateColumns="False">
+                        <cc:MyLookUpEdit.ColumnsToFilter>
+                            <cc:ColumnItem FieldName="FirstName"/>
+                            <cc:ColumnItem FieldName="LastName"/>
+                        </cc:MyLookUpEdit.ColumnsToFilter>
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl  Name="PART_GridControl" >
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="FullName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                    </cc:MyLookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Execute By" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <cc:MyLookUpEdit     ItemsSource="{Binding ExecuteBy}"
+                                         SelectedItem="{Binding SelectExecuteBy}"
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupMinWidth="100"
+                                         PopupHeight="400"
+                                         PopupWidth="500"                                       
+                                         AutoPopulateColumns="False">
+                        <cc:MyLookUpEdit.ColumnsToFilter>
+                            <cc:ColumnItem FieldName="FirstName"/>
+                            <cc:ColumnItem FieldName="LastName"/>
+                        </cc:MyLookUpEdit.ColumnsToFilter>
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl  Name="PART_GridControl" >
+                                    <dxg:GridColumn Header="ชื่อ" FieldName="FullName" 
+                                                    Width="*" AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                    </cc:MyLookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="วันที่" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:DateEdit EditValue="{Binding StartDate}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Width="100">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="เวลา" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:DateEdit x:Name="timeEditor"
+                                      EditValue="{Binding StartTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                            <dxe:DateEdit.StyleSettings>
+                                <dxe:DateEditPickerStyleSettings/>
+                            </dxe:DateEdit.StyleSettings>
+                        </dxe:DateEdit>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxg:GridControl x:Name="grdExecuteList" 
+                             ItemsSource="{Binding ExecuteList}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="เลขอ้างอิง" FieldName="RequestNumber" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รายการ" FieldName="RequestItemName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รหัสรายการ" FieldName="RequestItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID"  ReadOnly="True"/>
+                    <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันที่ Requested" FieldName="RequestedDttm" ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="หมายเหตุ" Fixed="Right" FieldName="ProcessingNote"/>
+                    <dxg:GridColumn Header="รังสีแพทย์" Fixed="Right" FieldName="RadiologistUID">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <cc:MyLookUpEdit x:Name="PART_Editor" 
+                                         DisplayMember="FullName"
+                                         ValueMember="CareproviderUID"
+                                         ItemsSource="{Binding Path=DataContext.Radiologists,RelativeSource={RelativeSource AncestorType={x:Type vm:ExecutePopUp}}}" 
+                                         AutoComplete="False"
+                                         IncrementalFiltering="True"
+                                         AllowNullInput="True"
+                                         ImmediatePopup="True"
+                                         FindButtonPlacement="Popup"
+                                         FindMode = "Always"
+                                         PopupMinHeight="100"
+                                         PopupMinWidth="100"
+                                         PopupHeight="400"
+                                         PopupWidth="500"                                       
+                                         AutoPopulateColumns="False">
+                                    <cc:MyLookUpEdit.ColumnsToFilter>
+                                        <cc:ColumnItem FieldName="FirstName"/>
+                                        <cc:ColumnItem FieldName="LastName"/>
+                                    </cc:MyLookUpEdit.ColumnsToFilter>
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl  Name="PART_GridControl" >
+                                                <dxg:GridColumn Header="ชื่อ" 
+                                                                FieldName="FullName" 
+                                                                Width="*" AllowSearchPanel="True" 
+                                                                AllowIncrementalSearch="True" 
+                                                                AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                </cc:MyLookUpEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView x:Name="grvExecuteList" 
+                                   ShowGroupPanel="False" 
+                                   ShowCheckBoxSelectorColumn="True" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding ExecuteCommand}" Content="บันทึก" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding CancelCommand}" Content="ยกเลิก" Height="25" Width="85"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

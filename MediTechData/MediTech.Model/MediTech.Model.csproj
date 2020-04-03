@@ -1,0 +1,196 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{6AB3CFF9-9372-4147-ABAD-08D83A0F0F1D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediTech.Model</RootNamespace>
+    <AssemblyName>MediTech.Model</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Inventory\CanTransactionInven.cs" />
+    <Compile Include="Inventory\ItemAverageCostModel.cs" />
+    <Compile Include="Lab\PatientResultLabModel.cs" />
+    <Compile Include="Lab\RequestDetailLabModel.cs" />
+    <Compile Include="Lab\RequestDetailSpecimenModel.cs" />
+    <Compile Include="Lab\RequestLabModel.cs" />
+    <Compile Include="Lab\ResultComponentModel.cs" />
+    <Compile Include="Lab\ResultImageModel.cs" />
+    <Compile Include="Lab\ResultModel.cs" />
+    <Compile Include="MasterData\HealthOrganisationIDModel.cs" />
+    <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
+    <Compile Include="MasterData\RequestResultLinkModel.cs" />
+    <Compile Include="MasterData\ResultItemModel.cs" />
+    <Compile Include="MasterData\ResultItemRangeModel.cs" />
+    <Compile Include="MasterData\SpecimenModel.cs" />
+    <Compile Include="OrderMaster\BillableItemDetailModel.cs" />
+    <Compile Include="MasterData\BillingGroupModel.cs" />
+    <Compile Include="MasterData\BillingSubGroupModel.cs" />
+    <Compile Include="Billing\PatientBillModel.cs" />
+    <Compile Include="Billing\PatientBilledItemModel.cs" />
+    <Compile Include="Inventory\ItemVendorDetailModel.cs" />
+    <Compile Include="Inventory\StockWorkListModel.cs" />
+    <Compile Include="OrderMaster\OrderSetBillableItemModel.cs" />
+    <Compile Include="OrderMaster\OrderSetModel.cs" />
+    <Compile Include="OrderProcessing\PatientOrderAlertModel.cs" />
+    <Compile Include="OrderProcessing\PatientOrderDetailModel.cs" />
+    <Compile Include="OrderProcessing\PatientOrderModel.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Inventory\ItemIssueDetailModel.cs" />
+    <Compile Include="Inventory\ItemRecieveDetailModel.cs" />
+    <Compile Include="Inventory\ItemRequestDetailModel.cs" />
+    <Compile Include="Inventory\ItemIssueModel.cs" />
+    <Compile Include="Inventory\ItemRecieveModel.cs" />
+    <Compile Include="Inventory\ItemRequestModel.cs" />
+    <Compile Include="Inventory\StockAdjustmentModel.cs" />
+    <Compile Include="Inventory\StockBalanceModel.cs" />
+    <Compile Include="Inventory\StockModel.cs" />
+    <Compile Include="Inventory\StockMovementModel.cs" />
+    <Compile Include="Inventory\StockOnHandModel.cs" />
+    <Compile Include="Inventory\StoreModel.cs" />
+    <Compile Include="Inventory\StoreUOMConversionModel.cs" />
+    <Compile Include="MasterData\ItemServiceModel.cs" />
+    <Compile Include="PACS\InstancesCopyToModel.cs" />
+    <Compile Include="PACS\DataInbound.cs" />
+    <Compile Include="PACS\SendDicomFilesModel.cs" />
+    <Compile Include="PACS\SeriesCopyToModel.cs" />
+    <Compile Include="PACS\InstancesModel.cs" />
+    <Compile Include="PACS\SeriesModel.cs" />
+    <Compile Include="PACS\StudiesModel.cs" />
+    <Compile Include="PatientDiagnosis\FavouriteItemModel.cs" />
+    <Compile Include="PatientDiagnosis\PatientMedicalHistoryModel.cs" />
+    <Compile Include="PatientDiagnosis\PatientProblemModel.cs" />
+    <Compile Include="PatientDiagnosis\ProblemModel.cs" />
+    <Compile Include="PatientHistory\CCHPIModel.cs" />
+    <Compile Include="PatientHistory\CCHPIMasterModel.cs" />
+    <Compile Include="PatientHistory\PatientVitalSignModel.cs" />
+    <Compile Include="PatientHistory\PhysicalExamModel.cs" />
+    <Compile Include="PatientHistory\PhysicalExamTemplateModel.cs" />
+    <Compile Include="PatientHistory\ProgressModel.cs" />
+    <Compile Include="PatientHistory\WellnessDataModel.cs" />
+    <Compile Include="Patient\BookingModel.cs" />
+    <Compile Include="Patient\PatientAllergyModel.cs" />
+    <Compile Include="Patient\PatientBannerModel.cs" />
+    <Compile Include="Patient\PatientMergeDetailModel.cs" />
+    <Compile Include="Patient\PatientMergeEcounterModel.cs" />
+    <Compile Include="Patient\PatientMergeModel.cs" />
+    <Compile Include="Patient\PatientScannedDocumentModel.cs" />
+    <Compile Include="Pharmacy\FrequencyDefinitionModel.cs" />
+    <Compile Include="Pharmacy\DrugGenericModel.cs" />
+    <Compile Include="Inventory\ItemMasterModel.cs" />
+    <Compile Include="Inventory\ItemUOMConversionModel.cs" />
+    <Compile Include="Main\PageViewModel.cs" />
+    <Compile Include="Main\PageViewModuleModel.cs" />
+    <Compile Include="OrderMaster\BillableItemModel.cs" />
+    <Compile Include="MasterData\PayorDetailModel.cs" />
+    <Compile Include="MasterData\HealthOrganisationModel.cs" />
+    <Compile Include="MasterData\PayorAgreementModel.cs" />
+    <Compile Include="Patient\PatientVisitModel.cs" />
+    <Compile Include="Inventory\PrescriptionModel.cs" />
+    <Compile Include="Inventory\PrescriptionItemModel.cs" />
+    <Compile Include="Purchaseing\GRNDetailModel.cs" />
+    <Compile Include="Purchaseing\GRNItemListModel.cs" />
+    <Compile Include="Purchaseing\PurchaseOrderItemListModel.cs" />
+    <Compile Include="Purchaseing\PurchaseOrderModel.cs" />
+    <Compile Include="Purchaseing\PurchaseOrderPaymentModel.cs" />
+    <Compile Include="Purchaseing\VendorDetailModel.cs" />
+    <Compile Include="Raiology\AddRequestForRISModel.cs" />
+    <Compile Include="MasterData\RequestItemModel.cs" />
+    <Compile Include="Report\CheckupBookModel.cs" />
+    <Compile Include="Raiology\ScheduleRadiologistModel.cs" />
+    <Compile Include="Raiology\DoctorFeeModel.cs" />
+    <Compile Include="Raiology\NotificationTaskResultModel.cs" />
+    <Compile Include="Raiology\RequestDetailDocumentModel.cs" />
+    <Compile Include="Raiology\XrayTranslateMappingModel.cs" />
+    <Compile Include="Raiology\XrayTranslateConditionDetailModel.cs" />
+    <Compile Include="Raiology\XrayTranslateConditionModel.cs" />
+    <Compile Include="Raiology\ResultRadiologyHistoryModel.cs" />
+    <Compile Include="Report\ChartStatisticModel.cs" />
+    <Compile Include="Report\DoctorFeeReportModel.cs" />
+    <Compile Include="Report\DrugStickerModel.cs" />
+    <Compile Include="Report\GoodReceiveReportModel.cs" />
+    <Compile Include="Report\MedicalCertificateModel.cs" />
+    <Compile Include="Report\OPDCardModel.cs" />
+    <Compile Include="Report\OrderRequestCardModel.cs" />
+    <Compile Include="Report\PatientBookingModel.cs" />
+    <Compile Include="Report\PatientLabResult.cs" />
+    <Compile Include="Report\PatientResultRadiology.cs" />
+    <Compile Include="LookUp\LookupItemModel.cs" />
+    <Compile Include="LookUp\LookupReferenceValueModel.cs" />
+    <Compile Include="OrderProcessing\SearchOrderItem.cs" />
+    <Compile Include="Report\PatientRevenueModel.cs" />
+    <Compile Include="Report\PatientSummeryDataModel.cs" />
+    <Compile Include="Report\ProblemStatisticModel.cs" />
+    <Compile Include="Report\RadiologyRDUStaffModel.cs" />
+    <Compile Include="Report\ReportsModel.cs" />
+    <Compile Include="Report\StockTransactionReportModel.cs" />
+    <Compile Include="Report\StockReceiveReportModel.cs" />
+    <Compile Include="Report\StockReportModel.cs" />
+    <Compile Include="Report\PatientDiagnosisModel.cs" />
+    <Compile Include="Raiology\SessionDefinitionModel.cs" />
+    <Compile Include="Raiology\SessionWithdrawnDetailModel.cs" />
+    <Compile Include="Report\StockSummeryModel.cs" />
+    <Compile Include="Report\VisitSumByAreaModel.cs" />
+    <Compile Include="Report\PatientSummaryModel.cs" />
+    <Compile Include="Report\WellNessBookModel.cs" />
+    <Compile Include="Technical\MediTechInterfechModel.cs" />
+    <Compile Include="UserManage\CareproviderModel.cs" />
+    <Compile Include="UserManage\CareproviderOrganisationModel.cs" />
+    <Compile Include="UserManage\LoginModel.cs" />
+    <Compile Include="Patient\PatientInformationModel.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Raiology\PatientRequestReportModel.cs" />
+    <Compile Include="Raiology\RequestListModel.cs" />
+    <Compile Include="Raiology\ResultRadiologyModel.cs" />
+    <Compile Include="Raiology\ResultRadiologyTemplateModel.cs" />
+    <Compile Include="Technical\PostalCode.cs" />
+    <Compile Include="Technical\Technical.cs" />
+    <Compile Include="UserManage\RoleModel.cs" />
+    <Compile Include="UserManage\RoleProfileModel.cs" />
+    <Compile Include="UserManage\RoleReportPermissionModel.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

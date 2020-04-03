@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="PACSModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" />
+          <Property Name="Authority" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configs">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Edited" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instances">
+          <Key>
+            <PropertyRef Name="SOPInstanceUID" />
+          </Key>
+          <Property Name="SOPInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SeriesInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SOPClassUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="TransferSyntaxUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+          <Property Name="StudyDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="StudyID" Type="nvarchar" MaxLength="256" />
+          <Property Name="StudyDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="StudyTime" Type="nvarchar" MaxLength="16" />
+          <Property Name="AccessionNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="InstitutionName" Type="nvarchar" MaxLength="128" />
+          <Property Name="SeriesNumber" Type="int" />
+          <Property Name="SeriesDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="SeriesTime" Type="nvarchar" MaxLength="16" />
+          <Property Name="SeriesDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="Modality" Type="nvarchar" MaxLength="8" />
+          <Property Name="BodypartExamined" Type="nvarchar" MaxLength="256" />
+          <Property Name="InstanceNumber" Type="int" />
+          <Property Name="NumberOfFrames" Type="int" />
+          <Property Name="PixelSpacing" Type="nvarchar" MaxLength="64" />
+          <Property Name="PixelAspectRatio" Type="nvarchar" MaxLength="64" />
+          <Property Name="SliceThickness" Type="nvarchar" MaxLength="64" />
+          <Property Name="SpacingBetweenSlices" Type="nvarchar" MaxLength="64" />
+          <Property Name="SliceLocation" Type="nvarchar" MaxLength="64" />
+          <Property Name="PatientOrientation" Type="nvarchar" MaxLength="256" />
+          <Property Name="ImagePositionPatient" Type="nvarchar" MaxLength="256" />
+          <Property Name="ImageOrientationPatient" Type="nvarchar" MaxLength="256" />
+          <Property Name="Width" Type="int" />
+          <Property Name="Height" Type="int" />
+          <Property Name="RescaleIntercept" Type="int" />
+          <Property Name="RescaleSlope" Type="float" />
+          <Property Name="RescaleType" Type="nvarchar" MaxLength="32" />
+          <Property Name="WindowWidth" Type="nvarchar" MaxLength="128" />
+          <Property Name="WindowCenter" Type="nvarchar" MaxLength="128" />
+          <Property Name="SamplesPerPixel" Type="int" />
+          <Property Name="PlanarConfiguration" Type="int" />
+          <Property Name="BitsAllocated" Type="int" />
+          <Property Name="BitsStored" Type="int" />
+          <Property Name="HighBit" Type="int" />
+          <Property Name="PixelRepresentation" Type="int" />
+          <Property Name="PixelData" Type="int" />
+          <Property Name="Sender" Type="nvarchar" MaxLength="64" />
+          <Property Name="FileSize" Type="bigint" Nullable="false" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+          <Property Name="ImageType" Type="nvarchar" MaxLength="256" />
+          <Property Name="PhotoMatricInterpretation" Type="nvarchar" MaxLength="32" />
+          <Property Name="PatientAge" Type="nvarchar" MaxLength="8" />
+          <Property Name="LossyImageCompression" Type="nvarchar" MaxLength="32" />
+          <Property Name="Method" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passwords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+          <Property Name="NumberOfPatientRelatedStudies" Type="int" Nullable="false" />
+          <Property Name="NumberOfPatientRelatedSeries" Type="int" Nullable="false" />
+          <Property Name="NumberOfPatientRelatedInstances" Type="int" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+          <Property Name="Edited" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
+          <Property Name="AllowAnonymousUsers" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SendSettings">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CalledAETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="CallingAETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="SeriesInstanceUID" />
+          </Key>
+          <Property Name="SeriesInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="SeriesNumber" Type="int" />
+          <Property Name="SeriesDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="SeriesTime" Type="nvarchar" MaxLength="16" />
+          <Property Name="SeriesDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="Modality" Type="nvarchar" MaxLength="8" />
+          <Property Name="BodypartExamined" Type="nvarchar" MaxLength="256" />
+          <Property Name="NumberOfSeriesRelatedInstances" Type="int" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+          <Property Name="Edited" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Account" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+        </EntityType>
+        <EntityType Name="Studies">
+          <Key>
+            <PropertyRef Name="StudyInstanceUID" />
+          </Key>
+          <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
+          <Property Name="StudyDescription" Type="nvarchar" MaxLength="256" />
+          <Property Name="StudyID" Type="nvarchar" MaxLength="256" />
+          <Property Name="StudyDate" Type="nvarchar" MaxLength="16" />
+          <Property Name="StudyTime" Type="nvarchar" MaxLength="16" />
+          <Property Name="AccessionNumber" Type="nvarchar" MaxLength="256" />
+          <Property Name="InstitutionName" Type="nvarchar" MaxLength="128" />
+          <Property Name="ModalitiesInStudy" Type="nvarchar" MaxLength="256" />
+          <Property Name="BodyPartsInStudy" Type="nvarchar" MaxLength="512" />
+          <Property Name="NumberOfStudyRelatedSeries" Type="int" Nullable="false" />
+          <Property Name="NumberOfStudyRelatedInstances" Type="int" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
+          <Property Name="PatientAge" Type="nvarchar" MaxLength="256" />
+          <Property Name="Edited" Type="datetime" Nullable="false" />
+          <Property Name="ReportStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Provider" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="AETitle" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Port" Type="int" Nullable="false" />
+          <Property Name="IPAddress" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityContainer Name="PACSModelStoreContainer">
+          <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Configs" EntityType="Self.Configs" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instances" EntityType="Self.Instances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SendSettings" EntityType="Self.SendSettings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Studies" EntityType="Self.Studies" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="PACSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="PACSEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Accounts" EntityType="PACSModel.Accounts" />
+          <EntitySet Name="Configs" EntityType="PACSModel.Configs" />
+          <EntitySet Name="Instances" EntityType="PACSModel.Instances" />
+          <EntitySet Name="Passwords" EntityType="PACSModel.Passwords" />
+          <EntitySet Name="Patients" EntityType="PACSModel.Patients" />
+          <EntitySet Name="Providers" EntityType="PACSModel.Providers" />
+          <EntitySet Name="SendSettings" EntityType="PACSModel.SendSettings" />
+          <EntitySet Name="Series" EntityType="PACSModel.Series" />
+          <EntitySet Name="Settings" EntityType="PACSModel.Settings" />
+          <EntitySet Name="Studies" EntityType="PACSModel.Studies" />
+          <EntitySet Name="Users" EntityType="PACSModel.Users" />
+        </EntityContainer>
+        <EntityType Name="Accounts">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Authority" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Configs">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Instances">
+          <Key>
+            <PropertyRef Name="SOPInstanceUID" />
+          </Key>
+          <Property Name="SOPInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SOPClassUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="TransferSyntaxUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="StudyDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StudyID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StudyDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="StudyTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="AccessionNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesNumber" Type="Int32" />
+          <Property Name="SeriesDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Modality" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="BodypartExamined" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="InstanceNumber" Type="Int32" />
+          <Property Name="NumberOfFrames" Type="Int32" />
+          <Property Name="PixelSpacing" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PixelAspectRatio" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SliceThickness" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SpacingBetweenSlices" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="SliceLocation" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="PatientOrientation" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ImagePositionPatient" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ImageOrientationPatient" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Width" Type="Int32" />
+          <Property Name="Height" Type="Int32" />
+          <Property Name="RescaleIntercept" Type="Int32" />
+          <Property Name="RescaleSlope" Type="Double" />
+          <Property Name="RescaleType" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="WindowWidth" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="WindowCenter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SamplesPerPixel" Type="Int32" />
+          <Property Name="PlanarConfiguration" Type="Int32" />
+          <Property Name="BitsAllocated" Type="Int32" />
+          <Property Name="BitsStored" Type="Int32" />
+          <Property Name="HighBit" Type="Int32" />
+          <Property Name="PixelRepresentation" Type="Int32" />
+          <Property Name="PixelData" Type="Int32" />
+          <Property Name="Sender" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="FileSize" Type="Int64" Nullable="false" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ImageType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PhotoMatricInterpretation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="PatientAge" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="LossyImageCompression" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Method" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Passwords">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Patients">
+          <Key>
+            <PropertyRef Name="PatientID" />
+          </Key>
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfPatientRelatedStudies" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfPatientRelatedSeries" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfPatientRelatedInstances" Type="Int32" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Providers">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
+          <Property Name="AllowAnonymousUsers" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SendSettings">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CalledAETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="CallingAETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Series">
+          <Key>
+            <PropertyRef Name="SeriesInstanceUID" />
+          </Key>
+          <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesNumber" Type="Int32" />
+          <Property Name="SeriesDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Modality" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
+          <Property Name="BodypartExamined" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfSeriesRelatedInstances" Type="Int32" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Settings">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Account" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Studies">
+          <Key>
+            <PropertyRef Name="StudyInstanceUID" />
+          </Key>
+          <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="StudyDescription" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StudyID" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StudyDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="StudyTime" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="AccessionNumber" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="InstitutionName" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="ModalitiesInStudy" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="BodyPartsInStudy" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
+          <Property Name="NumberOfStudyRelatedSeries" Type="Int32" Nullable="false" />
+          <Property Name="NumberOfStudyRelatedInstances" Type="Int32" Nullable="false" />
+          <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PatientAge" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ReportStatus" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Provider" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="AETitle" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Port" Type="Int32" Nullable="false" />
+          <Property Name="IPAddress" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="PACSModelStoreContainer" CdmEntityContainer="PACSEntities">
+          <EntitySetMapping Name="Accounts">
+            <EntityTypeMapping TypeName="PACSModel.Accounts">
+              <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="Authority" ColumnName="Authority" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Configs">
+            <EntityTypeMapping TypeName="PACSModel.Configs">
+              <MappingFragment StoreEntitySet="Configs">
+                <ScalarProperty Name="Edited" ColumnName="Edited" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instances">
+            <EntityTypeMapping TypeName="PACSModel.Instances">
+              <MappingFragment StoreEntitySet="Instances">
+                <ScalarProperty Name="Method" ColumnName="Method" />
+                <ScalarProperty Name="LossyImageCompression" ColumnName="LossyImageCompression" />
+                <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
+                <ScalarProperty Name="PhotoMatricInterpretation" ColumnName="PhotoMatricInterpretation" />
+                <ScalarProperty Name="ImageType" ColumnName="ImageType" />
+                <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="FileSize" ColumnName="FileSize" />
+                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="PixelData" ColumnName="PixelData" />
+                <ScalarProperty Name="PixelRepresentation" ColumnName="PixelRepresentation" />
+                <ScalarProperty Name="HighBit" ColumnName="HighBit" />
+                <ScalarProperty Name="BitsStored" ColumnName="BitsStored" />
+                <ScalarProperty Name="BitsAllocated" ColumnName="BitsAllocated" />
+                <ScalarProperty Name="PlanarConfiguration" ColumnName="PlanarConfiguration" />
+                <ScalarProperty Name="SamplesPerPixel" ColumnName="SamplesPerPixel" />
+                <ScalarProperty Name="WindowCenter" ColumnName="WindowCenter" />
+                <ScalarProperty Name="WindowWidth" ColumnName="WindowWidth" />
+                <ScalarProperty Name="RescaleType" ColumnName="RescaleType" />
+                <ScalarProperty Name="RescaleSlope" ColumnName="RescaleSlope" />
+                <ScalarProperty Name="RescaleIntercept" ColumnName="RescaleIntercept" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="Width" ColumnName="Width" />
+                <ScalarProperty Name="ImageOrientationPatient" ColumnName="ImageOrientationPatient" />
+                <ScalarProperty Name="ImagePositionPatient" ColumnName="ImagePositionPatient" />
+                <ScalarProperty Name="PatientOrientation" ColumnName="PatientOrientation" />
+                <ScalarProperty Name="SliceLocation" ColumnName="SliceLocation" />
+                <ScalarProperty Name="SpacingBetweenSlices" ColumnName="SpacingBetweenSlices" />
+                <ScalarProperty Name="SliceThickness" ColumnName="SliceThickness" />
+                <ScalarProperty Name="PixelAspectRatio" ColumnName="PixelAspectRatio" />
+                <ScalarProperty Name="PixelSpacing" ColumnName="PixelSpacing" />
+                <ScalarProperty Name="NumberOfFrames" ColumnName="NumberOfFrames" />
+                <ScalarProperty Name="InstanceNumber" ColumnName="InstanceNumber" />
+                <ScalarProperty Name="BodypartExamined" ColumnName="BodypartExamined" />
+                <ScalarProperty Name="Modality" ColumnName="Modality" />
+                <ScalarProperty Name="SeriesDescription" ColumnName="SeriesDescription" />
+                <ScalarProperty Name="SeriesTime" ColumnName="SeriesTime" />
+                <ScalarProperty Name="SeriesDate" ColumnName="SeriesDate" />
+                <ScalarProperty Name="SeriesNumber" ColumnName="SeriesNumber" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="AccessionNumber" ColumnName="AccessionNumber" />
+                <ScalarProperty Name="StudyTime" ColumnName="StudyTime" />
+                <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+                <ScalarProperty Name="StudyID" ColumnName="StudyID" />
+                <ScalarProperty Name="StudyDescription" ColumnName="StudyDescription" />
+                <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
+                <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
+                <ScalarProperty Name="PatientComments" ColumnName="PatientComments" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="TransferSyntaxUID" ColumnName="TransferSyntaxUID" />
+                <ScalarProperty Name="SOPClassUID" ColumnName="SOPClassUID" />
+                <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />
+                <ScalarProperty Name="SeriesInstanceUID" ColumnName="SeriesInstanceUID" />
+                <ScalarProperty Name="SOPInstanceUID" ColumnName="SOPInstanceUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Passwords">
+            <EntityTypeMapping TypeName="PACSModel.Passwords">
+              <MappingFragment StoreEntitySet="Passwords">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Patients">
+            <EntityTypeMapping TypeName="PACSModel.Patients">
+              <MappingFragment StoreEntitySet="Patients">
+                <ScalarProperty Name="Edited" ColumnName="Edited" />
+                <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
+                <ScalarProperty Name="NumberOfPatientRelatedInstances" ColumnName="NumberOfPatientRelatedInstances" />
+                <ScalarProperty Name="NumberOfPatientRelatedSeries" ColumnName="NumberOfPatientRelatedSeries" />
+                <ScalarProperty Name="NumberOfPatientRelatedStudies" ColumnName="NumberOfPatientRelatedStudies" />
+                <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
+                <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
+                <ScalarProperty Name="PatientComments" ColumnName="PatientComments" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Providers">
+            <EntityTypeMapping TypeName="PACSModel.Providers">
+              <MappingFragment StoreEntitySet="Providers">
+                <ScalarProperty Name="AllowAnonymousUsers" ColumnName="AllowAnonymousUsers" />
+                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="AETitle" ColumnName="AETitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SendSettings">
+            <EntityTypeMapping TypeName="PACSModel.SendSettings">
+              <MappingFragment StoreEntitySet="SendSettings">
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="CallingAETitle" ColumnName="CallingAETitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="CalledAETitle" ColumnName="CalledAETitle" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Series">
+            <EntityTypeMapping TypeName="PACSModel.Series">
+              <MappingFragment StoreEntitySet="Series">
+                <ScalarProperty Name="Edited" ColumnName="Edited" />
+                <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
+                <ScalarProperty Name="NumberOfSeriesRelatedInstances" ColumnName="NumberOfSeriesRelatedInstances" />
+                <ScalarProperty Name="BodypartExamined" ColumnName="BodypartExamined" />
+                <ScalarProperty Name="Modality" ColumnName="Modality" />
+                <ScalarProperty Name="SeriesDescription" ColumnName="SeriesDescription" />
+                <ScalarProperty Name="SeriesTime" ColumnName="SeriesTime" />
+                <ScalarProperty Name="SeriesDate" ColumnName="SeriesDate" />
+                <ScalarProperty Name="SeriesNumber" ColumnName="SeriesNumber" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />
+                <ScalarProperty Name="SeriesInstanceUID" ColumnName="SeriesInstanceUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Settings">
+            <EntityTypeMapping TypeName="PACSModel.Settings">
+              <MappingFragment StoreEntitySet="Settings">
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Account" ColumnName="Account" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Studies">
+            <EntityTypeMapping TypeName="PACSModel.Studies">
+              <MappingFragment StoreEntitySet="Studies">
+                <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+                <ScalarProperty Name="Edited" ColumnName="Edited" />
+                <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
+                <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
+                <ScalarProperty Name="NumberOfStudyRelatedInstances" ColumnName="NumberOfStudyRelatedInstances" />
+                <ScalarProperty Name="NumberOfStudyRelatedSeries" ColumnName="NumberOfStudyRelatedSeries" />
+                <ScalarProperty Name="BodyPartsInStudy" ColumnName="BodyPartsInStudy" />
+                <ScalarProperty Name="ModalitiesInStudy" ColumnName="ModalitiesInStudy" />
+                <ScalarProperty Name="InstitutionName" ColumnName="InstitutionName" />
+                <ScalarProperty Name="AccessionNumber" ColumnName="AccessionNumber" />
+                <ScalarProperty Name="StudyTime" ColumnName="StudyTime" />
+                <ScalarProperty Name="StudyDate" ColumnName="StudyDate" />
+                <ScalarProperty Name="StudyID" ColumnName="StudyID" />
+                <ScalarProperty Name="StudyDescription" ColumnName="StudyDescription" />
+                <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
+                <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
+                <ScalarProperty Name="PatientComments" ColumnName="PatientComments" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="PACSModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="IPAddress" ColumnName="IPAddress" />
+                <ScalarProperty Name="Port" ColumnName="Port" />
+                <ScalarProperty Name="AETitle" ColumnName="AETitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Provider" ColumnName="Provider" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

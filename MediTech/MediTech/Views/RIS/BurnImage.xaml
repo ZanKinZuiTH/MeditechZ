@@ -1,0 +1,101 @@
+﻿<UserControl x:Class="MediTech.Views.BurnImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:conv="clr-namespace:iDesign.Media.Burner.Converters"
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=BurnImageViewModel,Source={StaticResource Locator}}"
+             Height="380" Width="500"
+             d:DesignHeight="380" d:DesignWidth="500">
+    <UserControl.Resources>
+        <conv:DiscRecorderValueConverter x:Key="discRecorderValueConverter"/>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Media" LabelPosition="Top" HorizontalAlignment="Left">
+                    <StackPanel Orientation="Horizontal">
+                        <ComboBox x:Name="devicesComboBox"
+                      Width="200"
+                      IsSynchronizedWithCurrentItem="True"                        
+                      ItemsSource="{Binding DiscRecorders}" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding Converter={StaticResource discRecorderValueConverter}}"/>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        <Label  x:Name="labelMediaType" Foreground="Red" Margin="10,0,0,0"
+                                HorizontalAlignment="Left" Content="{Binding Path=MediaType}" />
+                    </StackPanel>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutItem Label="Disc title" LabelPosition="Top">
+                <dxe:TextEdit x:Name="textBoxLabel" HorizontalAlignment="Left"  
+                              Text="{Binding Path=VolumeLabel}" Width="200"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="Recording speed" LabelPosition="Top">
+                <ComboBox x:Name="comboBoxVerification" Width="200"
+                                  HorizontalAlignment="Left"
+                          ItemsSource="{Binding Path=VerificationTypes}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Vertical" >
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem>
+                            <Label x:Name="labelTotalMediaSize" Content="{Binding Path=TotalMediaSize}" HorizontalAlignment="Left"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <Label x:Name="labelTotalSize" Content="{Binding Path=TotalSize}" HorizontalAlignment="Right"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem>
+                        <ProgressBar Height="20" Name="progressBarCapacity" Value="{Binding Path=CapacityProgressValue}" Foreground="{Binding Path=CapacityProgressBrush}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <Label HorizontalAlignment="Center" VerticalAlignment="Bottom" >
+                            <TextBlock x:Name="labelStatusText" TextWrapping="WrapWithOverflow" Text="{Binding Path=BurnStatusMsg,Mode=TwoWay}"/>
+                        </Label>
+                    </dxlc:LayoutItem>
+
+                    <dxlc:LayoutItem>
+                        <ProgressBar Height="20" Minimum="0" Maximum="100" 
+                                     Name="statusProgressBar" Value="{Binding BurnProgressValue}"/>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="Supported Media:" Margin="0,15,0,0" Visibility="{Binding SuportMediaVisibility}"
+                             LabelPosition="Top">
+                <Label>
+                    <TextBlock x:Name="supportedMediaLabel" Text="{Binding Path=SupportedMedia}" TextWrapping="WrapWithOverflow"/>
+                </Label>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup VerticalAlignment="Bottom">
+                <dxe:CheckEdit x:Name="checkBoxEject" IsChecked="{Binding Path=ShouldEject}"  Content="Eject when finished" Margin="60,5,0,0" />
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                    <dx:SimpleButton Command="{Binding BurnCDCommand}" IsEnabled="{Binding IsEnableBurn}"
+                                 Content="{Binding ContentBurn}" Width="100"                               
+                                 Height="25"  />
+                    <dx:SimpleButton Command="{Binding CancelCommand}" IsEnabled="{Binding IsEnableCancel}"
+                                 Content="Cancel" Width="100"                               
+                                 Height="25"  />
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+
+        </dxlc:LayoutControl>
+            
+    </Grid>
+</UserControl>

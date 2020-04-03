@@ -1,0 +1,25 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  x:Class="MediTech.Views.CancelPopup"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=CancelPopupViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="120" d:DesignWidth="300" Width="300">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem Label="เหตุผล">
+                <dxe:TextEdit x:Name="txtComments" AcceptsReturn="True"
+                              Text="{Binding Comments}"
+                              TextWrapping="Wrap" Height="50" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal" 
+                              HorizontalAlignment="Center" 
+                              VerticalAlignment="Bottom">
+                <dx:SimpleButton Width="80" Name="btnSave" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                <dx:SimpleButton Width="80" Name="btnCancel" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>
