@@ -105,6 +105,8 @@
             this.lblEarsRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.tableCBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable7)).BeginInit();
@@ -114,6 +116,8 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel3,
+            this.xrLabel1,
             this.tableCBC,
             this.xrLabel7,
             this.xrTable3,
@@ -217,6 +221,8 @@
             // 
             this.xrTableCell12.CanGrow = false;
             this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell12.StylePriority.UsePadding = false;
             this.xrTableCell12.Text = "มองระยะไกล";
             this.xrTableCell12.Weight = 1.2463423270072058D;
             // 
@@ -231,6 +237,8 @@
             // xrTableCell5
             // 
             this.xrTableCell5.Name = "xrTableCell5";
+            this.xrTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell5.StylePriority.UsePadding = false;
             this.xrTableCell5.Text = "มองระยะใกล้";
             this.xrTableCell5.Weight = 1.7326965221125998D;
             // 
@@ -255,6 +263,8 @@
             // 
             this.xrTableCell13.CanGrow = false;
             this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell13.StylePriority.UsePadding = false;
             this.xrTableCell13.Text = "มองภาพ 3 มิติ ";
             this.xrTableCell13.Weight = 1.2463423270072056D;
             // 
@@ -269,6 +279,8 @@
             // xrTableCell7
             // 
             this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell7.StylePriority.UsePadding = false;
             this.xrTableCell7.Text = "สมดุลย์กล้ามเนื้อตา";
             this.xrTableCell7.Weight = 1.7326965221125996D;
             // 
@@ -293,6 +305,8 @@
             // 
             this.xrTableCell16.CanGrow = false;
             this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell16.StylePriority.UsePadding = false;
             this.xrTableCell16.Text = "การแยกสี";
             this.xrTableCell16.Weight = 1.2463427093875681D;
             // 
@@ -307,6 +321,8 @@
             // xrTableCell8
             // 
             this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell8.StylePriority.UsePadding = false;
             this.xrTableCell8.Text = "ลานสายตา";
             this.xrTableCell8.Weight = 1.7326965221125998D;
             // 
@@ -329,6 +345,8 @@
             // 
             this.xrTableCell19.CanGrow = false;
             this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell19.StylePriority.UsePadding = false;
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
             this.xrTableCell19.Text = "สรุปผล";
             this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -356,6 +374,8 @@
             // 
             this.xrTableCell20.CanGrow = false;
             this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell20.StylePriority.UsePadding = false;
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
             this.xrTableCell20.Text = "คำแนะนำ";
             this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -478,7 +498,9 @@
             // 
             this.xrTableCell206.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell206.Name = "xrTableCell206";
+            this.xrTableCell206.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell206.StylePriority.UseFont = false;
+            this.xrTableCell206.StylePriority.UsePadding = false;
             this.xrTableCell206.StylePriority.UseTextAlignment = false;
             this.xrTableCell206.Text = "FVC";
             this.xrTableCell206.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -526,7 +548,9 @@
             // 
             this.xrTableCell204.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell204.Name = "xrTableCell204";
+            this.xrTableCell204.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell204.StylePriority.UseFont = false;
+            this.xrTableCell204.StylePriority.UsePadding = false;
             this.xrTableCell204.StylePriority.UseTextAlignment = false;
             this.xrTableCell204.Text = "FEV1";
             this.xrTableCell204.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -574,7 +598,9 @@
             // 
             this.xrTableCell208.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell208.Name = "xrTableCell208";
+            this.xrTableCell208.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell208.StylePriority.UseFont = false;
+            this.xrTableCell208.StylePriority.UsePadding = false;
             this.xrTableCell208.StylePriority.UseTextAlignment = false;
             this.xrTableCell208.Text = "FFV1/FVC";
             this.xrTableCell208.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -620,7 +646,9 @@
             // 
             this.xrTableCell4.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell4.StylePriority.UseFont = false;
+            this.xrTableCell4.StylePriority.UsePadding = false;
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
             this.xrTableCell4.Text = "สรุปผล";
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -648,7 +676,9 @@
             // 
             this.xrTableCell24.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrTableCell24.Name = "xrTableCell24";
+            this.xrTableCell24.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell24.StylePriority.UseFont = false;
+            this.xrTableCell24.StylePriority.UsePadding = false;
             this.xrTableCell24.StylePriority.UseTextAlignment = false;
             this.xrTableCell24.Text = "คำแนะนำ";
             this.xrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -766,7 +796,9 @@
             this.xrTableCell87.CanGrow = false;
             this.xrTableCell87.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell87.Name = "xrTableCell87";
+            this.xrTableCell87.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell87.StylePriority.UseFont = false;
+            this.xrTableCell87.StylePriority.UsePadding = false;
             this.xrTableCell87.StylePriority.UseTextAlignment = false;
             this.xrTableCell87.Text = "แปลผลหูขวา";
             this.xrTableCell87.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -795,7 +827,9 @@
             this.xrTableCell95.CanGrow = false;
             this.xrTableCell95.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell95.Name = "xrTableCell95";
+            this.xrTableCell95.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell95.StylePriority.UseFont = false;
+            this.xrTableCell95.StylePriority.UsePadding = false;
             this.xrTableCell95.StylePriority.UseTextAlignment = false;
             this.xrTableCell95.Text = "แปลผลหูซ้าย";
             this.xrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -823,7 +857,9 @@
             // 
             this.xrTableCell6.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell6.Name = "xrTableCell6";
+            this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell6.StylePriority.UseFont = false;
+            this.xrTableCell6.StylePriority.UsePadding = false;
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.Text = "สรุปผล";
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -850,7 +886,9 @@
             // 
             this.xrTableCell9.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell9.StylePriority.UseFont = false;
+            this.xrTableCell9.StylePriority.UsePadding = false;
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
             this.xrTableCell9.Text = "คำแนะนำ";
             this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -879,6 +917,32 @@
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.CanGrow = false;
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(791.5001F, 6.666664F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(18.33313F, 20.83334F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "3";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.CanGrow = false;
+            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(384.3334F, 6.666667F);
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(18.33313F, 20.83334F);
+            this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            this.xrLabel3.Text = "6";
+            this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // BookPage3
             // 
@@ -979,5 +1043,7 @@
         internal DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
         internal DevExpress.XtraReports.UI.XRTableCell lblEarsRecommend;
         internal DevExpress.XtraReports.UI.XRTableCell lblEarsResult;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
     }
 }

@@ -341,14 +341,50 @@ namespace MediTechWebApi.Controllers
 
 
                     PatientVisit patpv = db.PatientVisit.Find(model.PatientVisitUID);
-                    ReferenceValue careAtHome = db.ReferenceValue.FirstOrDefault(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && p.ValueCode == "CATHOM");
+                    ReferenceValue nonMed = db.ReferenceValue.FirstOrDefault(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && p.ValueCode == "NONMED");
                     PatientBill patBill = new PatientBill();
                     int seqBillID = 0;
                     string patientBillID = string.Empty;
 
                     var visitPayor = db.PatientVisitPayor.FirstOrDefault(p => p.PatientVisitUID == patpv.UID && p.StatusFlag == "A");
-                    var healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
-                    if (healthOrganisationIDs != null && healthOrganisationIDs.Count() > 0)
+                    PayorDetail payorDetail = db.PayorDetail.Find(visitPayor.PayorDetailUID);
+                    IEnumerable<HealthOrganisationID> healthOrganisationIDs;
+
+                    if (patpv.VISTYUID == nonMed.UID)
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
+                    }
+                    else
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
+                    }
+
+                    if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
+                    {
+                        db.PayorDetail.Attach(payorDetail);
+                        if (payorDetail.LastRenumberDttm == null)
+                        {
+                            payorDetail.LastRenumberDttm = now;
+                        }
+                        else
+                        {
+                            double dateDiff = ((now.Year - payorDetail.LastRenumberDttm.Value.Year) * 12) + now.Month - payorDetail.LastRenumberDttm.Value.Month;
+                            if (dateDiff >= 1)
+                            {
+                                payorDetail.LastRenumberDttm = now;
+                                payorDetail.NumberValue = 1;
+                            }
+
+                        }
+
+                        patientBillID = SEQHelper.GetSEQBillNumber(payorDetail.IDFormat, payorDetail.IDLength.Value, payorDetail.NumberValue.Value);
+                        seqBillID = payorDetail.NumberValue.Value;
+
+                        payorDetail.NumberValue = ++payorDetail.NumberValue;
+
+                        db.SaveChanges();
+                    }
+                    else if (healthOrganisationIDs != null && healthOrganisationIDs.Count() > 0)
                     {
                         var agreement = db.PayorAgreement.FirstOrDefault(p => p.UID == visitPayor.PayorAgreementUID);
                         string billType = "";
@@ -363,6 +399,7 @@ namespace MediTechWebApi.Controllers
                             healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
                             billType = "Credit";
                         }
+
                         if (healthIDBillType == null)
                         {
                             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -392,37 +429,9 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        PayorDetail payorDetail = db.PayorDetail.Find(visitPayor.PayorDetailUID);
-                        if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
-                        {
-                            db.PayorDetail.Attach(payorDetail);
-                            if (payorDetail.LastRenumberDttm == null)
-                            {
-                                payorDetail.LastRenumberDttm = now;
-                            }
-                            else
-                            {
-                                double dateDiff = ((now.Year - payorDetail.LastRenumberDttm.Value.Year) * 12) + now.Month - payorDetail.LastRenumberDttm.Value.Month;
-                                if (dateDiff >= 1)
-                                {
-                                    payorDetail.LastRenumberDttm = now;
-                                    payorDetail.NumberValue = 1;
-                                }
-
-                            }
-
-                            patientBillID = SEQHelper.GetSEQBillNumber(payorDetail.IDFormat, payorDetail.IDLength.Value, payorDetail.NumberValue.Value);
-                            seqBillID = payorDetail.NumberValue.Value;
-
-                            payorDetail.NumberValue = ++payorDetail.NumberValue;
-
-                            db.SaveChanges();
-                        }
-                        else
-                        {
-                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
-                        }
+                        patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
                     }
+                  
 
 
                     if (string.IsNullOrEmpty(patientBillID))

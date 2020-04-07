@@ -182,7 +182,7 @@ namespace MediTech.ViewModels
                 {
 
                     XtraReport report;
-                    if (!SelectPatientBill.OrganisationCode.Contains("BEEWA"))
+                    if (SelectPatientBill.VisitType != "Non Medical")
                     {
                         report = new PatientBill();
                     }

@@ -21,6 +21,7 @@ namespace MediTech.Model
         public string MobilePhone { get; set; }
         public string VisitID { get; set; }
         public DateTime VisitDttm { get; set; }
+        public string VisitType { get; set; }
         public Nullable<System.DateTime> BillGeneratedDttm { get; set; }
         public Nullable<double> TotalAmount { get; set; }
         public Nullable<double> DiscountAmount { get; set; }

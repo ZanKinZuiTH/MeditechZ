@@ -53,7 +53,8 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 lblCheckupDate.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.ToString("dd/MM/yyyy") : "";
                 lblPatientName.Text = data.FirstOrDefault().PatientName;
                 lblHN.Text = data.FirstOrDefault().PatientID;
-                lblNationalID.Text = data.FirstOrDefault().NationalID;
+                lblOtherID.Text = data.FirstOrDefault().PatientID2;
+                lblPayor.Text = data.FirstOrDefault().PayorName;
                 lblBirthDttm.Text = data.FirstOrDefault().BirthDttm != null ? data.FirstOrDefault().BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lblAge.Text = data.FirstOrDefault().Age != null ? data.FirstOrDefault().Age + " ปี" : "";
                 lblHeight.Text = data.FirstOrDefault().Height != null ? data.FirstOrDefault().Height.ToString() + " cm." : "";
@@ -116,7 +117,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 if (data.FirstOrDefault().Pulse != null)
                 {
                     string pulseResult = "ปกติ";
-                    if (data.FirstOrDefault().Pulse > 100 || data.FirstOrDefault().Pulse < 60)
+                    if (data.FirstOrDefault().Pulse > 110 || data.FirstOrDefault().Pulse < 60)
                     {
                         pulseResult = "ผิดปกติ";
                     }
@@ -160,10 +161,14 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                         else
                         {
-                            bookPage2.lblMamo.Text = "ยังไม่ได้แปลไทย";
+                            bookPage2.lblChest.Text = "ยังไม่ได้แปลไทย";
                         }
                     }
 
+                }
+                else
+                {
+                    bookPage2.lblChest.Text = "-";
                 }
 
                 if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology") != null)
@@ -183,6 +188,10 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                     }
                 }
+                else
+                {
+                    bookPage2.lblMamo.Text = "-";
+                }
 
                 if (data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology") != null)
                 {
@@ -200,8 +209,10 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                             bookPage2.lblUltrasound.Text = "ยังไม่ได้แปลไทย";
                         }
                     }
-
-
+                }
+                else
+                {
+                    bookPage2.lblUltrasound.Text = "-";
                 }
 
                 if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("ABO Group") && p.RequestItemType == "Lab") != null)
@@ -236,6 +247,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         XRTableCell cell1 = new XRTableCell();
                         XRTableCell cell2 = new XRTableCell();
                         cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
 
                         cell0.Text = cbcResult.ResultItemName;
                         cell1.Text = cbcResult.ReferenceRange;
@@ -395,6 +407,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         row.CanGrow = true;
                         cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
 
                         cell0.Text = urineResult.ResultItemName;
                         cell1.Text = urineResult.ReferenceRange;
@@ -468,6 +481,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         XRTableCell cell1 = new XRTableCell();
                         XRTableCell cell2 = new XRTableCell();
                         cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
 
                         cell0.Text = labbortory.ResultItemName;
                         cell1.Text = labbortory.ReferenceRange;
@@ -533,6 +547,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         XRTableCell cell1 = new XRTableCell();
                         XRTableCell cell2 = new XRTableCell();
                         cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
 
                         cell0.Text = stool.ResultItemName;
                         cell1.Text = stool.ReferenceRange;
@@ -598,6 +613,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         XRTableCell cell1 = new XRTableCell();
                         XRTableCell cell2 = new XRTableCell();
                         cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
 
                         cell0.Text = immuno.ResultItemName;
                         cell1.Text = immuno.ReferenceRange;

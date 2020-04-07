@@ -481,8 +481,8 @@ namespace MediTech.ViewModels
                     {
 
                         XtraReport report;
-                        var selectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientCloseMed.OwnerOrganisationUID);
-                        if (!selectOrganisation.Code.Contains("BEEWA"))
+                        //var selectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientCloseMed.OwnerOrganisationUID);
+                        if (SelectPatientCloseMed.VisitType != "Non Medical")
                         {
                             report = new PatientBill();
                         }

@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.BillingDetail_supreport = new DevExpress.XtraReports.UI.XRSubreport();
+            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrPanel2 = new DevExpress.XtraReports.UI.XRPanel();
             this.logo2 = new DevExpress.XtraReports.UI.XRPictureBox();
@@ -147,8 +149,6 @@
             this.xrCheckBox8 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
-            this.BillingDetail_supreport = new DevExpress.XtraReports.UI.XRSubreport();
-            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -161,13 +161,29 @@
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.BillingDetail_supreport,
             this.xrSubreport1});
-            this.Detail.HeightF = 61.5835F;
+            this.Detail.HeightF = 25.00011F;
             this.Detail.MultiColumn.ColumnCount = 2;
             this.Detail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // BillingDetail_supreport
+            // 
+            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55553F, 9.781276E-05F);
+            this.BillingDetail_supreport.Name = "BillingDetail_supreport";
+            this.BillingDetail_supreport.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail2();
+            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5001F, 25F);
+            this.BillingDetail_supreport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
+            // 
+            // xrSubreport1
+            // 
+            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(589.0551F, 0.0001059638F);
+            this.xrSubreport1.Name = "xrSubreport1";
+            this.xrSubreport1.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail2();
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(537.5002F, 25F);
+            this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
             // 
             // TopMargin
             // 
@@ -1500,22 +1516,6 @@
             this.ReportFooter.HeightF = 207.25F;
             this.ReportFooter.KeepTogether = true;
             this.ReportFooter.Name = "ReportFooter";
-            // 
-            // BillingDetail_supreport
-            // 
-            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55553F, 9.781276E-05F);
-            this.BillingDetail_supreport.Name = "BillingDetail_supreport";
-            this.BillingDetail_supreport.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail2();
-            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5001F, 61.58339F);
-            this.BillingDetail_supreport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
-            // 
-            // xrSubreport1
-            // 
-            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(589.0551F, 0.0001059638F);
-            this.xrSubreport1.Name = "xrSubreport1";
-            this.xrSubreport1.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail2();
-            this.xrSubreport1.SizeF = new System.Drawing.SizeF(537.5002F, 61.58339F);
-            this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
             // 
             // PatientBill2
             // 

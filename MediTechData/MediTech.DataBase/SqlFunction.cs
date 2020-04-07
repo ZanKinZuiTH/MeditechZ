@@ -1122,7 +1122,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchCheckupResultValue", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 2500;
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
@@ -1235,6 +1235,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetOrderALLByPatientUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
@@ -1344,7 +1345,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryPerMonth", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 2500;
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_Year", year);
             adp.SelectCommand.Parameters.AddWithValue("@P_MonthLists", monthLists);
@@ -1358,7 +1359,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryData", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 2500;
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
