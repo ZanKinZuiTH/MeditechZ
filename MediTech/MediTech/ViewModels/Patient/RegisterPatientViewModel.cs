@@ -330,29 +330,37 @@ namespace MediTech.ViewModels
 
         public void NextPage()
         {
-            if (SelectedPatient == null)
+            try
             {
-                WarningDialog("กรุณาเลือกผู้ป่วย");
-                return;
-            }
-            if (SelectedBooking != null)
-            {
-                DialogResult result = QuestionDialog("ผู้ป่วยมีนัด คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
-                if (result == DialogResult.Yes)
+                if (SelectedPatient == null)
                 {
-                    OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
+                    WarningDialog("กรุณาเลือกผู้ป่วย");
+                    return;
+                }
+                if (SelectedBooking != null)
+                {
+                    DialogResult result = QuestionDialog("ผู้ป่วยมีนัด คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                    if (result == DialogResult.Yes)
+                    {
+                        OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
+                    }
+                    else
+                    {
+                        OpenPage(PageRegister.Manage, SelectedPatient);
+                    }
                 }
                 else
                 {
                     OpenPage(PageRegister.Manage, SelectedPatient);
                 }
+
+                IsManageRegister = true;
             }
-            else
+            catch (Exception ex)
             {
-                OpenPage(PageRegister.Manage, SelectedPatient);
+                ErrorDialog(ex.Message);
             }
 
-            IsManageRegister = true;
         }
 
         public void BackTabPage()

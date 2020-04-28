@@ -120,9 +120,9 @@
             this.xrPivotGrid1.DataSource = this.objectDataSource1;
             this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
             this.pivotGridField4,
+            this.xrPivotGridField22,
             this.xrPivotGridField23,
             this.pivotGridField3,
-            this.xrPivotGridField22,
             this.pivotGridField2,
             this.xrPivotGridField21,
             this.xrPivotGridField27,
@@ -136,7 +136,7 @@
             this.pivotGridField1,
             this.xrPivotGridField29,
             this.xrPivotGridField30});
-            this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(53.91671F, 10F);
+            this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(53.91673F, 10F);
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
             this.xrPivotGrid1.OptionsPrint.PrintHeadersOnEveryPage = true;
@@ -161,7 +161,7 @@
             // xrPivotGridField23
             // 
             this.xrPivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField23.AreaIndex = 1;
+            this.xrPivotGridField23.AreaIndex = 2;
             this.xrPivotGridField23.Caption = "BillDate";
             this.xrPivotGridField23.CellFormat.FormatString = "d";
             this.xrPivotGridField23.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -174,7 +174,7 @@
             // pivotGridField3
             // 
             this.pivotGridField3.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField3.AreaIndex = 2;
+            this.pivotGridField3.AreaIndex = 3;
             this.pivotGridField3.Caption = "BillTime";
             this.pivotGridField3.CellFormat.FormatString = "HH:mm";
             this.pivotGridField3.CellFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
@@ -187,8 +187,8 @@
             // xrPivotGridField22
             // 
             this.xrPivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField22.AreaIndex = 3;
-            this.xrPivotGridField22.FieldName = "VisitID";
+            this.xrPivotGridField22.AreaIndex = 1;
+            this.xrPivotGridField22.FieldName = "BillNumber";
             this.xrPivotGridField22.Name = "xrPivotGridField22";
             this.xrPivotGridField22.Width = 80;
             // 

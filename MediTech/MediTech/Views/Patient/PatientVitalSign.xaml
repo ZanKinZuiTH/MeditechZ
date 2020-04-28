@@ -87,7 +87,7 @@
                             <TextBlock Name="lblPluseUnit"
                                 Text="ครั้ง/นาที" 
                                 FontSize="14" />
-                            <TextBlock Name="lblPluseRage" Text="60-100"/>
+                            <TextBlock Name="lblPluseRage" Text="60-110"/>
                             <TextBlock Name="lblPluseStatus" Text="-" FontSize="14" />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">

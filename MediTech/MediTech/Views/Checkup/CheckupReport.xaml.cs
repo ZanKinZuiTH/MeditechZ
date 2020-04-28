@@ -31,13 +31,13 @@ namespace MediTech.Views
             {
                 if (e.Value != null)
                 {
-                    string value = e.Value.ToString();
-                    string IsAbnormal = value.Substring(value.Length - 1);
+                    string[] values = e.Value.ToString().Split(' ');
+                    string IsAbnormal = values?[1];
                     if (IsAbnormal == "H")
                     {
                         e.Foreground = Brushes.Red;
                     }
-                    else if(IsAbnormal == "L" && value.ToUpper() != "NORMAL")
+                    else if(IsAbnormal == "L")
                     {
                         e.Foreground = Brushes.Blue;
                     }

@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace MediTech.Reports.Statistic.Inventory
 {
-    public partial class StockRequestReport : DevExpress.XtraReports.UI.XtraReport
+    public partial class StockConsumption : DevExpress.XtraReports.UI.XtraReport
     {
-        public StockRequestReport()
+        public StockConsumption()
         {
             InitializeComponent();
         }

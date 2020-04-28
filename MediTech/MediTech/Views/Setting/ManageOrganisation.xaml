@@ -81,7 +81,7 @@
                         <dxlc:LayoutItem Label="เลขประจำตัวผู้เสียภาษี">
                             <dxe:TextEdit EditValue="{Binding TINNo}"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="เใบอนุญาตเลขที่">
+                        <dxlc:LayoutItem Label="ใบอนุญาตเลขที่">
                             <dxe:TextEdit EditValue="{Binding LicenseNo}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="ทีอยู่">

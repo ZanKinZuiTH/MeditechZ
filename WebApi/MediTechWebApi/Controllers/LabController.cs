@@ -790,49 +790,49 @@ namespace MediTechWebApi.Controllers
 
                             //if (double.TryParse(resultComponent.ResultValue, out resultValue))
                             //{
-                            if (string.IsNullOrEmpty(components.ReferenceRange))
+                            //if (string.IsNullOrEmpty(components.ReferenceRange))
+                            //{
+                            if (components.High != null && components.Low != null)
                             {
-                                if (components.High != null && components.Low != null)
-                                {
-                                    components.ReferenceRange = components.Low.ToString() + "-" + components.High.ToString();
+                                components.ReferenceRange = components.Low.ToString() + "-" + components.High.ToString();
 
 
-                                    //if (resultValue > components.High)
-                                    //{
-                                    //    isAbnormal = "H";
-                                    //}
-
-                                    //if (resultValue < components.Low)
-                                    //{
-                                    //    isAbnormal = "L";
-                                    //}
-
-                                }
-                                else if (components.High == null && components.Low != null)
-                                {
-                                    components.ReferenceRange = ">" + components.Low.ToString();
-
-
-                                    //if (resultValue < components.Low)
-                                    //{
-                                    //    isAbnormal = "L";
-                                    //}
-                                }
-                                else if (components.Low == null && components.High != null)
-                                {
-                                    components.ReferenceRange = "<" + components.High.ToString();
-
-
-                                    //if (resultValue > components.High)
-                                    //{
-                                    //    isAbnormal = "H";
-                                    //}
-                                }
-                                //else
+                                //if (resultValue > components.High)
                                 //{
-                                //    referenceRange = components.ReferenceRange;
+                                //    isAbnormal = "H";
+                                //}
+
+                                //if (resultValue < components.Low)
+                                //{
+                                //    isAbnormal = "L";
+                                //}
+
+                            }
+                            else if (components.High == null && components.Low != null)
+                            {
+                                components.ReferenceRange = ">" + components.Low.ToString();
+
+
+                                //if (resultValue < components.Low)
+                                //{
+                                //    isAbnormal = "L";
                                 //}
                             }
+                            else if (components.Low == null && components.High != null)
+                            {
+                                components.ReferenceRange = "<" + components.High.ToString();
+
+
+                                //if (resultValue > components.High)
+                                //{
+                                //    isAbnormal = "H";
+                                //}
+                            }
+                            //else
+                            //{
+                            //    referenceRange = components.ReferenceRange;
+                            //}
+                            //}
 
                             // }
 

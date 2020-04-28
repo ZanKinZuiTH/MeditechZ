@@ -350,7 +350,7 @@ namespace MediTech.ViewModels
                 {
                     if (GenderSource != null && referenceRealationShipTitle != null)
                     {
-                        int targetUID = referenceRealationShipTitle.FirstOrDefault(p => p.SourceReferenceValueUID == _SelectedTitle.Key).TargetReferenceValueUID;
+                        int? targetUID = referenceRealationShipTitle.FirstOrDefault(p => p.SourceReferenceValueUID == _SelectedTitle.Key)?.TargetReferenceValueUID;
                         SelectedGender = GenderSource.FirstOrDefault(p => p.Key == targetUID);
                     }
                 }

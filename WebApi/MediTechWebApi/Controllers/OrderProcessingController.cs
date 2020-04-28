@@ -1108,7 +1108,7 @@ namespace MediTechWebApi.Controllers
 
             List<SearchOrderItem> data = (from i in db.BillableItem
                                           where i.StatusFlag == "A"
-                                          && i.BSMDDUID == SqlFunction.fGetRfValUIDByCode("BSMDD", "RADIO")
+                                          && i.BSMDDUID == 2841 //Radiology
                                           && (i.ActiveFrom == null || DbFunctions.TruncateTime(DateTime.Now) >= DbFunctions.TruncateTime(i.ActiveFrom))
                                           && (i.ActiveTo == null || DbFunctions.TruncateTime(DateTime.Now) <= DbFunctions.TruncateTime(i.ActiveTo))
                                           select new SearchOrderItem

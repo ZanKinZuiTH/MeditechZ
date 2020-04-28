@@ -214,7 +214,7 @@ namespace MediTechWebApi.Controllers
                                              && re.StatusFlag == "A"
                                              && rs.StatusFlag == "A"
                                              && re.PatientUID == patientUID
-                                             && re.BSMDDUID == SqlFunction.fGetRfValUIDByCode("BSMDD", "RADIO")
+                                             && re.BSMDDUID == 2841 //Radiology
                                              && red.UID != requestDetailUID
                                              select new PreviousResult
                                              {

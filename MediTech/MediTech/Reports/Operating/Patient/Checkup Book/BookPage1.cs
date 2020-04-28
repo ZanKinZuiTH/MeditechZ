@@ -271,7 +271,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         if ((cbcResult.ReferenceRange != null && cbcResult.ReferenceRange.Length > 40) || (cbcResult.ResultValue != null && cbcResult.ResultValue.Length > 40))
                         {
-                            row.HeightF = 47f;
+                            row.HeightF = 45f;
                             if (cbcResult.ReferenceRange.Length > 40)
                             {
                                 cell1.Font = new Font("Angsana New", 8);
@@ -433,7 +433,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         if ((urineResult.ReferenceRange != null && urineResult.ReferenceRange.Length > 40) || (urineResult.ResultValue != null && urineResult.ResultValue.Length > 40))
                         {
-                            row.HeightF = 47f;
+                            row.HeightF = 45f;
                             if (urineResult.ReferenceRange.Length > 40)
                             {
                                 cell1.Font = new Font("Angsana New", 8);
@@ -445,7 +445,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                         else
                         {
-                            row.HeightF = 20f;
+                            row.HeightF = 17;
                         }
                     }
                     float rowHeight = 0;
@@ -507,7 +507,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         if ((labbortory.ReferenceRange != null && labbortory.ReferenceRange.Length > 40) || (labbortory.ResultValue != null && labbortory.ResultValue.Length > 40))
                         {
-                            row.HeightF = 47f;
+                            row.HeightF = 45f;
                             if (labbortory.ReferenceRange.Length > 40)
                             {
                                 cell1.Font = new Font("Angsana New", 8);
@@ -519,7 +519,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                         else
                         {
-                            row.HeightF = 20f;
+                            row.HeightF = 17f;
                         }
                     }
                     float rowHeight = 0;
@@ -573,7 +573,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         if ((stool.ReferenceRange != null && stool.ReferenceRange.Length > 40) || (stool.ResultValue != null && stool.ResultValue.Length > 40))
                         {
-                            row.HeightF = 47f;
+                            row.HeightF = 45f;
                             if (stool.ReferenceRange.Length > 40)
                             {
                                 cell1.Font = new Font("Angsana New", 8);
@@ -585,7 +585,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                         else
                         {
-                            row.HeightF = 20f;
+                            row.HeightF = 17f;
                         }
                     }
                     float rowHeight = 0;
@@ -639,7 +639,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
                         if ((immuno.ReferenceRange != null && immuno.ReferenceRange.Length > 40) || (immuno.ResultValue != null && immuno.ResultValue.Length > 40))
                         {
-                            row.HeightF = 47f;
+                            row.HeightF = 45f;
                             if (immuno.ReferenceRange.Length > 40)
                             {
                                 cell1.Font = new Font("Angsana New", 8);
@@ -651,7 +651,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         }
                         else
                         {
-                            row.HeightF = 20f;
+                            row.HeightF = 17f;
                         }
                     }
                     float rowHeight = 0;

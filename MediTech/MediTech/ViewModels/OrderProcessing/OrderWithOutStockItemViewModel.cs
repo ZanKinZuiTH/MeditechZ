@@ -202,7 +202,7 @@ namespace MediTech.ViewModels
 
                 PatientOrderDetail.StartDttm = StartDate.Add(StartTime.TimeOfDay);
 
-                if (OverwritePrice != null && OverwritePrice != 0)
+                if (OverwritePrice != null)
                 {
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "Y";

@@ -1607,9 +1607,11 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<ItemIssueModel> SearchItemIssueForListIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? organisationToUID)
         {
+            int issue = 2917;
+            int consumption = 2921;
             List<ItemIssueModel> data = (from j in db.ItemIssue
                                          where j.StatusFlag == "A"
-                                         && (j.ISSTPUID == SqlFunction.fGetRfValUIDByCode("ISSTP", "IMISU") || j.ISSTPUID == SqlFunction.fGetRfValUIDByCode("ISSTP", "IMCNS"))
+                                         && (j.ISSTPUID == issue || j.ISSTPUID == consumption)
                                          && (issueStatus == null || j.ISUSTUID == issueStatus)
                                          && (dateFrom == null || DbFunctions.TruncateTime(j.ItemIssueDttm) >= DbFunctions.TruncateTime(dateFrom))
                                          && (dateTo == null || DbFunctions.TruncateTime(j.ItemIssueDttm) <= DbFunctions.TruncateTime(dateTo))

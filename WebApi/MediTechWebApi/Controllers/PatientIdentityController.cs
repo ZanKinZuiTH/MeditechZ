@@ -31,7 +31,7 @@ namespace MediTechWebApi.Controllers
                                             new
                                             {
                                                 key1 = pa.UID,
-                                                key2 = SqlFunction.fGetRfValUIDByCode("ADTYP", "DEFADD"),
+                                                key2 = 401, //DefaultAddress
                                                 key3 = "A"
                                             }
                                             equals
@@ -89,7 +89,7 @@ namespace MediTechWebApi.Controllers
                                             new
                                             {
                                                 key1 = pa.UID,
-                                                key2 = SqlFunction.fGetRfValUIDByCode("ADTYP", "DEFADD"),
+                                                key2 = 401, //DefaultAddress
                                                 key3 = "A"
                                             }
                                             equals

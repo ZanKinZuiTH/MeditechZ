@@ -984,8 +984,6 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-
-
         public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? storeUID, int? itemType,string itemCode, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();

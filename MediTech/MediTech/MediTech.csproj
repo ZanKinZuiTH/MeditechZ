@@ -463,6 +463,12 @@
     <Compile Include="Reports\Statistic\Cashier\PatientNetProfit.Designer.cs">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockConsumption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockConsumption.Designer.cs">
+      <DependentUpon>StockConsumption.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockTransferred.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -480,12 +486,6 @@
     </Compile>
     <Compile Include="Reports\Operating\Inventory\StockIssueReport.Designer.cs">
       <DependentUpon>StockIssueReport.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Statistic\Inventory\StockRequestReport.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Statistic\Inventory\StockRequestReport.Designer.cs">
-      <DependentUpon>StockRequestReport.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockBalancePerMounth.cs">
       <SubType>Component</SubType>
@@ -1906,6 +1906,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\PatientNetProfit.resx">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockConsumption.resx">
+      <DependentUpon>StockConsumption.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispensed.aa.resx">
       <DependentUpon>StockDispensed.cs</DependentUpon>

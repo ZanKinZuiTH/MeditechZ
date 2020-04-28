@@ -370,7 +370,7 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.IsStock = ItemMaster.IsStock;
                 PatientOrderDetail.StoreUID = SelectStore.StoreUID;
 
-                if (OverwritePrice != null && OverwritePrice != 0)
+                if (OverwritePrice != null)
                 {
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "Y";

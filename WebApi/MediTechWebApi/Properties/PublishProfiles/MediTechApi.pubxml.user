@@ -70,25 +70,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/02/2018 10:19:12</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll">
-      <publishTime>04/07/2020 13:32:19</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll.config">
       <publishTime>10/13/2019 18:03:54</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.pdb">
-      <publishTime>04/07/2020 13:32:19</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/MediTech.Model.dll">
-      <publishTime>04/07/2020 13:32:19</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/MediTech.Model.pdb">
-      <publishTime>04/07/2020 13:32:19</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.dll">
-      <publishTime>04/07/2020 13:32:20</publishTime>
+      <publishTime>04/23/2020 12:09:52</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.pdb">
-      <publishTime>04/07/2020 13:32:20</publishTime>
+      <publishTime>04/23/2020 12:09:52</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/02/2018 10:19:13</publishTime>
@@ -97,13 +97,13 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>04/22/2019 01:06:16</publishTime>
     </File>
     <File Include="bin/ShareLibrary.dll">
-      <publishTime>03/04/2020 09:48:54</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/ShareLibrary.dll.config">
       <publishTime>07/15/2019 11:05:11</publishTime>
     </File>
     <File Include="bin/ShareLibrary.pdb">
-      <publishTime>03/04/2020 09:48:54</publishTime>
+      <publishTime>04/23/2020 12:09:51</publishTime>
     </File>
     <File Include="bin/System.Net.Http.Formatting.dll">
       <publishTime>11/28/2018 13:00:36</publishTime>

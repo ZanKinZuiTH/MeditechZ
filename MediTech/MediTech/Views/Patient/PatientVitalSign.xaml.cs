@@ -25,7 +25,7 @@ namespace MediTech.Views
         double maxTemp = 37.5;
         double minTemp = 36.5;
 
-        double maxPluse = 100;
+        double maxPluse = 110;
         double minPluse = 60;
 
         double maxResRate = 22;

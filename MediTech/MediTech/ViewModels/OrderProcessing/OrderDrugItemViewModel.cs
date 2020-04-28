@@ -597,7 +597,7 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.DFORMUID = SelectDrugFORM != null ? SelectDrugFORM.Key : (int?)null;
                 PatientOrderDetail.StoreUID = SelectStore.StoreUID;
 
-                if (OverwritePrice != null && OverwritePrice != 0)
+                if (OverwritePrice != null)
                 {
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "Y";

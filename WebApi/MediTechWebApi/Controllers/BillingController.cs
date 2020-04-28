@@ -341,7 +341,9 @@ namespace MediTechWebApi.Controllers
 
 
                     PatientVisit patpv = db.PatientVisit.Find(model.PatientVisitUID);
-                    ReferenceValue nonMed = db.ReferenceValue.FirstOrDefault(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && p.ValueCode == "NONMED");
+                    var refVisitType = db.ReferenceValue.Where(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && (p.ValueCode == "NONMED" || p.ValueCode == "BUSNT"));
+                    ReferenceValue nonMed = refVisitType.FirstOrDefault(p => p.ValueCode == "NONMED");
+                    ReferenceValue businessUnits = refVisitType.FirstOrDefault(p => p.ValueCode == "BUSNT");
                     PatientBill patBill = new PatientBill();
                     int seqBillID = 0;
                     string patientBillID = string.Empty;
@@ -353,6 +355,10 @@ namespace MediTechWebApi.Controllers
                     if (patpv.VISTYUID == nonMed.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
+                    }
+                    else if(patpv.VISTYUID == businessUnits.UID)
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 16 && p.StatusFlag == "A"); //BusinessUnits
                     }
                     else
                     {
