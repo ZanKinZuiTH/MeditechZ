@@ -32,5 +32,6 @@ namespace MediTech.Model.Report
         public int Mouth { get; set; }
         public int Years { get; set; }
         public string OrderStatus { get; set; }
+        public string LocationUsed { get; set; }
     }
 }

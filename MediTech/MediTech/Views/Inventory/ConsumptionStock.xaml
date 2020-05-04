@@ -120,7 +120,14 @@
                                 MaskType="Numeric"
                                 AllowNullInput="True"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem Label="สถานที่ใช้">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding ItemPlace}" 
+                                      SelectedItem="{Binding SelectItemPlace}"
+                                      ValueMember="Key"
+                                      DisplayMember="Display"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem  >
                     <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                         <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
@@ -140,6 +147,7 @@
                     <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
                     <dxg:GridColumn Header="รายการของ" FieldName="ItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานที่ใช้" FieldName="Place" ReadOnly="True"/>
                     <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True"/>
                     <dxg:GridColumn Header="จำนวนก่อนใช้" FieldName="ActualQuantity" ReadOnly="True"/>
                     <dxg:GridColumn Header="จำนวนที่ใช้" FieldName="QuantityAdjusted" ReadOnly="True"/>

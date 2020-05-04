@@ -27,6 +27,8 @@ namespace MediTech.Model
         public string Comments { get; set; }
         public Nullable<double> ItemCost { get; set; }
         public Nullable<System.DateTime> ExpiryDate { get; set; }
+        public string Place { get; set; }
+        public int? PLACEUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

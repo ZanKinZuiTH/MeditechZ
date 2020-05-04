@@ -111,6 +111,22 @@ namespace MediTech.ViewModels
             set { Set(ref _BatchQty, value); }
         }
 
+        private List<LookupReferenceValueModel> _ItemPlace;
+
+        public List<LookupReferenceValueModel> ItemPlace
+        {
+            get { return _ItemPlace; }
+            set { Set(ref _ItemPlace, value); }
+        }
+
+        private LookupReferenceValueModel _SelectItemPlace;
+
+        public LookupReferenceValueModel SelectItemPlace
+        {
+            get { return _SelectItemPlace; }
+            set { Set(ref _SelectItemPlace, value); }
+        }
+
         private string _BatchID;
 
         public string BatchID
@@ -258,7 +274,9 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsRoleStock();
             ItemTypes = DataService.Technical.GetReferenceValueMany("ITMTYP");
+            ItemPlace = DataService.Technical.GetReferenceValueMany("PLACE");
 
+            
 
             if (Organisations != null)
             {
@@ -302,6 +320,8 @@ namespace MediTech.ViewModels
                 newRow.Quantity = item.QuantityAdjusted;
                 newRow.IMUOMUID = item.AdjustedUOM;
                 newRow.ExpiryDttm = item.ExpiryDate;
+                newRow.Place = item.Place;
+                newRow.PLACEUID = item.PLACEUID;
                 listIssued.Add(newRow);
             }
 
@@ -316,6 +336,12 @@ namespace MediTech.ViewModels
             if (SelectCurrentStock == null)
             {
                 WarningDialog("กรุณาเลือก Batch");
+                return;
+            }
+
+            if (SelectItemPlace == null)
+            {
+                WarningDialog("กรุณาเลือกสถานที่ใช้");
                 return;
             }
 
@@ -357,6 +383,8 @@ namespace MediTech.ViewModels
             adjustStock.AdjustedUnit = SelectCurrentStock.Unit;
             adjustStock.ExpiryDate = ExpiryDate;
             adjustStock.BatchID = SelectCurrentStock.BatchID;
+            adjustStock.Place = SelectItemPlace.Display;
+            adjustStock.PLACEUID = SelectItemPlace.Key;
             IssueStocks.Add(adjustStock);
 
             ClearInput();
