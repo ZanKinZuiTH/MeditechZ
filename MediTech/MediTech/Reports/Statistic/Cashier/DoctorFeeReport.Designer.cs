@@ -79,6 +79,7 @@
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
             this.Detail.HeightF = 25F;
+            this.Detail.KeepTogether = true;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -291,7 +292,8 @@
             this.xrTable3});
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("BillNumber", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
-            this.GroupHeader2.HeightF = 21.66667F;
+            this.GroupHeader2.HeightF = 20.83333F;
+            this.GroupHeader2.KeepTogether = true;
             this.GroupHeader2.Name = "GroupHeader2";
             // 
             // xrTable3
@@ -360,6 +362,7 @@
             this.xrLabel7,
             this.xrLabel8});
             this.GroupFooter1.HeightF = 24.66665F;
+            this.GroupFooter1.KeepTogether = true;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrLabel7

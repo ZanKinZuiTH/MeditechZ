@@ -526,6 +526,7 @@
           <Property Name="BatchID" Type="nvarchar" MaxLength="50" />
           <Property Name="StockUID" Type="int" Nullable="false" />
           <Property Name="ExpiryDttm" Type="datetime" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -698,6 +699,25 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="LOTYPUID" Type="int" Nullable="false" />
+          <Property Name="ParentLocationUID" Type="int" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -1203,7 +1223,7 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
-        <EntityType Name="PatientMergeEcounter">
+        <EntityType Name="PatientMergeEncounter">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
@@ -2795,6 +2815,16 @@
         <Function Name="fGetAgeString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_BirthDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="fGetBigIntList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_KeyWordList" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="UID" Type="bigint" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <Function Name="fGetBillableItemPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
@@ -2936,6 +2966,12 @@
         <Function Name="pDispensePrescriptionItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PrescriptionItemUID" Type="bigint" Mode="In" />
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pEncounterMergePatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_MajorPatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_MinorPatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_MinorVisitUIDS" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_UserID" Type="int" Mode="In" />
         </Function>
         <Function Name="pGetDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -3443,8 +3479,7 @@
         </Function>
         <Function Name="pUnMergePatient" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientMergeUID" Type="int" Mode="In" />
-          <Parameter Name="P_CUser" Type="int" Mode="In" />
-          <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_UserID" Type="int" Mode="In" />
         </Function>
         <Function Name="splitstring" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="stringToSplit" Type="varchar(max)" Mode="In" />
@@ -3489,6 +3524,7 @@
           <EntitySet Name="ItemRequestDetail" EntityType="Self.ItemRequestDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemUOMConversion" EntityType="Self.ItemUOMConversion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemVendorDetail" EntityType="Self.ItemVendorDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediTechInterface" EntityType="Self.MediTechInterface" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="Self.MediTechInterfaceDetail" Schema="dbo" store:Type="Tables" />
@@ -3512,7 +3548,7 @@
           <EntitySet Name="PatientMedicalHistory" EntityType="Self.PatientMedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMerge" EntityType="Self.PatientMerge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMergeDetail" EntityType="Self.PatientMergeDetail" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="PatientMergeEcounter" EntityType="Self.PatientMergeEcounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientMergeEncounter" EntityType="Self.PatientMergeEncounter" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrder" EntityType="Self.PatientOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrderAlert" EntityType="Self.PatientOrderAlert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrderDetail" EntityType="Self.PatientOrderDetail" Schema="dbo" store:Type="Tables" />
@@ -4423,6 +4459,29 @@
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
             <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pMergePatient">
+            <Parameter Name="P_MajorPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_MinorPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_Address" Mode="In" Type="String" />
+            <Parameter Name="P_Gender" Mode="In" Type="String" />
+            <Parameter Name="P_Phone" Mode="In" Type="String" />
+            <Parameter Name="P_Photo" Mode="In" Type="String" />
+            <Parameter Name="P_Blood" Mode="In" Type="String" />
+            <Parameter Name="P_UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pUnMergePatient">
+            <Parameter Name="P_PatientMergeUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="fGetBigIntList" IsComposable="true" ReturnType="Collection(Int64)">
+          <Parameter Name="P_KeyWordList" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pEncounterMergePatient">
+            <Parameter Name="P_MajorPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_MinorPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_MinorVisitUIDS" Mode="In" Type="String" />
+            <Parameter Name="P_UserID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -4455,6 +4514,7 @@
           <EntitySet Name="ItemRequestDetail" EntityType="MediTechModel.ItemRequestDetail" />
           <EntitySet Name="ItemUOMConversion" EntityType="MediTechModel.ItemUOMConversion" />
           <EntitySet Name="ItemVendorDetail" EntityType="MediTechModel.ItemVendorDetail" />
+          <EntitySet Name="Location" EntityType="MediTechModel.Location" />
           <EntitySet Name="Login" EntityType="MediTechModel.Login" />
           <EntitySet Name="MediTechInterface" EntityType="MediTechModel.MediTechInterface" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="MediTechModel.MediTechInterfaceDetail" />
@@ -4478,7 +4538,7 @@
           <EntitySet Name="PatientMedicalHistory" EntityType="MediTechModel.PatientMedicalHistory" />
           <EntitySet Name="PatientMerge" EntityType="MediTechModel.PatientMerge" />
           <EntitySet Name="PatientMergeDetail" EntityType="MediTechModel.PatientMergeDetail" />
-          <EntitySet Name="PatientMergeEcounter" EntityType="MediTechModel.PatientMergeEcounter" />
+          <EntitySet Name="PatientMergeEncounter" EntityType="MediTechModel.PatientMergeEncounter" />
           <EntitySet Name="PatientOrder" EntityType="MediTechModel.PatientOrder" />
           <EntitySet Name="PatientOrderAlert" EntityType="MediTechModel.PatientOrderAlert" />
           <EntitySet Name="PatientOrderDetail" EntityType="MediTechModel.PatientOrderDetail" />
@@ -4566,21 +4626,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pMergePatient">
-            <Parameter Name="P_MajorPatientUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_MinorPatientUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_Address" Mode="In" Type="String" />
-            <Parameter Name="P_Gender" Mode="In" Type="String" />
-            <Parameter Name="P_Phone" Mode="In" Type="String" />
-            <Parameter Name="P_Photo" Mode="In" Type="String" />
-            <Parameter Name="P_Blood" Mode="In" Type="String" />
-            <Parameter Name="P_UserID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pUnMergePatient">
-            <Parameter Name="P_PatientMergeUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_CUser" Mode="In" Type="Int32" />
-            <Parameter Name="P_OwnerOrganisationUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7190,6 +7235,7 @@
           <Property Name="BatchID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StockUID" Type="Int32" Nullable="false" />
           <Property Name="ExpiryDttm" Type="DateTime" Precision="3" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -7362,6 +7408,25 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="Location">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LOTYPUID" Type="Int32" Nullable="false" />
+          <Property Name="ParentLocationUID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -7867,7 +7932,7 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
-        <EntityType Name="PatientMergeEcounter">
+        <EntityType Name="PatientMergeEncounter">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
@@ -10996,6 +11061,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pMergePatient" FunctionName="MediTechModel.Store.pMergePatient" />
+          <FunctionImportMapping FunctionImportName="pUnMergePatient" FunctionName="MediTechModel.Store.pUnMergePatient" />
+          <FunctionImportMapping FunctionImportName="fGetBigIntList" FunctionName="MediTechModel.Store.fGetBigIntList" />
+          <FunctionImportMapping FunctionImportName="pEncounterMergePatient" FunctionName="MediTechModel.Store.pEncounterMergePatient" />
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -11533,6 +11602,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
                 <ScalarProperty Name="StockUID" ColumnName="StockUID" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
@@ -11718,6 +11788,26 @@
                 <ScalarProperty Name="ItemAmount" ColumnName="ItemAmount" />
                 <ScalarProperty Name="VendorDetailUID" ColumnName="VendorDetailUID" />
                 <ScalarProperty Name="ItemMasterUID" ColumnName="ItemMasterUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Location">
+            <EntityTypeMapping TypeName="MediTechModel.Location">
+              <MappingFragment StoreEntitySet="Location">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="ParentLocationUID" ColumnName="ParentLocationUID" />
+                <ScalarProperty Name="LOTYPUID" ColumnName="LOTYPUID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -12249,9 +12339,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PatientMergeEcounter">
-            <EntityTypeMapping TypeName="MediTechModel.PatientMergeEcounter">
-              <MappingFragment StoreEntitySet="PatientMergeEcounter">
+          <EntitySetMapping Name="PatientMergeEncounter">
+            <EntityTypeMapping TypeName="MediTechModel.PatientMergeEncounter">
+              <MappingFragment StoreEntitySet="PatientMergeEncounter">
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
@@ -13900,8 +13990,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pMergePatient" FunctionName="MediTechModel.Store.pMergePatient" />
-          <FunctionImportMapping FunctionImportName="pUnMergePatient" FunctionName="MediTechModel.Store.pUnMergePatient" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

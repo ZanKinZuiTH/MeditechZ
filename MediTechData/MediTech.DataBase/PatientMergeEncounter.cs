@@ -12,7 +12,7 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientMergeEcounter
+    public partial class PatientMergeEncounter
     {
         public int UID { get; set; }
         public int PatientMergeUID { get; set; }

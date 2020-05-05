@@ -59,6 +59,7 @@ namespace MediTech.DataBase
         public virtual DbSet<ItemRequestDetail> ItemRequestDetail { get; set; }
         public virtual DbSet<ItemUOMConversion> ItemUOMConversion { get; set; }
         public virtual DbSet<ItemVendorDetail> ItemVendorDetail { get; set; }
+        public virtual DbSet<Location> Location { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<MediTechInterface> MediTechInterface { get; set; }
         public virtual DbSet<MediTechInterfaceDetail> MediTechInterfaceDetail { get; set; }
@@ -82,7 +83,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientMedicalHistory> PatientMedicalHistory { get; set; }
         public virtual DbSet<PatientMerge> PatientMerge { get; set; }
         public virtual DbSet<PatientMergeDetail> PatientMergeDetail { get; set; }
-        public virtual DbSet<PatientMergeEcounter> PatientMergeEcounter { get; set; }
+        public virtual DbSet<PatientMergeEncounter> PatientMergeEncounter { get; set; }
         public virtual DbSet<PatientOrder> PatientOrder { get; set; }
         public virtual DbSet<PatientOrderAlert> PatientOrderAlert { get; set; }
         public virtual DbSet<PatientOrderDetail> PatientOrderDetail { get; set; }
@@ -3014,21 +3015,48 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pMergePatient", p_MajorPatientUIDParameter, p_MinorPatientUIDParameter, p_AddressParameter, p_GenderParameter, p_PhoneParameter, p_PhotoParameter, p_BloodParameter, p_UserIDParameter);
         }
     
-        public virtual int pUnMergePatient(Nullable<int> p_PatientMergeUID, Nullable<int> p_CUser, Nullable<int> p_OwnerOrganisationUID)
+        public virtual int pUnMergePatient(Nullable<int> p_PatientMergeUID, Nullable<int> p_UserID)
         {
             var p_PatientMergeUIDParameter = p_PatientMergeUID.HasValue ?
                 new ObjectParameter("P_PatientMergeUID", p_PatientMergeUID) :
                 new ObjectParameter("P_PatientMergeUID", typeof(int));
     
-            var p_CUserParameter = p_CUser.HasValue ?
-                new ObjectParameter("P_CUser", p_CUser) :
-                new ObjectParameter("P_CUser", typeof(int));
+            var p_UserIDParameter = p_UserID.HasValue ?
+                new ObjectParameter("P_UserID", p_UserID) :
+                new ObjectParameter("P_UserID", typeof(int));
     
-            var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
-                new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
-                new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pUnMergePatient", p_PatientMergeUIDParameter, p_UserIDParameter);
+        }
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pUnMergePatient", p_PatientMergeUIDParameter, p_CUserParameter, p_OwnerOrganisationUIDParameter);
+        [DbFunction("MediTechEntities", "fGetBigIntList")]
+        public virtual IQueryable<Nullable<long>> fGetBigIntList(string p_KeyWordList)
+        {
+            var p_KeyWordListParameter = p_KeyWordList != null ?
+                new ObjectParameter("P_KeyWordList", p_KeyWordList) :
+                new ObjectParameter("P_KeyWordList", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<Nullable<long>>("[MediTechEntities].[fGetBigIntList](@P_KeyWordList)", p_KeyWordListParameter);
+        }
+    
+        public virtual int pEncounterMergePatient(Nullable<long> p_MajorPatientUID, Nullable<long> p_MinorPatientUID, string p_MinorVisitUIDS, Nullable<int> p_UserID)
+        {
+            var p_MajorPatientUIDParameter = p_MajorPatientUID.HasValue ?
+                new ObjectParameter("P_MajorPatientUID", p_MajorPatientUID) :
+                new ObjectParameter("P_MajorPatientUID", typeof(long));
+    
+            var p_MinorPatientUIDParameter = p_MinorPatientUID.HasValue ?
+                new ObjectParameter("P_MinorPatientUID", p_MinorPatientUID) :
+                new ObjectParameter("P_MinorPatientUID", typeof(long));
+    
+            var p_MinorVisitUIDSParameter = p_MinorVisitUIDS != null ?
+                new ObjectParameter("P_MinorVisitUIDS", p_MinorVisitUIDS) :
+                new ObjectParameter("P_MinorVisitUIDS", typeof(string));
+    
+            var p_UserIDParameter = p_UserID.HasValue ?
+                new ObjectParameter("P_UserID", p_UserID) :
+                new ObjectParameter("P_UserID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pEncounterMergePatient", p_MajorPatientUIDParameter, p_MinorPatientUIDParameter, p_MinorVisitUIDSParameter, p_UserIDParameter);
         }
     }
 }

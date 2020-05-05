@@ -2245,6 +2245,12 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region Location
+
+         
+
+        #endregion
+
 
         public string SetItemNameSearch(string itemName)
         {

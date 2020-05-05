@@ -53,103 +53,106 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Amphur.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillableItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillableItemDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillingGroup.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="BillingSubGroup.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Booking.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Careprovider.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CareproviderOrganisation.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CCHPI.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="CCHPIMaster.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DispensedItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DisposeItemList.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DisposeStock.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="District.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DoctorFee.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DrugGeneric.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FavouriteItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FrequencyDefinition.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GRNDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="GRNItemList.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HealthOrganisation.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="HealthOrganisationID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemAverageCost.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemIssue.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemIssueDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemMaster.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemReceive.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemReceiveDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemRequest.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemRequestDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemUOMConversion.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ItemVendorDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Location.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MediTechDataModel.Context.cs">
       <AutoGen>True</AutoGen>
@@ -172,678 +175,681 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="MediTechInterface.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MediTechInterfaceDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="NotificationTaskResult.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderSet.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderSetBillableItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PageView.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PageViewModule.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PageViewPermission.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Patient.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAddress.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAddressMerge.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAllergy.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientAudiogram.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientBill.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientBilledItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientDemographicLog.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientEKG.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientExamination.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientImage.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientMedicalHistory.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientMerge.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientMergeDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientMergeEcounter.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientMergeEncounter.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientOrder.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientOrderAlert.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientOrderDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientOrderDetailHistory.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientProblem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientScannedDocument.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientServiceEvent.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientSpirometry.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientTitmus.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientVisit.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientVisitPayor.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientVitalSign.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PayorAgreement.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PayorDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pCheckDupicatePatient_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pConvertUOM_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Permission.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetBillableItemByBSMDD_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetBillableItemDrug_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetCompany_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetDestopAppUserByLogins_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetDoctorFeeNonPay_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetDoctorFee_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetFormatSEQ_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetItemMasterForIssue_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetItemMasterForRequest_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetItemMasterQtyByStore_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetItemMasterWithQty_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetLabResultBook_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderALLByPatientUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderALLByVisitUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderAllByVisitUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderDrugByPatientUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderDrugByVisitUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderDuplicate_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderMedicalByVisitUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderMedicalByVisitUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderRequestByVisitUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPageViewPermission_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPageView_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientBillByUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientBillByUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientBillByVisitUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientBillByVisitUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientByUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientDataForBanner_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientDrugDetail_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientPhysicalExam_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientRequestRISByPatientUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientResultRadiology_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientVisit_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatient_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPrescriptionDetail_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPrescription_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetRecentVitalSings_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetReferenceValueList_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetRequestByRequestDetailUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetRequestExecuteRadiologist_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetRequestList_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetResultBook_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetResultRadiologyByVIsit_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetStoreQtyByItemMasterUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetUserByLogins_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetUserbyLogin_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetWebPageViewPermission_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetWebPageView_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetWellNessBook_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetZipCodeMapping_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PhysicalExam.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PhysicalExamTemplate.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pItemConvertUOM_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PostalCode.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pPrintOPDCard_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pPrintStatementBill_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pPrintStrickerDrug1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pPrintStrickerDrug_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRequestExecuteRadiologist_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Prescription.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PrescriptionItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Problem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ProgressNote.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Province.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTCheckupBook_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTDoctorFee_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTDrugStoreNetProfit_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTOrderRequestCard_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientNetProfit_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientProblemStatistic_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientRevenue_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientSumByAreaPerMonth_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientSummaryData_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTPatientSummaryPerMonth_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTRadiologyRDUReview_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockDispensed_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockExpired_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockExpiry_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockGoodReceive_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockOnHand_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockReceiveReportAll_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockSummery_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockTransferred_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTUsedReport_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTVisitDaysStatistic_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTVisitSumByArea_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTVisitSummary_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTVisitTimesStatistic_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTWellNessBook_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchBillableItemDrug_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchBillableItemMedical1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchBillableItemMedical_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchBillableItemOrderItem_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchBillableItemRequest_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchCheckupResultValue_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchItemMasterCriteria_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchOrderItem_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatient1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientBill_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientMedicalDischarge_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientSticker_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientVisit1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientVisit_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatient_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchRequestExamListForAssign_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchRequestExamList_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchRequestLabList_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchRequestListByRequestDetailUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockBalance_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockBatch_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockForAdjust_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockForDispose_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockMovement_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockOnHand_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockOnHane_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockWorkList_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pStockRemainByItemMasterUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="pStoreConvertUOM_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrder.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderItemList.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="PurchaseOrderPayment.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReferenceDomain.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReferenceRelationShip.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReferenceValue.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ReportPermission.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Reports.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Request.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestDetailDocument.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestDetailSpecimen.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestItemSpecimen.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RequestResultLink.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultComponent.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultImage.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultItem.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultItemRange.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultRadiology.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultRadiologyHistory.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultRadiologyTemplate.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResultTextual.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Role.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleProfile.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleReportPermission.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleViewPermission.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleReturn.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SaleReturnList.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ScheduleRadiologist.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQAccessionNumber.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQConfiguration.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQDISPOSEID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQGRNID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQITCODE.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQItemIssue.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQItemReceive.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQItemRequest.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQLISRequest.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQPatientBill.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQPatientID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQPatientOrder.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQPrescription.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQPROID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQResult.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQRISRequest.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQSTAID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQTestCodeID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQVisitID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SessionDefinition.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SessionWithdrawnDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Specimen.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="splitstring_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SqlFunction.cs" />
     <Compile Include="Stock.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StockAdjustment.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StockBalance.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StockMovement.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Store.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreUOMConversion.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="VendorDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="WellnessData.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="XrayTranslateCondition.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="XrayTranslateConditionDetail.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="XrayTranslateMapping.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

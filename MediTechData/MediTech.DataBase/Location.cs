@@ -12,27 +12,21 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class ItemIssueDetail
+    public partial class Location
     {
         public int UID { get; set; }
-        public int ItemIssueUID { get; set; }
-        public int ItemMasterUID { get; set; }
-        public string ItemCode { get; set; }
-        public string ItemName { get; set; }
-        public double ItemCost { get; set; }
-        public double UnitPrice { get; set; }
-        public double NetAmount { get; set; }
-        public double Quantity { get; set; }
-        public int IMUOMUID { get; set; }
-        public string BatchID { get; set; }
-        public int StockUID { get; set; }
-        public Nullable<System.DateTime> ExpiryDttm { get; set; }
-        public Nullable<int> LocationUID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public int LOTYPUID { get; set; }
+        public Nullable<int> ParentLocationUID { get; set; }
+        public string PhoneNumber { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
+        public Nullable<System.DateTime> ActiveFrom { get; set; }
+        public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public byte[] TIMESTAMP { get; set; }
     }
 }
