@@ -549,5 +549,11 @@ namespace MediTech.DataService
             return dataRequest;
         }
         #endregion
+
+        public List<LookupReferenceValueModel> GetLocationAll()
+        {
+            List<LookupReferenceValueModel> data = MeditechApiHelper.Get<List<LookupReferenceValueModel>>("Api/MasterData/GetLocationAll");
+            return data;
+        }
     }
 }

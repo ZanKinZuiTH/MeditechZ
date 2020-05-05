@@ -111,20 +111,20 @@ namespace MediTech.ViewModels
             set { Set(ref _BatchQty, value); }
         }
 
-        private List<LookupReferenceValueModel> _ItemPlace;
+        private List<LookupReferenceValueModel> _Location;
 
-        public List<LookupReferenceValueModel> ItemPlace
+        public List<LookupReferenceValueModel> Location
         {
-            get { return _ItemPlace; }
-            set { Set(ref _ItemPlace, value); }
+            get { return _Location; }
+            set { Set(ref _Location, value); }
         }
 
-        private LookupReferenceValueModel _SelectItemPlace;
+        private LookupReferenceValueModel _SelectLocation;
 
-        public LookupReferenceValueModel SelectItemPlace
+        public LookupReferenceValueModel SelectLocation
         {
-            get { return _SelectItemPlace; }
-            set { Set(ref _SelectItemPlace, value); }
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
         private string _BatchID;
@@ -274,7 +274,7 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsRoleStock();
             ItemTypes = DataService.Technical.GetReferenceValueMany("ITMTYP");
-            ItemPlace = DataService.Technical.GetReferenceValueMany("PLACE");
+            Location = DataService.MasterData.GetLocationAll();
 
             
 
@@ -320,8 +320,8 @@ namespace MediTech.ViewModels
                 newRow.Quantity = item.QuantityAdjusted;
                 newRow.IMUOMUID = item.AdjustedUOM;
                 newRow.ExpiryDttm = item.ExpiryDate;
-                newRow.Place = item.Place;
-                newRow.PLACEUID = item.PLACEUID;
+                newRow.Location = item.Location;
+                newRow.LocationUID = item.LocationUID;
                 listIssued.Add(newRow);
             }
 
@@ -339,7 +339,7 @@ namespace MediTech.ViewModels
                 return;
             }
 
-            if (SelectItemPlace == null)
+            if (SelectLocation == null)
             {
                 WarningDialog("กรุณาเลือกสถานที่ใช้");
                 return;
@@ -383,8 +383,8 @@ namespace MediTech.ViewModels
             adjustStock.AdjustedUnit = SelectCurrentStock.Unit;
             adjustStock.ExpiryDate = ExpiryDate;
             adjustStock.BatchID = SelectCurrentStock.BatchID;
-            adjustStock.Place = SelectItemPlace.Display;
-            adjustStock.PLACEUID = SelectItemPlace.Key;
+            adjustStock.Location = SelectLocation.Display;
+            adjustStock.LocationUID = SelectLocation.Key;
             IssueStocks.Add(adjustStock);
 
             ClearInput();

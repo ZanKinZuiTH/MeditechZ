@@ -1890,6 +1890,20 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region GetLocationAll
+        [Route("GetLocationAll")]
+        [HttpGet]
+        public List<LookupReferenceValueModel> GetLocationAll()
+        {
+            var data = db.Location.Where(p => p.StatusFlag == "A").Select(p => new LookupReferenceValueModel()
+            {
+                Key = p.UID,
+                Display = p.Name,
+                DisplayOrder = p.DisplayOrder ?? 1
+            }).ToList();
+            return data;
+        }
+        #endregion
         #region PayorDetail
 
         [Route("SearchPayorDetail")]

@@ -1971,7 +1971,7 @@ namespace MediTechWebApi.Controllers
                             newIssueDetail.BatchID = itemIssueDetail.BatchID;
                             newIssueDetail.StockUID = itemIssueDetail.StockUID;
                             newIssueDetail.ExpiryDttm = itemIssueDetail.ExpiryDttm;
-                            newIssueDetail.PLACEUID = itemIssueDetail.PLACEUID;
+                            newIssueDetail.LocationUID = itemIssueDetail.LocationUID;
                             newIssueDetail.MUser = userUID;
                             newIssueDetail.CUser = userUID;
                             newIssueDetail.MWhen = now;
