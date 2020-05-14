@@ -423,10 +423,12 @@ namespace MediTechWebApi.Controllers
                                                       join l in db.Login on j.LoginUID equals l.UID
                                                       join c in db.Careprovider on l.CareproviderUID equals c.UID
                                                       join h in db.CareproviderOrganisation on c.UID equals h.CareproviderUID
+                                                      join o in db.HealthOrganisation on h.HealthOrganisationUID equals o.UID
                                                       where j.StatusFlag == "A"
                                                       && i.StatusFlag == "A"
                                                       && c.StatusFlag == "A"
                                                       && h.StatusFlag == "A"
+                                                      && o.StatusFlag == "A"
                                                       && j.LoginUID == loginUID
                                                       select new RoleProfileModel
                                                       {
