@@ -5,6 +5,8 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d" 
              DataContext="{Binding Path=EMRViewViewModel,Source={StaticResource Locator}}"
@@ -15,19 +17,37 @@
                 <uc:PatientBanner x:Name="PatientBanner" 
                                   PatientVisit="{Binding PatientBanner}"/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="Select Visit"
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Select Visit"
                              HorizontalAlignment="Left">
-                <dxe:ComboBoxEdit x:Name="cmbVisit" Width="270" 
+
+                    <dxe:ComboBoxEdit x:Name="cmbVisit" Width="270" 
                                   DisplayMember="Comments"
                                   ValueMember="PatientVisitUID"
                                   IsTextEditable="False"
                                   ItemsSource="{Binding PatientVisitLists}"
                                   SelectedItem="{Binding SelectPatientVisit}" >
-                    <dxe:ComboBoxEdit.StyleSettings>
-                        <dxe:ComboBoxStyleSettings />
-                    </dxe:ComboBoxEdit.StyleSettings>
-                </dxe:ComboBoxEdit>
-            </dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:ComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <Image Width="25" Cursor="Hand"
+                           Margin="10,0,0,0"
+                                   Height="25"
+                                   Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
+                                   ToolTip="Vital Sign" >
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                <mvvm:EventToCommand Command="{Binding OpenVitalSignsChartCommand}"/>
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                    </Image>
+                </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+
             <local:SummeryView  x:Name="summeryView" Height="Auto"
                         PatientVisit="{Binding Path=DataContext.SelectPatientVisit
                         ,RelativeSource={RelativeSource AncestorType={x:Type local:EMRView}}}"/>

@@ -85,6 +85,7 @@
     <Reference Include="DevExpress.RichEdit.v17.1.Export, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Sparkline.v17.1.Core, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Accordion.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Xpf.Charts.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Controls.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpf.Core.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
     <Reference Include="DevExpress.Xpf.Docking.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
@@ -144,7 +145,9 @@
     </Reference>
     <Reference Include="System.Printing" />
     <Reference Include="System.Web.Extensions" />
-    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Forms">
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll</HintPath>
       <Private>True</Private>
@@ -608,6 +611,7 @@
     <Compile Include="ViewModels\EMRView\ProgressNoteViewModel.cs" />
     <Compile Include="ViewModels\EMRView\SummeryViewViewModel.cs" />
     <Compile Include="ViewModels\Documents\InventoryReportViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockReasonViewModel.cs" />
@@ -794,6 +798,9 @@
     </Compile>
     <Compile Include="Views\Documents\InventoryReport.xaml.cs">
       <DependentUpon>InventoryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\VitalSignsChart.xaml.cs">
+      <DependentUpon>VitalSignsChart.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EMRView\WellnessData.xaml.cs">
       <DependentUpon>WellnessData.xaml</DependentUpon>
@@ -1278,6 +1285,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Documents\InventoryReport.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\EMRView\VitalSignsChart.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2263,6 +2274,8 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Action\MoveDown.png" />
+    <Resource Include="Resources\Images\Action\MoveUp.png" />
     <Resource Include="Resources\Images\Menu\PatientMerge.png" />
     <Resource Include="Resources\Images\Menu\ScannedDocument.png" />
     <Resource Include="Resources\Images\Document\EditProperty.png" />

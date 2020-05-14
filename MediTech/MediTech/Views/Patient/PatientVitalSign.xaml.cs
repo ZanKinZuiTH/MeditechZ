@@ -36,6 +36,9 @@ namespace MediTech.Views
 
         double maxDBP = 85;
         double minDBP = 60;
+
+        double maxOxygen = 100;
+        double minOxygen = 95;
         public PatientVitalSign()
         {
             InitializeComponent();
@@ -46,6 +49,7 @@ namespace MediTech.Views
             txtRespiratoryRate.EditValueChanged += txtRespiratoryRate_EditValueChanged;
             txtSBP.EditValueChanged += txtSBP_EditValueChanged;
             txtDBP.EditValueChanged += txtDBP_EditValueChanged;
+            txtOxy.EditValueChanged += TxtOxy_EditValueChanged;
             txtHeightRe.EditValueChanged += txtHeightRe_EditValueChanged;
             txtWeightRe.EditValueChanged += txtWeightRe_EditValueChanged;
             txtTempeRe.EditValueChanged += txtTempeRe_EditValueChanged;
@@ -53,12 +57,14 @@ namespace MediTech.Views
             txtRespiratoryRateRe.EditValueChanged += txtRespiratoryRateRe_EditValueChanged;
             txtSBPRe.EditValueChanged += txtSBPRe_EditValueChanged;
             txtDBPRe.EditValueChanged += txtDBPRe_EditValueChanged;
-
+            txtReOxy.EditValueChanged += TxtReOxy_EditValueChanged;
             if (this.DataContext is PatientVitalSignViewModel)
             {
                 (this.DataContext as PatientVitalSignViewModel).UpdateEvent += PatientVitalSign_UpdateEvent;
             }
         }
+
+
 
         private void PatientVitalSign_UpdateEvent(object sender, EventArgs e)
         {
@@ -280,6 +286,31 @@ namespace MediTech.Views
 
         }
 
+        private void TxtOxy_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            double value;
+            if (txtOxy.EditValue != null && txtOxy.EditValue.ToString() != "")
+            {
+                value = Convert.ToDouble(txtOxy.EditValue);
+                if (value > maxOxygen)
+                {
+                    AdjustStatus(lblOxy, txtOxy, lblOxyUnit, lblOxyRage, lblOxyStatus, "H");
+                }
+                else if (value < minOxygen)
+                {
+                    AdjustStatus(lblOxy, txtOxy, lblOxyUnit, lblOxyRage, lblOxyStatus, "L");
+                }
+                else
+                {
+                    AdjustStatus(lblOxy, txtOxy, lblOxyUnit, lblOxyRage, lblOxyStatus, "");
+                }
+            }
+            else
+            {
+                AdjustStatus(lblOxy, txtOxy, lblOxyUnit, lblOxyRage, lblOxyStatus, "");
+            }
+        }
+
         private void txtHeightRe_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
             if (txtWeightRe.Text.Trim() != "" && txtHeightRe.Text.Trim() != "")
@@ -432,5 +463,32 @@ namespace MediTech.Views
                 AdjustStatus(lblDBPRe, txtDBPRe, lblDBPReUnit, lblDBPReRage, lblDBPReStatus, "");
             }
         }
+
+        private void TxtReOxy_EditValueChanged(object sender, EditValueChangedEventArgs e)
+        {
+            double value;
+            if (txtReOxy.EditValue != null && txtReOxy.EditValue.ToString() != "")
+            {
+                value = Convert.ToDouble(txtReOxy.EditValue);
+                if (value > maxOxygen)
+                {
+                    AdjustStatus(lblReOxy, txtReOxy, lblReOxyUnit, lblReOxyRage, lblReOxyStatus, "H");
+                }
+                else if (value < minOxygen)
+                {
+                    AdjustStatus(lblReOxy, txtReOxy, lblReOxy, lblReOxyRage, lblReOxyStatus, "L");
+                }
+                else
+                {
+                    AdjustStatus(lblReOxy, txtReOxy, lblReOxy, lblReOxyRage, lblReOxyStatus, "");
+                }
+            }
+            else
+            {
+                AdjustStatus(lblReOxy, txtReOxy, lblReOxy, lblReOxyRage, lblReOxyStatus, "");
+            }
+        }
+
+
     }
 }

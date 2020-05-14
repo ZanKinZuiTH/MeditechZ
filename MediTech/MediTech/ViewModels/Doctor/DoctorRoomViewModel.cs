@@ -10,6 +10,8 @@ using System.Windows;
 using MediTech.DataService;
 using MediTech.Views;
 using System.Windows.Forms;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
 
 namespace MediTech.ViewModels
 {
@@ -170,15 +172,57 @@ namespace MediTech.ViewModels
             set { Set(ref _IsExpandVitalSign, value); }
         }
 
-        private string _Temprature = "N/A";
+        private bool _IsEnableVital = false;
 
-        public string Temprature
+        public bool IsEnableVital
         {
-            get { return _Temprature; }
-            set { Set(ref _Temprature, value); }
+            get { return _IsEnableVital; }
+            set { Set(ref _IsEnableVital, value); }
         }
 
-        private string _RespiratoryRate = "N/A";
+
+        private string _Height = "";
+
+        public string Height
+        {
+            get { return _Height; }
+            set { Set(ref _Height, value); }
+        }
+
+        private string _Weight = "";
+
+        public string Weight
+        {
+            get { return _Weight; }
+            set { Set(ref _Weight, value); }
+        }
+
+        private string _BMI = "";
+
+        public string BMI
+        {
+            get { return _BMI; }
+            set { Set(ref _BMI, value); }
+        }
+
+
+        private string _BSA = "";
+
+        public string BSA
+        {
+            get { return _BSA; }
+            set { Set(ref _BSA, value); }
+        }
+
+        private string _Temperature = "";
+
+        public string Temperature
+        {
+            get { return _Temperature; }
+            set { Set(ref _Temperature, value); }
+        }
+
+        private string _RespiratoryRate = "";
 
         public string RespiratoryRate
         {
@@ -186,7 +230,7 @@ namespace MediTech.ViewModels
             set { Set(ref _RespiratoryRate, value); }
         }
 
-        private string _Pulse = "N/A";
+        private string _Pulse = "";
 
         public string Pulse
         {
@@ -194,7 +238,7 @@ namespace MediTech.ViewModels
             set { Set(ref _Pulse, value); }
         }
 
-        private string _BPsys = "N/A";
+        private string _BPsys = "";
 
         public string BPsys
         {
@@ -202,7 +246,7 @@ namespace MediTech.ViewModels
             set { Set(ref _BPsys, value); }
         }
 
-        private string _BPDio = "N/A";
+        private string _BPDio = "";
 
         public string BPDio
         {
@@ -210,6 +254,243 @@ namespace MediTech.ViewModels
             set { Set(ref _BPDio, value); }
         }
 
+
+        private string _OxygenSat = "";
+
+        public string OxygenSat
+        {
+            get { return _OxygenSat; }
+            set { Set(ref _OxygenSat, value); }
+        }
+
+        private Visibility _VisibilityHeight;
+
+        public Visibility VisibilityHeight
+        {
+            get { return _VisibilityHeight; }
+            set { Set(ref _VisibilityHeight, value); }
+        }
+
+        private Visibility _VisibilityWeight;
+
+        public Visibility VisibilityWeight
+        {
+            get { return _VisibilityWeight; }
+            set { Set(ref _VisibilityWeight, value); }
+        }
+
+        private Visibility _VisibilityBMI;
+
+        public Visibility VisibilityBMI
+        {
+            get { return _VisibilityBMI; }
+            set { Set(ref _VisibilityBMI, value); }
+        }
+
+
+        private Visibility _VisibilityBSA;
+
+        public Visibility VisibilityBSA
+        {
+            get { return _VisibilityBSA; }
+            set { Set(ref _VisibilityBSA, value); }
+        }
+
+
+        private Visibility _VisibilityTemperature;
+
+        public Visibility VisibilityTemperature
+        {
+            get { return _VisibilityTemperature; }
+            set { Set(ref _VisibilityTemperature, value); }
+        }
+
+
+        private Visibility _VisibilityPulse;
+
+        public Visibility VisibilityPulse
+        {
+            get { return _VisibilityPulse; }
+            set { Set(ref _VisibilityPulse, value); }
+        }
+
+        private Visibility _VisibilityRespiratory;
+
+        public Visibility VisibilityRespiratory
+        {
+            get { return _VisibilityRespiratory; }
+            set { Set(ref _VisibilityRespiratory, value); }
+        }
+
+        private Visibility _VisibilitySystolic;
+
+        public Visibility VisibilitySystolic
+        {
+            get { return _VisibilitySystolic; }
+            set { Set(ref _VisibilitySystolic, value); }
+        }
+
+        private Visibility _VisibilityDiastolic;
+
+        public Visibility VisibilityDiastolic
+        {
+            get { return _VisibilityDiastolic; }
+            set { Set(ref _VisibilityDiastolic, value); }
+        }
+
+        private Visibility _VisibilityOxygen;
+
+        public Visibility VisibilityOxygen
+        {
+            get { return _VisibilityOxygen; }
+            set { Set(ref _VisibilityOxygen, value); }
+        }
+
+        private SolidColorBrush _TemperatureColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush TemperatureColor
+        {
+            get { return _TemperatureColor; }
+            set { Set(ref _TemperatureColor, value); }
+        }
+
+        private SolidColorBrush _PulseColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush PulseColor
+        {
+            get { return _PulseColor; }
+            set { Set(ref _PulseColor, value); }
+        }
+
+        private SolidColorBrush _RespiratoryColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush RespiratoryColor
+        {
+            get { return _RespiratoryColor; }
+            set { Set(ref _RespiratoryColor, value); }
+        }
+
+        private SolidColorBrush _SystolicColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush SystolicColor
+        {
+            get { return _SystolicColor; }
+            set { Set(ref _SystolicColor, value); }
+        }
+
+        private SolidColorBrush _DiastolicColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush DiastolicColor
+        {
+            get { return _DiastolicColor; }
+            set { Set(ref _DiastolicColor, value); }
+        }
+
+        private SolidColorBrush _OxygenColor = new SolidColorBrush(Colors.Black);
+
+        public SolidColorBrush OxygenColor
+        {
+            get { return _OxygenColor; }
+            set { Set(ref _OxygenColor, value); }
+        }
+
+
+        private BitmapImage _ImageTemperature;
+
+        public BitmapImage ImageTemperature
+        {
+            get { return _ImageTemperature; }
+            set { Set(ref _ImageTemperature, value); }
+        }
+
+        private BitmapImage _ImagePulse;
+
+        public BitmapImage ImagePulse
+        {
+            get { return _ImagePulse; }
+            set { Set(ref _ImagePulse, value); }
+        }
+
+        private BitmapImage _ImageRespiratory;
+
+        public BitmapImage ImageRespiratory
+        {
+            get { return _ImageRespiratory; }
+            set { Set(ref _ImageRespiratory, value); }
+        }
+
+        private BitmapImage _ImageSystolic;
+
+        public BitmapImage ImageSystolic
+        {
+            get { return _ImageSystolic; }
+            set { Set(ref _ImageSystolic, value); }
+        }
+
+        private BitmapImage _ImageDiastolic;
+
+        public BitmapImage ImageDiastolic
+        {
+            get { return _ImageDiastolic; }
+            set { Set(ref _ImageDiastolic, value); }
+        }
+
+        private BitmapImage _ImageOxygen;
+
+        public BitmapImage ImageOxygen
+        {
+            get { return _ImageOxygen; }
+            set { Set(ref _ImageOxygen, value); }
+        }
+
+
+        private Visibility _ImageTemperatureVisibility;
+
+        public Visibility ImageTemperatureVisibility
+        {
+            get { return _ImageTemperatureVisibility; }
+            set { Set(ref _ImageTemperatureVisibility, value); }
+        }
+
+        private Visibility _ImagePulseVisibility;
+
+        public Visibility ImagePulseVisibility
+        {
+            get { return _ImagePulseVisibility; }
+            set { Set(ref _ImagePulseVisibility, value); }
+        }
+
+        private Visibility _ImageRespiratoryVisibility;
+
+        public Visibility ImageRespiratoryVisibility
+        {
+            get { return _ImageRespiratoryVisibility; }
+            set { Set(ref _ImageRespiratoryVisibility, value); }
+        }
+
+        private Visibility _ImageSystolicVisibility;
+
+        public Visibility ImageSystolicVisibility
+        {
+            get { return _ImageSystolicVisibility; }
+            set { Set(ref _ImageSystolicVisibility, value); }
+        }
+
+        private Visibility _ImageDiastolicVisibility;
+
+        public Visibility ImageDiastolicVisibility
+        {
+            get { return _ImageDiastolicVisibility; }
+            set { Set(ref _ImageDiastolicVisibility, value); }
+        }
+
+        private Visibility _ImageOxygenVisibility;
+
+        public Visibility ImageOxygenVisibility
+        {
+            get { return _ImageOxygenVisibility; }
+            set { Set(ref _ImageOxygenVisibility, value); }
+        }
 
         #endregion
 
@@ -256,6 +537,13 @@ namespace MediTech.ViewModels
         public RelayCommand VitalSignCommand
         {
             get { return _VitalSignCommand ?? (_VitalSignCommand = new RelayCommand(VitalSignPopUp)); }
+        }
+
+        private RelayCommand _OpenVitalSignsChartCommand;
+
+        public RelayCommand OpenVitalSignsChartCommand
+        {
+            get { return _OpenVitalSignsChartCommand ?? (_OpenVitalSignsChartCommand = new RelayCommand(OpenVitalSignsChart)); }
         }
 
 
@@ -418,44 +706,134 @@ namespace MediTech.ViewModels
 
         #region VitalSign
 
+        double maxTemp = 37.5;
+        double minTemp = 36.5;
+
+        double maxPluse = 110;
+        double minPluse = 60;
+
+        double maxResRate = 22;
+        double minResRate = 17;
+
+        double maxSBP = 130;
+        double minSBP = 90;
+
+        double maxDBP = 85;
+        double minDBP = 60;
+
+        double maxOxygen = 100;
+        double minOxygen = 95;
+
         private void ClearLastVistalSign()
         {
             IsExpandVitalSign = false;
-            Temprature = "N/A";
-            Pulse = "N/A";
-            RespiratoryRate = "N/A";
-            BPsys = "N/A";
-            BPDio = "N/A";
+            Height = "";
+            Weight = "";
+            BMI = "";
+            BSA = "";
+            Temperature = "";
+            Pulse = "";
+            RespiratoryRate = "";
+            BPsys = "";
+            BPDio = "";
+            OxygenSat = "";
         }
 
         private void GetLastVitalSign()
         {
             if (SelectVisitMedical != null)
             {
-                List<PatientVitalSignModel> vitalSign = DataService.PatientHistory.GetPatientVitalSingByVisitUID(SelectVisitMedical.PatientVisitUID);
+                List<PatientVitalSignModel> vitalSign = DataService.PatientHistory.GetPatientVitalSignByVisitUID(SelectVisitMedical.PatientVisitUID);
                 if (vitalSign != null && vitalSign.Count > 0)
                 {
                     IsExpandVitalSign = true;
-                    var lastVitalSign = vitalSign.OrderByDescending(p => p.CWhen).FirstOrDefault();
+                    IsEnableVital = true;
+                    var lastVitalSign = vitalSign.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
                     if (lastVitalSign != null)
                     {
-                        Temprature = !string.IsNullOrEmpty(lastVitalSign.Temprature.ToString()) ? lastVitalSign.Temprature.ToString() : "N/A";
-                        Pulse = !string.IsNullOrEmpty(lastVitalSign.Pulse.ToString()) ? lastVitalSign.Pulse.ToString() : "N/A";
-                        RespiratoryRate = !string.IsNullOrEmpty(lastVitalSign.RespiratoryRate.ToString()) ? lastVitalSign.RespiratoryRate.ToString() : "N/A";
-                        BPsys = !string.IsNullOrEmpty(lastVitalSign.BPSys.ToString()) ? lastVitalSign.BPSys.ToString() : "N/A";
-                        BPDio = !string.IsNullOrEmpty(lastVitalSign.BPDio.ToString()) ? lastVitalSign.BPDio.ToString() : "N/A";
+                        string labelTest;
+                        SolidColorBrush color;
+                        Visibility Visibility;
+                        Visibility ImageVisibility;
+                        BitmapImage imageSource;
+                        SetVitalSign(null, null, lastVitalSign.Height,out labelTest, out color, out Visibility,out imageSource,out ImageVisibility);
+                        Height = labelTest;VisibilityHeight = Visibility;
+                        SetVitalSign(null, null, lastVitalSign.Weight, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        Weight = labelTest; VisibilityWeight = Visibility;
+                        SetVitalSign(null, null, lastVitalSign.BMIValue, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        BMI = labelTest; VisibilityBMI = Visibility;
+                        SetVitalSign(null, null, lastVitalSign.BSAValue, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        BSA = labelTest; VisibilityBSA = Visibility;
+
+                        SetVitalSign(maxTemp, minTemp, lastVitalSign.Temprature, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        Temperature = labelTest; TemperatureColor = color; VisibilityTemperature = Visibility;
+                        ImageTemperature = imageSource;ImageTemperatureVisibility = ImageVisibility;
+
+
+                        SetVitalSign(maxPluse, minPluse, lastVitalSign.Pulse, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        Pulse = labelTest; PulseColor = color; VisibilityPulse = Visibility;
+                        ImagePulse = imageSource; ImagePulseVisibility = ImageVisibility;
+
+                        SetVitalSign(maxResRate, minResRate, lastVitalSign.RespiratoryRate, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        RespiratoryRate = labelTest; RespiratoryColor = color; VisibilityRespiratory = Visibility;
+                        ImageRespiratory = imageSource; ImageRespiratoryVisibility = ImageVisibility;
+
+                        SetVitalSign(maxSBP, minSBP, lastVitalSign.BPSys, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        BPsys = labelTest; SystolicColor = color; VisibilitySystolic = Visibility;
+                        ImageSystolic = imageSource; ImageSystolicVisibility = ImageVisibility;
+
+                        SetVitalSign(maxDBP, minDBP, lastVitalSign.BPDio, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        BPDio = labelTest; DiastolicColor = color; VisibilityDiastolic = Visibility;
+                        ImageDiastolic = imageSource; ImageDiastolicVisibility = ImageVisibility;
+
+                        SetVitalSign(maxOxygen, minOxygen, lastVitalSign.OxygenSat, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        OxygenSat = labelTest; OxygenColor = color; VisibilityOxygen = Visibility;
+                        ImageOxygen = imageSource; ImageOxygenVisibility = ImageVisibility;
                     }
                 }
                 else
                 {
-                    Temprature = "N/A";
-                    Pulse = "N/A";
-                    RespiratoryRate = "N/A";
-                    BPsys = "N/A";
-                    BPDio = "N/A";
+                    IsEnableVital = false;
+                    ClearLastVistalSign();
                 }
             }
+        }
 
+        private void SetVitalSign(double? maxValue,double? minValue,double? value,out string labelText,out SolidColorBrush color,out Visibility Visibility
+            ,out BitmapImage imageSource,out Visibility imageVisibility)
+        {
+            color = new SolidColorBrush(Colors.Black);
+            imageSource = null;
+            imageVisibility = Visibility.Collapsed;
+            if (!string.IsNullOrEmpty(value.ToString()))
+            {
+                labelText = value.ToString();
+                Visibility = Visibility.Visible;
+
+                if (maxValue != null && minValue != null)
+                {
+                    if (value > maxValue)
+                    {
+                        color = new SolidColorBrush(Colors.Red);
+                        Uri uri = new Uri(@"/MediTech;component/Resources/Images/Action/MoveUp.png", UriKind.Relative);
+                        imageSource = new BitmapImage(uri);
+                        imageVisibility = Visibility.Visible;
+                    }
+                    else if(value < minValue)
+                    {
+                        color = new SolidColorBrush(Colors.Red);
+                        Uri uri = new Uri(@"/MediTech;component/Resources/Images/Action/MoveDown.png", UriKind.Relative);
+                        imageSource = new BitmapImage(uri);
+                        imageVisibility = Visibility.Visible;
+                    }
+                }
+
+            }
+            else
+            {
+                labelText = "";
+                Visibility = Visibility.Collapsed;
+            }
 
         }
 
@@ -465,7 +843,7 @@ namespace MediTech.ViewModels
             {
                 PatientVitalSign pageview = new PatientVitalSign();
                 (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(SelectVisitMedical);
-                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
@@ -481,7 +859,12 @@ namespace MediTech.ViewModels
             }
         }
 
-
+        private void OpenVitalSignsChart()
+        {
+            VitalSignsChart pageView = new VitalSignsChart();
+            (pageView.DataContext as VitalSignsChartViewModel).PatientUID = SelectVisitMedical.PatientUID;
+            LaunchViewDialogNonPermiss(pageView, false, false);
+        }
         #endregion
 
         #region PatientAllergy

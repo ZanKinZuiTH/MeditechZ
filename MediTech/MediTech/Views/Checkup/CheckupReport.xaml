@@ -166,6 +166,9 @@
                             <dxpg:PivotGridField Area="RowArea" Caption="ส่วนสูง" FieldName="Height" AreaIndex="8"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="น้ำหนัก" FieldName="Weight" AreaIndex="9"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="BMI" FieldName="BMI" AreaIndex="10"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="ความดันบน" FieldName="BPSys" AreaIndex="11"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="ความดันล่าง" FieldName="BPDio" AreaIndex="12"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="ชีพจร" FieldName="Pulse" AreaIndex="13"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="RequestItemName" FieldName="RequestItemName" />
                             <dxpg:PivotGridField Area="ColumnArea" Caption="ResultItemName" FieldName="ResultItemName"/>
                             <dxpg:PivotGridField Area="DataArea" Caption="ResultValue" FieldName="ResultValue" SummaryType="Max"/>

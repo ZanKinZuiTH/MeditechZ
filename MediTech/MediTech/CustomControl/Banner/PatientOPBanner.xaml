@@ -31,12 +31,12 @@
         <!--Patient Name/ID-->
         <StackPanel Grid.RowSpan="2" Orientation="Vertical" VerticalAlignment="Top">
             <Label Height="5"/>
-            <TextBlock Name="PatientName" 
+            <TextBlock Name="PatientName" Margin="5,0,0,0" 
                             FontSize="14" FontStyle="Normal"  Foreground="White"  FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" />
         </StackPanel>
 
         <!--Visit ID-->
-        <DockPanel Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+        <DockPanel Grid.Column="0" Grid.ColumnSpan="5" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="5,5,0,0">
 
             <Label  Name="VisitLabel" Width="Auto" Content="Visit"  HorizontalContentAlignment="Right" FontSize="12" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
             <Label  Name="VisitTextBlock" Margin="3,0,0,0"  Width="Auto"   FontSize="12" FontStyle="Normal" FontWeight="Bold" Foreground="GhostWhite" VerticalContentAlignment="Center" HorizontalContentAlignment="Stretch" VerticalAlignment="Center"/>

@@ -12,6 +12,7 @@ using System.Web.Http.Description;
 using System.Transactions;
 using System.Reflection;
 using ShareLibrary;
+using System.Data.Entity;
 
 namespace MediTechWebApi.Controllers
 {
@@ -21,9 +22,41 @@ namespace MediTechWebApi.Controllers
         protected MediTechEntities db = new MediTechEntities();
 
         #region PatientVitalSign
-        [Route("GetPatientVitalSingByUID")]
+
+        [Route("SearchPatientVitalSign")]
         [HttpGet]
-        public List<PatientVitalSignModel> GetPatientVitalSingByUID(long patientVitalSignUID)
+        public List<PatientVitalSignModel> SearchPatientVitalSign(long patientUID,DateTime dateFrom,DateTime dateTo)
+        {
+
+            List<PatientVitalSignModel> data = db.PatientVitalSign
+                .Where(p => p.PatientUID == patientUID 
+                &&  (dateFrom == null || DbFunctions.TruncateTime(p.RecordedDttm) >= DbFunctions.TruncateTime(dateFrom))
+                && (dateTo == null || DbFunctions.TruncateTime(p.RecordedDttm) <= DbFunctions.TruncateTime(dateTo)))
+                .Select(p => new PatientVitalSignModel
+                {
+                    PatientVitalSignUID = p.UID,
+                    PatientUID = p.PatientUID,
+                    PatientVisitUID = p.PatientVisitUID,
+                    Weight = p.Weight,
+                    Height = p.Height,
+                    RespiratoryRate = p.RespiratoryRate,
+                    Temprature = p.Temprature,
+                    Pulse = p.Pulse,
+                    RecordedDttm = p.RecordedDttm,
+                    BMIValue = p.BMIValue,
+                    BSAValue = p.BSAValue,
+                    BPSys = p.BPSys,
+                    BPDio = p.BPDio,
+                    OxygenSat = p.OxygenSat,
+                    RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
+                }).ToList();
+
+            return data;
+        }
+
+        [Route("GetPatientVitalSignByUID")]
+        [HttpGet]
+        public List<PatientVitalSignModel> GetPatientVitalSignByUID(long patientVitalSignUID)
         {
             List<PatientVitalSignModel> data = db.PatientVitalSign
                 .Where(p => p.UID == patientVitalSignUID)
@@ -42,15 +75,16 @@ namespace MediTechWebApi.Controllers
                     BSAValue = p.BSAValue,
                     BPSys = p.BPSys,
                     BPDio = p.BPDio,
+                    OxygenSat = p.OxygenSat,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
             return data;
         }
 
-        [Route("GetPatientVitalSingByVisitUID")]
+        [Route("GetPatientVitalSignByVisitUID")]
         [HttpGet]
-        public List<PatientVitalSignModel> GetPatientVitalSingByVisitUID(long patientVisitUID)
+        public List<PatientVitalSignModel> GetPatientVitalSignByVisitUID(long patientVisitUID)
         {
             List<PatientVitalSignModel> data = db.PatientVitalSign
                 .Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisitUID)
@@ -69,6 +103,7 @@ namespace MediTechWebApi.Controllers
                     BSAValue = p.BSAValue,
                     BPSys = p.BPSys,
                     BPDio = p.BPDio,
+                    OxygenSat = p.OxygenSat,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -105,6 +140,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.BSAValue = model.BSAValue;
                 vitalsign.BPSys = model.BPSys;
                 vitalsign.BPDio = model.BPDio;
+                vitalsign.OxygenSat = model.OxygenSat;
                 vitalsign.MUser = userID;
                 vitalsign.MWhen = now;
                 vitalsign.StatusFlag = "A";

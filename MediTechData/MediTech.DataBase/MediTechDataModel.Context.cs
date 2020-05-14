@@ -3058,5 +3058,22 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pEncounterMergePatient", p_MajorPatientUIDParameter, p_MinorPatientUIDParameter, p_MinorVisitUIDSParameter, p_UserIDParameter);
         }
+    
+        public virtual ObjectResult<pRPTStockConsumption_Result> pRPTStockConsumption(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockConsumption_Result>("pRPTStockConsumption", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
     }
 }

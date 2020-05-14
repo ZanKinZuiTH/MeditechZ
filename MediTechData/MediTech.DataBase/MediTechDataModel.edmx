@@ -1516,6 +1516,7 @@
           <Property Name="BSAValue" Type="float" />
           <Property Name="BPSys" Type="float" />
           <Property Name="BPDio" Type="float" />
+          <Property Name="OxygenSat" Type="float" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
@@ -3260,6 +3261,11 @@
           <Parameter Name="P_MonthLists" Type="nvarchar" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pRPTStockConsumption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pRPTStockDispensed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
@@ -4626,6 +4632,11 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTStockConsumption" ReturnType="Collection(MediTechModel.pRPTStockConsumption_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8225,6 +8236,7 @@
           <Property Name="BSAValue" Type="Double" />
           <Property Name="BPSys" Type="Double" />
           <Property Name="BPDio" Type="Double" />
+          <Property Name="OxygenSat" Type="Double" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -9495,6 +9507,21 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTStockConsumption_Result">
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LocationUsed" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ItemType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="StockDttm" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="UnitCost" Nullable="false" />
+          <Property Type="Double" Name="UsedQty" Nullable="false" />
+          <Property Type="Double" Name="TotalCost" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12636,6 +12663,7 @@
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="OxygenSat" ColumnName="OxygenSat" />
                 <ScalarProperty Name="BPDio" ColumnName="BPDio" />
                 <ScalarProperty Name="BPSys" ColumnName="BPSys" />
                 <ScalarProperty Name="BSAValue" ColumnName="BSAValue" />
@@ -13990,6 +14018,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockConsumption" FunctionName="MediTechModel.Store.pRPTStockConsumption">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockConsumption_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="LocationUsed" ColumnName="LocationUsed" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="StockDttm" ColumnName="StockDttm" />
+                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="UsedQty" ColumnName="UsedQty" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

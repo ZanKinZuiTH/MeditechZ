@@ -277,6 +277,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            string requestApi = string.Format("Api/Report/StockConsumption?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
+
+            return data;
+        }
+
         public List<GoodReceiveReportModel> GoodReceiveReport(string grnNumber)
         {
             string requestApi = string.Format("Api/Report/GoodReceiveReport?grnNumber={0}", grnNumber);

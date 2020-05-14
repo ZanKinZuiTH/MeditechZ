@@ -7,3 +7,4 @@ DevExpress.Xpf.Ribbon.RibbonStatusBarControl, DevExpress.Xpf.Ribbon.v17.1, Versi
 DevExpress.Xpf.LayoutControl.LayoutGroup, DevExpress.Xpf.LayoutControl.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.Scheduler.SchedulerControl, DevExpress.Xpf.Scheduler.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
 DevExpress.Xpf.PivotGrid.PivotGridControl, DevExpress.Xpf.PivotGrid.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a
+DevExpress.Xpf.Charts.ChartControl, DevExpress.Xpf.Charts.v17.1, Version=17.1.7.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a

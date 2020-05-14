@@ -210,7 +210,7 @@ namespace MediTechWebApi.Controllers
                 foreach (DataRow item in dt.Rows)
                 {
                     ChartStatisticModel newRow = new ChartStatisticModel();
-                    newRow.key = Convert.ToInt32(item["Day"]);
+                    newRow.DisplayName = item["Day"].ToString();
                     newRow.Argument = item["DayName"].ToString();
                     newRow.Value = Convert.ToInt32(item["PatientCount"]);
                     data.Add(newRow);
@@ -779,6 +779,22 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+        [Route("StockConsumption")]
+        [HttpGet]
+        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockConsumption(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockReportModel>();
+                data = dt.ToList<StockReportModel>();
+            }
+
+            return data;
+        }
+
 
         #endregion
 

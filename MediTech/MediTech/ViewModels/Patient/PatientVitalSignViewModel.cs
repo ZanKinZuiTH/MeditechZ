@@ -144,7 +144,13 @@ namespace MediTech.ViewModels
             set { Set(ref _DBP, value); }
         }
 
+        private double? _OxygenSat;
 
+        public double? OxygenSat
+        {
+            get { return _OxygenSat; }
+            set { Set(ref _OxygenSat, value); }
+        }
 
         private double? _HeightRe;
 
@@ -220,6 +226,13 @@ namespace MediTech.ViewModels
             set { Set(ref _DBPRe, value); }
         }
 
+        private double? _OxygenSatRe;
+
+        public double? OxygenSatRe
+        {
+            get { return _OxygenSatRe; }
+            set { Set(ref _OxygenSatRe, value); }
+        }
         #endregion
 
         #region Command
@@ -245,8 +258,14 @@ namespace MediTech.ViewModels
         {
             get { return _DeleteVitalSignCommand ?? (_DeleteVitalSignCommand = new RelayCommand(DeleteVitalSign)); }
         }
-        
 
+
+        private RelayCommand _OpenVitalSignsChartCommand;
+
+        public RelayCommand OpenVitalSignsChartCommand
+        {
+            get { return _OpenVitalSignsChartCommand ?? (_OpenVitalSignsChartCommand = new RelayCommand(OpenVitalSignsChart)); }
+        }
         #endregion
 
         #region Method
@@ -255,6 +274,13 @@ namespace MediTech.ViewModels
         public PatientVitalSignViewModel()
         {
 
+        }
+
+        void OpenVitalSignsChart()
+        {
+            VitalSignsChart pageView = new VitalSignsChart();
+            (pageView.DataContext as VitalSignsChartViewModel).PatientUID = SelectPatientVisit.PatientUID;
+            LaunchViewDialogNonPermiss(pageView, false, false);
         }
 
         public void Save()
@@ -296,6 +322,7 @@ namespace MediTech.ViewModels
                     RssRateRe = null;
                     SBPRe = null;
                     DBPRe = null;
+                    OxygenSatRe = null;
 
                     RecentVitals.Remove(SelectRecentVital);
                     OnUpdateEvent();
@@ -306,7 +333,7 @@ namespace MediTech.ViewModels
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {
             SelectPatientVisit = visitModel;
-            RecentVitals = DataService.PatientHistory.GetPatientVitalSingByVisitUID(SelectPatientVisit.PatientVisitUID);
+            RecentVitals = DataService.PatientHistory.GetPatientVitalSignByVisitUID(SelectPatientVisit.PatientVisitUID);
         }
         public void AssingModel(PatientVitalSignModel modelData)
         {
@@ -325,6 +352,7 @@ namespace MediTech.ViewModels
             RssRateRe = model.RespiratoryRate;
             SBPRe = model.BPSys;
             DBPRe = model.BPDio;
+            OxygenSatRe = model.OxygenSat;
         }
 
         public void AssingPropertiesToModel()
@@ -343,7 +371,9 @@ namespace MediTech.ViewModels
                 model.RespiratoryRate = RespiratoryRate;
                 model.BPSys = SBP;
                 model.BPDio = DBP;
+                model.OxygenSat = OxygenSat;
                 model.RecordedDttm = DateTime.Now;
+
             }
             else if (SelectTabIndex == 1)
             {
@@ -358,6 +388,7 @@ namespace MediTech.ViewModels
                     model.RespiratoryRate = RssRateRe;
                     model.BPSys = SBPRe;
                     model.BPDio = DBPRe;
+                    model.OxygenSat = OxygenSatRe;
                 }
 
             }

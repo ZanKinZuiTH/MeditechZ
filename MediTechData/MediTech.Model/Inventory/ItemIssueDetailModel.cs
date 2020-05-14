@@ -22,6 +22,9 @@ namespace MediTech.Model
         public string BatchID { get; set; }
         public int StockUID { get; set; }
         public Nullable<System.DateTime> ExpiryDttm { get; set; }
+        public string Location { get; set; }
+        public int? LocationUID { get; set; }
+
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

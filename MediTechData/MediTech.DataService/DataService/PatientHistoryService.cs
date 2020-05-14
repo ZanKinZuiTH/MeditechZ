@@ -15,19 +15,26 @@ namespace MediTech.DataService
     public class PatientHistoryService
     {
         #region PatientVitalSign
-
-        public List<PatientVitalSignModel> GetPatientVitalSingByUID(long patientVitalSignUID)
+        public List<PatientVitalSignModel> SearchPatientVitalSign(long patientUID,DateTime dateFrom, DateTime dateTo)
         {
-            string requestApi = string.Format("Api/PatientHistory/GetPatientVitalSingByUID?patientVitalSignUID={0}", patientVitalSignUID);
+            string requestApi = string.Format("Api/PatientHistory/SearchPatientVitalSign?patientUID={0}&dateFrom={1:MM/dd/yyyy}&dateTo={2:MM/dd/yyyy}", patientUID,dateFrom, dateTo);
+            List<PatientVitalSignModel> dataRequest = MeditechApiHelper.Get<List<PatientVitalSignModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<PatientVitalSignModel> GetPatientVitalSignByUID(long patientVitalSignUID)
+        {
+            string requestApi = string.Format("Api/PatientHistory/GetPatientVitalSignByUID?patientVitalSignUID={0}", patientVitalSignUID);
             List<PatientVitalSignModel> dataRequest = MeditechApiHelper.Get<List<PatientVitalSignModel>>(requestApi);
 
             return dataRequest;
         }
 
 
-        public List<PatientVitalSignModel> GetPatientVitalSingByVisitUID(long patientVisitUID)
+        public List<PatientVitalSignModel> GetPatientVitalSignByVisitUID(long patientVisitUID)
         {
-            string requestApi = string.Format("Api/PatientHistory/GetPatientVitalSingByVisitUID?patientVisitUID={0}", patientVisitUID);
+            string requestApi = string.Format("Api/PatientHistory/GetPatientVitalSignByVisitUID?patientVisitUID={0}", patientVisitUID);
             List<PatientVitalSignModel> dataRequest = MeditechApiHelper.Get<List<PatientVitalSignModel>>(requestApi);
 
             return dataRequest;

@@ -365,8 +365,6 @@ namespace MediTech.ViewModels
 
         #region EMRView
 
-
-
         public SummeryViewViewModel SummeryViewViewModel
         {
             get
@@ -452,6 +450,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<PastMedicalHistoryViewModel>();
 
                 return ServiceLocator.Current.GetInstance<PastMedicalHistoryViewModel>();
+            }
+        }
+
+        public VitalSignsChartViewModel VitalSignsChartViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<VitalSignsChartViewModel>())
+                    SimpleIoc.Default.Register<VitalSignsChartViewModel>();
+
+                return ServiceLocator.Current.GetInstance<VitalSignsChartViewModel>();
             }
         }
 

@@ -300,7 +300,7 @@ namespace MediTech.ViewModels
             {
                 PatientVitalSign pageview = new PatientVitalSign();
                 (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(SelectPatientVisit);
-                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", false);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();

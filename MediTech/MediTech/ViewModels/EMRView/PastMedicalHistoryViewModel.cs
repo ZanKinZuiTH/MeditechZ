@@ -284,7 +284,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPastVisit != null)
             {
-                List<PatientVitalSignModel> vitalSign = DataService.PatientHistory.GetPatientVitalSingByVisitUID(SelectPastVisit.PatientVisitUID);
+                List<PatientVitalSignModel> vitalSign = DataService.PatientHistory.GetPatientVitalSignByVisitUID(SelectPastVisit.PatientVisitUID);
                 if (vitalSign != null && vitalSign.Count > 0)
                 {
                     var lastVitalSign = vitalSign.OrderByDescending(p => p.CWhen).FirstOrDefault();

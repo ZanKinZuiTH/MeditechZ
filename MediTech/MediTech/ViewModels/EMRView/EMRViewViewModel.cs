@@ -1,4 +1,6 @@
-﻿using MediTech.Model;
+﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -46,6 +48,14 @@ namespace MediTech.ViewModels
 
         #region Command
 
+
+        private RelayCommand _OpenVitalSignsChartCommand;
+
+        public RelayCommand OpenVitalSignsChartCommand
+        {
+            get { return _OpenVitalSignsChartCommand ?? (_OpenVitalSignsChartCommand = new RelayCommand(OpenVitalSignsChart)); }
+        }
+
         #endregion
 
         #region Method
@@ -64,6 +74,12 @@ namespace MediTech.ViewModels
             SelectPatientVisit = PatientVisitLists.FirstOrDefault(p => p.PatientVisitUID == visitModel.PatientVisitUID);
         }
 
+        void OpenVitalSignsChart()
+        {
+            VitalSignsChart pageView = new VitalSignsChart();
+            (pageView.DataContext as VitalSignsChartViewModel).PatientUID = SelectPatientVisit.PatientUID;
+            LaunchViewDialogNonPermiss(pageView, false, false);
+        }
         #endregion
     }
 }

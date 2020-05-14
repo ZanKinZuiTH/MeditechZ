@@ -8,8 +8,8 @@ namespace MediTech.Model.Report
 {
     public class ChartStatisticModel
     {
-        public int key { get; set; }
+        public string DisplayName { get; set; }
         public string Argument { get; set; }
-        public int Value { get; set; }
+        public double Value { get; set; }
     }
 }

@@ -111,6 +111,22 @@ namespace MediTech.ViewModels
             set { Set(ref _BatchQty, value); }
         }
 
+        private List<LookupReferenceValueModel> _Location;
+
+        public List<LookupReferenceValueModel> Location
+        {
+            get { return _Location; }
+            set { Set(ref _Location, value); }
+        }
+
+        private LookupReferenceValueModel _SelectLocation;
+
+        public LookupReferenceValueModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
+        }
+
         private string _BatchID;
 
         public string BatchID
@@ -258,7 +274,9 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsRoleStock();
             ItemTypes = DataService.Technical.GetReferenceValueMany("ITMTYP");
+            Location = DataService.MasterData.GetLocationAll();
 
+            
 
             if (Organisations != null)
             {
@@ -302,6 +320,8 @@ namespace MediTech.ViewModels
                 newRow.Quantity = item.QuantityAdjusted;
                 newRow.IMUOMUID = item.AdjustedUOM;
                 newRow.ExpiryDttm = item.ExpiryDate;
+                newRow.Location = item.Location;
+                newRow.LocationUID = item.LocationUID;
                 listIssued.Add(newRow);
             }
 
@@ -316,6 +336,12 @@ namespace MediTech.ViewModels
             if (SelectCurrentStock == null)
             {
                 WarningDialog("กรุณาเลือก Batch");
+                return;
+            }
+
+            if (SelectLocation == null)
+            {
+                WarningDialog("กรุณาเลือกสถานที่ใช้");
                 return;
             }
 
@@ -357,6 +383,8 @@ namespace MediTech.ViewModels
             adjustStock.AdjustedUnit = SelectCurrentStock.Unit;
             adjustStock.ExpiryDate = ExpiryDate;
             adjustStock.BatchID = SelectCurrentStock.BatchID;
+            adjustStock.Location = SelectLocation.Display;
+            adjustStock.LocationUID = SelectLocation.Key;
             IssueStocks.Add(adjustStock);
 
             ClearInput();

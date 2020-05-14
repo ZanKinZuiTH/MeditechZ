@@ -139,7 +139,7 @@
             <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
         </Style>
     </UserControl.Resources>
-    <dxlc:LayoutControl>
+    <dxlc:LayoutControl Padding="0">
         <dxlc:FlowLayoutControl Padding="0"
                                 Orientation="Horizontal"
                                 AllowItemMoving="True"
@@ -148,7 +148,7 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 ItemSpace="10" LayerSpace="10" Background="Transparent">
 
-            <dxlc:GroupBox Width="320" Padding="0" Height="220" MaximizeElementVisibility="Visible"
+            <dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -270,7 +270,7 @@
                     </dxe:ListBoxEdit>
                 </Grid>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" Padding="0" Height="220" MaximizeElementVisibility="Visible"
+            <dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -376,7 +376,7 @@
                     </dxe:ListBoxEdit.ItemTemplate>
                 </dxe:ListBoxEdit>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Padding="0" Width="320" 
+            <dxlc:GroupBox Padding="0" Width="350" 
                            MaximizeElementVisibility="Visible"
                            Height="220">
                 <dxlc:GroupBox.HeaderTemplate>
@@ -466,7 +466,7 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" Padding="0" Height="220"
+            <dxlc:GroupBox Width="350" Padding="0" Height="220"
                            MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <dxlc:GroupBox.HeaderTemplate>
@@ -612,7 +612,7 @@
                     </dxe:ListBoxEdit.ItemTemplate>
                 </dxe:ListBoxEdit>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Padding="0" Width="320" Height="220" MaximizeElementVisibility="Visible">
+            <dxlc:GroupBox Padding="0" Width="350" Height="220" MaximizeElementVisibility="Visible">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -761,7 +761,7 @@
                 </dxg:GridControl>
 
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" MaximizeElementVisibility="Visible"
+            <dxlc:GroupBox Width="350" MaximizeElementVisibility="Visible"
                            Height="220" 
                            Padding="0">
                 <dxlc:GroupBox.HeaderTemplate>
@@ -863,7 +863,7 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" Height="220" Padding="0" MaximizeElementVisibility="Visible">
+            <dxlc:GroupBox Width="350" Height="220" Padding="0" MaximizeElementVisibility="Visible">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal">
@@ -1007,7 +1007,7 @@
                 </Grid>
 
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" Height="220" 
+            <dxlc:GroupBox Width="350" Height="220" 
                            Padding="0" MaximizeElementVisibility="Visible" >
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -1134,7 +1134,7 @@
                     </DataTemplate>
                 </dxlc:GroupBox.ContentTemplate>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="320" Padding="0" Height="220" MaximizeElementVisibility="Visible"
+            <dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
