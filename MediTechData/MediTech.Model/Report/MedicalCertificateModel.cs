@@ -13,6 +13,13 @@ namespace MediTech.Model.Report
         public string PatientName { get; set; }
         public string IDCard { get; set; }
         public string Gender { get; set; }
+        public double? Weight { get; set; }
+        public double? Height { get; set; }
+        public double? BMI { get; set; }
+        public double? Pulse { get; set; }
+        public double? BPSys { get; set; }
+        public double? BPDio { get; set; }
+        public DateTime? VitalSignRecordDttm { get; set; }
         public string AgeString { get; set; }
         public string AgeYear { get; set; }
         public DateTime DateOfBirth { get; set; }

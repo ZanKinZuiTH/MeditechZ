@@ -135,6 +135,9 @@ namespace MediTech.ViewModels
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate2Parts" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng2Parts" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองรังสีแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.RadilogyCertificate" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificate1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificateEng1" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบ Wellness", NamespaceName = "MediTech.Reports.Operating.Patient.WellnessBook.WellnessMainBook" });
