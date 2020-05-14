@@ -154,6 +154,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public MedicalCertificateModel PrintConfinedSpaceCertificate(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Report/PrintConfinedSpaceCertificate?patientVisitUID={0}", patientVisitUID);
+            MedicalCertificateModel data = MeditechApiHelper.Get<MedicalCertificateModel>(requestApi);
+
+            return data;
+        }
+
         public MedicalCertificateModel PrintRadiologyCertificate(long patientVisitUID)
         {
             string requestApi = string.Format("Api/Report/PrintRadiologyCertificate?patientVisitUID={0}", patientVisitUID);

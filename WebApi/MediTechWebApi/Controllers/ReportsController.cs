@@ -411,6 +411,58 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("PrintConfinedSpaceCertificate")]
+        [HttpGet]
+        public MedicalCertificateModel PrintConfinedSpaceCertificate(long patientVisitUID)
+        {
+
+            MedicalCertificateModel data = (from pa in db.Patient
+                                            join pv in db.PatientVisit on pa.UID equals pv.PatientUID
+                                            join pvs in db.PatientVitalSign on
+                                            new
+                                            {
+                                                key1 = pv.UID,
+                                                key2 = "A"
+                                            } equals
+                                            new
+                                            {
+                                                key1 = pvs.PatientVisitUID,
+                                                key2 = pvs.StatusFlag
+                                            } into lefpvs
+                                            from j in lefpvs.DefaultIfEmpty()
+                                            where pa.StatusFlag == "A"
+                                             && pv.StatusFlag == "A"
+                                             && pv.UID == patientVisitUID
+                                            select new MedicalCertificateModel
+                                            {
+                                                No = pv.UID,
+                                                IDCard = pa.IDCard,
+                                                VisitID = pv.VisitID,
+                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                                AgeYear = SqlFunction.fGetAge(pa.DOBDttm.Value),
+                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                strVisitData = pv.StartDttm.Value,
+                                                PatientID = pa.PatientID,
+                                                DateOfBirth = pa.DOBDttm.Value,
+                                                PatientName = SqlFunction.fGetPatientName(pa.UID),
+                                                Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
+                                                DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
+                                                DoctorLicenseNo = SqlFunction.fGetCareProviderLicenseNo(pv.CareProviderUID ?? 0),
+                                                PatientAddress = SqlFunction.fGetAddressPatient(pv.PatientUID),
+                                                VitalSignRecordDttm = j.RecordedDttm,
+                                                Weight = j.Weight,
+                                                Height = j.Height,
+                                                BMI = j.BMIValue,
+                                                Pulse = j.Pulse,
+                                                BPSys = j.BPSys,
+                                                BPDio = j.BPDio,
+
+                                            }).OrderByDescending(p => p.VitalSignRecordDttm).FirstOrDefault();
+
+            return data;
+        }
+
+
         [Route("PrintRadiologyCertificate")]
         [HttpGet]
         public MedicalCertificateModel PrintRadiologyCertificate(long patientVisitUID)
