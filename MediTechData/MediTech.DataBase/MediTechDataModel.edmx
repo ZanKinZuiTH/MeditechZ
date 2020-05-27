@@ -901,7 +901,7 @@
           <Property Name="DOBDttm" Type="datetime" />
           <Property Name="DOBComputed" Type="bit" Nullable="false" />
           <Property Name="BLOODUID" Type="int" />
-          <Property Name="IsVIP" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsVIP" Type="bit" />
           <Property Name="IDCard" Type="nvarchar" MaxLength="13" />
           <Property Name="RELGNUID" Type="int" />
           <Property Name="IDLine" Type="nvarchar" MaxLength="50" />
@@ -2729,6 +2729,22 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="VIPPatient">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="VIPTPUID" Type="int" Nullable="false" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="WellnessData">
           <Key>
             <PropertyRef Name="UID" />
@@ -3638,6 +3654,7 @@
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreUOMConversion" EntityType="Self.StoreUOMConversion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorDetail" EntityType="Self.VendorDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VIPPatient" EntityType="Self.VIPPatient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WellnessData" EntityType="Self.WellnessData" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XrayTranslateCondition" EntityType="Self.XrayTranslateCondition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="Self.XrayTranslateConditionDetail" Schema="dbo" store:Type="Tables" />
@@ -4488,6 +4505,11 @@
             <Parameter Name="P_MinorVisitUIDS" Mode="In" Type="String" />
             <Parameter Name="P_UserID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pRPTStockConsumption" ReturnType="Collection(MediTechModel.pRPTStockConsumption_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -4628,15 +4650,11 @@
           <EntitySet Name="Store" EntityType="MediTechModel.Store" />
           <EntitySet Name="StoreUOMConversion" EntityType="MediTechModel.StoreUOMConversion" />
           <EntitySet Name="VendorDetail" EntityType="MediTechModel.VendorDetail" />
+          <EntitySet Name="VIPPatient" EntityType="MediTechModel.VIPPatient" />
           <EntitySet Name="WellnessData" EntityType="MediTechModel.WellnessData" />
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pRPTStockConsumption" ReturnType="Collection(MediTechModel.pRPTStockConsumption_Result)">
-            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -6725,6 +6743,21 @@
           <Property Type="Double" Name="NetAmount" Nullable="true" />
           <Property Type="Double" Name="ItemCost" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pRPTStockConsumption_Result">
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LocationUsed" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ItemType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="StockDttm" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="UnitCost" Nullable="false" />
+          <Property Type="Double" Name="UsedQty" Nullable="false" />
+          <Property Type="Double" Name="TotalCost" Nullable="false" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -7621,7 +7654,7 @@
           <Property Name="DOBDttm" Type="DateTime" Precision="3" />
           <Property Name="DOBComputed" Type="Boolean" Nullable="false" />
           <Property Name="BLOODUID" Type="Int32" />
-          <Property Name="IsVIP" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsVIP" Type="Boolean" />
           <Property Name="IDCard" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="RELGNUID" Type="Int32" />
           <Property Name="IDLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -9449,6 +9482,22 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="VIPPatient">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="VIPTPUID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="WellnessData">
           <Key>
             <PropertyRef Name="UID" />
@@ -9507,21 +9556,6 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pRPTStockConsumption_Result">
-          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LocationUsed" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="ItemType" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="StockDttm" Nullable="false" Precision="23" />
-          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
-          <Property Type="Double" Name="UnitCost" Nullable="false" />
-          <Property Type="Double" Name="UsedQty" Nullable="false" />
-          <Property Type="Double" Name="TotalCost" Nullable="false" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11092,6 +11126,25 @@
           <FunctionImportMapping FunctionImportName="pUnMergePatient" FunctionName="MediTechModel.Store.pUnMergePatient" />
           <FunctionImportMapping FunctionImportName="fGetBigIntList" FunctionName="MediTechModel.Store.fGetBigIntList" />
           <FunctionImportMapping FunctionImportName="pEncounterMergePatient" FunctionName="MediTechModel.Store.pEncounterMergePatient" />
+          <FunctionImportMapping FunctionImportName="pRPTStockConsumption" FunctionName="MediTechModel.Store.pRPTStockConsumption">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockConsumption_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="LocationUsed" ColumnName="LocationUsed" />
+                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="StockDttm" ColumnName="StockDttm" />
+                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="UsedQty" ColumnName="UsedQty" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -13956,6 +14009,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="VIPPatient">
+            <EntityTypeMapping TypeName="MediTechModel.VIPPatient">
+              <MappingFragment StoreEntitySet="VIPPatient">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="VIPTPUID" ColumnName="VIPTPUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="WellnessData">
             <EntityTypeMapping TypeName="MediTechModel.WellnessData">
               <MappingFragment StoreEntitySet="WellnessData">
@@ -14018,25 +14088,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pRPTStockConsumption" FunctionName="MediTechModel.Store.pRPTStockConsumption">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockConsumption_Result">
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
-                <ScalarProperty Name="Store" ColumnName="Store" />
-                <ScalarProperty Name="LocationUsed" ColumnName="LocationUsed" />
-                <ScalarProperty Name="ItemType" ColumnName="ItemType" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="StockDttm" ColumnName="StockDttm" />
-                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
-                <ScalarProperty Name="UsedQty" ColumnName="UsedQty" />
-                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

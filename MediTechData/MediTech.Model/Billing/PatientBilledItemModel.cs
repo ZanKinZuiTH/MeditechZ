@@ -11,6 +11,7 @@ namespace MediTech.Model
         public long PatientBilledItemUID { get; set; }
         public long PatientBillUID { get; set; }
         public int BillableItemUID { get; set; }
+        public string ItemCode { get; set; }
         public string ItemName { get; set; }
         public double ItemMutiplier { get; set; }
         public Nullable<double> Amount { get; set; }

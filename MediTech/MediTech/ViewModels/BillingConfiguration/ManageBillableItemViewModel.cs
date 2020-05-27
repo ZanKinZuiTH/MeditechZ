@@ -726,6 +726,11 @@ namespace MediTech.ViewModels
             SelectBillingGroup = BillingGroup != null ? BillingGroup.FirstOrDefault(p => p.BillingGroupUID == model.BillingGroupUID) : null;
             SelectBillingSubGroup = BillingSubGroup != null ? BillingSubGroup.FirstOrDefault(p => p.BillingSubGroupUID == model.BillingSubGroupUID) : null;
 
+            if (SelectedItemService == null && (model.ItemUID ?? 0) != 0)
+            {
+                WarningDialog("ServiceItem ปิดการใช้งานแล้ว กรุณาเลือก ServiceItem ใหม่");
+            }
+
             //SelectUnit = Units != null ? Units.FirstOrDefault(p => p.Key == model.CURNCUID) : null;
             IsShareDoctor = model.IsShareDoctor == "Y" ? true : false;
             Code = model.Code;

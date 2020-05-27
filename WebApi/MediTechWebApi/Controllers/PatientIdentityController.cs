@@ -75,6 +75,7 @@ namespace MediTechWebApi.Controllers
                                                 ProvinceUID = j.ProvinceUID,
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
+                                                IsVIP = pa.IsVIP ?? false,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -131,6 +132,7 @@ namespace MediTechWebApi.Controllers
                                                 ProvinceUID = j.ProvinceUID,
                                                 ZipCode = j.ZipCode,
                                                 UserUID = pa.CUser,
+                                                IsVIP = pa.IsVIP ?? false,
                                                 OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
                                             }).FirstOrDefault();
             return data;
@@ -276,7 +278,36 @@ namespace MediTechWebApi.Controllers
                     patient.MUser = userID;
                     patient.MWhen = now;
                     patient.StatusFlag = "A";
+                    patient.IsVIP = patientInfo.IsVIP;
+                    VIPPatient vipPat = db.VIPPatient.FirstOrDefault(p => p.PatientUID == patient.UID && p.StatusFlag == "A");
+                    if (patient.IsVIP ?? false)
+                    {
+                        if (vipPat == null)
+                        {
+                            vipPat = new VIPPatient();
+                            vipPat.CUser = userID;
+                            vipPat.CWhen = now;
+                            vipPat.StatusFlag = "A";
+                        }
+                        vipPat.PatientUID = patient.UID;
+                        vipPat.VIPTPUID = patientInfo.VIPTPUID.HasValue ? patientInfo.VIPTPUID.Value : 0 ;
+                        vipPat.ActiveFrom = patientInfo.VIPActiveFrom;
+                        vipPat.ActiveTo = patientInfo.VIPActiveTo;
+                        vipPat.MUser = userID;
+                        vipPat.MWhen = now;
 
+                        db.VIPPatient.AddOrUpdate(vipPat);
+                    }
+                    else
+                    {
+                        if (vipPat != null)
+                        {
+                            db.VIPPatient.Attach(vipPat);
+                            vipPat.MUser = userID;
+                            vipPat.MWhen = now;
+                            vipPat.StatusFlag = "D";
+                        }
+                    }
 
                     //PatientDemolog
                     Dictionary<string, List<string>> patientModifiedInfo = new Dictionary<string, List<string>>();

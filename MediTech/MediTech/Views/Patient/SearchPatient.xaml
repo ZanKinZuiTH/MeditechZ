@@ -42,7 +42,7 @@
                                       ItemsSource="{Binding GenderSource}"
                                       SelectedItem="{Binding SelectedGender}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="รหัสบัตรประจำตัวประชาชน" >
+                <dxlc:LayoutItem Label="เลขบัตรประชาชน" >
                     <dxe:TextEdit Name="txtNationalID" Text="{Binding NationalID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
 

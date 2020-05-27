@@ -16,7 +16,7 @@
     </DataTemplate>
     <Style TargetType="{x:Type local:AutoCompleteTextBox}">
         <Style.Resources>
-            <VisualBrush x:Key="CueBannerBrush"   AlignmentX="Left" AlignmentY="Center" Stretch="None" >
+            <VisualBrush x:Key="CueBannerBrush"  AlignmentX="Left" AlignmentY="Center" Stretch="None" >
                 <VisualBrush.Visual>
                     <Label Content="Search Enters" Foreground="Black" FontStyle="Italic" Padding="10"/>
                 </VisualBrush.Visual>

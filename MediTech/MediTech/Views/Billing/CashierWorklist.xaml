@@ -17,6 +17,7 @@
              d:DesignHeight="700" d:DesignWidth="980">
     <UserControl.Resources>
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -94,35 +95,74 @@
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
 
-        <dxlc:LayoutControl Grid.Column="1" Orientation="Vertical" Padding="5,0,5,12">
+        <dxlc:LayoutControl Grid.Column="1" Orientation="Vertical" Padding="5,0,5,5">
             <dxlc:LayoutItem>
                 <uc:PatientBanner PatientVisit="{Binding SelectPatientCloseMed}"/>
             </dxlc:LayoutItem>
 
             <dxlc:GroupBox  Header="รายการยา เวชภัณฑ์" Padding="0"  MaxHeight="180">
-                <dxg:GridControl  x:Name="gDrugDetail" ItemsSource="{Binding StoreOrderList}"
-                                 SelectionMode="Row"
-                                 AutoExpandAllGroups="True"
-                                 SelectedItems="{Binding SelectItemStore}">
+                <dxlc:GroupBox.Resources>
+                    <Style x:Key="BackgroundStyle" TargetType="{x:Type dxg:GridRowContent}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding Row.IsWithoutStock}" Value="True">
+                                <Setter Property="Background" Value="Red"/>
+                            </DataTrigger>
+                            <DataTrigger Binding="{Binding Row.IsExpired}" Value="True">
+                                <Setter Property="Background" Value="#FFA5A5A5"/>
+                            </DataTrigger>
+                        </Style.Triggers>
+                    </Style>
+
+                    <DataTemplate x:Key="DetailCoreTemplate">
+                        <dx:MeasurePixelSnapper>
+                            <Grid>
+                                <dxg:GridControl ItemsSource="{Binding Row.StoreStockItem}" Height="150">
+                                    <dxg:GridColumn Header="จำนวน" Width="50" FieldName="Quantity" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="จำนวนคงเหลือ" Width="80"  FieldName="BalQty" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="หน่วย" Width="80"  FieldName="QuantityUnit" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="วันหมดอายุ" Width="80" FieldName="ExpiryDate" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="BatchID" Width="90" FieldName="BatchID" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowGroupPanel="False"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </Grid>
+                        </dx:MeasurePixelSnapper>
+                    </DataTemplate>
+                    <DataTemplate x:Key="rowToolTipTemplate">
+                        <ContentPresenter Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}">
+                            <ToolTipService.InitialShowDelay>10</ToolTipService.InitialShowDelay>
+                            <ToolTipService.HasDropShadow>false</ToolTipService.HasDropShadow>
+                            <ToolTipService.ToolTip>
+                                <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" Tag="Transparent" MaxWidth="600"/>
+                            </ToolTipService.ToolTip>
+                        </ContentPresenter>
+                    </DataTemplate>
+                </dxlc:GroupBox.Resources>
+                <dxg:GridControl  x:Name="gDrugDetail" ItemsSource="{Binding StoreOrderList}">
                     <dxg:GridControl.View>
                         <dxg:TableView x:Name="gvDrugDetail"
-                                       AllowCellMerge="True"
-                                       ShowGroupPanel="False"  ShowCheckBoxSelectorColumn="True">
-                            <dxg:TableView.FormatConditions>
-                                <dxg:FormatCondition Expression="[ExpiryDate] &lt; LocalDateTimeToday()" FieldName="ExpiryDate" ApplyToRow="True">
-                                    <dx:Format Background="#FFA5A5A5"/>
-                                </dxg:FormatCondition>
-                            </dxg:TableView.FormatConditions>
+                                       AllowScrollAnimation="True" 
+                                       UseLightweightTemplates="None" 
+                                       NavigationStyle="Cell"
+                                       RowStyle="{StaticResource BackgroundStyle}"
+                                       DataRowTemplate="{StaticResource rowToolTipTemplate}"
+                                       ShowGroupPanel="False">
                         </dxg:TableView>
                     </dxg:GridControl.View>
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ" AllowGrouping="True" FieldName="ItemName" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="IsSelected" Header="" Fixed="Left"/>
+                        <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Fixed="Left"/>
+                        <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ" FieldName="ItemName" ReadOnly="True" Fixed="Left"/>
                         <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
                         <dxg:GridColumn Header="จำนวนคงเหลือ" FieldName="BalQty" ReadOnly="True"/>
                         <dxg:GridColumn Header="หน่วย" FieldName="QuantityUnit" ReadOnly="True"/>
                         <dxg:GridColumn Header="วันหมดอายุ" FieldName="ExpiryDate" ReadOnly="True"/>
-                        <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True"/>
                         <dxg:GridColumn Header="วิธีใช้" FieldName="InstructionRoute" ReadOnly="True"/>
                         <dxg:GridColumn Header="ปริมาณยาที่กิน" FieldName="Dosage" ReadOnly="True"/>
                         <dxg:GridColumn Header="Frequency" FieldName="DrugFrequency" ReadOnly="True"/>
@@ -134,26 +174,32 @@
                 </dxg:GridControl>
             </dxlc:GroupBox>
 
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem>
-                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                    <dxe:CheckEdit Content="SelectAll" IsChecked="{Binding SelectAll}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
                                       DisplayMember="Display"
                                       ValueMember="Key"
                         Width="180" Height="25"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
                                      Height="25" >
-                        <StackPanel  Orientation="Horizontal">
-                            <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
-                        </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
+                            </StackPanel>
 
-                    </dx:SimpleButton>
-                </dxlc:LayoutItem>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup View="GroupBox" Orientation="Vertical" Header="ค่าใช้จ่าย" >
+
+            <dxlc:LayoutGroup View="GroupBox"  Orientation="Vertical" Header="ค่าใช้จ่าย" >
 
                 <dxlc:LayoutGroup Orientation="Vertical" >
                     <dxg:GridControl  x:Name="gTotalCash" ItemsSource="{Binding OrderAllList}" 

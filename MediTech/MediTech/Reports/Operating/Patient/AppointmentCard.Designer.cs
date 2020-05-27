@@ -92,6 +92,7 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.DateNow = new DevExpress.XtraReports.UI.CalculatedField();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -211,7 +212,6 @@
             this.xrLabel27,
             this.xrLabel15,
             this.xrCheckBox1});
-            this.PageFooter.Expanded = false;
             this.PageFooter.HeightF = 121.6667F;
             this.PageFooter.Name = "PageFooter";
             // 
@@ -384,7 +384,7 @@
             // xrLabel20
             // 
             this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "CWhenAppointmentDttm")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DetailBook.DateNow")});
             this.xrLabel20.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(641.6667F, 163.75F);
             this.xrLabel20.Name = "xrLabel20";
@@ -755,6 +755,12 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.PatientBookingModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // DateNow
+            // 
+            this.DateNow.DataMember = "DetailBook";
+            this.DateNow.Expression = "GetDate(Now())";
+            this.DateNow.Name = "DateNow";
+            // 
             // AppointmentCard
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -764,6 +770,8 @@
             this.PageHeader,
             this.PageFooter,
             this.ReportHeader});
+            this.CalculatedFields.AddRange(new DevExpress.XtraReports.UI.CalculatedField[] {
+            this.DateNow});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataMember = "DetailBook";
@@ -845,5 +853,6 @@
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox18;
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.CalculatedField DateNow;
     }
 }

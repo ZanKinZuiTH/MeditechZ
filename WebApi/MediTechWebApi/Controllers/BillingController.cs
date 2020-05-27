@@ -352,11 +352,11 @@ namespace MediTechWebApi.Controllers
                     PayorDetail payorDetail = db.PayorDetail.Find(visitPayor.PayorDetailUID);
                     IEnumerable<HealthOrganisationID> healthOrganisationIDs;
 
-                    if (patpv.VISTYUID == nonMed.UID)
+                    if (patpv.VISTYUID == nonMed?.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
                     }
-                    else if(patpv.VISTYUID == businessUnits.UID)
+                    else if(patpv.VISTYUID == businessUnits?.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 16 && p.StatusFlag == "A"); //BusinessUnits
                     }

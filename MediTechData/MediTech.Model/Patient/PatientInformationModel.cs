@@ -24,7 +24,11 @@ namespace MediTech.Model
         public System.Nullable<int> MARRYUID { get; set; }
 
         public System.Nullable<int> OCCUPUID { get; set; }
-        public string IsVIP { get; set; }
+        public bool IsVIP { get; set; }
+        public int? VIPTPUID { get; set; }
+        public string VIPType { get; set; }
+        public DateTime? VIPActiveFrom { get; set; }
+        public DateTime? VIPActiveTo { get; set; }
         public string PatientID { get; set; }
         public string PatientID2 { get; set; }
         public bool DOBComputed { get; set; }

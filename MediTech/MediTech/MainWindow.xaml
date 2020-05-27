@@ -51,6 +51,9 @@
         <SolidColorBrush x:Key="brushWatermarkBackground" Color="White" />
         <SolidColorBrush x:Key="brushWatermarkForeground" Color="LightSteelBlue" />
         <SolidColorBrush x:Key="brushWatermarkBorder" Color="Indigo" />
+        <Style TargetType="dxlc:LayoutItem">
+            <Setter Property="LabelHorizontalAlignment" Value="Right"/>
+        </Style>
     </Window.Resources>
     <dxmvvm:Interaction.Behaviors>
         <dx:DXSplashScreenService x:Name="SplashScreenService" SplashScreenType="local:SplashScreen" ShowSplashScreenOnLoading="True" FadeOutDuration="0:0:1.0"/>

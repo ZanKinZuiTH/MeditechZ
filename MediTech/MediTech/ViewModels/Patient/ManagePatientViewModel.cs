@@ -14,6 +14,7 @@ using System.IO;
 using MediTech.Helpers;
 using MediTech.Views;
 using System.Drawing;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -411,6 +412,63 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedOccupation, value); }
         }
 
+
+        public List<LookupReferenceValueModel> VIPTypeSources { get; set; }
+        private LookupReferenceValueModel _SelectVIPType;
+
+        public LookupReferenceValueModel SelectVIPType
+        {
+            get { return _SelectVIPType; }
+            set { Set(ref _SelectVIPType, value); }
+        }
+
+        private bool _IsVIP;
+
+        public bool IsVIP
+        {
+            get { return _IsVIP; }
+            set
+            {
+                Set(ref _IsVIP, value);
+                if (IsVIP)
+                {
+                    IsEnableVIP = true;
+                }
+                else
+                {
+                    IsEnableVIP = false;
+                    SelectVIPType = null;
+                    VIPActiveFrom = null;
+                    VIPActiveTo = null;
+                }
+            }
+        }
+
+        private bool _IsEnableVIP;
+
+        public bool IsEnableVIP
+        {
+            get { return _IsEnableVIP; }
+            set { Set(ref _IsEnableVIP, value); }
+        }
+
+
+        private DateTime? _VIPActiveFrom;
+
+        public DateTime? VIPActiveFrom
+        {
+            get { return _VIPActiveFrom; }
+            set { Set(ref _VIPActiveFrom, value); }
+        }
+
+        private DateTime? _VIPActiveTo;
+
+        public DateTime? VIPActiveTo
+        {
+            get { return _VIPActiveTo; }
+            set { Set(ref _VIPActiveTo, value); }
+        }
+
         private string _PatientID;
 
         public string PatientID
@@ -673,7 +731,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
 
-            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,VISTY,RQPRT,OCCUP");
+            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,VISTY,RQPRT,OCCUP,VIPTP");
             GenderSource = dataLookupSource.Where(p => p.DomainCode == "SEXXX").ToList();
             TitleSource = dataLookupSource.Where(p => p.DomainCode == "TITLE").ToList();
             BloodGroupSource = dataLookupSource.Where(p => p.DomainCode == "BLOOD").ToList();
@@ -681,8 +739,9 @@ namespace MediTech.ViewModels
             OccupationSource = dataLookupSource.Where(p => p.DomainCode == "OCCUP").ToList();
             RegionSource = dataLookupSource.Where(p => p.DomainCode == "RELGN").OrderBy(p => p.DisplayOrder).ToList();
             NationalSource = dataLookupSource.Where(p => p.DomainCode == "NATNL").OrderBy(p => p.DisplayOrder).ToList();
-            VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p=> p.DisplayOrder).ToList();
+            VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
+            VIPTypeSources = dataLookupSource.Where(P => P.DomainCode == "VIPTP").OrderBy(p => p.DisplayOrder).ToList();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();
             referenceRealationShipTitle = DataService.Technical.GetReferenceRealationShip("TITLE", "SEXXX");
             Organisations = GetHealthOrganisationRoleMedical();
@@ -700,6 +759,7 @@ namespace MediTech.ViewModels
 
             StartDate = now.Date;
             StartTime = now;
+
         }
 
         void LoadPatientDataSource()
@@ -845,7 +905,7 @@ namespace MediTech.ViewModels
                             var notCloseVisit = visitData.FirstOrDefault(p => p.VisitType != "Mobile X-ray" && p.EndDttm == null);
                             if (notCloseVisit != null)
                             {
-                                MessageBoxResult dialogResult = MessageBox.Show("ผู้ป่วยมีการลงทะเบียนที่ยังไม่ปิดไว้วันที่ " + notCloseVisit.StartDttm.Value.ToString("dd/MM/yyyy") + "\r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("ผู้ป่วยมีการลงทะเบียนที่ยังไม่ปิดไว้วันที่ " + notCloseVisit.StartDttm.Value.ToString("dd/MM/yyyy") + "\r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                                 if (dialogResult == MessageBoxResult.No)
                                 {
                                     return;
@@ -871,7 +931,7 @@ namespace MediTech.ViewModels
                     PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName, birthDttm.Value, SelectedGender.Key);
                     if (patAlready != null)
                     {
-                        MessageBoxResult dialogResult = MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล เพศ วันเดือนปีเกิด ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                        MessageBoxResult dialogResult = System.Windows.MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล เพศ วันเดือนปีเกิด ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (dialogResult == MessageBoxResult.No)
                         {
                             return;
@@ -985,6 +1045,21 @@ namespace MediTech.ViewModels
                 return true;
             }
 
+            if (IsVIP)
+            {
+                if (SelectVIPType == null)
+                {
+                    WarningDialog("กรุณาใส่ VIP Type");
+                    return true;
+                }
+
+                if (VIPActiveTo == null)
+                {
+                    WarningDialog("กรุณาใส่วัน สิ้นสุด VIP");
+                    return true;
+                }
+            }
+
             if (this.View != null && this.View is ManagePatient)
             {
                 if ((this.View as ManagePatient).lytBithDate.Visibility != Visibility.Collapsed)
@@ -1077,6 +1152,7 @@ namespace MediTech.ViewModels
             SelectedCareprovider = null;
             SelectedOccupation = null;
             CommentDoctor = string.Empty;
+            IsVIP = false;
 
         }
 
@@ -1153,6 +1229,27 @@ namespace MediTech.ViewModels
             if (patientModel.PatientUID != 0)
             {
                 PatientAllergyList = DataService.PatientIdentity.GetPatientAllergyByPatientUID(patientModel.PatientUID);
+            }
+
+            IsVIP = patientModel.IsVIP;
+            if (IsVIP)
+            {
+                SelectVIPType = VIPTypeSources.FirstOrDefault(p => p.Key == patientModel.VIPTPUID);
+                VIPActiveFrom = patientModel.VIPActiveFrom;
+                VIPActiveTo = patientModel.VIPActiveTo;
+
+                if (patientModel.VIPActiveTo?.Date < DateTime.Now.Date)
+                {
+                    DialogResult resultDiag = QuestionDialog("สถานะ VIP ผู้ป่วยหมดอายุแล้ว จะต่อวันหมดอายุหรือไม่");
+                    if (resultDiag == DialogResult.Yes)
+                    {
+                        VIPActiveTo = null;
+                    }
+                    else if(resultDiag == DialogResult.No)
+                    {
+                        IsVIP = false;
+                    }
+                }
             }
 
         }
@@ -1234,6 +1331,18 @@ namespace MediTech.ViewModels
                 byte[] patImage = ImageHelpers.ResizeImage(ImageHelpers.ConvertBitmapToByte(PatientImage), 800, 600, true);
                 patientModel.PatientImage = patImage;
             }
+
+            patientModel.IsVIP = IsVIP;
+            if (IsVIP)
+            {
+                patientModel.VIPActiveFrom = VIPActiveFrom;
+                patientModel.VIPActiveTo = VIPActiveTo;
+                if (SelectVIPType != null)
+                {
+                    patientModel.VIPTPUID = SelectVIPType.Key;
+                }
+            }
+
 
 
             return patientModel;

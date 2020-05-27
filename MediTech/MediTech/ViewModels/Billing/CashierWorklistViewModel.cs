@@ -3,6 +3,7 @@ using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;
 using MediTech.Model;
+using MediTech.Models;
 using MediTech.Reports.Operating.Cashier;
 using MediTech.Reports.Operating.Pharmacy;
 using MediTech.Views;
@@ -185,13 +186,12 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PatientOrderDetailModel> _StoreOrderList;
-        public List<PatientOrderDetailModel> StoreOrderList
+        private ObservableCollection<StoreItemList> _StoreOrderList;
+        public ObservableCollection<StoreItemList> StoreOrderList
         {
             get { return _StoreOrderList; }
             set { Set(ref _StoreOrderList, value); }
         }
-
 
         private List<PatientOrderDetailModel> _SelectItemStore;
 
@@ -276,6 +276,21 @@ namespace MediTech.ViewModels
             set { Set(ref _IsPrint, value); }
         }
 
+        private bool _SelectAll;
+
+        public bool SelectAll
+        {
+            get { return _SelectAll; }
+            set
+            {
+                Set(ref _SelectAll, value);
+                foreach (var item in StoreOrderList)
+                {
+                    item.IsSelected = _SelectAll;
+                }
+                (this.View as CashierWorklist).gDrugDetail.RefreshData();
+            }
+        }
 
         #endregion
 
@@ -390,6 +405,8 @@ namespace MediTech.ViewModels
                         return;
                     }
 
+                    GetStoreItem();
+
                     if ((StoreOrderList == null || StoreOrderList.Count == 0)
                         && (OrderAllList != null && OrderAllList.Count(p => p.BillingService == "Drug"
             || p.BillingService == "Medical Supplies"
@@ -410,15 +427,6 @@ namespace MediTech.ViewModels
                             WarningDialog("รายการ " + orderStore.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
                             return;
                         }
-                        //var test1 = (OrderAllList.Where(p => p.BillableItemUID == orderStore.BillableItemUID).Sum(p => p.ItemMutiplier));
-                        //var test2 = StoreOrderList.Where(p => p.BillableItemUID == orderStore.BillableItemUID)
-                        //    .GroupBy(item => new { item.StockUID,item.BalQty }).Select(group => group.);
-                        //if (OrderAllList.Where(p => p.BillableItemUID == orderStore.BillableItemUID).Sum(p => p.ItemMutiplier)
-                        //    > StoreOrderList.Where(p => p.BillableItemUID == orderStore.BillableItemUID).Sum(p => p.BalQty))
-                        //{
-                        //    WarningDialog("มี " + orderStore.ItemName + " ในคลัง ไม่พอสำหรับจ่ายยา โปรดตรวจสอบ");
-                        //    return;
-                        //}
                     }
 
                     if (StoreOrderList != null)
@@ -430,7 +438,7 @@ namespace MediTech.ViewModels
                                 WarningDialog("รายการ " + storeItem.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
                                 return;
                             }
-                            else if(storeItem.Quantity > storeItem.BalQty)
+                            else if (storeItem.Quantity > storeItem.BalQty)
                             {
                                 WarningDialog("มี " + storeItem.ItemName + " ในคลัง ไม่พอสำหรับจ่ายยา โปรดตรวจสอบ");
                                 return;
@@ -446,7 +454,6 @@ namespace MediTech.ViewModels
                             return;
                         }
                     }
-
 
 
 
@@ -640,9 +647,10 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก Printer");
                 return;
             }
-            if (SelectItemStore != null && SelectItemStore.Count > 0)
+            var printStickers = StoreOrderList.Where(p => p.IsSelected);
+            if (printStickers != null && printStickers.Count() > 0)
             {
-                var groupItemStore = SelectItemStore.GroupBy(p => new
+                var groupItemStore = printStickers.GroupBy(p => new
                 {
                     p.IdentifyingUID,
                     p.ItemName
@@ -692,13 +700,14 @@ namespace MediTech.ViewModels
         private void GetOrderAll()
         {
             orderAll = new List<PatientOrderDetailModel>();
-            StoreOrderList = new List<PatientOrderDetailModel>();
+
             orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(SelectPatientCloseMed.PatientVisitUID);
             orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
             OrderAllList = new ObservableCollection<PatientBilledItemModel>(orderAll.Select(p => new PatientBilledItemModel
             {
                 BillableItemUID = p.BillableItemUID,
                 PatientOrderDetailUID = p.PatientOrderDetailUID,
+                ItemCode = p.ItemCode,
                 ItemName = p.ItemName,
                 Amount = p.NetAmount,
                 Discount = p.Discount ?? 0,
@@ -709,44 +718,8 @@ namespace MediTech.ViewModels
                 BillingService = p.BillingService
             }));
 
-            var TempDrugList = orderAll.Where(p =>
-            p.BillingService == "Drug"
-            || p.BillingService == "Medical Supplies"
-            || p.BillingService == "Supply"
-            ).ToList();
-            foreach (var drugItem in TempDrugList)
-            {
-                List<PatientOrderDetailModel> drugDetails = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
-                foreach (var item in drugDetails)
-                {
-                    item.UnitPrice = drugItem.UnitPrice;
-                    item.BillingService = drugItem.BillingService;
-                    item.BillableItemUID = drugItem.BillableItemUID;
-                }
-                StoreOrderList.AddRange(drugDetails);
-            }
-            StoreOrderList = StoreOrderList.GroupBy(p => new { p.BillableItemUID, p.StoreUID,p.StockUID, p.BalQty }).Select(
-                     g => new PatientOrderDetailModel
-                     {
-                         Quantity = g.Sum(p => p.Quantity),
-                         ItemName = g.FirstOrDefault().ItemName,
-                         QuantityUnit = g.FirstOrDefault().QuantityUnit,
-                         BalQty = g.FirstOrDefault().BalQty,
-                         BillableItemUID = g.FirstOrDefault().BillableItemUID,
-                         StockUID = g.FirstOrDefault().StockUID,
-                         StoreUID = g.FirstOrDefault().StoreUID,
-                         ExpiryDate = g.FirstOrDefault().ExpiryDate,
-                         BatchID = g.FirstOrDefault().BatchID,
-                         StoreName = g.FirstOrDefault().StoreName,
-                         InstructionRoute = g.FirstOrDefault().InstructionRoute,
-                         Dosage = g.FirstOrDefault().Dosage,
-                         DrugFrequency = g.FirstOrDefault().DrugFrequency,
-                         LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
-                         ClinicalComments = g.FirstOrDefault().ClinicalComments,
-                         TypeDrug = g.FirstOrDefault().TypeDrug,
-                         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
-                         BillingService = g.FirstOrDefault().BillingService
-                     }).ToList();
+
+            GetStoreItem();
 
 
             TotalPrice = OrderAllList.Sum(p => p.Amount) ?? 0;
@@ -756,6 +729,94 @@ namespace MediTech.ViewModels
             ReCash = 0;
 
             OnUpdateEvent();
+        }
+
+        private void GetStoreItem()
+        {
+            StoreOrderList = new ObservableCollection<StoreItemList>();
+            List<PatientOrderDetailModel> drugDetails = new List<PatientOrderDetailModel>();
+            var TempDrugList = orderAll.Where(p => p.BillingService == "Drug"
+            || p.BillingService == "Medical Supplies"
+            || p.BillingService == "Supply");
+
+            foreach (var drugItem in TempDrugList)
+            {
+                var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
+                foreach (var item in storeUsed)
+                {
+                    item.ItemCode = drugItem.ItemCode;
+                    item.UnitPrice = drugItem.UnitPrice;
+                    item.BillingService = drugItem.BillingService;
+                    item.BillableItemUID = drugItem.BillableItemUID;
+
+                    if (item.Quantity > item.BalQty)
+                    {
+                        item.IsWithoutStock = true;
+                    }
+
+                    if (item.ExpiryDate?.Date <= DateTime.Now.Date)
+                    {
+                        item.IsExpired = true;
+                    }
+
+                    drugDetails.Add(item);
+                }
+            }
+            StoreOrderList = new ObservableCollection<StoreItemList>(
+                drugDetails.GroupBy(p => new { p.BillableItemUID }).Select(
+                     g => new StoreItemList
+                     {
+                         Quantity = g.Sum(p => p.Quantity),
+                         BalQty = g.Sum(p => p.BalQty),
+                         StockUID = g.FirstOrDefault().StockUID,
+                         ItemCode = g.FirstOrDefault().ItemCode,
+                         ItemName = g.FirstOrDefault().ItemName,
+                         QuantityUnit = g.FirstOrDefault().QuantityUnit,
+                         BillableItemUID = g.FirstOrDefault().BillableItemUID,
+                         ExpiryDate = g.FirstOrDefault().ExpiryDate,
+                         IsWithoutStock = g.FirstOrDefault().IsWithoutStock,
+                         IsExpired = g.FirstOrDefault().IsExpired,
+                         InstructionRoute = g.FirstOrDefault().InstructionRoute,
+                         Dosage = g.FirstOrDefault().Dosage,
+                         DrugFrequency = g.FirstOrDefault().DrugFrequency,
+                         LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
+                         ClinicalComments = g.FirstOrDefault().ClinicalComments,
+                         TypeDrug = g.FirstOrDefault().TypeDrug,
+                         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
+                         BillingService = g.FirstOrDefault().BillingService
+                     }));
+
+            foreach (var item in StoreOrderList)
+            {
+                item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>();
+                item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>(
+                    drugDetails.Where(p => p.BillableItemUID == item.BillableItemUID)
+                   .GroupBy(p => new { p.BillableItemUID, p.StoreUID, p.BatchID }).Select(
+                     g => new StoreItemList
+                     {
+                         Quantity = g.Sum(p => p.Quantity),
+                         ItemCode = g.FirstOrDefault().ItemCode,
+                         ItemName = g.FirstOrDefault().ItemName,
+                         QuantityUnit = g.FirstOrDefault().QuantityUnit,
+                         BalQty = g.Sum(p => p.BalQty),
+                         BillableItemUID = g.FirstOrDefault().BillableItemUID,
+                         StockUID = g.FirstOrDefault().StockUID,
+                         StoreUID = g.FirstOrDefault().StoreUID,
+                         ExpiryDate = g.FirstOrDefault().ExpiryDate,
+                         BatchID = g.FirstOrDefault().BatchID,
+                         IsWithoutStock = g.FirstOrDefault().IsWithoutStock,
+                         IsExpired = g.FirstOrDefault().IsExpired,
+                         StoreName = g.FirstOrDefault().StoreName,
+                         InstructionRoute = g.FirstOrDefault().InstructionRoute,
+                         Dosage = g.FirstOrDefault().Dosage,
+                         DrugFrequency = g.FirstOrDefault().DrugFrequency,
+                         LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
+                         ClinicalComments = g.FirstOrDefault().ClinicalComments,
+                         TypeDrug = g.FirstOrDefault().TypeDrug,
+                         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
+                         BillingService = g.FirstOrDefault().BillingService
+                     }));
+            }
         }
         #endregion
     }

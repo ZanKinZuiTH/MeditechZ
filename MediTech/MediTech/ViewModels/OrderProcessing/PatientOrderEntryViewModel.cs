@@ -507,228 +507,251 @@ namespace MediTech.ViewModels
 
         void ApplyOrderItem(SearchOrderItem orderItem)
         {
-            if (SelectHealthOrganisation == null)
+            try
             {
-                WarningDialog("กรุณาเลือก Order จาก");
-                return;
-            }
-
-            if (orderItem.TypeOrder == "OrderSet")
-            {
-                OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
-                int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
-                if (orderSet.OrderSetBillableItems != null)
+                if (SelectHealthOrganisation == null)
                 {
-                    var OrderSetBillItmActive = orderSet.OrderSetBillableItems
-                        .Where(p => (p.ActiveFrom == null || p.ActiveFrom.Value.Date <= DateTime.Now.Date)
-                        && (p.ActiveTo == null || p.ActiveTo.Value.Date >= DateTime.Now.Date));
-                    foreach (var item in OrderSetBillItmActive)
+                    WarningDialog("กรุณาเลือก Order จาก");
+                    return;
+                }
+
+                if (orderItem.TypeOrder == "OrderSet")
+                {
+                    OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
+                    int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
+                    if (orderSet.OrderSetBillableItems != null)
                     {
-
-                        PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
-                        BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(item.BillableItemUID);
-
-                        var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billItem.BillableItemUID);
-                        if (orderAlready != null)
+                        var OrderSetBillItmActive = orderSet.OrderSetBillableItems
+                            .Where(p => (p.ActiveFrom == null || p.ActiveFrom.Value.Date <= DateTime.Now.Date)
+                            && (p.ActiveTo == null || p.ActiveTo.Value.Date >= DateTime.Now.Date));
+                        foreach (var item in OrderSetBillItmActive)
                         {
-                            WarningDialog("รายการ " + billItem.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
-                            continue;
-                        }
 
-                        List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
-                        if (listOrderAlert != null && listOrderAlert.Count > 0)
-                        {
-                            WarningDialog("รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");
-                            OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(new OrderAlert(), new OrderAlertViewModel(listOrderAlert), true);
-                            if (viewModel.ResultDialog != ActionDialog.Save)
+                            PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
+                            BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(item.BillableItemUID);
+
+                            var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billItem.BillableItemUID);
+                            if (orderAlready != null)
                             {
+                                WarningDialog("รายการ " + billItem.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
                                 continue;
                             }
-                            PatientOrderAlerts = viewModel.OrderAlerts;
-                        }
 
-                        //var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
-
-                        //if (billItemPrice == null)
-                        //{
-                        //    WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
-                        //    continue;
-                        //}
-
-                        if (billItem.BillingServiceMetaData == "Drug" 
-                            || billItem.BillingServiceMetaData == "Medical Supplies"
-                            || billItem.BillingServiceMetaData == "Supply")
-                        {
-                            ItemMasterModel itemMaster = DataService.Inventory.GetItemMasterByUID(billItem.ItemUID.Value);
-                            List<StockModel> stores = new List<StockModel>();
-                            stores = DataService.Inventory.GetStockRemainByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
-
-                            if (stores == null || stores.Count <= 0)
+                            List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
+                            if (listOrderAlert != null && listOrderAlert.Count > 0)
                             {
-                                WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
-                                continue;
-                            }
-                            else
-                            {
-                                if (item.Quantity > stores.FirstOrDefault().Quantity)
+                                WarningDialog("รายการ " + billItem.ItemName + " นี้มีแจ้งเตือนการคีย์");
+                                OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(new OrderAlert(), new OrderAlertViewModel(listOrderAlert), true);
+                                if (viewModel.ResultDialog != ActionDialog.Save)
                                 {
-                                    if (itemMaster.CanDispenseWithOutStock != "Y")
-                                    {
-                                        WarningDialog("มี " + billItem.ItemName + " ในคลังไม่พอสำหรับจ่ายยา โปรดตรวจสอบ");
-                                        continue;
+                                    continue;
+                                }
+                                PatientOrderAlerts = viewModel.OrderAlerts;
+                            }
 
-                                    }
-                                    else if (itemMaster.CanDispenseWithOutStock == "Y")
+                            //var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+
+                            //if (billItemPrice == null)
+                            //{
+                            //    WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
+                            //    continue;
+                            //}
+
+                            if (billItem.BillingServiceMetaData == "Drug"
+                                || billItem.BillingServiceMetaData == "Medical Supplies"
+                                || billItem.BillingServiceMetaData == "Supply")
+                            {
+                                ItemMasterModel itemMaster = DataService.Inventory.GetItemMasterByUID(billItem.ItemUID.Value);
+                                List<StockModel> stores = new List<StockModel>();
+
+                                if (itemMaster == null)
+                                {
+                                    WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
+                                    continue;
+                                }
+
+                                stores = DataService.Inventory.GetStockRemainByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
+
+                                if (stores == null || stores.Count <= 0)
+                                {
+                                    WarningDialog("ไม่มี " + billItem.ItemName + " ในคลัง โปรดตรวจสอบ");
+                                    continue;
+                                }
+                                else
+                                {
+                                    if (item.Quantity > stores.FirstOrDefault().Quantity)
                                     {
-                                        DialogResult result = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
-                                        if (result == DialogResult.No || result == DialogResult.Cancel)
+                                        if (itemMaster.CanDispenseWithOutStock != "Y")
                                         {
+                                            WarningDialog("มี " + billItem.ItemName + " ในคลังไม่พอสำหรับจ่ายยา โปรดตรวจสอบ");
                                             continue;
+
+                                        }
+                                        else if (itemMaster.CanDispenseWithOutStock == "Y")
+                                        {
+                                            DialogResult result = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
+                                            if (result == DialogResult.No || result == DialogResult.Cancel)
+                                            {
+                                                continue;
+                                            }
                                         }
                                     }
                                 }
+
+                                if (item.Quantity <= 0)
+                                {
+                                    WarningDialog("ไม่อนุญาติให้คีย์ + " + billItem.ItemName + " จำนวน < 0");
+                                    continue;
+                                }
+
+                                if (itemMaster.MinSalesQty != null && item.Quantity < itemMaster.MinSalesQty)
+                                {
+                                    WarningDialog("คีย์จำนวน " + billItem.ItemName + " ที่ใช้น้อยกว่าจำนวนขั้นต่ำที่คีย์ได้ โปรดตรวจสอบ");
+                                    continue;
+                                }
+
+
+                                newOrder.IsStock = itemMaster.IsStock;
+                                newOrder.StoreUID = stores.FirstOrDefault().StoreUID;
+                                newOrder.DFORMUID = itemMaster.FORMMUID;
+                                newOrder.PDSTSUID = itemMaster.PDSTSUID;
+                                newOrder.QNUOMUID = itemMaster.BaseUOM;
+
                             }
 
-                            if (item.Quantity <= 0)
-                            {
-                                WarningDialog("ไม่อนุญาติให้คีย์ + " + billItem.ItemName + " จำนวน < 0");
-                                continue;
-                            }
+                            newOrder.OrderSetUID = item.OrderSetUID;
+                            newOrder.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
+                            newOrder.BillableItemUID = billItem.BillableItemUID;
+                            newOrder.ItemName = billItem.ItemName;
+                            newOrder.BSMDDUID = billItem.BSMDDUID;
+                            newOrder.ItemUID = billItem.ItemUID;
+                            newOrder.ItemCode = billItem.Code;
+                            newOrder.BillingService = billItem.BillingServiceMetaData;
+                            newOrder.UnitPrice = item.Price;
+                            newOrder.DoctorFee = (item.DoctorFee / 100) * item.Price;
+                            newOrder.DisplayPrice = item.Price;
 
-                            if (itemMaster.MinSalesQty != null && item.Quantity < itemMaster.MinSalesQty)
-                            {
-                                WarningDialog("คีย์จำนวน " + billItem.ItemName + " ที่ใช้น้อยกว่าจำนวนขั้นต่ำที่คีย์ได้ โปรดตรวจสอบ");
-                                continue;
-                            }
+                            newOrder.FRQNCUID = item.FRQNCUID;
+                            newOrder.Quantity = item.Quantity;
+                            newOrder.Dosage = item.DoseQty;
+                            newOrder.Comments = item.ProcessingNotes;
+                            newOrder.IsPriceOverwrite = "N";
+                            newOrder.StartDttm = DateTime.Now;
 
+                            newOrder.NetAmount = ((item.Price) * item.Quantity);
 
-                            newOrder.IsStock = itemMaster.IsStock;
-                            newOrder.StoreUID = stores.FirstOrDefault().StoreUID;
-                            newOrder.DFORMUID = itemMaster.FORMMUID;
-                            newOrder.PDSTSUID = itemMaster.PDSTSUID;
-                            newOrder.QNUOMUID = itemMaster.BaseUOM;
+                            newOrder.OwnerOrganisationUID = ownerUID ?? 0;
 
+                            if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
+                                newOrder.PatientOrderAlert = PatientOrderAlerts;
+
+                            PatientOrders.Add(newOrder);
+                            OnUpdateEvent();
                         }
-
-                        newOrder.OrderSetUID = item.OrderSetUID;
-                        newOrder.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
-                        newOrder.BillableItemUID = billItem.BillableItemUID;
-                        newOrder.ItemName = billItem.ItemName;
-                        newOrder.BSMDDUID = billItem.BSMDDUID;
-                        newOrder.ItemUID = billItem.ItemUID;
-                        newOrder.ItemCode = billItem.Code;
-                        newOrder.BillingService = billItem.BillingServiceMetaData;
-                        newOrder.UnitPrice = item.Price;
-                        newOrder.DoctorFee = (item.DoctorFee / 100)* item.Price;
-                        newOrder.DisplayPrice = item.Price;
-
-                        newOrder.FRQNCUID = item.FRQNCUID;
-                        newOrder.Quantity = item.Quantity;
-                        newOrder.Dosage = item.DoseQty;
-                        newOrder.Comments = item.ProcessingNotes;
-                        newOrder.IsPriceOverwrite = "N";
-                        newOrder.StartDttm = DateTime.Now;
-
-                        newOrder.NetAmount = ((item.Price) * item.Quantity);
-
-                        newOrder.OwnerOrganisationUID = ownerUID ?? 0;
-
-                        if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
-                            newOrder.PatientOrderAlert = PatientOrderAlerts;
-
-                        PatientOrders.Add(newOrder);
-                        OnUpdateEvent();
                     }
                 }
+                else
+                {
+                    PopUpOrder(orderItem.BillableItemUID);
+                }
             }
-            else
+            catch (Exception ex)
             {
-                PopUpOrder(orderItem.BillableItemUID);
+                ErrorDialog(ex.Message);
             }
+
         }
         void PopUpOrder(int billableItemUID)
         {
-            var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billableItemUID);
-            if (orderAlready != null)
+            try
             {
-                WarningDialog("รายการ " + orderAlready.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
-                return;
-            }
-            BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
-
-            int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
-
-            var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
-
-            if (billItemPrice == null)
-            {
-                WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
-                return;
-            }
-
-            billItem.Price = billItemPrice.Price;
-            billItem.CURNCUID = billItemPrice.CURNCUID;
-
-            if (billItem != null)
-            {
-                var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
-                if (listOrderAlert != null && listOrderAlert.Count > 0)
+                var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billableItemUID);
+                if (orderAlready != null)
                 {
-                    OrderAlert viewOrderAlert = new OrderAlert();
-                    OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(viewOrderAlert, new OrderAlertViewModel(listOrderAlert), true);
-                    if (viewModel.ResultDialog != ActionDialog.Save)
-                    {
-                        return;
-                    }
-                    PatientOrderAlerts = viewModel.OrderAlerts;
+                    WarningDialog("รายการ " + orderAlready.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
+                    return;
+                }
+                BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
+
+                int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
+
+                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+
+                if (billItemPrice == null)
+                {
+                    WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
+                    return;
                 }
 
+                billItem.Price = billItemPrice.Price;
+                billItem.CURNCUID = billItemPrice.CURNCUID;
 
-                switch (billItem.BillingServiceMetaData)
+                if (billItem != null)
                 {
-                    case "Lab Test":
-                    case "Radiology":
-                    case "Order Item":
+                    var listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
+                    if (listOrderAlert != null && listOrderAlert.Count > 0)
+                    {
+                        OrderAlert viewOrderAlert = new OrderAlert();
+                        OrderAlertViewModel viewModel = (OrderAlertViewModel)ShowModalDialogUsingViewModel(viewOrderAlert, new OrderAlertViewModel(listOrderAlert), true);
+                        if (viewModel.ResultDialog != ActionDialog.Save)
                         {
-                            OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem);
-                            OrderWithOutStockItemViewModel resultRe = (OrderWithOutStockItemViewModel)LaunchViewDialog(ordRe, "ORDLAB", true);
-                            if (resultRe != null && resultRe.ResultDialog == ActionDialog.Save)
+                            return;
+                        }
+                        PatientOrderAlerts = viewModel.OrderAlerts;
+                    }
+
+
+                    switch (billItem.BillingServiceMetaData)
+                    {
+                        case "Lab Test":
+                        case "Radiology":
+                        case "Order Item":
+                            {
+                                OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem);
+                                OrderWithOutStockItemViewModel resultRe = (OrderWithOutStockItemViewModel)LaunchViewDialog(ordRe, "ORDLAB", true);
+                                if (resultRe != null && resultRe.ResultDialog == ActionDialog.Save)
+                                {
+                                    if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
+                                        resultRe.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+
+                                    PatientOrders.Add(resultRe.PatientOrderDetail);
+                                    OnUpdateEvent();
+                                }
+                                break;
+                            }
+                        case "Medical Supplies":
+                        case "Supply":
+                            OrderMedicalItem ordMed = new OrderMedicalItem(billItem, ownerUID);
+                            OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
+                            if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
                             {
                                 if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
-                                    resultRe.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+                                    resultMed.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
 
-                                PatientOrders.Add(resultRe.PatientOrderDetail);
+                                PatientOrders.Add(resultMed.PatientOrderDetail);
                                 OnUpdateEvent();
                             }
                             break;
-                        }
-                    case "Medical Supplies":
-                    case "Supply":
-                        OrderMedicalItem ordMed = new OrderMedicalItem(billItem, ownerUID);
-                        OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
-                        if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
-                        {
-                            if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
-                                resultMed.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+                        case "Drug":
+                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID);
+                            OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
+                            if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
+                            {
+                                if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
+                                    resultDrug.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
 
-                            PatientOrders.Add(resultMed.PatientOrderDetail);
-                            OnUpdateEvent();
-                        }
-                        break;
-                    case "Drug":
-                        OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID);
-                        OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
-                        if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
-                        {
-                            if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
-                                resultDrug.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
-
-                            PatientOrders.Add(resultDrug.PatientOrderDetail);
-                            OnUpdateEvent();
-                        }
-                        break;
+                                PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                OnUpdateEvent();
+                            }
+                            break;
+                    }
                 }
             }
+            catch (Exception ex)
+            {
+                ErrorDialog(ex.Message);
+            }
+
 
         }
 

@@ -53,7 +53,7 @@ namespace MediTech.Model
         public String BatchID { get; set; }
         public Nullable<int> StockUID { get; set; }
         public Nullable<int> BillPackageUID { get; set; }
-        
+
         public Nullable<int> CareproviderUID { get; set; }
         public Nullable<int> CancelledByUserUID { get; set; }
         public Nullable<System.DateTime> CancelledDttm { get; set; }
@@ -79,5 +79,10 @@ namespace MediTech.Model
 
         public List<PatientOrderAlertModel> PatientOrderAlert { get; set; }
         public bool IsSelected { get; set; }
+
+        public bool IsWithoutStock { get; set; }
+        public bool IsExpired { get; set; }
+
+
     }
 }

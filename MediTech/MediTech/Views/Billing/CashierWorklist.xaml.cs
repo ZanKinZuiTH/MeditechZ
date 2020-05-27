@@ -24,17 +24,13 @@ namespace MediTech.Views
         {
             InitializeComponent();
             gvTotalCash.PreviewKeyDown += gvTotalCash_PreviewKeyDown;
-            this.Loaded += CashierWorklist_Loaded;
             if (this.DataContext is CashierWorklistViewModel)
             {
                 (this.DataContext as CashierWorklistViewModel).UpdateEvent += DispenseDrugs_UpdateEvent;
             }
         }
 
-        private void CashierWorklist_Loaded(object sender, RoutedEventArgs e)
-        {
-            gDrugDetail.GroupBy("ItemName");
-        }
+
 
         void gvTotalCash_PreviewKeyDown(object sender, KeyEventArgs e)
         {

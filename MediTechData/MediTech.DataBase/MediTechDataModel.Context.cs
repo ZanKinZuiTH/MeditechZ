@@ -167,6 +167,7 @@ namespace MediTech.DataBase
         public virtual DbSet<Store> Store { get; set; }
         public virtual DbSet<StoreUOMConversion> StoreUOMConversion { get; set; }
         public virtual DbSet<VendorDetail> VendorDetail { get; set; }
+        public virtual DbSet<VIPPatient> VIPPatient { get; set; }
         public virtual DbSet<WellnessData> WellnessData { get; set; }
         public virtual DbSet<XrayTranslateCondition> XrayTranslateCondition { get; set; }
         public virtual DbSet<XrayTranslateConditionDetail> XrayTranslateConditionDetail { get; set; }

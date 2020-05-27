@@ -318,10 +318,29 @@ namespace MediTechWebApi.Controllers
                 else if (store.STDTPUID == 2902)
                     stockItem = stockItem.OrderBy(p => p.CUser);
 
+                if (presItem.IMUOMUID != itemMaster.BaseUOM)
+                {
+                    double? convertValue;
+                    var storeConvert = db.StoreUOMConversion.FirstOrDefault(p => p.BaseUOMUID == itemMaster.BaseUOM
+                    && p.ConversionUOMUID == presItem.IMUOMUID
+                    && p.StatusFlag == "A");
+                    if (storeConvert != null)
+                    {
+                        convertValue = storeConvert.ConversionValue;
+                        if (convertValue.HasValue && convertValue > 0)
+                        {
+                            presItem.Quantity = (presItem.Quantity.Value / convertValue.Value);
+                        }
+                    }
+                }
+
+                int i = 0;
                 foreach (var item in stockItem)
                 {
+                    i++;
                     PatientOrderDetailModel drugDetail = new PatientOrderDetailModel();
                     drugDetail.ItemUID = presItem.ItemMasterUID;
+                    drugDetail.ItemCode = presItem.ItemCode;
                     drugDetail.ItemName = presItem.ItemName;
                     drugDetail.PDSTSUID = presItem.PDSTSUID;
                     if (presItem.PDSTSUID != null && presItem.PDSTSUID != 0)
@@ -351,21 +370,7 @@ namespace MediTechWebApi.Controllers
                         drugDetail.QuantityUnit = db.ReferenceValue.Find(presItem.IMUOMUID).Description;
 
 
-                    if (presItem.IMUOMUID != itemMaster.BaseUOM)
-                    {
-                        double? convertValue;
-                        var storeConvert = db.StoreUOMConversion.FirstOrDefault(p => p.BaseUOMUID == itemMaster.BaseUOM
-                        && p.ConversionUOMUID == presItem.IMUOMUID
-                        && p.StatusFlag == "A");
-                        if (storeConvert != null)
-                        {
-                            convertValue = storeConvert.ConversionValue;
-                            if (convertValue.HasValue && convertValue > 0)
-                            {
-                                presItem.Quantity = (presItem.Quantity.Value / convertValue.Value);
-                            }
-                        }
-                    }
+
 
                     if (item.Quantity >= presItem.Quantity)
                     {
@@ -375,14 +380,73 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        drugDetail.Quantity = item.Quantity;
-                        presItem.Quantity = presItem.Quantity - drugDetail.Quantity;
+                        if (i == stockItem.Count())
+                        {
+                            drugDetail.Quantity = presItem.Quantity;
+                        }
+                        else
+                        {
+                            drugDetail.Quantity = item.Quantity;
+                            presItem.Quantity = presItem.Quantity - drugDetail.Quantity;
+                        }
+
                     }
-
-
 
                     listDrugDispense.Add(drugDetail);
                 }
+            }
+            else
+            {
+                PatientOrderDetailModel drugDetail = new PatientOrderDetailModel();
+                drugDetail.ItemUID = presItem.ItemMasterUID;
+                drugDetail.ItemCode = presItem.ItemCode;
+                drugDetail.ItemName = presItem.ItemName;
+                drugDetail.PDSTSUID = presItem.PDSTSUID;
+                if (presItem.PDSTSUID != null && presItem.PDSTSUID != 0)
+                    drugDetail.InstructionRoute = db.ReferenceValue.Find(presItem.PDSTSUID).Description;
+
+                drugDetail.Dosage = presItem.Dosage;
+                drugDetail.FRQNCUID = presItem.FRQNCUID;
+                if (presItem.FRQNCUID != null && presItem.FRQNCUID != 0)
+                    drugDetail.DrugFrequency = db.FrequencyDefinition.Find(presItem.FRQNCUID).Comments;
+
+                drugDetail.IdentifyingUID = presItem.UID;
+                drugDetail.InstructionText = presItem.InstructionText;
+                drugDetail.LocalInstructionText = presItem.LocalInstructionText;
+                drugDetail.ClinicalComments = presItem.ClinicalComments;
+                drugDetail.StockUID = 0;
+                drugDetail.BalQty = 0;
+                drugDetail.ExpiryDate = null;
+                drugDetail.StoreName = store.Name;
+                drugDetail.StoreUID = store.UID;
+                drugDetail.BatchID = "";
+                drugDetail.DFORMUID = presItem.DFORMUID;
+                if (presItem.DFORMUID != null && presItem.DFORMUID != 0)
+                    drugDetail.TypeDrug = db.ReferenceValue.Find(presItem.DFORMUID).Description;
+
+                drugDetail.QNUOMUID = presItem.IMUOMUID;
+                if (presItem.IMUOMUID != null && presItem.IMUOMUID != 0)
+                    drugDetail.QuantityUnit = db.ReferenceValue.Find(presItem.IMUOMUID).Description;
+
+
+                if (presItem.IMUOMUID != itemMaster.BaseUOM)
+                {
+                    double? convertValue;
+                    var storeConvert = db.StoreUOMConversion.FirstOrDefault(p => p.BaseUOMUID == itemMaster.BaseUOM
+                    && p.ConversionUOMUID == presItem.IMUOMUID
+                    && p.StatusFlag == "A");
+                    if (storeConvert != null)
+                    {
+                        convertValue = storeConvert.ConversionValue;
+                        if (convertValue.HasValue && convertValue > 0)
+                        {
+                            presItem.Quantity = (presItem.Quantity.Value / convertValue.Value);
+                        }
+                    }
+                }
+                drugDetail.Quantity = presItem.Quantity;
+
+                listDrugDispense.Add(drugDetail);
             }
             return listDrugDispense;
         }

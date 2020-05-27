@@ -33,19 +33,33 @@
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Left">
-                    <Image Width="25" Cursor="Hand"
+                    <StackPanel Orientation="Horizontal">
+                        <Image Width="25" Cursor="Hand"
                            Margin="10,0,0,0"
                                    Height="25"
                                    Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
                                    ToolTip="Vital Sign" >
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger  EventName="MouseLeftButtonUp">
-                                <mvvm:EventToCommand Command="{Binding OpenVitalSignsChartCommand}"/>
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                    </Image>
-                </dxlc:LayoutItem>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding OpenVitalSignsChartCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
 
+                        <Image Width="25" Cursor="Hand"
+                           Margin="5,0,0,0"
+                                   Height="25"
+                                   Source="/MediTech;component/Resources/Images/Menu/ScannedDocument.png"
+                                   ToolTip="Scanned Document" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding OpenScannedDocumentCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
+                    </StackPanel>
+
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
             <local:SummeryView  x:Name="summeryView" Height="Auto"

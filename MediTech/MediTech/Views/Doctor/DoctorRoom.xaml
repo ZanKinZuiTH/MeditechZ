@@ -11,7 +11,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=DoctorRoomViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="1600">
     <UserControl.Resources>
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
 

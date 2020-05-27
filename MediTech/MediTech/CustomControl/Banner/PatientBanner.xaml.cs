@@ -99,7 +99,8 @@ namespace MediTech.CustomControl.Banner
             txtBMI.Text = "";
             txtMobile.Text = "";
             txtPhone.Text = "";
-            imaAllergy.Visibility = System.Windows.Visibility.Collapsed;
+            imgAllergy.Visibility = System.Windows.Visibility.Collapsed;
+            imgVIP.Visibility = Visibility.Collapsed;
             Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
             BitmapImage image = new BitmapImage(uri);
             patientImage.Source = image;
@@ -127,13 +128,25 @@ namespace MediTech.CustomControl.Banner
 
                 if (patientVisit.IsAllergy)
                 {
-                    imaAllergy.Visibility = System.Windows.Visibility.Visible;
+                    imgAllergy.Visibility = System.Windows.Visibility.Visible;
                     dtgAllergy.ItemsSource = patentData.GetPatientAllergyByPatientUID(patientUID);
                 }
                 else
                 {
-                    imaAllergy.Visibility = System.Windows.Visibility.Collapsed;
+                    imgAllergy.Visibility = System.Windows.Visibility.Collapsed;
                     dtgAllergy.ItemsSource = null;
+                }
+
+                if (patientVisit.IsVIP)
+                {
+                    imgVIP.Visibility = System.Windows.Visibility.Visible;
+                    txtVIPType.Text = patientVisit.VIPType;
+                    txtVIPActiveFrom.Text = patientVisit.VIPActiveFrom?.ToString("dd/MM/yyyy");
+                    txtVIPActiveTo.Text = patientVisit.VIPActiveTo?.ToString("dd/MM/yyyy");
+                }
+                else
+                {
+                    imgVIP.Visibility = System.Windows.Visibility.Collapsed;                  
                 }
 
                 if (patientVisit.PatientImage != null)

@@ -82,11 +82,12 @@
                 <TextBlock Name="txtDateOfBirth" Margin="5,0,0,0" Style="{StaticResource NormalText}"/>
                 <!--<TextBlock Text="(Deceased)" Name="txtDeceased" Margin="5,0,0,0" FontWeight="Bold" Foreground="#FFF81010" FontSize="18" Visibility="Collapsed"  />-->
 
-                <StackPanel x:Name="lycIcon">
-                    <Image Name="imaAllergy" Source="/MediTech;component/Resources/Images/Medical/Allergy.png"
+                <StackPanel x:Name="lycIcon" Orientation="Horizontal">
+                    <Image Name="imgAllergy" Source="/MediTech;component/Resources/Images/Medical/Allergy.png"
+                       Cursor="Hand"
                        Visibility="Collapsed"
                        VerticalAlignment="Center"
-                       Width="30" Height="30" Margin="5,10,0,0">
+                       Width="30" Height="30" Margin="5,0,0,0">
                         <Image.ToolTip>
                             <DataGrid  Name="dtgAllergy" MinHeight="80" 
                                    CanUserAddRows="False" IsReadOnly="True" 
@@ -111,6 +112,30 @@
                                 </DataGrid.Columns>
                             </DataGrid>
 
+                        </Image.ToolTip>
+                    </Image>
+                    <Image Name="imgVIP" Source="/MediTech;component/Resources/Images/Other/VIP.png"
+                       Visibility="Collapsed"
+                       Cursor="Hand"
+                       Width="30" Height="30" Margin="5,0,0,0">
+                        <Image.ToolTip>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="Auto"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <TextBlock Text="ประเภท VIP : " HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Column="1" Name="txtVIPType"/>
+                                <TextBlock Grid.Row="1" Text="วันเริ่มต้น : " HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="1" Grid.Column="1" Name="txtVIPActiveFrom"/>
+                                <TextBlock Grid.Row="2" Text="วันสิ้นสุด : " HorizontalAlignment="Right"/>
+                                <TextBlock Grid.Row="2" Grid.Column="1" Name="txtVIPActiveTo"/>
+                            </Grid>
                         </Image.ToolTip>
                     </Image>
                 </StackPanel>

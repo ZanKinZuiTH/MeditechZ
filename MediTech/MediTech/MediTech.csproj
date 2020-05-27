@@ -232,6 +232,7 @@
     <Compile Include="Models\LaunchPageMassage.cs" />
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
+    <Compile Include="Models\StoreItemList.cs" />
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill2.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -310,6 +311,18 @@
     <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage4.Designer.cs">
       <DependentUpon>BookPage4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .Designer.cs">
+      <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.Designer.cs">
+      <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -345,6 +358,30 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil5.Designer.cs">
       <DependentUpon>MedicalCouncil5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.Designer.cs">
+      <DependentUpon>WorkingHeightCertificate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.Designer.cs">
+      <DependentUpon>WorkingHeightCertificate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.Designer.cs">
+      <DependentUpon>WorkingHeightCertificateEng1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.Designer.cs">
+      <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MobileSticker.cs">
       <SubType>Component</SubType>
@@ -1834,6 +1871,12 @@
     <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage4.resx">
       <DependentUpon>BookPage4.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
+      <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.resx">
+      <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
     </EmbeddedResource>
@@ -1854,6 +1897,18 @@
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil5.resx">
       <DependentUpon>MedicalCouncil5.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.resx">
+      <DependentUpon>WorkingHeightCertificate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.resx">
+      <DependentUpon>WorkingHeightCertificate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.resx">
+      <DependentUpon>WorkingHeightCertificateEng1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.resx">
+      <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MobileSticker.resx">
       <DependentUpon>MobileSticker.cs</DependentUpon>
@@ -2274,6 +2329,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Other\VIP.png" />
     <Resource Include="Resources\Images\Action\MoveDown.png" />
     <Resource Include="Resources\Images\Action\MoveUp.png" />
     <Resource Include="Resources\Images\Menu\PatientMerge.png" />

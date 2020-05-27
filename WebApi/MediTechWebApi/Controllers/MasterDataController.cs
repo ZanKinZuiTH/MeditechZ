@@ -50,8 +50,14 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<RequestItemModel> GetRequestItemByCategory(string category)
         {
+            DateTime now = DateTime.Now;
             int TSTTPUID = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "TSTTP" && p.Description.ToLower() == category.ToLower() && p.StatusFlag == "A").UID;
-            List<RequestItemModel> data = db.RequestItem.Where(p => p.TSTTPUID == TSTTPUID && p.StatusFlag == "A").Select(p => new RequestItemModel()
+            List<RequestItemModel> data = db.RequestItem.Where(p => 
+            p.TSTTPUID == TSTTPUID 
+            && p.StatusFlag == "A"
+            && (p.EffectiveFrom == null || DbFunctions.TruncateTime(p.EffectiveFrom) <= DbFunctions.TruncateTime(now))
+            && (p.EffectiveTo == null || DbFunctions.TruncateTime(p.EffectiveTo) >= DbFunctions.TruncateTime(now)))
+            .Select(p => new RequestItemModel()
             {
                 RequestItemUID = p.UID,
                 Code = p.Code,
@@ -662,7 +668,7 @@ namespace MediTechWebApi.Controllers
         }
         #endregion
 
-        #region Specimenio
+        #region Specimen
         [Route("SearhcSpecimen")]
         [HttpGet]
         public List<SpecimenModel> SearhcSpecimen(string specimentext)
@@ -1905,6 +1911,7 @@ namespace MediTechWebApi.Controllers
             return data;
         }
         #endregion
+
         #region PayorDetail
 
         [Route("SearchPayorDetail")]
@@ -2260,11 +2267,6 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
-        #region Location
-
-         
-
-        #endregion
 
 
         public string SetItemNameSearch(string itemName)

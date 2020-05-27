@@ -141,8 +141,15 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<ItemMasterModel> GetItemMasterByType(string itemType)
         {
+            DateTime now = DateTime.Now;
             int ITMTYP = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "ITMTYP" && p.Description.ToLower() == itemType.ToLower() && p.StatusFlag == "A").UID;
-            List<ItemMasterModel> data = db.ItemMaster.Where(p => p.StatusFlag == "A" && p.ITMTYPUID == ITMTYP).Select(p => new ItemMasterModel()
+            List<ItemMasterModel> data = db.ItemMaster
+                .Where(p => p.StatusFlag == "A" 
+                && p.ITMTYPUID == ITMTYP
+                && (p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now))
+                && (p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
+                )
+                .Select(p => new ItemMasterModel()
             {
                 ItemMasterUID = p.UID,
                 Code = p.Code,
@@ -602,7 +609,9 @@ namespace MediTechWebApi.Controllers
         public List<ItemAverageCostModel> GetItemAverageCost(int itemMasterUID, int? organisationUID)
         {
             List<ItemAverageCostModel> ItemAverageList = (from j in db.ItemAverageCost
+                                                          join i in db.HealthOrganisation on j.OwnerOrganisationUID equals i.UID
                                                           where j.StatusFlag == "A"
+                                                          && i.StatusFlag == "A"
                                                           && j.ItemMasterUID == itemMasterUID
                                                           && (organisationUID == null || j.OwnerOrganisationUID == organisationUID)
                                                           && j.EndDttm == null
@@ -623,7 +632,6 @@ namespace MediTechWebApi.Controllers
 
             return ItemAverageList;
         }
-
 
         #endregion
 

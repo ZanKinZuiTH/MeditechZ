@@ -145,10 +145,11 @@
         <EntityTypeShape EntityType="MediTechModel.Store" Width="1.5" PointX="24.75" PointY="38.75" />
         <EntityTypeShape EntityType="MediTechModel.StoreUOMConversion" Width="1.5" PointX="26.75" PointY="38.75" />
         <EntityTypeShape EntityType="MediTechModel.VendorDetail" Width="1.5" PointX="28.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="30.75" PointY="38.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="38.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="38.75" PointY="35.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="0.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.VIPPatient" Width="1.5" PointX="30.75" PointY="38.75" />
+        <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="38.75" PointY="31.75" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="38.75" PointY="35.75" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="0.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="2.75" PointY="39.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

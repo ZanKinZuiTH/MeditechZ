@@ -333,7 +333,6 @@ namespace MediTech.ViewModels
             }
         }
 
-
         void ViewDocument()
         {
             try

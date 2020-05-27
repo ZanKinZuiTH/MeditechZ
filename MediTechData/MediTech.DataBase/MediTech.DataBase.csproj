@@ -839,6 +839,9 @@
     <Compile Include="VendorDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="VIPPatient.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="WellnessData.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

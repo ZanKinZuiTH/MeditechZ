@@ -26,7 +26,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> DOBDttm { get; set; }
         public bool DOBComputed { get; set; }
         public Nullable<int> BLOODUID { get; set; }
-        public string IsVIP { get; set; }
+        public Nullable<bool> IsVIP { get; set; }
         public string IDCard { get; set; }
         public Nullable<int> RELGNUID { get; set; }
         public string IDLine { get; set; }

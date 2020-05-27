@@ -56,6 +56,12 @@ namespace MediTech.ViewModels
             get { return _OpenVitalSignsChartCommand ?? (_OpenVitalSignsChartCommand = new RelayCommand(OpenVitalSignsChart)); }
         }
 
+        private RelayCommand _OpenScannedDocumentCommand;
+
+        public RelayCommand OpenScannedDocumentCommand
+        {
+            get { return _OpenScannedDocumentCommand ?? (_OpenScannedDocumentCommand = new RelayCommand(OpenScannedDocument)); }
+        }
         #endregion
 
         #region Method
@@ -79,6 +85,13 @@ namespace MediTech.ViewModels
             VitalSignsChart pageView = new VitalSignsChart();
             (pageView.DataContext as VitalSignsChartViewModel).PatientUID = SelectPatientVisit.PatientUID;
             LaunchViewDialogNonPermiss(pageView, false, false);
+        }
+
+        void OpenScannedDocument()
+        {
+            ScannedDocument pageview = new ScannedDocument();
+            (pageview.DataContext as ScannedDocumentViewModel).AssingPatientVisit(SelectPatientVisit);
+            ScannedDocumentViewModel result = (ScannedDocumentViewModel)LaunchViewDialog(pageview, "PATSCD", false);
         }
         #endregion
     }
