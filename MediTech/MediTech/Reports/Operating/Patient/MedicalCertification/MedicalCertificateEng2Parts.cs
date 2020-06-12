@@ -18,7 +18,7 @@ namespace MediTech.Reports.Operating.Patient
         private void MedicalCertificateEng2Parts_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
-            var dataSource = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
+            var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
 
             this.DataSource = dataSource;
         }

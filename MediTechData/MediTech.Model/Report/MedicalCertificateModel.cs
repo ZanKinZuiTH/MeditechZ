@@ -19,6 +19,7 @@ namespace MediTech.Model.Report
         public double? Pulse { get; set; }
         public double? BPSys { get; set; }
         public double? BPDio { get; set; }
+        public double? Temp { get; set; }
         public DateTime? VitalSignRecordDttm { get; set; }
         public string AgeString { get; set; }
         public string AgeYear { get; set; }

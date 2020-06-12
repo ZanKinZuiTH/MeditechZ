@@ -456,6 +456,7 @@ namespace MediTechWebApi.Controllers
                                                 Pulse = j.Pulse,
                                                 BPSys = j.BPSys,
                                                 BPDio = j.BPDio,
+                                                Temp = j.Temprature,
 
                                             }).OrderByDescending(p => p.VitalSignRecordDttm).FirstOrDefault();
 
