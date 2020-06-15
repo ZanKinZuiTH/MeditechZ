@@ -23,27 +23,40 @@ namespace MediTech.Views
         public CheckupReport()
         {
             InitializeComponent();
+            pivotData.CustomCellAppearance += PivotData_CustomCellAppearance;
         }
+
 
         private void PivotData_CustomCellAppearance(object sender, DevExpress.Xpf.PivotGrid.PivotCustomCellAppearanceEventArgs e)
         {
-            if (e.DataField.FieldName == "ResultValue")
+            try
             {
-                if (e.Value != null)
+                if (e.DataField.FieldName == "ResultValue")
                 {
-                    string[] values = e.Value.ToString().Split(' ');
-                    string IsAbnormal = values?[1];
-                    if (IsAbnormal == "H")
+                    if (e.Value != null && e.Value.ToString() != "")
                     {
-                        e.Foreground = Brushes.Red;
+                        string[] values = e.Value.ToString().Split(' ');
+                        if (values != null && values.Count() > 1)
+                        {
+                            string IsAbnormal = values?[1];
+                            if (IsAbnormal == "H")
+                            {
+                                e.Foreground = Brushes.Red;
+                            }
+                            else if (IsAbnormal == "L")
+                            {
+                                e.Foreground = Brushes.Blue;
+                            }
+                        }
                     }
-                    else if(IsAbnormal == "L")
-                    {
-                        e.Foreground = Brushes.Blue;
-                    }
+
                 }
+            }
+            catch (Exception)
+            {
 
             }
+
         }
     }
 }

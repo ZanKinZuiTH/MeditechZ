@@ -29,7 +29,8 @@ namespace MediTechWebApi.Controllers
         {
 
             List<PatientVitalSignModel> data = db.PatientVitalSign
-                .Where(p => p.PatientUID == patientUID 
+                .Where(p => p.PatientUID == patientUID
+                && p.StatusFlag == "A"
                 &&  (dateFrom == null || DbFunctions.TruncateTime(p.RecordedDttm) >= DbFunctions.TruncateTime(dateFrom))
                 && (dateTo == null || DbFunctions.TruncateTime(p.RecordedDttm) <= DbFunctions.TruncateTime(dateTo)))
                 .Select(p => new PatientVitalSignModel
@@ -48,6 +49,7 @@ namespace MediTechWebApi.Controllers
                     BPSys = p.BPSys,
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
+                    WaistCircumference = p.WaistCircumference,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -76,6 +78,7 @@ namespace MediTechWebApi.Controllers
                     BPSys = p.BPSys,
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
+                    WaistCircumference = p.WaistCircumference,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -104,6 +107,7 @@ namespace MediTechWebApi.Controllers
                     BPSys = p.BPSys,
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
+                    WaistCircumference = p.WaistCircumference,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -141,6 +145,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.BPSys = model.BPSys;
                 vitalsign.BPDio = model.BPDio;
                 vitalsign.OxygenSat = model.OxygenSat;
+                vitalsign.WaistCircumference = model.WaistCircumference;
                 vitalsign.MUser = userID;
                 vitalsign.MWhen = now;
                 vitalsign.StatusFlag = "A";

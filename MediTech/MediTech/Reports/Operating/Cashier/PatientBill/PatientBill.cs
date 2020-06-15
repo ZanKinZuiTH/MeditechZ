@@ -150,6 +150,18 @@ namespace MediTech.Reports.Operating.Cashier
                 listbill = new List<PatientBilledItemModel>();
                 listbill.Add(newModel);
             }
+            else if (reportType == 3)
+            {
+                BillingDetail_supreport.ReportSource = (new PatientBillDetail());
+                BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
+                PatientBilledItemModel newModel = new PatientBilledItemModel();
+                newModel.BillinsgSubGroup = "ค่าบริการเยี่ยมบ้าน";
+                newModel.Amount = amountTotal_net;
+                newModel.Discount = discountTotal_Net;
+                newModel.NetAmount = cashTotal_net;
+                listbill = new List<PatientBilledItemModel>();
+                listbill.Add(newModel);
+            }
             else
             {
                 BillingDetail_supreport.ReportSource = (new PatientBillDetail());

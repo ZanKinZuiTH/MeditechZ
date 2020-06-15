@@ -99,6 +99,7 @@ namespace MediTech.ViewModels
             VitalSignList.Add(new LookupReferenceValueModel { Display = "Systolic BP" });
             VitalSignList.Add(new LookupReferenceValueModel { Display = "Diastolic BP" });
             VitalSignList.Add(new LookupReferenceValueModel { Display = "Oxygen Sat" });
+            VitalSignList.Add(new LookupReferenceValueModel { Display = "Waist Circumference" });
             foreach (var item in VitalSignList)
             {
                 SelectVitalSignList.Add(item.Display);
@@ -170,6 +171,10 @@ namespace MediTech.ViewModels
                     if (item.OxygenSat != null && _SelectVitalSignList.Contains("Oxygen Sat"))
                     {
                         DataStatistic.Add(new ChartStatisticModel() { DisplayName = "Oxygen Sat", Argument = item.RecordedDttm?.ToString("dd/MM/yyyy HH:mm"), Value = item.OxygenSat.Value });
+                    }
+                    if (item.WaistCircumference != null && _SelectVitalSignList.Contains("Waist Circumference"))
+                    {
+                        DataStatistic.Add(new ChartStatisticModel() { DisplayName = "Waist Circumference", Argument = item.RecordedDttm?.ToString("dd/MM/yyyy HH:mm"), Value = item.WaistCircumference.Value });
                     }
                 }
             }

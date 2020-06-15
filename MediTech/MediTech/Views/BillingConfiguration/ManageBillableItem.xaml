@@ -22,7 +22,6 @@
                         </dxlc:LayoutItem.Label>
                         <dxe:ComboBoxEdit ItemsSource="{Binding ServiceTypes}"
                                           DisplayMember="Display"
-                                          IsEnabled="{Binding IsCreateItem}"
                                           ValueMember="Key"
                                           SelectedItem="{Binding SelectServiceType}"/>
                     </dxlc:LayoutItem>
@@ -30,7 +29,6 @@
                         <dxg:LookUpEdit DisplayMember="Name"
                                         ItemsSource="{Binding ItemsServiceSource}"
                                         SelectedItem="{Binding SelectedItemService}"
-                                        IsEnabled="{Binding IsCreateItem}"
                                         AutoPopulateColumns="False"
                                         IsTextEditable="True"
                                         IsPopupAutoWidth="True"
@@ -80,7 +78,7 @@
                                 <TextBlock Text="ชื่อ" />
                             </StackPanel>
                         </dxlc:LayoutItem.Label>
-                        <dxe:TextEdit Text="{Binding Name}" IsEnabled="{Binding IsEnableCode}"/>
+                        <dxe:TextEdit Text="{Binding Name}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="รายละเอียด">
                         <dxe:TextEdit Text="{Binding Description}"/>

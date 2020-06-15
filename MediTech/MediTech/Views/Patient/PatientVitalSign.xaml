@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              DataContext="{Binding PatientVitalSignModel,Source={StaticResource Locator}}"
              xmlns:ban="clr-namespace:MediTech.CustomControl.Banner" Padding="10"
-             d:DesignHeight="530" d:DesignWidth="800">
+             d:DesignHeight="560" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -136,6 +136,18 @@
                             <TextBlock Name="lblOxyRage" Text="95-100"/>
                             <TextBlock Name="lblOxyStatus" Text="-" FontSize="14" />
                         </dxlc:LayoutGroup>
+                        
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <TextBlock Name="lblWaist" Text=" Waist Circumference" FontSize="14" />
+                            <dxe:TextEdit  Height="25" EditValue="{Binding WaistCircumference}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtWaist"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                            <TextBlock Name="lblWaistUnit" Text="Inch" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
                 <dx:DXTabItem Header="Recent">
@@ -144,12 +156,12 @@
                             <ColumnDefinition Width=".5*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <dxg:GridControl Name="gcRecentVital" 
+                        <dxg:GridControl Name="gcRecentVital"
                                          ItemsSource="{Binding RecentVitals}"
                                          SelectedItem="{Binding SelectRecentVital}"
                                          Grid.Column="0">
                             <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False"/>
+                                <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
                             </dxg:GridControl.View>
                             <dxg:GridColumn Width="40" >
                                 <dxg:GridColumn.CellTemplate>
@@ -177,8 +189,8 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ผู้ลงยันทึก" FieldName="RecordedBy"/>
-                            <dxg:GridColumn Header="เวลาที่ลงบันทึก" FieldName="RecordedDttm" >
+                            <dxg:GridColumn Header="ผู้ลงยันทึก" ReadOnly="True"/>
+                            <dxg:GridColumn Header="เวลาที่ลงบันทึก" FieldName="RecordedDttm" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
                                 </dxg:GridColumn.EditSettings>
@@ -297,6 +309,17 @@
                                 <TextBlock Name="lblReOxyUnit" Text="%" FontSize="14" />
                                 <TextBlock Name="lblReOxyRage" Text="95-100"/>
                                 <TextBlock Name="lblReOxyStatus" Text="-" FontSize="14" />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <TextBlock Name="lblReWaist" Text=" Waist Circumference" FontSize="14" />
+                                <dxe:TextEdit  Height="25" EditValue="{Binding WaistCircumferenceRe}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtWaistRe"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                                <TextBlock Name="lblReWaistUnit" Text="Inch" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock />
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutControl>
                     </Grid>

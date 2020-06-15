@@ -48,9 +48,8 @@
             </dxlc:LayoutGroup>
 
 
-            <dxg:GridControl ItemsSource="{Binding ScannedDocuments}"
-                             SelectedItem="{Binding SelectScannedDocuments}"
-                             >
+            <dxg:GridControl x:Name="grdDocuments" ItemsSource="{Binding ScannedDocuments}"
+                             SelectedItem="{Binding SelectScannedDocuments}">
                 <dxg:GridColumn Header="Document Name" FieldName="DocumentName"/>
                 <dxg:GridColumn Header="Comments" FieldName="Comments"/>
                 <dxg:GridColumn Header="Uploaded By" FieldName="DocUploadedByName"/>

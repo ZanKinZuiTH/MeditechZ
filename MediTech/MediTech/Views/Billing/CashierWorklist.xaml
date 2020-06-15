@@ -18,6 +18,60 @@
     <UserControl.Resources>
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
 
+        <Style x:Key="BackgroundStyle" TargetType="{x:Type dxg:GridRowContent}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Row.IsWithoutStock}" Value="True">
+                    <Setter Property="Background" Value="Red"/>
+                </DataTrigger>
+                <DataTrigger Binding="{Binding Row.IsExpired}" Value="True">
+                    <Setter Property="Background" Value="#FFA5A5A5"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+
+        <DataTemplate x:Key="DetailCoreTemplate">
+            <dx:MeasurePixelSnapper>
+                <Grid>
+                    <dxg:GridControl ItemsSource="{Binding Row.StoreStockItem}" 
+                                                 Height="150">
+                        <dxg:GridColumn Header="จำนวน" Width="50" FieldName="Quantity" ReadOnly="True"/>
+                        <dxg:GridColumn Header="จำนวนคงเหลือ" Width="80"  FieldName="BalQty" ReadOnly="True"/>
+                        <dxg:GridColumn Header="หน่วย" Width="80"  FieldName="QuantityUnit" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วันหมดอายุ" Width="80" FieldName="ExpiryDate" ReadOnly="True"/>
+                        <dxg:GridColumn Header="BatchID" Width="90" FieldName="BatchID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings TextWrapping="Wrap"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="IsWithoutStock" Visible="False"/>
+                        <dxg:GridColumn FieldName="IsExpired" Visible="False"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False">
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsWithoutStock] = 'True'" FieldName="IsWithoutStock">
+                                        <dx:Format Background="Red"/>
+                                    </dxg:FormatCondition>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsExpired] = 'True'" FieldName="IsExpired">
+                                        <dx:Format Background="#FFA5A5A5"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
+
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </Grid>
+            </dx:MeasurePixelSnapper>
+        </DataTemplate>
+        <DataTemplate x:Key="rowToolTipTemplate">
+            <ContentPresenter Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}">
+                <ToolTipService.InitialShowDelay>10</ToolTipService.InitialShowDelay>
+                <ToolTipService.HasDropShadow>false</ToolTipService.HasDropShadow>
+                <ToolTipService.ToolTip>
+                    <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" Tag="Transparent" MaxWidth="600"/>
+                </ToolTipService.ToolTip>
+            </ContentPresenter>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
@@ -102,47 +156,7 @@
 
             <dxlc:GroupBox  Header="รายการยา เวชภัณฑ์" Padding="0"  MaxHeight="180">
                 <dxlc:GroupBox.Resources>
-                    <Style x:Key="BackgroundStyle" TargetType="{x:Type dxg:GridRowContent}">
-                        <Style.Triggers>
-                            <DataTrigger Binding="{Binding Row.IsWithoutStock}" Value="True">
-                                <Setter Property="Background" Value="Red"/>
-                            </DataTrigger>
-                            <DataTrigger Binding="{Binding Row.IsExpired}" Value="True">
-                                <Setter Property="Background" Value="#FFA5A5A5"/>
-                            </DataTrigger>
-                        </Style.Triggers>
-                    </Style>
 
-                    <DataTemplate x:Key="DetailCoreTemplate">
-                        <dx:MeasurePixelSnapper>
-                            <Grid>
-                                <dxg:GridControl ItemsSource="{Binding Row.StoreStockItem}" Height="150">
-                                    <dxg:GridColumn Header="จำนวน" Width="50" FieldName="Quantity" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="จำนวนคงเหลือ" Width="80"  FieldName="BalQty" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="หน่วย" Width="80"  FieldName="QuantityUnit" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="วันหมดอายุ" Width="80" FieldName="ExpiryDate" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="BatchID" Width="90" FieldName="BatchID" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="คลัง" FieldName="StoreName" ReadOnly="True">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings TextWrapping="Wrap"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridControl.View>
-                                        <dxg:TableView ShowGroupPanel="False"/>
-                                    </dxg:GridControl.View>
-                                </dxg:GridControl>
-                            </Grid>
-                        </dx:MeasurePixelSnapper>
-                    </DataTemplate>
-                    <DataTemplate x:Key="rowToolTipTemplate">
-                        <ContentPresenter Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}">
-                            <ToolTipService.InitialShowDelay>10</ToolTipService.InitialShowDelay>
-                            <ToolTipService.HasDropShadow>false</ToolTipService.HasDropShadow>
-                            <ToolTipService.ToolTip>
-                                <ContentControl Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" Tag="Transparent" MaxWidth="600"/>
-                            </ToolTipService.ToolTip>
-                        </ContentPresenter>
-                    </DataTemplate>
                 </dxlc:GroupBox.Resources>
                 <dxg:GridControl  x:Name="gDrugDetail" ItemsSource="{Binding StoreOrderList}">
                     <dxg:GridControl.View>
@@ -170,6 +184,8 @@
                         <dxg:GridColumn Header="Note" FieldName="ClinicalComments" ReadOnly="True"/>
                         <dxg:GridColumn Header="ประเภท" FieldName="TypeDrug" ReadOnly="True"/>
                         <dxg:GridColumn Header="ประเภท Order" FieldName="BillingService" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="IsWithoutStock" Visible="False"/>
+                        <dxg:GridColumn FieldName="IsExpired" Visible="False"/>
                     </dxg:GridControl.Columns>
                 </dxg:GridControl>
             </dxlc:GroupBox>

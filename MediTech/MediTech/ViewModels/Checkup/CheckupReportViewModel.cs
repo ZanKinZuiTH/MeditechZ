@@ -286,7 +286,7 @@ namespace MediTech.ViewModels
                     PatientResultLabList.ForEach(p => p.No = i++);
                 }
 
-                (this.View as CheckupReport).pivotData.BestFit();
+                //(this.View as CheckupReport).pivotData.BestFit();
             }
             else
             {

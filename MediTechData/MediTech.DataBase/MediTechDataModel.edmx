@@ -1517,6 +1517,7 @@
           <Property Name="BPSys" Type="float" />
           <Property Name="BPDio" Type="float" />
           <Property Name="OxygenSat" Type="float" />
+          <Property Name="WaistCircumference" Type="float" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
@@ -8276,6 +8277,7 @@
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="WaistCircumference" Type="Double" />
         </EntityType>
         <EntityType Name="PayorAgreement">
           <Key>
@@ -12710,6 +12712,7 @@
           <EntitySetMapping Name="PatientVitalSign">
             <EntityTypeMapping TypeName="MediTechModel.PatientVitalSign">
               <MappingFragment StoreEntitySet="PatientVitalSign">
+                <ScalarProperty Name="WaistCircumference" ColumnName="WaistCircumference" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />

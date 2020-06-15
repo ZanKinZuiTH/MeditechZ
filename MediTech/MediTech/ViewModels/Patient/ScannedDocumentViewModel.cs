@@ -5,6 +5,7 @@ using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -109,9 +110,9 @@ namespace MediTech.ViewModels
             set { Set(ref _Comments, value); }
         }
 
-        private List<PatientScannedDocumentModel> _ScannedDocuments;
+        private ObservableCollection<PatientScannedDocumentModel> _ScannedDocuments;
 
-        public List<PatientScannedDocumentModel> ScannedDocuments
+        public ObservableCollection<PatientScannedDocumentModel> ScannedDocuments
         {
             get { return _ScannedDocuments; }
             set { Set(ref _ScannedDocuments, value); }
@@ -213,16 +214,8 @@ namespace MediTech.ViewModels
                     openDialog.ShowDialog();
                     if (openDialog.FileName.Trim() != "")
                     {
-                        try
-                        {
-                            DocumentName = openDialog.SafeFileName.Trim();
-                            FileUploedCotent = File.ReadAllBytes(openDialog.FileName);
-
-                        }
-                        catch (Exception ex)
-                        {
-                            ErrorDialog(ex.Message);
-                        }
+                        DocumentName = openDialog.SafeFileName.Trim();
+                        FileUploedCotent = File.ReadAllBytes(openDialog.FileName);
                     }
                 }
                 else if (ScanDocument)
@@ -342,21 +335,25 @@ namespace MediTech.ViewModels
                     string extension = Path.GetExtension(SelectScannedDocuments.DocumentName); // "pdf", etc
                     string filename = System.IO.Path.GetTempFileName() + extension; // Makes something like "C:\Temp\blah.tmp.pdf"
                     byte[] fileContent = DataService.PatientIdentity.GetPatientScannedDocumentContent(SelectScannedDocuments.PatientScannedDocumentUID);
-                    File.WriteAllBytes(filename, fileContent);
-
-
-                    var process = new System.Diagnostics.Process();
-                    process.StartInfo.FileName = filename;
-                    process.StartInfo.Verb = "Open";
-                    process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                    process.EnableRaisingEvents = true;
-                    process.Exited += delegate
+                    if (fileContent != null)
                     {
-                        System.IO.File.Delete(filename);
-                    };
-                    process.Start();
+                        File.WriteAllBytes(filename, fileContent);
 
-                    // Clean up our temporary file...
+
+                        var process = new System.Diagnostics.Process();
+                        process.StartInfo.FileName = filename;
+                        process.StartInfo.Verb = "Open";
+                        process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
+                        process.EnableRaisingEvents = true;
+                        process.Exited += delegate
+                        {
+                            System.IO.File.Delete(filename);
+                        };
+                        process.Start();
+
+                        // Clean up our temporary file...
+                    }
+
                 }
 
             }
@@ -402,7 +399,17 @@ namespace MediTech.ViewModels
 
         void GetPatientScannedDocument()
         {
-            ScannedDocuments = DataService.PatientIdentity.GetPatientScannedDocumentByPatientUID(SelectPatientVisit.PatientUID);
+            try
+            {
+                ScannedDocuments = new ObservableCollection<PatientScannedDocumentModel>
+                    (DataService.PatientIdentity.GetPatientScannedDocumentByPatientUID(SelectPatientVisit.PatientUID));
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+
         }
 
         #endregion

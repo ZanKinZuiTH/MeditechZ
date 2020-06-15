@@ -368,6 +368,7 @@ namespace MediTechWebApi.Controllers
                     if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
                     {
                         db.PayorDetail.Attach(payorDetail);
+
                         if (payorDetail.LastRenumberDttm == null)
                         {
                             payorDetail.LastRenumberDttm = now;

@@ -374,162 +374,174 @@
                                         <mvvm:EventToCommand Command="{Binding OpenVitalSignsChartCommand}"/>
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityHeight}">
-                                    <StackPanel Orientation="Vertical" >
-                                        <TextBlock Text="Height" Foreground="Blue" HorizontalAlignment="Center"
+                                <dxlc:LayoutGroup HorizontalAlignment="Left" ItemSpace="30">
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityHeight}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="Height" Foreground="Blue" HorizontalAlignment="Center"
                                                    FontSize="14"/>
-                                        <TextBlock Text="{Binding Height}" HorizontalAlignment="Center"
+                                            <TextBlock Text="{Binding Height}" HorizontalAlignment="Center"
                                    FontSize="14" Margin="5,0,5,0"
                                    FontWeight="Bold"/>
-                                        <TextBlock Text="Cms" Foreground="Gray" HorizontalAlignment="Center"
+                                            <TextBlock Text="Cms" Foreground="Gray" HorizontalAlignment="Center"
                                                    FontSize="12"  />
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityWeight}">
-                                    <StackPanel Orientation="Vertical" >
-                                        <TextBlock Text="Weight" Foreground="Blue" HorizontalAlignment="Center"
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityWeight}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="Weight" Foreground="Blue" HorizontalAlignment="Center"
                                                    FontSize="14"/>
-                                        <TextBlock Text="{Binding Weight}" HorizontalAlignment="Center"
+                                            <TextBlock Text="{Binding Weight}" HorizontalAlignment="Center"
                                    FontSize="14" Margin="5,0,5,0"
                                    FontWeight="Bold"/>
-                                        <TextBlock Text="kg" Foreground="Gray" HorizontalAlignment="Center"
+                                            <TextBlock Text="kg" Foreground="Gray" HorizontalAlignment="Center"
                                                    FontSize="12"  />
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityBMI}">
-                                    <StackPanel Orientation="Vertical" >
-                                        <TextBlock Text="BMI" Foreground="Blue" HorizontalAlignment="Center"
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityBMI}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="BMI" Foreground="Blue" HorizontalAlignment="Center"
                                                    FontSize="14"/>
-                                        <TextBlock Text="{Binding BMI}" HorizontalAlignment="Center"
+                                            <TextBlock Text="{Binding BMI}" HorizontalAlignment="Center"
                                    FontSize="14" Margin="5,0,5,0"
                                    FontWeight="Bold"/>
-                                        <TextBlock Text="kg/m2" Foreground="Gray" HorizontalAlignment="Center"
+                                            <TextBlock Text="kg/m2" Foreground="Gray" HorizontalAlignment="Center"
                                                    FontSize="12"  />
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityBSA}">
-                                    <StackPanel Orientation="Vertical" >
-                                        <TextBlock Text="BSA" Foreground="Blue" HorizontalAlignment="Center"
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityBSA}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="BSA" Foreground="Blue" HorizontalAlignment="Center"
                                                    FontSize="14"/>
-                                        <TextBlock Text="{Binding BSA}" HorizontalAlignment="Center"
+                                            <TextBlock Text="{Binding BSA}" HorizontalAlignment="Center"
                                    FontSize="14" Margin="5,0,5,0"
                                    FontWeight="Bold"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityTemperature}">
-                                    <StackPanel Orientation="Vertical" >
-                                        <TextBlock Text="Temperature" Foreground="Blue" HorizontalAlignment="Center"
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityTemperature}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="Temperature" Foreground="Blue" HorizontalAlignment="Center"
                                                    FontSize="14"/>
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Temperature}" Foreground="{Binding TemperatureColor}"
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Temperature}" Foreground="{Binding TemperatureColor}"
                                    FontSize="14" Margin="5,0,5,0"
                                    FontWeight="Bold"/>
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImageTemperatureVisibility}"
                                    Source="{Binding ImageTemperature}" />
-                                        </StackPanel>
+                                            </StackPanel>
 
-                                        <TextBlock Text="* C" Foreground="Gray" HorizontalAlignment="Center"
+                                            <TextBlock Text="* C" Foreground="Gray" HorizontalAlignment="Center"
                                                    FontSize="12"  />
-                                    </StackPanel>
-                                </dxlc:LayoutItem >
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityPulse}">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Pulse" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </dxlc:LayoutItem >
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityPulse}">
+                                        <StackPanel Orientation="Vertical" >
+                                            <TextBlock Text="Pulse" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
 
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding Pulse}" Foreground="{Binding PulseColor}"  
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding Pulse}" Foreground="{Binding PulseColor}"  
                                                        Name="txtPluse" Margin="5,0,5,0" HorizontalAlignment="Center"
                                                    FontSize="14" FontWeight="Bold" />
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImagePulseVisibility}"
                                    Source="{Binding ImagePulse}" />
+                                            </StackPanel>
+
+
+                                            <TextBlock Text="/Min" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
                                         </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityRespiratory}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Respiratory Rate" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
 
-                                        
-                                        <TextBlock Text="/Min" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityRespiratory}">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Respiratory Rate" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
-
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding RespiratoryRate}" Name="txtRes" 
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding RespiratoryRate}" Name="txtRes" 
                                                    Foreground="{Binding RespiratoryColor}" 
                                                    Margin="5,0,5,0"
                                                    FontSize="14"
                                    FontWeight="Bold" HorizontalAlignment="Center"/>
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImageRespiratoryVisibility}"
                                    Source="{Binding ImageRespiratory}" />
-                                        </StackPanel>
+                                            </StackPanel>
 
-                                        <TextBlock Text="/Min" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Visibility="{Binding VisibilitySystolic}">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Systolic BP" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
-  
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding BPsys}" Name="txtSBP" 
+                                            <TextBlock Text="/Min" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilitySystolic}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Systolic BP" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
+
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding BPsys}" Name="txtSBP" 
                                                    Foreground="{Binding SystolicColor}"
                                                    Margin="5,0,5,0"
                                                    FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImageSystolicVisibility}"
                                    Source="{Binding ImageSystolic}" />
+                                            </StackPanel>
+                                            <TextBlock Text="mm Hg" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
                                         </StackPanel>
-                                        <TextBlock Text="mm Hg" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityDiastolic}">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Diastolic BP" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityDiastolic}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Diastolic BP" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
 
 
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding BPDio}" Name="txtDBP"
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding BPDio}" Name="txtDBP"
                                                    Foreground="{Binding DiastolicColor}"
                                                    Margin="5,0,5,0"
                                                    FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImageDiastolicVisibility}"
                                    Source="{Binding ImageDiastolic}" />
+                                            </StackPanel>
+
+
+
+                                            <TextBlock Text="mm Hg" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
                                         </StackPanel>
-                                        
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityOxygen}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Oxygen Sat" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
 
 
-                                        <TextBlock Text="mm Hg" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
-
-                                <dxlc:LayoutItem Visibility="{Binding VisibilityOxygen}">
-                                    <StackPanel Orientation="Vertical">
-                                        <TextBlock Text="Oxygen Sat" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
-
-
-                                        <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
-                                            <TextBlock Text="{Binding OxygenSat}"
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding OxygenSat}"
                                                    Foreground="{Binding OxygenColor}"
                                                    Margin="5,0,5,0"
                                                    FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
-                                            <Image Width="25"
+                                                <Image Width="25"
                                    Height="18"
                                    Visibility="{Binding ImageOxygenVisibility}"
                                    Source="{Binding ImageOxygen}" />
-                                        </StackPanel>
+                                            </StackPanel>
 
-                                        <TextBlock Text="%" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
-                                    </StackPanel>
-                                </dxlc:LayoutItem>
+                                            <TextBlock Text="%" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Visibility="{Binding VisibilityWaistCircumference}">
+                                        <StackPanel Orientation="Vertical">
+                                            <TextBlock Text="Waist Circumference" Foreground="Blue" FontSize="14" HorizontalAlignment="Center"/>
+                                            <StackPanel Orientation="Horizontal"  HorizontalAlignment="Center">
+                                                <TextBlock Text="{Binding WaistCircumference}"
+                                                   Margin="5,0,5,0"
+                                                   FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
+                                            </StackPanel>
+                                            <TextBlock Text="Inch" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
+                                        </StackPanel>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+
 
                             </dxlc:LayoutControl>
                         </Expander.Content>

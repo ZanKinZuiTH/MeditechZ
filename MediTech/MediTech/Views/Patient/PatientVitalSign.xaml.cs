@@ -64,8 +64,6 @@ namespace MediTech.Views
             }
         }
 
-
-
         private void PatientVitalSign_UpdateEvent(object sender, EventArgs e)
         {
             gcRecentVital.RefreshData();
@@ -79,8 +77,6 @@ namespace MediTech.Views
                 //Weight/(Height/100*Height/100)
                 //ret = (float.Parse(w) / (float.Parse(h) / 100 * float.Parse(h) / 100)).ToString();
                 ret = String.Format("{0:F2}", (float.Parse(w) / (float.Parse(h) / 100 * float.Parse(h) / 100)));
-
-
 
             }
             catch (Exception)

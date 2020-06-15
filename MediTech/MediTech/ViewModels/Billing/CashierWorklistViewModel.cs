@@ -739,31 +739,49 @@ namespace MediTech.ViewModels
             || p.BillingService == "Medical Supplies"
             || p.BillingService == "Supply");
 
+            
+
             foreach (var drugItem in TempDrugList)
             {
                 var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
                 foreach (var item in storeUsed)
                 {
-                    item.ItemCode = drugItem.ItemCode;
-                    item.UnitPrice = drugItem.UnitPrice;
-                    item.BillingService = drugItem.BillingService;
-                    item.BillableItemUID = drugItem.BillableItemUID;
-
-                    if (item.Quantity > item.BalQty)
+                    var dupicateStock = drugDetails.FirstOrDefault(p => p.StockUID == item.StockUID);
+                    if (dupicateStock == null)
                     {
-                        item.IsWithoutStock = true;
+                        item.ItemCode = drugItem.ItemCode;
+                        item.UnitPrice = drugItem.UnitPrice;
+                        item.BillingService = drugItem.BillingService;
+                        item.BillableItemUID = drugItem.BillableItemUID;
+
+                        if (item.Quantity > item.BalQty)
+                        {
+                            item.IsWithoutStock = true;
+                        }
+
+                        if (item.ExpiryDate?.Date <= DateTime.Now.Date)
+                        {
+                            item.IsExpired = true;
+                        }
+
+                        drugDetails.Add(item);
+                    }
+                    else
+                    {
+                        dupicateStock.Quantity += drugItem.Quantity;
+                        if (dupicateStock.Quantity > dupicateStock.BalQty)
+                        {
+                            dupicateStock.IsWithoutStock = true;
+                        }
                     }
 
-                    if (item.ExpiryDate?.Date <= DateTime.Now.Date)
-                    {
-                        item.IsExpired = true;
-                    }
-
-                    drugDetails.Add(item);
                 }
             }
+
             StoreOrderList = new ObservableCollection<StoreItemList>(
-                drugDetails.GroupBy(p => new { p.BillableItemUID }).Select(
+                drugDetails
+                .GroupBy(p => new { p.BillableItemUID})
+                .Select(
                      g => new StoreItemList
                      {
                          Quantity = g.Sum(p => p.Quantity),
@@ -774,7 +792,7 @@ namespace MediTech.ViewModels
                          QuantityUnit = g.FirstOrDefault().QuantityUnit,
                          BillableItemUID = g.FirstOrDefault().BillableItemUID,
                          ExpiryDate = g.FirstOrDefault().ExpiryDate,
-                         IsWithoutStock = g.FirstOrDefault().IsWithoutStock,
+                         IsWithoutStock = g.FirstOrDefault(p => p.IsWithoutStock == true) != null ? true : false,
                          IsExpired = g.FirstOrDefault().IsExpired,
                          InstructionRoute = g.FirstOrDefault().InstructionRoute,
                          Dosage = g.FirstOrDefault().Dosage,
@@ -817,6 +835,7 @@ namespace MediTech.ViewModels
                          BillingService = g.FirstOrDefault().BillingService
                      }));
             }
+
         }
         #endregion
     }

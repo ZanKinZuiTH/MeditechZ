@@ -279,35 +279,7 @@ namespace MediTechWebApi.Controllers
                     patient.MWhen = now;
                     patient.StatusFlag = "A";
                     patient.IsVIP = patientInfo.IsVIP;
-                    VIPPatient vipPat = db.VIPPatient.FirstOrDefault(p => p.PatientUID == patient.UID && p.StatusFlag == "A");
-                    if (patient.IsVIP ?? false)
-                    {
-                        if (vipPat == null)
-                        {
-                            vipPat = new VIPPatient();
-                            vipPat.CUser = userID;
-                            vipPat.CWhen = now;
-                            vipPat.StatusFlag = "A";
-                        }
-                        vipPat.PatientUID = patient.UID;
-                        vipPat.VIPTPUID = patientInfo.VIPTPUID.HasValue ? patientInfo.VIPTPUID.Value : 0 ;
-                        vipPat.ActiveFrom = patientInfo.VIPActiveFrom;
-                        vipPat.ActiveTo = patientInfo.VIPActiveTo;
-                        vipPat.MUser = userID;
-                        vipPat.MWhen = now;
 
-                        db.VIPPatient.AddOrUpdate(vipPat);
-                    }
-                    else
-                    {
-                        if (vipPat != null)
-                        {
-                            db.VIPPatient.Attach(vipPat);
-                            vipPat.MUser = userID;
-                            vipPat.MWhen = now;
-                            vipPat.StatusFlag = "D";
-                        }
-                    }
 
                     //PatientDemolog
                     Dictionary<string, List<string>> patientModifiedInfo = new Dictionary<string, List<string>>();
@@ -344,8 +316,37 @@ namespace MediTechWebApi.Controllers
                         patientInfo.PatientUID = patient.UID;
                     }
 
+                    VIPPatient vipPat = db.VIPPatient.FirstOrDefault(p => p.PatientUID == patient.UID && p.StatusFlag == "A");
+                    if (patient.IsVIP ?? false)
+                    {
+                        if (vipPat == null)
+                        {
+                            vipPat = new VIPPatient();
+                            vipPat.CUser = userID;
+                            vipPat.CWhen = now;
+                            vipPat.StatusFlag = "A";
+                        }
+                        vipPat.PatientUID = patient.UID;
+                        vipPat.VIPTPUID = patientInfo.VIPTPUID.HasValue ? patientInfo.VIPTPUID.Value : 0;
+                        vipPat.ActiveFrom = patientInfo.VIPActiveFrom;
+                        vipPat.ActiveTo = patientInfo.VIPActiveTo;
+                        vipPat.MUser = userID;
+                        vipPat.MWhen = now;
 
+                        db.VIPPatient.AddOrUpdate(vipPat);
+                    }
+                    else
+                    {
+                        if (vipPat != null)
+                        {
+                            db.VIPPatient.Attach(vipPat);
+                            vipPat.MUser = userID;
+                            vipPat.MWhen = now;
+                            vipPat.StatusFlag = "D";
+                        }
+                    }
 
+                    db.SaveChanges();
 
                     if (!string.IsNullOrEmpty(patientInfo.Line1) || !string.IsNullOrEmpty(patientInfo.Line2)
                         || !string.IsNullOrEmpty(patientInfo.Line3) ||

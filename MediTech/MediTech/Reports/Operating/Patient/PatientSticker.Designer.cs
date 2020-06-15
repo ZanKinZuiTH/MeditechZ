@@ -91,7 +91,7 @@
             this.xrLabel5.SizeF = new System.Drawing.SizeF(186F, 12.99998F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "[Parameters.HN]";
+            this.xrLabel5.Text = "HN: [Parameters.HN]";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrLabel5.WordWrap = false;
             // 

@@ -1333,7 +1333,7 @@ namespace MediTechWebApi.Controllers
                                                   OrderSetUID = ord.OrderSetUID,
                                                   BillableItemUID = ord.BillableItemUID,
                                                   Code = bill.Code,
-                                                  OrderCatalogName = ord.OrderCatalogName,
+                                                  OrderCatalogName = bill.ItemName,
                                                   ActiveFrom = ord.ActiveFrom,
                                                   ActiveTo = ord.ActiveTo,
                                                   FRQNCUID = ord.FRQNCUID,

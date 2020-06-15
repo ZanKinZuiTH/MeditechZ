@@ -263,6 +263,14 @@ namespace MediTech.ViewModels
             set { Set(ref _OxygenSat, value); }
         }
 
+        private string _WaistCircumference = "";
+
+        public string WaistCircumference
+        {
+            get { return _WaistCircumference; }
+            set { Set(ref _WaistCircumference, value); }
+        }
+
         private Visibility _VisibilityHeight;
 
         public Visibility VisibilityHeight
@@ -344,6 +352,14 @@ namespace MediTech.ViewModels
         {
             get { return _VisibilityOxygen; }
             set { Set(ref _VisibilityOxygen, value); }
+        }
+
+        private Visibility _VisibilityWaistCircumference;
+
+        public Visibility VisibilityWaistCircumference
+        {
+            get { return _VisibilityWaistCircumference; }
+            set { Set(ref _VisibilityWaistCircumference, value); }
         }
 
         private SolidColorBrush _TemperatureColor = new SolidColorBrush(Colors.Black);
@@ -737,6 +753,7 @@ namespace MediTech.ViewModels
             BPsys = "";
             BPDio = "";
             OxygenSat = "";
+            WaistCircumference = "";
         }
 
         private void GetLastVitalSign()
@@ -764,6 +781,8 @@ namespace MediTech.ViewModels
                         BMI = labelTest; VisibilityBMI = Visibility;
                         SetVitalSign(null, null, lastVitalSign.BSAValue, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
                         BSA = labelTest; VisibilityBSA = Visibility;
+                        SetVitalSign(null, null, lastVitalSign.WaistCircumference, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
+                        WaistCircumference = labelTest; VisibilityWaistCircumference = Visibility;
 
                         SetVitalSign(maxTemp, minTemp, lastVitalSign.Temprature, out labelTest, out color, out Visibility, out imageSource, out ImageVisibility);
                         Temperature = labelTest; TemperatureColor = color; VisibilityTemperature = Visibility;

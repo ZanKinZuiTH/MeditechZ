@@ -152,27 +152,20 @@
                                            ShowColumnTotals="False" 
                                            ShowColumnGrandTotalHeader="False" 
                                            ShowColumnGrandTotals="False"
-                                           ShowRowTotals="False"
-                                           CustomCellAppearance="PivotData_CustomCellAppearance">
+                                           ShowRowTotals="False">
                         <dxpg:PivotGridControl.Fields>
                             <dxpg:PivotGridField Area="RowArea" Caption="HN" FieldName="PatientID" AreaIndex="0"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="OtherID" FieldName="PatientID2" AreaIndex="1"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="คำนำหน้า" FieldName="Title" AreaIndex="2"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="OtherID" Width="90"  FieldName="PatientID2" AreaIndex="1"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="คำนำหน้า" Width="90" FieldName="Title" AreaIndex="2"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="ชื่อ" FieldName="FirstName" AreaIndex="3"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="นามสกุล" FieldName="LastName" AreaIndex="4"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="เพศ" FieldName="Gender" AreaIndex="5"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="อายุ" FieldName="Age" AreaIndex="6"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" FieldName="StartDttm" AreaIndex="7" ValueFormat="dd/MM/yyyy"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="ส่วนสูง" FieldName="Height" AreaIndex="8"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="น้ำหนัก" FieldName="Weight" AreaIndex="9"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="BMI" FieldName="BMI" AreaIndex="10"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="ความดันบน" FieldName="BPSys" AreaIndex="11"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="ความดันล่าง" FieldName="BPDio" AreaIndex="12"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="ชีพจร" FieldName="Pulse" AreaIndex="13"/>
-                            <dxpg:PivotGridField Area="ColumnArea" Caption="RequestItemName" FieldName="RequestItemName" />
+                            <dxpg:PivotGridField Area="RowArea" Caption="อายุ" Width="70" FieldName="Age" AreaIndex="6"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="7" ValueFormat="dd/MM/yyyy"/>
+                            <dxpg:PivotGridField Area="ColumnArea" Caption="RequestItemName" FieldName="RequestItemName"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="ResultItemName" FieldName="ResultItemName"/>
                             <dxpg:PivotGridField Area="DataArea" Caption="ResultValue" FieldName="ResultValue" SummaryType="Max"/>
-                            <dxpg:PivotGridField Area="DataArea" Caption="Range" FieldName="ReferenceRange" SummaryType="Max"/>
+                            <dxpg:PivotGridField Area="DataArea" Caption="Range"  FieldName="ReferenceRange" SummaryType="Max"/>
                         </dxpg:PivotGridControl.Fields>
                     </dxpg:PivotGridControl>
                     <dxlc:LayoutItem HorizontalContentAlignment="Right">

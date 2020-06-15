@@ -40,7 +40,8 @@
                     <dxe:ComboBoxEdit Name="cmbGender" DisplayMember="Display" 
                                       ValueMember="Key"
                                       ItemsSource="{Binding GenderSource}"
-                                      SelectedItem="{Binding SelectedGender}"/>
+                                      SelectedItem="{Binding SelectedGender}"
+                                      NullValueButtonPlacement="EditBox"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="เลขบัตรประชาชน" >
                     <dxe:TextEdit Name="txtNationalID" Text="{Binding NationalID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

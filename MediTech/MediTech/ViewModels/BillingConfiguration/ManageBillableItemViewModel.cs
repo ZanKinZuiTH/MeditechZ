@@ -177,6 +177,11 @@ namespace MediTech.ViewModels
                     string serviceType = SelectServiceType.Display;
                     IsVisibilityItem = Visibility.Visible;
                     IsEnableCode = false;
+                    SelectedItemService = null;
+                    Code = string.Empty;
+                    Name = string.Empty;
+                    Description = string.Empty;
+                    ItemAverageCost = null;
                     if (serviceType == "Order Item")
                     {
                         IsEnableCode = true;
@@ -291,6 +296,7 @@ namespace MediTech.ViewModels
                         Code = _SelectItemService.Code;
                     }
                     Name = _SelectItemService.Name;
+
                     if (serviceType == "Drug" || serviceType == "Medical Supplies" || serviceType == "Supply")
                     {
                         ItemAverageCost = DataService.Inventory.GetItemAverageCost(SelectedItemService.ItemUID,null);
@@ -369,13 +375,6 @@ namespace MediTech.ViewModels
             set { Set(ref _IsEnableCode, value); }
         }
 
-        private bool _IsCreateItem = true;
-
-        public bool IsCreateItem
-        {
-            get { return _IsCreateItem; }
-            set { Set(ref _IsCreateItem, value); }
-        }
 
         private DateTime? _ActiveFrom2;
 
@@ -583,14 +582,12 @@ namespace MediTech.ViewModels
                 }
 
 
-                if (model == null)
+                var billCodes = DataService.MasterData.GetBillableItemByCode(Code);
+                billCodes = billCodes?.Where(p => p.BillableItemUID != model?.BillableItemUID).ToList();
+                if (billCodes != null && billCodes.Count > 0)
                 {
-                    var billCodes = DataService.MasterData.GetBillableItemByCode(Code);
-                    if (billCodes != null && billCodes.Count > 0)
-                    {
-                        WarningDialog("Code ซ้ำ โปรดตรวจสอบ");
-                        return;
-                    }
+                    WarningDialog("Code ซ้ำ โปรดตรวจสอบ");
+                    return;
                 }
 
                 if ( BillableItemDetail == null || BillableItemDetail.Count() <= 0)
@@ -716,7 +713,6 @@ namespace MediTech.ViewModels
             }
             model = modelData;
             AssingModelToProperties();
-            IsCreateItem = false;
         }
 
         void AssingModelToProperties()

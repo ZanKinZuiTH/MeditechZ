@@ -23,6 +23,7 @@ namespace MediTech.Model
         public Nullable<double> BPSys { get; set; }
         public Nullable<double> BPDio { get; set; }
         public Nullable<double> OxygenSat { get; set; }
+        public Nullable<double> WaistCircumference { get; set; }
         public System.DateTime CWhen { get; set; }
         public int CUser { get; set; }
         public System.DateTime MWhen { get; set; }

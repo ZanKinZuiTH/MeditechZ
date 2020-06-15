@@ -311,6 +311,18 @@
     <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage4.Designer.cs">
       <DependentUpon>BookPage4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage5.Designer.cs">
+      <DependentUpon>BookPage5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage6.Designer.cs">
+      <DependentUpon>BookPage6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1870,6 +1882,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage4.resx">
       <DependentUpon>BookPage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage5.resx">
+      <DependentUpon>BookPage5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage6.resx">
+      <DependentUpon>BookPage6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
       <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>

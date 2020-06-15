@@ -152,6 +152,14 @@ namespace MediTech.ViewModels
             set { Set(ref _OxygenSat, value); }
         }
 
+        private double? _WaistCircumference;
+
+        public double? WaistCircumference
+        {
+            get { return _WaistCircumference; }
+            set { Set(ref _WaistCircumference, value); }
+        }
+
         private double? _HeightRe;
 
         public double? HeightRe
@@ -232,6 +240,14 @@ namespace MediTech.ViewModels
         {
             get { return _OxygenSatRe; }
             set { Set(ref _OxygenSatRe, value); }
+        }
+
+        private double? _WaistCircumferenceRe;
+
+        public double? WaistCircumferenceRe
+        {
+            get { return _WaistCircumferenceRe; }
+            set { Set(ref _WaistCircumferenceRe, value); }
         }
         #endregion
 
@@ -323,6 +339,8 @@ namespace MediTech.ViewModels
                     SBPRe = null;
                     DBPRe = null;
                     OxygenSatRe = null;
+                    WaistCircumferenceRe = null;
+
 
                     RecentVitals.Remove(SelectRecentVital);
                     OnUpdateEvent();
@@ -353,6 +371,7 @@ namespace MediTech.ViewModels
             SBPRe = model.BPSys;
             DBPRe = model.BPDio;
             OxygenSatRe = model.OxygenSat;
+            WaistCircumferenceRe = model.WaistCircumference;
         }
 
         public void AssingPropertiesToModel()
@@ -364,8 +383,8 @@ namespace MediTech.ViewModels
                 model.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
                 model.Weight = Weight;
                 model.Height = Height;
-                model.BMIValue = Convert.ToDouble(BMI);
-                model.BSAValue = Convert.ToDouble(BSA);
+                model.BMIValue = BMI != null ? Convert.ToDouble(BMI) : (double?)null;
+                model.BSAValue = BSA != null ? Convert.ToDouble(BSA) :(double?)null;
                 model.Temprature = Tempe;
                 model.Pulse = Pluse;
                 model.RespiratoryRate = RespiratoryRate;
@@ -373,7 +392,7 @@ namespace MediTech.ViewModels
                 model.BPDio = DBP;
                 model.OxygenSat = OxygenSat;
                 model.RecordedDttm = DateTime.Now;
-
+                model.WaistCircumference = WaistCircumference;
             }
             else if (SelectTabIndex == 1)
             {
@@ -381,16 +400,16 @@ namespace MediTech.ViewModels
                 {
                     model.Weight = WeightRe;
                     model.Height = HeightRe;
-                    model.BMIValue = Convert.ToDouble(BMIRe);
-                    model.BSAValue = Convert.ToDouble(BSARe);
+                    model.BMIValue = BMIRe != null ? Convert.ToDouble(BMIRe) : (double?)null;
+                    model.BSAValue = BSARe != null ? Convert.ToDouble(BSARe) : (double?)null;
                     model.Temprature = TempRe;
                     model.Pulse = PluseRe;
                     model.RespiratoryRate = RssRateRe;
                     model.BPSys = SBPRe;
                     model.BPDio = DBPRe;
                     model.OxygenSat = OxygenSatRe;
+                    model.WaistCircumference = WaistCircumferenceRe;
                 }
-
             }
         }
 
