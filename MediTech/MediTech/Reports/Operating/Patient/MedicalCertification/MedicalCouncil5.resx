@@ -117,13 +117,34 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="xrLabel35.Text" xml:space="preserve">
+    <value>............................................................................................................................................................................................................................................</value>
+  </data>
+  <data name="xrLabel28.Text" xml:space="preserve">
+    <value>.........................................................................................................................................................................................................</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>..............................................................................................................................................................................................................................................</value>
+  </data>
+  <data name="xrLabel26.Text" xml:space="preserve">
+    <value>..............................................................................................................................................................................................................................................</value>
+  </data>
+  <data name="xrLabel25.Text" xml:space="preserve">
+    <value>...............................................................................................................................................................................................................................................</value>
+  </data>
   <data name="xrLabel14.Text" xml:space="preserve">
     <value>(1) วัณโรคในระยะแพร่กระจายเชื้อ
 (2) โรคเท้าช้างในระยะที่ปรากฏอาการเป็นที่รังเกียจแก่สังคม
 (3) โรคติดยาเสพติดให้โทษ
 (4) โรคพิษสุราเรื้อรัง
 (5) โรคติดต่อร้ายแรงหรือโรคเรื้อรังที่ปรากฏอาการเด่นชัดหรือรุนแรงและเป็นอุปสรรคต่อการปฏิบัติงานในหน้าที่ตามที่ก.พ. กำหนด 
-(6)อื่นๆ...................................................................................................................</value>
+(6) อื่นๆ...................................................................................................................</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>..............................................................................................................................................................................................................................................</value>
+  </data>
+  <data name="xrLabel31.Text" xml:space="preserve">
+    <value>................................................................................................................................................................................................................</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
@@ -469,9 +490,6 @@
         TkSuQmCC
 </value>
   </data>
-  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <data name="xrPictureBox2.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAAvgAAAEICAIAAAClOhcwAAAABGdBTUEAALGPC/xhBQAAAAlwSFlzAAAu
@@ -815,4 +833,7 @@
         TkSuQmCC
 </value>
   </data>
+  <metadata name="objectDataSource1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
 </root>

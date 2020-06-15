@@ -19,7 +19,7 @@ namespace MediTech.Reports.Operating.Patient
         {
 
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
-            var dataSource = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
+            var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
 
             this.DataSource = dataSource;
         }
