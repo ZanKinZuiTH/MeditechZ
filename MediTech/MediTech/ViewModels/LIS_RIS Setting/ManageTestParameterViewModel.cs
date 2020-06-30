@@ -342,8 +342,8 @@ namespace MediTech.ViewModels
             ResultItemRangeModel resulItemRangeModel = new ResultItemRangeModel();
             resulItemRangeModel.Comments = Comments;
             resulItemRangeModel.DisplayValue = DisplayValue;
-            resulItemRangeModel.Low = Low ?? 0;
-            resulItemRangeModel.High = High ?? 0;
+            resulItemRangeModel.Low = Low;
+            resulItemRangeModel.High = High;
             resulItemRangeModel.LABRAMUID = SelectLabRangeMasters.Key;
             resulItemRangeModel.LabRangeMaster = SelectLabRangeMasters.Display;
             resulItemRangeModel.SEXXXUID = SelectGender.Key;
@@ -377,8 +377,8 @@ namespace MediTech.ViewModels
             {
                 SelectResultItemRange.Comments = Comments;
                 SelectResultItemRange.DisplayValue = DisplayValue;
-                SelectResultItemRange.Low = Low ?? 0;
-                SelectResultItemRange.High = High ?? 0;
+                SelectResultItemRange.Low = Low;
+                SelectResultItemRange.High = High;
                 SelectResultItemRange.LABRAMUID = SelectLabRangeMasters.Key;
                 SelectResultItemRange.LabRangeMaster = SelectLabRangeMasters.Display;
                 SelectResultItemRange.SEXXXUID = SelectGender.Key;
@@ -468,16 +468,16 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก Gender");
                 return true;
             }
-            if (Low == null)
-            {
-                WarningDialog("กรุณาระบุ Low");
-                return true;
-            }
-            if (High == null)
-            {
-                WarningDialog("กรุณาระบุ High");
-                return true;
-            }
+            //if (Low == null)
+            //{
+            //    WarningDialog("กรุณาระบุ Low");
+            //    return true;
+            //}
+            //if (High == null)
+            //{
+            //    WarningDialog("กรุณาระบุ High");
+            //    return true;
+            //}
             return false;
 
         }

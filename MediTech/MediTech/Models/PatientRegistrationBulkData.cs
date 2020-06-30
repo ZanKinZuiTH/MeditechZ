@@ -62,6 +62,6 @@ namespace MediTech.Models
         public string Position { get; set; }
         public string Department { get; set; }
         public string Program { get; set; }
-        public string No { get; set; }
+        public int No { get; set; }
     }
 }

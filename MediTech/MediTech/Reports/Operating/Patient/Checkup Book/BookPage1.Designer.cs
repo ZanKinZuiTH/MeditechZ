@@ -74,11 +74,17 @@
             this.lblPulse = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lblPulseResult = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lblWaistCircumference = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lblWaistCircumferenceResult = new DevExpress.XtraReports.UI.XRTableCell();
             this.lblSummeryResult = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.lblDoctor = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -105,7 +111,8 @@
             this.xrLabel2,
             this.xrLabel1,
             this.xrTable1,
-            this.lblSummeryResult});
+            this.lblSummeryResult,
+            this.lblDoctor});
             this.Detail.HeightF = 561.25F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -113,8 +120,10 @@
             // 
             // xrLabel12
             // 
+            this.xrLabel12.CanGrow = false;
+            this.xrLabel12.CanShrink = true;
             this.xrLabel12.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(668.1198F, 497.375F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(670.7324F, 491.2083F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -126,8 +135,10 @@
             // 
             // xrLabel11
             // 
+            this.xrLabel11.CanGrow = false;
+            this.xrLabel11.CanShrink = true;
             this.xrLabel11.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(582.9167F, 476.875F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(582.9167F, 458.875F);
             this.xrLabel11.Multiline = true;
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -139,8 +150,10 @@
             // 
             // xrLabel10
             // 
+            this.xrLabel10.CanGrow = false;
+            this.xrLabel10.CanShrink = true;
             this.xrLabel10.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 476.875F);
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 458.875F);
             this.xrLabel10.Multiline = true;
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -374,8 +387,9 @@
             this.xrTableRow2,
             this.xrTableRow3,
             this.xrTableRow4,
-            this.xrTableRow5});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(380.4165F, 125F);
+            this.xrTableRow5,
+            this.xrTableRow6});
+            this.xrTable1.SizeF = new System.Drawing.SizeF(384.5832F, 150F);
             this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
             // 
@@ -617,6 +631,62 @@
             this.lblPulseResult.StylePriority.UseBorders = false;
             this.lblPulseResult.Weight = 1.993468828776197D;
             // 
+            // xrTableRow6
+            // 
+            this.xrTableRow6.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell3,
+            this.lblWaistCircumference,
+            this.xrTableCell12,
+            this.lblWaistCircumferenceResult});
+            this.xrTableRow6.Name = "xrTableRow6";
+            this.xrTableRow6.Weight = 1D;
+            // 
+            // xrTableCell3
+            // 
+            this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell3.Multiline = true;
+            this.xrTableCell3.Name = "xrTableCell3";
+            this.xrTableCell3.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell3.StylePriority.UseBorders = false;
+            this.xrTableCell3.StylePriority.UsePadding = false;
+            this.xrTableCell3.StylePriority.UseTextAlignment = false;
+            this.xrTableCell3.Text = "รอบเอว (Waist Circumference)";
+            this.xrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell3.Weight = 1.8610827111133363D;
+            // 
+            // lblWaistCircumference
+            // 
+            this.lblWaistCircumference.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lblWaistCircumference.Name = "lblWaistCircumference";
+            this.lblWaistCircumference.StylePriority.UseBorders = false;
+            this.lblWaistCircumference.StylePriority.UseTextAlignment = false;
+            this.lblWaistCircumference.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lblWaistCircumference.Weight = 0.61206249319251538D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell12.StylePriority.UseBorders = false;
+            this.xrTableCell12.StylePriority.UsePadding = false;
+            this.xrTableCell12.StylePriority.UseTextAlignment = false;
+            this.xrTableCell12.Text = "ผลการตรวจ :";
+            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell12.Weight = 0.87837482309446535D;
+            // 
+            // lblWaistCircumferenceResult
+            // 
+            this.lblWaistCircumferenceResult.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lblWaistCircumferenceResult.CanShrink = true;
+            this.lblWaistCircumferenceResult.Multiline = true;
+            this.lblWaistCircumferenceResult.Name = "lblWaistCircumferenceResult";
+            this.lblWaistCircumferenceResult.StylePriority.UseBorders = false;
+            this.lblWaistCircumferenceResult.Weight = 1.993468828776197D;
+            // 
             // lblSummeryResult
             // 
             this.lblSummeryResult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -660,6 +730,20 @@
             this.PatientVisitUID.Type = typeof(long);
             this.PatientVisitUID.ValueInfo = "0";
             this.PatientVisitUID.Visible = false;
+            // 
+            // lblDoctor
+            // 
+            this.lblDoctor.CanGrow = false;
+            this.lblDoctor.CanShrink = true;
+            this.lblDoctor.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lblDoctor.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 475.375F);
+            this.lblDoctor.Multiline = true;
+            this.lblDoctor.Name = "lblDoctor";
+            this.lblDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.lblDoctor.SizeF = new System.Drawing.SizeF(163.3333F, 18.83331F);
+            this.lblDoctor.StylePriority.UseFont = false;
+            this.lblDoctor.StylePriority.UseTextAlignment = false;
+            this.lblDoctor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // BookPage1
             // 
@@ -734,5 +818,11 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow6;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
+        private DevExpress.XtraReports.UI.XRTableCell lblWaistCircumference;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.UI.XRTableCell lblWaistCircumferenceResult;
+        private DevExpress.XtraReports.UI.XRLabel lblDoctor;
     }
 }

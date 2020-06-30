@@ -144,7 +144,7 @@
                                  Name="txtWaist"
                                  Width="100" 
                                  VerticalAlignment="Top"/>
-                            <TextBlock Name="lblWaistUnit" Text="Inch" FontSize="14" />
+                            <TextBlock Name="lblWaistUnit" Text="Cms" FontSize="14" />
                             <TextBlock />
                             <TextBlock />
                         </dxlc:LayoutGroup>

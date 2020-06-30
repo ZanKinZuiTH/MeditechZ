@@ -841,7 +841,7 @@ namespace MediTech.ViewModels
                             //#if !DEBUG
                             if (patientInfo != null)
                             {
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, "ISO_IR 192");
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.FirstName + " " + patientInfo.LastName);
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.PatientID2) ? patientInfo.PatientID2 : patientInfo.PatientID);
                             }

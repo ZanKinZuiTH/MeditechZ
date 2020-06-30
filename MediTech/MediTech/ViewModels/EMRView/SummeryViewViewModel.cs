@@ -869,6 +869,12 @@ namespace MediTech.ViewModels
 
         private void OpenOrder()
         {
+            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            {
+                WarningDialog("กรุณาเลือก Visit");
+                return;
+            }
+
             if (SelectPatientVisit.VISTSUID == FINDIS)
             {
                 WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");

@@ -399,7 +399,7 @@ namespace MediTech.ViewModels
                     foreach (DataRow drow in ImportData.Rows)
                     {
                         CurrentImportedData = new PatientRegistrationBulkData();
-                        CurrentImportedData.No = drow["No"].ToString();
+                        CurrentImportedData.No = int.Parse(drow["No"].ToString().Trim());
                         if (ImportData.Columns.Contains("HN"))
                         {
                             CurrentImportedData.BN = drow["HN"].ToString();
@@ -487,13 +487,18 @@ namespace MediTech.ViewModels
                                 Double.TryParse(CurrentImportedData.DateOfBirth, out doublebirthdttm);
                                 birthdttm = DateTime.FromOADate(doublebirthdttm);
                             }
-                            else
-                            {
-                                if (int.Parse(birthdttm.ToString("yyyy")) > 2400)
-                                {
-                                    birthdttm = birthdttm.AddYears(-543);
-                                }
+                            //else
+                            //{
+                            //    if (int.Parse(birthdttm.ToString("yyyy")) > 2400)
+                            //    {
+                            //        birthdttm = birthdttm.AddYears(-543);
+                            //    }
 
+                            //}
+
+                            if (int.Parse(birthdttm.ToString("yyyy")) > 2400)
+                            {
+                                birthdttm = birthdttm.AddYears(-543);
                             }
 
                             DateTime Now = DateTime.Now;

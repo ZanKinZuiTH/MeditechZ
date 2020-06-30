@@ -95,7 +95,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public List<LookupReferenceValueModel> VisitTypeSource { get; set; }
+        private List<LookupReferenceValueModel> _VisitTypeSource;
+
+        public List<LookupReferenceValueModel> VisitTypeSource
+        {
+            get { return _VisitTypeSource; }
+            set { Set(ref _VisitTypeSource, value); }
+        }
+
         private LookupReferenceValueModel _SelectedVisitType;
         public LookupReferenceValueModel SelectedVisitType
         {
@@ -103,7 +110,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedVisitType, value); }
         }
 
-        public List<CareproviderModel> CareproviderSource { get; set; }
+
+        private List<CareproviderModel> _CareproviderSource;
+
+        public List<CareproviderModel> CareproviderSource
+        {
+            get { return _CareproviderSource; }
+            set { Set(ref _CareproviderSource, value); }
+        }
+
         private CareproviderModel _SelectedCareprovider;
 
         public CareproviderModel SelectedCareprovider
@@ -166,6 +181,7 @@ namespace MediTech.ViewModels
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
             Organisations = GetHealthOrganisationRoleMedical();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();
+            CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
         }
         private void Save()
         {
@@ -243,7 +259,6 @@ namespace MediTech.ViewModels
                 SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault(p => p.PayorAgreementUID == SelectPatientVisit.PayorAgreementUID);
             }
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
-            CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
             CommentDoctor = SelectPatientVisit.Comments;
 

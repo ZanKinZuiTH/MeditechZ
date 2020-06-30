@@ -72,7 +72,7 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>-->
-                <dxg:GridColumn FieldName="No" Width="30" Fixed="Left"/>
+                <dxg:GridColumn FieldName="No"  Width="30" Fixed="Left"/>
                 <dxg:GridColumn x:Name="Register" Fixed="Left" AllowPrinting="False"   Width="70"
                                
                                 AllowEditing="True" FieldName="Register"/>

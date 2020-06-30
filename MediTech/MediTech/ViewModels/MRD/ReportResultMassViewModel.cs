@@ -458,9 +458,8 @@ namespace MediTech.ViewModels
             SelectReport = Reports.FirstOrDefault();
 
             Logos = new List<LookupItemModel>();
-            Logos.Add(new LookupItemModel { Key = 0, Display = "DRC" });
-            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
-            Logos.Add(new LookupItemModel { Key = 2, Display = "โรงพยาบาลพระยุพราช" });
+            Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG" });
+            Logos.Add(new LookupItemModel { Key = 1, Display = "โรงพยาบาลพระยุพราช" });
             SelectLogo = Logos.FirstOrDefault();
 
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
@@ -931,11 +930,11 @@ namespace MediTech.ViewModels
 
                         rpt.Parameters["PatientName"].Value = item.PatientName + " " + gender;
 
-                        if (SelectLogo.Key == 0 || SelectLogo.Key == 1)
+                        if (SelectLogo.Key == 0)
                         {
                             rpt.Parameters["HN"].Value = item.HN;
                         }
-                        else if (SelectLogo.Key == 2)
+                        else if (SelectLogo.Key == 1)
                         {
                             rpt.Parameters["HN"].Value = item.OtherID;
                         }
@@ -1024,11 +1023,11 @@ namespace MediTech.ViewModels
 
                         rpt.Parameters["PatientName"].Value = item.PatientName + " " + gender;
 
-                        if (SelectLogo.Key == 0 || SelectLogo.Key == 1)
+                        if (SelectLogo.Key == 0)
                         {
                             rpt.Parameters["HN"].Value = item.HN;
                         }
-                        else if (SelectLogo.Key == 2)
+                        else if (SelectLogo.Key == 1)
                         {
                             rpt.Parameters["HN"].Value = item.OtherID;
                         }
@@ -1288,7 +1287,7 @@ namespace MediTech.ViewModels
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID,"");
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, "ISO_IR 192");
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN);
                                 if (!IsNumberSequence)
                                 {
@@ -1372,7 +1371,7 @@ namespace MediTech.ViewModels
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID, "");
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, "ISO_IR 192");
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN);
                                 if (!IsNumberSequence)
                                 {

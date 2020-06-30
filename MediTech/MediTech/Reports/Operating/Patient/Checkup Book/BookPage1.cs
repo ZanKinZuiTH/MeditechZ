@@ -59,10 +59,13 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 lblPayor.Text = data.FirstOrDefault().PayorName;
                 lblBirthDttm.Text = data.FirstOrDefault().BirthDttm != null ? data.FirstOrDefault().BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lblAge.Text = data.FirstOrDefault().Age != null ? data.FirstOrDefault().Age + " ปี" : "";
+                lblDoctor.Text = data.FirstOrDefault().CareProviderName;
                 lblHeight.Text = data.FirstOrDefault().Height != null ? data.FirstOrDefault().Height.ToString() + " cm." : "";
                 lblWeight.Text = data.FirstOrDefault().Weight != null ? data.FirstOrDefault().Weight.ToString() + " kg." : "";
                 lblBMI.Text = data.FirstOrDefault().BMI != null ? data.FirstOrDefault().BMI.ToString() + " kg/m2" : "";
                 lblBP.Text = (data.FirstOrDefault().BPSys != null ? data.FirstOrDefault().BPSys.ToString() : "") + (data.FirstOrDefault().BPDio != null ? "/" + data.FirstOrDefault().BPDio.ToString() : "");
+                lblPulse.Text = data.FirstOrDefault().Pulse != null ? data.FirstOrDefault().Pulse.ToString() + " ครั้ง/นาที" : "";
+                lblWaistCircumference.Text = data.FirstOrDefault().WaistCircumference != null ? data.FirstOrDefault().WaistCircumference.ToString() + " cm." : "";
 
                 bookPage2.lbHN2.Text = data.FirstOrDefault().PatientID;
                 bookPage2.lbName2.Text = lblPatientName.Text = data.FirstOrDefault().PatientName;
@@ -93,7 +96,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 {
                     lblBP.Text += " mm.Hg";
                 }
-                lblPulse.Text = data.FirstOrDefault().Pulse != null ? data.FirstOrDefault().Pulse.ToString() + " ครั้ง/นาที" : "";
+
 
                 if (data.FirstOrDefault().BMI != null)
                 {
@@ -155,6 +158,25 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     {
                         lblPulseResult.Font = new Font("Angsana New", 11, FontStyle.Bold);
                     }
+                }
+
+                if(data.FirstOrDefault().WaistCircumference != null)
+                {
+                    double? waistCircumference = data.FirstOrDefault().WaistCircumference;
+                    string gender = data.FirstOrDefault().Gender;
+                    string waistCircumferenceResult = "อยู่ในเกณฑ์ปกติ";
+                    string waistAbnormal = "อ้วนลงพุง ควรควบคุมอาหาร ลดน้ำหนัก และออกกำลังกายอย่างสม่ำเสมอ";
+                    if (waistCircumference > 90 && gender.Contains("ชาย"))
+                    {
+                        waistCircumferenceResult = waistAbnormal;
+                    }
+                    else if(waistCircumference > 80 && gender.Contains("หญิง"))
+                    {
+                        waistCircumferenceResult = waistAbnormal;
+                    }
+
+
+                    lblWaistCircumferenceResult.Text = waistCircumferenceResult;
                 }
 
                 bookPage2.lblEyes.Text = data.FirstOrDefault().Eyes != null ? data.FirstOrDefault().Eyes.ToString() : "";
@@ -1128,5 +1150,6 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
 
             return thairesult;
         }
+
     }
 }

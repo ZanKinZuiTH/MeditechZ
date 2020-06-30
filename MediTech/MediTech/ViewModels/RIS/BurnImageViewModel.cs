@@ -381,24 +381,24 @@ namespace MediTech.ViewModels
 
                             MemoryStream ms = new MemoryStream(instance.DicomFiles);
                             var dicomFile = Dicom.DicomFile.Open(ms);
-                            dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, "ISO_IR 192");
+                            dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, item.No.ToString().PadLeft(4, '0') + " " + item.PatientName);
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(item.OtherID) ? item.OtherID : item.PatientID);
 
+                            //string mediaStorageSOPInsUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.MediaStorageSOPInstanceUID, null);
+                            //if (mediaStorageSOPInsUID == null)
+                            //{
+                            //    DicomDataset dataset = dicomFile.Dataset;
+                            //    string sopInstanceUID = dicomFile.Dataset.GetSingleValue<string>(DicomTag.SOPInstanceUID);
+                            //    dataset.Add(DicomTag.MediaStorageSOPInstanceUID, sopInstanceUID);
 
-                            if (dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.MediaStorageSOPInstanceUID, null) == null)
-                            {
-                                DicomDataset dataset = dicomFile.Dataset;
-                                string sopInstanceUID = dicomFile.Dataset.GetSingleValue<string>(DicomTag.SOPInstanceUID);
-                                dataset.Add(DicomTag.MediaStorageSOPInstanceUID, sopInstanceUID);
+                            //    DicomFile dicomfile2 = new DicomFile(dataset);
+                            //    dicomfile2.Save(dicomPath + "\\0000000" + i.ToString());
 
-                                DicomFile dicomfile2 = new DicomFile(dataset);
-                                dicomfile2.Save(dicomPath + "\\0000000" + i.ToString());
-
-                                dicomDir.AddFile(dicomfile2, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));
-                                i++;
-                                continue;
-                            }
+                            //    dicomDir.AddFile(dicomfile2, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));
+                            //    i++;
+                            //    continue;
+                            //}
 
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
 

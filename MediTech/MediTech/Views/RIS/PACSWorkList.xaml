@@ -291,7 +291,7 @@
 
                     <dxdo:DockLayoutManager.AutoHideGroups>
                         <dxdo:AutoHideGroup DockType="Right">
-                            <dxdo:LayoutPanel x:Name="pnlCDBuffer" Caption="CD-R Buffer List" ItemWidth="500"
+                            <dxdo:LayoutPanel x:Name="pnlCDBuffer" Caption="CD-R Buffer List" ItemWidth="500" AllowClose="False"
                                           CaptionImage="/MediTech;component/Resources/Images/Other/CD-Icon.png">
                                 <dxlc:LayoutControl Orientation="Vertical">
                                     <dxg:GridControl x:Name="grdCDBuffer" ItemsSource="{Binding CDRBufferList}"

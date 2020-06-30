@@ -537,7 +537,7 @@
                                                    Margin="5,0,5,0"
                                                    FontSize="14" FontWeight="Bold" HorizontalAlignment="Center"/>
                                             </StackPanel>
-                                            <TextBlock Text="Inch" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
+                                            <TextBlock Text="Cms" Foreground="Gray" FontSize="12" HorizontalAlignment="Center"/>
                                         </StackPanel>
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>

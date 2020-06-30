@@ -68,6 +68,8 @@ namespace MediTech.Model
         public double? BPDio { get; set; }
         public double? Pulse { get; set; }
 
+        public double? WaistCircumference { get; set; }
+
         public int UserUID { get; set; }
 
         public int? OwnerOrganisationUID { get; set; }
