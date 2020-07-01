@@ -22,6 +22,21 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+        private List<PayorDetailModel> _PayorDetails;
+
+        public List<PayorDetailModel> PayorDetails
+        {
+            get { return _PayorDetails; }
+            set { Set(ref _PayorDetails, value); }
+        }
+
+        private PayorDetailModel _SelectPayorDetail;
+
+        public PayorDetailModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); }
+        }
 
         private DateTime? _DateFrom;
         public DateTime? DateFrom
@@ -367,6 +382,7 @@ namespace MediTech.ViewModels
             IsPrint = false;
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            PayorDetails = DataService.MasterData.GetPayorDetail();
             PrinterLists = new List<LookupItemModel>();
             int i = 1;
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
@@ -525,8 +541,10 @@ namespace MediTech.ViewModels
             {
                 hn = SelectedPateintSearch.PatientID;
             }
+
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            var visitData = DataService.PatientIdentity.SearchPatientMedicalDischarge(hn, "", "", null, DateFrom, DateTo, ownerOrganisationUID, null);
+            var visitData = DataService.PatientIdentity.SearchPatientMedicalDischarge(hn, "", "", null, DateFrom, DateTo, ownerOrganisationUID, payorDetailUID);
             PatientCloseMed = visitData;
         }
 
@@ -635,7 +653,9 @@ namespace MediTech.ViewModels
             }
             else
             {
+               
                 PatientsSearchSource = null;
+
             }
 
         }

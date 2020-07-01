@@ -22,6 +22,21 @@ namespace MediTech.ViewModels
 
         public bool IsEditDate { get; set; }
 
+        private List<PayorDetailModel> _PayorDetails;
+
+        public List<PayorDetailModel> PayorDetails
+        {
+            get { return _PayorDetails; }
+            set { Set(ref _PayorDetails, value); }
+        }
+
+        private PayorDetailModel _SelectPayorDetail;
+
+        public PayorDetailModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); }
+        }
 
         private List<PatientVisitModel> _PatientVisits;
 
@@ -264,6 +279,7 @@ namespace MediTech.ViewModels
 
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            PayorDetails = DataService.MasterData.GetPayorDetail();
 
         }
 
@@ -285,13 +301,15 @@ namespace MediTech.ViewModels
                     else
                     {
                         statusList += "," + item.ToString();
+                        
                     }
                 }
             }
 
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, null);
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID);
         }
 
         private void VitalSign()
