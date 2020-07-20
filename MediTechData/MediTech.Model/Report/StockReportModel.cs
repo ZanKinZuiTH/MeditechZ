@@ -23,12 +23,15 @@ namespace MediTech.Model.Report
         public double CurrentQty { get; set; }
         public double TotalCost { get; set; }
         public double TotalAvgCost { get; set; }
+        public double ActualQuantity { get; set; }
+        public double AdjustedQuantity { get; set; }
         public string BatchID { get; set; }
         public string IsExpired { get; set; }
         public DateTime? ExpiryDttm { get; set; }
         public DateTime? StockDttm { get; set; }
         public string HealthOrganisationName { get; set; }
         public string MouthName { get; set; }
+        public string Comments { get; set; }
         public int Mouth { get; set; }
         public int Years { get; set; }
         public string OrderStatus { get; set; }
