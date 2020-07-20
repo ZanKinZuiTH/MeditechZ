@@ -653,7 +653,7 @@ namespace MediTech.ViewModels
             }
             else
             {
-               
+
                 PatientsSearchSource = null;
 
             }
@@ -753,27 +753,42 @@ namespace MediTech.ViewModels
 
         private void GetStoreItem()
         {
-            StoreOrderList = new ObservableCollection<StoreItemList>();
-            List<PatientOrderDetailModel> drugDetails = new List<PatientOrderDetailModel>();
-            var TempDrugList = orderAll.Where(p => p.BillingService == "Drug"
-            || p.BillingService == "Medical Supplies"
-            || p.BillingService == "Supply");
-
-            
-
-            foreach (var drugItem in TempDrugList)
+            try
             {
-                var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
-                foreach (var item in storeUsed)
-                {
-                    var dupicateStock = drugDetails.FirstOrDefault(p => p.StockUID == item.StockUID);
-                    if (dupicateStock == null)
-                    {
-                        item.ItemCode = drugItem.ItemCode;
-                        item.UnitPrice = drugItem.UnitPrice;
-                        item.BillingService = drugItem.BillingService;
-                        item.BillableItemUID = drugItem.BillableItemUID;
+                StoreOrderList = new ObservableCollection<StoreItemList>();
+                List<PatientOrderDetailModel> drugDetails = new List<PatientOrderDetailModel>();
+                var TempDrugList = orderAll.Where(p => p.BillingService == "Drug"
+                || p.BillingService == "Medical Supplies"
+                || p.BillingService == "Supply");
 
+                StoreOrderList = new ObservableCollection<StoreItemList>(
+    TempDrugList
+    .GroupBy(p => new { p.ItemUID, p.QNUOMUID, p.StoreUID })
+    .Select(
+    g => new StoreItemList
+    {
+        Quantity = g.Sum(p => p.Quantity),
+        ItemCode = g.FirstOrDefault().ItemCode,
+        ItemName = g.FirstOrDefault().ItemName,
+        ItemUID = g.FirstOrDefault().ItemUID,
+        QNUOMUID = g.FirstOrDefault().QNUOMUID,
+        StoreUID = g.FirstOrDefault().StoreUID,
+        QuantityUnit = g.FirstOrDefault().QuantityUnit,
+        BillableItemUID = g.FirstOrDefault().BillableItemUID,
+        InstructionRoute = g.FirstOrDefault(p => !string.IsNullOrEmpty(p.InstructionRoute)) != null ? g.FirstOrDefault(p => !string.IsNullOrEmpty(p.InstructionRoute)).InstructionRoute : "",
+        Dosage = g.FirstOrDefault().Dosage,
+        DrugFrequency = g.FirstOrDefault(p => !string.IsNullOrEmpty(p.DrugFrequency)) != null ? g.FirstOrDefault(p => !string.IsNullOrEmpty(p.DrugFrequency)).DrugFrequency : "",
+        LocalInstructionText = g.FirstOrDefault(p => !string.IsNullOrEmpty(p.LocalInstructionText)) != null ? g.FirstOrDefault(p => !string.IsNullOrEmpty(p.LocalInstructionText)).LocalInstructionText : "",
+        ClinicalComments = g.FirstOrDefault(p => !string.IsNullOrEmpty(p.ClinicalComments)) != null ? g.FirstOrDefault(p => !string.IsNullOrEmpty(p.ClinicalComments)).ClinicalComments : "",
+        TypeDrug = g.FirstOrDefault().TypeDrug,
+        IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
+        BillingService = g.FirstOrDefault().BillingService
+    }));
+                foreach (var stockItem in StoreOrderList)
+                {
+                    var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(stockItem.ItemUID ?? 0, stockItem.Quantity ?? 0, stockItem.QNUOMUID ?? 0, stockItem.StoreUID ?? 0);
+                    foreach (var item in storeUsed)
+                    {
                         if (item.Quantity > item.BalQty)
                         {
                             item.IsWithoutStock = true;
@@ -783,78 +798,123 @@ namespace MediTech.ViewModels
                         {
                             item.IsExpired = true;
                         }
-
-                        drugDetails.Add(item);
                     }
-                    else
-                    {
-                        dupicateStock.Quantity += drugItem.Quantity;
-                        if (dupicateStock.Quantity > dupicateStock.BalQty)
-                        {
-                            dupicateStock.IsWithoutStock = true;
-                        }
-                    }
-
+                    stockItem.StockUID = storeUsed.FirstOrDefault() != null ? storeUsed.FirstOrDefault().StockUID : null;
+                    stockItem.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>(storeUsed);
+                    stockItem.BalQty = storeUsed.Sum(p => p.BalQty);
+                    stockItem.ExpiryDate = storeUsed.FirstOrDefault() != null ? storeUsed.FirstOrDefault().ExpiryDate : null;
+                    stockItem.IsWithoutStock = storeUsed.FirstOrDefault(p => p.IsWithoutStock == true) != null ? true : false;
                 }
+
+
             }
-
-            StoreOrderList = new ObservableCollection<StoreItemList>(
-                drugDetails
-                .GroupBy(p => new { p.BillableItemUID})
-                .Select(
-                     g => new StoreItemList
-                     {
-                         Quantity = g.Sum(p => p.Quantity),
-                         BalQty = g.Sum(p => p.BalQty),
-                         StockUID = g.FirstOrDefault().StockUID,
-                         ItemCode = g.FirstOrDefault().ItemCode,
-                         ItemName = g.FirstOrDefault().ItemName,
-                         QuantityUnit = g.FirstOrDefault().QuantityUnit,
-                         BillableItemUID = g.FirstOrDefault().BillableItemUID,
-                         ExpiryDate = g.FirstOrDefault().ExpiryDate,
-                         IsWithoutStock = g.FirstOrDefault(p => p.IsWithoutStock == true) != null ? true : false,
-                         IsExpired = g.FirstOrDefault().IsExpired,
-                         InstructionRoute = g.FirstOrDefault().InstructionRoute,
-                         Dosage = g.FirstOrDefault().Dosage,
-                         DrugFrequency = g.FirstOrDefault().DrugFrequency,
-                         LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
-                         ClinicalComments = g.FirstOrDefault().ClinicalComments,
-                         TypeDrug = g.FirstOrDefault().TypeDrug,
-                         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
-                         BillingService = g.FirstOrDefault().BillingService
-                     }));
-
-            foreach (var item in StoreOrderList)
+            catch (Exception er)
             {
-                item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>();
-                item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>(
-                    drugDetails.Where(p => p.BillableItemUID == item.BillableItemUID)
-                   .GroupBy(p => new { p.BillableItemUID, p.StoreUID, p.BatchID }).Select(
-                     g => new StoreItemList
-                     {
-                         Quantity = g.Sum(p => p.Quantity),
-                         ItemCode = g.FirstOrDefault().ItemCode,
-                         ItemName = g.FirstOrDefault().ItemName,
-                         QuantityUnit = g.FirstOrDefault().QuantityUnit,
-                         BalQty = g.Sum(p => p.BalQty),
-                         BillableItemUID = g.FirstOrDefault().BillableItemUID,
-                         StockUID = g.FirstOrDefault().StockUID,
-                         StoreUID = g.FirstOrDefault().StoreUID,
-                         ExpiryDate = g.FirstOrDefault().ExpiryDate,
-                         BatchID = g.FirstOrDefault().BatchID,
-                         IsWithoutStock = g.FirstOrDefault().IsWithoutStock,
-                         IsExpired = g.FirstOrDefault().IsExpired,
-                         StoreName = g.FirstOrDefault().StoreName,
-                         InstructionRoute = g.FirstOrDefault().InstructionRoute,
-                         Dosage = g.FirstOrDefault().Dosage,
-                         DrugFrequency = g.FirstOrDefault().DrugFrequency,
-                         LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
-                         ClinicalComments = g.FirstOrDefault().ClinicalComments,
-                         TypeDrug = g.FirstOrDefault().TypeDrug,
-                         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
-                         BillingService = g.FirstOrDefault().BillingService
-                     }));
+                ErrorDialog(er.Message);
             }
+
+            //StoreOrderList = new ObservableCollection<StoreItemList>();
+            //List<PatientOrderDetailModel> drugDetails = new List<PatientOrderDetailModel>();
+            //var TempDrugList = orderAll.Where(p => p.BillingService == "Drug"
+            //|| p.BillingService == "Medical Supplies"
+            //|| p.BillingService == "Supply");
+
+
+
+            //foreach (var drugItem in TempDrugList)
+            //{
+            //    var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
+            //    foreach (var item in storeUsed)
+            //    {
+            //        var dupicateStock = drugDetails.FirstOrDefault(p => p.StockUID == item.StockUID);
+            //        if (dupicateStock == null)
+            //        {
+            //            item.ItemCode = drugItem.ItemCode;
+            //            item.UnitPrice = drugItem.UnitPrice;
+            //            item.BillingService = drugItem.BillingService;
+            //            item.BillableItemUID = drugItem.BillableItemUID;
+
+            //            if (item.Quantity > item.BalQty)
+            //            {
+            //                item.IsWithoutStock = true;
+            //            }
+
+            //            if (item.ExpiryDate?.Date <= DateTime.Now.Date)
+            //            {
+            //                item.IsExpired = true;
+            //            }
+
+            //            drugDetails.Add(item);
+            //        }
+            //        else
+            //        {
+            //            dupicateStock.Quantity += drugItem.Quantity;
+            //            if (dupicateStock.Quantity > dupicateStock.BalQty)
+            //            {
+            //                dupicateStock.IsWithoutStock = true;
+            //            }
+            //        }
+
+            //    }
+            //}
+
+            //StoreOrderList = new ObservableCollection<StoreItemList>(
+            //    drugDetails
+            //    .GroupBy(p => new { p.BillableItemUID })
+            //    .Select(
+            //         g => new StoreItemList
+            //         {
+            //             Quantity = g.Sum(p => p.Quantity),
+            //             BalQty = g.Sum(p => p.BalQty),
+            //             StockUID = g.FirstOrDefault().StockUID,
+            //             ItemCode = g.FirstOrDefault().ItemCode,
+            //             ItemName = g.FirstOrDefault().ItemName,
+            //             QuantityUnit = g.FirstOrDefault().QuantityUnit,
+            //             BillableItemUID = g.FirstOrDefault().BillableItemUID,
+            //             ExpiryDate = g.FirstOrDefault().ExpiryDate,
+            //             IsWithoutStock = g.FirstOrDefault(p => p.IsWithoutStock == true) != null ? true : false,
+            //             IsExpired = g.FirstOrDefault().IsExpired,
+            //             InstructionRoute = g.FirstOrDefault().InstructionRoute,
+            //             Dosage = g.FirstOrDefault().Dosage,
+            //             DrugFrequency = g.FirstOrDefault().DrugFrequency,
+            //             LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
+            //             ClinicalComments = g.FirstOrDefault().ClinicalComments,
+            //             TypeDrug = g.FirstOrDefault().TypeDrug,
+            //             IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
+            //             BillingService = g.FirstOrDefault().BillingService
+            //         }));
+
+            //foreach (var item in StoreOrderList)
+            //{
+            //    item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>();
+            //    item.StoreStockItem = new ObservableCollection<PatientOrderDetailModel>(
+            //        drugDetails.Where(p => p.BillableItemUID == item.BillableItemUID)
+            //       .GroupBy(p => new { p.BillableItemUID, p.StoreUID, p.BatchID }).Select(
+            //         g => new StoreItemList
+            //         {
+            //             Quantity = g.Sum(p => p.Quantity),
+            //             ItemCode = g.FirstOrDefault().ItemCode,
+            //             ItemName = g.FirstOrDefault().ItemName,
+            //             QuantityUnit = g.FirstOrDefault().QuantityUnit,
+            //             BalQty = g.Sum(p => p.BalQty),
+            //             BillableItemUID = g.FirstOrDefault().BillableItemUID,
+            //             StockUID = g.FirstOrDefault().StockUID,
+            //             StoreUID = g.FirstOrDefault().StoreUID,
+            //             ExpiryDate = g.FirstOrDefault().ExpiryDate,
+            //             BatchID = g.FirstOrDefault().BatchID,
+            //             IsWithoutStock = g.FirstOrDefault().IsWithoutStock,
+            //             IsExpired = g.FirstOrDefault().IsExpired,
+            //             StoreName = g.FirstOrDefault().StoreName,
+            //             InstructionRoute = g.FirstOrDefault().InstructionRoute,
+            //             Dosage = g.FirstOrDefault().Dosage,
+            //             DrugFrequency = g.FirstOrDefault().DrugFrequency,
+            //             LocalInstructionText = g.FirstOrDefault().LocalInstructionText,
+            //             ClinicalComments = g.FirstOrDefault().ClinicalComments,
+            //             TypeDrug = g.FirstOrDefault().TypeDrug,
+            //             IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
+            //             BillingService = g.FirstOrDefault().BillingService
+            //         }));
+            //}
 
         }
         #endregion

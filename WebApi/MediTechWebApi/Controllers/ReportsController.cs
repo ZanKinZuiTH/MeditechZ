@@ -676,12 +676,12 @@ namespace MediTechWebApi.Controllers
         }
 
 
-        [Route("StockReceiveReportAll")]
+        [Route("StockReceiveReport")]
         [HttpGet]
-        public List<StockReceiveReportModel> StockReceiveReportAll(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReceiveReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             List<StockReceiveReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockReceiveReportAll(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockReceive(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReceiveReportModel>();
@@ -740,12 +740,27 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("StockTransferredReport")]
+        [Route("StockTransferredOutReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockTransferredReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockTransferred(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockTransferredOut(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockTransactionReportModel>();
+                data = dt.ToList<StockTransactionReportModel>();
+            }
+
+            return data;
+        }
+
+        [Route("StockTransferredInReport")]
+        [HttpGet]
+        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockTransactionReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockTransferredIn(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();

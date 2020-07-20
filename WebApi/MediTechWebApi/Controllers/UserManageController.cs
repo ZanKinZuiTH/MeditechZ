@@ -4,6 +4,7 @@ using ShareLibrary;
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Entity;
 using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
@@ -418,6 +419,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID)
         {
+            DateTime now = DateTime.Now;
             List<RoleProfileModel> roleProFileData = (from j in db.RoleProfile
                                                       join i in db.Role on j.RoleUID equals i.UID
                                                       join l in db.Login on j.LoginUID equals l.UID
@@ -429,6 +431,8 @@ namespace MediTechWebApi.Controllers
                                                       && c.StatusFlag == "A"
                                                       && h.StatusFlag == "A"
                                                       && o.StatusFlag == "A"
+                                                      && (o.ActiveFrom == null || DbFunctions.TruncateTime(o.ActiveFrom) <= DbFunctions.TruncateTime(now))
+                                                      && (o.ActiveTo == null || DbFunctions.TruncateTime(o.ActiveTo) >= DbFunctions.TruncateTime(now))
                                                       && j.LoginUID == loginUID
                                                       select new RoleProfileModel
                                                       {

@@ -1463,10 +1463,23 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockTransferred(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockTransferredOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockTransferred", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockTransferredOut", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pRPTStockTransferredIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockTransferredIn", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
@@ -1549,10 +1562,10 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockReceiveReportAll(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockReceive(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockReceiveReportAll", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockReceive", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);

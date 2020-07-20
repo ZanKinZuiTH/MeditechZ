@@ -156,6 +156,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<PatientOrderDetailModel> GetDrugStoreDispense(int itemMasterUID, double useQty, int IMUOMUID, int StoreUID)
+        {
+            string requestApi = string.Format("Api/Pharmacy/GetDrugStoreDispense?itemMasterUID={0}&useQty={1}&IMUOMUID={2}&StoreUID={3}", itemMasterUID,useQty,IMUOMUID,StoreUID);
+            List<PatientOrderDetailModel> dataRequest = MeditechApiHelper.Get<List<PatientOrderDetailModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public List<DrugStickerModel> PrintStrickerDrug(long prescriptionItemUID)
         {
             string requestApi = string.Format("Api/Pharmacy/PrintStrickerDrug?prescriptionItemUID={0}", prescriptionItemUID);

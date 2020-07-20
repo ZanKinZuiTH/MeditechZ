@@ -10,6 +10,7 @@ namespace MediTech.Model
     {
         public string StudyInstanceUID { get; set; }
         public string PatientID { get; set; }
+        public string PatientID2 { get; set; }
         public string PatientName { get; set; }
         public string OtherID { get; set; }
         public string PatientComments { get; set; }

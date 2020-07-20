@@ -28,22 +28,38 @@
                 <dxn:NavBarControl Name="navBarControl" HorizontalAlignment="Left">
                     <dxn:NavBarGroup IsExpanded="True" Header="Search" DisplaySource="Content">
                         <dxn:NavBarGroup.Content>
-                            <dxlc:LayoutControl Orientation="Vertical">
+                            <dxlc:LayoutControl Orientation="Vertical" Width="240">
                                 <dxlc:LayoutGroup Orientation="Vertical" ScrollBars="Auto">
                                     <dxlc:LayoutItem Label="Study Date :" LabelPosition="Top">
                                         <dxlc:LayoutItem>
                                             <dxlc:LayoutGroup Orientation="Vertical">
-                                                <dxlc:LayoutGroup>
-                                                    <RadioButton IsChecked="{Binding IsCheckedToDay}" GroupName="radStudate" Content="Today"/>
-                                                    <RadioButton IsChecked="{Binding IsCheckedYesterDay}" GroupName="radStudate" Content="YesterDay"/>
-                                                    <RadioButton IsChecked="{Binding IsCheckedPastWeek}" GroupName="radStudate" Content="Past Week"/>
+                                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                                    <dxlc:LayoutItem>
+                                                        <RadioButton IsChecked="{Binding IsCheckedToDay}" GroupName="radStudate" Content="Today"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <RadioButton IsChecked="{Binding IsCheckedYesterDay}" GroupName="radStudate" Content="YesterDay"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <RadioButton IsChecked="{Binding IsCheckedPastWeek}" GroupName="radStudate" Content="Past Week"/>
+                                                    </dxlc:LayoutItem>
                                                 </dxlc:LayoutGroup>
-                                                <dxlc:LayoutGroup Orientation="Vertical">
-                                                    <RadioButton IsChecked="{Binding IsCheckedPeriod}" GroupName="radStudate" Content="Period"/>
-                                                    <dxlc:LayoutGroup>
+                                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                                    <dxlc:LayoutItem>
+                                                        <RadioButton IsChecked="{Binding IsCheckedPeriod}" GroupName="radStudate" Content="Period"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <RadioButton IsChecked="{Binding IsCheckedNone}" GroupName="radStudate" Content="None"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem/>
+                                                </dxlc:LayoutGroup>
+                                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                                    <dxlc:LayoutItem>
                                                         <dxe:DateEdit EditValue="{Binding DateFrom}" IsEnabled="{Binding IsEnableDateFrom}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
                                                         <dxe:DateEdit EditValue="{Binding DateTo}" IsEnabled="{Binding IsEnableDateTo}"/>
-                                                    </dxlc:LayoutGroup>
+                                                    </dxlc:LayoutItem>
                                                 </dxlc:LayoutGroup>
                                             </dxlc:LayoutGroup>
                                         </dxlc:LayoutItem>
@@ -125,7 +141,7 @@
                                             <dxg:GridColumn Header="Studay Description" FieldName="StudyDescription" ReadOnly="True"/>
                                         </dxg:GridControl.Columns>
                                         <dxg:GridControl.View>
-                                            <dxg:TableView x:Name="view" NavigationStyle="Row" AllowPerPixelScrolling="True" />
+                                            <dxg:TableView x:Name="view" NavigationStyle="Cell" AllowPerPixelScrolling="True" />
                                         </dxg:GridControl.View>
                                     </dxg:GridControl>
                                 </dxlc:LayoutGroup>
@@ -272,7 +288,11 @@
                                     </dxdo:LayoutGroup>
                                 </dxdo:DockLayoutManager>-->
 
-                                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                <dxlc:LayoutGroup >
+                                    <dx:SimpleButton Command="{Binding EditStudyCommand}" 
+                                     Content="Edit Study" Width="90" 
+                                     Height="25" HorizontalAlignment="Left" />
+                                    
                                     <dx:SimpleButton Command="{Binding MicroDicomCommand}" 
                                                      IsEnabled="{Binding IsEnabledMicroDiom}"
                                      Content="Micro Dicom" Width="90" 

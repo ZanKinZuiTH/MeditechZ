@@ -927,6 +927,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EditStudyViewModel EditStudyViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EditStudyViewModel>())
+                    SimpleIoc.Default.Register<EditStudyViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EditStudyViewModel>();
+            }
+        }
+
         public RadiologistReportViewModel RadiologistReportViewModel
         {
             get
