@@ -237,10 +237,10 @@ namespace MediTech.DataService
         }
 
 
-        public List<StockReceiveReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             string requestApi = string.Format("Api/Report/StockReceiveReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
-            List<StockReceiveReportModel> data = MeditechApiHelper.Get<List<StockReceiveReportModel>>(requestApi);
+            List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
 
             return data;
         }
@@ -255,10 +255,12 @@ namespace MediTech.DataService
 
         public List<StockTransactionReportModel> StockIssueReport(string issueID)
         {
-            string requestApi = string.Format("Api/Report/StockIssueReport?issueID={0}", issueID);
-            List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
+            return MeditechApiHelper.Get<List<StockTransactionReportModel>>(string.Format("Api/Report/StockIssueReport?issueID={0}", issueID));
+        }
 
-            return data;
+        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            return MeditechApiHelper.Get<List<StockTransactionReportModel>>(string.Format("Api/Report/StockIssueReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID));
         }
 
         public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)

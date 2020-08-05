@@ -160,9 +160,10 @@ namespace MediTech.ViewModels
                 ,new LookupReferenceValueModel {Key = 3,Display = "CT" }
                 ,new LookupReferenceValueModel {Key = 4,Display = "ES"  }
                 ,new LookupReferenceValueModel {Key = 5,Display = "MR" }
-                ,new LookupReferenceValueModel {Key = 6,Display = "OT" }
-                ,new LookupReferenceValueModel {Key = 7,Display = "RF"  }
-            ,new LookupReferenceValueModel {Key = 8,Display = "US"  } });
+                ,new LookupReferenceValueModel {Key = 6,Display = "MG" }
+                ,new LookupReferenceValueModel {Key = 7,Display = "OT" }
+                ,new LookupReferenceValueModel {Key = 8,Display = "RF"  }
+            ,new LookupReferenceValueModel {Key = 9,Display = "US"  } });
         }
 
         public override void OnLoaded()

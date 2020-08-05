@@ -148,7 +148,7 @@
             this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable1.Font = new System.Drawing.Font("Angsana New", 16F);
+            this.xrTable1.Font = new System.Drawing.Font("Angsana New", 14F);
             this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(22.32893F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -353,8 +353,7 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable4});
-            this.GroupHeader1.HeightF = 40.625F;
-            this.GroupHeader1.Level = 2;
+            this.GroupHeader1.HeightF = 25F;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
             // xrTable4
@@ -362,8 +361,8 @@
             this.xrTable4.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(22.32889F, 10.00001F);
+            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(22.32889F, 0F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4});
@@ -389,13 +388,13 @@
             // 
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.Text = "รหัส";
-            this.xrTableCell27.Weight = 0.5414039957807264D;
+            this.xrTableCell27.Weight = 0.47759647145715406D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.Text = "รายการ";
-            this.xrTableCell13.Weight = 1.080062222719163D;
+            this.xrTableCell13.Weight = 1.1438697470427353D;
             // 
             // xrTableCell14
             // 
@@ -635,11 +634,12 @@
             new DevExpress.XtraReports.UI.GroupField("RequestOrganisation", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader3.HeightF = 99.58331F;
             this.GroupHeader3.KeepTogether = true;
+            this.GroupHeader3.Level = 1;
             this.GroupHeader3.Name = "GroupHeader3";
             // 
             // xrTable2
             // 
-            this.xrTable2.Font = new System.Drawing.Font("Angsana New", 16F);
+            this.xrTable2.Font = new System.Drawing.Font("Angsana New", 14F);
             this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(425.7881F, 10.00001F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -703,7 +703,7 @@
             // xrTable3
             // 
             this.xrTable3.AnchorVertical = DevExpress.XtraReports.UI.VerticalAnchorStyles.Bottom;
-            this.xrTable3.Font = new System.Drawing.Font("Angsana New", 16F);
+            this.xrTable3.Font = new System.Drawing.Font("Angsana New", 14F);
             this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(22.32889F, 9.583314F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -803,7 +803,7 @@
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
             new DevExpress.XtraReports.UI.GroupField("IssuedOrganisation", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader2.HeightF = 43.75F;
-            this.GroupHeader2.Level = 1;
+            this.GroupHeader2.Level = 2;
             this.GroupHeader2.Name = "GroupHeader2";
             this.GroupHeader2.PageBreak = DevExpress.XtraReports.UI.PageBreak.BeforeBandExceptFirstEntry;
             // 
@@ -811,7 +811,7 @@
             // 
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "IssuedOrganisation")});
-            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(22.32889F, 10.00001F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -826,6 +826,7 @@
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable6});
             this.GroupFooter1.HeightF = 40.625F;
+            this.GroupFooter1.Level = 1;
             this.GroupFooter1.Name = "GroupFooter1";
             // 
             // xrTable6
@@ -873,7 +874,7 @@
             this.xrLine1,
             this.xrTable5});
             this.GroupFooter2.HeightF = 84.375F;
-            this.GroupFooter2.Level = 1;
+            this.GroupFooter2.Level = 2;
             this.GroupFooter2.Name = "GroupFooter2";
             // 
             // xrLine1
@@ -921,7 +922,7 @@
             this.xrTableCell20.Summary = xrSummary2;
             this.xrTableCell20.Weight = 0.99433105841682812D;
             // 
-            // StockTransferred
+            // StockTransferredOut
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,

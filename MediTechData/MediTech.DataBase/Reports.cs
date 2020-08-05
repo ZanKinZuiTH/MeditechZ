@@ -20,6 +20,7 @@ namespace MediTech.DataBase
         public string ViewCode { get; set; }
         public string NamespaceName { get; set; }
         public string ReportGroup { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

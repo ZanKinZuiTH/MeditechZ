@@ -19,6 +19,7 @@ namespace MediTech.Model.Report
         public double StockUsed { get; set; }
         public double AdjustStockOut { get; set; }
         public double DisposeStock { get; set; }
+        public double ConsumptionStock { get; set; }
         public double IssueStock { get; set; }
         public double SalesReturn { get; set; }
         public double CancelDispensed { get; set; }

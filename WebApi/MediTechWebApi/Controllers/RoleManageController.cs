@@ -348,8 +348,13 @@ namespace MediTechWebApi.Controllers
                                                         NamespaceName = RPT.NamespaceName,
                                                         ReportGroup = RPT.ReportGroup,
                                                         ViewCode = RPT.ViewCode,
-                                                        RoleUID = RO.UID
+                                                        RoleUID = RO.UID,
+                                                        DisplayOrder = RPT.DisplayOrder
                                                     }).ToList();
+            if (data != null && data.Count > 0)
+            {
+                data = data.OrderBy(p => p.DisplayOrder).ToList();
+            }
 
             return data;
         }

@@ -677,14 +677,14 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockReceiveReport")]
         [HttpGet]
-        public List<StockReceiveReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
-            List<StockReceiveReportModel> data = null;
+            List<StockTransactionReportModel> data = null;
             DataTable dt = SqlDirectStore.pRPTStockReceive(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
-                data = new List<StockReceiveReportModel>();
-                data = dt.ToList<StockReceiveReportModel>();
+                data = new List<StockTransactionReportModel>();
+                data = dt.ToList<StockTransactionReportModel>();
             }
 
             return data;
@@ -737,6 +737,20 @@ namespace MediTechWebApi.Controllers
 
 
             return data;
+        }
+
+        [Route("StockIssueReport")]
+        [HttpGet]
+        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockTransactionReportModel> result = null;
+            DataTable dataTable = SqlDirectStore.pRPTStockIssued(dateFrom, dateTo, organisationUID);
+            if (dataTable != null && dataTable.Rows.Count > 0)
+            {
+                result = new List<StockTransactionReportModel>();
+                result = Extension.ToList<StockTransactionReportModel>(dataTable);
+            }
+            return result;
         }
 
         [Route("StockTransferredOutReport")]

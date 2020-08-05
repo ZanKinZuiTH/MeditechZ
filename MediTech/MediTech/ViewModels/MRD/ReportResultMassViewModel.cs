@@ -1296,21 +1296,12 @@ namespace MediTech.ViewModels
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID,"");
-                                //var tag = DicomTag.Parse("0029,1000");
-                                //var items = (from dicomItem in dicomFile.Dataset
-                                //             where dicomItem.Tag.Group == tag.Group
-                                //             select dicomItem);
 
-                                //foreach (var item in items.ToList())
-                                //{
-                                //    dicomFile.Dataset.Remove(p => p.Equals(item));
-                                //}
                                 dicomFile.Dataset.NotValidated();
                                 foreach (var item in dicomFile.Dataset.ToList())
                                 {
                                     string value = "";
                                     dicomFile.Dataset.TryGetString(item.Tag, out value);
-                                    //string value = dicomFile.Dataset.GetSingleValueOrDefault<string>(item.Tag,null);
                                     if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
                                     {
                                         value = value.Replace("\0", "");

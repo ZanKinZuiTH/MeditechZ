@@ -1576,6 +1576,20 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pRPTStockIssued(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            MediTechEntities mediTechEntities = new MediTechEntities();
+            SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("pRPTStockIssued", mediTechEntities.Database.Connection.ConnectionString);
+            sqlDataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
+            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            DataSet dataSet = new DataSet();
+            sqlDataAdapter.Fill(dataSet);
+            return dataSet.Tables[0];
+        }
+
+
         public static DataTable pRPTStockBalancePerMounth(int year, string monthLists, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();

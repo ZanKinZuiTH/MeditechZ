@@ -1,6 +1,6 @@
 ﻿namespace MediTech.Reports.Statistic.Inventory
 {
-	partial class StockReceiveReport
+	partial class StockIssueReport
 	{
 		/// <summary>
 		/// Required designer variable.
@@ -186,10 +186,9 @@
             // xrTableCell10
             // 
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Itemcost")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "NetCost")});
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
-            this.xrTableCell10.Text = "xrTableCell10";
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell10.Weight = 0.74304451916234582D;
             // 
@@ -275,7 +274,7 @@
             this.lblReportHeader.SizeF = new System.Drawing.SizeF(293.75F, 29.25F);
             this.lblReportHeader.StylePriority.UseFont = false;
             this.lblReportHeader.StylePriority.UseTextAlignment = false;
-            this.lblReportHeader.Text = "รายงานการรับของ (Stock Receive)";
+            this.lblReportHeader.Text = "รายงานการส่งของ (Stock Issue)";
             this.lblReportHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // BottomMargin
@@ -335,7 +334,7 @@
             // xrTableCell14
             // 
             this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Text = "จำนวนที่รับเข้า";
+            this.xrTableCell14.Text = "จำนวนที่ส่งออก";
             this.xrTableCell14.Weight = 0.57467620946653342D;
             // 
             // xrTableCell15
@@ -396,7 +395,7 @@
             // xrTableCell22
             // 
             this.xrTableCell22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Itemcost")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "NetCost")});
             this.xrTableCell22.Font = new System.Drawing.Font("Angsana New", 16F);
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.StylePriority.UseFont = false;
@@ -425,9 +424,8 @@
             // xrTableCell24
             // 
             this.xrTableCell24.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ReceivedDttm", "{0:dd/MM/yyyy}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "IssuedDttm", "{0:dd/MM/yyyy}")});
             this.xrTableCell24.Name = "xrTableCell24";
-            this.xrTableCell24.Text = "xrTableCell24";
             this.xrTableCell24.Weight = 1.2079168701171876D;
             // 
             // xrTableCell23
@@ -436,7 +434,7 @@
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.StylePriority.UseFont = false;
             this.xrTableCell23.StylePriority.UseTextAlignment = false;
-            this.xrTableCell23.Text = "วันที่รับของ :";
+            this.xrTableCell23.Text = "วันที่ส่งของ :";
             this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrTableCell23.Weight = 1D;
             // 
@@ -451,9 +449,8 @@
             // xrTableCell9
             // 
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ReceiveID")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "IssueID")});
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Text = "xrTableCell9";
             this.xrTableCell9.Weight = 1.2079168701171876D;
             // 
             // xrTableCell8
@@ -462,7 +459,7 @@
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
-            this.xrTableCell8.Text = "Receive No #";
+            this.xrTableCell8.Text = "Issue No #";
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrTableCell8.Weight = 1D;
             // 
@@ -477,7 +474,7 @@
             // xrTableCell12
             // 
             this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "IssuedOrganisation")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ReceivedOrganisation")});
             this.xrTableCell12.Name = "xrTableCell12";
             this.xrTableCell12.Weight = 1.2079168701171876D;
             // 
@@ -487,7 +484,7 @@
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.StylePriority.UseFont = false;
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
-            this.xrTableCell4.Text = "สถานประกอบการที่ส่ง :";
+            this.xrTableCell4.Text = "สถานประกอบการที่รับ :";
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrTableCell4.Weight = 1D;
             // 
@@ -579,7 +576,7 @@
             this.xrTable1,
             this.xrTable3});
             this.GroupHeader2.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("ReceiveID", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            new DevExpress.XtraReports.UI.GroupField("IssueID", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader2.HeightF = 97.08334F;
             this.GroupHeader2.KeepTogether = true;
             this.GroupHeader2.Level = 1;
@@ -590,7 +587,7 @@
             this.GroupHeader3.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel2});
             this.GroupHeader3.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("ReceivedOrganisation", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            new DevExpress.XtraReports.UI.GroupField("IssuedOrganisation", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader3.HeightF = 41.33332F;
             this.GroupHeader3.KeepTogether = true;
             this.GroupHeader3.Level = 2;
@@ -600,15 +597,14 @@
             // xrLabel2
             // 
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ReceivedOrganisation")});
-            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "IssuedOrganisation")});
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(10.00001F, 10.00001F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(290.0878F, 25.49998F);
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "xrLabel2";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // GroupFooter1
@@ -652,7 +648,7 @@
             // xrTableCell20
             // 
             this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Itemcost")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "NetCost")});
             this.xrTableCell20.Font = new System.Drawing.Font("Angsana New", 16F);
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.StylePriority.UseFont = false;
@@ -671,7 +667,7 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.StockTransactionReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // StockReceiveReport
+            // StockIssueReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,

@@ -3076,5 +3076,107 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockConsumption_Result>("pRPTStockConsumption", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
         }
+    
+        public virtual ObjectResult<pRPTStockAdjustmentIn_Result> pRPTStockAdjustmentIn(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockAdjustmentIn_Result>("pRPTStockAdjustmentIn", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockAdjustmentOut_Result> pRPTStockAdjustmentOut(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockAdjustmentOut_Result>("pRPTStockAdjustmentOut", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockIssued_Result> pRPTStockIssued(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockIssued_Result>("pRPTStockIssued", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockReceive_Result> pRPTStockReceive(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockReceive_Result>("pRPTStockReceive", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockTransferredIn_Result> pRPTStockTransferredIn(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockTransferredIn_Result>("pRPTStockTransferredIn", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockTransferredOut_Result> pRPTStockTransferredOut(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockTransferredOut_Result>("pRPTStockTransferredOut", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
     }
 }

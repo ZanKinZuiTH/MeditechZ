@@ -41,6 +41,8 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> LastVisitDttm { get; set; }
         public string DeathStatus { get; set; }
         public Nullable<System.DateTime> DeathDttm { get; set; }
+        public string Department { get; set; }
+        public string Position { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

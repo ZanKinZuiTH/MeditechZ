@@ -397,21 +397,7 @@ namespace MediTech.ViewModels
                                     dicomFile.Dataset.AddOrUpdate(dicomItem.Tag, value);
                                 }
                             }
-                            //string mediaStorageSOPInsUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.MediaStorageSOPInstanceUID, null);
-                            //if (mediaStorageSOPInsUID == null)
-                            //{
-                            //    DicomDataset dataset = dicomFile.Dataset;
-                            //    string sopInstanceUID = dicomFile.Dataset.GetSingleValue<string>(DicomTag.SOPInstanceUID);
-                            //    dataset.Add(DicomTag.MediaStorageSOPInstanceUID, sopInstanceUID);
 
-                            //    DicomFile dicomfile2 = new DicomFile(dataset);
-                            //    dicomfile2.Save(dicomPath + "\\0000000" + i.ToString());
-
-                            //    dicomDir.AddFile(dicomfile2, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));
-                            //    i++;
-                            //    continue;
-                            //}
-                            //dicomFile.Dataset.Validate();
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
 
                             dicomDir.AddFile(dicomFile, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));

@@ -15,5 +15,7 @@ namespace MediTech.Model
         public string ReportGroup { get; set; }
         public string NamespaceName { get; set; }
         public bool IsChecked { get; set; }
+
+        public int? DisplayOrder { get; set; }
     }
 }

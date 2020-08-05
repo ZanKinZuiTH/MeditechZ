@@ -533,6 +533,18 @@
     <Compile Include="Reports\Statistic\Inventory\StockConsumption.Designer.cs">
       <DependentUpon>StockConsumption.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispose.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispose.Designer.cs">
+      <DependentUpon>StockDispose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockIssueReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockIssueReport.Designer.cs">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockTransferredIn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2029,6 +2041,12 @@
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispensed.aa.resx">
       <DependentUpon>StockDispensed.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispose.resx">
+      <DependentUpon>StockDispose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockIssueReport.resx">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockTransferredIn.resx">
       <DependentUpon>StockTransferredIn.cs</DependentUpon>

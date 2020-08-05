@@ -523,6 +523,12 @@
     <Compile Include="pRPTRadiologyRDUReview_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTStockAdjustmentIn_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTStockAdjustmentOut_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTStockConsumption_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -538,13 +544,25 @@
     <Compile Include="pRPTStockGoodReceive_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTStockIssued_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTStockOnHand_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockReceiveReportAll_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTStockReceive_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTStockSummery_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTStockTransferredIn_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTStockTransferredOut_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockTransferred_Result.cs">

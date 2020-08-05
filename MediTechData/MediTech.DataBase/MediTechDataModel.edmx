@@ -916,6 +916,8 @@
           <Property Name="LastVisitDttm" Type="datetime" />
           <Property Name="DeathStatus" Type="nvarchar" MaxLength="1" />
           <Property Name="DeathDttm" Type="datetime" />
+          <Property Name="Department" Type="nvarchar" MaxLength="100" />
+          <Property Name="Position" Type="nvarchar" MaxLength="100" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1895,6 +1897,7 @@
           <Property Name="ViewCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="NamespaceName" Type="nvarchar" MaxLength="255" Nullable="false" />
           <Property Name="ReportGroup" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -3273,6 +3276,16 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pRPTStockAdjustmentIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pRPTStockAdjustmentOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pRPTStockBalancePerMounth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_Year" Type="int" Mode="In" />
           <Parameter Name="P_MonthLists" Type="nvarchar" Mode="In" />
@@ -3300,6 +3313,11 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pRPTStockIssued" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pRPTStockNonMovement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
@@ -3308,7 +3326,7 @@
         <Function Name="pRPTStockOnHand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
-        <Function Name="pRPTStockReceiveReportAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="pRPTStockReceive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
@@ -3318,7 +3336,12 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
-        <Function Name="pRPTStockTransferred" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="pRPTStockTransferredIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pRPTStockTransferredOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
@@ -4656,6 +4679,36 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTStockAdjustmentIn" ReturnType="Collection(MediTechModel.pRPTStockAdjustmentIn_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockAdjustmentOut" ReturnType="Collection(MediTechModel.pRPTStockAdjustmentOut_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockIssued" ReturnType="Collection(MediTechModel.pRPTStockIssued_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockReceive" ReturnType="Collection(MediTechModel.pRPTStockReceive_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockTransferredIn" ReturnType="Collection(MediTechModel.pRPTStockTransferredIn_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockTransferredOut" ReturnType="Collection(MediTechModel.pRPTStockTransferredOut_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7670,6 +7723,8 @@
           <Property Name="LastVisitDttm" Type="DateTime" Precision="3" />
           <Property Name="DeathStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="DeathDttm" Type="DateTime" Precision="3" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -8271,13 +8326,13 @@
           <Property Name="BPSys" Type="Double" />
           <Property Name="BPDio" Type="Double" />
           <Property Name="OxygenSat" Type="Double" />
+          <Property Name="WaistCircumference" Type="Double" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="WaistCircumference" Type="Double" />
         </EntityType>
         <EntityType Name="PayorAgreement">
           <Key>
@@ -8649,6 +8704,7 @@
           <Property Name="ViewCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="NamespaceName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ReportGroup" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9558,6 +9614,118 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTStockAdjustmentIn_Result">
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="ActualQuantity" Nullable="false" />
+          <Property Type="Double" Name="UsedQty" Nullable="false" />
+          <Property Type="Double" Name="AdjustedQuantity" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="UnitCost" Nullable="true" />
+          <Property Type="Double" Name="TotalCost" Nullable="true" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StockDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockAdjustmentOut_Result">
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="ActualQuantity" Nullable="false" />
+          <Property Type="Double" Name="UsedQty" Nullable="false" />
+          <Property Type="Double" Name="AdjustedQuantity" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="10" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="UnitCost" Nullable="true" />
+          <Property Type="Double" Name="TotalCost" Nullable="true" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StockDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockIssued_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationUID" Nullable="false" />
+          <Property Type="String" Name="IssuedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ReceivedByOrganisationUID" Nullable="false" />
+          <Property Type="String" Name="ReceivedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="IssuedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IssueID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ItemCost" Nullable="true" />
+          <Property Type="Double" Name="NetCost" Nullable="true" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <Property Type="Double" Name="NetPrice" Nullable="false" />
+          <Property Type="Double" Name="Profit" Nullable="true" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockReceive_Result">
+          <Property Type="String" Name="ReceivedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ReceivedStore" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="IssuedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="IssuedStore" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ReceiveID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ReceivedBy" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="Double" Name="UnitPrice" Nullable="false" />
+          <Property Type="Double" Name="ItemCost" Nullable="true" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="ReceivedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockTransferredIn_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationUID" Nullable="false" />
+          <Property Type="String" Name="IssuedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="RequestedByOrganisationUID" Nullable="false" />
+          <Property Type="String" Name="RequestOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="IssuedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IssueID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ItemCost" Nullable="true" />
+          <Property Type="Double" Name="NetCost" Nullable="true" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <Property Type="Double" Name="NetPrice" Nullable="false" />
+          <Property Type="Double" Name="Profit" Nullable="true" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockTransferredOut_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationUID" Nullable="false" />
+          <Property Type="String" Name="IssuedOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="RequestedByOrganisationUID" Nullable="false" />
+          <Property Type="String" Name="RequestOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="IssuedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="Status" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="IssueID" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="200" />
+          <Property Type="Double" Name="Quantity" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="ItemCost" Nullable="true" />
+          <Property Type="Double" Name="NetCost" Nullable="true" />
+          <Property Type="Double" Name="Price" Nullable="false" />
+          <Property Type="Double" Name="NetPrice" Nullable="false" />
+          <Property Type="Double" Name="Profit" Nullable="true" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -10550,26 +10718,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pRPTStockReceiveReportAll" FunctionName="MediTechModel.Store.pRPTStockReceiveReportAll">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockReceiveReportAll_Result">
-                <ScalarProperty Name="ReceivedOrganisation" ColumnName="ReceivedOrganisation" />
-                <ScalarProperty Name="ReceivedStore" ColumnName="ReceivedStore" />
-                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
-                <ScalarProperty Name="IssuedStore" ColumnName="IssuedStore" />
-                <ScalarProperty Name="ReceiveID" ColumnName="ReceiveID" />
-                <ScalarProperty Name="ReceiveStatus" ColumnName="ReceiveStatus" />
-                <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
-                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
-                <ScalarProperty Name="ReceivedDttm" ColumnName="ReceivedDttm" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pRPTStockBalancePerMounth" FunctionName="MediTechModel.Store.pRPTStockBalancePerMounth" />
           <FunctionImportMapping FunctionImportName="pRPTRadiologyRDUReview" FunctionName="MediTechModel.Store.pRPTRadiologyRDUReview">
             <ResultMapping>
@@ -10669,29 +10817,6 @@
                 <ScalarProperty Name="DisposeStock" ColumnName="DisposeStock" />
                 <ScalarProperty Name="StockUsed" ColumnName="StockUsed" />
                 <ScalarProperty Name="BalanceStockEnd" ColumnName="BalanceStockEnd" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pRPTStockTransferred" FunctionName="MediTechModel.Store.pRPTStockTransferred">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockTransferred_Result">
-                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-                <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
-                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
-                <ScalarProperty Name="RequestedByOrganisationUID" ColumnName="RequestedByOrganisationUID" />
-                <ScalarProperty Name="RequestOrganisation" ColumnName="RequestOrganisation" />
-                <ScalarProperty Name="IssuedDttm" ColumnName="IssuedDttm" />
-                <ScalarProperty Name="Status" ColumnName="Status" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
-                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
-                <ScalarProperty Name="NetCost" ColumnName="NetCost" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
-                <ScalarProperty Name="Profit" ColumnName="Profit" />
-                <ScalarProperty Name="Unit" ColumnName="Unit" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12079,6 +12204,8 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
                 <ScalarProperty Name="DeathDttm" ColumnName="DeathDttm" />
                 <ScalarProperty Name="DeathStatus" ColumnName="DeathStatus" />
                 <ScalarProperty Name="LastVisitDttm" ColumnName="LastVisitDttm" />
@@ -12712,13 +12839,13 @@
           <EntitySetMapping Name="PatientVitalSign">
             <EntityTypeMapping TypeName="MediTechModel.PatientVitalSign">
               <MappingFragment StoreEntitySet="PatientVitalSign">
-                <ScalarProperty Name="WaistCircumference" ColumnName="WaistCircumference" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="WaistCircumference" ColumnName="WaistCircumference" />
                 <ScalarProperty Name="OxygenSat" ColumnName="OxygenSat" />
                 <ScalarProperty Name="BPDio" ColumnName="BPDio" />
                 <ScalarProperty Name="BPSys" ColumnName="BPSys" />
@@ -13123,6 +13250,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="ReportGroup" ColumnName="ReportGroup" />
                 <ScalarProperty Name="NamespaceName" ColumnName="NamespaceName" />
                 <ScalarProperty Name="ViewCode" ColumnName="ViewCode" />
@@ -14091,6 +14219,142 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockAdjustmentIn" FunctionName="MediTechModel.Store.pRPTStockAdjustmentIn">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockAdjustmentIn_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ActualQuantity" ColumnName="ActualQuantity" />
+                <ScalarProperty Name="UsedQty" ColumnName="UsedQty" />
+                <ScalarProperty Name="AdjustedQuantity" ColumnName="AdjustedQuantity" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="StockDttm" ColumnName="StockDttm" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockAdjustmentOut" FunctionName="MediTechModel.Store.pRPTStockAdjustmentOut">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockAdjustmentOut_Result">
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ActualQuantity" ColumnName="ActualQuantity" />
+                <ScalarProperty Name="UsedQty" ColumnName="UsedQty" />
+                <ScalarProperty Name="AdjustedQuantity" ColumnName="AdjustedQuantity" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="TotalCost" ColumnName="TotalCost" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="StockDttm" ColumnName="StockDttm" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockIssued" FunctionName="MediTechModel.Store.pRPTStockIssued">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockIssued_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
+                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
+                <ScalarProperty Name="ReceivedByOrganisationUID" ColumnName="ReceivedByOrganisationUID" />
+                <ScalarProperty Name="ReceivedOrganisation" ColumnName="ReceivedOrganisation" />
+                <ScalarProperty Name="IssuedDttm" ColumnName="IssuedDttm" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+                <ScalarProperty Name="NetCost" ColumnName="NetCost" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockReceive" FunctionName="MediTechModel.Store.pRPTStockReceive">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockReceive_Result">
+                <ScalarProperty Name="ReceivedOrganisation" ColumnName="ReceivedOrganisation" />
+                <ScalarProperty Name="ReceivedStore" ColumnName="ReceivedStore" />
+                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
+                <ScalarProperty Name="IssuedStore" ColumnName="IssuedStore" />
+                <ScalarProperty Name="ReceiveID" ColumnName="ReceiveID" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="ReceivedBy" ColumnName="ReceivedBy" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
+                <ScalarProperty Name="ReceivedDttm" ColumnName="ReceivedDttm" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockTransferredIn" FunctionName="MediTechModel.Store.pRPTStockTransferredIn">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockTransferredIn_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
+                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
+                <ScalarProperty Name="RequestedByOrganisationUID" ColumnName="RequestedByOrganisationUID" />
+                <ScalarProperty Name="RequestOrganisation" ColumnName="RequestOrganisation" />
+                <ScalarProperty Name="IssuedDttm" ColumnName="IssuedDttm" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+                <ScalarProperty Name="NetCost" ColumnName="NetCost" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockTransferredOut" FunctionName="MediTechModel.Store.pRPTStockTransferredOut">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockTransferredOut_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
+                <ScalarProperty Name="IssuedOrganisation" ColumnName="IssuedOrganisation" />
+                <ScalarProperty Name="RequestedByOrganisationUID" ColumnName="RequestedByOrganisationUID" />
+                <ScalarProperty Name="RequestOrganisation" ColumnName="RequestOrganisation" />
+                <ScalarProperty Name="IssuedDttm" ColumnName="IssuedDttm" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="IssueID" ColumnName="IssueID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+                <ScalarProperty Name="NetCost" ColumnName="NetCost" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
