@@ -58,5 +58,17 @@ namespace MediTech.Model
         public string AudioLeftResult { get; set; }
         public string AudioRecommend { get; set; }
         public string AudioResult { get; set; }
+        public string MyopiaRight { get; set; }
+        public string MyopiaLeft { get; set; }
+        public string AstigmaticRight { get; set; }
+        public string AstigmaticLeft { get; set; }
+        public string ViewRight { get; set; }
+        public string ViewLeft { get; set; }
+        public string HyperopiaRight { get; set; }
+        public string HyperopiaLeft { get; set; }
+        public string VARight { get; set; }
+        public string VALeft { get; set; }
+        public string ViewResult { get; set; }
+        public string ViewRecommend { get; set; }
     }
 }
