@@ -645,6 +645,24 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage5.tableLiver.Visible = false;
                 }
 
+                bookPage5.lbAstigmaticRight.Text = data.FirstOrDefault().AstigmaticRight != null ? data.FirstOrDefault().AstigmaticRight.ToString() : "";
+                bookPage5.lbAstigmaticLeft.Text = data.FirstOrDefault().AstigmaticLeft != null ? data.FirstOrDefault().AstigmaticLeft.ToString() : "";
+                bookPage5.lbMyopiaRight.Text = data.FirstOrDefault().MyopiaRight != null ? data.FirstOrDefault().MyopiaRight.ToString() : "";
+                bookPage5.lbMyopiaLeft.Text = data.FirstOrDefault().MyopiaLeft != null ? data.FirstOrDefault().MyopiaLeft.ToString() : "";
+                bookPage5.lbViewRight.Text = data.FirstOrDefault().ViewRight != null ? data.FirstOrDefault().ViewRight.ToString() : "";
+                bookPage5.lbViewLeft.Text = data.FirstOrDefault().ViewLeft != null ? data.FirstOrDefault().ViewLeft.ToString() : "";
+                bookPage5.lbHyperopiaRight.Text = data.FirstOrDefault().HyperopiaRight != null ? data.FirstOrDefault().HyperopiaRight.ToString() : "";
+                bookPage5.lbHyperopiaLeft.Text = data.FirstOrDefault().HyperopiaLeft != null ? data.FirstOrDefault().HyperopiaLeft.ToString() : "";
+                bookPage5.lbVARight.Text = data.FirstOrDefault().VARight != null ? data.FirstOrDefault().VARight.ToString() : "";
+                bookPage5.lbRVLeft.Text = data.FirstOrDefault().VALeft != null ? data.FirstOrDefault().VALeft.ToString() : "";
+                bookPage5.lbViewResult.Text = data.FirstOrDefault().ViewResult != null ? data.FirstOrDefault().ViewResult.ToString() : "";
+                bookPage5.lbViewRecommend.Text = data.FirstOrDefault().ViewRecommend != null ? data.FirstOrDefault().ViewRecommend.ToString() : "";
+
+
+                if (bookPage5.lbViewResult.Text != "" && bookPage5.lbViewResult.Text != "ผลการตรวจสายตา พบสายตาปกติ")
+                {
+                    bookPage5.lbViewResult.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
 
                 if (data.FirstOrDefault(p => (p.RequestItemName.Contains("CHOL") || p.RequestItemName.Contains("Total cholesterol"))
                 || (p.RequestItemName.Contains("TG") || p.RequestItemName.Contains("Triglyceride"))
