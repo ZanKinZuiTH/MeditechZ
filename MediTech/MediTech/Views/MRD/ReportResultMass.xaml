@@ -131,6 +131,11 @@
             <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
             <dxg:GridColumn Header="เบอร์โทร" FieldName="MobilePhone" ReadOnly="True"/>
             <dxg:GridColumn Header="ที่อยู่" FieldName="Address" ReadOnly="True"/>
+            <dxg:GridColumn Header="วันที่คีย์" FieldName="RequestedDttm" ReadOnly="True">
+                <dxg:GridColumn.EditSettings>
+                    <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy" />
+                </dxg:GridColumn.EditSettings>
+            </dxg:GridColumn>
             <dxg:GridColumn Header="วันที่ออกผล" FieldName="ResultEnteredDttm" ReadOnly="True">
                 <dxg:GridColumn.EditSettings>
                     <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy" />
@@ -166,6 +171,9 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup>
+                <dxlc:LayoutItem HorizontalAlignment="Right" Label="ภาพ SINE" LabelPosition="Left">
+                    <dxe:CheckEdit IsChecked="{Binding IsSINE}"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Right" Label="เรียงลำดับตาม No" LabelPosition="Left">
                     <dxe:CheckEdit IsChecked="{Binding IsNumberSequence}"/>
                 </dxlc:LayoutItem>

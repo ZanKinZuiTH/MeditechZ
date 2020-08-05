@@ -328,7 +328,7 @@ namespace MediTech.ViewModels
                     return;
                 }
                 AssingPropertiesToModel();
-                DataService.Purchaseing.ManageGoodReceive(model, AppUtil.Current.UserID);
+                DataService.Purchaseing.CreateGoodReceive(model, AppUtil.Current.UserID);
                 SaveSuccessDialog();
 
                 ListGRN listPage = new ListGRN();

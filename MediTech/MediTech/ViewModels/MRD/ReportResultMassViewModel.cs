@@ -272,6 +272,15 @@ namespace MediTech.ViewModels
             set { Set(ref _NotFoundRecord, value); }
         }
 
+
+        private bool _IsSINE;
+
+        public bool IsSINE
+        {
+            get { return _IsSINE; }
+            set { Set(ref _IsSINE, value); }
+        }
+
         private bool _IsNumberSequence;
 
         public bool IsNumberSequence
@@ -1279,7 +1288,7 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
-                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity);
+                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity, IsSINE);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
                             foreach (var file in dicomFiles.ToList())
@@ -1287,6 +1296,30 @@ namespace MediTech.ViewModels
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID,"");
+                                //var tag = DicomTag.Parse("0029,1000");
+                                //var items = (from dicomItem in dicomFile.Dataset
+                                //             where dicomItem.Tag.Group == tag.Group
+                                //             select dicomItem);
+
+                                //foreach (var item in items.ToList())
+                                //{
+                                //    dicomFile.Dataset.Remove(p => p.Equals(item));
+                                //}
+                                dicomFile.Dataset.NotValidated();
+                                foreach (var item in dicomFile.Dataset.ToList())
+                                {
+                                    string value = "";
+                                    dicomFile.Dataset.TryGetString(item.Tag, out value);
+                                    //string value = dicomFile.Dataset.GetSingleValueOrDefault<string>(item.Tag,null);
+                                    if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
+                                    {
+                                        value = value.Replace("\0", "");
+                                        dicomFile.Dataset.AddOrUpdate(item.Tag, value);
+                                    } 
+                                }
+
+                                //dicomFile.Dataset.Validate();
+
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN);
                                 if (!IsNumberSequence)
@@ -1363,7 +1396,7 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
-                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity);
+                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity, IsSINE);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
                             foreach (var file in dicomFiles)

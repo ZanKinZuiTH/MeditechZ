@@ -357,7 +357,6 @@ namespace MediTechWebApi.Controllers
                                             DrugAllergy = SqlFunction.fGetPatientAllergy(pa.UID),
                                             DOB = pa.DOBDttm.ToString(),
                                             strVisitData = pv.StartDttm.ToString(),
-
                                         }).FirstOrDefault();
 
 
@@ -676,12 +675,12 @@ namespace MediTechWebApi.Controllers
         }
 
 
-        [Route("StockReceiveReportAll")]
+        [Route("StockReceiveReport")]
         [HttpGet]
-        public List<StockReceiveReportModel> StockReceiveReportAll(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReceiveReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             List<StockReceiveReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockReceiveReportAll(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockReceive(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReceiveReportModel>();
@@ -740,12 +739,27 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("StockTransferredReport")]
+        [Route("StockTransferredOutReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockTransferredReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockTransferred(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockTransferredOut(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockTransactionReportModel>();
+                data = dt.ToList<StockTransactionReportModel>();
+            }
+
+            return data;
+        }
+
+        [Route("StockTransferredInReport")]
+        [HttpGet]
+        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockTransactionReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockTransferredIn(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();
@@ -838,7 +852,7 @@ namespace MediTechWebApi.Controllers
         public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockConsumption(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockConsumtion(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -848,6 +862,35 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("StockAdjustmentOut")]
+        [HttpGet]
+        public List<StockReportModel> StockAdjustmentOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockAdjustmentOut(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockReportModel>();
+                data = dt.ToList<StockReportModel>();
+            }
+
+            return data;
+        }
+
+        [Route("StockAdjustmentIn")]
+        [HttpGet]
+        public List<StockReportModel> StockAdjustmentIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockAdjustmentIn(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockReportModel>();
+                data = dt.ToList<StockReportModel>();
+            }
+
+            return data;
+        }
 
         #endregion
 

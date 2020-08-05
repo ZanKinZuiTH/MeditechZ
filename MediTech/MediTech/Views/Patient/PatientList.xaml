@@ -277,7 +277,43 @@
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem />
+                                <dxlc:LayoutItem Label="Payor">
+                                    <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
+                                                    </dxg:GridControl.Columns>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                                                        </dxg:TableView>
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                    </dxg:LookUpEdit>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem />
                                 <dxlc:LayoutItem>
                                     <dx:SimpleButton Name="btnSearch" Width="80" Height="25" Content="ค้นหา"

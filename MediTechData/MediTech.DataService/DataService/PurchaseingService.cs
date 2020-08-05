@@ -114,12 +114,12 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
-        public bool ManageGoodReceive(GRNDetailModel model, int userID)
+        public bool CreateGoodReceive(GRNDetailModel model, int userID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/Purchaseing/ManageGoodReceive?userID={0}", userID);
+                string requestApi = string.Format("Api/Purchaseing/CreateGoodReceive?userID={0}", userID);
                 MeditechApiHelper.Post<GRNDetailModel>(requestApi, model);
                 flag = true;
             }

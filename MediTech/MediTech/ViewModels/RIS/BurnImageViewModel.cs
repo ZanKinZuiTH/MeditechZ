@@ -385,6 +385,18 @@ namespace MediTech.ViewModels
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, item.No.ToString().PadLeft(4, '0') + " " + item.PatientName);
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(item.OtherID) ? item.OtherID : item.PatientID);
 
+                            dicomFile.Dataset.NotValidated();
+                            foreach (var dicomItem in dicomFile.Dataset.ToList())
+                            {
+                                string value = "";
+                                dicomFile.Dataset.TryGetString(dicomItem.Tag, out value);
+                                //string value = dicomFile.Dataset.GetSingleValueOrDefault<string>(item.Tag,null);
+                                if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
+                                {
+                                    value = value.Replace("\0", "");
+                                    dicomFile.Dataset.AddOrUpdate(dicomItem.Tag, value);
+                                }
+                            }
                             //string mediaStorageSOPInsUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.MediaStorageSOPInstanceUID, null);
                             //if (mediaStorageSOPInsUID == null)
                             //{
@@ -399,7 +411,7 @@ namespace MediTech.ViewModels
                             //    i++;
                             //    continue;
                             //}
-
+                            //dicomFile.Dataset.Validate();
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
 
                             dicomDir.AddFile(dicomFile, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));

@@ -37,7 +37,7 @@
                          SelectedItem="{Binding SelectTestParameter}">
             <dxg:GridControl.Columns>
                 <dxg:GridColumn Header="Code" FieldName="Code"/>
-                <dxg:GridColumn Header="ชื่อ" FieldName="DisplayName"/>
+                <dxg:GridColumn Header="ชื่อ" FieldName="DisplyName"/>
                 <dxg:GridColumn Header="ลักษณะ" FieldName="Description"/>
                 <dxg:GridColumn Header="หน่วย" FieldName="UOM"/>
                 <dxg:GridColumn Header="เปิดใช้งาน" FieldName="EffectiveFrom"/>

@@ -20,7 +20,7 @@ namespace MediTech.Reports.Statistic.Inventory
             int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            this.DataSource = (new ReportsService()).StockReceiveReportAll(dateFrom, dateTo, organisationUID != 0 ? organisationUID : (int?)null);
+            this.DataSource = (new ReportsService()).StockReceiveReport(dateFrom, dateTo, organisationUID != 0 ? organisationUID : (int?)null);
         }
     }
 }

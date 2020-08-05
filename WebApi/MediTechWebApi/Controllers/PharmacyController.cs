@@ -452,6 +452,129 @@ namespace MediTechWebApi.Controllers
         }
 
 
+        [Route("GetDrugStoreDispense")]
+        [HttpGet]
+        public List<PatientOrderDetailModel> GetDrugStoreDispense(int itemMasterUID, double useQty, int IMUOMUID, int StoreUID)
+        {
+            List<PatientOrderDetailModel> listDrugDispense = new List<PatientOrderDetailModel>();
+            Store store = db.Store.Find(StoreUID);
+            int? baseUOM;
+            ItemMaster itemMaster = db.ItemMaster.Find(itemMasterUID);
+            baseUOM = itemMaster.BaseUOM;
+            IEnumerable<Stock> stockItem = db.Stock
+    .Where(p => p.StatusFlag == "A"
+    && p.ItemMasterUID == itemMasterUID
+    && p.StoreUID == StoreUID && p.Quantity > 0);
+            if (stockItem != null && stockItem.Count() > 0)
+            {
+                if (store.STDTPUID == 2901)
+                    stockItem = stockItem.OrderBy(p => p.ExpiryDttm);
+                else if (store.STDTPUID == 2902)
+                    stockItem = stockItem.OrderBy(p => p.CUser);
+
+                if (IMUOMUID != itemMaster.BaseUOM)
+                {
+                    double? convertValue;
+                    var storeConvert = db.StoreUOMConversion.FirstOrDefault(p => p.BaseUOMUID == itemMaster.BaseUOM
+                    && p.ConversionUOMUID == IMUOMUID
+                    && p.StatusFlag == "A");
+                    if (storeConvert != null)
+                    {
+                        convertValue = storeConvert.ConversionValue;
+                        if (convertValue.HasValue && convertValue > 0)
+                        {
+                            useQty = (useQty / convertValue.Value);
+                        }
+                    }
+                }
+
+                int i = 0;
+                foreach (var item in stockItem)
+                {
+                    i++;
+                    PatientOrderDetailModel drugDetail = new PatientOrderDetailModel();
+                    drugDetail.ItemUID = itemMaster.UID;
+                    drugDetail.ItemCode = itemMaster.Code;
+                    drugDetail.ItemName = itemMaster.Name;
+
+                    drugDetail.StockUID = item.UID;
+                    drugDetail.BalQty = item.Quantity;
+                    drugDetail.ExpiryDate = item.ExpiryDttm;
+                    drugDetail.StoreName = store.Name;
+                    drugDetail.StoreUID = store.UID;
+                    drugDetail.BatchID = item.BatchID;
+
+
+                    drugDetail.QNUOMUID = IMUOMUID;
+                    drugDetail.QuantityUnit = db.ReferenceValue.Find(IMUOMUID).Description;
+
+
+
+
+                    if (item.Quantity >= useQty)
+                    {
+                        drugDetail.Quantity = useQty;
+                        listDrugDispense.Add(drugDetail);
+                        break;
+                    }
+                    else
+                    {
+                        if (i == stockItem.Count())
+                        {
+                            drugDetail.Quantity = useQty;
+                        }
+                        else
+                        {
+                            drugDetail.Quantity = item.Quantity;
+                            useQty = useQty - (drugDetail.Quantity ?? 0);
+                        }
+
+                    }
+
+                    listDrugDispense.Add(drugDetail);
+                }
+            }
+            else
+            {
+                PatientOrderDetailModel drugDetail = new PatientOrderDetailModel();
+                drugDetail.ItemUID = itemMaster.UID;
+                drugDetail.ItemCode = itemMaster.Code;
+                drugDetail.ItemName = itemMaster.Name;
+
+                drugDetail.StockUID = 0;
+                drugDetail.BalQty = 0;
+                drugDetail.ExpiryDate = null;
+                drugDetail.StoreName = store.Name;
+                drugDetail.StoreUID = store.UID;
+                drugDetail.BatchID = "";
+
+                drugDetail.QNUOMUID = IMUOMUID;
+                drugDetail.QuantityUnit = db.ReferenceValue.Find(IMUOMUID).Description;
+
+
+                if (IMUOMUID != itemMaster.BaseUOM)
+                {
+                    double? convertValue;
+                    var storeConvert = db.StoreUOMConversion.FirstOrDefault(p => p.BaseUOMUID == itemMaster.BaseUOM
+                    && p.ConversionUOMUID == IMUOMUID
+                    && p.StatusFlag == "A");
+                    if (storeConvert != null)
+                    {
+                        convertValue = storeConvert.ConversionValue;
+                        if (convertValue.HasValue && convertValue > 0)
+                        {
+                            useQty = (useQty / convertValue.Value);
+                        }
+                    }
+                }
+                drugDetail.Quantity = useQty;
+
+                listDrugDispense.Add(drugDetail);
+            }
+
+            return listDrugDispense;
+        }
+
         [Route("PrintStrickerDrug")]
         [HttpGet]
         public List<DrugStickerModel> PrintStrickerDrug(long prescriptionItemUID)

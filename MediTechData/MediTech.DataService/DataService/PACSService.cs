@@ -58,11 +58,11 @@ namespace MediTech.DataService
 
         }
 
-        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality)
+        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality,bool IsSINE)
         {
             try
             {
-                string requestApi = string.Format("Api/PACS/GetDicomFileByPatientID?patientID={0}&studyDate={1:MM/dd/yyyy}&modality={2}", patientID, studyDate, modality);
+                string requestApi = string.Format("Api/PACS/GetDicomFileByPatientID?patientID={0}&studyDate={1:MM/dd/yyyy}&modality={2}&IsSINE={3}", patientID, studyDate, modality, IsSINE);
                 List<byte[]> dataRequest = PACSApiHelper.Get<List<byte[]>>(requestApi);
 
                 return dataRequest;
@@ -106,6 +106,21 @@ namespace MediTech.DataService
                 throw;
             }
             return flag;
+        }
+
+        public void EditStudy(StudiesModel studiesModel)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PACS/EditStudy");
+                flag = PACSApiHelper.Post<object, bool>(requestApi, studiesModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
 
         public bool SendDicomFile(SendDicomFilesModel sendDicomModel)

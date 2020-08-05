@@ -226,6 +226,25 @@ namespace MediTech.ViewModels
             }
         }
 
+        private bool _IsCheckedNone;
+
+        public bool IsCheckedNone
+        {
+            get { return _IsCheckedNone; }
+            set
+            {
+                Set(ref _IsCheckedNone, value);
+                if (_IsCheckedNone)
+                {
+                    IsEnableDateFrom = false;
+                    IsEnableDateTo = false;
+                    DateFrom = null;
+                    DateTo = null;
+                }
+            }
+        }
+
+
         private bool _IsEnableDateFrom;
 
         public bool IsEnableDateFrom
@@ -437,6 +456,21 @@ namespace MediTech.ViewModels
                     ?? (_SearchCommand = new RelayCommand(Search));
             }
         }
+
+        private RelayCommand _EditStudyCommand;
+
+        /// <summary>
+        /// Gets the EditStudyCommand.
+        /// </summary>
+        public RelayCommand EditStudyCommand
+        {
+            get
+            {
+                return _EditStudyCommand
+                    ?? (_EditStudyCommand = new RelayCommand(EditStudyData));
+            }
+        }
+
 
         private RelayCommand _MicroDicomCommand;
 
@@ -891,6 +925,20 @@ namespace MediTech.ViewModels
                 IsEnabledMicroDiom = true;
                 IsVisibilityProgressBar = Visibility.Collapsed;
             }
+        }
+
+        private void EditStudyData()
+        {
+            if (SelectStudies != null)
+            {
+                EditStudy pageView = new EditStudy(SelectStudies);
+                var viewModel = (EditStudyViewModel)LaunchViewDialogNonPermiss(pageView, true, false);
+                if (viewModel.ResultDialog == ActionDialog.Save)
+                {
+                    Search();
+                }
+            }
+
         }
 
         private async Task GetDicomByteArray(List<InstancesModel> instancesFilms)

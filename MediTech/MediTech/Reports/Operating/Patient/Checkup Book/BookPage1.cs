@@ -134,8 +134,8 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 if (data.FirstOrDefault().BPSys != null && data.FirstOrDefault().BPDio != null)
                 {
                     string bpResult = "ปกติ";
-                    if ((data.FirstOrDefault().BPSys >= 140)
-                        || (data.FirstOrDefault().BPDio >= 90))
+                    if ((data.FirstOrDefault().BPSys > 140)
+                        || (data.FirstOrDefault().BPDio > 90))
                     {
                         bpResult = "ผิดปกติ";
                     }
