@@ -73,5 +73,8 @@ namespace MediTech.Model
         public int UserUID { get; set; }
 
         public int? OwnerOrganisationUID { get; set; }
+
+        public string Department { get; set; }
+        public string Position { get; set; }
     }
 }
