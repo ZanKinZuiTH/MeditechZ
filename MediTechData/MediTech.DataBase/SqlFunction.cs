@@ -1641,6 +1641,20 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pRPTStockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockDispose", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+
         public static DataTable pRPTOrderRequestCard(long patientUID, long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();
