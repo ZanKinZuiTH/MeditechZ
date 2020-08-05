@@ -14,6 +14,7 @@ namespace MediTech.Model.Report
         public string RequestOrganisation { get; set; }
         public string RequestStore { get; set; }
         public string IssueID { get; set; }
+        public string DisposeID { get; set; }
         public string RequestID { get; set; }
         public string IssueBy { get; set; }
         public string RequestBy { get; set; }

@@ -892,6 +892,21 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("StockDispose")]
+        [HttpGet]
+        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            List<StockTransactionReportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockDispose(dateFrom, dateTo, organisationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<StockTransactionReportModel>();
+                data = dt.ToList<StockTransactionReportModel>();
+            }
+
+            return data;
+        }
+
         #endregion
 
         #region Radiology

@@ -324,6 +324,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        {
+            string requestApi = string.Format("Api/Report/StockDispose?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
+
+            return data;
+        }
         #endregion
 
 
