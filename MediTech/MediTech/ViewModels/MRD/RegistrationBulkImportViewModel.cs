@@ -293,6 +293,7 @@ namespace MediTech.ViewModels
         public RegistrationBulkImportViewModel()
         {
             MobileStickerSource = new List<LookupReferenceValueModel>();
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจสายตาทั่วไป" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจเป่าปอด" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจมองเห็น" });
@@ -302,8 +303,8 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง" });
-            SelectMobileStickers = new List<object>() { MobileStickerSource[0], MobileStickerSource[1], MobileStickerSource[2]
-                , MobileStickerSource[3], MobileStickerSource[4], MobileStickerSource[5],MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8]};
+            SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
+                , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]};
         }
         private void ChooseFile()
         {
@@ -703,6 +704,8 @@ namespace MediTech.ViewModels
                             patientModel.LastName = currentData.LastName;
                             patientModel.NationalID = currentData.IDCard.Replace("-", "");
                             patientModel.MobilePhone = currentData.MobilePhone;
+                            patientModel.Department = currentData.Department?.Trim();
+                            patientModel.Position = currentData.Position?.Trim();
                             var patregistered = DataService.PatientIdentity.RegisterPatient(patientModel, AppUtil.Current.UserID, 5);
                             if (currentData.PatientUID == 0)
                             {

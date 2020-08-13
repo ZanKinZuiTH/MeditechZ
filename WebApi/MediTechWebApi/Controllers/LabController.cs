@@ -30,12 +30,12 @@ namespace MediTechWebApi.Controllers
             return listData;
         }
 
-        [Route("SearchCheckupResultValue")]
+        [Route("SearchResultLabList")]
         [HttpGet]
-        public List<PatientResultLabModel> SearchCheckupResultValue(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public List<PatientResultLabModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
         {
             List<PatientResultLabModel> data = null;
-            DataTable dt = SqlDirectStore.pSearchCheckupResultValue(dateFrom, dateTo, patientUID, payorDetailUID);
+            DataTable dt = SqlDirectStore.pSearchResultLabList(dateFrom, dateTo, patientUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientResultLabModel>();

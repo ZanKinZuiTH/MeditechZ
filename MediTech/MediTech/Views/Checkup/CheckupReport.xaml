@@ -111,6 +111,8 @@
                         <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>
                         <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                         <dxg:GridColumn FieldName="Age" Header="อายุ"/>
+                        <dxg:GridColumn FieldName="Department" Header="แผนก"/>
+                        <dxg:GridColumn FieldName="Position" Header="ตำแหน่ง"/>
                         <dxg:GridColumn FieldName="StartDttm" Header="วันที่ตรวจ"/>
                     </dxg:GridControl>
                     <dxlc:LayoutGroup Orientation="Horizontal">
@@ -161,7 +163,9 @@
                             <dxpg:PivotGridField Area="RowArea" Caption="นามสกุล" FieldName="LastName" AreaIndex="4"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="เพศ" FieldName="Gender" AreaIndex="5"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="อายุ" Width="70" FieldName="Age" AreaIndex="6"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="7" ValueFormat="dd/MM/yyyy"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="แผนก" FieldName="Department"  AreaIndex="7" />
+                            <dxpg:PivotGridField Area="RowArea" Caption="ตำแหน่ง" FieldName="Position"  AreaIndex="8"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="9" ValueFormat="dd/MM/yyyy"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="RequestItemName" FieldName="RequestItemName"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="ResultItemName" FieldName="ResultItemName"/>
                             <dxpg:PivotGridField Area="DataArea" Caption="ResultValue" FieldName="ResultValue" SummaryType="Max"/>

@@ -49,7 +49,6 @@ namespace MediTech.Model
         public string Visualfield { get; set; }
         public string VARt { get; set; }
         public string VALt { get; set; }
-        public string BlindColor { get; set; }
         public string Disease { get; set; }
         public string TitmusConclusion { get; set; }
         public string TitmusRecommend { get; set; }
@@ -68,6 +67,7 @@ namespace MediTech.Model
         public string HyperopiaLeft { get; set; }
         public string VARight { get; set; }
         public string VALeft { get; set; }
+        public string BlindColor { get; set; }
         public string ViewResult { get; set; }
         public string ViewRecommend { get; set; }
     }

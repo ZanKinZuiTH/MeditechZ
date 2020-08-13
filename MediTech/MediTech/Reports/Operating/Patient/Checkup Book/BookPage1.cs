@@ -162,7 +162,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     }
                 }
 
-                if(data.FirstOrDefault().WaistCircumference != null)
+                if (data.FirstOrDefault().WaistCircumference != null)
                 {
                     double? waistCircumference = data.FirstOrDefault().WaistCircumference;
                     string gender = data.FirstOrDefault().Gender;
@@ -172,7 +172,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     {
                         waistCircumferenceResult = waistAbnormal;
                     }
-                    else if(waistCircumference > 80 && gender.Contains("หญิง"))
+                    else if (waistCircumference > 80 && gender.Contains("หญิง"))
                     {
                         waistCircumferenceResult = waistAbnormal;
                     }
@@ -321,21 +321,21 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((cbcResult.ReferenceRange != null && cbcResult.ReferenceRange.Length > 40) || (cbcResult.ResultValue != null && cbcResult.ResultValue.Length > 40))
+                        if ((cbcResult.ReferenceRange != null && cbcResult.ReferenceRange.Length >= 30) || (cbcResult.ResultValue != null && cbcResult.ResultValue.Length >= 30))
                         {
-                            row.HeightF = 45f;
-                            if (cbcResult.ReferenceRange.Length > 40)
+                            //row.HeightF = 40f;
+                            if (cbcResult.ReferenceRange.Length >= 30)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (cbcResult.ResultValue.Length > 40)
+                            if (cbcResult.ResultValue.Length >= 30)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
                         {
-                            row.HeightF = 20f;
+                            row.HeightF = 17f;
                         }
                     }
 
@@ -483,16 +483,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell2.Multiline = true;
 
 
-                        if ((urineResult.ReferenceRange != null && urineResult.ReferenceRange.Length > 40) || (urineResult.ResultValue != null && urineResult.ResultValue.Length > 40))
+                        if ((urineResult.ReferenceRange != null && urineResult.ReferenceRange.Length >= 40) || (urineResult.ResultValue != null && urineResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (urineResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (urineResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (urineResult.ResultValue.Length > 40)
+                            if (urineResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -554,16 +554,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((renalTestResult.ReferenceRange != null && renalTestResult.ReferenceRange.Length > 40) || (renalTestResult.ResultValue != null && renalTestResult.ResultValue.Length > 40))
+                        if ((renalTestResult.ReferenceRange != null && renalTestResult.ReferenceRange.Length >= 40) || (renalTestResult.ResultValue != null && renalTestResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (renalTestResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (renalTestResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (renalTestResult.ResultValue.Length > 40)
+                            if (renalTestResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -571,21 +571,21 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                             row.HeightF = 17f;
                         }
                     }
-                        float rowHeight = 0;
-                        
-                        foreach (XRTableRow row in bookPage5.tableRenal.Rows)
-                        {
-                            rowHeight += row.HeightF;
-                        }
-                        bookPage5.tableRenal.HeightF = rowHeight;
-                        bookPage5.tableRenal.EndInit();
-                    
+                    float rowHeight = 0;
+
+                    foreach (XRTableRow row in bookPage5.tableRenal.Rows)
+                    {
+                        rowHeight += row.HeightF;
+                    }
+                    bookPage5.tableRenal.HeightF = rowHeight;
+                    bookPage5.tableRenal.EndInit();
+
                 }
                 else
                 {
                     bookPage5.tableRenal.Visible = false;
                 }
-                
+
 
                 if (data.FirstOrDefault(p => (p.RequestItemName.Contains("AST (SGOT") || p.RequestItemName.Contains("Aspartate transaminase"))
                 || (p.RequestItemName.Contains("ALT (SGPT)") || p.RequestItemName.Contains("Alanine transaminase"))
@@ -637,16 +637,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((liverResult.ReferenceRange != null && liverResult.ReferenceRange.Length > 40) || (liverResult.ResultValue != null && liverResult.ResultValue.Length > 40))
+                        if ((liverResult.ReferenceRange != null && liverResult.ReferenceRange.Length >= 40) || (liverResult.ResultValue != null && liverResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (liverResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (liverResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (liverResult.ResultValue.Length > 40)
+                            if (liverResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -679,6 +679,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 bookPage5.lbHyperopiaLeft.Text = data.FirstOrDefault().HyperopiaLeft != null ? data.FirstOrDefault().HyperopiaLeft.ToString() : "";
                 bookPage5.lbVARight.Text = data.FirstOrDefault().VARight != null ? data.FirstOrDefault().VARight.ToString() : "";
                 bookPage5.lbRVLeft.Text = data.FirstOrDefault().VALeft != null ? data.FirstOrDefault().VALeft.ToString() : "";
+                bookPage5.lbBlindColor.Text = data.FirstOrDefault().BlindColor != null ? data.FirstOrDefault().BlindColor.ToString() : "";
                 bookPage5.lbViewResult.Text = data.FirstOrDefault().ViewResult != null ? data.FirstOrDefault().ViewResult.ToString() : "";
                 bookPage5.lbViewRecommend.Text = data.FirstOrDefault().ViewRecommend != null ? data.FirstOrDefault().ViewRecommend.ToString() : "";
 
@@ -688,17 +689,14 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage5.lbViewResult.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
-                if (data.FirstOrDefault(p => (p.RequestItemName.Contains("CHOL") || p.RequestItemName.Contains("Total cholesterol"))
-                || (p.RequestItemName.Contains("TG") || p.RequestItemName.Contains("Triglyceride"))
-                || p.RequestItemName.Contains("LDL-Cholesterol")
-                || p.RequestItemName.Contains("HDL-Cholesterol")
-                || p.RequestItemName == "Lab") != null)
+
+                List<CheckupBookModel> lipidsTestSet = data.Where(p => (p.RequestItemName.Contains("CHOL") || p.RequestItemName.Contains("Total cholesterol"))
+|| (p.RequestItemName.Contains("TG") || p.RequestItemName.Contains("Triglyceride"))
+|| p.RequestItemName.Contains("LDL-Cholesterol")
+|| p.RequestItemName.Contains("HDL-Cholesterol")
+&& p.RequestItemType == "Lab").ToList();
+                if (lipidsTestSet != null && lipidsTestSet.Count > 0)
                 {
-                    List<CheckupBookModel> lipidsTestSet = data.Where(p => (p.RequestItemName.Contains("CHOL") || p.RequestItemName.Contains("Total cholesterol"))
-                    || (p.RequestItemName.Contains("TG") || p.RequestItemName.Contains("Triglyceride"))
-                    || p.RequestItemName.Contains("LDL-Cholesterol")
-                    || p.RequestItemName.Contains("HDL-Cholesterol")
-                    && p.RequestItemType == "Lab").ToList();
 
                     bookPage6.tableLipids.BeginInit();
                     foreach (var lipidsResult in lipidsTestSet)
@@ -732,16 +730,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((lipidsResult.ReferenceRange != null && lipidsResult.ReferenceRange.Length > 40) || (lipidsResult.ResultValue != null && lipidsResult.ResultValue.Length > 40))
+                        if ((lipidsResult.ReferenceRange != null && lipidsResult.ReferenceRange.Length >= 40) || (lipidsResult.ResultValue != null && lipidsResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (lipidsResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (lipidsResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (lipidsResult.ResultValue.Length > 40)
+                            if (lipidsResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -764,11 +762,10 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage6.tableLipids.Visible = false;
                 }
 
-                if (data.FirstOrDefault(p => (p.RequestItemName.Contains("FBS") || p.RequestItemName.Contains("Fasting Blood Sugar"))
-                && p.RequestItemType == "Lab") != null)
+                List<CheckupBookModel> FBStestSet = data.Where(p => (p.RequestItemName.Contains("FBS") || p.RequestItemName.Contains("Fasting Blood Sugar")) 
+                && p.RequestItemType == "Lab").ToList();
+                if (FBStestSet != null && FBStestSet.Count > 0)
                 {
-                    List<CheckupBookModel> FBStestSet = data.Where(p => (p.RequestItemName.Contains("FBS") || p.RequestItemName.Contains("Fasting Blood Sugar"))
-                    && p.RequestItemType == "Lab").ToList();
 
                     bookPage6.tableFBS.BeginInit();
                     foreach (var FBSResult in FBStestSet)
@@ -802,16 +799,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((FBSResult.ReferenceRange != null && FBSResult.ReferenceRange.Length > 40) || (FBSResult.ResultValue != null && FBSResult.ResultValue.Length > 40))
+                        if ((FBSResult.ReferenceRange != null && FBSResult.ReferenceRange.Length >= 40) || (FBSResult.ResultValue != null && FBSResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (FBSResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (FBSResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (FBSResult.ResultValue.Length > 40)
+                            if (FBSResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -819,7 +816,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                             row.HeightF = 17f;
                         }
                     }
-                
+
                     float rowHeight = 0;
 
                     foreach (XRTableRow row in bookPage6.tableFBS.Rows)
@@ -829,17 +826,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage6.tableFBS.HeightF = rowHeight;
                     bookPage6.tableFBS.EndInit();
 
-                    }
-                    else
-                    {
-                        bookPage6.tableFBS.Visible = false;
-                    }
-
-                if (data.FirstOrDefault(p => p.RequestItemName.Contains("Uric acid") 
-                && p.RequestItemType == "Lab") != null)
+                }
+                else
                 {
-                    List<CheckupBookModel> UricAcidSet = data.Where(p => p.RequestItemName.Contains("Uric acid") 
-                    && p.RequestItemType == "Lab").ToList();
+                    bookPage6.tableFBS.Visible = false;
+                }
+
+                List<CheckupBookModel> UricAcidSet = data.Where(p => p.RequestItemName.Contains("Uric acid") 
+                && p.RequestItemType == "Lab").ToList();
+                if (UricAcidSet != null && UricAcidSet.Count > 0)
+                {
 
                     bookPage6.tableUricAcid.BeginInit();
                     foreach (var UricAcidSetResult in UricAcidSet)
@@ -873,16 +869,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell1.Multiline = true;
                         cell2.Multiline = true;
 
-                        if ((UricAcidSetResult.ReferenceRange != null && UricAcidSetResult.ReferenceRange.Length > 40) || (UricAcidSetResult.ResultValue != null && UricAcidSetResult.ResultValue.Length > 40))
+                        if ((UricAcidSetResult.ReferenceRange != null && UricAcidSetResult.ReferenceRange.Length >= 40) || (UricAcidSetResult.ResultValue != null && UricAcidSetResult.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (UricAcidSetResult.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (UricAcidSetResult.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (UricAcidSetResult.ResultValue.Length > 40)
+                            if (UricAcidSetResult.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -906,45 +902,28 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage6.tableUricAcid.Visible = false;
                 }
 
-                if (data.FirstOrDefault(p => (!p.RequestItemName.Contains("UA") && !p.RequestItemName.Contains("Urine Analysis")
-                && !p.RequestItemName.Contains("CBC") && !p.RequestItemName.ToLower().Contains("ABO Group") && !p.RequestItemName.ToLower().Contains("Blood Group Rh")
-                && !p.RequestItemName.Contains("Cr") && !p.RequestItemName.Contains("Creatitine") && !p.RequestItemName.Contains("BUN") && !p.RequestItemName.Contains("Blood Urea Nitrogen")
-                && !p.RequestItemName.Contains("AST (SGOT)") && !p.RequestItemName.Contains("Aspartate transaminase")
-                && !p.RequestItemName.Contains("ALT (SGPT)") && !p.RequestItemName.Contains("Alanine transaminase")
-                && !p.RequestItemName.Contains("ALP") && !p.RequestItemName.Contains("Alkaline phosphatase")
-                && !p.RequestItemName.Contains("Total Billirubin")
-                && !p.RequestItemName.Contains("Direct Billirubin")
-                && !p.RequestItemName.Contains("Alb") && !p.RequestItemName.Contains("Albumin")
-                && !p.RequestItemName.Contains("Glob") && !p.RequestItemName.Contains("Globulin")
-                && !p.RequestItemName.Contains("CHOL") && !p.RequestItemName.Contains("Total cholesterol")
-                && !p.RequestItemName.Contains("TG") && !p.RequestItemName.Contains("Triglyceride")
-                && !p.RequestItemName.Contains("LDL-Cholesterol")
-                && !p.RequestItemName.Contains("HDL-Cholesterol")
-                && !p.RequestItemName.Contains("FBS") && !p.RequestItemName.Contains("Fasting Blood Sugar")
-                && !p.RequestItemName.Contains("Uric acid")
-                && !p.RequestItemName.Contains("Stool")
-                && p.Catagory != "Immunology")
-                && p.RequestItemType == "Lab") != null)
+                List<CheckupBookModel> labbortoryList = data.Where(p => (!p.RequestItemName.Contains("UA") && !p.RequestItemName.Contains("Urine Analysis")
+&& !p.RequestItemName.Contains("CBC") && !p.RequestItemName.ToLower().Contains("ABO Group") && !p.RequestItemName.ToLower().Contains("Blood Group Rh")
+&& !p.RequestItemName.Contains("Cr") && !p.RequestItemName.Contains("Creatitine") && !p.RequestItemName.Contains("BUN") && !p.RequestItemName.Contains("Blood Urea Nitrogen")
+&& !p.RequestItemName.Contains("AST (SGOT)") && !p.RequestItemName.Contains("Aspartate transaminase")
+&& !p.RequestItemName.Contains("ALT (SGPT)") && !p.RequestItemName.Contains("Alanine transaminase")
+&& !p.RequestItemName.Contains("ALP") && !p.RequestItemName.Contains("Alkaline phosphatase")
+&& !p.RequestItemName.Contains("Total Billirubin")
+&& !p.RequestItemName.Contains("Direct Billirubin")
+&& !p.RequestItemName.Contains("Alb") && !p.RequestItemName.Contains("Albumin")
+&& !p.RequestItemName.Contains("Glob") && !p.RequestItemName.Contains("Globulin")
+&& !p.RequestItemName.Contains("CHOL") && !p.RequestItemName.Contains("Total cholesterol")
+&& !p.RequestItemName.Contains("TG") && !p.RequestItemName.Contains("Triglyceride")
+&& !p.RequestItemName.Contains("LDL-Cholesterol")
+&& !p.RequestItemName.Contains("HDL-Cholesterol")
+&& !p.RequestItemName.Contains("FBS") && !p.RequestItemName.Contains("Fasting Blood Sugar")
+&& !p.RequestItemName.Contains("Uric acid")
+&& !p.RequestItemName.Contains("Stool")
+&& p.Catagory != "Immunology"
+&& p.Catagory != "Toxicology")
+&& p.RequestItemType == "Lab").ToList();
+                if (labbortoryList != null && labbortoryList.Count > 0)
                 {
-                    List<CheckupBookModel> labbortoryList = data.Where(p => (!p.RequestItemName.Contains("UA") && !p.RequestItemName.Contains("Urine Analysis")
-                && !p.RequestItemName.Contains("CBC") && !p.RequestItemName.ToLower().Contains("ABO Group") && !p.RequestItemName.ToLower().Contains("Blood Group Rh")
-                && !p.RequestItemName.Contains("Cr") && !p.RequestItemName.Contains("Creatitine") && !p.RequestItemName.Contains("BUN") && !p.RequestItemName.Contains("Blood Urea Nitrogen")
-                && !p.RequestItemName.Contains("AST (SGOT)") && !p.RequestItemName.Contains("Aspartate transaminase")
-                && !p.RequestItemName.Contains("ALT (SGPT)") && !p.RequestItemName.Contains("Alanine transaminase")
-                && !p.RequestItemName.Contains("ALP") && !p.RequestItemName.Contains("Alkaline phosphatase")
-                && !p.RequestItemName.Contains("Total Billirubin")
-                && !p.RequestItemName.Contains("Direct Billirubin")
-                && !p.RequestItemName.Contains("Alb") && !p.RequestItemName.Contains("Albumin")
-                && !p.RequestItemName.Contains("Glob") && !p.RequestItemName.Contains("Globulin")
-                && !p.RequestItemName.Contains("CHOL") && !p.RequestItemName.Contains("Total cholesterol")
-                && !p.RequestItemName.Contains("TG") && !p.RequestItemName.Contains("Triglyceride")
-                && !p.RequestItemName.Contains("LDL-Cholesterol")
-                && !p.RequestItemName.Contains("HDL-Cholesterol")
-                && !p.RequestItemName.Contains("FBS") && !p.RequestItemName.Contains("Fasting Blood Sugar")
-                && !p.RequestItemName.Contains("Uric acid")
-                && !p.RequestItemName.Contains("Stool")
-                && p.Catagory != "Immunology")
-                && p.RequestItemType == "Lab").ToList();
 
                     bookPage5.tableLabora.BeginInit();
                     foreach (var labbortory in labbortoryList)
@@ -979,16 +958,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell2.Multiline = true;
 
 
-                        if ((labbortory.ReferenceRange != null && labbortory.ReferenceRange.Length > 40) || (labbortory.ResultValue != null && labbortory.ResultValue.Length > 40))
+                        if ((labbortory.ReferenceRange != null && labbortory.ReferenceRange.Length >= 40) || (labbortory.ResultValue != null && labbortory.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (labbortory.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (labbortory.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (labbortory.ResultValue.Length > 40)
+                            if (labbortory.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -1009,9 +988,9 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage5.tableLabora.Visible = false;
                 }
 
-                if (data.FirstOrDefault(p => (p.RequestItemName.Contains("Stool")) && p.RequestItemType == "Lab") != null)
+                List<CheckupBookModel> stoolExamList = data.Where(p => p.RequestItemName.Contains("Stool") && p.RequestItemType == "Lab").ToList();
+                if (stoolExamList != null && stoolExamList.Count > 0)
                 {
-                    List<CheckupBookModel> stoolExamList = data.Where(p => p.RequestItemName.Contains("Stool") && p.RequestItemType == "Lab").ToList();
                     bookPage6.tableStool.BeginInit();
                     foreach (var stool in stoolExamList)
                     {
@@ -1045,16 +1024,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell2.Multiline = true;
 
 
-                        if ((stool.ReferenceRange != null && stool.ReferenceRange.Length > 40) || (stool.ResultValue != null && stool.ResultValue.Length > 40))
+                        if ((stool.ReferenceRange != null && stool.ReferenceRange.Length >= 40) || (stool.ResultValue != null && stool.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (stool.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (stool.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (stool.ResultValue.Length > 40)
+                            if (stool.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -1075,9 +1054,10 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage6.tableStool.Visible = false;
                 }
 
-                if (data.FirstOrDefault(p => (p.Catagory == "Immunology") && p.RequestItemType == "Lab") != null)
+                List<CheckupBookModel> ImmunologyList = data.Where(p => p.Catagory == "Immunology" && p.RequestItemType == "Lab").ToList();
+                if (ImmunologyList != null && ImmunologyList.Count > 0)
                 {
-                    List<CheckupBookModel> ImmunologyList = data.Where(p => p.Catagory == "Immunology" && p.RequestItemType == "Lab").ToList();
+
                     bookPage6.tableImmun.BeginInit();
                     foreach (var immuno in ImmunologyList)
                     {
@@ -1111,16 +1091,16 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                         cell2.Multiline = true;
 
 
-                        if ((immuno.ReferenceRange != null && immuno.ReferenceRange.Length > 40) || (immuno.ResultValue != null && immuno.ResultValue.Length > 40))
+                        if ((immuno.ReferenceRange != null && immuno.ReferenceRange.Length >= 40) || (immuno.ResultValue != null && immuno.ResultValue.Length >= 40))
                         {
-                            row.HeightF = 45f;
-                            if (immuno.ReferenceRange.Length > 40)
+                            row.HeightF = 40f;
+                            if (immuno.ReferenceRange.Length >= 40)
                             {
-                                cell1.Font = new Font("Angsana New", 8);
+                                cell1.Font = new Font("Angsana New", 9);
                             }
-                            if (immuno.ResultValue.Length > 40)
+                            if (immuno.ResultValue.Length >= 40)
                             {
-                                cell2.Font = new Font("Angsana New", 8);
+                                cell2.Font = new Font("Angsana New", 9);
                             }
                         }
                         else
@@ -1139,6 +1119,72 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 else
                 {
                     bookPage6.tableImmun.Visible = false;
+                }
+
+                List<CheckupBookModel> toxicologyList = data.Where(p => p.Catagory == "Toxicology" && p.RequestItemType == "Lab").ToList();
+                if (toxicologyList != null && toxicologyList.Count > 0)
+                {
+                    bookPage6.tableToxicology.BeginInit();
+                    foreach (var toxicology in toxicologyList)
+                    {
+
+                        XRTableRow row = new XRTableRow();
+                        XRTableCell cell0 = new XRTableCell();
+                        XRTableCell cell1 = new XRTableCell();
+                        XRTableCell cell2 = new XRTableCell();
+                        cell0.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+                        cell0.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0);
+
+                        cell0.Text = toxicology.ResultItemName;
+                        cell1.Text = toxicology.ReferenceRange;
+                        cell2.Text = toxicology.ResultValue;
+                        if (!string.IsNullOrEmpty(toxicology.IsAbnormal))
+                        {
+                            cell2.ForeColor = Color.Red;
+                            cell2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        row.Cells.AddRange(new XRTableCell[] { cell0, cell1, cell2 });
+
+
+                        bookPage6.tableToxicology.Rows.Add(row);
+                        cell0.CanGrow = false;
+                        cell1.CanGrow = false;
+                        cell2.CanGrow = false;
+
+                        cell0.Multiline = true;
+                        cell1.Multiline = true;
+                        cell2.Multiline = true;
+
+
+                        if ((toxicology.ReferenceRange != null && toxicology.ReferenceRange.Length >= 40) || (toxicology.ResultValue != null && toxicology.ResultValue.Length >= 40))
+                        {
+                            row.HeightF = 40f;
+                            if (toxicology.ReferenceRange.Length >= 40)
+                            {
+                                cell1.Font = new Font("Angsana New", 9);
+                            }
+                            if (toxicology.ResultValue.Length >= 40)
+                            {
+                                cell2.Font = new Font("Angsana New", 9);
+                            }
+                        }
+                        else
+                        {
+                            row.HeightF = 17f;
+                        }
+                    }
+                    float rowHeight = 0;
+                    foreach (XRTableRow row in bookPage6.tableToxicology.Rows)
+                    {
+                        rowHeight += row.HeightF;
+                    }
+                    bookPage6.tableToxicology.HeightF = rowHeight;
+                    bookPage6.tableToxicology.EndInit();
+                }
+                else
+                {
+                    bookPage6.tableToxicology.Visible = false;
                 }
             }
         }

@@ -1117,10 +1117,10 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchCheckupResultValue(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public static DataTable pSearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pSearchCheckupResultValue", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchResultLabList", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);

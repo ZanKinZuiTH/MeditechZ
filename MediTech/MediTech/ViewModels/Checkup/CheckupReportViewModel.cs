@@ -257,7 +257,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            var dataCheckupValue = DataService.Lab.SearchCheckupResultValue(DateFrom, DateTo, patientUID, payorDetailUID);
+            var dataCheckupValue = DataService.Lab.SearchResultLabList(DateFrom, DateTo, patientUID, payorDetailUID);
 
             if (dataCheckupValue != null)
             {
@@ -276,6 +276,8 @@ namespace MediTech.ViewModels
                     SEXXXUID = p.FirstOrDefault().SEXXXUID,
                     Gender = p.FirstOrDefault().Gender,
                     Age = p.FirstOrDefault().Age,
+                    Department = p.FirstOrDefault().Department,
+                    Position = p.FirstOrDefault().Position
                 }).ToList();
 
                 PivotPatientLabData = dataCheckupValue;

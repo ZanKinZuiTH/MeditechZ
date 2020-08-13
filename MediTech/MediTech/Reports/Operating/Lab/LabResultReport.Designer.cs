@@ -302,7 +302,7 @@
             this.xrLabel14.SizeF = new System.Drawing.SizeF(234.6669F, 23F);
             this.xrLabel14.StylePriority.UseFont = false;
             this.xrLabel14.StylePriority.UseTextAlignment = false;
-            this.xrLabel14.Text = "ใบรายงานผลห้องปัฎิบัติการ";
+            this.xrLabel14.Text = "ใบรายงานผลห้องปฎิบัติการ";
             this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel13

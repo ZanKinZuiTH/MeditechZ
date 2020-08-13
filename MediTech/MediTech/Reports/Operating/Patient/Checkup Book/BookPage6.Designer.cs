@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
+            this.tableToxicology = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -79,7 +79,7 @@
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableFBS)).BeginInit();
@@ -92,7 +92,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrTable3,
+            this.tableToxicology,
             this.xrLabel8,
             this.xrTable2,
             this.xrTable1,
@@ -113,21 +113,21 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // xrTable3
+            // tableToxicology
             // 
-            this.xrTable3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.tableToxicology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable3.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(436.4131F, 334.4861F);
-            this.xrTable3.Name = "xrTable3";
-            this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.tableToxicology.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.tableToxicology.LocationFloat = new DevExpress.Utils.PointFloat(436.4131F, 336.4861F);
+            this.tableToxicology.Name = "tableToxicology";
+            this.tableToxicology.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow8});
-            this.xrTable3.SizeF = new System.Drawing.SizeF(373.5F, 17F);
-            this.xrTable3.StylePriority.UseBorders = false;
-            this.xrTable3.StylePriority.UseFont = false;
-            this.xrTable3.StylePriority.UseTextAlignment = false;
-            this.xrTable3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.tableToxicology.SizeF = new System.Drawing.SizeF(373.5F, 17F);
+            this.tableToxicology.StylePriority.UseBorders = false;
+            this.tableToxicology.StylePriority.UseFont = false;
+            this.tableToxicology.StylePriority.UseTextAlignment = false;
+            this.tableToxicology.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrTableRow8
             // 
@@ -251,7 +251,7 @@
             this.tableFBS.Name = "tableFBS";
             this.tableFBS.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow5});
-            this.tableFBS.SizeF = new System.Drawing.SizeF(381.6699F, 16.66666F);
+            this.tableFBS.SizeF = new System.Drawing.SizeF(381.66F, 16.66666F);
             this.tableFBS.StylePriority.UseBorders = false;
             this.tableFBS.StylePriority.UseFont = false;
             this.tableFBS.StylePriority.UseTextAlignment = false;
@@ -270,19 +270,19 @@
             // 
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.Text = "Test";
-            this.xrTableCell13.Weight = 1.2935022526092332D;
+            this.xrTableCell13.Weight = 1.3000282856428831D;
             // 
             // xrTableCell14
             // 
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.Text = "Normal Range";
-            this.xrTableCell14.Weight = 1.272233362024435D;
+            this.xrTableCell14.Weight = 1.3000283516074418D;
             // 
             // xrTableCell15
             // 
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Text = "Result";
-            this.xrTableCell15.Weight = 1.334450375608103D;
+            this.xrTableCell15.Weight = 1.3000283131881849D;
             // 
             // tableUricAcid
             // 
@@ -348,7 +348,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tableStool.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.tableStool.LocationFloat = new DevExpress.Utils.PointFloat(436.4131F, 176.25F);
+            this.tableStool.LocationFloat = new DevExpress.Utils.PointFloat(436.4131F, 178.25F);
             this.tableStool.Name = "tableStool";
             this.tableStool.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4});
@@ -583,7 +583,7 @@
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "17.1";
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tableToxicology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tableFBS)).EndInit();
@@ -641,7 +641,7 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
         internal DevExpress.XtraReports.UI.XRTableCell lbHN6;
         internal DevExpress.XtraReports.UI.XRTableCell lbName6;
-        internal DevExpress.XtraReports.UI.XRTable xrTable3;
+        internal DevExpress.XtraReports.UI.XRTable tableToxicology;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow8;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
