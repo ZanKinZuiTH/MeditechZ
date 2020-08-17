@@ -54,7 +54,7 @@
             this.xrLabel3,
             this.xrLabel4,
             this.xrLabel5});
-            this.Detail.HeightF = 74.87502F;
+            this.Detail.HeightF = 80F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -93,10 +93,10 @@
             // 
             this.xrLabel3.CanGrow = false;
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(121.6786F, 3F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(121.6786F, 0F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(76.04164F, 14.00001F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(76.04163F, 17.33334F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.Text = "NO. [Parameters.No]";
             // 
@@ -116,10 +116,10 @@
             // 
             this.xrLabel5.CanGrow = false;
             this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(13.33333F, 3.000005F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(14.16667F, 0F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(104.1786F, 14.00001F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(104.1786F, 18.16668F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.Text = "HN: [Parameters.HN]";
             this.xrLabel5.WordWrap = false;
@@ -153,7 +153,7 @@
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 0F;
+            this.BottomMargin.HeightF = 2F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -186,8 +186,8 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin});
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
-            this.PageHeight = 85;
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 2);
+            this.PageHeight = 90;
             this.PageWidth = 200;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
