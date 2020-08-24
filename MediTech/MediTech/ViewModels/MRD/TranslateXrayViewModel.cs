@@ -317,7 +317,11 @@ namespace MediTech.ViewModels
             }
             resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
             payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.PayorDetailUID : (int?)null;
-            PatientXrays = new ObservableCollection<PatientResultRadiology>(DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID));
+            var dataList = DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID);
+            if (dataList != null)
+                PatientXrays = new ObservableCollection<PatientResultRadiology>(dataList);
+            else
+                PatientXrays = null;
             List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
             if (PatientXrays != null && PatientXrays.Count > 0)
             {
@@ -325,7 +329,7 @@ namespace MediTech.ViewModels
                 {
 
                     List<string> listNoMapResult = new List<string>();
-                    string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, dtResultMapping, ref listNoMapResult);
+                    string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName, dtResultMapping, ref listNoMapResult);
 
                     item.ThaiResult = thairesult;
                     if (item.ThaiResult == string.Empty)
@@ -425,7 +429,7 @@ namespace MediTech.ViewModels
                 {
                     string thaiResult = string.Empty;
                     List<string> wordnomap = new List<string>();
-                    thaiResult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, dtResultMapping, ref wordnomap);
+                    thaiResult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName, dtResultMapping, ref wordnomap);
 
                     if (wordnomap.Count == 0 && thaiResult == "")
                     {
@@ -454,7 +458,7 @@ namespace MediTech.ViewModels
                         }
 
                         dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
-                        thaiResult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, dtResultMapping, ref wordnomap);
+                        thaiResult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName, dtResultMapping, ref wordnomap);
                         item.ThaiResult = thaiResult;
 
                         DialogResult diagResult = DialogResult.None;
@@ -608,7 +612,7 @@ namespace MediTech.ViewModels
                         if (dtResult != null && dtResult.ResultEnteredDttm.ToString() != "")
                         {
                             List<string> listNoMapResult = new List<string>();
-                            string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus, dtResultMapping, ref listNoMapResult);
+                            string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus,dtResult.RequestItemName, dtResultMapping, ref listNoMapResult);
                             dtResult.ThaiResult = thaiResult;
 
                             PatientXrays.Add(dtResult);

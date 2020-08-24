@@ -206,7 +206,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
                     if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
                     {
-                        string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus);
+                        string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
                         if (!string.IsNullOrEmpty(resultChestThai))
                         {
                             bookPage2.lblChest.Text = resultChestThai;
@@ -229,7 +229,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage2.lblMamo.Text = mammoGram.RadiologyResultStatus;
                     if (!string.IsNullOrEmpty(mammoGram.RadiologyResultText))
                     {
-                        string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus);
+                        string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus,mammoGram.RequestItemName);
                         if (!string.IsNullOrEmpty(resultChestThai))
                         {
                             bookPage2.lblMamo.Text = resultChestThai;
@@ -251,7 +251,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                     bookPage2.lblUltrasound.Text = ultrsound.RadiologyResultStatus;
                     if (!string.IsNullOrEmpty(ultrsound.RadiologyResultText))
                     {
-                        string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus);
+                        string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus,ultrsound.RequestItemName);
                         if (!string.IsNullOrEmpty(resultChestThai))
                         {
                             bookPage2.lblUltrasound.Text = resultChestThai;
@@ -1204,7 +1204,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
         }
 
 
-        public string TranslateXray(string resultValue, string resultStatus)
+        public string TranslateXray(string resultValue, string resultStatus,string requestItemName)
         {
             if (dtResultMapping == null)
             {
@@ -1212,7 +1212,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
             }
 
             List<string> listNoMapResult = new List<string>();
-            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, dtResultMapping, ref listNoMapResult);
+            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, dtResultMapping, ref listNoMapResult);
 
             return thairesult;
         }

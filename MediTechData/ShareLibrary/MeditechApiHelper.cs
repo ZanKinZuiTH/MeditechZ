@@ -14,6 +14,7 @@ namespace ShareLibrary
     public static class MeditechApiHelper
     {
         public readonly static string BaseAddress;
+        public readonly static int timeOut = 3;
         static MeditechApiHelper()
         {
             BaseAddress = System.Configuration.ConfigurationManager.AppSettings["BaseAddress"];
@@ -24,7 +25,7 @@ namespace ShareLibrary
             T result = null;
             using (var client = new HttpClient())
             {
-                client.Timeout = TimeSpan.FromMinutes(3);
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 client.DefaultRequestHeaders.Accept.Clear();
                 client.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
@@ -56,6 +57,7 @@ namespace ShareLibrary
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 using (var response = client.PostAsJsonAsync(requestUrl, obj).Result)
                 {
@@ -79,6 +81,7 @@ namespace ShareLibrary
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 using (var response = client.PostAsJsonAsync(requestUrl, obj).Result)
                 {
@@ -141,6 +144,7 @@ namespace ShareLibrary
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 using (var response = client.PutAsJsonAsync(requestUrl, obj).Result)
                 {
@@ -163,6 +167,7 @@ namespace ShareLibrary
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 using (var response = client.PutAsync(requestUrl, null).Result)
                 {
@@ -185,6 +190,7 @@ namespace ShareLibrary
         {
             using (var client = new HttpClient())
             {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
                 client.BaseAddress = new Uri(BaseAddress);
                 using (var response = client.DeleteAsync(requestUrl).Result)
                 {

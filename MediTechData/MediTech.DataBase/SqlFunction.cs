@@ -1132,6 +1132,23 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pSearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID,string itemName,int? RABSTSUID, int? payorDetailUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchResultRadiologyForTranslate", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_ItemName", itemName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RABSTSUID", RABSTSUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID ", payorDetailUID ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
 
         public static DataTable pGetRequestExecuteRadiologist(DateTime requestDateFrom, DateTime requestDateTo,int radiologistUID)
         {

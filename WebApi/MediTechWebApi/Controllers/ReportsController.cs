@@ -1040,7 +1040,7 @@ namespace MediTechWebApi.Controllers
                                                ResultValueType = SqlFunction.fGetRfValDescription(rsc.RVTYPUID),
                                                Unit = SqlFunction.fGetRfValDescription(rsc.RSUOMUID ?? 0),
                                                LabCategory = SqlFunction.fGetRfValDescription(rit.LABCATUID ?? 0),
-                                               OrganisationName = or.Name + (or.LicenseNo != null ? " ใบอนุญาติเลขที่ " + or.LicenseNo : ""),
+                                               OrganisationName = or.Name + (or.LicenseNo != null ? " ใบอนุญาตเลขที่ " + or.LicenseNo : ""),
                                                OrganisationCode = or.Code,
                                                OrganisationAddress = SqlFunction.fGetAddressOrganisation(pv.OwnerOrganisationUID ?? 0)
                                            }).ToList();

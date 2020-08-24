@@ -822,19 +822,7 @@ namespace MediTechWebApi.Controllers
                             {
                                 components.ReferenceRange = "<" + components.High.ToString();
 
-
-                                //if (resultValue > components.High)
-                                //{
-                                //    isAbnormal = "H";
-                                //}
                             }
-                            //else
-                            //{
-                            //    referenceRange = components.ReferenceRange;
-                            //}
-                            //}
-
-                            // }
 
 
 

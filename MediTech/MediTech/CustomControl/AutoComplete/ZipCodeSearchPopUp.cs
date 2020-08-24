@@ -14,7 +14,7 @@ namespace MediTech.CustomControl
         public ZipCodeSearchPopUp()
         {
             Columns = new ObservableCollection<Column>() {
-                new Column() { FieldName = "ZipCode", Header = "รหัสไปรษณีย์ย์" },
+                new Column() { FieldName = "ZipCode", Header = "รหัสไปรษณีย์" },
                 new Column() { FieldName = "District", Header = "ตำบล" },
                 new Column() { FieldName = "Amphur", Header = "อำเภอ" },
                 new Column() { FieldName = "Province", Header = "จังหวัด" }
