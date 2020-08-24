@@ -518,7 +518,11 @@ namespace MediTech.ViewModels
             resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
             payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
 
-            PatientXrays = new ObservableCollection<PatientResultRadiology>(DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID));
+            var dataList = DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID);
+            if (dataList != null)
+                PatientXrays = new ObservableCollection<PatientResultRadiology>(dataList);
+            else
+                PatientXrays = null;
 
             List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
             if (PatientXrays != null && PatientXrays.Count > 0)
@@ -528,7 +532,7 @@ namespace MediTech.ViewModels
                     foreach (var item in PatientXrays)
                     {
                         List<string> listNoMapResult = new List<string>();
-                        string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, dtResultMapping, ref listNoMapResult);
+                        string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, item.RequestItemName, dtResultMapping, ref listNoMapResult);
 
                         item.ThaiResult = thairesult;
                     }
@@ -632,7 +636,7 @@ namespace MediTech.ViewModels
                             if (IsTranslate)
                             {
                                 List<string> listNoMapResult = new List<string>();
-                                string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus, dtResultMapping, ref listNoMapResult);
+                                string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus, dtResult.RequestItemName, dtResultMapping, ref listNoMapResult);
                                 dtResult.ThaiResult = thaiResult;
                             }
 
@@ -1295,7 +1299,7 @@ namespace MediTech.ViewModels
                             {
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
-                                string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID,"");
+                                string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID, "");
 
                                 dicomFile.Dataset.NotValidated();
                                 foreach (var item in dicomFile.Dataset.ToList())
@@ -1306,7 +1310,7 @@ namespace MediTech.ViewModels
                                     {
                                         value = value.Replace("\0", "");
                                         dicomFile.Dataset.AddOrUpdate(item.Tag, value);
-                                    } 
+                                    }
                                 }
 
                                 //dicomFile.Dataset.Validate();

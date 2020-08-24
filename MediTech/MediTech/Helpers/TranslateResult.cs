@@ -9,7 +9,7 @@ namespace MediTech.Helpers
 {
     public class TranslateResult
     {
-        public static string TranslateResultXray(string xrayResultText, string resultStatus, List<XrayTranslateMappingModel> dtResultMapping, ref List<string> listNoMapResult)
+        public static string TranslateResultXray(string xrayResultText, string resultStatus,string requestItemName, List<XrayTranslateMappingModel> dtResultMapping, ref List<string> listNoMapResult)
         {
 
             string thaiResult = string.Empty;
@@ -161,7 +161,15 @@ namespace MediTech.Helpers
             }
             else if ((tempResult == "" && isSet == false) && (numKeyword == plainTextList.Count) && (resultStatus.ToLower() == "normal"))
             {
-                thaiResult = "ปกติ";
+                if (requestItemName.ToUpper().Contains("MAMMO"))
+                {
+                    thaiResult = "ปกติ ควรตรวจทุก 1 ปี";
+                }
+                else
+                {
+                    thaiResult = "ปกติ";
+                }
+
             }
 
             listNoMapResult = NoMapResult.Distinct().Where(p => p != string.Empty).ToList<string>();
