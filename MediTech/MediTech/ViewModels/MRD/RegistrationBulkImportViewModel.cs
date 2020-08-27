@@ -437,10 +437,10 @@ namespace MediTech.ViewModels
                         {
                             CurrentImportedData.SEXXXUID = 3; //Unknown
                         }
-                        else
-                        {
-                            CurrentImportedData.SEXXXUID = 1; //Male
-                        }
+                        //else
+                        //{
+                        //    CurrentImportedData.SEXXXUID = 1; //Male
+                        //}
 
                         string preName = drow["PreName"].ToString().Trim().ToUpper();
                         switch (preName)

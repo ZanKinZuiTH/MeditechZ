@@ -185,7 +185,7 @@ namespace MediTech.ViewModels
                     IsEnableDateFrom = false;
                     IsEnableDateTo = false;
                     DateFrom = DateTime.Now.AddDays(-1);
-                    DateTo = DateTime.Now.AddDays(-1);
+                    DateTo = DateTime.Now;
                 }
 
             }
