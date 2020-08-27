@@ -159,6 +159,7 @@
             // RichTXT
             // 
             this.RichTXT.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.RichTXT.CanShrink = true;
             this.RichTXT.Font = new System.Drawing.Font("Cordia New", 16F);
             this.RichTXT.LocationFloat = new DevExpress.Utils.PointFloat(13.54181F, 8.597244F);
             this.RichTXT.Name = "RichTXT";
@@ -191,6 +192,7 @@
             this.lblThaiReult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lblThaiReult.CanShrink = true;
             this.lblThaiReult.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.ResultThai, "Text", "")});
             this.lblThaiReult.Font = new System.Drawing.Font("Angsana New", 16F);
