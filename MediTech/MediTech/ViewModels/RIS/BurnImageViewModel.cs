@@ -311,6 +311,7 @@ namespace MediTech.ViewModels
 
         private void ViewerOnCD()
         {
+            string patientID = "";
             try
             {
                 if (BufferList != null && BufferList.Count > 0)
@@ -355,6 +356,7 @@ namespace MediTech.ViewModels
                     int i = 0;
                     var dicomDirPath = Path.Combine(tempMedia, "DICOMDIR");
                     var dicomDir = new DicomDirectory();
+                    dicomDir.Dataset.NotValidated();
                     if (!Directory.Exists(tempMedia))
                     {
                         Directory.CreateDirectory(tempMedia);
@@ -372,6 +374,7 @@ namespace MediTech.ViewModels
 
                     foreach (var item in BufferList)
                     {
+                        patientID = item.PatientID;
                         if (!Directory.Exists(dicomPath))
                         {
                             Directory.CreateDirectory(dicomPath);
@@ -381,16 +384,15 @@ namespace MediTech.ViewModels
 
                             MemoryStream ms = new MemoryStream(instance.DicomFiles);
                             var dicomFile = Dicom.DicomFile.Open(ms);
+                            dicomFile.Dataset.NotValidated();
                             dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, item.No.ToString().PadLeft(4, '0') + " " + item.PatientName);
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(item.OtherID) ? item.OtherID : item.PatientID);
 
-                            dicomFile.Dataset.NotValidated();
                             foreach (var dicomItem in dicomFile.Dataset.ToList())
                             {
                                 string value = "";
                                 dicomFile.Dataset.TryGetString(dicomItem.Tag, out value);
-                                //string value = dicomFile.Dataset.GetSingleValueOrDefault<string>(item.Tag,null);
                                 if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
                                 {
                                     value = value.Replace("\0", "");
@@ -399,7 +401,6 @@ namespace MediTech.ViewModels
                             }
 
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
-
                             dicomDir.AddFile(dicomFile, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));
                             i++;
                         }
@@ -424,7 +425,7 @@ namespace MediTech.ViewModels
             catch (Exception er)
             {
 
-                ErrorDialog(er.Message);
+                ErrorDialog("PatientID:" + patientID + " " + er.Message);
             }
 
 

@@ -968,7 +968,7 @@ namespace MediTech.ViewModels
                         rpt.Parameters["Age"].Value = item.Age;
                         rpt.Parameters["BirthDttm"].Value = item.DOBDttm != null ? item.DOBDttm.Value.ToString("dd/MM/yyyy") : "";
                         rpt.Parameters["Department"].Value = item.Department;
-                        rpt.Parameters["EmployeeID"].Value = item.EmployeeID;
+                        rpt.Parameters["EmployeeID"].Value = string.IsNullOrEmpty(item.EmployeeID) ? item.OtherID : item.EmployeeID;
                         rpt.Parameters["CompanyName"].Value = item.Company;
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
