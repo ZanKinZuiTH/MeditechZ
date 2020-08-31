@@ -1008,6 +1008,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ImportLabResultViewModel ImportLabResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ImportLabResultViewModel>())
+                    SimpleIoc.Default.Register<ImportLabResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ImportLabResultViewModel>();
+            }
+        }
+
         #endregion
 
         #region MRD
