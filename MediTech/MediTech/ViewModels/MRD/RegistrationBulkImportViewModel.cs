@@ -536,14 +536,18 @@ namespace MediTech.ViewModels
                         if (!string.IsNullOrEmpty(drow["HN"].ToString()))
                         {
                             patient = DataService.PatientIdentity.GetPatientByHN(drow["HN"].ToString().Trim());
-                            if (AppUtil.Current.ApplicationId == "BRXG")
+                            if (patient != null)
                             {
-                                if (patient == null)
-                                {
-                                    CurrentImportedData.BN = string.Empty;
-                                }
+                                if (drow["FirstName"].ToString().Trim() != patient.FirstName.ToString() && drow["LastName"].ToString().Trim() != patient.LastName.ToString())
+                                    ((RegistrationBulkImport)View).ShowMessageBox("HN: " +drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                             }
-
+                            //if (AppUtil.Current.ApplicationId == "BRXG")
+                            //{
+                            //    if (patient == null)
+                            //    {
+                            //        CurrentImportedData.BN = string.Empty;
+                            //    }
+                            //}
                         }
                         else if (!string.IsNullOrEmpty(drow["IDCard"].ToString()))
                         {
