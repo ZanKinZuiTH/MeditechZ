@@ -55,7 +55,7 @@
             this.xrLabel4,
             this.xrLabel5,
             this.xrBarCode1});
-            this.Detail.HeightF = 90F;
+            this.Detail.HeightF = 84.16667F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 2, 100F);
@@ -65,10 +65,10 @@
             // 
             this.xrLabel6.CanGrow = false;
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(10F, 34.54169F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(2.779763F, 28.70834F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(187.7202F, 18F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(177.7202F, 18F);
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.Text = "[Parameters.BirthDttm] Age [Parameters.Age] EmpID. [Parameters.EmployeeID]";
             this.xrLabel6.WordWrap = false;
@@ -77,21 +77,21 @@
             // 
             this.xrLabel3.CanGrow = false;
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(138.3452F, 0F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(128.625F, 0F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(59.375F, 14.00001F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(53.54167F, 14.00001F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.Text = "NO. [Parameters.No]";
             // 
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
-            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(10F, 16.83333F);
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(3.333302F, 14.00002F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(187.7202F, 22.16667F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(177.1667F, 22.16667F);
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.Text = "[Parameters.PatientName]";
             this.xrLabel4.WordWrap = false;
@@ -99,8 +99,8 @@
             // xrLabel5
             // 
             this.xrLabel5.CanGrow = false;
-            this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(2.779763F, 0F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(107.512F, 16.83333F);
@@ -113,12 +113,13 @@
             this.xrBarCode1.Alignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrBarCode1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.HN, "Text", "")});
-            this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(8.333333F, 52.54171F);
+            this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(2.779763F, 46.70835F);
             this.xrBarCode1.Module = 1F;
             this.xrBarCode1.Name = "xrBarCode1";
             this.xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100F);
             this.xrBarCode1.ShowText = false;
-            this.xrBarCode1.SizeF = new System.Drawing.SizeF(189.3869F, 31.62496F);
+            this.xrBarCode1.SizeF = new System.Drawing.SizeF(177.7202F, 24.95829F);
+            this.xrBarCode1.StylePriority.UseBorderWidth = false;
             this.xrBarCode1.StylePriority.UseTextAlignment = false;
             this.xrBarCode1.Symbology = code128Generator1;
             this.xrBarCode1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -183,8 +184,8 @@
             this.TopMargin,
             this.BottomMargin});
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
-            this.PageHeight = 90;
-            this.PageWidth = 200;
+            this.PageHeight = 75;
+            this.PageWidth = 188;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientName,
