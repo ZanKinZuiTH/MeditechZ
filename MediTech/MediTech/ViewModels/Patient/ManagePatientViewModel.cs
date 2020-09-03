@@ -1183,7 +1183,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            OtherID = patientModel.PatientID2;
+            OtherID = patientModel.EmployeeID;
             CalculateBrithDate = patientModel.DOBComputed;
             NatinonalID = patientModel.NationalID;
             SelectedBloodGroup = BloodGroupSource.FirstOrDefault(p => p.Key == patientModel.BLOODUID);
@@ -1287,7 +1287,7 @@ namespace MediTech.ViewModels
             patientModel.DOBComputed = CalculateBrithDate;
 
             patientModel.NationalID = NatinonalID;
-            patientModel.PatientID2 = OtherID;
+            patientModel.EmployeeID = OtherID;
 
             if (SelectedBloodGroup != null)
                 patientModel.BLOODUID = SelectedBloodGroup.Key;

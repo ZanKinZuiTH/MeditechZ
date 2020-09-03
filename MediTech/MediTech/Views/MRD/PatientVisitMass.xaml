@@ -125,7 +125,7 @@
                                     <dxg:GridColumn x:Name="colSelect" Fixed="Left" Header=" " AllowPrinting="False" Width="70"
                                             AllowEditing="True" FieldName="Select"/>
                                     <dxg:GridColumn Header="BN" FieldName="PatientID" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="OtherID" FieldName="PatientID2" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="EmployeeID" FieldName="EmployeeID" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>

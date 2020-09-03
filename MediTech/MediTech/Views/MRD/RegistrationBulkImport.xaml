@@ -18,8 +18,6 @@
         <Style x:Key="RowColorCellStyle" TargetType="{x:Type dxg:GridRowContent}">
             <Setter Property="Foreground" Value="{Binding Row.RowColor}"/>
         </Style>
-
-        
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">

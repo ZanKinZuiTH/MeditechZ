@@ -95,6 +95,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientTitmus> PatientTitmus { get; set; }
         public virtual DbSet<PatientVisit> PatientVisit { get; set; }
         public virtual DbSet<PatientVisitPayor> PatientVisitPayor { get; set; }
+        public virtual DbSet<PatientVisualAcuity> PatientVisualAcuity { get; set; }
         public virtual DbSet<PatientVitalSign> PatientVitalSign { get; set; }
         public virtual DbSet<PayorAgreement> PayorAgreement { get; set; }
         public virtual DbSet<PayorDetail> PayorDetail { get; set; }
@@ -3177,6 +3178,73 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_OrganisationUID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockTransferredOut_Result>("pRPTStockTransferredOut", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockDispose_Result> pRPTStockDispose(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockDispose_Result>("pRPTStockDispose", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+        }
+    
+        public virtual int pSearchResultLabList(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pSearchResultLabList", p_DateFromParameter, p_DateToParameter, p_PatientUIDParameter, p_PayorDetailUIDParameter);
+        }
+    
+        public virtual int pSearchResultRadiologyForTranslate(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<long> p_PatientUID, string p_ItemName, Nullable<int> p_RABSTSUID, Nullable<int> p_PayorDetailUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_ItemNameParameter = p_ItemName != null ?
+                new ObjectParameter("P_ItemName", p_ItemName) :
+                new ObjectParameter("P_ItemName", typeof(string));
+    
+            var p_RABSTSUIDParameter = p_RABSTSUID.HasValue ?
+                new ObjectParameter("P_RABSTSUID", p_RABSTSUID) :
+                new ObjectParameter("P_RABSTSUID", typeof(int));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pSearchResultRadiologyForTranslate", p_DateFromParameter, p_DateToParameter, p_PatientUIDParameter, p_ItemNameParameter, p_RABSTSUIDParameter, p_PayorDetailUIDParameter);
         }
     }
 }

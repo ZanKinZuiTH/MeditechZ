@@ -970,7 +970,7 @@ namespace MediTechWebApi.Controllers
                                                RequestedDttm = re.RequestedDttm,
                                                RequestItemName = red.RequestItemName,
                                                ResultEnteredDttm = rs.ResultEnteredDttm.Value,
-                                               OtherID = pa.PatientID2,
+                                               OtherID = pa.EmployeeID,
                                                ResultHtml = rsr.Value,
                                                ResultValue = rsr.PlainText,
                                                ResultStatus = SqlFunction.fGetRfValDescription(rs.RABSTSUID ?? 0),

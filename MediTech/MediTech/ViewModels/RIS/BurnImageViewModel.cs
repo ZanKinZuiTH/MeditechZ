@@ -356,7 +356,6 @@ namespace MediTech.ViewModels
                     int i = 0;
                     var dicomDirPath = Path.Combine(tempMedia, "DICOMDIR");
                     var dicomDir = new DicomDirectory();
-                    dicomDir.Dataset.NotValidated();
                     if (!Directory.Exists(tempMedia))
                     {
                         Directory.CreateDirectory(tempMedia);
@@ -384,7 +383,7 @@ namespace MediTech.ViewModels
 
                             MemoryStream ms = new MemoryStream(instance.DicomFiles);
                             var dicomFile = Dicom.DicomFile.Open(ms);
-                            dicomFile.Dataset.NotValidated();
+                            dicomFile.Dataset.AutoValidate = false;
                             dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, item.No.ToString().PadLeft(4, '0') + " " + item.PatientName);
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(item.OtherID) ? item.OtherID : item.PatientID);
@@ -401,6 +400,7 @@ namespace MediTech.ViewModels
                             }
 
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
+                            dicomDir.AutoValidate = false;
                             dicomDir.AddFile(dicomFile, String.Format(@"IMAGEDICOM\{0}", "0000000" + i.ToString()));
                             i++;
                         }

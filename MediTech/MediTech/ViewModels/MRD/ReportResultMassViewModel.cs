@@ -1299,9 +1299,9 @@ namespace MediTech.ViewModels
                             {
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);
+                                dicomFile.Dataset.AutoValidate = false;
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID, "");
 
-                                dicomFile.Dataset.NotValidated();
                                 foreach (var item in dicomFile.Dataset.ToList())
                                 {
                                     string value = "";

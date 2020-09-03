@@ -86,7 +86,15 @@ namespace MediTech.Reports.Operating.Lab
                                 process.EnableRaisingEvents = true;
                                 process.Exited += delegate
                                 {
-                                    System.IO.File.Delete(filename);
+                                    try
+                                    {
+                                        System.IO.File.Delete(filename);
+                                    }
+                                    catch (IOException)
+                                    {
+                                        //file is currently locked
+                                    }
+
                                 };
                                 process.Start();
                             }

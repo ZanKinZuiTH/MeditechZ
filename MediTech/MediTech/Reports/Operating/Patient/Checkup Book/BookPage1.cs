@@ -55,7 +55,7 @@ namespace MediTech.Reports.Operating.Patient.Checkup_Book
                 lblCheckupDate.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.ToString("dd/MM/yyyy") : "";
                 lblPatientName.Text = data.FirstOrDefault().PatientName;
                 lblHN.Text = data.FirstOrDefault().PatientID;
-                lblOtherID.Text = data.FirstOrDefault().PatientID2;
+                lblOtherID.Text = data.FirstOrDefault().EmployeeID;
                 lblDepartment.Text = data.FirstOrDefault().Department;
                 lblPosition.Text = data.FirstOrDefault().Position;
                 lblPayor.Text = data.FirstOrDefault().PayorName;

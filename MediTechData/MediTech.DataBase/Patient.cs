@@ -22,7 +22,6 @@ namespace MediTech.DataBase
         public Nullable<int> SEXXXUID { get; set; }
         public Nullable<int> TITLEUID { get; set; }
         public string PatientID { get; set; }
-        public string PatientID2 { get; set; }
         public Nullable<System.DateTime> DOBDttm { get; set; }
         public bool DOBComputed { get; set; }
         public Nullable<int> BLOODUID { get; set; }
@@ -41,6 +40,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> LastVisitDttm { get; set; }
         public string DeathStatus { get; set; }
         public Nullable<System.DateTime> DeathDttm { get; set; }
+        public string EmployeeID { get; set; }
         public string Department { get; set; }
         public string Position { get; set; }
         public int CUser { get; set; }

@@ -699,7 +699,7 @@ namespace MediTech.ViewModels
                             patientModel.PatientID = currentData.BN;
 
                             if (!string.IsNullOrEmpty(currentData.PatientOtherID))
-                                patientModel.PatientID2 = currentData.PatientOtherID;
+                                patientModel.EmployeeID = currentData.PatientOtherID;
 
                             patientModel.SEXXXUID = currentData.SEXXXUID;
                             patientModel.TITLEUID = currentData.TITLEUID;

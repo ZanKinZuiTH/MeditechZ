@@ -157,7 +157,7 @@
                                            ShowRowTotals="False">
                         <dxpg:PivotGridControl.Fields>
                             <dxpg:PivotGridField Area="RowArea" Caption="HN" FieldName="PatientID" AreaIndex="0"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="OtherID" Width="90"  FieldName="PatientID2" AreaIndex="1"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="EmployeeID" Width="90"  FieldName="EmployeeID" AreaIndex="1"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="คำนำหน้า" Width="90" FieldName="Title" AreaIndex="2"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="ชื่อ" FieldName="FirstName" AreaIndex="3"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="นามสกุล" FieldName="LastName" AreaIndex="4"/>
