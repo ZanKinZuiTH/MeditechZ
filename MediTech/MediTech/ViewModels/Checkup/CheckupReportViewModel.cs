@@ -276,6 +276,7 @@ namespace MediTech.ViewModels
                     SEXXXUID = p.FirstOrDefault().SEXXXUID,
                     Gender = p.FirstOrDefault().Gender,
                     Age = p.FirstOrDefault().Age,
+                    EmployeeID = p.FirstOrDefault().EmployeeID,
                     Department = p.FirstOrDefault().Department,
                     Position = p.FirstOrDefault().Position
                 }).ToList();

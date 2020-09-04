@@ -384,7 +384,8 @@ namespace MediTech.ViewModels
 
                 if (enterResultsLabModel != null && enterResultsLabModel.ResultDialog == ActionDialog.Save)
                 {
-                    SearchLabOrder();
+                    RequestDetailLabs = DataService.Lab.GetRequesDetailLabByRequestUID(SelectRequestLab.RequestUID);
+                    //SearchLabOrder();
                 }
             }
 

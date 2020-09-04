@@ -59,7 +59,7 @@ namespace MediTechWebApi.Controllers
                                                 NationalID = pa.IDCard,
                                                 NATNLUID = pa.NATNLUID,
                                                 PatientID = pa.PatientID,
-                                                PatientID2 = pa.PatientID2,
+                                                EmployeeID = pa.EmployeeID,
                                                 RELGNUID = pa.RELGNUID,
                                                 SecondPhone = pa.SecondPhone,
                                                 SEXXXUID = pa.SEXXXUID,
@@ -117,7 +117,7 @@ namespace MediTechWebApi.Controllers
                                                 NationalID = pa.IDCard,
                                                 NATNLUID = pa.NATNLUID,
                                                 PatientID = pa.PatientID,
-                                                PatientID2 = pa.PatientID2,
+                                                EmployeeID = pa.EmployeeID,
                                                 RELGNUID = pa.RELGNUID,
                                                 SecondPhone = pa.SecondPhone,
                                                 SEXXXUID = pa.SEXXXUID,
@@ -272,7 +272,7 @@ namespace MediTechWebApi.Controllers
                     patient.RELGNUID = patientInfo.RELGNUID;
                     patient.OCCUPUID = patientInfo.OCCUPUID;
                     patient.PatientID = patientInfo.PatientID;
-                    patient.PatientID2 = patientInfo.PatientID2;
+                    patient.EmployeeID = patientInfo.EmployeeID;
                     patient.Department = patientInfo.Department;
                     patient.Position = patientInfo.Position;
 

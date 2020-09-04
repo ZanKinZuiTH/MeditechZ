@@ -724,7 +724,7 @@ namespace MediTech.ViewModels
                             {
                                 CDRBuffer.PatientName = patientInfo.FirstName + " " + patientInfo.LastName;
                                 CDRBuffer.PatientID = patientInfo.PatientID;
-                                CDRBuffer.OtherID = patientInfo.PatientID2;
+                                CDRBuffer.OtherID = patientInfo.EmployeeID;
                             }
                             else
                             {
@@ -786,7 +786,7 @@ namespace MediTech.ViewModels
                                     {
                                         CDRBuffer.PatientName = patientInfo.FirstName + " " + patientInfo.LastName;
                                         CDRBuffer.PatientID = patientInfo.PatientID;
-                                        CDRBuffer.OtherID = patientInfo.PatientID2;
+                                        CDRBuffer.OtherID = patientInfo.EmployeeID;
                                     }
                                     else
                                     {
@@ -877,7 +877,7 @@ namespace MediTech.ViewModels
                             {
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.FirstName + " " + patientInfo.LastName);
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.PatientID2) ? patientInfo.PatientID2 : patientInfo.PatientID);
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.EmployeeID) ? patientInfo.EmployeeID : patientInfo.PatientID);
                             }
 
                             //#endif

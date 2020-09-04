@@ -529,7 +529,11 @@ namespace MediTech.ViewModels
 
                             PatientOrderDetailModel newOrder = new PatientOrderDetailModel();
                             BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(item.BillableItemUID);
-
+                            if (billItem == null)
+                            {
+                                WarningDialog("รายการ " + item.OrderCatalogName + " ถูกลบออกจากรายการสำหรับขายแล้ว โปรดตรวจสอบ");
+                                continue;
+                            }
                             var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billItem.BillableItemUID);
                             if (orderAlready != null)
                             {

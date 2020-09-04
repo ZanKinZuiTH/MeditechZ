@@ -12,21 +12,23 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientTitmus
+    public partial class PatientVisualAcuity
     {
         public int UID { get; set; }
-        public long PatientUID { get; set; }
-        public long PatientVisitUID { get; set; }
-        public string FarPoint { get; set; }
-        public string NearPoint { get; set; }
-        public string Depth { get; set; }
-        public string Color { get; set; }
-        public string Muscle { get; set; }
-        public string Visualfield { get; set; }
-        public string VARt { get; set; }
-        public string VALt { get; set; }
-        public string Disease { get; set; }
-        public string Conclusion { get; set; }
+        public int PatientUID { get; set; }
+        public int PatientVisitUID { get; set; }
+        public string AstigmaticRight { get; set; }
+        public string AstigmaticLeft { get; set; }
+        public string MyopiaRight { get; set; }
+        public string MyopiaLeft { get; set; }
+        public string HyperopiaRight { get; set; }
+        public string HyperopiaLeft { get; set; }
+        public string ViewRight { get; set; }
+        public string ViewLeft { get; set; }
+        public string VARight { get; set; }
+        public string VALeft { get; set; }
+        public string BlindColor { get; set; }
+        public string ViewResult { get; set; }
         public string Recommend { get; set; }
         public string Comments { get; set; }
         public Nullable<int> RABSTSUID { get; set; }

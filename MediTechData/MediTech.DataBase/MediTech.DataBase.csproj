@@ -276,6 +276,9 @@
     <Compile Include="PatientVisitPayor.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientVisualAcuity.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientVitalSign.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -533,6 +536,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockDispensed_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTStockDispose_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTStockExpired_Result.cs">
