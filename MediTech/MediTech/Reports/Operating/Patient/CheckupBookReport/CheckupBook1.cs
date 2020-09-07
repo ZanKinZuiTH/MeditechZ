@@ -58,36 +58,42 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
-                List<int> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
                 Years.Sort();
                 int countYear = Years.Count();
                 page4.cellHbRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001")?.ReferenceRange;
-                if (countYear == 1)
-                {
-                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
-                    page4.cellCBCYear2.Text = "ปี" + " " + (Years[0] + 1).ToString();
-                    page4.cellCBCYear3.Text = "ปี" + " " + (Years[0] + 2).ToString();
+                int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                page4.cellCBCYear1.Text = "ปี" + " " + year1.ToString();
+                page4.cellCBCYear2.Text = "ปี" + " " + year2.ToString();
+                page4.cellCBCYear3.Text = "ปี" + " " + year3.ToString();
 
-                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
+
+                page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year1)?.ResultValue;
+                page4.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue;
+                page4.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.ResultValue;
+
+                string hbAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year1)?.IsAbnormal;
+                string hbAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.IsAbnormal;
+                string hbAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(hbAbnormal1))
+                {
+                    page4.cellHb1.ForeColor = Color.Red;
+                    page4.cellHb1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                else if (countYear == 2)
-                {
-                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
-                    page4.cellCBCYear2.Text = "ปี" + " " + Years[1].ToString();
-                    page4.cellCBCYear3.Text = "ปี" + " " + (Years[1] + 1).ToString();
 
-                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
-                    page4.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[1])?.ResultValue;
+                if (!string.IsNullOrEmpty(hbAbnormal2))
+                {
+                    page4.cellHb2.ForeColor = Color.Red;
+                    page4.cellHb2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                else if (countYear == 3)
-                {
-                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
-                    page4.cellCBCYear2.Text = "ปี" + " " + Years[1].ToString();
-                    page4.cellCBCYear3.Text = "ปี" + " " + Years[2].ToString();
 
-                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
-                    page4.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[1])?.ResultValue;
-                    page4.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[2])?.ResultValue;
+                if (!string.IsNullOrEmpty(hbAbnormal3))
+                {
+                    page4.cellHb3.ForeColor = Color.Red;
+                    page4.cellHb3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
             else

@@ -20,7 +20,7 @@ namespace MediTech.Model
         public string ResultValueRange { get; set; }
         public string ResultUnit { get; set; }
         public string IsAbnormal { get; set; }
-        public int Year { get; set; }
+        public int? Year { get; set; }
         public int? SortBy { get; set; }
         public int? SubSortBy { get; set; }
     }
