@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
-using MediTech.Reports.Operating.Patient.Checkup_Book;
+using MediTech.Reports.Operating.Patient.CheckupBookReport;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -205,9 +205,10 @@ namespace MediTech.ViewModels
             {
                 foreach (var item in SelectPatientResultLabList)
                 {
-                    BookPage1 rpt = new BookPage1();
+                    CheckupBook1 rpt = new CheckupBook1();
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
                     //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
                     rpt.RequestParameters = false;
@@ -270,6 +271,7 @@ namespace MediTech.ViewModels
                     PatientID = p.FirstOrDefault().PatientID,
                     FirstName = p.FirstOrDefault().FirstName,
                     LastName = p.FirstOrDefault().LastName,
+                    PayorDetailUID = p.FirstOrDefault().PayorDetailUID,
                     StartDttm = p.FirstOrDefault().StartDttm,
                     TITLEUID = p.FirstOrDefault().TITLEUID,
                     Title = p.FirstOrDefault().Title,

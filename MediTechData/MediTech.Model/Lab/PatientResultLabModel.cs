@@ -13,12 +13,14 @@ namespace MediTech.Model
         public string RequestItemType { get; set; }
         public string Catagory { get; set; }
         public string RequestItemName { get; set; }
+        public string ResultItemCode { get; set; }
         public string ResultItemName { get; set; }
         public string ReferenceRange { get; set; }
         public string ResultValue { get; set; }
         public string ResultValueRange { get; set; }
-
+        public string ResultUnit { get; set; }
         public string IsAbnormal { get; set; }
+        public int Year { get; set; }
         public int? SortBy { get; set; }
         public int? SubSortBy { get; set; }
     }

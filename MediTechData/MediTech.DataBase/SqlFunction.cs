@@ -1721,6 +1721,19 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
+
+        public static DataTable pRPTCheckupLabCompare(long patientUID, long payorDetailUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupLabCompare", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
         public static DataTable pRPTRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();

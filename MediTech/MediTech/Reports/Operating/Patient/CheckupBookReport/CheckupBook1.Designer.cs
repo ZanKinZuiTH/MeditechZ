@@ -121,6 +121,7 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
@@ -694,7 +695,6 @@
             this.xrLabel1.StylePriority.UseTextAlignment = false;
             this.xrLabel1.Text = "รายงานการตรวจสุขภาพประจำปี\r\nMEDICAL CHECK UP REPORT\r\n";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrLabel1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrLabel1_BeforePrint);
             // 
             // xrTable1
             // 
@@ -1085,6 +1085,14 @@
             this.PatientVisitUID.ValueInfo = "0";
             this.PatientVisitUID.Visible = false;
             // 
+            // PayorDetailUID
+            // 
+            this.PayorDetailUID.Description = "PayorDetailUID";
+            this.PayorDetailUID.Name = "PayorDetailUID";
+            this.PayorDetailUID.Type = typeof(int);
+            this.PayorDetailUID.ValueInfo = "0";
+            this.PayorDetailUID.Visible = false;
+            // 
             // CheckupBook1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1098,7 +1106,8 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
-            this.PatientVisitUID});
+            this.PatientVisitUID,
+            this.PayorDetailUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).EndInit();
@@ -1204,5 +1213,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell68;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell69;
+        private DevExpress.XtraReports.Parameters.Parameter PayorDetailUID;
     }
 }

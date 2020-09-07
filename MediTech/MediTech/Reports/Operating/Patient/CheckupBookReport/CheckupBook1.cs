@@ -6,6 +6,7 @@ using DevExpress.XtraReports.UI;
 using MediTech.Model;
 using MediTech.DataService;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 {
@@ -33,12 +34,70 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
         private void BookPage1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            //long patientuID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
-            //long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
-            //List<CheckupBookModel> data = DataService.Reports.PrintCheckupBook(patientuID, patientVisitUID);
- 
+            long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
+            long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
+            int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
+            List<CheckupBookModel> data = DataService.Reports.PrintCheckupBook(patientUID, patientVisitUID);
+            if (data != null && data.Count > 0)
+            {
+                List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
+
+                #region Complete Blood Count
+
+                IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
+                    .Where(p => p.RequestItemName.Contains("CBC"))
+                    .OrderBy(p => p.Year);
+                GenerateCompleteBloodCount(cbcTestSet);
+
+
+                #endregion
+            }
         }
 
+        private void GenerateCompleteBloodCount(IEnumerable<PatientResultLabModel> labTestSet)
+        {
+            if (labTestSet != null && labTestSet.Count() > 0)
+            {
+                List<int> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.Sort();
+                int countYear = Years.Count();
+                page4.cellHbRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001")?.ReferenceRange;
+                if (countYear == 1)
+                {
+                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
+                    page4.cellCBCYear2.Text = "ปี" + " " + (Years[0] + 1).ToString();
+                    page4.cellCBCYear3.Text = "ปี" + " " + (Years[0] + 2).ToString();
+
+                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
+                }
+                else if (countYear == 2)
+                {
+                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
+                    page4.cellCBCYear2.Text = "ปี" + " " + Years[1].ToString();
+                    page4.cellCBCYear3.Text = "ปี" + " " + (Years[1] + 1).ToString();
+
+                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
+                    page4.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[1])?.ResultValue;
+                }
+                else if (countYear == 3)
+                {
+                    page4.cellCBCYear1.Text = "ปี" + " " + Years[0].ToString();
+                    page4.cellCBCYear2.Text = "ปี" + " " + Years[1].ToString();
+                    page4.cellCBCYear3.Text = "ปี" + " " + Years[2].ToString();
+
+                    page4.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[0])?.ResultValue;
+                    page4.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[1])?.ResultValue;
+                    page4.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == Years[2])?.ResultValue;
+                }
+            }
+            else
+            {
+                page4.cellCBCYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page4.cellCBCYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                page4.cellCBCYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+            }
+
+        }
         private void BookPage1_AfterPrint(object sender, EventArgs e)
         {
             page2.CreateDocument();
@@ -51,11 +110,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             this.Pages.AddRange(page4.Pages);
             this.Pages.AddRange(page5.Pages);
             this.Pages.AddRange(page6.Pages);
-        }
-
-        private void xrLabel1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-
         }
     }
 }

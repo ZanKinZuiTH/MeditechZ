@@ -323,6 +323,42 @@
     <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage6.Designer.cs">
       <DependentUpon>BookPage6.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.Designer.cs">
+      <DependentUpon>CheckupBook1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.Designer.cs">
+      <DependentUpon>CheckupBook2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.Designer.cs">
+      <DependentUpon>CheckupBook3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.Designer.cs">
+      <DependentUpon>CheckupBook4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.Designer.cs">
+      <DependentUpon>CheckupBook5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.Designer.cs">
+      <DependentUpon>CheckupBook6.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1926,6 +1962,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage6.resx">
       <DependentUpon>BookPage6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.resx">
+      <DependentUpon>CheckupBook1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.resx">
+      <DependentUpon>CheckupBook2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.resx">
+      <DependentUpon>CheckupBook3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.resx">
+      <DependentUpon>CheckupBook4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.resx">
+      <DependentUpon>CheckupBook5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.resx">
+      <DependentUpon>CheckupBook6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
       <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>

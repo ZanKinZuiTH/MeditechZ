@@ -581,6 +581,22 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("CheckupLabCompare")]
+        [HttpGet]
+        public List<PatientResultLabModel> CheckupLabCompare(long patientUID, long payorDetailUID)
+        {
+            List<PatientResultLabModel> data = null;
+
+            DataTable dt = SqlDirectStore.pRPTCheckupLabCompare(patientUID, payorDetailUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<PatientResultLabModel>();
+                data = dt.ToList<PatientResultLabModel>();
+            }
+
+            return data;
+        }
+
         #region Inventory
 
         [Route("StockOnHand")]
