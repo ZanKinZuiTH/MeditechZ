@@ -295,14 +295,15 @@ namespace MediTech.ViewModels
             MobileStickerSource = new List<LookupReferenceValueModel>();
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray" });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "EKG" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการมองเห็น" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด" });
+
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]};
         }
