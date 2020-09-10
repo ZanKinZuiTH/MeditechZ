@@ -293,16 +293,16 @@ namespace MediTech.ViewModels
         public RegistrationBulkImportViewModel()
         {
             MobileStickerSource = new List<LookupReferenceValueModel>();
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray" });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "EKG" });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง",DisplayOrder = 1 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์", DisplayOrder = 2 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด", DisplayOrder = 3 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ", DisplayOrder = 4 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป", DisplayOrder = 5 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ", DisplayOrder = 6 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน", DisplayOrder = 7 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด", DisplayOrder = 8 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray", DisplayOrder = 9 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "EKG", DisplayOrder = 10 });
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]};
@@ -1026,49 +1026,59 @@ namespace MediTech.ViewModels
                     {
                         if (patient.Register)
                         {
-                            foreach (var Selectitem in SelectMobileStickers)
+                            if (SelectMobileStickers != null)
                             {
-                                var item = (Selectitem as LookupReferenceValueModel);
-                                for (int i = 0; i < item.Key; i++)
+                                List<LookupReferenceValueModel> stickers  = new List<LookupReferenceValueModel>();
+                                foreach (var item in SelectMobileStickers)
                                 {
-                                    MobileSticker rpt = new MobileSticker();
-                                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-
-                                    string gender;
-                                    switch (patient.Gender)
+                                    var newItem = (item as LookupReferenceValueModel);
+                                    stickers.Add(newItem);
+                                }
+                                foreach (var SelectSticker in stickers.OrderByDescending(p => p.DisplayOrder))
+                                {
+                                    var item = (SelectSticker as LookupReferenceValueModel);
+                                    for (int i = 0; i < item.Key; i++)
                                     {
-                                        case "หญิง":
-                                        case "F":
-                                            gender = "(F)";
-                                            break;
-                                        case "ชาย":
-                                        case "M":
-                                            gender = "(M)";
-                                            break;
-                                        default:
-                                            gender = "(N/A)";
-                                            break;
+                                        MobileSticker rpt = new MobileSticker();
+                                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+                                        string gender;
+                                        switch (patient.Gender)
+                                        {
+                                            case "หญิง":
+                                            case "F":
+                                                gender = "(F)";
+                                                break;
+                                            case "ชาย":
+                                            case "M":
+                                                gender = "(M)";
+                                                break;
+                                            default:
+                                                gender = "(N/A)";
+                                                break;
+                                        }
+
+                                        rpt.Parameters["PatientName"].Value = patient.PreName + " " + patient.FirstName + " " + patient.LastName + " " + gender;
+
+                                        rpt.Parameters["HN"].Value = patient.BN;
+                                        rpt.Parameters["No"].Value = patient.No;
+
+                                        if (patient.BirthDttm != null)
+                                        {
+                                            rpt.Parameters["Age"].Value = ShareLibrary.UtilDate.calAgeFromBirthDate(patient.BirthDttm.Value);
+                                        }
+
+                                        rpt.Parameters["BirthDttm"].Value = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
+                                        rpt.Parameters["CheckUp"].Value = item.Display;
+                                        rpt.RequestParameters = false;
+                                        rpt.ShowPrintMarginsWarning = false;
+                                        printTool.Print();
+
                                     }
-
-                                    rpt.Parameters["PatientName"].Value = patient.PreName + " " + patient.FirstName + " " + patient.LastName + " " + gender;
-
-                                    rpt.Parameters["HN"].Value = patient.BN;
-                                    rpt.Parameters["No"].Value = patient.No;
-
-                                    if (patient.BirthDttm != null)
-                                    {
-                                        rpt.Parameters["Age"].Value = ShareLibrary.UtilDate.calAgeFromBirthDate(patient.BirthDttm.Value);
-                                    }
-
-                                    rpt.Parameters["BirthDttm"].Value = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
-                                    rpt.Parameters["CheckUp"].Value = item.Display;
-                                    rpt.RequestParameters = false;
-                                    rpt.ShowPrintMarginsWarning = false;
-                                    printTool.Print();
 
                                 }
-
                             }
+
 
                             pgBarCounter = pgBarCounter + 1;
                             view.SetProgressBarValue(pgBarCounter);
