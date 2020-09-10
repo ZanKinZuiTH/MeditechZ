@@ -173,11 +173,11 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page2.lbResultWellness.Text = data.FirstOrDefault().WellnessResult;
                 if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1700)
                 {
-                    page2.lbResultWellness.Font = new Font("Angsana New", 10);
+                    page2.lbResultWellness.Font = new Font("Angsana New", 9);
                 }
                 else if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1350)
                 {
-                    page2.lbResultWellness.Font = new Font("Angsana New", 12);
+                    page2.lbResultWellness.Font = new Font("Angsana New", 10);
                 }
 
                 #endregion
@@ -237,6 +237,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page3.lbHyperopiaLeft.Text = data.FirstOrDefault().HyperopiaLeft != null ? data.FirstOrDefault().HyperopiaLeft.ToString() : "";
                 page3.lbVARight.Text = data.FirstOrDefault().VARight != null ? data.FirstOrDefault().VARight.ToString() : "";
                 page3.lbVALeft.Text = data.FirstOrDefault().VALeft != null ? data.FirstOrDefault().VALeft.ToString() : "";
+                page3.lbDisease.Text = data.FirstOrDefault().EyeDiseas != null ? data.FirstOrDefault().EyeDiseas.ToString() : "";
                 page3.lbBlindColor.Text = data.FirstOrDefault().BlindColor != null ? data.FirstOrDefault().BlindColor.ToString() : "";
                 page3.lbViewResult.Text = data.FirstOrDefault().ViewResult != null ? data.FirstOrDefault().ViewResult.ToString() : "";
                 page3.lbViewRecommend.Text = data.FirstOrDefault().ViewRecommend != null ? data.FirstOrDefault().ViewRecommend.ToString() : "";
@@ -2249,9 +2250,9 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
             else
             {
-                page5.cellImmunlogyYear1.Text = "ปี" + " " + DateTime.Now.Year;
-                page5.cellImmunlogyYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
-                page5.cellImmunlogyYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                page5.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page5.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                page5.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
 
@@ -2357,20 +2358,20 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(afpAbnormal1))
                 {
-                    page4.cellOtherYear1.ForeColor = Color.Red;
-                    page4.cellOtherYear1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellAfp1.ForeColor = Color.Red;
+                    page4.cellAfp1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(afpAbnormal2))
                 {
-                    page4.cellOtherYear2.ForeColor = Color.Red;
-                    page4.cellOtherYear2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellAfp2.ForeColor = Color.Red;
+                    page4.cellAfp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(afpAbnormal3))
                 {
-                    page4.cellOtherYear3.ForeColor = Color.Red;
-                    page4.cellOtherYear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellAfp2.ForeColor = Color.Red;
+                    page4.cellAfp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 page4.cellAfpConRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39")?.ReferenceRange;
@@ -2510,9 +2511,9 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
             else
             {
-                page5.cellImmunlogyYear1.Text = "ปี" + " " + DateTime.Now.Year;
-                page5.cellImmunlogyYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
-                page5.cellImmunlogyYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                page4.cellOtherYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page4.cellOtherYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                page4.cellOtherYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
 
