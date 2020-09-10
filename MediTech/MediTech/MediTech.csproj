@@ -733,6 +733,7 @@
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
     <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
     <Compile Include="ViewModels\LIS\EnterResultsLabViewModel.cs" />
     <Compile Include="ViewModels\LIS\LabOrderListViewModel.cs" />
@@ -935,6 +936,9 @@
     </Compile>
     <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
       <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\ImportLabResult.xaml.cs">
+      <DependentUpon>ImportLabResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LIS\SpecimenAccept.xaml.cs">
       <DependentUpon>SpecimenAccept.xaml</DependentUpon>
@@ -1432,6 +1436,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Inventory\ManageItemTransfer.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\LIS\ImportLabResult.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
