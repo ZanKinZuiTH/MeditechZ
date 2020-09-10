@@ -67,6 +67,7 @@ namespace MediTech.Model
         public string HyperopiaLeft { get; set; }
         public string VARight { get; set; }
         public string VALeft { get; set; }
+        public string EyeDiseas { get; set; }
         public string BlindColor { get; set; }
         public string ViewResult { get; set; }
         public string ViewRecommend { get; set; }
