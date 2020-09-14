@@ -267,7 +267,7 @@
             this.xrTableCell101.StylePriority.UsePadding = false;
             this.xrTableCell101.StylePriority.UseTextAlignment = false;
             this.xrTableCell101.Text = "แปลหูขวา";
-            this.xrTableCell101.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell101.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell101.Weight = 1D;
             // 
             // lbAudioRight
@@ -297,7 +297,7 @@
             this.xrTableCell103.StylePriority.UsePadding = false;
             this.xrTableCell103.StylePriority.UseTextAlignment = false;
             this.xrTableCell103.Text = "แปลหูซ้าย";
-            this.xrTableCell103.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell103.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell103.Weight = 1D;
             // 
             // lbAudioLeft
@@ -327,7 +327,7 @@
             this.xrTableCell105.StylePriority.UsePadding = false;
             this.xrTableCell105.StylePriority.UseTextAlignment = false;
             this.xrTableCell105.Text = "สรุปผล";
-            this.xrTableCell105.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell105.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell105.Weight = 1D;
             // 
             // lbAudioResult
@@ -357,7 +357,7 @@
             this.xrTableCell107.StylePriority.UsePadding = false;
             this.xrTableCell107.StylePriority.UseTextAlignment = false;
             this.xrTableCell107.Text = "คำแนะนำแพทย์";
-            this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell107.Weight = 1D;
             // 
             // lbAudioRecommend
@@ -377,15 +377,15 @@
             this.xrLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(543.1672F, 25.88094F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(486.5005F, 25.88094F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(173.3333F, 23.00001F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(286.6667F, 23.00001F);
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseBorders = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "  ผลการตรวจสมรรถภาพการได้ยิน ";
+            this.xrLabel1.Text = "  ผลการตรวจสมรรถภาพการได้ยิน  (Screening Audiogram)";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // tbLung
@@ -479,7 +479,7 @@
             this.xrTableCell113.StylePriority.UsePadding = false;
             this.xrTableCell113.StylePriority.UseTextAlignment = false;
             this.xrTableCell113.Text = "FVC";
-            this.xrTableCell113.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell113.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell113.Weight = 0.90166670501638124D;
             // 
             // lbFVCMeasure
@@ -529,7 +529,7 @@
             this.xrTableCell117.StylePriority.UsePadding = false;
             this.xrTableCell117.StylePriority.UseTextAlignment = false;
             this.xrTableCell117.Text = "FEV1";
-            this.xrTableCell117.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell117.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell117.Weight = 0.90166670501638124D;
             // 
             // lbFEV1Measure
@@ -579,7 +579,7 @@
             this.xrTableCell121.StylePriority.UsePadding = false;
             this.xrTableCell121.StylePriority.UseTextAlignment = false;
             this.xrTableCell121.Text = "FFV1/FVC";
-            this.xrTableCell121.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell121.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell121.Weight = 0.90166670501638124D;
             // 
             // lbFFVMeasure
@@ -627,7 +627,7 @@
             this.xrTableCell125.StylePriority.UsePadding = false;
             this.xrTableCell125.StylePriority.UseTextAlignment = false;
             this.xrTableCell125.Text = "สรุปผล";
-            this.xrTableCell125.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell125.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell125.Weight = 0.90166670501638124D;
             // 
             // lbLungResult
@@ -657,7 +657,7 @@
             this.xrTableCell127.StylePriority.UsePadding = false;
             this.xrTableCell127.StylePriority.UseTextAlignment = false;
             this.xrTableCell127.Text = "คำแนะนำแพทย์";
-            this.xrTableCell127.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell127.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell127.Weight = 0.90166670501638124D;
             // 
             // lbLungRecommend
@@ -677,15 +677,15 @@
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(529.0003F, 283.5852F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(463.8338F, 283.5852F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(191.6667F, 23F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(326.8332F, 23F);
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseBorders = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = " ผลการตรวจสมรรถภาพการทำงานปอด ";
+            this.xrLabel5.Text = " ผลการตรวจสมรรถภาพการทำงานปอด  (Pulmonary Function Test)";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel4
