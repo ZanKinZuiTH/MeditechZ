@@ -28,11 +28,31 @@
             <dxlc:LayoutItem>
                 <ProgressBar Height="15"  Margin="10,0,10,0" Name="progressBar1"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl>
-                <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False"/>
-                </dxg:GridControl.View>
-            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Width="230" 
+                                  dxlc:LayoutControl.AllowHorizontalSizing="True">
+                    <dxe:ListBoxEdit ItemsSource="{Binding RequestItems}"
+                                     SelectedItem="{Binding SelectedRequestItem}">
+                        <dxe:ListBoxEdit.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding ItemName}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </dxe:ListBoxEdit.ItemTemplate>
+                    </dxe:ListBoxEdit>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxg:GridControl ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay}"
+                                     ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutGroup>
+
         </dxlc:LayoutControl> 
     </Grid>
 </UserControl>

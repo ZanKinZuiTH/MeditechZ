@@ -196,6 +196,7 @@
             this.lblThaiReult.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.ResultThai, "Text", "")});
             this.lblThaiReult.Font = new System.Drawing.Font("Angsana New", 16F);
+            this.lblThaiReult.Multiline = true;
             this.lblThaiReult.Name = "lblThaiReult";
             this.lblThaiReult.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100F);
             this.lblThaiReult.StylePriority.UseBorders = false;

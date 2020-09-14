@@ -532,7 +532,7 @@ namespace MediTech.ViewModels
                     foreach (var item in PatientXrays)
                     {
                         List<string> listNoMapResult = new List<string>();
-                        string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, item.RequestItemName, dtResultMapping, ref listNoMapResult);
+                        string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus, item.RequestItemName,Environment.NewLine, dtResultMapping, ref listNoMapResult);
 
                         item.ThaiResult = thairesult;
                     }
@@ -636,7 +636,7 @@ namespace MediTech.ViewModels
                             if (IsTranslate)
                             {
                                 List<string> listNoMapResult = new List<string>();
-                                string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus, dtResult.RequestItemName, dtResultMapping, ref listNoMapResult);
+                                string thaiResult = TranslateResult.TranslateResultXray(dtResult.ResultValue, dtResult.ResultStatus, dtResult.RequestItemName, Environment.NewLine, dtResultMapping, ref listNoMapResult);
                                 dtResult.ThaiResult = thaiResult;
                             }
 

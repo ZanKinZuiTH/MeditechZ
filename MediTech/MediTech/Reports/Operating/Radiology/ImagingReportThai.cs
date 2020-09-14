@@ -105,7 +105,7 @@ namespace MediTech.Reports.Operating.Radiology
                 }
 
                 this.RichTXT.Html = dataReport.ResultHtml;
-                this.lblThaiReult.Text = dataReport.ThaiResult;
+                //this.lblThaiReult.Text = dataReport.ThaiResult;
             }
 
         }

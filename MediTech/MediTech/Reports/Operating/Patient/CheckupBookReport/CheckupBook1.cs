@@ -263,7 +263,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 #endregion
 
                 #region Radiology
-                if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
+                if (data.FirstOrDefault(p => p.RequestItemName.ToString().ToLower().Contains("chest") && p.RequestItemType.ToString() == "Radiology") != null)
                 {
                     CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
                     if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
@@ -333,104 +333,108 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
 
-                #region Complete Blood Count
+                if (labCompare != null)
+                {
+                    #region Complete Blood Count
 
-                IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("CBC"))
-                    .OrderBy(p => p.Year);
-                GenerateCompleteBloodCount(cbcTestSet);
-                #endregion
+                    IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("CBC"))
+                        .OrderBy(p => p.Year);
+                    GenerateCompleteBloodCount(cbcTestSet);
+                    #endregion
 
-                #region Urinalysis
-                IEnumerable<PatientResultLabModel> uaTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("UA"))
-                    .OrderBy(p => p.Year);
-                GenerateUrinalysis(uaTestSet);
+                    #region Urinalysis
+                    IEnumerable<PatientResultLabModel> uaTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("UA"))
+                        .OrderBy(p => p.Year);
+                    GenerateUrinalysis(uaTestSet);
 
-                #endregion
+                    #endregion
 
-                #region Renal function
-                IEnumerable<PatientResultLabModel> RenalTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("Cr") || p.RequestItemName.Contains("BUN"))
-                    .OrderBy(p => p.Year);
-                GenerateRenalFunction(RenalTestSet);
+                    #region Renal function
+                    IEnumerable<PatientResultLabModel> RenalTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("Cr") || p.RequestItemName.Contains("BUN"))
+                        .OrderBy(p => p.Year);
+                    GenerateRenalFunction(RenalTestSet);
 
-                #endregion
+                    #endregion
 
-                #region Fasting Blood Sugar
-                IEnumerable<PatientResultLabModel> FbsTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("FBS"))
-                    .OrderBy(p => p.Year);
-                GenerateFastingBloodSugar(FbsTestSet);
+                    #region Fasting Blood Sugar
+                    IEnumerable<PatientResultLabModel> FbsTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("FBS"))
+                        .OrderBy(p => p.Year);
+                    GenerateFastingBloodSugar(FbsTestSet);
 
-                #endregion
+                    #endregion
 
-                #region Uric acid
-                IEnumerable<PatientResultLabModel> UricTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("Uric acid"))
-                    .OrderBy(p => p.Year);
-                GenerateUricAcid(UricTestSet);
+                    #region Uric acid
+                    IEnumerable<PatientResultLabModel> UricTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("Uric acid"))
+                        .OrderBy(p => p.Year);
+                    GenerateUricAcid(UricTestSet);
 
-                #endregion
+                    #endregion
 
-                #region Lipid Profiles 
-                IEnumerable<PatientResultLabModel> LipidTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("CHOL") 
-                    || p.RequestItemName.Contains("TG") 
-                    || p.RequestItemName.Contains("HDL-Cholesterol") 
-                    || p.RequestItemName.Contains("LDL-Cholesterol"))
-                    .OrderBy(p => p.Year);
-                GenerateLipidProfiles(LipidTestSet);
+                    #region Lipid Profiles 
+                    IEnumerable<PatientResultLabModel> LipidTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("CHOL")
+                        || p.RequestItemName.Contains("TG")
+                        || p.RequestItemName.Contains("HDL-Cholesterol")
+                        || p.RequestItemName.Contains("LDL-Cholesterol"))
+                        .OrderBy(p => p.Year);
+                    GenerateLipidProfiles(LipidTestSet);
 
-                #endregion
+                    #endregion
 
-                #region Liver Function
-                IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("AST (SGOT)")
-                    || p.RequestItemName.Contains("ALT (SGPT)")
-                    || p.RequestItemName.Contains("ALP")
-                    || p.RequestItemName.Contains("Total Billirubin")
-                    || p.RequestItemName.Contains("Direct Billirubin")
-                    || p.RequestItemName.Contains("Total Protein in blood")
-                    || p.RequestItemName.Contains("Alb")
-                    || p.RequestItemName.Contains("Glob"))
-                    .OrderBy(p => p.Year);
-                GenerateLiverFunction(LiverTestSet);
-                #endregion
+                    #region Liver Function
+                    IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("AST (SGOT)")
+                        || p.RequestItemName.Contains("ALT (SGPT)")
+                        || p.RequestItemName.Contains("ALP")
+                        || p.RequestItemName.Contains("Total Billirubin")
+                        || p.RequestItemName.Contains("Direct Billirubin")
+                        || p.RequestItemName.Contains("Total Protein in blood")
+                        || p.RequestItemName.Contains("Alb")
+                        || p.RequestItemName.Contains("Glob"))
+                        .OrderBy(p => p.Year);
+                    GenerateLiverFunction(LiverTestSet);
+                    #endregion
 
-                #region Immunology and Virology
-                IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("HBsAg"))
-                    .OrderBy(p => p.Year);
-                GenerateImmunology(ImmunologyTestSet);
-                #endregion
+                    #region Immunology and Virology
+                    IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("HBsAg"))
+                        .OrderBy(p => p.Year);
+                    GenerateImmunology(ImmunologyTestSet);
+                    #endregion
 
-                #region Stool Exam
-                IEnumerable<PatientResultLabModel> StoolTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("Stool Examination"))
-                    .OrderBy(p => p.Year);
-                GenerateStool(StoolTestSet);
-                #endregion
+                    #region Stool Exam
+                    IEnumerable<PatientResultLabModel> StoolTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("Stool Examination"))
+                        .OrderBy(p => p.Year);
+                    GenerateStool(StoolTestSet);
+                    #endregion
 
-                #region Toxicology
-                IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("Aluminium in Urine")
-                    || p.RequestItemName.Contains("Toluene (Urine)")
-                    || p.RequestItemName.Contains("Xylene in Urine")
-                    || p.RequestItemName.Contains("Lead (Blood)"))
-                    .OrderBy(p => p.Year);
-                GenerateToxicology(ToxicoTestSet);
-                #endregion
+                    #region Toxicology
+                    IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("Aluminium in Urine")
+                        || p.RequestItemName.Contains("Toluene (Urine)")
+                        || p.RequestItemName.Contains("Xylene in Urine")
+                        || p.RequestItemName.Contains("Lead (Blood)"))
+                        .OrderBy(p => p.Year);
+                    GenerateToxicology(ToxicoTestSet);
+                    #endregion
 
-                #region Other Lab Teat
-                IEnumerable<PatientResultLabModel> OtherTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("AFP")
-                    || p.RequestItemName.Contains("Blood Group ABO")
-                    || p.RequestItemName.Contains("CA 19-9")
-                    || p.RequestItemName.Contains("PSA"))
-                    .OrderBy(p => p.Year);
-                GenerateOther(OtherTestSet);
-                #endregion
+                    #region Other Lab Teat
+                    IEnumerable<PatientResultLabModel> OtherTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("AFP")
+                        || p.RequestItemName.Contains("Blood Group ABO")
+                        || p.RequestItemName.Contains("CA 19-9")
+                        || p.RequestItemName.Contains("PSA"))
+                        .OrderBy(p => p.Year);
+                    GenerateOther(OtherTestSet);
+                    #endregion
+                }
+
 
             }
         }
@@ -2540,7 +2544,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
 
             List<string> listNoMapResult = new List<string>();
-            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, dtResultMapping, ref listNoMapResult);
+            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName,",", dtResultMapping, ref listNoMapResult);
 
             return thairesult;
         }

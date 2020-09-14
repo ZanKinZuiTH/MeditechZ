@@ -46,6 +46,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<RequestResultLinkModel> GetRequestResultLinkByRequestItemUID(int requestItemUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetRequestResultLinkByRequestItemUID?requestItemUID={0}", requestItemUID);
+            List<RequestResultLinkModel> dataRequest = MeditechApiHelper.Get<List<RequestResultLinkModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public bool ManageRequestItem(RequestItemModel requestItemBIll, int userID)
         {
             bool flag = false;

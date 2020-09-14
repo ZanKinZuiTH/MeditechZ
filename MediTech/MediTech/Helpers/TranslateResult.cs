@@ -9,7 +9,7 @@ namespace MediTech.Helpers
 {
     public class TranslateResult
     {
-        public static string TranslateResultXray(string xrayResultText, string resultStatus,string requestItemName, List<XrayTranslateMappingModel> dtResultMapping, ref List<string> listNoMapResult)
+        public static string TranslateResultXray(string xrayResultText, string resultStatus,string requestItemName,string separator, List<XrayTranslateMappingModel> dtResultMapping, ref List<string> listNoMapResult)
         {
 
             string thaiResult = string.Empty;
@@ -106,7 +106,7 @@ namespace MediTech.Helpers
                         }
                         else
                         {
-                            tempResult += "," + row.ThaiResult.ToString();
+                            tempResult += separator + row.ThaiResult.ToString();
                         }
 
                     }
