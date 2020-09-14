@@ -367,7 +367,7 @@
             this.xrTableCell62.StylePriority.UsePadding = false;
             this.xrTableCell62.StylePriority.UseTextAlignment = false;
             this.xrTableCell62.Text = "สั้นขวา";
-            this.xrTableCell62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell62.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell62.Weight = 0.79166625976562488D;
             // 
             // lbMyopiaRight
@@ -389,7 +389,7 @@
             this.xrTableCell73.StylePriority.UsePadding = false;
             this.xrTableCell73.StylePriority.UseTextAlignment = false;
             this.xrTableCell73.Text = "สั้นซ้าย";
-            this.xrTableCell73.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell73.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell73.Weight = 0.708333740234375D;
             // 
             // lbMyopiaLeft
@@ -421,7 +421,7 @@
             this.xrTableCell75.StylePriority.UsePadding = false;
             this.xrTableCell75.StylePriority.UseTextAlignment = false;
             this.xrTableCell75.Text = "เอียงขวา";
-            this.xrTableCell75.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell75.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell75.Weight = 0.79166625976562488D;
             // 
             // lbAstigmaticRight
@@ -443,7 +443,7 @@
             this.xrTableCell77.StylePriority.UsePadding = false;
             this.xrTableCell77.StylePriority.UseTextAlignment = false;
             this.xrTableCell77.Text = "เอียงซ้าย";
-            this.xrTableCell77.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell77.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell77.Weight = 0.708333740234375D;
             // 
             // lbAstigmaticLeft
@@ -475,7 +475,7 @@
             this.xrTableCell79.StylePriority.UsePadding = false;
             this.xrTableCell79.StylePriority.UseTextAlignment = false;
             this.xrTableCell79.Text = "องศาขวา";
-            this.xrTableCell79.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell79.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell79.Weight = 0.79166625976562488D;
             // 
             // lbViewRight
@@ -497,7 +497,7 @@
             this.xrTableCell81.StylePriority.UsePadding = false;
             this.xrTableCell81.StylePriority.UseTextAlignment = false;
             this.xrTableCell81.Text = "องศาซ้าย";
-            this.xrTableCell81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell81.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell81.Weight = 0.708333740234375D;
             // 
             // lbViewLeft
@@ -529,7 +529,7 @@
             this.xrTableCell87.StylePriority.UsePadding = false;
             this.xrTableCell87.StylePriority.UseTextAlignment = false;
             this.xrTableCell87.Text = "ยาวขวา";
-            this.xrTableCell87.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell87.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell87.Weight = 0.79166625976562488D;
             // 
             // lbHyperopiaRight
@@ -551,7 +551,7 @@
             this.xrTableCell92.StylePriority.UsePadding = false;
             this.xrTableCell92.StylePriority.UseTextAlignment = false;
             this.xrTableCell92.Text = "ยาวซ้าย";
-            this.xrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell92.Weight = 0.70833412358573233D;
             // 
             // lbHyperopiaLeft
@@ -583,7 +583,7 @@
             this.xrTableCell83.StylePriority.UsePadding = false;
             this.xrTableCell83.StylePriority.UseTextAlignment = false;
             this.xrTableCell83.Text = "ค่า V.A. ขวา";
-            this.xrTableCell83.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell83.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell83.Weight = 0.79166625976562488D;
             // 
             // lbVARight
@@ -605,7 +605,7 @@
             this.xrTableCell94.StylePriority.UsePadding = false;
             this.xrTableCell94.StylePriority.UseTextAlignment = false;
             this.xrTableCell94.Text = "ค่า V.A. ซ้าย";
-            this.xrTableCell94.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrTableCell94.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell94.Weight = 0.70833427617361044D;
             // 
             // lbVALeft
@@ -634,7 +634,7 @@
             this.xrTableCell2.StylePriority.UsePadding = false;
             this.xrTableCell2.StylePriority.UseTextAlignment = false;
             this.xrTableCell2.Text = "โรคต้อ";
-            this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell2.Weight = 0.79166625976562488D;
             // 
             // lbDisease
@@ -664,7 +664,7 @@
             this.xrTableCell89.StylePriority.UsePadding = false;
             this.xrTableCell89.StylePriority.UseTextAlignment = false;
             this.xrTableCell89.Text = "ตาบอดสี";
-            this.xrTableCell89.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell89.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell89.Weight = 0.79166625976562488D;
             // 
             // lbBlindColor
@@ -694,7 +694,7 @@
             this.xrTableCell95.StylePriority.UsePadding = false;
             this.xrTableCell95.StylePriority.UseTextAlignment = false;
             this.xrTableCell95.Text = "สรุปผล";
-            this.xrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell95.Weight = 0.79166625976562488D;
             // 
             // lbViewResult
@@ -724,7 +724,7 @@
             this.xrTableCell85.StylePriority.UsePadding = false;
             this.xrTableCell85.StylePriority.UseTextAlignment = false;
             this.xrTableCell85.Text = "คำแนะนำแพทย์";
-            this.xrTableCell85.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell85.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell85.Weight = 0.79166625976562488D;
             // 
             // lbViewRecommend
@@ -743,14 +743,14 @@
             // 
             this.xrLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(133.2366F, 180.3331F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(105F, 180.3331F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(166.0556F, 23F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(207.6255F, 23F);
             this.xrLabel3.StylePriority.UseBackColor = false;
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
-            this.xrLabel3.Text = "ผลการตรวจสายตาทั่วไป";
+            this.xrLabel3.Text = "ผลการตรวจสายตาทั่วไป (Vision Test)";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel4
@@ -824,7 +824,7 @@
             this.xrTableCell1.StylePriority.UseTextAlignment = false;
             this.xrTableCell1.Text = "รายการตรวจทั่วไป";
             this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.BottomCenter;
-            this.xrTableCell1.Weight = 1.1376145910528455D;
+            this.xrTableCell1.Weight = 1.1787481798244945D;
             // 
             // xrTableCell3
             // 
@@ -835,7 +835,7 @@
             this.xrTableCell3.StylePriority.UseTextAlignment = false;
             this.xrTableCell3.Text = "ผลการตรวจ";
             this.xrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell3.Weight = 1.8623854089471545D;
+            this.xrTableCell3.Weight = 1.8212518201755055D;
             // 
             // xrTableRow2
             // 
@@ -857,7 +857,7 @@
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
             this.xrTableCell5.Text = "ตา (Eyes)";
             this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell5.Weight = 1.1376145910528455D;
+            this.xrTableCell5.Weight = 1.1787481798244945D;
             // 
             // lbEye
             // 
@@ -868,7 +868,7 @@
             this.lbEye.StylePriority.UseFont = false;
             this.lbEye.StylePriority.UseTextAlignment = false;
             this.lbEye.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEye.Weight = 1.8623854089471545D;
+            this.lbEye.Weight = 1.8212518201755055D;
             // 
             // xrTableRow4
             // 
@@ -890,7 +890,7 @@
             this.xrTableCell13.StylePriority.UseTextAlignment = false;
             this.xrTableCell13.Text = "หู (Ears)";
             this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell13.Weight = 1.1376145910528455D;
+            this.xrTableCell13.Weight = 1.1787481798244945D;
             // 
             // lbEars
             // 
@@ -901,7 +901,7 @@
             this.lbEars.StylePriority.UseFont = false;
             this.lbEars.StylePriority.UseTextAlignment = false;
             this.lbEars.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEars.Weight = 1.8623854089471545D;
+            this.lbEars.Weight = 1.8212518201755055D;
             // 
             // xrTableRow5
             // 
@@ -923,7 +923,7 @@
             this.xrTableCell17.StylePriority.UseTextAlignment = false;
             this.xrTableCell17.Text = "คอ (Throat)";
             this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell17.Weight = 1.1376145910528455D;
+            this.xrTableCell17.Weight = 1.1787481798244945D;
             // 
             // lbThroat
             // 
@@ -934,7 +934,7 @@
             this.lbThroat.StylePriority.UseFont = false;
             this.lbThroat.StylePriority.UseTextAlignment = false;
             this.lbThroat.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbThroat.Weight = 1.8623854089471545D;
+            this.lbThroat.Weight = 1.8212518201755055D;
             // 
             // xrTableRow6
             // 
@@ -956,7 +956,7 @@
             this.xrTableCell21.StylePriority.UseTextAlignment = false;
             this.xrTableCell21.Text = "จมูก (Nose)";
             this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell21.Weight = 1.1376145910528455D;
+            this.xrTableCell21.Weight = 1.1787481798244945D;
             // 
             // lbNose
             // 
@@ -967,7 +967,7 @@
             this.lbNose.StylePriority.UseFont = false;
             this.lbNose.StylePriority.UseTextAlignment = false;
             this.lbNose.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNose.Weight = 1.8623854089471545D;
+            this.lbNose.Weight = 1.8212518201755055D;
             // 
             // xrTableRow3
             // 
@@ -989,7 +989,7 @@
             this.xrTableCell9.StylePriority.UseTextAlignment = false;
             this.xrTableCell9.Text = "ฟัน (Teeth)";
             this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell9.Weight = 1.1376145910528455D;
+            this.xrTableCell9.Weight = 1.1787481798244945D;
             // 
             // lbTeeth
             // 
@@ -1000,7 +1000,7 @@
             this.lbTeeth.StylePriority.UseFont = false;
             this.lbTeeth.StylePriority.UseTextAlignment = false;
             this.lbTeeth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbTeeth.Weight = 1.8623854089471545D;
+            this.lbTeeth.Weight = 1.8212518201755055D;
             // 
             // xrTableRow8
             // 
@@ -1022,7 +1022,7 @@
             this.xrTableCell29.StylePriority.UseTextAlignment = false;
             this.xrTableCell29.Text = "ปอด (Lung)";
             this.xrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell29.Weight = 1.1376145910528455D;
+            this.xrTableCell29.Weight = 1.1787481798244945D;
             // 
             // lbLung
             // 
@@ -1033,7 +1033,7 @@
             this.lbLung.StylePriority.UseFont = false;
             this.lbLung.StylePriority.UseTextAlignment = false;
             this.lbLung.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbLung.Weight = 1.8623854089471545D;
+            this.lbLung.Weight = 1.8212518201755055D;
             // 
             // xrTableRow7
             // 
@@ -1055,7 +1055,7 @@
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
             this.xrTableCell25.Text = "หัวใจ (Heart)";
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell25.Weight = 1.1376145910528455D;
+            this.xrTableCell25.Weight = 1.1787481798244945D;
             // 
             // lbHeart
             // 
@@ -1066,7 +1066,7 @@
             this.lbHeart.StylePriority.UseFont = false;
             this.lbHeart.StylePriority.UseTextAlignment = false;
             this.lbHeart.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbHeart.Weight = 1.8623854089471545D;
+            this.lbHeart.Weight = 1.8212518201755055D;
             // 
             // xrTableRow9
             // 
@@ -1088,7 +1088,7 @@
             this.xrTableCell33.StylePriority.UseTextAlignment = false;
             this.xrTableCell33.Text = "ผิวหนัง (Skin)";
             this.xrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell33.Weight = 1.1376145910528455D;
+            this.xrTableCell33.Weight = 1.1787481798244945D;
             // 
             // lbSkin
             // 
@@ -1099,7 +1099,7 @@
             this.lbSkin.StylePriority.UseFont = false;
             this.lbSkin.StylePriority.UseTextAlignment = false;
             this.lbSkin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSkin.Weight = 1.8623854089471545D;
+            this.lbSkin.Weight = 1.8212518201755055D;
             // 
             // xrTableRow10
             // 
@@ -1121,7 +1121,7 @@
             this.xrTableCell37.StylePriority.UseTextAlignment = false;
             this.xrTableCell37.Text = "ต่อมไทรอยด์ (Thyroid)";
             this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell37.Weight = 1.1376145910528455D;
+            this.xrTableCell37.Weight = 1.1787481798244945D;
             // 
             // lbThyroid
             // 
@@ -1132,7 +1132,7 @@
             this.lbThyroid.StylePriority.UseFont = false;
             this.lbThyroid.StylePriority.UseTextAlignment = false;
             this.lbThyroid.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbThyroid.Weight = 1.8623854089471545D;
+            this.lbThyroid.Weight = 1.8212518201755055D;
             // 
             // xrTableRow11
             // 
@@ -1154,7 +1154,7 @@
             this.xrTableCell41.StylePriority.UseTextAlignment = false;
             this.xrTableCell41.Text = "ต่อมน้ำเหลือง (Lymph Node)";
             this.xrTableCell41.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell41.Weight = 1.1376145910528455D;
+            this.xrTableCell41.Weight = 1.1787481798244945D;
             // 
             // lbLymphNode
             // 
@@ -1165,7 +1165,7 @@
             this.lbLymphNode.StylePriority.UseFont = false;
             this.lbLymphNode.StylePriority.UseTextAlignment = false;
             this.lbLymphNode.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbLymphNode.Weight = 1.8623854089471545D;
+            this.lbLymphNode.Weight = 1.8212518201755055D;
             // 
             // xrTableRow12
             // 
@@ -1187,7 +1187,7 @@
             this.xrTableCell45.StylePriority.UseTextAlignment = false;
             this.xrTableCell45.Text = "สูบบุหรี่ (Smoke History)";
             this.xrTableCell45.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell45.Weight = 1.1376145910528455D;
+            this.xrTableCell45.Weight = 1.1787481798244945D;
             // 
             // lbSmoke
             // 
@@ -1198,7 +1198,7 @@
             this.lbSmoke.StylePriority.UseFont = false;
             this.lbSmoke.StylePriority.UseTextAlignment = false;
             this.lbSmoke.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbSmoke.Weight = 1.8623854089471545D;
+            this.lbSmoke.Weight = 1.8212518201755055D;
             // 
             // xrTableRow13
             // 
@@ -1220,7 +1220,7 @@
             this.xrTableCell49.StylePriority.UseTextAlignment = false;
             this.xrTableCell49.Text = "แพ้ยา (Drug allergy History)";
             this.xrTableCell49.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell49.Weight = 1.1376145910528455D;
+            this.xrTableCell49.Weight = 1.1787481798244945D;
             // 
             // lbDrugAllergy
             // 
@@ -1231,7 +1231,7 @@
             this.lbDrugAllergy.StylePriority.UseFont = false;
             this.lbDrugAllergy.StylePriority.UseTextAlignment = false;
             this.lbDrugAllergy.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbDrugAllergy.Weight = 1.8623854089471545D;
+            this.lbDrugAllergy.Weight = 1.8212518201755055D;
             // 
             // xrTableRow14
             // 
@@ -1253,7 +1253,7 @@
             this.xrTableCell53.StylePriority.UseTextAlignment = false;
             this.xrTableCell53.Text = "การดื่มแอลกอฮอล์ (Alcohol History)";
             this.xrTableCell53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell53.Weight = 1.1376145910528455D;
+            this.xrTableCell53.Weight = 1.1787481798244945D;
             // 
             // lbAlcohol
             // 
@@ -1264,7 +1264,7 @@
             this.lbAlcohol.StylePriority.UseFont = false;
             this.lbAlcohol.StylePriority.UseTextAlignment = false;
             this.lbAlcohol.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAlcohol.Weight = 1.8623854089471545D;
+            this.lbAlcohol.Weight = 1.8212518201755055D;
             // 
             // xrTableRow15
             // 
@@ -1286,7 +1286,7 @@
             this.xrTableCell57.StylePriority.UseTextAlignment = false;
             this.xrTableCell57.Text = "โรคประจำตัว / อื่นๆ (Underlying disease)";
             this.xrTableCell57.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell57.Weight = 1.1376145910528455D;
+            this.xrTableCell57.Weight = 1.1787481798244945D;
             // 
             // lbUnderlying
             // 
@@ -1297,7 +1297,7 @@
             this.lbUnderlying.StylePriority.UseFont = false;
             this.lbUnderlying.StylePriority.UseTextAlignment = false;
             this.lbUnderlying.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbUnderlying.Weight = 1.8623854089471545D;
+            this.lbUnderlying.Weight = 1.8212518201755055D;
             // 
             // xrLabel1
             // 

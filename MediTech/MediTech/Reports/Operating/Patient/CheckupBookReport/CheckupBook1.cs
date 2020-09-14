@@ -263,7 +263,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 #endregion
 
                 #region Radiology
-                if (data.FirstOrDefault(p => p.RequestItemName.ToString().ToLower().Contains("chest") && p.RequestItemType.ToString() == "Radiology") != null)
+                if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
                 {
                     CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
                     if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
@@ -332,14 +332,14 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 #endregion
 
                 List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
-
                 if (labCompare != null)
                 {
+
                     #region Complete Blood Count
 
                     IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("CBC"))
-                        .OrderBy(p => p.Year);
+                    .Where(p => p.RequestItemName.Contains("CBC"))
+                    .OrderBy(p => p.Year);
                     GenerateCompleteBloodCount(cbcTestSet);
                     #endregion
 
@@ -434,7 +434,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     GenerateOther(OtherTestSet);
                     #endregion
                 }
-
 
             }
         }
@@ -2544,7 +2543,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
 
             List<string> listNoMapResult = new List<string>();
-            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName,",", dtResultMapping, ref listNoMapResult);
+            string thairesult = TranslateResult.TranslateResultXray(resultValue, resultStatus, requestItemName, dtResultMapping, ref listNoMapResult);
 
             return thairesult;
         }
