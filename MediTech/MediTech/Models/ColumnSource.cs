@@ -12,5 +12,7 @@ namespace MediTech.Models
         public string FieldName { get; set; }
         // Specifies the type of an in-place editor used to edit column values. 
         public string Header { get; set; }
+
+        public object Tag { get; set; }
     }
 }

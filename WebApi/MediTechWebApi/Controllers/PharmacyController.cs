@@ -314,9 +314,9 @@ namespace MediTechWebApi.Controllers
             if (stockItem != null && stockItem.Count() > 0)
             {
                 if (store.STDTPUID == 2901)
-                    stockItem = stockItem.OrderBy(p => p.ExpiryDttm);
+                    stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
                 else if (store.STDTPUID == 2902)
-                    stockItem = stockItem.OrderBy(p => p.CUser);
+                    stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
 
                 if (presItem.IMUOMUID != itemMaster.BaseUOM)
                 {
@@ -468,9 +468,9 @@ namespace MediTechWebApi.Controllers
             if (stockItem != null && stockItem.Count() > 0)
             {
                 if (store.STDTPUID == 2901)
-                    stockItem = stockItem.OrderBy(p => p.ExpiryDttm);
+                    stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
                 else if (store.STDTPUID == 2902)
-                    stockItem = stockItem.OrderBy(p => p.CUser);
+                    stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
 
                 if (IMUOMUID != itemMaster.BaseUOM)
                 {

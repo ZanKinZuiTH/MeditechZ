@@ -579,7 +579,7 @@ namespace MediTech.ViewModels
                         dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
                         if (dt.AsEnumerable().Where(p => p["Table_name"].ToString().ToUpper() == "INBOUND$").Count() <= 0)
                         {
-                            WarningDialog("ไม่พบ Sheet ชื่อ ลงคอม กรุณาตรวจสอบ");
+                            WarningDialog("ไม่พบ Sheet ชื่อ Inbound กรุณาตรวจสอบ");
                             return;
                         }
                         if (dt != null && dt.Rows.Count > 0)

@@ -1660,10 +1660,10 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockSummery(DateTime dateFrom,DateTime dateTo,int? organisationUID)
+        public static DataTable pRPTStockSummary(DateTime dateFrom,DateTime dateTo,int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockSummery", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockSummary", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);

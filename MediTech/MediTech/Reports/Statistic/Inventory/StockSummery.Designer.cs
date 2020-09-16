@@ -483,7 +483,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.StockSummeryModel);
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.StockSummaryModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // StockSummery

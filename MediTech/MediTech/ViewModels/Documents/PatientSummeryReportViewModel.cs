@@ -108,7 +108,7 @@ namespace MediTech.ViewModels
         void Search()
         {
             int? OwnerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientSummaryDatas = DataService.Reports.PatientSummeryData(DateFrom, DateTo, OwnerOrganisationUID);
+            PatientSummaryDatas = DataService.Reports.PatientSummaryData(DateFrom, DateTo, OwnerOrganisationUID);
         }
 
         void ExportToExcel()

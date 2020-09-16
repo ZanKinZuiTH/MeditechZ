@@ -256,7 +256,7 @@
                                 <dxlc:LayoutItem Label="ถึงวัน">
                                     <dxe:DateEdit x:Name="dteTo" EditValue="{Binding DateTo}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="ประเภทวัน">
+                                <dxlc:LayoutItem Label="ช่วงเวลา">
                                     <dxe:ComboBoxEdit x:Name="cmbDateType"
                                                   AllowNullInput="True"
                                                   DisplayMember="Display"

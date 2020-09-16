@@ -23,15 +23,15 @@ namespace MediTech.Model.Report
         public DateTime? VitalSignRecordDttm { get; set; }
         public string AgeString { get; set; }
         public string AgeYear { get; set; }
-        public DateTime DateOfBirth { get; set; }
+        public DateTime? DateOfBirth { get; set; }
         public string Doctor { get; set; }
         public string DoctorEngName { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public string Comments { get; set; }
         public long PatientVisitUID { get; set; }
         public string VisitID { get; set; }
-        public DateTime VisitDate { get; set; }
-        public DateTime strVisitData { get; set; }
+        public DateTime? VisitDate { get; set; }
+        public DateTime? strVisitData { get; set; }
         public string PatientAddress { get; set; }
         public string DoctorLicenseNo { get; set; }
         public List<string> Detail{ get; set; }

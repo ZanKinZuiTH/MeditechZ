@@ -23,7 +23,7 @@
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="File Location" >
-                    <TextBox IsReadOnly="True" Background="Gainsboro" Text="{Binding FileLoation}"/>
+                    <TextBox IsReadOnly="True" Background="Gainsboro" Text="{Binding FileLocation}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutGroup>
                     <dx:SimpleButton Width="80" Height="25" Content="เลือกไฟล์" Command="{Binding ChooseCommand}"/>
@@ -37,6 +37,9 @@
                 <ProgressBar Height="15"  Margin="10,0,10,0" Name="progressBar1"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal" >
+                <dxlc:LayoutItem  HorizontalAlignment="Left">
+                    <dxe:CheckEdit Content="อัพเดทข้อมูลขนไข้ไม่สนใจ HN ซ้ำ" IsChecked="{Binding NonCheckHNDuplicate}"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="คนไข้ที่มี BN" HorizontalAlignment="Right">
                     <dxe:TextEdit Background="BlueViolet" IsReadOnly="True" Width="50"/>
                 </dxlc:LayoutItem>

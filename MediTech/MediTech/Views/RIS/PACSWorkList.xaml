@@ -412,7 +412,7 @@
                                      Height="25" HorizontalAlignment="Right" />
 
                                         <dx:SimpleButton Command="{Binding ClearBufferCommand}" 
-                                     Content="Cleaer Buffer" Width="100" 
+                                     Content="Clear Buffer" Width="100"
                                      Height="25" HorizontalAlignment="Right" />
                                     </dxlc:LayoutGroup>
 

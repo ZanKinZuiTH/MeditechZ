@@ -22,6 +22,7 @@ namespace MediTech.Model.Report
 
         public string VisitID { get; set; }
         public DateTime StartDateTime { get; set; }
+        public string VisitStatus { get; set; }
         public string VisitType { get; set; }
         public double? NetAmountVisit { get; set; }
         public string Doctor { get; set; }

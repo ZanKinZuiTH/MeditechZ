@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model.Report
 {
-    public class StockSummeryModel
+    public class StockSummaryModel
     {
         public DateTime StockDate { get; set; }
         public double BringForward { get; set; }

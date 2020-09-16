@@ -1098,8 +1098,9 @@ namespace MediTechWebApi.Controllers
                     Unit = SqlFunction.fGetRfValDescription(p.IMUOMUID),
                     Quantity = p.Quantity,
                     IsExpiry = p.IsExpired,
-                    ExpiryDttm = p.ExpiryDttm
-                }).OrderBy(p => p.StoreUID).ToList();
+                    ExpiryDttm = p.ExpiryDttm,
+                    CWhen = p.CWhen
+                }).OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen).ToList();
 
             return data;
         }
@@ -2645,9 +2646,9 @@ namespace MediTechWebApi.Controllers
                 {
                     Store store = db.Store.Find(item.StoreUID);
                     if (store.STDTPUID == 2901)
-                        stockItem = stockItem.OrderBy(p => p.ExpiryDttm);
+                        stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
                     else if (store.STDTPUID == 2902)
-                        stockItem = stockItem.OrderBy(p => p.CUser);
+                        stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
 
                     item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
 

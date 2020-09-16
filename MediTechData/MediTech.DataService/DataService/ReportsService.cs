@@ -110,7 +110,7 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientSummaryDataModel> PatientSummeryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             string requestApi = string.Format("Api/Report/PatientSummaryData?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
             List<PatientSummaryDataModel> data = MeditechApiHelper.Get<List<PatientSummaryDataModel>>(requestApi);
@@ -294,10 +294,10 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<StockSummeryModel> StockSummery(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
-            string requestApi = string.Format("Api/Report/StockSummery?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
-            List<StockSummeryModel> data = MeditechApiHelper.Get<List<StockSummeryModel>>(requestApi);
+            string requestApi = string.Format("Api/Report/StockSummary?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            List<StockSummaryModel> data = MeditechApiHelper.Get<List<StockSummaryModel>>(requestApi);
 
             return data;
         }

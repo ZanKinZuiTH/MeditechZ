@@ -345,7 +345,7 @@ namespace MediTechWebApi.Controllers
                                         {
                                             No = pv.UID,
                                             VisitID = pv.VisitID,
-                                            Age = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                            Age = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                             Doctor = SqlFunction.fGetCareProviderName(b.CareProviderUID ?? 0),
                                             Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                             PatientID = pa.PatientID,
@@ -394,12 +394,12 @@ namespace MediTechWebApi.Controllers
                                                 No = pv.UID,
                                                 IDCard = pa.IDCard,
                                                 VisitID = pv.VisitID,
-                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
-                                                AgeYear = SqlFunction.fGetAge(pa.DOBDttm.Value),
+                                                AgeString = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                AgeYear = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                strVisitData = pv.StartDttm.Value,
+                                                strVisitData = pv.StartDttm,
                                                 PatientID = pa.PatientID,
-                                                DateOfBirth = pa.DOBDttm.Value,
+                                                DateOfBirth = pa.DOBDttm,
                                                 PatientName = SqlFunction.fGetPatientName(pa.UID),
                                                 Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                                                 DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
@@ -437,12 +437,12 @@ namespace MediTechWebApi.Controllers
                                                 No = pv.UID,
                                                 IDCard = pa.IDCard,
                                                 VisitID = pv.VisitID,
-                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
-                                                AgeYear = SqlFunction.fGetAge(pa.DOBDttm.Value),
+                                                AgeString = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                AgeYear = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                strVisitData = pv.StartDttm.Value,
+                                                strVisitData = pv.StartDttm,
                                                 PatientID = pa.PatientID,
-                                                DateOfBirth = pa.DOBDttm.Value,
+                                                DateOfBirth = pa.DOBDttm,
                                                 PatientName = SqlFunction.fGetPatientName(pa.UID),
                                                 Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                                                 DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
@@ -480,12 +480,12 @@ namespace MediTechWebApi.Controllers
                                                 No = pv.UID,
                                                 IDCard = pa.IDCard,
                                                 VisitID = pv.VisitID,
-                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
-                                                AgeYear = SqlFunction.fGetAge(pa.DOBDttm.Value),
+                                                AgeString = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                AgeYear = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                strVisitData = pv.StartDttm.Value,
+                                                strVisitData = pv.StartDttm,
                                                 PatientID = pa.PatientID,
-                                                DateOfBirth = pa.DOBDttm.Value,
+                                                DateOfBirth = pa.DOBDttm,
                                                 PatientName = SqlFunction.fGetPatientName(pa.UID),
                                                 Doctor = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
                                                 DoctorLicenseNo = SqlFunction.fGetCareProviderLicenseNo(rs.RadiologistUID ?? 0),
@@ -515,7 +515,7 @@ namespace MediTechWebApi.Controllers
                                           {
                                               No = pv.UID,
                                               VisitID = pv.VisitID,
-                                              Age = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                              Age = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                               Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                               strVisitData = pv.StartDttm.ToString(),
                                               VisitDate = pv.StartDttm,
@@ -862,16 +862,16 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("StockSummery")]
+        [Route("StockSummary")]
         [HttpGet]
-        public List<StockSummeryModel> StockSummery(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
-            List<StockSummeryModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockSummery(dateFrom, dateTo, organisationUID);
+            List<StockSummaryModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTStockSummary(dateFrom, dateTo, organisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
-                data = new List<StockSummeryModel>();
-                data = dt.ToList<StockSummeryModel>();
+                data = new List<StockSummaryModel>();
+                data = dt.ToList<StockSummaryModel>();
             }
 
             return data;
@@ -976,7 +976,7 @@ namespace MediTechWebApi.Controllers
                                            && rs.UID == resultUID
                                            select new PatientResultRadiology
                                            {
-                                               Age = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                               Age = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                                Doctor = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                                HN = pa.PatientID,
@@ -985,7 +985,7 @@ namespace MediTechWebApi.Controllers
                                                PatientName = SqlFunction.fGetPatientName(pa.UID),
                                                RequestedDttm = re.RequestedDttm,
                                                RequestItemName = red.RequestItemName,
-                                               ResultEnteredDttm = rs.ResultEnteredDttm.Value,
+                                               ResultEnteredDttm = rs.ResultEnteredDttm,
                                                OtherID = pa.EmployeeID,
                                                ResultHtml = rsr.Value,
                                                ResultValue = rsr.PlainText,

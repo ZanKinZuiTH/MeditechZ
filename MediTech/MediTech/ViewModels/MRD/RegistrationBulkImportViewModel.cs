@@ -22,12 +22,12 @@ namespace MediTech.ViewModels
 
         #region Properties
 
-        private string _FileLoation;
+        private string _FileLocation;
 
-        public string FileLoation
+        public string FileLocation
         {
-            get { return _FileLoation; }
-            set { Set(ref _FileLoation, value); }
+            get { return _FileLocation; }
+            set { Set(ref _FileLocation, value); }
         }
 
 
@@ -89,6 +89,15 @@ namespace MediTech.ViewModels
                 Set(ref _SelectAll, value);
             }
         }
+
+        private bool _NonCheckHNDuplicate;
+
+        public bool NonCheckHNDuplicate
+        {
+            get { return _NonCheckHNDuplicate; }
+            set { Set(ref _NonCheckHNDuplicate, value); }
+        }
+
 
         private int? _RegisteredCount;
 
@@ -317,7 +326,7 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    FileLoation = openDialog.FileName.Trim();
+                    FileLocation = openDialog.FileName.Trim();
                 }
                 catch (Exception ex)
                 {
@@ -346,17 +355,17 @@ namespace MediTech.ViewModels
                 TotalRecord = 0;
                 DateTime birthdttm;
                 RegistrationBulkImport view = (RegistrationBulkImport)this.View;
-                if (!string.IsNullOrEmpty(FileLoation))
+                if (!string.IsNullOrEmpty(FileLocation))
                 {
 
-                    if (FileLoation.Trim().EndsWith(".xls"))
+                    if (FileLocation.Trim().EndsWith(".xls"))
                     {
-                        connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + FileLoation.Trim() +
+                        connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + FileLocation.Trim() +
                             "; Extended Properties=\"Excel 8.0; HDR=Yes; IMEX=1\"";
                     }
                     else
                     {
-                        connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + FileLoation.Trim() +
+                        connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + FileLocation.Trim() +
                             "; Extended Properties=\"Excel 12.0 Xml; HDR=YES; IMEX=1\"";
                     }
 
@@ -367,7 +376,7 @@ namespace MediTech.ViewModels
                         dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
                         if (dt.AsEnumerable().Where(p => p["Table_name"].ToString().ToUpper() == "INBOUND$").Count() <= 0)
                         {
-                            MessageBox.Show("ไม่พบ Sheet ชื่อ Inbound กรุณาตรวจสอบ", "Import Data", MessageBoxButtons.OK, MessageBoxIcon.Stop);
+                            WarningDialog("ไม่พบ Sheet ชื่อ Inbound กรุณาตรวจสอบ");
                             return;
                         }
 
@@ -539,8 +548,11 @@ namespace MediTech.ViewModels
                             patient = DataService.PatientIdentity.GetPatientByHN(drow["HN"].ToString().Trim());
                             if (patient != null)
                             {
-                                if (drow["FirstName"].ToString().Trim() != patient.FirstName.ToString() && drow["LastName"].ToString().Trim() != patient.LastName.ToString())
-                                    ((RegistrationBulkImport)View).ShowMessageBox("HN: " +drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                                if (!NonCheckHNDuplicate)
+                                {
+                                    if (drow["FirstName"].ToString().Trim() != patient.FirstName?.ToString() && drow["LastName"].ToString().Trim() != patient.LastName?.ToString())
+                                        ((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                                }
                             }
                             //if (AppUtil.Current.ApplicationId == "BRXG")
                             //{
@@ -555,7 +567,7 @@ namespace MediTech.ViewModels
                             patient = DataService.PatientIdentity.GetPatientByIDCard(drow["IDCard"].ToString().Replace("-", "").Trim());
                             if (patient != null)
                             {
-                                if (drow["FirstName"].ToString().Trim() != patient.FirstName.ToString() && drow["LastName"].ToString().Trim() != patient.LastName.ToString())
+                                if (drow["FirstName"].ToString().Trim() != patient.FirstName?.ToString() && drow["LastName"].ToString().Trim() != patient.LastName?.ToString())
                                 {
                                     CurrentImportedData.IsNationalIDDuplicate = "Y";
                                     CurrentImportedData.Register = false;

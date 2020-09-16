@@ -24,5 +24,7 @@ namespace MediTech.Model
         public string IsExpiry { get; set; }
         public string VendorName { get; set; }
 
+        public DateTime CWhen { get; set; }
+
     }
 }

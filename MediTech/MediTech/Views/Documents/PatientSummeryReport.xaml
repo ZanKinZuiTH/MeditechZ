@@ -70,6 +70,7 @@
                         <dxe:TextEditSettings DisplayFormat="HH:mm:ss"  MaskType="DateTime"/>
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
+                <dxg:GridColumn Header="สถานะ Visit" FieldName="VisitStatus"/>
                 <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType"/>
                 <dxg:GridColumn Header="ยอดซื้อรวมแต่ละ Visit" FieldName="NetAmountVisit"/>
                 <dxg:GridColumn Header="แพทย์ที่เข้าพบ" FieldName="Doctor"/>

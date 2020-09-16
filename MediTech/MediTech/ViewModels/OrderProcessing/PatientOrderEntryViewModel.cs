@@ -357,10 +357,11 @@ namespace MediTech.ViewModels
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
 
             HealthOrganisations = GetHealthOrganisationRoleMedical();
-            SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == PatientVisit.OwnerOrganisationUID);
+
             if (SelectHealthOrganisation == null)
             {
-                SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == PatientVisit.OwnerOrganisationUID);
+                SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             }
 
             (this.View as PatientOrderEntry).txtOrder.Focus();

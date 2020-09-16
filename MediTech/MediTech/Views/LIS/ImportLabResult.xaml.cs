@@ -20,9 +20,31 @@ namespace MediTech.Views
     /// </summary>
     public partial class ImportLabResult : UserControl
     {
+        private delegate void UpdateProgressBarDelegate(System.Windows.DependencyProperty dp, Object value);
+
+        private UpdateProgressBarDelegate _updatePbDelegate;
+
         public ImportLabResult()
         {
             InitializeComponent();
+            _updatePbDelegate = new UpdateProgressBarDelegate(progressBar1.SetValue);
         }
+
+        public void SetProgressBarValue(double value)
+        {
+            Dispatcher.Invoke(_updatePbDelegate,
+                    System.Windows.Threading.DispatcherPriority.Background,
+                    new object[] { ProgressBar.ValueProperty, value });
+
+        }
+
+        #region SetProgressBarValues()
+        public void SetProgressBarLimits(int minValue, int maxValue)
+        {
+            progressBar1.Minimum = minValue;
+            progressBar1.Maximum = maxValue;
+        }
+
+        #endregion
     }
 }
