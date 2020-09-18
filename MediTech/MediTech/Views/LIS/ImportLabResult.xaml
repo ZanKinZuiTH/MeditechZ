@@ -74,7 +74,14 @@
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="Payor">
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Payor" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
                     <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
                                       ValueMember="PayorDetailUID"
@@ -134,19 +141,30 @@
                         </dxe:ListBoxEdit.ItemTemplate>
                     </dxe:ListBoxEdit>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup>
-                    <dxg:GridControl Name="gcTestParameter" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay}"
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxg:GridControl Name="gcTestParameter" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                      ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
                         <dxg:GridControl.View>
-                            <dxg:TableView Name="gvTestParameter"  ShowGroupPanel="False" />
+                            <dxg:TableView Name="gvTestParameter"  ShowGroupPanel="False" >
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[PatientName] = 'ไม่พบข้อมูล'" FieldName="PatientName">
+                                        <dx:Format Background="#FFEE8D3D"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
                         </dxg:GridControl.View>
                     </dxg:GridControl>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem HorizontalAlignment="Left">
+                            <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportCommand}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem HorizontalAlignment="Right">
+                            <dx:SimpleButton Width="80" Height="25" Content="บันทึกข้อมูล" Command="{Binding SaveCommand}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
-
             </dxlc:LayoutGroup>
-            <dxlc:LayoutItem HorizontalAlignment="Right">
-                <dx:SimpleButton Width="80" Height="25" Content="Export" Command="{Binding ExportCommand}"/>
-            </dxlc:LayoutItem>
+
         </dxlc:LayoutControl> 
     </Grid>
 </UserControl>

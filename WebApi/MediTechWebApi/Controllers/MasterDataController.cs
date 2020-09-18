@@ -48,7 +48,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRequestItemByCategory")]
         [HttpGet]
-        public List<RequestItemModel> GetRequestItemByCategory(string category)
+        public List<RequestItemModel> GetRequestItemByCategory(string category, bool queryResultLink = false)
         {
             DateTime now = DateTime.Now;
             int TSTTPUID = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "TSTTP" && p.Description.ToLower() == category.ToLower() && p.StatusFlag == "A").UID;
@@ -73,6 +73,17 @@ namespace MediTechWebApi.Controllers
                 MWhen = p.MWhen,
                 StatusFlag = p.StatusFlag
             }).ToList();
+
+            if (queryResultLink)
+            {
+                if (data != null)
+                {
+                    foreach (var requestItem in data)
+                    {
+                        requestItem.RequestResultLinks = GetRequestResultLinkByRequestItemUID(requestItem.RequestItemUID);
+                    }
+                }
+            }
 
             return data;
         }
@@ -105,22 +116,7 @@ namespace MediTechWebApi.Controllers
 
             if (data != null)
             {
-                data.RequestResultLinks = (from rlk in db.RequestResultLink
-                                           join rei in db.ResultItem on rlk.ResultItemUID equals rei.UID
-                                           where rlk.StatusFlag == "A"
-                                           && rlk.RequestItemUID == data.RequestItemUID
-                                           select new RequestResultLinkModel
-                                           {
-                                               ResultItemUID = rlk.ResultItemUID,
-                                               Unit = SqlFunction.fGetRfValDescription(rei.UnitofMeasure ?? 0),
-                                               PrintOrder = rlk.PrintOrder,
-                                               IsMandatory = rlk.IsMandatory,
-                                               RequestItemUID = rlk.RequestItemUID,
-                                               ResultItemName = rei.DisplyName,
-                                               ResultItemCode = rei.Code,
-                                               RequestResultLinkUID = rlk.UID,
-                                               ExcludeFrmPrint = rlk.ExcludeFrmPrint
-                                           }).ToList();
+                data.RequestResultLinks = GetRequestResultLinkByRequestItemUID(data.RequestItemUID);
 
                 data.RequestItemSpecimens = (from rsp in db.RequestItemSpecimen
                                              join spc in db.Specimen on rsp.SpecimenUID equals spc.UID
@@ -189,6 +185,7 @@ namespace MediTechWebApi.Controllers
                                                      RequestItemUID = rlk.RequestItemUID,
                                                      ResultItemName = rei.DisplyName,
                                                      ResultItemCode = rei.Code,
+                                                     ResultValueType = SqlFunction.fGetRfValDescription(rei.RVTYPUID ?? 0),
                                                      RequestResultLinkUID = rlk.UID,
                                                      ExcludeFrmPrint = rlk.ExcludeFrmPrint
                                                  }).ToList();

@@ -49,27 +49,10 @@ namespace MediTech.ViewModels
 
                 if (SelectDateType != null)
                 {
-                    if (SelectDateType.Key == 1)
-                    {
-                        IsEditDate = false;
-                        DateFrom = DateTime.Now.AddDays(-30);
-                        DateTo = DateTime.Now;
-                        IsEditDate = true;
-                    }
-                    else if (SelectDateType.Key == 2)
-                    {
-                        IsEditDate = false;
-                        DateFrom = DateTime.Now.AddDays(-45);
-                        DateTo = DateTime.Now;
-                        IsEditDate = true;
-                    }
-                    else if (SelectDateType.Key == 3)
-                    {
-                        IsEditDate = false;
-                        DateFrom = DateTime.Now.AddDays(-90);
-                        DateTo = DateTime.Now;
-                        IsEditDate = true;
-                    }
+                    IsEditDate = false;
+                    DateFrom = DateTime.Now.AddDays(-SelectDateType.Key);
+                    DateTo = DateTime.Now;
+                    IsEditDate = true;
                 }
             }
         }
@@ -171,12 +154,15 @@ namespace MediTech.ViewModels
             set
             {
                 _SelectedRequestItem = value;
-                var resultItems = DataService.MasterData.GetRequestResultLinkByRequestItemUID(SelectedRequestItem.RequestItemUID);
-                if (resultItems != null)
+                if (SelectedRequestItem.RequestResultLinks != null)
                 {
+                    ImportLabResult view = (ImportLabResult)this.View;
+                    view.gcTestParameter.ItemsSource = null;
                     ColumnsResultItems = new ObservableCollection<Column>();
-                    ColumnsResultItems.Add(new Column() { Header = "HN", FieldName = "HN" });
-                    foreach (var item in resultItems.OrderBy(p => p.PrintOrder))
+                    ColumnsResultItems.Add(new Column() { Header = "HN", FieldName = "HN", VisibleIndex = 0 });
+
+                    int visibleIndex = 4;
+                    foreach (var item in SelectedRequestItem.RequestResultLinks.OrderBy(p => p.PrintOrder))
                     {
                         string parameterName = item.ResultItemName +
                             (!string.IsNullOrEmpty(item.Unit) ? " ( " + item.Unit + " )" : "");
@@ -184,9 +170,11 @@ namespace MediTech.ViewModels
                         {
                             Header = parameterName,
                             FieldName = parameterName,
+                            VisibleIndex = visibleIndex++,
                             Tag = item.ResultItemUID
                         });
                     }
+
                 }
 
             }
@@ -237,20 +225,34 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _SaveCommand;
+
+        public RelayCommand SaveCommand
+        {
+            get
+            {
+                return _SaveCommand
+                    ?? (_SaveCommand = new RelayCommand(Save));
+            }
+        }
         #endregion
 
         #region Method
 
         public ImportLabResultViewModel()
         {
-            RequestItems = DataService.MasterData.GetRequestItemByCategory("Lab");
-            RequestItems = RequestItems?.Where(p => p.Code == "LAB111" || p.Code == "LAB311").ToList();
+            RequestItems = DataService.MasterData.GetRequestItemByCategory("Lab", true);
+            RequestItems = RequestItems?
+                .Where(p => p.RequestResultLinks.Count() > 0)
+                .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
+
             Organisations = GetHealthOrganisationRoleMedical();
             PayorDetails = DataService.MasterData.GetPayorDetail();
             DateTypes = new List<LookupItemModel>();
-            DateTypes.Add(new LookupItemModel { Key = 1, Display = "30 วัน" });
-            DateTypes.Add(new LookupItemModel { Key = 2, Display = "45 วัน" });
-            DateTypes.Add(new LookupItemModel { Key = 3, Display = "90 วัน" });
+            DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
+            DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
+            DateTypes.Add(new LookupItemModel { Key = 90, Display = "90 วัน" });
             SelectDateType = DateTypes.FirstOrDefault();
         }
 
@@ -272,12 +274,31 @@ namespace MediTech.ViewModels
                 }
             }
         }
-
         private void ImportFile()
         {
+            if (string.IsNullOrEmpty(FileLocation))
+            {
+                WarningDialog("กรุณาเลือกไฟล์ที่จะนำเข้า");
+                return;
+            }
             if (SelectedRequestItem == null)
             {
                 WarningDialog("กรุณาเลือกรายการ Lab");
+                return;
+            }
+            if (DateFrom == null)
+            {
+                WarningDialog("กรุณาเลือก วันที่");
+                return;
+            }
+            if (SelectOrganisation == null)
+            {
+                WarningDialog("กรุณาเลือก สถานประกอบการ");
+                return;
+            }
+            if (SelectPayorDetail == null)
+            {
+                WarningDialog("กรุณาเลือก Payor");
                 return;
             }
             OleDbConnection conn;
@@ -327,91 +348,155 @@ namespace MediTech.ViewModels
                     }
                     DataTable tempDt = ImportData.Clone();
                     tempDt.Clear();
-                    view.gcTestParameter.ItemsSource = tempDt.DefaultView;
+
                     int upperlimit = ImportData.AsEnumerable().Count(p => !string.IsNullOrEmpty(p["HN"].ToString()) && p["HN"].ToString() != "0");
                     view.SetProgressBarLimits(0, upperlimit);
-                    foreach (DataRow item in ImportData.Rows)
+                    if (upperlimit > 0)
                     {
-                        string patientID = item["HN"].ToString();
-                        if (string.IsNullOrEmpty(patientID) || patientID == "0")
+                        int ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                        int payorDetailUID = SelectPayorDetail.PayorDetailUID;
+                        int requestItemUID = SelectedRequestItem.RequestItemUID;
+                        if (!ColumnsResultItems.Any(p => p.Header == "PatientName"))
                         {
-                            continue;
+                            ColumnsResultItems.Add(new Column() { Header = "PatientName", FieldName = "PatientName", VisibleIndex = 1 });
+                            ColumnsResultItems.Add(new Column() { Header = "LabNumber", FieldName = "LabNumber", VisibleIndex = 2 });
+                            ColumnsResultItems.Add(new Column() { Header = "OrderStatus", FieldName = "OrderStatus", VisibleIndex = 3 });
+                            ColumnsResultItems.Add(new Column() { Header = "RequestUID", FieldName = "RequestUID", Visible = false });
+                            ColumnsResultItems.Add(new Column() { Header = "RequestDetailUID", FieldName = "RequestDetailUID", Visible = false });
+                            tempDt.Columns.Add("PatientName");
+                            tempDt.Columns.Add("LabNumber");
+                            tempDt.Columns.Add("OrderStatus");
+                            tempDt.Columns.Add("RequestUID");
+                            tempDt.Columns.Add("RequestDetailUID");
                         }
-                        view.gvTestParameter.AddNewRow();
-                        int newRowHandle = DataControlBase.NewItemRowHandle;
-                        foreach (var column in ImportData.Columns)
+                        view.gcTestParameter.ItemsSource = tempDt.DefaultView;
+                        foreach (DataRow item in ImportData.Rows)
                         {
-                            view.gcTestParameter.SetCellValue(newRowHandle, column.ToString(), item[column.ToString()].ToString());
+                            string patientID = item["HN"].ToString();
 
-                            //Urine Analysis
-                            if (SelectedRequestItem.Code == "LAB311")
+                            if (string.IsNullOrEmpty(patientID) || patientID == "0")
                             {
-                                if (column.ToString() == "Leukocyte")
-                                {
-                                    string rbcValue = "";
-                                    switch (item[column.ToString()].ToString())
-                                    {
-                                        case "Negative":
-                                            rbcValue = "0-2";
-                                            break;
-                                        case "Trace":
-                                            rbcValue = "2-10";
-                                            break;
-                                        case "+1":
-                                        case "1+":
-                                            rbcValue = "10-25";
-                                            break;
-                                        case "+2":
-                                        case "2+":
-                                            rbcValue = "25-80";
-                                            break;
-                                        case "+3":
-                                        case "3+":
-                                            rbcValue = "> 200";
-                                            break;
-                                    }
-                                    var rbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                                     where c.ColumnName.ToLower().Contains("rbc")
-                                                     select c.ColumnName).FirstOrDefault();
-                                    view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
-                                }
-                                else if (column.ToString() == "Blood")
-                                {
-                                    string wbcValue = "";
-                                    switch (item[column.ToString()].ToString())
-                                    {
-                                        case "Negative":
-                                            wbcValue = "0-5";
-                                            break;
-                                        case "Trace":
-                                            wbcValue = "5-15";
-                                            break;
-                                        case "+1":
-                                        case "1+":
-                                            wbcValue = "15-70";
-                                            break;
-                                        case "+2":
-                                        case "2+":
-                                            wbcValue = "70-125";
-                                            break;
-                                        case "+3":
-                                        case "3+":
-                                            wbcValue = "> 500";
-                                            break;
-                                    }
-                                    var wbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                                     where c.ColumnName.ToLower().Contains("wbc")
-                                                     select c.ColumnName).FirstOrDefault();
-                                    view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
-                                }
+                                continue;
                             }
 
+                            var dataPatientRequest = DataService.Lab.GetFirstRequesDetailLab(patientID, ownerOrganisationUID
+                                , payorDetailUID, requestItemUID, DateFrom, DateTo);
+                            view.gvTestParameter.AddNewRow();
+                            int newRowHandle = DataControlBase.NewItemRowHandle;
 
+                            if (dataPatientRequest != null)
+                            {
+                                view.gcTestParameter.SetCellValue(newRowHandle, "PatientName", dataPatientRequest.PatientName);
+                                view.gcTestParameter.SetCellValue(newRowHandle, "LabNumber", dataPatientRequest.RequestNumber);
+                                view.gcTestParameter.SetCellValue(newRowHandle, "OrderStatus", dataPatientRequest.OrderStatus);
+                                view.gcTestParameter.SetCellValue(newRowHandle, "RequestUID", dataPatientRequest.RequestUID);
+                                view.gcTestParameter.SetCellValue(newRowHandle, "RequestDetailUID", dataPatientRequest.RequestDetailUID);
+                            }
+                            else
+                            {
+                                view.gcTestParameter.SetCellValue(newRowHandle, "PatientName", "ไม่พบข้อมูล");
+                            }
+                            foreach (var column in ImportData.Columns)
+                            {
+                                string columnName = column.ToString();
+                                view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
+
+                                //Complete blood Count
+                                if (SelectedRequestItem.Code == "LAB111")
+                                {
+                                    if (columnName == "WBC ( cells/ul )")
+                                    {
+                                        double wbc_cells_ul = double.Parse(item[columnName].ToString());
+                                        if (wbc_cells_ul < 1000)
+                                        {
+                                            wbc_cells_ul = wbc_cells_ul * 1000;
+                                        }
+                                        view.gcTestParameter.SetCellValue(newRowHandle, columnName, wbc_cells_ul);
+                                    }
+
+                                    if (column.ToString() == "Platelets Count ( cells/mcl )")
+                                    {
+                                        double pla_cells_ul = double.Parse(item[columnName].ToString());
+                                        if (pla_cells_ul < 100000)
+                                        {
+                                            pla_cells_ul = pla_cells_ul * 1000;
+                                        }
+                                        view.gcTestParameter.SetCellValue(newRowHandle, columnName, pla_cells_ul);
+                                    }
+                                }
+
+                                //Urine Analysis
+                                if (SelectedRequestItem.Code == "LAB311")
+                                {
+                                    if (columnName == "Leukocyte")
+                                    {
+                                        string rbcValue = "";
+                                        switch (item[columnName].ToString())
+                                        {
+                                            case "Negative":
+                                                rbcValue = "0-2";
+                                                break;
+                                            case "Trace":
+                                                rbcValue = "2-10";
+                                                break;
+                                            case "+1":
+                                            case "1+":
+                                                rbcValue = "10-25";
+                                                break;
+                                            case "+2":
+                                            case "2+":
+                                                rbcValue = "25-80";
+                                                break;
+                                            case "+3":
+                                            case "3+":
+                                                rbcValue = "> 200";
+                                                break;
+                                        }
+                                        var rbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
+                                                         where c.ColumnName.ToLower().Contains("rbc")
+                                                         select c.ColumnName).FirstOrDefault();
+                                        view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
+                                    }
+                                    else if (columnName == "Blood")
+                                    {
+                                        string wbcValue = "";
+                                        switch (item[columnName].ToString())
+                                        {
+                                            case "Negative":
+                                                wbcValue = "0-5";
+                                                break;
+                                            case "Trace":
+                                                wbcValue = "5-15";
+                                                break;
+                                            case "+1":
+                                            case "1+":
+                                                wbcValue = "15-70";
+                                                break;
+                                            case "+2":
+                                            case "2+":
+                                                wbcValue = "70-125";
+                                                break;
+                                            case "+3":
+                                            case "3+":
+                                                wbcValue = "> 500";
+                                                break;
+                                        }
+                                        var wbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
+                                                         where c.ColumnName.ToLower().Contains("wbc")
+                                                         select c.ColumnName).FirstOrDefault();
+                                        view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
+                                    }
+                                }
+
+
+                            }
+                            pgBarCounter = pgBarCounter + 1;
+                            TotalRecord = pgBarCounter;
+                            view.SetProgressBarValue(pgBarCounter);
                         }
-                        pgBarCounter = pgBarCounter + 1;
-                        TotalRecord = pgBarCounter;
-                        view.SetProgressBarValue(pgBarCounter);
+
                     }
+
                 }
             }
             catch (Exception er)
@@ -431,6 +516,11 @@ namespace MediTech.ViewModels
             }
         }
 
+        private void Save()
+        {
+            ImportLabResult view = (ImportLabResult)this.View;
+            var ResultlabDataSource = view.gcTestParameter.ItemsSource;
+        }
         private string ShowSaveFileDialog(string title, string filter)
         {
             SaveFileDialog dlg = new SaveFileDialog();

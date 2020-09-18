@@ -154,7 +154,7 @@
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="PatientAge" ReadOnly="True"/>
-                    <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True" />
                     <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเวลาที่ Requested" FieldName="RequestedDttm"  ReadOnly="True">
                         <dxg:GridColumn.EditSettings>

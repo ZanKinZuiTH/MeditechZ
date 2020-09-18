@@ -11,6 +11,8 @@
         <ContentControl>
             <dxg:GridColumn FieldName="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).FieldName, RelativeSource={RelativeSource Self}}"
                             Header="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Header, RelativeSource={RelativeSource Self}}"
+                            Visible="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).Visible, RelativeSource={RelativeSource Self}}"
+                            VisibleIndex="{Binding Path=(dxci:DependencyObjectExtensions.DataContext).VisibleIndex, RelativeSource={RelativeSource Self}}"
                             ReadOnly="True"/>
         </ContentControl>
     </DataTemplate>

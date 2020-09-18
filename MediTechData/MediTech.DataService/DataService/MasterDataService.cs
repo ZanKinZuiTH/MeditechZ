@@ -22,9 +22,9 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
-        public List<RequestItemModel> GetRequestItemByCategory(string categroy)
+        public List<RequestItemModel> GetRequestItemByCategory(string category, bool queryResultLink = false)
         {
-            string requestApi = string.Format("Api/MasterData/GetRequestItemByCategory?category={0}", categroy);
+            string requestApi = string.Format("Api/MasterData/GetRequestItemByCategory?category={0}&queryResultLink={1}", category, queryResultLink);
             List<RequestItemModel> dataRequest = MeditechApiHelper.Get<List<RequestItemModel>>(requestApi);
 
             return dataRequest;

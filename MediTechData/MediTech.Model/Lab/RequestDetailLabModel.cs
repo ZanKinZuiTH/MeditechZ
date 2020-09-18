@@ -21,6 +21,8 @@ namespace MediTech.Model
         public string Comments { get; set; }
         public long? ResultUID { get; set; }
         public long PatientUID { get; set; }
+        public string PatientName { get; set; }
+        public string RequestNumber { get; set; }
         public long PatientVisitUID { get; set; }
         public  ObservableCollection<ResultComponentModel> ResultComponents { get; set; }
     }
