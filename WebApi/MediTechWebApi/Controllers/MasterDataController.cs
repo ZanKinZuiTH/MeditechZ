@@ -186,6 +186,8 @@ namespace MediTechWebApi.Controllers
                                                      ResultItemName = rei.DisplyName,
                                                      ResultItemCode = rei.Code,
                                                      ResultValueType = SqlFunction.fGetRfValDescription(rei.RVTYPUID ?? 0),
+                                                     RVTYPUID = rei.RVTYPUID,
+                                                     RSUOMUID = rei.UnitofMeasure,
                                                      RequestResultLinkUID = rlk.UID,
                                                      ExcludeFrmPrint = rlk.ExcludeFrmPrint
                                                  }).ToList();

@@ -187,6 +187,8 @@ namespace MediTechWebApi.Controllers
                                               RequestNumber = re.RequestNumber,
                                               PatientUID = re.PatientUID,
                                               PatientName = SqlFunction.fGetPatientName(pa.UID),
+                                              Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                              SEXXXUID = pa.SEXXXUID,
                                               OrderStatus = SqlFunction.fGetRfValDescription(red.ORDSTUID),
                                               PriorityStatus = SqlFunction.fGetRfValDescription(red.RQPRTUID ?? 0),
                                               Comments = red.Comments
@@ -675,9 +677,9 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("GetResultItemRangeModelByLABRAMUID")]
+        [Route("GetResultItemRangeByLABRAMUID")]
         [HttpGet]
-        public List<ResultItemRangeModel> GetResultItemRangeModelByLABRAMUID(long LABRAMUID)
+        public List<ResultItemRangeModel> GetResultItemRangeByLABRAMUID(long LABRAMUID)
         {
             List<ResultItemRangeModel> data = db.ResultItemRange.Where(p => p.StatusFlag == "A" && p.LABRAMUID == LABRAMUID)
                 .Select(p => new ResultItemRangeModel
@@ -691,6 +693,31 @@ namespace MediTechWebApi.Controllers
                     Comments = p.Comments,
                     LABRAMUID = p.LABRAMUID
                 }).ToList();
+
+            return data;
+        }
+
+        [Route("GetResultItemRangeByRequestItemUID")]
+        [HttpGet]
+        public List<ResultItemRangeModel> GetResultItemRangeByRequestItemUID(int requestItemUID)
+        {
+            List<ResultItemRangeModel> data = (from ri in db.RequestItem
+                                              join rsl in db.RequestResultLink on ri.UID equals rsl.RequestItemUID
+                                              join rang in db.ResultItemRange on rsl.ResultItemUID equals rang.ResultItemUID
+                                              where ri.UID == requestItemUID
+                                              && rsl.StatusFlag == "A"
+                                              && rang.StatusFlag == "A"
+                                              select new ResultItemRangeModel
+                                              {
+                                                  ResultItemRangeUID = rang.UID,
+                                                  ResultItemUID = rang.ResultItemUID,
+                                                  SEXXXUID = rang.SEXXXUID,
+                                                  DisplayValue = rang.DisplayValue,
+                                                  Low = rang.Low,
+                                                  High = rang.High,
+                                                  Comments = rang.Comments,
+                                                  LABRAMUID = rang.LABRAMUID
+                                              }).ToList();
 
             return data;
         }

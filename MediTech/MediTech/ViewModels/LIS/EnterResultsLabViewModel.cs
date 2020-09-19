@@ -210,7 +210,7 @@ namespace MediTech.ViewModels
         {
             if (SelectResultItemRange != null)
             {
-                var resultItemRange = DataService.Lab.GetResultItemRangeModelByLABRAMUID(SelectResultItemRange.Key);
+                var resultItemRange = DataService.Lab.GetResultItemRangeByLABRAMUID(SelectResultItemRange.Key);
                 foreach (var item1 in RequestDetailLabs)
                 {
                     foreach (var item2 in item1.ResultComponents)
