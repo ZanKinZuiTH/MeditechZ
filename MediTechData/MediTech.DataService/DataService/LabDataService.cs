@@ -104,9 +104,17 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<ResultItemRangeModel> GetResultItemRangeModelByLABRAMUID(long LABRAMUID)
+        public List<ResultItemRangeModel> GetResultItemRangeByLABRAMUID(long LABRAMUID)
         {
-            string requestApi = string.Format("Api/Lab/GetResultItemRangeModelByLABRAMUID?LABRAMUID={0}", LABRAMUID);
+            string requestApi = string.Format("Api/Lab/GetResultItemRangeByLABRAMUID?LABRAMUID={0}", LABRAMUID);
+            List<ResultItemRangeModel> listData = MeditechApiHelper.Get<List<ResultItemRangeModel>>(requestApi);
+
+            return listData;
+        }
+
+        public List<ResultItemRangeModel> GetResultItemRangeByRequestItemUID(int requestItemUID)
+        {
+            string requestApi = string.Format("Api/Lab/GetResultItemRangeByRequestItemUID?requestItemUID={0}", requestItemUID);
             List<ResultItemRangeModel> listData = MeditechApiHelper.Get<List<ResultItemRangeModel>>(requestApi);
 
             return listData;
