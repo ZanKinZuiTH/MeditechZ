@@ -175,7 +175,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 {
                     page2.lbResultWellness.Font = new Font("Angsana New", 8);
                 }
-                else if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1700)
+                else if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1670)
                 {
                     page2.lbResultWellness.Font = new Font("Angsana New", 9);
                 }
