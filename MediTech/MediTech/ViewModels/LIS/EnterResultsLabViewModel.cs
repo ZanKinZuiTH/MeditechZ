@@ -203,7 +203,7 @@ namespace MediTech.ViewModels
             RequestDetailLabs = DataService.Lab.GetResultLabByRequestUID(RequestLab.RequestUID);
             if (RequestDetailLabs != null && RequestDetailLabs.Count > 0)
             {
-                RequestDetailLabs = RequestDetailLabs.Where(p => p.OrderStatus != "Cancelled").ToList();
+                RequestDetailLabs = RequestDetailLabs.Where(p => p.OrderStatus != "Cancelled").OrderBy(p => p.RequestItemName).ToList();
             }
         }
         private void GetRange()

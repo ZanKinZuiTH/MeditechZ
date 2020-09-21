@@ -554,7 +554,7 @@ namespace MediTech.ViewModels
                         {
                             List<RequestDetailLabModel> sendLabResult = new List<RequestDetailLabModel>();
                             sendLabResult.Add(labResult);
-                            //DataService.Lab.ReviewLabResult(sendLabResult, AppUtil.Current.UserID);
+                            DataService.Lab.ReviewLabResult(sendLabResult, AppUtil.Current.UserID);
                         }
 
                         pgBarCounter = pgBarCounter + 1;

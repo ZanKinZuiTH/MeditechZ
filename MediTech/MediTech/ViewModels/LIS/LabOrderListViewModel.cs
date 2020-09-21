@@ -170,6 +170,8 @@ namespace MediTech.ViewModels
                 if (SelectRequestLab != null)
                 {
                     RequestDetailLabs = DataService.Lab.GetRequesDetailLabByRequestUID(SelectRequestLab.RequestUID);
+                    if (RequestDetailLabs != null)
+                        RequestDetailLabs = RequestDetailLabs.OrderBy(p => p.RequestItemName).ToList();
                 }
             }
         }
@@ -385,6 +387,8 @@ namespace MediTech.ViewModels
                 if (enterResultsLabModel != null && enterResultsLabModel.ResultDialog == ActionDialog.Save)
                 {
                     RequestDetailLabs = DataService.Lab.GetRequesDetailLabByRequestUID(SelectRequestLab.RequestUID);
+                    if (RequestDetailLabs != null)
+                        RequestDetailLabs = RequestDetailLabs.OrderBy(p => p.RequestItemName).ToList();
                     //SearchLabOrder();
                 }
             }

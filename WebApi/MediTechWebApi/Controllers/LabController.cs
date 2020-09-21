@@ -771,11 +771,11 @@ namespace MediTechWebApi.Controllers
                 using (var tran = new TransactionScope())
                 {
                     Request request = db.Request.Find(labRequestDetails.FirstOrDefault().RequestUID);
-                    var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
+                    //var requestDetails = db.RequestDetail.Where(p => p.RequestUID == request.UID);
 
-                    foreach (var delRequestDetail in requestDetails)
+                    foreach (var delRequestDetail in labRequestDetails)
                     {
-                        Result delResult = db.Result.FirstOrDefault(p => p.RequestDetailUID == delRequestDetail.UID && p.StatusFlag == "A");
+                        Result delResult = db.Result.FirstOrDefault(p => p.RequestDetailUID == delRequestDetail.RequestDetailUID && p.StatusFlag == "A");
 
                         if (delResult != null)
                         {
