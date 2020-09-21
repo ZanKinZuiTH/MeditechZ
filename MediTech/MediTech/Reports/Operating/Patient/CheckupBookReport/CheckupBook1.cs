@@ -171,11 +171,15 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 #region Result Wellness
                 page2.lbResultWellness.Text = data.FirstOrDefault().WellnessResult;
-                if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1700)
+                if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 2000)
+                {
+                    page2.lbResultWellness.Font = new Font("Angsana New", 8);
+                }
+                else if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1700)
                 {
                     page2.lbResultWellness.Font = new Font("Angsana New", 9);
                 }
-                else if (page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1350)
+                else if(page2.lbResultWellness.Text != null && page2.lbResultWellness.Text.Length > 1350)
                 {
                     page2.lbResultWellness.Font = new Font("Angsana New", 10);
                 }

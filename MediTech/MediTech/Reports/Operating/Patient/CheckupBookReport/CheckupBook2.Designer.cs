@@ -121,7 +121,7 @@
             // 
             this.xrTable1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(448.0005F, 553.3333F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(448.0005F, 533.3333F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
@@ -164,7 +164,7 @@
             // 
             this.xrTable3.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrTable3.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(23.33334F, 553.3333F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(25.00001F, 533.3333F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
