@@ -412,7 +412,7 @@ namespace MediTech.ViewModels
                             foreach (var column in ImportData.Columns)
                             {
                                 string columnName = column.ToString();
-                                view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
+
 
                                 //Complete blood Count
                                 if (SelectedRequestItem.Code == "LAB111")
@@ -499,8 +499,13 @@ namespace MediTech.ViewModels
                                                          select c.ColumnName).FirstOrDefault();
                                         view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
                                     }
+                                    else if(columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
+                                    {
+                                        continue;
+                                    }
                                 }
 
+                                view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
 
                             }
                             pgBarCounter = pgBarCounter + 1;
