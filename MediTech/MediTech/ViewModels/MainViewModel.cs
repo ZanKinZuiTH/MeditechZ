@@ -194,7 +194,7 @@ namespace MediTech.ViewModels
         private void AssingStatuBar()
         {
             LoginUser = AppUtil.Current.LoginName;
-            LoginDate = DateTime.Now.ToString("dd/mm/yyyy HH:mm");
+            LoginDate = DateTime.Now.ToString("dd/MM/yyyy HH:mm");
             ApplicationVersion = AppUtil.Current.ApplicationVersion;
             ApplicationStatus = AppUtil.Current.ApplicationStaus;
         }

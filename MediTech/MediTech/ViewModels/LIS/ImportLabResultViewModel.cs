@@ -425,6 +425,7 @@ namespace MediTech.ViewModels
                                             wbc_cells_ul = wbc_cells_ul * 1000;
                                         }
                                         view.gcTestParameter.SetCellValue(newRowHandle, columnName, wbc_cells_ul);
+                                        continue;
                                     }
 
                                     if (column.ToString() == "Platelets Count ( cells/mcl )")
@@ -435,12 +436,18 @@ namespace MediTech.ViewModels
                                             pla_cells_ul = pla_cells_ul * 1000;
                                         }
                                         view.gcTestParameter.SetCellValue(newRowHandle, columnName, pla_cells_ul);
+                                        continue;
                                     }
                                 }
 
                                 //Urine Analysis
                                 if (SelectedRequestItem.Code == "LAB311")
                                 {
+                                    if (columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
+                                    {
+                                        continue;
+                                    }
+
                                     if (columnName == "Leukocyte")
                                     {
                                         string rbcValue = "";
@@ -499,10 +506,7 @@ namespace MediTech.ViewModels
                                                          select c.ColumnName).FirstOrDefault();
                                         view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
                                     }
-                                    else if(columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
-                                    {
-                                        continue;
-                                    }
+  
                                 }
 
                                 view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
