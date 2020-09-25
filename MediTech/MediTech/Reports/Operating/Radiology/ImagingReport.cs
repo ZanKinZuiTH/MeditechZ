@@ -62,7 +62,7 @@ namespace MediTech.Reports.Operating.Radiology
                     this.logo.SizeF = new System.Drawing.SizeF(205.4585F, 64.16669F);
                     this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
-                    this.lblOrganisationAddress.Text = "155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 2100 โทร. 033060399";
+                    this.lblOrganisationAddress.Text = "155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร. 033060399";
                 }
                 else if(LogoType.ToUpper() == "DRC")
                 {
