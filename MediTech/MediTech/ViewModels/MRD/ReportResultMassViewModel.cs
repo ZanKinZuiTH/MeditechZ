@@ -477,7 +477,6 @@ namespace MediTech.ViewModels
             PayorDetails = DataService.MasterData.GetPayorDetail();
         }
 
-
         private void Search()
         {
             string itemName = string.Empty;
@@ -1302,16 +1301,16 @@ namespace MediTech.ViewModels
                                 dicomFile.Dataset.AutoValidate = false;
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID, "");
 
-                                foreach (var item in dicomFile.Dataset.ToList())
-                                {
-                                    string value = "";
-                                    dicomFile.Dataset.TryGetString(item.Tag, out value);
-                                    if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
-                                    {
-                                        value = value.Replace("\0", "");
-                                        dicomFile.Dataset.AddOrUpdate(item.Tag, value);
-                                    }
-                                }
+                                //foreach (var item in dicomFile.Dataset.ToList())
+                                //{
+                                //    string value = "";
+                                //    dicomFile.Dataset.TryGetString(item.Tag, out value);
+                                //    if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
+                                //    {
+                                //        value = value.Replace("\0", "");
+                                //        dicomFile.Dataset.AddOrUpdate(item.Tag, value);
+                                //    }
+                                //}
 
                                 //dicomFile.Dataset.Validate();
 

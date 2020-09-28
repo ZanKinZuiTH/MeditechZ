@@ -388,16 +388,16 @@ namespace MediTech.ViewModels
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, item.No.ToString().PadLeft(4, '0') + " " + item.PatientName);
                             dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(item.OtherID) ? item.OtherID : item.PatientID);
 
-                            foreach (var dicomItem in dicomFile.Dataset.ToList())
-                            {
-                                string value = "";
-                                dicomFile.Dataset.TryGetString(dicomItem.Tag, out value);
-                                if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
-                                {
-                                    value = value.Replace("\0", "");
-                                    dicomFile.Dataset.AddOrUpdate(dicomItem.Tag, value);
-                                }
-                            }
+                            //foreach (var dicomItem in dicomFile.Dataset.ToList())
+                            //{
+                            //    string value = "";
+                            //    dicomFile.Dataset.TryGetString(dicomItem.Tag, out value);
+                            //    if (!String.IsNullOrEmpty(value) && value.EndsWith("\0"))
+                            //    {
+                            //        value = value.Replace("\0", "");
+                            //        dicomFile.Dataset.AddOrUpdate(dicomItem.Tag, value);
+                            //    }
+                            //}
 
                             dicomFile.Save(dicomPath + "\\0000000" + i.ToString());
                             dicomDir.AutoValidate = false;
