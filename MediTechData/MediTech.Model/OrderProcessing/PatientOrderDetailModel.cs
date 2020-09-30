@@ -65,6 +65,7 @@ namespace MediTech.Model
         public string IsDoctorOnly { get; set; }
         public string IsStock { get; set; }
         public Nullable<int> OrderSetUID { get; set; }
+        public string OrderSetName { get; set; }
         public Nullable<int> OrderSetBillableItemUID { get; set; }
         public string OrderNumber { get; set; }
         public string OrderBy { get; set; }

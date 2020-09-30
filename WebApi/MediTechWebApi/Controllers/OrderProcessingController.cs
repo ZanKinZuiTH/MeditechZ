@@ -52,6 +52,8 @@ namespace MediTechWebApi.Controllers
                     addItem.BillingService = item["BillingService"].ToString();
                     addItem.IdentifyingUID = item["IdentifyingUID2"].ToString() != "" ? long.Parse(item["IdentifyingUID2"].ToString()) : (long?)null;
                     addItem.IdentifyingType = item["IdentifyingType2"].ToString();
+                    addItem.OrderSetUID = item["OrderSetUID"].ToString() != "" ? int.Parse(item["OrderSetUID"].ToString()) : (int?)null;
+                    addItem.OrderSetName = item["OrderSetName"].ToString();
                     addItem.StartDttm = DateTime.Parse(item["StartDttm2"].ToString());
                     addItem.ORDSTUID = int.Parse(item["ORDSTUID2"].ToString());
                     addItem.OrderDetailStatus = item["OrderDetailStatus"].ToString();
@@ -126,6 +128,8 @@ namespace MediTechWebApi.Controllers
                     addItem.BillingService = item["BillingService"].ToString();
                     addItem.IdentifyingUID = item["IdentifyingUID2"].ToString() != "" ? long.Parse(item["IdentifyingUID2"].ToString()) : (long?)null;
                     addItem.IdentifyingType = item["IdentifyingType2"].ToString();
+                    addItem.OrderSetUID = item["OrderSetUID"].ToString() != "" ? int.Parse(item["OrderSetUID"].ToString()) : (int?)null;
+                    addItem.OrderSetName = item["OrderSetName"].ToString();
                     addItem.StartDttm = DateTime.Parse(item["StartDttm2"].ToString());
                     addItem.ORDSTUID = int.Parse(item["ORDSTUID2"].ToString());
                     addItem.OrderDetailStatus = item["OrderDetailStatus"].ToString();
