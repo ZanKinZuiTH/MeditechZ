@@ -874,7 +874,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbResultWellness.ForeColor = System.Drawing.Color.Blue;
+            this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
             this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(25.83334F, 50.35176F);
             this.lbResultWellness.Multiline = true;
             this.lbResultWellness.Name = "lbResultWellness";

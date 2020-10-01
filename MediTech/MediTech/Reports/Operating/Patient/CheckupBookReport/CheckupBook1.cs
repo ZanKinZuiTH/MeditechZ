@@ -445,7 +445,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     GenerateOther(OtherTestSet);
                     #endregion
                 }
-
             }
         }
 
@@ -475,19 +474,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(hbAbnormal1))
                 {
-                    page4.cellHb1.ForeColor = Color.Red;
+                    page4.cellHb1.ForeColor = (hbAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellHb1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hbAbnormal2))
                 {
-                    page4.cellHb2.ForeColor = Color.Red;
+                    page4.cellHb2.ForeColor = (hbAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellHb2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hbAbnormal3))
                 {
-                    page4.cellHb3.ForeColor = Color.Red;
+                    page4.cellHb3.ForeColor = (hbAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellHb3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -502,19 +501,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(hctAbnormal1))
                 {
-                    page4.cellHct1.ForeColor = Color.Red;
+                    page4.cellHct1.ForeColor = (hctAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellHct1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hctAbnormal2))
                 {
-                    page4.cellHct2.ForeColor = Color.Red;
+                    page4.cellHct2.ForeColor = (hctAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellHct2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hctAbnormal3))
                 {
-                    page4.cellHct3.ForeColor = Color.Red;
+                    page4.cellHct3.ForeColor = (hctAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellHct3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -530,19 +529,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(mcvAbnormal1))
                 {
-                    page4.cellMcv1.ForeColor = Color.Red;
+                    page4.cellMcv1.ForeColor = (mcvAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellMcv1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mcvAbnormal2))
                 {
-                    page4.cellMcv2.ForeColor = Color.Red;
+                    page4.cellMcv2.ForeColor = (mcvAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMcv2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mcvAbnormal3))
                 {
-                    page4.cellMcv3.ForeColor = Color.Red;
+                    page4.cellMcv3.ForeColor = (mcvAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMcv3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -557,19 +556,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(mchAbnormal1))
                 {
-                    page4.cellMch1.ForeColor = Color.Red;
-                    page4.cellMch2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellMch1.ForeColor = (mchAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page4.cellMch1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mchAbnormal2))
                 {
-                    page4.cellMch2.ForeColor = Color.Red;
+                    page4.cellMch2.ForeColor = (mchAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMch2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mchAbnormal3))
                 {
-                    page4.cellMch3.ForeColor = Color.Red;
+                    page4.cellMch3.ForeColor = (mchAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMch3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -584,19 +583,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(mchcAbnormal1))
                 {
-                    page4.cellMchc1.ForeColor = Color.Red;
-                    page4.cellMchc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellMchc1.ForeColor = (mchcAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page4.cellMchc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mchcAbnormal2))
                 {
-                    page4.cellMchc2.ForeColor = Color.Red;
+                    page4.cellMchc2.ForeColor = (mchcAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMchc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(mchcAbnormal3))
                 {
-                    page4.cellMchc3.ForeColor = Color.Red;
+                    page4.cellMchc3.ForeColor = (mchcAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMchc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -611,19 +610,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(rdwAbnormal1))
                 {
-                    page4.cellRdw1.ForeColor = Color.Red;
+                    page4.cellRdw1.ForeColor = (rdwAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellRdw1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(rdwAbnormal2))
                 {
-                    page4.cellRdw2.ForeColor = Color.Red;
+                    page4.cellRdw2.ForeColor = (rdwAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellRdw2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(rdwAbnormal3))
                 {
-                    page4.cellRdw3.ForeColor = Color.Red;
+                    page4.cellRdw3.ForeColor = (rdwAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellRdw3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -638,19 +637,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(rbcAbnormal1))
                 {
-                    page4.cellRbc1.ForeColor = Color.Red;
+                    page4.cellRbc1.ForeColor = (rbcAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(rbcAbnormal2))
                 {
-                    page4.cellRbc2.ForeColor = Color.Red;
+                    page4.cellRbc2.ForeColor = (rbcAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(rbcAbnormal3))
                 {
-                    page4.cellRbc3.ForeColor = Color.Red;
+                    page4.cellRbc3.ForeColor = (rbcAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -665,19 +664,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(RbcMorAbnormal1))
                 {
-                    page4.cellRbcMor1.ForeColor = Color.Red;
+                    page4.cellRbcMor1.ForeColor = (RbcMorAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbcMor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(RbcMorAbnormal2))
                 {
-                    page4.cellRbcMor2.ForeColor = Color.Red;
+                    page4.cellRbcMor2.ForeColor = (RbcMorAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbcMor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(RbcMorAbnormal3))
                 {
-                    page4.cellRbcMor3.ForeColor = Color.Red;
+                    page4.cellRbcMor3.ForeColor = (RbcMorAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellRbcMor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -692,19 +691,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(wbcAbnormal1))
                 {
-                    page4.cellWbc1.ForeColor = Color.Red;
+                    page4.cellWbc1.ForeColor = (wbcAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellWbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(wbcAbnormal2))
                 {
-                    page4.cellWbc2.ForeColor = Color.Red;
+                    page4.cellWbc2.ForeColor = (wbcAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellWbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(wbcAbnormal3))
                 {
-                    page4.cellWbc3.ForeColor = Color.Red;
+                    page4.cellWbc3.ForeColor = (wbcAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellWbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -719,19 +718,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(NectophilAbnormal1))
                 {
-                    page4.cellNectophil1.ForeColor = Color.Red;
+                    page4.cellNectophil1.ForeColor = (NectophilAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellNectophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(NectophilAbnormal2))
                 {
-                    page4.cellNectophil2.ForeColor = Color.Red;
+                    page4.cellNectophil2.ForeColor = (NectophilAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellNectophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(NectophilAbnormal3))
                 {
-                    page4.cellNectophil3.ForeColor = Color.Red;
+                    page4.cellNectophil3.ForeColor = (NectophilAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellNectophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -746,19 +745,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(LymphocyteAbnormal1))
                 {
-                    page4.cellLymphocyte1.ForeColor = Color.Red;
+                    page4.cellLymphocyte1.ForeColor = (LymphocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellLymphocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LymphocyteAbnormal2))
                 {
-                    page4.cellLymphocyte2.ForeColor = Color.Red;
+                    page4.cellLymphocyte2.ForeColor = (LymphocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellLymphocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LymphocyteAbnormal3))
                 {
-                    page4.cellLymphocyte3.ForeColor = Color.Red;
+                    page4.cellLymphocyte3.ForeColor = (LymphocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellLymphocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -773,19 +772,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(MonocyteAbnormal1))
                 {
-                    page4.cellMonocyte1.ForeColor = Color.Red;
+                    page4.cellMonocyte1.ForeColor = (MonocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellMonocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MonocyteAbnormal2))
                 {
-                    page4.cellMonocyte2.ForeColor = Color.Red;
+                    page4.cellMonocyte2.ForeColor = (MonocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMonocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MonocyteAbnormal3))
                 {
-                    page4.cellMonocyte3.ForeColor = Color.Red;
+                    page4.cellMonocyte3.ForeColor = (MonocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMonocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -800,19 +799,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(EosinophilAbnormal1))
                 {
-                    page4.cellEosinophil1.ForeColor = Color.Red;
+                    page4.cellEosinophil1.ForeColor = (EosinophilAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellEosinophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(EosinophilAbnormal2))
                 {
-                    page4.cellEosinophil2.ForeColor = Color.Red;
+                    page4.cellEosinophil2.ForeColor = (EosinophilAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellEosinophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(EosinophilAbnormal3))
                 {
-                    page4.cellEosinophil3.ForeColor = Color.Red;
+                    page4.cellEosinophil3.ForeColor = (EosinophilAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellEosinophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -827,19 +826,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BasophilAbnormal1))
                 {
-                    page4.cellBasophil1.ForeColor = Color.Red;
+                    page4.cellBasophil1.ForeColor = (BasophilAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellBasophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BasophilAbnormal2))
                 {
-                    page4.cellBasophil2.ForeColor = Color.Red;
+                    page4.cellBasophil2.ForeColor = (BasophilAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellBasophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BasophilAbnormal3))
                 {
-                    page4.cellBasophil3.ForeColor = Color.Red;
+                    page4.cellBasophil3.ForeColor = (BasophilAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellBasophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -854,19 +853,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(PlateletSmearAbnormal1))
                 {
-                    page4.cellPlateletSmear1.ForeColor = Color.Red;
+                    page4.cellPlateletSmear1.ForeColor = (PlateletSmearAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletSmear1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(PlateletSmearAbnormal2))
                 {
-                    page4.cellPlateletSmear2.ForeColor = Color.Red;
+                    page4.cellPlateletSmear2.ForeColor = (PlateletSmearAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletSmear2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(PlateletSmearAbnormal3))
                 {
-                    page4.cellPlateletSmear3.ForeColor = Color.Red;
+                    page4.cellPlateletSmear3.ForeColor = (PlateletSmearAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletSmear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -881,19 +880,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(PlateletsCountAbnormal1))
                 {
-                    page4.cellPlateletsCount1.ForeColor = Color.Red;
+                    page4.cellPlateletsCount1.ForeColor = (PlateletsCountAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletsCount1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(PlateletsCountAbnormal2))
                 {
-                    page4.cellPlateletsCount2.ForeColor = Color.Red;
+                    page4.cellPlateletsCount2.ForeColor = (PlateletsCountAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletsCount2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(PlateletsCountAbnormal3))
                 {
-                    page4.cellPlateletsCount3.ForeColor = Color.Red;
+                    page4.cellPlateletsCount3.ForeColor = (PlateletsCountAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellPlateletsCount3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -931,19 +930,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 
                 if (!string.IsNullOrEmpty(colorAbnormal1))
                 {
-                    page5.cellColor1.ForeColor = Color.Red;
+                    page5.cellColor1.ForeColor = (colorAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellColor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(colorAbnormal2))
                 {
-                    page5.cellColor2.ForeColor = Color.Red;
+                    page5.cellColor2.ForeColor = (colorAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellColor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(colorAbnormal3))
                 {
-                    page5.cellColor3.ForeColor = Color.Red;
+                    page5.cellColor3.ForeColor = (colorAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellColor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -958,19 +957,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 
                 if (!string.IsNullOrEmpty(ClarityAbnormal1))
                 {
-                    page5.cellClarity1.ForeColor = Color.Red;
+                    page5.cellClarity1.ForeColor = (ClarityAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellClarity1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ClarityAbnormal2))
                 {
-                    page5.cellClarity2.ForeColor = Color.Red;
+                    page5.cellClarity2.ForeColor = (ClarityAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellClarity2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ClarityAbnormal3))
                 {
-                    page5.cellClarity3.ForeColor = Color.Red;
+                    page5.cellClarity3.ForeColor = (ClarityAbnormal3 == "H") ? Color.Red : Color.Blue; ;
                     page5.cellClarity3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -985,19 +984,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 
                 if (!string.IsNullOrEmpty(SpacGraAbnormal1))
                 {
-                    page5.cellSpacGra1.ForeColor = Color.Red;
+                    page5.cellSpacGra1.ForeColor = (SpacGraAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellSpacGra1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(SpacGraAbnormal2))
                 {
-                    page5.cellSpacGra3.ForeColor = Color.Red;
-                    page5.cellSpacGra3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page5.cellSpacGra2.ForeColor = (SpacGraAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page5.cellSpacGra2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(SpacGraAbnormal3))
                 {
-                    page5.cellClarity3.ForeColor = Color.Red;
+                    page5.cellSpacGra3.ForeColor = (SpacGraAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellClarity3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1012,19 +1011,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 
                 if (!string.IsNullOrEmpty(phAbnormal1))
                 {
-                    page5.cellPh1.ForeColor = Color.Red;
+                    page5.cellPh1.ForeColor = (phAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellPh1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(phAbnormal2))
                 {
-                    page5.cellPh2.ForeColor = Color.Red;
+                    page5.cellPh2.ForeColor = (phAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellPh2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(phAbnormal3))
                 {
-                    page5.cellPh3.ForeColor = Color.Red;
+                    page5.cellPh3.ForeColor = (phAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellPh3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1039,19 +1038,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 
                 if (!string.IsNullOrEmpty(ProteinAbnormal1))
                 {
-                    page5.cellProtein1.ForeColor = Color.Red;
+                    page5.cellProtein1.ForeColor = (ProteinAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellProtein1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ProteinAbnormal2))
                 {
-                    page5.cellProtein2.ForeColor = Color.Red;
+                    page5.cellProtein2.ForeColor = (ProteinAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellProtein2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ProteinAbnormal3))
                 {
-                    page5.cellProtein3.ForeColor = Color.Red;
+                    page5.cellProtein3.ForeColor = (ProteinAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellProtein3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1066,19 +1065,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(GlucoseAbnormal1))
                 {
-                    page5.cellGlucose1.ForeColor = Color.Red;
+                    page5.cellGlucose1.ForeColor = (GlucoseAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellGlucose1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(GlucoseAbnormal2))
                 {
-                    page5.cellGlucose2.ForeColor = Color.Red;
+                    page5.cellGlucose2.ForeColor = (GlucoseAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellGlucose2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(GlucoseAbnormal3))
                 {
-                    page5.cellGlucose3.ForeColor = Color.Red;
+                    page5.cellGlucose3.ForeColor = (GlucoseAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellGlucose3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1093,19 +1092,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(KetoneAbnormal1))
                 {
-                    page5.cellKetone1.ForeColor = Color.Red;
+                    page5.cellKetone1.ForeColor = (KetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellKetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(KetoneAbnormal2))
                 {
-                    page5.cellKetone2.ForeColor = Color.Red;
+                    page5.cellKetone2.ForeColor = (KetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellKetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(KetoneAbnormal3))
                 {
-                    page5.cellKetone3.ForeColor = Color.Red;
+                    page5.cellKetone3.ForeColor = (KetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellKetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1120,19 +1119,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(NitritesAbnormal1))
                 {
-                    page5.cellNitrites1.ForeColor = Color.Red;
+                    page5.cellNitrites1.ForeColor = (NitritesAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellNitrites1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(NitritesAbnormal2))
                 {
-                    page5.cellNitrites2.ForeColor = Color.Red;
+                    page5.cellNitrites2.ForeColor = (NitritesAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellNitrites2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(NitritesAbnormal3))
                 {
-                    page5.cellNitrites3.ForeColor = Color.Red;
+                    page5.cellNitrites3.ForeColor = (NitritesAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellNitrites3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1147,19 +1146,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BilirubinAbnormal1))
                 {
-                    page5.cellBilirubin1.ForeColor = Color.Red;
+                    page5.cellBilirubin1.ForeColor = (BilirubinAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BilirubinAbnormal2))
                 {
-                    page5.cellBilirubin2.ForeColor = Color.Red;
+                    page5.cellBilirubin2.ForeColor = (BilirubinAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BilirubinAbnormal3))
                 {
-                    page5.cellBilirubin3.ForeColor = Color.Red;
+                    page5.cellBilirubin3.ForeColor = (BilirubinAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1174,19 +1173,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(UrobilinogenAbnormal1))
                 {
-                    page5.cellUrobilinogen1.ForeColor = Color.Red;
-                    page5.cellUrobilinogen2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page5.cellUrobilinogen1.ForeColor = (UrobilinogenAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page5.cellUrobilinogen1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(UrobilinogenAbnormal2))
                 {
-                    page5.cellUrobilinogen2.ForeColor = Color.Red;
+                    page5.cellUrobilinogen2.ForeColor = (UrobilinogenAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellUrobilinogen2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(UrobilinogenAbnormal3))
                 {
-                    page5.cellUrobilinogen3.ForeColor = Color.Red;
+                    page5.cellUrobilinogen3.ForeColor = (UrobilinogenAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellUrobilinogen3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1201,19 +1200,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(LeukocyteAbnormal1))
                 {
-                    page5.cellLeukocyte1.ForeColor = Color.Red;
+                    page5.cellLeukocyte1.ForeColor = (LeukocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellLeukocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LeukocyteAbnormal2))
                 {
-                    page5.cellLeukocyte2.ForeColor = Color.Red;
+                    page5.cellLeukocyte2.ForeColor = (LeukocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellLeukocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LeukocyteAbnormal3))
                 {
-                    page5.cellLeukocyte3.ForeColor = Color.Red;
+                    page5.cellLeukocyte3.ForeColor = (LeukocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellLeukocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1228,19 +1227,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BloodAbnormal1))
                 {
-                    page5.cellBlood1.ForeColor = Color.Red;
+                    page5.cellBlood1.ForeColor = (BloodAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellBlood1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BloodAbnormal2))
                 {
-                    page5.cellBlood2.ForeColor = Color.Red;
+                    page5.cellBlood2.ForeColor = (BloodAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellBlood2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BloodAbnormal3))
                 {
-                    page5.cellBlood3.ForeColor = Color.Red;
+                    page5.cellBlood3.ForeColor = (BloodAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellBlood3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1255,19 +1254,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(ErythrocytesAbnormal1))
                 {
-                    page5.cellErythrocytes1.ForeColor = Color.Red;
+                    page5.cellErythrocytes1.ForeColor = (ErythrocytesAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellErythrocytes1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ErythrocytesAbnormal2))
                 {
-                    page5.cellErythrocytes2.ForeColor = Color.Red;
+                    page5.cellErythrocytes2.ForeColor = (ErythrocytesAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellErythrocytes2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ErythrocytesAbnormal3))
                 {
-                    page5.cellErythrocytes3.ForeColor = Color.Red;
+                    page5.cellErythrocytes3.ForeColor = (ErythrocytesAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellErythrocytes3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1282,19 +1281,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(WbcAbnormal1))
                 {
-                    page5.cellWbc1.ForeColor = Color.Red;
+                    page5.cellWbc1.ForeColor = (WbcAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellWbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(WbcAbnormal2))
                 {
-                    page5.cellWbc2.ForeColor = Color.Red;
+                    page5.cellWbc2.ForeColor = (WbcAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellWbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(WbcAbnormal3))
                 {
-                    page5.cellWbc3.ForeColor = Color.Red;
+                    page5.cellWbc3.ForeColor = (WbcAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellWbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1309,19 +1308,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(RbcAbnormal1))
                 {
-                    page5.cellRbc1.ForeColor = Color.Red;
+                    page5.cellRbc1.ForeColor = (RbcAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellRbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(RbcAbnormal2))
                 {
-                    page5.cellRbc2.ForeColor = Color.Red;
+                    page5.cellRbc2.ForeColor = (RbcAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellRbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(RbcAbnormal3))
                 {
-                    page5.cellRbc3.ForeColor = Color.Red;
+                    page5.cellRbc3.ForeColor = (RbcAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellRbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1336,19 +1335,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(EpithelialCellsAbnormal1))
                 {
-                    page5.cellEpithelialCells1.ForeColor = Color.Red;
+                    page5.cellEpithelialCells1.ForeColor = (EpithelialCellsAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellEpithelialCells1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(EpithelialCellsAbnormal2))
                 {
-                    page5.cellEpithelialCells2.ForeColor = Color.Red;
+                    page5.cellEpithelialCells2.ForeColor = (EpithelialCellsAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellEpithelialCells2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(EpithelialCellsAbnormal3))
                 {
-                    page5.cellEpithelialCells3.ForeColor = Color.Red;
+                    page5.cellEpithelialCells3.ForeColor = (EpithelialCellsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellEpithelialCells3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1363,19 +1362,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CastsAbnormal1))
                 {
-                    page5.cellCasts1.ForeColor = Color.Red;
+                    page5.cellCasts1.ForeColor = (CastsAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellCasts1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CastsAbnormal2))
                 {
-                    page5.cellCasts2.ForeColor = Color.Red;
+                    page5.cellCasts2.ForeColor = (CastsAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellCasts2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CastsAbnormal3))
                 {
-                    page5.cellCasts3.ForeColor = Color.Red;
+                    page5.cellCasts3.ForeColor = (CastsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellCasts3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1390,19 +1389,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BacteriaAbnormal1))
                 {
-                    page5.cellBacteria1.ForeColor = Color.Red;
+                    page5.cellBacteria1.ForeColor = (BacteriaAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page5.cellBacteria1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(BacteriaAbnormal2))
+                {
+                    page5.cellBacteria2.ForeColor = (BacteriaAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellBacteria2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BacteriaAbnormal2))
                 {
-                    page5.cellBacteria2.ForeColor = Color.Red;
-                    page5.cellBacteria2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BacteriaAbnormal2))
-                {
-                    page5.cellBacteria3.ForeColor = Color.Red;
+                    page5.cellBacteria3.ForeColor = (BacteriaAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellBacteria3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1417,19 +1416,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BuddingYeastAbnormal1))
                 {
-                    page5.cellBuddingYeast1.ForeColor = Color.Red;
+                    page5.cellBuddingYeast1.ForeColor = (BuddingYeastAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellBuddingYeast1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BuddingYeastAbnormal2))
                 {
-                    page5.cellBuddingYeast2.ForeColor = Color.Red;
+                    page5.cellBuddingYeast2.ForeColor = (BuddingYeastAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellBuddingYeast2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BuddingYeastAbnormal3))
                 {
-                    page5.cellBuddingYeast3.ForeColor = Color.Red;
+                    page5.cellBuddingYeast3.ForeColor = (BuddingYeastAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellBuddingYeast3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1444,19 +1443,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CrystalAbnormal1))
                 {
-                    page5.cellCrystal1.ForeColor = Color.Red;
+                    page5.cellCrystal1.ForeColor = (CrystalAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellCrystal1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CrystalAbnormal2))
                 {
-                    page5.cellCrystal2.ForeColor = Color.Red;
+                    page5.cellCrystal2.ForeColor = (CrystalAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellCrystal2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CrystalAbnormal3))
                 {
-                    page5.cellCrystal3.ForeColor = Color.Red;
+                    page5.cellCrystal3.ForeColor = (CrystalAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellCrystal3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1471,19 +1470,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(MucousAbnormal1))
                 {
-                    page5.cellMucous1.ForeColor = Color.Red;
+                    page5.cellMucous1.ForeColor = (MucousAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellMucous1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MucousAbnormal2))
                 {
-                    page5.cellMucous2.ForeColor = Color.Red;
+                    page5.cellMucous2.ForeColor = (MucousAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellMucous2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MucousAbnormal3))
                 {
-                    page5.cellMucous3.ForeColor = Color.Red;
+                    page5.cellMucous3.ForeColor = (MucousAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellMucous3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1498,19 +1497,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AmorphousAbnormal1))
                 {
-                    page5.cellAmorphous1.ForeColor = Color.Red;
-                    page5.cellAmorphous2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page5.cellAmorphous1.ForeColor = (AmorphousAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page5.cellAmorphous1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AmorphousAbnormal2))
                 {
-                    page5.cellAmorphous2.ForeColor = Color.Red;
+                    page5.cellAmorphous2.ForeColor = (AmorphousAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellAmorphous2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AmorphousAbnormal3))
                 {
-                    page5.cellAmorphous3.ForeColor = Color.Red;
+                    page5.cellAmorphous3.ForeColor = (AmorphousAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellAmorphous3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1525,19 +1524,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(OtherAbnormal1))
                 {
-                    page5.cellOther1.ForeColor = Color.Red;
+                    page5.cellOther1.ForeColor = (OtherAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellOther1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(OtherAbnormal2))
                 {
-                    page5.cellOther2.ForeColor = Color.Red;
+                    page5.cellOther2.ForeColor = (OtherAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellOther2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(OtherAbnormal3))
                 {
-                    page5.cellOther3.ForeColor = Color.Red;
+                    page5.cellOther3.ForeColor = (OtherAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellOther3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -1574,19 +1573,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(bunAbnormal1))
                 {
-                    page6.cellBun1.ForeColor = Color.Red;
+                    page6.cellBun1.ForeColor = (bunAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellBun1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(bunAbnormal2))
                 {
-                    page6.cellBun2.ForeColor = Color.Red;
+                    page6.cellBun2.ForeColor = (bunAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellBun2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(bunAbnormal3))
                 {
-                    page6.cellBun3.ForeColor = Color.Red;
+                    page6.cellBun3.ForeColor = (bunAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellBun3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1601,19 +1600,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CreatinineAbnormal1))
                 {
-                    page6.cellCreatinine1.ForeColor = Color.Red;
+                    page6.cellCreatinine1.ForeColor = (CreatinineAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellCreatinine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CreatinineAbnormal2))
                 {
-                    page6.cellCreatinine2.ForeColor = Color.Red;
+                    page6.cellCreatinine2.ForeColor = (CreatinineAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellCreatinine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CreatinineAbnormal3))
                 {
-                    page6.cellCreatinine3.ForeColor = Color.Red;
+                    page6.cellCreatinine3.ForeColor = (CreatinineAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellCreatinine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -1650,19 +1649,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(fbsAbnormal1))
                 {
-                    page6.cellFbs1.ForeColor = Color.Red;
+                    page6.cellFbs1.ForeColor = (fbsAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellFbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(fbsAbnormal2))
                 {
-                    page6.cellFbs2.ForeColor = Color.Red;
+                    page6.cellFbs2.ForeColor = (fbsAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellFbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(fbsAbnormal3))
                 {
-                    page6.cellFbs3.ForeColor = Color.Red;
+                    page6.cellFbs3.ForeColor = (fbsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellFbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -1699,19 +1698,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(uricAbnormal1))
                 {
-                    page6.cellUric1.ForeColor = Color.Red;
+                    page6.cellUric1.ForeColor = (uricAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellUric1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(uricAbnormal2))
                 {
-                    page6.cellUric2.ForeColor = Color.Red;
+                    page6.cellUric2.ForeColor = (uricAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellUric2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(uricAbnormal3))
                 {
-                    page6.cellUric3.ForeColor = Color.Red;
+                    page6.cellUric3.ForeColor = (uricAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellUric3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -1748,19 +1747,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(cholesterolAbnormal1))
                 {
-                    page6.cellCholesterol1.ForeColor = Color.Red;
+                    page6.cellCholesterol1.ForeColor = (cholesterolAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellCholesterol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(cholesterolAbnormal2))
                 {
-                    page6.cellCholesterol2.ForeColor = Color.Red;
+                    page6.cellCholesterol2.ForeColor = (cholesterolAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellCholesterol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(cholesterolAbnormal3))
                 {
-                    page6.cellCholesterol3.ForeColor = Color.Red;
+                    page6.cellCholesterol3.ForeColor = (cholesterolAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellCholesterol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1775,19 +1774,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(TriglycerideAbnormal1))
                 {
-                    page6.cellTriglyceride1.ForeColor = Color.Red;
+                    page6.cellTriglyceride1.ForeColor = (TriglycerideAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellTriglyceride1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TriglycerideAbnormal2))
                 {
-                    page6.cellTriglyceride2.ForeColor = Color.Red;
+                    page6.cellTriglyceride2.ForeColor = (TriglycerideAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellTriglyceride2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TriglycerideAbnormal3))
                 {
-                    page6.cellTriglyceride3.ForeColor = Color.Red;
+                    page6.cellTriglyceride3.ForeColor = (TriglycerideAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellTriglyceride3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1802,19 +1801,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(ldlAbnormal1))
                 {
-                    page6.cellLdl1.ForeColor = Color.Red;
+                    page6.cellLdl1.ForeColor = (ldlAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellLdl1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ldlAbnormal2))
                 {
-                    page6.cellLdl2.ForeColor = Color.Red;
+                    page6.cellLdl2.ForeColor = (ldlAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellLdl2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(ldlAbnormal3))
                 {
-                    page6.cellLdl3.ForeColor = Color.Red;
+                    page6.cellLdl3.ForeColor = (ldlAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellLdl3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1829,19 +1828,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(hdlAbnormal1))
                 {
-                    page6.cellHdl1.ForeColor = Color.Red;
+                    page6.cellHdl1.ForeColor = (hdlAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellHdl1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hdlAbnormal2))
                 {
-                    page6.cellHdl2.ForeColor = Color.Red;
+                    page6.cellHdl2.ForeColor = (hdlAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellHdl2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(hdlAbnormal3))
                 {
-                    page6.cellHdl3.ForeColor = Color.Red;
+                    page6.cellHdl3.ForeColor = (hdlAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellHdl3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -1878,19 +1877,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(astAbnormal1))
                 {
-                    page6.cellAst1.ForeColor = Color.Red;
+                    page6.cellAst1.ForeColor = (astAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellAst1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(astAbnormal2))
                 {
-                    page6.cellAst2.ForeColor = Color.Red;
+                    page6.cellAst2.ForeColor = (astAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellAst2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(astAbnormal3))
                 {
-                    page6.cellAst3.ForeColor = Color.Red;
+                    page6.cellAst3.ForeColor = (astAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellAst3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1905,19 +1904,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(altAbnormal1))
                 {
-                    page6.cellAlt1.ForeColor = Color.Red;
+                    page6.cellAlt1.ForeColor = (altAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlt1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(altAbnormal2))
                 {
-                    page6.cellAlt2.ForeColor = Color.Red;
+                    page6.cellAlt2.ForeColor = (altAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlt2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(altAbnormal3))
                 {
-                    page6.cellAlt3.ForeColor = Color.Red;
+                    page6.cellAlt3.ForeColor = (altAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlt3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1932,19 +1931,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(alpAbnormal1))
                 {
-                    page6.cellAlp1.ForeColor = Color.Red;
+                    page6.cellAlp1.ForeColor = (alpAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlp1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(alpAbnormal2))
                 {
-                    page6.cellAlp2.ForeColor = Color.Red;
+                    page6.cellAlp2.ForeColor = (alpAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(alpAbnormal3))
                 {
-                    page6.cellAlp3.ForeColor = Color.Red;
+                    page6.cellAlp3.ForeColor = (alpAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlp3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1959,19 +1958,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(TotalBilirubinAbnormal1))
                 {
-                    page6.cellTotalBilirubin1.ForeColor = Color.Red;
+                    page6.cellTotalBilirubin1.ForeColor = (TotalBilirubinAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TotalBilirubinAbnormal2))
                 {
-                    page6.cellTotalBilirubin2.ForeColor = Color.Red;
+                    page6.cellTotalBilirubin2.ForeColor = (TotalBilirubinAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TotalBilirubinAbnormal3))
                 {
-                    page6.cellTotalBilirubin3.ForeColor = Color.Red;
+                    page6.cellTotalBilirubin3.ForeColor = (TotalBilirubinAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -1986,19 +1985,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(DirectBilirubiAbnormal1))
                 {
-                    page6.cellDirectBilirubin1.ForeColor = Color.Red;
+                    page6.cellDirectBilirubin1.ForeColor = (DirectBilirubiAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellDirectBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(DirectBilirubiAbnormal2))
                 {
-                    page6.cellDirectBilirubin2.ForeColor = Color.Red;
+                    page6.cellDirectBilirubin2.ForeColor = (DirectBilirubiAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellDirectBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(DirectBilirubiAbnormal3))
                 {
-                    page6.cellDirectBilirubin3.ForeColor = Color.Red;
+                    page6.cellDirectBilirubin3.ForeColor = (DirectBilirubiAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellDirectBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2013,19 +2012,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(TotalProteinAbnormal1))
                 {
-                    page6.cellTotalProtein1.ForeColor = Color.Red;
+                    page6.cellTotalProtein1.ForeColor = (TotalProteinAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalProtein1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TotalProteinAbnormal2))
                 {
-                    page6.cellTotalProtein2.ForeColor = Color.Red;
+                    page6.cellTotalProtein2.ForeColor = (TotalProteinAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalProtein2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TotalProteinAbnormal3))
                 {
-                    page6.cellTotalProtein3.ForeColor = Color.Red;
+                    page6.cellTotalProtein3.ForeColor = (TotalProteinAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellTotalProtein3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2040,19 +2039,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AlbuminAbnormal1))
                 {
-                    page6.cellAlbumin1.ForeColor = Color.Red;
+                    page6.cellAlbumin1.ForeColor = (AlbuminAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlbumin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AlbuminAbnormal2))
                 {
-                    page6.cellAlbumin2.ForeColor = Color.Red;
+                    page6.cellAlbumin2.ForeColor = (AlbuminAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlbumin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AlbuminAbnormal3))
                 {
-                    page6.cellAlbumin3.ForeColor = Color.Red;
+                    page6.cellAlbumin3.ForeColor = (AlbuminAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellAlbumin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2067,19 +2066,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(GlobulinAbnormal1))
                 {
-                    page6.cellGlobulin1.ForeColor = Color.Red;
+                    page6.cellGlobulin1.ForeColor = (GlobulinAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page6.cellGlobulin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(GlobulinAbnormal2))
                 {
-                    page6.cellGlobulin2.ForeColor = Color.Red;
+                    page6.cellGlobulin2.ForeColor = (GlobulinAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page6.cellGlobulin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(GlobulinAbnormal3))
                 {
-                    page6.cellGlobulin3.ForeColor = Color.Red;
+                    page6.cellGlobulin3.ForeColor = (GlobulinAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellGlobulin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -2116,19 +2115,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(HbsAgAbnormal1))
                 {
-                    page5.cellHbsAg1.ForeColor = Color.Red;
+                    page5.cellHbsAg1.ForeColor = (HbsAgAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellHbsAg1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(HbsAgAbnormal2))
                 {
-                    page5.cellHbsAg2.ForeColor = Color.Red;
+                    page5.cellHbsAg2.ForeColor = (HbsAgAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellHbsAg2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(HbsAgAbnormal3))
                 {
-                    page5.cellHbsAg3.ForeColor = Color.Red;
+                    page5.cellHbsAg3.ForeColor = (HbsAgAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellHbsAg3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2143,19 +2142,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CoiAgAbnormal1))
                 {
-                    page5.cellCoiAg1.ForeColor = Color.Red;
+                    page5.cellCoiAg1.ForeColor = (CoiAgAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiAg1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CoiAgAbnormal2))
                 {
-                    page5.cellCoiAg2.ForeColor = Color.Red;
+                    page5.cellCoiAg2.ForeColor = (CoiAgAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiAg2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CoiAgAbnormal3))
                 {
-                    page5.cellCoiAg3.ForeColor = Color.Red;
+                    page5.cellCoiAg3.ForeColor = (CoiAgAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiAg3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2170,19 +2169,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal1))
                 {
-                    page5.cellCoiHbs1.ForeColor = Color.Red;
+                    page5.cellCoiHbs1.ForeColor = (CoiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiHbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal2))
                 {
-                    page5.cellCoiHbs2.ForeColor = Color.Red;
+                    page5.cellCoiHbs2.ForeColor = (CoiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiHbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal3))
                 {
-                    page5.cellCoiHbs3.ForeColor = Color.Red;
+                    page5.cellCoiHbs3.ForeColor = (CoiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellCoiHbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2197,19 +2196,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AntiHbsAbnormal1))
                 {
-                    page5.cellAntiHbs1.ForeColor = Color.Red;
+                    page5.cellAntiHbs1.ForeColor = (AntiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellAntiHbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AntiHbsAbnormal2))
                 {
-                    page5.cellAntiHbs2.ForeColor = Color.Red;
+                    page5.cellAntiHbs2.ForeColor = (AntiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellAntiHbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AntiHbsAbnormal3))
                 {
-                    page5.cellAntiHbs3.ForeColor = Color.Red;
+                    page5.cellAntiHbs3.ForeColor = (AntiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellAntiHbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -2246,19 +2245,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AluminiumAbnormal1))
                 {
-                    page4.cellAluminium1.ForeColor = Color.Red;
+                    page4.cellAluminium1.ForeColor = (AluminiumAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellAluminium1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AluminiumAbnormal2))
                 {
-                    page4.cellAluminium2.ForeColor = Color.Red;
+                    page4.cellAluminium2.ForeColor = (AluminiumAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellAluminium2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AluminiumAbnormal3))
                 {
-                    page4.cellAluminium3.ForeColor = Color.Red;
+                    page4.cellAluminium3.ForeColor = (AluminiumAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellAluminium3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2273,19 +2272,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(TolueneAbnormal1))
                 {
-                    page4.cellToluene1.ForeColor = Color.Red;
+                    page4.cellToluene1.ForeColor = (TolueneAbnormal1 == "H") ? Color.Red : Color.Blue; 
                     page4.cellToluene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TolueneAbnormal2))
                 {
-                    page4.cellToluene2.ForeColor = Color.Red;
+                    page4.cellToluene2.ForeColor = (TolueneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellToluene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(TolueneAbnormal3))
                 {
-                    page4.cellToluene3.ForeColor = Color.Red;
+                    page4.cellToluene3.ForeColor = (TolueneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellToluene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2300,19 +2299,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(XyleneAbnormal1))
                 {
-                    page4.cellXylene1.ForeColor = Color.Red;
+                    page4.cellXylene1.ForeColor = (XyleneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellXylene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(XyleneAbnormal2))
                 {
-                    page4.cellXylene2.ForeColor = Color.Red;
+                    page4.cellXylene2.ForeColor = (XyleneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellXylene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(XyleneAbnormal3))
                 {
-                    page4.cellXylene3.ForeColor = Color.Red;
+                    page4.cellXylene3.ForeColor = (XyleneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellXylene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2327,19 +2326,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(LeadAbnormal1))
                 {
-                    page4.cellLead1.ForeColor = Color.Red;
+                    page4.cellLead1.ForeColor = (LeadAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellLead1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LeadAbnormal2))
                 {
-                    page4.cellLead2.ForeColor = Color.Red;
+                    page4.cellLead2.ForeColor = (LeadAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellLead2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(LeadAbnormal3))
                 {
-                    page4.cellLead3.ForeColor = Color.Red;
+                    page4.cellLead3.ForeColor = (LeadAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellLead3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2354,19 +2353,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CarboxyAbnormal1))
                 {
-                    page4.cellCarboxy1.ForeColor = Color.Red;
+                    page4.cellCarboxy1.ForeColor = (CarboxyAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellCarboxy1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CarboxyAbnormal2))
                 {
-                    page4.cellCarboxy2.ForeColor = Color.Red;
+                    page4.cellCarboxy2.ForeColor = (CarboxyAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellCarboxy2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(CarboxyAbnormal3))
                 {
-                    page4.cellCarboxy3.ForeColor = Color.Red;
+                    page4.cellCarboxy3.ForeColor = (CarboxyAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellCarboxy3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2381,19 +2380,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(MekAbnormal1))
                 {
-                    page4.cellMek1.ForeColor = Color.Red;
+                    page4.cellMek1.ForeColor = (MekAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellMek1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MekAbnormal2))
                 {
-                    page4.cellMek2.ForeColor = Color.Red;
+                    page4.cellMek2.ForeColor = (MekAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMek2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MekAbnormal3))
                 {
-                    page4.cellMek3.ForeColor = Color.Red;
+                    page4.cellMek3.ForeColor = (MekAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMek3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2408,19 +2407,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BenzeneAbnormal1))
                 {
-                    page4.cellBenzene1.ForeColor = Color.Red;
+                    page4.cellBenzene1.ForeColor = (BenzeneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellBenzene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BenzeneAbnormal2))
                 {
-                    page4.cellBenzene2.ForeColor = Color.Red;
+                    page4.cellBenzene2.ForeColor = (BenzeneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellBenzene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BenzeneAbnormal3))
                 {
-                    page4.cellBenzene3.ForeColor = Color.Red;
+                    page4.cellBenzene3.ForeColor = (BenzeneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellBenzene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2435,19 +2434,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(MethanolAbnormal1))
                 {
-                    page4.cellMethanol1.ForeColor = Color.Red;
+                    page4.cellMethanol1.ForeColor = (MethanolAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethanol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MethanolAbnormal2))
                 {
-                    page4.cellMethanol2.ForeColor = Color.Red;
+                    page4.cellMethanol2.ForeColor = (MethanolAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethanol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MethanolAbnormal3))
                 {
-                    page4.cellMethanol3.ForeColor = Color.Red;
+                    page4.cellMethanol3.ForeColor = (MethanolAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethanol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2462,19 +2461,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(MethyreneAbnormal1))
                 {
-                    page4.cellMethyrene1.ForeColor = Color.Red;
+                    page4.cellMethyrene1.ForeColor = (MethyreneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethyrene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MethyreneAbnormal2))
                 {
-                    page4.cellMethyrene2.ForeColor = Color.Red;
+                    page4.cellMethyrene2.ForeColor = (MethyreneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethyrene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(MethyreneAbnormal3))
                 {
-                    page4.cellMethyrene3.ForeColor = Color.Red;
+                    page4.cellMethyrene3.ForeColor = (MethyreneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellMethyrene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2489,19 +2488,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AcetoneAbnormal1))
                 {
-                    page4.cellAcetone1.ForeColor = Color.Red;
+                    page4.cellAcetone1.ForeColor = (AcetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellAcetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AcetoneAbnormal2))
                 {
-                    page4.cellAcetone2.ForeColor = Color.Red;
+                    page4.cellAcetone2.ForeColor = (AcetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellAcetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AcetoneAbnormal3))
                 {
-                    page4.cellAcetone3.ForeColor = Color.Red;
+                    page4.cellAcetone3.ForeColor = (AcetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellAcetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2516,19 +2515,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(HexaneAbnormal1))
                 {
-                    page4.cellHexane1.ForeColor = Color.Red;
+                    page4.cellHexane1.ForeColor = (HexaneAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellHexane1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(HexaneAbnormal2))
                 {
-                    page4.cellHexane2.ForeColor = Color.Red;
+                    page4.cellHexane2.ForeColor = (HexaneAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellHexane2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(HexaneAbnormal3))
                 {
-                    page4.cellHexane3.ForeColor = Color.Red;
+                    page4.cellHexane3.ForeColor = (HexaneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellHexane3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -2565,19 +2564,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(StColorAbnormal1))
                 {
-                    page5.cellStColor1.ForeColor = Color.Red;
+                    page5.cellStColor1.ForeColor = (StColorAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellStColor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(StColorAbnormal2))
                 {
-                    page5.cellStColor2.ForeColor = Color.Red;
+                    page5.cellStColor2.ForeColor = (StColorAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellStColor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(StColorAbnormal3))
                 {
-                    page5.cellStColor3.ForeColor = Color.Red;
+                    page5.cellStColor3.ForeColor = (StColorAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellStColor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2592,19 +2591,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(StappearAbnormal1))
                 {
-                    page5.cellStappear1.ForeColor = Color.Red;
+                    page5.cellStappear1.ForeColor = (StappearAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page5.cellStappear1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(StappearAbnormal2))
                 {
-                    page5.cellStappear2.ForeColor = Color.Red;
+                    page5.cellStappear2.ForeColor = (StappearAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page5.cellStappear2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(StappearAbnormal3))
                 {
-                    page5.cellStappear3.ForeColor = Color.Red;
+                    page5.cellStappear3.ForeColor = (StappearAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page5.cellStappear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
@@ -2642,20 +2641,20 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(afpAbnormal1))
                 {
-                    page4.cellAfp1.ForeColor = Color.Red;
+                    page4.cellAfp1.ForeColor = (afpAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellAfp1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(afpAbnormal2))
                 {
-                    page4.cellAfp2.ForeColor = Color.Red;
+                    page4.cellAfp2.ForeColor = (afpAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellAfp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(afpAbnormal3))
                 {
-                    page4.cellAfp2.ForeColor = Color.Red;
-                    page4.cellAfp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.cellAfp3.ForeColor = (afpAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page4.cellAfp3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 page4.cellAfpConRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39")?.ReferenceRange;
@@ -2669,19 +2668,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AfpConAbnormal1))
                 {
-                    page4.cellAfpCon1.ForeColor = Color.Red;
+                    page4.cellAfpCon1.ForeColor = (AfpConAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellAfpCon1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AfpConAbnormal2))
                 {
-                    page4.cellAfpCon2.ForeColor = Color.Red;
+                    page4.cellAfpCon2.ForeColor = (AfpConAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellAfpCon2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AfpConAbnormal3))
                 {
-                    page4.cellAfpCon3.ForeColor = Color.Red;
+                    page4.cellAfpCon3.ForeColor = (AfpConAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellAfpCon3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2696,19 +2695,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(AboGroupAbnormal1))
                 {
-                    page4.cellAboGroup1.ForeColor = Color.Red;
+                    page4.cellAboGroup1.ForeColor = (AboGroupAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellAboGroup1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AboGroupAbnormal2))
                 {
-                    page4.cellAboGroup2.ForeColor = Color.Red;
+                    page4.cellAboGroup2.ForeColor = (AboGroupAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellAboGroup2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(AboGroupAbnormal3))
                 {
-                    page4.cellAboGroup3.ForeColor = Color.Red;
+                    page4.cellAboGroup3.ForeColor = (AboGroupAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellAboGroup3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2723,19 +2722,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BloodGroupAbnormal1))
                 {
-                    page4.cellBloodGroup1.ForeColor = Color.Red;
+                    page4.cellBloodGroup1.ForeColor = (BloodGroupAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellBloodGroup1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BloodGroupAbnormal2))
                 {
-                    page4.cellBloodGroup2.ForeColor = Color.Red;
+                    page4.cellBloodGroup2.ForeColor = (BloodGroupAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellBloodGroup2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(BloodGroupAbnormal3))
                 {
-                    page4.cellBloodGroup3.ForeColor = Color.Red;
+                    page4.cellBloodGroup3.ForeColor = (BloodGroupAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellBloodGroup3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2750,19 +2749,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(caAbnormal1))
                 {
-                    page4.cellCa1.ForeColor = Color.Red;
+                    page4.cellCa1.ForeColor = (caAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellCa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(caAbnormal2))
                 {
-                    page4.cellCa2.ForeColor = Color.Red;
+                    page4.cellCa2.ForeColor = (caAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellCa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(caAbnormal3))
                 {
-                    page4.cellCa3.ForeColor = Color.Red;
+                    page4.cellCa3.ForeColor = (caAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellCa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
@@ -2777,19 +2776,19 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(psaAbnormal1))
                 {
-                    page4.cellPsa1.ForeColor = Color.Red;
+                    page4.cellPsa1.ForeColor = (psaAbnormal1 == "H") ? Color.Red : Color.Blue;
                     page4.cellPsa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(psaAbnormal2))
                 {
-                    page4.cellPsa2.ForeColor = Color.Red;
+                    page4.cellPsa2.ForeColor = (psaAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page4.cellPsa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 if (!string.IsNullOrEmpty(psaAbnormal3))
                 {
-                    page4.cellPsa3.ForeColor = Color.Red;
+                    page4.cellPsa3.ForeColor = (psaAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellPsa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
