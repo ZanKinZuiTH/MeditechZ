@@ -157,44 +157,15 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("GetFirstRequesDetailLab")]
+        [Route("GetRequesDetailLabForImport")]
         [HttpGet]
-        public RequestDetailLabModel GetFirstRequesDetailLab(string patientID, int ownerOrganisationUID, int payorDetailUID
+        public RequestDetailLabModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int payorDetailUID
             , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
-            RequestDetailLabModel data = (from pa in db.Patient
-                                          join pv in db.PatientVisit on pa.UID equals pv.PatientUID
-                                          join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
-                                          join re in db.Request on pv.UID equals re.PatientVisitUID
-                                          join red in db.RequestDetail on re.UID equals red.RequestUID
-                                          where red.StatusFlag == "A"
-                                          && pv.StatusFlag == "A"
-                                          && pvp.StatusFlag == "A"
-                                          && pa.StatusFlag == "A"
-                                          && pa.PatientID == patientID
-                                          && pv.OwnerOrganisationUID == ownerOrganisationUID
-                                          && pvp.PayorDetailUID == payorDetailUID
-                                          && red.RequestitemUID == requestItemUID
-                                          && (dateFrom == null || DbFunctions.TruncateTime(re.RequestedDttm) >= DbFunctions.TruncateTime(dateFrom))
-                                          && (dateTo == null || DbFunctions.TruncateTime(re.RequestedDttm) <= DbFunctions.TruncateTime(dateTo))
-                                          select new RequestDetailLabModel
-                                          {
-                                              RequestDetailUID = red.UID,
-                                              RequestUID = red.RequestUID,
-                                              RequestItemName = red.RequestItemName,
-                                              RequestItemCode = red.RequestItemCode,
-                                              PatientVisitUID = re.PatientVisitUID,
-                                              RequestNumber = re.RequestNumber,
-                                              PatientUID = re.PatientUID,
-                                              PatientName = SqlFunction.fGetPatientName(pa.UID),
-                                              Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                              SEXXXUID = pa.SEXXXUID,
-                                              OrderStatus = SqlFunction.fGetRfValDescription(red.ORDSTUID),
-                                              PriorityStatus = SqlFunction.fGetRfValDescription(red.RQPRTUID ?? 0),
-                                              Comments = red.Comments
-                                          }).FirstOrDefault(); ;
-
-            return data;
+            DataTable dataTable = SqlDirectStore.pGetRequesDetailLabForImport(patientID, ownerOrganisationUID, payorDetailUID
+                , requestItemUID, dateFrom, dateTo);
+            List<RequestDetailLabModel> returnData = dataTable.ToList<RequestDetailLabModel>();
+            return returnData.FirstOrDefault();
         }
 
         [Route("GetResultLabByPatientVisitUID")]

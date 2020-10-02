@@ -1170,6 +1170,27 @@ namespace MediTech.DataBase
             }
             return ds.Tables[0];
         }
+
+        public static DataTable pGetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
+    , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetRequesDetailLabForImport", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientID", patientID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", ownerOrganisationUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
         public static DataTable pSearchRequestListByRequestDetailUID(long requestDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();

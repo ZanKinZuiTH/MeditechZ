@@ -1390,10 +1390,11 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
-                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity, IsSINE);
+                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.ResultEnteredDttm ?? patientInfo.RequestedDttm
+                            , modlity, IsSINE);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
-                            foreach (var file in dicomFiles)
+                            foreach (var file in dicomFiles.ToList())
                             {
                                 MemoryStream ms = new MemoryStream(file);
                                 var dicomFile = Dicom.DicomFile.Open(ms);

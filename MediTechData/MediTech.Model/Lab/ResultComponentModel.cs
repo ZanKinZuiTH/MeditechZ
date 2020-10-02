@@ -120,7 +120,7 @@ namespace MediTech.Model
             double resultValue;
             if (double.TryParse(ResultValue, out resultValue))
             {
-                if (High != null && Low != null)
+                if (High != null || Low != null)
                 {
                     if (resultValue > High)
                     {
@@ -129,28 +129,6 @@ namespace MediTech.Model
                     else if (resultValue < Low)
                     {
                         IsAbnormal = "L";
-                    }
-                    else
-                    {
-                        IsAbnormal = "";
-                    }
-                }
-                else if (High == null && Low != null)
-                {
-                    if (resultValue < Low)
-                    {
-                        IsAbnormal = "L";
-                    }
-                    else
-                    {
-                        IsAbnormal = "";
-                    }
-                }
-                else if (Low == null && High != null)
-                {
-                    if (resultValue > High)
-                    {
-                        IsAbnormal = "H";
                     }
                     else
                     {
