@@ -13,6 +13,8 @@ using MediTech.Views;
 using MediTech.Reports.Operating.Lab;
 using DevExpress.XtraReports.UI;
 using MediTech.Model.Report;
+using MediTech.Models;
+using MediTech.Reports.Operating.Patient;
 
 namespace MediTech.ViewModels
 {
@@ -110,7 +112,12 @@ namespace MediTech.ViewModels
             get { return _SelectRequestItem; }
             set { Set(ref _SelectRequestItem, value); }
         }
-
+        private int _No;
+        public int No
+        {
+            get { return _No; }
+            set { Set(ref _No, value); }
+        }
         private string _LabNumber;
 
         public string LabNumber
@@ -191,6 +198,40 @@ namespace MediTech.ViewModels
             get { return _SelectRequestDetailLab; }
             set { Set(ref _SelectRequestDetailLab, value); }
         }
+
+        private LookupItemModel _SelectPrinter;
+        public LookupItemModel SelectPrinter
+        {
+            get { return _SelectPrinter; }
+            set { Set(ref _SelectPrinter, value); }
+        }
+
+        private List<LookupItemModel> _PrinterLists;
+        public List<LookupItemModel> PrinterLists
+        {
+            get { return _PrinterLists; }
+            set { Set(ref _PrinterLists, value); }
+        }
+
+        private ObservableCollection<StoreItemList> _StoreOrderList;
+        public ObservableCollection<StoreItemList> StoreOrderList
+        {
+            get { return _StoreOrderList; }
+            set { Set(ref _StoreOrderList, value); }
+        }
+
+        private ObservableCollection<RequestLabModel> _SelectPatient;
+        public ObservableCollection<RequestLabModel> SelectPatient
+        {
+            get
+            {
+                return _SelectPatient
+                    ?? (_SelectPatient = new ObservableCollection<RequestLabModel>());
+            }
+
+            set { Set(ref _SelectPatient, value); }
+        }
+        
         #endregion
 
         #region Command
@@ -282,9 +323,103 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _PrintStickerCommand;
+        public RelayCommand PrintStickerCommand
+        {
+            get { return _PrintStickerCommand ?? (_PrintStickerCommand = new RelayCommand(PrintSticker)); }
+        }
+
         #endregion
 
         #region Method
+        private void PrintSticker()
+        {
+            if (SelectPrinter == null)
+            {
+                WarningDialog("กรุณาเลือก Printer");
+                return;
+            }
+            try
+            {
+                if (RequestLabs != null && RequestLabs.Count > 0)
+                {
+                    LabOrderList view = (LabOrderList)this.View;
+                    foreach (var item in SelectPatient)
+                    {
+                        PatientStickerBarcode rpt = new PatientStickerBarcode();
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+                        string gender;
+                        switch (item.Gender)
+                        {
+                            case "หญิง (Female)":
+                            case "F":
+                                gender = "(F)";
+                                break;
+                            case "ชาย (Male)":
+                            case "M":
+                                gender = "(M)";
+                                break;
+                            default:
+                                gender = "(N/A)";
+                                break;
+                        }
+
+                        rpt.Parameters["No"].Value = item.No;
+                        rpt.Parameters["PatientName"].Value = item.PatientName + " " + gender;
+                        rpt.Parameters["HN"].Value = item.PatientID;
+                        rpt.Parameters["Age"].Value = item.PatientAge;
+                        rpt.Parameters["BirthDttm"].Value = item.BirthDate != null ? item.BirthDateString : "";
+                        rpt.Parameters["CompanyName"].Value = item.PayorName;
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                       
+                        printTool.Print(SelectPrinter.Display);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+
+
+
+
+
+
+            //var printStickers = StoreOrderList.Where(p => p.IsSelected);
+            //if (printStickers != null && printStickers.Count() > 0)
+            //{
+            //    var groupItemStore = printStickers.GroupBy(p => new
+            //    {
+            //        p.IdentifyingUID,
+            //        p.ItemName
+            //    })
+            //         .Select(
+            //         g => new
+            //         {
+            //             PrescriptionItemUID = g.FirstOrDefault().IdentifyingUID,
+            //             ExpiryDate = g.Max(expy => expy.ExpiryDate)
+            //         });
+
+
+            //    foreach (var item in groupItemStore)
+            //    {
+            //        PatientSticker rpt = new PatientSticker();
+            //        ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+            //        rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
+            //        rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
+            //        rpt.RequestParameters = false;
+            //        rpt.ShowPrintMarginsWarning = false;
+            //        printTool.Print(SelectPrinter.Display);
+            //    }
+            //}
+        }
 
         public LabOrderListViewModel()
         {
@@ -298,15 +433,26 @@ namespace MediTech.ViewModels
 
             RequestStatus = refValue.Where(p => p.ValueCode == "RAISED"
                 || p.ValueCode == "REVIW"
-    || p.ValueCode == "SAMPLCOL"
-    || p.ValueCode == "ACPSMP"
-    || p.ValueCode == "PARCOLLEC"
-    || p.ValueCode == "PREVI"
-    || p.ValueCode == "PRCAN"
-    || p.ValueCode == "PARCMP"
-    || p.ValueCode == "CANCLD").OrderBy(p => p.Display).ToList();
+                || p.ValueCode == "SAMPLCOL"
+                || p.ValueCode == "ACPSMP"
+                || p.ValueCode == "PARCOLLEC"
+                || p.ValueCode == "PREVI"
+                || p.ValueCode == "PRCAN"
+                || p.ValueCode == "PARCMP"
+                || p.ValueCode == "CANCLD").OrderBy(p => p.Display).ToList();
 
+            PrinterLists = new List<LookupItemModel>();
+            int i = 1;
+            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                LookupItemModel lookupData = new LookupItemModel();
+                lookupData.Key = i;
+                lookupData.Display = printer;
+                PrinterLists.Add(lookupData);
+                i++;
+            }
         }
+
 
         private void SearchLabOrder()
         {
@@ -324,6 +470,13 @@ namespace MediTech.ViewModels
             }
 
             RequestLabs =  DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, payorDetailUID, organisationUID);
+
+            if (RequestLabs != null && RequestLabs.Count > 0)
+            {
+                int i = 1;
+                RequestLabs.ForEach(p => p.No = i++);
+
+            }
             RequestDetailLabs = null;
         }
 

@@ -8,6 +8,7 @@ namespace MediTech.Model
 {
     public class RequestLabModel
     {
+        public int No { get; set; }
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
         public long RequestUID { get; set; }
@@ -25,12 +26,12 @@ namespace MediTech.Model
         public int SEXXXUID { get; set; }
         public double? Height { get; set; }
         public string PatientAddress { get; set; }
-        public DateTime BirthDate { get; set; }
+        public DateTime? BirthDate { get; set; }
         public string BirthDateString
         {
             get
             {
-                return BirthDate != null ? BirthDate.ToString("dd/MM/yyyy") : "";
+                return BirthDate != null ? BirthDate.Value.ToString("dd/MM/yyyy") : "";
             }
         }
         public DateTime RequestedDttm { get; set; }

@@ -450,8 +450,8 @@ namespace MediTech.ViewModels
                     {
                         string patientName = SelectRequestLab.PatientName;
                         string patientID = SelectRequestLab.PatientID;
-                        string birthDate = SelectRequestLab.BirthDate != DateTime.MinValue ? SelectRequestLab.BirthDate.ToString("dd/MM/yyyy") : "";
-                        string age = SelectRequestLab.BirthDate != DateTime.MinValue ? ShareLibrary.UtilDate.calAgeFromBirthDate(SelectRequestLab.BirthDate) : "";
+                        string birthDate = SelectRequestLab.BirthDate != DateTime.MinValue ? SelectRequestLab.BirthDate.Value.ToString("dd/MM/yyyy") : "";
+                        string age = SelectRequestLab.BirthDate != DateTime.MinValue ? ShareLibrary.UtilDate.calAgeFromBirthDate(SelectRequestLab.BirthDate.Value) : "";
                         string requestNumber = SelectRequestLab.LabNumber;
                         foreach (var specimen in specimenSticker)
                         {

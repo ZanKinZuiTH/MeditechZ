@@ -411,8 +411,8 @@ namespace MediTech.ViewModels
                     {
                         string patientName = SelectRequestLab.PatientName;
                         string patientID = SelectRequestLab.PatientID;
-                        string birthDate = SelectRequestLab.BirthDate != DateTime.MinValue ? SelectRequestLab.BirthDate.ToString("dd/MM/yyyy") : "";
-                        string age = SelectRequestLab.BirthDate != DateTime.MinValue ? ShareLibrary.UtilDate.calAgeFromBirthDate(SelectRequestLab.BirthDate) : "";
+                        string birthDate = SelectRequestLab.BirthDate != DateTime.MinValue ? SelectRequestLab.BirthDate.Value.ToString("dd/MM/yyyy") : "";
+                        string age = SelectRequestLab.BirthDate != DateTime.MinValue ? ShareLibrary.UtilDate.calAgeFromBirthDate(SelectRequestLab.BirthDate.Value) : "";
 
                         string requestNumber = SelectRequestLab.LabNumber;
                         foreach (var specimen in specimenSticker)
@@ -518,7 +518,7 @@ namespace MediTech.ViewModels
                 string surName = patRequest.LastName;
                 string midName = patRequest.MiddleName;
                 string foreName = patRequest.FirstName;
-                string birthDate = patRequest.BirthDate != null ? patRequest.BirthDate.ToString("yyyyMMdd") : "";
+                string birthDate = patRequest.BirthDate != null ? patRequest.BirthDate.Value.ToString("yyyyMMdd") : "";
                 string sex = patRequest.Gender == "ชาย (Male)" ? "M" : patRequest.Gender == "หญิง (Female)" ? "F" : patRequest.Gender == "ไม่ระบุ (Unknown)" ? "U" : "";
                 string orderDate = patRequest.RequestedDttm.ToString("dd/MM/yyyy");
                 string receivedDttm = now.ToString("yyyyMMddHHmmss");
@@ -530,7 +530,7 @@ namespace MediTech.ViewModels
                 string orderName = "";
                 string height = patRequest.Height?.ToString();
                 string physiologicalType = patRequest.Gender == "ชาย (Male)" ? "1" : patRequest.Gender == "หญิง (Female)" ? "2" : "";
-                string physiologicalAge = patRequest.BirthDate != null ? ShareLibrary.UtilDate.calAgeFromBirthDate(patRequest.BirthDate) : "";
+                string physiologicalAge = patRequest.BirthDate != null ? ShareLibrary.UtilDate.calAgeFromBirthDate(patRequest.BirthDate.Value) : "";
                 h = @"H|\^&|||LIS|||||HIS|P||" + DateTime.Now.ToString("yyyyMMddHHmmss");
                 p = @"P|1|" + orderNumber + "|" + patientID + "||" + surName + "^" + midName + "^" + foreName + "||" + birthDate + "|" + sex + "||^^X^||height^" + height + "|||||||||" + orderDate + "|-|" + receivedDttm + "^" + registedDttm + "|" + priority + "|" + computerName + "||" + orderGroup + "^|||||0|" + orderCode + "^" + orderName + "|" + physiologicalType + "^" + physiologicalAge + "";
                 l = @"L|1|N";
