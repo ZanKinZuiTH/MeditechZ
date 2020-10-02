@@ -149,7 +149,8 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl x:Name="grdRequestList" ItemsSource="{Binding RequestLabs}" SelectedItem="{Binding SelectRequestLab}">
+                <dxg:GridControl x:Name="grdRequestList" ItemsSource="{Binding RequestLabs}" SelectionMode="Row" SelectedItem="{Binding SelectRequestLab}">
+                    <dxg:GridColumn Header="No" FieldName="No"  Width="30" ReadOnly="True"/>
                     <dxg:GridColumn Header="Lab Number" FieldName="LabNumber" Width="80"/>
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
@@ -163,7 +164,10 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="False">
+                        <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="False" 
+                                       ShowCheckBoxSelectorColumn="True" 
+                                       ShowCheckBoxSelectorInGroupRow="True"
+                                       SelectedRowsSource="{Binding SelectPatient}">
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
@@ -174,21 +178,41 @@
                     <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="grvRequestItemList" ShowGroupPanel="False" AllowEditing="False">
+                        <dxg:TableView x:Name="grvRequestItemList" ShowGroupPanel="False" AllowEditing="False" >
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton Command="{Binding PrintPreviewCommand}" Content="Print Preview" Height="25" Width="93"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
-                </dxlc:LayoutItem>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                      SelectedItem="{Binding SelectPrinter}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                        Width="180" Height="25"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding PrintStickerCommand}"
+                                     Height="25" >
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="Print sticker" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintPreviewCommand}" Content="Print Preview" Height="25" Width="93"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
