@@ -388,7 +388,7 @@ namespace MediTech.ViewModels
                                 continue;
                             }
 
-                            var dataPatientRequest = DataService.Lab.GetFirstRequesDetailLab(patientID, ownerOrganisationUID
+                            var dataPatientRequest = DataService.Lab.GetRequesDetailLabForImport(patientID, ownerOrganisationUID
                                 , payorDetailUID, requestItemUID, DateFrom, DateTo);
                             view.gvTestParameter.AddNewRow();
                             int newRowHandle = DataControlBase.NewItemRowHandle;
@@ -506,7 +506,7 @@ namespace MediTech.ViewModels
                                                          select c.ColumnName).FirstOrDefault();
                                         view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
                                     }
-  
+
                                 }
 
                                 view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
@@ -627,6 +627,14 @@ namespace MediTech.ViewModels
                             {
                                 resultComponent.ReferenceRange = itemRange.DisplayValue;
                             }
+
+                            if (resultComponent.ResultItemCode == "D0250" || resultComponent.ResultItemCode == "D0260")
+                            {
+                                if (resultComponent.ResultValue != itemRange.DisplayValue)
+                                {
+                                    resultComponent.IsAbnormal = "H";
+                                }
+                            }
                         }
                         else
                         {
@@ -645,6 +653,8 @@ namespace MediTech.ViewModels
                             }
 
                         }
+
+
 
                         labResult.ResultComponents.Add(resultComponent);
                     }

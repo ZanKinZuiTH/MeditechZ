@@ -38,10 +38,10 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public RequestDetailLabModel GetFirstRequesDetailLab(string patientID, int? ownerOrganisationUID, int? payorDetailUID
+        public RequestDetailLabModel GetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
     , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
-            string requestApi = string.Format("Api/Lab/GetFirstRequesDetailLab?patientID={0}&ownerOrganisationUID={1}" +
+            string requestApi = string.Format("Api/Lab/GetRequesDetailLabForImport?patientID={0}&ownerOrganisationUID={1}" +
                 "&payorDetailUID={2}&requestItemUID={3}&dateFrom={4:MM/dd/yyyy}&dateTo={5:MM/dd/yyyy}", patientID,ownerOrganisationUID,payorDetailUID,requestItemUID
                 , dateFrom,dateTo);
             RequestDetailLabModel data = MeditechApiHelper.Get<RequestDetailLabModel>(requestApi);
