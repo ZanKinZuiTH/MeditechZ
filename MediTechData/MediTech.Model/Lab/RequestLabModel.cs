@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class RequestLabModel
+    public class RequestLabModel : INotifyPropertyChanged
     {
         public int No { get; set; }
         public long PatientUID { get; set; }
@@ -46,6 +47,24 @@ namespace MediTech.Model
         public int VISTSUID { get; set; }
         public string VisitStatus { get; set; }
         public List<RequestDetailLabModel> RequestDetailLabs { get; set; }
+
+
+        private bool _Selected;
+
+        public bool Selected
+        {
+            get { return _Selected; }
+            set { _Selected = value; OnPropertyRaised("Selected"); }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        private void OnPropertyRaised(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
 
     }
 }

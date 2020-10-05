@@ -172,7 +172,8 @@ namespace MediTech.ViewModels
         public RequestLabModel SelectRequestLab
         {
             get { return _SelectRequestLab; }
-            set {
+            set
+            {
                 Set(ref _SelectRequestLab, value);
                 if (SelectRequestLab != null)
                 {
@@ -220,18 +221,25 @@ namespace MediTech.ViewModels
             set { Set(ref _StoreOrderList, value); }
         }
 
-        private ObservableCollection<RequestLabModel> _SelectPatient;
-        public ObservableCollection<RequestLabModel> SelectPatient
-        {
-            get
-            {
-                return _SelectPatient
-                    ?? (_SelectPatient = new ObservableCollection<RequestLabModel>());
-            }
+        private bool _SelectAll;
 
-            set { Set(ref _SelectPatient, value); }
+        public bool SelectAll
+        {
+            get { return _SelectAll; }
+            set
+            {
+                Set(ref _SelectAll, value);
+                if (RequestLabs != null && RequestLabs.Count > 0)
+                {
+                    foreach (var item in RequestLabs)
+                    {
+                        item.Selected = SelectAll;
+                    }
+                }
+            }
         }
-        
+
+
         #endregion
 
         #region Command
@@ -341,10 +349,11 @@ namespace MediTech.ViewModels
             }
             try
             {
-                if (RequestLabs != null && RequestLabs.Count > 0)
+                var requestLabSelected = RequestLabs.Where(p => p.Selected);
+                if (requestLabSelected != null && requestLabSelected.Count() > 0)
                 {
                     LabOrderList view = (LabOrderList)this.View;
-                    foreach (var item in SelectPatient)
+                    foreach (var item in requestLabSelected)
                     {
                         PatientStickerBarcode rpt = new PatientStickerBarcode();
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -373,7 +382,7 @@ namespace MediTech.ViewModels
                         rpt.Parameters["CompanyName"].Value = item.PayorName;
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
-                       
+
                         printTool.Print(SelectPrinter.Display);
                     }
 
@@ -451,6 +460,7 @@ namespace MediTech.ViewModels
                 PrinterLists.Add(lookupData);
                 i++;
             }
+            SelectPrinter = PrinterLists.FirstOrDefault(p => p.Display.ToLower().Contains("Sticker"));
         }
 
 
@@ -469,7 +479,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            RequestLabs =  DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, payorDetailUID, organisationUID);
+            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, payorDetailUID, organisationUID);
 
             if (RequestLabs != null && RequestLabs.Count > 0)
             {
@@ -530,7 +540,7 @@ namespace MediTech.ViewModels
             {
                 EnterResultsLab enterResult = new EnterResultsLab();
                 (enterResult.DataContext as EnterResultsLabViewModel).AssignModel(SelectRequestLab);
-                EnterResultsLabViewModel enterResultsLabModel = (EnterResultsLabViewModel)LaunchViewDialog(enterResult, "ENTRE", false,false);
+                EnterResultsLabViewModel enterResultsLabModel = (EnterResultsLabViewModel)LaunchViewDialog(enterResult, "ENTRE", false, false);
 
                 if (enterResultsLabModel == null)
                 {

@@ -149,9 +149,10 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl x:Name="grdRequestList" ItemsSource="{Binding RequestLabs}" SelectionMode="Row" SelectedItem="{Binding SelectRequestLab}">
+                <dxg:GridControl x:Name="grdRequestList" ItemsSource="{Binding RequestLabs}"  SelectedItem="{Binding SelectRequestLab}">
+                    <dxg:GridColumn Header="" FieldName="Selected"  Width="30" />
                     <dxg:GridColumn Header="No" FieldName="No"  Width="30" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Lab Number" FieldName="LabNumber" Width="80"/>
+                    <dxg:GridColumn Header="Lab Number" FieldName="LabNumber" Width="80" ReadOnly="True"/>
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="PatientAge" ReadOnly="True"/>
@@ -164,10 +165,7 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="False" 
-                                       ShowCheckBoxSelectorColumn="True" 
-                                       ShowCheckBoxSelectorInGroupRow="True"
-                                       SelectedRowsSource="{Binding SelectPatient}">
+                        <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="True">
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
@@ -186,6 +184,9 @@
             <dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
                     <dxlc:LayoutItem>
+                        <dxe:CheckEdit Content="SelectAll" IsChecked="{Binding SelectAll}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Margin="10,0,0,0">
                         <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
                                       DisplayMember="Display"
