@@ -132,7 +132,7 @@ namespace MediTech.Model
                     }
                     else
                     {
-                        IsAbnormal = "";
+                        IsAbnormal = null;
                     }
                 }
             }
