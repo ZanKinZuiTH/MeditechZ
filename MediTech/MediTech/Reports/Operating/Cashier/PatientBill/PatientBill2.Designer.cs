@@ -231,7 +231,6 @@
             // 
             // xrLabel45
             // 
-            this.xrLabel45.CanGrow = false;
             this.xrLabel45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayorName")});
             this.xrLabel45.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
@@ -750,7 +749,6 @@
             // 
             // xrLabel44
             // 
-            this.xrLabel44.CanGrow = false;
             this.xrLabel44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayorName")});
             this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
