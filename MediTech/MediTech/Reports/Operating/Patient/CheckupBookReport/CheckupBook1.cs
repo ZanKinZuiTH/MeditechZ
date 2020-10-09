@@ -430,7 +430,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         || p.RequestItemName.Contains("Methanol (Urine)")
                         || p.RequestItemName.Contains("Methyrene chloride in Blood")
                         || p.RequestItemName.Contains("Acetone in Urine")
-                        || p.RequestItemName.Contains("Hexane in Urine"))
+                        || p.RequestItemName.Contains("Hexane in Urine")
+                        || p.RequestItemName.Contains("Isopropyl in Urine"))
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -2316,6 +2317,11 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 }
 
                 page4.cellLeadRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75")?.ReferenceRange;
+                if (page4.cellLeadRange.Text != null && page4.cellLeadRange.Text.Length > 20)
+                {
+                    page4.cellLeadRange.Font = new Font("Angsana New", 7);
+                }
+
                 page4.cellLead1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year1)?.ResultValue;
                 page4.cellLead2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.ResultValue;
                 page4.cellLead3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.ResultValue;
@@ -2529,6 +2535,33 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 {
                     page4.cellHexane3.ForeColor = (HexaneAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page4.cellHexane3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                page4.cellIsopropanolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130")?.ReferenceRange;
+                page4.cellIsopropanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.ResultValue;
+                page4.cellIsopropanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.ResultValue;
+                page4.cellIsopropanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.ResultValue;
+
+                string IsopropanolAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.IsAbnormal;
+                string IsopropanolAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.IsAbnormal;
+                string IsopropanolAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(IsopropanolAbnormal1))
+                {
+                    page4.cellIsopropanol1.ForeColor = (IsopropanolAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page4.cellIsopropanol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(IsopropanolAbnormal2))
+                {
+                    page4.cellIsopropanol2.ForeColor = (IsopropanolAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page4.cellIsopropanol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(IsopropanolAbnormal3))
+                {
+                    page4.cellIsopropanol3.ForeColor = (IsopropanolAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page4.cellIsopropanol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
             else
