@@ -54,6 +54,8 @@
                                           ValueMember="Key"
                                           SelectedItem="{Binding SelectCategory}"/>
                                 </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical">
                                 <dxlc:LayoutItem>
                                     <dxlc:LayoutItem.Label>
                                         <StackPanel Orientation="Horizontal">
@@ -75,8 +77,6 @@
                                           ValueMember="Key"
                                           SelectedItem="{Binding SelectImageType}"/>
                                 </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Vertical">
                                 <dxlc:LayoutItem Label="เปิดใช้งาน">
                                     <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
                                 </dxlc:LayoutItem>

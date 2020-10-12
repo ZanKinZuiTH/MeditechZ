@@ -925,7 +925,7 @@ namespace MediTech.ViewModels
                     CheckBirthDttm(out birthDttm);
                     if (birthDttm == null)
                     {
-                        birthDttm = BirthDate != null ? BirthDate.Value : (DateTime?)null; ;
+                        birthDttm = BirthDate != null ? BirthDate.Value : (DateTime?)null;
                     }
 
                     PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName, birthDttm.Value, SelectedGender.Key);

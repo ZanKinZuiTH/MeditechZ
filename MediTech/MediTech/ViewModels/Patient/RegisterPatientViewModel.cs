@@ -391,6 +391,7 @@ namespace MediTech.ViewModels
                 if (managePatient.DataContext is ManagePatientViewModel)
                 {
                     ManagePatientViewModel managePatViewModel = (managePatient.DataContext as ManagePatientViewModel);
+                    managePatViewModel.View = managePatient;
                     managePatViewModel.ClearPropertiesControl();
                     managePatViewModel.Booking = booking;
 

@@ -21,6 +21,7 @@ using PACSWebApi.Helpter;
 using System.Data.Entity.Core.EntityClient;
 using System.Data.Entity.Migrations;
 using PACS.DataBase;
+using System.Transactions;
 
 namespace MediTechWebApi.Controllers
 {
@@ -459,24 +460,11 @@ and DATEDIFF(year,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
         [HttpPost]
         public HttpResponseMessage SendDicomFile(SendDicomFilesModel sendDicomModel)
         {
-            string dicomPath = System.Configuration.ConfigurationManager.AppSettings["DICOMPath"].ToString();
-            string studyPath = dicomPath + sendDicomModel.StudyInstanceUID;
-            string seriesPath = studyPath + "\\" + sendDicomModel.SeriesInstanceUID;
-            string instancePath = seriesPath + "\\" + sendDicomModel.SOPInstanceUID + ".dcm";
             bool flag = false;
             try
             {
-                MemoryStream ms = new MemoryStream(sendDicomModel.DicomArray);
-                var dicomFile = Dicom.DicomFile.Open(ms);
 
-                JIUN.DSP.Entities.Instance instancesSonic;
-                PACSFunctions.SaveDicomFile(studyPath, seriesPath, instancePath, dicomFile, out instancesSonic);
-                if (instancesSonic != null)
-                {
-
-                    SaveDicomData(dicomFile.Dataset, instancesSonic);
-                }
-
+                SaveDicomData(sendDicomModel);
 
                 flag = true;
                 return Request.CreateResponse(HttpStatusCode.OK, flag);
@@ -721,205 +709,237 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
 
         [Route("SaveDicomData")]
         [HttpPost]
-        public void SaveDicomData(DicomDataset dicomDataSet, JIUN.DSP.Entities.Instance instancesSonic)
+        public void SaveDicomData(SendDicomFilesModel sendDicomModel)
         {
             try
             {
-                DateTime now = DateTime.Now;
-                string patientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
-                Patients pat = dbPACS.Patients.Find(patientID);
-                if (pat == null)
+                MemoryStream ms = new MemoryStream(sendDicomModel.DicomArray);
+                var dicomFile = Dicom.DicomFile.Open(ms);
+                var dicomDataSet = dicomFile.Dataset;
+                using (var tran = new TransactionScope())
                 {
-                    pat = new Patients();
-                    pat.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
-                    pat.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
-                    pat.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
-                    pat.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
-                    pat.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
+
+                    DateTime now = DateTime.Now;
+                    string patientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
+                    Patients pat = dbPACS.Patients.Find(patientID);
+                    if (pat == null)
+                    {
+                        pat = new Patients();
+                        pat.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
+                        pat.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
+                        pat.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
+                        pat.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
+                        pat.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
+                    }
+
+
+                    pat.Edited = now;
+
+                    dbPACS.Patients.AddOrUpdate(pat);
+                    dbPACS.SaveChanges();
+
+                    string StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
+                    Studies studie = dbPACS.Studies.Find(StudyInstanceUID);
+
+                    if (studie == null)
+                    {
+                        studie = new Studies();
+                    }
+                    studie.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
+                    studie.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
+                    studie.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
+                    studie.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
+                    //studie.PerformingPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PerformingPhysicianName, null);
+                    //studie.ReferringPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ReferringPhysicianName, null);
+                    studie.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
+                    studie.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
+                    studie.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
+                    studie.StudyDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDescription, null);
+                    studie.StudyID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyID, null);
+
+                    DateTime studyDateTime = dicomDataSet.GetDateTime(DicomTag.StudyDate, DicomTag.StudyTime);
+                    studie.StudyDate = studyDateTime.ToString("yyyy/MM/dd");
+                    studie.StudyTime = studyDateTime.ToString("HH:mm:ss");
+
+
+                    studie.AccessionNumber = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.AccessionNumber, null);
+                    studie.InstitutionName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.InstitutionName, null);
+                    studie.ModalitiesInStudy = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
+                    studie.BodyPartsInStudy = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
+                    //studie.NumberOfStudyRelatedSeries = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfStudyRelatedSeries,1);
+                    //studie.NumberOfStudyRelatedInstances = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfStudyRelatedInstances,1);
+                    studie.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
+                    studie.ReportStatus = 0;
+                    studie.Edited = now;
+
+                    dbPACS.Studies.AddOrUpdate(studie);
+                    dbPACS.SaveChanges();
+
+                    string SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
+                    Series series = dbPACS.Series.Find(SeriesInstanceUID);
+
+                    if (series == null)
+                    {
+                        series = new Series();
+
+                    }
+                    series.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
+                    series.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
+                    series.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
+                    series.PatientID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientID, null);
+                    series.SeriesNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SeriesNumber, null);
+
+
+                    DateTime seriesDateTime = dicomDataSet.GetDateTime(DicomTag.SeriesDate, DicomTag.SeriesTime);
+                    series.SeriesDate = seriesDateTime.ToString("yyyy/MM/dd");
+                    series.SeriesTime = seriesDateTime.ToString("HH:mm:ss");
+
+
+
+                    series.SeriesDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDescription, null);
+                    series.Modality = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
+                    series.BodypartExamined = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
+                    //series.NumberOfSeriesRelatedInstances = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfSeriesRelatedInstances,1);
+                    series.Edited = now;
+
+                    dbPACS.Series.AddOrUpdate(series);
+                    dbPACS.SaveChanges();
+
+                    string SOPInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID);
+                    Instances instances = dbPACS.Instances.FirstOrDefault(p => p.SOPInstanceUID == SOPInstanceUID
+                    && p.SeriesInstanceUID == SeriesInstanceUID && p.StudyInstanceUID == StudyInstanceUID);
+                    bool newInstances;
+                    if (instances == null)
+                    {
+                        instances = new Instances();
+                        newInstances = true;
+                    }
+                    else
+                    {
+                        dbPACS.Instances.Attach(instances);
+                        newInstances = false;
+                    }
+                    instances.SOPInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID);
+                    instances.SOPInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID);
+                    instances.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
+                    instances.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
+                    instances.SOPClassUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPClassUID);
+                    instances.TransferSyntaxUID = "";
+                    instances.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
+                    instances.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
+                    //instances.ReferringPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ReferringPhysicianName, null);
+                    //instances.PerformingPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PerformingPhysicianName, null);
+                    instances.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
+
+                    instances.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
+                    instances.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
+                    instances.StudyDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDescription, null);
+                    instances.StudyID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyID, null);
+                    instances.StudyDate = studie.StudyDate;
+                    instances.StudyTime = studie.StudyTime;
+                    //instances.StudyDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDate, null);
+                    //instances.StudyTime = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyTime, null);
+                    instances.AccessionNumber = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.AccessionNumber, null);
+                    instances.InstitutionName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.InstitutionName, null);
+                    instances.SeriesNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SeriesNumber, null);
+
+                    instances.SeriesDate = series.SeriesDate;
+                    instances.SeriesTime = series.SeriesTime;
+                    //instances.SeriesDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDate, null);
+                    //instances.SeriesTime = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesTime, null);
+                    instances.SeriesDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDescription, null);
+                    instances.Modality = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
+                    instances.BodypartExamined = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
+                    instances.InstanceNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.InstanceNumber, null);
+                    instances.NumberOfFrames = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.NumberOfFrames, null);
+                    instances.PixelSpacing = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PixelSpacing, null);
+                    instances.PixelAspectRatio = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PixelAspectRatio, null);
+                    instances.SliceThickness = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SliceThickness, null);
+                    instances.SpacingBetweenSlices = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpacingBetweenSlices, null);
+                    instances.SliceLocation = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SliceLocation, null);
+                    instances.PatientOrientation = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientOrientation, null);
+                    instances.ImagePositionPatient = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImagePositionPatient, null);
+                    instances.ImageOrientationPatient = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImageOrientationPatient, null);
+
+                    instances.RescaleIntercept = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.RescaleIntercept, null);
+                    instances.RescaleSlope = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.RescaleSlope, null);
+                    instances.RescaleType = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.RescaleType, null);
+                    instances.WindowWidth = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.WindowWidth, null);
+                    instances.WindowCenter = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.WindowCenter, null);
+                    instances.SamplesPerPixel = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SamplesPerPixel, null);
+                    instances.PlanarConfiguration = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PlanarConfiguration, null);
+                    instances.BitsAllocated = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.BitsAllocated, null);
+                    instances.BitsStored = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.BitsStored, null);
+                    instances.HighBit = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.HighBit, null);
+                    instances.PixelRepresentation = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PixelRepresentation, null);
+
+
+                    //instances.PixelData = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PixelData, 1034);
+
+
+
+                    string pixelSpacing = "";
+                    dicomDataSet.TryGetString(DicomTag.PixelSpacing, out pixelSpacing);
+
+                    instances.PixelSpacing = pixelSpacing;
+
+
+
+                    string photometricInterpretation = dicomDataSet.GetSingleValue<string>(DicomTag.PhotometricInterpretation);
+
+                    //instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
+                    instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
+
+                    instances.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
+                    instances.FileSize = 0;
+                    instances.Method = 2;
+                    instances.Created = now;
+
+                    if (newInstances)
+                    {
+                        dbPACS.Instances.Add(instances);
+                    }
+                    dbPACS.SaveChanges();
+
+                    string dicomPath = System.Configuration.ConfigurationManager.AppSettings["DICOMPath"].ToString();
+                    string studyPath = dicomPath + sendDicomModel.StudyInstanceUID;
+                    string seriesPath = studyPath + "\\" + sendDicomModel.SeriesInstanceUID;
+                    string instancePath = seriesPath + "\\" + sendDicomModel.SOPInstanceUID + ".dcm";
+                    JIUN.DSP.Entities.Instance instancesSonic;
+                    PACSFunctions.SaveDicomFile(studyPath, seriesPath, instancePath, dicomFile, out instancesSonic);
+
+                    //NumberOfPatientRelated
+                    dbPACS.Patients.Attach(pat);
+                    pat.NumberOfPatientRelatedStudies = dbPACS.Studies.Count(p => p.PatientID == pat.PatientID);
+                    pat.NumberOfPatientRelatedSeries = dbPACS.Series.Count(p => p.PatientID == pat.PatientID);
+                    pat.NumberOfPatientRelatedInstances = dbPACS.Instances.Count(p => p.PatientID == pat.PatientID);
                     pat.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
+
+                    //NumberOfStudyRelated
+                    dbPACS.Studies.Attach(studie);
+                    studie.NumberOfStudyRelatedSeries = dbPACS.Series.Count(p => p.StudyInstanceUID == studie.StudyInstanceUID);
+                    studie.NumberOfStudyRelatedInstances = dbPACS.Instances.Count(p => p.StudyInstanceUID == studie.StudyInstanceUID);
+                    studie.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
+
+                    //NumberOfSeriesRelated
+                    dbPACS.Series.Attach(series);
+                    series.NumberOfSeriesRelatedInstances = dbPACS.Instances.Count(p => p.SeriesInstanceUID == series.SeriesInstanceUID);
+                    series.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
+
+                    //UpdateInstances
+                    dbPACS.Instances.Attach(instances);
+                    instances.TransferSyntaxUID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.TransferSyntaxUID, instancesSonic.TransferSyntaxUID);
+                    instances.Width = instancesSonic.Width;
+                    instances.Height = instancesSonic.Height;
+                    instances.PixelData = instancesSonic.PixelData;
+                    instances.FileSize = instancesSonic.FileSize;
+                    instances.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
+                    instances.ImageType = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImageType, instancesSonic.ImageType);
+                    instances.LossyImageCompression = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.LossyImageCompression, instancesSonic.LossyImageCompression);
+
+                    dbPACS.SaveChanges();
+                    tran.Complete();
                 }
-
-
-                pat.Edited = now;
-
-                dbPACS.Patients.AddOrUpdate(pat);
-                dbPACS.SaveChanges();
-
-                string StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-                Studies studie = dbPACS.Studies.Find(StudyInstanceUID);
-
-                if (studie == null)
-                {
-                    studie = new Studies();
-                }
-                studie.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-                studie.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-                studie.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
-                studie.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
-                //studie.PerformingPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PerformingPhysicianName, null);
-                //studie.ReferringPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ReferringPhysicianName, null);
-                studie.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
-                studie.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
-                studie.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
-                studie.StudyDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDescription, null);
-                studie.StudyID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyID, null);
-
-                DateTime studyDateTime = dicomDataSet.GetDateTime(DicomTag.StudyDate, DicomTag.StudyTime);
-                studie.StudyDate = studyDateTime.ToString("yyyy/MM/dd");
-                studie.StudyTime = studyDateTime.ToString("HH:mm:ss");
-
-
-                studie.AccessionNumber = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.AccessionNumber, null);
-                studie.InstitutionName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.InstitutionName, null);
-                studie.ModalitiesInStudy = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
-                studie.BodyPartsInStudy = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
-                //studie.NumberOfStudyRelatedSeries = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfStudyRelatedSeries,1);
-                //studie.NumberOfStudyRelatedInstances = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfStudyRelatedInstances,1);
-                studie.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
-                studie.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
-                studie.ReportStatus = 0;
-                studie.Edited = now;
-
-                dbPACS.Studies.AddOrUpdate(studie);
-                dbPACS.SaveChanges();
-
-                string SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
-                Series series = dbPACS.Series.Find(SeriesInstanceUID);
-
-                if (series == null)
-                {
-                    series = new Series();
-
-                }
-                series.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
-                series.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
-                series.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-                series.PatientID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientID, null);
-                series.SeriesNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SeriesNumber, null);
-
-
-                DateTime seriesDateTime = dicomDataSet.GetDateTime(DicomTag.SeriesDate, DicomTag.SeriesTime);
-                series.SeriesDate = seriesDateTime.ToString("yyyy/MM/dd");
-                series.SeriesTime = seriesDateTime.ToString("HH:mm:ss");
-
-
-
-                series.SeriesDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDescription, null);
-                series.Modality = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
-                series.BodypartExamined = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
-                //series.NumberOfSeriesRelatedInstances = dicomDataSet.GetSingleValueOrDefault<int>(DicomTag.NumberOfSeriesRelatedInstances,1);
-                series.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
-                series.Edited = now;
-
-                dbPACS.Series.AddOrUpdate(series);
-                dbPACS.SaveChanges();
-
-                Instances instances = dbPACS.Instances.Find(dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID));
-                if (instances == null)
-                {
-                    instances = new Instances();
-                }
-                instances.SOPInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID);
-                instances.SOPInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPInstanceUID);
-                instances.SeriesInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.SeriesInstanceUID);
-                instances.StudyInstanceUID = dicomDataSet.GetSingleValue<string>(DicomTag.StudyInstanceUID);
-                instances.SOPClassUID = dicomDataSet.GetSingleValue<string>(DicomTag.SOPClassUID);
-                instances.TransferSyntaxUID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.TransferSyntaxUID, instancesSonic.TransferSyntaxUID);
-                instances.PatientID = dicomDataSet.GetSingleValue<string>(DicomTag.PatientID);
-                instances.PatientName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientName, null);
-                //instances.ReferringPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ReferringPhysicianName, null);
-                //instances.PerformingPhysicianName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PerformingPhysicianName, null);
-                instances.PatientComments = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientComments, null);
-
-                instances.PatientBirthDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientBirthDate, null);
-                instances.PatientSex = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientSex, null);
-                instances.StudyDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDescription, null);
-                instances.StudyID = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyID, null);
-                instances.StudyDate = studie.StudyDate;
-                instances.StudyTime = studie.StudyTime;
-                //instances.StudyDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyDate, null);
-                //instances.StudyTime = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.StudyTime, null);
-                instances.AccessionNumber = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.AccessionNumber, null);
-                instances.InstitutionName = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.InstitutionName, null);
-                instances.SeriesNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SeriesNumber, null);
-
-                instances.SeriesDate = series.SeriesDate;
-                instances.SeriesTime = series.SeriesTime;
-                //instances.SeriesDate = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDate, null);
-                //instances.SeriesTime = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesTime, null);
-                instances.SeriesDescription = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SeriesDescription, null);
-                instances.Modality = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.Modality, null);
-                instances.BodypartExamined = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.BodyPartExamined, null);
-                instances.InstanceNumber = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.InstanceNumber, null);
-                instances.NumberOfFrames = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.NumberOfFrames, null);
-                instances.PixelSpacing = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PixelSpacing, null);
-                instances.PixelAspectRatio = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PixelAspectRatio, null);
-                instances.SliceThickness = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SliceThickness, null);
-                instances.SpacingBetweenSlices = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpacingBetweenSlices, null);
-                instances.SliceLocation = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SliceLocation, null);
-                instances.PatientOrientation = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientOrientation, null);
-                instances.ImagePositionPatient = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImagePositionPatient, null);
-                instances.ImageOrientationPatient = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImageOrientationPatient, null);
-                instances.Width = instancesSonic.Width;
-                instances.Height = instancesSonic.Height;
-                instances.RescaleIntercept = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.RescaleIntercept, null);
-                instances.RescaleSlope = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.RescaleSlope, null);
-                instances.RescaleType = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.RescaleType, null);
-                instances.WindowWidth = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.WindowWidth, null);
-                instances.WindowCenter = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.WindowCenter, null);
-                instances.SamplesPerPixel = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.SamplesPerPixel, null);
-                instances.PlanarConfiguration = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PlanarConfiguration, null);
-                instances.BitsAllocated = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.BitsAllocated, null);
-                instances.BitsStored = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.BitsStored, null);
-                instances.HighBit = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.HighBit, null);
-                instances.PixelRepresentation = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PixelRepresentation, null);
-
-
-                //instances.PixelData = dicomDataSet.GetSingleValueOrDefault<int?>(DicomTag.PixelData, 1034);
-
-                instances.PixelData = instancesSonic.PixelData;
-
-                string pixelSpacing = "";
-                dicomDataSet.TryGetString(DicomTag.PixelSpacing, out pixelSpacing);
-
-                instances.PixelSpacing = pixelSpacing;
-
-                instances.FileSize = instancesSonic.FileSize;
-
-                instances.SpecificCharacterSet = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.SpecificCharacterSet, instancesSonic.SpecificCharacterSet);
-                instances.ImageType = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.ImageType, instancesSonic.ImageType);
-
-                string photometricInterpretation = dicomDataSet.GetSingleValue<string>(DicomTag.PhotometricInterpretation);
-
-                //instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
-                instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
-
-                instances.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
-                instances.LossyImageCompression = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.LossyImageCompression, instancesSonic.LossyImageCompression);
-
-                instances.Method = 2;
-                instances.Created = now;
-                dbPACS.Instances.AddOrUpdate(instances);
-                dbPACS.SaveChanges();
-
-
-                //NumberOfPatientRelated
-                dbPACS.Patients.Attach(pat);
-                pat.NumberOfPatientRelatedStudies = dbPACS.Studies.Count(p => p.PatientID == pat.PatientID);
-                pat.NumberOfPatientRelatedSeries = dbPACS.Series.Count(p => p.PatientID == pat.PatientID);
-                pat.NumberOfPatientRelatedInstances = dbPACS.Instances.Count(p => p.PatientID == pat.PatientID);
-
-                //NumberOfStudyRelated
-                dbPACS.Studies.Attach(studie);
-                studie.NumberOfStudyRelatedSeries = dbPACS.Series.Count(p => p.StudyInstanceUID == studie.StudyInstanceUID);
-                studie.NumberOfStudyRelatedInstances = dbPACS.Instances.Count(p => p.StudyInstanceUID == studie.StudyInstanceUID);
-
-                //NumberOfSeriesRelated
-                dbPACS.Series.Attach(series);
-                series.NumberOfSeriesRelatedInstances = dbPACS.Instances.Count(p => p.SeriesInstanceUID == series.SeriesInstanceUID);
-
-
-                dbPACS.SaveChanges();
             }
             catch (Exception)
             {

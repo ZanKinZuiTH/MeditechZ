@@ -42,6 +42,10 @@ namespace PACSWebApi.Helpter
                 //}
 
                 //dicomFile.Save(instancePath);
+                //using (FileStream input = new FileStream(instancePath, FileMode.Open, FileAccess.Read))
+                //{
+                //    instancesSonic = PACSFunctions.CreateInstance(input);
+                //}
                 if (returnValue == true)
                 {
                     WindowsIdentity newId = new WindowsIdentity(safeTokenHandle.DangerousGetHandle());
