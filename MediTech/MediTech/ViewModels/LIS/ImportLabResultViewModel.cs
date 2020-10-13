@@ -447,8 +447,8 @@ namespace MediTech.ViewModels
                                     {
                                         continue;
                                     }
-
-                                    if (columnName == "Leukocyte")
+                                    
+                                    if (columnName == "Blood")
                                     {
                                         string rbcValue = "";
                                         switch (item[columnName].ToString())
@@ -477,7 +477,7 @@ namespace MediTech.ViewModels
                                                          select c.ColumnName).FirstOrDefault();
                                         view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
                                     }
-                                    else if (columnName == "Blood")
+                                    else if (columnName == "Leukocyte")
                                     {
                                         string wbcValue = "";
                                         switch (item[columnName].ToString())

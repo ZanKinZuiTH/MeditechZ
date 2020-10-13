@@ -202,6 +202,58 @@
                        
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
+                <dx:DXTabItem Header="Result">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem Label="Result">
+                                <dxg:LookUpEdit Name="lkeResult" ItemsSource="{Binding RequestItemResult}"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          AllowNullInput="True"
+                                          AutoComplete="True" 
+                                          ImmediatePopup="True"
+                                          FindButtonPlacement = "Popup"
+                                          FindMode = "Always"
+                                          PopupMinHeight="100"
+                                          PopupMinWidth="100"
+                                          PopupHeight="400"
+                                          PopupWidth="600"                                    
+                                          AutoPopulateColumns="False"
+                                          IncrementalFiltering="True"
+                                          NullValueButtonPlacement="EditBox"
+                                          SelectedItem="{Binding SelectUnitofMeasure}">
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl Name="PART_GridControl">
+                                                <dxg:GridColumn Header="Name" FieldName="Display" Width="Auto"
+                                                        ReadOnly="True"/>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView Name="view" ShowColumnHeaders="False"
+                                                           ShowGroupPanel="False"/>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings />
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
+                            </dxlc:LayoutItem >
+                            <dxlc:LayoutItem Label="Display Order">
+                                <dxe:TextEdit />
+                            </dxlc:LayoutItem>
+                            <dx:SimpleButton Content="Add" Width="80" Height="25"/>
+                            <dx:SimpleButton Content="Delete" Width="80" Height="25"/>
+                        </dxlc:LayoutGroup>
+                        <dxg:GridControl>
+                            <dxg:GridColumn Header="Result" FieldName="Result"/>
+                            <dxg:GridColumn Header="DisplayOrder" FieldName="DisplayOrder"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
             </dx:DXTabControl>
 
             <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
