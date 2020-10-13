@@ -451,7 +451,7 @@ namespace MediTech.ViewModels
                                     if (columnName == "Blood")
                                     {
                                         string rbcValue = "";
-                                        switch (item[columnName].ToString())
+                                        switch (item[columnName].ToString().Trim())
                                         {
                                             case "Negative":
                                                 rbcValue = "0-2";
@@ -480,7 +480,7 @@ namespace MediTech.ViewModels
                                     else if (columnName == "Leukocyte")
                                     {
                                         string wbcValue = "";
-                                        switch (item[columnName].ToString())
+                                        switch (item[columnName].ToString().Trim())
                                         {
                                             case "Negative":
                                                 wbcValue = "0-5";
