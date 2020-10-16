@@ -51,6 +51,7 @@
     <Compile Include="Lab\PatientResultLabModel.cs" />
     <Compile Include="Lab\RequestDetailLabModel.cs" />
     <Compile Include="Lab\RequestDetailSpecimenModel.cs" />
+    <Compile Include="Lab\RequestItemGroupResultModel.cs" />
     <Compile Include="Lab\RequestLabModel.cs" />
     <Compile Include="Lab\ResultComponentModel.cs" />
     <Compile Include="Lab\ResultImageModel.cs" />

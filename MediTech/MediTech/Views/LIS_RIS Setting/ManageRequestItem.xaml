@@ -205,8 +205,9 @@
                 <dx:DXTabItem Header="Result">
                     <dxlc:LayoutControl Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="Result">
-                                <dxg:LookUpEdit Name="lkeResult" ItemsSource="{Binding RequestItemResult}"
+                            <dxlc:LayoutItem Label="Group Result">
+                                <dxg:LookUpEdit Name="lkeResult" ItemsSource="{Binding RequestItemGropResult}"
+                                                SelectedItem="{Binding SelectGroupResult}"
                                           DisplayMember="Display"
                                           ValueMember="Key"
                                           AllowNullInput="True"
@@ -216,19 +217,18 @@
                                           FindMode = "Always"
                                           PopupMinHeight="100"
                                           PopupMinWidth="100"
-                                          PopupHeight="400"
-                                          PopupWidth="600"                                    
+                                          PopupHeight="400"                               
                                           AutoPopulateColumns="False"
                                           IncrementalFiltering="True"
-                                          NullValueButtonPlacement="EditBox"
-                                          SelectedItem="{Binding SelectUnitofMeasure}">
+                                          NullValueButtonPlacement="EditBox">
                                     <dxg:LookUpEdit.PopupContentTemplate>
                                         <ControlTemplate>
                                             <dxg:GridControl Name="PART_GridControl">
-                                                <dxg:GridColumn Header="Name" FieldName="Display" Width="Auto"
+                                                <dxg:GridColumn Header="Name" FieldName="Display"
                                                         ReadOnly="True"/>
                                                 <dxg:GridControl.View>
                                                     <dxg:TableView Name="view" ShowColumnHeaders="False"
+                                                                   AutoWidth="True"
                                                            ShowGroupPanel="False"/>
                                                 </dxg:GridControl.View>
                                             </dxg:GridControl>
@@ -240,16 +240,17 @@
                                 </dxg:LookUpEdit>
                             </dxlc:LayoutItem >
                             <dxlc:LayoutItem Label="Display Order">
-                                <dxe:TextEdit />
+                                <dxe:TextEdit Text="{Binding PrintOrderGroupResult}" Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>
                             </dxlc:LayoutItem>
-                            <dx:SimpleButton Content="Add" Width="80" Height="25"/>
-                            <dx:SimpleButton Content="Delete" Width="80" Height="25"/>
+                            <dx:SimpleButton Content="Add" Width="80" Height="25" Command="{Binding AddGroupResultCommand}"/>
+                            <dx:SimpleButton Content="Delete" Width="80" Height="25" Command="{Binding DeleteGroupResultCommand}"/>
                         </dxlc:LayoutGroup>
-                        <dxg:GridControl>
-                            <dxg:GridColumn Header="Result" FieldName="Result"/>
-                            <dxg:GridColumn Header="DisplayOrder" FieldName="DisplayOrder"/>
+                        <dxg:GridControl x:Name="grdGroupResult" ItemsSource="{Binding RequestItemGroupResults}"
+                                         SelectedItem="{Binding SelectRequestItemGroupResult}">
+                            <dxg:GridColumn Header="Group Result" FieldName="GroupResultName"/>
+                            <dxg:GridColumn Header="DisplayOrder" FieldName="PrintOrder"/>
                             <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False"/>
+                                <dxg:TableView ShowGroupPanel="False" AutoWidth="True"/>
                             </dxg:GridControl.View>
                         </dxg:GridControl>
                     </dxlc:LayoutControl>

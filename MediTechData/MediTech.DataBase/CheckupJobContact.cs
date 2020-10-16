@@ -12,28 +12,28 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientVisit
+    public partial class CheckupJobContact
     {
-        public long UID { get; set; }
-        public long PatientUID { get; set; }
-        public Nullable<int> CareProviderUID { get; set; }
-        public Nullable<int> VISTSUID { get; set; }
-        public Nullable<int> VISTYUID { get; set; }
-        public Nullable<int> PRITYUID { get; set; }
-        public Nullable<System.DateTime> StartDttm { get; set; }
+        public int UID { get; set; }
+        public System.Guid JobContactID { get; set; }
+        public string JobNumber { get; set; }
+        public int PayorDetailUID { get; set; }
+        public string PayorName { get; set; }
+        public string Description { get; set; }
+        public string Location { get; set; }
+        public string ContactPerson { get; set; }
+        public string ContactPhone { get; set; }
+        public string ContactEmail { get; set; }
+        public string ServiceName { get; set; }
+        public int VisitCount { get; set; }
+        public System.DateTime StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
-        public Nullable<System.DateTime> ArrivedDttm { get; set; }
-        public string VisitID { get; set; }
-        public string IsBillFinalized { get; set; }
-        public Nullable<int> BookingUID { get; set; }
-        public Nullable<int> CheckupJobUID { get; set; }
-        public string Comments { get; set; }
+        public Nullable<System.DateTime> CollectDttm { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public Nullable<int> OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
     }
 }

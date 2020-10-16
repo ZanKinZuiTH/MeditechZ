@@ -37,6 +37,7 @@ namespace MediTech.DataBase
         public virtual DbSet<CareproviderOrganisation> CareproviderOrganisation { get; set; }
         public virtual DbSet<CCHPI> CCHPI { get; set; }
         public virtual DbSet<CCHPIMaster> CCHPIMaster { get; set; }
+        public virtual DbSet<CheckupJobContact> CheckupJobContact { get; set; }
         public virtual DbSet<DispensedItem> DispensedItem { get; set; }
         public virtual DbSet<DisposeItemList> DisposeItemList { get; set; }
         public virtual DbSet<DisposeStock> DisposeStock { get; set; }
@@ -121,6 +122,7 @@ namespace MediTech.DataBase
         public virtual DbSet<RequestDetailDocument> RequestDetailDocument { get; set; }
         public virtual DbSet<RequestDetailSpecimen> RequestDetailSpecimen { get; set; }
         public virtual DbSet<RequestItem> RequestItem { get; set; }
+        public virtual DbSet<RequestItemGroupResult> RequestItemGroupResult { get; set; }
         public virtual DbSet<RequestItemSpecimen> RequestItemSpecimen { get; set; }
         public virtual DbSet<RequestResultLink> RequestResultLink { get; set; }
         public virtual DbSet<Result> Result { get; set; }
@@ -3245,6 +3247,65 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_PayorDetailUID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pSearchResultRadiologyForTranslate", p_DateFromParameter, p_DateToParameter, p_PatientUIDParameter, p_ItemNameParameter, p_RABSTSUIDParameter, p_PayorDetailUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetRequesDetailLabForImport_Result> pGetRequesDetailLabForImport(string p_PatientID, Nullable<int> p_OrganisationUID, Nullable<int> p_PayorDetailUID, Nullable<int> p_RequestItemUID, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
+        {
+            var p_PatientIDParameter = p_PatientID != null ?
+                new ObjectParameter("P_PatientID", p_PatientID) :
+                new ObjectParameter("P_PatientID", typeof(string));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            var p_RequestItemUIDParameter = p_RequestItemUID.HasValue ?
+                new ObjectParameter("P_RequestItemUID", p_RequestItemUID) :
+                new ObjectParameter("P_RequestItemUID", typeof(int));
+    
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetRequesDetailLabForImport_Result>("pGetRequesDetailLabForImport", p_PatientIDParameter, p_OrganisationUIDParameter, p_PayorDetailUIDParameter, p_RequestItemUIDParameter, p_DateFromParameter, p_DateToParameter);
+        }
+    
+        public virtual ObjectResult<pRPTCheckupLabCompare_Result> pRPTCheckupLabCompare(Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompare_Result>("pRPTCheckupLabCompare", p_PatientUIDParameter, p_PayorDetailUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockSummary_Result> pRPTStockSummary(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
+                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
+                new ObjectParameter("P_OrganisationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockSummary_Result>("pRPTStockSummary", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
         }
     }
 }

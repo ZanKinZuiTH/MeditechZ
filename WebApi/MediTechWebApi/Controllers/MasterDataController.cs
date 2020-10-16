@@ -135,6 +135,17 @@ namespace MediTechWebApi.Controllers
                                                  CollectionSite = SqlFunction.fGetRfValDescription(spc.COLSTUID ?? 0),
                                                  SpecimenType = SqlFunction.fGetRfValDescription(spc.SPMTPUID ?? 0)
                                              }).ToList();
+
+                data.RequestItemGroupResults = db.RequestItemGroupResult
+                    .Where(p => p.StatusFlag == "A")
+                    .Select(p => new RequestItemGroupResultModel
+                    {
+                        RequestItemGroupResultUID = p.UID,
+                        RequestItemUID = p.RequestItemUID,
+                        GroupResultName = p.GroupResultName,
+                        GPRSTUID = p.GPRSTUID,
+                        PrintOrder = p.PrintOrder
+                    }).ToList();
             }
 
             return data;
@@ -344,7 +355,6 @@ namespace MediTechWebApi.Controllers
                                 item.MWhen = now;
                                 item.StatusFlag = "D";
                             }
-
                         }
                     }
 
@@ -382,6 +392,66 @@ namespace MediTechWebApi.Controllers
                             requestItemSpecimen.SpecimenName = item.SpecimenName;
                             requestItemSpecimen.SpecimenUID = item.SpecimenUID;
                             db.RequestItemSpecimen.AddOrUpdate(requestItemSpecimen);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    #region Delete RequestItemGroupResult
+                    IEnumerable<RequestItemGroupResult> requestItemGroupResult1 = db.RequestItemGroupResult.Where(p => p.StatusFlag == "A" && p.RequestItemUID == requestItem.UID);
+                    if (requestItemModel.RequestItemGroupResults == null)
+                    {
+                        foreach (var item in requestItemGroupResult1)
+                        {
+                            db.RequestItemGroupResult.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in requestItemGroupResult1)
+                        {
+                            var data = requestItemModel.RequestItemGroupResults.FirstOrDefault(p => p.RequestItemGroupResultUID == item.UID);
+                            if (data == null)
+                            {
+                                db.RequestItemGroupResult.Attach(item);
+                                item.MUser = userID;
+                                item.MWhen = now;
+                                item.StatusFlag = "D";
+                            }
+                        }
+                    }
+                    db.SaveChanges();
+                    #endregion
+
+                    if(requestItemModel.RequestItemGroupResults != null)
+                    {
+                        foreach (var item in requestItemModel.RequestItemGroupResults)
+                        {
+                            RequestItemGroupResult requestItemGroupResult = db.RequestItemGroupResult.Find(item.RequestItemGroupResultUID);
+                            if (requestItemGroupResult == null)
+                            {
+                                requestItemGroupResult = new RequestItemGroupResult();
+                                requestItemGroupResult.CUser = userID;
+                                requestItemGroupResult.CWhen = now;
+                                requestItemGroupResult.MUser = userID;
+                                requestItemGroupResult.MWhen = now;
+                                requestItemGroupResult.StatusFlag = "A";
+                            }
+                            else
+                            {
+                                if (item.MWhen != DateTime.MinValue)
+                                {
+                                    requestItemGroupResult.MUser = userID;
+                                    requestItemGroupResult.MWhen = now;
+                                }
+                            }
+                            requestItemGroupResult.RequestItemUID = requestItem.UID;
+                            requestItemGroupResult.GPRSTUID = item.GPRSTUID;
+                            requestItemGroupResult.GroupResultName = item.GroupResultName;
+                            requestItemGroupResult.PrintOrder = item.PrintOrder;
+                            db.RequestItemGroupResult.AddOrUpdate(requestItemGroupResult);
                             db.SaveChanges();
                         }
                     }

@@ -283,6 +283,50 @@ namespace MediTech.ViewModels
 
         #endregion
 
+
+        #region GroupResult
+        private List<LookupReferenceValueModel> _RequestItemGropResult;
+
+        public List<LookupReferenceValueModel> RequestItemGropResult
+        {
+            get { return _RequestItemGropResult; }
+            set { Set(ref _RequestItemGropResult, value); }
+        }
+
+        private LookupReferenceValueModel _SelectGroupResult;
+
+        public LookupReferenceValueModel SelectGroupResult
+        {
+            get { return _SelectGroupResult; }
+            set { Set(ref _SelectGroupResult, value); }
+        }
+
+        private List<RequestItemGroupResultModel> _RequestItemGroupResults;
+
+        public List<RequestItemGroupResultModel> RequestItemGroupResults
+        {
+            get { return _RequestItemGroupResults; }
+            set { Set(ref _RequestItemGroupResults, value); }
+        }
+
+        private RequestItemGroupResultModel _SelectRequestItemGroupResult;
+
+        public RequestItemGroupResultModel SelectRequestItemGroupResult
+        {
+            get { return _SelectRequestItemGroupResult; }
+            set { Set(ref _SelectRequestItemGroupResult, value); }
+        }
+
+        private int _PrintOrderGroupResult;
+
+        public int PrintOrderGroupResult
+        {
+            get { return _PrintOrderGroupResult; }
+            set { Set(ref _PrintOrderGroupResult, value); }
+        }
+
+        #endregion
+
         #endregion
 
         #region Command
@@ -361,7 +405,6 @@ namespace MediTech.ViewModels
         }
 
 
-
         private RelayCommand _UpdateParameterCommand;
         public RelayCommand UpdateParameterCommand
         {
@@ -429,8 +472,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        #endregion
-
         private RelayCommand _AddSpecimenCommand;
         public RelayCommand AddSpecimenCommand
         {
@@ -447,6 +488,24 @@ namespace MediTech.ViewModels
 
         #endregion
 
+        #region GroupResult
+
+        private RelayCommand _AddGroupResultCommand;
+        public RelayCommand AddGroupResultCommand
+        {
+            get { return _AddGroupResultCommand ?? (_AddGroupResultCommand = new RelayCommand(AddGroupResult)); }
+        }
+
+        private RelayCommand _DeleteGroupResultCommand;
+        public RelayCommand DeleteGroupResultCommand
+        {
+            get { return _DeleteGroupResultCommand ?? (_DeleteGroupResultCommand = new RelayCommand(DeleteGroupResult)); }
+        }
+
+        #endregion
+
+        #endregion
+
 
         #region Method
 
@@ -454,10 +513,11 @@ namespace MediTech.ViewModels
 
         public ManageRequestItemViewModel()
         {
-            var refData = DataService.Technical.GetReferenceValueList("TSTTP,RIMTYP,LABCAT");
+            var refData = DataService.Technical.GetReferenceValueList("TSTTP,RIMTYP,LABCAT,GPRST");
             TestType = refData.Where(p => p.DomainCode == "TSTTP").ToList();
             ImageType = refData.Where(p => p.DomainCode == "RIMTYP").ToList();
             Category = refData.Where(p => p.DomainCode == "LABCAT").ToList();
+            RequestItemGropResult = refData.Where(p => p.DomainCode == "GPRST").ToList();
             ActiveFrom = DateTime.Now;
         }
 
@@ -606,7 +666,7 @@ namespace MediTech.ViewModels
         {
             if (SelectRequestResultLink != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการลบ ใช้ หรือ่ไม่");
+                DialogResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
                 if (result == DialogResult.Yes)
                 {
                     RequestResultLinks.Remove(SelectRequestResultLink);
@@ -676,6 +736,46 @@ namespace MediTech.ViewModels
             CollectionRoute = string.Empty;
         }
 
+        void AddGroupResult()
+        {
+            if (RequestItemGroupResults == null)
+                RequestItemGroupResults = new List<RequestItemGroupResultModel>();
+
+            if(SelectGroupResult == null)
+            {
+                WarningDialog("กรุณาเลือก Group Result");
+                return;
+            }
+
+            if(RequestItemGroupResults.Any(p => p.GPRSTUID == SelectGroupResult.Key))
+            {
+                WarningDialog("ข้อมูลซ้ำกรุณาตรวจสอบ");
+                return;
+            }
+
+            RequestItemGroupResultModel newGroupResult = new RequestItemGroupResultModel();
+            newGroupResult.GroupResultName = SelectGroupResult.Display;
+            newGroupResult.GPRSTUID = SelectGroupResult.Key;
+            newGroupResult.PrintOrder = PrintOrderGroupResult;
+
+            RequestItemGroupResults.Add(newGroupResult);
+            (this.View as ManageRequestItem).grdGroupResult.RefreshData();
+        }
+
+        void DeleteGroupResult()
+        {
+            if (SelectRequestItemGroupResult != null)
+            {
+                DialogResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
+                if (result == DialogResult.Yes)
+                {
+                    RequestItemGroupResults.Remove(SelectRequestItemGroupResult);
+                    (this.View as ManageRequestItem).grdGroupResult.RefreshData();
+                }
+
+            }
+        }
+
         private void AssignModelToProperties()
         {
             Code = model.Code;
@@ -688,6 +788,7 @@ namespace MediTech.ViewModels
             ActiveTo = model.EffectiveTo;
             RequestResultLinks = model.RequestResultLinks;
             RequestItemSpecimen = model.RequestItemSpecimens;
+            RequestItemGroupResults = model.RequestItemGroupResults;
         }
         private void AssingPropertiesToModel()
         {
@@ -710,6 +811,7 @@ namespace MediTech.ViewModels
             model.EffectiveTo = ActiveTo;
             model.RequestResultLinks = RequestResultLinks;
             model.RequestItemSpecimens = RequestItemSpecimen;
+            model.RequestItemGroupResults = RequestItemGroupResults;
         }
 
 

@@ -28,6 +28,7 @@ namespace MediTech.DataBase
         public string VARight { get; set; }
         public string VALeft { get; set; }
         public string BlindColor { get; set; }
+        public string Disease { get; set; }
         public string ViewResult { get; set; }
         public string Recommend { get; set; }
         public string Comments { get; set; }

@@ -26,5 +26,7 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public List<RequestResultLinkModel> RequestResultLinks { get; set; }
         public List<RequestItemSpecimenModel> RequestItemSpecimens { get; set; }
+
+        public List<RequestItemGroupResultModel> RequestItemGroupResults { get; set; }
     }
 }
