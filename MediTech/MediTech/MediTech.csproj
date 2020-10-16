@@ -2462,6 +2462,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Module\Checkup.png" />
     <Resource Include="Resources\Images\Other\VIP.png" />
     <Resource Include="Resources\Images\Action\MoveDown.png" />
     <Resource Include="Resources\Images\Action\MoveUp.png" />
