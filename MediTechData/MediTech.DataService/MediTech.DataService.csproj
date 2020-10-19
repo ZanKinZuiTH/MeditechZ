@@ -64,6 +64,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataService\BillingService.cs" />
+    <Compile Include="DataService\CheckupService.cs" />
     <Compile Include="DataService\InventoryService.cs" />
     <Compile Include="DataService\LabDataService.cs" />
     <Compile Include="DataService\MainManageService.cs" />

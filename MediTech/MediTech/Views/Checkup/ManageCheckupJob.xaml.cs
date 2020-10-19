@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for ManageReferalLocation.xaml
+    /// Interaction logic for ManageCheckupJob.xaml
     /// </summary>
-    public partial class ManageReferralLocation : UserControl
+    public partial class ManageCheckupJob : UserControl
     {
-        public ManageReferralLocation()
+        public ManageCheckupJob()
         {
             InitializeComponent();
         }

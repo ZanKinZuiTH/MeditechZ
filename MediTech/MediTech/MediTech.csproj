@@ -703,6 +703,8 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TimusViewModel.cs" />
     <Compile Include="ViewModels\Checkup\SpirometryViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ExaminationViewModel.cs" />
@@ -822,7 +824,6 @@
     <Compile Include="ViewModels\ClinicalData\ManageItemMasterViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemReceiveViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemRequestViewModel.cs" />
-    <Compile Include="ViewModels\Setting\ListReferralLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageOrganisationViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientViewModel.cs" />
     <Compile Include="ViewModels\Base\MediTechViewModel.cs" />
@@ -837,7 +838,6 @@
     <Compile Include="ViewModels\Patient\PatientListViewModel.cs" />
     <Compile Include="ViewModels\Patient\PatientVitalSignViewModel.cs" />
     <Compile Include="ViewModels\Patient\RegisterPatientViewModel.cs" />
-    <Compile Include="ViewModels\Setting\ManageReferralLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageRoleViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListRolesViewModel.cs" />
     <Compile Include="ViewModels\Patient\SearchPatientViewModel.cs" />
@@ -863,6 +863,12 @@
     </Compile>
     <Compile Include="Views\Checkup\Examination.xaml.cs">
       <DependentUpon>Examination.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ListCheckupJob.xaml.cs">
+      <DependentUpon>ListCheckupJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ManageCheckupJob.xaml.cs">
+      <DependentUpon>ManageCheckupJob.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\Spirometry.xaml.cs">
       <DependentUpon>Spirometry.xaml</DependentUpon>
@@ -1205,9 +1211,6 @@
     <Compile Include="Views\Inventory\ManageItemRequest.xaml.cs">
       <DependentUpon>ManageItemRequest.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Setting\ListReferralLocation.xaml.cs">
-      <DependentUpon>ListReferralLocation.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Setting\ManageOrganisation.xaml.cs">
       <DependentUpon>ManageOrganisation.xaml</DependentUpon>
     </Compile>
@@ -1243,9 +1246,6 @@
     </Compile>
     <Compile Include="Views\Patient\RegisterPatient.xaml.cs">
       <DependentUpon>RegisterPatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Setting\ManageReferralLocation.xaml.cs">
-      <DependentUpon>ManageReferralLocation.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Setting\ManageRole.xaml.cs">
       <DependentUpon>ManageRole.xaml</DependentUpon>
@@ -1340,6 +1340,14 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\Examination.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ListCheckupJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ManageCheckupJob.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1795,10 +1803,6 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Setting\ListReferralLocation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Setting\ManageOrganisation.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1846,10 +1850,6 @@
     <Page Include="Views\Patient\RegisterPatient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Setting\ManageReferralLocation.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Setting\ManageRole.xaml">
       <SubType>Designer</SubType>
@@ -2462,7 +2462,8 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\Module\Checkup.png" />
+    <Resource Include="Resources\Images\Module\Medical Checkup.png" />
+    <Resource Include="Resources\Images\Menu\Hospital.png" />
     <Resource Include="Resources\Images\Other\VIP.png" />
     <Resource Include="Resources\Images\Action\MoveDown.png" />
     <Resource Include="Resources\Images\Action\MoveUp.png" />

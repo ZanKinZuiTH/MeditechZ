@@ -92,7 +92,7 @@
             <dxlc:LayoutItem Label="Handing Instruction"  LabelVerticalAlignment="Top">
                 <dxe:TextEdit Text="{Binding HandingInstruction}"  TextWrapping="Wrap" Height="50" AcceptsReturn="True"/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom"  Orientation="Horizontal">
                 <dxlc:LayoutItem>
                     <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
                                      Height="25" Content="บันทึก"/>

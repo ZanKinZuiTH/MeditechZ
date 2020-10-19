@@ -104,6 +104,12 @@ namespace MediTech.DataService
             get { return _UserManage ?? (_UserManage = new UserManageService()); }
         }
 
+        private CheckupService _Checkup;
+        public CheckupService Checkup
+        {
+            get { return _Checkup ?? (_Checkup = new CheckupService()); }
+        }
+
         private PACSService _PACS;
         public PACSService PACS
         {

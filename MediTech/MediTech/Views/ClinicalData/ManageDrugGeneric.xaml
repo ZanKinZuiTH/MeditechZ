@@ -35,7 +35,7 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                 <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
                                      Height="25" Content="บันทึก"/>
                 <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"

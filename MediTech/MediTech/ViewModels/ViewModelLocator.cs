@@ -1078,6 +1078,11 @@ namespace MediTech.ViewModels
             }
         }
 
+
+
+        #endregion
+
+        #region Checkup
         public CheckupReportViewModel CheckupReportViewModel
         {
             get
@@ -1155,6 +1160,27 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ListCheckupJobViewModel ListCheckupJobViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListCheckupJobViewModel>())
+                    SimpleIoc.Default.Register<ListCheckupJobViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListCheckupJobViewModel>();
+            }
+        }
+
+        public ManageCheckupJobViewModel ManageCheckupJobViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManageCheckupJobViewModel>())
+                    SimpleIoc.Default.Register<ManageCheckupJobViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManageCheckupJobViewModel>();
+            }
+        }
         #endregion
 
         #region OrderProcessing
@@ -1649,28 +1675,6 @@ namespace MediTech.ViewModels
             }
         }
 
-
-        public ListReferralLocationViewModel ListReferralLocationViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<ListReferralLocationViewModel>())
-                    SimpleIoc.Default.Register<ListReferralLocationViewModel>();
-
-                return ServiceLocator.Current.GetInstance<ListReferralLocationViewModel>();
-            }
-        }
-
-        public ManageReferralLocationViewModel ManageReferralLocationViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<ManageReferralLocationViewModel>())
-                    SimpleIoc.Default.Register<ManageReferralLocationViewModel>();
-
-                return ServiceLocator.Current.GetInstance<ManageReferralLocationViewModel>();
-            }
-        }
 
         #endregion
 

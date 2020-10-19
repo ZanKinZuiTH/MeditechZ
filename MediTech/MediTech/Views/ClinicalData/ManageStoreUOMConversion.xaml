@@ -45,7 +45,7 @@
                 <dxlc:LayoutItem Label="ค่า">
                     <dxe:TextEdit EditValue="{Binding ConversionValue}" Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dxlc:LayoutGroup HorizontalAlignment="Right"  Orientation="Horizontal">
                     <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
                                      Height="25" Content="บันทึก"/>
                     <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
