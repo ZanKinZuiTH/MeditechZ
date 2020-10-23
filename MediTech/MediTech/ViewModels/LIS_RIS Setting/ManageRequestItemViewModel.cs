@@ -110,7 +110,7 @@ namespace MediTech.ViewModels
                 if (SelectTestType != null && SelectTestType.Display == "RADIOLOGY")
                 {
                     ImageTypeVisibility = Visibility.Visible;
-                    VisibilityLabDetail = Visibility.Hidden;
+                    VisibilityLabDetail = Visibility.Collapsed;
                 }
                 else
                 {
