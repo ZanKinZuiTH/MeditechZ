@@ -148,11 +148,11 @@ namespace MediTech.ViewModels
         }
 
 
-        private RelayCommand _PrintCommand;
+        private RelayCommand _PreviewBookCommand;
 
-        public RelayCommand PrintCommand
+        public RelayCommand PreviewBookCommand
         {
-            get { return _PrintCommand ?? (_PrintCommand = new RelayCommand(Print)); }
+            get { return _PreviewBookCommand ?? (_PreviewBookCommand = new RelayCommand(PreviewBook)); }
         }
 
 
@@ -187,11 +187,12 @@ namespace MediTech.ViewModels
         }
 
 
-        void Print()
+        void PreviewBook()
         {
             if (SelectPatientResultLabList != null)
             {
-                foreach (var item in SelectPatientResultLabList)
+                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
+                foreach (var item in patientResultLabList.ToList())
                 {
                     CheckupBook1 rpt = new CheckupBook1();
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
@@ -202,6 +203,8 @@ namespace MediTech.ViewModels
                     rpt.RequestParameters = false;
                     rpt.ShowPrintMarginsWarning = false;
                     printTool.ShowPreviewDialog();
+
+                    SelectPatientResultLabList.Remove(item);
                 }
 
             }

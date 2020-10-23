@@ -275,8 +275,8 @@ namespace MediTech.ViewModels
                 {
                     if (SelectItemIssues.ISUSTUID != 2916)
                     {
-                        DialogResult resultDiag = QuestionDialog("คุณต้องการ ยกเลิกรายการส่งออกเดิมแล้วสร้างใหม่ หรือไม่ ?");
-                        if (resultDiag != DialogResult.Yes)
+                        MessageBoxResult resultDiag = QuestionDialog("คุณต้องการ ยกเลิกรายการส่งออกเดิมแล้วสร้างใหม่ หรือไม่ ?");
+                        if (resultDiag != MessageBoxResult.Yes)
                         {
                             return;
                         }

@@ -118,10 +118,10 @@
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton Width="105" Height="30" Command="{Binding PrintCommand}">
+                                <dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCommand}">
                                     <StackPanel Orientation="Horizontal">
                                         <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
-                                        <TextBlock Text="Print Book" VerticalAlignment="Center"/>
+                                        <TextBlock Text="Preview Book" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </dx:SimpleButton>
                             </dxlc:LayoutItem>

@@ -310,8 +310,8 @@ namespace MediTech.ViewModels
                         }
                         else if (ItemMaster.CanDispenseWithOutStock == "Y")
                         {
-                            DialogResult result = QuestionDialog("มีของในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
-                            if (result == DialogResult.No || result == DialogResult.Cancel)
+                            MessageBoxResult result = QuestionDialog("มีของในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
+                            if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
                             {
                                 return;
                             }

@@ -324,8 +324,8 @@ namespace MediTech.ViewModels
         {
             if (SelectRecentVital != null)
             {
-                DialogResult result = DeleteDialog();
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = DeleteDialog();
+                if (result == MessageBoxResult.Yes)
                 {
                     DataService.PatientHistory.DeletePatientVitalSign(SelectRecentVital.PatientVitalSignUID, AppUtil.Current.UserID);
 

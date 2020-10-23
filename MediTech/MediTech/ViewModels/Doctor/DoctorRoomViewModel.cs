@@ -949,8 +949,8 @@ namespace MediTech.ViewModels
                             return;
                         }
                     }
-                    DialogResult result = QuestionDialog("ต้องการจบการรักษา");
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = QuestionDialog("ต้องการจบการรักษา");
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.ChangeVisitStatus(SelectVisitMedical.PatientVisitUID, 418, SelectVisitMedical.CareProviderUID, null, AppUtil.Current.UserID);
                         SaveSuccessDialog();
@@ -1104,8 +1104,8 @@ namespace MediTech.ViewModels
                                         }
                                         else if (itemMaster.CanDispenseWithOutStock == "Y")
                                         {
-                                            DialogResult resultDiaglog = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
-                                            if (resultDiaglog == DialogResult.No || resultDiaglog == DialogResult.Cancel)
+                                            MessageBoxResult resultDiaglog = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
+                                            if (resultDiaglog == MessageBoxResult.No || resultDiaglog == MessageBoxResult.Cancel)
                                             {
                                                 continue;
                                             }

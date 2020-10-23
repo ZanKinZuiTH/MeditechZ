@@ -496,8 +496,8 @@ namespace MediTech.ViewModels
         {
             if (PatientOrders != null && PatientOrders.Count > 0)
             {
-                DialogResult result = QuestionDialog("คุณต้องการ Clear Order ทั้งหมดใช้หรือไม่ ?");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการ Clear Order ทั้งหมดใช้หรือไม่ ?");
+                if (result == MessageBoxResult.Yes)
                 {
                     PatientOrders = null;
                 }
@@ -594,8 +594,8 @@ namespace MediTech.ViewModels
                                         }
                                         else if (itemMaster.CanDispenseWithOutStock == "Y")
                                         {
-                                            DialogResult result = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
-                                            if (result == DialogResult.No || result == DialogResult.Cancel)
+                                            MessageBoxResult result = QuestionDialog("มี" + billItem.ItemName + "ในคลังไม่พอ คุณต้องการดำเนินการต่อหรือไม่ ?");
+                                            if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
                                             {
                                                 continue;
                                             }

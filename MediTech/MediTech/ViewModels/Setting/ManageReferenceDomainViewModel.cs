@@ -275,8 +275,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         ReferenceValueSource.Remove(_SelectedReferenceValue);
                         ClearControl();

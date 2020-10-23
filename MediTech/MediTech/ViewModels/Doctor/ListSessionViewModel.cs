@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -206,8 +207,8 @@ namespace MediTech.ViewModels
             {
                 if (SelectSession != null)
                 {
-                    System.Windows.Forms.DialogResult result = QuestionDialog("คุณต้องการลบ Session นี้ใช้หรือไม่ ?");
-                    if (result == System.Windows.Forms.DialogResult.Yes)
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบ Session นี้ใช้หรือไม่ ?");
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.Radiology.DeleteSession(SelectSession.SessionDefinitionUID, AppUtil.Current.UserID);
                         DeleteSuccessDialog();

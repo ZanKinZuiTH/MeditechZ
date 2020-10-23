@@ -18,6 +18,7 @@ using System.Windows.Shapes;
 using MediTech.ViewModels;
 using GalaSoft.MvvmLight.Ioc;
 using DevExpress.Xpf.Core.Native;
+using DevExpress.Xpf.Core;
 
 namespace MediTech
 {
@@ -37,6 +38,7 @@ namespace MediTech
 
             btnLogOff.Click += btnLogOff_Click;
             btnExit.Click += btnExit_Click;
+            this.Closing += MainWindow_Closing;
             this.Closed += MainWindow_Closed;
             LoadTheme();
 
@@ -58,6 +60,14 @@ namespace MediTech
 
         }
 
+        private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            MessageBoxResult result = DXMessageBox.Show("คุณต้องการปิดโปรแกรมใช้หรือไม่ ?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            if (result != MessageBoxResult.Yes)
+            {
+                e.Cancel = true;
+            }
+        }
 
         void btnLogOff_Click(object sender, RoutedEventArgs e)
         {

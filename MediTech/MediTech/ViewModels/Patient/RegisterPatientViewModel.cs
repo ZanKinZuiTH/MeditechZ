@@ -339,8 +339,8 @@ namespace MediTech.ViewModels
                 }
                 if (SelectedBooking != null)
                 {
-                    DialogResult result = QuestionDialog("ผู้ป่วยมีนัด คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                    if (result == MessageBoxResult.Yes)
                     {
                         OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
                     }

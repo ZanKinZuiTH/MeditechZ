@@ -461,7 +461,7 @@ namespace MediTech.ViewModels
                         thaiResult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName,",", dtResultMapping, ref wordnomap);
                         item.ThaiResult = thaiResult;
 
-                        DialogResult diagResult = DialogResult.None;
+                        MessageBoxResult diagResult = MessageBoxResult.None;
                         if (item.ResultStatus.ToLower() == "abnormal" && thaiResult == "ปกติ")
                         {
                             diagResult = QuestionDialog(String.Format("ผู้ป่วย {0} ลงสถานะเป็น Abnormal แต่คำแปลบอกว่า \"ปกติ\" ต้องการตรวจสอบผลใหม่หรือไม่", item.PatientName + " (" + item.HN + ")"));
@@ -471,7 +471,7 @@ namespace MediTech.ViewModels
                             diagResult = QuestionDialog(String.Format("ผู้ป่วย {0} ลงสถานะเป็น Normal แต่คำแปลบอกว่า \"ไม่ปกติ\" ต้องการตรวจสอบผลใหม่หรือไม่", item.PatientName + " (" + item.HN + ")"));
                         }
 
-                        if (diagResult == DialogResult.Yes)
+                        if (diagResult == MessageBoxResult.Yes)
                         {
                             ReviewRISResult review = new ReviewRISResult();
                             ReviewRISResultViewModel viewModel = (review.DataContext as ReviewRISResultViewModel);

@@ -951,7 +951,8 @@ namespace MediTech.ViewModels
                     }
                     view.SetProgressBarLimits(0, upperlimit);
                     //int No = 1;
-                    foreach (var patient in PatientDataList)
+                    var patientASC = PatientDataList.OrderBy(p => p.No);
+                    foreach (var patient in patientASC.ToList())
                     {
                         if (patient.Register)
                         {
@@ -991,11 +992,10 @@ namespace MediTech.ViewModels
                                 printTool.Print();
                             }
 
+                            patient.Register = false;
                             pgBarCounter = pgBarCounter + 1;
                             view.SetProgressBarValue(pgBarCounter);
                         }
-
-
                         //SelectPatientXrays.Remove(item);
 
 
@@ -1005,6 +1005,7 @@ namespace MediTech.ViewModels
                         //No++;
                     }
                     view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
                 }
             }
             catch (Exception er)
@@ -1034,7 +1035,8 @@ namespace MediTech.ViewModels
                     }
                     view.SetProgressBarLimits(0, upperlimit);
                     //int No = 1;
-                    foreach (var patient in PatientDataList)
+                    var patientASC = PatientDataList.OrderBy(p => p.No);
+                    foreach (var patient in patientASC.ToList())
                     {
                         if (patient.Register)
                         {
@@ -1091,12 +1093,15 @@ namespace MediTech.ViewModels
                                 }
                             }
 
-
+                            patient.Register = false;
                             pgBarCounter = pgBarCounter + 1;
                             view.SetProgressBarValue(pgBarCounter);
                         }
+
+
                     }
                     view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
                 }
             }
             catch (Exception er)

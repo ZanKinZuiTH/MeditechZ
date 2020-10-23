@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MediTech.ViewModels
@@ -100,8 +101,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
 
                         DataService.Checkup.DeleteCheckupJobContact(SelectCheckupJob.CheckupJobContactUID, AppUtil.Current.UserID);

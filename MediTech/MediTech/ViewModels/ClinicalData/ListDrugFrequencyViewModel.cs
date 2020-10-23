@@ -80,8 +80,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.Pharmacy.DeleteDrugGeneric(SelectDrugFrequency.FrequencyUID, AppUtil.Current.UserID);
                         DeleteSuccessDialog();

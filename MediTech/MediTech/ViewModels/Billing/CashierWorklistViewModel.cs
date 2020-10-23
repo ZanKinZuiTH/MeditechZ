@@ -464,8 +464,8 @@ namespace MediTech.ViewModels
 
                     if (Payment == 0)
                     {
-                        DialogResult result = QuestionDialog("จำนวนเงินที่รับเท่ากับ 0 คุณต้องการดำเนินการต่อหรือไม่ ?");
-                        if (result == DialogResult.No || result == DialogResult.Cancel)
+                        MessageBoxResult result = QuestionDialog("จำนวนเงินที่รับเท่ากับ 0 คุณต้องการดำเนินการต่อหรือไม่ ?");
+                        if (result == MessageBoxResult.No || result == MessageBoxResult.Cancel)
                         {
                             return;
                         }
@@ -554,8 +554,8 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientCloseMed != null)
                 {
-                    DialogResult result = QuestionDialog("คูณต้องการส่งผู้ป่วยกลับไปรักษาใช้หรือไม่ ?");
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = QuestionDialog("คูณต้องการส่งผู้ป่วยกลับไปรักษาใช้หรือไม่ ?");
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.ChangeVisitStatus(SelectPatientCloseMed.PatientVisitUID, 417, SelectPatientCloseMed.CareProviderUID, null, AppUtil.Current.UserID);
                         SaveSuccessDialog();

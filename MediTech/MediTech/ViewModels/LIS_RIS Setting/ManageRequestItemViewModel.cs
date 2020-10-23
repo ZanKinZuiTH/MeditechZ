@@ -666,8 +666,8 @@ namespace MediTech.ViewModels
         {
             if (SelectRequestResultLink != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
+                if (result == MessageBoxResult.Yes)
                 {
                     RequestResultLinks.Remove(SelectRequestResultLink);
                     (this.View as ManageRequestItem).grdResultItem.RefreshData();
@@ -717,8 +717,8 @@ namespace MediTech.ViewModels
         {
             if (SelectRequestItemSpecimen != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการลบ ใช้ หรือ่ไม่");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการลบ ใช้ หรือ่ไม่");
+                if (result == MessageBoxResult.Yes)
                 {
                     RequestItemSpecimen.Remove(SelectRequestItemSpecimen);
                     (this.View as ManageRequestItem).grdSpecimen.RefreshData();
@@ -766,8 +766,8 @@ namespace MediTech.ViewModels
         {
             if (SelectRequestItemGroupResult != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูลนี้ ใช้ หรือ่ไม่");
+                if (result == MessageBoxResult.Yes)
                 {
                     RequestItemGroupResults.Remove(SelectRequestItemGroupResult);
                     (this.View as ManageRequestItem).grdGroupResult.RefreshData();

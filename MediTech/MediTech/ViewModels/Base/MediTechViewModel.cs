@@ -9,6 +9,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevExpress.Xpf.Core;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -518,40 +520,40 @@ namespace MediTech.ViewModels
 
         public void SaveSuccessDialog()
         {
-            MessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DXMessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
         public void DeleteSuccessDialog()
         {
-            MessageBox.Show("ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DXMessageBox.Show("ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void SaveSuccessDialog(string message)
         {
-            MessageBox.Show(message, "Sucess", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DXMessageBox.Show(message, "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
         public void InformationDialog(string message)
         {
-            MessageBox.Show(message, "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            DXMessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public void WarningDialog(string message)
         {
-            MessageBox.Show(message, "Warining", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            DXMessageBox.Show(message, "Warining", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         public void ErrorDialog(string errorMessage)
         {
-            MessageBox.Show(errorMessage, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DXMessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
-        public DialogResult DeleteDialog()
+        public MessageBoxResult DeleteDialog()
         {
-            return MessageBox.Show("คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            return DXMessageBox.Show("คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
         }
-        public DialogResult QuestionDialog(string massage)
+        public MessageBoxResult QuestionDialog(string massage)
         {
-            return MessageBox.Show(massage, "Question", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            return DXMessageBox.Show(massage, "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
         }
 
         #endregion

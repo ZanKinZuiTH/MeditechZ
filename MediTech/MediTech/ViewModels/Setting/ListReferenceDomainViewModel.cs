@@ -110,8 +110,8 @@ namespace MediTech.ViewModels
         {
             if (_SelectReferenceDomain != null)
             {
-                DialogResult result = DeleteDialog();
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = DeleteDialog();
+                if (result == MessageBoxResult.Yes)
                 {
                     try
                     {

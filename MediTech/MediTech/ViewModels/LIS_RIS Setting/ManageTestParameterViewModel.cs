@@ -392,8 +392,8 @@ namespace MediTech.ViewModels
         {
             if (SelectResultItemRange != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการลบ ใช้ หรือ่ไม่");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการลบ ใช้ หรือ่ไม่");
+                if (result == MessageBoxResult.Yes)
                 {
                     ListResultItemRange.Remove(SelectResultItemRange);
                     (this.View as ManageTestParameter).grdResultItemRange.RefreshData();

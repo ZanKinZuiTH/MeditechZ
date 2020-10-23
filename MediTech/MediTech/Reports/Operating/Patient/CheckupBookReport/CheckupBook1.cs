@@ -266,186 +266,190 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 #endregion
 
-                #region Radiology
-                if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
+                if(data.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName))  != null)
                 {
-                    CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
-                    if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
+                    #region Radiology
+                    if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
                     {
-                        string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
-                        if (!string.IsNullOrEmpty(resultChestThai))
+                        CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
+                        if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
                         {
-                            page3.lbChest.Text = resultChestThai;
+                            string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
+                            if (!string.IsNullOrEmpty(resultChestThai))
+                            {
+                                page3.lbChest.Text = resultChestThai;
+                            }
+                            else
+                            {
+                                page3.lbChest.Text = "ยังไม่ได้แปลไทย";
+                            }
                         }
-                        else
-                        {
-                            page3.lbChest.Text = "ยังไม่ได้แปลไทย";
-                        }
+
+                    }
+                    else
+                    {
+                        page3.lbChest.Text = "-";
                     }
 
-                }
-                else
-                {
-                    page3.lbChest.Text = "-";
-                }
-
-                if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology") != null)
-                {
-                    CheckupBookModel mammoGram = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology");
-                    page3.lbMam.Text = mammoGram.RadiologyResultStatus;
-                    if (!string.IsNullOrEmpty(mammoGram.RadiologyResultText))
+                    if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology") != null)
                     {
-                        string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus, mammoGram.RequestItemName);
-                        if (!string.IsNullOrEmpty(resultChestThai))
+                        CheckupBookModel mammoGram = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology");
+                        page3.lbMam.Text = mammoGram.RadiologyResultStatus;
+                        if (!string.IsNullOrEmpty(mammoGram.RadiologyResultText))
                         {
-                            page3.lbMam.Text = resultChestThai;
-                        }
-                        else
-                        {
-                            page3.lbMam.Text = "ยังไม่ได้แปลไทย";
+                            string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus, mammoGram.RequestItemName);
+                            if (!string.IsNullOrEmpty(resultChestThai))
+                            {
+                                page3.lbMam.Text = resultChestThai;
+                            }
+                            else
+                            {
+                                page3.lbMam.Text = "ยังไม่ได้แปลไทย";
+                            }
                         }
                     }
-                }
-                else
-                {
-                    page3.lbMam.Text = "-";
-                }
-
-                if (data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology") != null)
-                {
-                    CheckupBookModel ultrsound = data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology");
-                    page3.lbUlt.Text = ultrsound.RadiologyResultStatus;
-                    if (!string.IsNullOrEmpty(ultrsound.RadiologyResultText))
+                    else
                     {
-                        string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus, ultrsound.RequestItemName);
-                        if (!string.IsNullOrEmpty(resultChestThai))
+                        page3.lbMam.Text = "-";
+                    }
+
+                    if (data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology") != null)
+                    {
+                        CheckupBookModel ultrsound = data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology");
+                        page3.lbUlt.Text = ultrsound.RadiologyResultStatus;
+                        if (!string.IsNullOrEmpty(ultrsound.RadiologyResultText))
                         {
-                            page3.lbUlt.Text = resultChestThai;
-                        }
-                        else
-                        {
-                            page3.lbUlt.Text = "ยังไม่ได้แปลไทย";
+                            string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus, ultrsound.RequestItemName);
+                            if (!string.IsNullOrEmpty(resultChestThai))
+                            {
+                                page3.lbUlt.Text = resultChestThai;
+                            }
+                            else
+                            {
+                                page3.lbUlt.Text = "ยังไม่ได้แปลไทย";
+                            }
                         }
                     }
+                    else
+                    {
+                        page3.lbUlt.Text = "-";
+                    }
+
+                    #endregion
+
+                    List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
+                    if (labCompare != null)
+                    {
+
+                        #region Complete Blood Count
+
+                        IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
+                        .Where(p => p.RequestItemName.Contains("CBC"))
+                        .OrderBy(p => p.Year);
+                        GenerateCompleteBloodCount(cbcTestSet);
+                        #endregion
+
+                        #region Urinalysis
+                        IEnumerable<PatientResultLabModel> uaTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("UA"))
+                            .OrderBy(p => p.Year);
+                        GenerateUrinalysis(uaTestSet);
+
+                        #endregion
+
+                        #region Renal function
+                        IEnumerable<PatientResultLabModel> RenalTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Cr") || p.RequestItemName.Contains("BUN"))
+                            .OrderBy(p => p.Year);
+                        GenerateRenalFunction(RenalTestSet);
+
+                        #endregion
+
+                        #region Fasting Blood Sugar
+                        IEnumerable<PatientResultLabModel> FbsTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("FBS"))
+                            .OrderBy(p => p.Year);
+                        GenerateFastingBloodSugar(FbsTestSet);
+
+                        #endregion
+
+                        #region Uric acid
+                        IEnumerable<PatientResultLabModel> UricTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Uric acid"))
+                            .OrderBy(p => p.Year);
+                        GenerateUricAcid(UricTestSet);
+
+                        #endregion
+
+                        #region Lipid Profiles 
+                        IEnumerable<PatientResultLabModel> LipidTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("CHOL")
+                            || p.RequestItemName.Contains("TG")
+                            || p.RequestItemName.Contains("HDL-Cholesterol")
+                            || p.RequestItemName.Contains("LDL-Cholesterol"))
+                            .OrderBy(p => p.Year);
+                        GenerateLipidProfiles(LipidTestSet);
+
+                        #endregion
+
+                        #region Liver Function
+                        IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("AST (SGOT)")
+                            || p.RequestItemName.Contains("ALT (SGPT)")
+                            || p.RequestItemName.Contains("ALP")
+                            || p.RequestItemName.Contains("Total Billirubin")
+                            || p.RequestItemName.Contains("Direct Billirubin")
+                            || p.RequestItemName.Contains("Total Protein in blood")
+                            || p.RequestItemName.Contains("Alb")
+                            || p.RequestItemName.Contains("Glob"))
+                            .OrderBy(p => p.Year);
+                        GenerateLiverFunction(LiverTestSet);
+                        #endregion
+
+                        #region Immunology and Virology
+                        IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Anti HBs") || p.RequestItemName.Contains("HBsAg"))
+                            .OrderBy(p => p.Year);
+                        GenerateImmunology(ImmunologyTestSet);
+                        #endregion
+
+                        #region Stool Exam
+                        IEnumerable<PatientResultLabModel> StoolTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Stool Examination"))
+                            .OrderBy(p => p.Year);
+                        GenerateStool(StoolTestSet);
+                        #endregion
+
+                        #region Toxicology
+                        IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("Aluminium in Urine")
+                            || p.RequestItemName.Contains("Toluene (Urine)")
+                            || p.RequestItemName.Contains("Xylene in Urine")
+                            || p.RequestItemName.Contains("Lead (Blood)")
+                            || p.RequestItemName.Contains("Carboxyhemoglobin in Blood")
+                            || p.RequestItemName.Contains("Methyl Ethyl Ketone(MEK) Urine")
+                            || p.RequestItemName.Contains("Benzene (Urine)")
+                            || p.RequestItemName.Contains("Methanol (Urine)")
+                            || p.RequestItemName.Contains("Methyrene chloride in Blood")
+                            || p.RequestItemName.Contains("Acetone in Urine")
+                            || p.RequestItemName.Contains("Hexane in Urine")
+                            || p.RequestItemName.Contains("Isopropyl in Urine"))
+                            .OrderBy(p => p.Year);
+                        GenerateToxicology(ToxicoTestSet);
+                        #endregion
+
+                        #region Other Lab Teat
+                        IEnumerable<PatientResultLabModel> OtherTestSet = labCompare
+                            .Where(p => p.RequestItemName.Contains("AFP")
+                            || p.RequestItemName.Contains("Blood Group ABO")
+                            || p.RequestItemName.Contains("CA 19-9")
+                            || p.RequestItemName.Contains("PSA"))
+                            .OrderBy(p => p.Year);
+                        GenerateOther(OtherTestSet);
+                        #endregion
+                    }
                 }
-                else
-                {
-                    page3.lbUlt.Text = "-";
-                }
 
-                #endregion
-
-                List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
-                if (labCompare != null)
-                {
-
-                    #region Complete Blood Count
-
-                    IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
-                    .Where(p => p.RequestItemName.Contains("CBC"))
-                    .OrderBy(p => p.Year);
-                    GenerateCompleteBloodCount(cbcTestSet);
-                    #endregion
-
-                    #region Urinalysis
-                    IEnumerable<PatientResultLabModel> uaTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("UA"))
-                        .OrderBy(p => p.Year);
-                    GenerateUrinalysis(uaTestSet);
-
-                    #endregion
-
-                    #region Renal function
-                    IEnumerable<PatientResultLabModel> RenalTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Cr") || p.RequestItemName.Contains("BUN"))
-                        .OrderBy(p => p.Year);
-                    GenerateRenalFunction(RenalTestSet);
-
-                    #endregion
-
-                    #region Fasting Blood Sugar
-                    IEnumerable<PatientResultLabModel> FbsTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("FBS"))
-                        .OrderBy(p => p.Year);
-                    GenerateFastingBloodSugar(FbsTestSet);
-
-                    #endregion
-
-                    #region Uric acid
-                    IEnumerable<PatientResultLabModel> UricTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Uric acid"))
-                        .OrderBy(p => p.Year);
-                    GenerateUricAcid(UricTestSet);
-
-                    #endregion
-
-                    #region Lipid Profiles 
-                    IEnumerable<PatientResultLabModel> LipidTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("CHOL")
-                        || p.RequestItemName.Contains("TG")
-                        || p.RequestItemName.Contains("HDL-Cholesterol")
-                        || p.RequestItemName.Contains("LDL-Cholesterol"))
-                        .OrderBy(p => p.Year);
-                    GenerateLipidProfiles(LipidTestSet);
-
-                    #endregion
-
-                    #region Liver Function
-                    IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("AST (SGOT)")
-                        || p.RequestItemName.Contains("ALT (SGPT)")
-                        || p.RequestItemName.Contains("ALP")
-                        || p.RequestItemName.Contains("Total Billirubin")
-                        || p.RequestItemName.Contains("Direct Billirubin")
-                        || p.RequestItemName.Contains("Total Protein in blood")
-                        || p.RequestItemName.Contains("Alb")
-                        || p.RequestItemName.Contains("Glob"))
-                        .OrderBy(p => p.Year);
-                    GenerateLiverFunction(LiverTestSet);
-                    #endregion
-
-                    #region Immunology and Virology
-                    IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Anti HBs") || p.RequestItemName.Contains("HBsAg"))
-                        .OrderBy(p => p.Year);
-                    GenerateImmunology(ImmunologyTestSet);
-                    #endregion
-
-                    #region Stool Exam
-                    IEnumerable<PatientResultLabModel> StoolTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Stool Examination"))
-                        .OrderBy(p => p.Year);
-                    GenerateStool(StoolTestSet);
-                    #endregion
-
-                    #region Toxicology
-                    IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("Aluminium in Urine") 
-                        || p.RequestItemName.Contains("Toluene (Urine)")
-                        || p.RequestItemName.Contains("Xylene in Urine")
-                        || p.RequestItemName.Contains("Lead (Blood)")
-                        || p.RequestItemName.Contains("Carboxyhemoglobin in Blood")
-                        || p.RequestItemName.Contains("Methyl Ethyl Ketone(MEK) Urine")
-                        || p.RequestItemName.Contains("Benzene (Urine)")
-                        || p.RequestItemName.Contains("Methanol (Urine)")
-                        || p.RequestItemName.Contains("Methyrene chloride in Blood")
-                        || p.RequestItemName.Contains("Acetone in Urine")
-                        || p.RequestItemName.Contains("Hexane in Urine")
-                        || p.RequestItemName.Contains("Isopropyl in Urine"))
-                        .OrderBy(p => p.Year);
-                    GenerateToxicology(ToxicoTestSet);
-                    #endregion
-
-                    #region Other Lab Teat
-                    IEnumerable<PatientResultLabModel> OtherTestSet = labCompare
-                        .Where(p => p.RequestItemName.Contains("AFP")
-                        || p.RequestItemName.Contains("Blood Group ABO")
-                        || p.RequestItemName.Contains("CA 19-9")
-                        || p.RequestItemName.Contains("PSA"))
-                        .OrderBy(p => p.Year);
-                    GenerateOther(OtherTestSet);
-                    #endregion
-                }
             }
         }
 

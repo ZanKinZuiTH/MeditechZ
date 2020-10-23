@@ -13,6 +13,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MediTech.ViewModels
@@ -585,8 +586,8 @@ namespace MediTech.ViewModels
 
         private void DeleteProgressNote(int progressNoteUID)
         {
-            DialogResult result = QuestionDialog("คุณต้องการลบ Note ใช้หรื่อไม่ ?");
-            if (result == DialogResult.Yes)
+            MessageBoxResult result = QuestionDialog("คุณต้องการลบ Note ใช้หรื่อไม่ ?");
+            if (result == MessageBoxResult.Yes)
             {
                 DataService.PatientHistory.DeleteProgressNote(progressNoteUID, AppUtil.Current.UserID);
                 LoadProgressNote();
@@ -635,8 +636,8 @@ namespace MediTech.ViewModels
         }
         private void DeleteWellness(int wellNessDataUID)
         {
-            DialogResult result = QuestionDialog("คุณต้องการลบข้อมูล Wellness ใช้หรื่อไม่ ?");
-            if (result == DialogResult.Yes)
+            MessageBoxResult result = QuestionDialog("คุณต้องการลบข้อมูล Wellness ใช้หรื่อไม่ ?");
+            if (result == MessageBoxResult.Yes)
             {
                 DataService.PatientHistory.DeleteWellnessData(wellNessDataUID, AppUtil.Current.UserID);
                 LoadWellnessData();

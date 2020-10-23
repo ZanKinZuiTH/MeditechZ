@@ -11,6 +11,7 @@ using System.Linq;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 using System.Windows.Media.Imaging;
 using WIA;
@@ -233,7 +234,7 @@ namespace MediTech.ViewModels
                     {
                         var converter = new ScannerImageConverter();
 
-                        Vector vector = file.FileData;
+                        WIA.Vector vector = file.FileData;
 
                         if (vector != null)
                         {
@@ -370,8 +371,8 @@ namespace MediTech.ViewModels
             {
                 if (SelectScannedDocuments != null)
                 {
-                    DialogResult result = QuestionDialog("คุณต้องการลบเอกสารนี้ ใช้หรือไม่ ?");
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = QuestionDialog("คุณต้องการลบเอกสารนี้ ใช้หรือไม่ ?");
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.DeletePatientScannedDocument(SelectScannedDocuments.PatientScannedDocumentUID, AppUtil.Current.UserID);
                         GetPatientScannedDocument();

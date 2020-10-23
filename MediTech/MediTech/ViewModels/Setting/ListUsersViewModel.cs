@@ -81,8 +81,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         int? loginUID = null;
                         if (SelectCareprovider.loginModel != null)

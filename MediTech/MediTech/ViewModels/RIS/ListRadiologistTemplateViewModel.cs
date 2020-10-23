@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -105,8 +106,8 @@ namespace MediTech.ViewModels
         {
             if (SelectResultTemplate != null)
             {
-                System.Windows.Forms.DialogResult result = QuestionDialog("ต้องการลบ Template " + SelectResultTemplate.Name + " ใช้หรือไม่ ?");
-                if (result == System.Windows.Forms.DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("ต้องการลบ Template " + SelectResultTemplate.Name + " ใช้หรือไม่ ?");
+                if (result == MessageBoxResult.Yes)
                 {
                     DataService.Radiology.DeleteResultRadiologyTemplate(SelectResultTemplate.ResultRadiologyTemplateUID, AppUtil.Current.UserID);
                     DeleteSuccessDialog();

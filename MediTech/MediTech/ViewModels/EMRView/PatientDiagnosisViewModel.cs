@@ -716,8 +716,8 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientProblemList != null)
             {
-                DialogResult result = DeleteDialog();
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = DeleteDialog();
+                if (result == MessageBoxResult.Yes)
                 {
                     PatientProblemList.Remove(SelectPatientProblemList);
                     ClearControl();
@@ -734,8 +734,8 @@ namespace MediTech.ViewModels
                 {
                     if (PatientProblemList == null || PatientProblemList.Count <= 0)
                     {
-                        DialogResult resultDaig = QuestionDialog("ไม่มีข้อมูลการวินิจฉัย คุณต้องการบันทึก หรืไม่ ?");
-                        if (resultDaig != DialogResult.Yes)
+                        MessageBoxResult resultDaig = QuestionDialog("ไม่มีข้อมูลการวินิจฉัย คุณต้องการบันทึก หรืไม่ ?");
+                        if (resultDaig != MessageBoxResult.Yes)
                         {
                             return;
                         }

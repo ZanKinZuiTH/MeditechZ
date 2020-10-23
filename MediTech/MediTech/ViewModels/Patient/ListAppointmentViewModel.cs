@@ -10,6 +10,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MediTech.ViewModels
@@ -360,8 +361,8 @@ namespace MediTech.ViewModels
         {
             if (SelectBooking != null)
             {
-                DialogResult result = QuestionDialog("คุณต้องการยกเลิกนัดนี้ ใช้หรือไม่");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการยกเลิกนัดนี้ ใช้หรือไม่");
+                if (result == MessageBoxResult.Yes)
                 {
                     DataService.PatientIdentity.CancelBooking(SelectBooking.BookingUID, AppUtil.Current.UserID);
                     SelectBooking.BKSTSUID = 2945;

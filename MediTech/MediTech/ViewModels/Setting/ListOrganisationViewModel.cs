@@ -95,8 +95,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.MasterData.DeleteHealthOrganisation(SelectOrganisation.HealthOrganisationUID, AppUtil.Current.UserID);
                         SaveSuccessDialog();

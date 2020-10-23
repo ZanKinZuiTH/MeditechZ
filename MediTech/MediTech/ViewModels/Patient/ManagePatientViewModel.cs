@@ -1240,12 +1240,12 @@ namespace MediTech.ViewModels
 
                 if (patientModel.VIPActiveTo?.Date < DateTime.Now.Date)
                 {
-                    DialogResult resultDiag = QuestionDialog("สถานะ VIP ผู้ป่วยหมดอายุแล้ว จะต่อวันหมดอายุหรือไม่");
-                    if (resultDiag == DialogResult.Yes)
+                    MessageBoxResult resultDiag = QuestionDialog("สถานะ VIP ผู้ป่วยหมดอายุแล้ว จะต่อวันหมดอายุหรือไม่");
+                    if (resultDiag == MessageBoxResult.Yes)
                     {
                         VIPActiveTo = null;
                     }
-                    else if(resultDiag == DialogResult.No)
+                    else if(resultDiag == MessageBoxResult.No)
                     {
                         IsVIP = false;
                     }

@@ -127,9 +127,9 @@ namespace MediTech.ViewModels
                     WarningDialog("รายการนี้มีจำนวนคงเหลืออยู่ในคลัง ไม่สามารถทำการลบได้ !");
                     return;
                 }
-                DialogResult result = DeleteDialog();
+                MessageBoxResult result = DeleteDialog();
 
-                if (result == DialogResult.Yes)
+                if (result == MessageBoxResult.Yes)
                 {
                     try
                     {

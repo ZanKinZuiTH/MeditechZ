@@ -807,8 +807,8 @@ namespace MediTech.ViewModels
         {
             if (PatientOrders != null && PatientOrders.Count > 0)
             {
-                DialogResult result = QuestionDialog("คุณต้องการ Clear Order ทั้งหมดใช้หรือไม่ ?");
-                if (result == DialogResult.Yes)
+                MessageBoxResult result = QuestionDialog("คุณต้องการ Clear Order ทั้งหมดใช้หรือไม่ ?");
+                if (result == MessageBoxResult.Yes)
                 {
                     PatientOrders = null;
                 }

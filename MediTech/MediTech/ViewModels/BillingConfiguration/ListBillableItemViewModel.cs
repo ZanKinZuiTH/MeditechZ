@@ -175,8 +175,8 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-                    DialogResult result = DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.MasterData.DeleteBillableItem(SelectBillableItem.BillableItemUID, AppUtil.Current.UserID);
                         DeleteSuccessDialog();

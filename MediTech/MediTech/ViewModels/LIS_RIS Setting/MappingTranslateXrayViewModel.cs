@@ -124,8 +124,8 @@ namespace MediTech.ViewModels
             {
                 if (SelectMappingXray != null)
                 {
-                    DialogResult result =  DeleteDialog();
-                    if (result == DialogResult.Yes)
+                    MessageBoxResult result =  DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
                     {
                         DataService.Radiology.DeleteXrayTranslateMapping(SelectMappingXray.XrayTranslateMappingUID, AppUtil.Current.UserID);
                         DeleteSuccessDialog();

@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Forms;
 
 namespace MediTech.ViewModels
@@ -226,8 +227,8 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientVisit != null)
                 {
-                    DialogResult diagResult = QuestionDialog("คุณต้องการยกเลิกการละเบียนของผู้ป่วยคนนี้ใช้หรือไม่ ?");
-                    if (diagResult == DialogResult.Yes)
+                    MessageBoxResult diagResult = QuestionDialog("คุณต้องการยกเลิกการละเบียนของผู้ป่วยคนนี้ใช้หรือไม่ ?");
+                    if (diagResult == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.CancelVisit(SelectPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
                     }

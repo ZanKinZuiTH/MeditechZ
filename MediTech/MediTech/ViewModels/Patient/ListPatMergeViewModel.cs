@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -219,7 +220,7 @@ namespace MediTech.ViewModels
                 if (SelectPatientMerge != null && SelectPatientMerge.MergeType == "Patient Merge" && SelectPatientMerge.IsUnMerge != "UNMERGE")
                 {
                     var diagResult = QuestionDialog("คุณต้องการยกเลิกการ Merge ของคนไข้คนนี้ ใช้หรือไม่ ?");
-                    if (diagResult == System.Windows.Forms.DialogResult.Yes)
+                    if (diagResult == MessageBoxResult.Yes)
                     {
                         DataService.PatientIdentity.UnMergePatient(SelectPatientMerge.PatientMergeUID, AppUtil.Current.UserID);
                         SaveSuccessDialog();
