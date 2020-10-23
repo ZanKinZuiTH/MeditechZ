@@ -89,8 +89,8 @@
                 <dxlc:LayoutGroup Orientation="Vertical"
                                   Visibility="{Binding IsVisibility}"
                                   VerticalAlignment="Center">
-                    <dx:SimpleButton Command="{Binding AddCommand}" Content=">>" Height="25" Width="80"/>
-                    <dx:SimpleButton Command="{Binding RemoveCommand}" Content="&lt;&lt;" Height="25" Width="80"/>
+                    <dx:SimpleButton Command="{Binding AddCommand}" Content=">>" Height="25" Width="50"/>
+                    <dx:SimpleButton Command="{Binding RemoveCommand}" Content="&lt;&lt;" Height="25" Width="50"/>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Vertical">
                     <dxlc:LayoutItem HorizontalAlignment="Center">

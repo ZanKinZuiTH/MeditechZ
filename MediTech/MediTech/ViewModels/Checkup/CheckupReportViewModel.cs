@@ -147,13 +147,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        private RelayCommand _CheckupResultCommand;
-
-        public RelayCommand CheckupResultCommand
-        {
-            get { return _CheckupResultCommand ?? (_CheckupResultCommand = new RelayCommand(CheckupResult)); }
-        }
-
 
         private RelayCommand _PrintCommand;
 
@@ -193,11 +186,6 @@ namespace MediTech.ViewModels
             PayorDetails = DataService.MasterData.GetPayorDetail();
         }
 
-        void CheckupResult()
-        {
-            CheckupResult checkupResult = new CheckupResult();
-            CheckupResultViewModel checkupViewModel = (CheckupResultViewModel)LaunchViewDialogNonPermiss(checkupResult,false);
-        }
 
         void Print()
         {

@@ -30,7 +30,7 @@ namespace MediTechWebApi.Controllers
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
                     PayorDetailUID = p.PayorDetailUID,
-                    PayorName = SqlFunction.fGetPayorName(p.PayorDetailUID),
+                    CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
                     Location = p.Location,
@@ -57,7 +57,7 @@ namespace MediTechWebApi.Controllers
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
                     PayorDetailUID = p.PayorDetailUID,
-                    PayorName = SqlFunction.fGetPayorName(p.PayorDetailUID),
+                    CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
                     Location = p.Location,
@@ -70,6 +70,19 @@ namespace MediTechWebApi.Controllers
                     EndDttm = p.EndDttm,
                     CollectDttm = p.CollectDttm
                 }).FirstOrDefault();
+
+            if (data != null)
+            {
+                data.CheckupJobTasks = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == data.CheckupJobContactUID)
+                    .Select(p => new CheckupJobTaskModel
+                    {
+                        CheckupJobTaskUID = p.UID,
+                        CheckupJobContactUID = p.CheckupJobContactUID,
+                        GPRSTUID = p.GPRSTUID,
+                        GroupResultName = p.GroupResultName,
+                        DisplayOrder = p.DisplayOrder
+                    }).ToList();
+            }
 
             return data;
         }
@@ -90,7 +103,20 @@ namespace MediTechWebApi.Controllers
                     checkupJobContact.MWhen = now;
                     checkupJobContact.StatusFlag = "D";
                     db.SaveChanges();
+
+
+                    var checkupJobTask = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == checkupJobContact.UID);
+
+                    foreach (var item in checkupJobTask)
+                    {
+                        db.CheckupJobTask.Attach(item);
+                        item.MUser = userID;
+                        item.MWhen = now;
+                        item.StatusFlag = "D";
+                    }
+                    db.SaveChanges();
                 }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -135,7 +161,7 @@ namespace MediTechWebApi.Controllers
                     }
 
                     checkupJob.PayorDetailUID = checkupJobContactModel.PayorDetailUID;
-                    checkupJob.PayorName = checkupJobContactModel.PayorName;
+                    checkupJob.CompanyName = checkupJobContactModel.CompanyName;
                     checkupJob.Description = checkupJobContactModel.Description;
                     checkupJob.Location = checkupJobContactModel.Location;
                     checkupJob.ContactPerson = checkupJobContactModel.ContactPerson;
@@ -148,6 +174,71 @@ namespace MediTechWebApi.Controllers
                     checkupJob.CollectDttm = checkupJobContactModel.CollectDttm;
                     checkupJob.MUser = userID;
                     checkupJob.MWhen = now;
+
+                    #region Delete CheckupJobTaskModel
+                    IEnumerable<CheckupJobTask> checkupJobTaskdel = db.CheckupJobTask.Where(p => p.StatusFlag == "A" && p.CheckupJobContactUID == checkupJobContactModel.CheckupJobContactUID);
+
+                    if (checkupJobContactModel.CheckupJobTasks == null)
+                    {
+                        foreach (var item in checkupJobTaskdel)
+                        {
+                            db.CheckupJobTask.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in checkupJobTaskdel)
+                        {
+                            var data = checkupJobContactModel.CheckupJobTasks.FirstOrDefault(p => p.CheckupJobTaskUID == item.UID);
+                            if (data == null)
+                            {
+                                db.CheckupJobTask.Attach(item);
+                                item.MUser = userID;
+                                item.MWhen = now;
+                                item.StatusFlag = "D";
+                            }
+
+                        }
+                    }
+
+                    db.SaveChanges();
+
+                    #endregion
+
+                    if (checkupJobContactModel.CheckupJobTasks != null)
+                    {
+                        foreach (var item in checkupJobContactModel.CheckupJobTasks)
+                        {
+                            CheckupJobTask checkupJobTask = db.CheckupJobTask.Find(item.CheckupJobTaskUID);
+                            if (checkupJobTask == null)
+                            {
+                                checkupJobTask = new CheckupJobTask();
+                                checkupJobTask.CUser = userID;
+                                checkupJobTask.CWhen = now;
+                                checkupJobTask.MUser = userID;
+                                checkupJobTask.MWhen = now;
+                                checkupJobTask.StatusFlag = "A";
+                            }
+                            else
+                            {
+                                if (item.MWhen != DateTime.MinValue)
+                                {
+                                    checkupJobTask.MUser = userID;
+                                    checkupJobTask.MWhen = now;
+                                }
+                            }
+                            checkupJobTask.CheckupJobContactUID = checkupJob.UID;
+                            checkupJobTask.GPRSTUID = item.GPRSTUID;
+                            checkupJobTask.GroupResultName = item.GroupResultName;
+                            checkupJobTask.DisplayOrder = item.DisplayOrder;
+                            db.CheckupJobTask.AddOrUpdate(checkupJobTask);
+                            db.SaveChanges();
+                        }
+                    }
+
                     tran.Complete();
                 }
 

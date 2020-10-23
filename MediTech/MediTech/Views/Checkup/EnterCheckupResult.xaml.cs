@@ -18,9 +18,9 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for CheckupResult.xaml
     /// </summary>
-    public partial class CheckupResult : UserControl
+    public partial class EnterCheckupResult : UserControl
     {
-        public CheckupResult()
+        public EnterCheckupResult()
         {
             InitializeComponent();
         }

@@ -12,23 +12,13 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckupJobContact
+    public partial class CheckupJobTask
     {
         public int UID { get; set; }
-        public System.Guid JobContactID { get; set; }
-        public string JobNumber { get; set; }
-        public int PayorDetailUID { get; set; }
-        public string CompanyName { get; set; }
-        public string Description { get; set; }
-        public string Location { get; set; }
-        public string ContactPerson { get; set; }
-        public string ContactPhone { get; set; }
-        public string ContactEmail { get; set; }
-        public string ServiceName { get; set; }
-        public int VisitCount { get; set; }
-        public System.DateTime StartDttm { get; set; }
-        public Nullable<System.DateTime> EndDttm { get; set; }
-        public Nullable<System.DateTime> CollectDttm { get; set; }
+        public int CheckupJobContactUID { get; set; }
+        public int GPRSTUID { get; set; }
+        public string GroupResultName { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

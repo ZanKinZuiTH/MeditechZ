@@ -1094,14 +1094,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public CheckupResultViewModel CheckupResultViewModel
+        public CheckupExamListViewModel CheckupExamListViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<CheckupResultViewModel>())
-                    SimpleIoc.Default.Register<CheckupResultViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<CheckupExamListViewModel>())
+                    SimpleIoc.Default.Register<CheckupExamListViewModel>();
 
-                return ServiceLocator.Current.GetInstance<CheckupResultViewModel>();
+                return ServiceLocator.Current.GetInstance<CheckupExamListViewModel>();
             }
         }
 

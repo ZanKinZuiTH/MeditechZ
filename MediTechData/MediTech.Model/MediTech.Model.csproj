@@ -47,6 +47,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
+    <Compile Include="Checkup\CheckupJobTaskModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />

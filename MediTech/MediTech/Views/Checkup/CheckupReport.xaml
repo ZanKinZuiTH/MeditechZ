@@ -94,7 +94,7 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Name="layoutTab" View="Tabs">
-                <dxlc:LayoutGroup Header="ดึงรายงานเล่มเดี่ยว" Orientation="Vertical">
+                <dxlc:LayoutGroup Header="รายชื่อผู้ตรวจ" Orientation="Vertical">
                     <dxg:GridControl ItemsSource="{Binding PatientResultLabList}" 
                                      SelectedItems="{Binding SelectPatientResultLabList}" 
                                      SelectionMode="MultipleRow">
@@ -117,14 +117,6 @@
                     </dxg:GridControl>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton Width="135" Height="30" Command="{Binding CheckupResultCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Menu/Checkup Result.png" Stretch="Fill" Height="23"/>
-                                        <TextBlock Text="Check-Up Result" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton Width="105" Height="30" Command="{Binding PrintCommand}">
                                     <StackPanel Orientation="Horizontal">
@@ -137,7 +129,7 @@
 
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Header="ดึงรายงานรวม" Orientation="Vertical">
+                <dxlc:LayoutGroup Header="ผลตรวจ" Orientation="Vertical">
                     <dxpg:PivotGridControl Name="pivotData" DataSource="{Binding PivotPatientLabData}" 
                                            ShowGrandTotalsForSingleValues="False"
                                            AllowCrossGroupVariation="False"

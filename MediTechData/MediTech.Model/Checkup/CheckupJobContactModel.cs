@@ -12,7 +12,7 @@ namespace MediTech.Model
         public System.Guid JobContactID { get; set; }
         public string JobNumber { get; set; }
         public int PayorDetailUID { get; set; }
-        public string PayorName { get; set; }
+        public string CompanyName { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }
         public string ContactPerson { get; set; }
@@ -28,5 +28,7 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+
+        public List<CheckupJobTaskModel> CheckupJobTasks { get; set; }
     }
 }

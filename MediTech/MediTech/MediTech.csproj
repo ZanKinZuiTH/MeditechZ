@@ -703,6 +703,7 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupExamListViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TimusViewModel.cs" />
@@ -855,8 +856,11 @@
     <Compile Include="Views\Checkup\Audiogram.xaml.cs">
       <DependentUpon>Audiogram.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\CheckupResult.xaml.cs">
-      <DependentUpon>CheckupResult.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\CheckupExamList.xaml.cs">
+      <DependentUpon>CheckupExamList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterCheckupResult.xaml.cs">
+      <DependentUpon>EnterCheckupResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EKG.xaml.cs">
       <DependentUpon>EKG.xaml</DependentUpon>
@@ -1331,7 +1335,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\CheckupResult.xaml">
+    <Page Include="Views\Checkup\CheckupExamList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterCheckupResult.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

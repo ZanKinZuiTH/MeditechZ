@@ -85,6 +85,9 @@
     <Compile Include="CheckupJobContact.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="CheckupJobTask.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="DispensedItem.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -788,6 +791,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQAccessionNumber.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEQCheckupJobNumber.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQConfiguration.cs">

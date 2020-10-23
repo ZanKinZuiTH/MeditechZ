@@ -38,6 +38,7 @@ namespace MediTech.DataBase
         public virtual DbSet<CCHPI> CCHPI { get; set; }
         public virtual DbSet<CCHPIMaster> CCHPIMaster { get; set; }
         public virtual DbSet<CheckupJobContact> CheckupJobContact { get; set; }
+        public virtual DbSet<CheckupJobTask> CheckupJobTask { get; set; }
         public virtual DbSet<DispensedItem> DispensedItem { get; set; }
         public virtual DbSet<DisposeItemList> DisposeItemList { get; set; }
         public virtual DbSet<DisposeStock> DisposeStock { get; set; }
@@ -142,6 +143,7 @@ namespace MediTech.DataBase
         public virtual DbSet<SaleReturnList> SaleReturnList { get; set; }
         public virtual DbSet<ScheduleRadiologist> ScheduleRadiologist { get; set; }
         public virtual DbSet<SEQAccessionNumber> SEQAccessionNumber { get; set; }
+        public virtual DbSet<SEQCheckupJobNumber> SEQCheckupJobNumber { get; set; }
         public virtual DbSet<SEQConfiguration> SEQConfiguration { get; set; }
         public virtual DbSet<SEQDISPOSEID> SEQDISPOSEID { get; set; }
         public virtual DbSet<SEQGRNID> SEQGRNID { get; set; }

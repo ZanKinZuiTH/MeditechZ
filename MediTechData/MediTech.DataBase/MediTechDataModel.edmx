@@ -207,7 +207,7 @@
           <Property Name="JobContactID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="JobNumber" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="PayorDetailUID" Type="int" Nullable="false" />
-          <Property Name="PayorName" Type="nvarchar" MaxLength="255" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="Location" Type="nvarchar" MaxLength="500" />
           <Property Name="ContactPerson" Type="nvarchar" MaxLength="500" />
@@ -218,6 +218,22 @@
           <Property Name="StartDttm" Type="datetime" Nullable="false" />
           <Property Name="EndDttm" Type="datetime" />
           <Property Name="CollectDttm" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupJobTask">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckupJobContactUID" Type="int" Nullable="false" />
+          <Property Name="GPRSTUID" Type="int" Nullable="false" />
+          <Property Name="GroupResultName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DisplayOrder" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -2438,6 +2454,13 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SEQCheckupJobNumber">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
+        </EntityType>
         <EntityType Name="SEQConfiguration">
           <Key>
             <PropertyRef Name="UID" />
@@ -3654,6 +3677,7 @@
           <EntitySet Name="CCHPI" EntityType="Self.CCHPI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CCHPIMaster" EntityType="Self.CCHPIMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupJobContact" EntityType="Self.CheckupJobContact" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupJobTask" EntityType="Self.CheckupJobTask" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DispensedItem" EntityType="Self.DispensedItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeItemList" EntityType="Self.DisposeItemList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeStock" EntityType="Self.DisposeStock" Schema="dbo" store:Type="Tables" />
@@ -3758,6 +3782,7 @@
           <EntitySet Name="SaleReturnList" EntityType="Self.SaleReturnList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ScheduleRadiologist" EntityType="Self.ScheduleRadiologist" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQAccessionNumber" EntityType="Self.SEQAccessionNumber" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEQCheckupJobNumber" EntityType="Self.SEQCheckupJobNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQConfiguration" EntityType="Self.SEQConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQDISPOSEID" EntityType="Self.SEQDISPOSEID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQGRNID" EntityType="Self.SEQGRNID" Schema="dbo" store:Type="Tables" />
@@ -4719,6 +4744,7 @@
           <EntitySet Name="CCHPI" EntityType="MediTechModel.CCHPI" />
           <EntitySet Name="CCHPIMaster" EntityType="MediTechModel.CCHPIMaster" />
           <EntitySet Name="CheckupJobContact" EntityType="MediTechModel.CheckupJobContact" />
+          <EntitySet Name="CheckupJobTask" EntityType="MediTechModel.CheckupJobTask" />
           <EntitySet Name="DispensedItem" EntityType="MediTechModel.DispensedItem" />
           <EntitySet Name="DisposeItemList" EntityType="MediTechModel.DisposeItemList" />
           <EntitySet Name="DisposeStock" EntityType="MediTechModel.DisposeStock" />
@@ -4823,6 +4849,7 @@
           <EntitySet Name="SaleReturnList" EntityType="MediTechModel.SaleReturnList" />
           <EntitySet Name="ScheduleRadiologist" EntityType="MediTechModel.ScheduleRadiologist" />
           <EntitySet Name="SEQAccessionNumber" EntityType="MediTechModel.SEQAccessionNumber" />
+          <EntitySet Name="SEQCheckupJobNumber" EntityType="MediTechModel.SEQCheckupJobNumber" />
           <EntitySet Name="SEQConfiguration" EntityType="MediTechModel.SEQConfiguration" />
           <EntitySet Name="SEQDISPOSEID" EntityType="MediTechModel.SEQDISPOSEID" />
           <EntitySet Name="SEQGRNID" EntityType="MediTechModel.SEQGRNID" />
@@ -7335,7 +7362,7 @@
           <Property Name="JobContactID" Type="Guid" Nullable="false" />
           <Property Name="JobNumber" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PayorDetailUID" Type="Int32" Nullable="false" />
-          <Property Name="PayorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Location" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ContactPerson" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -7346,6 +7373,22 @@
           <Property Name="StartDttm" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="EndDttm" Type="DateTime" Precision="3" />
           <Property Name="CollectDttm" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupJobTask">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckupJobContactUID" Type="Int32" Nullable="false" />
+          <Property Name="GPRSTUID" Type="Int32" Nullable="false" />
+          <Property Name="GroupResultName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9565,6 +9608,13 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SEQCheckupJobNumber">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SEQConfiguration">
           <Key>
@@ -11944,10 +11994,27 @@
                 <ScalarProperty Name="ContactPerson" ColumnName="ContactPerson" />
                 <ScalarProperty Name="Location" ColumnName="Location" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
                 <ScalarProperty Name="JobNumber" ColumnName="JobNumber" />
                 <ScalarProperty Name="JobContactID" ColumnName="JobContactID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupJobTask">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupJobTask">
+              <MappingFragment StoreEntitySet="CheckupJobTask">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="GroupResultName" ColumnName="GroupResultName" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
+                <ScalarProperty Name="CheckupJobContactUID" ColumnName="CheckupJobContactUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14264,6 +14331,14 @@
           <EntitySetMapping Name="SEQAccessionNumber">
             <EntityTypeMapping TypeName="MediTechModel.SEQAccessionNumber">
               <MappingFragment StoreEntitySet="SEQAccessionNumber">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEQCheckupJobNumber">
+            <EntityTypeMapping TypeName="MediTechModel.SEQCheckupJobNumber">
+              <MappingFragment StoreEntitySet="SEQCheckupJobNumber">
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>

@@ -9,7 +9,7 @@ using System.Windows.Controls;
 
 namespace MediTech.ViewModels
 {
-    public class CheckupResultViewModel : MediTechViewModelBase
+    public class EnterCheckupResultViewModel : MediTechViewModelBase
     {
 
         #region Properties
@@ -56,27 +56,27 @@ namespace MediTech.ViewModels
                     patientVital.btnSave.Visibility = System.Windows.Visibility.Collapsed;
                     patientVital.btnCancel.Visibility = System.Windows.Visibility.Collapsed;
                     ((patientVital as UserControl).DataContext as MediTechViewModelBase).View = patientVital;
-                    (this.View as CheckupResult).documentFrame.Navigate(patientVital);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(patientVital);
                     break;
                 case "examination":
                     ((examination as UserControl).DataContext as MediTechViewModelBase).View = examination;
-                    (this.View as CheckupResult).documentFrame.Navigate(examination);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(examination);
                     break;
                 case "audiogram":
                     ((audiogram as UserControl).DataContext as MediTechViewModelBase).View = audiogram;
-                    (this.View as CheckupResult).documentFrame.Navigate(audiogram);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(audiogram);
                     break;
                 case "spirometry":
                     ((spirometry as UserControl).DataContext as MediTechViewModelBase).View = spirometry;
-                    (this.View as CheckupResult).documentFrame.Navigate(spirometry);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(spirometry);
                     break;
                 case "titmus":
                     ((timus as UserControl).DataContext as MediTechViewModelBase).View = timus;
-                    (this.View as CheckupResult).documentFrame.Navigate(timus);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(timus);
                     break;
                 case "ekg":
                     ((ekg as UserControl).DataContext as MediTechViewModelBase).View = ekg;
-                    (this.View as CheckupResult).documentFrame.Navigate(ekg);
+                    (this.View as EnterCheckupResult).documentFrame.Navigate(ekg);
                     break;
             }
 
