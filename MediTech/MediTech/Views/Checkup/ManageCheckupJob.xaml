@@ -90,7 +90,7 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl ItemsSource="{Binding CheckupJobTask}"
+                <dxg:GridControl Name="grdJobTask" ItemsSource="{Binding CheckupJobTask}"
                                  SelectedItem="{Binding SelectCheckupJobTask}">
                     <dxg:GridColumn Header="Group Name" FieldName="GroupResultName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Display Order" FieldName="DisplayOrder" ReadOnly="False"/>
@@ -101,10 +101,11 @@
                 <dxlc:LayoutGroup Orientation="Vertical"
                                   Visibility="{Binding IsVisibility}"
                                   VerticalAlignment="Center">
-                    <dx:SimpleButton Command="{Binding AddCommand}" Content=">>" Height="25" Width="50"/>
                     <dx:SimpleButton Command="{Binding RemoveCommand}" Content="&lt;&lt;" Height="25" Width="50"/>
+                    <dx:SimpleButton Command="{Binding AddCommand}" Content=">>" Height="25" Width="50"/>
+
                 </dxlc:LayoutGroup>
-                <dxg:GridControl ItemsSource="{Binding GroupResults}" 
+                <dxg:GridControl x:Name="grdGroupResult" ItemsSource="{Binding GroupResults}" 
                                  SelectedItem="{Binding SelectGroupResult}"
                                  Width="350">
                     <dxg:GridColumn FieldName="Display" ReadOnly="True"/>

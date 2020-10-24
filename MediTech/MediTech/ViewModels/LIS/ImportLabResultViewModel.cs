@@ -441,73 +441,73 @@ namespace MediTech.ViewModels
                                 }
 
                                 //Urine Analysis
-                                if (SelectedRequestItem.Code == "LAB311")
-                                {
-                                    if (columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
-                                    {
-                                        continue;
-                                    }
+                                //if (SelectedRequestItem.Code == "LAB311")
+                                //{
+                                //    if (columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
+                                //    {
+                                //        continue;
+                                //    }
                                     
-                                    if (columnName == "Blood")
-                                    {
-                                        string rbcValue = "";
-                                        switch (item[columnName].ToString().Trim())
-                                        {
-                                            case "Negative":
-                                                rbcValue = "0-2";
-                                                break;
-                                            case "Trace":
-                                                rbcValue = "2-10";
-                                                break;
-                                            case "+1":
-                                            case "1+":
-                                                rbcValue = "10-25";
-                                                break;
-                                            case "+2":
-                                            case "2+":
-                                                rbcValue = "25-80";
-                                                break;
-                                            case "+3":
-                                            case "3+":
-                                                rbcValue = "> 200";
-                                                break;
-                                        }
-                                        var rbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                                         where c.ColumnName.ToLower().Contains("rbc")
-                                                         select c.ColumnName).FirstOrDefault();
-                                        view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
-                                    }
-                                    else if (columnName == "Leukocyte")
-                                    {
-                                        string wbcValue = "";
-                                        switch (item[columnName].ToString().Trim())
-                                        {
-                                            case "Negative":
-                                                wbcValue = "0-5";
-                                                break;
-                                            case "Trace":
-                                                wbcValue = "5-15";
-                                                break;
-                                            case "+1":
-                                            case "1+":
-                                                wbcValue = "15-70";
-                                                break;
-                                            case "+2":
-                                            case "2+":
-                                                wbcValue = "70-125";
-                                                break;
-                                            case "+3":
-                                            case "3+":
-                                                wbcValue = "> 500";
-                                                break;
-                                        }
-                                        var wbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                                         where c.ColumnName.ToLower().Contains("wbc")
-                                                         select c.ColumnName).FirstOrDefault();
-                                        view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
-                                    }
+                                //    if (columnName == "Blood")
+                                //    {
+                                //        string rbcValue = "";
+                                //        switch (item[columnName].ToString().Trim())
+                                //        {
+                                //            case "Negative":
+                                //                rbcValue = "0-2";
+                                //                break;
+                                //            case "Trace":
+                                //                rbcValue = "2-10";
+                                //                break;
+                                //            case "+1":
+                                //            case "1+":
+                                //                rbcValue = "10-25";
+                                //                break;
+                                //            case "+2":
+                                //            case "2+":
+                                //                rbcValue = "25-80";
+                                //                break;
+                                //            case "+3":
+                                //            case "3+":
+                                //                rbcValue = "> 200";
+                                //                break;
+                                //        }
+                                //        var rbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
+                                //                         where c.ColumnName.ToLower().Contains("rbc")
+                                //                         select c.ColumnName).FirstOrDefault();
+                                //        view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
+                                //    }
+                                //    else if (columnName == "Leukocyte")
+                                //    {
+                                //        string wbcValue = "";
+                                //        switch (item[columnName].ToString().Trim())
+                                //        {
+                                //            case "Negative":
+                                //                wbcValue = "0-5";
+                                //                break;
+                                //            case "Trace":
+                                //                wbcValue = "5-15";
+                                //                break;
+                                //            case "+1":
+                                //            case "1+":
+                                //                wbcValue = "15-70";
+                                //                break;
+                                //            case "+2":
+                                //            case "2+":
+                                //                wbcValue = "70-125";
+                                //                break;
+                                //            case "+3":
+                                //            case "3+":
+                                //                wbcValue = "> 500";
+                                //                break;
+                                //        }
+                                //        var wbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
+                                //                         where c.ColumnName.ToLower().Contains("wbc")
+                                //                         select c.ColumnName).FirstOrDefault();
+                                //        view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
+                                //    }
 
-                                }
+                                //}
 
                                 view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
 

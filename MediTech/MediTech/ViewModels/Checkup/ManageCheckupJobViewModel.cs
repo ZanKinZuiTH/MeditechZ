@@ -260,25 +260,63 @@ namespace MediTech.ViewModels
             EndDttm = modelCheckupJobContact.EndDttm;
             CollectDttm = modelCheckupJobContact.CollectDttm;
             CheckupJobTask = modelCheckupJobContact.CheckupJobTasks;
+
+            if (CheckupJobTask != null && CheckupJobTask.Count > 0)
+            {
+                foreach (var item in CheckupJobTask)
+                {
+                    var dataAlredy = GroupResults.FirstOrDefault(p => p.Key == item.GPRSTUID);
+                    if (dataAlredy != null)
+                    {
+                        GroupResults.Remove(dataAlredy);
+                    }
+                    RefershGrid();
+                }
+            }
         }
 
         public void AddGroupResult()
         {
-            if (CheckupJobTask == null)
-                CheckupJobTask = new List<CheckupJobTaskModel>();
+            if (SelectGroupResult != null)
+            {
+                if (CheckupJobTask == null)
+                    CheckupJobTask = new List<CheckupJobTaskModel>();
 
-            CheckupJobTaskModel newCheckupJobTask = new CheckupJobTaskModel();
-            newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;
-            newCheckupJobTask.GroupResultName = SelectGroupResult.Display;
-            newCheckupJobTask.DisplayOrder = CheckupJobTask.Max(p=>p.DisplayOrder) ?? 0 + 1;
-            CheckupJobTask.Add(newCheckupJobTask);
+                CheckupJobTaskModel newCheckupJobTask = new CheckupJobTaskModel();
+                newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;
+                newCheckupJobTask.GroupResultName = SelectGroupResult.Display;
+                newCheckupJobTask.DisplayOrder = CheckupJobTask.Max(p => p.DisplayOrder) ?? 0 + 1;
+                CheckupJobTask.Add(newCheckupJobTask);
+
+                GroupResults.Remove(SelectGroupResult);
+
+                RefershGrid();
+            }
+
+
         }
 
         public void RemoveGroupResult()
         {
+            if (SelectCheckupJobTask != null)
+            {
+                LookupReferenceValueModel newLookupRef = new LookupReferenceValueModel();
+                newLookupRef.Key = SelectCheckupJobTask.GPRSTUID;
+                newLookupRef.Display = SelectCheckupJobTask.GroupResultName;
 
+                GroupResults.Add(newLookupRef);
+                CheckupJobTask.Remove(SelectCheckupJobTask);
+                RefershGrid();
+
+            }
         }
 
+        void RefershGrid()
+        {
+            ManageCheckupJob view = (this.View as ManageCheckupJob);
+            view.grdJobTask.RefreshData();
+            view.grdGroupResult.RefreshData();
+        }
         public void Save()
         {
 
