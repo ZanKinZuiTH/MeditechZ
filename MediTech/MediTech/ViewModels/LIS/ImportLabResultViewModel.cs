@@ -573,6 +573,7 @@ namespace MediTech.ViewModels
 
 
                 }
+                SaveSuccessDialog();
             }
             catch (Exception er)
             {
