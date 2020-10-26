@@ -627,14 +627,6 @@ namespace MediTech.ViewModels
                             {
                                 resultComponent.ReferenceRange = itemRange.DisplayValue;
                             }
-
-                            //if (resultComponent.ResultItemCode == "D0250" || resultComponent.ResultItemCode == "D0260")
-                            //{
-                            //    if (resultComponent.ResultValue != itemRange.DisplayValue)
-                            //    {
-                            //        resultComponent.IsAbnormal = "H";
-                            //    }
-                            //}
                         }
                         else
                         {
