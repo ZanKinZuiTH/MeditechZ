@@ -324,49 +324,6 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo,long? patientUID, string itemName, int? RABSTSUID, int? payorDetailUID)
         {
-            //List<PatientResultRadiology> data = (from pa in db.Patient
-            //                                     join pv in db.PatientVisit on pa.UID equals pv.PatientUID
-            //                                     join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
-            //                                     join rs in db.Result on pv.UID equals rs.PatientVisitUID
-            //                                     join red in db.RequestDetail on rs.RequestDetailUID equals red.UID
-            //                                     join rsr in db.ResultRadiology on rs.UID equals rsr.ResultUID
-            //                                     where rs.StatusFlag == "A"
-            //                                     && rsr.StatusFlag == "A"
-            //                                     && (dateFrom == null || DbFunctions.TruncateTime(rs.ResultEnteredDttm) >= DbFunctions.TruncateTime(dateFrom))
-            //                                     && (dateTo == null || DbFunctions.TruncateTime(rs.ResultEnteredDttm) <= DbFunctions.TruncateTime(dateTo))
-            //                                     && (payorDetailUID == null || pvp.PayorDetailUID == payorDetailUID)
-            //                                     && (string.IsNullOrEmpty(itemName) || rs.RequestItemName.ToLower().Contains(itemName.ToLower()))
-            //                                     && (RABSTSUID == null || rs.RABSTSUID == RABSTSUID)
-            //                                     && (patientUID == null || pa.UID == patientUID)
-            //                                     select new PatientResultRadiology
-            //                                     {
-            //                                         ResultUID = rs.UID,
-            //                                         ResultStatus = SqlFunction.fGetRfValDescription(rs.RABSTSUID ?? 0),
-            //                                         ResultEnteredDttm = rs.ResultEnteredDttm,
-            //                                         Doctor = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
-            //                                         RequestItemName = rs.RequestItemName,
-            //                                         HN = SqlFunction.fGetPatientID(rs.PatientUID),
-            //                                         Title = SqlFunction.fGetRfValDescription(pa.TITLEUID ?? 0),
-            //                                         FirstName = pa.FirstName,
-            //                                         LastName = pa.LastName,
-            //                                         PatientName = SqlFunction.fGetPatientName(rs.PatientUID),
-            //                                         EN = SqlFunction.fGetVisitID(rs.PatientVisitUID),
-            //                                         OtherID = pa.PatientID2,
-            //                                         Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-            //                                         Address = SqlFunction.fGetAddressPatient(pa.UID),
-            //                                         PayorName = SqlFunction.fGetPayorName(pvp.PayorDetailUID),
-            //                                         DOBDttm = pa.DOBDttm,
-            //                                         MobilePhone = pa.MobilePhone,
-            //                                         Age = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
-            //                                         ResultValue = rsr.PlainText,
-            //                                         ResultHtml = rsr.Value,
-            //                                         PatientUID = rs.PatientUID,
-            //                                         PatientVisitUID = rs.PatientVisitUID,
-            //                                         RequestUID = red.RequestUID,
-            //                                         RequestDetailUID = red.UID,
-            //                                         RequestedDttm = red.RequestedDttm,
-            //                                         Modality = SqlFunction.fGetRfValCode(red.RIMTYPUID ?? 0),
-            //                                     }).ToList();
             List<PatientResultRadiology> data = null;
             DataTable dt = SqlDirectStore.pSearchResultRadiologyForTranslate(dateFrom, dateTo, patientUID, itemName, RABSTSUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)

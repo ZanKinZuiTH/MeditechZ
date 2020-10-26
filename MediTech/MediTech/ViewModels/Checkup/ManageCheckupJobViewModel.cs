@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -232,10 +234,12 @@ namespace MediTech.ViewModels
         {
             PayorDetails = DataService.MasterData.GetPayorDetail();
             GroupResults = DataService.Technical.GetReferenceValueMany("GPRST");
-            CheckupService.AddRange(new List<LookupItemModel> {
-                new LookupItemModel {Key =1,Display = "ตรวจสุขภาพประจำปี" }
-                ,new LookupItemModel{Key =2,Display = "ตรวจอับอากาศ" }
-                ,new LookupItemModel {Key=3,Display= "ตรวจตามปัจจัยเสี่ยง" } });
+            CheckupService = new List<LookupItemModel>();
+            List<LookupItemModel> checkupServices = new List<LookupItemModel>();
+            checkupServices.Add(new LookupItemModel { Key = 1, Display = "ตรวจสุขภาพประจำปี" });
+            checkupServices.Add(new LookupItemModel { Key = 2, Display = "ตรวจอับอากาศ" });
+            checkupServices.Add(new LookupItemModel { Key = 3, Display = "ตรวจตามปัจจัยเสี่ยง" });
+            CheckupService.AddRange(checkupServices);
         }
         public void AssingModel(int checkupJobContactUID)
         {
@@ -243,6 +247,47 @@ namespace MediTech.ViewModels
             modelCheckupJobContact = modelData;
             AssignModelToProperties();
         }
+
+
+        public void Save()
+        {
+            if (SelectPayorDetail == null)
+            {
+                WarningDialog("กรุณาเลือก Payor");
+                return;
+            }
+
+            if (String.IsNullOrEmpty(CompanyName))
+            {
+                WarningDialog("กรุณาใส่ชื่อ บริษัท");
+                return;
+            }
+
+            if (VisitCount == 0)
+            {
+                WarningDialog("กรุณาระบุจำนวนผู้ตรวจ");
+                return;
+            }
+
+            if (StartDttm == null)
+            {
+                WarningDialog("กรุณาระบุวันที่ตรวจ");
+                return;
+            }
+
+            if (EndDttm == null)
+            {
+                WarningDialog("กรุณาระบุวันที่ส่งเล่ม");
+                return;
+            }
+        }
+
+        public void Cancel()
+        {
+            ListCheckupJob page = new ListCheckupJob();
+            ChangeViewPermission(page);
+        }
+
 
         public void AssignModelToProperties()
         {
@@ -285,7 +330,7 @@ namespace MediTech.ViewModels
                 CheckupJobTaskModel newCheckupJobTask = new CheckupJobTaskModel();
                 newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;
                 newCheckupJobTask.GroupResultName = SelectGroupResult.Display;
-                newCheckupJobTask.DisplayOrder = CheckupJobTask.Max(p => p.DisplayOrder) ?? 0 + 1;
+                newCheckupJobTask.DisplayOrder = (CheckupJobTask.Max(p => p.DisplayOrder) ?? 0) + 1;
                 CheckupJobTask.Add(newCheckupJobTask);
 
                 GroupResults.Remove(SelectGroupResult);
@@ -317,17 +362,6 @@ namespace MediTech.ViewModels
             view.grdJobTask.RefreshData();
             view.grdGroupResult.RefreshData();
         }
-        public void Save()
-        {
-
-        }
-
-        public void Cancel()
-        {
-            ListCheckupJob page = new ListCheckupJob();
-            ChangeViewPermission(page);
-        }
-
         #endregion
 
 

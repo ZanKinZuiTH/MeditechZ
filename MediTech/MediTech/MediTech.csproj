@@ -704,8 +704,8 @@
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupExamListViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TimusViewModel.cs" />
     <Compile Include="ViewModels\Checkup\SpirometryViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ExaminationViewModel.cs" />

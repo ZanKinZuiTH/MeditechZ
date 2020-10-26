@@ -17,7 +17,6 @@ namespace MediTech.ViewModels
     public class ManageItemIssueViewModel : MediTechViewModelBase
     {
 
-
         #region Properties
 
         private DateTime? _IssueDate;

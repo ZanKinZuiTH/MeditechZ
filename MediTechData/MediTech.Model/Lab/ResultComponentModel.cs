@@ -136,6 +136,38 @@ namespace MediTech.Model
                     }
                 }
             }
+            else
+            {
+                if (ResultValueType == "Numeric")
+                {
+                    if (ResultValue.Contains("-"))
+                    {
+                        string[] values = ResultValue.Split('-');
+                        if (values.Count() == 2)
+                        {
+                            if (double.TryParse(values[1], out resultValue))
+                            {
+                                if (High != null || Low != null)
+                                {
+                                    if (resultValue > High)
+                                    {
+                                        IsAbnormal = "H";
+                                    }
+                                    else if (resultValue < Low)
+                                    {
+                                        IsAbnormal = "L";
+                                    }
+                                    else
+                                    {
+                                        IsAbnormal = null;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
+                }
+            }
         }
     }
 }
