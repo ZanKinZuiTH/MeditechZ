@@ -197,6 +197,12 @@ namespace MediTech.ViewModels
             get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(SavePatientVisit)); }
         }
 
+        private RelayCommand _CancelCommand;
+
+        public RelayCommand CancelCommand
+        {
+            get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
+        }
         #endregion
 
         #region Method
@@ -251,6 +257,10 @@ namespace MediTech.ViewModels
             }
         }
 
+        private void Cancel()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
+        }
 
         public bool ValidateVisitData()
         {
