@@ -146,12 +146,12 @@
             this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbWaist = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -1510,6 +1510,14 @@
             this.lbWaist.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbWaist.Weight = 1.6536730645850648D;
             // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(673.9775F, 456.3333F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 38.06851F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // TopMargin
             // 
             this.TopMargin.HeightF = 0F;
@@ -1547,14 +1555,6 @@
             this.PayorDetailUID.Type = typeof(int);
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
-            // 
-            // xrPictureBox1
-            // 
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(673.9775F, 465.4999F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 23F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // CheckupBook1
             // 
