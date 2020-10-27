@@ -28,7 +28,9 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupBook1));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbLung = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow33 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -91,7 +93,6 @@
             this.xrTableRow22 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell81 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbVisionOccmedRecommend = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbPatientDetail = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -145,6 +146,7 @@
             this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbWaist = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
@@ -173,12 +175,29 @@
             this.tbPatientDetail,
             this.xrLabel1,
             this.xrTable1,
-            this.tbVatalSign});
+            this.tbVatalSign,
+            this.xrPictureBox1});
             this.Detail.Font = new System.Drawing.Font("Angsana New", 12F);
             this.Detail.HeightF = 570.8333F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.xrLabel2.CanGrow = false;
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(65.50005F, 267.5127F);
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(308.3333F, 23.88889F);
+            this.xrLabel2.StylePriority.UseBackColor = false;
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "  ผลการตรวจสมรรถภาพการมองเห็น (Occupational Vision Test)";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrLabel2.WordWrap = false;
             // 
             // xrLabel5
             // 
@@ -840,22 +859,6 @@
             this.lbVisionOccmedRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbVisionOccmedRecommend.Weight = 2.8833336673616805D;
             // 
-            // xrLabel2
-            // 
-            this.xrLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.xrLabel2.CanGrow = false;
-            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(65.50005F, 267.5127F);
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(308.3333F, 23.88889F);
-            this.xrLabel2.StylePriority.UseBackColor = false;
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "  ผลการตรวจสมรรถภาพการมองเห็น (Occupational Vision Test)";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrLabel2.WordWrap = false;
-            // 
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
@@ -1507,6 +1510,14 @@
             this.lbWaist.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbWaist.Weight = 1.6536730645850648D;
             // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(673.9775F, 456.3333F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 38.06851F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // TopMargin
             // 
             this.TopMargin.HeightF = 0F;
@@ -1696,5 +1707,6 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow38;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell127;
         public DevExpress.XtraReports.UI.XRTableCell lbLungRecommend;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
     }
 }
