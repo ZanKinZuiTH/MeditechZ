@@ -20,7 +20,7 @@ namespace MediTech.Model
         public string ContactEmail { get; set; }
         public string ServiceName { get; set; }
         public int VisitCount { get; set; }
-        public System.DateTime StartDttm { get; set; }
+        public DateTime StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> CollectDttm { get; set; }
         public int CUser { get; set; }

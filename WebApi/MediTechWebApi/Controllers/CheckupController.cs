@@ -126,8 +126,9 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("SaveCheckupJobContact")]
         [HttpPost]
-        public HttpResponseMessage ManageCheckupJobContact(CheckupJobContactModel checkupJobContactModel, int userID)
+        public HttpResponseMessage SaveCheckupJobContact(CheckupJobContactModel checkupJobContactModel, int userID)
         {
             try
             {
@@ -174,6 +175,8 @@ namespace MediTechWebApi.Controllers
                     checkupJob.CollectDttm = checkupJobContactModel.CollectDttm;
                     checkupJob.MUser = userID;
                     checkupJob.MWhen = now;
+
+                    db.CheckupJobContact.AddOrUpdate(checkupJob);
 
                     #region Delete CheckupJobTaskModel
                     IEnumerable<CheckupJobTask> checkupJobTaskdel = db.CheckupJobTask.Where(p => p.StatusFlag == "A" && p.CheckupJobContactUID == checkupJobContactModel.CheckupJobContactUID);

@@ -13,7 +13,7 @@
             <dxg:GridControl x:Name="grdCheckupJob" ItemsSource="{Binding ListCheckupJob}"
                              SelectedItem="{Binding SelectCheckupJob}">
                 <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
-                <dxg:GridColumn Header="บริษัท" FieldName="PayorName"/>
+                <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
                 <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
                 <dxg:GridColumn Header="สถานที่ตรวจ" FieldName="Location"/>
                 <dxg:GridColumn Header="ผู้ประสานงาน" FieldName="ContactPerson"/>

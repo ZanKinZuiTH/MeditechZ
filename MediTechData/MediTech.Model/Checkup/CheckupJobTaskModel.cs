@@ -13,6 +13,7 @@ namespace MediTech.Model
         public int GPRSTUID { get; set; }
         public string GroupResultName { get; set; }
         public int? DisplayOrder { get; set; }
+        public int? TempDisplayOrder { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

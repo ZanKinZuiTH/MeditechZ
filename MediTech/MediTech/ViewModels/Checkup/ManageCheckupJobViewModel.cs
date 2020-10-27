@@ -109,12 +109,12 @@ namespace MediTech.ViewModels
         public LookupItemModel SelectCheckupService
         {
             get { return _SelectCheckupService; }
-            set { _SelectCheckupService = value; }
+            set { Set(ref _SelectCheckupService, value); }
         }
 
-        private int _VisitCount;
+        private int? _VisitCount;
 
-        public int VisitCount
+        public int? VisitCount
         {
             get { return _VisitCount; }
             set { Set(ref _VisitCount, value); }
@@ -234,6 +234,7 @@ namespace MediTech.ViewModels
         {
             PayorDetails = DataService.MasterData.GetPayorDetail();
             GroupResults = DataService.Technical.GetReferenceValueMany("GPRST");
+            GroupResults = GroupResults?.OrderBy(p => p.DisplayOrder).ToList();
             CheckupService = new List<LookupItemModel>();
             List<LookupItemModel> checkupServices = new List<LookupItemModel>();
             checkupServices.Add(new LookupItemModel { Key = 1, Display = "ตรวจสุขภาพประจำปี" });
@@ -251,35 +252,51 @@ namespace MediTech.ViewModels
 
         public void Save()
         {
-            if (SelectPayorDetail == null)
+            try
             {
-                WarningDialog("กรุณาเลือก Payor");
-                return;
+                if (SelectPayorDetail == null)
+                {
+                    WarningDialog("กรุณาเลือก Payor");
+                    return;
+                }
+
+                if (String.IsNullOrEmpty(CompanyName))
+                {
+                    WarningDialog("กรุณาใส่ชื่อ บริษัท");
+                    return;
+                }
+
+                if (VisitCount == null)
+                {
+                    WarningDialog("กรุณาระบุจำนวนผู้ตรวจ");
+                    return;
+                }
+
+                if (StartDttm == null)
+                {
+                    WarningDialog("กรุณาระบุวันที่ตรวจ");
+                    return;
+                }
+
+                if (EndDttm == null)
+                {
+                    WarningDialog("กรุณาระบุวันที่ส่งเล่ม");
+                    return;
+                }
+
+                AssingProperteisToModel();
+                DataService.Checkup.SaveCheckupJobContact(modelCheckupJobContact, AppUtil.Current.UserID);
+                SaveSuccessDialog();
+
+                ListCheckupJob page = new ListCheckupJob();
+                ChangeViewPermission(page);
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
             }
 
-            if (String.IsNullOrEmpty(CompanyName))
-            {
-                WarningDialog("กรุณาใส่ชื่อ บริษัท");
-                return;
-            }
-
-            if (VisitCount == 0)
-            {
-                WarningDialog("กรุณาระบุจำนวนผู้ตรวจ");
-                return;
-            }
-
-            if (StartDttm == null)
-            {
-                WarningDialog("กรุณาระบุวันที่ตรวจ");
-                return;
-            }
-
-            if (EndDttm == null)
-            {
-                WarningDialog("กรุณาระบุวันที่ส่งเล่ม");
-                return;
-            }
         }
 
         public void Cancel()
@@ -288,7 +305,31 @@ namespace MediTech.ViewModels
             ChangeViewPermission(page);
         }
 
+        public void AssingProperteisToModel()
+        {
+            if (modelCheckupJobContact == null)
+            {
+                modelCheckupJobContact = new CheckupJobContactModel();
+            }
 
+            modelCheckupJobContact.JobNumber = JobNumber;
+            modelCheckupJobContact.PayorDetailUID = SelectPayorDetail.PayorDetailUID;
+            modelCheckupJobContact.CompanyName = CompanyName;
+            modelCheckupJobContact.Description = Description;
+            modelCheckupJobContact.Location = Location;
+            modelCheckupJobContact.ContactPerson = ContactPerson;
+            modelCheckupJobContact.ContactPhone = ContactPhone;
+            modelCheckupJobContact.ContactEmail = ContactEmail;
+            modelCheckupJobContact.ServiceName = SelectCheckupService != null ? SelectCheckupService.Display : null;
+            modelCheckupJobContact.VisitCount = VisitCount ?? 0;
+
+            if (StartDttm != null)
+                modelCheckupJobContact.StartDttm = StartDttm.Value;
+
+            modelCheckupJobContact.EndDttm = EndDttm;
+            modelCheckupJobContact.CollectDttm = CollectDttm;
+            modelCheckupJobContact.CheckupJobTasks = CheckupJobTask;
+        }
         public void AssignModelToProperties()
         {
             JobNumber = modelCheckupJobContact.JobNumber;
@@ -315,7 +356,6 @@ namespace MediTech.ViewModels
                     {
                         GroupResults.Remove(dataAlredy);
                     }
-                    RefershGrid();
                 }
             }
         }
@@ -331,13 +371,13 @@ namespace MediTech.ViewModels
                 newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;
                 newCheckupJobTask.GroupResultName = SelectGroupResult.Display;
                 newCheckupJobTask.DisplayOrder = (CheckupJobTask.Max(p => p.DisplayOrder) ?? 0) + 1;
+                newCheckupJobTask.TempDisplayOrder = SelectGroupResult.DisplayOrder;
                 CheckupJobTask.Add(newCheckupJobTask);
 
                 GroupResults.Remove(SelectGroupResult);
 
                 RefershGrid();
             }
-
 
         }
 
@@ -348,9 +388,21 @@ namespace MediTech.ViewModels
                 LookupReferenceValueModel newLookupRef = new LookupReferenceValueModel();
                 newLookupRef.Key = SelectCheckupJobTask.GPRSTUID;
                 newLookupRef.Display = SelectCheckupJobTask.GroupResultName;
-
+                if (SelectCheckupJobTask.TempDisplayOrder != null)
+                    newLookupRef.DisplayOrder = SelectCheckupJobTask.TempDisplayOrder.Value;
                 GroupResults.Add(newLookupRef);
+                GroupResults = GroupResults?.OrderBy(p => p.DisplayOrder).ToList();
+
                 CheckupJobTask.Remove(SelectCheckupJobTask);
+
+                foreach (var task in CheckupJobTask)
+                {
+                    if (task.DisplayOrder > SelectCheckupJobTask.DisplayOrder)
+                    {
+                        task.DisplayOrder--;
+                    }
+                }
+
                 RefershGrid();
 
             }

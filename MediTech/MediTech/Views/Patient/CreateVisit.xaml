@@ -10,7 +10,7 @@
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
              mc:Ignorable="d"
              DataContext="{Binding Path=CreateVisitViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="300" d:DesignWidth="350">
+             d:DesignHeight="320" d:DesignWidth="370">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
@@ -71,6 +71,49 @@
 
             </dxlc:LayoutGroup>
 
+            <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
+                <dxlc:LayoutItem.Label>
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                        <TextBlock Text="บริษัท" />
+                    </StackPanel>
+                </dxlc:LayoutItem.Label>
+                <dxg:LookUpEdit Name="lkeCompanyName" ItemsSource="{Binding CheckupJobSource}" 
+                                      SelectedItem="{Binding SelectedCheckupJob}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate>
+                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Name="colCompanyName" FieldName="CompanyName"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                                    </dxg:TableView>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
+            </dxlc:LayoutItem>
             <dxlc:LayoutItem >
                 <dxlc:LayoutItem.Label>
                     <StackPanel Orientation="Horizontal">
@@ -154,10 +197,10 @@
                                                      TextWrapping="Wrap" />
             </dxlc:LayoutItem>
 
-            <dxlc:LayoutGroup>
+            <dxlc:LayoutGroup VerticalAlignment="Bottom">
                 <dx:SimpleButton Width="80" Command="{Binding CancelVisitCommand}"
                              VerticalAlignment="Bottom"
-                             Visibility="{Binding CancelVisitVisibility}"
+                             Visibility="{Binding VisibilityCancelVisit}"
                              HorizontalAlignment="Right"
                                      Height="25" Content="ยกเลิก Visit"/>
                 <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
@@ -166,7 +209,7 @@
                                      Height="25" Content="บันทึก"/>
                 <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
                              VerticalAlignment="Bottom"
-                             Visibility="{Binding CancelVisibility}"
+                             Visibility="{Binding VisibilityCancel}"
                              HorizontalAlignment="Right"
                                      Height="25" Content="ยกเลิก"/>
             </dxlc:LayoutGroup>

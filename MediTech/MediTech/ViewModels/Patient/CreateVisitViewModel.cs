@@ -21,7 +21,7 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
-        
+
 
         private List<HealthOrganisationModel> _Organisations;
 
@@ -59,7 +59,19 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectedVisitType
         {
             get { return _SelectedVisitType; }
-            set { Set(ref _SelectedVisitType, value); }
+            set
+            {
+                Set(ref _SelectedVisitType, value);
+                if (_SelectedVisitType != null)
+                {
+                    VisibiltyCheckupCompany = Visibility.Collapsed;
+                    if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKIN")
+                    {
+                        VisibiltyCheckupCompany = Visibility.Visible;
+                    }
+
+                }
+            }
         }
 
         private DateTime _StartDate;
@@ -141,20 +153,29 @@ namespace MediTech.ViewModels
             set { Set(ref _CommentDoctor, value); }
         }
 
-        private Visibility _CancelVisitVisibility;
+        private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
 
-        public Visibility CancelVisitVisibility
+        public Visibility VisibiltyCheckupCompany
         {
-            get { return _CancelVisitVisibility; }
-            set { Set(ref _CancelVisitVisibility, value); }
+            get { return _VisibiltyCheckupCompany; }
+            set { _VisibiltyCheckupCompany = value; }
         }
 
-        private Visibility _CancelVisibility;
 
-        public Visibility CancelVisibility
+        private Visibility _VisibilityCancelVisit;
+
+        public Visibility VisibilityCancelVisit
         {
-            get { return _CancelVisibility; }
-            set { Set(ref _CancelVisibility, value); }
+            get { return _VisibilityCancelVisit; }
+            set { Set(ref _VisibilityCancelVisit, value); }
+        }
+
+        private Visibility _VisibilityCancel;
+
+        public Visibility VisibilityCancel
+        {
+            get { return _VisibilityCancel; }
+            set { Set(ref _VisibilityCancel, value); }
         }
 
         private bool _IsUpdateVisit = false;
@@ -184,13 +205,13 @@ namespace MediTech.ViewModels
         {
             if (IsUpdateVisit)
             {
-                CancelVisibility = Visibility.Visible;
-                CancelVisibility = Visibility.Visible;
+                VisibilityCancel = Visibility.Visible;
+                VisibilityCancel = Visibility.Visible;
             }
             else
             {
-                CancelVisibility = Visibility.Collapsed;
-                CancelVisibility = Visibility.Collapsed;
+                VisibilityCancel = Visibility.Collapsed;
+                VisibilityCancel = Visibility.Collapsed;
             }
         }
 
@@ -210,7 +231,7 @@ namespace MediTech.ViewModels
             StartTime = now;
         }
 
-        
+
 
 
         void SavePatientVisit()

@@ -99,7 +99,7 @@
                                 <TextBlock Text="จำนวนผู้เข้าตรวจ" />
                             </StackPanel>
                         </dxlc:LayoutItem.Label>
-                        <dxe:SpinEdit EditValue="{Binding VisitCount}"/>
+                        <dxe:SpinEdit Text="{Binding VisitCount}" Mask="d"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dxlc:LayoutItem.Label>
@@ -126,13 +126,19 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl Name="grdJobTask" ItemsSource="{Binding CheckupJobTask}"
+            <dxlc:LayoutGroup Orientation="Horizontal" View="GroupBox" Header="รายการกลุ่มตรวจ">
+                <dxg:GridControl Name="grdJobTask" ItemsSource="{Binding CheckupJobTask,Mode=TwoWay}"
                                  SelectedItem="{Binding SelectCheckupJobTask}">
                     <dxg:GridColumn Header="Group Name" FieldName="GroupResultName" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Display Order" FieldName="DisplayOrder" ReadOnly="False" Width="40"/>
+                    <dxg:GridColumn Name="colDisplayOrder" Header="Display Order" FieldName="DisplayOrder"
+                                    ReadOnly="False" Width="40">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings  Mask="\d{0,2}"  MaskType="RegEx"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False" ShowSearchPanelMode="Always" AutoWidth="True"/>
+                        <dxg:TableView Name="gvJobTask" ShowGroupPanel="False" 
+                                       ShowSearchPanelMode="Always" AutoWidth="True"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
                 <dxlc:LayoutGroup Orientation="Vertical"
@@ -145,11 +151,11 @@
                 <dxg:GridControl x:Name="grdGroupResult" ItemsSource="{Binding GroupResults}" 
                                  SelectedItem="{Binding SelectGroupResult}"
                                  Width="350">
-                    <dxg:GridColumn FieldName="Display" ReadOnly="True"/>
+                    <dxg:GridColumn FieldName="Display" Header="รายการตรวจ"/>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False"
-                                       ShowColumnHeaders="False"
                                        AutoWidth="True"
+                                       AllowEditing="False"
                                        ShowSearchPanelMode="Always"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>

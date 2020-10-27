@@ -570,8 +570,6 @@ namespace MediTech.ViewModels
                         TotalRecord = pgBarCounter;
                         view.SetProgressBarValue(pgBarCounter);
                     }
-
-
                 }
                 SaveSuccessDialog();
             }

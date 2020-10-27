@@ -41,12 +41,12 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public bool ManageCheckupJobContact(CheckupJobContactModel checkupJobContactModel, int userID)
+        public bool SaveCheckupJobContact(CheckupJobContactModel checkupJobContactModel, int userID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/Billing/ManageCheckupJobContact?userID={0}", userID);
+                string requestApi = string.Format("Api/Checkup/SaveCheckupJobContact?userID={0}", userID);
                 MeditechApiHelper.Post<CheckupJobContactModel>(requestApi, checkupJobContactModel);
                 flag = true;
             }
