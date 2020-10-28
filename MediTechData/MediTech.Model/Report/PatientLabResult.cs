@@ -31,7 +31,7 @@ namespace MediTech.Model.Report
         public DateTime? ResultEnteredDttm { get; set; }
         public string RequestNumber { get; set; }
         public string RequestItemName { get; set; }
-        public string LabCategory { get; set; }
+        public string PrintGroup { get; set; }
         public string ResultItemName { get; set; }
         public int PrintOrder { get; set; }
         public string ResultValue { get; set; }

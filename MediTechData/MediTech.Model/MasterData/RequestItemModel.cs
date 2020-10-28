@@ -15,7 +15,7 @@ namespace MediTech.Model
         public string Description { get; set; }
         public Nullable<System.DateTime> EffectiveFrom { get; set; }
         public Nullable<System.DateTime> EffectiveTo { get; set; }
-        public Nullable<int> LABCATUID { get; set; }
+        public Nullable<int> PRTGPUID { get; set; }
         public Nullable<int> TSTTPUID { get; set; }
         public string TestType { get; set; }
         public Nullable<int> RIMTYPUID { get; set; }
