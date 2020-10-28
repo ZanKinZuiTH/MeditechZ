@@ -70,25 +70,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/02/2018 10:19:12</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll">
-      <publishTime>10/23/2020 14:04:59</publishTime>
+      <publishTime>10/28/2020 15:56:05</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll.config">
       <publishTime>10/13/2019 18:03:54</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.pdb">
-      <publishTime>10/23/2020 14:04:59</publishTime>
+      <publishTime>10/28/2020 15:56:05</publishTime>
     </File>
     <File Include="bin/MediTech.Model.dll">
-      <publishTime>10/28/2020 11:30:36</publishTime>
+      <publishTime>10/28/2020 15:38:18</publishTime>
     </File>
     <File Include="bin/MediTech.Model.pdb">
-      <publishTime>10/28/2020 11:30:36</publishTime>
+      <publishTime>10/28/2020 15:38:18</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.dll">
-      <publishTime>10/28/2020 11:33:28</publishTime>
+      <publishTime>10/28/2020 15:56:06</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.pdb">
-      <publishTime>10/28/2020 11:33:28</publishTime>
+      <publishTime>10/28/2020 15:56:06</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/02/2018 10:19:13</publishTime>

@@ -1055,7 +1055,7 @@ namespace MediTechWebApi.Controllers
                                                ResultValue = rsc.ResultValue + (!string.IsNullOrEmpty(rsc.IsAbnormal) ? " " + rsc.IsAbnormal : ""),
                                                ResultValueType = SqlFunction.fGetRfValDescription(rsc.RVTYPUID),
                                                Unit = SqlFunction.fGetRfValDescription(rsc.RSUOMUID ?? 0),
-                                               LabCategory = SqlFunction.fGetRfValDescription(rit.LABCATUID ?? 0),
+                                               PrintGroup = SqlFunction.fGetRfValDescription(rit.PRTGPUID ?? 0),
                                                OrganisationName = or.Name + (or.LicenseNo != null ? " ใบอนุญาตเลขที่ " + or.LicenseNo : ""),
                                                OrganisationCode = or.Code,
                                                OrganisationAddress = SqlFunction.fGetAddressOrganisation(pv.OwnerOrganisationUID ?? 0)
