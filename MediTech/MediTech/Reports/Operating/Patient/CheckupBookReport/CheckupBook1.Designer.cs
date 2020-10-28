@@ -213,7 +213,6 @@
             // lbCompany
             // 
             this.lbCompany.Name = "lbCompany";
-            this.lbCompany.Text = "xrTableCell6";
             this.lbCompany.Weight = 2.4537744323804112D;
             // 
             // xrLabel2
