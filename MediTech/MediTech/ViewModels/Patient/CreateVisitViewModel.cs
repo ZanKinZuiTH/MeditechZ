@@ -275,6 +275,15 @@ namespace MediTech.ViewModels
                 return true;
             }
 
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก บริษัท");
+                    return true;
+                }
+            }
+
             if (SelectedPayorDetail == null)
             {
                 WarningDialog("กรุณาเลือก Payor");

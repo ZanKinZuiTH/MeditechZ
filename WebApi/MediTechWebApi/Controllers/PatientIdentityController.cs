@@ -482,6 +482,7 @@ namespace MediTechWebApi.Controllers
                     patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
                     patientVisit.VISTSUID = patientVisitInfo.VISTSUID;
                     patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
+                    patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
                     patientVisit.VisitID = seqVisitID;
                     patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
                     patientVisit.BookingUID = patientVisitInfo.BookingUID;
