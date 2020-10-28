@@ -71,7 +71,7 @@
 
             </dxlc:LayoutGroup>
 
-            <!--<dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
+            <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
                 <dxlc:LayoutItem.Label>
                     <StackPanel Orientation="Horizontal">
                         <Label Content="*" FontSize="15" Margin="0,-10,0,0"
@@ -113,7 +113,7 @@
                         <dxg:SearchLookUpEditStyleSettings/>
                     </dxg:LookUpEdit.StyleSettings>
                 </dxg:LookUpEdit>
-            </dxlc:LayoutItem>-->
+            </dxlc:LayoutItem>
             <dxlc:LayoutItem >
                 <dxlc:LayoutItem.Label>
                     <StackPanel Orientation="Horizontal">
@@ -204,7 +204,6 @@
                                      Height="25" Content="บันทึก"/>
                 <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
                              VerticalAlignment="Bottom"
-                             Visibility="{Binding VisibilityCancel}"
                              HorizontalAlignment="Right"
                                      Height="25" Content="ยกเลิก"/>
             </dxlc:LayoutGroup>
