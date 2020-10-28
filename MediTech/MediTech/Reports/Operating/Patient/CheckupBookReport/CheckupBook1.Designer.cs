@@ -152,6 +152,7 @@
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
@@ -176,7 +177,8 @@
             this.xrLabel1,
             this.xrTable1,
             this.tbVatalSign,
-            this.xrPictureBox1});
+            this.xrPictureBox1,
+            this.xrLabel6});
             this.Detail.Font = new System.Drawing.Font("Angsana New", 12F);
             this.Detail.HeightF = 570.8333F;
             this.Detail.Name = "Detail";
@@ -885,7 +887,7 @@
             this.xrTableRow4,
             this.xrTableRow6,
             this.xrTableRow7});
-            this.tbPatientDetail.SizeF = new System.Drawing.SizeF(293.1388F, 114.1665F);
+            this.tbPatientDetail.SizeF = new System.Drawing.SizeF(298.9722F, 114.1665F);
             this.tbPatientDetail.StylePriority.UseBorderWidth = false;
             this.tbPatientDetail.StylePriority.UseFont = false;
             this.tbPatientDetail.StylePriority.UseTextAlignment = false;
@@ -910,9 +912,8 @@
             this.xrTableCell3.StylePriority.UseBorderWidth = false;
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.StylePriority.UseTextAlignment = false;
-            this.xrTableCell3.Text = "บริษัท /Company :";
             this.xrTableCell3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.xrTableCell3.Weight = 0.88572525355443132D;
+            this.xrTableCell3.Weight = 0.45327220440342858D;
             // 
             // lbCompany
             // 
@@ -923,7 +924,7 @@
             this.lbCompany.StylePriority.UsePadding = false;
             this.lbCompany.StylePriority.UseTextAlignment = false;
             this.lbCompany.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.lbCompany.Weight = 2.2088245713991408D;
+            this.lbCompany.Weight = 2.6412776205501434D;
             // 
             // xrTableRow3
             // 
@@ -1556,6 +1557,16 @@
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
             // 
+            // xrLabel6
+            // 
+            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(438.6504F, 148.2976F);
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(99.11813F, 23F);
+            this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.Text = "บริษัท /Company :";
+            // 
             // CheckupBook1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1708,5 +1719,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell127;
         public DevExpress.XtraReports.UI.XRTableCell lbLungRecommend;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
     }
 }
