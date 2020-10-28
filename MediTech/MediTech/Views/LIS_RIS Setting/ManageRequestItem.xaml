@@ -87,7 +87,7 @@
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
-                <dx:DXTabItem Header="Parameter" Visibility="{Binding VisibilityLabDetail}">
+                <dx:DXTabItem Header="Parameter">
                     <dxlc:LayoutControl Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem Label="Parameter">
@@ -129,7 +129,7 @@
                         </dxg:GridControl>
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
-                <dx:DXTabItem Header="Associated Specimen" Visibility="{Binding VisibilityLabDetail}">
+                <dx:DXTabItem Header="Associated Specimen">
                     <dxlc:LayoutControl Orientation="Vertical">
                         <dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">

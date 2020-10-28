@@ -140,7 +140,7 @@ namespace MediTech.Model
             {
                 if (ResultValueType == "Numeric")
                 {
-                    if (ResultValue.Contains("-"))
+                    if (ResultValue != null && ResultValue.Contains("-"))
                     {
                         string[] values = ResultValue.Split('-');
                         if (values.Count() == 2)

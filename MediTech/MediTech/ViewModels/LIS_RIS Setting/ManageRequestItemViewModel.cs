@@ -26,15 +26,6 @@ namespace MediTech.ViewModels
             set { Set(ref _ImageTypeVisibility, value); }
         }
 
-        private Visibility _VisibilityLabDetail = Visibility.Collapsed;
-
-        public Visibility VisibilityLabDetail
-        {
-            get { return _VisibilityLabDetail; }
-            set { Set(ref _VisibilityLabDetail, value); }
-        }
-
-
         private string _Code;
 
         public string Code
@@ -110,12 +101,10 @@ namespace MediTech.ViewModels
                 if (SelectTestType != null && SelectTestType.Display == "RADIOLOGY")
                 {
                     ImageTypeVisibility = Visibility.Visible;
-                    VisibilityLabDetail = Visibility.Collapsed;
                 }
                 else
                 {
                     ImageTypeVisibility = Visibility.Collapsed;
-                    VisibilityLabDetail = Visibility.Visible;
                 }
             }
         }
