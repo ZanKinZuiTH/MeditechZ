@@ -534,10 +534,14 @@ namespace MediTechWebApi.Controllers
                                                 ResultDTTM = resultCom.ResultDTTM,
                                                 RSUOMUID = ri.UnitofMeasure,
                                                 UnitofMeasure = SqlFunction.fGetRfValDescription(ri.UnitofMeasure ?? 0),
-                                                IsAbnormal = resultCom.IsAbnormal
+                                                IsAbnormal = resultCom.IsAbnormal,
                                             }).OrderBy(p => p.PrintOrder).ToList();
 
-                    ResultComponents.ForEach(p => p.ImageContent = p.ResultValueType == "Image" ? GetResultImageContentByComponentUID(p.ResultComponentUID ?? 0) : null);
+                    foreach (var component in ResultComponents)
+                    {
+                        component.ImageContent = component.ResultValueType == "Image"
+                            ? GetResultImageContentByComponentUID(component.ResultComponentUID ?? 0) : null;
+                    }
                     item.ResultComponents = new System.Collections.ObjectModel.ObservableCollection<ResultComponentModel>(ResultComponents);
                 }
             }
@@ -673,22 +677,22 @@ namespace MediTechWebApi.Controllers
         public List<ResultItemRangeModel> GetResultItemRangeByRequestItemUID(int requestItemUID)
         {
             List<ResultItemRangeModel> data = (from ri in db.RequestItem
-                                              join rsl in db.RequestResultLink on ri.UID equals rsl.RequestItemUID
-                                              join rang in db.ResultItemRange on rsl.ResultItemUID equals rang.ResultItemUID
-                                              where ri.UID == requestItemUID
-                                              && rsl.StatusFlag == "A"
-                                              && rang.StatusFlag == "A"
-                                              select new ResultItemRangeModel
-                                              {
-                                                  ResultItemRangeUID = rang.UID,
-                                                  ResultItemUID = rang.ResultItemUID,
-                                                  SEXXXUID = rang.SEXXXUID,
-                                                  DisplayValue = rang.DisplayValue,
-                                                  Low = rang.Low,
-                                                  High = rang.High,
-                                                  Comments = rang.Comments,
-                                                  LABRAMUID = rang.LABRAMUID
-                                              }).ToList();
+                                               join rsl in db.RequestResultLink on ri.UID equals rsl.RequestItemUID
+                                               join rang in db.ResultItemRange on rsl.ResultItemUID equals rang.ResultItemUID
+                                               where ri.UID == requestItemUID
+                                               && rsl.StatusFlag == "A"
+                                               && rang.StatusFlag == "A"
+                                               select new ResultItemRangeModel
+                                               {
+                                                   ResultItemRangeUID = rang.UID,
+                                                   ResultItemUID = rang.ResultItemUID,
+                                                   SEXXXUID = rang.SEXXXUID,
+                                                   DisplayValue = rang.DisplayValue,
+                                                   Low = rang.Low,
+                                                   High = rang.High,
+                                                   Comments = rang.Comments,
+                                                   LABRAMUID = rang.LABRAMUID
+                                               }).ToList();
 
             return data;
         }
