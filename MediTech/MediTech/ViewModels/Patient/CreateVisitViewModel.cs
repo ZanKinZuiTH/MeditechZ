@@ -64,11 +64,11 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedVisitType, value);
                 if (_SelectedVisitType != null)
                 {
-                    VisibiltyCheckupCompany = Visibility.Collapsed;
-                    if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKUP")
-                    {
-                        VisibiltyCheckupCompany = Visibility.Visible;
-                    }
+                    //VisibiltyCheckupCompany = Visibility.Collapsed;
+                    //if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKUP")
+                    //{
+                    //    VisibiltyCheckupCompany = Visibility.Visible;
+                    //}
 
                 }
             }
@@ -232,7 +232,7 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRoleMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
-            CheckupJobSource = DataService.Checkup.GetCheckupJobContactAll();
+            //CheckupJobSource = DataService.Checkup.GetCheckupJobContactAll();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
