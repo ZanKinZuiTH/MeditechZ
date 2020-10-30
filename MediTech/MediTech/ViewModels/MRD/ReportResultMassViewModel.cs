@@ -523,11 +523,12 @@ namespace MediTech.ViewModels
             else
                 PatientXrays = null;
 
-            List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
+
             if (PatientXrays != null && PatientXrays.Count > 0)
             {
                 if (IsTranslate)
                 {
+                    List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                     foreach (var item in PatientXrays)
                     {
                         List<string> listNoMapResult = new List<string>();

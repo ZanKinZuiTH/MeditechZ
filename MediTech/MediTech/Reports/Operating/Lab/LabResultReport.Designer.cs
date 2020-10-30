@@ -473,7 +473,7 @@
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrLabel2});
             this.GroupHeader1.GroupFields.AddRange(new DevExpress.XtraReports.UI.GroupField[] {
-            new DevExpress.XtraReports.UI.GroupField("LabCategory", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
+            new DevExpress.XtraReports.UI.GroupField("PrintGroup", DevExpress.XtraReports.UI.XRColumnSortOrder.Ascending)});
             this.GroupHeader1.HeightF = 24.00001F;
             this.GroupHeader1.Level = 1;
             this.GroupHeader1.Name = "GroupHeader1";
@@ -482,14 +482,13 @@
             // xrLabel2
             // 
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LabCategory")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrintGroup")});
             this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
             this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(22.5F, 1.00001F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(428.3333F, 23F);
             this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.Text = "xrLabel2";
             // 
             // GroupHeader2
             // 

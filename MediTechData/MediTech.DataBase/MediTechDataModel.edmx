@@ -2095,7 +2095,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="400" />
           <Property Name="EffectiveFrom" Type="datetime" />
           <Property Name="EffectiveTo" Type="datetime" />
-          <Property Name="LABCATUID" Type="int" />
+          <Property Name="PRTGPUID" Type="int" />
           <Property Name="TSTTPUID" Type="int" />
           <Property Name="RIMTYPUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -9250,7 +9250,7 @@
           <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
           <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
-          <Property Name="LABCATUID" Type="Int32" />
+          <Property Name="PRTGPUID" Type="Int32" />
           <Property Name="TSTTPUID" Type="Int32" />
           <Property Name="RIMTYPUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -13957,7 +13957,7 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="RIMTYPUID" ColumnName="RIMTYPUID" />
                 <ScalarProperty Name="TSTTPUID" ColumnName="TSTTPUID" />
-                <ScalarProperty Name="LABCATUID" ColumnName="LABCATUID" />
+                <ScalarProperty Name="PRTGPUID" ColumnName="PRTGPUID" />
                 <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
                 <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
                 <ScalarProperty Name="Description" ColumnName="Description" />

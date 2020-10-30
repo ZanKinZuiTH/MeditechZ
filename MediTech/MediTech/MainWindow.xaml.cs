@@ -27,6 +27,7 @@ namespace MediTech
     /// </summary>
     public partial class MainWindow : DXRibbonWindow
     {
+        bool logOff = false;
         public MainWindow()
         {
             InitializeComponent();
@@ -62,17 +63,22 @@ namespace MediTech
 
         private void MainWindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
-            MessageBoxResult result = DXMessageBox.Show("คุณต้องการปิดโปรแกรมใช้หรือไม่ ?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
-            if (result != MessageBoxResult.Yes)
+            if (logOff == false)
             {
-                e.Cancel = true;
+                MessageBoxResult result = DXMessageBox.Show("คุณต้องการปิดโปรแกรมใช้หรือไม่ ?", "Question", MessageBoxButton.YesNo, MessageBoxImage.Question);
+                if (result != MessageBoxResult.Yes)
+                {
+                    e.Cancel = true;
+                }
             }
+
         }
 
         void btnLogOff_Click(object sender, RoutedEventArgs e)
         {
             AppUtil.Current = null;
             LoginScreen login = new LoginScreen();
+            logOff = true;
             this.Close();
             login.Show();
 

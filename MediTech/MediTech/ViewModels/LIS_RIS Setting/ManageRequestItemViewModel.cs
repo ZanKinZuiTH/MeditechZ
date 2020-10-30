@@ -26,15 +26,6 @@ namespace MediTech.ViewModels
             set { Set(ref _ImageTypeVisibility, value); }
         }
 
-        private Visibility _VisibilityLabDetail = Visibility.Collapsed;
-
-        public Visibility VisibilityLabDetail
-        {
-            get { return _VisibilityLabDetail; }
-            set { Set(ref _VisibilityLabDetail, value); }
-        }
-
-
         private string _Code;
 
         public string Code
@@ -110,12 +101,10 @@ namespace MediTech.ViewModels
                 if (SelectTestType != null && SelectTestType.Display == "RADIOLOGY")
                 {
                     ImageTypeVisibility = Visibility.Visible;
-                    VisibilityLabDetail = Visibility.Collapsed;
                 }
                 else
                 {
                     ImageTypeVisibility = Visibility.Collapsed;
-                    VisibilityLabDetail = Visibility.Visible;
                 }
             }
         }
@@ -513,10 +502,10 @@ namespace MediTech.ViewModels
 
         public ManageRequestItemViewModel()
         {
-            var refData = DataService.Technical.GetReferenceValueList("TSTTP,RIMTYP,LABCAT,GPRST");
+            var refData = DataService.Technical.GetReferenceValueList("TSTTP,RIMTYP,PRTGP,GPRST");
             TestType = refData.Where(p => p.DomainCode == "TSTTP").ToList();
             ImageType = refData.Where(p => p.DomainCode == "RIMTYP").ToList();
-            Category = refData.Where(p => p.DomainCode == "LABCAT").ToList();
+            Category = refData.Where(p => p.DomainCode == "PRTGP").ToList();
             RequestItemGropResult = refData.Where(p => p.DomainCode == "GPRST").ToList();
             ActiveFrom = DateTime.Now;
         }
@@ -781,7 +770,7 @@ namespace MediTech.ViewModels
             Code = model.Code;
             Name = model.ItemName;
             Description = model.Description;
-            SelectCategory = Category.FirstOrDefault(p => p.Key == model.LABCATUID);
+            SelectCategory = Category.FirstOrDefault(p => p.Key == model.PRTGPUID);
             SelectTestType = TestType.FirstOrDefault(p => p.Key == model.TSTTPUID);
             SelectImageType = ImageType.FirstOrDefault(p => p.Key == model.RIMTYPUID);
             ActiveFrom = model.EffectiveFrom;
@@ -800,7 +789,7 @@ namespace MediTech.ViewModels
             model.Code = Code;
             model.ItemName = Name;
             model.Description = Description;
-            model.LABCATUID = SelectCategory.Key;
+            model.PRTGPUID = SelectCategory.Key;
             model.TSTTPUID = SelectTestType.Key;
 
             if (ImageTypeVisibility == Visibility.Visible)

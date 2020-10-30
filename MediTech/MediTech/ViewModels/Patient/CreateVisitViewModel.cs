@@ -64,11 +64,11 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedVisitType, value);
                 if (_SelectedVisitType != null)
                 {
-                    VisibiltyCheckupCompany = Visibility.Collapsed;
-                    if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKIN")
-                    {
-                        VisibiltyCheckupCompany = Visibility.Visible;
-                    }
+                    //VisibiltyCheckupCompany = Visibility.Collapsed;
+                    //if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKUP")
+                    //{
+                    //    VisibiltyCheckupCompany = Visibility.Visible;
+                    //}
 
                 }
             }
@@ -96,6 +96,22 @@ namespace MediTech.ViewModels
         {
             get { return _SelectedPriority; }
             set { _SelectedPriority = value; }
+        }
+
+        public List<CheckupJobContactModel> CheckupJobSource { get; set; }
+        private CheckupJobContactModel _SelectedCheckupJob;
+
+        public CheckupJobContactModel SelectedCheckupJob
+        {
+            get { return _SelectedCheckupJob; }
+            set
+            {
+                _SelectedCheckupJob = value;
+                if (_SelectedCheckupJob != null)
+                {
+                    SelectedPayorDetail = PayorDetailSource.FirstOrDefault(p => p.PayorDetailUID == SelectedCheckupJob.PayorDetailUID);
+                }
+            }
         }
 
         public List<PayorDetailModel> PayorDetailSource { get; set; }
@@ -158,7 +174,7 @@ namespace MediTech.ViewModels
         public Visibility VisibiltyCheckupCompany
         {
             get { return _VisibiltyCheckupCompany; }
-            set { _VisibiltyCheckupCompany = value; }
+            set { Set(ref _VisibiltyCheckupCompany, value); }
         }
 
 
@@ -207,19 +223,6 @@ namespace MediTech.ViewModels
 
         #region Method
 
-        public override void OnLoaded()
-        {
-            if (IsUpdateVisit)
-            {
-                VisibilityCancel = Visibility.Visible;
-                VisibilityCancel = Visibility.Visible;
-            }
-            else
-            {
-                VisibilityCancel = Visibility.Collapsed;
-                VisibilityCancel = Visibility.Collapsed;
-            }
-        }
 
         public CreateVisitViewModel()
         {
@@ -229,6 +232,7 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRoleMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
+            //CheckupJobSource = DataService.Checkup.GetCheckupJobContactAll();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
@@ -247,11 +251,7 @@ namespace MediTech.ViewModels
                 return;
             }
             var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
-            if (parent == null)
-            {
-
-            }
-            else if (parent is System.Windows.Window)
+            if (parent != null && parent is System.Windows.Window)
             {
                 CloseViewDialog(ActionDialog.Save);
             }
@@ -273,6 +273,15 @@ namespace MediTech.ViewModels
             {
                 WarningDialog("กรุณาเลือก ประเภท Visit");
                 return true;
+            }
+
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก บริษัท");
+                    return true;
+                }
             }
 
             if (SelectedPayorDetail == null)

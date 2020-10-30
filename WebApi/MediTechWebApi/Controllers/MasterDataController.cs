@@ -35,7 +35,7 @@ namespace MediTechWebApi.Controllers
                 TSTTPUID = p.TSTTPUID,
                 TestType = SqlFunction.fGetRfValDescription(p.TSTTPUID ?? 0),
                 RIMTYPUID = p.RIMTYPUID,
-                LABCATUID = p.LABCATUID,
+                PRTGPUID = p.PRTGPUID,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -66,7 +66,7 @@ namespace MediTechWebApi.Controllers
                 EffectiveTo = p.EffectiveTo,
                 ItemName = p.ItemName,
                 TSTTPUID = p.TSTTPUID,
-                LABCATUID = p.LABCATUID,
+                PRTGPUID = p.PRTGPUID,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -105,7 +105,7 @@ namespace MediTechWebApi.Controllers
                                          StatusFlag = re.StatusFlag,
                                          RequestItemUID = re.UID,
                                          Description = re.Description,
-                                         LABCATUID = re.LABCATUID,
+                                         PRTGPUID = re.PRTGPUID,
                                          TSTTPUID = re.TSTTPUID,
                                          RIMTYPUID = re.RIMTYPUID,
                                          EffectiveFrom = re.EffectiveFrom,
@@ -168,7 +168,7 @@ namespace MediTechWebApi.Controllers
                                          StatusFlag = re.StatusFlag,
                                          RequestItemUID = re.UID,
                                          Description = re.Description,
-                                         LABCATUID = re.LABCATUID,
+                                         PRTGPUID = re.PRTGPUID,
                                          TSTTPUID = re.TSTTPUID,
                                          RIMTYPUID = re.RIMTYPUID,
                                          EffectiveFrom = re.EffectiveFrom,
@@ -238,7 +238,7 @@ namespace MediTechWebApi.Controllers
                         requestItem.TSTTPUID = db.ReferenceValue.FirstOrDefault(p => p.StatusFlag == "A" && p.DomainCode == "TSTTP" && p.ValueCode == "RADTP").UID;
 
                     }
-                    requestItem.LABCATUID = requestItemModel.LABCATUID;
+                    requestItem.PRTGPUID = requestItemModel.PRTGPUID;
                     requestItem.RIMTYPUID = requestItemModel.RIMTYPUID;
                     requestItem.MUser = userID;
                     requestItem.MWhen = now;
