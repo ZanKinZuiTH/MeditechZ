@@ -380,11 +380,6 @@ namespace MediTech.ViewModels
                         conn.Open();
                         objDataset1 = new DataSet();
                         dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                        if (dt.AsEnumerable().Where(p => p["Table_name"].ToString().ToUpper() == "INBOUND$").Count() <= 0)
-                        {
-                            WarningDialog("ไม่พบ Sheet ชื่อ Inbound กรุณาตรวจสอบ");
-                            return;
-                        }
 
                         if (dt != null && dt.Rows.Count > 0)
                         {
@@ -392,7 +387,7 @@ namespace MediTech.ViewModels
                             {
                                 string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
                                 cmd = conn.CreateCommand();
-                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [INBOUND$] Where ([NO] <> '' OR [NO] IS NOT NULL)", conn);
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([NO] <> '' OR [NO] IS NOT NULL)", conn);
                                 OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
                                 objAdapter1.SelectCommand = objCmdSelect;
                                 objAdapter1.Fill(objDataset1);
@@ -426,6 +421,7 @@ namespace MediTech.ViewModels
                         }
 
                         CurrentImportedData.PatientOtherID = drow["Other ID"].ToString().Trim();
+                        CurrentImportedData.EmployeeID = drow["EmployeeID"].ToString().Trim();
                         CurrentImportedData.PreName = drow["PreName"].ToString().Trim();
                         CurrentImportedData.FirstName = drow["FirstName"].ToString().Trim();
                         CurrentImportedData.LastName = drow["LastName"].ToString().Trim();
@@ -717,9 +713,9 @@ namespace MediTech.ViewModels
                             patientModel.PatientUID = currentData.PatientUID;
                             patientModel.PatientID = currentData.BN;
 
-                            if (!string.IsNullOrEmpty(currentData.PatientOtherID))
-                                patientModel.EmployeeID = currentData.PatientOtherID;
-
+        
+                            patientModel.PatientOtherID = currentData.PatientOtherID;
+                            patientModel.EmployeeID = currentData.EmployeeID;
                             patientModel.SEXXXUID = currentData.SEXXXUID;
                             patientModel.TITLEUID = currentData.TITLEUID;
                             patientModel.BirthDttm = currentData.BirthDttm;

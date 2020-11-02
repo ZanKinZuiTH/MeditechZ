@@ -31,6 +31,7 @@ namespace MediTech.Model
         public DateTime? VIPActiveTo { get; set; }
         public string PatientID { get; set; }
         public string EmployeeID { get; set; }
+        public string PatientOtherID { get; set; }
         public bool DOBComputed { get; set; }
         public System.Nullable<int> RELGNUID { get; set; }
         public DateTime? LastVisitDttm { get; set; }

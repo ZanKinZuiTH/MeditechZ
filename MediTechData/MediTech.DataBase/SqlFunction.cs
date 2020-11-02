@@ -1104,6 +1104,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestExamList", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateFrom", requestDateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateTo", requestDateTo ?? (object)DBNull.Value);

@@ -79,11 +79,12 @@
                                 AllowEditing="True" FieldName="Register"/>
                 <dxg:GridColumn Header="HN" FieldName="BN"/>
                 <dxg:GridColumn Header="Other ID" FieldName="PatientOtherID"/>
+                <dxg:GridColumn Header="EmployeeID" FieldName="EmployeeID"/>
                 <dxg:GridColumn Header="PreName" FieldName="PreName"/>
                 <dxg:GridColumn Header="FirstName" FieldName="FirstName"/>
                 <dxg:GridColumn Header="LastName" FieldName="LastName"/>
                 <dxg:GridColumn Header="Sex" FieldName="Gender"/>
-                <dxg:GridColumn Header="BirthDttm" FieldName="DateOfBirth"/>
+                <dxg:GridColumn Header="Birth Date" FieldName="DateOfBirth"/>
                 <dxg:GridColumn Header="Age" FieldName="Age"/>
                 <dxg:GridColumn Header="IDCard" FieldName="IDCard"/>
                 <dxg:GridColumn Header="MobilePhone" FieldName="MobilePhone"/>
@@ -92,6 +93,7 @@
                 <dxg:GridColumn Header="Position" FieldName="Position"/>
                 <dxg:GridColumn Header="Department" FieldName="Department"/>
                 <dxg:GridColumn Header="Program" FieldName="Program"/>
+                <dxg:GridColumn Header="CheckupDttm" FieldName="CheckupDttm"/>
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="tableView" ShowGroupPanel="False"
                                    UseLightweightTemplates="None"
