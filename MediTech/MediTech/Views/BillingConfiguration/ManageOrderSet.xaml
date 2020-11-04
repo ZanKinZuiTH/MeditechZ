@@ -261,7 +261,7 @@
                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee" ReadOnly="True">
+                    <dxg:GridColumn Header="ค่าแพทย์ (%)" FieldName="DoctorFee" ReadOnly="True">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                         </dxg:GridColumn.EditSettings>
