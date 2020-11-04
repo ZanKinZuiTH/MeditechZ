@@ -143,7 +143,7 @@
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(75.2736F, 16.54167F);
             this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.Text = "Birth Date: [Parameters.BirthDttm]";
+            this.xrLabel1.Text = "DOB: [Parameters.BirthDttm]";
             this.xrLabel1.WordWrap = false;
             // 
             // xrLabel4
