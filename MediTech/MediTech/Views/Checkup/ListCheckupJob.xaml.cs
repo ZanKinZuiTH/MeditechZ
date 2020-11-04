@@ -24,9 +24,9 @@ namespace MediTech.Views
         public ListCheckupJob()
         {
             InitializeComponent();
-            if (this.DataContext is ManageCheckupJobViewModel)
+            if (this.DataContext is ListCheckupJobViewModel)
             {
-                (this.DataContext as ManageCheckupJobViewModel).UpdateEvent += ListCheckupJob_UpdateEvent;
+                (this.DataContext as ListCheckupJobViewModel).UpdateEvent += ListCheckupJob_UpdateEvent;
             }
         }
 

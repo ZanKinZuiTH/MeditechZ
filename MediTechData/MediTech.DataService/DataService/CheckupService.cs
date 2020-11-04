@@ -23,6 +23,12 @@ namespace MediTech.DataService
             CheckupJobContactModel data = MeditechApiHelper.Get<CheckupJobContactModel>(requestApi);
             return data;
         }
+        public List<CheckupJobContactModel> GetCheckupJobContactByPayorDetailUID(int payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupJobContactByPayorDetailUID?payorDetailUID={0}", payorDetailUID);
+            List<CheckupJobContactModel> data = MeditechApiHelper.Get<List<CheckupJobContactModel>>(requestApi);
+            return data;
+        }
 
         public bool DeleteCheckupJobContact(int checkupJobContactUID, int userID)
         {

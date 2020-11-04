@@ -1517,6 +1517,7 @@
           <Property Name="IsBillFinalized" Type="nvarchar" MaxLength="1" />
           <Property Name="BookingUID" Type="int" />
           <Property Name="CheckupJobUID" Type="int" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
           <Property Name="Comments" Type="nvarchar" MaxLength="200" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2236,6 +2237,7 @@
           <Property Name="UnitofMeasure" Type="int" />
           <Property Name="RVTYPUID" Type="int" />
           <Property Name="IsCumulative" Type="nvarchar" MaxLength="1" />
+          <Property Name="AutoValue" Type="nvarchar(max)" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -8672,6 +8674,7 @@
           <Property Name="IsBillFinalized" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="BookingUID" Type="Int32" />
           <Property Name="CheckupJobUID" Type="Int32" />
+          <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -9391,6 +9394,7 @@
           <Property Name="UnitofMeasure" Type="Int32" />
           <Property Name="RVTYPUID" Type="Int32" />
           <Property Name="IsCumulative" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="AutoValue" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -13345,6 +13349,7 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="CheckupJobUID" ColumnName="CheckupJobUID" />
                 <ScalarProperty Name="BookingUID" ColumnName="BookingUID" />
                 <ScalarProperty Name="IsBillFinalized" ColumnName="IsBillFinalized" />
@@ -14100,6 +14105,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="AutoValue" ColumnName="AutoValue" />
                 <ScalarProperty Name="IsCumulative" ColumnName="IsCumulative" />
                 <ScalarProperty Name="RVTYPUID" ColumnName="RVTYPUID" />
                 <ScalarProperty Name="UnitofMeasure" ColumnName="UnitofMeasure" />

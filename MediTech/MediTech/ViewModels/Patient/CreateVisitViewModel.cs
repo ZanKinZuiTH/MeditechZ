@@ -21,8 +21,6 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
-
-
         private List<HealthOrganisationModel> _Organisations;
 
         public List<HealthOrganisationModel> Organisations
@@ -43,11 +41,7 @@ namespace MediTech.ViewModels
                 {
                     if (SelectOrganisation.HealthOrganisationUID == 5)
                     {
-                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "REFTU");
-                    }
-                    else
-                    {
-                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "DCPAT");
+                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
                     }
                 }
             }
@@ -64,11 +58,11 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedVisitType, value);
                 if (_SelectedVisitType != null)
                 {
-                    //VisibiltyCheckupCompany = Visibility.Collapsed;
-                    //if (SelectedVisitType.ValueCode == "MBXRY" || SelectedVisitType.ValueCode == "CHKUP")
-                    //{
-                    //    VisibiltyCheckupCompany = Visibility.Visible;
-                    //}
+                    VisibiltyCheckupCompany = Visibility.Collapsed;
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP")
+                    {
+                        VisibiltyCheckupCompany = Visibility.Visible;
+                    }
 
                 }
             }
@@ -98,21 +92,7 @@ namespace MediTech.ViewModels
             set { _SelectedPriority = value; }
         }
 
-        public List<CheckupJobContactModel> CheckupJobSource { get; set; }
-        private CheckupJobContactModel _SelectedCheckupJob;
 
-        public CheckupJobContactModel SelectedCheckupJob
-        {
-            get { return _SelectedCheckupJob; }
-            set
-            {
-                _SelectedCheckupJob = value;
-                if (_SelectedCheckupJob != null)
-                {
-                    SelectedPayorDetail = PayorDetailSource.FirstOrDefault(p => p.PayorDetailUID == SelectedCheckupJob.PayorDetailUID);
-                }
-            }
-        }
 
         public List<PayorDetailModel> PayorDetailSource { get; set; }
         private PayorDetailModel _SelectedPayorDetail;
@@ -126,12 +106,29 @@ namespace MediTech.ViewModels
                 if (_SelectedPayorDetail != null)
                 {
                     PayorAgreementSource = DataService.MasterData.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {
                         SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
                     }
                 }
             }
+        }
+
+        private List<CheckupJobContactModel> _CheckupJobSource;
+
+        public List<CheckupJobContactModel> CheckupJobSource
+        {
+            get { return _CheckupJobSource; }
+            set { Set(ref _CheckupJobSource, value); }
+        }
+
+        private CheckupJobContactModel _SelectedCheckupJob;
+
+        public CheckupJobContactModel SelectedCheckupJob
+        {
+            get { return _SelectedCheckupJob; }
+            set { Set(ref _SelectedCheckupJob, value); }
         }
 
         private List<PayorAgreementModel> _PayorAgreementSource;
@@ -232,7 +229,6 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRoleMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
-            //CheckupJobSource = DataService.Checkup.GetCheckupJobContactAll();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);

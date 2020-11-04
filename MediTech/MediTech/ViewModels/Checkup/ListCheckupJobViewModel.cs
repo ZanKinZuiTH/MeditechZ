@@ -19,7 +19,7 @@ namespace MediTech.ViewModels
         public List<CheckupJobContactModel> ListCheckupJob
         {
             get { return _ListCheckupJob; }
-            set { _ListCheckupJob = value; }
+            set { Set(ref _ListCheckupJob, value); }
         }
 
         private CheckupJobContactModel _SelectCheckupJob;
@@ -27,7 +27,7 @@ namespace MediTech.ViewModels
         public CheckupJobContactModel SelectCheckupJob
         {
             get { return _SelectCheckupJob; }
-            set { _SelectCheckupJob = value; }
+            set { Set(ref _SelectCheckupJob, value); }
         }
 
         #endregion

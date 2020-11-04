@@ -1127,14 +1127,26 @@ namespace MediTech.ViewModels
             }
         }
 
-        public ExaminationViewModel ExaminationViewModel
+
+        public HealthExamListViewModel HealthExamListViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<ExaminationViewModel>())
-                    SimpleIoc.Default.Register<ExaminationViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<HealthExamListViewModel>())
+                    SimpleIoc.Default.Register<HealthExamListViewModel>();
 
-                return ServiceLocator.Current.GetInstance<ExaminationViewModel>();
+                return ServiceLocator.Current.GetInstance<HealthExamListViewModel>();
+            }
+        }
+
+        public EnterPhysicalExamViewModel EnterPhysicalExamViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterPhysicalExamViewModel>())
+                    SimpleIoc.Default.Register<EnterPhysicalExamViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterPhysicalExamViewModel>();
             }
         }
 

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class ExaminationViewModel : MediTechViewModelBase
+    public class EnterPhysicalExamViewModel : MediTechViewModelBase
     {
         #region Properties
 

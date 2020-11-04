@@ -42,7 +42,7 @@ namespace MediTech.ViewModels
 
         #region Method
         PatientVitalSign patientVital = new PatientVitalSign();
-        Examination examination = new Examination();
+        EnterPhysicalExam examination = new EnterPhysicalExam();
         Audiogram audiogram = new Audiogram();
         Spirometry spirometry = new Spirometry();
         Timus timus = new Timus();

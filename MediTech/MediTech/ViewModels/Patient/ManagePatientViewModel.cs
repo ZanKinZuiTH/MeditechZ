@@ -323,7 +323,7 @@ namespace MediTech.ViewModels
                 {
                     if (SelectOrganisation.HealthOrganisationUID == 5)
                     {
-                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "REFTU");
+                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
                     }
                     //else
                     //{

@@ -577,18 +577,13 @@ namespace MediTech.ViewModels
                         conn.Open();
                         objDataset1 = new DataSet();
                         dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
-                        if (dt.AsEnumerable().Where(p => p["Table_name"].ToString().ToUpper() == "INBOUND$").Count() <= 0)
-                        {
-                            WarningDialog("ไม่พบ Sheet ชื่อ Inbound กรุณาตรวจสอบ");
-                            return;
-                        }
                         if (dt != null && dt.Rows.Count > 0)
                         {
                             for (int row = 0; row < dt.Rows.Count;)
                             {
                                 string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
                                 cmd = conn.CreateCommand();
-                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [INBOUND$] Where ([NO] <> '' OR [NO] IS NOT NULL)", conn);
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([NO] <> '' OR [NO] IS NOT NULL)", conn);
                                 OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
                                 objAdapter1.SelectCommand = objCmdSelect;
                                 objAdapter1.Fill(objDataset1);
@@ -803,7 +798,7 @@ namespace MediTech.ViewModels
                                     rpt.Parameters["CheckupDate"].Value = item.CheckupDttm;
                                 }
                                 rpt.Parameters["CheckupLocation"].Value = item.Company;
-                                rpt.Parameters["NumberCode"].Value = item.OtherID;
+                                rpt.Parameters["NumberCode"].Value = item.EmployeeID;
 
                                 rpt.RequestParameters = false;
                                 rpt.ShowPrintMarginsWarning = false;
@@ -890,7 +885,7 @@ namespace MediTech.ViewModels
 
                             rpt.Parameters["CheckupLocation"].Value = item.Company;
 
-                            rpt.Parameters["NumberCode"].Value = item.OtherID;
+                            rpt.Parameters["NumberCode"].Value = item.EmployeeID;
 
                             rpt.RequestParameters = false;
                             rpt.ShowPrintMarginsWarning = false;
@@ -949,7 +944,7 @@ namespace MediTech.ViewModels
                         }
                         else if (SelectLogo.Key == 1)
                         {
-                            rpt.Parameters["HN"].Value = item.OtherID;
+                            rpt.Parameters["HN"].Value = item.EmployeeID;
                         }
                         else
                         {
@@ -1042,7 +1037,7 @@ namespace MediTech.ViewModels
                         }
                         else if (SelectLogo.Key == 1)
                         {
-                            rpt.Parameters["HN"].Value = item.OtherID;
+                            rpt.Parameters["HN"].Value = item.EmployeeID;
                         }
                         else
                         {
@@ -1159,7 +1154,7 @@ namespace MediTech.ViewModels
 
                             foreach (var item in SelectPatientXrays.ToList())
                             {
-                                string fileName = (string.IsNullOrEmpty(item.OtherID) ? "" : item.OtherID + " ") + item.PatientName + ".pdf";
+                                string fileName = (string.IsNullOrEmpty(item.EmployeeID) ? "" : item.EmployeeID + " ") + item.PatientName + ".pdf";
                                 if (SelectReport.Key == 0)
                                 {
 
@@ -1204,7 +1199,7 @@ namespace MediTech.ViewModels
                                         rpt.Parameters["CheckupDate"].Value = item.CheckupDttm;
                                     }
                                     rpt.Parameters["CheckupLocation"].Value = item.Company;
-                                    rpt.Parameters["NumberCode"].Value = item.OtherID;
+                                    rpt.Parameters["NumberCode"].Value = item.EmployeeID;
 
                                     rpt.RequestParameters = false;
                                     rpt.ShowPrintMarginsWarning = false;
@@ -1316,7 +1311,7 @@ namespace MediTech.ViewModels
                                 //dicomFile.Dataset.Validate();
 
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN);
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.EmployeeID) ? patientInfo.EmployeeID : patientInfo.HN);
                                 if (!IsNumberSequence)
                                 {
                                     dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.PatientName);
@@ -1325,7 +1320,7 @@ namespace MediTech.ViewModels
                                 {
                                     dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.No.ToString().PadLeft(4, '0') + " " + patientInfo.PatientName);
                                 }
-                                string fileName = (!string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN) + "_" + patientInfo.PatientName + "_" + instanceUID;
+                                string fileName = (!string.IsNullOrEmpty(patientInfo.EmployeeID) ? patientInfo.EmployeeID : patientInfo.HN) + "_" + patientInfo.PatientName + "_" + instanceUID;
                                 dicomFile.Save(ExportFilePath + "\\" + fileName + ".dcm");
                                 dicomFiles.Remove(file);
                                 MemoryManagement.FlushMemory();
@@ -1401,7 +1396,7 @@ namespace MediTech.ViewModels
                                 var dicomFile = Dicom.DicomFile.Open(ms);
                                 string instanceUID = dicomFile.Dataset.GetSingleValueOrDefault<string>(DicomTag.SOPInstanceUID, "");
                                 dicomFile.Dataset.AddOrUpdate(DicomTag.SpecificCharacterSet, Encoding.UTF8, "ISO_IR 192");
-                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN);
+                                dicomFile.Dataset.AddOrUpdate(DicomTag.PatientID, Encoding.UTF8, !string.IsNullOrEmpty(patientInfo.EmployeeID) ? patientInfo.EmployeeID : patientInfo.HN);
                                 if (!IsNumberSequence)
                                 {
                                     dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.PatientName);
@@ -1410,7 +1405,7 @@ namespace MediTech.ViewModels
                                 {
                                     dicomFile.Dataset.AddOrUpdate(DicomTag.PatientName, Encoding.UTF8, patientInfo.No.ToString().PadLeft(4, '0') + " " + patientInfo.PatientName);
                                 }
-                                string fileName = (!string.IsNullOrEmpty(patientInfo.OtherID) ? patientInfo.OtherID : patientInfo.HN) + "_" + patientInfo.PatientName + "_" + instanceUID;
+                                string fileName = (!string.IsNullOrEmpty(patientInfo.EmployeeID) ? patientInfo.EmployeeID : patientInfo.HN) + "_" + patientInfo.PatientName + "_" + instanceUID;
                                 var image = new DicomImage(dicomFile.Dataset);
                                 image.RenderImage().AsClonedBitmap().Save(ExportFilePath + "\\" + fileName + ".jpg", System.Drawing.Imaging.ImageFormat.Jpeg);
                                 dicomFiles.Remove(file);
