@@ -706,9 +706,10 @@
     <Compile Include="ViewModels\Checkup\CheckupExamListViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TimusViewModel.cs" />
     <Compile Include="ViewModels\Checkup\SpirometryViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\ExaminationViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EKGViewModel.cs" />
     <Compile Include="ViewModels\Checkup\AudiogramViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupResultViewModel.cs" />
@@ -865,14 +866,17 @@
     <Compile Include="Views\Checkup\EKG.xaml.cs">
       <DependentUpon>EKG.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\Examination.xaml.cs">
-      <DependentUpon>Examination.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterPhysicalExam.xaml.cs">
+      <DependentUpon>EnterPhysicalExam.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ListCheckupJob.xaml.cs">
       <DependentUpon>ListCheckupJob.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ManageCheckupJob.xaml.cs">
       <DependentUpon>ManageCheckupJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\HealthExamList.xaml.cs">
+      <DependentUpon>HealthExamList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\Spirometry.xaml.cs">
       <DependentUpon>Spirometry.xaml</DependentUpon>
@@ -1347,7 +1351,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\Examination.xaml">
+    <Page Include="Views\Checkup\EnterPhysicalExam.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1356,6 +1360,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\ManageCheckupJob.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\HealthExamList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2470,6 +2478,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Health Examination.png" />
     <Resource Include="Resources\Images\Module\Medical Checkup.png" />
     <Resource Include="Resources\Images\Menu\Hospital.png" />
     <Resource Include="Resources\Images\Other\VIP.png" />

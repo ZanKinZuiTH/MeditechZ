@@ -108,6 +108,11 @@
                                     </dxg:LookUpEdit.StyleSettings>
                                 </dxg:LookUpEdit>
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Auto Value" LabelVerticalAlignment="Top">
+                                <dxe:TextEdit Text="{Binding AutoValue}" TextWrapping="Wrap" Height="200"  AcceptsReturn="True"
+                                              VerticalScrollBarVisibility="Auto"
+                                              VerticalContentAlignment="Top"/>
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
                             <dxlc:LayoutItem Label="เปิดใช้งาน">

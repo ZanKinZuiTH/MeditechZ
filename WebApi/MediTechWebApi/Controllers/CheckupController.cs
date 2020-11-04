@@ -24,7 +24,8 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CheckupJobContactModel> GetCheckupJobContactAll()
         {
-            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.StatusFlag == "A")
+            List<CheckupJobContactModel> data = db.CheckupJobContact
+                .Where(p => p.StatusFlag == "A")
                 .Select(p => new CheckupJobContactModel
                 {
                     CheckupJobContactUID = p.UID,
@@ -87,6 +88,32 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetCheckupJobContactByPayorDetailUID")]
+        [HttpGet]
+        public List<CheckupJobContactModel> GetCheckupJobContactByPayorDetailUID(int payorDetailUID)
+        {
+            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.PayorDetailUID == payorDetailUID)
+                .Select(p => new CheckupJobContactModel
+                {
+                    CheckupJobContactUID = p.UID,
+                    JobContactID = p.JobContactID,
+                    PayorDetailUID = p.PayorDetailUID,
+                    CompanyName = p.CompanyName,
+                    Description = p.Description,
+                    JobNumber = p.JobNumber,
+                    Location = p.Location,
+                    ContactPerson = p.ContactPerson,
+                    ContactEmail = p.ContactEmail,
+                    ContactPhone = p.ContactPhone,
+                    ServiceName = p.ServiceName,
+                    VisitCount = p.VisitCount,
+                    StartDttm = p.StartDttm,
+                    EndDttm = p.EndDttm,
+                    CollectDttm = p.CollectDttm
+                }).ToList();
+
+            return data;
+        }
 
         [Route("DeleteCheckupJobContact")]
         [HttpDelete]

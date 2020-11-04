@@ -19,6 +19,8 @@ namespace MediTech.Model
         public Nullable<int> RVTYPUID { get; set; }
         public string ResultType { get; set; }
         public string IsCumulative { get; set; }
+
+        public string AutoValue { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

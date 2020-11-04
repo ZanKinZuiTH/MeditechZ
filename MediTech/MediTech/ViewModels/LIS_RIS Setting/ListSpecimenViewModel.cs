@@ -83,6 +83,11 @@ namespace MediTech.ViewModels
 
         #region Method
 
+        public ListSpecimenViewModel()
+        {
+            SearchSpecimen();
+        }
+
         void SearchSpecimen()
         {
             ListSpecimans = DataService.MasterData.SearhcSpecimen(SpecimenNameCode);

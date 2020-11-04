@@ -13,6 +13,7 @@ namespace MediTech.Model
         public string CareProviderName { get; set; }
         public Nullable<int> VISTSUID { get; set; }
         public Nullable<int> CheckupJobUID { get; set; }
+        public string CompanyName { get; set; }
         public string VisitType { get; set; }
         public string VisitStatus { get; set; }
         public Nullable<int> VISTYUID { get; set; }

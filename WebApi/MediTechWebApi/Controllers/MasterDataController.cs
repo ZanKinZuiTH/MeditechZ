@@ -137,7 +137,7 @@ namespace MediTechWebApi.Controllers
                                              }).ToList();
 
                 data.RequestItemGroupResults = db.RequestItemGroupResult
-                    .Where(p => p.StatusFlag == "A")
+                    .Where(p => p.StatusFlag == "A" && p.RequestItemUID == data.RequestItemUID)
                     .Select(p => new RequestItemGroupResultModel
                     {
                         RequestItemGroupResultUID = p.UID,
@@ -548,6 +548,7 @@ namespace MediTechWebApi.Controllers
                 RVTYPUID = p.RVTYPUID,
                 ResultType = SqlFunction.fGetRfValDescription(p.RVTYPUID ?? 0),
                 IsCumulative = p.IsCumulative,
+                AutoValue = p.AutoValue,
                 StatusFlag = p.StatusFlag,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
@@ -596,6 +597,7 @@ namespace MediTechWebApi.Controllers
                 RVTYPUID = p.RVTYPUID,
                 ResultType = SqlFunction.fGetRfValDescription(p.RVTYPUID ?? 0),
                 IsCumulative = p.IsCumulative,
+                AutoValue = p.AutoValue,
                 StatusFlag = p.StatusFlag,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
@@ -635,6 +637,7 @@ namespace MediTechWebApi.Controllers
                     resultItem.RVTYPUID = resultItemModel.RVTYPUID;
                     resultItem.UnitofMeasure = resultItemModel.UnitofMeasure;
                     resultItem.IsCumulative = resultItemModel.IsCumulative;
+                    resultItem.AutoValue = resultItemModel.AutoValue;
                     resultItem.MUser = userID;
                     resultItem.MWhen = now;
 

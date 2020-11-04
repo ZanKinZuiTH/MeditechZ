@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public string IsBillFinalized { get; set; }
         public Nullable<int> BookingUID { get; set; }
         public Nullable<int> CheckupJobUID { get; set; }
+        public string CompanyName { get; set; }
         public string Comments { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

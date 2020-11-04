@@ -98,6 +98,7 @@ namespace MediTech.ViewModels
         public ListTestParameterViewModel()
         {
             ResultType = DataService.Technical.GetReferenceValueMany("RVTYP");
+            SearchTestParameter();
         }
 
         void SearchTestParameter()

@@ -801,6 +801,7 @@ namespace MediTech.ViewModels
                                     visitInfo.VISTYUID = result.SelectedVisitType.Key;
                                     visitInfo.VISTSUID = 418; //Medical Discharge
                                     visitInfo.CheckupJobUID = result.SelectedCheckupJob != null ? result.SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+                                    visitInfo.CompanyName = currentData.Company;
                                     visitInfo.PRITYUID = result.SelectedPriority.Key;
                                     visitInfo.PayorDetailUID = result.SelectedPayorDetail.PayorDetailUID;
                                     visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;

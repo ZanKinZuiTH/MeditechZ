@@ -24,7 +24,6 @@ namespace MediTech.ViewModels
         }
 
 
-
         private string _Name;
 
         public string Name
@@ -119,6 +118,14 @@ namespace MediTech.ViewModels
         {
             get { return __IsCumulative; }
             set { Set(ref __IsCumulative, value); }
+        }
+
+        private string _AutoValue;
+
+        public string AutoValue
+        {
+            get { return _AutoValue; }
+            set { Set(ref _AutoValue, value); }
         }
 
 
@@ -535,7 +542,7 @@ namespace MediTech.ViewModels
             EffectiveFrom = Datamodel.EffectiveFrom;
             EffectiveTo = Datamodel.EffectiveTo;
             IsCumulative = Datamodel.IsCumulative == "Y" ? true : false;
-
+            AutoValue = Datamodel.AutoValue;
             ListResultItemRange = Datamodel.ResultItemRanges;
 
             IsEnabledEdit = false;
@@ -553,6 +560,7 @@ namespace MediTech.ViewModels
             Datamodel.RVTYPUID = SelectParameterType.Key;
             Datamodel.UnitofMeasure = SelectUnitofMeasure != null ? SelectUnitofMeasure.Key : (int?)null;
             Datamodel.IsCumulative = IsCumulative ? "Y" : null;
+            Datamodel.AutoValue = AutoValue;
             Datamodel.EffectiveFrom = EffectiveFrom;
             Datamodel.EffectiveTo = EffectiveTo;
 
