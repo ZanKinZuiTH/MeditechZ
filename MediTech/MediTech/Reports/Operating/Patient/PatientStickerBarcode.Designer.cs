@@ -77,10 +77,10 @@
             // 
             this.xrLabel3.CanGrow = false;
             this.xrLabel3.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(125.0631F, 1.829287F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(118.3964F, 1.829287F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(65.16557F, 19.59591F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(71.83224F, 19.59591F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "NO. [Parameters.No]";
@@ -105,7 +105,7 @@
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0.247345F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(113.6251F, 19.34857F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(114.4584F, 19.34857F);
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.Text = "HN: [Parameters.HN]";
             this.xrLabel5.WordWrap = false;
