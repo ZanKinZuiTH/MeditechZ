@@ -216,6 +216,20 @@ namespace MediTech.ViewModels
                         IsEnableCode = true;
                         IsVisibilityRefCode = Visibility.Visible;
                     }
+                    else if (serviceType == "Mobile Checkup")
+                    {
+                        var data = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
+                        ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        {
+                            ItemUID = p.RequestItemUID,
+                            Code = p.Code,
+                            Name = p.ItemName,
+                            ActiveFrom = p.EffectiveFrom,
+                            ActiveTo = p.EffectiveTo
+                        }).ToList();
+                        IsEnableCode = true;
+                        IsVisibilityRefCode = Visibility.Visible;
+                    }
                     else if (serviceType == "Drug")
                     {
                         var data = DataService.Inventory.GetItemMasterByType("Drug");
@@ -233,33 +247,6 @@ namespace MediTech.ViewModels
                     else if (serviceType == "Medical Supplies")
                     {
                         var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.ItemMasterUID,
-                            Code = p.Code,
-                            Name = p.Name,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo
-                        }).ToList();
-                        IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Collapsed;
-                    }                    else if (serviceType == "Medical Supplies")
-                    {
-                        var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
-                        ItemsServiceSource = data.Select(p => new ItemServiceModel
-                        {
-                            ItemUID = p.ItemMasterUID,
-                            Code = p.Code,
-                            Name = p.Name,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo
-                        }).ToList();
-                        IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Collapsed;
-                    }
-                    else if (serviceType == "Mobile Checkup")
-                    {
-                        var data = DataService.Inventory.GetItemMasterByType("Mobile Checkup");
                         ItemsServiceSource = data.Select(p => new ItemServiceModel
                         {
                             ItemUID = p.ItemMasterUID,
