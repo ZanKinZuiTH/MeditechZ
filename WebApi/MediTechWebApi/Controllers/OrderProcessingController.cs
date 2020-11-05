@@ -399,6 +399,7 @@ namespace MediTechWebApi.Controllers
 
                 int BSMDD_LAB = refValueBSMDD.FirstOrDefault(p => p.ValueCode == "LABBB").UID;
                 int BSMDD_RADIO = refValueBSMDD.FirstOrDefault(p => p.ValueCode == "RADIO").UID;
+                int BSMDD_MBCUP = refValueBSMDD.FirstOrDefault(p => p.ValueCode == "MBCUP").UID;
                 int BSMDD_STORE = refValueBSMDD.FirstOrDefault(p => p.ValueCode == "STORE").UID;
                 //int BSMDD_ORDITEM = 2839;
                 int BSMDD_MDSLP = refValueBSMDD.FirstOrDefault(p => p.ValueCode == "MDSLP").UID;
@@ -459,7 +460,7 @@ namespace MediTechWebApi.Controllers
 
                         #region Request
 
-                        if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO)
+                        if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
                         {
                             Request request = new Request();
                             request.CUser = userUID;
@@ -658,7 +659,7 @@ namespace MediTechWebApi.Controllers
 
                             #region RequestDetail
 
-                            if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO)
+                            if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
                             {
                                 MediTech.DataBase.RequestItem requestItem = db.RequestItem.Find(item.ItemUID ?? 0);
                                 RequestDetail requestDetail = new RequestDetail();

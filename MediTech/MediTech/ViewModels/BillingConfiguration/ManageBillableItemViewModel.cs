@@ -243,6 +243,33 @@ namespace MediTech.ViewModels
                         }).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
                         IsVisibilityCost = Visibility.Collapsed;
+                    }                    else if (serviceType == "Medical Supplies")
+                    {
+                        var data = DataService.Inventory.GetItemMasterByType("Medical Supplies");
+                        ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        {
+                            ItemUID = p.ItemMasterUID,
+                            Code = p.Code,
+                            Name = p.Name,
+                            ActiveFrom = p.ActiveFrom,
+                            ActiveTo = p.ActiveTo
+                        }).ToList();
+                        IsVisibilityAvgCost = Visibility.Visible;
+                        IsVisibilityCost = Visibility.Collapsed;
+                    }
+                    else if (serviceType == "Mobile Checkup")
+                    {
+                        var data = DataService.Inventory.GetItemMasterByType("Mobile Checkup");
+                        ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        {
+                            ItemUID = p.ItemMasterUID,
+                            Code = p.Code,
+                            Name = p.Name,
+                            ActiveFrom = p.ActiveFrom,
+                            ActiveTo = p.ActiveTo
+                        }).ToList();
+                        IsVisibilityAvgCost = Visibility.Visible;
+                        IsVisibilityCost = Visibility.Collapsed;
                     }
                     else if (serviceType == "Supply")
                     {
