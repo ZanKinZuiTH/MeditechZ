@@ -30,21 +30,21 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<RequestDetailLabModel> GetRequesDetailLabByRequestUID(long requestUID)
+        public List<RequestDetailItemModel> GetRequesDetailLabByRequestUID(long requestUID)
         {
             string requestApi = string.Format("Api/Lab/GetRequesDetailLabByRequestUID?requestUID={0}", requestUID);
-            List<RequestDetailLabModel> listData = MeditechApiHelper.Get<List<RequestDetailLabModel>>(requestApi);
+            List<RequestDetailItemModel> listData = MeditechApiHelper.Get<List<RequestDetailItemModel>>(requestApi);
 
             return listData;
         }
 
-        public RequestDetailLabModel GetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
+        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
     , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
             string requestApi = string.Format("Api/Lab/GetRequesDetailLabForImport?patientID={0}&ownerOrganisationUID={1}" +
                 "&payorDetailUID={2}&requestItemUID={3}&dateFrom={4:MM/dd/yyyy}&dateTo={5:MM/dd/yyyy}", patientID,ownerOrganisationUID,payorDetailUID,requestItemUID
                 , dateFrom,dateTo);
-            RequestDetailLabModel data = MeditechApiHelper.Get<RequestDetailLabModel>(requestApi);
+            RequestDetailItemModel data = MeditechApiHelper.Get<RequestDetailItemModel>(requestApi);
             return data;
         }
         public List<RequestDetailSpecimenModel> GetRequestDetailSpecimenByRequestUID(long requestUID)
@@ -55,18 +55,18 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<RequestDetailLabModel> GetResultLabByRequestUID(long requestUID)
+        public List<RequestDetailItemModel> GetResultLabByRequestUID(long requestUID)
         {
             string requestApi = string.Format("Api/Lab/GetResultLabByRequestUID?requestUID={0}", requestUID);
-            List<RequestDetailLabModel> listData = MeditechApiHelper.Get<List<RequestDetailLabModel>>(requestApi);
+            List<RequestDetailItemModel> listData = MeditechApiHelper.Get<List<RequestDetailItemModel>>(requestApi);
 
             return listData;
         }
 
-        public List<RequestDetailLabModel> GetResultLabByRequestNumber(string requestNumber)
+        public List<RequestDetailItemModel> GetResultLabByRequestNumber(string requestNumber)
         {
             string requestApi = string.Format("Api/Lab/GetResultLabByRequestNumber?requestNumber={0}", requestNumber);
-            List<RequestDetailLabModel> listData = MeditechApiHelper.Get<List<RequestDetailLabModel>>(requestApi);
+            List<RequestDetailItemModel> listData = MeditechApiHelper.Get<List<RequestDetailItemModel>>(requestApi);
 
             return listData;
         }
@@ -128,12 +128,12 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public void ReviewLabResult(List<RequestDetailLabModel> labRequestDetails, int userID)
+        public void ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int userID)
         {
             try
             {
                 string requestApi = string.Format("Api/Lab/ReviewLabResult?userID={0}", userID);
-                MeditechApiHelper.Post<List<RequestDetailLabModel>>(requestApi, labRequestDetails);
+                MeditechApiHelper.Post<List<RequestDetailItemModel>>(requestApi, labRequestDetails);
             }
             catch (Exception)
             {

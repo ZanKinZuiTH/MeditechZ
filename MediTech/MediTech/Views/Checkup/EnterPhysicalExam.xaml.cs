@@ -1,4 +1,7 @@
-﻿using System;
+﻿using DevExpress.Xpf.Grid;
+using MediTech.Model;
+using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

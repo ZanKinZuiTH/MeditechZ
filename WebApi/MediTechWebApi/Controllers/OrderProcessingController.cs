@@ -23,7 +23,6 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<SearchOrderItem> SearchOrderItem(string text, int ownerOrganisationUID)
         {
-
             List<SearchOrderItem> data = SqlDirectStore.pSearchOrderItem(text, ownerOrganisationUID).ToList<SearchOrderItem>();
 
             return data;

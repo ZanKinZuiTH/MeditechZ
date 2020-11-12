@@ -12,6 +12,7 @@ namespace MediTech.Model
         public string DomainCode { get; set; }
 
         public int DisplayOrder { get; set; }
+        public double? NumericValue { get; set; }
         public string AlternateName { get; set; }
     }
 }

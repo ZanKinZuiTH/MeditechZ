@@ -48,10 +48,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRequesDetailLabByRequestUID")]
         [HttpGet]
-        public List<RequestDetailLabModel> GetRequesDetailLabByRequestUID(long requestUID)
+        public List<RequestDetailItemModel> GetRequesDetailLabByRequestUID(long requestUID)
         {
-            List<RequestDetailLabModel> data = db.RequestDetail.Where(p => p.RequestUID == requestUID && p.StatusFlag == "A")
-                .Select(p => new RequestDetailLabModel
+            List<RequestDetailItemModel> data = db.RequestDetail.Where(p => p.RequestUID == requestUID && p.StatusFlag == "A")
+                .Select(p => new RequestDetailItemModel
                 {
                     RequestDetailUID = p.UID,
                     RequestItemName = p.RequestItemName,
@@ -159,12 +159,12 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRequesDetailLabForImport")]
         [HttpGet]
-        public RequestDetailLabModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int payorDetailUID
+        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int payorDetailUID
             , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
             DataTable dataTable = SqlDirectStore.pGetRequesDetailLabForImport(patientID, ownerOrganisationUID, payorDetailUID
                 , requestItemUID, dateFrom, dateTo);
-            List<RequestDetailLabModel> returnData = dataTable.ToList<RequestDetailLabModel>();
+            List<RequestDetailItemModel> returnData = dataTable.ToList<RequestDetailItemModel>();
             return returnData.FirstOrDefault();
         }
 
@@ -234,7 +234,7 @@ namespace MediTechWebApi.Controllers
                                                  && red.StatusFlag == "A"
                                                  && red.RequestUID == request.RequestUID
                                                  && (red.ORDSTUID == complete || red.ORDSTUID == reviewed)
-                                                 select new RequestDetailLabModel
+                                                 select new RequestDetailItemModel
                                                  {
                                                      RequestUID = red.RequestUID,
                                                      RequestDetailUID = red.UID,
@@ -317,7 +317,7 @@ namespace MediTechWebApi.Controllers
                                                  && red.StatusFlag == "A"
                                                  && red.RequestUID == request.RequestUID
                                                  && (red.ORDSTUID == complete || red.ORDSTUID == reviewed)
-                                                 select new RequestDetailLabModel
+                                                 select new RequestDetailItemModel
                                                  {
                                                      RequestUID = red.RequestUID,
                                                      RequestDetailUID = red.UID,
@@ -394,7 +394,7 @@ namespace MediTechWebApi.Controllers
                                                  && red.StatusFlag == "A"
                                                  && red.RequestUID == request.RequestUID
                                                  && (red.ORDSTUID == complete || red.ORDSTUID == reviewed)
-                                                 select new RequestDetailLabModel
+                                                 select new RequestDetailItemModel
                                                  {
                                                      RequestUID = red.RequestUID,
                                                      RequestDetailUID = red.UID,
@@ -444,7 +444,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetResultLabByRequestUID")]
         [HttpGet]
-        public List<RequestDetailLabModel> GetResultLabByRequestUID(long requestUID)
+        public List<RequestDetailItemModel> GetResultLabByRequestUID(long requestUID)
         {
             var data = (from re in db.Request
                         join red in db.RequestDetail on re.UID equals red.RequestUID
@@ -464,7 +464,7 @@ namespace MediTechWebApi.Controllers
                         from rs in result.DefaultIfEmpty()
                         where red.StatusFlag == "A"
                         && red.RequestUID == requestUID
-                        select new RequestDetailLabModel
+                        select new RequestDetailItemModel
                         {
                             RequestDetailUID = red.UID,
                             RequestUID = red.RequestUID,
@@ -551,7 +551,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetResultLabByRequestNumber")]
         [HttpGet]
-        public List<RequestDetailLabModel> GetResultLabByRequestNumber(string requestNumber)
+        public List<RequestDetailItemModel> GetResultLabByRequestNumber(string requestNumber)
         {
             var data = (from re in db.Request
                         join red in db.RequestDetail on re.UID equals red.RequestUID
@@ -571,7 +571,7 @@ namespace MediTechWebApi.Controllers
                         from rs in result.DefaultIfEmpty()
                         where red.StatusFlag == "A"
                         && re.RequestNumber == requestNumber
-                        select new RequestDetailLabModel
+                        select new RequestDetailItemModel
                         {
                             RequestDetailUID = red.UID,
                             RequestUID = red.RequestUID,
@@ -736,7 +736,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ReviewLabResult")]
         [HttpPost]
-        public HttpResponseMessage ReviewLabResult(List<RequestDetailLabModel> labRequestDetails, int userID)
+        public HttpResponseMessage ReviewLabResult(List<RequestDetailItemModel> labRequestDetails, int userID)
         {
             try
             {

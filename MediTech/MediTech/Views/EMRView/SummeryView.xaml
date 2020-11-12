@@ -15,7 +15,7 @@
              xmlns:cv="clr-namespace:MediTech.Converter"
              d:DesignHeight="800" d:DesignWidth="1200">
     <UserControl.Resources>
-        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailLabModel}"
+        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailItemModel}"
                                 ItemsSource = "{Binding Path=ResultComponents}">
             <dxlc:LayoutControl Orientation="Horizontal">
                 <dxlc:LayoutItem>

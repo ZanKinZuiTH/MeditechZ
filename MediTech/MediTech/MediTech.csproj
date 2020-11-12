@@ -194,6 +194,9 @@
       <DependentUpon>PatientOPBanner.xaml</DependentUpon>
     </Compile>
     <Compile Include="Converter\AddValueConverter.cs" />
+    <Compile Include="CustomControl\Banner\PatientRequestBanner.xaml.cs">
+      <DependentUpon>PatientRequestBanner.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Helpers\AutoClosingMessageBox.cs" />
     <Compile Include="Helpers\BindableSelectedItemBehavior.cs" />
     <Compile Include="Helpers\BurnData\Interop\BurnData.cs" />
@@ -286,6 +289,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\AppointmentCard.Designer.cs">
       <DependentUpon>AppointmentCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentMobile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentMobile.Designer.cs">
+      <DependentUpon>AppointmentMobile.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage1.cs">
       <SubType>Component</SubType>
@@ -484,6 +493,30 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\PatientSticker2.Designer.cs">
       <DependentUpon>PatientSticker2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.Designer.cs">
+      <DependentUpon>RiskBook1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.Designer.cs">
+      <DependentUpon>RiskBook2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.Designer.cs">
+      <DependentUpon>RiskBook3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.Designer.cs">
+      <DependentUpon>RiskBook4.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.cs">
       <SubType>Component</SubType>
@@ -703,16 +736,11 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\CheckupExamListViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterOccmedResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\TimusViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\SpirometryViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\EKGViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\AudiogramViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\CheckupResultViewModel.cs" />
     <Compile Include="ViewModels\Documents\CashierReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\PatientSummeryReportViewModel.cs" />
     <Compile Include="ViewModels\Documents\RadiologyReportViewModel.cs" />
@@ -854,17 +882,8 @@
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\Audiogram.xaml.cs">
-      <DependentUpon>Audiogram.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Checkup\CheckupExamList.xaml.cs">
-      <DependentUpon>CheckupExamList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Checkup\EnterCheckupResult.xaml.cs">
-      <DependentUpon>EnterCheckupResult.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Checkup\EKG.xaml.cs">
-      <DependentUpon>EKG.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterOccmedResult.xaml.cs">
+      <DependentUpon>EnterOccmedResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EnterPhysicalExam.xaml.cs">
       <DependentUpon>EnterPhysicalExam.xaml</DependentUpon>
@@ -877,12 +896,6 @@
     </Compile>
     <Compile Include="Views\Checkup\HealthExamList.xaml.cs">
       <DependentUpon>HealthExamList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Checkup\Spirometry.xaml.cs">
-      <DependentUpon>Spirometry.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Checkup\Timus.xaml.cs">
-      <DependentUpon>Timus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Documents\CashierReport.xaml.cs">
       <DependentUpon>CashierReport.xaml</DependentUpon>
@@ -1299,6 +1312,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="CustomControl\Banner\PatientRequestBanner.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="LoginScreen.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -1335,19 +1352,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\Audiogram.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Checkup\CheckupExamList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Checkup\EnterCheckupResult.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Checkup\EKG.xaml">
+    <Page Include="Views\Checkup\EnterOccmedResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1364,14 +1369,6 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\HealthExamList.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Checkup\Spirometry.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\Checkup\Timus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -1969,6 +1966,9 @@
       <DependentUpon>AppointmentCard.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
+      <DependentUpon>AppointmentMobile.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage1.resx">
       <DependentUpon>BookPage1.cs</DependentUpon>
     </EmbeddedResource>
@@ -2072,6 +2072,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker2.resx">
       <DependentUpon>PatientSticker2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook1.resx">
+      <DependentUpon>RiskBook1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook2.resx">
+      <DependentUpon>RiskBook2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook3.resx">
+      <DependentUpon>RiskBook3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook4.resx">
+      <DependentUpon>RiskBook4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.resx">
       <DependentUpon>WellnessBookBack.cs</DependentUpon>

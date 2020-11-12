@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class RequestDetailLabModel
+    public class RequestDetailItemModel
     {
         public long RequestDetailUID { get; set; }
         public long RequestUID { get; set; }

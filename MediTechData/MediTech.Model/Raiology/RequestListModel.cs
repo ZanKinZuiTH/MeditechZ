@@ -15,12 +15,23 @@ namespace MediTech.Model
         public long RequestDetailUID { get; set; }
         public long ResultUID { get; set; }
         public string PatientID { get; set; }
+        public string VisitID { get; set; }
         public string PatientName { get; set; }
+        public string Gender { get; set; }
+        public int SEXXXUID { get; set; }
+        public DateTime? BirthDate { get; set; }
+        public string BirthDateString
+        {
+            get
+            {
+                return BirthDate != null ? BirthDate.Value.ToString("dd/MM/yyyy") : "";
+            }
+        }
         public string PatientAge { get; set; }
+        public string PatientAddress { get; set; }
         public string RequestNumber { get; set; }
         public string AccessionNumber { get; set; }
         public System.Nullable<DateTime> RequestedDttm { get; set; }
-
         public string RequestedDttmString
         {
             get
@@ -37,7 +48,6 @@ namespace MediTech.Model
             }
         }
         public System.Nullable<DateTime> PreparedDttm { get; set; }
-
         public string PreparedDttmString
         {
             get
@@ -46,7 +56,6 @@ namespace MediTech.Model
             }
         }
         public string ProcessingNote { get; set; }
-
         public string RDUNote { get; set; }
         public int? RABSTSUID { get; set; }
         public System.Nullable<DateTime> ResultedDttm { get; set; }
@@ -57,6 +66,8 @@ namespace MediTech.Model
         public string RequestUserName { get; set; }
         public string RequestItemCode { get; set; }
         public string RequestItemName { get; set; }
+        public int? PRTGPUID { get; set; }
+        public string PrintGroup { get; set; }
         public string Modality { get; set; }
         public System.Nullable<int> RadiologistUID { get; set; }
         public System.Nullable<int> ExecuteByUID { get; set; }

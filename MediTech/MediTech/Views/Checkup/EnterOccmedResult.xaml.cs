@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for Audiogram.xaml
+    /// Interaction logic for EnterOccmedResult.xaml
     /// </summary>
-    public partial class Audiogram : UserControl
+    public partial class EnterOccmedResult : UserControl
     {
-        public Audiogram()
+        public EnterOccmedResult()
         {
             InitializeComponent();
         }

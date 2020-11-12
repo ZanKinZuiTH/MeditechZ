@@ -558,10 +558,10 @@ namespace MediTech.ViewModels
                     if (rowView.Row["PatientName"].ToString() != "ไม่พบข้อมูล")
                     {
                         hn = rowView.Row["HN"].ToString();
-                        RequestDetailLabModel labResult = GetResultLab(rowView.Row, resultItemRange);
+                        RequestDetailItemModel labResult = GetResultLab(rowView.Row, resultItemRange);
                         if (labResult.ResultComponents.Count() > 0)
                         {
-                            List<RequestDetailLabModel> sendLabResult = new List<RequestDetailLabModel>();
+                            List<RequestDetailItemModel> sendLabResult = new List<RequestDetailItemModel>();
                             sendLabResult.Add(labResult);
                             DataService.Lab.ReviewLabResult(sendLabResult, AppUtil.Current.UserID);
                         }
@@ -581,10 +581,10 @@ namespace MediTech.ViewModels
 
         }
 
-        private RequestDetailLabModel GetResultLab(DataRow rowData, List<ResultItemRangeModel> resultItemRange)
+        private RequestDetailItemModel GetResultLab(DataRow rowData, List<ResultItemRangeModel> resultItemRange)
         {
 
-            RequestDetailLabModel labResult = new RequestDetailLabModel();
+            RequestDetailItemModel labResult = new RequestDetailItemModel();
             labResult.PatientUID = long.Parse(rowData["PatientUID"].ToString());
             labResult.PatientVisitUID = long.Parse(rowData["PatientVisitUID"].ToString());
             labResult.RequestUID = long.Parse(rowData["RequestUID"].ToString());
