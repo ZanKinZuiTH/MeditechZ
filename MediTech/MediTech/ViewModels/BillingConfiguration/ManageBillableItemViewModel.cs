@@ -216,6 +216,20 @@ namespace MediTech.ViewModels
                         IsEnableCode = true;
                         IsVisibilityRefCode = Visibility.Visible;
                     }
+                    else if (serviceType == "Mobile Checkup")
+                    {
+                        var data = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup");
+                        ItemsServiceSource = data.Select(p => new ItemServiceModel
+                        {
+                            ItemUID = p.RequestItemUID,
+                            Code = p.Code,
+                            Name = p.ItemName,
+                            ActiveFrom = p.EffectiveFrom,
+                            ActiveTo = p.EffectiveTo
+                        }).ToList();
+                        IsEnableCode = true;
+                        IsVisibilityRefCode = Visibility.Visible;
+                    }
                     else if (serviceType == "Drug")
                     {
                         var data = DataService.Inventory.GetItemMasterByType("Drug");
