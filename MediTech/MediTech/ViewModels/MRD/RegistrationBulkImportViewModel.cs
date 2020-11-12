@@ -312,13 +312,13 @@ namespace MediTech.ViewModels
         public RegistrationBulkImportViewModel()
         {
             MobileStickerSource = new List<LookupReferenceValueModel>();
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง",DisplayOrder = 1 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 2, Display = "ใบนำทาง", DisplayOrder = 1 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์", DisplayOrder = 2 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด", DisplayOrder = 3 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ", DisplayOrder = 4 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อุจจาระ", DisplayOrder = 5 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป", DisplayOrder = 6 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ", DisplayOrder = 7});
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ", DisplayOrder = 7 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน", DisplayOrder = 8 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด", DisplayOrder = 9 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray", DisplayOrder = 10 });
@@ -440,6 +440,10 @@ namespace MediTech.ViewModels
                         CurrentImportedData.Gender = drow["Sex"].ToString().Trim();
                         CurrentImportedData.Company = drow["Company"].ToString().Trim();
                         CurrentImportedData.Program = drow["Program"].ToString().Trim();
+
+                        DateTime checkupDttm;
+                        if (DateTime.TryParse(drow["CheckupDttm"].ToString().Trim(), out checkupDttm))
+                            CurrentImportedData.CheckupDttm = checkupDttm;
 
                         if (ImportData.Columns.Contains("Group"))
                         {
@@ -730,7 +734,7 @@ namespace MediTech.ViewModels
                             patientModel.PatientUID = currentData.PatientUID;
                             patientModel.PatientID = currentData.BN;
 
-        
+
                             patientModel.PatientOtherID = currentData.PatientOtherID;
                             patientModel.EmployeeID = currentData.EmployeeID;
                             patientModel.SEXXXUID = currentData.SEXXXUID;
@@ -1062,7 +1066,7 @@ namespace MediTech.ViewModels
                         {
                             if (SelectMobileStickers != null)
                             {
-                                List<LookupReferenceValueModel> stickers  = new List<LookupReferenceValueModel>();
+                                List<LookupReferenceValueModel> stickers = new List<LookupReferenceValueModel>();
                                 foreach (var item in SelectMobileStickers)
                                 {
                                     var newItem = (item as LookupReferenceValueModel);
@@ -1180,12 +1184,12 @@ namespace MediTech.ViewModels
                     view.PatientGrid.RefreshData();
                 }
             }
-            catch(Exception er)
+            catch (Exception er)
             {
                 ErrorDialog(er.Message);
             }
         }
-     #endregion
+        #endregion
 
     }
 }

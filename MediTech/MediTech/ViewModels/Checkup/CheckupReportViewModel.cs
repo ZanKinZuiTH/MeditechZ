@@ -1,7 +1,7 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
-using MediTech.Reports.Operating.Patient.CheckupBook;
+//using MediTech.Reports.Operating.Patient.CheckupBook;
 using MediTech.Reports.Operating.Patient.CheckupBookReport;
 using MediTech.Reports.Operating.Patient.RiskBook;
 using MediTech.Views;
@@ -254,20 +254,20 @@ namespace MediTech.ViewModels
             if (SelectPatientResultLabList != null)
             {
                 var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    CheckupPage1 rpt = new CheckupPage1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
+                //foreach (var item in patientResultLabList.ToList())
+                //{
+                //    CheckupPage1 rpt = new CheckupPage1();
+                //    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                //    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                //    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                //    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                //    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                //    rpt.RequestParameters = false;
+                //    rpt.ShowPrintMarginsWarning = false;
+                //    printTool.ShowPreviewDialog();
 
-                    SelectPatientResultLabList.Remove(item);
-                }
+                //    SelectPatientResultLabList.Remove(item);
+                //}
 
             }
 
