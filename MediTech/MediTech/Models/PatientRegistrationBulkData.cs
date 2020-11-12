@@ -61,7 +61,9 @@ namespace MediTech.Models
         public string MobilePhone { get; set; }
         public string Position { get; set; }
         public string Department { get; set; }
+        public string Group { get; set; }
         public string Program { get; set; }
+        public DateTime? CheckupDttm { get; set; }
         public int No { get; set; }
     }
 }

@@ -92,6 +92,7 @@
                 <dxg:GridColumn Header="Company" FieldName="Company"/>
                 <dxg:GridColumn Header="Position" FieldName="Position"/>
                 <dxg:GridColumn Header="Department" FieldName="Department"/>
+                <dxg:GridColumn Header="Group" FieldName="Group"/>
                 <dxg:GridColumn Header="Program" FieldName="Program"/>
                 <dxg:GridColumn Header="CheckupDttm" FieldName="CheckupDttm"/>
                 <dxg:GridControl.View>
@@ -164,6 +165,7 @@
                         </dxg:LookUpEdit>
                     </dxlc:LayoutItem>
                     <dx:SimpleButton Width="90" Height="25" Content="Print Sticker" Command="{Binding MobileStickerCommand}"/>
+                    <dx:SimpleButton Width="120" Height="25" Content="Print Appointment" Command="{Binding AppointmentCommand}"/>
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup HorizontalAlignment="Right">
