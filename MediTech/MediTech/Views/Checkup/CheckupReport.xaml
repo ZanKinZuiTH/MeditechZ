@@ -127,6 +127,27 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton Width="120" Height="30" Command="{Binding RiskBookCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <TextBlock Text="Preview Risk Book" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        
+                        <!--<dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCheckopCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
+                                        <TextBlock Text="Preview" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>-->
+
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="ผลตรวจ" Orientation="Vertical">

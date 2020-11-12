@@ -296,6 +296,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _AppointmentCommand;
+        public RelayCommand AppointmentCommand
+        {
+            get
+            {
+                return _AppointmentCommand
+                    ?? (_AppointmentCommand = new RelayCommand(PrintAppointment));
+            }
+        }
+
         #endregion
 
         #region Method
@@ -430,6 +440,12 @@ namespace MediTech.ViewModels
                         CurrentImportedData.Gender = drow["Sex"].ToString().Trim();
                         CurrentImportedData.Company = drow["Company"].ToString().Trim();
                         CurrentImportedData.Program = drow["Program"].ToString().Trim();
+
+                        if (ImportData.Columns.Contains("Group"))
+                        {
+                            CurrentImportedData.Group = drow["Group"].ToString();
+                        }
+
                         CurrentImportedData.MobilePhone = drow["MobilePhone"].ToString().Trim();
                         CurrentImportedData.IsDuplicate = "N";
                         CurrentImportedData.IsJustRegistered = false;
@@ -1114,7 +1130,62 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
-        #endregion
+
+        private void PrintAppointment()
+        {
+            int upperlimit = 0;
+            int pgBarCounter = 0;
+            try
+            {
+                if (PatientDataList != null && PatientDataList.Count > 0)
+                {
+                    RegistrationBulkImport view = (RegistrationBulkImport)this.View;
+                    foreach (var currentData in PatientDataList)
+                    {
+                        if (currentData.Register == true)
+                        {
+                            upperlimit++;
+                        }
+                    }
+                    view.SetProgressBarLimits(0, upperlimit);
+                    var patientASC = PatientDataList.OrderBy(p => p.No);
+                    foreach (var patient in patientASC.ToList())
+                    {
+                        if (patient.Register)
+                        {
+                            AppointmentMobile rpt = new AppointmentMobile();
+                            ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+                            rpt.Parameters["HN"].Value = patient.BN;
+                            rpt.Parameters["PatientName"].Value = patient.PreName + " " + patient.FirstName + " " + patient.LastName;
+                            rpt.Parameters["StartDate"].Value = patient.CheckupDttm != null ? patient.CheckupDttm.Value.ToString("dd/MM/yyyy") : "";
+                            rpt.Parameters["DepartmentEmployee"].Value = patient.Department;
+                            rpt.Parameters["EmployeeID"].Value = patient.EmployeeID;
+
+                            if (patient.BirthDttm != null)
+                            {
+                                rpt.Parameters["Age"].Value = ShareLibrary.UtilDate.calAgeFromBirthDate(patient.BirthDttm.Value);
+                            }
+                            rpt.Parameters["Group"].Value = patient.Group;
+                            rpt.Parameters["CompanyName"].Value = patient.Company;
+                            rpt.Parameters["PositionEmployee"].Value = patient.Position;
+                            rpt.ShowPrintMarginsWarning = false;
+                            printTool.Print();
+                        }
+                        patient.Register = false;
+                        pgBarCounter = pgBarCounter + 1;
+                        view.SetProgressBarValue(pgBarCounter);
+                    }
+                    view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
+                }
+            }
+            catch(Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
+        }
+     #endregion
 
     }
 }

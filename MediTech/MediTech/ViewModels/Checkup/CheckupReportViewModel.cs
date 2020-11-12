@@ -1,7 +1,9 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Reports.Operating.Patient.CheckupBook;
 using MediTech.Reports.Operating.Patient.CheckupBookReport;
+using MediTech.Reports.Operating.Patient.RiskBook;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -155,6 +157,18 @@ namespace MediTech.ViewModels
             get { return _PreviewBookCommand ?? (_PreviewBookCommand = new RelayCommand(PreviewBook)); }
         }
 
+        private RelayCommand _RiskBookCommand;
+        public RelayCommand RiskBookCommand
+        {
+            get { return _RiskBookCommand ?? (_RiskBookCommand = new RelayCommand(RiskBook)); }
+        }
+
+        private RelayCommand _PreviewBookCheckopCommand;
+        public RelayCommand PreviewBookCheckopCommand
+        {
+            get { return _PreviewBookCheckopCommand ?? (_PreviewBookCheckopCommand = new RelayCommand(PreviewBookCheckup)); }
+        }
+
 
         private RelayCommand _ExportPivotGridToExcelCommand;
 
@@ -195,6 +209,54 @@ namespace MediTech.ViewModels
                 foreach (var item in patientResultLabList.ToList())
                 {
                     CheckupBook1 rpt = new CheckupBook1();
+                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+
+                    SelectPatientResultLabList.Remove(item);
+                }
+
+            }
+
+        }
+
+        void RiskBook()
+        {
+            if (SelectPatientResultLabList != null)
+            {
+                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    RiskBook1 rpt = new RiskBook1();
+                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+
+                    SelectPatientResultLabList.Remove(item);
+                }
+
+            }
+
+        }
+
+        void PreviewBookCheckup()
+        {
+            if (SelectPatientResultLabList != null)
+            {
+                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    CheckupPage1 rpt = new CheckupPage1();
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                     rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
