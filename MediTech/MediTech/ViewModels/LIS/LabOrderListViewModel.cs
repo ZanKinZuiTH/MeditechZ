@@ -185,17 +185,17 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<RequestDetailLabModel> _RequestDetailLabs;
+        private List<RequestDetailItemModel> _RequestDetailLabs;
 
-        public List<RequestDetailLabModel> RequestDetailLabs
+        public List<RequestDetailItemModel> RequestDetailLabs
         {
             get { return _RequestDetailLabs; }
             set { Set(ref _RequestDetailLabs, value); }
         }
 
-        private RequestDetailLabModel _SelectRequestDetailLab;
+        private RequestDetailItemModel _SelectRequestDetailLab;
 
-        public RequestDetailLabModel SelectRequestDetailLab
+        public RequestDetailItemModel SelectRequestDetailLab
         {
             get { return _SelectRequestDetailLab; }
             set { Set(ref _SelectRequestDetailLab, value); }
@@ -464,7 +464,6 @@ namespace MediTech.ViewModels
             SelectPrinter = PrinterLists.FirstOrDefault(p => p.Display.ToLower().Contains("Sticker"));
         }
 
-
         private void SearchLabOrder()
         {
             long? patientUID = null;
@@ -575,7 +574,6 @@ namespace MediTech.ViewModels
             }
         }
 
-
         private void PrintAuto()
         {
             LabResultReport rpt = new LabResultReport();
@@ -590,7 +588,6 @@ namespace MediTech.ViewModels
             printTool.Print();
 
         }
-
 
         private void Clear()
         {

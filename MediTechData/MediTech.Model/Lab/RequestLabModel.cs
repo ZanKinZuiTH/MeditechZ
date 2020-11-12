@@ -46,7 +46,7 @@ namespace MediTech.Model
         public int ORDSTUID { get; set; }
         public int VISTSUID { get; set; }
         public string VisitStatus { get; set; }
-        public List<RequestDetailLabModel> RequestDetailLabs { get; set; }
+        public List<RequestDetailItemModel> RequestDetailLabs { get; set; }
 
 
         private bool _Selected;

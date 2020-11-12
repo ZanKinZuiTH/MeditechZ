@@ -25,7 +25,7 @@
 
         
         
-        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailLabModel}"
+        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailItemModel}"
                                 ItemsSource = "{Binding Path=ResultComponents}">
             <dxlc:LayoutControl Orientation="Horizontal">
                 <dxlc:LayoutItem>
@@ -210,7 +210,7 @@
 
             <!--Date of Birth-->
             <Label Grid.Column="1"  Grid.Row="0" Name="DOBLabel" Width="Auto" Content="วันเกิด"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
-            <DockPanel Grid.Column="2"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <DockPanel Grid.Column="2" Margin="3,0,0,0"   Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
                 <Label Content="{Binding RequestLab.BirthDateString}"  Margin="3,0,0,0"  Name="DOBVal" Width="Auto" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
             </DockPanel>
 

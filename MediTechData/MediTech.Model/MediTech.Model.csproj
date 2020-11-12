@@ -51,7 +51,7 @@
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
-    <Compile Include="Lab\RequestDetailLabModel.cs" />
+    <Compile Include="Lab\RequestDetailItemModel.cs" />
     <Compile Include="Lab\RequestDetailSpecimenModel.cs" />
     <Compile Include="Lab\RequestItemGroupResultModel.cs" />
     <Compile Include="Lab\RequestLabModel.cs" />

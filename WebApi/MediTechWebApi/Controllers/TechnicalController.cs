@@ -138,7 +138,8 @@ namespace MediTechWebApi.Controllers
                 Display = p.Description,
                 DisplayOrder = p.DisplayOrder ?? 1,
                 ValueCode = p.ValueCode,
-                AlternateName = p.AlternateName
+                AlternateName = p.AlternateName,
+                NumericValue = p.NumericValue
             }).ToList();
             return data;
         }
@@ -161,6 +162,7 @@ namespace MediTechWebApi.Controllers
                     data.DisplayOrder = dt.Rows[i]["DisplayOrder"].ToString() != "" ? int.Parse(dt.Rows[i]["DisplayOrder"].ToString()) : 0;
                     data.DomainCode = dt.Rows[i]["DomainCode"].ToString();
                     data.AlternateName = dt.Rows[i]["AlternateName"].ToString();
+                    data.NumericValue = dt.Rows[i]["NumericValue"].ToString() != "" ? double.Parse(dt.Rows[i]["NumericValue"].ToString()) : (double?)null;
                     datalist.Add(data);
                 }
             }
@@ -186,7 +188,8 @@ namespace MediTechWebApi.Controllers
                 Display = p.Description,
                 DisplayOrder = p.DisplayOrder ?? 1,
                 ValueCode = p.ValueCode,
-                AlternateName = p.AlternateName
+                AlternateName = p.AlternateName,
+                NumericValue = p.NumericValue
             }).FirstOrDefault();
             return data;
         }
@@ -209,7 +212,8 @@ namespace MediTechWebApi.Controllers
                 Display = p.Description,
                 DisplayOrder = p.DisplayOrder ?? 1,
                 ValueCode = p.ValueCode,
-                AlternateName = p.AlternateName
+                AlternateName = p.AlternateName,
+                NumericValue = p.NumericValue
             }).FirstOrDefault();
             return data;
         }
@@ -228,6 +232,7 @@ namespace MediTechWebApi.Controllers
                 data.DisplayOrder = refValue.DisplayOrder ?? 1;
                 data.ValueCode = refValue.ValueCode;
                 data.AlternateName = refValue.AlternateName;
+                data.NumericValue = refValue.NumericValue;
             }
 
             return data;

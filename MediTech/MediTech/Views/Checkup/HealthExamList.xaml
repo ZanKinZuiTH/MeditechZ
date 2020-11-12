@@ -5,7 +5,9 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
              xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              mc:Ignorable="d"
              DataContext="{Binding Path=HealthExamListViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -108,7 +110,11 @@
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="รายการ">
-                    <dxe:ComboBoxEdit/>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding RequestItemTypes}" 
+                                      SelectedItem="{Binding SelectRequestItemType}"
+                                      DisplayMember="Display" ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      />
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
@@ -117,11 +123,76 @@
                                      Height="25" Content="ค้นหา"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            <dxg:GridControl>
+            <dxg:GridControl x:Name="grdExamList" ItemsSource="{Binding CheckupExamList}"
+                             SelectedItem="{Binding SelectCheckupExam}"
+                             FontSize="16" CustomColumnDisplayText="GridControl_CustomColumnDisplayText">
+                <dxmvvm:Interaction.Behaviors>
+                    <helper:DeferredColumnFitBehavior/>
+                </dxmvvm:Interaction.Behaviors>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="No" FieldName="RowHandle" Width="30" Fixed="Left" />
+                    <dxg:GridColumn x:Name="colSelected" 
+                                        Fixed="Left"
+                                        Width="50"
+                                        AllowEditing="True"
+                                        AllowBestFit="False"
+                                        AllowResizing="False"
+                                        AllowGrouping="False"
+                                        AllowSorting="False"
+                                        AllowIncrementalSearch="False"
+                                        AllowMoving="False"
+                                        AllowColumnFiltering="False"
+                                        HorizontalHeaderContentAlignment="Center">
+                        <dxg:GridColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <dxe:CheckEdit
+                                        Cursor="Hand"
+                                        IsChecked="{Binding Path=DataContext.IsSelectedAll
+                                        ,RelativeSource={RelativeSource AncestorType={x:Type local:HealthExamList}}}"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.HeaderTemplate>
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:CheckEdit x:Name="chkIsSelect"
+                                        IsChecked="{Binding RowData.Row.IsSelected}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        EditValueChanged="CheckEdit_EditValueChanged"
+                                        Cursor="Hand">
+                                </dxe:CheckEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="อายุ" FieldName="PatientAge" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รายการ" FieldName="RequestItemName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันเวลาที่ Requested" FieldName="RequestedDttm"  ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" MaskType="DateTime"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันที่ผลออก" FieldName="ResultedDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="หมายเหตุ" FieldName="ProcessingNote" ReadOnly="True"/>
+                </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False"/>
+                    <dxg:TableView Name="grvExamList" ShowGroupPanel="False"/>
                 </dxg:GridControl.View>
             </dxg:GridControl>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem VerticalAlignment="Center" HorizontalAlignment="Left">
+                    <TextBlock Text="{Binding CountSelect}"
+                                   Name="txtCountSelect"
+                                   Visibility="{Binding VisibilityCount}" 
+                                   FontWeight="Bold"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

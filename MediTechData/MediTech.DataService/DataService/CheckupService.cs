@@ -30,6 +30,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<ResultComponentModel> GetResultItemByRequestDetailUID(long requestDetailUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetResultItemByRequestDetailUID?requestDetailUID={0}", requestDetailUID);
+            List<ResultComponentModel> listData = MeditechApiHelper.Get<List<ResultComponentModel>>(requestApi);
+
+            return listData;
+        }
+
         public bool DeleteCheckupJobContact(int checkupJobContactUID, int userID)
         {
             bool flag = false;
@@ -63,5 +71,29 @@ namespace MediTech.DataService
             }
             return flag;
         }
+
+        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID, int? PRTGPUID)
+        {
+            string requestApi = string.Format("Api/Checkup/SearchCheckupExamList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&patientUID={2}&payorDetailUID={3}&checkupJobUID={4}&PRTGPUID={5}", requestDateFrom, requestDateTo, patientUID, payorDetailUID, checkupJobUID, PRTGPUID);
+            List<RequestListModel> data = MeditechApiHelper.Get<List<RequestListModel>>(requestApi);
+            return data;
+        }
+
+        public void SavePhysicalExamination(RequestDetailItemModel requestDetails, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/SavePhysicalExamination?userID={0}", userID);
+                MeditechApiHelper.Post<RequestDetailItemModel>(requestApi, requestDetails);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+
     }
 }

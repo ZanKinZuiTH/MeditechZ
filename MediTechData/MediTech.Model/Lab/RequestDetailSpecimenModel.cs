@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class RequestDetailSpecimenModel : RequestDetailLabModel, INotifyPropertyChanged
+    public class RequestDetailSpecimenModel : RequestDetailItemModel, INotifyPropertyChanged
     {
         public long? RequestDetailSpecimenUID { get; set; }
         private int? _SpecimenUID;

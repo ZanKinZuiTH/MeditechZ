@@ -1,0 +1,94 @@
+﻿<UserControl x:Class="MediTech.CustomControl.Banner.PatientRequestBanner"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.CustomControl.Banner"
+             mc:Ignorable="d" 
+             d:DesignHeight="80" d:DesignWidth="600">
+    <Grid >
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FF244F4C" Offset="0.482"/>
+                <GradientStop Color="#FF31919F" Offset="1"/>
+                <GradientStop Color="#FF3599A3" Offset="0.012"/>
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.322*" />
+            <ColumnDefinition Width="0.103*" />
+            <ColumnDefinition Width="0.086*" />
+            <ColumnDefinition Width="0.070*" />
+            <ColumnDefinition Width="0.137*" />
+            <ColumnDefinition Width="0.110*" />
+            <ColumnDefinition Width="0.187*" />
+
+        </Grid.ColumnDefinitions>
+
+        <!--Patient Name/ID-->
+        <StackPanel Grid.RowSpan="2" Orientation="Horizontal" VerticalAlignment="Top">
+            <Label Height="5"/>
+            <TextBlock Name="tePatientName"
+                            FontSize="14" FontStyle="Normal"  Foreground="White"  FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" />
+            <TextBlock Name="tePatientID" Margin="10,0,0,0"
+                            FontSize="14" FontStyle="Normal"  Foreground="White"  FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" />
+        </StackPanel>
+
+        <!--Visit ID-->
+        <DockPanel Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+
+            <Label  Name="VisitIDLabel" Margin="3,0,0,0" Width="Auto" Content="Visit ID"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label  Name="lbVisitID"  Margin="3,0,0,0"  Width="Auto"  FontSize="14" FontStyle="Normal" FontWeight="Bold" Foreground="GhostWhite" HorizontalContentAlignment="Stretch" VerticalAlignment="Center"/>
+            <!--Address-->
+            <Label Margin="3,0,0,0" Name="AddressLabel" Width="Auto" Content="ที่อยู่"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Top" VerticalContentAlignment="Top"/>
+            <Label  HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Margin="3,0,0,0" Name="teAddress" Width="Auto"  HorizontalAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            </Label>
+
+        </DockPanel>
+
+        <DockPanel Grid.Column="3" Grid.ColumnSpan="4" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,0">
+            <Label  Margin="3,0,0,0" Width="Auto" Content="Payor"  HorizontalContentAlignment="Left" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+            <Label  HorizontalAlignment="Left" VerticalAlignment="Center">
+                <TextBlock Margin="3,0,0,0"  Name="tePayorName" Width="Auto"  HorizontalAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold" TextWrapping="Wrap" VerticalAlignment="Center"/>
+            </Label>
+        </DockPanel>
+
+
+        <!--Date of Birth-->
+        <Label Grid.Column="1"  Grid.Row="0" Name="DOBLabel" Width="Auto" Content="วันเกิด"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Grid.Column="2"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Name="lbBirthDate" Margin="3,0,0,0"  Width="Auto" HorizontalContentAlignment="Left" VerticalContentAlignment="Center" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+        </DockPanel>
+
+
+        <!--Age/Gender-->
+        <Label Name="AgeTextLabel" Grid.Column="3"  Grid.Row="0" Width="Auto" Content="อายุ/เพศ"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="4"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Name="lbPatientAge" Width="Auto" HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+            <Label Content="/" Foreground="GhostWhite" FontSize="11" />
+            <Label Name="lbGender" Width="Auto"  HorizontalContentAlignment="Left" FontSize="14"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+        </DockPanel>
+
+        <!--Company-->
+        <!--
+        <Label Grid.Column="5"  Grid.Row="0" Name="CompanyLabel" Width="Auto" Content="Company"  HorizontalContentAlignment="Right" FontSize="11"  FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="6" Grid.ColumnSpan="2" Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <Label Name="CompanyVal" Width="Auto"  HorizontalContentAlignment="Left" FontSize="11"  FontStyle="Normal"  Foreground="GhostWhite" FontWeight="Bold"/>
+            <Label Content="/" Foreground="GhostWhite" FontSize="11"/>
+            <TextBlock Name="PayorName" Width="Auto" FontSize="11" FontStyle="Normal" Foreground="GhostWhite" FontWeight="Bold" TextWrapping="Wrap"/>
+        </DockPanel>-->
+
+        <!--Phone Number-->
+        <Label Grid.Column="5"  Grid.Row="0"  Name="DoctorLabel" Width="Auto" Content="Reference No"  HorizontalContentAlignment="Right" FontSize="11" FontStyle="Italic"  Foreground="Wheat" VerticalAlignment="Center" VerticalContentAlignment="Center"/>
+        <DockPanel Margin="3,0,0,0"  Grid.Column="6"  Grid.Row="0" HorizontalAlignment="Left" VerticalAlignment="Center">
+            <TextBlock Name="teReferenceNo"
+                            FontSize="14" FontStyle="Normal"  Foreground="GhostWhite"  FontWeight="Bold" TextTrimming="CharacterEllipsis" VerticalAlignment="Top" />
+        </DockPanel>
+
+    </Grid>
+</UserControl>

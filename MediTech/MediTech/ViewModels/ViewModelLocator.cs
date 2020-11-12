@@ -1094,40 +1094,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        public CheckupExamListViewModel CheckupExamListViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<CheckupExamListViewModel>())
-                    SimpleIoc.Default.Register<CheckupExamListViewModel>();
-
-                return ServiceLocator.Current.GetInstance<CheckupExamListViewModel>();
-            }
-        }
-
-        public AudiogramViewModel AudiogramViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<AudiogramViewModel>())
-                    SimpleIoc.Default.Register<AudiogramViewModel>();
-
-                return ServiceLocator.Current.GetInstance<AudiogramViewModel>();
-            }
-        }
-
-        public EKGViewModel EKGViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<EKGViewModel>())
-                    SimpleIoc.Default.Register<EKGViewModel>();
-
-                return ServiceLocator.Current.GetInstance<EKGViewModel>();
-            }
-        }
-
-
         public HealthExamListViewModel HealthExamListViewModel
         {
             get
@@ -1150,25 +1116,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public SpirometryViewModel SpirometryViewModel
+        public EnterOccmedResultViewModel EnterOccmedResultViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<SpirometryViewModel>())
-                    SimpleIoc.Default.Register<SpirometryViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<EnterOccmedResultViewModel>())
+                    SimpleIoc.Default.Register<EnterOccmedResultViewModel>();
 
-                return ServiceLocator.Current.GetInstance<SpirometryViewModel>();
-            }
-        }
-
-        public TimusViewModel TimusViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<TimusViewModel>())
-                    SimpleIoc.Default.Register<TimusViewModel>();
-
-                return ServiceLocator.Current.GetInstance<TimusViewModel>();
+                return ServiceLocator.Current.GetInstance<EnterOccmedResultViewModel>();
             }
         }
 

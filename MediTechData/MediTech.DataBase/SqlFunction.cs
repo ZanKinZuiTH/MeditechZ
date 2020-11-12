@@ -1154,6 +1154,22 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pSearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID, int? PRTGPUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchCheckupExamList", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateFrom", requestDateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateTo", requestDateTo ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupJobUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PRTGPUID", PRTGPUID ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
 
         public static DataTable pGetRequestExecuteRadiologist(DateTime requestDateFrom, DateTime requestDateTo,int radiologistUID)
         {

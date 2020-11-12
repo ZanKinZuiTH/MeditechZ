@@ -15,7 +15,7 @@
              DataContext="{Binding Path=PastMedicalHistoryViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="1000" d:DesignWidth="900">
     <UserControl.Resources>
-        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailLabModel}"
+        <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailItemModel}"
                                 ItemsSource = "{Binding Path=ResultComponents}">
             <dxlc:LayoutControl Orientation="Horizontal">
                 <dxlc:LayoutItem>

@@ -44,9 +44,9 @@ namespace MediTech.ViewModels
             set { Set(ref _RequestLab, value); }
         }
 
-        private List<RequestDetailLabModel> _RequestDetailLabs;
+        private List<RequestDetailItemModel> _RequestDetailLabs;
 
-        public List<RequestDetailLabModel> RequestDetailLabs
+        public List<RequestDetailItemModel> RequestDetailLabs
         {
             get { return _RequestDetailLabs; }
             set { Set(ref _RequestDetailLabs, value); }
@@ -174,19 +174,19 @@ namespace MediTech.ViewModels
         {
             try
             {
-                List<RequestDetailLabModel> revieRequestDetails = new List<RequestDetailLabModel>();
-                revieRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
-                if (revieRequestDetails != null && revieRequestDetails.Count > 0)
+                List<RequestDetailItemModel> reviewRequestDetails = new List<RequestDetailItemModel>();
+                reviewRequestDetails = RequestDetailLabs.Where(p => p.ResultComponents.Count(f => !string.IsNullOrEmpty(f.ResultValue)) > 0).ToList();
+                if (reviewRequestDetails != null && reviewRequestDetails.Count > 0)
                 {
-                    foreach (var revieRequestDetail in revieRequestDetails)
+                    foreach (var reviewRequestDetail in reviewRequestDetails)
                     {
-                        revieRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
-                            (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == revieRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == revieRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
+                        reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>
+                            (RequestDetailLabs.FirstOrDefault(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID).ResultComponents.Where(p => p.RequestDetailUID == reviewRequestDetail.RequestDetailUID && !string.IsNullOrEmpty(p.ResultValue)).ToList());
                     }
                 }
 
 
-                DataService.Lab.ReviewLabResult(revieRequestDetails, AppUtil.Current.UserID);
+                DataService.Lab.ReviewLabResult(reviewRequestDetails, AppUtil.Current.UserID);
                 SaveSuccessDialog();
                 CloseViewDialog(ActionDialog.Save);
             }
@@ -256,7 +256,6 @@ namespace MediTech.ViewModels
         {
             CloseViewDialog(ActionDialog.Cancel);
         }
-
 
         private void OpenLabImage()
         {
