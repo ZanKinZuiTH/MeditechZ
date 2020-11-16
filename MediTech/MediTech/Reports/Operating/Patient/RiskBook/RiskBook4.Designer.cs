@@ -931,7 +931,7 @@
             this.cellTumorYear1.StylePriority.UseBorders = false;
             this.cellTumorYear1.StylePriority.UseFont = false;
             this.cellTumorYear1.StylePriority.UseTextAlignment = false;
-            this.cellTumorYear1.Text = "ปีที่1";
+            this.cellTumorYear1.Text = "ปีที่...";
             this.cellTumorYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.cellTumorYear1.Weight = 0.32441786835767372D;
             // 
@@ -947,7 +947,7 @@
             this.cellTumorYear2.StylePriority.UseBorders = false;
             this.cellTumorYear2.StylePriority.UseFont = false;
             this.cellTumorYear2.StylePriority.UseTextAlignment = false;
-            this.cellTumorYear2.Text = "ปีที่2";
+            this.cellTumorYear2.Text = "ปีที่...";
             this.cellTumorYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.cellTumorYear2.Weight = 0.32441787651596049D;
             // 
@@ -963,7 +963,7 @@
             this.cellTumorYear3.StylePriority.UseBorders = false;
             this.cellTumorYear3.StylePriority.UseFont = false;
             this.cellTumorYear3.StylePriority.UseTextAlignment = false;
-            this.cellTumorYear3.Text = "ปีที่3";
+            this.cellTumorYear3.Text = "ปีที่...";
             this.cellTumorYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.cellTumorYear3.Weight = 0.3244178791684757D;
             // 
@@ -2169,7 +2169,7 @@
             this.cellSugarYear1.StylePriority.UseBorders = false;
             this.cellSugarYear1.StylePriority.UseFont = false;
             this.cellSugarYear1.StylePriority.UseTextAlignment = false;
-            this.cellSugarYear1.Text = "ปีที่1";
+            this.cellSugarYear1.Text = "ปีที่...";
             this.cellSugarYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellSugarYear1.Weight = 0.36800997336311764D;
             // 
@@ -2185,7 +2185,7 @@
             this.cellSugarYear2.StylePriority.UseBorders = false;
             this.cellSugarYear2.StylePriority.UseFont = false;
             this.cellSugarYear2.StylePriority.UseTextAlignment = false;
-            this.cellSugarYear2.Text = "ปีที่2";
+            this.cellSugarYear2.Text = "ปีที่...";
             this.cellSugarYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellSugarYear2.Weight = 0.36800997336311769D;
             // 
@@ -2201,7 +2201,7 @@
             this.cellSugarYear3.StylePriority.UseBorders = false;
             this.cellSugarYear3.StylePriority.UseFont = false;
             this.cellSugarYear3.StylePriority.UseTextAlignment = false;
-            this.cellSugarYear3.Text = "ปีที่3";
+            this.cellSugarYear3.Text = "ปีที่...";
             this.cellSugarYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellSugarYear3.Weight = 0.36800997336311764D;
             // 
