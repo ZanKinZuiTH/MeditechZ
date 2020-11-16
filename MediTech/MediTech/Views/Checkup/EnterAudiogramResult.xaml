@@ -1,0 +1,160 @@
+﻿<UserControl x:Class="MediTech.Views.EnterAudiogramResult"
+             xmlns:Banner="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             DataContext="{Binding Path=EnterAudiogramResultViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Banner:PatientRequestBanner x:Name="patientBanner"/>
+        <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+            <dxlc:LayoutItem>
+                <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
+                             AutoGenerateColumns="None">
+                    <dxg:GridColumn FieldName="ResultItemName" 
+                                    Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor" FontSize="18"
+                                              Foreground="Blue"
+                                              HorizontalContentAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*" 
+                                    HorizontalHeaderContentAlignment="Center">
+                        <dxg:GridColumn.DisplayTemplate>
+                            <ControlTemplate>
+                                <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </ControlTemplate>
+                        </dxg:GridColumn.DisplayTemplate>
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox"                                                    
+                                                      HorizontalContentAlignment="Center">
+                                <dxe:ComboBoxEditSettings.EditNonEditableTemplate>
+                                    <ControlTemplate>
+                                        <TextBlock FontSize="18" FontWeight="Bold" 
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </ControlTemplate>
+                                </dxe:ComboBoxEditSettings.EditNonEditableTemplate>
+                                <dxe:ComboBoxEditSettings.Items>
+                                    <dxe:ComboBoxEditItem Content="-10" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="-5" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="0" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="5" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="10" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="15" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="20" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="25" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="30" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="35" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="40" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="45" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="50" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="55" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="60" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="65" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="70" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="75" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="80" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="85" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="90" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="95" FontSize="18" FontWeight="Bold"/>
+                                </dxe:ComboBoxEditSettings.Items>
+                            </dxe:ComboBoxEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+                <dxg:GridControl Name="grdRightEar" ItemsSource="{Binding RightEarResultComponentItems}"
+                             AutoGenerateColumns="None">
+                    <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor" FontSize="18"
+                                              Foreground="Red"
+                                              HorizontalContentAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ResultValue" Header="Intensity in Decibels (dB HL)" Width="*" 
+                                    HorizontalHeaderContentAlignment="Center">
+                        <dxg:GridColumn.DisplayTemplate>
+                            <ControlTemplate>
+                                <TextBlock FontSize="18" FontWeight="Bold" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                 Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                            </ControlTemplate>
+                        </dxg:GridColumn.DisplayTemplate>
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox" 
+                                                      HorizontalContentAlignment="Center">
+                                <dxe:ComboBoxEditSettings.EditNonEditableTemplate>
+                                    <ControlTemplate>
+                                        <TextBlock FontSize="18" FontWeight="Bold" 
+                                                   HorizontalAlignment="Center" VerticalAlignment="Center"
+                                                   Text="{Binding Path=DisplayText, Mode=OneWay, 
+                                                 RelativeSource={RelativeSource TemplatedParent}}"/>
+                                    </ControlTemplate>
+                                </dxe:ComboBoxEditSettings.EditNonEditableTemplate>
+                                <dxe:ComboBoxEditSettings.Items>
+                                    <dxe:ComboBoxEditItem Content="-10" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="-5" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="0" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="5" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="10" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="15" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="20" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="25" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="30" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="35" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="40" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="45" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="50" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="55" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="60" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="65" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="70" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="75" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="80" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="85" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="90" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="95" FontSize="18" FontWeight="Bold"/>
+                                </dxe:ComboBoxEditSettings.Items>
+                            </dxe:ComboBoxEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup HorizontalAlignment="Right">
+                <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

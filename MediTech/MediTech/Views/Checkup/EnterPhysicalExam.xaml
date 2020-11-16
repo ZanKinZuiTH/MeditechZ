@@ -7,7 +7,7 @@
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              mc:Ignorable="d"
              DataContext="{Binding Path=EnterPhysicalExamViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="600" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="900">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -15,6 +15,75 @@
         </Grid.RowDefinitions>
         <Banner:PatientRequestBanner x:Name="patientBanner"/>
         <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+            <dxlc:LayoutGroup VerticalAlignment="Top" Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="น้ำหนัก" FontSize="17">
+                            <dxe:TextEdit  Name="txtWeight" Height="25"  EditValue="{Binding PatientVitalSign.Weight,Mode=TwoWay}"
+                                       Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                       Width="80" 
+                                       VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="กก." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ส่วนสูง" FontSize="17">
+                            <dxe:TextEdit  Name="txtHeight" Height="25"  EditValue="{Binding PatientVitalSign.Height,Mode=TwoWay}"
+                                 Width="80" 
+                                 VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17" />
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ความดันช่วงบน" FontSize="17">
+                            <dxe:TextEdit Height="25" EditValue="{Binding PatientVitalSign.BPSys,Mode=TwoWay}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtSBP"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="mm/Hg." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ความดันช่วงล่าง" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.BPDio,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtDBP"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="mm/Hg." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="ชีพจร" FontSize="17">
+                            <dxe:TextEdit Height="25" 
+                                 Name="txtPluse" EditValue="{Binding PatientVitalSign.Pulse,Mode=TwoWay}"
+                                 Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Width="80" VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ครั้ง/นาที" FontSize="17" />
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="เส้นรอบเอว" FontSize="17">
+                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.WaistCircumference,Mode=TwoWay}"
+                               Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
+                                 Name="txtWaist"
+                                 Width="80" 
+                                 VerticalAlignment="Top"/>
+                        </dxlc:LayoutItem>
+                        <TextBlock Text="ซม." FontSize="17"/>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem/>
+                    <dxlc:LayoutItem/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <Border VerticalAlignment="Top" BorderThickness="0,0,0,0.5" BorderBrush="Black"/>
             <dxlc:LayoutItem>
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
@@ -69,7 +138,7 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False" ShowColumnHeaders="False">
+                    <dxg:TableView ShowGroupPanel="False" ShowColumnHeaders="False" AllowSorting="False">
                         <dxg:TableView.RowStyle>
                             <Style TargetType="{x:Type dxg:RowControl}">
                                 <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />

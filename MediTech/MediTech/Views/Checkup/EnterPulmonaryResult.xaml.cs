@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for EnterOccmedResult.xaml
+    /// Interaction logic for EnterPulmonaryResult.xaml
     /// </summary>
-    public partial class EnterOccmedResult : UserControl
+    public partial class EnterPulmonaryResult : UserControl
     {
-        public EnterOccmedResult()
+        public EnterPulmonaryResult()
         {
             InitializeComponent();
         }

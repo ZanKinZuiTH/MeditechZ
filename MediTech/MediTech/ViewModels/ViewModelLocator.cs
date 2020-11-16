@@ -1116,14 +1116,25 @@ namespace MediTech.ViewModels
             }
         }
 
-        public EnterOccmedResultViewModel EnterOccmedResultViewModel
+        public EnterAudiogramResultViewModel EnterAudiogramResultViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<EnterOccmedResultViewModel>())
-                    SimpleIoc.Default.Register<EnterOccmedResultViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<EnterAudiogramResultViewModel>())
+                    SimpleIoc.Default.Register<EnterAudiogramResultViewModel>();
 
-                return ServiceLocator.Current.GetInstance<EnterOccmedResultViewModel>();
+                return ServiceLocator.Current.GetInstance<EnterAudiogramResultViewModel>();
+            }
+        }
+
+        public EnterPulmonaryResultViewModel EnterPulmonaryResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterPulmonaryResultViewModel>())
+                    SimpleIoc.Default.Register<EnterPulmonaryResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterPulmonaryResultViewModel>();
             }
         }
 

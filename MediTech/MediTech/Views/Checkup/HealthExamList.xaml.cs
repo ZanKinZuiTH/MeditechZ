@@ -57,14 +57,21 @@ namespace MediTech.Views
                     switch (row.PrintGroup)
                     {
                         case "Physical examination":
-                            EnterPhysicalExam review = new EnterPhysicalExam();
-                            (review.DataContext as EnterPhysicalExamViewModel).AssignModel(row);
-                            reviewViewModel = (EnterPhysicalExamViewModel)viewModel.LaunchViewDialogNonPermiss(review, false, true);
+                            EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
+                            (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(row);
+                            reviewViewModel = (EnterPhysicalExamViewModel)viewModel.LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
+                            break;
+                        case "Audiogram":
+                            EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
+                            (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(row);
+                            reviewViewModel = (EnterAudiogramResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
+                            break;
+                        case "Pulmonary Function Test":
+                            EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
+                            (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(row);
+                            reviewViewModel = (EnterPulmonaryResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                             break;
                         default:
-                            EnterOccmedResult review2 = new EnterOccmedResult();
-                            (review2.DataContext as EnterOccmedResultViewModel).AssignModel(row);
-                            reviewViewModel = (EnterOccmedResultViewModel)viewModel.LaunchViewDialogNonPermiss(review2, false, true);
                             break;
                     }
                     if (reviewViewModel == null)
@@ -73,11 +80,9 @@ namespace MediTech.Views
                     }
                     if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
                     {
-                        //row.OrderStatus = reviewViewModel.ResultOrderStatus;
-                        //row.DoctorName = reviewViewModel.DoctorName;
-                        //row.ResultStatus = reviewViewModel.ResultedStatus;
+                        System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
+                        row.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
                         row.IsSelected = false;
-                        // viewModel.CheckSelectAll();
                         grdExamList.RefreshData();
                         grvExamList.BestFitColumns();
                     }

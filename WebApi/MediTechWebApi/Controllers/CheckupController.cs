@@ -361,9 +361,9 @@ namespace MediTechWebApi.Controllers
             return listData;
         }
 
-        [Route("SavePhysicalExamination")]
+        [Route("SaveOccmedExamination")]
         [HttpPost]
-        public HttpResponseMessage SavePhysicalExamination(RequestDetailItemModel requestDetails, int userID)
+        public HttpResponseMessage SaveOccmedExamination(RequestDetailItemModel requestDetails, int userID)
         {
             try
             {

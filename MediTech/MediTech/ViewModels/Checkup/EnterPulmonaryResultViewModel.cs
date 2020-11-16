@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EnterOccmedResultViewModel : MediTechViewModelBase
+    public class EnterPulmonaryResultViewModel : MediTechViewModelBase
     {
         #region Properties
 
@@ -29,6 +29,8 @@ namespace MediTech.ViewModels
             get { return _ResultComponentItems; }
             set { Set(ref _ResultComponentItems, value); }
         }
+
+        public string OrderStatus { get; set; }
 
         private RequestListModel RequestModel;
         #endregion
@@ -63,7 +65,7 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             base.OnLoaded();
-            (this.View as EnterOccmedResult).patientBanner.SetPatientBanner(RequestModel);
+            (this.View as EnterPulmonaryResult).patientBanner.SetPatientBanner(RequestModel);
         }
 
         public void AssignModel(RequestListModel request)
@@ -74,12 +76,6 @@ namespace MediTech.ViewModels
             if (dataList != null)
             {
                 ResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList);
-                foreach (var item in ResultComponentItems)
-                {
-                    if (!string.IsNullOrEmpty(item.AutoValue))
-                        item.AutoValueList = item.AutoValue.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
-                            .Select(p => p.Trim()).Where(p => !string.IsNullOrEmpty(p)).ToList();
-                }
             }
         }
 
@@ -87,7 +83,17 @@ namespace MediTech.ViewModels
         {
             try
             {
-                SaveSuccessDialog();
+                RequestDetailItemModel reviewRequestDetail = new RequestDetailItemModel();
+                reviewRequestDetail.RequestUID = RequestModel.RequestUID;
+                reviewRequestDetail.RequestDetailUID = RequestModel.RequestDetailUID;
+                reviewRequestDetail.PatientUID = RequestModel.PatientUID;
+                reviewRequestDetail.PatientVisitUID = RequestModel.PatientVisitUID;
+                reviewRequestDetail.RequestItemCode = RequestModel.RequestItemCode;
+                reviewRequestDetail.RequestItemName = RequestModel.RequestItemName;
+
+                reviewRequestDetail.ResultComponents = ResultComponentItems;
+                DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
+                OrderStatus = "Reviewed";
                 CloseViewDialog(ActionDialog.Save);
             }
             catch (Exception er)
