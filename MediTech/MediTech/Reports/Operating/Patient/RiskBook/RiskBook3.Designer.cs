@@ -482,7 +482,6 @@
             this.xrCheckBox1,
             this.xrTable3,
             this.xrLabel1,
-            this.xrTable1,
             this.xrLabel2,
             this.lbUlt,
             this.xrLabel6,
@@ -491,7 +490,8 @@
             this.xrLabel9,
             this.xrLabel15,
             this.xrRichText1,
-            this.xrRichText2});
+            this.xrRichText2,
+            this.xrTable1});
             this.Detail.HeightF = 1182.66F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -6005,7 +6005,7 @@
             // xrRichText1
             // 
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(237.7348F, 108.141F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(237.9428F, 113.3334F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(47.27345F, 92.50005F);
@@ -6013,7 +6013,7 @@
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(195.0768F, 107.7564F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(195.5953F, 113.3334F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
             this.xrRichText2.SizeF = new System.Drawing.SizeF(47.27345F, 92.50005F);

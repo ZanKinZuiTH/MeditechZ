@@ -1113,7 +1113,7 @@
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
             this.xrTableCell25.Text = "ชื่อ-นามสกุล";
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell25.Weight = 0.6249999284744282D;
+            this.xrTableCell25.Weight = 0.89394893746980675D;
             // 
             // lbNameP2
             // 
@@ -1121,8 +1121,8 @@
             this.lbNameP2.Name = "lbNameP2";
             this.lbNameP2.StylePriority.UseFont = false;
             this.lbNameP2.StylePriority.UseTextAlignment = false;
-            this.lbNameP2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNameP2.Weight = 3.3750000715255717D;
+            this.lbNameP2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbNameP2.Weight = 3.1060510625301934D;
             // 
             // xrTableRow7
             // 
@@ -1144,7 +1144,7 @@
             this.xrTableCell29.StylePriority.UseTextAlignment = false;
             this.xrTableCell29.Text = "วัน/เดือน/ปี เกิด";
             this.xrTableCell29.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell29.Weight = 0.844819170231443D;
+            this.xrTableCell29.Weight = 0.95749514060446239D;
             // 
             // lbBrithDateP2
             // 
@@ -1152,8 +1152,8 @@
             this.lbBrithDateP2.Name = "lbBrithDateP2";
             this.lbBrithDateP2.StylePriority.UseFont = false;
             this.lbBrithDateP2.StylePriority.UseTextAlignment = false;
-            this.lbBrithDateP2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbBrithDateP2.Weight = 1.3337521480671088D;
+            this.lbBrithDateP2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbBrithDateP2.Weight = 1.2210761776940895D;
             // 
             // xrTableCell31
             // 
@@ -1194,7 +1194,7 @@
             this.xrTableCell33.StylePriority.UseTextAlignment = false;
             this.xrTableCell33.Text = "วันที่เข้าทำงาน";
             this.xrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell33.Weight = 0.844819216246439D;
+            this.xrTableCell33.Weight = 0.91281134872883329D;
             // 
             // lbStartDate
             // 
@@ -1203,7 +1203,7 @@
             this.lbStartDate.StylePriority.UseFont = false;
             this.lbStartDate.StylePriority.UseTextAlignment = false;
             this.lbStartDate.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbStartDate.Weight = 3.1551807837535613D;
+            this.lbStartDate.Weight = 3.087188651271167D;
             // 
             // xrLabel1
             // 
