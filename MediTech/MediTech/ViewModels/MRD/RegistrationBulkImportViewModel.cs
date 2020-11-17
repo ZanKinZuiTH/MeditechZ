@@ -524,14 +524,7 @@ namespace MediTech.ViewModels
                                 Double.TryParse(CurrentImportedData.DateOfBirth, out doublebirthdttm);
                                 birthdttm = DateTime.FromOADate(doublebirthdttm);
                             }
-                            //else
-                            //{
-                            //    if (int.Parse(birthdttm.ToString("yyyy")) > 2400)
-                            //    {
-                            //        birthdttm = birthdttm.AddYears(-543);
-                            //    }
 
-                            //}
 
                             if (int.Parse(birthdttm.ToString("yyyy")) > 2400)
                             {
@@ -552,6 +545,10 @@ namespace MediTech.ViewModels
                             }
 
                             CurrentImportedData.BirthDttm = birthdttm;
+                        }
+                        else if(!string.IsNullOrEmpty(drow["Age"].ToString().Trim()))
+                        {
+                            CurrentImportedData.Age = drow["Age"].ToString().Trim();
                         }
 
                         CurrentImportedData.IDCard = drow["IDCard"].ToString().Replace("-", "");

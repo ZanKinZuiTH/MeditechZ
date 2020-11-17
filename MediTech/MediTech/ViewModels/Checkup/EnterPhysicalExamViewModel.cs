@@ -34,7 +34,14 @@ namespace MediTech.ViewModels
 
         public string OrderStatus { get; set; }
 
-        public string ResultedStatus { get; set; }
+        private PatientVitalSignModel _PatientVitalSign;
+
+        public PatientVitalSignModel PatientVitalSign
+        {
+            get { return _PatientVitalSign ?? (_PatientVitalSign = new PatientVitalSignModel()); }
+            set { Set(ref _PatientVitalSign, value); }
+        }
+
 
         private RequestListModel RequestModel;
 
@@ -79,7 +86,19 @@ namespace MediTech.ViewModels
         {
             this.RequestModel = request;
             RequestItemName = this.RequestModel.RequestItemName;
+            var RecentVitals = DataService.PatientHistory.GetPatientVitalSignByVisitUID(request.PatientVisitUID);
             var dataList = DataService.Checkup.GetResultItemByRequestDetailUID(request.RequestDetailUID);
+
+            if (RecentVitals != null && RecentVitals.Count > 0)
+            {
+                PatientVitalSign = RecentVitals.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
+            }
+            else
+            {
+                PatientVitalSign.PatientUID = request.PatientUID;
+                PatientVitalSign.PatientVisitUID = request.PatientVisitUID;
+            }
+
             if (dataList != null)
             {
                 ResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList);
@@ -121,6 +140,24 @@ namespace MediTech.ViewModels
         {
             try
             {
+                if (PatientVitalSign.BPSys < PatientVitalSign.BPDio)
+                {
+                    WarningDialog("ความดันบนมากกว่าความดันล่าง โปรดตรวจสอบ");
+                    return;
+                }
+
+                if (PatientVitalSign.BPSys != null && PatientVitalSign.BPSys <= 60)
+                {
+                    WarningDialog("ความดันบนน้อยกว่าปกติ โปรดตรวจสอบ");
+                    return;
+                }
+
+                if (PatientVitalSign.BPDio != null && PatientVitalSign.BPDio <= 20)
+                {
+                    WarningDialog("ความดันล่างกว่าปกติ โปรดตรวจสอบ");
+                    return;
+                }
+
                 RequestDetailItemModel reviewRequestDetail = new RequestDetailItemModel();
                 reviewRequestDetail.RequestUID = RequestModel.RequestUID;
                 reviewRequestDetail.RequestDetailUID = RequestModel.RequestDetailUID;
@@ -129,6 +166,14 @@ namespace MediTech.ViewModels
                 reviewRequestDetail.RequestItemCode = RequestModel.RequestItemCode;
                 reviewRequestDetail.RequestItemName = RequestModel.RequestItemName;
 
+                if (PatientVitalSign.Weight != null && PatientVitalSign.Height != null)
+                {
+                    PatientVitalSign.BMIValue = PatientVitalSign.Weight / (PatientVitalSign.Height / 100 * PatientVitalSign.Height / 100);
+                    PatientVitalSign.BSAValue = Math.Pow(PatientVitalSign.Weight.Value, 0.425) * Math.Pow(PatientVitalSign.Height.Value, 0.725) * 0.007184;
+
+                    PatientVitalSign.BMIValue = Math.Round(PatientVitalSign.BMIValue.Value, 2);
+                    PatientVitalSign.BSAValue = Math.Round(PatientVitalSign.BSAValue.Value, 2);
+                }
 
                 foreach (var item in ResultComponentItems)
                 {
@@ -166,8 +211,9 @@ namespace MediTech.ViewModels
                 }
 
                 reviewRequestDetail.ResultComponents = ResultComponentItems;
-                DataService.Checkup.SavePhysicalExamination(reviewRequestDetail, AppUtil.Current.UserID);
-                SaveSuccessDialog();
+                DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
+                DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
+                OrderStatus = "Reviewed";
                 CloseViewDialog(ActionDialog.Save);
             }
             catch (Exception er)

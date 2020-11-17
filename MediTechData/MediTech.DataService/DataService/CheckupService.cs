@@ -79,11 +79,11 @@ namespace MediTech.DataService
             return data;
         }
 
-        public void SavePhysicalExamination(RequestDetailItemModel requestDetails, int userID)
+        public void SaveOccmedExamination(RequestDetailItemModel requestDetails, int userID)
         {
             try
             {
-                string requestApi = string.Format("Api/Checkup/SavePhysicalExamination?userID={0}", userID);
+                string requestApi = string.Format("Api/Checkup/SaveOccmedExamination?userID={0}", userID);
                 MeditechApiHelper.Post<RequestDetailItemModel>(requestApi, requestDetails);
             }
             catch (Exception)

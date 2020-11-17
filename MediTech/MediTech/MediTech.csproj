@@ -736,7 +736,8 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\EnterOccmedResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterAudiogramResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterPulmonaryResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
@@ -882,11 +883,14 @@
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\EnterOccmedResult.xaml.cs">
-      <DependentUpon>EnterOccmedResult.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterAudiogramResult.xaml.cs">
+      <DependentUpon>EnterAudiogramResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EnterPhysicalExam.xaml.cs">
       <DependentUpon>EnterPhysicalExam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterPulmonaryResult.xaml.cs">
+      <DependentUpon>EnterPulmonaryResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ListCheckupJob.xaml.cs">
       <DependentUpon>ListCheckupJob.xaml</DependentUpon>
@@ -1352,11 +1356,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\EnterOccmedResult.xaml">
+    <Page Include="Views\Checkup\EnterAudiogramResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\EnterPhysicalExam.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterPulmonaryResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

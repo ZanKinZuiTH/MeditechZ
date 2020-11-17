@@ -409,14 +409,22 @@ namespace MediTech.ViewModels
                         switch (item.PrintGroup)
                         {
                             case "Physical examination":
-                                EnterPhysicalExam review = new EnterPhysicalExam();
-                                (review.DataContext as EnterPhysicalExamViewModel).AssignModel(item);
-                                reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(review, false, true);
+                                EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
+                                (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(item);
+                                reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
+                                break;
+                            case "Audiogram":
+                                EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
+                                (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(item);
+                                reviewViewModel = (EnterAudiogramResultViewModel)LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
+                                break;
+                            case "Pulmonary Function Test":
+                                EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
+                                (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
+                                reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                                 break;
                             default:
-                                EnterOccmedResult review2 = new EnterOccmedResult();
-                                (review2.DataContext as EnterOccmedResultViewModel).AssignModel(item);
-                                reviewViewModel = (EnterOccmedResultViewModel)LaunchViewDialogNonPermiss(review2, false, true);
+
                                 break;
                         }
 
@@ -435,8 +443,8 @@ namespace MediTech.ViewModels
 
                         if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
                         {
-                            object OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
-                            //item.ResultStatus = reviewViewModel.ResultedStatus;
+                            System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
+                            item.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
                         }
 
                         item.IsSelected = false;
@@ -451,15 +459,23 @@ namespace MediTech.ViewModels
                     switch (SelectCheckupExam.PrintGroup)
                     {
                         case "Physical examination":
-                            EnterPhysicalExam review = new EnterPhysicalExam();
-                            (review.DataContext as EnterPhysicalExamViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(review, false, true);
+                            EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
+                            (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(SelectCheckupExam);
+                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
+                            break;
+                        case "Audiogram":
+                            EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
+                            (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(SelectCheckupExam);
+                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
+                            break;
+                        case "Pulmonary Function Test":
+                            EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
+                            (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
+                            reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                             break;
                         default:
-                            EnterOccmedResult review2 = new EnterOccmedResult();
-                            (review2.DataContext as EnterOccmedResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(review2, false, true);
                             break;
+       
                     }
 
                     if (reviewViewModel == null)
@@ -469,8 +485,8 @@ namespace MediTech.ViewModels
 
                     if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
                     {
-                        object OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
-                        //item.ResultStatus = reviewViewModel.ResultedStatus;
+                        System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
+                        SelectCheckupExam.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
                         OnUpdateEvent();
                     }
                 }
