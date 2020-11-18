@@ -1821,9 +1821,9 @@
             this.xrTableCell95.StylePriority.UseFont = false;
             this.xrTableCell95.StylePriority.UsePadding = false;
             this.xrTableCell95.StylePriority.UseTextAlignment = false;
-            this.xrTableCell95.Text = " - ตรวจวัดปริมาณสารเคมีในเลือดหรือ  \r\nปัสสาวะหรือลมหายใจออก\r\n- เอ็กซเรย์ ด้วยฟิล์" +
-    "มมาตรฐานและ ตรวจสมรรถภาพปอด\r\n- ตรวจสมรรถภาพปอดและเอ็กซเรย์ \r\nปอดด้วยฟิล์มมาตรฐาน" +
-    " (ถ้ามีข้อบ่งชี้)";
+            this.xrTableCell95.Text = " - ตรวจวัดปริมาณสารเคมีในเลือดหรือ  \r\nปัสสาวะหรือลมหายใจออก\r\n- เอกซเรย์ ด้วยฟิล์ม" +
+    "มาตรฐานและ ตรวจสมรรถภาพปอด\r\n- ตรวจสมรรถภาพปอดและเอกซเรย์ \r\nปอดด้วยฟิล์มมาตรฐาน (" +
+    "ถ้ามีข้อบ่งชี้)";
             this.xrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.xrTableCell95.Weight = 1.875D;
             // 

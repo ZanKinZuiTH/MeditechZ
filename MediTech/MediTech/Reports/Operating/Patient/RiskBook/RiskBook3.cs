@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace MediTech.Reports.Operating.Patient.RiskBook
 {
-    public partial class RiskBook3 : DevExpress.XtraReports.UI.XtraReport
+    public partial class PatientName : DevExpress.XtraReports.UI.XtraReport
     {
-        public RiskBook3()
+        public PatientName()
         {
             InitializeComponent();
         }

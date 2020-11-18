@@ -163,6 +163,12 @@ namespace MediTech.ViewModels
             get { return _RiskBookCommand ?? (_RiskBookCommand = new RelayCommand(RiskBook)); }
         }
 
+        private RelayCommand _PrintRiskAutoCommand;
+        public RelayCommand PrintRiskAutoCommand
+        {
+            get { return _PrintRiskAutoCommand ?? (_PrintRiskAutoCommand = new RelayCommand(PrintRiskbook)); }
+        }
+
         private RelayCommand _PreviewBookCheckopCommand;
         public RelayCommand PreviewBookCheckopCommand
         {
@@ -247,6 +253,25 @@ namespace MediTech.ViewModels
 
             }
 
+        }
+
+        void PrintRiskbook()
+        {
+            if (SelectPatientResultLabList != null)
+            {
+                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    RiskBook1 rpt = new RiskBook1();
+                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.Print();
+                }
+            }
         }
 
         void PreviewBookCheckup()

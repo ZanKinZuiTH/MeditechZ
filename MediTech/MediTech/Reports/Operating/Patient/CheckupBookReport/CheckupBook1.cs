@@ -2120,23 +2120,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 string HbsAgAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year2)?.IsAbnormal;
                 string HbsAgAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year3)?.IsAbnormal;
 
-                if (!string.IsNullOrEmpty(HbsAgAbnormal1))
-                {
-                    page5.cellHbsAg1.ForeColor = (HbsAgAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellHbsAg1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbsAgAbnormal2))
-                {
-                    page5.cellHbsAg2.ForeColor = (HbsAgAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellHbsAg2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbsAgAbnormal3))
-                {
-                    page5.cellHbsAg3.ForeColor = (HbsAgAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellHbsAg3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page5.cellCoiAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34")?.ReferenceRange;
                 page5.cellCoiAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.ResultValue;
@@ -2176,20 +2159,23 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal1))
                 {
-                    page5.cellCoiHbs1.ForeColor = (CoiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCoiHbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    string result = page5.cellCoiHbs1.Text;
+                    string[] str = result.Split(" ".ToCharArray());
+                    page5.cellCoiHbs1.Text = str[0].ToString();
                 }
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal2))
                 {
-                    page5.cellCoiHbs2.ForeColor = (CoiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCoiHbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    string result = page5.cellCoiHbs2.Text;
+                    string[] str = result.Split(" ".ToCharArray());
+                    page5.cellCoiHbs2.Text = str[0].ToString();
                 }
 
                 if (!string.IsNullOrEmpty(CoiHbsAbnormal3))
                 {
-                    page5.cellCoiHbs3.ForeColor = (CoiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCoiHbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    string result = page5.cellCoiHbs3.Text;
+                    string[] str = result.Split(" ".ToCharArray());
+                    page5.cellCoiHbs3.Text = str[0].ToString();
                 }
 
                 page5.cellAntiHbsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR42")?.ReferenceRange;
@@ -2201,23 +2187,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 string AntiHbsAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR42" && p.Year == year2)?.IsAbnormal;
                 string AntiHbsAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR42" && p.Year == year3)?.IsAbnormal;
 
-                if (!string.IsNullOrEmpty(AntiHbsAbnormal1))
-                {
-                    page5.cellAntiHbs1.ForeColor = (AntiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAntiHbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AntiHbsAbnormal2))
-                {
-                    page5.cellAntiHbs2.ForeColor = (AntiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAntiHbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AntiHbsAbnormal3))
-                {
-                    page5.cellAntiHbs3.ForeColor = (AntiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAntiHbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
             }
             else
             {

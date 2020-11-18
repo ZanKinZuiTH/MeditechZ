@@ -55,6 +55,20 @@ namespace MediTech.Model
         public string TitmusResult { get; set; }
         public string AudioRightResult { get; set; }
         public string AudioLeftResult { get; set; }
+        public string L500Hz { get; set; }
+        public string R500Hz { get; set; }
+        public string L1000Hz { get; set; }
+        public string R1000Hz { get; set; }
+        public string L2000Hz { get; set; }
+        public string R2000Hz { get; set; }
+        public string L3000Hz { get; set; }
+        public string R3000Hz { get; set; }
+        public string L4000Hz { get; set; }
+        public string R4000Hz { get; set; }
+        public string L6000Hz { get; set; }
+        public string R6000Hz { get; set; }
+        public string L8000Hz { get; set; }
+        public string R8000Hz { get; set; }
         public string AudioRecommend { get; set; }
         public string AudioResult { get; set; }
         public string MyopiaRight { get; set; }

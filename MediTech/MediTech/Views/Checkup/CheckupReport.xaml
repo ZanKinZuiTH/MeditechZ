@@ -136,7 +136,18 @@
                                 </dx:SimpleButton>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-                        
+
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dx:SimpleButton Width="130" Height="30" Command="{Binding PrintRiskAutoCommand}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
+                                        <TextBlock Text=" Print Risk Book" VerticalAlignment="Center"/>
+                                    </StackPanel>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+
                         <!--<dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCheckopCommand}">

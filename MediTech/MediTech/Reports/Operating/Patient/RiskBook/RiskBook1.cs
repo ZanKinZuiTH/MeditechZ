@@ -23,7 +23,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
         List<XrayTranslateMappingModel> dtResultMapping;
 
         RiskBook2 page2 = new RiskBook2();
-        RiskBook3 page3 = new RiskBook3();
+        PatientName page3 = new PatientName();
         RiskBook4 page4 = new RiskBook4();
 
         public RiskBook1()
@@ -74,33 +74,53 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 page4.lbPastHistory.Text = data.FirstOrDefault().PersonalHistory != null ? data.FirstOrDefault().PersonalHistory.ToString() : "";
                 page4.lbLymphNode.Text = data.FirstOrDefault().LymphNode != null ? data.FirstOrDefault().LymphNode.ToString() : "";
 
+                page3.PtName.Text = data.FirstOrDefault().PatientName;
+                page4.dateStart.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
+
                 #region Lung occmed
-                page4.lbFVCPer.Text = data.FirstOrDefault().FVCPer != null ? data.FirstOrDefault().FVCPer.ToString() + " %" : "";
-                page4.lbFEV1Per.Text = data.FirstOrDefault().FEV1Per != null ? data.FirstOrDefault().FEV1Per.ToString() + " %" : "";
-                page4.lbFEVPer.Text = data.FirstOrDefault().FEV1FVCPer != null ? data.FirstOrDefault().FEV1FVCPer.ToString() + " %" : "";
+
+                page4.lbFVCPer1.Text = data.FirstOrDefault().FVCPer != null ? data.FirstOrDefault().FVCPer.ToString() + " %" : "";
+                page4.lbFEV1Per1.Text = data.FirstOrDefault().FEV1Per != null ? data.FirstOrDefault().FEV1Per.ToString() + " %" : "";
+                page4.lbFEVPer1.Text = data.FirstOrDefault().FEV1FVCPer != null ? data.FirstOrDefault().FEV1FVCPer.ToString() + " %" : "";
+
 
                 #endregion
 
                 #region vision occmed
-                page3.lbFarVision.Text = data.FirstOrDefault().FarPoint != null ? data.FirstOrDefault().FarPoint.ToString() : "";
 
-                page3.lbNearVision.Text = data.FirstOrDefault().NearPoint != null ? data.FirstOrDefault().NearPoint.ToString() : "";
 
-                page3.lb3DVision.Text = data.FirstOrDefault().Depth != null ? data.FirstOrDefault().Depth.ToString() : "";
+                page3.lbFarVision1.Text = data.FirstOrDefault().FarPoint != null ? data.FirstOrDefault().FarPoint.ToString() : "";
 
-                page3.lbBalanceEye.Text = data.FirstOrDefault().Muscle != null ? data.FirstOrDefault().Muscle.ToString() : "";
+                page3.lbNearVision1.Text = data.FirstOrDefault().NearPoint != null ? data.FirstOrDefault().NearPoint.ToString() : "";
 
-                page3.lbVisionColor.Text = data.FirstOrDefault().Color != null ? data.FirstOrDefault().Color.ToString() : "";
+                page3.lb3DVision1.Text = data.FirstOrDefault().Depth != null ? data.FirstOrDefault().Depth.ToString() : "";
 
-                page3.lbFieldVision.Text = data.FirstOrDefault().Visualfield != null ? data.FirstOrDefault().Visualfield.ToString() : "";
+                page3.lbBalanceEye1.Text = data.FirstOrDefault().Muscle != null ? data.FirstOrDefault().Muscle.ToString() : "";
+
+                page3.lbVisionColor1.Text = data.FirstOrDefault().Color != null ? data.FirstOrDefault().Color.ToString() : "";
+
+                page3.lbFieldVision1.Text = data.FirstOrDefault().Visualfield != null ? data.FirstOrDefault().Visualfield.ToString() : "";
 
 
 
                 #endregion
 
                 #region Audio Test
-                page4.lbAudioRight.Text = data.FirstOrDefault().AudioRightResult != null ? data.FirstOrDefault().AudioRightResult.ToString() : "";
-                page4.lbAudioLeft.Text = data.FirstOrDefault().AudioLeftResult != null ? data.FirstOrDefault().AudioLeftResult.ToString() : "";
+                page4.R5001.Text = data.FirstOrDefault().R500Hz != null ? data.FirstOrDefault().R500Hz.ToString() : "";
+                page4.R10001.Text = data.FirstOrDefault().R1000Hz != null ? data.FirstOrDefault().R1000Hz.ToString() : "";
+                page4.R20001.Text = data.FirstOrDefault().R2000Hz != null ? data.FirstOrDefault().R2000Hz.ToString() : "";
+                page4.R30001.Text = data.FirstOrDefault().R3000Hz != null ? data.FirstOrDefault().R3000Hz.ToString() : "";
+                page4.R40001.Text = data.FirstOrDefault().R4000Hz != null ? data.FirstOrDefault().R4000Hz.ToString() : "";
+                page4.R60001.Text = data.FirstOrDefault().R6000Hz != null ? data.FirstOrDefault().R6000Hz.ToString() : "";
+                page4.R80001.Text = data.FirstOrDefault().R8000Hz != null ? data.FirstOrDefault().R8000Hz.ToString() : "";
+
+                page4.L5001.Text = data.FirstOrDefault().L500Hz != null ? data.FirstOrDefault().L500Hz.ToString() : "";
+                page4.L10001.Text = data.FirstOrDefault().L1000Hz != null ? data.FirstOrDefault().L1000Hz.ToString() : "";
+                page4.L20001.Text = data.FirstOrDefault().L2000Hz != null ? data.FirstOrDefault().L2000Hz.ToString() : "";
+                page4.L30001.Text = data.FirstOrDefault().L3000Hz != null ? data.FirstOrDefault().L3000Hz.ToString() : "";
+                page4.L40001.Text = data.FirstOrDefault().L4000Hz != null ? data.FirstOrDefault().L4000Hz.ToString() : "";
+                page4.L60001.Text = data.FirstOrDefault().L6000Hz != null ? data.FirstOrDefault().L6000Hz.ToString() : "";
+                page4.L80001.Text = data.FirstOrDefault().L8000Hz != null ? data.FirstOrDefault().L8000Hz.ToString() : "";
 
                 #endregion
 
