@@ -848,7 +848,7 @@ namespace MediTech.ViewModels
                                 WarningDialog("รายการ " + billItem.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
                                 continue;
                             }
-     
+
 
                             //if (billItem.BillingServiceMetaData == "Drug" || billItem.BillingServiceMetaData == "Medical Supplies")
                             //{
@@ -903,6 +903,8 @@ namespace MediTech.ViewModels
 
                             //}
 
+                            newOrder.OrderSetUID = item.OrderSetUID;
+                            newOrder.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
                             newOrder.BillableItemUID = billItem.BillableItemUID;
                             newOrder.ItemName = billItem.ItemName;
                             newOrder.BSMDDUID = billItem.BSMDDUID;

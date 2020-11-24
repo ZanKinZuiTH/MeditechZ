@@ -356,6 +356,7 @@
                         <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
                         <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>

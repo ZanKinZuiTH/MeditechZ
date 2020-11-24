@@ -622,6 +622,9 @@
     <Compile Include="pSearchBillableItemRequest_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pSearchCheckupExamList_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pSearchCheckupResultValue_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

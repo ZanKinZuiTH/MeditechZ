@@ -29,6 +29,7 @@ namespace MediTech.DataBase
         public Nullable<int> CheckupJobUID { get; set; }
         public string CompanyName { get; set; }
         public string Comments { get; set; }
+        public Nullable<int> RefNo { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

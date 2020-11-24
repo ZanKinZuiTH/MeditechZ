@@ -271,14 +271,6 @@ namespace MediTech.ViewModels
                 return true;
             }
 
-            if (VisibiltyCheckupCompany == Visibility.Visible)
-            {
-                if (SelectedCheckupJob == null)
-                {
-                    WarningDialog("กรุณาเลือก บริษัท");
-                    return true;
-                }
-            }
 
             if (SelectedPayorDetail == null)
             {
@@ -290,6 +282,15 @@ namespace MediTech.ViewModels
             {
                 WarningDialog("กรุณาเลือก Agreemnet");
                 return true;
+            }
+
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก บริษัท");
+                    return true;
+                }
             }
 
             if (SelectedPriority == null)

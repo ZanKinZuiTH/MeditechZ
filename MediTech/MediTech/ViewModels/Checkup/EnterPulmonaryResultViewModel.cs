@@ -67,18 +67,24 @@ namespace MediTech.ViewModels
             base.OnLoaded();
             (this.View as EnterPulmonaryResult).patientBanner.SetPatientBanner(RequestModel);
             double height = Convert.ToDouble(this.RequestModel.Height);
+            string warningMessage = string.Empty;
 
             if (string.IsNullOrEmpty(this.RequestModel.Gender))
             {
-                WarningDialog("คนไข้ไม่ได้ระบุเพศ กรุณาตรวจสอบ");
+                warningMessage = "* คนไข้ไม่ได้ระบุเพศ กรุณาตรวจสอบ";
             }
             if (string.IsNullOrEmpty(this.RequestModel.PatientAge))
             {
-                WarningDialog("คนไข้ไม่ได้ระบุอายุ กรุณาตรวจสอบ");
+                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* คนไข้ไม่ได้ระบุอายุ กรุณาตรวจสอบ" : "\r\n* คนไข้ไม่ได้ระบุอายุ กรุณาตรวจสอบ";
             }
             if (this.RequestModel.Height == 0)
             {
-                WarningDialog("คนไข้ไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ");
+                warningMessage += string.IsNullOrEmpty(warningMessage) ? "* คนไข้ไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ" : "\r\n* คนไข้ไม่ได้ระบุส่วนสูง กรุณาตรวจสอบ";
+            }
+
+            if (!string.IsNullOrEmpty(warningMessage))
+            {
+                WarningDialog(warningMessage);
             }
         }
 
@@ -129,7 +135,7 @@ namespace MediTech.ViewModels
             {
 
             }
- 
+
         }
 
 

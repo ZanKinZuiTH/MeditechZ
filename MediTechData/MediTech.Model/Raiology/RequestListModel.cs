@@ -72,6 +72,7 @@ namespace MediTech.Model
         public string Modality { get; set; }
         public System.Nullable<int> RadiologistUID { get; set; }
         public System.Nullable<int> ExecuteByUID { get; set; }
+        public System.Nullable<int> RefNo { get; set; }
         public string DoctorName { get; set; }
         public string ExecuteBy { get; set; }
         public string OrganisationName { get; set; }

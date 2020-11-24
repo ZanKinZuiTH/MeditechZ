@@ -175,6 +175,7 @@
                     <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันที่ผลออก" FieldName="ResultedDttm" ReadOnly="True"/>
                     <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="ProcessingNote" ReadOnly="True"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
