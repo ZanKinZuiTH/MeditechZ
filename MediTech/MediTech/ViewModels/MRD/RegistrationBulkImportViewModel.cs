@@ -830,6 +830,7 @@ namespace MediTech.ViewModels
                                     visitInfo.PayorDetailUID = result.SelectedPayorDetail.PayorDetailUID;
                                     visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
                                     visitInfo.Comments = result.CommentDoctor;
+                                    visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = result.SelectOrganisation.HealthOrganisationUID;
                                     if (result.SelectedCareprovider != null)
                                         visitInfo.CareProviderUID = result.SelectedCareprovider.CareproviderUID;
@@ -957,7 +958,6 @@ namespace MediTech.ViewModels
                 }
             }
         }
-
 
         private void PrintSticker()
         {
