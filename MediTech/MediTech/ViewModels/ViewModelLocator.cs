@@ -1138,6 +1138,39 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EnterEKGResultViewModel EnterEKGResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterEKGResultViewModel>())
+                    SimpleIoc.Default.Register<EnterEKGResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterEKGResultViewModel>();
+            }
+        }
+
+        public EnterOccuVisionTestResultViewModel EnterOccuVisionTestResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterOccuVisionTestResultViewModel>())
+                    SimpleIoc.Default.Register<EnterOccuVisionTestResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterOccuVisionTestResultViewModel>();
+            }
+        }
+
+        public EnterVisionTestResultViewModel EnterVisionTestResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterVisionTestResultViewModel>())
+                    SimpleIoc.Default.Register<EnterVisionTestResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterVisionTestResultViewModel>();
+            }
+        }
+
         public ListCheckupJobViewModel ListCheckupJobViewModel
         {
             get

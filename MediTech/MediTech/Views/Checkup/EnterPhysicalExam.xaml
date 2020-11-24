@@ -98,7 +98,7 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="CheckPhyExamList"  Width="*">
+                    <dxg:GridColumn FieldName="CheckDataList"  Width="*">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False"
@@ -121,11 +121,11 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="TokenPhyExamList" Width="350">
+                    <dxg:GridColumn FieldName="TokenDataList" Width="350">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:ComboBoxEdit Name="PART_Editor"
-                                                  EditValue="{Binding RowData.Row.TokenPhyExamList,Mode=TwoWay}"
+                                                  EditValue="{Binding RowData.Row.TokenDataList,Mode=TwoWay}"
                                                   FontSize="18"
                                       MaxHeight="50" IsTextEditable="True"
                                       ValidateOnEnterKeyPressed="True">

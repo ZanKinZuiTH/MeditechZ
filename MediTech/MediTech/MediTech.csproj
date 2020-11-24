@@ -222,6 +222,7 @@
     <Compile Include="Helpers\RichTextBoxEx.cs" />
     <Compile Include="Helpers\ScannerImageConverter.cs" />
     <Compile Include="Helpers\ScannerService.cs" />
+    <Compile Include="Helpers\TemplateSelector.cs" />
     <Compile Include="Helpers\TranslateResult.cs" />
     <Compile Include="Helpers\ImageHelpers.cs" />
     <Compile Include="Helpers\GridControlFitBehavior.cs" />
@@ -737,7 +738,10 @@
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterAudiogramResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterEKGResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterOccuVisionTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterPulmonaryResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterVisionTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
@@ -885,6 +889,15 @@
     </Compile>
     <Compile Include="Views\Checkup\EnterAudiogramResult.xaml.cs">
       <DependentUpon>EnterAudiogramResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterEKGResult.xaml.cs">
+      <DependentUpon>EnterEKGResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterVisionTestResult .xaml.cs">
+      <DependentUpon>EnterVisionTestResult .xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterOccuVisionTestResult.xaml.cs">
+      <DependentUpon>EnterOccuVisionTestResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EnterPhysicalExam.xaml.cs">
       <DependentUpon>EnterPhysicalExam.xaml</DependentUpon>
@@ -1357,6 +1370,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\EnterAudiogramResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterEKGResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterVisionTestResult .xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Checkup\EnterOccuVisionTestResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -10,10 +10,9 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EnterPhysicalExamViewModel : MediTechViewModelBase
+    public class EnterOccuVisionTestResultViewModel : MediTechViewModelBase
     {
         #region Properties
-
         private string _RequestItemName;
 
         public string RequestItemName
@@ -34,21 +33,10 @@ namespace MediTech.ViewModels
 
         public string OrderStatus { get; set; }
 
-        private PatientVitalSignModel _PatientVitalSign;
-
-        public PatientVitalSignModel PatientVitalSign
-        {
-            get { return _PatientVitalSign ?? (_PatientVitalSign = new PatientVitalSignModel()); }
-            set { Set(ref _PatientVitalSign, value); }
-        }
-
-
         private RequestListModel RequestModel;
-
         #endregion
 
         #region Command
-
         private RelayCommand _SaveCommand;
 
         public RelayCommand SaveCommand
@@ -79,26 +67,14 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             base.OnLoaded();
-            (this.View as EnterPhysicalExam).patientBanner.SetPatientBanner(RequestModel);
+            (this.View as EnterOccuVisionTestResult).patientBanner.SetPatientBanner(RequestModel);
         }
 
         public void AssignModel(RequestListModel request)
         {
             this.RequestModel = request;
             RequestItemName = this.RequestModel.RequestItemName;
-            var RecentVitals = DataService.PatientHistory.GetPatientVitalSignByVisitUID(request.PatientVisitUID);
             var dataList = DataService.Checkup.GetResultItemByRequestDetailUID(request.RequestDetailUID);
-
-            if (RecentVitals != null && RecentVitals.Count > 0)
-            {
-                PatientVitalSign = RecentVitals.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
-            }
-            else
-            {
-                PatientVitalSign.PatientUID = request.PatientUID;
-                PatientVitalSign.PatientVisitUID = request.PatientVisitUID;
-            }
-
             if (dataList != null)
             {
                 ResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList);
@@ -123,13 +99,6 @@ namespace MediTech.ViewModels
 
                                 item.CheckDataList.Add(values[i]);
                             }
-                            else if(values[i] != "ไม่พบความผิดปกติ" && values[i] != "ปฏิเสธ")
-                            {
-                                if (item.TokenDataList == null)
-                                    item.TokenDataList = new List<object>();
-
-                                item.TokenDataList.Add(values[i]);
-                            }
                         }
                     }
                 }
@@ -140,24 +109,6 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (PatientVitalSign.BPSys < PatientVitalSign.BPDio)
-                {
-                    WarningDialog("ความดันบนมากกว่าความดันล่าง โปรดตรวจสอบ");
-                    return;
-                }
-
-                if (PatientVitalSign.BPSys != null && PatientVitalSign.BPSys <= 60)
-                {
-                    WarningDialog("ความดันบนน้อยกว่าปกติ โปรดตรวจสอบ");
-                    return;
-                }
-
-                if (PatientVitalSign.BPDio != null && PatientVitalSign.BPDio <= 20)
-                {
-                    WarningDialog("ความดันล่างกว่าปกติ โปรดตรวจสอบ");
-                    return;
-                }
-
                 RequestDetailItemModel reviewRequestDetail = new RequestDetailItemModel();
                 reviewRequestDetail.RequestUID = RequestModel.RequestUID;
                 reviewRequestDetail.RequestDetailUID = RequestModel.RequestDetailUID;
@@ -165,15 +116,6 @@ namespace MediTech.ViewModels
                 reviewRequestDetail.PatientVisitUID = RequestModel.PatientVisitUID;
                 reviewRequestDetail.RequestItemCode = RequestModel.RequestItemCode;
                 reviewRequestDetail.RequestItemName = RequestModel.RequestItemName;
-
-                if (PatientVitalSign.Weight != null && PatientVitalSign.Height != null)
-                {
-                    PatientVitalSign.BMIValue = PatientVitalSign.Weight / (PatientVitalSign.Height / 100 * PatientVitalSign.Height / 100);
-                    PatientVitalSign.BSAValue = Math.Pow(PatientVitalSign.Weight.Value, 0.425) * Math.Pow(PatientVitalSign.Height.Value, 0.725) * 0.007184;
-
-                    PatientVitalSign.BMIValue = Math.Round(PatientVitalSign.BMIValue.Value, 2);
-                    PatientVitalSign.BSAValue = Math.Round(PatientVitalSign.BSAValue.Value, 2);
-                }
 
                 foreach (var item in ResultComponentItems)
                 {
@@ -184,34 +126,12 @@ namespace MediTech.ViewModels
                         {
                             resultValue += string.IsNullOrEmpty(resultValue) ? phyExam.ToString() : "," + phyExam.ToString();
                         }
+
+                        item.ResultValue = resultValue;
                     }
-
-                    if (item.TokenDataList != null)
-                    {
-                        foreach (var tokenPhyExam in item.TokenDataList)
-                        {
-                            resultValue += string.IsNullOrEmpty(resultValue) ? tokenPhyExam.ToString() : "," + tokenPhyExam.ToString();
-                        }
-                    }
-
-
-                    if (string.IsNullOrEmpty(resultValue))
-                    {
-                        if (item.ResultItemName == "บุหรี่" || item.ResultItemName == "แอลกอฮอล์" || item.ResultItemName == "แพ้ยา" || item.ResultItemName == "โรคประจำตัว")
-                        {
-                            resultValue = "ปฏิเสธ";
-                        }
-                        else
-                        {
-                            resultValue = "ไม่พบความผิดปกติ";
-                        }
-                    }
-
-                    item.ResultValue = resultValue;
                 }
 
                 reviewRequestDetail.ResultComponents = ResultComponentItems;
-                DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
                 DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
                 OrderStatus = "Reviewed";
                 CloseViewDialog(ActionDialog.Save);
@@ -227,6 +147,7 @@ namespace MediTech.ViewModels
         {
             CloseViewDialog(ActionDialog.Cancel);
         }
+
         #endregion
     }
 }

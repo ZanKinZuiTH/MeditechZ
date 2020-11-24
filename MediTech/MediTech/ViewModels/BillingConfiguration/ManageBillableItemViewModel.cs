@@ -301,7 +301,7 @@ namespace MediTech.ViewModels
                 {
                     string serviceType = SelectServiceType.Display;
 
-                    if (serviceType == "Lab Test" || serviceType == "Radiology")
+                    if (serviceType == "Lab Test" || serviceType == "Radiology" || serviceType == "Mobile Checkup")
                     {
                         ReferenceCode = _SelectItemService.Code;
                     }

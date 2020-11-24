@@ -66,6 +66,21 @@ namespace MediTech.Views
                             (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(row);
                             reviewViewModel = (EnterAudiogramResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
                             break;
+                        case "Elektrokardiogram":
+                            EnterEKGResult reviewEKG = new EnterEKGResult();
+                            (reviewEKG.DataContext as EnterEKGResultViewModel).AssignModel(row);
+                            reviewViewModel = (EnterEKGResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewEKG, false, true);
+                            break;
+                        case "Occupational Vision Test":
+                            EnterOccuVisionTestResult reviewOccu = new EnterOccuVisionTestResult();
+                            (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(row);
+                            reviewViewModel = (EnterOccuVisionTestResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewOccu, false, true);
+                            break;
+                        case "Vision Test":
+                            EnterVisionTestResult reviewVision = new EnterVisionTestResult();
+                            (reviewVision.DataContext as EnterVisionTestResultViewModel).AssignModel(row);
+                            reviewViewModel = (EnterVisionTestResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewVision, false, true);
+                            break;
                         case "Pulmonary Function Test":
                             EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
                             (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(row);

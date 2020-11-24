@@ -97,12 +97,14 @@ namespace MediTech.Model
         public Nullable<System.DateTime> ResultDTTM { get; set; }
         public string ResultItemName { get; set; }
         public int PrintOrder { get; set; }
+
+        public string IsMandatory { get; set; }
         public string AutoValue { get; set; }
 
         public List<string> AutoValueList { get; set; }
 
-        public IList<object> CheckPhyExamList { get; set; }
-        public IList<object> TokenPhyExamList { get; set; }
+        public IList<object> CheckDataList { get; set; }
+        public IList<object> TokenDataList { get; set; }
 
         public string ResultItemCode { get; set; }
         public string UnitofMeasure { get; set; }
