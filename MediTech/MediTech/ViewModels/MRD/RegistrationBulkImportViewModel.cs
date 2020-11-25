@@ -4,6 +4,7 @@ using MediTech.Model;
 using MediTech.Models;
 using MediTech.Reports.Operating.Patient;
 using MediTech.Views;
+using ShareLibrary;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -437,6 +438,7 @@ namespace MediTech.ViewModels
                         CurrentImportedData.FirstName = drow["FirstName"].ToString().Trim();
                         CurrentImportedData.LastName = drow["LastName"].ToString().Trim();
                         CurrentImportedData.DateOfBirth = drow["Birth Date"].ToString().Trim();
+                        CurrentImportedData.Age = drow["Age"].ToString().Trim();
                         CurrentImportedData.Gender = drow["Sex"].ToString().Trim();
                         CurrentImportedData.Company = drow["Company"].ToString().Trim();
                         CurrentImportedData.Program = drow["Program"].ToString().Trim();
@@ -546,9 +548,12 @@ namespace MediTech.ViewModels
 
                             CurrentImportedData.BirthDttm = birthdttm;
                         }
-                        else if(!string.IsNullOrEmpty(drow["Age"].ToString().Trim()))
+                        else if (!string.IsNullOrEmpty(CurrentImportedData.Age) && (CheckValidate.IsNumber(CurrentImportedData.Age)))
                         {
-                            CurrentImportedData.Age = drow["Age"].ToString().Trim();
+
+                            CurrentImportedData.BirthDttm = DateTime.Parse("01/01/" + Convert.ToString(int.Parse(DateTime.Now.ToString("yyyy")) - int.Parse(CurrentImportedData.Age)));
+                            CurrentImportedData.DOBComputed = true;
+                            CurrentImportedData.DateOfBirth = CurrentImportedData.BirthDttm?.ToString("dd/MM/yyyy");
                         }
 
                         CurrentImportedData.IDCard = drow["IDCard"].ToString().Replace("-", "");
@@ -737,6 +742,7 @@ namespace MediTech.ViewModels
                             patientModel.SEXXXUID = currentData.SEXXXUID;
                             patientModel.TITLEUID = currentData.TITLEUID;
                             patientModel.BirthDttm = currentData.BirthDttm;
+                            patientModel.DOBComputed = currentData.DOBComputed;
                             patientModel.FirstName = currentData.FirstName;
                             patientModel.LastName = currentData.LastName;
                             patientModel.NationalID = currentData.IDCard.Replace("-", "");
@@ -824,6 +830,7 @@ namespace MediTech.ViewModels
                                     visitInfo.PayorDetailUID = result.SelectedPayorDetail.PayorDetailUID;
                                     visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
                                     visitInfo.Comments = result.CommentDoctor;
+                                    visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = result.SelectOrganisation.HealthOrganisationUID;
                                     if (result.SelectedCareprovider != null)
                                         visitInfo.CareProviderUID = result.SelectedCareprovider.CareproviderUID;
@@ -951,7 +958,6 @@ namespace MediTech.ViewModels
                 }
             }
         }
-
 
         private void PrintSticker()
         {
@@ -1098,7 +1104,11 @@ namespace MediTech.ViewModels
                                         rpt.Parameters["HN"].Value = patient.BN;
                                         rpt.Parameters["No"].Value = patient.No;
 
-                                        if (patient.BirthDttm != null)
+                                        if (!string.IsNullOrEmpty(patient.Age))
+                                        {
+                                            rpt.Parameters["Age"].Value = patient.Age;
+                                        }
+                                        else if (patient.BirthDttm != null)
                                         {
                                             rpt.Parameters["Age"].Value = ShareLibrary.UtilDate.calAgeFromBirthDate(patient.BirthDttm.Value);
                                         }
@@ -1163,7 +1173,11 @@ namespace MediTech.ViewModels
                             rpt.Parameters["DepartmentEmployee"].Value = patient.Department;
                             rpt.Parameters["EmployeeID"].Value = patient.EmployeeID;
 
-                            if (patient.BirthDttm != null)
+                            if (!string.IsNullOrEmpty(patient.Age))
+                            {
+                                rpt.Parameters["Age"].Value = patient.Age;
+                            }
+                            else if (patient.BirthDttm != null)
                             {
                                 rpt.Parameters["Age"].Value = ShareLibrary.UtilDate.calAgeFromBirthDate(patient.BirthDttm.Value);
                             }

@@ -3309,5 +3309,34 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockSummary_Result>("pRPTStockSummary", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
         }
+    
+        public virtual ObjectResult<pSearchCheckupExamList_Result> pSearchCheckupExamList(Nullable<System.DateTime> p_RequestDateFrom, Nullable<System.DateTime> p_RequestDateTo, Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID, Nullable<int> p_CheckupJobUID, Nullable<int> p_PRTGPUID)
+        {
+            var p_RequestDateFromParameter = p_RequestDateFrom.HasValue ?
+                new ObjectParameter("P_RequestDateFrom", p_RequestDateFrom) :
+                new ObjectParameter("P_RequestDateFrom", typeof(System.DateTime));
+    
+            var p_RequestDateToParameter = p_RequestDateTo.HasValue ?
+                new ObjectParameter("P_RequestDateTo", p_RequestDateTo) :
+                new ObjectParameter("P_RequestDateTo", typeof(System.DateTime));
+    
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            var p_CheckupJobUIDParameter = p_CheckupJobUID.HasValue ?
+                new ObjectParameter("P_CheckupJobUID", p_CheckupJobUID) :
+                new ObjectParameter("P_CheckupJobUID", typeof(int));
+    
+            var p_PRTGPUIDParameter = p_PRTGPUID.HasValue ?
+                new ObjectParameter("P_PRTGPUID", p_PRTGPUID) :
+                new ObjectParameter("P_PRTGPUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchCheckupExamList_Result>("pSearchCheckupExamList", p_RequestDateFromParameter, p_RequestDateToParameter, p_PatientUIDParameter, p_PayorDetailUIDParameter, p_CheckupJobUIDParameter, p_PRTGPUIDParameter);
+        }
     }
 }

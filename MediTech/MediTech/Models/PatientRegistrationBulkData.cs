@@ -44,6 +44,7 @@ namespace MediTech.Models
         public string PatientOtherID { get; set; }
         public string DateOfBirth { get; set; }
         public DateTime? BirthDttm { get; set; }
+        public bool DOBComputed { get; set; }
         public string Age { get; set; }
         public string Gender { get; set; }
         public int? SEXXXUID { get; set; }

@@ -1135,7 +1135,7 @@
                     </DataTemplate>
                 </dxlc:GroupBox.ContentTemplate>
             </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
+            <!--<dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
                 <dxlc:GroupBox.HeaderTemplate>
                     <DataTemplate>
@@ -1384,7 +1384,7 @@
                         </DataTemplate>
                     </dxe:ListBoxEdit.ItemTemplate>
                 </dxe:ListBoxEdit>
-            </dxlc:GroupBox>
+            </dxlc:GroupBox>-->
         </dxlc:FlowLayoutControl>
     </dxlc:LayoutControl>
 </UserControl>

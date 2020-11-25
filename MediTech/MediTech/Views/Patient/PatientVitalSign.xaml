@@ -189,7 +189,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ผู้ลงยันทึก" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ผู้ลงยันทึก" FieldName="RecordedBy" ReadOnly="True"/>
                             <dxg:GridColumn Header="เวลาที่ลงบันทึก" FieldName="RecordedDttm" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />

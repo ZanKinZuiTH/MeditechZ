@@ -18,6 +18,7 @@ namespace MediTech.Model
         public string VisitID { get; set; }
         public string PatientName { get; set; }
         public string Gender { get; set; }
+        public double Height { get; set; }
         public int SEXXXUID { get; set; }
         public DateTime? BirthDate { get; set; }
         public string BirthDateString
@@ -71,6 +72,7 @@ namespace MediTech.Model
         public string Modality { get; set; }
         public System.Nullable<int> RadiologistUID { get; set; }
         public System.Nullable<int> ExecuteByUID { get; set; }
+        public System.Nullable<int> RefNo { get; set; }
         public string DoctorName { get; set; }
         public string ExecuteBy { get; set; }
         public string OrganisationName { get; set; }

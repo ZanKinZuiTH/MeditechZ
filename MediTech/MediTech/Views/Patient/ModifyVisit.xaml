@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ModifyVisitViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="400" d:DesignWidth="600">
+             d:DesignHeight="450" d:DesignWidth="600">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
@@ -130,6 +130,52 @@
                                       ItemsSource="{Binding PayorAgreementSource}"
                                       SelectedItem="{Binding SelectedPayorAgreement}"
                                       IsEnabled="{Binding IsEnableFinancial}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="บริษัท" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit Name="lkeCompanyName" ItemsSource="{Binding CheckupJobSource}" 
+                                      SelectedItem="{Binding SelectedCheckupJob}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="500"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                        <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                        <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                        <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView
+                        Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>

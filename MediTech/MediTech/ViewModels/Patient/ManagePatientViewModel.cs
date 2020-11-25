@@ -1020,7 +1020,6 @@ namespace MediTech.ViewModels
         public bool ValidatePatientData()
         {
 
-
             if (SelectedTitle == null)
             {
                 WarningDialog("กรุณาใส่ คำนำหน้า");

@@ -167,6 +167,7 @@ namespace MediTechWebApi.Controllers
                         ResultItemCode = ri.Code,
                         ResultItemName = ri.DisplyName,
                         PrintOrder = rsl.PrintOrder ?? 0,
+                        IsMandatory = rsl.IsMandatory ?? "N",
                         ReferenceRange = resultCom.ReferenceRange,
                         Low = resultCom.Low,
                         High = resultCom.High,

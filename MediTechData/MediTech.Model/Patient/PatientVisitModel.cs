@@ -26,6 +26,7 @@ namespace MediTech.Model
         public string VisitID { get; set; }
         public string IsBillFinalized { get; set; }
         public string Comments { get; set; }
+        public int? RefNo { get; set; }
         public int? BookingUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
