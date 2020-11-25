@@ -274,17 +274,28 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
                         if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
                         {
-                            string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
-                            if (!string.IsNullOrEmpty(resultChestThai))
+                            if ((chestXray.Title == "MR.") || (chestXray.Title == "MS.") || (chestXray.Title == "MISS") || (chestXray.Title == "MRS."))
                             {
-                                page3.lbChest.Text = resultChestThai;
+                                string chestEN = chestXray.RadiologyResultText;
+                                string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
+                                string ResultChestEn = ChestResult[1].Replace(":", "");
+                                ResultChestEn = ResultChestEn.Trim();
+                                page3.lbChest.Text = ResultChestEn;
                             }
                             else
                             {
-                                page3.lbChest.Text = "ยังไม่ได้แปลไทย";
+                                string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
+                                if (!string.IsNullOrEmpty(resultChestThai))
+                                {
+
+                                    page3.lbChest.Text = resultChestThai;
+                                }
+                                else
+                                {
+                                    page3.lbChest.Text = "ยังไม่ได้แปลไทย";
+                                }
                             }
                         }
-
                     }
                     else
                     {
@@ -297,14 +308,25 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page3.lbMam.Text = mammoGram.RadiologyResultStatus;
                         if (!string.IsNullOrEmpty(mammoGram.RadiologyResultText))
                         {
-                            string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus, mammoGram.RequestItemName);
-                            if (!string.IsNullOrEmpty(resultChestThai))
+                            if ((mammoGram.Title == "MR.") || (mammoGram.Title == "MS.") || (mammoGram.Title == "MISS") || (mammoGram.Title == "MRS."))
                             {
-                                page3.lbMam.Text = resultChestThai;
+                                string mamEN = mammoGram.RadiologyResultText;
+                                string[] MamResult = mamEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
+                                string MamResultEn = MamResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "");
+                                MamResultEn = MamResultEn.Trim();
+                                page3.lbMam.Text = MamResultEn;
                             }
                             else
                             {
-                                page3.lbMam.Text = "ยังไม่ได้แปลไทย";
+                                string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus, mammoGram.RequestItemName);
+                                if (!string.IsNullOrEmpty(resultChestThai))
+                                {
+                                    page3.lbMam.Text = resultChestThai;
+                                }
+                                else
+                                {
+                                    page3.lbMam.Text = "ยังไม่ได้แปลไทย";
+                                }
                             }
                         }
                     }
@@ -319,14 +341,25 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page3.lbUlt.Text = ultrsound.RadiologyResultStatus;
                         if (!string.IsNullOrEmpty(ultrsound.RadiologyResultText))
                         {
-                            string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus, ultrsound.RequestItemName);
-                            if (!string.IsNullOrEmpty(resultChestThai))
+                            if ((ultrsound.Title == "MR.") || (ultrsound.Title == "MS.") || (ultrsound.Title == "MISS") || (ultrsound.Title == "MRS."))
                             {
-                                page3.lbUlt.Text = resultChestThai;
+                                string UltEN = ultrsound.RadiologyResultText;
+                                string[] UltResult = UltEN.Split(new string[] {"IMPRESSION","Impression","impression"},StringSplitOptions.None);
+                                string UltResultEn = UltResult[1].Replace("\n", "").Replace("\r", "").Replace("\r\n", "").Replace(":","");
+                                UltResultEn = UltResultEn.Trim();
+                                page3.lbUlt.Text = UltResultEn;
                             }
                             else
                             {
-                                page3.lbUlt.Text = "ยังไม่ได้แปลไทย";
+                                string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus, ultrsound.RequestItemName);
+                                if (!string.IsNullOrEmpty(resultChestThai))
+                                {
+                                    page3.lbUlt.Text = resultChestThai;
+                                }
+                                else
+                                {
+                                    page3.lbUlt.Text = "ยังไม่ได้แปลไทย";
+                                }
                             }
                         }
                     }
@@ -408,7 +441,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                         #region Immunology and Virology
                         IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
-                            .Where(p => p.RequestItemName.Contains("Anti HBs") || p.RequestItemName.Contains("HBsAg"))
+                            .Where(p => p.RequestItemName.Contains("HBsAb") || p.RequestItemName.Contains("HBsAg"))
                             .OrderBy(p => p.Year);
                         GenerateImmunology(ImmunologyTestSet);
                         #endregion
@@ -435,7 +468,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                             || p.RequestItemName.Contains("Methyrene chloride in Blood")
                             || p.RequestItemName.Contains("Acetone in Urine")
                             || p.RequestItemName.Contains("Hexane in Urine")
-                            || p.RequestItemName.Contains("Isopropyl in Urine"))
+                            || p.RequestItemName.Contains("Isopropyl in Urine")
+                            || p.RequestItemName.Contains("Nickel in Urine"))
                             .OrderBy(p => p.Year);
                         GenerateToxicology(ToxicoTestSet);
                         #endregion
@@ -2687,6 +2721,40 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     {
                         page4.cellNickel3.ForeColor = (NickelAbnormal3 == "H") ? Color.Red : Color.Blue;
                         page4.cellNickel3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
+                    #endregion
+
+                    #region Nickel in Urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188") != null)
+                    {
+                        page4.RowNickelUrine.Visible = true;
+                        page4.NickelUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188")?.ReferenceRange;
+                        page4.NickelUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.ResultValue;
+                        page4.NickelUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.ResultValue;
+                        page4.NickelUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.ResultValue;
+
+                        string NickelUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.IsAbnormal;
+                        string NickelUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.IsAbnormal;
+                        string NickelUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(NickelUrineAbnormal1))
+                        {
+                            page4.cellIsopropanol1.ForeColor = (NickelUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page4.cellIsopropanol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(NickelUrineAbnormal2))
+                        {
+                            page4.cellIsopropanol2.ForeColor = (NickelUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page4.cellIsopropanol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(NickelUrineAbnormal3))
+                        {
+                            page4.cellIsopropanol3.ForeColor = (NickelUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page4.cellIsopropanol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
                     }
                     #endregion
                 }

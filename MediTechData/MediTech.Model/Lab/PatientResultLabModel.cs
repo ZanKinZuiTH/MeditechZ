@@ -13,6 +13,7 @@ namespace MediTech.Model
         public string RequestItemType { get; set; }
         public string Catagory { get; set; }
         public string RequestItemName { get; set; }
+        public string RequestItemCode { get; set; }
         public string ResultItemCode { get; set; }
         public string ResultItemName { get; set; }
         public string ReferenceRange { get; set; }
