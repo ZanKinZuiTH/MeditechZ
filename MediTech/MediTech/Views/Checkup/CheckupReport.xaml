@@ -148,16 +148,16 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
 
-                        <!--<dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCheckopCommand}">
+                                <dx:SimpleButton Width="170" Height="30" Command="{Binding PreviewBookCheckopCommand}">
                                     <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
-                                        <TextBlock Text="Preview" VerticalAlignment="Center"/>
+                                        <Image Source="/MediTech;component/Resources/Images/Document/PatientFile.png" />
+                                        <TextBlock Text="Preview checkup book" VerticalAlignment="Center"/>
                                     </StackPanel>
                                 </dx:SimpleButton>
                             </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>-->
+                        </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
