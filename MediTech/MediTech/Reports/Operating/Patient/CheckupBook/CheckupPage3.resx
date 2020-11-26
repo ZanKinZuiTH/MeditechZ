@@ -280,7 +280,7 @@
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
   <data name="xrTableCell79.Text" xml:space="preserve">
-    <value>สรุปผล</value>
+    <value>สรุปผล (Result)</value>
   </data>
   <data name="xrTableCell79.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
@@ -1345,7 +1345,7 @@
     <value>TopRight</value>
   </data>
   <data name="Detail.HeightF" type="System.Single, mscorlib">
-    <value>552.5</value>
+    <value>452.5001</value>
   </data>
   <data name="Detail.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>TopLeft</value>
@@ -1354,7 +1354,7 @@
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>428.833374, 3.33333325</value>
+    <value>428.833374, 11.6664124</value>
   </data>
   <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 9pt</value>
@@ -1387,7 +1387,7 @@
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>17.5, 3.33333325</value>
+    <value>24.166666, 11.6664124</value>
   </data>
   <data name="xrTableCell8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 9pt</value>
@@ -1423,7 +1423,7 @@
     <value>TopLeft</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>22.5</value>
+    <value>37</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>TopLeft</value>
@@ -1435,7 +1435,7 @@
     <value>True</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>0, 0, 0, 22</value>
+    <value>0, 0, 0, 37</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>583</value>

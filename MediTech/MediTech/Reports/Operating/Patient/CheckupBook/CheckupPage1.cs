@@ -196,7 +196,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     {
                         if(item != null)
                         {
-                            if (sb.Length < 1500)
+                            if (sb.Length < 1400)
                             {
                                 sb.AppendLine(item);
                             }
@@ -315,6 +315,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                                 if (!string.IsNullOrEmpty(resultChestThai))
                                 {
                                     page6.lbChest.Text = resultChestThai;
+                                    if (page6.lbChest.Text != null && page6.lbChest.Text.Length > 400)
+                                    {
+                                        page6.lbChest.Font = new Font("Angsana New", 9);
+                                    }
                                 }
                                 else
                                 {
@@ -348,6 +352,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                                 if (!string.IsNullOrEmpty(resultChestThai))
                                 {
                                     page6.lbMam.Text = resultChestThai;
+                                    if (page6.lbMam.Text != null && page6.lbMam.Text.Length > 400)
+                                    {
+                                        page6.lbMam.Font = new Font("Angsana New", 9);
+                                    }
                                 }
                                 else
                                 {
@@ -381,6 +389,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                                 if (!string.IsNullOrEmpty(resultChestThai))
                                 {
                                     page6.lbUlt.Text = resultChestThai;
+                                    if (page6.lbUlt.Text != null && page6.lbUlt.Text.Length > 400)
+                                    {
+                                        page6.lbUlt.Font = new Font("Angsana New", 9);
+                                    }
                                 }
                                 else
                                 {
@@ -510,7 +522,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         .Where(p => p.RequestItemCode.Contains("LAB281")
                         || p.RequestItemCode.Contains("LAB411")
                         || p.RequestItemCode.Contains("LAB282")
-                        || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB285")
                         || p.RequestItemCode.Contains("LAB232")
@@ -2904,7 +2915,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
-
+                PatientResultLabModel CheckGender = labTestSet.FirstOrDefault();
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
                 Years.Sort();
                 int countYear = Years.Count();
@@ -3049,60 +3060,68 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     page7.cellCa3.ForeColor = (caAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page7.cellCa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-
-                page7.cellPsaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4")?.ReferenceRange;
-                page7.cellPsa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year1)?.ResultValue;
-                page7.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year2)?.ResultValue;
-                page7.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year3)?.ResultValue;
-
-                string psaAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year1)?.IsAbnormal;
-                string psaAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year2)?.IsAbnormal;
-                string psaAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(psaAbnormal1))
+                if(CheckGender.SEXXXUID == 1)
                 {
-                    page7.cellPsa1.ForeColor = (psaAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellPsa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page7.RowCa125.Visible = false;
+                    page7.cellPsaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187")?.ReferenceRange;
+                    page7.cellPsa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.ResultValue;
+                    page7.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.ResultValue;
+                    page7.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year3)?.ResultValue;
+
+                    string psaAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.IsAbnormal;
+                    string psaAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.IsAbnormal;
+                    string psaAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAPAR187R4" && p.Year == year3)?.IsAbnormal;
+
+                    if (!string.IsNullOrEmpty(psaAbnormal1))
+                    {
+                        page7.cellPsa1.ForeColor = (psaAbnormal1 == "H") ? Color.Red : Color.Blue;
+                        page7.cellPsa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
+
+                    if (!string.IsNullOrEmpty(psaAbnormal2))
+                    {
+                        page7.cellPsa2.ForeColor = (psaAbnormal2 == "H") ? Color.Red : Color.Blue;
+                        page7.cellPsa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
+
+                    if (!string.IsNullOrEmpty(psaAbnormal3))
+                    {
+                        page7.cellPsa3.ForeColor = (psaAbnormal3 == "H") ? Color.Red : Color.Blue;
+                        page7.cellPsa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
                 }
 
-                if (!string.IsNullOrEmpty(psaAbnormal2))
+                if(CheckGender.SEXXXUID == 2)
                 {
-                    page7.cellPsa2.ForeColor = (psaAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellPsa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page7.RowPSA.Visible = false;
+                    page7.cellCa125Range.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41")?.ReferenceRange;
+                    page7.cellCa125_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.ResultValue;
+                    page7.cellCa125_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.ResultValue;
+                    page7.cellCa125_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.ResultValue;
+
+                    string Ca125Abnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.IsAbnormal;
+                    string Ca125Abnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.IsAbnormal;
+                    string Ca125Abnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.IsAbnormal;
+
+                    if (!string.IsNullOrEmpty(Ca125Abnormal1))
+                    {
+                        page7.cellCa125_1.ForeColor = (Ca125Abnormal1 == "H") ? Color.Red : Color.Blue;
+                        page7.cellCa125_1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
+
+                    if (!string.IsNullOrEmpty(Ca125Abnormal2))
+                    {
+                        page7.cellCa125_2.ForeColor = (Ca125Abnormal2 == "H") ? Color.Red : Color.Blue;
+                        page7.cellCa125_2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
+
+                    if (!string.IsNullOrEmpty(Ca125Abnormal3))
+                    {
+                        page7.cellCa125_3.ForeColor = (Ca125Abnormal3 == "H") ? Color.Red : Color.Blue;
+                        page7.cellCa125_3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    }
                 }
-
-                if (!string.IsNullOrEmpty(psaAbnormal3))
-                {
-                    page7.cellPsa3.ForeColor = (psaAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellPsa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                page7.cellCa125Range.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41")?.ReferenceRange;
-                page7.cellCa125_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.ResultValue;
-                page7.cellCa125_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.ResultValue;
-                page7.cellCa125_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.ResultValue;
-
-                string Ca125Abnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.IsAbnormal;
-                string Ca125Abnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.IsAbnormal;
-                string Ca125Abnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(Ca125Abnormal1))
-                {
-                    page7.cellCa125_1.ForeColor = (Ca125Abnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa125_1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(Ca125Abnormal2))
-                {
-                    page7.cellCa125_2.ForeColor = (Ca125Abnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa125_2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(Ca125Abnormal3))
-                {
-                    page7.cellCa125_3.ForeColor = (Ca125Abnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa125_3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+                
 
                 page7.cellHbA1cRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7")?.ReferenceRange;
                 page7.cellHbA1c1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.ResultValue;
