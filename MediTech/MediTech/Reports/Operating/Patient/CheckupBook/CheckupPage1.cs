@@ -467,7 +467,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     #region Liver Function
                     IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB221")
-                        || p.RequestItemCode.Contains("LAB222)")
+                        || p.RequestItemCode.Contains("LAB222")
                         || p.RequestItemCode.Contains("LAB223")
                         || p.RequestItemCode.Contains("LAB474")
                         || p.RequestItemCode.Contains("LAB475")
@@ -2978,6 +2978,34 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 {
                     page7.cellAfpCon3.ForeColor = (AfpConAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page7.cellAfpCon3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+
+                page7.cellAFPInterRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
+                page7.cellAfpInter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
+                page7.cellAfpInter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
+                page7.cellAfpInter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
+
+                string AfpInerAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.IsAbnormal;
+                string AfpInerAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.IsAbnormal;
+                string AfpInerAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(AfpInerAbnormal1))
+                {
+                    page7.cellAfpInter1.ForeColor = (AfpInerAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page7.cellAfpInter1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(AfpInerAbnormal2))
+                {
+                    page7.cellAfpInter2.ForeColor = (AfpInerAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page7.cellAfpInter2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(AfpInerAbnormal3))
+                {
+                    page7.cellAfpInter3.ForeColor = (AfpInerAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page7.cellAfpInter3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 
                 page7.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
