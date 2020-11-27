@@ -192,11 +192,12 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     string[] locResult = Regex.Split(wellnessResult, "[\r\n]+");
                     StringBuilder sb = new StringBuilder();
                     StringBuilder sb2 = new StringBuilder();
+                    int line = 0;
                     foreach (var item in locResult)
                     {
-                        if(item != null)
+                        if(!string.IsNullOrEmpty(item))
                         {
-                            if (sb.Length < 1400)
+                            if (line < 15)
                             {
                                 sb.AppendLine(item);
                             }
@@ -205,6 +206,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                                 sb2.AppendLine(item);
                             }
                         }
+                        line++;
                     }
                     page2.lbResultWellness.Text = sb.ToString();
                     lbResultWellness2.Text = sb2.ToString();
