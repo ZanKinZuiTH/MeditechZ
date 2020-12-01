@@ -313,7 +313,6 @@ namespace MediTechWebApi.Controllers
             return listData;
         }
 
-
         [Route("GeneratePatientBill")]
         [HttpPost]
         public HttpResponseMessage GeneratePatientBill(PatientBillModel model)
@@ -693,7 +692,6 @@ namespace MediTechWebApi.Controllers
                     return Request.CreateResponse(HttpStatusCode.OK, model);
                 }
 
-
             }
             catch (Exception ex)
             {
@@ -706,7 +704,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientBilledItemModel> GetPatientBillingGroup(long PatientBillUID)
         {
-            List<PatientBilledItemModel> data = new List<PatientBilledItemModel>(); ;
+            List<PatientBilledItemModel> data = new List<PatientBilledItemModel>();
             data = db.PatientBilledItem
                 .Where(w => w.PatientBillUID == PatientBillUID && w.StatusFlag == "A")
                 .GroupBy(p => new { p.BillingGroupUID, p.BillingSubGroupUID })
