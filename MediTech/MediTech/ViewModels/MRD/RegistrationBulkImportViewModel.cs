@@ -1115,6 +1115,7 @@ namespace MediTech.ViewModels
 
                                         rpt.Parameters["BirthDttm"].Value = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                                         rpt.Parameters["CheckUp"].Value = item.Display;
+                                        rpt.Parameters["Company"].Value = patient.Company;
                                         rpt.RequestParameters = false;
                                         rpt.ShowPrintMarginsWarning = false;
                                         printTool.Print();

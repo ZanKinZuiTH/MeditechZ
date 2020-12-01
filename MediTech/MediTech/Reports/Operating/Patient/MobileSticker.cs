@@ -13,7 +13,5 @@ namespace MediTech.Reports.Operating.Patient
             InitializeComponent();
         }
 
-
-
     }
 }
