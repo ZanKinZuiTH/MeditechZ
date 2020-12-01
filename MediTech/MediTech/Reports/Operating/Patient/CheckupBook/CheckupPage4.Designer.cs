@@ -29,32 +29,22 @@
         private void InitializeComponent()
         {
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbHN13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbName13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow16 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbHN4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbName4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbAudio = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow21 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell100 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudiogram = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudioListResult = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell101 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudioRight = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioRight = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell103 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudioLeft = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioLeft = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow13 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell105 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudioResult = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioResult = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow14 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell107 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.TitleAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbLung = new DevExpress.XtraReports.UI.XRTable();
@@ -236,13 +226,23 @@
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbHN13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbName13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow16 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbHN4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbName4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -260,90 +260,6 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrTable1
-            // 
-            this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(427.6666F, 10F);
-            this.xrTable1.Name = "xrTable1";
-            this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow17});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
-            this.xrTable1.StylePriority.UseBorderWidth = false;
-            this.xrTable1.StylePriority.UseFont = false;
-            // 
-            // xrTableRow17
-            // 
-            this.xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell2,
-            this.lbHN13,
-            this.lbName13});
-            this.xrTableRow17.Name = "xrTableRow17";
-            this.xrTableRow17.Weight = 1D;
-            // 
-            // xrTableCell2
-            // 
-            this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "HN";
-            this.xrTableCell2.Weight = 0.15833343505859376D;
-            // 
-            // lbHN13
-            // 
-            this.lbHN13.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.lbHN13.Name = "lbHN13";
-            this.lbHN13.StylePriority.UseFont = false;
-            this.lbHN13.Weight = 0.40000005660517463D;
-            // 
-            // lbName13
-            // 
-            this.lbName13.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.lbName13.Name = "lbName13";
-            this.lbName13.StylePriority.UseFont = false;
-            this.lbName13.Weight = 1.5083327681018564D;
-            // 
-            // xrTable4
-            // 
-            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(23.99999F, 10F);
-            this.xrTable4.Name = "xrTable4";
-            this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow16});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
-            this.xrTable4.StylePriority.UseBorderWidth = false;
-            this.xrTable4.StylePriority.UseFont = false;
-            // 
-            // xrTableRow16
-            // 
-            this.xrTableRow16.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8,
-            this.lbHN4,
-            this.lbName4});
-            this.xrTableRow16.Name = "xrTableRow16";
-            this.xrTableRow16.Weight = 1D;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.StylePriority.UseFont = false;
-            this.xrTableCell8.Text = "HN";
-            this.xrTableCell8.Weight = 0.15833343505859376D;
-            // 
-            // lbHN4
-            // 
-            this.lbHN4.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.lbHN4.Name = "lbHN4";
-            this.lbHN4.StylePriority.UseFont = false;
-            this.lbHN4.Weight = 0.40000005660517463D;
-            // 
-            // lbName4
-            // 
-            this.lbName4.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.lbName4.Name = "lbName4";
-            this.lbName4.StylePriority.UseFont = false;
-            this.lbName4.Weight = 1.5083327681018564D;
             // 
             // xrLabel4
             // 
@@ -380,53 +296,53 @@
             // xrTableRow21
             // 
             this.xrTableRow21.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell12,
-            this.xrTableCell100});
+            this.TitleAudiogram,
+            this.TitleAudioListResult});
             this.xrTableRow21.Name = "xrTableRow21";
             this.xrTableRow21.Weight = 1D;
             // 
-            // xrTableCell12
+            // TitleAudiogram
             // 
-            this.xrTableCell12.CanGrow = false;
-            this.xrTableCell12.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.StylePriority.UseFont = false;
-            this.xrTableCell12.StylePriority.UseTextAlignment = false;
-            this.xrTableCell12.Text = "การได้ยิน";
-            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell12.Weight = 1D;
+            this.TitleAudiogram.CanGrow = false;
+            this.TitleAudiogram.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudiogram.Name = "TitleAudiogram";
+            this.TitleAudiogram.StylePriority.UseFont = false;
+            this.TitleAudiogram.StylePriority.UseTextAlignment = false;
+            this.TitleAudiogram.Text = "การได้ยิน ";
+            this.TitleAudiogram.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.TitleAudiogram.Weight = 1D;
             // 
-            // xrTableCell100
+            // TitleAudioListResult
             // 
-            this.xrTableCell100.CanGrow = false;
-            this.xrTableCell100.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell100.Name = "xrTableCell100";
-            this.xrTableCell100.StylePriority.UseFont = false;
-            this.xrTableCell100.StylePriority.UseTextAlignment = false;
-            this.xrTableCell100.Text = "ผลการตรวจการได้ยิน ณ ความถี่";
-            this.xrTableCell100.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell100.Weight = 2.8295056238612522D;
+            this.TitleAudioListResult.CanGrow = false;
+            this.TitleAudioListResult.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudioListResult.Name = "TitleAudioListResult";
+            this.TitleAudioListResult.StylePriority.UseFont = false;
+            this.TitleAudioListResult.StylePriority.UseTextAlignment = false;
+            this.TitleAudioListResult.Text = "ผลการตรวจการได้ยิน ณ ความถี่";
+            this.TitleAudioListResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.TitleAudioListResult.Weight = 2.8295056238612522D;
             // 
             // xrTableRow11
             // 
             this.xrTableRow11.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell101,
+            this.TitleAudioRight,
             this.lbAudioRight});
             this.xrTableRow11.Name = "xrTableRow11";
             this.xrTableRow11.Weight = 1D;
             // 
-            // xrTableCell101
+            // TitleAudioRight
             // 
-            this.xrTableCell101.CanGrow = false;
-            this.xrTableCell101.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell101.Name = "xrTableCell101";
-            this.xrTableCell101.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell101.StylePriority.UseFont = false;
-            this.xrTableCell101.StylePriority.UsePadding = false;
-            this.xrTableCell101.StylePriority.UseTextAlignment = false;
-            this.xrTableCell101.Text = "แปลหูขวา";
-            this.xrTableCell101.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell101.Weight = 1D;
+            this.TitleAudioRight.CanGrow = false;
+            this.TitleAudioRight.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudioRight.Name = "TitleAudioRight";
+            this.TitleAudioRight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.TitleAudioRight.StylePriority.UseFont = false;
+            this.TitleAudioRight.StylePriority.UsePadding = false;
+            this.TitleAudioRight.StylePriority.UseTextAlignment = false;
+            this.TitleAudioRight.Text = "แปลหูขวา";
+            this.TitleAudioRight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TitleAudioRight.Weight = 1D;
             // 
             // lbAudioRight
             // 
@@ -440,23 +356,23 @@
             // xrTableRow12
             // 
             this.xrTableRow12.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell103,
+            this.TitleAudioLeft,
             this.lbAudioLeft});
             this.xrTableRow12.Name = "xrTableRow12";
             this.xrTableRow12.Weight = 1D;
             // 
-            // xrTableCell103
+            // TitleAudioLeft
             // 
-            this.xrTableCell103.CanGrow = false;
-            this.xrTableCell103.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell103.Name = "xrTableCell103";
-            this.xrTableCell103.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell103.StylePriority.UseFont = false;
-            this.xrTableCell103.StylePriority.UsePadding = false;
-            this.xrTableCell103.StylePriority.UseTextAlignment = false;
-            this.xrTableCell103.Text = "แปลหูซ้าย";
-            this.xrTableCell103.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell103.Weight = 1D;
+            this.TitleAudioLeft.CanGrow = false;
+            this.TitleAudioLeft.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudioLeft.Name = "TitleAudioLeft";
+            this.TitleAudioLeft.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.TitleAudioLeft.StylePriority.UseFont = false;
+            this.TitleAudioLeft.StylePriority.UsePadding = false;
+            this.TitleAudioLeft.StylePriority.UseTextAlignment = false;
+            this.TitleAudioLeft.Text = "แปลหูซ้าย";
+            this.TitleAudioLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TitleAudioLeft.Weight = 1D;
             // 
             // lbAudioLeft
             // 
@@ -470,23 +386,23 @@
             // xrTableRow13
             // 
             this.xrTableRow13.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell105,
+            this.TitleAudioResult,
             this.lbAudioResult});
             this.xrTableRow13.Name = "xrTableRow13";
             this.xrTableRow13.Weight = 1D;
             // 
-            // xrTableCell105
+            // TitleAudioResult
             // 
-            this.xrTableCell105.CanGrow = false;
-            this.xrTableCell105.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell105.Name = "xrTableCell105";
-            this.xrTableCell105.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell105.StylePriority.UseFont = false;
-            this.xrTableCell105.StylePriority.UsePadding = false;
-            this.xrTableCell105.StylePriority.UseTextAlignment = false;
-            this.xrTableCell105.Text = "สรุปผล (Result)";
-            this.xrTableCell105.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell105.Weight = 1D;
+            this.TitleAudioResult.CanGrow = false;
+            this.TitleAudioResult.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudioResult.Name = "TitleAudioResult";
+            this.TitleAudioResult.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.TitleAudioResult.StylePriority.UseFont = false;
+            this.TitleAudioResult.StylePriority.UsePadding = false;
+            this.TitleAudioResult.StylePriority.UseTextAlignment = false;
+            this.TitleAudioResult.Text = "สรุปผล ";
+            this.TitleAudioResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TitleAudioResult.Weight = 1D;
             // 
             // lbAudioResult
             // 
@@ -500,23 +416,23 @@
             // xrTableRow14
             // 
             this.xrTableRow14.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell107,
+            this.TitleAudioRecommend,
             this.lbAudioRecommend});
             this.xrTableRow14.Name = "xrTableRow14";
             this.xrTableRow14.Weight = 1.8506082081042412D;
             // 
-            // xrTableCell107
+            // TitleAudioRecommend
             // 
-            this.xrTableCell107.CanGrow = false;
-            this.xrTableCell107.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell107.Name = "xrTableCell107";
-            this.xrTableCell107.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell107.StylePriority.UseFont = false;
-            this.xrTableCell107.StylePriority.UsePadding = false;
-            this.xrTableCell107.StylePriority.UseTextAlignment = false;
-            this.xrTableCell107.Text = "คำแนะนำแพทย์";
-            this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell107.Weight = 1D;
+            this.TitleAudioRecommend.CanGrow = false;
+            this.TitleAudioRecommend.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleAudioRecommend.Name = "TitleAudioRecommend";
+            this.TitleAudioRecommend.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.TitleAudioRecommend.StylePriority.UseFont = false;
+            this.TitleAudioRecommend.StylePriority.UsePadding = false;
+            this.TitleAudioRecommend.StylePriority.UseTextAlignment = false;
+            this.TitleAudioRecommend.Text = "คำแนะนำแพทย์";
+            this.TitleAudioRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.TitleAudioRecommend.Weight = 1D;
             // 
             // lbAudioRecommend
             // 
@@ -535,7 +451,7 @@
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(448.3334F, 245.0742F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(443.4999F, 245.0742F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(326.8332F, 23.00002F);
@@ -580,7 +496,7 @@
             this.xrTableCell13.Name = "xrTableCell13";
             this.xrTableCell13.StylePriority.UseFont = false;
             this.xrTableCell13.StylePriority.UseTextAlignment = false;
-            this.xrTableCell13.Text = "รายการ";
+            this.xrTableCell13.Text = "รายการ (List)";
             this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell13.Weight = 0.90166670501638124D;
             // 
@@ -2550,6 +2466,90 @@
             this.xrLabel2.Text = "4";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
+            // xrTable1
+            // 
+            this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(427.6666F, 10F);
+            this.xrTable1.Name = "xrTable1";
+            this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow17});
+            this.xrTable1.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
+            this.xrTable1.StylePriority.UseBorderWidth = false;
+            this.xrTable1.StylePriority.UseFont = false;
+            // 
+            // xrTableRow17
+            // 
+            this.xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell2,
+            this.lbHN13,
+            this.lbName13});
+            this.xrTableRow17.Name = "xrTableRow17";
+            this.xrTableRow17.Weight = 1D;
+            // 
+            // xrTableCell2
+            // 
+            this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell2.Name = "xrTableCell2";
+            this.xrTableCell2.StylePriority.UseFont = false;
+            this.xrTableCell2.Text = "HN";
+            this.xrTableCell2.Weight = 0.15833343505859376D;
+            // 
+            // lbHN13
+            // 
+            this.lbHN13.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN13.Name = "lbHN13";
+            this.lbHN13.StylePriority.UseFont = false;
+            this.lbHN13.Weight = 0.40000005660517463D;
+            // 
+            // lbName13
+            // 
+            this.lbName13.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName13.Name = "lbName13";
+            this.lbName13.StylePriority.UseFont = false;
+            this.lbName13.Weight = 1.5083327681018564D;
+            // 
+            // xrTable4
+            // 
+            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 8F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(23.99999F, 10F);
+            this.xrTable4.Name = "xrTable4";
+            this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow16});
+            this.xrTable4.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
+            this.xrTable4.StylePriority.UseBorderWidth = false;
+            this.xrTable4.StylePriority.UseFont = false;
+            // 
+            // xrTableRow16
+            // 
+            this.xrTableRow16.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8,
+            this.lbHN4,
+            this.lbName4});
+            this.xrTableRow16.Name = "xrTableRow16";
+            this.xrTableRow16.Weight = 1D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.Text = "HN";
+            this.xrTableCell8.Weight = 0.15833343505859376D;
+            // 
+            // lbHN4
+            // 
+            this.lbHN4.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN4.Name = "lbHN4";
+            this.lbHN4.StylePriority.UseFont = false;
+            this.lbHN4.Weight = 0.40000005660517463D;
+            // 
+            // lbName4
+            // 
+            this.lbName4.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName4.Name = "lbName4";
+            this.lbName4.StylePriority.UseFont = false;
+            this.lbName4.Weight = 1.5083327681018564D;
+            // 
             // TopMargin
             // 
             this.TopMargin.HeightF = 0F;
@@ -2579,11 +2579,11 @@
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "17.1";
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -2758,19 +2758,13 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRTable tbAudio;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow21;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell100;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow11;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell101;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioRight;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow12;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell103;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioLeft;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow13;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell105;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioResult;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow14;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell107;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioRecommend;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRTable tbLung;
@@ -2800,5 +2794,11 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow38;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell127;
         public DevExpress.XtraReports.UI.XRTableCell lbLungRecommend;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudiogram;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudioListResult;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudioRight;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudioLeft;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudioResult;
+        public DevExpress.XtraReports.UI.XRTableCell TitleAudioRecommend;
     }
 }

@@ -140,17 +140,17 @@
   <data name="tbVisionOccmed.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
     <value>24.166666, 54.67967</value>
   </data>
-  <data name="xrTableCell67.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleFarVision.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell67.Text" xml:space="preserve">
+  <data name="TitleFarVision.Text" xml:space="preserve">
     <value>มองระยะไกล</value>
   </data>
-  <data name="xrTableCell67.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleFarVision.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="xrTableCell67.Weight" type="System.Double, mscorlib">
+  <data name="TitleFarVision.Weight" type="System.Double, mscorlib">
     <value>0.83333289757972562</value>
   </data>
   <data name="lbFarVision.Font" type="System.Drawing.Font, System.Drawing">
@@ -162,16 +162,16 @@
   <data name="lbFarVision.Weight" type="System.Double, mscorlib">
     <value>1.0249999271273056</value>
   </data>
-  <data name="xrTableCell70.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleNearVision.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell70.Text" xml:space="preserve">
+  <data name="TitleNearVision.Text" xml:space="preserve">
     <value>มองระยะใกล้</value>
   </data>
-  <data name="xrTableCell70.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleNearVision.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell70.Weight" type="System.Double, mscorlib">
+  <data name="TitleNearVision.Weight" type="System.Double, mscorlib">
     <value>0.81666709010376359</value>
   </data>
   <data name="lbNearVision.Font" type="System.Drawing.Font, System.Drawing">
@@ -186,16 +186,16 @@
   <data name="xrTableRow3.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell71.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="Title3DVision.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell71.Text" xml:space="preserve">
+  <data name="Title3DVision.Text" xml:space="preserve">
     <value>มองภาพ 3 มิติ</value>
   </data>
-  <data name="xrTableCell71.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="Title3DVision.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell71.Weight" type="System.Double, mscorlib">
+  <data name="Title3DVision.Weight" type="System.Double, mscorlib">
     <value>0.83333289757972562</value>
   </data>
   <data name="lb3DVision.Font" type="System.Drawing.Font, System.Drawing">
@@ -207,16 +207,16 @@
   <data name="lb3DVision.Weight" type="System.Double, mscorlib">
     <value>1.0249999271273056</value>
   </data>
-  <data name="xrTableCell73.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleBalanceEye.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell73.Text" xml:space="preserve">
+  <data name="TitleBalanceEye.Text" xml:space="preserve">
     <value>สมดุลย์กล้ามเนื้อตา</value>
   </data>
-  <data name="xrTableCell73.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleBalanceEye.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell73.Weight" type="System.Double, mscorlib">
+  <data name="TitleBalanceEye.Weight" type="System.Double, mscorlib">
     <value>0.81666709010376359</value>
   </data>
   <data name="lbBalanceEye.Font" type="System.Drawing.Font, System.Drawing">
@@ -231,16 +231,16 @@
   <data name="xrTableRow16.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell75.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleColor.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell75.Text" xml:space="preserve">
+  <data name="TitleColor.Text" xml:space="preserve">
     <value>การแยกสี</value>
   </data>
-  <data name="xrTableCell75.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleColor.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell75.Weight" type="System.Double, mscorlib">
+  <data name="TitleColor.Weight" type="System.Double, mscorlib">
     <value>0.83333289757972562</value>
   </data>
   <data name="lbVisionColor.Font" type="System.Drawing.Font, System.Drawing">
@@ -252,16 +252,16 @@
   <data name="lbVisionColor.Weight" type="System.Double, mscorlib">
     <value>1.0249999271273056</value>
   </data>
-  <data name="xrTableCell77.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleFieldVision.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell77.Text" xml:space="preserve">
+  <data name="TitleFieldVision.Text" xml:space="preserve">
     <value>ลานสายตา</value>
   </data>
-  <data name="xrTableCell77.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleFieldVision.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell77.Weight" type="System.Double, mscorlib">
+  <data name="TitleFieldVision.Weight" type="System.Double, mscorlib">
     <value>0.81666709010376359</value>
   </data>
   <data name="lbFieldVision.Font" type="System.Drawing.Font, System.Drawing">
@@ -276,16 +276,16 @@
   <data name="xrTableRow24.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell79.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleVisionOccmedResult.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell79.Text" xml:space="preserve">
-    <value>สรุปผล (Result)</value>
+  <data name="TitleVisionOccmedResult.Text" xml:space="preserve">
+    <value>สรุปผล</value>
   </data>
-  <data name="xrTableCell79.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleVisionOccmedResult.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell79.Weight" type="System.Double, mscorlib">
+  <data name="TitleVisionOccmedResult.Weight" type="System.Double, mscorlib">
     <value>0.83333289757972562</value>
   </data>
   <data name="lbVisionOccmedResult.Font" type="System.Drawing.Font, System.Drawing">
@@ -300,16 +300,16 @@
   <data name="xrTableRow25.Weight" type="System.Double, mscorlib">
     <value>1</value>
   </data>
-  <data name="xrTableCell81.Font" type="System.Drawing.Font, System.Drawing">
+  <data name="TitleVisionOccmedRecommend.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 10pt, style=Bold</value>
   </data>
-  <data name="xrTableCell81.Text" xml:space="preserve">
+  <data name="TitleVisionOccmedRecommend.Text" xml:space="preserve">
     <value>คำแนะนำแพทย์</value>
   </data>
-  <data name="xrTableCell81.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
+  <data name="TitleVisionOccmedRecommend.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
     <value>MiddleCenter</value>
   </data>
-  <data name="xrTableCell81.Weight" type="System.Double, mscorlib">
+  <data name="TitleVisionOccmedRecommend.Weight" type="System.Double, mscorlib">
     <value>0.83333289757972562</value>
   </data>
   <data name="lbVisionOccmedRecommend.Font" type="System.Drawing.Font, System.Drawing">
