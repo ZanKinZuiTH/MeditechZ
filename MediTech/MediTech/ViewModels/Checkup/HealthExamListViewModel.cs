@@ -428,18 +428,15 @@ namespace MediTech.ViewModels
                                 (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(item);
                                 reviewViewModel = (EnterOccuVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewOccu, false, true);
                                 break;
-                            case "Vision Test":
-                                EnterVisionTestResult reviewVision = new EnterVisionTestResult();
-                                (reviewVision.DataContext as EnterVisionTestResultViewModel).AssignModel(item);
-                                reviewViewModel = (EnterVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewVision, false, true);
-                                break;
                             case "Pulmonary Function Test":
                                 EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
                                 (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
                                 reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                                 break;
                             default:
-
+                                EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
+                                (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
+                                reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
                                 break;
                         }
 
@@ -493,17 +490,15 @@ namespace MediTech.ViewModels
                             (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(SelectCheckupExam);
                             reviewViewModel = (EnterOccuVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewOccu, false, true);
                             break;
-                        case "Vision Test":
-                            EnterVisionTestResult reviewVision = new EnterVisionTestResult();
-                            (reviewVision.DataContext as EnterVisionTestResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewVision, false, true);
-                            break;
                         case "Pulmonary Function Test":
                             EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
                             (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
                             reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                             break;
                         default:
+                            EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
+                            (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(SelectCheckupExam);
+                            reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
                             break;
        
                     }

@@ -1160,14 +1160,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public EnterVisionTestResultViewModel EnterVisionTestResultViewModel
+        public EnterCheckupTestResultViewModel EnterCheckupTestResultViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<EnterVisionTestResultViewModel>())
-                    SimpleIoc.Default.Register<EnterVisionTestResultViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<EnterCheckupTestResultViewModel>())
+                    SimpleIoc.Default.Register<EnterCheckupTestResultViewModel>();
 
-                return ServiceLocator.Current.GetInstance<EnterVisionTestResultViewModel>();
+                return ServiceLocator.Current.GetInstance<EnterCheckupTestResultViewModel>();
             }
         }
 

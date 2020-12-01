@@ -124,10 +124,10 @@
             // 
             this.xrLabel1.CanGrow = false;
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(111.0598F, 22.06716F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(105.2265F, 22.06716F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(78.9402F, 14.04167F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(84.77354F, 14.04167F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.Text = "DOB: [Parameters.BirthDttm] Age: [Parameters.Age]";
             this.xrLabel1.WordWrap = false;
