@@ -2970,7 +2970,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
 
                     #region Nickel In Urine
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130") != null)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188") != null)
                     {
                         page8.RowNickelUrine.Visible = true;
                         page8.cellNickelUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188")?.ReferenceRange;
