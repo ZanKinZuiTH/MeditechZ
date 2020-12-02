@@ -85,5 +85,9 @@ namespace MediTech.Model
         public string BlindColor { get; set; }
         public string ViewResult { get; set; }
         public string ViewRecommend { get; set; }
+        public double? ValueBackStrength { get; set; }
+        public double? BackStrength { get; set; }
+        public string MuscleResult { get; set; }
+        public string MuscleNote { get; set; }
     }
 }

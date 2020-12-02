@@ -144,45 +144,45 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 #endregion
 
                 #region Vision Occmed
-                page3.lbFarVision.Text = data.FirstOrDefault().FarPoint != null ? data.FirstOrDefault().FarPoint.ToString() : "";
-                if ((page3.lbFarVision.Text != "" && page3.lbFarVision.Text != "ปกติ") && (page3.lbFarVision.Text != "" && page3.lbFarVision.Text != "Normal"))
+                page4.lbFarVision.Text = data.FirstOrDefault().FarPoint != null ? data.FirstOrDefault().FarPoint.ToString() : "";
+                if ((page4.lbFarVision.Text != "" && page4.lbFarVision.Text != "ปกติ") && (page4.lbFarVision.Text != "" && page4.lbFarVision.Text != "Normal"))
                 {
-                    page3.lbFarVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lbFarVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lbNearVision.Text = data.FirstOrDefault().NearPoint != null ? data.FirstOrDefault().NearPoint.ToString() : "";
-                if ((page3.lbNearVision.Text != "" && page3.lbNearVision.Text != "ปกติ") && (page3.lbNearVision.Text != "" && page3.lbNearVision.Text != "Normal"))
+                page4.lbNearVision.Text = data.FirstOrDefault().NearPoint != null ? data.FirstOrDefault().NearPoint.ToString() : "";
+                if ((page4.lbNearVision.Text != "" && page4.lbNearVision.Text != "ปกติ") && (page4.lbNearVision.Text != "" && page4.lbNearVision.Text != "Normal"))
                 {
-                    page3.lbNearVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lbNearVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lb3DVision.Text = data.FirstOrDefault().Depth != null ? data.FirstOrDefault().Depth.ToString() : "";
-                if ((page3.lb3DVision.Text != "" && page3.lb3DVision.Text != "ปกติ") && (page3.lb3DVision.Text != "" && page3.lb3DVision.Text != "Normal"))
+                page4.lb3DVision.Text = data.FirstOrDefault().Depth != null ? data.FirstOrDefault().Depth.ToString() : "";
+                if ((page4.lb3DVision.Text != "" && page4.lb3DVision.Text != "ปกติ") && (page4.lb3DVision.Text != "" && page4.lb3DVision.Text != "Normal"))
                 {
-                    page3.lb3DVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lb3DVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lbBalanceEye.Text = data.FirstOrDefault().Muscle != null ? data.FirstOrDefault().Muscle.ToString() : "";
-                if ((page3.lbBalanceEye.Text != "" && page3.lbBalanceEye.Text != "ปกติ") && (page3.lbBalanceEye.Text != "" && page3.lbBalanceEye.Text != "Normal"))
+                page4.lbBalanceEye.Text = data.FirstOrDefault().Muscle != null ? data.FirstOrDefault().Muscle.ToString() : "";
+                if ((page4.lbBalanceEye.Text != "" && page4.lbBalanceEye.Text != "ปกติ") && (page4.lbBalanceEye.Text != "" && page4.lbBalanceEye.Text != "Normal"))
                 {
-                    page3.lbBalanceEye.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lbBalanceEye.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lbVisionColor.Text = data.FirstOrDefault().Color != null ? data.FirstOrDefault().Color.ToString() : "";
-                if ((page3.lbVisionColor.Text != "" && page3.lbVisionColor.Text != "ปกติ") && (page3.lbVisionColor.Text != "" && page3.lbVisionColor.Text != "Normal"))
+                page4.lbVisionColor.Text = data.FirstOrDefault().Color != null ? data.FirstOrDefault().Color.ToString() : "";
+                if ((page4.lbVisionColor.Text != "" && page4.lbVisionColor.Text != "ปกติ") && (page4.lbVisionColor.Text != "" && page4.lbVisionColor.Text != "Normal"))
                 {
-                    page3.lbVisionColor.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lbVisionColor.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lbFieldVision.Text = data.FirstOrDefault().Visualfield != null ? data.FirstOrDefault().Visualfield.ToString() : "";
-                if ((page3.lbFieldVision.Text != "" && page3.lbFieldVision.Text != "ปกติ") && (page3.lbFieldVision.Text != "" && page3.lbFieldVision.Text != "Normal"))
+                page4.lbFieldVision.Text = data.FirstOrDefault().Visualfield != null ? data.FirstOrDefault().Visualfield.ToString() : "";
+                if ((page4.lbFieldVision.Text != "" && page4.lbFieldVision.Text != "ปกติ") && (page4.lbFieldVision.Text != "" && page4.lbFieldVision.Text != "Normal"))
                 { 
-                    page3.lbFieldVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                    page4.lbFieldVision.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
-                page3.lbVisionOccmedResult.Text = data.FirstOrDefault().TitmusConclusion != null ? data.FirstOrDefault().TitmusConclusion.ToString() : "";
-                if (page3.lbVisionOccmedResult.Text != null && page3.lbVisionOccmedResult.Text.Length > 120)
+                page4.lbVisionOccmedResult.Text = data.FirstOrDefault().TitmusConclusion != null ? data.FirstOrDefault().TitmusConclusion.ToString() : "";
+                if (page4.lbVisionOccmedResult.Text != null && page4.lbVisionOccmedResult.Text.Length > 120)
                 {
-                    page3.lbVisionOccmedResult.Font = new Font("Angsana New", 9);
+                    page4.lbVisionOccmedResult.Font = new Font("Angsana New", 9);
                 }
-                page3.lbVisionOccmedRecommend.Text = data.FirstOrDefault().TitmusRecommend != null ? data.FirstOrDefault().TitmusRecommend.ToString() : "";
-                if (page3.lbVisionOccmedRecommend.Text != null && page3.lbVisionOccmedRecommend.Text.Length > 120)
+                page4.lbVisionOccmedRecommend.Text = data.FirstOrDefault().TitmusRecommend != null ? data.FirstOrDefault().TitmusRecommend.ToString() : "";
+                if (page4.lbVisionOccmedRecommend.Text != null && page4.lbVisionOccmedRecommend.Text.Length > 120)
                 {
-                    page3.lbVisionOccmedRecommend.Font = new Font("Angsana New", 9);
+                    page4.lbVisionOccmedRecommend.Font = new Font("Angsana New", 9);
                 }
 
                 #endregion
@@ -233,22 +233,29 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
 
                 #endregion
 
+                #region Muscle 
+                page3.lbValueBackStrenght.Text = data.FirstOrDefault().ValueBackStrength != null ? data.FirstOrDefault().ValueBackStrength.ToString() : "";
+                page3.lbBackStrenght.Text = data.FirstOrDefault().BackStrength != null ? data.FirstOrDefault().BackStrength.ToString() : "";
+                page3.lbMuscleResult.Text = data.FirstOrDefault().MuscleResult != null ? data.FirstOrDefault().MuscleResult.ToString() : "";
+                page3.lbNoteMuscle.Text = data.FirstOrDefault().MuscleNote != null ? data.FirstOrDefault().MuscleNote.ToString() : "";
+                #endregion
+
                 #region Audio Test
-                page4.lbAudioRight.Text = data.FirstOrDefault().AudioRightResult != null ? data.FirstOrDefault().AudioRightResult.ToString() : "";
-                if (page4.lbAudioRight.Text != null && page4.lbAudioRight.Text.Length > 120)
+                page5.lbAudioRight.Text = data.FirstOrDefault().AudioRightResult != null ? data.FirstOrDefault().AudioRightResult.ToString() : "";
+                if (page5.lbAudioRight.Text != null && page5.lbAudioRight.Text.Length > 120)
                 {
-                    page4.lbAudioRight.Font = new Font("Angsana New", 9);
+                    page5.lbAudioRight.Font = new Font("Angsana New", 9);
                 }
-                page4.lbAudioLeft.Text = data.FirstOrDefault().AudioLeftResult != null ? data.FirstOrDefault().AudioLeftResult.ToString() : "";
-                if (page4.lbAudioLeft.Text != null && page4.lbAudioLeft.Text.Length > 120)
+                page5.lbAudioLeft.Text = data.FirstOrDefault().AudioLeftResult != null ? data.FirstOrDefault().AudioLeftResult.ToString() : "";
+                if (page5.lbAudioLeft.Text != null && page5.lbAudioLeft.Text.Length > 120)
                 {
-                    page4.lbAudioLeft.Font = new Font("Angsana New", 9);
+                    page5.lbAudioLeft.Font = new Font("Angsana New", 9);
                 }
-                page4.lbAudioResult.Text = data.FirstOrDefault().AudioResult != null ? data.FirstOrDefault().AudioResult.ToString() : "";
-                page4.lbAudioRecommend.Text = data.FirstOrDefault().AudioRecommend != null ? data.FirstOrDefault().AudioRecommend.ToString() : "";
-                if (page4.lbAudioRecommend.Text != null && page4.lbAudioRecommend.Text.Length > 120)
+                page5.lbAudioResult.Text = data.FirstOrDefault().AudioResult != null ? data.FirstOrDefault().AudioResult.ToString() : "";
+                page5.lbAudioRecommend.Text = data.FirstOrDefault().AudioRecommend != null ? data.FirstOrDefault().AudioRecommend.ToString() : "";
+                if (page5.lbAudioRecommend.Text != null && page5.lbAudioRecommend.Text.Length > 120)
                 {
-                    page4.lbAudioRecommend.Font = new Font("Angsana New", 9);
+                    page5.lbAudioRecommend.Font = new Font("Angsana New", 9);
                 }
 
                 #endregion
@@ -447,16 +454,18 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         {
                             lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
+
+
                     }
 
-                    page3.TitleFarVision.Text = "Far Test";
-                    page3.TitleNearVision.Text = "Near Test";
-                    page3.Title3DVision.Text = "3D Test";
-                    page3.TitleBalanceEye.Text = "Eye Balance";
-                    page3.TitleColor.Text = "Color";
-                    page3.TitleFieldVision.Text = "Visual Field";
-                    page3.TitleVisionOccmedResult.Text = "Summary";
-                    page3.TitleVisionOccmedRecommend.Text = "Suggestion";
+                    page4.TitleFarVision.Text = "Far Test";
+                    page4.TitleNearVision.Text = "Near Test";
+                    page4.Title3DVision.Text = "3D Test";
+                    page4.TitleBalanceEye.Text = "Eye Balance";
+                    page4.TitleColor.Text = "Color";
+                    page4.TitleFieldVision.Text = "Visual Field";
+                    page4.TitleVisionOccmedResult.Text = "Summary";
+                    page4.TitleVisionOccmedRecommend.Text = "Suggestion";
 
                     if (page4.lbLungResult.Text == "ปกติ")
                     {
@@ -467,24 +476,24 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         page4.lbLungResult.Text = "Abnormal";
                     }
 
-                    page4.TitleAudiogram.Text = "Audiogram";
-                    page4.TitleAudioListResult.Text = "Result";
-                    page4.TitleAudioRight.Text = "Right ear";
-                    page4.TitleAudioLeft.Text = "Left ear";
-                    page4.TitleAudioResult.Text = "Summary";
-                    page4.TitleAudioRecommend.Text = "Suggestion";
+                    page5.TitleAudiogram.Text = "Audiogram";
+                    page5.TitleAudioListResult.Text = "Result";
+                    page5.TitleAudioRight.Text = "Right ear";
+                    page5.TitleAudioLeft.Text = "Left ear";
+                    page5.TitleAudioResult.Text = "Summary";
+                    page5.TitleAudioRecommend.Text = "Suggestion";
 
-                    if (page4.lbAudioResult.Text == "ปกติ")
+                    if (page5.lbAudioResult.Text == "ปกติ")
                     {
-                        page4.lbAudioResult.Text = "Normal";
+                        page5.lbAudioResult.Text = "Normal";
                     }
-                    else if (page4.lbAudioResult.Text == "เฝ้าระวัง")
+                    else if (page5.lbAudioResult.Text == "เฝ้าระวัง")
                     {
-                        page4.lbAudioResult.Text = "Mild abnormality";
+                        page5.lbAudioResult.Text = "Mild abnormality";
                     }
                     else
                     {
-                        page4.lbAudioResult.Text = "Abnormal";
+                        page5.lbAudioResult.Text = "Abnormal";
                     }
 
                     page5.TitleMyopiaRight.Text = "Shortsighted Rt.";
