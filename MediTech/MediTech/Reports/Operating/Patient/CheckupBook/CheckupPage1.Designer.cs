@@ -169,7 +169,7 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(675.4975F, 431.9336F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(676.3308F, 439.4336F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(100F, 38.06851F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
@@ -480,7 +480,7 @@
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(446.656F, 120.3228F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(439.9893F, 120.3228F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
@@ -809,7 +809,7 @@
             // xrTable5
             // 
             this.xrTable5.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(606.1919F, 454.1051F);
+            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(607.0253F, 461.6051F);
             this.xrTable5.Name = "xrTable5";
             this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow31,
@@ -869,11 +869,11 @@
             // xrTable2
             // 
             this.xrTable2.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(446.656F, 136.1561F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(439.9893F, 136.1561F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow13});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(327.8774F, 20.50591F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(358.7026F, 20.50591F);
             this.xrTable2.StylePriority.UseFont = false;
             // 
             // xrTableRow13
@@ -888,12 +888,12 @@
             // 
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.Text = "บริษัท /Company :";
-            this.xrTableCell6.Weight = 0.8249995422363281D;
+            this.xrTableCell6.Weight = 0.81988220542410106D;
             // 
             // lbCompany
             // 
             this.lbCompany.Name = "lbCompany";
-            this.lbCompany.Weight = 2.4537744323804112D;
+            this.lbCompany.Weight = 2.7671436727448326D;
             // 
             // xrLabel2
             // 
