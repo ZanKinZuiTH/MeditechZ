@@ -18,9 +18,9 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for EnterOccuVisionTest.xaml
     /// </summary>
-    public partial class EnterVisionTestResult : UserControl
+    public partial class EnterCheckupTestResult : UserControl
     {
-        public EnterVisionTestResult()
+        public EnterCheckupTestResult()
         {
             InitializeComponent();
         }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EnterVisionTestResultViewModel : MediTechViewModelBase
+    public class EnterCheckupTestResultViewModel : MediTechViewModelBase
     {
         #region Properties
         private string _RequestItemName;
@@ -67,7 +67,7 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             base.OnLoaded();
-            (this.View as EnterVisionTestResult).patientBanner.SetPatientBanner(RequestModel);
+            (this.View as EnterCheckupTestResult).patientBanner.SetPatientBanner(RequestModel);
         }
 
         public void AssignModel(RequestListModel request)

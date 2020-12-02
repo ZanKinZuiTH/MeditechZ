@@ -941,8 +941,8 @@
     <Compile Include="Views\Checkup\EnterEKGResult.xaml.cs">
       <DependentUpon>EnterEKGResult.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\EnterVisionTestResult .xaml.cs">
-      <DependentUpon>EnterVisionTestResult .xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterCheckupTestResult .xaml.cs">
+      <DependentUpon>EnterCheckupTestResult .xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EnterOccuVisionTestResult.xaml.cs">
       <DependentUpon>EnterOccuVisionTestResult.xaml</DependentUpon>
@@ -1425,7 +1425,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\EnterVisionTestResult .xaml">
+    <Page Include="Views\Checkup\EnterCheckupTestResult .xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
