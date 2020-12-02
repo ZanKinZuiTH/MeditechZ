@@ -599,6 +599,13 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     GenerateStool(StoolTestSet);
                     #endregion
 
+                    #region Stool Culture
+                    IEnumerable<PatientResultLabModel> StoolCultureTestSet = labCompare
+                        .Where(p => p.RequestItemCode.Contains("LAB322"))
+                        .OrderBy(p => p.Year);
+                    GenerateStoolCulture(StoolCultureTestSet);
+                    #endregion
+
                     #region Toxicology
                     IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB508")
@@ -2465,12 +2472,42 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     page8.cellStappear3.ForeColor = (StappearAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page8.cellStappear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
+
+                
             }
             else
             {
                 page8.cellStoolYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page8.cellStoolYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page8.cellStoolYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+            }
+        }
+
+        private void GenerateStoolCulture(IEnumerable<PatientResultLabModel> labTestSet)
+        {
+            if(labTestSet != null && labTestSet.Count() > 0)
+            {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.Sort();
+                int countYear = Years.Count();
+                int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+
+                page8.StoolCultureYear1.Text = "ปี" + " " + year1.ToString();
+                page8.StoolCultureYear2.Text = "ปี" + " " + year2.ToString();
+                page8.StoolCultureYear3.Text = "ปี" + " " + year3.ToString();
+
+                page8.cellStColorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189")?.ReferenceRange;
+                page8.cellStoolCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
+                page8.cellStoolCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
+                page8.cellStoolCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
+            }
+            else
+            {
+                page8.StoolCultureYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page8.StoolCultureYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                page8.StoolCultureYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
 
