@@ -23,19 +23,18 @@
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
+                <dxg:GridControl Name="grdRightEar" ItemsSource="{Binding RightEarResultComponentItems}"
                              AutoGenerateColumns="None">
-                    <dxg:GridColumn FieldName="ResultItemName" 
-                                    Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
+                    <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:TextEdit Name="PART_Editor" FontSize="18"
-                                              Foreground="Blue"
+                                              Foreground="Red"
                                               HorizontalContentAlignment="Center"/>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*" 
+                    <dxg:GridColumn FieldName="ResultValue" Header="Intensity in Decibels (dB HL)" Width="*" 
                                     HorizontalHeaderContentAlignment="Center">
                         <dxg:GridColumn.DisplayTemplate>
                             <ControlTemplate>
@@ -45,7 +44,7 @@
                             </ControlTemplate>
                         </dxg:GridColumn.DisplayTemplate>
                         <dxg:GridColumn.EditSettings>
-                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox"                                                    
+                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox" 
                                                       HorizontalContentAlignment="Center">
                                 <dxe:ComboBoxEditSettings.EditNonEditableTemplate>
                                     <ControlTemplate>
@@ -86,18 +85,19 @@
                         <dxg:TableView ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
-                <dxg:GridControl Name="grdRightEar" ItemsSource="{Binding RightEarResultComponentItems}"
+                <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
                              AutoGenerateColumns="None">
-                    <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
+                    <dxg:GridColumn FieldName="ResultItemName" 
+                                    Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:TextEdit Name="PART_Editor" FontSize="18"
-                                              Foreground="Red"
+                                              Foreground="Blue"
                                               HorizontalContentAlignment="Center"/>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue" Header="Intensity in Decibels (dB HL)" Width="*" 
+                    <dxg:GridColumn FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*" 
                                     HorizontalHeaderContentAlignment="Center">
                         <dxg:GridColumn.DisplayTemplate>
                             <ControlTemplate>
@@ -107,7 +107,7 @@
                             </ControlTemplate>
                         </dxg:GridColumn.DisplayTemplate>
                         <dxg:GridColumn.EditSettings>
-                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox" 
+                            <dxe:ComboBoxEditSettings IsTextEditable="False" NullValueButtonPlacement="EditBox"                                                    
                                                       HorizontalContentAlignment="Center">
                                 <dxe:ComboBoxEditSettings.EditNonEditableTemplate>
                                     <ControlTemplate>
