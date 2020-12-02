@@ -789,7 +789,7 @@
     <Compile Include="ViewModels\Checkup\EnterEKGResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterOccuVisionTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterPulmonaryResultViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\EnterVisionTestResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterCheckupTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
     <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
