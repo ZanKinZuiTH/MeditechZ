@@ -272,7 +272,7 @@
             this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(427.6666F, 249.1401F);
+            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(426.8333F, 249.935F);
             this.tbVisionOccmed.Name = "tbVisionOccmed";
             this.tbVisionOccmed.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow11,
@@ -280,7 +280,7 @@
             this.xrTableRow13,
             this.xrTableRow14,
             this.xrTableRow21});
-            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(371.6667F, 161.7026F);
+            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(371.6667F, 141.7026F);
             this.tbVisionOccmed.StylePriority.UseBorders = false;
             // 
             // xrTableRow11
@@ -291,7 +291,7 @@
             this.TitleNearVision,
             this.lbNearVision});
             this.xrTableRow11.Name = "xrTableRow11";
-            this.xrTableRow11.Weight = 1D;
+            this.xrTableRow11.Weight = 0.93257628516882152D;
             // 
             // TitleFarVision
             // 
@@ -304,17 +304,16 @@
             this.TitleFarVision.StylePriority.UseTextAlignment = false;
             this.TitleFarVision.Text = "มองระยะไกล";
             this.TitleFarVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleFarVision.Weight = 0.83333289757972562D;
+            this.TitleFarVision.Weight = 0.70833260779961371D;
             // 
             // lbFarVision
             // 
-            this.lbFarVision.CanGrow = false;
             this.lbFarVision.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbFarVision.Name = "lbFarVision";
             this.lbFarVision.StylePriority.UseFont = false;
             this.lbFarVision.StylePriority.UseTextAlignment = false;
             this.lbFarVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFarVision.Weight = 1.0249999271273056D;
+            this.lbFarVision.Weight = 0.928363093955113D;
             // 
             // TitleNearVision
             // 
@@ -327,17 +326,16 @@
             this.TitleNearVision.StylePriority.UseTextAlignment = false;
             this.TitleNearVision.Text = "มองระยะใกล้";
             this.TitleNearVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleNearVision.Weight = 0.81666709010376359D;
+            this.TitleNearVision.Weight = 0.796637520326489D;
             // 
             // lbNearVision
             // 
-            this.lbNearVision.CanGrow = false;
             this.lbNearVision.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbNearVision.Name = "lbNearVision";
             this.lbNearVision.StylePriority.UseFont = false;
             this.lbNearVision.StylePriority.UseTextAlignment = false;
             this.lbNearVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbNearVision.Weight = 1.0416666501306113D;
+            this.lbNearVision.Weight = 1.1583332005360714D;
             // 
             // xrTableRow12
             // 
@@ -347,12 +345,13 @@
             this.TitleBalanceEye,
             this.lbBalanceEye});
             this.xrTableRow12.Name = "xrTableRow12";
-            this.xrTableRow12.Weight = 1D;
+            this.xrTableRow12.Weight = 0.89886471412036706D;
             // 
             // Title3DVision
             // 
             this.Title3DVision.CanGrow = false;
             this.Title3DVision.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.Title3DVision.Multiline = true;
             this.Title3DVision.Name = "Title3DVision";
             this.Title3DVision.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.Title3DVision.StylePriority.UseFont = false;
@@ -360,22 +359,22 @@
             this.Title3DVision.StylePriority.UseTextAlignment = false;
             this.Title3DVision.Text = "มองภาพ 3 มิติ";
             this.Title3DVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Title3DVision.Weight = 0.83333289757972562D;
+            this.Title3DVision.Weight = 0.70833260779961371D;
             // 
             // lb3DVision
             // 
-            this.lb3DVision.CanGrow = false;
             this.lb3DVision.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lb3DVision.Name = "lb3DVision";
             this.lb3DVision.StylePriority.UseFont = false;
             this.lb3DVision.StylePriority.UseTextAlignment = false;
             this.lb3DVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lb3DVision.Weight = 1.0249999271273056D;
+            this.lb3DVision.Weight = 0.928363093955113D;
             // 
             // TitleBalanceEye
             // 
             this.TitleBalanceEye.CanGrow = false;
             this.TitleBalanceEye.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.TitleBalanceEye.Multiline = true;
             this.TitleBalanceEye.Name = "TitleBalanceEye";
             this.TitleBalanceEye.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.TitleBalanceEye.StylePriority.UseFont = false;
@@ -383,17 +382,16 @@
             this.TitleBalanceEye.StylePriority.UseTextAlignment = false;
             this.TitleBalanceEye.Text = "สมดุลย์กล้ามเนื้อตา";
             this.TitleBalanceEye.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleBalanceEye.Weight = 0.81666709010376359D;
+            this.TitleBalanceEye.Weight = 0.796637520326489D;
             // 
             // lbBalanceEye
             // 
-            this.lbBalanceEye.CanGrow = false;
             this.lbBalanceEye.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbBalanceEye.Name = "lbBalanceEye";
             this.lbBalanceEye.StylePriority.UseFont = false;
             this.lbBalanceEye.StylePriority.UseTextAlignment = false;
             this.lbBalanceEye.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbBalanceEye.Weight = 1.0416666501306113D;
+            this.lbBalanceEye.Weight = 1.1583332005360714D;
             // 
             // xrTableRow13
             // 
@@ -403,7 +401,7 @@
             this.TitleFieldVision,
             this.lbFieldVision});
             this.xrTableRow13.Name = "xrTableRow13";
-            this.xrTableRow13.Weight = 1D;
+            this.xrTableRow13.Weight = 0.865152948955111D;
             // 
             // TitleColor
             // 
@@ -416,17 +414,16 @@
             this.TitleColor.StylePriority.UseTextAlignment = false;
             this.TitleColor.Text = "การแยกสี";
             this.TitleColor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleColor.Weight = 0.83333289757972562D;
+            this.TitleColor.Weight = 0.70833260779961371D;
             // 
             // lbVisionColor
             // 
-            this.lbVisionColor.CanGrow = false;
             this.lbVisionColor.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbVisionColor.Name = "lbVisionColor";
             this.lbVisionColor.StylePriority.UseFont = false;
             this.lbVisionColor.StylePriority.UseTextAlignment = false;
             this.lbVisionColor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbVisionColor.Weight = 1.0249999271273056D;
+            this.lbVisionColor.Weight = 0.928363093955113D;
             // 
             // TitleFieldVision
             // 
@@ -439,17 +436,16 @@
             this.TitleFieldVision.StylePriority.UseTextAlignment = false;
             this.TitleFieldVision.Text = "ลานสายตา";
             this.TitleFieldVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleFieldVision.Weight = 0.81666709010376359D;
+            this.TitleFieldVision.Weight = 0.796637520326489D;
             // 
             // lbFieldVision
             // 
-            this.lbFieldVision.CanGrow = false;
             this.lbFieldVision.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbFieldVision.Name = "lbFieldVision";
             this.lbFieldVision.StylePriority.UseFont = false;
             this.lbFieldVision.StylePriority.UseTextAlignment = false;
             this.lbFieldVision.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFieldVision.Weight = 1.0416666501306113D;
+            this.lbFieldVision.Weight = 1.1583332005360714D;
             // 
             // xrTableRow14
             // 
@@ -457,7 +453,7 @@
             this.TitleVisionOccmedResult,
             this.lbVisionOccmedResult});
             this.xrTableRow14.Name = "xrTableRow14";
-            this.xrTableRow14.Weight = 1D;
+            this.xrTableRow14.Weight = 0.96628794788878336D;
             // 
             // TitleVisionOccmedResult
             // 
@@ -470,17 +466,16 @@
             this.TitleVisionOccmedResult.StylePriority.UseTextAlignment = false;
             this.TitleVisionOccmedResult.Text = "สรุปผล";
             this.TitleVisionOccmedResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleVisionOccmedResult.Weight = 0.83333289757972562D;
+            this.TitleVisionOccmedResult.Weight = 0.70833260779961371D;
             // 
             // lbVisionOccmedResult
             // 
-            this.lbVisionOccmedResult.CanGrow = false;
             this.lbVisionOccmedResult.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbVisionOccmedResult.Name = "lbVisionOccmedResult";
             this.lbVisionOccmedResult.StylePriority.UseFont = false;
             this.lbVisionOccmedResult.StylePriority.UseTextAlignment = false;
             this.lbVisionOccmedResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbVisionOccmedResult.Weight = 2.8833336673616805D;
+            this.lbVisionOccmedResult.Weight = 2.8833338148176733D;
             // 
             // xrTableRow21
             // 
@@ -488,7 +483,7 @@
             this.TitleVisionOccmedRecommend,
             this.lbVisionOccmedRecommend});
             this.xrTableRow21.Name = "xrTableRow21";
-            this.xrTableRow21.Weight = 2.5415273500640074D;
+            this.xrTableRow21.Weight = 2.0695627871468933D;
             // 
             // TitleVisionOccmedRecommend
             // 
@@ -501,11 +496,10 @@
             this.TitleVisionOccmedRecommend.StylePriority.UseTextAlignment = false;
             this.TitleVisionOccmedRecommend.Text = "คำแนะนำแพทย์";
             this.TitleVisionOccmedRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleVisionOccmedRecommend.Weight = 0.83333289757972562D;
+            this.TitleVisionOccmedRecommend.Weight = 0.70833260779961371D;
             // 
             // lbVisionOccmedRecommend
             // 
-            this.lbVisionOccmedRecommend.CanGrow = false;
             this.lbVisionOccmedRecommend.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbVisionOccmedRecommend.Name = "lbVisionOccmedRecommend";
             this.lbVisionOccmedRecommend.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -513,7 +507,7 @@
             this.lbVisionOccmedRecommend.StylePriority.UsePadding = false;
             this.lbVisionOccmedRecommend.StylePriority.UseTextAlignment = false;
             this.lbVisionOccmedRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbVisionOccmedRecommend.Weight = 2.8833336673616805D;
+            this.lbVisionOccmedRecommend.Weight = 2.8833338148176733D;
             // 
             // xrLabel4
             // 
