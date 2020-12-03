@@ -77,6 +77,11 @@
                                     <dxe:ComboBoxEditItem Content="85" FontSize="18" FontWeight="Bold"/>
                                     <dxe:ComboBoxEditItem Content="90" FontSize="18" FontWeight="Bold"/>
                                     <dxe:ComboBoxEditItem Content="95" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="100" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="105" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="110" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="115" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="120" FontSize="18" FontWeight="Bold"/>
                                 </dxe:ComboBoxEditSettings.Items>
                             </dxe:ComboBoxEditSettings>
                         </dxg:GridColumn.EditSettings>
@@ -140,6 +145,11 @@
                                     <dxe:ComboBoxEditItem Content="85" FontSize="18" FontWeight="Bold"/>
                                     <dxe:ComboBoxEditItem Content="90" FontSize="18" FontWeight="Bold"/>
                                     <dxe:ComboBoxEditItem Content="95" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="100" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="105" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="110" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="115" FontSize="18" FontWeight="Bold"/>
+                                    <dxe:ComboBoxEditItem Content="120" FontSize="18" FontWeight="Bold"/>
                                 </dxe:ComboBoxEditSettings.Items>
                             </dxe:ComboBoxEditSettings>
                         </dxg:GridColumn.EditSettings>
