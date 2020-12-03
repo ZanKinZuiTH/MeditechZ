@@ -10,6 +10,7 @@ using MediTech.Helpers;
 using System.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
+using DevExpress.XtraPrinting;
 
 namespace MediTech.Reports.Operating.Patient.CheckupBook
 {
@@ -38,6 +39,62 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
             InitializeComponent();
             BeforePrint += CheckupPage1_BeforePrint;
             AfterPrint += CheckupPage1_AfterPrint;
+
+            lbResultWellness2.BeforePrint += LbResultWellness2_BeforePrint;
+        }
+
+        private void LbResultWellness2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            XRLabel label = page2.lbResultWellness;
+            string text = label.Text;
+
+            this.PrintingSystem.Graph.Font = label.Font;
+
+            float labelWidth = label.WidthF;
+
+            switch (this.ReportUnit)
+            {
+                case DevExpress.XtraReports.UI.ReportUnit.HundredthsOfAnInch:
+                    labelWidth = GraphicsUnitConverter.Convert(labelWidth, GraphicsUnit.Inch, GraphicsUnit.Document) / 100;
+                    break;
+                case DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter:
+                    labelWidth = GraphicsUnitConverter.Convert(labelWidth, GraphicsUnit.Millimeter, GraphicsUnit.Document) / 10;
+                    break;
+            }
+
+            SizeF size = this.PrintingSystem.Graph.MeasureString(text, (int)labelWidth);
+
+            float textHeight = 0;
+
+            switch (this.ReportUnit)
+            {
+                case DevExpress.XtraReports.UI.ReportUnit.HundredthsOfAnInch:
+                    textHeight = GraphicsUnitConverter.Convert(size.Height, GraphicsUnit.Document, GraphicsUnit.Inch) * 100;
+                    break;
+                case DevExpress.XtraReports.UI.ReportUnit.TenthsOfAMillimeter:
+                    textHeight = GraphicsUnitConverter.Convert(size.Height, GraphicsUnit.Document, GraphicsUnit.Millimeter) * 10;
+                    break;
+            }
+
+            if (textHeight > label.HeightF)
+            {
+                var result1 = page2.lbResultWellness.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
+                var result2 = lbResultWellness2.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
+                List<string> result1List = new List<string>();
+                List<string> result2List = new List<string>();
+                string lastResult = result1.LastOrDefault();
+                result2List.Add(lastResult);
+                result1.Remove(result1.LastOrDefault());
+                result1List.AddRange(result1);
+                result2List.AddRange(result2);
+
+                page2.lbResultWellness.Lines = result1List.ToArray();
+                lbResultWellness2.Lines = result2List.ToArray();
+            }
+            else
+            {
+                label.BackColor = Color.Transparent;
+            }
         }
 
         private void CheckupPage1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -215,7 +272,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     page2.lbResultWellness.Text = sb.ToString();
                     lbResultWellness2.Text = sb2.ToString();
                 }
-
                 #endregion
 
                 #region Lung Funtion 

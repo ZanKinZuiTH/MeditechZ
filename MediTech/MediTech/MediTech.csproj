@@ -297,42 +297,6 @@
     <Compile Include="Reports\Operating\Patient\AppointmentMobile.Designer.cs">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage1.Designer.cs">
-      <DependentUpon>BookPage1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage2.Designer.cs">
-      <DependentUpon>BookPage2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage3.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage3.Designer.cs">
-      <DependentUpon>BookPage3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage4.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage4.Designer.cs">
-      <DependentUpon>BookPage4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage5.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage5.Designer.cs">
-      <DependentUpon>BookPage5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage6.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\Checkup Book\BookPage6.Designer.cs">
-      <DependentUpon>BookPage6.cs</DependentUpon>
-    </Compile>
     <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2049,24 +2013,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage1.resx">
-      <DependentUpon>BookPage1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage2.resx">
-      <DependentUpon>BookPage2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage3.resx">
-      <DependentUpon>BookPage3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage4.resx">
-      <DependentUpon>BookPage4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage5.resx">
-      <DependentUpon>BookPage5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\Checkup Book\BookPage6.resx">
-      <DependentUpon>BookPage6.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.resx">
       <DependentUpon>CheckupBook1.cs</DependentUpon>
