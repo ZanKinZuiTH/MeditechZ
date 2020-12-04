@@ -78,22 +78,29 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
 
             if (textHeight > label.HeightF)
             {
+                float diffHeight = textHeight - label.HeightF;
                 var result1 = page2.lbResultWellness.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
                 var result2 = lbResultWellness2.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
                 List<string> result1List = new List<string>();
                 List<string> result2List = new List<string>();
-                string lastResult = result1.LastOrDefault();
+
+                string lastResult = result1[result1.Count - 1];
                 result2List.Add(lastResult);
-                result1.Remove(result1.LastOrDefault());
+                result1.Remove(lastResult);
+                if (diffHeight > 35)
+                {
+                    string lastSecondResult = result1[result1.Count - 2];
+                    result2List.Add(lastSecondResult);
+                    result1.Remove(lastSecondResult);
+                }
+
+
+
                 result1List.AddRange(result1);
                 result2List.AddRange(result2);
 
                 page2.lbResultWellness.Lines = result1List.ToArray();
                 lbResultWellness2.Lines = result2List.ToArray();
-            }
-            else
-            {
-                label.BackColor = Color.Transparent;
             }
         }
 
