@@ -266,7 +266,6 @@
                     <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
                                      Height="25" Content="ยกเลิก"/>
                 </dxlc:LayoutItem>
-
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
