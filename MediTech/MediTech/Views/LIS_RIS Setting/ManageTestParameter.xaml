@@ -166,8 +166,6 @@
                                 <dxe:TextEdit EditValue="{Binding Low}" Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx"/>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-
-
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem Label="Comments">
                                 <dxe:TextEdit Text="{Binding Comments}"/>
@@ -176,7 +174,6 @@
                                 <dxe:TextEdit EditValue="{Binding High}" Mask="\d{0,9}(\R.\d{0,3})?"  MaskType="RegEx"/>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-
                         <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                             <dx:SimpleButton Content="Add" Width="80" Height="25" Command="{Binding AddRangeCommand}"/>
                             <dx:SimpleButton Content="Update" Width="80" Height="25" Command="{Binding UpdateRangeCommand}"/>

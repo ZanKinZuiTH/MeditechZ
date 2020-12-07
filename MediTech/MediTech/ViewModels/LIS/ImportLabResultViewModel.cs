@@ -242,7 +242,7 @@ namespace MediTech.ViewModels
 
         public ImportLabResultViewModel()
         {
-            RequestItems = DataService.MasterData.GetRequestItemByCategory("Mobile Checkup", true);
+            RequestItems = DataService.MasterData.GetRequestItemByCategory("Lab", true);
             RequestItems = RequestItems?
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
