@@ -7,6 +7,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace MediTech.ViewModels
@@ -102,7 +103,8 @@ namespace MediTech.ViewModels
         public PayorDetailModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
-            set {
+            set
+            {
                 Set(ref _SelectPayorDetail, value);
                 if (_SelectPayorDetail != null)
                 {
@@ -303,6 +305,20 @@ namespace MediTech.ViewModels
         }
 
 
+        private RelayCommand _CancelResultCommand;
+
+        /// <summary>
+        /// Gets the CancelResultCommand.
+        /// </summary>
+        public RelayCommand CancelResultCommand
+        {
+            get
+            {
+                return _CancelResultCommand
+                    ?? (_CancelResultCommand = new RelayCommand(CancelResult));
+            }
+        }
+
         #endregion
 
 
@@ -390,7 +406,7 @@ namespace MediTech.ViewModels
                 PRTGPUID = SelectRequestItemType.Key;
             }
 
-            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo,patientUID, payorDetailUID, checkupJobUID,PRTGPUID);
+            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo, patientUID, payorDetailUID, checkupJobUID, PRTGPUID);
 
             CheckupExamList = new ObservableCollection<RequestListModel>(listResult);
             OnUpdateEvent();
@@ -432,6 +448,11 @@ namespace MediTech.ViewModels
                                 EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
                                 (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
                                 reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
+                                break;
+                            case "Physical Fitness Test":
+                                EnterCheckupTestResult reviewMuscle = new EnterCheckupTestResult();
+                                (reviewMuscle.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
+                                reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewMuscle, false, true);
                                 break;
                             default:
                                 EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
@@ -500,7 +521,7 @@ namespace MediTech.ViewModels
                             (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(SelectCheckupExam);
                             reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
                             break;
-       
+
                     }
 
                     if (reviewViewModel == null)
@@ -516,6 +537,32 @@ namespace MediTech.ViewModels
                     }
                 }
             }
+        }
+
+        void CancelResult()
+        {
+            if (SelectCheckupExam.OrderStatus == "Reviewed")
+            {
+                try
+                {
+                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช้หรือไม่ ?", SelectCheckupExam.PatientName));
+                    if (messResult == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.CancelOccmedResult(SelectCheckupExam.RequestDetailUID, AppUtil.Current.UserID);
+                        SelectCheckupExam.OrderStatus = "Raised";
+                        SelectCheckupExam.ResultedDttm = null;
+                        SaveSuccessDialog();
+                        OnUpdateEvent();
+                    }
+                }
+                catch (Exception er)
+                {
+
+                    ErrorDialog(er.Message);
+                }
+
+            }
+
         }
 
         #endregion

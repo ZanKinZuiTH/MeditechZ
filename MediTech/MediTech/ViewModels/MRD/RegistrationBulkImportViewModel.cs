@@ -423,6 +423,7 @@ namespace MediTech.ViewModels
                     view.SetProgressBarLimits(0, upperlimit);
 
                     ImportedDataList = new ObservableCollection<PatientRegistrationBulkData>();
+                    var titleDataSource = DataService.Technical.GetReferenceValueList("TITLE");
                     foreach (DataRow drow in ImportData.Rows)
                     {
                         CurrentImportedData = new PatientRegistrationBulkData();
@@ -481,35 +482,35 @@ namespace MediTech.ViewModels
                         switch (preName)
                         {
                             case "เด็กชาย":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00008TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00008TH").Key;
                                 break;
                             case "เด็กหญิง":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00010TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00010TH").Key;
                                 break;
                             case "นาง":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00116TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00116TH").Key;
                                 break;
                             case "นางสาว":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00117TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00117TH").Key;
                                 break;
                             case "น.ส.":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00117TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00117TH").Key;
                                 break;
                             case "นาย":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00118TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00118TH").Key;
                                 break;
                             case "พระภิกษุ":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00245TH").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00245TH").Key;
                                 break;
                             case "MR.":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "00118EN").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "00118EN").Key;
                                 break;
                             case "MS.":
-                                CurrentImportedData.TITLEUID = DataService.Technical.GetReferenceValueByCode("TITLE", "01226EN").Key;
+                                CurrentImportedData.TITLEUID = titleDataSource.FirstOrDefault(p => p.ValueCode == "01226EN").Key;
                                 break;
 
                             default:
-                                var refTitle = DataService.Technical.GetReferenceValueByDescription("TITLE", preName);
+                                var refTitle = titleDataSource.FirstOrDefault(p => p.Display == preName);
                                 if (refTitle != null)
                                 {
                                     CurrentImportedData.TITLEUID = refTitle.Key;

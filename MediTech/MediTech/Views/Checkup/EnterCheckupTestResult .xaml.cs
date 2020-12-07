@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediTech.Model;
+using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,23 @@ namespace MediTech.Views
         public EnterCheckupTestResult()
         {
             InitializeComponent();
+            gvResult.CellValueChanged += GvResult_CellValueChanged;
+        }
+
+        private void GvResult_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
+        {
+            var rowData = e.Row as ResultComponentModel;
+            if (rowData != null)
+            {
+                if (rowData.ResultItemCode == "MUSCLEBA")
+                {
+                    if (this.DataContext is EnterMuscleResultViewModel)
+                    {
+                        (this.DataContext as EnterMuscleResultViewModel).CalculateMuscleValue();
+                    }
+
+                }
+            }
         }
     }
 }

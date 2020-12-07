@@ -162,7 +162,7 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Header="ผลตรวจ" Orientation="Vertical">
-                    <dxpg:PivotGridControl Name="pivotData" DataSource="{Binding PivotPatientLabData}" 
+                    <dxpg:PivotGridControl Name="pivotData" DataSource="{Binding PivotPatientLabData}"
                                            ShowGrandTotalsForSingleValues="False"
                                            AllowCrossGroupVariation="False"
                                            RowTotalsLocation="Near"
@@ -187,9 +187,10 @@
                             <dxpg:PivotGridField Area="RowArea" Caption="นามสกุล" FieldName="LastName" AreaIndex="4"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="เพศ" FieldName="Gender" AreaIndex="5"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="อายุ" Width="70" FieldName="Age" AreaIndex="6"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="แผนก" FieldName="Department"  AreaIndex="7" />
-                            <dxpg:PivotGridField Area="RowArea" Caption="ตำแหน่ง" FieldName="Position"  AreaIndex="8"/>
-                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="9" ValueFormat="dd/MM/yyyy"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="บริษัท" FieldName="CompanyName"  AreaIndex="7" />
+                            <dxpg:PivotGridField Area="RowArea" Caption="แผนก" FieldName="Department"  AreaIndex="8" />
+                            <dxpg:PivotGridField Area="RowArea" Caption="ตำแหน่ง" FieldName="Position"  AreaIndex="9"/>
+                            <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="10" ValueFormat="dd/MM/yyyy"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="RequestItemName" FieldName="RequestItemName"/>
                             <dxpg:PivotGridField Area="ColumnArea" Caption="ResultItemName" FieldName="ResultItemName"/>
                             <dxpg:PivotGridField Area="DataArea" Caption="ResultValue" FieldName="ResultValue" SummaryType="Max"/>

@@ -510,6 +510,89 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+
+        [Route("CancelOccmedResult")]
+        [HttpPut]
+        public HttpResponseMessage CancelOccmedResult(long requestDetailUID, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+
+                    var dataRequestDetail = db.RequestDetail.Find(requestDetailUID);
+
+                    if (dataRequestDetail != null)
+                    {
+                        db.RequestDetail.Attach(dataRequestDetail);
+                        dataRequestDetail.ORDSTUID = 2847; //RAISED
+                        dataRequestDetail.MUser = userUID;
+                        dataRequestDetail.MWhen = now;
+                        db.SaveChanges();
+
+                        var request = db.Request.Find(dataRequestDetail.RequestUID);
+
+                        db.Request.Attach(request);
+                        request.MUser = userUID;
+                        request.MWhen = now;
+                        request.ORDSTUID = (new RadiologyController()).CheckRequestStatus(request.UID);
+
+                        db.SaveChanges();
+
+                        var result = db.Result.FirstOrDefault(p => p.RequestDetailUID == dataRequestDetail.UID && p.StatusFlag == "A");
+                        if (result != null)
+                        {
+                            List<ResultComponent> delResultcomponents = db.ResultComponent.Where(p =>
+                            p.ResultUID == result.UID
+                            && p.StatusFlag == "A").ToList();
+
+                            foreach (var item in delResultcomponents)
+                            {
+                                item.StatusFlag = "D";
+                            }
+
+
+                            db.Result.Attach(result);
+                            result.StatusFlag = "D";
+                            result.MUser = userUID;
+                            result.MWhen = now;
+
+                            db.SaveChanges();
+                        }
+
+                        var dataOrderDetail = db.PatientOrderDetail.Find(dataRequestDetail.PatientOrderDetailUID);
+                        if (dataOrderDetail != null)
+                        {
+                            db.PatientOrderDetail.Attach(dataOrderDetail);
+                            dataOrderDetail.ORDSTUID = 2848;
+                            dataOrderDetail.MUser = userUID;
+                            dataOrderDetail.MWhen = now;
+
+                            PatientOrderDetailHistory patientOrderDetailHistory = db.PatientOrderDetailHistory.FirstOrDefault(p => p.PatientOrderDetailUID 
+                            == dataOrderDetail.UID && p.ORDSTUID == 2863);
+                            if (patientOrderDetailHistory != null)
+                            {
+                                db.PatientOrderDetailHistory.Attach(patientOrderDetailHistory);
+                                patientOrderDetailHistory.StatusFlag = "D";
+                                patientOrderDetailHistory.MUser = userUID;
+                                patientOrderDetailHistory.MWhen = now;
+                            }
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
         #endregion
     }
 }

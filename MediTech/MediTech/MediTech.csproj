@@ -749,6 +749,11 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterMuscleResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterAudiogramResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterEKGResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterOccuVisionTestResultViewModel.cs" />
@@ -898,6 +903,18 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
+      <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\VerifyChekupResult.xaml.cs">
+      <DependentUpon>VerifyChekupResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupSummary.xaml.cs">
+      <DependentUpon>CheckupSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupRule.xaml.cs">
+      <DependentUpon>CheckupRule.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\EnterAudiogramResult.xaml.cs">
       <DependentUpon>EnterAudiogramResult.xaml</DependentUpon>
@@ -1378,6 +1395,22 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BillingConfiguration\ManagePayorDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\TranslateCheckupResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Checkup\VerifyChekupResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Checkup\CheckupSummary.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Checkup\CheckupRule.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2541,6 +2574,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\BookRecords.png" />
     <Resource Include="Resources\Images\Menu\Health Examination.png" />
     <Resource Include="Resources\Images\Module\Medical Checkup.png" />
     <Resource Include="Resources\Images\Menu\Hospital.png" />

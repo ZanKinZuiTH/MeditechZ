@@ -17,6 +17,8 @@ namespace PACS.DataBase
         public string StudyInstanceUID { get; set; }
         public string PatientID { get; set; }
         public string PatientName { get; set; }
+        public string PerformingPhysicianName { get; set; }
+        public string ReferringPhysicianName { get; set; }
         public string PatientComments { get; set; }
         public string PatientBirthDate { get; set; }
         public string PatientSex { get; set; }
@@ -33,6 +35,7 @@ namespace PACS.DataBase
         public string SpecificCharacterSet { get; set; }
         public string PatientAge { get; set; }
         public System.DateTime Edited { get; set; }
+        public string AETitle { get; set; }
         public int ReportStatus { get; set; }
     }
 }

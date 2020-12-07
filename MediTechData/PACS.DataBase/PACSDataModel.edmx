@@ -12,6 +12,41 @@
           <Property Name="Id" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="100" />
           <Property Name="Authority" Type="int" Nullable="false" />
+          <Property Name="ReferringPhysicianName" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="AETitles">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Title" Type="nvarchar" MaxLength="64" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <EntityType Name="Annotations">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReferenceNo" Type="int" Nullable="false" />
+          <Property Name="Data" Type="nvarchar" MaxLength="4000" />
+          <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SeriesInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="SOPInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Writer" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ViewID" Type="nvarchar" MaxLength="16" Nullable="false" />
+          <Property Name="Deleted" Type="datetime" />
+          <Property Name="Created" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ContactPersonnel" Type="nvarchar" MaxLength="100" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telephone" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" />
+          <Property Name="Website" Type="nvarchar" MaxLength="100" />
         </EntityType>
         <EntityType Name="Configs">
           <Key>
@@ -32,6 +67,8 @@
           <Property Name="TransferSyntaxUID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+          <Property Name="ReferringPhysicianName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PerformingPhysicianName" Type="nvarchar" MaxLength="256" />
           <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
           <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
           <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
@@ -71,15 +108,28 @@
           <Property Name="HighBit" Type="int" />
           <Property Name="PixelRepresentation" Type="int" />
           <Property Name="PixelData" Type="int" />
-          <Property Name="Sender" Type="nvarchar" MaxLength="64" />
+          <Property Name="AETitle" Type="nvarchar" MaxLength="64" />
           <Property Name="FileSize" Type="bigint" Nullable="false" />
           <Property Name="Created" Type="datetime" Nullable="false" />
           <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
           <Property Name="ImageType" Type="nvarchar" MaxLength="256" />
-          <Property Name="PhotoMatricInterpretation" Type="nvarchar" MaxLength="32" />
+          <Property Name="PhotometricInterpretation" Type="nvarchar" MaxLength="32" />
           <Property Name="PatientAge" Type="nvarchar" MaxLength="8" />
           <Property Name="LossyImageCompression" Type="nvarchar" MaxLength="32" />
           <Property Name="Method" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Institutions">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Logo" Type="uniqueidentifier" />
+          <Property Name="Url" Type="nvarchar" MaxLength="256" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="32" />
+          <Property Name="Fax" Type="nvarchar" MaxLength="32" />
+          <Property Name="Mail" Type="nvarchar" MaxLength="256" />
+          <Property Name="Address" Type="nvarchar" MaxLength="512" />
         </EntityType>
         <EntityType Name="Passwords">
           <Key>
@@ -103,6 +153,14 @@
           <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
           <Property Name="Edited" Type="datetime" Nullable="false" />
         </EntityType>
+        <EntityType Name="ProductProperties">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Value" Type="nvarchar" MaxLength="4000" />
+          <Property Name="Edited" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="Providers">
           <Key>
             <PropertyRef Name="No" />
@@ -113,6 +171,14 @@
           <Property Name="Port" Type="int" Nullable="false" />
           <Property Name="IsAnonymous" Type="bit" Nullable="false" />
           <Property Name="AllowAnonymousUsers" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Permissions" Type="nvarchar" MaxLength="4000" />
         </EntityType>
         <EntityType Name="SendSettings">
           <Key>
@@ -158,6 +224,8 @@
           <Property Name="StudyInstanceUID" Type="nvarchar" MaxLength="128" Nullable="false" />
           <Property Name="PatientID" Type="nvarchar" MaxLength="256" Nullable="false" />
           <Property Name="PatientName" Type="nvarchar" MaxLength="256" />
+          <Property Name="PerformingPhysicianName" Type="nvarchar" MaxLength="256" />
+          <Property Name="ReferringPhysicianName" Type="nvarchar" MaxLength="256" />
           <Property Name="PatientComments" Type="nvarchar" MaxLength="4000" />
           <Property Name="PatientBirthDate" Type="nvarchar" MaxLength="16" />
           <Property Name="PatientSex" Type="nvarchar" MaxLength="16" />
@@ -174,6 +242,7 @@
           <Property Name="SpecificCharacterSet" Type="nvarchar" MaxLength="256" />
           <Property Name="PatientAge" Type="nvarchar" MaxLength="256" />
           <Property Name="Edited" Type="datetime" Nullable="false" />
+          <Property Name="AETitle" Type="nvarchar" MaxLength="64" />
           <Property Name="ReportStatus" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -189,11 +258,17 @@
         </EntityType>
         <EntityContainer Name="PACSModelStoreContainer">
           <EntitySet Name="Accounts" EntityType="Self.Accounts" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AETitles" EntityType="Self.AETitles" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Annotations" EntityType="Self.Annotations" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Companies" EntityType="Self.Companies" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Configs" EntityType="Self.Configs" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Instances" EntityType="Self.Instances" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Institutions" EntityType="Self.Institutions" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Passwords" EntityType="Self.Passwords" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patients" EntityType="Self.Patients" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ProductProperties" EntityType="Self.ProductProperties" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Providers" EntityType="Self.Providers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roles" EntityType="Self.Roles" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SendSettings" EntityType="Self.SendSettings" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Series" EntityType="Self.Series" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Settings" EntityType="Self.Settings" Schema="dbo" store:Type="Tables" />
@@ -206,11 +281,17 @@
       <Schema Namespace="PACSModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="PACSEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="Accounts" EntityType="PACSModel.Accounts" />
+          <EntitySet Name="AETitles" EntityType="PACSModel.AETitles" />
+          <EntitySet Name="Annotations" EntityType="PACSModel.Annotations" />
+          <EntitySet Name="Companies" EntityType="PACSModel.Companies" />
           <EntitySet Name="Configs" EntityType="PACSModel.Configs" />
           <EntitySet Name="Instances" EntityType="PACSModel.Instances" />
+          <EntitySet Name="Institutions" EntityType="PACSModel.Institutions" />
           <EntitySet Name="Passwords" EntityType="PACSModel.Passwords" />
           <EntitySet Name="Patients" EntityType="PACSModel.Patients" />
+          <EntitySet Name="ProductProperties" EntityType="PACSModel.ProductProperties" />
           <EntitySet Name="Providers" EntityType="PACSModel.Providers" />
+          <EntitySet Name="Roles" EntityType="PACSModel.Roles" />
           <EntitySet Name="SendSettings" EntityType="PACSModel.SendSettings" />
           <EntitySet Name="Series" EntityType="PACSModel.Series" />
           <EntitySet Name="Settings" EntityType="PACSModel.Settings" />
@@ -224,6 +305,41 @@
           <Property Name="Id" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Name" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Authority" Type="Int32" Nullable="false" />
+          <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="AETitles">
+          <Key>
+            <PropertyRef Name="Title" />
+          </Key>
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Annotations">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReferenceNo" Type="Int32" Nullable="false" />
+          <Property Name="Data" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SeriesInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="SOPInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="Writer" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ViewID" Type="String" Nullable="false" MaxLength="16" FixedLength="false" Unicode="true" />
+          <Property Name="Deleted" Type="DateTime" Precision="3" />
+          <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <EntityType Name="Companies">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ContactPersonnel" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Telephone" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Website" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Configs">
           <Key>
@@ -244,6 +360,8 @@
           <Property Name="TransferSyntaxUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PerformingPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
@@ -283,15 +401,28 @@
           <Property Name="HighBit" Type="Int32" />
           <Property Name="PixelRepresentation" Type="Int32" />
           <Property Name="PixelData" Type="Int32" />
-          <Property Name="Sender" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="AETitle" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="FileSize" Type="Int64" Nullable="false" />
           <Property Name="Created" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="ImageType" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
-          <Property Name="PhotoMatricInterpretation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="PhotometricInterpretation" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="PatientAge" Type="String" MaxLength="8" FixedLength="false" Unicode="true" />
           <Property Name="LossyImageCompression" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
           <Property Name="Method" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Institutions">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Logo" Type="Guid" />
+          <Property Name="Url" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Fax" Type="String" MaxLength="32" FixedLength="false" Unicode="true" />
+          <Property Name="Mail" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="512" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Passwords">
           <Key>
@@ -315,6 +446,14 @@
           <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
+        <EntityType Name="ProductProperties">
+          <Key>
+            <PropertyRef Name="Name" />
+          </Key>
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="Value" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
+          <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
         <EntityType Name="Providers">
           <Key>
             <PropertyRef Name="No" />
@@ -325,6 +464,14 @@
           <Property Name="Port" Type="Int32" Nullable="false" />
           <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
           <Property Name="AllowAnonymousUsers" Type="Boolean" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Roles">
+          <Key>
+            <PropertyRef Name="No" />
+          </Key>
+          <Property Name="No" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Permissions" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SendSettings">
           <Key>
@@ -370,6 +517,8 @@
           <Property Name="StudyInstanceUID" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PatientID" Type="String" Nullable="false" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PatientName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="PerformingPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <Property Name="ReferringPhysicianName" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PatientComments" Type="String" MaxLength="4000" FixedLength="false" Unicode="true" />
           <Property Name="PatientBirthDate" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
           <Property Name="PatientSex" Type="String" MaxLength="16" FixedLength="false" Unicode="true" />
@@ -386,6 +535,7 @@
           <Property Name="SpecificCharacterSet" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="PatientAge" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
           <Property Name="Edited" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="AETitle" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
           <Property Name="ReportStatus" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="Users">
@@ -408,9 +558,47 @@
           <EntitySetMapping Name="Accounts">
             <EntityTypeMapping TypeName="PACSModel.Accounts">
               <MappingFragment StoreEntitySet="Accounts">
+                <ScalarProperty Name="ReferringPhysicianName" ColumnName="ReferringPhysicianName" />
                 <ScalarProperty Name="Authority" ColumnName="Authority" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AETitles">
+            <EntityTypeMapping TypeName="PACSModel.AETitles">
+              <MappingFragment StoreEntitySet="AETitles">
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Annotations">
+            <EntityTypeMapping TypeName="PACSModel.Annotations">
+              <MappingFragment StoreEntitySet="Annotations">
+                <ScalarProperty Name="Created" ColumnName="Created" />
+                <ScalarProperty Name="Deleted" ColumnName="Deleted" />
+                <ScalarProperty Name="ViewID" ColumnName="ViewID" />
+                <ScalarProperty Name="Writer" ColumnName="Writer" />
+                <ScalarProperty Name="SOPInstanceUID" ColumnName="SOPInstanceUID" />
+                <ScalarProperty Name="SeriesInstanceUID" ColumnName="SeriesInstanceUID" />
+                <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="Data" ColumnName="Data" />
+                <ScalarProperty Name="ReferenceNo" ColumnName="ReferenceNo" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Companies">
+            <EntityTypeMapping TypeName="PACSModel.Companies">
+              <MappingFragment StoreEntitySet="Companies">
+                <ScalarProperty Name="Website" ColumnName="Website" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Telephone" ColumnName="Telephone" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ContactPersonnel" ColumnName="ContactPersonnel" />
+                <ScalarProperty Name="No" ColumnName="No" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -429,12 +617,12 @@
                 <ScalarProperty Name="Method" ColumnName="Method" />
                 <ScalarProperty Name="LossyImageCompression" ColumnName="LossyImageCompression" />
                 <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
-                <ScalarProperty Name="PhotoMatricInterpretation" ColumnName="PhotoMatricInterpretation" />
+                <ScalarProperty Name="PhotometricInterpretation" ColumnName="PhotometricInterpretation" />
                 <ScalarProperty Name="ImageType" ColumnName="ImageType" />
                 <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
                 <ScalarProperty Name="Created" ColumnName="Created" />
                 <ScalarProperty Name="FileSize" ColumnName="FileSize" />
-                <ScalarProperty Name="Sender" ColumnName="Sender" />
+                <ScalarProperty Name="AETitle" ColumnName="AETitle" />
                 <ScalarProperty Name="PixelData" ColumnName="PixelData" />
                 <ScalarProperty Name="PixelRepresentation" ColumnName="PixelRepresentation" />
                 <ScalarProperty Name="HighBit" ColumnName="HighBit" />
@@ -474,6 +662,8 @@
                 <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
                 <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
                 <ScalarProperty Name="PatientComments" ColumnName="PatientComments" />
+                <ScalarProperty Name="PerformingPhysicianName" ColumnName="PerformingPhysicianName" />
+                <ScalarProperty Name="ReferringPhysicianName" ColumnName="ReferringPhysicianName" />
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="TransferSyntaxUID" ColumnName="TransferSyntaxUID" />
@@ -481,6 +671,20 @@
                 <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />
                 <ScalarProperty Name="SeriesInstanceUID" ColumnName="SeriesInstanceUID" />
                 <ScalarProperty Name="SOPInstanceUID" ColumnName="SOPInstanceUID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Institutions">
+            <EntityTypeMapping TypeName="PACSModel.Institutions">
+              <MappingFragment StoreEntitySet="Institutions">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Mail" ColumnName="Mail" />
+                <ScalarProperty Name="Fax" ColumnName="Fax" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Url" ColumnName="Url" />
+                <ScalarProperty Name="Logo" ColumnName="Logo" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="No" ColumnName="No" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -508,6 +712,15 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ProductProperties">
+            <EntityTypeMapping TypeName="PACSModel.ProductProperties">
+              <MappingFragment StoreEntitySet="ProductProperties">
+                <ScalarProperty Name="Edited" ColumnName="Edited" />
+                <ScalarProperty Name="Value" ColumnName="Value" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Providers">
             <EntityTypeMapping TypeName="PACSModel.Providers">
               <MappingFragment StoreEntitySet="Providers">
@@ -515,6 +728,15 @@
                 <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
                 <ScalarProperty Name="Port" ColumnName="Port" />
                 <ScalarProperty Name="AETitle" ColumnName="AETitle" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="No" ColumnName="No" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="PACSModel.Roles">
+              <MappingFragment StoreEntitySet="Roles">
+                <ScalarProperty Name="Permissions" ColumnName="Permissions" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="No" ColumnName="No" />
               </MappingFragment>
@@ -564,6 +786,7 @@
             <EntityTypeMapping TypeName="PACSModel.Studies">
               <MappingFragment StoreEntitySet="Studies">
                 <ScalarProperty Name="ReportStatus" ColumnName="ReportStatus" />
+                <ScalarProperty Name="AETitle" ColumnName="AETitle" />
                 <ScalarProperty Name="Edited" ColumnName="Edited" />
                 <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
                 <ScalarProperty Name="SpecificCharacterSet" ColumnName="SpecificCharacterSet" />
@@ -580,6 +803,8 @@
                 <ScalarProperty Name="PatientSex" ColumnName="PatientSex" />
                 <ScalarProperty Name="PatientBirthDate" ColumnName="PatientBirthDate" />
                 <ScalarProperty Name="PatientComments" ColumnName="PatientComments" />
+                <ScalarProperty Name="ReferringPhysicianName" ColumnName="ReferringPhysicianName" />
+                <ScalarProperty Name="PerformingPhysicianName" ColumnName="PerformingPhysicianName" />
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="StudyInstanceUID" ColumnName="StudyInstanceUID" />

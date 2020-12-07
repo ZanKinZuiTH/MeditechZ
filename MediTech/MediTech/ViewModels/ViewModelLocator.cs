@@ -1192,6 +1192,50 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<ManageCheckupJobViewModel>();
             }
         }
+
+        public CheckupRuleViewModel CheckupRuleViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CheckupRuleViewModel>())
+                    SimpleIoc.Default.Register<CheckupRuleViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CheckupRuleViewModel>();
+            }
+        }
+
+        public CheckupSummaryViewModel CheckupSummaryViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CheckupSummaryViewModel>())
+                    SimpleIoc.Default.Register<CheckupSummaryViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CheckupSummaryViewModel>();
+            }
+        }
+
+        public VerifyChekupResultViewModel VerifyChekupResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<VerifyChekupResultViewModel>())
+                    SimpleIoc.Default.Register<VerifyChekupResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<VerifyChekupResultViewModel>();
+            }
+        }
+
+        public TranslateCheckupResultViewModel TranslateCheckupResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<TranslateCheckupResultViewModel>())
+                    SimpleIoc.Default.Register<TranslateCheckupResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<TranslateCheckupResultViewModel>();
+            }
+        }
         #endregion
 
         #region OrderProcessing

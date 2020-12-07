@@ -238,7 +238,7 @@ namespace MediTechWebApi.Controllers
 
                                 if (dataRequestDetail.ORDSTUID == 2863) // Reviewed
                                 {
-                                    var result = db.Result.Where(p => p.RequestDetailUID == dataRequestDetail.UID).FirstOrDefault();
+                                    var result = db.Result.FirstOrDefault(p => p.RequestDetailUID == dataRequestDetail.UID && p.StatusFlag == "A");
                                     if (result != null)
                                     {
                                         db.Result.Attach(result);
@@ -248,9 +248,6 @@ namespace MediTechWebApi.Controllers
                                     }
                                 }
                             }
-
-
-
                         }
 
 

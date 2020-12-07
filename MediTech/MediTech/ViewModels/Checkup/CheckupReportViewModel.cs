@@ -339,25 +339,26 @@ namespace MediTech.ViewModels
             if (dataCheckupValue != null)
             {
                 PatientResultLabList = dataCheckupValue
-                    .GroupBy(g => new {g.PatientVisitUID,g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age})
+                    .GroupBy(g => new { g.PatientVisitUID, g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
                     .Select(p => new PatientResultLabModel
-                {
-                    PatientVisitUID = p.FirstOrDefault().PatientVisitUID,
-                    PatientUID = p.FirstOrDefault().PatientUID,
-                    PatientID = p.FirstOrDefault().PatientID,
-                    FirstName = p.FirstOrDefault().FirstName,
-                    LastName = p.FirstOrDefault().LastName,
-                    PayorDetailUID = p.FirstOrDefault().PayorDetailUID,
-                    StartDttm = p.FirstOrDefault().StartDttm,
-                    TITLEUID = p.FirstOrDefault().TITLEUID,
-                    Title = p.FirstOrDefault().Title,
-                    SEXXXUID = p.FirstOrDefault().SEXXXUID,
-                    Gender = p.FirstOrDefault().Gender,
-                    Age = p.FirstOrDefault().Age,
-                    EmployeeID = p.FirstOrDefault().EmployeeID,
-                    Department = p.FirstOrDefault().Department,
-                    Position = p.FirstOrDefault().Position
-                }).ToList();
+                    {
+                        PatientVisitUID = p.FirstOrDefault().PatientVisitUID,
+                        PatientUID = p.FirstOrDefault().PatientUID,
+                        PatientID = p.FirstOrDefault().PatientID,
+                        FirstName = p.FirstOrDefault().FirstName,
+                        LastName = p.FirstOrDefault().LastName,
+                        PayorDetailUID = p.FirstOrDefault().PayorDetailUID,
+                        StartDttm = p.FirstOrDefault().StartDttm,
+                        TITLEUID = p.FirstOrDefault().TITLEUID,
+                        Title = p.FirstOrDefault().Title,
+                        SEXXXUID = p.FirstOrDefault().SEXXXUID,
+                        Gender = p.FirstOrDefault().Gender,
+                        Age = p.FirstOrDefault().Age,
+                        EmployeeID = p.FirstOrDefault().EmployeeID,
+                        CompanyName = p.FirstOrDefault().CompanyName,
+                        Department = p.FirstOrDefault().Department,
+                        Position = p.FirstOrDefault().Position
+                    }).ToList();
 
                 PivotPatientLabData = dataCheckupValue;
 

@@ -19,7 +19,7 @@
             <dxlc:LayoutItem>
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl ItemsSource="{Binding ResultComponentItems}" SelectionMode="Cell"
+            <dxg:GridControl x:Name="gcResult" ItemsSource="{Binding ResultComponentItems}" SelectionMode="Cell"
                              AutoGenerateColumns="None">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True" Width="200">
@@ -45,7 +45,8 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False" ShowColumnHeaders="False" RowMinHeight="60" AllowSorting="False">
+                    <dxg:TableView x:Name="gvResult" ShowGroupPanel="False"
+                                   ShowColumnHeaders="False" RowMinHeight="60" AllowSorting="False">
                         <dxg:TableView.RowStyle>
                             <Style TargetType="{x:Type dxg:RowControl}">
                                 <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />

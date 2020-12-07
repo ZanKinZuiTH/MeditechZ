@@ -94,6 +94,21 @@ namespace MediTech.DataService
 
         }
 
+        public bool CancelOccmedResult(long requestDetailUID, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/CancelOccmedResult?requestDetailUID={0}&userUID={1}", requestDetailUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
 
     }
 }

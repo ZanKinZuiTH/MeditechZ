@@ -26,11 +26,17 @@ namespace PACS.DataBase
         }
     
         public virtual DbSet<Accounts> Accounts { get; set; }
+        public virtual DbSet<AETitles> AETitles { get; set; }
+        public virtual DbSet<Annotations> Annotations { get; set; }
+        public virtual DbSet<Companies> Companies { get; set; }
         public virtual DbSet<Configs> Configs { get; set; }
         public virtual DbSet<Instances> Instances { get; set; }
+        public virtual DbSet<Institutions> Institutions { get; set; }
         public virtual DbSet<Passwords> Passwords { get; set; }
         public virtual DbSet<Patients> Patients { get; set; }
+        public virtual DbSet<ProductProperties> ProductProperties { get; set; }
         public virtual DbSet<Providers> Providers { get; set; }
+        public virtual DbSet<Roles> Roles { get; set; }
         public virtual DbSet<SendSettings> SendSettings { get; set; }
         public virtual DbSet<Series> Series { get; set; }
         public virtual DbSet<Settings> Settings { get; set; }

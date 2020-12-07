@@ -189,6 +189,10 @@
                                    Visibility="{Binding VisibilityCount}" 
                                    FontWeight="Bold"/>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem HorizontalAlignment="Left">
+                    <dx:SimpleButton Command="{Binding CancelResultCommand}" Foreground="Red"
+                                     Content="Cancel Result" Height="25" Width="95"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Right">
                     <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
                 </dxlc:LayoutItem>

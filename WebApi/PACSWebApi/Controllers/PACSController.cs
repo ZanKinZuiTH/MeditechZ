@@ -62,6 +62,7 @@ namespace MediTechWebApi.Controllers
             {
                 Connect();
                 SqlCommand cmd = new SqlCommand();
+                cmd.CommandTimeout = 3000;
                 cmd.Connection = conn;
 
                 string coditionString = "";
@@ -227,6 +228,7 @@ namespace MediTechWebApi.Controllers
                 Connect();
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = conn;
+                cmd.CommandTimeout = 3000;
                 cmd.CommandText = @"SELECT TOP 1000 [SeriesInstanceUID]
       ,[StudyInstanceUID]
       ,[PatientID]
@@ -515,7 +517,7 @@ and DATEDIFF(year,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
             bool flag = false;
             DataTable dt = new DataTable();
             Connect();
-            // SqlTransaction transaction = conn.BeginTransaction(); ;
+            // SqlTransaction transaction = conn.BeginTransaction();
             try
             {
                 SqlCommand cmd = new SqlCommand();
@@ -887,8 +889,8 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
 
                     string photometricInterpretation = dicomDataSet.GetSingleValue<string>(DicomTag.PhotometricInterpretation);
 
-                    //instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
-                    instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
+                    instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
+                    //instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
 
                     instances.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
                     instances.FileSize = 0;
