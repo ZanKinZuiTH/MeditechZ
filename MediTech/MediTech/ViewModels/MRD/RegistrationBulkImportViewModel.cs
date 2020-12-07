@@ -329,10 +329,14 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Lower)", DisplayOrder = 14 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "แมมโมแกรม(MMG)", DisplayOrder = 15 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง", DisplayOrder = 16 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อมือ", DisplayOrder = 17 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อขา", DisplayOrder = 18 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง+ขา", DisplayOrder = 19 });
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]
-                , MobileStickerSource[10],MobileStickerSource[11],MobileStickerSource[12],MobileStickerSource[13],MobileStickerSource[14],MobileStickerSource[15]};
+                , MobileStickerSource[10],MobileStickerSource[11],MobileStickerSource[12],MobileStickerSource[13],MobileStickerSource[14],MobileStickerSource[15]
+                ,MobileStickerSource[16],MobileStickerSource[17],MobileStickerSource[18]};
         }
         private void ChooseFile()
         {
