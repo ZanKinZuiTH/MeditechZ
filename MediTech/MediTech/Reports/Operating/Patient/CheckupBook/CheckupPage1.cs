@@ -81,26 +81,23 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 float diffHeight = textHeight - label.HeightF;
                 var result1 = page2.lbResultWellness.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
                 var result2 = lbResultWellness2.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
-                List<string> result1List = new List<string>();
-                List<string> result2List = new List<string>();
+
 
                 string lastResult = result1[result1.Count - 1];
-                result2List.Add(lastResult);
+                result2.Insert(0,lastResult);
                 result1.Remove(lastResult);
-                if (diffHeight > 35)
-                {
-                    string lastSecondResult = result1[result1.Count - 2];
-                    result2List.Add(lastSecondResult);
-                    result1.Remove(lastSecondResult);
-                }
+                //if (diffHeight > 35)
+                //{
+                //    string lastSecondResult = result1[result1.Count - 2];
+                //    result2List.Add(lastSecondResult);
+                //    result1.Remove(lastSecondResult);
+                //}
 
+                //result1List.AddRange(result1);
 
-
-                result1List.AddRange(result1);
-                result2List.AddRange(result2);
-
-                page2.lbResultWellness.Lines = result1List.ToArray();
-                lbResultWellness2.Lines = result2List.ToArray();
+                page2.lbResultWellness.Lines = result1.ToArray();
+                lbResultWellness2.Lines = result2.ToArray();
+                LbResultWellness2_BeforePrint(null, null);
             }
         }
 
@@ -258,26 +255,27 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 {
                     string[] locResult = Regex.Split(wellnessResult, "[\r\n]+");
                     StringBuilder sb = new StringBuilder();
-                    StringBuilder sb2 = new StringBuilder();
+                    //StringBuilder sb2 = new StringBuilder();
                     int line = 0;
                     foreach (var item in locResult)
                     {
                         if (!string.IsNullOrEmpty(item))
                         {
-                            if (line < 14)
-                            {
-                                sb.AppendLine(item);
-                            }
-                            else
-                            {
-                                sb2.AppendLine(item);
-                            }
+                            //if (line < 14)
+                            //{
+                            //    sb.AppendLine(item);
+                            //}
+                            //else
+                            //{
+                            //    sb2.AppendLine(item);
+                            //}
+                            sb.AppendLine(item);
                             line++;
                         }
                     }
 
                     page2.lbResultWellness.Text = sb.ToString();
-                    lbResultWellness2.Text = sb2.ToString();
+                    //lbResultWellness2.Text = sb2.ToString();
                 }
                 #endregion
 
