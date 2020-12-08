@@ -241,6 +241,97 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="CheckupRule">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="SEXXXUID" Type="int" />
+          <Property Name="AgeFrom" Type="int" />
+          <Property Name="AgeTo" Type="int" />
+          <Property Name="RABSTSUID" Type="int" Nullable="false" />
+          <Property Name="PRTGPUID" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupRuleDescription">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckupRuleUID" Type="int" Nullable="false" />
+          <Property Name="CheckupTextMasterUID" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupRuleItem">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckupRuleUID" Type="int" Nullable="false" />
+          <Property Name="ResultItemUID" Type="int" Nullable="false" />
+          <Property Name="Low" Type="float" />
+          <Property Name="Hight" Type="float" />
+          <Property Name="Text" Type="nvarchar" MaxLength="200" />
+          <Property Name="IsText" Type="nvarchar" MaxLength="1" />
+          <Property Name="Operator" Type="nvarchar" MaxLength="20" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupRuleRecommend">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CheckupRuleUID" Type="int" Nullable="false" />
+          <Property Name="CheckupTextMasterUID" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupSummeryResult">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CheckupTextMaster">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ThaiWord" Type="nvarchar(max)" />
+          <Property Name="EngWord" Type="nvarchar(max)" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="DispensedItem">
           <Key>
             <PropertyRef Name="UID" />
@@ -3693,6 +3784,12 @@
           <EntitySet Name="CCHPIMaster" EntityType="Self.CCHPIMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupJobContact" EntityType="Self.CheckupJobContact" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupJobTask" EntityType="Self.CheckupJobTask" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupRule" EntityType="Self.CheckupRule" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupRuleDescription" EntityType="Self.CheckupRuleDescription" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupRuleItem" EntityType="Self.CheckupRuleItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupRuleRecommend" EntityType="Self.CheckupRuleRecommend" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupSummeryResult" EntityType="Self.CheckupSummeryResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CheckupTextMaster" EntityType="Self.CheckupTextMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DispensedItem" EntityType="Self.DispensedItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeItemList" EntityType="Self.DisposeItemList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeStock" EntityType="Self.DisposeStock" Schema="dbo" store:Type="Tables" />
@@ -4748,6 +4845,14 @@
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
             <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pSearchCheckupExamList" ReturnType="Collection(MediTechModel.pSearchCheckupExamList_Result)">
+            <Parameter Name="P_RequestDateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_RequestDateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_PRTGPUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -4760,6 +4865,12 @@
           <EntitySet Name="CCHPIMaster" EntityType="MediTechModel.CCHPIMaster" />
           <EntitySet Name="CheckupJobContact" EntityType="MediTechModel.CheckupJobContact" />
           <EntitySet Name="CheckupJobTask" EntityType="MediTechModel.CheckupJobTask" />
+          <EntitySet Name="CheckupRule" EntityType="MediTechModel.CheckupRule" />
+          <EntitySet Name="CheckupRuleDescription" EntityType="MediTechModel.CheckupRuleDescription" />
+          <EntitySet Name="CheckupRuleItem" EntityType="MediTechModel.CheckupRuleItem" />
+          <EntitySet Name="CheckupRuleRecommend" EntityType="MediTechModel.CheckupRuleRecommend" />
+          <EntitySet Name="CheckupSummeryResult" EntityType="MediTechModel.CheckupSummeryResult" />
+          <EntitySet Name="CheckupTextMaster" EntityType="MediTechModel.CheckupTextMaster" />
           <EntitySet Name="DispensedItem" EntityType="MediTechModel.DispensedItem" />
           <EntitySet Name="DisposeItemList" EntityType="MediTechModel.DisposeItemList" />
           <EntitySet Name="DisposeStock" EntityType="MediTechModel.DisposeStock" />
@@ -4898,14 +5009,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pSearchCheckupExamList" ReturnType="Collection(MediTechModel.pSearchCheckupExamList_Result)">
-            <Parameter Name="P_RequestDateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="P_RequestDateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_PRTGPUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7183,6 +7286,36 @@
           <Property Type="Double" Name="SalesReturn" Nullable="true" />
           <Property Type="Double" Name="BalanceStockEnd" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pSearchCheckupExamList_Result">
+          <Property Type="Int64" Name="PatientUID" Nullable="false" />
+          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
+          <Property Type="Int64" Name="RequestUID" Nullable="false" />
+          <Property Type="Int64" Name="RequestDetailUID" Nullable="false" />
+          <Property Type="DateTime" Name="RequestedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="OrderStatus" Nullable="true" MaxLength="255" />
+          <Property Type="Int64" Name="ResultUID" Nullable="true" />
+          <Property Type="String" Name="ResultStatus" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PriorityStatus" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="ResultedDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PatientID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="BirthDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PatientAge" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="Height" Nullable="true" />
+          <Property Type="String" Name="RequestNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="ArrivedDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="PreparedDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="ProcessingNote" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RequestNumber1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="RequestUserName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PrintGroup" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="200" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -7412,6 +7545,97 @@
           <Property Name="GPRSTUID" Type="Int32" Nullable="false" />
           <Property Name="GroupResultName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupRule">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="SEXXXUID" Type="Int32" />
+          <Property Name="AgeFrom" Type="Int32" />
+          <Property Name="AgeTo" Type="Int32" />
+          <Property Name="RABSTSUID" Type="Int32" Nullable="false" />
+          <Property Name="PRTGPUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupRuleDescription">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckupRuleUID" Type="Int32" Nullable="false" />
+          <Property Name="CheckupTextMasterUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupRuleItem">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckupRuleUID" Type="Int32" Nullable="false" />
+          <Property Name="ResultItemUID" Type="Int32" Nullable="false" />
+          <Property Name="Low" Type="Double" />
+          <Property Name="Hight" Type="Double" />
+          <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="IsText" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="Operator" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupRuleRecommend">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CheckupRuleUID" Type="Int32" Nullable="false" />
+          <Property Name="CheckupTextMasterUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupSummeryResult">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CheckupTextMaster">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ThaiWord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="EngWord" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -10083,36 +10307,6 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pSearchCheckupExamList_Result">
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="Int64" Name="RequestUID" Nullable="false" />
-          <Property Type="Int64" Name="RequestDetailUID" Nullable="false" />
-          <Property Type="DateTime" Name="RequestedDttm" Nullable="false" Precision="23" />
-          <Property Type="String" Name="OrderStatus" Nullable="true" MaxLength="255" />
-          <Property Type="Int64" Name="ResultUID" Nullable="true" />
-          <Property Type="String" Name="ResultStatus" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="PriorityStatus" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="ResultedDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="PatientID" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="BirthDate" Nullable="true" Precision="23" />
-          <Property Type="String" Name="PatientAge" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
-          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="Height" Nullable="true" />
-          <Property Type="String" Name="RequestNumber" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="ArrivedDttm" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="PreparedDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="ProcessingNote" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="RequestNumber1" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="RequestUserName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="PrintGroup" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="200" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11827,6 +12021,40 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pSearchCheckupExamList" FunctionName="MediTechModel.Store.pSearchCheckupExamList">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pSearchCheckupExamList_Result">
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="RequestUID" ColumnName="RequestUID" />
+                <ScalarProperty Name="RequestDetailUID" ColumnName="RequestDetailUID" />
+                <ScalarProperty Name="RequestedDttm" ColumnName="RequestedDttm" />
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="ResultUID" ColumnName="ResultUID" />
+                <ScalarProperty Name="ResultStatus" ColumnName="ResultStatus" />
+                <ScalarProperty Name="PriorityStatus" ColumnName="PriorityStatus" />
+                <ScalarProperty Name="ResultedDttm" ColumnName="ResultedDttm" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
+                <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
+                <ScalarProperty Name="ArrivedDttm" ColumnName="ArrivedDttm" />
+                <ScalarProperty Name="PreparedDttm" ColumnName="PreparedDttm" />
+                <ScalarProperty Name="ProcessingNote" ColumnName="ProcessingNote" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="RequestNumber1" ColumnName="RequestNumber1" />
+                <ScalarProperty Name="RequestUserName" ColumnName="RequestUserName" />
+                <ScalarProperty Name="PrintGroup" ColumnName="PrintGroup" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -12071,6 +12299,103 @@
                 <ScalarProperty Name="GroupResultName" ColumnName="GroupResultName" />
                 <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
                 <ScalarProperty Name="CheckupJobContactUID" ColumnName="CheckupJobContactUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupRule">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupRule">
+              <MappingFragment StoreEntitySet="CheckupRule">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="PRTGPUID" ColumnName="PRTGPUID" />
+                <ScalarProperty Name="RABSTSUID" ColumnName="RABSTSUID" />
+                <ScalarProperty Name="AgeTo" ColumnName="AgeTo" />
+                <ScalarProperty Name="AgeFrom" ColumnName="AgeFrom" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupRuleDescription">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupRuleDescription">
+              <MappingFragment StoreEntitySet="CheckupRuleDescription">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="CheckupTextMasterUID" ColumnName="CheckupTextMasterUID" />
+                <ScalarProperty Name="CheckupRuleUID" ColumnName="CheckupRuleUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupRuleItem">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupRuleItem">
+              <MappingFragment StoreEntitySet="CheckupRuleItem">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Operator" ColumnName="Operator" />
+                <ScalarProperty Name="IsText" ColumnName="IsText" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="Hight" ColumnName="Hight" />
+                <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="ResultItemUID" ColumnName="ResultItemUID" />
+                <ScalarProperty Name="CheckupRuleUID" ColumnName="CheckupRuleUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupRuleRecommend">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupRuleRecommend">
+              <MappingFragment StoreEntitySet="CheckupRuleRecommend">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="CheckupTextMasterUID" ColumnName="CheckupTextMasterUID" />
+                <ScalarProperty Name="CheckupRuleUID" ColumnName="CheckupRuleUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupSummeryResult">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupSummeryResult">
+              <MappingFragment StoreEntitySet="CheckupSummeryResult">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CheckupTextMaster">
+            <EntityTypeMapping TypeName="MediTechModel.CheckupTextMaster">
+              <MappingFragment StoreEntitySet="CheckupTextMaster">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="EngWord" ColumnName="EngWord" />
+                <ScalarProperty Name="ThaiWord" ColumnName="ThaiWord" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14877,40 +15202,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pSearchCheckupExamList" FunctionName="MediTechModel.Store.pSearchCheckupExamList">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pSearchCheckupExamList_Result">
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="RequestUID" ColumnName="RequestUID" />
-                <ScalarProperty Name="RequestDetailUID" ColumnName="RequestDetailUID" />
-                <ScalarProperty Name="RequestedDttm" ColumnName="RequestedDttm" />
-                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
-                <ScalarProperty Name="ResultUID" ColumnName="ResultUID" />
-                <ScalarProperty Name="ResultStatus" ColumnName="ResultStatus" />
-                <ScalarProperty Name="PriorityStatus" ColumnName="PriorityStatus" />
-                <ScalarProperty Name="ResultedDttm" ColumnName="ResultedDttm" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
-                <ScalarProperty Name="BirthDate" ColumnName="BirthDate" />
-                <ScalarProperty Name="PatientAge" ColumnName="PatientAge" />
-                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Height" ColumnName="Height" />
-                <ScalarProperty Name="RequestNumber" ColumnName="RequestNumber" />
-                <ScalarProperty Name="ArrivedDttm" ColumnName="ArrivedDttm" />
-                <ScalarProperty Name="PreparedDttm" ColumnName="PreparedDttm" />
-                <ScalarProperty Name="ProcessingNote" ColumnName="ProcessingNote" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
-                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
-                <ScalarProperty Name="RequestNumber1" ColumnName="RequestNumber1" />
-                <ScalarProperty Name="RequestUserName" ColumnName="RequestUserName" />
-                <ScalarProperty Name="PrintGroup" ColumnName="PrintGroup" />
-                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

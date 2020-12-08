@@ -39,6 +39,12 @@ namespace MediTech.DataBase
         public virtual DbSet<CCHPIMaster> CCHPIMaster { get; set; }
         public virtual DbSet<CheckupJobContact> CheckupJobContact { get; set; }
         public virtual DbSet<CheckupJobTask> CheckupJobTask { get; set; }
+        public virtual DbSet<CheckupRule> CheckupRule { get; set; }
+        public virtual DbSet<CheckupRuleDescription> CheckupRuleDescription { get; set; }
+        public virtual DbSet<CheckupRuleItem> CheckupRuleItem { get; set; }
+        public virtual DbSet<CheckupRuleRecommend> CheckupRuleRecommend { get; set; }
+        public virtual DbSet<CheckupSummeryResult> CheckupSummeryResult { get; set; }
+        public virtual DbSet<CheckupTextMaster> CheckupTextMaster { get; set; }
         public virtual DbSet<DispensedItem> DispensedItem { get; set; }
         public virtual DbSet<DisposeItemList> DisposeItemList { get; set; }
         public virtual DbSet<DisposeStock> DisposeStock { get; set; }
