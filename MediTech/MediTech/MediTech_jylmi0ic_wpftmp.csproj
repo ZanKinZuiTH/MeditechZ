@@ -1,0 +1,2021 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CDE24A24-2098-4844-9D55-083AF27A62FC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MediTech</RootNamespace>
+    <AssemblyName>MediTech</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <PublishUrl>C:\Users\cacheconnect\Desktop\ขยะ\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>1</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>Untitled-1.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E82B223061D2E069C20F67B0C73F036E01BAF468</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>MediTech_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppUtil.cs" />
+    <Compile Include="Converter\BitmapToBitmapImage.cs" />
+    <Compile Include="Converter\DateConverter.cs" />
+    <Compile Include="Converter\DiscRecorderValueConverter.cs" />
+    <Compile Include="Converter\ImageConverter.cs" />
+    <Compile Include="Converter\ImageModuleConverter.cs" />
+    <Compile Include="Converter\ImageMenuConverter.cs" />
+    <Compile Include="Converter\IsNullOrEmptyConverter.cs" />
+    <Compile Include="Converter\VisibilityConverter.cs" />
+    <Compile Include="CustomControl\AutoComplete\AutoCompleteTextBox.cs" />
+    <Compile Include="CustomControl\AutoComplete\ResultItemSearchPopUp.cs" />
+    <Compile Include="CustomControl\AutoComplete\SpecimenSearchPopUp.cs" />
+    <Compile Include="CustomControl\AutoComplete\OrderItemSearchPopUp.cs" />
+    <Compile Include="CustomControl\AutoComplete\PatientSearchPopUp.cs" />
+    <Compile Include="CustomControl\AutoComplete\GeneralSearchPopUp.cs" />
+    <Compile Include="CustomControl\AutoComplete\ZipCodeSearchPopUp.cs" />
+    <Compile Include="CustomControl\Banner\PatientBanner.xaml.cs">
+      <DependentUpon>PatientBanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="CustomControl\Banner\PatientOPBanner.xaml.cs">
+      <DependentUpon>PatientOPBanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Converter\AddValueConverter.cs" />
+    <Compile Include="CustomControl\Banner\PatientRequestBanner.xaml.cs">
+      <DependentUpon>PatientRequestBanner.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Helpers\AutoClosingMessageBox.cs" />
+    <Compile Include="Helpers\BindableSelectedItemBehavior.cs" />
+    <Compile Include="Helpers\BurnData\Interop\BurnData.cs" />
+    <Compile Include="Helpers\BurnData\Interop\Imapi2Interop.cs" />
+    <Compile Include="Helpers\BurnData\MediaItem\DirectoryItem.cs" />
+    <Compile Include="Helpers\BurnData\MediaItem\FileItem.cs" />
+    <Compile Include="Helpers\BurnData\MediaItem\IMediaItem.cs" />
+    <Compile Include="Helpers\BurnData\MediaItem\Win32.cs" />
+    <Compile Include="Helpers\DeferredColumnFitBehavior.cs" />
+    <Compile Include="Helpers\HtmlRichTextBoxHelper.cs" />
+    <Compile Include="CustomControl\MyLookUpEdit\MyLookUpEdit.cs" />
+    <Compile Include="CustomControl\MyLookUpEdit\MyLookUpEditStrategy.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlCssParser.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlFromXamlConverter.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlLexicalAnalyzer.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlParser.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlSchema.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlTokenType.cs" />
+    <Compile Include="Helpers\HtmlConverter\HtmlToXamlConverter.cs" />
+    <Compile Include="Helpers\OptimizationHelper.cs" />
+    <Compile Include="Helpers\PACSHelper.cs" />
+    <Compile Include="Helpers\RDNIDWRAPPER.cs" />
+    <Compile Include="Helpers\RichTextBoxEx.cs" />
+    <Compile Include="Helpers\ScannerImageConverter.cs" />
+    <Compile Include="Helpers\ScannerService.cs" />
+    <Compile Include="Helpers\TemplateSelector.cs" />
+    <Compile Include="Helpers\TranslateResult.cs" />
+    <Compile Include="Helpers\ImageHelpers.cs" />
+    <Compile Include="Helpers\GridControlFitBehavior.cs" />
+    <Compile Include="Helpers\LimitedListCollectionView.cs" />
+    <Compile Include="Helpers\MemoryManagement.cs" />
+    <Compile Include="LoginScreen.xaml.cs">
+      <DependentUpon>LoginScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ColumnSource.cs" />
+    <Compile Include="Models\EnumerationTypes.cs" />
+    <Compile Include="Models\LaunchPageMassage.cs" />
+    <Compile Include="Models\ItemMasterList.cs" />
+    <Compile Include="Models\PatientRegistrationBulkData.cs" />
+    <Compile Include="Models\StoreItemList.cs" />
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill2.Designer.cs">
+      <DependentUpon>PatientBill2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill.Designer.cs">
+      <DependentUpon>PatientBill.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail2.Designer.cs">
+      <DependentUpon>PatientBillDetail2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.Designer.cs">
+      <DependentUpon>PatientBillDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.Designer.cs">
+      <DependentUpon>GoodReceiveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\StockRequestReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\StockRequestReport.Designer.cs">
+      <DependentUpon>StockRequestReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Lab\LabResultReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Lab\LabResultReport.Designer.cs">
+      <DependentUpon>LabResultReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Lab\SpecimenBarcode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Lab\SpecimenBarcode.Designer.cs">
+      <DependentUpon>SpecimenBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentCard.Designer.cs">
+      <DependentUpon>AppointmentCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentMobile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\AppointmentMobile.Designer.cs">
+      <DependentUpon>AppointmentMobile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.Designer.cs">
+      <DependentUpon>CheckupBook1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.Designer.cs">
+      <DependentUpon>CheckupBook2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.Designer.cs">
+      <DependentUpon>CheckupBook3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.Designer.cs">
+      <DependentUpon>CheckupBook4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.Designer.cs">
+      <DependentUpon>CheckupBook5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.Designer.cs">
+      <DependentUpon>CheckupBook6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.Designer.cs">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.Designer.cs">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.Designer.cs">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.Designer.cs">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.Designer.cs">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.Designer.cs">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.Designer.cs">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.Designer.cs">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .Designer.cs">
+      <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.Designer.cs">
+      <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.Designer.cs">
+      <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng.Designer.cs">
+      <DependentUpon>MedicalCertificateEng.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.Designer.cs">
+      <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.Designer.cs">
+      <DependentUpon>RadilogyCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate.Designer.cs">
+      <DependentUpon>MedicalCertificate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil5.Designer.cs">
+      <DependentUpon>MedicalCouncil5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.Designer.cs">
+      <DependentUpon>WorkingHeightCertificate1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.Designer.cs">
+      <DependentUpon>WorkingHeightCertificate2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.Designer.cs">
+      <DependentUpon>WorkingHeightCertificateEng1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.Designer.cs">
+      <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MobileSticker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MobileSticker.Designer.cs">
+      <DependentUpon>MobileSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\OPDCard.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\OPDCard.Designer.cs">
+      <DependentUpon>OPDCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\SubReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\SubReport1.Designer.cs">
+      <DependentUpon>SubReport1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\SubReport2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OPDCard\SubReport2.Designer.cs">
+      <DependentUpon>SubReport2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OrderRequest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\OrderRequest.Designer.cs">
+      <DependentUpon>OrderRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientLargSticker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientLargSticker.Designer.cs">
+      <DependentUpon>PatientLargSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientSticker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientSticker.Designer.cs">
+      <DependentUpon>PatientSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientStickerBarcode.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientStickerBarcode.Designer.cs">
+      <DependentUpon>PatientStickerBarcode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientSticker2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientSticker2.Designer.cs">
+      <DependentUpon>PatientSticker2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.Designer.cs">
+      <DependentUpon>RiskBook1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.Designer.cs">
+      <DependentUpon>RiskBook2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.Designer.cs">
+      <DependentUpon>RiskBook3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.Designer.cs">
+      <DependentUpon>RiskBook4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.Designer.cs">
+      <DependentUpon>WellnessBookBack.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.Designer.cs">
+      <DependentUpon>WellnessMainBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DrugSticker.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Pharmacy\DrugSticker.Designer.cs">
+      <DependentUpon>DrugSticker.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReport.Designer.cs">
+      <DependentUpon>ImagingReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportThai.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportThai.Designer.cs">
+      <DependentUpon>ImagingReportThai.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportV2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Radiology\ImagingReportV2.Designer.cs">
+      <DependentUpon>ImagingReportV2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport.Designer.cs">
+      <DependentUpon>DoctorFeeReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DrugStoreNetProfit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DrugStoreNetProfit.Designer.cs">
+      <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UsedReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\UsedReport.Designer.cs">
+      <DependentUpon>UsedReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\PatientRevenue.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\PatientRevenue.Designer.cs">
+      <DependentUpon>PatientRevenue.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\PatientNetProfit.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\PatientNetProfit.Designer.cs">
+      <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.Designer.cs">
+      <DependentUpon>StockAdjustmentIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockAdjustmentOut.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockAdjustmentOut.Designer.cs">
+      <DependentUpon>StockAdjustmentOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockConsumption.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockConsumption.Designer.cs">
+      <DependentUpon>StockConsumption.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispose.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispose.Designer.cs">
+      <DependentUpon>StockDispose.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockIssueReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockIssueReport.Designer.cs">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockTransferredIn.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockTransferredIn.Designer.cs">
+      <DependentUpon>StockTransferredIn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockTransferredOut.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockTransferredOut.Designer.cs">
+      <DependentUpon>StockTransferredOut.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\GoodReceiveReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\GoodReceiveReport.Designer.cs">
+      <DependentUpon>GoodReceiveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\StockIssueReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Inventory\StockIssueReport.Designer.cs">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockBalancePerMounth.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockBalancePerMounth.Designer.cs">
+      <DependentUpon>StockBalancePerMounth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockReceiveReport.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockReceiveReport.Designer.cs">
+      <DependentUpon>StockReceiveReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockOnHand.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockOnHand.Designer.cs">
+      <DependentUpon>StockOnHand.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockExpiry8month.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockExpiry8month.Designer.cs">
+      <DependentUpon>StockExpiry8month.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockNonMovement.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockNonMovement.Designer.cs">
+      <DependentUpon>StockNonMovement.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockExpired.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockExpired.Designer.cs">
+      <DependentUpon>StockExpired.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispensed.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockDispensed.Designer.cs">
+      <DependentUpon>StockDispensed.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockSummery.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Inventory\StockSummery.Designer.cs">
+      <DependentUpon>StockSummery.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Patient\PatientProblemStatistic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Patient\PatientProblemStatistic.Designer.cs">
+      <DependentUpon>PatientProblemStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Radiology\RadiologistReview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Radiology\RadiologistReview.Designer.cs">
+      <DependentUpon>RadiologistReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Radiology\RDUReview.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Radiology\RDUReview.Designer.cs">
+      <DependentUpon>RDUReview.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\PatientSumByAreaPerMonth.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\PatientSumByAreaPerMonth.Designer.cs">
+      <DependentUpon>PatientSumByAreaPerMonth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\VisitTimesStatistic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\VisitTimesStatistic.Designer.cs">
+      <DependentUpon>VisitTimesStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\VisitDaysStatistic.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\VisitDaysStatistic.Designer.cs">
+      <DependentUpon>VisitDaysStatistic.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\PatientSummaryPerMonth.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Registration\PatientSummaryPerMonth.Designer.cs">
+      <DependentUpon>PatientSummaryPerMonth.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RoleScreen.xaml.cs">
+      <DependentUpon>RoleScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="SplashScreen\SplashScreen.xaml.cs">
+      <DependentUpon>SplashScreen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterMuscleResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterAudiogramResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterEKGResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterOccuVisionTestResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterPulmonaryResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterCheckupTestResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ManageCheckupJobViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ListCheckupJobViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\HealthExamListViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterPhysicalExamViewModel.cs" />
+    <Compile Include="ViewModels\Documents\CashierReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\PatientSummeryReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\RadiologyReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter7ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter5ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter4ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter3ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter2ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
+    <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\PastMedicalHistoryViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\PhysicalExamViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\ProgressNoteViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\SummeryViewViewModel.cs" />
+    <Compile Include="ViewModels\Documents\InventoryReportViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DisposeStockReasonViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
+    <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
+    <Compile Include="ViewModels\LIS\EnterResultsLabViewModel.cs" />
+    <Compile Include="ViewModels\LIS\LabOrderListViewModel.cs" />
+    <Compile Include="ViewModels\LIS\SpecimenCollectionViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ListSpecimenViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ListTestParameterViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ManageTestParameterViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ManageSpecimenViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\MappingTranslateXrayViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupReportViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
+    <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderAlertViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\PatientOrderEntryViewModel.cs" />
+    <Compile Include="ViewModels\EMRView\PatientDiagnosisViewModel.cs" />
+    <Compile Include="ViewModels\Home\ChangePasswordViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\AdjustStockViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\DoctorRoomViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListBillableItemViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\SearchIssueViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\SearchRequestViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\StocksViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ListRequestItemViewModel.cs" />
+    <Compile Include="ViewModels\LIS_RIS Setting\ManageRequestItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderMedicalItemViewModel.cs" />
+    <Compile Include="ViewModels\Documents\PatientReportViewModel.cs" />
+    <Compile Include="ViewModels\MRD\RegistrationBulkImportViewModel.cs" />
+    <Compile Include="ViewModels\Patient\CreateVisitViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PrescriptionViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListBilledItemSaleViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageBilledItemSaleViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ManageEncounterMergeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
+    <Compile Include="ViewModels\RIS\AssignForRDUViewModel.cs" />
+    <Compile Include="ViewModels\RIS\BurnImageViewModel.cs" />
+    <Compile Include="ViewModels\RIS\EditStudyViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ExecutePopUpViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ListDoctorFeesRISViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ListRadiologistTemplateViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ManageRadiologistTemplateViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\ManageSessionViewModel.cs" />
+    <Compile Include="ViewModels\RIS\PACSWorkListViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ListAppointmentViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ManageAppointmentViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledViewModel.cs" />
+    <Compile Include="ViewModels\Billing\CashierWorklistViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListDrugFrequencyViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListDrugGenericViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ApprovePOViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CancelPopupViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ListGRNViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ListItemIssueViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListItemMasterViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ListItemReceiveViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ListItemRequestViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientAllergyViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ListStockWorkListViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ListVendorViewModel.cs" />
+    <Compile Include="ViewModels\MRD\ReportResultMassViewModel.cs" />
+    <Compile Include="ViewModels\Documents\RegistrationReportViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter1ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\RunPatientReportsViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\ListSessionViewModel.cs" />
+    <Compile Include="ViewModels\RIS\RadiologistReportViewModel.cs" />
+    <Compile Include="ViewModels\RIS\RadiologyExamListViewModel.cs" />
+    <Compile Include="ViewModels\RIS\RDUPositivePopupViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ReviewHistoryViewModel.cs" />
+    <Compile Include="ViewModels\RIS\RDUReviewResultViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ReviewRISResultViewModel.cs" />
+    <Compile Include="ViewModels\RIS\ScheduleRadiologistViewModel.cs" />
+    <Compile Include="ViewModels\Doctor\SessionWithdrawnViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ListOrganisationViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ListPurchaseOrderViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListStoresViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ListStoreUOMConversionViewModel.cs" />
+    <Compile Include="ViewModels\MainViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageDrugFrequencyViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageDrugGenericViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ManageGRNViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ManageItemIssueViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageItemMasterViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ManageItemReceiveViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\ManageItemRequestViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageOrganisationViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ManagePatientViewModel.cs" />
+    <Compile Include="ViewModels\Base\MediTechViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ManagePurchaseOrderViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageReferenceDomainViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ListReferenceDomainViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageStoreUOMConversionViewModel.cs" />
+    <Compile Include="ViewModels\ClinicalData\ManageStoreViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ManageVendorDetailViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderDrugItemViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderWithOutStockItemViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientListViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientVitalSignViewModel.cs" />
+    <Compile Include="ViewModels\Patient\RegisterPatientViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageRoleViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ListRolesViewModel.cs" />
+    <Compile Include="ViewModels\Patient\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageUserOrganisationViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageUserViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ListUsersViewModel.cs" />
+    <Compile Include="ViewModels\MRD\TranslateXrayViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelLocator.cs" />
+    <Compile Include="Views\BillingConfiguration\ListPayorDetail.xaml.cs">
+      <DependentUpon>ListPayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
+      <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
+      <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\VerifyChekupResult.xaml.cs">
+      <DependentUpon>VerifyChekupResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupSummary.xaml.cs">
+      <DependentUpon>CheckupSummary.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupRule.xaml.cs">
+      <DependentUpon>CheckupRule.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterAudiogramResult.xaml.cs">
+      <DependentUpon>EnterAudiogramResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterEKGResult.xaml.cs">
+      <DependentUpon>EnterEKGResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterCheckupTestResult .xaml.cs">
+      <DependentUpon>EnterCheckupTestResult .xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterOccuVisionTestResult.xaml.cs">
+      <DependentUpon>EnterOccuVisionTestResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterPhysicalExam.xaml.cs">
+      <DependentUpon>EnterPhysicalExam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterPulmonaryResult.xaml.cs">
+      <DependentUpon>EnterPulmonaryResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ListCheckupJob.xaml.cs">
+      <DependentUpon>ListCheckupJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ManageCheckupJob.xaml.cs">
+      <DependentUpon>ManageCheckupJob.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\HealthExamList.xaml.cs">
+      <DependentUpon>HealthExamList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\CashierReport.xaml.cs">
+      <DependentUpon>CashierReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\PatientSummeryReport.xaml.cs">
+      <DependentUpon>PatientSummeryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\RadiologyReport.xaml.cs">
+      <DependentUpon>RadiologyReport.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter7.xaml.cs">
+      <DependentUpon>ReportParameter7.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter5.xaml.cs">
+      <DependentUpon>ReportParameter5.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter4.xaml.cs">
+      <DependentUpon>ReportParameter4.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter3.xaml.cs">
+      <DependentUpon>ReportParameter3.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter2.xaml.cs">
+      <DependentUpon>ReportParameter2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\CCHPI.xaml.cs">
+      <DependentUpon>CCHPI.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\CustomTemplate.xaml.cs">
+      <DependentUpon>CustomTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\EMRView.xaml.cs">
+      <DependentUpon>EMRView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\PastMedicalHistory.xaml.cs">
+      <DependentUpon>PastMedicalHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\PhysicalExam.xaml.cs">
+      <DependentUpon>PhysicalExam.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\ProgressNote.xaml.cs">
+      <DependentUpon>ProgressNote.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\InventoryReport.xaml.cs">
+      <DependentUpon>InventoryReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\VitalSignsChart.xaml.cs">
+      <DependentUpon>VitalSignsChart.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\WellnessData.xaml.cs">
+      <DependentUpon>WellnessData.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
+      <DependentUpon>ConsumptionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DisposeStock.xaml.cs">
+      <DependentUpon>DisposeStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DisposeStockReason.xaml.cs">
+      <DependentUpon>DisposeStockReason.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ListItemTransfer.xaml.cs">
+      <DependentUpon>ListItemTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
+      <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\ImportLabResult.xaml.cs">
+      <DependentUpon>ImportLabResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\SpecimenAccept.xaml.cs">
+      <DependentUpon>SpecimenAccept.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\EnterResultsLab.xaml.cs">
+      <DependentUpon>EnterResultsLab.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\LabOrderList.xaml.cs">
+      <DependentUpon>LabOrderList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS\SpecimenCollection.xaml.cs">
+      <DependentUpon>SpecimenCollection.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ListSpecimen.xaml.cs">
+      <DependentUpon>ListSpecimen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ListTestParameter.xaml.cs">
+      <DependentUpon>ListTestParameter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ManageTestParameter.xaml.cs">
+      <DependentUpon>ManageTestParameter.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ManageSpecimen.xaml.cs">
+      <DependentUpon>ManageSpecimen.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupReport.xaml.cs">
+      <DependentUpon>CheckupReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
+      <DependentUpon>ListPatMerge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\PatientVisitMass.xaml.cs">
+      <DependentUpon>PatientVisitMass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\CancelOrder.xaml.cs">
+      <DependentUpon>CancelOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\MappingTranslateXray.xaml.cs">
+      <DependentUpon>MappingTranslateXray.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ListOrderSet.xaml.cs">
+      <DependentUpon>ListOrderSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManageOrderSet.xaml.cs">
+      <DependentUpon>ManageOrderSet.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderAlert.xaml.cs">
+      <DependentUpon>OrderAlert.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\PatientOrderEntry.xaml.cs">
+      <DependentUpon>PatientOrderEntry.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\SummeryView.xaml.cs">
+      <DependentUpon>SummeryView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\EMRView\PatientDiagnosis.xaml.cs">
+      <DependentUpon>PatientDiagnosis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Home\ChangePassword.xaml.cs">
+      <DependentUpon>ChangePassword.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\AdjustStock.xaml.cs">
+      <DependentUpon>AdjustStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\SearchIssue.xaml.cs">
+      <DependentUpon>SearchIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\SearchRequest.xaml.cs">
+      <DependentUpon>SearchRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ListRequestItem.xaml.cs">
+      <DependentUpon>ListRequestItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LIS_RIS Setting\ManageRequestItem.xaml.cs">
+      <DependentUpon>ManageRequestItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderDrugItem.xaml.cs">
+      <DependentUpon>OrderDrugItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderMedicalItem.xaml.cs">
+      <DependentUpon>OrderMedicalItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\PatientReport.xaml.cs">
+      <DependentUpon>PatientReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\RegistrationBulkImport.xaml.cs">
+      <DependentUpon>RegistrationBulkImport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\CreateVisit.xaml.cs">
+      <DependentUpon>CreateVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ListAppointment.xaml.cs">
+      <DependentUpon>ListAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ManageAppointment.xaml.cs">
+      <DependentUpon>ManageAppointment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\PatientBilled.xaml.cs">
+      <DependentUpon>PatientBilled.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
+      <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
+      <DependentUpon>ModifyVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientList.xaml.cs">
+      <DependentUpon>PatientList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\CashierWorklist.xaml.cs">
+      <DependentUpon>CashierWorklist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Doctor\DoctorRoom.xaml.cs">
+      <DependentUpon>DoctorRoom.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ListBillableItem.xaml.cs">
+      <DependentUpon>ListBillableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\Prescription.xaml.cs">
+      <DependentUpon>Prescription.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListDrugFrequency.xaml.cs">
+      <DependentUpon>ListDrugFrequency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListDrugGeneric.xaml.cs">
+      <DependentUpon>ListDrugGeneric.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\CancelPopup.xaml.cs">
+      <DependentUpon>CancelPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListBilledItemSale.xaml.cs">
+      <DependentUpon>ListBilledItemSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ScannedDocument.xaml.cs">
+      <DependentUpon>ScannedDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ListGRN.xaml.cs">
+      <DependentUpon>ListGRN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ListItemIssue.xaml.cs">
+      <DependentUpon>ListItemIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListItemMaster.xaml.cs">
+      <DependentUpon>ListItemMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ListItemReceive.xaml.cs">
+      <DependentUpon>ListItemReceive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ListItemRequest.xaml.cs">
+      <DependentUpon>ListItemRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientAllergy.xaml.cs">
+      <DependentUpon>PatientAllergy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ListStockWorkList.xaml.cs">
+      <DependentUpon>ListStockWorkList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ListVendors.xaml.cs">
+      <DependentUpon>ListVendors.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\ReportResultMass.xaml.cs">
+      <DependentUpon>ReportResultMass.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\RegistrationReport.xaml.cs">
+      <DependentUpon>RegistrationReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter1.xaml.cs">
+      <DependentUpon>ReportParameter1.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\RunPatientReports.xaml.cs">
+      <DependentUpon>RunPatientReports.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageBilledItemSale.xaml.cs">
+      <DependentUpon>ManageBilledItemSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\AssignForRDU.xaml.cs">
+      <DependentUpon>AssignForRDU.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\BurnImage.xaml.cs">
+      <DependentUpon>BurnImage.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\EditStudy.xaml.cs">
+      <DependentUpon>EditStudy.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ScheduleAppointmentEditForm .xaml.cs">
+      <DependentUpon>ScheduleAppointmentEditForm .xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\RadiologistReport.xaml.cs">
+      <DependentUpon>RadiologistReport.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\RDUPositivePopup.xaml.cs">
+      <DependentUpon>RDUPositivePopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ExecutePopUp.xaml.cs">
+      <DependentUpon>ExecutePopUp.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ListDoctorFeesRIS.xaml.cs">
+      <DependentUpon>ListDoctorFeesRIS.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ListRadiologistTemplate.xaml.cs">
+      <DependentUpon>ListRadiologistTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ManageRadiologistTemplate.xaml.cs">
+      <DependentUpon>ManageRadiologistTemplate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Doctor\ManageSession.xaml.cs">
+      <DependentUpon>ManageSession.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\PACSWorkList.xaml.cs">
+      <DependentUpon>PACSWorkList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Doctor\ListSession.xaml.cs">
+      <DependentUpon>ListSession.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\RadiologyExamList.xaml.cs">
+      <DependentUpon>RadiologyExamList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ReviewHistory.xaml.cs">
+      <DependentUpon>ReviewHistory.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\RDUReviewResult.xaml.cs">
+      <DependentUpon>RDUReviewResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ReviewRISResult.xaml.cs">
+      <DependentUpon>ReviewRISResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RIS\ScheduleRadiologist.xaml.cs">
+      <DependentUpon>ScheduleRadiologist.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Doctor\SessionWithdrawn.xaml.cs">
+      <DependentUpon>SessionWithdrawn.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ListOrganisation.xaml.cs">
+      <DependentUpon>ListOrganisation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ListPurchaseOrder.xaml.cs">
+      <DependentUpon>ListPurchaseOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListStoreUOMConversion.xaml.cs">
+      <DependentUpon>ListStoreUOMConversion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="ViewModels\BillingConfiguration\ManageBillableItemViewModel.cs" />
+    <Compile Include="Views\BillingConfiguration\ManageBillableItem.xaml.cs">
+      <DependentUpon>ManageBillableItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageDrugFrequency.xaml.cs">
+      <DependentUpon>ManageDrugFrequency.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageDrugGeneric.xaml.cs">
+      <DependentUpon>ManageDrugGeneric.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ManageGRN.xaml.cs">
+      <DependentUpon>ManageGRN.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ManageItemIssue.xaml.cs">
+      <DependentUpon>ManageItemIssue.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageItemMaster.xaml.cs">
+      <DependentUpon>ManageItemMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ManageItemReceive.xaml.cs">
+      <DependentUpon>ManageItemReceive.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ManageItemRequest.xaml.cs">
+      <DependentUpon>ManageItemRequest.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageOrganisation.xaml.cs">
+      <DependentUpon>ManageOrganisation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ManagePatient.xaml.cs">
+      <DependentUpon>ManagePatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ListReferenceDomain.xaml.cs">
+      <DependentUpon>ListReferenceDomain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ManagePurchaseOrder.xaml.cs">
+      <DependentUpon>ManagePurchaseOrder.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageReferenceDomain.xaml.cs">
+      <DependentUpon>ManageReferenceDomain.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageStore.xaml.cs">
+      <DependentUpon>ManageStore.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ManageStoreUOMConversion.xaml.cs">
+      <DependentUpon>ManageStoreUOMConversion.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ManageVendorDetail.xaml.cs">
+      <DependentUpon>ManageVendorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\OrderProcessing\OrderWithOutStockItem.xaml.cs">
+      <DependentUpon>OrderWithOutStockItem.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientVitalSign.xaml.cs">
+      <DependentUpon>PatientVitalSign.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ApprovePO.xaml.cs">
+      <DependentUpon>ApprovePO.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\RegisterPatient.xaml.cs">
+      <DependentUpon>RegisterPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageRole.xaml.cs">
+      <DependentUpon>ManageRole.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ListRoles.xaml.cs">
+      <DependentUpon>ListRoles.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\SearchPatient.xaml.cs">
+      <DependentUpon>SearchPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ClinicalData\ListStores.xaml.cs">
+      <DependentUpon>ListStores.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageUser.xaml.cs">
+      <DependentUpon>ManageUser.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ListUsers.xaml.cs">
+      <DependentUpon>ListUsers.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientStatus.xaml.cs">
+      <DependentUpon>PatientStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\Stocks.xaml.cs">
+      <DependentUpon>Stocks.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\TranslateXray.xaml.cs">
+      <DependentUpon>TranslateXray.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\TranslateXrayPopup.xaml.cs">
+      <DependentUpon>TranslateXrayPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Setting\ManageUserOrganisation.xaml.cs">
+      <DependentUpon>ManageUserOrganisation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="WebView.xaml.cs">
+      <DependentUpon>WebView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="MainWindow.xaml.cs">
+      <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Licenses.licx" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBill2.resx">
+      <DependentUpon>PatientBill2.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBill.resx">
+      <DependentUpon>PatientBill.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail2.resx">
+      <DependentUpon>PatientBillDetail2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.resx">
+      <DependentUpon>PatientBillDetail.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
+      <DependentUpon>GoodReceiveReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Inventory\StockRequestReport.resx">
+      <DependentUpon>StockRequestReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Lab\LabResultReport.resx">
+      <DependentUpon>LabResultReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Lab\SpecimenBarcode.resx">
+      <DependentUpon>SpecimenBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\AppointmentCard.resx">
+      <DependentUpon>AppointmentCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
+      <DependentUpon>AppointmentMobile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook1.resx">
+      <DependentUpon>CheckupBook1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook2.resx">
+      <DependentUpon>CheckupBook2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook3.resx">
+      <DependentUpon>CheckupBook3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook4.resx">
+      <DependentUpon>CheckupBook4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook5.resx">
+      <DependentUpon>CheckupBook5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupBook6.resx">
+      <DependentUpon>CheckupBook6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.resx">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.resx">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.resx">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.resx">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.resx">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.resx">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.resx">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.resx">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
+      <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.resx">
+      <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
+      <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng.resx">
+      <DependentUpon>MedicalCertificateEng.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.resx">
+      <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.resx">
+      <DependentUpon>RadilogyCertificate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate.resx">
+      <DependentUpon>MedicalCertificate.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil5.resx">
+      <DependentUpon>MedicalCouncil5.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate1.resx">
+      <DependentUpon>WorkingHeightCertificate1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificate2.resx">
+      <DependentUpon>WorkingHeightCertificate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng1.resx">
+      <DependentUpon>WorkingHeightCertificateEng1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.resx">
+      <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MobileSticker.resx">
+      <DependentUpon>MobileSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\OPDCard\OPDCard.resx">
+      <DependentUpon>OPDCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\OPDCard\SubReport1.resx">
+      <DependentUpon>SubReport1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\OPDCard\SubReport2.resx">
+      <DependentUpon>SubReport2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\OrderRequest.resx">
+      <DependentUpon>OrderRequest.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientLargSticker.resx">
+      <DependentUpon>PatientLargSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker.resx">
+      <DependentUpon>PatientSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientStickerBarcode.resx">
+      <DependentUpon>PatientStickerBarcode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker2.resx">
+      <DependentUpon>PatientSticker2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook1.resx">
+      <DependentUpon>RiskBook1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook2.resx">
+      <DependentUpon>RiskBook2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook3.resx">
+      <DependentUpon>RiskBook3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook4.resx">
+      <DependentUpon>RiskBook4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.resx">
+      <DependentUpon>WellnessBookBack.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.resx">
+      <DependentUpon>WellnessMainBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
+      <DependentUpon>DrugSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReport.resx">
+      <DependentUpon>ImagingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportThai.resx">
+      <DependentUpon>ImagingReportThai.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportV2.resx">
+      <DependentUpon>ImagingReportV2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport.resx">
+      <DependentUpon>DoctorFeeReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\DrugStoreNetProfit.resx">
+      <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\UsedReport.resx">
+      <DependentUpon>UsedReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\PatientRevenue.resx">
+      <DependentUpon>PatientRevenue.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\PatientNetProfit.resx">
+      <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
+      <DependentUpon>StockAdjustmentIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentOut.resx">
+      <DependentUpon>StockAdjustmentOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockConsumption.resx">
+      <DependentUpon>StockConsumption.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispensed.aa.resx">
+      <DependentUpon>StockDispensed.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispose.resx">
+      <DependentUpon>StockDispose.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockIssueReport.resx">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockTransferredIn.resx">
+      <DependentUpon>StockTransferredIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockTransferredOut.resx">
+      <DependentUpon>StockTransferredOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\GoodReceiveReport.resx">
+      <DependentUpon>GoodReceiveReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Inventory\StockIssueReport.resx">
+      <DependentUpon>StockIssueReport.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockBalancePerMounth.resx">
+      <DependentUpon>StockBalancePerMounth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockReceiveReport.resx">
+      <DependentUpon>StockReceiveReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockOnHand.resx">
+      <DependentUpon>StockOnHand.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockExpiry8month.resx">
+      <DependentUpon>StockExpiry8month.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockNonMovement.resx">
+      <DependentUpon>StockNonMovement.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockExpired.resx">
+      <DependentUpon>StockExpired.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockDispensed.resx">
+      <DependentUpon>StockDispensed.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Inventory\StockSummery.resx">
+      <DependentUpon>StockSummery.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Patient\PatientProblemStatistic.resx">
+      <DependentUpon>PatientProblemStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Radiology\RadiologistReview.resx">
+      <DependentUpon>RadiologistReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Radiology\RDUReview.resx">
+      <DependentUpon>RDUReview.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Registration\PatientSumByAreaPerMonth.resx">
+      <DependentUpon>PatientSumByAreaPerMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Registration\VisitTimesStatistic.resx">
+      <DependentUpon>VisitTimesStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Registration\VisitDaysStatistic.resx">
+      <DependentUpon>VisitDaysStatistic.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Registration\PatientSummaryPerMonth.resx">
+      <DependentUpon>PatientSummaryPerMonth.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="PacsViewer\run.bat" />
+    <None Include="PacsViewer\Win32\mDicom.chm" />
+    <None Include="PacsViewer\x64\mDicom.chm" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <AppDesigner Include="Properties\" />
+    <None Include="RDNIDLib.DLD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\MediTechData\MediTech.DataService\MediTech.DataService.csproj">
+      <Project>{589883cb-19b6-48d8-bea9-985e2320ca0c}</Project>
+      <Name>MediTech.DataService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MediTechData\MediTech.Model\MediTech.Model.csproj">
+      <Project>{6ab3cff9-9372-4147-abad-08d83a0f0f1d}</Project>
+      <Name>MediTech.Model</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\MediTechData\ShareLibrary\ShareLibrary.csproj">
+      <Project>{7e3e8142-2f36-42e4-a4a7-c1a1af2899ce}</Project>
+      <Name>ShareLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.5">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4.5 %28x86 and x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Reports\Operating\Registration\" />
+    <Folder Include="Reports\Statistic\Pharmacy\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\soundforTERC.wav" />
+    <Content Include="PacsViewer\Win32\mDicom.exe" />
+    <Content Include="PacsViewer\x64\mDicom.exe" />
+    <Content Include="RDNIDlibD.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="WIA">
+      <Guid>{94A0E92D-43C0-494E-AC29-FD45948A5221}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\fo-dicom.Desktop.4.0.5\build\net45\fo-dicom.Desktop.targets" Condition="Exists('..\packages\fo-dicom.Desktop.4.0.5\build\net45\fo-dicom.Desktop.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\fo-dicom.Desktop.4.0.5\build\net45\fo-dicom.Desktop.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\fo-dicom.Desktop.4.0.5\build\net45\fo-dicom.Desktop.targets'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+  <ItemGroup>
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Charts.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Data.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.DataAccess.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Images.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Mvvm.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Office.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Pdf.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.PivotGrid.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Printing.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.RichEdit.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.RichEdit.v17.1.Export.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Sparkline.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Accordion.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Charts.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Controls.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Core.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Docking.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Grid.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Layout.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.LayoutControl.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.NavBar.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.PivotGrid.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Printing.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Ribbon.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.RichEdit.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpf.Scheduler.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.Xpo.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraCharts.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraGauges.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraPrinting.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraReports.v17.1.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\DevExpress 17.1\Components\Bin\Framework\DevExpress.XtraScheduler.v17.1.Core.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\fo-dicom.Desktop.4.0.5\lib\net45\Dicom.Core.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\packages\fo-dicom.Desktop.4.0.5\build\net45\Dicom.Native.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Extras.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\MvvmLightLibs.5.3.0.0\lib\net45\GalaSoft.MvvmLight.Platform.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.DataService\bin\Debug\MediTech.DataService.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\MediTech.Model\bin\Debug\MediTech.Model.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Microsoft.CSharp.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\CommonServiceLocator.1.3\lib\portable-net4+sl5+netcore45+wpa81+wp8\Microsoft.Practices.ServiceLocation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\mscorlib.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.Charting.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\PDFsharp.1.50.5147\lib\net20\PdfSharp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\PresentationCore.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\PresentationFramework.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\ShareLibrary\bin\Debug\ShareLibrary.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Configuration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Core.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.DataSetExtensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Data.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Drawing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Net.Http.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\Microsoft.AspNet.WebApi.Client.5.2.7\lib\net45\System.Net.Http.Formatting.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Printing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Web.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Windows.Forms.dll" />
+    <ReferencePath Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\packages\MvvmLightLibs.5.3.0.0\lib\net45\System.Windows.Interactivity.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xaml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\System.Xml.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\UIAutomationProvider.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\UIAutomationTypes.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\WindowsBase.dll" />
+    <ReferencePath Include="obj\Debug\Interop.WIA.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Collections.Concurrent.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Collections.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ComponentModel.Annotations.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ComponentModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ComponentModel.EventBasedAsync.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Diagnostics.Contracts.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Diagnostics.Debug.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Diagnostics.Tools.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Diagnostics.Tracing.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Dynamic.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Globalization.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.IO.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Linq.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Linq.Expressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Linq.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Linq.Queryable.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Net.NetworkInformation.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Net.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Net.Requests.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ObjectModel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.Emit.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.Emit.ILGeneration.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.Emit.Lightweight.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Reflection.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Resources.ResourceManager.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.InteropServices.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.InteropServices.WindowsRuntime.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Numerics.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Serialization.Json.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Serialization.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.Serialization.Xml.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Security.Principal.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ServiceModel.Duplex.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ServiceModel.Http.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ServiceModel.NetTcp.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ServiceModel.Primitives.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.ServiceModel.Security.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Text.Encoding.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Text.Encoding.Extensions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Text.RegularExpressions.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Threading.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Threading.Tasks.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Threading.Tasks.Parallel.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Xml.ReaderWriter.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Xml.XDocument.dll" />
+    <ReferencePath Include="C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Xml.XmlSerializer.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\CustomControl\Banner\PatientBanner.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\CustomControl\Banner\PatientOPBanner.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\CustomControl\Banner\PatientRequestBanner.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\LoginScreen.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\MainWindow.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\RoleScreen.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\SplashScreen\SplashScreen.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ListPayorDetail.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ManagePayorDetail.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\TranslateCheckupResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\VerifyChekupResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\CheckupSummary.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\CheckupRule.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterAudiogramResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterEKGResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterCheckupTestResult .g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterOccuVisionTestResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterPhysicalExam.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\EnterPulmonaryResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\ListCheckupJob.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\ManageCheckupJob.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\HealthExamList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\CashierReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\PatientSummeryReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\RadiologyReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter7.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter5.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter4.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter3.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter2.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\CCHPI.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\CustomTemplate.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\EMRView.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\PastMedicalHistory.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\PhysicalExam.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\ProgressNote.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\InventoryReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\VitalSignsChart.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\WellnessData.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ConsumptionStock.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\DisposeStock.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\DisposeStockReason.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ListItemTransfer.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ManageItemTransfer.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS\ImportLabResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS\SpecimenAccept.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS\EnterResultsLab.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS\LabOrderList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS\SpecimenCollection.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ListSpecimen.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ListTestParameter.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ManageTestParameter.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ManageSpecimen.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Checkup\CheckupReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ListPatMerge.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\MRD\PatientVisitMass.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\CancelOrder.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\MappingTranslateXray.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ListOrderSet.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ManageOrderSet.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\OrderAlert.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\PatientOrderEntry.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\SummeryView.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\EMRView\PatientDiagnosis.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Home\ChangePassword.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\AdjustStock.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\SearchIssue.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\SearchRequest.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ListRequestItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\LIS_RIS Setting\ManageRequestItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\OrderDrugItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\OrderMedicalItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\PatientReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\MRD\RegistrationBulkImport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\CreateVisit.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ListAppointment.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ManageAppointment.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Billing\PatientBilled.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ManagePatientMerge.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ModifyVisit.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\PatientList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Billing\CashierWorklist.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Doctor\DoctorRoom.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ListBillableItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\Prescription.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListDrugFrequency.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListDrugGeneric.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\CancelPopup.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListBilledItemSale.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ScannedDocument.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ListGRN.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ListItemIssue.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListItemMaster.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ListItemReceive.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ListItemRequest.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\PatientAllergy.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ListStockWorkList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ListVendors.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\MRD\ReportResultMass.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\RegistrationReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\ReportParameter1.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Documents\RunPatientReports.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageBilledItemSale.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\AssignForRDU.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\BurnImage.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\EditStudy.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ScheduleAppointmentEditForm .g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\RadiologistReport.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\RDUPositivePopup.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ExecutePopUp.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ListDoctorFeesRIS.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ListRadiologistTemplate.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ManageRadiologistTemplate.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Doctor\ManageSession.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\PACSWorkList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Doctor\ListSession.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\RadiologyExamList.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ReviewHistory.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\RDUReviewResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ReviewRISResult.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\RIS\ScheduleRadiologist.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Doctor\SessionWithdrawn.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ListOrganisation.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ListPurchaseOrder.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListStoreUOMConversion.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\BillingConfiguration\ManageBillableItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageDrugFrequency.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageDrugGeneric.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ManageGRN.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ManageItemIssue.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageItemMaster.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ManageItemReceive.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\ManageItemRequest.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ManageOrganisation.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\ManagePatient.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ListReferenceDomain.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ManagePurchaseOrder.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ManageReferenceDomain.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageStore.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ManageStoreUOMConversion.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ManageVendorDetail.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\OrderProcessing\OrderWithOutStockItem.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\PatientVitalSign.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Purchase\ApprovePO.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\RegisterPatient.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ManageRole.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ListRoles.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\SearchPatient.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\ClinicalData\ListStores.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ManageUser.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ListUsers.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Patient\PatientStatus.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Inventory\Stocks.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\MRD\TranslateXray.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\MRD\TranslateXrayPopup.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\Views\Setting\ManageUserOrganisation.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\WebView.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\App.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\MediTech_Content.g.cs" />
+    <Compile Include="C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTech\MediTech\obj\Debug\GeneratedInternalTypeHelper.g.cs" />
+  </ItemGroup>
+</Project>

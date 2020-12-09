@@ -569,7 +569,7 @@ namespace MediTechWebApi.Controllers
                             dataOrderDetail.MUser = userUID;
                             dataOrderDetail.MWhen = now;
 
-                            PatientOrderDetailHistory patientOrderDetailHistory = db.PatientOrderDetailHistory.FirstOrDefault(p => p.PatientOrderDetailUID 
+                            PatientOrderDetailHistory patientOrderDetailHistory = db.PatientOrderDetailHistory.FirstOrDefault(p => p.PatientOrderDetailUID
                             == dataOrderDetail.UID && p.ORDSTUID == 2863);
                             if (patientOrderDetailHistory != null)
                             {
@@ -594,5 +594,410 @@ namespace MediTechWebApi.Controllers
             }
         }
         #endregion
+
+        #region CheckupRule
+
+        [Route("GetCheckupRuleByGroup")]
+        [HttpGet]
+        public List<CheckupRuleModel> GetCheckupRuleByGroup(int GPRSTUID)
+        {
+            List<CheckupRuleModel> data = db.CheckupRule
+                .Where(p => p.StatusFlag == "A" && p.GPRSTUID == GPRSTUID)
+                .Select(p => new CheckupRuleModel
+                {
+                    CheckupRuleUID = p.UID,
+                    Name = p.Name,
+                    AgeFrom = p.AgeFrom,
+                    AgeTo = p.AgeTo,
+                    RABSTSUID = p.RABSTSUID,
+                    SEXXXUID = p.SEXXXUID,
+                    GPRSTUID = p.GPRSTUID,
+                    ResultStatus = SqlFunction.fGetRfValDescription(p.RABSTSUID),
+                    Gender = p.SEXXXUID != null ? SqlFunction.fGetRfValDescription(p.SEXXXUID.Value) : ""
+                }).ToList();
+            return data;
+        }
+
+        [Route("AddCheckupRule")]
+        [HttpPost]
+        public HttpResponseMessage AddCheckupRule(CheckupRuleModel chekcupRuleModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRule checkupRule = new CheckupRule();
+                    checkupRule.Name = chekcupRuleModel.Name;
+                    checkupRule.SEXXXUID = chekcupRuleModel.SEXXXUID;
+                    checkupRule.AgeFrom = chekcupRuleModel.AgeFrom;
+                    checkupRule.AgeTo = chekcupRuleModel.AgeTo;
+                    checkupRule.RABSTSUID = chekcupRuleModel.RABSTSUID;
+                    checkupRule.GPRSTUID = chekcupRuleModel.GPRSTUID;
+                    checkupRule.CUser = userID;
+                    checkupRule.CWhen = now;
+                    checkupRule.MUser = userID;
+                    checkupRule.MWhen = now;
+                    checkupRule.StatusFlag = "A";
+                    db.CheckupRule.Add(checkupRule);
+                    db.SaveChanges();
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCheckupRule")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCheckupRule(int chekcupRuleUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRule checkupRule = db.CheckupRule.Find(chekcupRuleUID);
+                    if (checkupRule != null)
+                    {
+                        db.CheckupRule.Attach(checkupRule);
+                        checkupRule.MUser = userID;
+                        checkupRule.MWhen = now;
+                        checkupRule.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("GetCheckupRuleItemByRuleUID")]
+        [HttpGet]
+        public List<CheckupRuleItemModel> GetCheckupRuleItemByRuleUID(int chekcupRuleUID)
+        {
+            List<CheckupRuleItemModel> data = db.CheckupRuleItem
+                .Where(p => p.StatusFlag == "A" && p.CheckupRuleUID == chekcupRuleUID)
+                .Select(p => new CheckupRuleItemModel
+                {
+                    CheckupRuleItemUID = p.UID,
+                    CheckupRuleUID = p.CheckupRuleUID,
+                    ResultItemUID = p.ResultItemUID,
+                    ResultItemName = p.ResultItemName,
+                    Operator = p.Operator,
+                    Text = p.Text,
+                    Low = p.Low,
+                    Hight = p.Hight
+                }).ToList();
+            return data;
+        }
+
+        [Route("AddCheckupRuleItem")]
+        [HttpPost]
+        public HttpResponseMessage AddCheckupRuleItem(CheckupRuleItemModel chekcupRuleItemModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRuleItem checkupRuleItem = new CheckupRuleItem();
+                    checkupRuleItem.CheckupRuleUID = chekcupRuleItemModel.CheckupRuleUID;
+                    checkupRuleItem.ResultItemUID = chekcupRuleItemModel.ResultItemUID;
+                    checkupRuleItem.ResultItemName = chekcupRuleItemModel.ResultItemName;
+                    checkupRuleItem.Low = chekcupRuleItemModel.Low;
+                    checkupRuleItem.Hight = chekcupRuleItemModel.Hight;
+                    checkupRuleItem.Text = chekcupRuleItemModel.Text;
+                    checkupRuleItem.Operator = chekcupRuleItemModel.Operator;
+                    checkupRuleItem.CUser = userID;
+                    checkupRuleItem.CWhen = now;
+                    checkupRuleItem.MUser = userID;
+                    checkupRuleItem.MWhen = now;
+                    checkupRuleItem.StatusFlag = "A";
+                    db.CheckupRuleItem.Add(checkupRuleItem);
+                    db.SaveChanges();
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCheckupRuleItem")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCheckupRuleItem(int chekcupRuleItemUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRuleItem checkupRuleItem = db.CheckupRuleItem.Find(chekcupRuleItemUID);
+                    if (checkupRuleItem != null)
+                    {
+                        db.CheckupRuleItem.Attach(checkupRuleItem);
+                        checkupRuleItem.MUser = userID;
+                        checkupRuleItem.MWhen = now;
+                        checkupRuleItem.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("GetCheckupTextMaster")]
+        [HttpGet]
+        public List<CheckupTextMasterModel> GetCheckupTextMaster()
+        {
+            List<CheckupTextMasterModel> data = db.CheckupTextMaster.Where(p => p.StatusFlag == "A")
+                .Select(p => new CheckupTextMasterModel
+                {
+                    CheckupTextMasterUID = p.UID,
+                    ThaiWord = p.ThaiWord,
+                    EngWord = p.EngWord
+                }).ToList();
+
+            return data;
+        }
+
+        [Route("SaveCheckupTextMaster")]
+        [HttpPost]
+        public HttpResponseMessage SaveCheckupTextMaster(CheckupTextMasterModel checkupTextMasterModel)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                CheckupTextMaster newData = db.CheckupTextMaster.Find(checkupTextMasterModel.CheckupTextMasterUID);
+                if (newData == null)
+                {
+                    newData = new CheckupTextMaster();
+                    newData.CUser = checkupTextMasterModel.CUser;
+                    newData.CWhen = now;
+                }
+                newData.ThaiWord = checkupTextMasterModel.ThaiWord;
+                newData.EngWord = checkupTextMasterModel.EngWord;
+                newData.MUser = checkupTextMasterModel.MUser;
+                newData.MWhen = now;
+                newData.StatusFlag = "A";
+                db.CheckupTextMaster.AddOrUpdate(newData);
+
+
+                db.SaveChanges();
+                checkupTextMasterModel.CheckupTextMasterUID = newData.UID;
+                return Request.CreateResponse(HttpStatusCode.OK, checkupTextMasterModel);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCheckupTextMaster")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCheckupTextMaster(int checkupTextMasterUID, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                CheckupTextMaster dataEdit = db.CheckupTextMaster.Find(checkupTextMasterUID);
+                if (dataEdit != null)
+                {
+                    db.CheckupTextMaster.Attach(dataEdit);
+                    dataEdit.StatusFlag = "D";
+                    dataEdit.MUser = userUID;
+                    dataEdit.MWhen = now;
+
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("GetCheckupRuleDescriptionByRuleUID")]
+        [HttpGet]
+        public List<CheckupRuleDescriptionModel> GetCheckupRuleDescriptionByRuleUID(int chekcupRuleUID)
+        {
+            List<CheckupRuleDescriptionModel> data = (from j in db.CheckupRuleDescription
+                                                      join k in db.CheckupTextMaster on j.CheckupTextMasterUID equals k.UID
+                                                      where j.CheckupRuleUID == chekcupRuleUID
+                                                      && j.StatusFlag == "A"
+                                                      select new CheckupRuleDescriptionModel
+                                                      {
+                                                          CheckupRuleDescriptionUID = j.UID,
+                                                          CheckupRuleUID = j.CheckupRuleUID,
+                                                          CheckupTextMasterUID = j.CheckupTextMasterUID,
+                                                          Description = k.ThaiWord
+                                                      }).ToList();
+            return data;
+        }
+
+        [Route("GetCheckupRuleRecommendModelByRuleUID")]
+        [HttpGet]
+        public List<CheckupRuleRecommendModel> GetCheckupRuleRecommendModelByRuleUID(int chekcupRuleUID)
+        {
+            List<CheckupRuleRecommendModel> data = (from j in db.CheckupRuleRecommend
+                                                    join k in db.CheckupTextMaster on j.CheckupTextMasterUID equals k.UID
+                                                    where j.CheckupRuleUID == chekcupRuleUID
+                                                    && j.StatusFlag == "A"
+                                                    select new CheckupRuleRecommendModel
+                                                    {
+                                                        CheckupRuleRecommendUID = j.UID,
+                                                        CheckupRuleUID = j.CheckupRuleUID,
+                                                        CheckupTextMasterUID = j.CheckupTextMasterUID,
+                                                        Recommend = k.ThaiWord
+                                                    }).ToList();
+            return data;
+        }
+
+        [Route("AddCheckupRuleDescription")]
+        [HttpPost]
+        public HttpResponseMessage AddCheckupRuleDescription(CheckupRuleDescriptionModel chekcupDescription, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRuleDescription checkupRuleDesc = new CheckupRuleDescription();
+                    checkupRuleDesc.CheckupRuleUID = chekcupDescription.CheckupRuleUID;
+                    checkupRuleDesc.CheckupTextMasterUID = chekcupDescription.CheckupTextMasterUID;
+                    checkupRuleDesc.CUser = userID;
+                    checkupRuleDesc.CWhen = now;
+                    checkupRuleDesc.MUser = userID;
+                    checkupRuleDesc.MWhen = now;
+                    checkupRuleDesc.StatusFlag = "A";
+                    db.CheckupRuleDescription.Add(checkupRuleDesc);
+                    db.SaveChanges();
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("AddCheckupRuleRecommend")]
+        [HttpPost]
+        public HttpResponseMessage AddCheckupRuleRecommend(CheckupRuleRecommendModel chekcupRecommend, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    CheckupRuleRecommend checkupRuleRecom = new CheckupRuleRecommend();
+                    checkupRuleRecom.CheckupRuleUID = chekcupRecommend.CheckupRuleUID;
+                    checkupRuleRecom.CheckupTextMasterUID = chekcupRecommend.CheckupTextMasterUID;
+                    checkupRuleRecom.CUser = userID;
+                    checkupRuleRecom.CWhen = now;
+                    checkupRuleRecom.MUser = userID;
+                    checkupRuleRecom.MWhen = now;
+                    checkupRuleRecom.StatusFlag = "A";
+                    db.CheckupRuleRecommend.Add(checkupRuleRecom);
+                    db.SaveChanges();
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCheckupRuleDescription")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCheckupRuleDescription(int checkupRuleDescriptionUID, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                CheckupRuleDescription dataEdit = db.CheckupRuleDescription.Find(checkupRuleDescriptionUID);
+                if (dataEdit != null)
+                {
+                    db.CheckupRuleDescription.Attach(dataEdit);
+                    dataEdit.StatusFlag = "D";
+                    dataEdit.MUser = userUID;
+                    dataEdit.MWhen = now;
+
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCheckupRuleRecommend")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCheckupRuleRecommend(int checkupRuleRecommendUID, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                CheckupRuleRecommend dataEdit = db.CheckupRuleRecommend.Find(checkupRuleRecommendUID);
+                if (dataEdit != null)
+                {
+                    db.CheckupRuleRecommend.Attach(dataEdit);
+                    dataEdit.StatusFlag = "D";
+                    dataEdit.MUser = userUID;
+                    dataEdit.MWhen = now;
+
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        #endregion 
     }
 }

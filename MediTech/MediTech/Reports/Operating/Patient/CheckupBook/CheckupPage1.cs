@@ -81,7 +81,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 float diffHeight = textHeight - label.HeightF;
                 var result1 = page2.lbResultWellness.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
                 var result2 = lbResultWellness2.Lines.Where(p => !string.IsNullOrEmpty(p)).ToList();
-
+                //List<string> result1List = new List<string>();
+                //List<string> result2List = new List<string>();
 
                 string lastResult = result1[result1.Count - 1];
                 result2.Insert(0,lastResult);
