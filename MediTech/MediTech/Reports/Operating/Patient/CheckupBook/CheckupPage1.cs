@@ -685,7 +685,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         || p.RequestItemCode.Contains("LAB323")
                         || p.RequestItemCode.Contains("LAB324")
                         || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558"))
+                        || p.RequestItemCode.Contains("LAB558")
+                        || p.RequestItemCode.Contains("LAB518"))
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -2587,6 +2588,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 page8.RowAcetone.Visible = false;
                 page8.RowHexane.Visible = false;
                 page8.RowIsopropanol.Visible = false;
+                page8.RowStyreneUrine.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -2697,17 +2699,12 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                             page8.cellXylene3.ForeColor = (XyleneAbnormal3 == "H") ? Color.Red : Color.Blue;
                             page8.cellXylene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
-
-                        page8.cellLeadRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75")?.ReferenceRange;
-                        if (page8.cellLeadRange.Text != null && page8.cellLeadRange.Text.Length > 20)
-                        {
-                            page8.cellLeadRange.Font = new Font("Angsana New", 7);
-                        }
                     }
 
                     #endregion
 
                     #region Lead in blood (Show all)
+                    page8.cellLeadRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75")?.ReferenceRange;
                     page8.cellLead1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year1)?.ResultValue;
                     page8.cellLead2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.ResultValue;
                     page8.cellLead3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.ResultValue;
@@ -2907,36 +2904,36 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                     }
                     #endregion
 
-                    #region Acetone
+                    #region Styrene in Urine
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117") != null)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195") != null)
                     {
-                        page8.RowAcetone.Visible = true;
-                        page8.cellAcetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117")?.ReferenceRange;
-                        page8.cellAcetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.ResultValue;
-                        page8.cellAcetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.ResultValue;
-                        page8.cellAcetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.ResultValue;
+                        page8.RowStyreneUrine.Visible = true;
+                        page8.cellStyreneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195")?.ReferenceRange;
+                        page8.cellStyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
+                        page8.cellStyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
+                        page8.cellStyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
 
-                        string AcetoneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.IsAbnormal;
-                        string AcetoneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.IsAbnormal;
-                        string AcetoneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.IsAbnormal;
+                        string StyreneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.IsAbnormal;
+                        string StyreneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.IsAbnormal;
+                        string StyreneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.IsAbnormal;
 
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal1))
+                        if (!string.IsNullOrEmpty(StyreneAbnormal1))
                         {
-                            page8.cellAcetone1.ForeColor = (AcetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            page8.cellStyrene1.ForeColor = (StyreneAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellStyrene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
 
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal2))
+                        if (!string.IsNullOrEmpty(StyreneAbnormal2))
                         {
-                            page8.cellAcetone2.ForeColor = (AcetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            page8.cellStyrene2.ForeColor = (StyreneAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellStyrene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
 
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal3))
+                        if (!string.IsNullOrEmpty(StyreneAbnormal3))
                         {
-                            page8.cellAcetone3.ForeColor = (AcetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            page8.cellStyrene3.ForeColor = (StyreneAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellStyrene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
                     }
                     #endregion
@@ -3097,6 +3094,40 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         {
                             page8.cellNickelUrine3.ForeColor = (NickelUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
                             page8.cellNickelUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region Acetone 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117") != null)
+                    {
+                        page8.RowAcetone.Visible = true;
+                        page8.cellAcetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117")?.ReferenceRange;
+                        page8.cellAcetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.ResultValue;
+                        page8.cellAcetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.ResultValue;
+                        page8.cellAcetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.ResultValue;
+
+                        string AcetoneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.IsAbnormal;
+                        string AcetoneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.IsAbnormal;
+                        string AcetoneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(AcetoneAbnormal1))
+                        {
+                            page8.cellAcetone1.ForeColor = (AcetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellAcetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(AcetoneAbnormal2))
+                        {
+                            page8.cellAcetone2.ForeColor = (AcetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellAcetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(AcetoneAbnormal3))
+                        {
+                            page8.cellAcetone3.ForeColor = (AcetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellAcetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
                     }
                     #endregion

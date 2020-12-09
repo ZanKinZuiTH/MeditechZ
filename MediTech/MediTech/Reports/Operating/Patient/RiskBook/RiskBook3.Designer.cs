@@ -59,6 +59,12 @@
             this.cellNickel2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellNickel3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellNickelRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow21 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell92 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellNickelUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellNickelUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellNickelUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellNickelUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow42 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellChromium1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -449,12 +455,12 @@
             this.xrRichText5 = new DevExpress.XtraReports.UI.XRRichText();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrTableRow21 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell92 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellNickelUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellNickelUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellNickelUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellNickelUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow22 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell91 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.StyreneUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.StyreneUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.StyreneUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.StyreneUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).BeginInit();
@@ -750,8 +756,9 @@
             this.RowXylene,
             this.RowCarboxy,
             this.RowMEK,
-            this.RowIsopropanol});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(370.3334F, 313.7045F);
+            this.RowIsopropanol,
+            this.xrTableRow22});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(370.3334F, 333.4964F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -944,6 +951,97 @@
             this.cellNickelRange.StylePriority.UseTextAlignment = false;
             this.cellNickelRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellNickelRange.Weight = 0.91637652823317084D;
+            // 
+            // xrTableRow21
+            // 
+            this.xrTableRow21.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell92,
+            this.cellNickelUrine1,
+            this.cellNickelUrine2,
+            this.cellNickelUrine3,
+            this.cellNickelUrineRange});
+            this.xrTableRow21.Name = "xrTableRow21";
+            this.xrTableRow21.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell92
+            // 
+            this.xrTableCell92.BackColor = System.Drawing.Color.Transparent;
+            this.xrTableCell92.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell92.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell92.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell92.Name = "xrTableCell92";
+            this.xrTableCell92.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell92.StylePriority.UseBackColor = false;
+            this.xrTableCell92.StylePriority.UseBorderColor = false;
+            this.xrTableCell92.StylePriority.UseBorders = false;
+            this.xrTableCell92.StylePriority.UseFont = false;
+            this.xrTableCell92.StylePriority.UsePadding = false;
+            this.xrTableCell92.StylePriority.UseTextAlignment = false;
+            this.xrTableCell92.Text = "Nickel In Urine";
+            this.xrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell92.Weight = 1.1499693572594543D;
+            // 
+            // cellNickelUrine1
+            // 
+            this.cellNickelUrine1.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellNickelUrine1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellNickelUrine1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellNickelUrine1.Name = "cellNickelUrine1";
+            this.cellNickelUrine1.StylePriority.UseBorderColor = false;
+            this.cellNickelUrine1.StylePriority.UseBorders = false;
+            this.cellNickelUrine1.StylePriority.UseFont = false;
+            this.cellNickelUrine1.StylePriority.UseTextAlignment = false;
+            this.cellNickelUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellNickelUrine1.Weight = 0.46306623264687286D;
+            // 
+            // cellNickelUrine2
+            // 
+            this.cellNickelUrine2.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellNickelUrine2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellNickelUrine2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellNickelUrine2.Name = "cellNickelUrine2";
+            this.cellNickelUrine2.StylePriority.UseBorderColor = false;
+            this.cellNickelUrine2.StylePriority.UseBorders = false;
+            this.cellNickelUrine2.StylePriority.UseFont = false;
+            this.cellNickelUrine2.StylePriority.UseTextAlignment = false;
+            this.cellNickelUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellNickelUrine2.Weight = 0.47567043827052152D;
+            // 
+            // cellNickelUrine3
+            // 
+            this.cellNickelUrine3.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellNickelUrine3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellNickelUrine3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellNickelUrine3.Name = "cellNickelUrine3";
+            this.cellNickelUrine3.StylePriority.UseBorderColor = false;
+            this.cellNickelUrine3.StylePriority.UseBorders = false;
+            this.cellNickelUrine3.StylePriority.UseFont = false;
+            this.cellNickelUrine3.StylePriority.UseTextAlignment = false;
+            this.cellNickelUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellNickelUrine3.Weight = 0.49654431607582589D;
+            // 
+            // cellNickelUrineRange
+            // 
+            this.cellNickelUrineRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellNickelUrineRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellNickelUrineRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellNickelUrineRange.Name = "cellNickelUrineRange";
+            this.cellNickelUrineRange.StylePriority.UseBorderColor = false;
+            this.cellNickelUrineRange.StylePriority.UseBorders = false;
+            this.cellNickelUrineRange.StylePriority.UseFont = false;
+            this.cellNickelUrineRange.StylePriority.UseTextAlignment = false;
+            this.cellNickelUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellNickelUrineRange.Weight = 0.91637652823317084D;
             // 
             // xrTableRow42
             // 
@@ -4713,7 +4811,7 @@
             // 
             // xrTable3
             // 
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(25F, 819.6752F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(23.83328F, 837.3271F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow6,
@@ -5281,7 +5379,7 @@
             // 
             this.xrLabel8.CanGrow = false;
             this.xrLabel8.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(25.83333F, 793.4197F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(24.66661F, 811.0716F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(337.8334F, 23F);
@@ -6326,96 +6424,96 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // xrTableRow21
+            // xrTableRow22
             // 
-            this.xrTableRow21.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell92,
-            this.cellNickelUrine1,
-            this.cellNickelUrine2,
-            this.cellNickelUrine3,
-            this.cellNickelUrineRange});
-            this.xrTableRow21.Name = "xrTableRow21";
-            this.xrTableRow21.Weight = 0.92341768297675519D;
+            this.xrTableRow22.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell91,
+            this.StyreneUrine1,
+            this.StyreneUrine2,
+            this.StyreneUrine3,
+            this.StyreneUrineRange});
+            this.xrTableRow22.Name = "xrTableRow22";
+            this.xrTableRow22.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell92
+            // xrTableCell91
             // 
-            this.xrTableCell92.BackColor = System.Drawing.Color.Transparent;
-            this.xrTableCell92.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell92.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell91.BackColor = System.Drawing.Color.Transparent;
+            this.xrTableCell91.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell91.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell92.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell92.Name = "xrTableCell92";
-            this.xrTableCell92.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell92.StylePriority.UseBackColor = false;
-            this.xrTableCell92.StylePriority.UseBorderColor = false;
-            this.xrTableCell92.StylePriority.UseBorders = false;
-            this.xrTableCell92.StylePriority.UseFont = false;
-            this.xrTableCell92.StylePriority.UsePadding = false;
-            this.xrTableCell92.StylePriority.UseTextAlignment = false;
-            this.xrTableCell92.Text = "Nickel In Urine";
-            this.xrTableCell92.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell92.Weight = 1.1499693572594543D;
+            this.xrTableCell91.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell91.Name = "xrTableCell91";
+            this.xrTableCell91.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell91.StylePriority.UseBackColor = false;
+            this.xrTableCell91.StylePriority.UseBorderColor = false;
+            this.xrTableCell91.StylePriority.UseBorders = false;
+            this.xrTableCell91.StylePriority.UseFont = false;
+            this.xrTableCell91.StylePriority.UsePadding = false;
+            this.xrTableCell91.StylePriority.UseTextAlignment = false;
+            this.xrTableCell91.Text = "Styrene in Urine";
+            this.xrTableCell91.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell91.Weight = 1.1499693572594543D;
             // 
-            // cellNickelUrine1
+            // StyreneUrine1
             // 
-            this.cellNickelUrine1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellNickelUrine1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.StyreneUrine1.BorderColor = System.Drawing.Color.DarkGray;
+            this.StyreneUrine1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellNickelUrine1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellNickelUrine1.Name = "cellNickelUrine1";
-            this.cellNickelUrine1.StylePriority.UseBorderColor = false;
-            this.cellNickelUrine1.StylePriority.UseBorders = false;
-            this.cellNickelUrine1.StylePriority.UseFont = false;
-            this.cellNickelUrine1.StylePriority.UseTextAlignment = false;
-            this.cellNickelUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelUrine1.Weight = 0.46306623264687286D;
+            this.StyreneUrine1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.StyreneUrine1.Name = "StyreneUrine1";
+            this.StyreneUrine1.StylePriority.UseBorderColor = false;
+            this.StyreneUrine1.StylePriority.UseBorders = false;
+            this.StyreneUrine1.StylePriority.UseFont = false;
+            this.StyreneUrine1.StylePriority.UseTextAlignment = false;
+            this.StyreneUrine1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.StyreneUrine1.Weight = 0.46306623264687286D;
             // 
-            // cellNickelUrine2
+            // StyreneUrine2
             // 
-            this.cellNickelUrine2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellNickelUrine2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.StyreneUrine2.BorderColor = System.Drawing.Color.DarkGray;
+            this.StyreneUrine2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellNickelUrine2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellNickelUrine2.Name = "cellNickelUrine2";
-            this.cellNickelUrine2.StylePriority.UseBorderColor = false;
-            this.cellNickelUrine2.StylePriority.UseBorders = false;
-            this.cellNickelUrine2.StylePriority.UseFont = false;
-            this.cellNickelUrine2.StylePriority.UseTextAlignment = false;
-            this.cellNickelUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelUrine2.Weight = 0.47567043827052152D;
+            this.StyreneUrine2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.StyreneUrine2.Name = "StyreneUrine2";
+            this.StyreneUrine2.StylePriority.UseBorderColor = false;
+            this.StyreneUrine2.StylePriority.UseBorders = false;
+            this.StyreneUrine2.StylePriority.UseFont = false;
+            this.StyreneUrine2.StylePriority.UseTextAlignment = false;
+            this.StyreneUrine2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.StyreneUrine2.Weight = 0.47567043827052152D;
             // 
-            // cellNickelUrine3
+            // StyreneUrine3
             // 
-            this.cellNickelUrine3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellNickelUrine3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.StyreneUrine3.BorderColor = System.Drawing.Color.DarkGray;
+            this.StyreneUrine3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellNickelUrine3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellNickelUrine3.Name = "cellNickelUrine3";
-            this.cellNickelUrine3.StylePriority.UseBorderColor = false;
-            this.cellNickelUrine3.StylePriority.UseBorders = false;
-            this.cellNickelUrine3.StylePriority.UseFont = false;
-            this.cellNickelUrine3.StylePriority.UseTextAlignment = false;
-            this.cellNickelUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelUrine3.Weight = 0.49654431607582589D;
+            this.StyreneUrine3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.StyreneUrine3.Name = "StyreneUrine3";
+            this.StyreneUrine3.StylePriority.UseBorderColor = false;
+            this.StyreneUrine3.StylePriority.UseBorders = false;
+            this.StyreneUrine3.StylePriority.UseFont = false;
+            this.StyreneUrine3.StylePriority.UseTextAlignment = false;
+            this.StyreneUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.StyreneUrine3.Weight = 0.49654431607582589D;
             // 
-            // cellNickelUrineRange
+            // StyreneUrineRange
             // 
-            this.cellNickelUrineRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellNickelUrineRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.StyreneUrineRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.StyreneUrineRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellNickelUrineRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellNickelUrineRange.Name = "cellNickelUrineRange";
-            this.cellNickelUrineRange.StylePriority.UseBorderColor = false;
-            this.cellNickelUrineRange.StylePriority.UseBorders = false;
-            this.cellNickelUrineRange.StylePriority.UseFont = false;
-            this.cellNickelUrineRange.StylePriority.UseTextAlignment = false;
-            this.cellNickelUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellNickelUrineRange.Weight = 0.91637652823317084D;
+            this.StyreneUrineRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.StyreneUrineRange.Name = "StyreneUrineRange";
+            this.StyreneUrineRange.StylePriority.UseBorderColor = false;
+            this.StyreneUrineRange.StylePriority.UseBorders = false;
+            this.StyreneUrineRange.StylePriority.UseFont = false;
+            this.StyreneUrineRange.StylePriority.UseTextAlignment = false;
+            this.StyreneUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.StyreneUrineRange.Weight = 0.91637652823317084D;
             // 
             // PatientName
             // 
@@ -6872,5 +6970,11 @@
         public DevExpress.XtraReports.UI.XRTableCell cellNickelUrine2;
         public DevExpress.XtraReports.UI.XRTableCell cellNickelUrine3;
         public DevExpress.XtraReports.UI.XRTableCell cellNickelUrineRange;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow22;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell91;
+        public DevExpress.XtraReports.UI.XRTableCell StyreneUrine1;
+        public DevExpress.XtraReports.UI.XRTableCell StyreneUrine2;
+        public DevExpress.XtraReports.UI.XRTableCell StyreneUrine3;
+        public DevExpress.XtraReports.UI.XRTableCell StyreneUrineRange;
     }
 }

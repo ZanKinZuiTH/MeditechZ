@@ -304,7 +304,8 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                         || p.RequestItemCode.Contains("LAB323")
                         || p.RequestItemCode.Contains("LAB324")
                         || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558"))
+                        || p.RequestItemCode.Contains("LAB558")
+                        || p.RequestItemCode.Contains("LAB518"))
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -748,6 +749,11 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 page3.cellNickelUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.ResultValue;
                 page3.cellNickelUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.ResultValue;
                 page3.cellNickelUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.ResultValue;
+
+                page3.StyreneUrineRange.Text = labTestSet.FirstOrDefault(p => p.RequestItemCode == "PAR195")?.ReferenceRange;
+                page3.StyreneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
+                page3.StyreneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
+                page3.StyreneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
 
             }
         }

@@ -205,6 +205,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.RowStyreneUrine = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyreneRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbStool)).BeginInit();
@@ -493,8 +499,9 @@
             this.RowCarboxy,
             this.RowMEK,
             this.RowIsopropanol,
-            this.RowNickelUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 312.2355F);
+            this.RowNickelUrine,
+            this.RowStyreneUrine});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 331.1066F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -2107,6 +2114,63 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // RowStyreneUrine
+            // 
+            this.RowStyreneUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell37,
+            this.cellStyreneRange,
+            this.cellStyrene1,
+            this.cellStyrene2,
+            this.cellStyrene3});
+            this.RowStyreneUrine.Name = "RowStyreneUrine";
+            this.RowStyreneUrine.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell37
+            // 
+            this.xrTableCell37.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell37.Name = "xrTableCell37";
+            this.xrTableCell37.StylePriority.UseFont = false;
+            this.xrTableCell37.StylePriority.UseTextAlignment = false;
+            this.xrTableCell37.Text = "Styrene in Urine";
+            this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell37.Weight = 1.0081393020274905D;
+            // 
+            // cellStyreneRange
+            // 
+            this.cellStyreneRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyreneRange.Name = "cellStyreneRange";
+            this.cellStyreneRange.StylePriority.UseFont = false;
+            this.cellStyreneRange.StylePriority.UseTextAlignment = false;
+            this.cellStyreneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyreneRange.Weight = 1.0314162206887314D;
+            // 
+            // cellStyrene1
+            // 
+            this.cellStyrene1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene1.Name = "cellStyrene1";
+            this.cellStyrene1.StylePriority.UseFont = false;
+            this.cellStyrene1.StylePriority.UseTextAlignment = false;
+            this.cellStyrene1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene1.Weight = 0.52909351643135161D;
+            // 
+            // cellStyrene2
+            // 
+            this.cellStyrene2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene2.Name = "cellStyrene2";
+            this.cellStyrene2.StylePriority.UseFont = false;
+            this.cellStyrene2.StylePriority.UseTextAlignment = false;
+            this.cellStyrene2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene2.Weight = 0.55147320971800662D;
+            // 
+            // cellStyrene3
+            // 
+            this.cellStyrene3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene3.Name = "cellStyrene3";
+            this.cellStyrene3.StylePriority.UseFont = false;
+            this.cellStyrene3.StylePriority.UseTextAlignment = false;
+            this.cellStyrene3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene3.Weight = 0.49654431607582589D;
+            // 
             // CheckupPage8
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2307,5 +2371,11 @@
         public DevExpress.XtraReports.UI.XRTableCell cellStoolCulter2;
         public DevExpress.XtraReports.UI.XRTableCell cellStoolCulter3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        public DevExpress.XtraReports.UI.XRTableRow RowStyreneUrine;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
+        public DevExpress.XtraReports.UI.XRTableCell cellStyreneRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellStyrene1;
+        public DevExpress.XtraReports.UI.XRTableCell cellStyrene2;
+        public DevExpress.XtraReports.UI.XRTableCell cellStyrene3;
     }
 }
