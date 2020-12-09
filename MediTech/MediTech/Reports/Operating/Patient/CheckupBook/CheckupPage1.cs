@@ -3099,7 +3099,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
 
                     #region Acetone 
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195") != null)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117") != null)
                     {
                         page8.RowAcetone.Visible = true;
                         page8.cellAcetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117")?.ReferenceRange;
