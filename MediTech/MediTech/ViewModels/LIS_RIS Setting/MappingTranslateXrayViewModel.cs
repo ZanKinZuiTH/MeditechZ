@@ -106,7 +106,8 @@ namespace MediTech.ViewModels
                     XrayTranslateMappingModel rowItem = (XrayTranslateMappingModel)e.Row;
                     rowItem.CUser = userUID;
                     rowItem.MUser = userUID;
-                    DataService.Radiology.SaveXrayTranslateMapping(rowItem);
+                    var returnData = DataService.Radiology.SaveXrayTranslateMapping(rowItem);
+                    (e.Row as XrayTranslateMappingModel).XrayTranslateMappingUID = returnData.XrayTranslateMappingUID;
                     SaveSuccessDialog();
                 }
             }

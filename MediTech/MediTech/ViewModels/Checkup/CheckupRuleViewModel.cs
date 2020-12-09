@@ -1,10 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -17,7 +20,7 @@ namespace MediTech.ViewModels
         public List<LookupReferenceValueModel> GroupResults
         {
             get { return _GroupResults; }
-            set { Set(ref _GroupResults , value); }
+            set { Set(ref _GroupResults, value); }
         }
 
         private LookupReferenceValueModel _SelectGroupResult;
@@ -25,7 +28,18 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectGroupResult
         {
             get { return _SelectGroupResult; }
-            set { Set(ref _SelectGroupResult, value); }
+            set
+            {
+                Set(ref _SelectGroupResult, value);
+                if (_SelectGroupResult != null)
+                {
+                    GetChekcupRule();
+                }
+                else
+                {
+                    CheckupRules = null;
+                }
+            }
         }
 
         private List<LookupReferenceValueModel> _Genders;
@@ -61,6 +75,22 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectResultStatus, value); }
         }
 
+        private List<ResultItemModel> _ResultItems;
+
+        public List<ResultItemModel> ResultItems
+        {
+            get { return _ResultItems; }
+            set { Set(ref _ResultItems, value); }
+        }
+
+        private ResultItemModel _SelectResultItem;
+
+        public ResultItemModel SelectResultItem
+        {
+            get { return _SelectResultItem; }
+            set { Set(ref _SelectResultItem, value); }
+        }
+
         private string _RuleName;
 
         public string RuleName
@@ -83,6 +113,171 @@ namespace MediTech.ViewModels
         {
             get { return _AgeTo; }
             set { Set(ref _AgeTo, value); }
+        }
+
+
+        private List<CheckupRuleModel> _CheckupRules;
+
+        public List<CheckupRuleModel> CheckupRules
+        {
+            get { return _CheckupRules; }
+            set {
+                Set(ref _CheckupRules, value);
+                if (_CheckupRules == null || _CheckupRules.Count <= 0)
+                {
+                    CheckupRuleItems = null;
+                    CheckupDescriptions = null;
+                    CheckupRecommends = null;
+                }
+            }
+        }
+
+        private CheckupRuleModel _SelectCheckupRule;
+
+        public CheckupRuleModel SelectCheckupRule
+        {
+            get { return _SelectCheckupRule; }
+            set
+            {
+                Set(ref _SelectCheckupRule, value);
+                if (_SelectCheckupRule != null)
+                {
+                    GetCheckupRuleItem();
+                    GetCheckupDescription();
+                    GetCheckupRecommend();
+                }
+                else
+                {
+                    CheckupRuleItems = null;
+                    CheckupDescriptions = null;
+                    CheckupRecommends = null;
+                }
+            }
+        }
+
+        private double? _ValueLow;
+
+        public double? ValueLow
+        {
+            get { return _ValueLow; }
+            set
+            {
+                Set(ref _ValueLow, value);
+                if (_ValueLow != null)
+                    TextualValue = null;
+            }
+        }
+
+        private double? _ValueHigh;
+
+        public double? ValueHigh
+        {
+            get { return _ValueHigh; }
+            set
+            {
+                Set(ref _ValueHigh, value);
+                if (_ValueHigh != null)
+                    TextualValue = null;
+            }
+        }
+
+
+        private string _TextualValue;
+
+        public string TextualValue
+        {
+            get { return _TextualValue; }
+            set
+            {
+                Set(ref _TextualValue, value);
+                if (!string.IsNullOrEmpty(_TextualValue))
+                {
+                    ValueLow = null;
+                    ValueHigh = null;
+                }
+
+            }
+        }
+
+        private bool _OperatorAnd = true;
+
+        public bool OperatorAnd
+        {
+            get { return _OperatorAnd; }
+            set { Set(ref _OperatorAnd, value); }
+        }
+
+        private bool _OperatorOr;
+
+        public bool OperatorOr
+        {
+            get { return _OperatorOr; }
+            set { Set(ref _OperatorOr, value); }
+        }
+
+
+        private List<CheckupRuleItemModel> _CheckupRuleItems;
+
+        public List<CheckupRuleItemModel> CheckupRuleItems
+        {
+            get { return _CheckupRuleItems; }
+            set { Set(ref _CheckupRuleItems, value); }
+        }
+
+        private CheckupRuleItemModel _SelectCheckupRuleItem;
+
+        public CheckupRuleItemModel SelectCheckupRuleItem
+        {
+            get { return _SelectCheckupRuleItem; }
+            set { Set(ref _SelectCheckupRuleItem, value); }
+        }
+
+        private ObservableCollection<CheckupTextMasterModel> _CheckupTextMasters;
+
+        public ObservableCollection<CheckupTextMasterModel> CheckupTextMasters
+        {
+            get { return _CheckupTextMasters; }
+            set { Set(ref _CheckupTextMasters, value); }
+        }
+
+        private CheckupTextMasterModel _SelectCheckupTextMaster;
+
+        public CheckupTextMasterModel SelectCheckupTextMaster
+        {
+            get { return _SelectCheckupTextMaster; }
+            set { Set(ref _SelectCheckupTextMaster, value); }
+        }
+
+        private List<CheckupRuleDescriptionModel> _CheckupDescriptions;
+
+        public List<CheckupRuleDescriptionModel> CheckupDescriptions
+        {
+            get { return _CheckupDescriptions; }
+            set { Set(ref _CheckupDescriptions, value); }
+        }
+
+        private CheckupRuleDescriptionModel _SelectCheckupDescription;
+
+        public CheckupRuleDescriptionModel SelectCheckupDescription
+        {
+            get { return _SelectCheckupDescription; }
+            set { Set(ref _SelectCheckupDescription, value); }
+        }
+
+        private List<CheckupRuleRecommendModel> _CheckupRecommends;
+
+        public List<CheckupRuleRecommendModel> CheckupRecommends
+        {
+            get { return _CheckupRecommends; }
+            set { Set(ref _CheckupRecommends, value); }
+        }
+
+        private CheckupRuleRecommendModel _SelectCheckupRecommend;
+
+        public CheckupRuleRecommendModel SelectCheckupRecommend
+        {
+            get { return _SelectCheckupRecommend; }
+            set { Set(ref _SelectCheckupRecommend, value); }
         }
         #endregion
 
@@ -110,26 +305,407 @@ namespace MediTech.ViewModels
                     ?? (_DeleteRuleCommand = new RelayCommand(DeleteRule));
             }
         }
+
+        private RelayCommand _AddRuleItemCommmand;
+
+        public RelayCommand AddRuleItemCommmand
+        {
+            get
+            {
+                return _AddRuleItemCommmand
+                    ?? (_AddRuleItemCommmand = new RelayCommand(AddRuleItem));
+            }
+        }
+
+
+        private RelayCommand _DeleteRuleItemCommand;
+
+        public RelayCommand DeleteRuleItemCommand
+        {
+            get
+            {
+                return _DeleteRuleItemCommand
+                    ?? (_DeleteRuleItemCommand = new RelayCommand(DeleteRuleItem));
+            }
+        }
+
+        private RelayCommand<DevExpress.Xpf.Grid.RowEventArgs> _RowTextMasterUpdatedCommand;
+
+        /// <summary>
+        /// Gets the RowUpdatedCommand.
+        /// </summary>
+        public RelayCommand<DevExpress.Xpf.Grid.RowEventArgs> RowTextMasterUpdatedCommand
+        {
+            get
+            {
+                return _RowTextMasterUpdatedCommand
+                    ?? (_RowTextMasterUpdatedCommand = new RelayCommand<DevExpress.Xpf.Grid.RowEventArgs>(RowTextMasterUpdated));
+            }
+        }
+
+        private RelayCommand _DeleteTextMasterCommand;
+
+        public RelayCommand DeleteTextMasterCommand
+        {
+            get
+            {
+                return _DeleteTextMasterCommand
+                    ?? (_DeleteTextMasterCommand = new RelayCommand(DeleteCheckupTextMaster));
+            }
+        }
+
+
+        private RelayCommand _AddDescriptionCommand;
+
+        public RelayCommand AddDescriptionCommand
+        {
+            get
+            {
+                return _AddDescriptionCommand
+                    ?? (_AddDescriptionCommand = new RelayCommand(AddDescription));
+            }
+        }
+
+
+        private RelayCommand _AddRecommendCommand;
+
+        public RelayCommand AddRecommendCommand
+        {
+            get
+            {
+                return _AddRecommendCommand
+                    ?? (_AddRecommendCommand = new RelayCommand(AddRecommend));
+            }
+        }
+
+        private RelayCommand _DeletetDescriptionCommand;
+
+        public RelayCommand DeletetDescriptionCommand
+        {
+            get
+            {
+                return _DeletetDescriptionCommand
+                    ?? (_DeletetDescriptionCommand = new RelayCommand(DeletetDescription));
+            }
+        }
+
+        private RelayCommand _DeletetRecommendCommand;
+
+        public RelayCommand DeletetRecommendCommand
+        {
+            get
+            {
+                return _DeletetRecommendCommand
+                    ?? (_DeletetRecommendCommand = new RelayCommand(DeletetRecommend));
+            }
+        }
+
+
         #endregion
 
         #region Method
 
         public CheckupRuleViewModel()
         {
-            var refValueList = DataService.Technical.GetReferenceValueList("GPRST,SEXXX");
+            CheckupTextMasters = new ObservableCollection<CheckupTextMasterModel>(DataService.Checkup.GetCheckupTextMaster());
+            var refValueList = DataService.Technical.GetReferenceValueList("GPRST,SEXXX,RABSTS");
             GroupResults = refValueList.Where(p => p.DomainCode == "GPRST").ToList();
             Genders = refValueList.Where(p => p.DomainCode == "SEXXX").ToList();
+            ResultStatus = refValueList.Where(p => p.DomainCode == "RABSTS").ToList();
+            ResultItems = DataService.MasterData.GetResultItems();
 
+        }
+
+        public override void OnLoaded()
+        {
+            (this.View as CheckupRule).gvGroupResult.BestFitColumns();
+        }
+
+        void GetChekcupRule()
+        {
+            CheckupRules = DataService.Checkup.GetCheckupRuleByGroup(SelectGroupResult.Key);
+        }
+
+        void GetCheckupRuleItem()
+        {
+            CheckupRuleItems = DataService.Checkup.GetCheckupRuleItemByRuleUID(SelectCheckupRule.CheckupRuleUID);
+        }
+
+        void GetCheckupDescription()
+        {
+            CheckupDescriptions = DataService.Checkup.GetCheckupRuleDescriptionByRuleUID(SelectCheckupRule.CheckupRuleUID);
+        }
+
+        void GetCheckupRecommend()
+        {
+            CheckupRecommends = DataService.Checkup.GetCheckupRuleRecommendModelByRuleUID(SelectCheckupRule.CheckupRuleUID);
         }
 
         void AddRule()
         {
+            try
+            {
+                if (string.IsNullOrEmpty(RuleName))
+                {
+                    WarningDialog("กรุณาระบุ ชื่อ");
+                    return;
+                }
+
+                if (SelectGender == null)
+                {
+                    WarningDialog("กรุณาระบุ เพศ");
+                    return;
+                }
+                if (SelectResultStatus == null)
+                {
+                    WarningDialog("กรุณาระบุ สถานะ");
+                    return;
+                }
+
+                CheckupRuleModel newRule = new CheckupRuleModel();
+                newRule.Name = RuleName;
+                newRule.RABSTSUID = SelectResultStatus.Key;
+                newRule.SEXXXUID = SelectGender.Key;
+                newRule.GPRSTUID = SelectGroupResult.Key;
+                newRule.AgeFrom = AgeFrom;
+                newRule.AgeTo = AgeTo;
+                DataService.Checkup.AddCheckupRule(newRule, AppUtil.Current.UserID);
+                GetChekcupRule();
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
 
         }
 
         void DeleteRule()
         {
+            try
+            {
+                if (SelectCheckupRule != null)
+                {
+                    MessageBoxResult diagResult = DeleteDialog();
+                    if (diagResult == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.DeleteCheckupRule(SelectCheckupRule.CheckupRuleUID, AppUtil.Current.UserID);
+                        GetChekcupRule();
+                    }
+                }
+            }
+            catch (Exception er)
+            {
 
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void AddRuleItem()
+        {
+            try
+            {
+                if (SelectCheckupRule == null)
+                {
+                    WarningDialog("กรุณาเลือก Rule ที่จะเพิ่มสูตร");
+                    return;
+                }
+                if (SelectResultItem == null)
+                {
+                    WarningDialog("กรุณาระบุ รายการ");
+                    return;
+                }
+                if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null)
+                {
+                    WarningDialog("กรุณาระบุ ตัวเลขหรือข้อความ อย่างใดอย่างหนึ่ง");
+                    return;
+                }
+
+                CheckupRuleItemModel newRuleItem = new CheckupRuleItemModel();
+                newRuleItem.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
+                newRuleItem.ResultItemUID = SelectResultItem.ResultItemUID;
+                newRuleItem.ResultItemName = SelectResultItem.DisplyName;
+                newRuleItem.Low = ValueLow;
+                newRuleItem.Hight = ValueHigh;
+                newRuleItem.Text = TextualValue;
+                string Operator = "";
+                if (OperatorAnd)
+                {
+                    Operator = "And";
+                }
+                else if(OperatorOr)
+                {
+                    Operator = "Or";
+                }
+                newRuleItem.Operator = Operator;
+                DataService.Checkup.AddCheckupRuleItem(newRuleItem, AppUtil.Current.UserID);
+                GetCheckupRuleItem();
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void DeleteRuleItem()
+        {
+            try
+            {
+                if (SelectCheckupRuleItem != null)
+                {
+                    MessageBoxResult diagResult = DeleteDialog();
+                    if (diagResult == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.DeleteCheckupRuleItem(SelectCheckupRuleItem.CheckupRuleItemUID, AppUtil.Current.UserID);
+                        GetCheckupRuleItem();
+                    }
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+
+        private void RowTextMasterUpdated(DevExpress.Xpf.Grid.RowEventArgs e)
+        {
+            try
+            {
+                if (e.Row is CheckupTextMasterModel)
+                {
+                    int userUID = AppUtil.Current.UserID;
+                    CheckupTextMasterModel rowItem = (CheckupTextMasterModel)e.Row;
+                    rowItem.CUser = userUID;
+                    rowItem.MUser = userUID;
+                    var returnData = DataService.Checkup.SaveCheckupTextMaster(rowItem);
+                    (e.Row as CheckupTextMasterModel).CheckupTextMasterUID = returnData.CheckupTextMasterUID;
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        private void DeleteCheckupTextMaster()
+        {
+            try
+            {
+                if (SelectCheckupTextMaster != null)
+                {
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.DeleteCheckupTextMaster(SelectCheckupTextMaster.CheckupTextMasterUID, AppUtil.Current.UserID);
+                        CheckupTextMasters.Remove(SelectCheckupTextMaster);
+                    }
+
+                }
+
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+
+        void AddDescription()
+        {
+            try
+            {
+                if (SelectCheckupTextMaster == null)
+                {
+                    WarningDialog("กรุณาเลือก คำที่จะเพิ่ม");
+                    return;
+                }
+
+                CheckupRuleDescriptionModel newRuleDescription = new CheckupRuleDescriptionModel();
+                newRuleDescription.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
+                newRuleDescription.CheckupTextMasterUID = SelectCheckupTextMaster.CheckupTextMasterUID;
+                DataService.Checkup.AddCheckupRuleDescription(newRuleDescription, AppUtil.Current.UserID);
+                GetCheckupDescription();
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void AddRecommend()
+        {
+            try
+            {
+                if (SelectCheckupTextMaster == null)
+                {
+                    WarningDialog("กรุณาเลือก คำที่จะเพิ่ม");
+                    return;
+                }
+
+                CheckupRuleRecommendModel newRuleRecommend = new CheckupRuleRecommendModel();
+                newRuleRecommend.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
+                newRuleRecommend.CheckupTextMasterUID = SelectCheckupTextMaster.CheckupTextMasterUID;
+                DataService.Checkup.AddCheckupRuleRecommend(newRuleRecommend, AppUtil.Current.UserID);
+                GetCheckupRecommend();
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void DeletetDescription()
+        {
+            try
+            {
+                if (SelectCheckupDescription != null)
+                {
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.DeleteCheckupRuleDescription(SelectCheckupDescription.CheckupRuleDescriptionUID, AppUtil.Current.UserID);
+                        CheckupDescriptions.Remove(SelectCheckupDescription);
+                    }
+
+                }
+
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
+
+        void DeletetRecommend()
+        {
+            try
+            {
+                if (SelectCheckupRecommend != null)
+                {
+                    MessageBoxResult result = DeleteDialog();
+                    if (result == MessageBoxResult.Yes)
+                    {
+                        DataService.Checkup.DeleteCheckupRuleRecommend(SelectCheckupRecommend.CheckupRuleRecommendUID, AppUtil.Current.UserID);
+                        CheckupRecommends.Remove(SelectCheckupRecommend);
+                    }
+
+                }
+
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
         }
         #endregion
     }

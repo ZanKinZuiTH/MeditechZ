@@ -20,7 +20,7 @@ namespace MediTech.DataBase
         public Nullable<int> AgeFrom { get; set; }
         public Nullable<int> AgeTo { get; set; }
         public int RABSTSUID { get; set; }
-        public int PRTGPUID { get; set; }
+        public int GPRSTUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

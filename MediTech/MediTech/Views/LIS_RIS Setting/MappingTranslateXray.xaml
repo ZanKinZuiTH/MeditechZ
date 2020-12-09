@@ -59,7 +59,6 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
-                
                 <dxg:GridColumn Header="ภาษาไทย" FieldName="ThaiResult" Width="330"
                                 ReadOnly="{Binding RowData.row.IsKeyWord}">
                     <dxg:GridColumn.EditSettings>
@@ -67,7 +66,7 @@
                     </dxg:GridColumn.EditSettings>
                 </dxg:GridColumn>
                 <dxg:GridControl.View>
-                    <dxg:TableView x:Name="gvMappingXray" ShowGroupPanel="False"  ShowSearchPanelMode="Always"
+                    <dxg:TableView x:Name="gvMappingXray" ShowGroupPanel="False" ShowSearchPanelMode="Always"
                                    NewItemRowPosition="Top"
                                    SearchPanelNullText="ค้นหา">
                         <i:Interaction.Triggers>

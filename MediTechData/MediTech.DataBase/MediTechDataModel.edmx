@@ -245,13 +245,13 @@
           <Key>
             <PropertyRef Name="UID" />
           </Key>
-          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="SEXXXUID" Type="int" />
           <Property Name="AgeFrom" Type="int" />
           <Property Name="AgeTo" Type="int" />
           <Property Name="RABSTSUID" Type="int" Nullable="false" />
-          <Property Name="PRTGPUID" Type="int" Nullable="false" />
+          <Property Name="GPRSTUID" Type="int" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -280,10 +280,10 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CheckupRuleUID" Type="int" Nullable="false" />
           <Property Name="ResultItemUID" Type="int" Nullable="false" />
+          <Property Name="ResultItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Low" Type="float" />
           <Property Name="Hight" Type="float" />
           <Property Name="Text" Type="nvarchar" MaxLength="200" />
-          <Property Name="IsText" Type="nvarchar" MaxLength="1" />
           <Property Name="Operator" Type="nvarchar" MaxLength="20" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -7556,13 +7556,13 @@
           <Key>
             <PropertyRef Name="UID" />
           </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="SEXXXUID" Type="Int32" />
           <Property Name="AgeFrom" Type="Int32" />
           <Property Name="AgeTo" Type="Int32" />
           <Property Name="RABSTSUID" Type="Int32" Nullable="false" />
-          <Property Name="PRTGPUID" Type="Int32" Nullable="false" />
+          <Property Name="GPRSTUID" Type="Int32" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -7591,10 +7591,10 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CheckupRuleUID" Type="Int32" Nullable="false" />
           <Property Name="ResultItemUID" Type="Int32" Nullable="false" />
+          <Property Name="ResultItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Low" Type="Double" />
           <Property Name="Hight" Type="Double" />
           <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="IsText" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -12312,7 +12312,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="PRTGPUID" ColumnName="PRTGPUID" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
                 <ScalarProperty Name="RABSTSUID" ColumnName="RABSTSUID" />
                 <ScalarProperty Name="AgeTo" ColumnName="AgeTo" />
                 <ScalarProperty Name="AgeFrom" ColumnName="AgeFrom" />
@@ -12347,10 +12347,10 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
-                <ScalarProperty Name="IsText" ColumnName="IsText" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Hight" ColumnName="Hight" />
                 <ScalarProperty Name="Low" ColumnName="Low" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
                 <ScalarProperty Name="ResultItemUID" ColumnName="ResultItemUID" />
                 <ScalarProperty Name="CheckupRuleUID" ColumnName="CheckupRuleUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />

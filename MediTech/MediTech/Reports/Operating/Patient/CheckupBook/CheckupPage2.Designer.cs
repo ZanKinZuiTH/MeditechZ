@@ -127,6 +127,7 @@
             this.lbResultWellness.StylePriority.UseFont = false;
             this.lbResultWellness.StylePriority.UseForeColor = false;
             this.lbResultWellness.StylePriority.UsePadding = false;
+            this.lbResultWellness.TextTrimming = System.Drawing.StringTrimming.Word;
             // 
             // TitleResultWellness
             // 

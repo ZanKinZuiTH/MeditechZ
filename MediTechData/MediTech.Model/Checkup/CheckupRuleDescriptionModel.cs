@@ -6,17 +6,12 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class CheckupRuleItemModel
+    public class CheckupRuleDescriptionModel
     {
-        public int CheckupRuleItemUID { get; set; }
+        public int CheckupRuleDescriptionUID { get; set; }
         public int CheckupRuleUID { get; set; }
-        public int ResultItemUID { get; set; }
-        public string ResultItemName { get; set; }
-        public Nullable<double> Low { get; set; }
-        public Nullable<double> Hight { get; set; }
-        public string Text { get; set; }
-        public string IsText { get; set; }
-        public string Operator { get; set; }
+        public int CheckupTextMasterUID { get; set; }
+        public string Description { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

@@ -102,15 +102,13 @@ namespace MediTech.DataService
 
         }
 
-        public bool SaveXrayTranslateMapping(XrayTranslateMappingModel mappingModel)
+        public XrayTranslateMappingModel SaveXrayTranslateMapping(XrayTranslateMappingModel mappingModel)
         {
-            bool flag = false;
-
+            XrayTranslateMappingModel returnData;
             try
             {
                 string requestApi = string.Format("Api/Radiology/SaveXrayTranslateMapping");
-                MeditechApiHelper.Post<XrayTranslateMappingModel>(requestApi, mappingModel);
-                flag = true;
+                returnData = MeditechApiHelper.Post<XrayTranslateMappingModel, XrayTranslateMappingModel>(requestApi, mappingModel);
             }
             catch (Exception)
             {
@@ -118,7 +116,7 @@ namespace MediTech.DataService
                 throw;
             }
 
-            return flag;
+            return returnData;
         }
 
         public bool DeleteXrayTranslateMapping(int xrayTranslateMappingUID, int userUID)

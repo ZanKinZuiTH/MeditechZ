@@ -425,7 +425,7 @@ namespace MediTechWebApi.Controllers
                     db.SaveChanges();
                     #endregion
 
-                    if(requestItemModel.RequestItemGroupResults != null)
+                    if (requestItemModel.RequestItemGroupResults != null)
                     {
                         foreach (var item in requestItemModel.RequestItemGroupResults)
                         {
@@ -529,6 +529,35 @@ namespace MediTechWebApi.Controllers
             return resultItemData;
         }
 
+
+        [Route("GetResultItems")]
+        [HttpGet]
+        public List<ResultItemModel> GetResultItems()
+        {
+            List<ResultItemModel> resultItemData = db.ResultItem
+            .Where(p => p.StatusFlag == "A").Select(p => new ResultItemModel
+            {
+                ResultItemUID = p.UID,
+                DisplyName = p.DisplyName,
+                Description = p.Description,
+                Code = p.Code,
+                EffectiveFrom = p.EffectiveFrom,
+                EffectiveTo = p.EffectiveTo,
+                UnitofMeasure = p.UnitofMeasure,
+                UOM = SqlFunction.fGetRfValDescription(p.UnitofMeasure ?? 0),
+                RVTYPUID = p.RVTYPUID,
+                ResultType = SqlFunction.fGetRfValDescription(p.RVTYPUID ?? 0),
+                IsCumulative = p.IsCumulative,
+                AutoValue = p.AutoValue,
+                StatusFlag = p.StatusFlag,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                MWhen = p.MWhen
+            }).ToList();
+
+            return resultItemData;
+        }
 
         [Route("GetResultItemUID")]
         [HttpGet]

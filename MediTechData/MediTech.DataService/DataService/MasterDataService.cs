@@ -99,6 +99,14 @@ namespace MediTech.DataService
         #endregion
 
         #region ResultItem
+
+        public List<ResultItemModel> GetResultItems()
+        {
+            string requestApi = string.Format("Api/MasterData/GetResultItems");
+            List<ResultItemModel> dataRequest = MeditechApiHelper.Get<List<ResultItemModel>>(requestApi);
+
+            return dataRequest;
+        }
         public List<ResultItemModel> SearchResultItem(string name, int? RVTYPUID)
         {
             string requestApi = string.Format("Api/MasterData/SearchResultItem?name={0}&RVTYPUID={1}", name, RVTYPUID);

@@ -410,8 +410,8 @@ namespace MediTechWebApi.Controllers
 
 
                 db.SaveChanges();
-
-                return Request.CreateResponse(HttpStatusCode.OK);
+                mappingModel.XrayTranslateMappingUID = newData.UID;
+                return Request.CreateResponse(HttpStatusCode.OK, mappingModel);
             }
             catch (Exception ex)
             {
