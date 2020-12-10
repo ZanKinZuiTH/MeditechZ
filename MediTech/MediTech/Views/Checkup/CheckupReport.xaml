@@ -101,7 +101,7 @@
                         <dxg:GridControl.View>
                             <dxg:TableView ShowCheckBoxSelectorColumn="True" 
                                ShowCheckBoxSelectorInGroupRow="True"
-                                   NavigationStyle="Row"
+                                           NavigationStyle="Row"
                                ShowGroupPanel="False" />
                         </dxg:GridControl.View>
                         <dxg:GridColumn FieldName="No" Header="No" Width="30"/>

@@ -688,19 +688,22 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CheckupRuleItemModel> GetCheckupRuleItemByRuleUID(int chekcupRuleUID)
         {
-            List<CheckupRuleItemModel> data = db.CheckupRuleItem
-                .Where(p => p.StatusFlag == "A" && p.CheckupRuleUID == chekcupRuleUID)
-                .Select(p => new CheckupRuleItemModel
-                {
-                    CheckupRuleItemUID = p.UID,
-                    CheckupRuleUID = p.CheckupRuleUID,
-                    ResultItemUID = p.ResultItemUID,
-                    ResultItemName = p.ResultItemName,
-                    Operator = p.Operator,
-                    Text = p.Text,
-                    Low = p.Low,
-                    Hight = p.Hight
-                }).ToList();
+            List<CheckupRuleItemModel> data = (from j in db.CheckupRuleItem
+                                               join i in db.ResultItem on j.ResultItemUID equals i.UID
+                                               where j.StatusFlag == "A"
+                                               && j.CheckupRuleUID == chekcupRuleUID
+                                               select new CheckupRuleItemModel
+                                               {
+                                                   CheckupRuleItemUID = j.UID,
+                                                   CheckupRuleUID = j.CheckupRuleUID,
+                                                   ResultItemUID = i.UID,
+                                                   ResultItemName = i.DisplyName,
+                                                   Unit = SqlFunction.fGetRfValDescription(i.UnitofMeasure ?? 0),
+                                                   Operator = j.Operator,
+                                                   Text = j.Text,
+                                                   Low = j.Low,
+                                                   Hight = j.Hight
+                                               }).ToList();
             return data;
         }
 
@@ -716,7 +719,6 @@ namespace MediTechWebApi.Controllers
                     CheckupRuleItem checkupRuleItem = new CheckupRuleItem();
                     checkupRuleItem.CheckupRuleUID = chekcupRuleItemModel.CheckupRuleUID;
                     checkupRuleItem.ResultItemUID = chekcupRuleItemModel.ResultItemUID;
-                    checkupRuleItem.ResultItemName = chekcupRuleItemModel.ResultItemName;
                     checkupRuleItem.Low = chekcupRuleItemModel.Low;
                     checkupRuleItem.Hight = chekcupRuleItemModel.Hight;
                     checkupRuleItem.Text = chekcupRuleItemModel.Text;
