@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediTech.Model;
+using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,30 @@ namespace MediTech.Views
         public EnterAudiogramResult()
         {
             InitializeComponent();
+        }
+
+        private void GvRightEar_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
+        {
+            var rowData = e.Row as ResultComponentModel;
+            if (rowData != null)
+            {
+                if (this.DataContext is EnterAudiogramResultViewModel)
+                {
+                    (this.DataContext as EnterAudiogramResultViewModel).CalculateRightResult();
+                }
+            }
+        }
+
+        private void GvLeftEar_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
+        {
+            var rowData = e.Row as ResultComponentModel;
+            if (rowData != null)
+            {
+                if (this.DataContext is EnterAudiogramResultViewModel)
+                {
+                    (this.DataContext as EnterAudiogramResultViewModel).CalculateLeftResult();
+                }
+            }
         }
     }
 }
