@@ -339,7 +339,7 @@ namespace MediTech.ViewModels
             if (dataCheckupValue != null)
             {
                 PatientResultLabList = dataCheckupValue
-                    .GroupBy(g => new { g.PatientVisitUID, g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
+                    .GroupBy(g => new {  g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
                     .Select(p => new PatientResultLabModel
                     {
                         PatientVisitUID = p.FirstOrDefault().PatientVisitUID,

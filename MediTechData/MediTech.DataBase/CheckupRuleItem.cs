@@ -17,7 +17,6 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public int CheckupRuleUID { get; set; }
         public int ResultItemUID { get; set; }
-        public string ResultItemName { get; set; }
         public Nullable<double> Low { get; set; }
         public Nullable<double> Hight { get; set; }
         public string Text { get; set; }

@@ -622,9 +622,17 @@ namespace MediTech.ViewModels
             {
                 if (SelectCheckupTextMaster == null)
                 {
-                    WarningDialog("กรุณาเลือก คำที่จะเพิ่ม");
+                    WarningDialog("กรุณาเลือก ข้อความที่จะเพิ่ม");
                     return;
                 }
+
+                if (CheckupDescriptions != null && CheckupDescriptions.Any(p => p.CheckupTextMasterUID == SelectCheckupTextMaster.CheckupTextMasterUID))
+                {
+                    WarningDialog("มีข้อความนี้อยู่แล้ว");
+                    return;
+                }
+
+
 
                 CheckupRuleDescriptionModel newRuleDescription = new CheckupRuleDescriptionModel();
                 newRuleDescription.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
@@ -646,6 +654,12 @@ namespace MediTech.ViewModels
                 if (SelectCheckupTextMaster == null)
                 {
                     WarningDialog("กรุณาเลือก คำที่จะเพิ่ม");
+                    return;
+                }
+
+                if (CheckupRecommends != null && CheckupRecommends.Any(p => p.CheckupTextMasterUID == SelectCheckupTextMaster.CheckupTextMasterUID))
+                {
+                    WarningDialog("มีข้อความนี้อยู่แล้ว");
                     return;
                 }
 

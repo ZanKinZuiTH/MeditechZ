@@ -366,7 +366,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 #region Radiology
                 if (data.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName)) != null)
                 {
-
                     if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
                     {
                         CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");

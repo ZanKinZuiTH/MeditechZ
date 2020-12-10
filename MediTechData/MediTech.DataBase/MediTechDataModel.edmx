@@ -280,7 +280,6 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CheckupRuleUID" Type="int" Nullable="false" />
           <Property Name="ResultItemUID" Type="int" Nullable="false" />
-          <Property Name="ResultItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Low" Type="float" />
           <Property Name="Hight" Type="float" />
           <Property Name="Text" Type="nvarchar" MaxLength="200" />
@@ -7591,7 +7590,6 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CheckupRuleUID" Type="Int32" Nullable="false" />
           <Property Name="ResultItemUID" Type="Int32" Nullable="false" />
-          <Property Name="ResultItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Low" Type="Double" />
           <Property Name="Hight" Type="Double" />
           <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
@@ -12350,7 +12348,6 @@
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Hight" ColumnName="Hight" />
                 <ScalarProperty Name="Low" ColumnName="Low" />
-                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
                 <ScalarProperty Name="ResultItemUID" ColumnName="ResultItemUID" />
                 <ScalarProperty Name="CheckupRuleUID" ColumnName="CheckupRuleUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
