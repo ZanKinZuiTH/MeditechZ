@@ -1765,13 +1765,13 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
-        public static DataTable pRPTCheckupBook(long patientUID, long patientVisitUID)
+        public static DataTable pRPTCheckupBook(long patientUID, long payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupBook", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

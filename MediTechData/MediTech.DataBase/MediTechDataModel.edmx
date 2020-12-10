@@ -1371,6 +1371,25 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="PatientMuscle">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="ValueBackStrength" Type="float" />
+          <Property Name="BackStrength" Type="float" />
+          <Property Name="Conclusion" Type="nvarchar" MaxLength="50" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="225" />
+          <Property Name="RABSTSUID" Type="int" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="PatientOrder">
           <Key>
             <PropertyRef Name="UID" />
@@ -3435,7 +3454,7 @@
         </Function>
         <Function Name="pRPTCheckupBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
-          <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PayorDetailUID" Type="bigint" Mode="In" />
         </Function>
         <Function Name="pRPTCheckupLabCompare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -3836,6 +3855,7 @@
           <EntitySet Name="PatientMerge" EntityType="Self.PatientMerge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMergeDetail" EntityType="Self.PatientMergeDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMergeEncounter" EntityType="Self.PatientMergeEncounter" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientMuscle" EntityType="Self.PatientMuscle" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrder" EntityType="Self.PatientOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrderAlert" EntityType="Self.PatientOrderAlert" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientOrderDetail" EntityType="Self.PatientOrderDetail" Schema="dbo" store:Type="Tables" />
@@ -4732,7 +4752,7 @@
           </FunctionImport>
           <FunctionImport Name="pRPTCheckupBook" ReturnType="Collection(MediTechModel.pRPTCheckupBook_Result)">
             <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="pRPTDoctorFee" ReturnType="Collection(MediTechModel.pRPTDoctorFee_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
@@ -4917,6 +4937,7 @@
           <EntitySet Name="PatientMerge" EntityType="MediTechModel.PatientMerge" />
           <EntitySet Name="PatientMergeDetail" EntityType="MediTechModel.PatientMergeDetail" />
           <EntitySet Name="PatientMergeEncounter" EntityType="MediTechModel.PatientMergeEncounter" />
+          <EntitySet Name="PatientMuscle" EntityType="MediTechModel.PatientMuscle" />
           <EntitySet Name="PatientOrder" EntityType="MediTechModel.PatientOrder" />
           <EntitySet Name="PatientOrderAlert" EntityType="MediTechModel.PatientOrderAlert" />
           <EntitySet Name="PatientOrderDetail" EntityType="MediTechModel.PatientOrderDetail" />
@@ -8674,6 +8695,25 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientMergeUID" Type="Int32" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientMuscle">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="ValueBackStrength" Type="Double" />
+          <Property Name="BackStrength" Type="Double" />
+          <Property Name="Conclusion" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="225" FixedLength="false" Unicode="true" />
+          <Property Name="RABSTSUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -13480,6 +13520,26 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientMergeUID" ColumnName="PatientMergeUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientMuscle">
+            <EntityTypeMapping TypeName="MediTechModel.PatientMuscle">
+              <MappingFragment StoreEntitySet="PatientMuscle">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="RABSTSUID" ColumnName="RABSTSUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Conclusion" ColumnName="Conclusion" />
+                <ScalarProperty Name="BackStrength" ColumnName="BackStrength" />
+                <ScalarProperty Name="ValueBackStrength" ColumnName="ValueBackStrength" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>

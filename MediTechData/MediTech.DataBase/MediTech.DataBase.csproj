@@ -267,6 +267,9 @@
     <Compile Include="PatientMergeEncounter.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientMuscle.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientOrder.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

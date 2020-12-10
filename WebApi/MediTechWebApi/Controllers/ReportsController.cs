@@ -567,11 +567,11 @@ namespace MediTechWebApi.Controllers
 
         [Route("PrintCheckupBook")]
         [HttpGet]
-        public List<CheckupBookModel> PrintCheckupBook(long patientUID, long patientVisitUID)
+        public List<CheckupBookModel> PrintCheckupBook(long patientUID, long payorDetailUID)
         {
             List<CheckupBookModel> data = null;
 
-            DataTable dt = SqlDirectStore.pRPTCheckupBook(patientUID, patientVisitUID);
+            DataTable dt = SqlDirectStore.pRPTCheckupBook(patientUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<CheckupBookModel>();

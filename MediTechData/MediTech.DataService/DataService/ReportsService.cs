@@ -138,9 +138,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<CheckupBookModel> PrintCheckupBook(long patientUID, long patientVisitUID)
+        public List<CheckupBookModel> PrintCheckupBook(long patientUID, long payorDetailUID)
         {
-            string requestApi = string.Format("Api/Report/PrintCheckupBook?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            string requestApi = string.Format("Api/Report/PrintCheckupBook?patientUID={0}&payorDetailUID={1}", patientUID, payorDetailUID);
             List<CheckupBookModel> data = MeditechApiHelper.Get<List<CheckupBookModel>>(requestApi);
 
             return data;

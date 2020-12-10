@@ -107,7 +107,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
             long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
-            List<CheckupBookModel> data = DataService.Reports.PrintCheckupBook(patientUID, patientVisitUID);
+            List<CheckupBookModel> data = DataService.Reports.PrintCheckupBook(patientUID, payorDetailUID);
 
             if (data != null && data.Count > 0)
             {

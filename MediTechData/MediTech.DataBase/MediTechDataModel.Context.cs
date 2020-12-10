@@ -92,6 +92,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientMerge> PatientMerge { get; set; }
         public virtual DbSet<PatientMergeDetail> PatientMergeDetail { get; set; }
         public virtual DbSet<PatientMergeEncounter> PatientMergeEncounter { get; set; }
+        public virtual DbSet<PatientMuscle> PatientMuscle { get; set; }
         public virtual DbSet<PatientOrder> PatientOrder { get; set; }
         public virtual DbSet<PatientOrderAlert> PatientOrderAlert { get; set; }
         public virtual DbSet<PatientOrderDetail> PatientOrderDetail { get; set; }
@@ -2922,17 +2923,17 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockBatch_Result>("pSearchStockBatch", p_OwnerOrganisationUIDParameter, p_StoreUIDParameter, p_ItemTypeParameter, p_ItemCodeParameter, p_ItemNameParameter);
         }
     
-        public virtual ObjectResult<pRPTCheckupBook_Result> pRPTCheckupBook(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
+        public virtual ObjectResult<pRPTCheckupBook_Result> pRPTCheckupBook(Nullable<long> p_PatientUID, Nullable<long> p_PayorDetailUID)
         {
             var p_PatientUIDParameter = p_PatientUID.HasValue ?
                 new ObjectParameter("P_PatientUID", p_PatientUID) :
                 new ObjectParameter("P_PatientUID", typeof(long));
     
-            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
-                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
-                new ObjectParameter("P_PatientVisitUID", typeof(long));
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(long));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupBook_Result>("pRPTCheckupBook", p_PatientUIDParameter, p_PatientVisitUIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupBook_Result>("pRPTCheckupBook", p_PatientUIDParameter, p_PayorDetailUIDParameter);
         }
     
         public virtual ObjectResult<pRPTDoctorFee_Result> pRPTDoctorFee(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_CareproviderUID)
