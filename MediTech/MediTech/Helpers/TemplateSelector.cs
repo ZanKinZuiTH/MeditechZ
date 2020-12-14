@@ -68,4 +68,32 @@ namespace MediTech.Helpers
             return dataTemplate;
         }
     }
+
+    public class EditorTemplateAudio : DataTemplateSelector
+    {
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            DataTemplate dataTemplate = null;
+            if (item != null)
+            {
+
+                dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("ComboBoxEdit");
+                if (item is GridCellData)
+                {
+                    GridCellData data = (GridCellData)item;
+                    if (data.RowData.Row is ResultComponentModel)
+                    {
+                        var dataItem = data.RowData.Row as ResultComponentModel;
+                        if (dataItem.ResultItemName == "แปลผลหูขวา" || dataItem.ResultItemName == "แปลผลหูซ้าย")
+                        {
+                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
+                        }
+
+                    }
+
+                }
+            }
+            return dataTemplate;
+        }
+    }
 }

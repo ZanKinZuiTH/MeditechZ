@@ -85,6 +85,9 @@ namespace MediTech.ViewModels
             {
                 LeftEarResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList.Where(p => p.ResultItemName.EndsWith("L")));
                 RightEarResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList.Where(p => p.ResultItemName.EndsWith("R")));
+
+                RightEarResultComponentItems.Add(dataList.FirstOrDefault(p => p.ResultItemName == "แปลผลหูขวา"));
+                LeftEarResultComponentItems.Add(dataList.FirstOrDefault(p => p.ResultItemName == "แปลผลหูซ้าย"));
             }
         }
 
@@ -113,7 +116,7 @@ namespace MediTech.ViewModels
                         reviewRequestDetail.ResultComponents.Add(item);
                 }
 
-                if (reviewRequestDetail.ResultComponents == null || reviewRequestDetail.ResultComponents.Count <=0)
+                if (reviewRequestDetail.ResultComponents == null || reviewRequestDetail.ResultComponents.Count <= 0)
                 {
                     WarningDialog("กรุณากรอกข้อมูล");
                     return;
@@ -133,6 +136,128 @@ namespace MediTech.ViewModels
         private void Close()
         {
             CloseViewDialog(ActionDialog.Cancel);
+        }
+
+        public void CalculateRightResult()
+        {
+            try
+            {
+                string result = string.Empty;
+                bool abnormal = false;
+                var hz500 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO1" || p.ResultItemName == "500 R");
+                var hz1000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO2" || p.ResultItemName == "1000 R");
+                var hz2000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO3" || p.ResultItemName == "2000 R");
+                var hz3000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO4" || p.ResultItemName == "3000 R");
+                var hz4000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO5" || p.ResultItemName == "4000 R");
+                var hz6000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO6" || p.ResultItemName == "6000 R");
+                var hz8000 = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO7" || p.ResultItemName == "8000 R");
+                var rightResult = RightEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO8" || p.ResultItemName == "แปลผลหูขวา");
+
+                if (int.Parse(hz6000.ResultValue) > 25 && int.Parse(hz8000.ResultValue) > 25
+                    || (int.Parse(hz500.ResultValue) > 25 && int.Parse(hz1000.ResultValue) > 25 && int.Parse(hz2000.ResultValue) > 25
+                    && int.Parse(hz3000.ResultValue) > 25 && int.Parse(hz4000.ResultValue) > 25))
+                {
+                    result = "ผิดปกติที่ความถี่สูง";
+                    abnormal = true;
+                }
+                else if (int.Parse(hz6000.ResultValue) > 25 || int.Parse(hz8000.ResultValue) > 25 || int.Parse(hz500.ResultValue) > 25
+                    || int.Parse(hz1000.ResultValue) > 25 || int.Parse(hz2000.ResultValue) > 25 || int.Parse(hz3000.ResultValue) > 25
+                    || int.Parse(hz4000.ResultValue) > 25)
+                {
+                    result = "ระดับการได้ยินลดลงเล็กน้อย";
+                    abnormal = true;
+                }
+                else if (int.Parse(hz6000.ResultValue) < 25 && int.Parse(hz8000.ResultValue) < 25 && int.Parse(hz500.ResultValue) < 25
+                    && int.Parse(hz1000.ResultValue) < 25 && int.Parse(hz2000.ResultValue) < 25 && int.Parse(hz3000.ResultValue) < 25
+                    && int.Parse(hz4000.ResultValue) < 25)
+                {
+                    result = "ไม่พบความผิดปกติ";
+                }
+
+                if (abnormal == true)
+                {
+                    string db = string.Empty;
+                    string hz = string.Empty;
+                    foreach (var item in RightEarResultComponentItems.Where(p => p.ResultItemName.EndsWith("R")))
+                    {
+                        if (int.Parse(item.ResultValue) > 25)
+                        {
+                            db += " " + item.ResultValue;
+                            hz += string.IsNullOrEmpty(hz) ? "dB ที่ " + item.ResultItemName.Replace("R","").Trim() : " " + item.ResultItemName.Replace("R", "").Trim();
+                        }
+                    }
+
+                    result += db + " " + hz + " Hz";
+                }
+
+                rightResult.ResultValue = result;
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        public void CalculateLeftResult()
+        {
+            try
+            {
+                string result = string.Empty;
+                bool abnormal = false;
+                var hz500 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO9" || p.ResultItemName == "500 L");
+                var hz1000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO10" || p.ResultItemName == "1000 L");
+                var hz2000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO11" || p.ResultItemName == "2000 L");
+                var hz3000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO12" || p.ResultItemName == "3000 L");
+                var hz4000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO13" || p.ResultItemName == "4000 L");
+                var hz6000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO14" || p.ResultItemName == "6000 L");
+                var hz8000 = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO15" || p.ResultItemName == "8000 L");
+                var leftResult = LeftEarResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "AUDIO16" || p.ResultItemName == "แปลผลหูซ้าย");
+
+                if (int.Parse(hz6000.ResultValue) > 25 && int.Parse(hz8000.ResultValue) > 25
+    || (int.Parse(hz500.ResultValue) > 25 && int.Parse(hz1000.ResultValue) > 25 && int.Parse(hz2000.ResultValue) > 25
+    && int.Parse(hz3000.ResultValue) > 25 && int.Parse(hz4000.ResultValue) > 25))
+                {
+                    result = "ผิดปกติที่ความถี่สูง";
+                    abnormal = true;
+                }
+                else if (int.Parse(hz6000.ResultValue) > 25 || int.Parse(hz8000.ResultValue) > 25 || int.Parse(hz500.ResultValue) > 25
+                    || int.Parse(hz1000.ResultValue) > 25 || int.Parse(hz2000.ResultValue) > 25 || int.Parse(hz3000.ResultValue) > 25
+                    || int.Parse(hz4000.ResultValue) > 25)
+                {
+                    result = "ระดับการได้ยินลดลงเล็กน้อย";
+                    abnormal = true;
+                }
+                else if (int.Parse(hz6000.ResultValue) < 25 && int.Parse(hz8000.ResultValue) < 25 && int.Parse(hz500.ResultValue) < 25
+                    && int.Parse(hz1000.ResultValue) < 25 && int.Parse(hz2000.ResultValue) < 25 && int.Parse(hz3000.ResultValue) < 25
+                    && int.Parse(hz4000.ResultValue) < 25)
+                {
+                    result = "ไม่พบความผิดปกติ";
+                }
+
+                if (abnormal == true)
+                {
+                    string db = string.Empty;
+                    string hz = string.Empty;
+                    foreach (var item in LeftEarResultComponentItems.Where(p => p.ResultItemName.EndsWith("L")))
+                    {
+                        if (int.Parse(item.ResultValue) > 25)
+                        {
+                            db += " " + item.ResultValue;
+                            hz += string.IsNullOrEmpty(hz) ? "dB ที่ " + item.ResultItemName.Replace("L", "").Trim() : " " + item.ResultItemName.Replace("L", "").Trim();
+                        }
+                    }
+
+                    result += db + " " + hz + " Hz";
+                }
+
+                leftResult.ResultValue = result;
+            }
+            catch (Exception)
+            {
+
+            }
+
         }
 
         #endregion
