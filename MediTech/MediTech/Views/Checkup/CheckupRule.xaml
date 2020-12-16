@@ -93,6 +93,8 @@
                     <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
                         <dx:SimpleButton Width="70" Command="{Binding AddRuleCommmand}"
                                      Height="25" Content="เพิ่ม"/>
+                        <dx:SimpleButton Width="70" Command="{Binding EditRuleCommand}"
+                                     Height="25" Content="แก้ไข"/>
                         <dx:SimpleButton Width="70" Command="{Binding DeleteRuleCommand}"
                                      Height="25" Content="ลบ"/>
                     </dxlc:LayoutGroup>
@@ -184,6 +186,8 @@
                         <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
                             <dx:SimpleButton Width="70" Command="{Binding AddRuleItemCommmand}"
                                      Height="25" Content="เพิ่ม"/>
+                            <dx:SimpleButton Width="70" Command="{Binding EditRuleItemCommmand}"
+                                     Height="25" Content="แก้ไข"/>
                             <dx:SimpleButton Width="70" Command="{Binding DeleteRuleItemCommand}"
                                      Height="25" Content="ลบ"/>
                         </dxlc:LayoutGroup>
@@ -299,7 +303,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="Description" Width="350" ReadOnly="True">
+                            <dxg:GridColumn FieldName="ThaiDescription" Width="350" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
@@ -347,7 +351,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="Recommend" Width="350" ReadOnly="True">
+                            <dxg:GridColumn FieldName="ThaiRecommend" Width="350" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>

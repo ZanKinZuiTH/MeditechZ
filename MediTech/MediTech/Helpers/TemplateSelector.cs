@@ -60,7 +60,11 @@ namespace MediTech.Helpers
                         {
                             dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("ListBoxCheckEdit");
                         }
-
+                        else if (dataItem.ResultItemCode == "TIMUS19" || dataItem.ResultItemCode == "TIMUS20" || dataItem.ResultItemCode == "TIMUS21"
+                            || dataItem.ResultItemCode == "TIMUS22" || dataItem.ResultItemCode == "TIMUS23" || dataItem.ResultItemCode == "TIMUS24")
+                        {
+                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
+                        }
                     }
 
                 }
@@ -84,7 +88,9 @@ namespace MediTech.Helpers
                     if (data.RowData.Row is ResultComponentModel)
                     {
                         var dataItem = data.RowData.Row as ResultComponentModel;
-                        if (dataItem.ResultItemName == "แปลผลหูขวา" || dataItem.ResultItemName == "แปลผลหูซ้าย")
+                        if (dataItem.ResultItemName == "แปลผลหูขวา" || dataItem.ResultItemName == "แปลผลหูซ้าย"
+                            || dataItem.ResultItemName == "สรุปผลหูขวา" || dataItem.ResultItemName == "สรุปผลหูซ้าย"
+                            )
                         {
                             dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
                         }

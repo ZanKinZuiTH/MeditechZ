@@ -65,7 +65,7 @@
                                       FindButtonPlacement = "Popup"
                                       FindMode = "Always"
                                       PopupMinHeight="100"
-                                      PopupMinWidth="100"
+                                      PopupMinWidth="300"
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">

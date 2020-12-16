@@ -110,25 +110,25 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PatientResultLabModel> _PatientResultLabList;
+        private List<PatientResultComponentModel> _PatientResultLabList;
 
-        public List<PatientResultLabModel> PatientResultLabList
+        public List<PatientResultComponentModel> PatientResultLabList
         {
             get { return _PatientResultLabList; }
             set { Set(ref _PatientResultLabList, value); }
         }
 
-        private ObservableCollection<PatientResultLabModel> _SelectPatientResultLabList;
+        private ObservableCollection<PatientResultComponentModel> _SelectPatientResultLabList;
 
-        public ObservableCollection<PatientResultLabModel> SelectPatientResultLabList
+        public ObservableCollection<PatientResultComponentModel> SelectPatientResultLabList
         {
-            get { return _SelectPatientResultLabList ?? (_SelectPatientResultLabList = new ObservableCollection<PatientResultLabModel>()); }
+            get { return _SelectPatientResultLabList ?? (_SelectPatientResultLabList = new ObservableCollection<PatientResultComponentModel>()); }
             set { Set(ref _SelectPatientResultLabList, value); }
         }
 
-        private List<PatientResultLabModel> _PivotPatientLabData;
+        private List<PatientResultComponentModel> _PivotPatientLabData;
 
-        public List<PatientResultLabModel> PivotPatientLabData
+        public List<PatientResultComponentModel> PivotPatientLabData
         {
             get { return _PivotPatientLabData; }
             set { Set(ref _PivotPatientLabData, value); }
@@ -340,7 +340,7 @@ namespace MediTech.ViewModels
             {
                 PatientResultLabList = dataCheckupValue
                     .GroupBy(g => new {  g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
-                    .Select(p => new PatientResultLabModel
+                    .Select(p => new PatientResultComponentModel
                     {
                         PatientVisitUID = p.FirstOrDefault().PatientVisitUID,
                         PatientUID = p.FirstOrDefault().PatientUID,

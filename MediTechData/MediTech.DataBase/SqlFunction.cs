@@ -790,6 +790,17 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pGetPatientByUID(long patientUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetPatientByUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pSearchOrderItem(string text, int ownerOrganisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
@@ -824,16 +835,6 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetPatientByUID(long patientUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetPatientByUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
 
         public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime birthDate, int SEXXXUID)
         {
@@ -847,6 +848,247 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetDoctorFee(DateTime dateFrom, DateTime dateTo, int? radiologistUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetDoctorFee", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetDoctorFeeNonPay(DateTime dateFrom, DateTime dateTo, int? radiologistUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetDoctorFeeNonPay", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetReferenceValueList(string DomainCode)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetReferenceValueList", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@DomainCode", DomainCode);
+
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetItemMasterQtyByStore(int storeUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetItemMasterQtyByStore", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetItemMasterForIssue(int organisationUID, int storeUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetItemMasterForIssue", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", organisationUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderALLByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderALLByPatientUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderAllByVisitUID(long patientVisitUID, DateTime? dateFrom = null, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderAllByVisitUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderDrugByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDrugByPatientUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+        public static DataTable pGetOrderDrugByVisitUID(long patientVisitUID, DateTime? dateFrom = null, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDrugByVisitUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderMedicalByVisitUID(long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderMedicalByVisitUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderItemByVisitUID(long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderItemByVisitUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderRequestByVisitUID(long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderRequestByVisitUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetCheckupResultGroup(int jobContactUID, int GPRSTUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupResultGroup", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_JobContactUID", jobContactUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetOrderDuplicate(long patientUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDuplicate", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetRequestExecuteRadiologist(DateTime requestDateFrom, DateTime requestDateTo, int radiologistUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetRequestExecuteRadiologist", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateFrom", requestDateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateTo", requestDateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
+    , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetRequesDetailLabForImport", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientID", patientID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", ownerOrganisationUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetResultCumulative(long patientUID, int requestItemUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetResultCumulative", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetVitalSignCumulative(long patientUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetVitalSignCumulative", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
             return ds.Tables[0];
         }
 
@@ -867,7 +1109,8 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-     , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID,int? PayorDetailUID)
+     , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
+            ,int? PayorDetailUID,int? checkupJobUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientVisit", entities.Database.Connection.ConnectionString);
@@ -883,6 +1126,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@ArrivedDttm", arrivedDttm != DateTime.MinValue && arrivedDttm != null ? arrivedDttm : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@OwnerOrganisation", ownerOrganisationUID != null ? ownerOrganisationUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@PayorDetailUID", PayorDetailUID != null ? PayorDetailUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -965,35 +1209,7 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
-
-        
-        public static DataTable pGetDoctorFee(DateTime dateFrom, DateTime dateTo, int? radiologistUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetDoctorFee", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 3000;
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetDoctorFeeNonPay(DateTime dateFrom,DateTime dateTo,int? radiologistUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetDoctorFeeNonPay", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 3000;
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
+      
 
         public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? storeUID, int? itemType,string itemCode, string itemName)
         {
@@ -1184,44 +1400,6 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetRequestExecuteRadiologist(DateTime requestDateFrom, DateTime requestDateTo,int radiologistUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetRequestExecuteRadiologist", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateFrom", requestDateFrom);
-            adp.SelectCommand.Parameters.AddWithValue("@P_RequestDateTo", requestDateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_RadiologistUID", radiologistUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            if (ds.Tables.Count <= 0)
-            {
-                return null;
-            }
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
-    , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetRequesDetailLabForImport", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 3000;
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientID", patientID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", ownerOrganisationUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            if (ds.Tables.Count <= 0)
-            {
-                return null;
-            }
-            return ds.Tables[0];
-        }
         public static DataTable pSearchRequestListByRequestDetailUID(long requestDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
@@ -1263,137 +1441,6 @@ namespace MediTech.DataBase
             SqlDataAdapter adp = new SqlDataAdapter("pPrintStatementBill", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientBillUID", patientBillUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetReferenceValueList(string DomainCode)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetReferenceValueList", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@DomainCode", DomainCode);
-
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetItemMasterQtyByStore(int storeUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetItemMasterQtyByStore", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetItemMasterForIssue(int organisationUID, int storeUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetItemMasterForIssue", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", organisationUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderALLByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderALLByPatientUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 3000;
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderAllByVisitUID(long patientVisitUID, DateTime? dateFrom = null, DateTime? dateTo = null)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderAllByVisitUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderDrugByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDrugByPatientUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-        public static DataTable pGetOrderDrugByVisitUID(long patientVisitUID, DateTime? dateFrom = null, DateTime? dateTo = null)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDrugByVisitUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderMedicalByVisitUID(long patientVisitUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderMedicalByVisitUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderItemByVisitUID(long patientVisitUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderItemByVisitUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderRequestByVisitUID(long patientVisitUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderRequestByVisitUID", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitUID", patientVisitUID);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds.Tables[0];
-        }
-
-        public static DataTable pGetOrderDuplicate(long patientUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetOrderDuplicate", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

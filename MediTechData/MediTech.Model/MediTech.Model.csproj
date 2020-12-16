@@ -52,7 +52,9 @@
     <Compile Include="Checkup\CheckupRuleItemModel.cs" />
     <Compile Include="Checkup\CheckupRuleModel.cs" />
     <Compile Include="Checkup\CheckupRuleRecommendModel.cs" />
+    <Compile Include="Checkup\CheckupSummeryResultModel.cs" />
     <Compile Include="Checkup\CheckupTextMasterModel.cs" />
+    <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />

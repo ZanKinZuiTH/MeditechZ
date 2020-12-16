@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class PatientResultLabModel : PatientVisitModel
+    public class PatientResultComponentModel : PatientVisitModel
     {
         public int No { get; set; }
         public long? ResultUID { get; set; }
@@ -24,5 +24,8 @@ namespace MediTech.Model
         public int? Year { get; set; }
         public int? SortBy { get; set; }
         public int? SubSortBy { get; set; }
+        public string ResultValue1 { get; set; }
+        public string ResultValue2 { get; set; }
+        public string ResultValue3 { get; set; }
     }
 }

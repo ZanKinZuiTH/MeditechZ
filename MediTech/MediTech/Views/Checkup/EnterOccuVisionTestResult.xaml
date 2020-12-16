@@ -62,6 +62,9 @@
                 </dxe:ListBoxEdit.StyleSettings>
             </dxe:ListBoxEdit>
         </DataTemplate>
+        <DataTemplate x:Key="textEditEditor">
+            <dxe:TextEdit Name="PART_Editor"/>
+        </DataTemplate>
     </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
@@ -73,7 +76,7 @@
             <dxlc:LayoutItem>
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl ItemsSource="{Binding ResultComponentItems}"
+            <dxg:GridControl x:Name="grdOccVision" ItemsSource="{Binding ResultComponentItems}"
                              AutoGenerateColumns="None">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True" Width="200">
@@ -87,7 +90,7 @@
                     <dxg:GridColumn  Width="*" CellTemplateSelector="{StaticResource TemplateSelector}"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False" ShowColumnHeaders="False" RowMinHeight="35"
+                    <dxg:TableView x:Name="gvOccVision" ShowGroupPanel="False" ShowColumnHeaders="False" RowMinHeight="35"
                                    AllowSorting="False">
                         <dxg:TableView.RowStyle>
                             <Style TargetType="{x:Type dxg:RowControl}">

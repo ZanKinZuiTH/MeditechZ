@@ -23,10 +23,10 @@ namespace MediTech.DataService
         }
 
 
-        public List<PatientResultLabModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
         {
             string requestApi = string.Format("Api/Lab/SearchResultLabList?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&payorDetailUID={3}", dateFrom, dateTo, patientUID, payorDetailUID);
-            List<PatientResultLabModel> listData = MeditechApiHelper.Get<List<PatientResultLabModel>>(requestApi);
+            List<PatientResultComponentModel> listData = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
             return listData;
         }
 

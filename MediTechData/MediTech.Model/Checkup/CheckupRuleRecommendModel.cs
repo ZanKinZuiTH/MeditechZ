@@ -11,7 +11,8 @@ namespace MediTech.Model
         public int CheckupRuleRecommendUID { get; set; }
         public int CheckupRuleUID { get; set; }
         public int CheckupTextMasterUID { get; set; }
-        public string Recommend { get; set; }
+        public string ThaiRecommend { get; set; }
+        public string EndRecommend { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

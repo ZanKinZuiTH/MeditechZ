@@ -834,7 +834,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pGetConvertUOM", itemMasterUIDParameter);
         }
     
-        public virtual ObjectResult<pSearchPatientVisit1_Result> pSearchPatientVisit1(string hN, string firstName, string lastName, Nullable<int> careproViderUID, string statusList, Nullable<System.DateTime> dateFrom, Nullable<System.DateTime> dateTo, Nullable<System.DateTime> arrivedDttm, Nullable<int> ownerOrganisation, Nullable<int> payorDetailUID)
+        public virtual ObjectResult<pSearchPatientVisit1_Result> pSearchPatientVisit1(string hN, string firstName, string lastName, Nullable<int> careproViderUID, string statusList, Nullable<System.DateTime> dateFrom, Nullable<System.DateTime> dateTo, Nullable<System.DateTime> arrivedDttm, Nullable<int> ownerOrganisation, Nullable<int> payorDetailUID, Nullable<int> checkupJobUID)
         {
             var hNParameter = hN != null ?
                 new ObjectParameter("HN", hN) :
@@ -876,7 +876,11 @@ namespace MediTech.DataBase
                 new ObjectParameter("PayorDetailUID", payorDetailUID) :
                 new ObjectParameter("PayorDetailUID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientVisit1_Result>("pSearchPatientVisit1", hNParameter, firstNameParameter, lastNameParameter, careproViderUIDParameter, statusListParameter, dateFromParameter, dateToParameter, arrivedDttmParameter, ownerOrganisationParameter, payorDetailUIDParameter);
+            var checkupJobUIDParameter = checkupJobUID.HasValue ?
+                new ObjectParameter("CheckupJobUID", checkupJobUID) :
+                new ObjectParameter("CheckupJobUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientVisit1_Result>("pSearchPatientVisit1", hNParameter, firstNameParameter, lastNameParameter, careproViderUIDParameter, statusListParameter, dateFromParameter, dateToParameter, arrivedDttmParameter, ownerOrganisationParameter, payorDetailUIDParameter, checkupJobUIDParameter);
         }
     
         public virtual ObjectResult<pGetBillableItemDrug_Result> pGetBillableItemDrug()
@@ -3344,6 +3348,41 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_PRTGPUID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchCheckupExamList_Result>("pSearchCheckupExamList", p_RequestDateFromParameter, p_RequestDateToParameter, p_PatientUIDParameter, p_PayorDetailUIDParameter, p_CheckupJobUIDParameter, p_PRTGPUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetCheckupResultGroup_Result> pGetCheckupResultGroup(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID)
+        {
+            var p_JobContactUIDParameter = p_JobContactUID.HasValue ?
+                new ObjectParameter("P_JobContactUID", p_JobContactUID) :
+                new ObjectParameter("P_JobContactUID", typeof(int));
+    
+            var p_GPRSTUIDParameter = p_GPRSTUID.HasValue ?
+                new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
+                new ObjectParameter("P_GPRSTUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupResultGroup_Result>("pGetCheckupResultGroup", p_JobContactUIDParameter, p_GPRSTUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetResultCumulative_Result> pGetResultCumulative(Nullable<long> p_PatientUID, Nullable<int> p_RequestItemUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_RequestItemUIDParameter = p_RequestItemUID.HasValue ?
+                new ObjectParameter("P_RequestItemUID", p_RequestItemUID) :
+                new ObjectParameter("P_RequestItemUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetResultCumulative_Result>("pGetResultCumulative", p_PatientUIDParameter, p_RequestItemUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetVitalSignCumulative_Result> pGetVitalSignCumulative(Nullable<long> p_PatientUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetVitalSignCumulative_Result>("pGetVitalSignCumulative", p_PatientUIDParameter);
         }
     }
 }
