@@ -6,15 +6,15 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
              xmlns:helper="clr-namespace:MediTech.Helpers"
+             xmlns:cv="clr-namespace:MediTech.Converter"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
              mc:Ignorable="d"
              DataContext="{Binding Path=EnterOccuVisionTestResultViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
         <helper:EditorTemplateOccuVisionTest x:Key="TemplateSelector"/>
-        
         <DataTemplate x:Key="ListBoxRadioButtonEdit">
-            <dxe:ListBoxEdit ShowCustomItems="False"
+            <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False"
                              ItemsSource="{Binding RowData.Row.AutoValueList}"
                              EditValue="{Binding RowData.Row.ResultValue,Mode=TwoWay}"
                              FontWeight="Bold" FontSize="16">
@@ -34,7 +34,7 @@
             </dxe:ListBoxEdit>
         </DataTemplate>
         <DataTemplate x:Key="ComboBoxEdit">
-            <dxe:ComboBoxEdit IsTextEditable="True" 
+            <dxe:ComboBoxEdit Name="PART_Editor" IsTextEditable="True" 
                               ItemsSource="{Binding RowData.Row.AutoValueList}"
                               ValidateOnTextInput="False"
                               ValidateOnEnterKeyPressed="True"
@@ -58,12 +58,12 @@
                     </ItemsPanelTemplate>
                 </dxe:ListBoxEdit.ItemsPanel>
                 <dxe:ListBoxEdit.StyleSettings>
-                    <dxe:CheckedListBoxEditStyleSettings/>
+                    <dxe:CheckedListBoxEditStyleSettings />
                 </dxe:ListBoxEdit.StyleSettings>
             </dxe:ListBoxEdit>
         </DataTemplate>
         <DataTemplate x:Key="textEditEditor">
-            <dxe:TextEdit Name="PART_Editor"/>
+            <dxe:TextEdit Name="PART_Editor" FontSize="18" FontWeight="Bold" VerticalAlignment="Center"/>
         </DataTemplate>
     </UserControl.Resources>
     <Grid>
@@ -87,17 +87,13 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn  Width="*" CellTemplateSelector="{StaticResource TemplateSelector}"/>
+                    <dxg:GridColumn FieldName="ResultValue"  
+                                    Width="*"
+                                    CellTemplateSelector="{StaticResource TemplateSelector}"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="gvOccVision" ShowGroupPanel="False" ShowColumnHeaders="False" RowMinHeight="35"
                                    AllowSorting="False">
-                        <dxg:TableView.RowStyle>
-                            <Style TargetType="{x:Type dxg:RowControl}">
-                                <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
-                                <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
-                            </Style>
-                        </dxg:TableView.RowStyle>
                         <dxg:TableView.CellStyle>
                             <Style TargetType="dxg:LightweightCellEditor">
                                 <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />

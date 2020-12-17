@@ -171,9 +171,9 @@ namespace MediTech.ViewModels
                     result = "ระดับการได้ยินลดลงเล็กน้อย";
                     abnormal = true;
                 }
-                else if (int.Parse(hz6000.ResultValue) < 25 && int.Parse(hz8000.ResultValue) < 25 && int.Parse(hz500.ResultValue) < 25
-                    && int.Parse(hz1000.ResultValue) < 25 && int.Parse(hz2000.ResultValue) < 25 && int.Parse(hz3000.ResultValue) < 25
-                    && int.Parse(hz4000.ResultValue) < 25)
+                else if (int.Parse(hz6000.ResultValue) <= 25 && int.Parse(hz8000.ResultValue) <= 25 && int.Parse(hz500.ResultValue) <= 25
+                    && int.Parse(hz1000.ResultValue) <= 25 && int.Parse(hz2000.ResultValue) <= 25 && int.Parse(hz3000.ResultValue) <= 25
+                    && int.Parse(hz4000.ResultValue) <= 25)
                 {
                     result = "ไม่พบความผิดปกติ";
                 }
@@ -235,9 +235,9 @@ namespace MediTech.ViewModels
                     result = "ระดับการได้ยินลดลงเล็กน้อย";
                     abnormal = true;
                 }
-                else if (int.Parse(hz6000.ResultValue) < 25 && int.Parse(hz8000.ResultValue) < 25 && int.Parse(hz500.ResultValue) < 25
-                    && int.Parse(hz1000.ResultValue) < 25 && int.Parse(hz2000.ResultValue) < 25 && int.Parse(hz3000.ResultValue) < 25
-                    && int.Parse(hz4000.ResultValue) < 25)
+                else if (int.Parse(hz6000.ResultValue) <= 25 && int.Parse(hz8000.ResultValue) <= 25 && int.Parse(hz500.ResultValue) <= 25
+                    && int.Parse(hz1000.ResultValue) <= 25 && int.Parse(hz2000.ResultValue) <= 25 && int.Parse(hz3000.ResultValue) <= 25
+                    && int.Parse(hz4000.ResultValue) <= 25)
                 {
                     result = "ไม่พบความผิดปกติ";
                 }
