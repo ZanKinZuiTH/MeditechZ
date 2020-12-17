@@ -102,8 +102,13 @@ namespace MediTech.ViewModels
                 reviewRequestDetail.RequestItemName = RequestModel.RequestItemName;
 
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
-                DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
-                OrderStatus = "Reviewed";
+
+                if (reviewRequestDetail.ResultComponents != null && reviewRequestDetail.ResultComponents.Count > 0)
+                {
+                    DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
+                    OrderStatus = "Reviewed";
+                }
+
                 CloseViewDialog(ActionDialog.Save);
             }
             catch (Exception er)

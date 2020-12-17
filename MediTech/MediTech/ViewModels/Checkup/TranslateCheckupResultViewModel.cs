@@ -265,26 +265,48 @@ namespace MediTech.ViewModels
                         {
                             vitalSign = dataVital.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
                         }
-
                     }
 
                     if (vitalSign != null)
                     {
                         resultComponent = new List<ResultComponentModel>();
-                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
-                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
-                        ResultComponentModel dbpComponent = new ResultComponentModel() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "ความดันโลหิต (DBP)", ResultValue = vitalSign.BPDio.ToString() };
-                        ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
+                        double? bmiValue = null;
+                        if (vitalSign.BMIValue.HasValue)
+                            bmiValue = Math.Round(vitalSign.BMIValue.Value, 1);
 
-                        resultComponent.Add(bmiComponent);
-                        resultComponent.Add(dbpComponent);
-                        resultComponent.Add(sdpComponent);
-                        resultComponent.Add(pluseComponent);
+                        if (grpstUID == 3177)
+                        {
+                            if (vitalSign.BMIValue != null)
+                            {
+                                ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = bmiValue.ToString() };
+                                resultComponent.Add(bmiComponent);
+                            }
+                        }
+
+                        if (grpstUID == 3178)
+                        {
+                            if (vitalSign.BPSys != null)
+                            {
+                                ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
+                                resultComponent.Add(sdpComponent);
+                            }
+                            if (vitalSign.BPDio != null)
+                            {
+                                ResultComponentModel dbpComponent = new ResultComponentModel() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "ความดันโลหิต (DBP)", ResultValue = vitalSign.BPDio.ToString() };
+                                resultComponent.Add(dbpComponent);
+                            }
+                            if (vitalSign.Pulse != null)
+                            {
+                                ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
+                                resultComponent.Add(pluseComponent);
+                            }
+                        }
+
                     }
 
                 }
 
-                if (resultComponent != null)
+                if (resultComponent != null && resultComponent.Count > 0)
                 {
                     var ruleCheckups = dataCheckupRule
 .Where(p => p.GPRSTUID == grpstUID
@@ -319,8 +341,7 @@ namespace MediTech.ViewModels
                                     {
                                         if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
                                             || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
-                                            || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight)
-                                            )
+                                            || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
                                         {
                                             ruleCheckupIsCorrect.Add(ruleCheckup);
                                             if (ruleItem.Operator == "Or")
@@ -336,8 +357,6 @@ namespace MediTech.ViewModels
                         }
 
                     }
-
-
 
                     int RABSTSUID = 0;
                     List<CheckupRuleDescriptionModel> descriptions = new List<CheckupRuleDescriptionModel>();
@@ -395,15 +414,19 @@ namespace MediTech.ViewModels
                         recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
                     }
 
-                    CheckupSummeryResultModel checkupResult = new CheckupSummeryResultModel();
-                    checkupResult.PatientUID = patientVisit.PatientUID;
-                    checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                    checkupResult.GPRSTUID = grpstUID;
-                    checkupResult.RABSTSUID = RABSTSUID;
-                    checkupResult.Description = descriptionString;
-                    checkupResult.Recommend = recommandString;
-                    checkupResult.SummeryResult = descriptionString + " " + recommandString;
-                    DataService.Checkup.SaveChekcupSummeryResult(checkupResult, AppUtil.Current.UserID);
+                    if (!string.IsNullOrEmpty(descriptionString) && !string.IsNullOrEmpty(recommandString))
+                    {
+                        CheckupSummeryResultModel checkupResult = new CheckupSummeryResultModel();
+                        checkupResult.PatientUID = patientVisit.PatientUID;
+                        checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                        checkupResult.GPRSTUID = grpstUID;
+                        checkupResult.RABSTSUID = RABSTSUID;
+                        checkupResult.Description = descriptionString;
+                        checkupResult.Recommend = recommandString;
+                        checkupResult.SummeryResult = descriptionString + " " + recommandString;
+                        DataService.Checkup.SaveChekcupSummeryResult(checkupResult, AppUtil.Current.UserID);
+                    }
+
 
                 }
             }
