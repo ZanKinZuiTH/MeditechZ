@@ -699,7 +699,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB285")
                         || p.RequestItemCode.Contains("LAB232")
-                        || p.RequestItemCode.Contains("LAB251"))
+                        || p.RequestItemCode.Contains("LAB251")
+                        || p.RequestItemCode.Contains("LAB271"))
                         .OrderBy(p => p.Year);
                     GenerateOther(OtherTestSet);
                     #endregion
@@ -3437,6 +3438,33 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 {
                     page7.cellCalcium3.ForeColor = (CalciumAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page7.cellCalcium3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                page7.cellTshRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24")?.ReferenceRange;
+                page7.cellTsh1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year1)?.ResultValue;
+                page7.cellTsh2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year2)?.ResultValue;
+                page7.cellTsh3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year3)?.ResultValue;
+
+                string TshAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year1)?.IsAbnormal;
+                string TshAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year2)?.IsAbnormal;
+                string TshAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(TshAbnormal1))
+                {
+                    page7.cellTsh1.ForeColor = (TshAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page7.cellTsh1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(TshAbnormal2))
+                {
+                    page7.cellTsh2.ForeColor = (TshAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page7.cellTsh2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(TshAbnormal3))
+                {
+                    page7.cellTsh3.ForeColor = (TshAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page7.cellTsh3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
             else
