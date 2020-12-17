@@ -246,6 +246,7 @@ namespace MediTech.ViewModels
         void TranslateProcess(PatientVisitModel patientVisit, List<int> GPRSTUIDs, List<CheckupRuleModel> dataCheckupRule)
         {
             int? ageInt = !string.IsNullOrEmpty(patientVisit.Age) ? int.Parse(patientVisit.Age) : (int?)null;
+            PatientVitalSignModel vitalSign = null;
             foreach (var grpstUID in GPRSTUIDs)
             {
                 List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
@@ -255,12 +256,31 @@ namespace MediTech.ViewModels
                 {
                     resultComponent = DataService.Checkup.GetResultComponent(patientVisit.PatientVisitUID, grpstUID);
                 }
-                else if (grpstUID == 3177)
+                else if (grpstUID == 3177 || grpstUID == 3178)
                 {
+                    if (vitalSign == null)
+                    {
+                        var dataVital = DataService.PatientHistory.GetPatientVitalSignByVisitUID(patientVisit.PatientVisitUID);
+                        if (dataVital != null)
+                        {
+                            vitalSign = dataVital.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
+                        }
 
-                }
-                else if (grpstUID == 3178)
-                {
+                    }
+
+                    if (vitalSign != null)
+                    {
+                        resultComponent = new List<ResultComponentModel>();
+                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
+                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
+                        ResultComponentModel dbpComponent = new ResultComponentModel() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "ความดันโลหิต (DBP)", ResultValue = vitalSign.BPDio.ToString() };
+                        ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
+
+                        resultComponent.Add(bmiComponent);
+                        resultComponent.Add(dbpComponent);
+                        resultComponent.Add(sdpComponent);
+                        resultComponent.Add(pluseComponent);
+                    }
 
                 }
 
@@ -374,6 +394,16 @@ namespace MediTech.ViewModels
                     {
                         recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
                     }
+
+                    CheckupSummeryResultModel checkupResult = new CheckupSummeryResultModel();
+                    checkupResult.PatientUID = patientVisit.PatientUID;
+                    checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                    checkupResult.GPRSTUID = grpstUID;
+                    checkupResult.RABSTSUID = RABSTSUID;
+                    checkupResult.Description = descriptionString;
+                    checkupResult.Recommend = recommandString;
+                    checkupResult.SummeryResult = descriptionString + " " + recommandString;
+                    DataService.Checkup.SaveChekcupSummeryResult(checkupResult, AppUtil.Current.UserID);
 
                 }
             }

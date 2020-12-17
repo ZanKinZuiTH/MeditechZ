@@ -1148,8 +1148,8 @@ namespace MediTechWebApi.Controllers
             }).ToList();
 
             returnData = (from pv in distinctVisit
-                         where !db.CheckupSummeryResult.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
-                         select pv).ToList();
+                          where !db.CheckupSummeryResult.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
+                          select pv).ToList();
             return returnData;
         }
 
@@ -1159,20 +1159,20 @@ namespace MediTechWebApi.Controllers
         {
             List<LookupReferenceValueModel> groupResult = new List<LookupReferenceValueModel>();
             var data = (from pv in db.PatientVisit
-                       join re in db.Request on pv.UID equals re.PatientVisitUID
-                       join red in db.RequestDetail on re.UID equals red.RequestUID
-                       join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
-                       where pv.UID == patientVisitUID
-                        && pv.StatusFlag == "A"
-                        && re.StatusFlag == "A"
-                        && red.StatusFlag == "A"
-                       select new LookupReferenceValueModel
-                       {
-                           Key = gps.GPRSTUID,
-                           Display = gps.GroupResultName,
-                           DisplayOrder = gps.PrintOrder ?? 0,
-                           Key2 = gps.RequestItemUID
-                       });
+                        join re in db.Request on pv.UID equals re.PatientVisitUID
+                        join red in db.RequestDetail on re.UID equals red.RequestUID
+                        join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
+                        where pv.UID == patientVisitUID
+                         && pv.StatusFlag == "A"
+                         && re.StatusFlag == "A"
+                         && red.StatusFlag == "A"
+                        select new LookupReferenceValueModel
+                        {
+                            Key = gps.GPRSTUID,
+                            Display = gps.GroupResultName,
+                            DisplayOrder = gps.PrintOrder ?? 0,
+                            Key2 = gps.RequestItemUID
+                        });
             //var vitalSign = db.PatientVitalSign.FirstOrDefault(p => p.PatientVisitUID == patientVisitUID);
             //if (vitalSign != null)
             //{
@@ -1297,7 +1297,8 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                CheckupSummeryResult checkupTran = db.CheckupSummeryResult.FirstOrDefault(p => p.PatientVisitUID == summeryResult.PatientVisitUID);
+                CheckupSummeryResult checkupTran = db.CheckupSummeryResult.FirstOrDefault(p => p.PatientVisitUID == summeryResult.PatientVisitUID
+                && p.GPRSTUID == summeryResult.GPRSTUID);
                 if (checkupTran == null)
                 {
                     checkupTran = new CheckupSummeryResult();
@@ -1448,13 +1449,18 @@ namespace MediTechWebApi.Controllers
                                                    && rsc.StatusFlag == "A"
                                                    select rsc).ToList();
                         }
-                        else if (grpstUID == 3177)
+                        else if (grpstUID == 3177 || grpstUID == 3178)
                         {
+                            resultComponent = new List<ResultComponent>();
+                            ResultComponent bmiComponent = new ResultComponent() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "",ResultValue = "" };
+                            ResultComponent sdpComponent = new ResultComponent() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "", ResultValue = "" };
+                            ResultComponent dbpComponent = new ResultComponent() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "", ResultValue = "" };
+                            ResultComponent pluseComponent = new ResultComponent() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "", ResultValue = "" };
 
-                        }
-                        else if (grpstUID == 3178)
-                        {
-
+                            resultComponent.Add(bmiComponent);
+                            resultComponent.Add(dbpComponent);
+                            resultComponent.Add(sdpComponent);
+                            resultComponent.Add(pluseComponent);
                         }
 
 
@@ -1643,7 +1649,8 @@ namespace MediTechWebApi.Controllers
         {
             CheckupSummeryResultModel data = db.CheckupSummeryResult
                 .Where(p => p.PatientVisitUID == patientVisitUID && p.GPRSTUID == GPRSTUID)
-                .Select(p => new CheckupSummeryResultModel {
+                .Select(p => new CheckupSummeryResultModel
+                {
                     CheckupSummeryResultUID = p.UID,
                     PatientUID = p.PatientUID,
                     PatientVisitUID = p.PatientVisitUID,

@@ -496,7 +496,6 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
-        private DevExpress.XtraReports.UI.XRLabel lblOrganisationAddress;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRRichText RichTXT;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
@@ -527,5 +526,6 @@
         private DevExpress.XtraReports.UI.XRLabel lblPatientOrder;
         private DevExpress.XtraReports.UI.XRLine xrLine3;
         private DevExpress.XtraReports.UI.XRPictureBox logo;
+        public DevExpress.XtraReports.UI.XRLabel lblOrganisationAddress;
     }
 }
