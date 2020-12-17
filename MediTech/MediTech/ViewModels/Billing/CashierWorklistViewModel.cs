@@ -147,6 +147,7 @@ namespace MediTech.ViewModels
             }
         }
 
+        #endregion
 
 
         private List<LookupItemModel> _PrinterLists;
@@ -164,9 +165,6 @@ namespace MediTech.ViewModels
             get { return _SelectPrinter; }
             set { Set(ref _SelectPrinter, value); }
         }
-        #endregion
-
-
 
 
         private List<PatientVisitModel> _PatientCloseMed;

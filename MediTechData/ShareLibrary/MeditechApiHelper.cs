@@ -77,6 +77,30 @@ namespace ShareLibrary
             }
         }
 
+        public static object Post<T>(string requestUrl,int timeOut, T obj) where T : class
+        {
+            using (var client = new HttpClient())
+            {
+                client.Timeout = TimeSpan.FromMinutes(timeOut);
+                client.BaseAddress = new Uri(BaseAddress);
+                using (var response = client.PostAsJsonAsync(requestUrl, obj).Result)
+                {
+                    if (!response.IsSuccessStatusCode)
+                    {
+                        string msg = string.Empty;
+                        var errors = response.Content.ReadAsAsync<HttpError>().Result;
+                        foreach (var e in errors)
+                        {
+                            msg += string.Format("{0}: {1}", e.Key, e.Value) + Environment.NewLine;
+                        }
+                        throw new Exception(msg);
+                    }
+                    return response.Content.ReadAsAsync<object>().Result;
+                }
+
+            }
+        }
+
         public static TResult Post<T, TResult>(string requestUrl, T obj) where T : class
         {
             using (var client = new HttpClient())

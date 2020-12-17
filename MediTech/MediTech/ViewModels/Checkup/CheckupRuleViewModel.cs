@@ -145,6 +145,13 @@ namespace MediTech.ViewModels
                     GetCheckupRuleItem();
                     GetCheckupDescription();
                     GetCheckupRecommend();
+
+                    RuleName = SelectCheckupRule.Name;
+                    SelectGender = Genders.FirstOrDefault(p => p.Key == SelectCheckupRule.SEXXXUID);
+                    AgeFrom = SelectCheckupRule.AgeFrom;
+                    AgeTo = SelectCheckupRule.AgeTo;
+                    SelectResultStatus = ResultStatus.FirstOrDefault(p => p.Key == SelectCheckupRule.RABSTSUID);
+
                 }
                 else
                 {
@@ -229,7 +236,25 @@ namespace MediTech.ViewModels
         public CheckupRuleItemModel SelectCheckupRuleItem
         {
             get { return _SelectCheckupRuleItem; }
-            set { Set(ref _SelectCheckupRuleItem, value); }
+            set {
+                Set(ref _SelectCheckupRuleItem, value);
+                if (SelectCheckupRuleItem != null)
+                {
+                    SelectResultItem = ResultItems.FirstOrDefault(p => p.ResultItemUID == SelectCheckupRuleItem.ResultItemUID);
+                    ValueLow = SelectCheckupRuleItem.Low;
+                    ValueHigh = SelectCheckupRuleItem.Hight;
+                    TextualValue = SelectCheckupRuleItem.Text;
+                    if (SelectCheckupRuleItem.Operator == "And")
+                    {
+                        OperatorAnd = true;
+                    }
+                    else if(SelectCheckupRuleItem.Operator == "Or")
+                    {
+                        OperatorOr = true;
+                    }
+
+                }
+            }
         }
 
         private ObservableCollection<CheckupTextMasterModel> _CheckupTextMasters;
@@ -248,9 +273,9 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCheckupTextMaster, value); }
         }
 
-        private List<CheckupRuleDescriptionModel> _CheckupDescriptions;
+        private ObservableCollection<CheckupRuleDescriptionModel> _CheckupDescriptions;
 
-        public List<CheckupRuleDescriptionModel> CheckupDescriptions
+        public ObservableCollection<CheckupRuleDescriptionModel> CheckupDescriptions
         {
             get { return _CheckupDescriptions; }
             set { Set(ref _CheckupDescriptions, value); }
@@ -264,9 +289,9 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectCheckupDescription, value); }
         }
 
-        private List<CheckupRuleRecommendModel> _CheckupRecommends;
+        private ObservableCollection<CheckupRuleRecommendModel> _CheckupRecommends;
 
-        public List<CheckupRuleRecommendModel> CheckupRecommends
+        public ObservableCollection<CheckupRuleRecommendModel> CheckupRecommends
         {
             get { return _CheckupRecommends; }
             set { Set(ref _CheckupRecommends, value); }
@@ -294,6 +319,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _EditRuleCommand;
+
+        public RelayCommand EditRuleCommand
+        {
+            get
+            {
+                return _EditRuleCommand
+                    ?? (_EditRuleCommand = new RelayCommand(EditRule));
+            }
+        }
 
         private RelayCommand _DeleteRuleCommand;
 
@@ -314,6 +349,17 @@ namespace MediTech.ViewModels
             {
                 return _AddRuleItemCommmand
                     ?? (_AddRuleItemCommmand = new RelayCommand(AddRuleItem));
+            }
+        }
+
+        private RelayCommand _EditRuleItemCommmand;
+
+        public RelayCommand EditRuleItemCommmand
+        {
+            get
+            {
+                return _EditRuleItemCommmand
+                    ?? (_EditRuleItemCommmand = new RelayCommand(EditRuleItem));
             }
         }
 
@@ -433,15 +479,53 @@ namespace MediTech.ViewModels
 
         void GetCheckupDescription()
         {
-            CheckupDescriptions = DataService.Checkup.GetCheckupRuleDescriptionByRuleUID(SelectCheckupRule.CheckupRuleUID);
+            CheckupDescriptions = new ObservableCollection<CheckupRuleDescriptionModel>(DataService.Checkup.GetCheckupRuleDescriptionByRuleUID(SelectCheckupRule.CheckupRuleUID));
         }
 
         void GetCheckupRecommend()
         {
-            CheckupRecommends = DataService.Checkup.GetCheckupRuleRecommendModelByRuleUID(SelectCheckupRule.CheckupRuleUID);
+            CheckupRecommends = new ObservableCollection<CheckupRuleRecommendModel>(DataService.Checkup.GetCheckupRuleRecommendModelByRuleUID(SelectCheckupRule.CheckupRuleUID));
         }
 
         void AddRule()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(RuleName))
+                {
+                    WarningDialog("กรุณาระบุ ชื่อ");
+                    return;
+                }
+                if (SelectGender == null)
+                {
+                    WarningDialog("กรุณาระบุ เพศ");
+                    return;
+                }
+                if (SelectResultStatus == null)
+                {
+                    WarningDialog("กรุณาระบุ สถานะ");
+                    return;
+                }
+
+                CheckupRuleModel newRule = new CheckupRuleModel();
+                newRule.Name = RuleName;
+                newRule.RABSTSUID = SelectResultStatus.Key;
+                newRule.SEXXXUID = SelectGender.Key;
+                newRule.GPRSTUID = SelectGroupResult.Key;
+                newRule.AgeFrom = AgeFrom;
+                newRule.AgeTo = AgeTo;
+                DataService.Checkup.SaveCheckupRule(newRule, AppUtil.Current.UserID);
+                GetChekcupRule();
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        void EditRule()
         {
             try
             {
@@ -462,24 +546,26 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                CheckupRuleModel newRule = new CheckupRuleModel();
-                newRule.Name = RuleName;
-                newRule.RABSTSUID = SelectResultStatus.Key;
-                newRule.SEXXXUID = SelectGender.Key;
-                newRule.GPRSTUID = SelectGroupResult.Key;
-                newRule.AgeFrom = AgeFrom;
-                newRule.AgeTo = AgeTo;
-                DataService.Checkup.AddCheckupRule(newRule, AppUtil.Current.UserID);
-                GetChekcupRule();
+                if (SelectCheckupRule != null)
+                {
+                    CheckupRuleModel newRule = new CheckupRuleModel();
+                    newRule.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
+                    newRule.Name = RuleName;
+                    newRule.RABSTSUID = SelectResultStatus.Key;
+                    newRule.SEXXXUID = SelectGender.Key;
+                    newRule.GPRSTUID = SelectGroupResult.Key;
+                    newRule.AgeFrom = AgeFrom;
+                    newRule.AgeTo = AgeTo;
+                    DataService.Checkup.SaveCheckupRule(newRule, AppUtil.Current.UserID);
+                    GetChekcupRule();
+                }
             }
             catch (Exception er)
             {
 
                 ErrorDialog(er.Message);
             }
-
         }
-
         void DeleteRule()
         {
             try
@@ -538,7 +624,7 @@ namespace MediTech.ViewModels
                     Operator = "Or";
                 }
                 newRuleItem.Operator = Operator;
-                DataService.Checkup.AddCheckupRuleItem(newRuleItem, AppUtil.Current.UserID);
+                DataService.Checkup.SaveCheckupRuleItem(newRuleItem, AppUtil.Current.UserID);
                 GetCheckupRuleItem();
             }
             catch (Exception er)
@@ -548,6 +634,56 @@ namespace MediTech.ViewModels
             }
         }
 
+        void EditRuleItem()
+        {
+            try
+            {
+                if (SelectCheckupRuleItem != null)
+                {
+                    if (SelectCheckupRule == null)
+                    {
+                        WarningDialog("กรุณาเลือก Rule ที่จะเพิ่มสูตร");
+                        return;
+                    }
+                    if (SelectResultItem == null)
+                    {
+                        WarningDialog("กรุณาระบุ รายการ");
+                        return;
+                    }
+                    if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null)
+                    {
+                        WarningDialog("กรุณาระบุ ตัวเลขหรือข้อความ อย่างใดอย่างหนึ่ง");
+                        return;
+                    }
+
+                    CheckupRuleItemModel newRuleItem = new CheckupRuleItemModel();
+                    newRuleItem.CheckupRuleItemUID = SelectCheckupRuleItem.CheckupRuleItemUID;
+                    newRuleItem.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
+                    newRuleItem.ResultItemUID = SelectResultItem.ResultItemUID;
+                    newRuleItem.ResultItemName = SelectResultItem.DisplyName;
+                    newRuleItem.Low = ValueLow;
+                    newRuleItem.Hight = ValueHigh;
+                    newRuleItem.Text = TextualValue;
+                    string Operator = "";
+                    if (OperatorAnd)
+                    {
+                        Operator = "And";
+                    }
+                    else if (OperatorOr)
+                    {
+                        Operator = "Or";
+                    }
+                    newRuleItem.Operator = Operator;
+                    DataService.Checkup.SaveCheckupRuleItem(newRuleItem, AppUtil.Current.UserID);
+                    GetCheckupRuleItem();
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+        }
         void DeleteRuleItem()
         {
             try

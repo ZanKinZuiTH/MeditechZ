@@ -120,15 +120,23 @@ namespace MediTech.ViewModels
                 foreach (var item in ResultComponentItems)
                 {
                     string resultValue = string.Empty;
-                    if (item.CheckDataList != null)
+                    if (item.ResultItemCode == "TIMUS9" || item.ResultItemCode == "TIMUS16" || item.ResultItemCode == "TIMUS17")
                     {
-                        foreach (var phyExam in item.CheckDataList)
+                        if (item.CheckDataList != null)
                         {
-                            resultValue += string.IsNullOrEmpty(resultValue) ? phyExam.ToString() : "," + phyExam.ToString();
-                        }
+                            foreach (var phyExam in item.CheckDataList)
+                            {
+                                resultValue += string.IsNullOrEmpty(resultValue) ? phyExam.ToString() : "," + phyExam.ToString();
+                            }
 
-                        item.ResultValue = resultValue;
+                            item.ResultValue = resultValue;
+                        }
+                        else
+                        {
+                            item.ResultValue = string.Empty;
+                        }
                     }
+
                 }
 
                 reviewRequestDetail.ResultComponents = ResultComponentItems;
@@ -146,6 +154,196 @@ namespace MediTech.ViewModels
         private void Close()
         {
             CloseViewDialog(ActionDialog.Cancel);
+        }
+
+        public void CalculateOccuVisionResult()
+        {
+            try
+            {
+                bool? binocular_normal = null, far_vision_both_normal = null, far_vision_right_normal = null, far_vision_left_normal = null, stereo_depth_normal = null
+                    , color_discrimination_normal = null, far_vertical_phoria_normal = null, far_lateral_phoria_normal = null, near_vision_both_normal = null
+                    , near_vision_right_normal = null, near_vision_left_normal = null, near_lateral_photia_normal = null, perime_score_both_normal = null;
+
+                var job = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
+                var far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");
+                var near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS3");
+                var demonstration_slide = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS4");
+                var botheyes_far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS5");
+                var righteye_far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS6");
+                var lefteye_far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS7");
+                var stereo_depth = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS8");
+                var color = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS9");
+                var color_blindness = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS18");
+                var vertical = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS10");
+                var lateral_far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS11");
+                var botheyes_near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS12");
+                var righteye_near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS13");
+                var lefteye_near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS14");
+                var lateral_near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS15");
+                var perime_score_right = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS16");
+                var perime_score_left = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS17");
+
+                var result_eyes_far = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS19");
+                var result_eyes_near = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS20");
+                var result_eyes_3d = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS21");
+                var result_eyes_color = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS22");
+                var result_eyes_muscle = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS23");
+                var result_eyes_perimeter = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "TIMUS24");
+
+                if (job != null || job.ResultValue.Contains("สำนักงาน"))
+                {
+                    if (demonstration_slide != null && demonstration_slide.ResultValue != null)
+                        binocular_normal = demonstration_slide.ResultValue.ToUpper() == "PASS" ? true : demonstration_slide.ResultValue.ToUpper() == "FAIL" ? false : true;
+                    if (botheyes_far != null && botheyes_far.ResultValue != null)
+                        far_vision_both_normal = (botheyes_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_far.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(botheyes_far.ResultValue) > 8 ? true : false;
+                    if (righteye_far != null && righteye_far.ResultValue != null)
+                        far_vision_right_normal = (righteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_far.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(righteye_far.ResultValue) > 7 ? true : false;
+                    if (lefteye_far != null && lefteye_far.ResultValue != null)
+                        far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(lefteye_far.ResultValue) > 7 ? true : false;
+                    if (stereo_depth != null && stereo_depth.ResultValue != null)
+                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(stereo_depth.ResultValue) > 1 ? true : false;
+                    if (color != null && color.ResultValue != null)
+                        color_discrimination_normal = (color.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : color.ResultValue == "มองไม่เห็น" ? false : color.ResultValue.Contains("X") ? true : false;
+                    if (vertical != null && vertical.ResultValue != null)
+                        far_vertical_phoria_normal = (vertical.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : vertical.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(vertical.ResultValue) >= 3 && Convert.ToInt16(vertical.ResultValue) <= 5 ? true : false;
+                    if (lateral_far != null && lateral_far.ResultValue != null)
+                        far_lateral_phoria_normal = (lateral_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lateral_far.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(lateral_far.ResultValue) >= 4 && Convert.ToInt16(lateral_far.ResultValue) <= 13 ? true : false;
+                    if (botheyes_near != null && botheyes_near.ResultValue != null)
+                        near_vision_both_normal = (botheyes_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_near.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(botheyes_near.ResultValue) > 9 ? true : false;
+                    if (righteye_near != null && righteye_near.ResultValue != null)
+                        near_vision_right_normal = (righteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_near.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(righteye_near.ResultValue) > 8 ? true : false;
+                    if (lefteye_near != null && lefteye_near.ResultValue != null)
+                        near_vision_left_normal = (lefteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_near.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(lefteye_near.ResultValue) > 8 ? true : false;
+                    if (lateral_near != null && lateral_near.ResultValue != null)
+                        near_lateral_photia_normal = (lateral_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lateral_near.ResultValue == "มองไม่เห็น" ? false : Convert.ToInt16(lateral_near.ResultValue) >= 4 && Convert.ToInt16(lateral_near.ResultValue) <= 13 ? true : false;
+
+                    bool? right_perimis_normal = null;
+                    bool? left_perimis_normal = null;
+                    if (perime_score_right != null && perime_score_right.ResultValue != null)
+                        right_perimis_normal = (perime_score_right.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : perime_score_right.ResultValue.Split().Count() == 5 ? true : false;
+                    if (perime_score_left != null && perime_score_left.ResultValue != null)
+                        left_perimis_normal = (perime_score_left.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : perime_score_left.ResultValue.Split().Count() == 5 ? true : false;
+                    perime_score_both_normal = (right_perimis_normal == null || left_perimis_normal == null) ? (bool?)null : (right_perimis_normal.Value && left_perimis_normal.Value) ? true : false;
+                    if (right_perimis_normal != null && left_perimis_normal != null)
+                    {
+                        if (right_perimis_normal.Value && left_perimis_normal.Value)
+                        {
+                            perime_score_both_normal = true;
+                        }
+                        else
+                        {
+                            perime_score_both_normal = false;
+                        }
+                    }
+                    else
+                    {
+                        perime_score_both_normal = null;
+                    }
+
+
+                }
+                else if (job != null || job.ResultValue.Contains("สำนักงาน"))
+                {
+
+                }
+                else if (job != null || job.ResultValue.Contains("ตรวจสอบ"))
+                {
+
+                }
+                else if (job != null || job.ResultValue.Contains("ขับพาหนะ"))
+                {
+
+                }
+                else if (job != null || job.ResultValue.Contains("ฝ่ายผลิต"))
+                {
+
+                }
+                else if (job != null || job.ResultValue.Contains("แรงงานทั่วไป"))
+                {
+
+                }
+                else if (job != null || job.ResultValue.Contains("วิศวกรรม"))
+                {
+
+                }
+
+                //มองระยะไกล
+                if (far_vision_both_normal == true && far_vision_right_normal == true && far_vision_left_normal == true)
+                {
+                    result_eyes_far.ResultValue = "ปกติ";
+                }
+                else if (far_vision_both_normal == false || far_vision_right_normal == false || far_vision_left_normal == false)
+                {
+                    result_eyes_far.ResultValue = "ผิดปกติ";
+                }
+
+                //มองระยะใกล้
+                if (near_vision_both_normal == true && near_vision_right_normal == true && near_vision_left_normal == true)
+                {
+                    result_eyes_far.ResultValue = "ปกติ";
+                }
+                else if (near_vision_both_normal == false || near_vision_right_normal == false || near_vision_left_normal == false)
+                {
+                    result_eyes_far.ResultValue = "ผิดปกติ";
+                }
+
+                //มองภาพ 3 มิติ
+                if (stereo_depth_normal == true)
+                {
+                    result_eyes_3d.ResultValue = "ปกติ";
+                }
+                else if (stereo_depth_normal == false)
+                {
+                    result_eyes_3d.ResultValue = "ผิดปกติ";
+                }
+
+                //การแยกสี
+                if (color_discrimination_normal == true)
+                {
+                    result_eyes_color.ResultValue = "ปกติ";
+                }
+                else if (color_discrimination_normal == false)
+                {
+                    result_eyes_color.ResultValue = "ผิดปกติ";
+                }
+
+                if (color_blindness != null && !string.IsNullOrEmpty(color_blindness.ResultValue))
+                {
+                    if (color_blindness.ResultValue == "Normal")
+                    {
+                        result_eyes_color.ResultValue = "ปกติ";
+                    }
+                    else
+                    {
+                        result_eyes_color.ResultValue = "ผิดปกติ";
+                    }
+                }
+
+                //ความสมดุลย์กล้ามเนื้อตา
+                if (far_vertical_phoria_normal == true && far_lateral_phoria_normal == true && near_lateral_photia_normal == true)
+                {
+                    result_eyes_muscle.ResultValue = "ปกติ";
+                }
+                else if (far_vertical_phoria_normal == false || far_lateral_phoria_normal == false || near_lateral_photia_normal == false)
+                {
+                    result_eyes_muscle.ResultValue = "ผิดปกติ";
+                }
+
+                //ลานสายตา
+                if (perime_score_both_normal == true)
+                {
+                    result_eyes_perimeter.ResultValue = "ปกติ";
+                }
+                else if (perime_score_both_normal == false)
+                {
+                    result_eyes_perimeter.ResultValue = "ผิดปกติ";
+                }
+
+            }
+            catch (Exception er)
+            {
+            }
+
         }
 
         #endregion

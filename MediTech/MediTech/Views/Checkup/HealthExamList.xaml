@@ -50,7 +50,7 @@
                                       FindButtonPlacement = "Popup"
                                       FindMode = "Always"
                                       PopupMinHeight="100"
-                                      PopupMinWidth="100"
+                                      PopupMinWidth="300"
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">
@@ -72,7 +72,7 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="บริษัท">
+                <dxlc:LayoutItem Label="Job">
                     <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
                                       SelectedItem="{Binding SelectCheckupJobContact}"
                                       ValueMember="CheckupJobContactUID"
@@ -84,7 +84,7 @@
                                       FindButtonPlacement = "Popup"
                                       FindMode = "Always"
                                       PopupMinHeight="100"
-                                      PopupMinWidth="100"
+                                      PopupMinWidth="300"
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">

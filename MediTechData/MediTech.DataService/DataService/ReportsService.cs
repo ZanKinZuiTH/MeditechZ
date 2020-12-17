@@ -146,10 +146,10 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientResultLabModel> CheckupLabCompare(long patientUID, long payorDetailUID)
+        public List<PatientResultComponentModel> CheckupLabCompare(long patientUID, long payorDetailUID)
         {
             string requestApi = string.Format("Api/Report/CheckupLabCompare?patientUID={0}&payorDetailUID={1}", patientUID, payorDetailUID);
-            List<PatientResultLabModel> data = MeditechApiHelper.Get<List<PatientResultLabModel>>(requestApi);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
 
             return data;
         }

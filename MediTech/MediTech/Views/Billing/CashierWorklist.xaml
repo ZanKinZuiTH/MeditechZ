@@ -151,7 +151,6 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem />
                 <dxlc:LayoutItem  Label="ชื่อผู้ป่วย">
                     <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"

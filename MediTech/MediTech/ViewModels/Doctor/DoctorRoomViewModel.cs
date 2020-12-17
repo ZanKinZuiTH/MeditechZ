@@ -651,7 +651,7 @@ namespace MediTech.ViewModels
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             string patientID = (SelectedPateintSearch != null && SearchPatientCriteria != "") ? SelectedPateintSearch.PatientID : "";
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null);
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null, null);
         }
 
         private void VisitMedical()

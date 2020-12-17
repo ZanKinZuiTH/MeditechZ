@@ -32,14 +32,14 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchResultLabList")]
         [HttpGet]
-        public List<PatientResultLabModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
         {
-            List<PatientResultLabModel> data = null;
+            List<PatientResultComponentModel> data = null;
             DataTable dt = SqlDirectStore.pSearchResultLabList(dateFrom, dateTo, patientUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)
             {
-                data = new List<PatientResultLabModel>();
-                data = dt.ToList<PatientResultLabModel>();
+                data = new List<PatientResultComponentModel>();
+                data = dt.ToList<PatientResultComponentModel>();
             }
 
             return data;
@@ -733,6 +733,9 @@ namespace MediTechWebApi.Controllers
 
             return imageContent;
         }
+
+
+
 
         [Route("ReviewLabResult")]
         [HttpPost]

@@ -38,6 +38,14 @@ namespace MediTech.DataService
             return listData;
         }
 
+        public List<CheckupJobTaskModel> GetCheckupJobTaskByJobUID(int checkupJobConatctUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupJobTaskByJobUID?checkupJobConatctUID={0}", checkupJobConatctUID);
+            List<CheckupJobTaskModel> listData = MeditechApiHelper.Get<List<CheckupJobTaskModel>>(requestApi);
+
+            return listData;
+        }
+
         public bool DeleteCheckupJobContact(int checkupJobContactUID, int userID)
         {
             bool flag = false;
@@ -118,11 +126,11 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public void AddCheckupRule(CheckupRuleModel chekcupRuleModel, int userID)
+        public void SaveCheckupRule(CheckupRuleModel chekcupRuleModel, int userID)
         {
             try
             {
-                string requestApi = string.Format("Api/Checkup/AddCheckupRule?userID={0}", userID);
+                string requestApi = string.Format("Api/Checkup/SaveCheckupRule?userID={0}", userID);
                 MeditechApiHelper.Post<CheckupRuleModel>(requestApi, chekcupRuleModel);
             }
             catch (Exception)
@@ -157,11 +165,11 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public void AddCheckupRuleItem(CheckupRuleItemModel chekcupRuleItemModel, int userID)
+        public void SaveCheckupRuleItem(CheckupRuleItemModel chekcupRuleItemModel, int userID)
         {
             try
             {
-                string requestApi = string.Format("Api/Checkup/AddCheckupRuleItem?userID={0}", userID);
+                string requestApi = string.Format("Api/Checkup/SaveCheckupRuleItem?userID={0}", userID);
                 MeditechApiHelper.Post<CheckupRuleItemModel>(requestApi, chekcupRuleItemModel);
             }
             catch (Exception)
@@ -305,6 +313,105 @@ namespace MediTech.DataService
                 throw;
             }
             return flag;
+        }
+
+        public List<PatientVisitModel> GetVisitCheckupGroup(int checkupJobUID, List<int> GPRSTUIDs)
+        {
+            string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroup?checkupJobUID={0}", checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Post<List<int>, List<PatientVisitModel>>(requestApi, GPRSTUIDs);
+
+            return data;
+        }
+
+
+        public List<PatientVisitModel> GetVisitCheckupGroupNonTran(int checkupJobUID, List<int> GPRSTUIDs)
+        {
+            string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroupNonTran?checkupJobUID={0}", checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Post<List<int>, List<PatientVisitModel>>(requestApi, GPRSTUIDs);
+
+            return data;
+        }
+
+        public List<LookupReferenceValueModel> GetCheckupGroupByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<LookupReferenceValueModel> data = MeditechApiHelper.Get<List<LookupReferenceValueModel>>(requestApi);
+
+            return data;
+        }
+        public List<CheckupRuleModel> GetCheckupRuleGroupList(List<int> GPRSTUIDs)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupRuleGroupList");
+            List<CheckupRuleModel> data = MeditechApiHelper.Post<List<int>, List<CheckupRuleModel>>(requestApi, GPRSTUIDs);
+
+            return data;
+        }
+
+        public List<ResultComponentModel> GetResultComponent(long patientVisitUID, int GPRSTUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetResultComponent?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
+            List<ResultComponentModel> data = MeditechApiHelper.Get<List<ResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
+        public List<PatientResultCheckupModel> GetResultComponentyByGroup(int checkupJobUID, int GPRSTUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetResultComponentyByGroup?checkupJobUID={0}&GPRSTUID={1}", checkupJobUID, GPRSTUID);
+            List<PatientResultCheckupModel> data = MeditechApiHelper.Get<List<PatientResultCheckupModel>>(requestApi);
+
+            return data;
+        }
+
+        public List<PatientResultComponentModel> GetResultCumulative(long patientUID, int requestItemUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetResultCumulative?patientUID={0}&requestItemUID={1}", patientUID, requestItemUID);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
+        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetVitalSignCumulative?patientUID={0}", patientUID);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
+        public CheckupSummeryResultModel GetCheckupSummeryResultByVisit(long patientVisitUID, int GPRSTUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupSummeryResultByVisit?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
+            CheckupSummeryResultModel data = MeditechApiHelper.Get<CheckupSummeryResultModel>(requestApi);
+
+            return data;
+        }
+
+        public void SaveChekcupSummeryResult(CheckupSummeryResultModel summeryResult, int userUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/SaveChekcupSummeryResult?userUID={0}", userUID);
+                MeditechApiHelper.Post<CheckupSummeryResultModel>(requestApi, summeryResult);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+        public void TranslateCheckupAll(int checkupJobUID, int userUID, List<int> GPRSTUIDs)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/TranslateCheckupAll?checkupJobUID={0}&userUID={1}", checkupJobUID, userUID);
+                MeditechApiHelper.Post<List<int>>(requestApi, 15, GPRSTUIDs);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
         }
     }
 }

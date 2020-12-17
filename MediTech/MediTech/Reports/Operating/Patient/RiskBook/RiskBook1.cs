@@ -215,26 +215,26 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
 
                 page4.lbEKGRecommend.Text = data.FirstOrDefault().EkgConclusion != null ? data.FirstOrDefault().EkgConclusion.ToString() : "";
 
-                List<PatientResultLabModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
+                List<PatientResultComponentModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
                 if (labCompare != null)
                 {
                     #region Complete Blood Count
 
-                    IEnumerable<PatientResultLabModel> cbcTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
                     .Where(p => p.RequestItemName.Contains("CBC"))
                     .OrderBy(p => p.Year);
                     GenerateCompleteBloodCount(cbcTestSet);
                     #endregion
 
                     #region Urinalysis
-                    IEnumerable<PatientResultLabModel> uaTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
                         .Where(p => p.RequestItemName.Contains("UA"))
                         .OrderBy(p => p.Year);
                     GenerateUrinalysis(uaTestSet);
                     #endregion
 
                     #region Renal function
-                    IEnumerable<PatientResultLabModel> RenalTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB212") 
                         || p.RequestItemCode.Contains("LAB211"))
                         .OrderBy(p => p.Year);
@@ -243,7 +243,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     #endregion
 
                     #region Immunology and Virology
-                    IEnumerable<PatientResultLabModel> ImmunologyTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> ImmunologyTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB451")
                         || p.RequestItemCode.Contains("LAB441")
                         || p.RequestItemCode.Contains("LAB452"))
@@ -252,7 +252,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     #endregion
 
                     #region Sugar
-                    IEnumerable<PatientResultLabModel> SugarTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> SugarTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB231")
                         || p.RequestItemCode.Contains("LAB241")
                         || p.RequestItemCode.Contains("LAB242")
@@ -264,7 +264,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     #endregion
 
                     #region Liver Function
-                    IEnumerable<PatientResultLabModel> LiverTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> LiverTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB474")
                         || p.RequestItemCode.Contains("LAB475")
                         || p.RequestItemCode.Contains("LAB223")
@@ -278,7 +278,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     #endregion
 
                     #region Tumor Marker
-                    IEnumerable<PatientResultLabModel> TumorMarkerTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> TumorMarkerTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB281")
                         || p.RequestItemCode.Contains("LAB283")
                         || p.RequestItemCode.Contains("LAB284")
@@ -289,7 +289,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     #endregion            
 
                     #region Toxicology
-                    IEnumerable<PatientResultLabModel> ToxicoTestSet = labCompare
+                    IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB508")
                         || p.RequestItemCode.Contains("LAB517")
                         || p.RequestItemCode.Contains("LAB516")
@@ -313,7 +313,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateCompleteBloodCount(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateCompleteBloodCount(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -384,7 +384,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateUrinalysis(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateUrinalysis(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -452,7 +452,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateImmunology(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateImmunology(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -482,7 +482,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateSugar(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateSugar(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -534,7 +534,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateRenalFunction(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateRenalFunction(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -557,7 +557,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateLiverFunction(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateLiverFunction(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -611,7 +611,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateTumorMarkerTestSet(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateTumorMarkerTestSet(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {
@@ -658,7 +658,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             }
         }
 
-        private void GenerateToxicology(IEnumerable<PatientResultLabModel> labTestSet)
+        private void GenerateToxicology(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
             {

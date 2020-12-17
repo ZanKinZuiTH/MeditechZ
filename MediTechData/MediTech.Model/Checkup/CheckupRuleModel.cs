@@ -23,5 +23,8 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public List<CheckupRuleRecommendModel> CheckupRuleRecommend { get; set; }
+        public List<CheckupRuleDescriptionModel> CheckupRuleDescription { get; set; }
+        public List<CheckupRuleItemModel> CheckupRuleItem { get; set; }
     }
 }

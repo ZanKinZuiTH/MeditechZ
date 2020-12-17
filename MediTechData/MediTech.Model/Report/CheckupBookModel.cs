@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class CheckupBookModel : PatientResultLabModel
+    public class CheckupBookModel : PatientResultComponentModel
     {
         public string RadiologyResultText { get; set; }
         public string RadiologyResultStatus { get; set; }

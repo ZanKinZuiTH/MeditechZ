@@ -1,4 +1,6 @@
-﻿using System;
+﻿using MediTech.Model;
+using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,19 @@ namespace MediTech.Views
         public EnterOccuVisionTestResult()
         {
             InitializeComponent();
+            gvOccVision.CellValueChanged += GvOccVision_CellValueChanged;
+        }
+
+        private void GvOccVision_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
+        {
+            var rowData = e.Row as ResultComponentModel;
+            if (rowData != null)
+            {
+                if (this.DataContext is EnterOccuVisionTestResultViewModel)
+                {
+                    (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
+                }
+            }
         }
     }
 }
