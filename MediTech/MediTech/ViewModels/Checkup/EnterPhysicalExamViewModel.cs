@@ -210,7 +210,7 @@ namespace MediTech.ViewModels
                     item.ResultValue = resultValue;
                 }
 
-                reviewRequestDetail.ResultComponents = ResultComponentItems;
+                reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
                 DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
                 DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
                 OrderStatus = "Reviewed";
