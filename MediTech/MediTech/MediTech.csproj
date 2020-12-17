@@ -751,6 +751,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterMuscleResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
@@ -903,6 +904,9 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
+      <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
       <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
@@ -1395,6 +1399,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\BillingConfiguration\ManagePayorDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ImportOccMedResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2574,6 +2582,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Import Excel.png" />
     <Resource Include="Resources\Images\Menu\BookRecords.png" />
     <Resource Include="Resources\Images\Menu\Health Examination.png" />
     <Resource Include="Resources\Images\Module\Medical Checkup.png" />

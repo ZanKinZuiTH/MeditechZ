@@ -1050,7 +1050,7 @@ namespace MediTechWebApi.Controllers
                         select new PatientVisitModel
                         {
                             PatientUID = pv.PatientUID,
-                            PatientVisitUID = pa.UID,
+                            PatientVisitUID = pv.UID,
                             Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                             SEXXXUID = pa.SEXXXUID
                         };
@@ -1067,7 +1067,7 @@ namespace MediTechWebApi.Controllers
                             select new PatientVisitModel
                             {
                                 PatientUID = pv.PatientUID,
-                                PatientVisitUID = pa.UID,
+                                PatientVisitUID = pv.UID,
                                 Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                 SEXXXUID = pa.SEXXXUID
                             };
@@ -1111,7 +1111,7 @@ namespace MediTechWebApi.Controllers
                         select new PatientVisitModel
                         {
                             PatientUID = pv.PatientUID,
-                            PatientVisitUID = pa.UID,
+                            PatientVisitUID = pv.UID,
                             Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                             SEXXXUID = pa.SEXXXUID
                         };
@@ -1128,7 +1128,7 @@ namespace MediTechWebApi.Controllers
                             select new PatientVisitModel
                             {
                                 PatientUID = pv.PatientUID,
-                                PatientVisitUID = pa.UID,
+                                PatientVisitUID = pv.UID,
                                 Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                 SEXXXUID = pa.SEXXXUID
                             };

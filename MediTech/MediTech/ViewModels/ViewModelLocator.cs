@@ -1236,6 +1236,17 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<TranslateCheckupResultViewModel>();
             }
         }
+
+        public ImportOccMedResultViewModel ImportOccMedResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ImportOccMedResultViewModel>())
+                    SimpleIoc.Default.Register<ImportOccMedResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ImportOccMedResultViewModel>();
+            }
+        }
         #endregion
 
         #region OrderProcessing
