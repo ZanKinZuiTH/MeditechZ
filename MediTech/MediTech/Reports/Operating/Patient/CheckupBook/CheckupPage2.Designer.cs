@@ -680,7 +680,7 @@
             this.xrLabel3.StylePriority.UseBackColor = false;
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
-            this.xrLabel3.Text = "การตรวจร่ายกายโดยแพทย์ (Physical Examination)";
+            this.xrLabel3.Text = "การตรวจร่างกายโดยแพทย์ (Physical Examination)";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel2
