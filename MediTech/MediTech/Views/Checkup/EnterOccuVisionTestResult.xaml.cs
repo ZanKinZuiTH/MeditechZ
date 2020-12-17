@@ -30,13 +30,17 @@ namespace MediTech.Views
 
         private void GvOccVision_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
-            var rowData = e.Row as ResultComponentModel;
-            if (rowData != null)
+            if (this.DataContext is EnterOccuVisionTestResultViewModel)
             {
-                if (this.DataContext is EnterOccuVisionTestResultViewModel)
-                {
-                    (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
-                }
+                (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
+            }
+        }
+
+        private void ListBoxEdit_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            if (this.DataContext is EnterOccuVisionTestResultViewModel)
+            {
+                (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
             }
         }
     }
