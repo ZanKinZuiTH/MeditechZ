@@ -52,7 +52,7 @@
     <Compile Include="Checkup\CheckupRuleItemModel.cs" />
     <Compile Include="Checkup\CheckupRuleModel.cs" />
     <Compile Include="Checkup\CheckupRuleRecommendModel.cs" />
-    <Compile Include="Checkup\CheckupSummeryResultModel.cs" />
+    <Compile Include="Checkup\CheckupGroupResultModel.cs" />
     <Compile Include="Checkup\CheckupTextMasterModel.cs" />
     <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
@@ -170,6 +170,7 @@
     <Compile Include="OrderProcessing\SearchOrderItem.cs" />
     <Compile Include="Report\PatientRevenueModel.cs" />
     <Compile Include="Report\PatientSummeryDataModel.cs" />
+    <Compile Include="Report\PatientWellnessModel.cs" />
     <Compile Include="Report\ProblemStatisticModel.cs" />
     <Compile Include="Report\RadiologyRDUStaffModel.cs" />
     <Compile Include="Report\ReportsModel.cs" />

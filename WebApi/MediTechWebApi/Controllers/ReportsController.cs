@@ -581,6 +581,36 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("PrintWellnessBook")]
+        [HttpGet]
+        public PatientWellnessModel PrintWellnessBook(long patientUID,long patientVisitUID, int payorDetailUID)
+        {
+            PatientWellnessModel data = new PatientWellnessModel();
+
+            data.PatientInfomation = PatientInfomationWellness(patientUID, patientVisitUID);
+            data.Radiology = (new RadiologyController()).GetResultRadiologyByPayor(patientUID, payorDetailUID);
+            data.MobileResult = (new CheckupController()).GetCheckupMobileResultByVisitUID(patientUID, patientVisitUID);
+            data.LabCompare = CheckupLabCompare(patientUID, payorDetailUID);
+
+            return data;
+        }
+
+
+        [Route("PatientInfomationWellness")]
+        [HttpGet]
+        public PatientVisitModel PatientInfomationWellness(long patientUID, long patientVisitUID)
+        {
+            PatientVisitModel data = null;
+
+            DataTable dt = SqlDirectStore.pRPTPatientWellness(patientUID, patientVisitUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = dt.ToList<PatientVisitModel>().FirstOrDefault();
+            }
+
+            return data;
+        }
+
         [Route("CheckupLabCompare")]
         [HttpGet]
         public List<PatientResultComponentModel> CheckupLabCompare(long patientUID, long payorDetailUID)
@@ -596,6 +626,7 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
 
         #region Inventory
 

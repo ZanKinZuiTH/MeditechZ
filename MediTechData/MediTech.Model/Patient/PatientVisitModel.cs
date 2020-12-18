@@ -37,6 +37,7 @@ namespace MediTech.Model
         public int PayorDetailUID { get; set; }
         public string PayorName { get; set; }
         public int PayorAgreementUID { get; set; }
+        public string WellnessResult { get; set; }
         public bool Select { get; set; }
     }
 }

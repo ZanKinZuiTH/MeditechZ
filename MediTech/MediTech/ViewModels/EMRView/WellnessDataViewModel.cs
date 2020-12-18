@@ -108,7 +108,6 @@ namespace MediTech.ViewModels
             }
 
 
-            Model.Diagnosis = Diagnosis.Trim();
             Model.WellnessResult = WellnessResult.Trim();
         }
 
@@ -116,7 +115,6 @@ namespace MediTech.ViewModels
         {
             if (Model != null)
             {
-                Diagnosis = Model.Diagnosis;
                 WellnessResult = Model.WellnessResult;
             }
 

@@ -82,6 +82,9 @@
     <Compile Include="CCHPIMaster.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="CheckupGroupResult.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="CheckupJobContact.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -98,9 +101,6 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="CheckupRuleRecommend.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
-    <Compile Include="CheckupSummeryResult.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="CheckupTextMaster.cs">
@@ -346,6 +346,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetFormatSEQ_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pGetGroupResultCumulative_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetItemMasterForIssue_Result.cs">

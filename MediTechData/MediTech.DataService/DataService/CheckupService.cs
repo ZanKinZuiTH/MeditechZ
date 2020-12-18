@@ -347,17 +347,25 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<ResultComponentModel> GetResultComponent(long patientVisitUID, int GPRSTUID)
+        public List<ResultComponentModel> GetGroupResultComponentByVisitUID(long patientVisitUID, int GPRSTUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetResultComponent?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
+            string requestApi = string.Format("Api/Checkup/GetGroupResultComponentByVisitUID?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
             List<ResultComponentModel> data = MeditechApiHelper.Get<List<ResultComponentModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientResultCheckupModel> GetResultComponentyByGroup(int checkupJobUID, int GPRSTUID)
+        public List<ResultComponentModel> GetCheckupMobileResultByVisitUID(long patientUID, long patientVisitUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetResultComponentyByGroup?checkupJobUID={0}&GPRSTUID={1}", checkupJobUID, GPRSTUID);
+            string requestApi = string.Format("Api/Checkup/GetCheckupMobileResultByVisitUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<ResultComponentModel> data = MeditechApiHelper.Get<List<ResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
+        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultByJob?checkupJobUID={0}&GPRSTUID={1}", checkupJobUID, GPRSTUID);
             List<PatientResultCheckupModel> data = MeditechApiHelper.Get<List<PatientResultCheckupModel>>(requestApi);
 
             return data;
@@ -371,6 +379,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, int GPRSTUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetGroupResultCumulative?patientUID={0}&GPRSTUID={1}", patientUID, GPRSTUID);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
         public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID)
         {
             string requestApi = string.Format("Api/Checkup/GetVitalSignCumulative?patientUID={0}", patientUID);
@@ -379,20 +395,20 @@ namespace MediTech.DataService
             return data;
         }
 
-        public CheckupSummeryResultModel GetCheckupSummeryResultByVisit(long patientVisitUID, int GPRSTUID)
+        public CheckupGroupResultModel GetCheckupGroupResultByVisit(long patientVisitUID, int GPRSTUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetCheckupSummeryResultByVisit?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
-            CheckupSummeryResultModel data = MeditechApiHelper.Get<CheckupSummeryResultModel>(requestApi);
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultByVisit?patientVisitUID={0}&GPRSTUID={1}", patientVisitUID, GPRSTUID);
+            CheckupGroupResultModel data = MeditechApiHelper.Get<CheckupGroupResultModel>(requestApi);
 
             return data;
         }
 
-        public void SaveChekcupSummeryResult(CheckupSummeryResultModel summeryResult, int userUID)
+        public void SaveCheckupGroupResult(CheckupGroupResultModel groupResult, int userUID)
         {
             try
             {
-                string requestApi = string.Format("Api/Checkup/SaveChekcupSummeryResult?userUID={0}", userUID);
-                MeditechApiHelper.Post<CheckupSummeryResultModel>(requestApi, summeryResult);
+                string requestApi = string.Format("Api/Checkup/SaveChekcupGroupResult?userUID={0}", userUID);
+                MeditechApiHelper.Post<CheckupGroupResultModel>(requestApi, groupResult);
             }
             catch (Exception)
             {

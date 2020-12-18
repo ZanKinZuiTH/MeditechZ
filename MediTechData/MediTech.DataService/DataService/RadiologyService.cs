@@ -229,6 +229,12 @@ namespace MediTech.DataService
             ResultRadiologyModel data = MeditechApiHelper.Get<ResultRadiologyModel>(requestApi);
             return data;
         }
+        public List<ResultRadiologyModel> GetResultRadiologyByPayor(long patientUID, int payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Radiology/GetResultRadiologyByPayor?patientUID={0}&payorDetailUID={1}", patientUID, payorDetailUID);
+            List<ResultRadiologyModel> data = MeditechApiHelper.Get<List<ResultRadiologyModel>>(requestApi);
+            return data;
+        }
 
         public List<ResultRadiologyModel> GetResultRadiologyByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)
         {

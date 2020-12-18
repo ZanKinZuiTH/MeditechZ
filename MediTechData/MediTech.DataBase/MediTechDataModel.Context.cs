@@ -37,13 +37,13 @@ namespace MediTech.DataBase
         public virtual DbSet<CareproviderOrganisation> CareproviderOrganisation { get; set; }
         public virtual DbSet<CCHPI> CCHPI { get; set; }
         public virtual DbSet<CCHPIMaster> CCHPIMaster { get; set; }
+        public virtual DbSet<CheckupGroupResult> CheckupGroupResult { get; set; }
         public virtual DbSet<CheckupJobContact> CheckupJobContact { get; set; }
         public virtual DbSet<CheckupJobTask> CheckupJobTask { get; set; }
         public virtual DbSet<CheckupRule> CheckupRule { get; set; }
         public virtual DbSet<CheckupRuleDescription> CheckupRuleDescription { get; set; }
         public virtual DbSet<CheckupRuleItem> CheckupRuleItem { get; set; }
         public virtual DbSet<CheckupRuleRecommend> CheckupRuleRecommend { get; set; }
-        public virtual DbSet<CheckupSummeryResult> CheckupSummeryResult { get; set; }
         public virtual DbSet<CheckupTextMaster> CheckupTextMaster { get; set; }
         public virtual DbSet<DispensedItem> DispensedItem { get; set; }
         public virtual DbSet<DisposeItemList> DisposeItemList { get; set; }
@@ -3383,6 +3383,19 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_PatientUID", typeof(long));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetVitalSignCumulative_Result>("pGetVitalSignCumulative", p_PatientUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetGroupResultCumulative_Result> pGetGroupResultCumulative(Nullable<long> p_PatientUID, Nullable<int> p_GPRSTUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_GPRSTUIDParameter = p_GPRSTUID.HasValue ?
+                new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
+                new ObjectParameter("P_GPRSTUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetGroupResultCumulative_Result>("pGetGroupResultCumulative", p_PatientUIDParameter, p_GPRSTUIDParameter);
         }
     }
 }

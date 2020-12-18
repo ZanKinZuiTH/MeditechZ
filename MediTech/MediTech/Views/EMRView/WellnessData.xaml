@@ -12,7 +12,7 @@
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
 
-            <dxlc:LayoutItem>
+            <!--<dxlc:LayoutItem>
                 <TextBlock Text="Diagnosis"             
                                    FontWeight="Bold"
                                    FontSize="15"
@@ -22,7 +22,7 @@
             <dxe:TextEdit Text="{Binding Diagnosis,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" 
                           AcceptsReturn="True"
                           VerticalContentAlignment="Top"
-                          TextWrapping="Wrap"/>
+                          TextWrapping="Wrap"/>-->
             <dxlc:LayoutItem>
                 <TextBlock Text="Wellness Result"             
                                    FontWeight="Bold"

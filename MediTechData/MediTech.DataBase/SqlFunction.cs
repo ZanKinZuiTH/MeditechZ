@@ -999,13 +999,25 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetCheckupResultGroup(int jobContactUID, int GPRSTUID)
+        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupResultGroup", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_JobContactUID", jobContactUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetCheckupMobileResult(long patientUID, long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupMobileResult", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1068,6 +1080,22 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
+
+        public static DataTable pGetGroupResultCumulative(long patientUID, int GPRSTUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetGroupResultCumulative", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             if (ds.Tables.Count <= 0)
@@ -1823,7 +1851,17 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
-
+        public static DataTable pRPTPatientWellness(long patientUID, long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientWellness", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
         public static DataTable pRPTCheckupLabCompare(long patientUID, long payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();

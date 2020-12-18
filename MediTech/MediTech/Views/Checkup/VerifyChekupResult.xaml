@@ -162,7 +162,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="Group Result" FieldName="Display" Width="*" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Group Result" FieldName="Display" AllowSorting="False" Width="*" ReadOnly="True"/>
                             <dxg:GridControl.View>
                                 <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row"/>
                             </dxg:GridControl.View>
@@ -174,25 +174,48 @@
                                            FontWeight="Bold"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem HorizontalAlignment="Right">
-                                    <dx:SimpleButton Height="25" Width="80" Content="บันทึก"/>
+                                    <dx:SimpleButton Height="25" Width="80" Content="ยืนยันผล" Command="{Binding SaveWellNessResultCommand}"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
-                            <dxe:TextEdit AcceptsReturn="True" TextWrapping="Wrap"
-                                          FontWeight="Bold" FontSize="16"
+                            <dxe:TextEdit x:Name="txtWellness" AcceptsReturn="True" TextWrapping="Wrap"
+                                          FontSize="12"
                                           Text="{Binding WellnessResult}"
                                           VerticalContentAlignment="Top"/>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Vertical">
-                        <dxg:GridControl Height="450" ItemsSource="{Binding ResultComponents}"
+                        <dxg:GridControl Name="gcResult" Height="450" ItemsSource="{Binding ResultComponents}"
                                          SelectedItem="{Binding SelectResultComponent}">
-                            <dxg:GridColumn Header="รายการตรวจ" FieldName="ResultItemName"/>
-                            <dxg:GridColumn Header="ผลตรวจ" FieldName="ResultValue1"/>
-                            <dxg:GridColumn Header="ย้อนหลัง1" FieldName="ResultValue2"/>
-                            <dxg:GridColumn Header="ย้อนหลัง2" FieldName="ResultValue3"/>
-                            <dxg:GridColumn Header="Normal" FieldName="ReferenceRange"/>
+                            <dxmvvm:Interaction.Behaviors>
+                                <helper:DeferredColumnFitBehavior/>
+                            </dxmvvm:Interaction.Behaviors>
+                            <dxg:GridColumn Header="รายการตรวจ" FieldName="ResultItemName" >
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ผลตรวจ" FieldName="ResultValue1">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ย้อนหลัง1" FieldName="ResultValue2">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="ย้อนหลัง2" FieldName="ResultValue3">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="Normal" FieldName="ReferenceRange">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
                             <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False"/>
+                                <dxg:TableView Name="gvResult" ShowGroupPanel="False"/>
                             </dxg:GridControl.View>
                         </dxg:GridControl>
                         <dxlc:LayoutGroup Orientation="Horizontal">
@@ -200,7 +223,7 @@
                                 <dxe:CheckEdit Content="Abnormal" IsChecked="{Binding IsAbnormal}"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton Height="25" Width="80" Content="บันทึก" Command="{Binding SaveCheckupResultCommand}"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="บันทึก" Command="{Binding SaveCheckupGroupResultCommand}"/>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                         <dxe:TextEdit AcceptsReturn="True" Text="{Binding TextSummeryReslt}"

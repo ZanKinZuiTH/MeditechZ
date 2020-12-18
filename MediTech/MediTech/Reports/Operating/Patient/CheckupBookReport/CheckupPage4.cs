@@ -6,9 +6,9 @@ using DevExpress.XtraReports.UI;
 
 namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 {
-    public partial class CheckupBook2 : DevExpress.XtraReports.UI.XtraReport
+    public partial class CheckupPage4 : DevExpress.XtraReports.UI.XtraReport
     {
-        public CheckupBook2()
+        public CheckupPage4()
         {
             InitializeComponent();
         }

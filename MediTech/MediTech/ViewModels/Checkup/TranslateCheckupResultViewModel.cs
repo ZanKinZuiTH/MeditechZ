@@ -254,7 +254,7 @@ namespace MediTech.ViewModels
                 List<ResultComponentModel> resultComponent = null;
                 if (grpstUID != 3177 && grpstUID != 3178)
                 {
-                    resultComponent = DataService.Checkup.GetResultComponent(patientVisit.PatientVisitUID, grpstUID);
+                    resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
                 }
                 else if (grpstUID == 3177 || grpstUID == 3178)
                 {
@@ -306,6 +306,7 @@ namespace MediTech.ViewModels
 
                 }
 
+
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
                     var ruleCheckups = dataCheckupRule
@@ -316,6 +317,7 @@ namespace MediTech.ViewModels
 ).ToList();
                     foreach (var ruleCheckup in ruleCheckups)
                     {
+                        bool isConrrect = false;
                         foreach (var ruleItem in ruleCheckup.CheckupRuleItem)
                         {
                             var resultItemValue = resultComponent.FirstOrDefault(p => p.ResultItemUID == ruleItem.ResultItemUID);
@@ -324,12 +326,19 @@ namespace MediTech.ViewModels
                             {
                                 if (!string.IsNullOrEmpty(ruleItem.Text))
                                 {
-                                    if (resultItemValue.ResultValue.Trim() == ruleItem.Text.Trim())
+                                    if (resultItemValue.ResultValue.ToLower().Trim() == ruleItem.Text.ToLower().Trim())
                                     {
-
-                                        ruleCheckupIsCorrect.Add(ruleCheckup);
+                                        isConrrect = true;
                                         if (ruleItem.Operator == "Or")
                                         {
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (ruleItem.Operator == "And")
+                                        {
+                                            isConrrect = false;
                                             break;
                                         }
                                     }
@@ -343,9 +352,17 @@ namespace MediTech.ViewModels
                                             || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
                                             || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
                                         {
-                                            ruleCheckupIsCorrect.Add(ruleCheckup);
+                                            isConrrect = true;
                                             if (ruleItem.Operator == "Or")
                                             {
+                                                break;
+                                            }
+                                        }
+                                        else
+                                        {
+                                            if (ruleItem.Operator == "And")
+                                            {
+                                                isConrrect = false;
                                                 break;
                                             }
                                         }
@@ -355,77 +372,88 @@ namespace MediTech.ViewModels
                             }
 
                         }
-
-                    }
-
-                    int RABSTSUID = 0;
-                    List<CheckupRuleDescriptionModel> descriptions = new List<CheckupRuleDescriptionModel>();
-                    List<CheckupRuleRecommendModel> recommands = new List<CheckupRuleRecommendModel>();
-                    if (ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882))
-                    {
-                        RABSTSUID = 2882;
-                        foreach (var item in ruleCheckupIsCorrect.Where(p => p.RABSTSUID != 2883))
+                        if (isConrrect == true)
                         {
-                            descriptions.AddRange(item.CheckupRuleDescription);
-                            recommands.AddRange(item.CheckupRuleRecommend);
-                        }
-
-                    }
-                    else
-                    {
-                        RABSTSUID = 2883;
-                        foreach (var item in ruleCheckupIsCorrect)
-                        {
-                            descriptions.AddRange(item.CheckupRuleDescription);
-                            recommands.AddRange(item.CheckupRuleRecommend);
+                            ruleCheckupIsCorrect.Add(ruleCheckup);
                         }
                     }
 
-                    var descriptionGroup = descriptions.GroupBy(p => new
-                    {
-                        p.CheckupTextMasterUID
-                    })
-                    .Select(g => new
-                    {
-                        ThaiDescription = g.FirstOrDefault().ThaiDescription,
-                        EngDescription = g.FirstOrDefault().EngDescription,
-                    });
 
-                    var recommandGroup = recommands.GroupBy(p => new
-                    {
-                        p.CheckupTextMasterUID
-                    }).Select(g => new
-                    {
-                        ThaiRecommend = g.FirstOrDefault().ThaiRecommend,
-                        EndRecommend = g.FirstOrDefault().EndRecommend,
-                    });
+                    //List<CheckupRuleDescriptionModel> descriptions = new List<CheckupRuleDescriptionModel>();
+                    //List<CheckupRuleRecommendModel> recommands = new List<CheckupRuleRecommendModel>();
+                    string conclusion = string.Empty;
+                    string description = string.Empty;
+                    string recommand = string.Empty;
 
-
-
-                    string descriptionString = string.Empty;
-                    string recommandString = string.Empty;
-                    foreach (var item in descriptionGroup)
+                    foreach (var item in ruleCheckupIsCorrect)
                     {
-                        descriptionString += string.IsNullOrEmpty(descriptionString) ? item.ThaiDescription : " " + item.ThaiDescription;
+                        //descriptions.AddRange(item.CheckupRuleDescription);
+                        //recommands.AddRange(item.CheckupRuleRecommend);
+                        foreach (var content in item.CheckupRuleDescription)
+                        {
+                            if (!string.IsNullOrEmpty(content.ThaiDescription))
+                            {
+                                conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                            }
+                        }
+                        foreach (var content in item.CheckupRuleRecommend)
+                        {
+                            if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                            {
+                                conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                            }
+                        }
                     }
+                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 : 2883;
 
-                    foreach (var item in recommandGroup)
-                    {
-                        recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
-                    }
+                    //var descriptionGroup = descriptions.GroupBy(p => new
+                    //{
+                    //    p.CheckupTextMasterUID
+                    //})
+                    //.Select(g => new
+                    //{
+                    //    ThaiDescription = g.FirstOrDefault().ThaiDescription,
+                    //    EngDescription = g.FirstOrDefault().EngDescription,
+                    //});
 
-                    if (!string.IsNullOrEmpty(descriptionString) && !string.IsNullOrEmpty(recommandString))
-                    {
-                        CheckupSummeryResultModel checkupResult = new CheckupSummeryResultModel();
-                        checkupResult.PatientUID = patientVisit.PatientUID;
-                        checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                        checkupResult.GPRSTUID = grpstUID;
-                        checkupResult.RABSTSUID = RABSTSUID;
-                        checkupResult.Description = descriptionString;
-                        checkupResult.Recommend = recommandString;
-                        checkupResult.SummeryResult = descriptionString + " " + recommandString;
-                        DataService.Checkup.SaveChekcupSummeryResult(checkupResult, AppUtil.Current.UserID);
-                    }
+                    //var recommandGroup = recommands.GroupBy(p => new
+                    //{
+                    //    p.CheckupTextMasterUID
+                    //}).Select(g => new
+                    //{
+                    //    ThaiRecommend = g.FirstOrDefault().ThaiRecommend,
+                    //    EndRecommend = g.FirstOrDefault().EndRecommend,
+                    //});
+
+
+
+                    //string descriptionString = string.Empty;
+                    //string recommandString = string.Empty;
+                    //foreach (var item in descriptionGroup)
+                    //{
+                    //    descriptionString += string.IsNullOrEmpty(descriptionString) ? item.ThaiDescription : " " + item.ThaiDescription;
+                    //}
+
+                    //foreach (var item in recommandGroup)
+                    //{
+                    //    recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
+                    //}
+
+                    //if (!string.IsNullOrEmpty(descriptionString) || !string.IsNullOrEmpty(recommandString))
+                    //{
+                    CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
+                    checkupResult.PatientUID = patientVisit.PatientUID;
+                    checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                    checkupResult.GPRSTUID = grpstUID;
+                    checkupResult.RABSTSUID = RABSTSUID;
+                    checkupResult.Description = description;
+                    checkupResult.Recommend = recommand;
+                    checkupResult.Conclusion = conclusion;
+                    checkupResult.Conclusion = checkupResult.Conclusion.Trim();
+                    DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
+                    //}
 
 
                 }
@@ -461,7 +489,7 @@ namespace MediTech.ViewModels
                     ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 7 });
                     int visibleIndex = 8;
                     List<PatientResultCheckupModel> resultData = DataService.Checkup
-                        .GetResultComponentyByGroup(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID);
+                        .GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID);
                     if (resultData != null && resultData.Count > 0)
                     {
                         var resultItemList = resultData.Select(p => p.ResultItemName).Distinct();

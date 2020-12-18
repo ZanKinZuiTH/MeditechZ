@@ -303,7 +303,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="ThaiDescription" Width="350" ReadOnly="True">
+                            <dxg:GridColumn Header="ภาษาไทย" FieldName="ThaiDescription" Width="350" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
@@ -351,7 +351,7 @@
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="ThaiRecommend" Width="350" ReadOnly="True">
+                            <dxg:GridColumn Header="ภาษาไทย" FieldName="ThaiRecommend"  Width="350" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
