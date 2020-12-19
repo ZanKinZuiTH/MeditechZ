@@ -24,6 +24,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
         }
 
         List<XrayTranslateMappingModel> dtResultMapping;
+        
 
         CheckupPage2 page2 = new CheckupPage2();
         CheckupPage3 page3 = new CheckupPage3();
@@ -596,6 +597,16 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     IEnumerable<PatientResultComponentModel> SpiroResult = occmed
                         .Where(p => p.RequestItemCode.Contains("SPIRO"));
                     GenerateSpiro(SpiroResult);
+                }
+
+                var groupResult = data.GroupResult;
+                if (groupResult != null)
+                {
+                    IEnumerable<CheckupGroupResultModel> occmedGroupResult = groupResult
+                        .Where(p => p.GroupCode.Contains("GPRST33")  //spiro
+                        || p.GroupCode.Contains("GPRST26") //timus
+                        || p.GroupCode.Contains("GPRST25")); //audio
+                    GenerateOccmedGroup(occmedGroupResult);
                 }
             }
         }
@@ -3378,7 +3389,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.lb3DVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS21")?.ResultValue;
                 page4.lbBalanceEye.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS23")?.ResultValue;
                 page4.lbVisionColor.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22")?.ResultValue;
-                page4.lbFieldVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22")?.ResultValue;
+                page4.lbFieldVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS24")?.ResultValue;
             }
         }
         private void GenerateAudio(IEnumerable<PatientResultComponentModel> AudioResult)
@@ -3402,6 +3413,21 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.lbFEVMeasure.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO7")?.ResultValue;
                 page4.lbFEVPredic.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO8")?.ResultValue;
                 page4.lbFEVPer.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
+            }
+        }
+
+        private void GenerateOccmedGroup(IEnumerable<CheckupGroupResultModel> occmedGroupResult)
+        {
+            if (occmedGroupResult != null && occmedGroupResult.Count() > 0)
+            {
+                page4.lbLungResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.ResultStatus.ToString();
+                page4.lbLungRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
+
+                page4.lbVisionOccmedResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.ResultStatus.ToString();
+                page4.lbVisionOccmedRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
+
+                page5.lbAudioResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
+                page5.lbAudioRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();
             }
         }
 
