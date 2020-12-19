@@ -315,6 +315,14 @@ namespace MediTech.DataService
             return flag;
         }
 
+
+        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID)
+        {
+            string requestApi = string.Format("Api/Checkup/SearchPatientCheckup?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&payorDetailUID={3}&checkupJobUID={4}", dateFrom,dateTo,patientUID,payorDetailUID,checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+
+            return data;
+        }
         public List<PatientVisitModel> GetVisitCheckupGroup(int checkupJobUID, List<int> GPRSTUIDs)
         {
             string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroup?checkupJobUID={0}", checkupJobUID);

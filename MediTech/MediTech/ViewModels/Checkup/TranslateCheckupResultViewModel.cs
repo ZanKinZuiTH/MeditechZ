@@ -15,6 +15,7 @@ using System.Threading.Tasks;
 using System.Dynamic;
 using System.Data;
 using System.Windows.Forms;
+using MediTech.Helpers;
 
 namespace MediTech.ViewModels
 {
@@ -125,6 +126,8 @@ namespace MediTech.ViewModels
             get { return _ColumnsResultItems; }
             set { Set(ref _ColumnsResultItems, value); }
         }
+
+        List<XrayTranslateMappingModel> dtResultMapping;
         #endregion
 
         #region Command
@@ -188,20 +191,27 @@ namespace MediTech.ViewModels
         {
             try
             {
-                TranslateCheckupResult view = (TranslateCheckupResult)this.View;
-                List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
-                if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
+                if (SelectCheckupJobContact != null)
                 {
-                    List<PatientVisitModel> visitData = DataService.Checkup.GetVisitCheckupGroupNonTran(SelectCheckupJobContact.CheckupJobContactUID, GPRSTUIDs);
-                    List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
-                    view.SetProgressBarLimits(0, visitData.Count());
-                    int loopCount = 0;
-                    foreach (var patientVisit in visitData)
+                    TranslateCheckupResult view = (TranslateCheckupResult)this.View;
+                    List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
+                    if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
                     {
-                        TranslateProcess(patientVisit, GPRSTUIDs, dataCheckupRule);
+                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                        {
+                            dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
+                        }
+                        List<PatientVisitModel> visitData = DataService.Checkup.GetVisitCheckupGroupNonTran(SelectCheckupJobContact.CheckupJobContactUID, GPRSTUIDs);
+                        List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
+                        view.SetProgressBarLimits(0, visitData.Count());
+                        int loopCount = 0;
+                        foreach (var patientVisit in visitData)
+                        {
+                            TranslateProcess(patientVisit, GPRSTUIDs, dataCheckupRule);
 
-                        loopCount++;
-                        view.SetProgressBarValue(loopCount);
+                            loopCount++;
+                            view.SetProgressBarValue(loopCount);
+                        }
                     }
                 }
             }
@@ -221,6 +231,10 @@ namespace MediTech.ViewModels
                     List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
                     if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
                     {
+                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                        {
+                            dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
+                        }
                         List<PatientVisitModel> visitData = DataService.Checkup.GetVisitCheckupGroup(SelectCheckupJobContact.CheckupJobContactUID, GPRSTUIDs);
                         List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
                         view.SetProgressBarLimits(0, visitData.Count());
@@ -247,16 +261,14 @@ namespace MediTech.ViewModels
         {
             int? ageInt = !string.IsNullOrEmpty(patientVisit.Age) ? int.Parse(patientVisit.Age) : (int?)null;
             PatientVitalSignModel vitalSign = null;
+            List<ResultRadiologyModel> radiology = null;
             foreach (var grpstUID in GPRSTUIDs)
             {
                 List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
                 string wellNessResult = string.Empty;
                 List<ResultComponentModel> resultComponent = null;
-                if (grpstUID != 3177 && grpstUID != 3178)
-                {
-                    resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
-                }
-                else if (grpstUID == 3177 || grpstUID == 3178)
+
+                if (grpstUID == 3177 || grpstUID == 3178)
                 {
                     if (vitalSign == null)
                     {
@@ -305,16 +317,41 @@ namespace MediTech.ViewModels
                     }
 
                 }
+                else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181)
+                {
+                    if (radiology == null)
+                    {
+                        radiology = DataService.Radiology.GetResultRadiologyByVisitUID(patientVisit.PatientVisitUID);
+                    }
+
+                    if (radiology != null)
+                    {
+                        resultComponent = new List<ResultComponentModel>();
+                        foreach (var item in radiology)
+                        {
+                            ResultComponentModel newResultCom = new ResultComponentModel();
+                            newResultCom.ResultItemUID = item.RequestItemName.ToLower().Contains("chest") ? 342
+                                : item.RequestItemName.ToLower().Contains("mammo") ? 343
+                                : item.RequestItemName.ToLower().Contains("ultrasound") ? 344 : 0;
+                            newResultCom.ResultValue = item.ResultStatus;
+
+                            resultComponent.Add(newResultCom);
+                        }
+                    }
+                }
+                else
+                {
+                    resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
+                }
 
 
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
                     var ruleCheckups = dataCheckupRule
-.Where(p => p.GPRSTUID == grpstUID
-&& (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
-&& ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
-|| (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))
-).ToList();
+                        .Where(p => p.GPRSTUID == grpstUID
+                        && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
+                        && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
+                        || (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))).ToList();
                     foreach (var ruleCheckup in ruleCheckups)
                     {
                         bool isConrrect = false;
@@ -383,6 +420,7 @@ namespace MediTech.ViewModels
                     string description = string.Empty;
                     string recommand = string.Empty;
 
+                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885 : 2883;
                     foreach (var item in ruleCheckupIsCorrect)
                     {
                         //descriptions.AddRange(item.CheckupRuleDescription);
@@ -404,9 +442,8 @@ namespace MediTech.ViewModels
                             }
                         }
                     }
-                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 : 2883;
 
-                    if (grpstUID == 3182 || grpstUID == 3183  || grpstUID == 3190 || grpstUID == 3193)
+                    if (grpstUID == 3182 || grpstUID == 3183 || grpstUID == 3190 || grpstUID == 3193) //แปล LAB,CBC,UA ไขมัน
                     {
                         if (RABSTSUID == 2883)
                         {
@@ -414,7 +451,67 @@ namespace MediTech.ViewModels
                         }
 
                     }
+                    else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181) //แปล Chest,mammo,Ultrasound
+                    {
+                        if (RABSTSUID == 2883)
+                        {
+                            conclusion = "ปกติ";
+                        }
+                        else
+                        {
+                            List<string> listNoMapResult = new List<string>();
+                            var resultRadiology = grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"))
+                                : grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest")) :
+                                grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest")) : null;
+                            if (resultRadiology != null)
+                            {
+                                string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, ",", dtResultMapping, ref listNoMapResult);
+                                if (!string.IsNullOrEmpty(thairesult))
+                                {
+                                    conclusion = thairesult;
+                                }
+                                else
+                                {
+                                    thairesult = "ผิดปกติ";
+                                }
+                            }
 
+                        }
+                    }
+                    else if (grpstUID == 3200) //แปลหู
+                    {
+                        if (RABSTSUID == 2882 || RABSTSUID == 2885)
+                        {
+                            conclusion = string.Empty;
+                            description = string.Empty;
+                            recommand = string.Empty;
+                            var ruleCheckup = ruleCheckupIsCorrect.FirstOrDefault(p => p.RABSTSUID == RABSTSUID);
+                            foreach (var content in ruleCheckup.CheckupRuleDescription)
+                            {
+                                if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                {
+                                    conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                    description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                }
+                            }
+                            foreach (var content in ruleCheckup.CheckupRuleRecommend)
+                            {
+                                if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                                {
+                                    conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                    recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                }
+                            }
+                        }
+
+                    }
+                    else if (grpstUID == 3201)
+                    {
+                        if (RABSTSUID == 2882 || RABSTSUID == 2885)
+                        {
+
+                        }
+                    }
 
                     CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
                     checkupResult.PatientUID = patientVisit.PatientUID;

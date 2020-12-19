@@ -76,16 +76,19 @@
             this.xrTableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
-            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrRichText3 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrRichText4 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrRichText5 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
+            this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbBranch = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
@@ -134,14 +137,15 @@
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(430.3332F, 60F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(430.3332F, 35.625F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
             this.xrTableRow2,
+            this.xrTableRow12,
             this.xrTableRow3,
             this.xrTableRow4});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(347.5002F, 97.5F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(347.5002F, 121.875F);
             this.xrTable1.StylePriority.UseFont = false;
             // 
             // xrTableRow1
@@ -593,41 +597,6 @@
             this.xrTableCell35.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell35.Weight = 3.8181541690931815D;
             // 
-            // TopMargin
-            // 
-            this.TopMargin.HeightF = 1F;
-            this.TopMargin.Name = "TopMargin";
-            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // BottomMargin
-            // 
-            this.BottomMargin.HeightF = 3.722026F;
-            this.BottomMargin.Name = "BottomMargin";
-            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // PatientUID
-            // 
-            this.PatientUID.Name = "PatientUID";
-            this.PatientUID.Type = typeof(int);
-            this.PatientUID.ValueInfo = "0";
-            this.PatientUID.Visible = false;
-            // 
-            // PatientVisitUID
-            // 
-            this.PatientVisitUID.Name = "PatientVisitUID";
-            this.PatientVisitUID.Type = typeof(int);
-            this.PatientVisitUID.ValueInfo = "0";
-            this.PatientVisitUID.Visible = false;
-            // 
-            // PayorDetailUID
-            // 
-            this.PayorDetailUID.Name = "PayorDetailUID";
-            this.PayorDetailUID.Type = typeof(int);
-            this.PayorDetailUID.ValueInfo = "0";
-            this.PayorDetailUID.Visible = false;
-            // 
             // xrRichText1
             // 
             this.xrRichText1.Font = new System.Drawing.Font("Angsana New", 11F);
@@ -671,6 +640,66 @@
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
             this.xrRichText2.SizeF = new System.Drawing.SizeF(330.5F, 127.1666F);
             this.xrRichText2.StylePriority.UseFont = false;
+            // 
+            // TopMargin
+            // 
+            this.TopMargin.HeightF = 1F;
+            this.TopMargin.Name = "TopMargin";
+            this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // BottomMargin
+            // 
+            this.BottomMargin.HeightF = 3.722026F;
+            this.BottomMargin.Name = "BottomMargin";
+            this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // PatientUID
+            // 
+            this.PatientUID.Name = "PatientUID";
+            this.PatientUID.Type = typeof(int);
+            this.PatientUID.ValueInfo = "0";
+            this.PatientUID.Visible = false;
+            // 
+            // PatientVisitUID
+            // 
+            this.PatientVisitUID.Name = "PatientVisitUID";
+            this.PatientVisitUID.Type = typeof(int);
+            this.PatientVisitUID.ValueInfo = "0";
+            this.PatientVisitUID.Visible = false;
+            // 
+            // PayorDetailUID
+            // 
+            this.PayorDetailUID.Name = "PayorDetailUID";
+            this.PayorDetailUID.Type = typeof(int);
+            this.PayorDetailUID.ValueInfo = "0";
+            this.PayorDetailUID.Visible = false;
+            // 
+            // xrTableRow12
+            // 
+            this.xrTableRow12.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell4,
+            this.lbBranch});
+            this.xrTableRow12.Name = "xrTableRow12";
+            this.xrTableRow12.Weight = 1D;
+            // 
+            // xrTableCell4
+            // 
+            this.xrTableCell4.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell4.StylePriority.UseFont = false;
+            this.xrTableCell4.StylePriority.UsePadding = false;
+            this.xrTableCell4.Text = "สาขา :";
+            this.xrTableCell4.Weight = 0.52917421500456374D;
+            // 
+            // lbBranch
+            // 
+            this.lbBranch.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbBranch.Name = "lbBranch";
+            this.lbBranch.StylePriority.UseFont = false;
+            this.lbBranch.Weight = 1.5983769989187702D;
             // 
             // RiskBook1
             // 
@@ -758,5 +787,8 @@
         private DevExpress.XtraReports.UI.XRRichText xrRichText4;
         private DevExpress.XtraReports.UI.XRRichText xrRichText5;
         private DevExpress.XtraReports.UI.XRRichText xrRichText2;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow12;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
+        private DevExpress.XtraReports.UI.XRTableCell lbBranch;
     }
 }
