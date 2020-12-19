@@ -403,6 +403,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CheckupGroupResultModel> GetCheckupGroupResultListByVisit(long patientUID, long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultListByVisit?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<CheckupGroupResultModel> data = MeditechApiHelper.Get<List<CheckupGroupResultModel>>(requestApi);
+
+            return data;
+        }
+
         public void SaveCheckupGroupResult(CheckupGroupResultModel groupResult, int userUID)
         {
             try

@@ -16,6 +16,10 @@ namespace MediTech.Model
         public string Description { get; set; }
         public string Recommend { get; set; }
         public string Conclusion { get; set; }
+        public string GroupCode { get; set; }
+        public string GroupResult { get; set; }
+        public string ResultStatus { get; set; }
+        public int DisplayOrder { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

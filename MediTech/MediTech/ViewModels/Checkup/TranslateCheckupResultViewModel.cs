@@ -379,8 +379,6 @@ namespace MediTech.ViewModels
                     }
 
 
-                    //List<CheckupRuleDescriptionModel> descriptions = new List<CheckupRuleDescriptionModel>();
-                    //List<CheckupRuleRecommendModel> recommands = new List<CheckupRuleRecommendModel>();
                     string conclusion = string.Empty;
                     string description = string.Empty;
                     string recommand = string.Empty;
@@ -408,41 +406,16 @@ namespace MediTech.ViewModels
                     }
                     int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 : 2883;
 
-                    //var descriptionGroup = descriptions.GroupBy(p => new
-                    //{
-                    //    p.CheckupTextMasterUID
-                    //})
-                    //.Select(g => new
-                    //{
-                    //    ThaiDescription = g.FirstOrDefault().ThaiDescription,
-                    //    EngDescription = g.FirstOrDefault().EngDescription,
-                    //});
+                    if (grpstUID == 3182 || grpstUID == 3183  || grpstUID == 3190 || grpstUID == 3193)
+                    {
+                        if (RABSTSUID == 2883)
+                        {
+                            conclusion = "อยู่ในเกณฑ์ปกติ";
+                        }
 
-                    //var recommandGroup = recommands.GroupBy(p => new
-                    //{
-                    //    p.CheckupTextMasterUID
-                    //}).Select(g => new
-                    //{
-                    //    ThaiRecommend = g.FirstOrDefault().ThaiRecommend,
-                    //    EndRecommend = g.FirstOrDefault().EndRecommend,
-                    //});
+                    }
 
 
-
-                    //string descriptionString = string.Empty;
-                    //string recommandString = string.Empty;
-                    //foreach (var item in descriptionGroup)
-                    //{
-                    //    descriptionString += string.IsNullOrEmpty(descriptionString) ? item.ThaiDescription : " " + item.ThaiDescription;
-                    //}
-
-                    //foreach (var item in recommandGroup)
-                    //{
-                    //    recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
-                    //}
-
-                    //if (!string.IsNullOrEmpty(descriptionString) || !string.IsNullOrEmpty(recommandString))
-                    //{
                     CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
                     checkupResult.PatientUID = patientVisit.PatientUID;
                     checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
@@ -453,7 +426,6 @@ namespace MediTech.ViewModels
                     checkupResult.Conclusion = conclusion;
                     checkupResult.Conclusion = checkupResult.Conclusion.Trim();
                     DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
-                    //}
 
 
                 }

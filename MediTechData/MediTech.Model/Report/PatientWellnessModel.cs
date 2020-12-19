@@ -12,5 +12,6 @@ namespace MediTech.Model
         public List<PatientResultComponentModel> MobileResult { get; set; }
         public List<ResultRadiologyModel> Radiology { get; set; }
         public List<PatientResultComponentModel> LabCompare { get; set; }
+        public List<CheckupGroupResultModel> GroupResult { get; set; }
     }
 }
