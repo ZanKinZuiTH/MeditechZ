@@ -229,7 +229,6 @@ namespace MediTech.ViewModels
                 }
 
             }
-
         }
 
         void PrintRiskbook()
