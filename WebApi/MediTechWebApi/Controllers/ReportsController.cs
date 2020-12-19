@@ -591,6 +591,7 @@ namespace MediTechWebApi.Controllers
             data.Radiology = (new RadiologyController()).GetResultRadiologyByPayor(patientUID, payorDetailUID);
             data.MobileResult = (new CheckupController()).GetCheckupMobileResultByVisitUID(patientUID, patientVisitUID);
             data.LabCompare = CheckupLabCompare(patientUID, payorDetailUID);
+            data.GroupResult = (new CheckupController()).GetCheckupGroupResultListByVisit(patientUID, patientVisitUID);
 
             return data;
         }

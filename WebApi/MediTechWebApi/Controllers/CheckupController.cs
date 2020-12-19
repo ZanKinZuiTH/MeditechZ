@@ -1697,6 +1697,31 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+        [Route("GetCheckupGroupResultListByVisit")]
+        [HttpGet]
+        public List<CheckupGroupResultModel> GetCheckupGroupResultListByVisit(long patientUID, long patientVisitUID)
+        {
+            List<CheckupGroupResultModel> data = (from ck in db.CheckupGroupResult
+                                                  join rf in db.ReferenceValue on ck.GPRSTUID equals rf.UID
+                                                  where ck.PatientUID == patientUID
+                                                  && ck.PatientVisitUID == patientVisitUID
+                                                  && ck.StatusFlag == "A"
+                                                  select new CheckupGroupResultModel
+                                                  {
+                                                      CheckupGroupResultUID = ck.UID,
+                                                      PatientUID = ck.PatientUID,
+                                                      PatientVisitUID = ck.PatientVisitUID,
+                                                      GPRSTUID = ck.GPRSTUID,
+                                                      RABSTSUID = ck.RABSTSUID,
+                                                      Conclusion = ck.Conclusion,
+                                                      GroupResult = rf.Description,
+                                                      ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" :  "ปกติ",
+                                                      GroupCode = rf.ValueCode
+                                                  }).ToList();
+
+            return data;
+        }
         #endregion
     }
 }
