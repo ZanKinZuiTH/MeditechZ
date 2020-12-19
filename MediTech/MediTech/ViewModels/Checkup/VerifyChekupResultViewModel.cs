@@ -495,6 +495,7 @@ namespace MediTech.ViewModels
                 WellnessData.WellnessResult = WellnessResult;
                 DataService.PatientHistory.ManageWellnessData(WellnessData, AppUtil.Current.UserID);
                 SelectPatientVisit.IsWellnessResult = true;
+                SaveSuccessDialog();
             }
             catch (Exception er)
             {
