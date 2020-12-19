@@ -478,6 +478,13 @@ namespace MediTech.ViewModels
 
                         }
                     }
+                    else if (grpstUID == 3176)
+                    {
+                        if (RABSTSUID == 2883)
+                        {
+                            conclusion = "ไม่พบความผิดปกติ";
+                        }
+                    }
                     else if (grpstUID == 3200) //แปลหู
                     {
                         if (RABSTSUID == 2882 || RABSTSUID == 2885)
@@ -505,11 +512,78 @@ namespace MediTech.ViewModels
                         }
 
                     }
-                    else if (grpstUID == 3201)
+                    else if (grpstUID == 3201) //แปลตาอาชีวะ
                     {
                         if (RABSTSUID == 2882 || RABSTSUID == 2885)
                         {
+                            conclusion = string.Empty;
+                            description = string.Empty;
+                            recommand = string.Empty;
+                            var ruleNonColorBlindness = ruleCheckupIsCorrect.Where(p => !p.Name.StartsWith("ตาบอดสี")).ToList();
+                            if (ruleNonColorBlindness != null && ruleNonColorBlindness.Count > 0)
+                            {
+                                foreach (var ruleData in ruleNonColorBlindness)
+                                {
+                                    foreach (var content in ruleData.CheckupRuleDescription)
+                                    {
+                                        if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                        {
+                                            conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                            description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                        }
+                                    }
 
+                                }
+
+                                if (ruleNonColorBlindness != null)
+                                {
+                                    string thaiRecommend = ruleNonColorBlindness.FirstOrDefault().CheckupRuleRecommend.Where(p => !String.IsNullOrEmpty(p.ThaiRecommend)).FirstOrDefault().ThaiRecommend;
+                                    conclusion += string.IsNullOrEmpty(conclusion) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
+                                    recommand += string.IsNullOrEmpty(recommand) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
+                                }
+                            }
+
+
+                            var ruleColorBlindness = ruleCheckupIsCorrect.Where(p => p.Name.StartsWith("ตาบอดสี")).ToList();
+                            if (ruleColorBlindness != null && ruleColorBlindness.Count > 0)
+                            {
+                                CheckupRuleModel ruleCheckup = null;
+                                if (ruleColorBlindness.Count() > 1)
+                                {
+                                    ruleCheckup = ruleColorBlindness.Where(p => p.Name != "ตาบอดสี").FirstOrDefault();
+                                }
+                                else
+                                {
+                                    ruleCheckup = ruleColorBlindness.FirstOrDefault();
+                                }
+
+                                foreach (var content in ruleCheckup.CheckupRuleDescription)
+                                {
+                                    if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                    {
+                                        conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                        description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                    }
+                                }
+                                foreach (var content in ruleCheckup.CheckupRuleRecommend)
+                                {
+                                    if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                                    {
+                                        conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                        recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                    }
+                                }
+                            }
+                        }
+
+                        var timus1 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
+                        var timus2 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");
+                        var timus3 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS3");
+                        if (timus1 != null && timus2 != null && timus3 != null)
+                        {
+                            string far = timus2.ResultItemName + " " + timus2.ResultValue;
+                            string near = timus3.ResultItemName + " " + timus3.ResultValue;
+                            conclusion = "กลุ่มอาชีพ : " + timus1.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + conclusion;
                         }
                     }
 
