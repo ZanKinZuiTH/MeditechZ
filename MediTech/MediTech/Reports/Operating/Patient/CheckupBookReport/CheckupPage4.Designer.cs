@@ -71,9 +71,9 @@
             this.lbFEV1Per = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow30 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell121 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbFFVMeasure = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbFFVPredic = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbFFVPer = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFEVMeasure = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFEVPredic = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbFEVPer = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow37 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell125 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbLungResult = new DevExpress.XtraReports.UI.XRTableCell();
@@ -269,8 +269,8 @@
             // 
             // tbVisionOccmed
             // 
-            this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(426.8333F, 249.935F);
             this.tbVisionOccmed.Name = "tbVisionOccmed";
@@ -543,8 +543,8 @@
             // 
             // tbLung
             // 
-            this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(427.6666F, 51.33347F);
             this.tbLung.Name = "tbLung";
@@ -716,9 +716,9 @@
             // 
             this.xrTableRow30.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell121,
-            this.lbFFVMeasure,
-            this.lbFFVPredic,
-            this.lbFFVPer});
+            this.lbFEVMeasure,
+            this.lbFEVPredic,
+            this.lbFEVPer});
             this.xrTableRow30.Name = "xrTableRow30";
             this.xrTableRow30.Weight = 1D;
             // 
@@ -731,36 +731,36 @@
             this.xrTableCell121.StylePriority.UseFont = false;
             this.xrTableCell121.StylePriority.UsePadding = false;
             this.xrTableCell121.StylePriority.UseTextAlignment = false;
-            this.xrTableCell121.Text = "FFV1/FVC";
+            this.xrTableCell121.Text = "FEV1/FVC";
             this.xrTableCell121.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell121.Weight = 0.90166670501638124D;
             // 
-            // lbFFVMeasure
+            // lbFEVMeasure
             // 
-            this.lbFFVMeasure.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbFFVMeasure.Name = "lbFFVMeasure";
-            this.lbFFVMeasure.StylePriority.UseFont = false;
-            this.lbFFVMeasure.StylePriority.UseTextAlignment = false;
-            this.lbFFVMeasure.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFFVMeasure.Weight = 0.8899999958290451D;
+            this.lbFEVMeasure.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.lbFEVMeasure.Name = "lbFEVMeasure";
+            this.lbFEVMeasure.StylePriority.UseFont = false;
+            this.lbFEVMeasure.StylePriority.UseTextAlignment = false;
+            this.lbFEVMeasure.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFEVMeasure.Weight = 0.8899999958290451D;
             // 
-            // lbFFVPredic
+            // lbFEVPredic
             // 
-            this.lbFFVPredic.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbFFVPredic.Name = "lbFFVPredic";
-            this.lbFFVPredic.StylePriority.UseFont = false;
-            this.lbFFVPredic.StylePriority.UseTextAlignment = false;
-            this.lbFFVPredic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFFVPredic.Weight = 0.98333390950613608D;
+            this.lbFEVPredic.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.lbFEVPredic.Name = "lbFEVPredic";
+            this.lbFEVPredic.StylePriority.UseFont = false;
+            this.lbFEVPredic.StylePriority.UseTextAlignment = false;
+            this.lbFEVPredic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFEVPredic.Weight = 0.98333390950613608D;
             // 
-            // lbFFVPer
+            // lbFEVPer
             // 
-            this.lbFFVPer.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.lbFFVPer.Name = "lbFFVPer";
-            this.lbFFVPer.StylePriority.UseFont = false;
-            this.lbFFVPer.StylePriority.UseTextAlignment = false;
-            this.lbFFVPer.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFFVPer.Weight = 0.88333312988281243D;
+            this.lbFEVPer.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.lbFEVPer.Name = "lbFEVPer";
+            this.lbFEVPer.StylePriority.UseFont = false;
+            this.lbFEVPer.StylePriority.UseTextAlignment = false;
+            this.lbFEVPer.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbFEVPer.Weight = 0.88333312988281243D;
             // 
             // xrTableRow37
             // 
@@ -827,8 +827,8 @@
             // 
             // tbUA
             // 
-            this.tbUA.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbUA.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(23.99999F, 51.33329F);
             this.tbUA.Name = "tbUA";
@@ -872,7 +872,7 @@
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell1.CanGrow = false;
             this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -884,7 +884,7 @@
             // 
             // xrTableCell3
             // 
-            this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell3.CanGrow = false;
             this.xrTableCell3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1657,7 +1657,7 @@
             this.xrTableCell104.Name = "xrTableCell104";
             this.xrTableCell104.StylePriority.UseFont = false;
             this.xrTableCell104.StylePriority.UseTextAlignment = false;
-            this.xrTableCell104.Text = "Leukocyte esterase";
+            this.xrTableCell104.Text = "Leukocyte";
             this.xrTableCell104.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell104.Weight = 0.901092795497304D;
             // 
@@ -2853,9 +2853,9 @@
         public DevExpress.XtraReports.UI.XRTableCell lbFEV1Per;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow30;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell121;
-        public DevExpress.XtraReports.UI.XRTableCell lbFFVMeasure;
-        public DevExpress.XtraReports.UI.XRTableCell lbFFVPredic;
-        public DevExpress.XtraReports.UI.XRTableCell lbFFVPer;
+        public DevExpress.XtraReports.UI.XRTableCell lbFEVMeasure;
+        public DevExpress.XtraReports.UI.XRTableCell lbFEVPredic;
+        public DevExpress.XtraReports.UI.XRTableCell lbFEVPer;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow37;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell125;
         public DevExpress.XtraReports.UI.XRTableCell lbLungResult;

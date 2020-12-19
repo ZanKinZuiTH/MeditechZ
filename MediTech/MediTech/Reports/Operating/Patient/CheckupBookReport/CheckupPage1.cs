@@ -581,9 +581,26 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     GenerateOther(OtherTestSet);
                     #endregion
                 }
+
+                var occmed = data.MobileResult;
+                if (occmed != null)
+                {
+                    IEnumerable<PatientResultComponentModel> timusResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("TIMUS"));
+                    GenerateTimus(timusResult);
+
+                    IEnumerable<PatientResultComponentModel> AudioResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("AUDIO"));
+                    GenerateAudio(AudioResult);
+
+                    IEnumerable<PatientResultComponentModel> SpiroResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("SPIRO"));
+                    GenerateSpiro(SpiroResult);
+                }
             }
         }
 
+        #region Result Lab 
         private void GenerateCompleteBloodCount(IEnumerable<PatientResultComponentModel> labTestSet)
         {
             if (labTestSet != null && labTestSet.Count() > 0)
@@ -3349,6 +3366,45 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page7.cellOtherYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
+
+        #endregion
+
+        private void GenerateTimus(IEnumerable<PatientResultComponentModel> TimusResult)
+        {
+            if (TimusResult != null && TimusResult.Count() > 0)
+            {
+                page4.lbFarVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;
+                page4.lbNearVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20")?.ResultValue;
+                page4.lb3DVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS21")?.ResultValue;
+                page4.lbBalanceEye.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS23")?.ResultValue;
+                page4.lbVisionColor.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22")?.ResultValue;
+                page4.lbFieldVision.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22")?.ResultValue;
+            }
+        }
+        private void GenerateAudio(IEnumerable<PatientResultComponentModel> AudioResult)
+        {
+            if (AudioResult != null && AudioResult.Count() > 0)
+            {
+                page5.lbAudioRight.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO8")?.ResultValue;
+                page5.lbAudioLeft.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO16")?.ResultValue;
+            }
+        }
+        private void GenerateSpiro(IEnumerable<PatientResultComponentModel> SpiroResult)
+        {
+            if (SpiroResult != null && SpiroResult.Count() > 0)
+            {
+                page4.lbFVCMeasure.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO1")?.ResultValue;
+                page4.lbFVCPredic.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO2")?.ResultValue;
+                page4.lbFVCPer.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3")?.ResultValue;
+                page4.lbFEV1Measure.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO4")?.ResultValue;
+                page4.lbFEV1Predic.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO5")?.ResultValue;
+                page4.lbFEV1Per.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6")?.ResultValue;
+                page4.lbFEVMeasure.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO7")?.ResultValue;
+                page4.lbFEVPredic.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO8")?.ResultValue;
+                page4.lbFEVPer.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
+            }
+        }
+
 
         private void CheckupPage1_AfterPrint(object sender, EventArgs e)
         {
