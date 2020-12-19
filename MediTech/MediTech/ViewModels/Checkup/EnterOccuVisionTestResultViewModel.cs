@@ -199,7 +199,7 @@ namespace MediTech.ViewModels
 
 
 
-                if (job.ResultValue == null || job.ResultValue.Contains("สำนักงาน"))
+                if (job.ResultValue == null || job.ResultValue.Contains("สำนักงาน") || job.ResultValue.Contains("ไม่ระบุอาชีพ"))
                 {
                     if (demonstration_slide != null && demonstration_slide.ResultValue != null)
                         binocular_normal = demonstration_slide.ResultValue.ToUpper() == "PASS" ? true : demonstration_slide.ResultValue.ToUpper() == "FAIL" ? false : true;

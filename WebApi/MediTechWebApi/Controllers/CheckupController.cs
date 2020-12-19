@@ -1029,7 +1029,19 @@ namespace MediTechWebApi.Controllers
 
         #region CheckupProcess
 
+        [Route("SearchPatientCheckup")]
+        [HttpGet]
+        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID)
+        {
+            List<PatientVisitModel> data = null;
+            DataTable dt = SqlDirectStore.pSearchPatientCheckup(dateFrom, dateTo, patientUID, payorDetailUID, checkupJobUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = dt.ToList<PatientVisitModel>();
+            }
 
+            return data;
+        }
 
         [Route("GetVisitCheckupGroup")]
         [HttpPost]
@@ -1716,12 +1728,13 @@ namespace MediTechWebApi.Controllers
                                                       RABSTSUID = ck.RABSTSUID,
                                                       Conclusion = ck.Conclusion,
                                                       GroupResult = rf.Description,
-                                                      ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" :  "ปกติ",
+                                                      ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง":  "ปกติ",
                                                       GroupCode = rf.ValueCode
                                                   }).ToList();
 
             return data;
         }
+
         #endregion
     }
 }

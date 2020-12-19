@@ -1136,6 +1136,22 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pSearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientCheckup", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom != DateTime.MinValue && dateFrom != null ? dateFrom : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo != DateTime.MinValue && dateTo != null ? dateTo : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID != null ? patientUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID != null ? payorDetailUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pSearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
      , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
             ,int? PayorDetailUID,int? checkupJobUID)

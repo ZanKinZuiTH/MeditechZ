@@ -22,7 +22,7 @@ namespace MediTech.Model
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> ArrivedDttm { get; set; }
         public Nullable<System.DateTime> DischargeDttm { get; set; }
-        
+
         public string VisitID { get; set; }
         public string IsBillFinalized { get; set; }
         public string Comments { get; set; }
@@ -38,6 +38,7 @@ namespace MediTech.Model
         public string PayorName { get; set; }
         public int PayorAgreementUID { get; set; }
         public string WellnessResult { get; set; }
+        public bool IsWellnessResult { get; set; }
         public bool Select { get; set; }
     }
 }

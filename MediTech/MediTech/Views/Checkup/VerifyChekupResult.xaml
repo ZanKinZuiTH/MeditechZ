@@ -12,7 +12,7 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              DataContext="{Binding Path=VerifyChekupResultViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="1200" d:DesignWidth="900">
     <UserControl.Resources>
         <cv:AddValueConverter x:Key="AddValueConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
@@ -23,7 +23,14 @@
                 <dxlc:LayoutGroup Orientation="Vertical" dxlc:DockLayoutControl.Dock="Left"
                               Width="300"
                               dxlc:DockLayoutControl.AllowHorizontalSizing="True">
-                    <dxlc:LayoutItem Label="Payor">
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="Payor" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
                         <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
                                       ValueMember="PayorDetailUID"
@@ -140,11 +147,18 @@
                                 <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="IsWillnessResult" Visible="False"/>
                         <dxg:GridControl.View>
                             <dxg:TableView x:Name="gvGroupResult" NavigationStyle="Row"
                                        ShowCheckBoxSelectorColumn="True"
                                        CheckBoxSelectorColumnWidth="30" ShowGroupPanel="False" 
-                                       AllowEditing="False"/>
+                                       AllowEditing="False">
+                                <dxg:TableView.FormatConditions>
+                                    <dxg:FormatCondition ApplyToRow="True" Expression="[IsWellnessResult] = 'True'" FieldName="IsWellnessResult">
+                                        <dx:Format Background="#FF83B5F1"/>
+                                    </dxg:FormatCondition>
+                                </dxg:TableView.FormatConditions>
+                            </dxg:TableView>
                         </dxg:GridControl.View>
                     </dxg:GridControl>
 
@@ -178,13 +192,14 @@
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxe:TextEdit x:Name="txtWellness" AcceptsReturn="True" TextWrapping="Wrap"
-                                          FontSize="12"
+                                          FontSize="14"
                                           Text="{Binding WellnessResult}"
                                           VerticalContentAlignment="Top"/>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Vertical">
-                        <dxg:GridControl Name="gcResult" Height="450" ItemsSource="{Binding ResultComponents}"
+                        <dxg:GridControl Name="gcResult" Height="380" ItemsSource="{Binding ResultComponents}"
+                                         Visibility="{Binding VisibilityLab}"
                                          SelectedItem="{Binding SelectResultComponent}">
                             <dxmvvm:Interaction.Behaviors>
                                 <helper:DeferredColumnFitBehavior/>
@@ -218,9 +233,25 @@
                                 <dxg:TableView Name="gvResult" ShowGroupPanel="False"/>
                             </dxg:GridControl.View>
                         </dxg:GridControl>
+                        <dxg:GridControl Height="380" ItemsSource="{Binding ResultRadiologys}" 
+                                         Visibility="{Binding VisibilityRadiology}">
+                            <dxg:GridColumn Header="Status" FieldName="ResultStatus" Width="80"/>
+                            <dxg:GridColumn Header="Result" FieldName="PlainText" Width="300">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Header="รังสีแพทย์" FieldName="Radiologist" Width="80"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dxe:CheckEdit Content="Abnormal" IsChecked="{Binding IsAbnormal}"/>
+                                <dxe:ComboBoxEdit x:Name="cmbResultStatus" Width="120" ItemsSource="{Binding ResultStatus}"
+                                              SelectedItem="{Binding SelectResultStatus}"
+                                              DisplayMember="Display"
+                                              ValueMember="Key"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem HorizontalAlignment="Right">
                                 <dx:SimpleButton Height="25" Width="80" Content="บันทึก" Command="{Binding SaveCheckupGroupResultCommand}"/>

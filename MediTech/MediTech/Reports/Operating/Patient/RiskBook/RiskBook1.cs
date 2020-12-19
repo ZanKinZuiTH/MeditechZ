@@ -44,6 +44,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 lbRunNo.Text = data.FirstOrDefault().PatientID;
                 lbName.Text = data.FirstOrDefault().PatientName;
                 lbCompany.Text = data.FirstOrDefault().PayorName;
+                lbBranch.Text = data.FirstOrDefault().CompanyName;
                 lbDeparment.Text = data.FirstOrDefault().Department;
                 lbEmployeeID.Text = data.FirstOrDefault().EmployeeID;
                 lbDateVisit.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";

@@ -379,6 +379,12 @@ namespace MediTech.ViewModels
         }
         void Search()
         {
+            if (SelectPayorDetail == null)
+            {
+                WarningDialog("กรุณาเลือก Payor");
+                return;
+            }
+
             long? patientUID = null;
             int? payorDetailUID = null;
             int? checkupJobUID = null;
