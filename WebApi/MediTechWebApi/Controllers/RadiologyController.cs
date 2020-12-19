@@ -659,6 +659,40 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetResultRadiologyByPayor")]
+        [HttpGet]
+        public List<ResultRadiologyModel> GetResultRadiologyByPayor(long patientUID,int payorDetailUID)
+        {
+            List<ResultRadiologyModel> data = (from rs in db.Result
+                                         join pvp in db.PatientVisitPayor on rs.PatientVisitUID equals pvp.PatientVisitUID
+                                         join rsr in db.ResultRadiology on rs.UID equals rsr.ResultUID
+                                         where rs.StatusFlag == "A"
+                                         && rsr.StatusFlag == "A"
+                                         && rs.PatientUID == patientUID
+                                         && pvp.PayorDetailUID == payorDetailUID
+                                         select new ResultRadiologyModel
+                                         {
+                                             ResultUID = rs.UID,
+                                             ResultRadiologyUID = rsr.UID,
+                                             Comments = rs.Comments,
+                                             HasHistory = rsr.HasHistory,
+                                             ORDSTUID = rs.ORDSTUID,
+                                             PatientUID = rs.PatientUID,
+                                             RABSTSUID = rs.RABSTSUID,
+                                             RequestItemCode = rs.RequestItemCode,
+                                             RequestItemName = rs.RequestItemName,
+                                             ResultStatus = SqlFunction.fGetRfValDescription(rs.RABSTSUID ?? 0),
+                                             RadiologistUID = rs.RadiologistUID,
+                                             Radiologist = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
+                                             RequestDetailUID = rs.RequestDetailUID,
+                                             ResultEnteredDttm = rs.ResultEnteredDttm,
+                                             PlainText = rsr.PlainText,
+                                             Value = rsr.Value,
+                                             Version = rsr.Version
+                                         }).ToList();
+            return data;
+        }
+
         [Route("GetResultRadiologyByPatientUID")]
         [HttpGet]
         public List<ResultRadiologyModel> GetResultRadiologyByPatientUID(long patientUID, DateTime? dateFrom = null, DateTime? dateTo = null)

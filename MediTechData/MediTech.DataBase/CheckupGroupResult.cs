@@ -12,7 +12,7 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class CheckupSummeryResult
+    public partial class CheckupGroupResult
     {
         public int UID { get; set; }
         public long PatientUID { get; set; }
@@ -21,7 +21,7 @@ namespace MediTech.DataBase
         public int RABSTSUID { get; set; }
         public string Description { get; set; }
         public string Recommend { get; set; }
-        public string SummeryResult { get; set; }
+        public string Conclusion { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

@@ -687,7 +687,6 @@ namespace MediTechWebApi.Controllers
                                     WellnessDataUID = well.UID,
                                     PatientUID = well.PatientUID,
                                     PatientVisitUID = well.PatientVisitUID,
-                                    Diagnosis = well.Diagnosis,
                                     WellnessResult = well.WellnessResult,
                                     CUser = well.CUser,
                                     CWhen = well.CWhen,
@@ -710,7 +709,6 @@ namespace MediTechWebApi.Controllers
                     WellnessDataUID = p.UID,
                     PatientUID = p.PatientUID,
                     PatientVisitUID = p.PatientVisitUID,
-                    Diagnosis = p.Diagnosis,
                     WellnessResult = p.WellnessResult,
                     CUser = p.CUser,
                     CWhen = p.CWhen,
@@ -732,7 +730,6 @@ namespace MediTechWebApi.Controllers
             {
                 wellNessData = new WellnessData();
                 returnData.WellnessDataUID = wellNessData.UID;
-                returnData.Diagnosis = wellNessData.Diagnosis;
                 returnData.WellnessResult = wellNessData.WellnessResult;
                 returnData.PatientUID = wellNessData.PatientUID;
                 returnData.PatientVisitUID = wellNessData.PatientVisitUID;
@@ -765,7 +762,6 @@ namespace MediTechWebApi.Controllers
                 wellNess.MWhen = now;
                 wellNess.PatientUID = model.PatientUID;
                 wellNess.PatientVisitUID = model.PatientVisitUID;
-                wellNess.Diagnosis = model.Diagnosis;
                 wellNess.WellnessResult = model.WellnessResult;
                 db.WellnessData.AddOrUpdate(wellNess);
                 db.SaveChanges();

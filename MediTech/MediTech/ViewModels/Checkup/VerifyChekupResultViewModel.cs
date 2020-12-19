@@ -139,15 +139,15 @@ namespace MediTech.ViewModels
                     }
                     else
                     {
-                        ResultComponents = DataService.Checkup.GetResultCumulative(SelectPatientVisit.PatientUID, Convert.ToInt32(SelectGroupResult.Key2));
+                        ResultComponents = DataService.Checkup.GetGroupResultCumulative(SelectPatientVisit.PatientUID, SelectGroupResult.Key);
                     }
                     TextSummeryReslt = string.Empty;
                     IsAbnormal = false;
-                    CheckupResult = DataService.Checkup.GetCheckupSummeryResultByVisit(SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key);
-                    if (CheckupResult != null)
+                    CheckupGroupResult = DataService.Checkup.GetCheckupGroupResultByVisit(SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key);
+                    if (CheckupGroupResult != null)
                     {
-                        TextSummeryReslt = CheckupResult.SummeryResult;
-                        if (CheckupResult.RABSTSUID == 2882)
+                        TextSummeryReslt = CheckupGroupResult.Conclusion;
+                        if (CheckupGroupResult.RABSTSUID == 2882)
                         {
                             IsAbnormal = true;
                         }
@@ -180,7 +180,18 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPatientVisit, value);
                 if (_SelectPatientVisit != null)
                 {
+                    WellnessData = null;
+                    WellnessResult = null;
+                    ListGroupResult = null;
                     GroupResults = DataService.Checkup.GetCheckupGroupByVisitUID(_SelectPatientVisit.PatientVisitUID);
+                    var result = DataService.PatientHistory.GetWellnessDataByVisit(_SelectPatientVisit.PatientVisitUID);
+                    if (result != null)
+                    {
+                        WellnessData = result.FirstOrDefault();
+                        WellnessResult = WellnessData.WellnessResult;
+                        string[] locResult = WellnessResult.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                        ListGroupResult = locResult.ToList();
+                    }
                 }
             }
         }
@@ -220,6 +231,23 @@ namespace MediTech.ViewModels
             set { Set(ref _TextSummeryReslt, value); }
         }
 
+        private List<string> _ListGroupResult;
+
+        public List<string> ListGroupResult
+        {
+            get { return _ListGroupResult; }
+            set { _ListGroupResult = value; }
+        }
+
+        private WellnessDataModel _WellnessData;
+
+        public WellnessDataModel WellnessData
+        {
+            get { return _WellnessData; }
+            set { _WellnessData = value; }
+        }
+
+
         private bool _IsAbnormal;
 
         public bool IsAbnormal
@@ -228,12 +256,12 @@ namespace MediTech.ViewModels
             set { Set(ref _IsAbnormal, value); }
         }
 
-        private CheckupSummeryResultModel _CheckupResult;
+        private CheckupGroupResultModel _CheckupGroupResult;
 
-        public CheckupSummeryResultModel CheckupResult
+        public CheckupGroupResultModel CheckupGroupResult
         {
-            get { return _CheckupResult; }
-            set { _CheckupResult = value; }
+            get { return _CheckupGroupResult; }
+            set { _CheckupGroupResult = value; }
         }
 
 
@@ -256,11 +284,18 @@ namespace MediTech.ViewModels
             get { return _SearchPatientVisitCommand ?? (_SearchPatientVisitCommand = new RelayCommand(SearchPatientVisit)); }
         }
 
-        private RelayCommand _SaveCheckupResultCommand;
+        private RelayCommand _SaveCheckupGroupResultCommand;
 
-        public RelayCommand SaveCheckupResultCommand
+        public RelayCommand SaveCheckupGroupResultCommand
         {
-            get { return _SaveCheckupResultCommand ?? (_SaveCheckupResultCommand = new RelayCommand(SaveCheckupResult)); }
+            get { return _SaveCheckupGroupResultCommand ?? (_SaveCheckupGroupResultCommand = new RelayCommand(SaveCheckupGroupResult)); }
+        }
+
+        private RelayCommand _SaveWellNessResultCommand;
+
+        public RelayCommand SaveWellNessResultCommand
+        {
+            get { return _SaveWellNessResultCommand ?? (_SaveWellNessResultCommand = new RelayCommand(SaveWellNessResult)); }
         }
         #endregion
 
@@ -285,9 +320,69 @@ namespace MediTech.ViewModels
             PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", null, null, DateFrom, DateTo, null, null, payorDetailUID, chekcupJobContactUID);
         }
 
-        void SaveCheckupResult()
+        void SaveCheckupGroupResult()
         {
+            try
+            {
+                if (ListGroupResult == null)
+                {
+                    ListGroupResult = new List<string>();
+                }
+                CheckupGroupResult.Conclusion = TextSummeryReslt.Trim();
+                CheckupGroupResult.RABSTSUID = IsAbnormal ? 2882 : 2883;
+                DataService.Checkup.SaveCheckupGroupResult(CheckupGroupResult, AppUtil.Current.UserID);
 
+                StringBuilder sb = new StringBuilder();
+                int index = ListGroupResult.FindIndex(n => n.Contains(SelectGroupResult.Display));
+                if (index >= 0)
+                {
+                    index = ListGroupResult.FindIndex(n => n.Contains(SelectGroupResult.Display));
+                    ListGroupResult[index] = "O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim();
+                }
+                else
+                {
+                    ListGroupResult.Add("O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim());
+                }
+                foreach (var result in ListGroupResult)
+                {
+                    if (!string.IsNullOrEmpty(result))
+                        sb.AppendLine(result);
+                }
+
+                WellnessResult = sb.ToString();
+
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        void SaveWellNessResult()
+        {
+            try
+            {
+                if (string.IsNullOrEmpty(WellnessResult))
+                {
+                    WarningDialog("กรุณากรอกข้อมูลในสรุปเล่มรายบุุคล");
+                }
+
+                if (WellnessData == null)
+                {
+                    WellnessData = new WellnessDataModel();
+                    WellnessData.PatientUID = SelectPatientVisit.PatientUID;
+                    WellnessData.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+                }
+                WellnessData.WellnessResult = WellnessResult;
+                DataService.PatientHistory.ManageWellnessData(WellnessData, AppUtil.Current.UserID);
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
         }
         public void PatientSearch()
         {

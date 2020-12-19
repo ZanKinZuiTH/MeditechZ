@@ -1029,6 +1029,8 @@ namespace MediTechWebApi.Controllers
 
         #region CheckupProcess
 
+
+
         [Route("GetVisitCheckupGroup")]
         [HttpPost]
         public List<PatientVisitModel> GetVisitCheckupGroup(int checkupJobUID, List<int> GPRSTUIDs)
@@ -1045,6 +1047,7 @@ namespace MediTechWebApi.Controllers
                         && pv.StatusFlag == "A"
                         && re.StatusFlag == "A"
                         && red.StatusFlag == "A"
+                        && red.ORDSTUID != 2848
                         && rs.StatusFlag == "A"
                         && GPRSTUIDs.Contains(gps.GPRSTUID)
                         select new PatientVisitModel
@@ -1107,6 +1110,7 @@ namespace MediTechWebApi.Controllers
                         && re.StatusFlag == "A"
                         && red.StatusFlag == "A"
                         && rs.StatusFlag == "A"
+                        && red.ORDSTUID != 2848
                         && GPRSTUIDs.Contains(gps.GPRSTUID)
                         select new PatientVisitModel
                         {
@@ -1148,7 +1152,7 @@ namespace MediTechWebApi.Controllers
             }).ToList();
 
             returnData = (from pv in distinctVisit
-                          where !db.CheckupSummeryResult.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
+                          where !db.CheckupGroupResult.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
                           select pv).ToList();
             return returnData;
         }
@@ -1158,47 +1162,52 @@ namespace MediTechWebApi.Controllers
         public List<LookupReferenceValueModel> GetCheckupGroupByVisitUID(long patientVisitUID)
         {
             List<LookupReferenceValueModel> groupResult = new List<LookupReferenceValueModel>();
-            var data = (from pv in db.PatientVisit
-                        join re in db.Request on pv.UID equals re.PatientVisitUID
+            var data = (from re in db.Request
                         join red in db.RequestDetail on re.UID equals red.RequestUID
                         join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
-                        where pv.UID == patientVisitUID
-                         && pv.StatusFlag == "A"
+                        where re.StatusFlag == "A"
                          && re.StatusFlag == "A"
                          && red.StatusFlag == "A"
+                         && gps.StatusFlag == "A"
+                         && re.PatientVisitUID == patientVisitUID
+                         && red.ORDSTUID != 2848
                         select new LookupReferenceValueModel
                         {
                             Key = gps.GPRSTUID,
-                            Display = gps.GroupResultName,
-                            DisplayOrder = gps.PrintOrder ?? 0,
-                            Key2 = gps.RequestItemUID
+                            Display = gps.GroupResultName
                         });
-            //var vitalSign = db.PatientVitalSign.FirstOrDefault(p => p.PatientVisitUID == patientVisitUID);
-            //if (vitalSign != null)
-            //{
 
-            //}
             LookupReferenceValueModel bmi = new LookupReferenceValueModel();
             bmi.Key = 3177;
             bmi.Display = "ตรวจค่าวัดดัชนีมวลกาย (BMI)";
-            bmi.DisplayOrder = 1;
+
             LookupReferenceValueModel bp_pluse = new LookupReferenceValueModel();
             bp_pluse.Key = 3178;
             bp_pluse.Display = "ตรวจวัดความดันโลหิต (BP/Pulse)";
-            bp_pluse.DisplayOrder = 2;
 
             groupResult.Add(bmi);
             groupResult.Add(bp_pluse);
 
             var groupDistinct = data.Distinct().ToList();
-            //var groupDistinct = data.GroupBy(p => p.GPRSTUID)
-            //    .Select(g => new LookupReferenceValueModel
-            //    {
-            //        Key = g.FirstOrDefault().GPRSTUID,
-            //        Display = g.FirstOrDefault().GroupResultName,
-            //        DisplayOrder = g.FirstOrDefault().PrintOrder ?? 0
-            //    }).OrderBy(p => p.DisplayOrder).ToList();
             groupResult.AddRange(groupDistinct);
+
+            PatientVisit patientVisit = db.PatientVisit.Find(patientVisitUID);
+            if (patientVisit.CheckupJobUID != null)
+            {
+                foreach (var result in groupResult)
+                {
+                    var task = db.CheckupJobTask.FirstOrDefault(p => p.GPRSTUID == result.Key && p.CheckupJobContactUID == patientVisit.CheckupJobUID);
+                    if (task != null)
+                        result.DisplayOrder = task.DisplayOrder ?? 0;
+                }
+
+                groupResult = groupResult.OrderBy(p => p.DisplayOrder).ToList();
+            }
+            else
+            {
+                groupResult = groupResult.OrderBy(p => p.Display).ToList();
+            }
+
             return groupResult;
         }
 
@@ -1267,8 +1276,8 @@ namespace MediTechWebApi.Controllers
             return dataCheckupRule;
         }
 
-        [Route("GetResultComponent")]
-        public List<ResultComponentModel> GetResultComponent(long patientVisitUID, int GPRSTUID)
+        [Route("GetGroupResultComponentByVisitUID")]
+        public List<ResultComponentModel> GetGroupResultComponentByVisitUID(long patientVisitUID, int GPRSTUID)
         {
             var resultComponent = (from rs in db.Result
                                    join rsc in db.ResultComponent on rs.UID equals rsc.ResultUID
@@ -1291,31 +1300,42 @@ namespace MediTechWebApi.Controllers
             return resultComponent;
         }
 
-        [Route("SaveChekcupSummeryResult")]
+        [Route("GetCheckupMobileResultByVisitUID")]
+        [HttpGet]
+        public List<PatientResultComponentModel> GetCheckupMobileResultByVisitUID(long patientUID, long patientVisitUID)
+        {
+            DataTable dtData = SqlDirectStore.pGetCheckupMobileResult(patientUID, patientVisitUID);
+
+            List<PatientResultComponentModel> data = dtData.ToList<PatientResultComponentModel>();
+
+            return data;
+        }
+
+        [Route("SaveChekcupGroupResult")]
         [HttpPost]
-        public HttpResponseMessage SaveChekcupSummeryResult(CheckupSummeryResultModel summeryResult, int userUID)
+        public HttpResponseMessage SaveChekcupGroupResult(CheckupGroupResultModel groupResult, int userUID)
         {
             try
             {
-                CheckupSummeryResult checkupTran = db.CheckupSummeryResult.FirstOrDefault(p => p.PatientVisitUID == summeryResult.PatientVisitUID
-                && p.GPRSTUID == summeryResult.GPRSTUID);
+                CheckupGroupResult checkupTran = db.CheckupGroupResult.FirstOrDefault(p => p.PatientVisitUID == groupResult.PatientVisitUID
+                && p.GPRSTUID == groupResult.GPRSTUID);
                 if (checkupTran == null)
                 {
-                    checkupTran = new CheckupSummeryResult();
+                    checkupTran = new CheckupGroupResult();
                     checkupTran.CUser = userUID;
                     checkupTran.CWhen = DateTime.Now;
                     checkupTran.StatusFlag = "A";
                 }
-                checkupTran.PatientUID = summeryResult.PatientUID;
-                checkupTran.PatientVisitUID = summeryResult.PatientVisitUID;
-                checkupTran.GPRSTUID = summeryResult.GPRSTUID;
-                checkupTran.RABSTSUID = summeryResult.RABSTSUID;
-                checkupTran.Description = summeryResult.Description;
-                checkupTran.Recommend = summeryResult.Recommend;
-                checkupTran.SummeryResult = summeryResult.SummeryResult;
+                checkupTran.PatientUID = groupResult.PatientUID;
+                checkupTran.PatientVisitUID = groupResult.PatientVisitUID;
+                checkupTran.GPRSTUID = groupResult.GPRSTUID;
+                checkupTran.RABSTSUID = groupResult.RABSTSUID;
+                checkupTran.Description = groupResult.Description;
+                checkupTran.Recommend = groupResult.Recommend;
+                checkupTran.Conclusion = groupResult.Conclusion;
                 checkupTran.MUser = userUID;
                 checkupTran.MWhen = DateTime.Now;
-                db.CheckupSummeryResult.AddOrUpdate(checkupTran);
+                db.CheckupGroupResult.AddOrUpdate(checkupTran);
                 db.SaveChanges();
 
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -1452,7 +1472,7 @@ namespace MediTechWebApi.Controllers
                         else if (grpstUID == 3177 || grpstUID == 3178)
                         {
                             resultComponent = new List<ResultComponent>();
-                            ResultComponent bmiComponent = new ResultComponent() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "",ResultValue = "" };
+                            ResultComponent bmiComponent = new ResultComponent() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "", ResultValue = "" };
                             ResultComponent sdpComponent = new ResultComponent() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "", ResultValue = "" };
                             ResultComponent dbpComponent = new ResultComponent() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "", ResultValue = "" };
                             ResultComponent pluseComponent = new ResultComponent() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "", ResultValue = "" };
@@ -1571,10 +1591,10 @@ namespace MediTechWebApi.Controllers
                         {
                             recommandString += string.IsNullOrEmpty(recommandString) ? item.ThaiRecommend : " " + item.ThaiRecommend;
                         }
-                        CheckupSummeryResult checkupTran = db.CheckupSummeryResult.FirstOrDefault(p => p.PatientVisitUID == patientVisitUID);
+                        CheckupGroupResult checkupTran = db.CheckupGroupResult.FirstOrDefault(p => p.PatientVisitUID == patientVisitUID);
                         if (checkupTran == null)
                         {
-                            checkupTran = new CheckupSummeryResult();
+                            checkupTran = new CheckupGroupResult();
                             checkupTran.CUser = userUID;
                             checkupTran.CWhen = DateTime.Now;
                             checkupTran.StatusFlag = "A";
@@ -1585,10 +1605,10 @@ namespace MediTechWebApi.Controllers
                         checkupTran.RABSTSUID = RABSTSUID;
                         checkupTran.Description = descriptionString;
                         checkupTran.Recommend = recommandString;
-                        checkupTran.SummeryResult = descriptionString + " " + recommandString;
+                        checkupTran.Conclusion = descriptionString + " " + recommandString;
                         checkupTran.MUser = userUID;
                         checkupTran.MWhen = DateTime.Now;
-                        db.CheckupSummeryResult.AddOrUpdate(checkupTran);
+                        db.CheckupGroupResult.AddOrUpdate(checkupTran);
                         db.SaveChanges();
                     }
 
@@ -1604,16 +1624,18 @@ namespace MediTechWebApi.Controllers
 
         }
 
-        [Route("GetResultComponentyByGroup")]
+        [Route("GetCheckupGroupResultByJob")]
         [HttpGet]
-        public List<PatientResultCheckupModel> GetResultComponentyByGroup(int checkupJobUID, int GPRSTUID)
+        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID)
         {
-            DataTable dtData = SqlDirectStore.pGetCheckupResultGroup(checkupJobUID, GPRSTUID);
+            DataTable dtData = SqlDirectStore.pGetCheckupGroupResult(checkupJobUID, GPRSTUID);
 
             List<PatientResultCheckupModel> data = dtData.ToList<PatientResultCheckupModel>();
 
             return data;
         }
+
+
 
         [Route("GetResultCumulative")]
         [HttpGet]
@@ -1621,6 +1643,20 @@ namespace MediTechWebApi.Controllers
         {
             List<PatientResultComponentModel> data = null;
             DataTable dt = SqlDirectStore.pGetResultCumulative(patientUID, requestItemUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = dt.ToList<PatientResultComponentModel>();
+            }
+
+            return data;
+        }
+
+        [Route("GetGroupResultCumulative")]
+        [HttpGet]
+        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, int GPRSTUID)
+        {
+            List<PatientResultComponentModel> data = null;
+            DataTable dt = SqlDirectStore.pGetGroupResultCumulative(patientUID, GPRSTUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientResultComponentModel>();
@@ -1643,20 +1679,20 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("GetCheckupSummeryResultByVisit")]
+        [Route("GetCheckupGroupResultByVisit")]
         [HttpGet]
-        public CheckupSummeryResultModel GetCheckupSummeryResultByVisit(long patientVisitUID, int GPRSTUID)
+        public CheckupGroupResultModel GetCheckupGroupResultByVisit(long patientVisitUID, int GPRSTUID)
         {
-            CheckupSummeryResultModel data = db.CheckupSummeryResult
+            CheckupGroupResultModel data = db.CheckupGroupResult
                 .Where(p => p.PatientVisitUID == patientVisitUID && p.GPRSTUID == GPRSTUID)
-                .Select(p => new CheckupSummeryResultModel
+                .Select(p => new CheckupGroupResultModel
                 {
-                    CheckupSummeryResultUID = p.UID,
+                    CheckupGroupResultUID = p.UID,
                     PatientUID = p.PatientUID,
                     PatientVisitUID = p.PatientVisitUID,
                     GPRSTUID = p.GPRSTUID,
                     RABSTSUID = p.RABSTSUID,
-                    SummeryResult = p.SummeryResult
+                    Conclusion = p.Conclusion
                 }).FirstOrDefault();
 
             return data;

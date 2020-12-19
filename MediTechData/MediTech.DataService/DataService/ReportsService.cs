@@ -146,6 +146,23 @@ namespace MediTech.DataService
             return data;
         }
 
+        public PatientWellnessModel PrintWellnessBook(long patientUID, long patientVisitUID, long payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Report/PrintWellnessBook?patientUID={0}&patientVisitUID={1}&payorDetailUID={2}", patientUID, patientVisitUID, payorDetailUID);
+            PatientWellnessModel data = MeditechApiHelper.Get<PatientWellnessModel>(requestApi);
+
+            return data;
+        }
+
+
+        public PatientVisitModel PatientInfomationWellness(long patientUID, long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Report/PatientInfomationWellness?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            PatientVisitModel data = MeditechApiHelper.Get<PatientVisitModel>(requestApi);
+
+            return data;
+        }
+
         public List<PatientResultComponentModel> CheckupLabCompare(long patientUID, long payorDetailUID)
         {
             string requestApi = string.Format("Api/Report/CheckupLabCompare?patientUID={0}&payorDetailUID={1}", patientUID, payorDetailUID);

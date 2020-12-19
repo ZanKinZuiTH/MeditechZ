@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,55 @@ namespace MediTech.Views
         public VerifyChekupResult()
         {
             InitializeComponent();
+            gvResult.CustomCellAppearance += GvResult_CustomCellAppearance;
+            txtWellness.LostFocus += TxtWellness_LostFocus;
+        }
+
+
+
+        private void GvResult_CustomCellAppearance(object sender, DevExpress.Xpf.Grid.CustomCellAppearanceEventArgs e)
+        {
+            try
+            {
+                if (e.Property == TextBlock.ForegroundProperty)
+                {
+                    var cellValue = gcResult.GetCellValue(e.RowHandle, e.Column.FieldName);
+                    if (cellValue != null && cellValue.ToString() != "")
+                    {
+                        string[] values = cellValue.ToString().Split(' ');
+                        if (values != null && values.Count() > 1)
+                        {
+                            string IsAbnormal = values?[1];
+                            if (IsAbnormal == "H")
+                            {
+                                e.Result = new SolidColorBrush(Colors.Red);
+                                e.Handled = true;
+                            }
+                            else if (IsAbnormal == "L")
+                            {
+                                e.Result = new SolidColorBrush(Colors.Blue);
+                                e.Handled = true;
+                            }
+                        }
+                    }
+
+                }
+
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        private void TxtWellness_LostFocus(object sender, RoutedEventArgs e)
+        {
+            if (this.DataContext is VerifyChekupResultViewModel)
+            {
+                var viewModel = (this.DataContext as VerifyChekupResultViewModel);
+                string[] locResult = txtWellness.Text.Split(new[] { "\r\n", "\r", "\n" }, StringSplitOptions.RemoveEmptyEntries);
+                viewModel.ListGroupResult = locResult.ToList();
+            }
         }
     }
 }

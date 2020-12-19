@@ -176,9 +176,6 @@
                 </dxlc:LayoutItem>
                 <dxg:GridControl x:Name="gcResultList" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                
                                      ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
-                    <dxmvvm:Interaction.Behaviors>
-                        <helper:DeferredColumnFitBehavior/>
-                    </dxmvvm:Interaction.Behaviors>
                     <dxg:GridControl.View>
                         <dxg:TableView Name="gvResultList" ShowGroupPanel="False"/>
                     </dxg:GridControl.View>

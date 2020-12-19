@@ -10,7 +10,6 @@ namespace MediTech.Model
     {
         public string RadiologyResultText { get; set; }
         public string RadiologyResultStatus { get; set; }
-        public string WellnessResult { get; set; }
         public string Eyes { get; set; }
         public string Ears { get; set; }
         public string Throat { get; set; }

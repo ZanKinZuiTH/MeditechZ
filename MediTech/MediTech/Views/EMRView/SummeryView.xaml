@@ -1169,21 +1169,6 @@
                     <DataTemplate>
                         <dxg:GridControl  ItemsSource="{Binding DataContext.ListWellnessData,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                      SelectedItem="{Binding DataContext.SelectWellnessData,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                            <dxg:GridColumn FieldName="Diagnosis"  Width="*" ReadOnly="True">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontStyle="Italic"
-                                               FontWeight="Regular"
-                                               Foreground="DimGray"
-                                               TextWrapping="NoWrap"
-                                               TextTrimming="CharacterEllipsis"
-                                               ToolTip="{Binding RowData.Row.Diagnosis}"
-                                               Text="{Binding RowData.Row.Diagnosis}" />
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
                             <dxg:GridColumn FieldName="WellnessResult" Width="*" ReadOnly="True">
                                 <dxg:GridColumn.CellTemplate>
                                     <DataTemplate>
@@ -1192,7 +1177,7 @@
                                                FontStyle="Italic"
                                                FontWeight="Regular"
                                                Foreground="DimGray"
-                                               TextWrapping="NoWrap"
+                                               TextWrapping="Wrap"
                                                TextTrimming="CharacterEllipsis"
                                                ToolTip="{Binding RowData.Row.WellnessResult}"
                                                Text="{Binding RowData.Row.WellnessResult}" />
@@ -1264,31 +1249,18 @@
                     </i:Interaction.Triggers>
                     <dxe:ListBoxEdit.ItemTemplate>
                         <DataTemplate>
-                            <Grid>
-                                <Grid.RowDefinitions>
-                                    <RowDefinition MaxHeight="134"/>
-                                    <RowDefinition Height="Auto"/>
-                                </Grid.RowDefinitions>
-
-                                <Grid Grid.Row="0" >
+                            <Border BorderThickness="0,0,0,1" BorderBrush="Black" Padding="0,0,0,3">
+                                <Grid>
                                     <Grid.RowDefinitions>
-                                        <RowDefinition Height="67"/>
+                                        <RowDefinition MaxHeight="134"/>
                                         <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="67"/>
                                     </Grid.RowDefinitions>
-                                    <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontStyle="Italic"
-                                               FontWeight="Regular"
-                                               Foreground="DimGray"
-                                               TextWrapping="NoWrap"
-                                               TextTrimming="CharacterEllipsis"
-                                               ToolTip="{Binding Diagnosis}"
-                                               Text="{Binding Diagnosis}" />
 
-                                    <Border Grid.Row="1" BorderThickness="0,1,0,0" BorderBrush="Black"  />
-
-                                    <TextBlock Grid.Row="2" Margin="5,1,0,0"
+                                    <Grid Grid.Row="0" >
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                FontStyle="Italic"
                                                FontWeight="Regular"
@@ -1297,74 +1269,23 @@
                                                TextTrimming="CharacterEllipsis"
                                                ToolTip="{Binding WellnessResult}"
                                                Text="{Binding WellnessResult}" />
-                                </Grid>
-                                <Grid Grid.Row="1" Margin="0,5,0,0">
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="Auto"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="Auto"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
-                                    <Image Width="45" Height="45" Grid.RowSpan="2" Stretch="UniformToFill"
+                                    </Grid>
+                                    <Grid Grid.Row="1" Margin="0,5,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="Auto"/>
+                                            <RowDefinition Height="Auto"/>
+                                        </Grid.RowDefinitions>
+                                        <Image Width="45" Height="45" Grid.RowSpan="2" Stretch="UniformToFill"
                                            Cursor="Hand" ToolTip="Preview Book"
                                            VerticalAlignment="Top" HorizontalAlignment="Left"
                                            Source="/MediTech;component/Resources/Images/Other/Healthbook.png">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.PreviewWellnessBookCommand
-                                                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                        <Image.Style>
-                                            <Style TargetType="{x:Type Image}">
-                                                <Style.Triggers>
-                                                    <Trigger Property="IsMouseOver" Value="True">
-                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
-                                                    </Trigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </Image.Style>
-                                    </Image>
-                                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                        <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontWeight="Thin"
-                                               VerticalAlignment="Center"
-                                               Text="Record By :" />
-                                        <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontWeight="Thin"
-                                               Foreground="#FF057BF9"
-                                              VerticalAlignment="Center"
-                                               Text="{Binding RecordBy}" />
-                                    </StackPanel>
-                                    <Grid Grid.Row="1" Grid.Column="1">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*" />
-                                        </Grid.ColumnDefinitions>
-
-                                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                                            <TextBlock Margin="5,1,0,0"
-                                               FontSize="10"
-                                               FontWeight="Thin"
-                                               Text="Record Dttm :" />
-                                            <TextBlock Margin="5,1,0,0"
-                                               FontSize="10"
-                                               FontWeight="Bold"
-                                               Text="{Binding MWhen,StringFormat=dd/MM/yyyy HH:mm}" />
-
-                                        </StackPanel>
-
-                                        <Image Grid.Column="1" Width="18" Height="18" Stretch="UniformToFill"                            
-                                   Cursor="Hand"
-                                   ToolTip="ลบข้อมูล"
-                                   Source="/MediTech;component/Resources/Images/Action/trash.png">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                    <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
+                                                    <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.PreviewWellnessBookCommand
                                                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -1378,9 +1299,61 @@
                                                 </Style>
                                             </Image.Style>
                                         </Image>
+                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                            <TextBlock Margin="5,1,0,0"
+                                               FontSize="12"
+                                               FontWeight="Thin"
+                                               VerticalAlignment="Center"
+                                               Text="Record By :" />
+                                            <TextBlock Margin="5,1,0,0"
+                                               FontSize="12"
+                                               FontWeight="Thin"
+                                               Foreground="#FF057BF9"
+                                              VerticalAlignment="Center"
+                                               Text="{Binding RecordBy}" />
+                                        </StackPanel>
+                                        <Grid Grid.Row="1" Grid.Column="1">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="Auto"/>
+                                                <ColumnDefinition Width="*" />
+                                            </Grid.ColumnDefinitions>
+
+                                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                                <TextBlock Margin="5,1,0,0"
+                                               FontSize="10"
+                                               FontWeight="Thin"
+                                               Text="Record Dttm :" />
+                                                <TextBlock Margin="5,1,0,0"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               Text="{Binding MWhen,StringFormat=dd/MM/yyyy HH:mm}" />
+
+                                            </StackPanel>
+
+                                            <Image Grid.Column="1" Width="18" Height="18" Stretch="UniformToFill"                            
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/trash.png">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                        <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
+                                                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <Trigger Property="IsMouseOver" Value="True">
+                                                                <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                            </Trigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </Grid>
+                            </Border>
                         </DataTemplate>
                     </dxe:ListBoxEdit.ItemTemplate>
                 </dxe:ListBoxEdit>
