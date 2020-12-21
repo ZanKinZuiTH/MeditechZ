@@ -384,6 +384,12 @@
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrTableRow59 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LiverYear1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LiverYear2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LiverYear3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).BeginInit();
@@ -2548,9 +2554,10 @@
             // 
             // xrTable7
             // 
-            this.xrTable7.LocationFloat = new DevExpress.Utils.PointFloat(29.47266F, 734.0208F);
+            this.xrTable7.LocationFloat = new DevExpress.Utils.PointFloat(29.88702F, 723.1363F);
             this.xrTable7.Name = "xrTable7";
             this.xrTable7.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow59,
             this.xrTableRow31,
             this.xrTableRow32,
             this.xrTableRow33,
@@ -2559,7 +2566,7 @@
             this.xrTableRow67,
             this.xrTableRow68,
             this.xrTableRow69});
-            this.xrTable7.SizeF = new System.Drawing.SizeF(374.694F, 149.6456F);
+            this.xrTable7.SizeF = new System.Drawing.SizeF(374.694F, 163.0163F);
             // 
             // xrTableRow31
             // 
@@ -3250,16 +3257,16 @@
             // 
             this.xrLabel16.CanGrow = false;
             this.xrLabel16.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(30.30599F, 711.0207F);
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(30.84258F, 706.1569F);
             this.xrLabel16.Name = "xrLabel16";
             this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(266.0811F, 18.83331F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(266.0811F, 16.76147F);
             this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.Text = "การทํางานของตับ (Liver Function Test)";
             // 
             // xrTable8
             // 
-            this.xrTable8.LocationFloat = new DevExpress.Utils.PointFloat(31.13932F, 569.1667F);
+            this.xrTable8.LocationFloat = new DevExpress.Utils.PointFloat(31.96805F, 569.5809F);
             this.xrTable8.Name = "xrTable8";
             this.xrTable8.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow29,
@@ -3269,7 +3276,7 @@
             this.xrTableRow30,
             this.xrTableRow34,
             this.xrTableRow65});
-            this.xrTable8.SizeF = new System.Drawing.SizeF(374.694F, 138.3124F);
+            this.xrTable8.SizeF = new System.Drawing.SizeF(374.694F, 135.8263F);
             // 
             // xrTableRow29
             // 
@@ -3280,7 +3287,7 @@
             this.cellSugarYear3,
             this.xrTableCell46});
             this.xrTableRow29.Name = "xrTableRow29";
-            this.xrTableRow29.Weight = 1D;
+            this.xrTableRow29.Weight = 0.87417834032876041D;
             // 
             // xrTableCell35
             // 
@@ -4954,10 +4961,10 @@
             // 
             this.xrLabel3.CanGrow = false;
             this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(30.30599F, 549.5001F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(31.13472F, 548.257F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(358.3334F, 18F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(358.3334F, 20.48621F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.Text = "การตรวจทางห้องปฏิบัติการ (LABORATORY EXAMINATION)";
             // 
@@ -5015,6 +5022,96 @@
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrTableRow59
+            // 
+            this.xrTableRow59.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell15,
+            this.LiverYear1,
+            this.LiverYear2,
+            this.LiverYear3,
+            this.xrTableCell63});
+            this.xrTableRow59.Name = "xrTableRow59";
+            this.xrTableRow59.Weight = 1.092443670754385D;
+            // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell15.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
+            this.xrTableCell15.Borders = DevExpress.XtraPrinting.BorderSide.Right;
+            this.xrTableCell15.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.StylePriority.UseBorderColor = false;
+            this.xrTableCell15.StylePriority.UseBorderDashStyle = false;
+            this.xrTableCell15.StylePriority.UseBorders = false;
+            this.xrTableCell15.StylePriority.UseFont = false;
+            this.xrTableCell15.StylePriority.UseTextAlignment = false;
+            this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell15.Weight = 0.63835274674544229D;
+            // 
+            // LiverYear1
+            // 
+            this.LiverYear1.BorderColor = System.Drawing.Color.DarkGray;
+            this.LiverYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.LiverYear1.CanGrow = false;
+            this.LiverYear1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.LiverYear1.Name = "LiverYear1";
+            this.LiverYear1.StylePriority.UseBorderColor = false;
+            this.LiverYear1.StylePriority.UseBorders = false;
+            this.LiverYear1.StylePriority.UseFont = false;
+            this.LiverYear1.StylePriority.UseTextAlignment = false;
+            this.LiverYear1.Text = "ปีที่...";
+            this.LiverYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LiverYear1.Weight = 0.43397388706770751D;
+            // 
+            // LiverYear2
+            // 
+            this.LiverYear2.BorderColor = System.Drawing.Color.DarkGray;
+            this.LiverYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.LiverYear2.CanGrow = false;
+            this.LiverYear2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.LiverYear2.Name = "LiverYear2";
+            this.LiverYear2.StylePriority.UseBorderColor = false;
+            this.LiverYear2.StylePriority.UseBorders = false;
+            this.LiverYear2.StylePriority.UseFont = false;
+            this.LiverYear2.StylePriority.UseTextAlignment = false;
+            this.LiverYear2.Text = "ปีที่...";
+            this.LiverYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LiverYear2.Weight = 0.41661503318725313D;
+            // 
+            // LiverYear3
+            // 
+            this.LiverYear3.BorderColor = System.Drawing.Color.DarkGray;
+            this.LiverYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.LiverYear3.CanGrow = false;
+            this.LiverYear3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.LiverYear3.Name = "LiverYear3";
+            this.LiverYear3.StylePriority.UseBorderColor = false;
+            this.LiverYear3.StylePriority.UseBorders = false;
+            this.LiverYear3.StylePriority.UseFont = false;
+            this.LiverYear3.StylePriority.UseTextAlignment = false;
+            this.LiverYear3.Text = "ปีที่...";
+            this.LiverYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LiverYear3.Weight = 0.41661503356595136D;
+            // 
+            // xrTableCell63
+            // 
+            this.xrTableCell63.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell63.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.xrTableCell63.CanGrow = false;
+            this.xrTableCell63.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell63.Name = "xrTableCell63";
+            this.xrTableCell63.StylePriority.UseBorderColor = false;
+            this.xrTableCell63.StylePriority.UseBorders = false;
+            this.xrTableCell63.StylePriority.UseFont = false;
+            this.xrTableCell63.StylePriority.UseTextAlignment = false;
+            this.xrTableCell63.Text = "ค่าปกติ";
+            this.xrTableCell63.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell63.Weight = 0.6961624740592014D;
             // 
             // RiskBook4
             // 
@@ -5400,5 +5497,11 @@
         private DevExpress.XtraReports.UI.XRTableCell text8000;
         private DevExpress.XtraReports.UI.XRRichText xrRichText1;
         private DevExpress.XtraReports.UI.XRRichText xrRichText2;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow59;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        public DevExpress.XtraReports.UI.XRTableCell LiverYear1;
+        public DevExpress.XtraReports.UI.XRTableCell LiverYear2;
+        public DevExpress.XtraReports.UI.XRTableCell LiverYear3;
+        public DevExpress.XtraReports.UI.XRTableCell xrTableCell63;
     }
 }

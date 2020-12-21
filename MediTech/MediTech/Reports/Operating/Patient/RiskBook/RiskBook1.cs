@@ -393,8 +393,11 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 Years.Sort();
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                page3.UAyear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                page3.UAyear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                page3.UAyear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page3.cellcolorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080")?.ReferenceRange;
                 page3.cellcolor1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year1)?.ResultValue;
@@ -463,6 +466,9 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
                 int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
                 int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                page3.HbYear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                page3.HbYear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                page3.HbYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page3.cellHBsAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35")?.ReferenceRange;
                 page3.cellHBsAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year1)?.ResultValue;
@@ -560,9 +566,16 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
                 int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
                 int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                page3.KidneyYear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                page3.KidneyYear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                page3.KidneyYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page3.cellBunRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27")?.ReferenceRange;
                 page3.cellBun1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year1)?.ResultValue;
+                if (page3.cellBun1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page3.cellBun1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page3.cellBun2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year2)?.ResultValue;
                 page3.cellBun3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year3)?.ResultValue;
 
@@ -583,6 +596,9 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
                 int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
                 int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                page4.LiverYear1.Text = "ปี" + " " + (year1 + 543).ToString();
+                page4.LiverYear2.Text = "ปี" + " " + (year2 + 543).ToString();
+                page4.LiverYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page4.cellBilirubinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48")?.ReferenceRange;
                 page4.cellBilirubin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year1)?.ResultValue;
