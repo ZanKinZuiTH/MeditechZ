@@ -500,31 +500,46 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
 
                 page4.cellFBSRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180")?.ReferenceRange;
                 page4.cellFBS1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year1)?.ResultValue;
+                if (page4.cellFBS1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellFBS1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellFBS2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year2)?.ResultValue;
                 page4.cellFBS3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year3)?.ResultValue;
 
                 page4.cellCholRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130")?.ReferenceRange;
                 page4.cellChol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year1)?.ResultValue;
-                page4.cellChol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year2)?.ResultValue;
-                page4.cellChol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year3)?.ResultValue;
-
-                page4.cellCholRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130")?.ReferenceRange;
-                page4.cellChol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year1)?.ResultValue;
+                if (page4.cellChol1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellChol1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellChol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year2)?.ResultValue;
                 page4.cellChol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year3)?.ResultValue;
 
                 page4.cellTGRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140")?.ReferenceRange;
                 page4.cellTG1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year1)?.ResultValue;
+                if (page4.cellTG1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellTG1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellTG2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year2)?.ResultValue;
                 page4.cellTG3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year3)?.ResultValue;
 
                 page4.cellHDLRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150")?.ReferenceRange;
                 page4.cellHDL1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year1)?.ResultValue;
+                if (page4.cellHDL1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellHDL1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellHDL2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year2)?.ResultValue;
                 page4.cellHDL3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year3)?.ResultValue;
 
                 page4.cellLDLRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159")?.ReferenceRange;
                 page4.cellLDL1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year1)?.ResultValue;
+                if (page4.cellLDL1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellLDL1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellLDL2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year2)?.ResultValue;
                 page4.cellLDL3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year3)?.ResultValue;
 
@@ -586,6 +601,10 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
 
                 page4.cellSgotRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50")?.ReferenceRange;
                 page4.cellSgot1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year1)?.ResultValue;
+                if (page4.cellSgot1.Text == "ปฏิเสธการเจาะเลือดส่งตรวจ")
+                {
+                    page4.cellSgot1.Text = "ปฏิเสธเจาะเลือด";
+                }
                 page4.cellSgot2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year2)?.ResultValue;
                 page4.cellSgot3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year3)?.ResultValue;
 
