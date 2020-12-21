@@ -303,6 +303,7 @@
           <Property Name="Hight" Type="float" />
           <Property Name="Text" Type="nvarchar" MaxLength="200" />
           <Property Name="Operator" Type="nvarchar" MaxLength="20" />
+          <Property Name="NonCheckup" Type="bit" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1293,6 +1294,7 @@
           <Property Name="DrugAllergy" Type="nvarchar" MaxLength="500" />
           <Property Name="PersonalHistory" Type="nvarchar" MaxLength="500" />
           <Property Name="Conclusion" Type="nvarchar" MaxLength="1000" />
+          <Property Name="RABSTSUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1600,12 +1602,12 @@
           <Property Name="NearPoint" Type="nvarchar" MaxLength="50" />
           <Property Name="Depth" Type="nvarchar" MaxLength="50" />
           <Property Name="Color" Type="nvarchar" MaxLength="50" />
-          <Property Name="Muscle" Type="nvarchar" MaxLength="50" />
+          <Property Name="Muscle" Type="nvarchar" MaxLength="255" />
           <Property Name="Visualfield" Type="nvarchar" MaxLength="50" />
           <Property Name="VARt" Type="nvarchar" MaxLength="50" />
           <Property Name="VALt" Type="nvarchar" MaxLength="50" />
           <Property Name="Disease" Type="nvarchar" MaxLength="50" />
-          <Property Name="Conclusion" Type="nvarchar" MaxLength="255" />
+          <Property Name="Conclusion" Type="nvarchar(max)" />
           <Property Name="Recommend" Type="nvarchar" MaxLength="255" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
           <Property Name="RABSTSUID" Type="int" />
@@ -3219,9 +3221,13 @@
           <Parameter Name="P_MinorVisitUIDS" Type="nvarchar" Mode="In" />
           <Parameter Name="P_UserID" Type="int" Mode="In" />
         </Function>
-        <Function Name="pGetCheckupResultGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+        <Function Name="pGetCheckupGroupResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_JobContactUID" Type="int" Mode="In" />
           <Parameter Name="P_GPRSTUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pGetCheckupMobileResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
         </Function>
         <Function Name="pGetDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -3523,6 +3529,10 @@
           <Parameter Name="P_MonthLists" Type="nvarchar" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pRPTPatientWellness" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="pRPTRadiologyRDUReview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
@@ -3656,6 +3666,13 @@
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_BillNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="P_OwnerOrganisatinUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pSearchPatientCheckup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pSearchPatientMedicalDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HN" Type="nvarchar" Mode="In" />
@@ -4906,6 +4923,10 @@
           <FunctionImport Name="pGetVitalSignCumulative" ReturnType="Collection(MediTechModel.pGetVitalSignCumulative_Result)">
           <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
           </FunctionImport>
+          <FunctionImport Name="pGetGroupResultCumulative" ReturnType="Collection(MediTechModel.pGetGroupResultCumulative_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_GPRSTUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -5063,9 +5084,24 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pGetGroupResultCumulative" ReturnType="Collection(MediTechModel.pGetGroupResultCumulative_Result)">
-            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+          <FunctionImport Name="pGetCheckupGroupResult" ReturnType="Collection(MediTechModel.pGetCheckupGroupResult_Result)">
+            <Parameter Name="P_JobContactUID" Mode="In" Type="Int32" />
             <Parameter Name="P_GPRSTUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pGetCheckupMobileResult" ReturnType="Collection(MediTechModel.pGetCheckupMobileResult_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTPatientWellness" ReturnType="Collection(MediTechModel.pRPTPatientWellness_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="pSearchPatientCheckup" ReturnType="Collection(MediTechModel.pSearchPatientCheckup_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
@@ -7410,6 +7446,17 @@
           <Property Type="String" Name="ResultValue2" Nullable="true" MaxLength="30" />
           <Property Type="String" Name="ResultValue3" Nullable="true" MaxLength="30" />
         </ComplexType>
+        <ComplexType Name="pGetGroupResultCumulative_Result">
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ResultValue1" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ResultValue2" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ResultValue3" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ReferenceRange" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="ResultUnit" Nullable="true" MaxLength="500" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -7708,6 +7755,7 @@
           <Property Name="Hight" Type="Double" />
           <Property Name="Text" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Operator" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="NonCheckup" Type="Boolean" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -8698,6 +8746,7 @@
           <Property Name="DrugAllergy" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PersonalHistory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Conclusion" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="RABSTSUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9005,12 +9054,12 @@
           <Property Name="NearPoint" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Depth" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Color" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Muscle" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Muscle" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Visualfield" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VARt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="VALt" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Disease" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Conclusion" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Conclusion" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="Recommend" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="RABSTSUID" Type="Int32" />
@@ -10425,16 +10474,92 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pGetGroupResultCumulative_Result">
-          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+        <ComplexType Name="pGetCheckupGroupResult_Result">
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Department1" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResultValue" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="IsAbnormal" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="CheckupDescription" Nullable="true" />
+          <Property Type="String" Name="CheckupRecommend" Nullable="true" />
+          <Property Type="String" Name="CheckupResultStatus" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="pGetCheckupMobileResult_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="ResultValue1" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="ResultValue2" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="ResultValue3" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="ReferenceRange" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="ResultUnit" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Catagory" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResultValue" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="pRPTPatientWellness_Result">
+          <Property Type="Int64" Name="UID" Nullable="false" />
+          <Property Type="Int32" Name="TITLEUID" Nullable="true" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="BirthDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="String" Name="CareproviderName" Nullable="true" MaxLength="201" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="Height" Nullable="true" />
+          <Property Type="Double" Name="BMI" Nullable="true" />
+          <Property Type="Double" Name="BPSys" Nullable="true" />
+          <Property Type="Double" Name="BPDio" Nullable="true" />
+          <Property Type="Double" Name="Pulse" Nullable="true" />
+          <Property Type="Double" Name="WaistCircumference" Nullable="true" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1000" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="WellnessResult" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pSearchPatientCheckup_Result">
+          <Property Type="Int64" Name="PatientUID" Nullable="false" />
+          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="DateTime" Name="BirthDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AgeString" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CareProviderUID" Nullable="true" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="VISTSUID" Nullable="true" />
+          <Property Type="Int32" Name="VISTYUID" Nullable="true" />
+          <Property Type="Int32" Name="PRITYUID" Nullable="true" />
+          <Property Type="Int32" Name="PayorDetailUID" Nullable="false" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="PayorAgreementUID" Nullable="false" />
+          <Property Type="Int32" Name="RefNo" Nullable="true" />
+          <Property Type="Int32" Name="CheckupJobUID" Nullable="true" />
+          <Property Type="Boolean" Name="IsWellnessResult" Nullable="true" />
         </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
@@ -12184,28 +12309,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pGetCheckupResultGroup" FunctionName="MediTechModel.Store.pGetCheckupResultGroup">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetCheckupResultGroup_Result">
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Department1" ColumnName="Department1" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
-                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
-                <ScalarProperty Name="IsAbnormal" ColumnName="IsAbnormal" />
-                <ScalarProperty Name="CheckupDescription" ColumnName="CheckupDescription" />
-                <ScalarProperty Name="CheckupRecommend" ColumnName="CheckupRecommend" />
-                <ScalarProperty Name="CheckupResultStatus" ColumnName="CheckupResultStatus" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pGetResultCumulative" FunctionName="MediTechModel.Store.pGetResultCumulative">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pGetResultCumulative_Result">
@@ -12229,6 +12332,21 @@
                 <ScalarProperty Name="ResultValue1" ColumnName="ResultValue1" />
                 <ScalarProperty Name="ResultValue2" ColumnName="ResultValue2" />
                 <ScalarProperty Name="ResultValue3" ColumnName="ResultValue3" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pGetGroupResultCumulative" FunctionName="MediTechModel.Store.pGetGroupResultCumulative">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pGetGroupResultCumulative_Result">
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
+                <ScalarProperty Name="ResultValue1" ColumnName="ResultValue1" />
+                <ScalarProperty Name="ResultValue2" ColumnName="ResultValue2" />
+                <ScalarProperty Name="ResultValue3" ColumnName="ResultValue3" />
+                <ScalarProperty Name="ReferenceRange" ColumnName="ReferenceRange" />
+                <ScalarProperty Name="ResultUnit" ColumnName="ResultUnit" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12543,6 +12661,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="NonCheckup" ColumnName="NonCheckup" />
                 <ScalarProperty Name="Operator" ColumnName="Operator" />
                 <ScalarProperty Name="Text" ColumnName="Text" />
                 <ScalarProperty Name="Hight" ColumnName="Hight" />
@@ -13566,6 +13685,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="RABSTSUID" ColumnName="RABSTSUID" />
                 <ScalarProperty Name="Conclusion" ColumnName="Conclusion" />
                 <ScalarProperty Name="PersonalHistory" ColumnName="PersonalHistory" />
                 <ScalarProperty Name="DrugAllergy" ColumnName="DrugAllergy" />
@@ -15404,18 +15524,106 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pGetGroupResultCumulative" FunctionName="MediTechModel.Store.pGetGroupResultCumulative">
+          <FunctionImportMapping FunctionImportName="pGetCheckupGroupResult" FunctionName="MediTechModel.Store.pGetCheckupGroupResult">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetGroupResultCumulative_Result">
-                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+              <ComplexTypeMapping TypeName="MediTechModel.pGetCheckupGroupResult_Result">
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Department1" ColumnName="Department1" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+                <ScalarProperty Name="IsAbnormal" ColumnName="IsAbnormal" />
+                <ScalarProperty Name="CheckupDescription" ColumnName="CheckupDescription" />
+                <ScalarProperty Name="CheckupRecommend" ColumnName="CheckupRecommend" />
+                <ScalarProperty Name="CheckupResultStatus" ColumnName="CheckupResultStatus" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pGetCheckupMobileResult" FunctionName="MediTechModel.Store.pGetCheckupMobileResult">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pGetCheckupMobileResult_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
                 <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
                 <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
-                <ScalarProperty Name="ResultValue1" ColumnName="ResultValue1" />
-                <ScalarProperty Name="ResultValue2" ColumnName="ResultValue2" />
-                <ScalarProperty Name="ResultValue3" ColumnName="ResultValue3" />
-                <ScalarProperty Name="ReferenceRange" ColumnName="ReferenceRange" />
-                <ScalarProperty Name="ResultUnit" ColumnName="ResultUnit" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTPatientWellness" FunctionName="MediTechModel.Store.pRPTPatientWellness">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTPatientWellness_Result">
+                <ScalarProperty Name="UID" ColumnName="UID" />
+                <ScalarProperty Name="TITLEUID" ColumnName="TITLEUID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BirthDttm" ColumnName="BirthDttm" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="CareproviderName" ColumnName="CareproviderName" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="BMI" ColumnName="BMI" />
+                <ScalarProperty Name="BPSys" ColumnName="BPSys" />
+                <ScalarProperty Name="BPDio" ColumnName="BPDio" />
+                <ScalarProperty Name="Pulse" ColumnName="Pulse" />
+                <ScalarProperty Name="WaistCircumference" ColumnName="WaistCircumference" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="WellnessResult" ColumnName="WellnessResult" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pSearchPatientCheckup" FunctionName="MediTechModel.Store.pSearchPatientCheckup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pSearchPatientCheckup_Result">
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="BirthDttm" ColumnName="BirthDttm" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AgeString" ColumnName="AgeString" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="CareProviderUID" ColumnName="CareProviderUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="VISTSUID" ColumnName="VISTSUID" />
+                <ScalarProperty Name="VISTYUID" ColumnName="VISTYUID" />
+                <ScalarProperty Name="PRITYUID" ColumnName="PRITYUID" />
+                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="CheckupJobUID" ColumnName="CheckupJobUID" />
+                <ScalarProperty Name="IsWellnessResult" ColumnName="IsWellnessResult" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

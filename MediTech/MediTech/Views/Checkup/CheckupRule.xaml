@@ -189,21 +189,28 @@
                                 </StackPanel>
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
-                            <dx:SimpleButton Width="70" Command="{Binding AddRuleItemCommmand}"
+                        <dxlc:LayoutGroup>
+                            <dxlc:LayoutItem HorizontalAlignment="Left">
+                                <dxe:CheckEdit IsChecked="{Binding NonCheckup}" Content="ไม่ได้ตรวจ"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                                <dx:SimpleButton Width="70" Command="{Binding AddRuleItemCommmand}"
                                      Height="25" Content="เพิ่ม"/>
-                            <dx:SimpleButton Width="70" Command="{Binding EditRuleItemCommmand}"
+                                <dx:SimpleButton Width="70" Command="{Binding EditRuleItemCommmand}"
                                      Height="25" Content="แก้ไข"/>
-                            <dx:SimpleButton Width="70" Command="{Binding DeleteRuleItemCommand}"
+                                <dx:SimpleButton Width="70" Command="{Binding DeleteRuleItemCommand}"
                                      Height="25" Content="ลบ"/>
+                            </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
                     <dxg:GridControl ItemsSource="{Binding CheckupRuleItems}"
                                      SelectedItem="{Binding SelectCheckupRuleItem,Mode=TwoWay}">
+                        <dxg:GridColumn Header="ไม่ได้ตรวจ" FieldName="NonCheckup" Width="60"/>
                         <dxg:GridColumn Header="รายการ" FieldName="ResultItemName"/>
                         <dxg:GridColumn Header="หน่วย" FieldName="Unit" Width="50"/>
-                        <dxg:GridColumn Header="ตัวเลขล่าง" FieldName="Low"/>
-                        <dxg:GridColumn Header="ตัวเลขบน" FieldName="Hight"/>
+                        <dxg:GridColumn Header="ตัวเลขล่าง" FieldName="Low" Width="65"/>
+                        <dxg:GridColumn Header="ตัวเลขบน" FieldName="Hight" Width="65"/>
                         <dxg:GridColumn Header="ข้อความ" FieldName="Text"/>
                         <dxg:GridColumn Header="Operator" FieldName="Operator" Width="30"/>
                         <dxg:GridControl.View>

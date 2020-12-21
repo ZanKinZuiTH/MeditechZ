@@ -32,6 +32,7 @@ namespace MediTech.DataBase
         public string DrugAllergy { get; set; }
         public string PersonalHistory { get; set; }
         public string Conclusion { get; set; }
+        public Nullable<int> RABSTSUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

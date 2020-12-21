@@ -3397,5 +3397,69 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetGroupResultCumulative_Result>("pGetGroupResultCumulative", p_PatientUIDParameter, p_GPRSTUIDParameter);
         }
+    
+        public virtual ObjectResult<pGetCheckupGroupResult_Result> pGetCheckupGroupResult(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID)
+        {
+            var p_JobContactUIDParameter = p_JobContactUID.HasValue ?
+                new ObjectParameter("P_JobContactUID", p_JobContactUID) :
+                new ObjectParameter("P_JobContactUID", typeof(int));
+    
+            var p_GPRSTUIDParameter = p_GPRSTUID.HasValue ?
+                new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
+                new ObjectParameter("P_GPRSTUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupGroupResult_Result>("pGetCheckupGroupResult", p_JobContactUIDParameter, p_GPRSTUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetCheckupMobileResult_Result> pGetCheckupMobileResult(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupMobileResult_Result>("pGetCheckupMobileResult", p_PatientUIDParameter, p_PatientVisitUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTPatientWellness_Result> pRPTPatientWellness(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTPatientWellness_Result>("pRPTPatientWellness", p_PatientUIDParameter, p_PatientVisitUIDParameter);
+        }
+    
+        public virtual ObjectResult<pSearchPatientCheckup_Result> pSearchPatientCheckup(Nullable<long> p_PatientUID, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_PayorDetailUID, Nullable<int> p_CheckupJobUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            var p_CheckupJobUIDParameter = p_CheckupJobUID.HasValue ?
+                new ObjectParameter("P_CheckupJobUID", p_CheckupJobUID) :
+                new ObjectParameter("P_CheckupJobUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientCheckup_Result>("pSearchPatientCheckup", p_PatientUIDParameter, p_DateFromParameter, p_DateToParameter, p_PayorDetailUIDParameter, p_CheckupJobUIDParameter);
+        }
     }
 }

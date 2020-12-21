@@ -442,6 +442,10 @@ namespace MediTech.ViewModels
                 {
                     ListGroupResult = new List<string>();
                 }
+                if (CheckupGroupResult == null)
+                {
+                    CheckupGroupResult = new CheckupGroupResultModel();
+                }
                 CheckupGroupResult.PatientUID = SelectPatientVisit.PatientUID;
                 CheckupGroupResult.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
                 CheckupGroupResult.Conclusion = TextSummeryReslt.Trim();

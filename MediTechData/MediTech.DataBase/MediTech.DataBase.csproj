@@ -330,6 +330,12 @@
     <Compile Include="pGetBillableItemDrug_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pGetCheckupGroupResult_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pGetCheckupMobileResult_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pGetCheckupResultGroup_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -568,6 +574,9 @@
     <Compile Include="pRPTPatientSummaryPerMonth_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTPatientWellness_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTRadiologyRDUReview_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -671,6 +680,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientBill_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchPatientCheckup_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientMedicalDischarge_Result.cs">

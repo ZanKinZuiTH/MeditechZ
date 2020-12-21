@@ -390,22 +390,27 @@ namespace MediTech.ViewModels
                     resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
                 }
 
-                if (patientVisit.PatientUID == 55878)
-                {
-                    string test = "";
-                }
-
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
+
+                    //var ruleCheckups = dataCheckupRule
+                    //    .Where(p => p.GPRSTUID == grpstUID
+                    //    && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
+                    //    && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
+                    //    || (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))
+                    //    && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883 && testType == "LAB" && resultComponent.All(x => p.CheckupRuleItem.Any(y => x.ResultItemUID == y.ResultItemUID)))
+                    //    )).ToList();
+
+
                     var ruleCheckups = dataCheckupRule
                         .Where(p => p.GPRSTUID == grpstUID
                         && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
                         && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
                         || (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))
-                        && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883 && resultComponent.All(x => p.CheckupRuleItem.Any(y => x.ResultItemUID == y.ResultItemUID)))
+                        && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
                         )).ToList();
 
-  
+
                     foreach (var ruleCheckup in ruleCheckups)
                     {
                         bool isConrrect = false;
@@ -524,11 +529,23 @@ namespace MediTech.ViewModels
                             }
                             else
                             {
-                                isConrrect = false;
-                                if (ruleItem.Operator == "And")
+                                if (ruleItem.NonCheckup == true)
                                 {
-                                    break;
+                                    isConrrect = true;
+                                    if (ruleItem.Operator == "Or")
+                                    {
+                                        break;
+                                    }
                                 }
+                                else
+                                {
+                                    isConrrect = false;
+                                    if (ruleItem.Operator == "And")
+                                    {
+                                        break;
+                                    }
+                                }
+
                             }
 
                         }
@@ -700,12 +717,12 @@ namespace MediTech.ViewModels
                                 }
                             }
                         }
-                        else
-                        {
-                            conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                            description = "ผลการตรวจปกติ";
-                            recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                        }
+                        //else
+                        //{
+                        //    conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                        //    description = "ผลการตรวจปกติ";
+                        //    recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                        //}
 
                         var timus1 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
                         var timus2 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");

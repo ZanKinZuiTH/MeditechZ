@@ -17,6 +17,40 @@
                 <dxlc:LayoutGroup Orientation="Vertical" dxlc:DockLayoutControl.Dock="Left"
                               Width="300"
                               dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                    <dxlc:LayoutItem Label="Payor">
+                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="400"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:SearchLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Job">
                         <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
                                       SelectedItem="{Binding SelectCheckupJobContact}"
@@ -53,6 +87,14 @@
                                 <dxg:SearchLookUpEditStyleSettings/>
                             </dxg:LookUpEdit.StyleSettings>
                         </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="สาขา">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding BranchList}"
+                                          DisplayMember="Display"
+                                          ValueMember="Display"
+                                          SelectedItem="{Binding SelectBranch}"
+                                          NullValueButtonPlacement="EditBox"
+                                          />
                     </dxlc:LayoutItem>
                     <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
                                  SelectedItem="{Binding SelectCheckupJobTask}">
@@ -100,6 +142,13 @@
 
                 </dxlc:LayoutGroup>
             </dxlc:LayoutControl>
+            <dxlc:LayoutGroup  dxlc:DockLayoutControl.Dock="Client">
+                <dxg:GridControl>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
         </dxlc:DockLayoutControl>
     </Grid>
 </UserControl>

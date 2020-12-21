@@ -702,7 +702,7 @@ namespace MediTechWebApi.Controllers
                         db.CheckupRule.Add(newCheckupRule);
                         db.SaveChanges();
 
-                        var cehckupRuleItem = db.CheckupRuleItem.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        var cehckupRuleItem = db.CheckupRuleItem.Where(p => p.CheckupRuleUID == checkupRuleUID && p.StatusFlag == "A");
                         foreach (var item in cehckupRuleItem)
                         {
                             CheckupRuleItem newCheckupRuleItem = new CheckupRuleItem();
@@ -712,6 +712,7 @@ namespace MediTechWebApi.Controllers
                             newCheckupRuleItem.Hight = item.Hight;
                             newCheckupRuleItem.Text = item.Text;
                             newCheckupRuleItem.Operator = item.Operator;
+                            newCheckupRuleItem.NonCheckup = item.NonCheckup;
                             newCheckupRuleItem.CUser = userID;
                             newCheckupRuleItem.CWhen = now;
                             newCheckupRuleItem.StatusFlag = "A";
@@ -721,7 +722,7 @@ namespace MediTechWebApi.Controllers
                             db.SaveChanges();
                         }
 
-                        var checkupRuleDescription = db.CheckupRuleDescription.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        var checkupRuleDescription = db.CheckupRuleDescription.Where(p => p.CheckupRuleUID == checkupRuleUID && p.StatusFlag == "A");
                         foreach (var item in checkupRuleDescription)
                         {
                             CheckupRuleDescription newDscription = new CheckupRuleDescription();
@@ -736,7 +737,7 @@ namespace MediTechWebApi.Controllers
                             db.SaveChanges();
                         }
 
-                        var cehckupRuleRecommand = db.CheckupRuleRecommend.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        var cehckupRuleRecommand = db.CheckupRuleRecommend.Where(p => p.CheckupRuleUID == checkupRuleUID && p.StatusFlag == "A");
                         foreach (var item in cehckupRuleRecommand)
                         {
                             CheckupRuleRecommend newRecommand = new CheckupRuleRecommend();
@@ -814,7 +815,8 @@ namespace MediTechWebApi.Controllers
                                                    Operator = j.Operator,
                                                    Text = j.Text,
                                                    Low = j.Low,
-                                                   Hight = j.Hight
+                                                   Hight = j.Hight,
+                                                   NonCheckup = j.NonCheckup
                                                }).ToList();
             return data;
         }
@@ -841,6 +843,7 @@ namespace MediTechWebApi.Controllers
                 checkupRuleItem.Hight = chekcupRuleItemModel.Hight;
                 checkupRuleItem.Text = chekcupRuleItemModel.Text;
                 checkupRuleItem.Operator = chekcupRuleItemModel.Operator;
+                checkupRuleItem.NonCheckup = chekcupRuleItemModel.NonCheckup;
                 checkupRuleItem.MUser = userID;
                 checkupRuleItem.MWhen = now;
 
@@ -1133,6 +1136,23 @@ namespace MediTechWebApi.Controllers
             }
 
             return data;
+        }
+
+        [Route("GetCompanyBranchByCheckJob")]
+        [HttpGet]
+        public List<LookupReferenceValueModel> GetCompanyBranchByCheckJob(int checkupJobUID)
+        {
+            List<LookupReferenceValueModel> companyList;
+            var company = db.PatientVisit
+                .Where(p => p.CheckupJobUID == checkupJobUID && p.StatusFlag == "A")
+                .Select(p => new LookupReferenceValueModel
+                {
+                    Display = p.CompanyName
+                });
+
+            companyList = company.Distinct().ToList();
+
+            return companyList;
         }
 
         [Route("GetVisitCheckupGroup")]
@@ -1436,7 +1456,8 @@ namespace MediTechWebApi.Controllers
                                                 Low = itm.Low,
                                                 Hight = itm.Hight,
                                                 Text = itm.Text,
-                                                Operator = itm.Operator
+                                                Operator = itm.Operator,
+                                                NonCheckup = itm.NonCheckup
                                             }).ToList();
                 }
             }
@@ -1451,18 +1472,21 @@ namespace MediTechWebApi.Controllers
                                    join rsc in db.ResultComponent on rs.UID equals rsc.ResultUID
                                    join red in db.RequestDetail on rs.RequestDetailUID equals red.UID
                                    join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
+                                   join rti in db.RequestItem on red.RequestitemUID equals rti.UID
                                    where rs.PatientVisitUID == patientVisitUID
                                    && rsc.StatusFlag == "A"
-                                   && gps.GPRSTUID == GPRSTUID
                                    && red.StatusFlag == "A"
                                    && rs.StatusFlag == "A"
+                                   && red.ORDSTUID != 2848
+                                   && gps.GPRSTUID == GPRSTUID
                                    select new ResultComponentModel
                                    {
                                        ResultComponentUID = rsc.UID,
                                        ResultItemUID = rsc.ResultItemUID,
                                        ResultItemCode = rsc.ResultItemCode,
                                        ResultItemName = rsc.ResultItemName,
-                                       ResultValue = rsc.ResultValue
+                                       ResultValue = rsc.ResultValue,
+                                       TestType = SqlFunction.fGetRfValDescription(rti.TSTTPUID ?? 0)
                                    }).ToList();
 
             return resultComponent;
@@ -1601,7 +1625,8 @@ namespace MediTechWebApi.Controllers
                                                     Low = itm.Low,
                                                     Hight = itm.Hight,
                                                     Text = itm.Text,
-                                                    Operator = itm.Operator
+                                                    Operator = itm.Operator,
+                                                    NonCheckup = itm.NonCheckup
                                                 }).ToList();
                     }
                 }
@@ -1802,8 +1827,6 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
-
-
 
         [Route("GetResultCumulative")]
         [HttpGet]

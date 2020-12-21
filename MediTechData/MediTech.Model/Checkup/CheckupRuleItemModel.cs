@@ -18,6 +18,7 @@ namespace MediTech.Model
         public string Text { get; set; }
         public string IsText { get; set; }
         public string Operator { get; set; }
+        public bool? NonCheckup { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

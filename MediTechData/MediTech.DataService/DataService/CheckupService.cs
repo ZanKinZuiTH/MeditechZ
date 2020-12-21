@@ -337,6 +337,14 @@ namespace MediTech.DataService
 
             return data;
         }
+        public List<LookupReferenceValueModel> GetCompanyBranchByCheckJob(int checkupJobUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetCompanyBranchByCheckJob?checkupJobUID={0}", checkupJobUID);
+            List<LookupReferenceValueModel> data = MeditechApiHelper.Get<List<LookupReferenceValueModel>>(requestApi);
+
+            return data;
+        }
+
         public List<PatientVisitModel> GetVisitCheckupGroup(int checkupJobUID, List<int> GPRSTUIDs)
         {
             string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroup?checkupJobUID={0}", checkupJobUID);

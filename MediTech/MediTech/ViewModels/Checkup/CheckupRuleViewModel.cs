@@ -171,7 +171,10 @@ namespace MediTech.ViewModels
             {
                 Set(ref _ValueLow, value);
                 if (_ValueLow != null)
+                {
                     TextualValue = null;
+                    NonCheckup = null;
+                }
             }
         }
 
@@ -184,7 +187,10 @@ namespace MediTech.ViewModels
             {
                 Set(ref _ValueHigh, value);
                 if (_ValueHigh != null)
+                {
                     TextualValue = null;
+                    NonCheckup = null;
+                }
             }
         }
 
@@ -201,6 +207,7 @@ namespace MediTech.ViewModels
                 {
                     ValueLow = null;
                     ValueHigh = null;
+                    NonCheckup = null;
                 }
 
             }
@@ -220,6 +227,21 @@ namespace MediTech.ViewModels
         {
             get { return _OperatorOr; }
             set { Set(ref _OperatorOr, value); }
+        }
+
+        private bool? _NonCheckup;
+
+        public bool? NonCheckup
+        {
+            get { return _NonCheckup; }
+            set { Set(ref _NonCheckup, value);
+                if (_NonCheckup != null)
+                {
+                    ValueLow = null;
+                    ValueHigh = null;
+                    TextualValue = null;
+                }
+            }
         }
 
 
@@ -244,6 +266,7 @@ namespace MediTech.ViewModels
                     ValueLow = SelectCheckupRuleItem.Low;
                     ValueHigh = SelectCheckupRuleItem.Hight;
                     TextualValue = SelectCheckupRuleItem.Text;
+                    NonCheckup = SelectCheckupRuleItem.NonCheckup;
                     if (SelectCheckupRuleItem.Operator == "And")
                     {
                         OperatorAnd = true;
@@ -613,9 +636,9 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาระบุ รายการ");
                     return;
                 }
-                if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null)
+                if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null && (NonCheckup ?? false) == false)
                 {
-                    WarningDialog("กรุณาระบุ ตัวเลขหรือข้อความ อย่างใดอย่างหนึ่ง");
+                    WarningDialog("กรุณาระบุ ตัวเลข ข้อความ หรือ ไม่ได้ตรวจ อย่างใดอย่างหนึ่ง");
                     return;
                 }
 
@@ -626,6 +649,7 @@ namespace MediTech.ViewModels
                 newRuleItem.Low = ValueLow;
                 newRuleItem.Hight = ValueHigh;
                 newRuleItem.Text = TextualValue;
+                newRuleItem.NonCheckup = NonCheckup;
                 string Operator = "";
                 if (OperatorAnd)
                 {
@@ -662,9 +686,9 @@ namespace MediTech.ViewModels
                         WarningDialog("กรุณาระบุ รายการ");
                         return;
                     }
-                    if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null)
+                    if (string.IsNullOrEmpty(TextualValue) && ValueLow == null && ValueHigh == null && (NonCheckup ?? false) == false)
                     {
-                        WarningDialog("กรุณาระบุ ตัวเลขหรือข้อความ อย่างใดอย่างหนึ่ง");
+                        WarningDialog("กรุณาระบุ ตัวเลข ข้อความ หรือ ไม่ได้ตรวจ อย่างใดอย่างหนึ่ง");
                         return;
                     }
 
@@ -676,6 +700,7 @@ namespace MediTech.ViewModels
                     newRuleItem.Low = ValueLow;
                     newRuleItem.Hight = ValueHigh;
                     newRuleItem.Text = TextualValue;
+                    newRuleItem.NonCheckup = NonCheckup;
                     string Operator = "";
                     if (OperatorAnd)
                     {

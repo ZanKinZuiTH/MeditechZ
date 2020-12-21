@@ -107,6 +107,7 @@ namespace MediTech.Model
         public IList<object> TokenDataList { get; set; }
 
         public string ResultItemCode { get; set; }
+        public string TestType { get; set; }
         public string UnitofMeasure { get; set; }
         public int? RSUOMUID { get; set; }
         public int CUser { get; set; }

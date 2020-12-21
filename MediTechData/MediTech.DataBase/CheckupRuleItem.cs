@@ -21,6 +21,7 @@ namespace MediTech.DataBase
         public Nullable<double> Hight { get; set; }
         public string Text { get; set; }
         public string Operator { get; set; }
+        public Nullable<bool> NonCheckup { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
