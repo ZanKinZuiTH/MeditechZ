@@ -149,6 +149,12 @@
             this.cellNickelUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellNickelUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellNickelUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowStyreneUrine = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyreneRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellStyrene3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbStool = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -205,12 +211,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.RowStyreneUrine = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellStyreneRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellStyrene1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellStyrene2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellStyrene3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowAluminiumBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.AluminiumBloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.AluminiumBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.AluminiumBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.AluminiumBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbStool)).BeginInit();
@@ -237,8 +243,8 @@
             // 
             // xrTable2
             // 
-            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(27.54389F, 235.795F);
             this.xrTable2.Name = "xrTable2";
@@ -264,7 +270,7 @@
             // 
             // xrTableCell22
             // 
-            this.xrTableCell22.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell22.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell22.CanGrow = false;
             this.xrTableCell22.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -279,7 +285,7 @@
             // 
             // xrTableCell24
             // 
-            this.xrTableCell24.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell24.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell24.CanGrow = false;
             this.xrTableCell24.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -477,8 +483,8 @@
             // 
             // tbToxicology
             // 
-            this.tbToxicology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbToxicology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbToxicology.LocationFloat = new DevExpress.Utils.PointFloat(439.0518F, 51.52804F);
             this.tbToxicology.Name = "tbToxicology";
@@ -500,8 +506,9 @@
             this.RowMEK,
             this.RowIsopropanol,
             this.RowNickelUrine,
-            this.RowStyreneUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 331.1066F);
+            this.RowStyreneUrine,
+            this.RowAluminiumBlood});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 349.9777F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -519,7 +526,7 @@
             // 
             // xrTableCell6
             // 
-            this.xrTableCell6.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell6.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell6.CanGrow = false;
             this.xrTableCell6.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -534,7 +541,7 @@
             // 
             // xrTableCell30
             // 
-            this.xrTableCell30.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell30.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell30.CanGrow = false;
             this.xrTableCell30.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1507,10 +1514,67 @@
             this.cellNickelUrine3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellNickelUrine3.Weight = 0.49654431607582589D;
             // 
+            // RowStyreneUrine
+            // 
+            this.RowStyreneUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell37,
+            this.cellStyreneRange,
+            this.cellStyrene1,
+            this.cellStyrene2,
+            this.cellStyrene3});
+            this.RowStyreneUrine.Name = "RowStyreneUrine";
+            this.RowStyreneUrine.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell37
+            // 
+            this.xrTableCell37.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell37.Name = "xrTableCell37";
+            this.xrTableCell37.StylePriority.UseFont = false;
+            this.xrTableCell37.StylePriority.UseTextAlignment = false;
+            this.xrTableCell37.Text = "Styrene in Urine";
+            this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell37.Weight = 1.0081393020274905D;
+            // 
+            // cellStyreneRange
+            // 
+            this.cellStyreneRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyreneRange.Name = "cellStyreneRange";
+            this.cellStyreneRange.StylePriority.UseFont = false;
+            this.cellStyreneRange.StylePriority.UseTextAlignment = false;
+            this.cellStyreneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyreneRange.Weight = 1.0314162206887314D;
+            // 
+            // cellStyrene1
+            // 
+            this.cellStyrene1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene1.Name = "cellStyrene1";
+            this.cellStyrene1.StylePriority.UseFont = false;
+            this.cellStyrene1.StylePriority.UseTextAlignment = false;
+            this.cellStyrene1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene1.Weight = 0.52909351643135161D;
+            // 
+            // cellStyrene2
+            // 
+            this.cellStyrene2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene2.Name = "cellStyrene2";
+            this.cellStyrene2.StylePriority.UseFont = false;
+            this.cellStyrene2.StylePriority.UseTextAlignment = false;
+            this.cellStyrene2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene2.Weight = 0.55147320971800662D;
+            // 
+            // cellStyrene3
+            // 
+            this.cellStyrene3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellStyrene3.Name = "cellStyrene3";
+            this.cellStyrene3.StylePriority.UseFont = false;
+            this.cellStyrene3.StylePriority.UseTextAlignment = false;
+            this.cellStyrene3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellStyrene3.Weight = 0.49654431607582589D;
+            // 
             // tbStool
             // 
-            this.tbStool.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbStool.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbStool.LocationFloat = new DevExpress.Utils.PointFloat(25.04389F, 51.52804F);
             this.tbStool.Name = "tbStool";
@@ -1540,7 +1604,7 @@
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell1.CanGrow = false;
             this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1555,7 +1619,7 @@
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell2.CanGrow = false;
             this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2114,62 +2178,62 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // RowStyreneUrine
+            // RowAluminiumBlood
             // 
-            this.RowStyreneUrine.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell37,
-            this.cellStyreneRange,
-            this.cellStyrene1,
-            this.cellStyrene2,
-            this.cellStyrene3});
-            this.RowStyreneUrine.Name = "RowStyreneUrine";
-            this.RowStyreneUrine.Weight = 0.92341768297675519D;
+            this.RowAluminiumBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell43,
+            this.AluminiumBloodRange,
+            this.AluminiumBlood1,
+            this.AluminiumBlood2,
+            this.AluminiumBlood3});
+            this.RowAluminiumBlood.Name = "RowAluminiumBlood";
+            this.RowAluminiumBlood.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell37
+            // xrTableCell43
             // 
-            this.xrTableCell37.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell37.Name = "xrTableCell37";
-            this.xrTableCell37.StylePriority.UseFont = false;
-            this.xrTableCell37.StylePriority.UseTextAlignment = false;
-            this.xrTableCell37.Text = "Styrene in Urine";
-            this.xrTableCell37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell37.Weight = 1.0081393020274905D;
+            this.xrTableCell43.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell43.Name = "xrTableCell43";
+            this.xrTableCell43.StylePriority.UseFont = false;
+            this.xrTableCell43.StylePriority.UseTextAlignment = false;
+            this.xrTableCell43.Text = "Aluminium in Blood";
+            this.xrTableCell43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell43.Weight = 1.0081393020274905D;
             // 
-            // cellStyreneRange
+            // AluminiumBloodRange
             // 
-            this.cellStyreneRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellStyreneRange.Name = "cellStyreneRange";
-            this.cellStyreneRange.StylePriority.UseFont = false;
-            this.cellStyreneRange.StylePriority.UseTextAlignment = false;
-            this.cellStyreneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellStyreneRange.Weight = 1.0314162206887314D;
+            this.AluminiumBloodRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.AluminiumBloodRange.Name = "AluminiumBloodRange";
+            this.AluminiumBloodRange.StylePriority.UseFont = false;
+            this.AluminiumBloodRange.StylePriority.UseTextAlignment = false;
+            this.AluminiumBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.AluminiumBloodRange.Weight = 1.0314162206887314D;
             // 
-            // cellStyrene1
+            // AluminiumBlood1
             // 
-            this.cellStyrene1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellStyrene1.Name = "cellStyrene1";
-            this.cellStyrene1.StylePriority.UseFont = false;
-            this.cellStyrene1.StylePriority.UseTextAlignment = false;
-            this.cellStyrene1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellStyrene1.Weight = 0.52909351643135161D;
+            this.AluminiumBlood1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.AluminiumBlood1.Name = "AluminiumBlood1";
+            this.AluminiumBlood1.StylePriority.UseFont = false;
+            this.AluminiumBlood1.StylePriority.UseTextAlignment = false;
+            this.AluminiumBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.AluminiumBlood1.Weight = 0.52909351643135161D;
             // 
-            // cellStyrene2
+            // AluminiumBlood2
             // 
-            this.cellStyrene2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellStyrene2.Name = "cellStyrene2";
-            this.cellStyrene2.StylePriority.UseFont = false;
-            this.cellStyrene2.StylePriority.UseTextAlignment = false;
-            this.cellStyrene2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellStyrene2.Weight = 0.55147320971800662D;
+            this.AluminiumBlood2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.AluminiumBlood2.Name = "AluminiumBlood2";
+            this.AluminiumBlood2.StylePriority.UseFont = false;
+            this.AluminiumBlood2.StylePriority.UseTextAlignment = false;
+            this.AluminiumBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.AluminiumBlood2.Weight = 0.55147320971800662D;
             // 
-            // cellStyrene3
+            // AluminiumBlood3
             // 
-            this.cellStyrene3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellStyrene3.Name = "cellStyrene3";
-            this.cellStyrene3.StylePriority.UseFont = false;
-            this.cellStyrene3.StylePriority.UseTextAlignment = false;
-            this.cellStyrene3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellStyrene3.Weight = 0.49654431607582589D;
+            this.AluminiumBlood3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.AluminiumBlood3.Name = "AluminiumBlood3";
+            this.AluminiumBlood3.StylePriority.UseFont = false;
+            this.AluminiumBlood3.StylePriority.UseTextAlignment = false;
+            this.AluminiumBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.AluminiumBlood3.Weight = 0.49654431607582589D;
             // 
             // CheckupPage8
             // 
@@ -2377,5 +2441,11 @@
         public DevExpress.XtraReports.UI.XRTableCell cellStyrene1;
         public DevExpress.XtraReports.UI.XRTableCell cellStyrene2;
         public DevExpress.XtraReports.UI.XRTableCell cellStyrene3;
+        public DevExpress.XtraReports.UI.XRTableRow RowAluminiumBlood;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
+        public DevExpress.XtraReports.UI.XRTableCell AluminiumBloodRange;
+        public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood1;
+        public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood2;
+        public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood3;
     }
 }
