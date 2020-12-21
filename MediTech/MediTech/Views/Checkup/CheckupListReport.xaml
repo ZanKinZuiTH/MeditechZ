@@ -4,13 +4,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-              xmlns:cv="clr-namespace:MediTech.Converter"
              xmlns:local="clr-namespace:MediTech.Views" 
              xmlns:cc="clr-namespace:MediTech.CustomControl"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="1200">
     <UserControl.Resources>
-        <cv:AddValueConverter x:Key="AddValueConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
     </UserControl.Resources>
     <UserControl.DataContext>
@@ -138,15 +136,7 @@
                             </dxg:TableView.FormatConditions>
                         </dxg:TableView>
                     </dxg:GridControl.View>
-                    <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
-                        <dxg:GridColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding RowData.RowHandle.Value
-                                ,Converter={StaticResource AddValueConverter}
-                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                            </DataTemplate>
-                        </dxg:GridColumn.CellTemplate>
-                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="No" FieldName="RowHandle" Width="30" Fixed="Left"/>
                     <dxg:GridColumn FieldName="PatientID" Header="BN"/>
                     <dxg:GridColumn FieldName="Title" Header="คำนำหน้า"/>
                     <dxg:GridColumn FieldName="FirstName" Header="ชื่อ"/>
