@@ -455,6 +455,7 @@ namespace MediTech.ViewModels
                 }
                 CheckupGroupResult.PatientUID = SelectPatientVisit.PatientUID;
                 CheckupGroupResult.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+                CheckupGroupResult.GPRSTUID = SelectGroupResult.Key;
                 CheckupGroupResult.Conclusion = TextSummeryReslt.Trim();
                 CheckupGroupResult.RABSTSUID = SelectResultStatus.Key;
                 DataService.Checkup.SaveCheckupGroupResult(CheckupGroupResult, AppUtil.Current.UserID);

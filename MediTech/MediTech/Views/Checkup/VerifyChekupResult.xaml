@@ -188,10 +188,10 @@
                                            FontWeight="Bold"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem HorizontalAlignment="Right">
-                                    <dx:SimpleButton Height="25" Width="80" Content="Preview" Command="{Binding PreviewWellnessCommand}"/>
+                                    <dx:SimpleButton Height="25" Width="80" Content="ยืนยันผล" Command="{Binding SaveWellNessResultCommand}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem HorizontalAlignment="Right">
-                                    <dx:SimpleButton Height="25" Width="80" Content="ยืนยันผล" Command="{Binding SaveWellNessResultCommand}"/>
+                                    <dx:SimpleButton Height="25" Width="100" Content="ตัวอย่างก่อนพิมพ์" Command="{Binding PreviewWellnessCommand}"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxe:TextEdit x:Name="txtWellness" AcceptsReturn="True" TextWrapping="Wrap"
