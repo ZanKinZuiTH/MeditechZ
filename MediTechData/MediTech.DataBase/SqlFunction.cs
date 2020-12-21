@@ -2188,5 +2188,58 @@ and Status = -1";
                 con.Dispose();
             }
         }
+
+        public static DataTable GetVisitCheckupGroup(int checkupJobUID, List<int> GPRSTUIDs)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"select pv.PatientUID,
+pv.UID PatientVisitUID,
+dbo.fGetAge(pa.DOBDttm) Age,
+pa.SEXXXUID
+From PatientVisit pv
+inner join Patient pa on pv.PatientUID = pa.UID
+inner join Request re on pv.UID = re.PatientVisitUID
+inner join RequestDetail red on re.UID = red.RequestUID
+inner join RequestItemGroupResult gps on red.RequestitemUID = gps.RequestItemUID
+inner join Result rs on red.UID = rs.RequestDetailUID
+where pv.StatusFlag = 'A'
+and re.StatusFlag = 'A'
+and red.StatusFlag = 'A'
+and rs.StatusFlag = 'A'
+and red.ORDSTUID <> 2848
+and pv.CheckupJobUID = @CheckupJobUID
+and GPRSTUID in (@GPRSTUID)";
+                string gprstUID = string.Empty;
+
+                foreach (var item in GPRSTUIDs)
+                {
+                    gprstUID = string.IsNullOrEmpty(gprstUID) ? item.ToString() : ","+ item.ToString();
+                }
+
+                command.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID);
+                command.Parameters.AddWithValue("@GPRSTUID", gprstUID);
+                dt.Load(command.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
     }
 }

@@ -761,6 +761,7 @@
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterMuscleResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
@@ -916,6 +917,9 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorDetail.xaml.cs">
       <DependentUpon>ManagePayorDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
+      <DependentUpon>CheckupListReport.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
       <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
@@ -1413,6 +1417,10 @@
     <Page Include="Views\BillingConfiguration\ManagePayorDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\CheckupListReport.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\ImportOccMedResult.xaml">
       <SubType>Designer</SubType>

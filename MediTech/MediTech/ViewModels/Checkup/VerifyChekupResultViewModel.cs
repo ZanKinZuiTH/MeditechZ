@@ -421,6 +421,11 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาเลือกคนไข้");
                     return;
                 }
+                if (SelectGroupResult == null)
+                {
+                    WarningDialog("กรุณาเลือก Group Result ที่จะทำการแก้ไขข้อมูล");
+                    return;
+                }
                 if (string.IsNullOrEmpty(TextSummeryReslt.Trim()))
                 {
                     WarningDialog("กรุณากรอกข้อมูลในช่องสรุปผล");

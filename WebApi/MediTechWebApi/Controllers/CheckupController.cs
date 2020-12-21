@@ -673,6 +673,98 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+
+        [Route("CopyCheckupRule")]
+        [HttpPost]
+        public HttpResponseMessage CopyCheckupRule(CheckupRuleModel chekcupRuleModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    int checkupRuleUID = chekcupRuleModel.CheckupRuleUID;
+                    CheckupRule checkupRule = db.CheckupRule.Find(checkupRuleUID);
+                    if (checkupRule != null)
+                    {
+                        CheckupRule newCheckupRule = new CheckupRule();
+                        newCheckupRule.Name = checkupRule.Name;
+                        newCheckupRule.SEXXXUID = checkupRule.SEXXXUID;
+                        newCheckupRule.AgeFrom = checkupRule.AgeFrom;
+                        newCheckupRule.AgeTo = checkupRule.AgeTo;
+                        newCheckupRule.RABSTSUID = checkupRule.RABSTSUID;
+                        newCheckupRule.GPRSTUID = checkupRule.GPRSTUID;
+                        newCheckupRule.CUser = userID;
+                        newCheckupRule.CWhen = now;
+                        newCheckupRule.StatusFlag = "A";
+                        newCheckupRule.MUser = userID;
+                        newCheckupRule.MWhen = now;
+                        db.CheckupRule.Add(newCheckupRule);
+                        db.SaveChanges();
+
+                        var cehckupRuleItem = db.CheckupRuleItem.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        foreach (var item in cehckupRuleItem)
+                        {
+                            CheckupRuleItem newCheckupRuleItem = new CheckupRuleItem();
+                            newCheckupRuleItem.CheckupRuleUID = newCheckupRule.UID;
+                            newCheckupRuleItem.ResultItemUID = item.ResultItemUID;
+                            newCheckupRuleItem.Low = item.Low;
+                            newCheckupRuleItem.Hight = item.Hight;
+                            newCheckupRuleItem.Text = item.Text;
+                            newCheckupRuleItem.Operator = item.Operator;
+                            newCheckupRuleItem.CUser = userID;
+                            newCheckupRuleItem.CWhen = now;
+                            newCheckupRuleItem.StatusFlag = "A";
+                            newCheckupRuleItem.MUser = userID;
+                            newCheckupRuleItem.MWhen = now;
+                            db.CheckupRuleItem.Add(newCheckupRuleItem);
+                            db.SaveChanges();
+                        }
+
+                        var checkupRuleDescription = db.CheckupRuleDescription.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        foreach (var item in checkupRuleDescription)
+                        {
+                            CheckupRuleDescription newDscription = new CheckupRuleDescription();
+                            newDscription.CheckupRuleUID = newCheckupRule.UID;
+                            newDscription.CheckupTextMasterUID = item.CheckupTextMasterUID;
+                            newDscription.CUser = userID;
+                            newDscription.CWhen = now;
+                            newDscription.StatusFlag = "A";
+                            newDscription.MUser = userID;
+                            newDscription.MWhen = now;
+                            db.CheckupRuleDescription.Add(newDscription);
+                            db.SaveChanges();
+                        }
+
+                        var cehckupRuleRecommand = db.CheckupRuleRecommend.Where(p => p.CheckupRuleUID == checkupRuleUID);
+                        foreach (var item in cehckupRuleRecommand)
+                        {
+                            CheckupRuleRecommend newRecommand = new CheckupRuleRecommend();
+                            newRecommand.CheckupRuleUID = newCheckupRule.UID;
+                            newRecommand.CheckupTextMasterUID = item.CheckupTextMasterUID;
+                            newRecommand.CUser = userID;
+                            newRecommand.CWhen = now;
+                            newRecommand.StatusFlag = "A";
+                            newRecommand.MUser = userID;
+                            newRecommand.MWhen = now;
+                            db.CheckupRuleRecommend.Add(newRecommand);
+                            db.SaveChanges();
+                        }
+
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         [Route("DeleteCheckupRule")]
         [HttpDelete]
         public HttpResponseMessage DeleteCheckupRule(int chekcupRuleUID, int userID)
@@ -1165,6 +1257,70 @@ namespace MediTechWebApi.Controllers
 
             returnData = (from pv in distinctVisit
                           where !db.CheckupGroupResult.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
+                          select pv).ToList();
+            return returnData;
+        }
+
+        [Route("GetVisitCheckupGroupNonConfirm")]
+        [HttpPost]
+        public List<PatientVisitModel> GetVisitCheckupGroupNonConfirm(int checkupJobUID, List<int> GPRSTUIDs)
+        {
+            List<PatientVisitModel> returnData = new List<PatientVisitModel>();
+            List<PatientVisitModel> visitData = new List<PatientVisitModel>();
+            var data1 = from pv in db.PatientVisit
+                        join pa in db.Patient on pv.PatientUID equals pa.UID
+                        join re in db.Request on pv.UID equals re.PatientVisitUID
+                        join red in db.RequestDetail on re.UID equals red.RequestUID
+                        join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
+                        join rs in db.Result on red.UID equals rs.RequestDetailUID
+                        where pv.CheckupJobUID == checkupJobUID
+                        && pv.StatusFlag == "A"
+                        && re.StatusFlag == "A"
+                        && red.StatusFlag == "A"
+                        && rs.StatusFlag == "A"
+                        && red.ORDSTUID != 2848
+                        && GPRSTUIDs.Contains(gps.GPRSTUID)
+                        select new PatientVisitModel
+                        {
+                            PatientUID = pv.PatientUID,
+                            PatientVisitUID = pv.UID,
+                            Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
+                            SEXXXUID = pa.SEXXXUID
+                        };
+
+            visitData.AddRange(data1);
+            if (GPRSTUIDs.Any(p => p == 3177 || p == 3178))
+            {
+                var data2 = from pv in db.PatientVisit
+                            join pa in db.Patient on pv.PatientUID equals pa.UID
+                            join vital in db.PatientVitalSign on pv.UID equals vital.PatientVisitUID
+                            where pv.CheckupJobUID == checkupJobUID
+                            && pv.StatusFlag == "A"
+                            && vital.StatusFlag == "A"
+                            select new PatientVisitModel
+                            {
+                                PatientUID = pv.PatientUID,
+                                PatientVisitUID = pv.UID,
+                                Age = pa.DOBDttm.HasValue ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
+                                SEXXXUID = pa.SEXXXUID
+                            };
+                visitData.AddRange(data2);
+            }
+
+            var distinctVisit = visitData.GroupBy(p => new
+            {
+                p.PatientVisitUID,
+                p.PatientUID
+            }).Select(g => new PatientVisitModel
+            {
+                PatientVisitUID = g.FirstOrDefault().PatientVisitUID,
+                PatientUID = g.FirstOrDefault().PatientUID,
+                Age = g.FirstOrDefault().Age,
+                SEXXXUID = g.FirstOrDefault().SEXXXUID,
+            }).ToList();
+
+            returnData = (from pv in distinctVisit
+                          where !db.WellnessData.Any(ck => ck.PatientVisitUID == pv.PatientVisitUID && ck.StatusFlag == "A")
                           select pv).ToList();
             return returnData;
         }

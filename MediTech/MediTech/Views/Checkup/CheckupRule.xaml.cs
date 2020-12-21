@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Grid;
 using MediTech.Model;
+using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -29,6 +30,7 @@ namespace MediTech.Views
             gvTextMaster.ValidateRow += GvTextMaster_ValidateRow;
             gvTextMaster.InvalidRowException += GvTextMaster_InvalidRowException;
         }
+
 
         private void GvTextMaster_InvalidRowException(object sender, DevExpress.Xpf.Grid.InvalidRowExceptionEventArgs e)
         {

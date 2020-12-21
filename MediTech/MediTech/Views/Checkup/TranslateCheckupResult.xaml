@@ -140,6 +140,20 @@
             </dxlc:LayoutControl>
             <dxlc:LayoutGroup dxlc:DockLayoutControl.Dock="Client" Orientation="Vertical">
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" ItemSpace="20">
+                    <dxlc:LayoutItem Name="lytProcessAll" LabelPosition="Top">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="ประมาลผลใหม่ทุกคน" FontWeight="Bold"/>
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dx:SimpleButton Name="btnProcessAll"  Height="30" Width="100" Foreground="Red"
+                                         Command="{Binding TranslateAllCommand}" >
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem  LabelPosition="Top">
                         <dxlc:LayoutItem.Label>
                             <StackPanel Orientation="Horizontal">
@@ -153,14 +167,13 @@
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Name="lytProcessAll" LabelPosition="Top">
+                    <dxlc:LayoutItem  LabelPosition="Top">
                         <dxlc:LayoutItem.Label>
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="ประมาลผลใหม่ทุกคน" FontWeight="Bold"/>
+                                <TextBlock Text="เฉพาะที่ยังไม่ได้ยืนยันผล" FontWeight="Bold"/>
                             </StackPanel>
                         </dxlc:LayoutItem.Label>
-                        <dx:SimpleButton Name="btnProcessAll"  Height="30" Width="100"
-                                         Command="{Binding TranslateAllCommand}" >
+                        <dx:SimpleButton Height="30" Width="100" Command="{Binding TranslateNonConfirmCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
                                 <TextBlock Text="ประมวลผล" VerticalAlignment="Center"/>

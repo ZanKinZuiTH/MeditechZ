@@ -996,7 +996,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 if (!string.IsNullOrEmpty(BasophilAbnormal2))
                 {
-                    page3.cellBasophil2.ForeColor = (BasophilAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page3.cellBasophil2.ForeColor = (BasophilAbnormal2 == "H") ? Color.Red : Color.Blue;
                     page3.cellBasophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
 

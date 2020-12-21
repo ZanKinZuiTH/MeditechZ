@@ -375,6 +375,17 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _CopyRuleCommmand;
+
+        public RelayCommand CopyRuleCommmand
+        {
+            get
+            {
+                return _CopyRuleCommmand
+                    ?? (_CopyRuleCommmand = new RelayCommand(CopyRuleItem));
+            }
+        }
         private RelayCommand<DevExpress.Xpf.Grid.RowEventArgs> _RowTextMasterUpdatedCommand;
 
         /// <summary>
@@ -566,6 +577,7 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+
         void DeleteRule()
         {
             try
@@ -705,6 +717,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        void CopyRuleItem()
+        {
+            if (SelectCheckupRule != null)
+            {
+                DataService.Checkup.CopyCheckupRule(SelectCheckupRule, AppUtil.Current.UserID);
+                GetChekcupRule();
+                //(this.View as CheckupRule).grdCheckupRule.RefreshData();
+                SelectCheckupRule = CheckupRules[CheckupRules.Count - 1];
+            }
+        }
 
         private void RowTextMasterUpdated(DevExpress.Xpf.Grid.RowEventArgs e)
         {
