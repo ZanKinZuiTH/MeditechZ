@@ -13,7 +13,7 @@
              xmlns:vm="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=CheckupRuleViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d" 
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="1200">
     <UserControl.Resources>
         <cv:AddValueConverter x:Key="AddValueConverter" />
     </UserControl.Resources>
@@ -90,15 +90,21 @@
                                               ValueMember="Key"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
-                        <dx:SimpleButton Width="70" Command="{Binding AddRuleCommmand}"
+                    
+                    <dxlc:LayoutGroup  Orientation="Horizontal">
+                        <dx:SimpleButton Width="70" HorizontalAlignment="Left" Command="{Binding CopyRuleCommmand}"
+                                     Height="25" Content="คัดลอก"/>
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                            <dx:SimpleButton Width="70" Command="{Binding AddRuleCommmand}"
                                      Height="25" Content="เพิ่ม"/>
-                        <dx:SimpleButton Width="70" Command="{Binding EditRuleCommand}"
+                            <dx:SimpleButton Width="70" Command="{Binding EditRuleCommand}"
                                      Height="25" Content="แก้ไข"/>
-                        <dx:SimpleButton Width="70" Command="{Binding DeleteRuleCommand}"
+                            <dx:SimpleButton Width="70" Command="{Binding DeleteRuleCommand}"
                                      Height="25" Content="ลบ"/>
+                        </dxlc:LayoutGroup>
+
                     </dxlc:LayoutGroup>
-                    <dxg:GridControl ItemsSource="{Binding CheckupRules}"
+                    <dxg:GridControl x:Name="grdCheckupRule" ItemsSource="{Binding CheckupRules}"
                                      SelectedItem="{Binding SelectCheckupRule,Mode=TwoWay}">
                         <dxg:GridColumn Header="ชื่อ" FieldName="Name" ReadOnly="True"/>
                         <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>

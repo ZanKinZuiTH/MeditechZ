@@ -7,9 +7,99 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=CheckupSummaryViewModel,Source={StaticResource Locator}}"
-             mc:Ignorable="d" 
+             mc:Ignorable="d"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
+             xmlns:helper="clr-namespace:MediTech.Helpers"
              d:DesignHeight="600" d:DesignWidth="900">
     <Grid>
-            
+        <dxlc:DockLayoutControl x:Name="docLayout">
+            <dxlc:LayoutControl>
+                <dxlc:LayoutGroup Orientation="Vertical" dxlc:DockLayoutControl.Dock="Left"
+                              Width="300"
+                              dxlc:DockLayoutControl.AllowHorizontalSizing="True">
+                    <dxlc:LayoutItem Label="Job">
+                        <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                      SelectedItem="{Binding SelectCheckupJobContact}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="600"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
+                        x:Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                        </dxg:GridControl.View>
+                                        <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                        <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                        <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                        <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:SearchLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
+                                 SelectedItem="{Binding SelectCheckupJobTask}">
+                        <dxg:GridColumn x:Name="colSelected" 
+                                        Fixed="Left"
+                                        Width="30"
+                                        AllowEditing="True"
+                                        AllowBestFit="False"
+                                        AllowResizing="False"
+                                        AllowGrouping="False"
+                                        AllowSorting="False"
+                                        AllowIncrementalSearch="False"
+                                        AllowMoving="False"
+                                        AllowColumnFiltering="False"
+                                        HorizontalHeaderContentAlignment="Center">
+                            <dxg:GridColumn.HeaderTemplate>
+                                <DataTemplate>
+                                    <dxe:CheckEdit
+                                        Cursor="Hand"
+                                        IsChecked="{Binding Path=DataContext.IsSelectedAll
+                                        ,RelativeSource={RelativeSource AncestorType={x:Type local:TranslateCheckupResult}}}"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.HeaderTemplate>
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:CheckEdit x:Name="chkIsSelect"
+                                        IsChecked="{Binding RowData.Row.IsSelected}"
+                                        HorizontalAlignment="Center"
+                                        VerticalAlignment="Center"
+                                        Cursor="Hand">
+                                    </dxe:CheckEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="Group Result" FieldName="GroupResultName" ReadOnly="True"
+                                    AllowSorting="False"/>
+                        <dxmvvm:Interaction.Behaviors>
+                            <helper:DeferredColumnFitBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                        <dxg:GridControl.View>
+                            <dxg:TableView x:Name="gvGroupResult" NavigationStyle="Row"
+                                       ShowGroupPanel="False" />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+        </dxlc:DockLayoutControl>
     </Grid>
 </UserControl>

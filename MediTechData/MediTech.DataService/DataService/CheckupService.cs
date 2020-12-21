@@ -140,6 +140,20 @@ namespace MediTech.DataService
             }
         }
 
+        public void CopyCheckupRule(CheckupRuleModel chekcupRuleModel, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/CopyCheckupRule?userID={0}", userID);
+                MeditechApiHelper.Post<CheckupRuleModel>(requestApi, chekcupRuleModel);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        }
+
         public bool DeleteCheckupRule(int chekcupRuleUID, int userID)
         {
             bool flag = false;
@@ -331,10 +345,17 @@ namespace MediTech.DataService
             return data;
         }
 
-
         public List<PatientVisitModel> GetVisitCheckupGroupNonTran(int checkupJobUID, List<int> GPRSTUIDs)
         {
             string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroupNonTran?checkupJobUID={0}", checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Post<List<int>, List<PatientVisitModel>>(requestApi, GPRSTUIDs);
+
+            return data;
+        }
+
+        public List<PatientVisitModel> GetVisitCheckupGroupNonConfirm(int checkupJobUID, List<int> GPRSTUIDs)
+        {
+            string requestApi = string.Format("Api/Checkup/GetVisitCheckupGroupNonConfirm?checkupJobUID={0}", checkupJobUID);
             List<PatientVisitModel> data = MeditechApiHelper.Post<List<int>, List<PatientVisitModel>>(requestApi, GPRSTUIDs);
 
             return data;

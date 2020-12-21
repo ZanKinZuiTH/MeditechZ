@@ -230,7 +230,7 @@
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
                             <dxg:GridControl.View>
-                                <dxg:TableView Name="gvResult" ShowGroupPanel="False"/>
+                                <dxg:TableView Name="gvResult" ShowGroupPanel="False" AllowEditing="False"/>
                             </dxg:GridControl.View>
                         </dxg:GridControl>
                         <dxg:GridControl Height="380" ItemsSource="{Binding ResultRadiologys}" 
