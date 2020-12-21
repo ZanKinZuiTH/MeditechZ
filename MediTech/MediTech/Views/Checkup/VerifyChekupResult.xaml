@@ -188,6 +188,9 @@
                                            FontWeight="Bold"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem HorizontalAlignment="Right">
+                                    <dx:SimpleButton Height="25" Width="80" Content="Preview" Command="{Binding PreviewWellnessCommand}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem HorizontalAlignment="Right">
                                     <dx:SimpleButton Height="25" Width="80" Content="ยืนยันผล" Command="{Binding SaveWellNessResultCommand}"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
