@@ -25,6 +25,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
         List<XrayTranslateMappingModel> dtResultMapping;
 
+        public string PreviewWellness { get; set; }
 
         CheckupPage2 page2 = new CheckupPage2();
         CheckupPage3 page3 = new CheckupPage3();
@@ -103,6 +104,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
         }
 
+
+
         private void CheckupPage1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
@@ -113,6 +116,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             if (data.PatientInfomation != null)
             {
                 var patient = data.PatientInfomation;
+                var groupResult = data.GroupResult;
 
                 #region Show HN/Name
                 page2.lbHN2.Text = patient.PatientID;
@@ -209,8 +213,18 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 #region Result Wellness
 
-                var wellnessResult = patient.WellnessResult;
-                if (wellnessResult != null)
+                string wellnessResult = string.Empty;
+                if (!String.IsNullOrEmpty(PreviewWellness))
+                {
+                    wellnessResult = PreviewWellness;
+                }
+                else
+                {
+                    wellnessResult = patient.WellnessResult;
+                }
+
+
+                if (wellnessResult != null )
                 {
                     string[] locResult = Regex.Split(wellnessResult, "[\r\n]+");
                     StringBuilder sb = new StringBuilder();
@@ -236,6 +250,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page2.lbResultWellness.Text = sb.ToString();
                     //lbResultWellness2.Text = sb2.ToString();
                 }
+
                 #endregion
 
                 #region Radiology
@@ -355,6 +370,9 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 }
 
                 #endregion
+
+                page6.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
+               //.lbFarVision.Text = dataFirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;
 
 
                 if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
@@ -482,7 +500,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                     #region Fasting Blood Sugar
                     IEnumerable<PatientResultComponentModel> FbsTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB231"))
+                        .Where(p => p.RequestItemCode.Contains("LAB231")
+                        || p.RequestItemCode.Contains("LAB232"))
                         .OrderBy(p => p.Year);
                     GenerateFastingBloodSugar(FbsTestSet);
 
@@ -576,7 +595,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB282")
                         || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB285")
-                        || p.RequestItemCode.Contains("LAB232")
                         || p.RequestItemCode.Contains("LAB251")
                         || p.RequestItemCode.Contains("LAB271"))
                         .OrderBy(p => p.Year);
@@ -599,8 +617,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         .Where(p => p.RequestItemCode.Contains("SPIRO"));
                     GenerateSpiro(SpiroResult);
                 }
-
-                var groupResult = data.GroupResult;
+                
                 if (groupResult != null)
                 {
                     IEnumerable<CheckupGroupResultModel> occmedGroupResult = groupResult
@@ -1828,6 +1845,33 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 {
                     page6.cellFbs3.ForeColor = (fbsAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page6.cellFbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                page6.cellHbA1cRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7")?.ReferenceRange;
+                page6.cellHbA1c1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.ResultValue;
+                page6.cellHbA1c2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.ResultValue;
+                page6.cellHbA1c3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.ResultValue;
+
+                string HbA1cAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.IsAbnormal;
+                string HbA1cAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.IsAbnormal;
+                string HbA1cAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(HbA1cAbnormal1))
+                {
+                    page6.cellHbA1c1.ForeColor = (HbA1cAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page6.cellHbA1c1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(HbA1cAbnormal2))
+                {
+                    page6.cellHbA1c2.ForeColor = (HbA1cAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page6.cellHbA1c2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(HbA1cAbnormal3))
+                {
+                    page6.cellHbA1c3.ForeColor = (HbA1cAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page6.cellHbA1c3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
             }
             else
@@ -3325,33 +3369,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         }
                     }
 
-
-                    page7.cellHbA1cRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7")?.ReferenceRange;
-                    page7.cellHbA1c1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.ResultValue;
-                    page7.cellHbA1c2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.ResultValue;
-                    page7.cellHbA1c3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.ResultValue;
-
-                    string HbA1cAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.IsAbnormal;
-                    string HbA1cAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.IsAbnormal;
-                    string HbA1cAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(HbA1cAbnormal1))
-                    {
-                        page7.cellHbA1c1.ForeColor = (HbA1cAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page7.cellHbA1c1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(HbA1cAbnormal2))
-                    {
-                        page7.cellHbA1c2.ForeColor = (HbA1cAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page7.cellHbA1c2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(HbA1cAbnormal3))
-                    {
-                        page7.cellHbA1c3.ForeColor = (HbA1cAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page7.cellHbA1c3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
+                   
 
                     page7.cellCalciumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79")?.ReferenceRange;
                     page7.cellCalcium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year1)?.ResultValue;
@@ -3469,7 +3487,9 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
 
 
-            private void CheckupPage1_AfterPrint(object sender, EventArgs e)
+
+
+        private void CheckupPage1_AfterPrint(object sender, EventArgs e)
             {
                 page2.CreateDocument();
                 page3.CreateDocument();

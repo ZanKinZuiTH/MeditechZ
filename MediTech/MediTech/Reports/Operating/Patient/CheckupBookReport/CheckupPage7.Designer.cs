@@ -88,18 +88,18 @@
             this.cellPsa1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellPsa2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellPsa3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbA1cRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbA1c1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbA1c2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellHbA1c3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCalciumRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCalcium1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCalcium2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCalcium3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTshRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTsh1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTsh2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellTsh3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbUric = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow15 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -181,12 +181,6 @@
             this.lbName10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellTshRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellTsh1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellTsh2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellTsh3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbImmunology)).BeginInit();
@@ -212,8 +206,8 @@
             // 
             // tbOtherTest
             // 
-            this.tbOtherTest.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbOtherTest.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbOtherTest.LocationFloat = new DevExpress.Utils.PointFloat(27.38508F, 54.14948F);
             this.tbOtherTest.Name = "tbOtherTest";
@@ -228,10 +222,9 @@
             this.xrTableRow28,
             this.RowCa125,
             this.RowPSA,
-            this.xrTableRow7,
             this.xrTableRow8,
             this.xrTableRow12});
-            this.tbOtherTest.SizeF = new System.Drawing.SizeF(360.5632F, 266.3675F);
+            this.tbOtherTest.SizeF = new System.Drawing.SizeF(360.5632F, 245.6785F);
             this.tbOtherTest.StylePriority.UseBorders = false;
             this.tbOtherTest.StylePriority.UseBorderWidth = false;
             this.tbOtherTest.StylePriority.UseFont = false;
@@ -249,7 +242,7 @@
             // 
             // xrTableCell95
             // 
-            this.xrTableCell95.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell95.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell95.CanGrow = false;
             this.xrTableCell95.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -264,7 +257,7 @@
             // 
             // xrTableCell96
             // 
-            this.xrTableCell96.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell96.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell96.CanGrow = false;
             this.xrTableCell96.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -854,63 +847,6 @@
             this.cellPsa3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellPsa3.Weight = 0.56682770535881566D;
             // 
-            // xrTableRow7
-            // 
-            this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell16,
-            this.cellHbA1cRange,
-            this.cellHbA1c1,
-            this.cellHbA1c2,
-            this.cellHbA1c3});
-            this.xrTableRow7.Name = "xrTableRow7";
-            this.xrTableRow7.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell16
-            // 
-            this.xrTableCell16.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.StylePriority.UseFont = false;
-            this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "HbA1c";
-            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell16.Weight = 1.0862467173561343D;
-            // 
-            // cellHbA1cRange
-            // 
-            this.cellHbA1cRange.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.cellHbA1cRange.Name = "cellHbA1cRange";
-            this.cellHbA1cRange.StylePriority.UseFont = false;
-            this.cellHbA1cRange.StylePriority.UseTextAlignment = false;
-            this.cellHbA1cRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbA1cRange.Weight = 0.78012161126867519D;
-            // 
-            // cellHbA1c1
-            // 
-            this.cellHbA1c1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellHbA1c1.Name = "cellHbA1c1";
-            this.cellHbA1c1.StylePriority.UseFont = false;
-            this.cellHbA1c1.StylePriority.UseTextAlignment = false;
-            this.cellHbA1c1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbA1c1.Weight = 0.60840274426478835D;
-            // 
-            // cellHbA1c2
-            // 
-            this.cellHbA1c2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellHbA1c2.Name = "cellHbA1c2";
-            this.cellHbA1c2.StylePriority.UseFont = false;
-            this.cellHbA1c2.StylePriority.UseTextAlignment = false;
-            this.cellHbA1c2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbA1c2.Weight = 0.57506778669299274D;
-            // 
-            // cellHbA1c3
-            // 
-            this.cellHbA1c3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellHbA1c3.Name = "cellHbA1c3";
-            this.cellHbA1c3.StylePriority.UseFont = false;
-            this.cellHbA1c3.StylePriority.UseTextAlignment = false;
-            this.cellHbA1c3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellHbA1c3.Weight = 0.56682770535881566D;
-            // 
             // xrTableRow8
             // 
             this.xrTableRow8.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -968,6 +904,63 @@
             this.cellCalcium3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellCalcium3.Weight = 0.56682770535881566D;
             // 
+            // xrTableRow12
+            // 
+            this.xrTableRow12.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell18,
+            this.cellTshRange,
+            this.cellTsh1,
+            this.cellTsh2,
+            this.cellTsh3});
+            this.xrTableRow12.Name = "xrTableRow12";
+            this.xrTableRow12.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.StylePriority.UseFont = false;
+            this.xrTableCell18.StylePriority.UseTextAlignment = false;
+            this.xrTableCell18.Text = "TSH";
+            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell18.Weight = 1.0862467173561343D;
+            // 
+            // cellTshRange
+            // 
+            this.cellTshRange.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.cellTshRange.Name = "cellTshRange";
+            this.cellTshRange.StylePriority.UseFont = false;
+            this.cellTshRange.StylePriority.UseTextAlignment = false;
+            this.cellTshRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTshRange.Weight = 0.78012161126867519D;
+            // 
+            // cellTsh1
+            // 
+            this.cellTsh1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTsh1.Name = "cellTsh1";
+            this.cellTsh1.StylePriority.UseFont = false;
+            this.cellTsh1.StylePriority.UseTextAlignment = false;
+            this.cellTsh1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTsh1.Weight = 0.60840274426478835D;
+            // 
+            // cellTsh2
+            // 
+            this.cellTsh2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTsh2.Name = "cellTsh2";
+            this.cellTsh2.StylePriority.UseFont = false;
+            this.cellTsh2.StylePriority.UseTextAlignment = false;
+            this.cellTsh2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTsh2.Weight = 0.57506778669299274D;
+            // 
+            // cellTsh3
+            // 
+            this.cellTsh3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellTsh3.Name = "cellTsh3";
+            this.cellTsh3.StylePriority.UseFont = false;
+            this.cellTsh3.StylePriority.UseTextAlignment = false;
+            this.cellTsh3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellTsh3.Weight = 0.56682770535881566D;
+            // 
             // xrLabel5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -984,8 +977,8 @@
             // 
             // tbUric
             // 
-            this.tbUric.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbUric.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(439.0236F, 53.46713F);
             this.tbUric.Name = "tbUric";
@@ -1011,7 +1004,7 @@
             // 
             // xrTableCell59
             // 
-            this.xrTableCell59.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell59.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell59.CanGrow = false;
             this.xrTableCell59.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1026,7 +1019,7 @@
             // 
             // xrTableCell60
             // 
-            this.xrTableCell60.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell60.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell60.CanGrow = false;
             this.xrTableCell60.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1213,8 +1206,8 @@
             // 
             // tbImmunology
             // 
-            this.tbImmunology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbImmunology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbImmunology.LocationFloat = new DevExpress.Utils.PointFloat(439.7301F, 198.8829F);
             this.tbImmunology.Name = "tbImmunology";
@@ -1245,7 +1238,7 @@
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell1.CanGrow = false;
             this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1260,7 +1253,7 @@
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell2.CanGrow = false;
             this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1875,63 +1868,6 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // xrTableRow12
-            // 
-            this.xrTableRow12.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell18,
-            this.cellTshRange,
-            this.cellTsh1,
-            this.cellTsh2,
-            this.cellTsh3});
-            this.xrTableRow12.Name = "xrTableRow12";
-            this.xrTableRow12.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.StylePriority.UseTextAlignment = false;
-            this.xrTableCell18.Text = "TSH";
-            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell18.Weight = 1.0862467173561343D;
-            // 
-            // cellTshRange
-            // 
-            this.cellTshRange.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.cellTshRange.Name = "cellTshRange";
-            this.cellTshRange.StylePriority.UseFont = false;
-            this.cellTshRange.StylePriority.UseTextAlignment = false;
-            this.cellTshRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTshRange.Weight = 0.78012161126867519D;
-            // 
-            // cellTsh1
-            // 
-            this.cellTsh1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellTsh1.Name = "cellTsh1";
-            this.cellTsh1.StylePriority.UseFont = false;
-            this.cellTsh1.StylePriority.UseTextAlignment = false;
-            this.cellTsh1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTsh1.Weight = 0.60840274426478835D;
-            // 
-            // cellTsh2
-            // 
-            this.cellTsh2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellTsh2.Name = "cellTsh2";
-            this.cellTsh2.StylePriority.UseFont = false;
-            this.cellTsh2.StylePriority.UseTextAlignment = false;
-            this.cellTsh2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTsh2.Weight = 0.57506778669299274D;
-            // 
-            // cellTsh3
-            // 
-            this.cellTsh3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellTsh3.Name = "cellTsh3";
-            this.cellTsh3.StylePriority.UseFont = false;
-            this.cellTsh3.StylePriority.UseTextAlignment = false;
-            this.cellTsh3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellTsh3.Weight = 0.56682770535881566D;
-            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2076,12 +2012,6 @@
         public DevExpress.XtraReports.UI.XRTableCell cellCa125_1;
         public DevExpress.XtraReports.UI.XRTableCell cellCa125_2;
         public DevExpress.XtraReports.UI.XRTableCell cellCa125_3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
-        public DevExpress.XtraReports.UI.XRTableCell cellHbA1cRange;
-        public DevExpress.XtraReports.UI.XRTableCell cellHbA1c1;
-        public DevExpress.XtraReports.UI.XRTableCell cellHbA1c2;
-        public DevExpress.XtraReports.UI.XRTableCell cellHbA1c3;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow8;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         public DevExpress.XtraReports.UI.XRTableCell cellCalciumRange;

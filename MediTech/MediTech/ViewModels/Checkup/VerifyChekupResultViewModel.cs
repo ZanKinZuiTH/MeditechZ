@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.XtraReports.UI;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using System;
 using System.Collections.Generic;
@@ -381,6 +382,12 @@ namespace MediTech.ViewModels
         {
             get { return _SaveWellNessResultCommand ?? (_SaveWellNessResultCommand = new RelayCommand(SaveWellNessResult)); }
         }
+
+        private RelayCommand _PreviewWellnessCommand;
+        public RelayCommand PreviewWellnessCommand
+        {
+            get { return _PreviewWellnessCommand ?? (_PreviewWellnessCommand = new RelayCommand(PreviewWellness)); }
+        }
         #endregion
 
         #region Method
@@ -508,6 +515,23 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+
+        void PreviewWellness()
+        {
+            if(SelectPatientVisit != null)
+            {
+                Reports.Operating.Patient.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport.CheckupPage1();
+                rpt.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
+                rpt.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
+                rpt.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;
+                rpt.PreviewWellness = WellnessResult;
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                printTool.ShowPreviewDialog();
+            }
+        }
+
         public void PatientSearch()
         {
             string patientID = string.Empty;
