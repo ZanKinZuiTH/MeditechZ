@@ -3,6 +3,7 @@ using MediTech.Model;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -160,9 +161,9 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectGroupResult, value); }
         }
 
-        private List<CheckupJobTaskModel> _CheckupJobTask;
+        private ObservableCollection<CheckupJobTaskModel> _CheckupJobTask;
 
-        public List<CheckupJobTaskModel> CheckupJobTask
+        public ObservableCollection<CheckupJobTaskModel> CheckupJobTask
         {
             get { return _CheckupJobTask; }
             set { Set(ref _CheckupJobTask, value); }
@@ -328,7 +329,7 @@ namespace MediTech.ViewModels
 
             modelCheckupJobContact.EndDttm = EndDttm;
             modelCheckupJobContact.CollectDttm = CollectDttm;
-            modelCheckupJobContact.CheckupJobTasks = CheckupJobTask;
+            modelCheckupJobContact.CheckupJobTasks = CheckupJobTask.ToList();
         }
         public void AssignModelToProperties()
         {
@@ -345,7 +346,7 @@ namespace MediTech.ViewModels
             StartDttm = modelCheckupJobContact.StartDttm;
             EndDttm = modelCheckupJobContact.EndDttm;
             CollectDttm = modelCheckupJobContact.CollectDttm;
-            CheckupJobTask = modelCheckupJobContact.CheckupJobTasks;
+            CheckupJobTask = new ObservableCollection<CheckupJobTaskModel>(modelCheckupJobContact.CheckupJobTasks);
 
             if (CheckupJobTask != null && CheckupJobTask.Count > 0)
             {
@@ -365,7 +366,7 @@ namespace MediTech.ViewModels
             if (SelectGroupResult != null)
             {
                 if (CheckupJobTask == null)
-                    CheckupJobTask = new List<CheckupJobTaskModel>();
+                    CheckupJobTask = new ObservableCollection<CheckupJobTaskModel>();
 
                 CheckupJobTaskModel newCheckupJobTask = new CheckupJobTaskModel();
                 newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;

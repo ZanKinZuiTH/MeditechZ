@@ -5,12 +5,47 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
     public class CheckupSummaryViewModel : MediTechViewModelBase
     {
         #region Properties
+
+        private string _HeaderText = "ตารางแสดงผลการตรวจสูขภาพประจำปี";
+
+        public string HeaderText
+        {
+            get { return _HeaderText; }
+            set { Set(ref _HeaderText, value); }
+        }
+
+        private string _CompanyName;
+
+        public string CompanyName
+        {
+            get { return _CompanyName; }
+            set { Set(ref _CompanyName, value); }
+        }
+
+        private string _BranchName;
+
+        public string BranchName
+        {
+            get { return _BranchName; }
+            set { Set(ref _BranchName, value); }
+        }
+
+        private Visibility _VisibilityBranch = Visibility.Collapsed;
+
+        public Visibility VisibilityBranch
+        {
+            get { return _VisibilityBranch; }
+            set { Set(ref _VisibilityBranch, value); }
+        }
+
+
         private bool _SurpassSelectAll = false;
         public bool SurpassSelectAll
         {
@@ -57,7 +92,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPayorDetail, value);
                 if (_SelectPayorDetail != null)
                 {
-                        CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
                 }
             }
         }
@@ -82,6 +117,8 @@ namespace MediTech.ViewModels
                 {
                     BranchList = DataService.Checkup.GetCompanyBranchByCheckJob(SelectCheckupJobContact.CheckupJobContactUID);
                     CheckupJobTasks = new ObservableCollection<CheckupJobTaskModel>(DataService.Checkup.GetCheckupJobTaskByJobUID(SelectCheckupJobContact.CheckupJobContactUID));
+                    HeaderText += " " + (SelectCheckupJobContact.StartDttm.Year + 543);
+                    CompanyName = _SelectCheckupJobContact.CompanyName;
                 }
                 else
                 {
@@ -124,7 +161,19 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectBranch
         {
             get { return _SelectBranch; }
-            set { Set(ref _SelectBranch, value); }
+            set {
+                Set(ref _SelectBranch, value);
+                if (SelectBranch != null)
+                {
+                    BranchName = "สาขา " + SelectBranch.Display;
+                    VisibilityBranch = Visibility.Visible;
+                }
+                else
+                {
+                    BranchName = "";
+                    VisibilityBranch = Visibility.Collapsed;
+                }
+            }
         }
 
         #endregion

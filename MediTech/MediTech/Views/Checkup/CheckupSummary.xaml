@@ -142,8 +142,30 @@
 
                 </dxlc:LayoutGroup>
             </dxlc:LayoutControl>
-            <dxlc:LayoutGroup  dxlc:DockLayoutControl.Dock="Client">
+            <dxlc:LayoutGroup  dxlc:DockLayoutControl.Dock="Client" Orientation="Vertical">
+                <dxlc:LayoutGroup HorizontalAlignment="Left" Orientation="Vertical">
+                    <dxlc:LayoutItem>
+                        <TextBlock Text="{Binding HeaderText}"
+                               FontWeight="Bold" FontSize="18"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <TextBlock Text="{Binding CompanyName}"
+                               FontWeight="Bold" FontSize="18"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Visibility="{Binding VisibilityBranch}">
+                        <TextBlock Text="{Binding BranchName}" FontStyle="Italic"
+                               FontWeight="Bold" FontSize="16"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
                 <dxg:GridControl>
+                    <dxg:GridColumn Header="รายการตรวจ"/>
+                    <dxg:GridColumn Header="ผลปกติ"/>
+                    <dxg:GridColumn Header="ผลผิดปกติ"/>
+                    <dxg:GridColumn Header="% ผลปกติ"/>
+                    <dxg:GridColumn Header="% ผลผิดปกติ"/>
+                    <dxg:GridColumn Header="สั่งตรวจทั้งหมด"/>
+                    <dxg:GridColumn Header="เข้ารับการตรวจ"/>
+                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ"/>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
                     </dxg:GridControl.View>

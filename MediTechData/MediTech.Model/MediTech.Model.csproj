@@ -156,6 +156,7 @@
     <Compile Include="Raiology\XrayTranslateConditionModel.cs" />
     <Compile Include="Raiology\ResultRadiologyHistoryModel.cs" />
     <Compile Include="Report\ChartStatisticModel.cs" />
+    <Compile Include="Report\CheckupSummaryModel.cs" />
     <Compile Include="Report\DoctorFeeReportModel.cs" />
     <Compile Include="Report\DrugStickerModel.cs" />
     <Compile Include="Report\GoodReceiveReportModel.cs" />
