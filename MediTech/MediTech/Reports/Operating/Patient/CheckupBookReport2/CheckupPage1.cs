@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using DevExpress.XtraPrinting;
 
-namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+namespace MediTech.Reports.Operating.Patient.CheckupBookReport2
 {
     public partial class CheckupPage1 : DevExpress.XtraReports.UI.XtraReport
     {
@@ -173,12 +173,12 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 lbHeight.Text = patient.Height != null ? patient.Height.ToString() + " cm." : "";
                 lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() + " kg." : "";
-                lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
+                
                 lbBP.Text = (patient.BPSys != null ? patient.BPSys.ToString() : "") + (patient.BPDio != null ? "/" + patient.BPDio.ToString() : "");
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " ครั้ง/นาที" : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() + " cm." : "";
 
-                if (patient.WellnessResult.Contains("ครรภ์") == true)
+                if(patient.WellnessResult.Contains("ครรภ์") == true)
                 {
                     lbBMI.Text = "";
                     lbObesity.Text = "ตั้งครรภ์";
@@ -217,6 +217,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         }
                     }
                 }
+               
 
                 #endregion
 
