@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using DevExpress.XtraPrinting;
 
-namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+namespace MediTech.Reports.Operating.Patient.CheckupBookReport2
 {
     public partial class CheckupPage1 : DevExpress.XtraReports.UI.XtraReport
     {
@@ -173,12 +173,12 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 lbHeight.Text = patient.Height != null ? patient.Height.ToString() + " cm." : "";
                 lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() + " kg." : "";
-                lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
+                
                 lbBP.Text = (patient.BPSys != null ? patient.BPSys.ToString() : "") + (patient.BPDio != null ? "/" + patient.BPDio.ToString() : "");
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " ครั้ง/นาที" : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() + " cm." : "";
 
-                if (patient.WellnessResult.Contains("ครรภ์") == true)
+                if(patient.WellnessResult.Contains("ครรภ์") == true)
                 {
                     lbBMI.Text = "";
                     lbObesity.Text = "ตั้งครรภ์";
@@ -217,6 +217,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         }
                     }
                 }
+               
 
                 #endregion
 
@@ -3485,28 +3486,24 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.lbLungRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
 
                 string eyeOccmedConclustion = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
-                if (!string.IsNullOrEmpty(eyeOccmedConclustion))
+                string[] results = eyeOccmedConclustion.Split(',');
+
+                string description = "";
+                string recommand = "";
+                foreach (var item in results)
                 {
-                    string[] results = eyeOccmedConclustion.Split(',');
-
-                    string description = "";
-                    string recommand = "";
-                    foreach (var item in results)
+                    if (item.Contains("ควร"))
                     {
-                        if (item.Contains("ควร"))
-                        {
-                            int index = item.IndexOf("ควร");
-                            description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
-                            recommand = item.Substring(index).Trim();
-
-                        }
+                        int index = item.IndexOf("ควร");
+                        description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                        recommand = item.Substring(index).Trim();
 
                     }
 
-                    page4.lbVisionOccmedResult.Text = description;
-                    page4.lbVisionOccmedRecommend.Text = recommand;
                 }
 
+                page4.lbVisionOccmedResult.Text = description;
+                page4.lbVisionOccmedRecommend.Text = recommand;
 
                 page5.lbAudioResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
                 page5.lbAudioRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();
