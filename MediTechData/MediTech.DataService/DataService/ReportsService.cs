@@ -154,6 +154,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CheckupSummaryModel> CheckupSummary(int checkupjobUID, string GPRSTUIDs, string companyName)
+        {
+            string requestApi = string.Format("Api/Report/CheckupSummary?checkupjobUID={0}&GPRSTUIDs={1}&companyName={2}", checkupjobUID, GPRSTUIDs, companyName);
+            List<CheckupSummaryModel> data = MeditechApiHelper.Get<List<CheckupSummaryModel>>(requestApi);
+
+            return data;
+        }
+
 
         public PatientVisitModel PatientInfomationWellness(long patientUID, long patientVisitUID)
         {
