@@ -8,9 +8,13 @@
              xmlns:local="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=CheckupSummaryViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d"
+             xmlns:cv="clr-namespace:MediTech.Converter"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:helper="clr-namespace:MediTech.Helpers"
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+    </UserControl.Resources>
     <Grid>
         <dxlc:DockLayoutControl x:Name="docLayout">
             <dxlc:LayoutControl>
@@ -98,6 +102,15 @@
                     </dxlc:LayoutItem>
                     <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
                                  SelectedItem="{Binding SelectCheckupJobTask}">
+                        <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
                         <dxg:GridColumn x:Name="colSelected" 
                                         Fixed="Left"
                                         Width="30"
@@ -143,39 +156,100 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutControl>
             <dxlc:LayoutGroup  dxlc:DockLayoutControl.Dock="Client" Orientation="Vertical">
-                <dxlc:LayoutGroup HorizontalAlignment="Left" Orientation="Vertical">
-                    <dxlc:LayoutItem>
-                        <TextBlock Text="{Binding HeaderText}"
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup HorizontalAlignment="Left" Orientation="Vertical">
+                        <dxlc:LayoutItem>
+                            <TextBlock Text="{Binding HeaderText}"
                                FontWeight="Bold" FontSize="18"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <TextBlock Text="{Binding CompanyName}"
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem>
+                            <TextBlock Text="{Binding CompanyName}"
                                FontWeight="Bold" FontSize="18"/>
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Vertical">
+                        <dx:SimpleButton Width="130" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
+                                <TextBlock Text="1. รายงานสรุปรวม" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Visibility="{Binding VisibilityBranch}">
                         <TextBlock Text="{Binding BranchName}" FontStyle="Italic"
                                FontWeight="Bold" FontSize="16"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                <TextBlock Text="Load" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutItem HorizontalAlignment="Right">
-                    <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
-                            <TextBlock Text="Load" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </dx:SimpleButton>
-                </dxlc:LayoutItem>
                 <dxg:GridControl ItemsSource="{Binding CheckupSummayData}">
+                    <dxmvvm:Interaction.Behaviors>
+                        <helper:DeferredColumnFitBehavior/>
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="รายการตรวจ" FieldName="GroupName"/>
-                    <dxg:GridColumn Header="ผลปกติ" FieldName="NormalCount"/>
-                    <dxg:GridColumn Header="ผลผิดปกติ" FieldName="AbnormalCount"/>
-                    <dxg:GridColumn Header="% ผลปกติ" FieldName="NormalPercent"/>
-                    <dxg:GridColumn Header="% ผลผิดปกติ" FieldName="AbnormalPercent"/>
+                    <dxg:GridColumn Header="ผลปกติ" FieldName="NormalCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="ผลผิดปกติ" FieldName="AbnormalCount" >
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="% ผลปกติ" FieldName="NormalPercent">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="% ผลผิดปกติ" FieldName="AbnormalPercent">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
                     <dxg:GridColumn Header="สั่งตรวจทั้งหมด" FieldName="TotalCount"/>
-                    <dxg:GridColumn Header="เข้ารับการตรวจ" FieldName="CheckinCount"/>
-                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ" FieldName="NonCheckinCount"/>
+                    <dxg:GridColumn Header="เข้ารับการตรวจ" FieldName="CheckinCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ" FieldName="NonCheckinCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                        <dxg:TableView ShowGroupPanel="False" AllowEditing="False" UseLightweightTemplates="None" />
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>

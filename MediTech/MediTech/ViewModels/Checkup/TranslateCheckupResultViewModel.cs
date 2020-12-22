@@ -405,8 +405,8 @@ namespace MediTech.ViewModels
                     var ruleCheckups = dataCheckupRule
                         .Where(p => p.GPRSTUID == grpstUID
                         && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
-                        && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
-                        || (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))
+                        && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt >= p.AgeFrom && ageInt <= p.AgeTo)
+                        || (ageInt >= p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt <= p.AgeTo))
                         && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
                         )).ToList();
 
@@ -629,7 +629,7 @@ namespace MediTech.ViewModels
 
                         }
                     }
-                    else if (grpstUID == 3176)
+                    else if (grpstUID == 3176) //พบแพทย์ PE
                     {
                         if (RABSTSUID == 2883)
                         {

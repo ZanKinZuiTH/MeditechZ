@@ -12,7 +12,7 @@
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              DataContext="{Binding Path=VerifyChekupResultViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d" 
-             d:DesignHeight="1200" d:DesignWidth="900">
+             d:DesignHeight="1200" d:DesignWidth="1100">
     <UserControl.Resources>
         <cv:AddValueConverter x:Key="AddValueConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
