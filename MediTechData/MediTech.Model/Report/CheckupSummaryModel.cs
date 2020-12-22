@@ -8,7 +8,6 @@ namespace MediTech.Model.Report
 {
     public class CheckupSummaryModel
     {
-        public int GPRSTUID { get; set; }
         public string GroupName { get; set; }
         public int NormalCount { get; set; }
         public double NormalPercent { get; set; }

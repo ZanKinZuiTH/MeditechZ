@@ -115,7 +115,7 @@
                                     <dxe:CheckEdit
                                         Cursor="Hand"
                                         IsChecked="{Binding Path=DataContext.IsSelectedAll
-                                        ,RelativeSource={RelativeSource AncestorType={x:Type local:TranslateCheckupResult}}}"/>
+                                        ,RelativeSource={RelativeSource AncestorType={x:Type local:CheckupSummary}}}"/>
                                 </DataTemplate>
                             </dxg:GridColumn.HeaderTemplate>
                             <dxg:GridColumn.CellTemplate>
@@ -157,15 +157,23 @@
                                FontWeight="Bold" FontSize="16"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-                <dxg:GridControl>
-                    <dxg:GridColumn Header="รายการตรวจ"/>
-                    <dxg:GridColumn Header="ผลปกติ"/>
-                    <dxg:GridColumn Header="ผลผิดปกติ"/>
-                    <dxg:GridColumn Header="% ผลปกติ"/>
-                    <dxg:GridColumn Header="% ผลผิดปกติ"/>
-                    <dxg:GridColumn Header="สั่งตรวจทั้งหมด"/>
-                    <dxg:GridColumn Header="เข้ารับการตรวจ"/>
-                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ"/>
+                <dxlc:LayoutItem HorizontalAlignment="Right">
+                    <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                            <TextBlock Text="Load" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </dx:SimpleButton>
+                </dxlc:LayoutItem>
+                <dxg:GridControl ItemsSource="{Binding CheckupSummayData}">
+                    <dxg:GridColumn Header="รายการตรวจ" FieldName="GroupName"/>
+                    <dxg:GridColumn Header="ผลปกติ" FieldName="NormalCount"/>
+                    <dxg:GridColumn Header="ผลผิดปกติ" FieldName="AbnormalCount"/>
+                    <dxg:GridColumn Header="% ผลปกติ" FieldName="NormalPercent"/>
+                    <dxg:GridColumn Header="% ผลผิดปกติ" FieldName="AbnormalPercent"/>
+                    <dxg:GridColumn Header="สั่งตรวจทั้งหมด" FieldName="TotalCount"/>
+                    <dxg:GridColumn Header="เข้ารับการตรวจ" FieldName="CheckinCount"/>
+                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ" FieldName="NonCheckinCount"/>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
                     </dxg:GridControl.View>

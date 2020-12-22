@@ -596,6 +596,22 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("CheckupSummary")]
+        [HttpGet]
+        public List<CheckupSummaryModel> CheckupSummary(int checkupjobUID, string GPRSTUIDs, string companyName)
+        {
+            List<CheckupSummaryModel> data = null;
+
+            DataTable dt = SqlDirectStore.pRPTCheckupSummary(checkupjobUID, GPRSTUIDs, companyName);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<CheckupSummaryModel>();
+                data = dt.ToList<CheckupSummaryModel>();
+            }
+
+            return data;
+        }
+
 
         [Route("PatientInfomationWellness")]
         [HttpGet]

@@ -1,4 +1,6 @@
-﻿using MediTech.Model;
+﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Model;
+using MediTech.Model.Report;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -119,6 +121,8 @@ namespace MediTech.ViewModels
                     CheckupJobTasks = new ObservableCollection<CheckupJobTaskModel>(DataService.Checkup.GetCheckupJobTaskByJobUID(SelectCheckupJobContact.CheckupJobContactUID));
                     HeaderText += " " + (SelectCheckupJobContact.StartDttm.Year + 543);
                     CompanyName = _SelectCheckupJobContact.CompanyName;
+
+                    IsSelectedAll = true;
                 }
                 else
                 {
@@ -161,7 +165,8 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectBranch
         {
             get { return _SelectBranch; }
-            set {
+            set
+            {
                 Set(ref _SelectBranch, value);
                 if (SelectBranch != null)
                 {
@@ -176,9 +181,29 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<CheckupSummaryModel> _CheckupSummayData;
+
+        public List<CheckupSummaryModel> CheckupSummayData
+        {
+            get { return _CheckupSummayData; }
+            set { Set(ref _CheckupSummayData, value); }
+        }
+
+
         #endregion
 
         #region Command
+
+        private RelayCommand _LoadDataCommand;
+
+        public RelayCommand LoadDataCommand
+        {
+            get
+            {
+                return _LoadDataCommand
+                    ?? (_LoadDataCommand = new RelayCommand(LoadData));
+            }
+        }
 
         #endregion
 
@@ -188,6 +213,35 @@ namespace MediTech.ViewModels
         {
             PayorDetails = DataService.MasterData.GetPayorDetail();
 
+#if DEBUG
+            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
+            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
+#endif
+        }
+
+
+        void LoadData()
+        {
+            string branchName = string.Empty;
+            string gprstUIs = string.Empty;
+
+            if (SelectCheckupJobContact == null)
+            {
+                WarningDialog("กรุณาเลือก Job");
+                return;
+            }
+
+            if (SelectBranch != null)
+            {
+                BranchName = SelectBranch.Display;
+            }
+
+            foreach (var item in CheckupJobTasks)
+            {
+                gprstUIs += string.IsNullOrEmpty(gprstUIs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
+            }
+
+            CheckupSummayData = DataService.Reports.CheckupSummary(SelectCheckupJobContact.CheckupJobContactUID, gprstUIs, branchName);
         }
         #endregion
     }

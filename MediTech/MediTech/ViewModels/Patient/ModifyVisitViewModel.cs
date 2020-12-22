@@ -245,6 +245,7 @@ namespace MediTech.ViewModels
                     visitInfo.PRITYUID = SelectedPriority.Key;
                     visitInfo.PayorDetailUID = SelectedPayorDetail.PayorDetailUID;
                     visitInfo.PayorAgreementUID = SelectedPayorAgreement.PayorAgreementUID;
+                    visitInfo.CheckupJobUID = SelectedCheckupJob.CheckupJobContactUID;
                     visitInfo.Comments = CommentDoctor;
                     visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                     if (SelectedCareprovider != null)
