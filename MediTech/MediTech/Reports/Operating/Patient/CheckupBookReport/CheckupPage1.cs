@@ -3485,24 +3485,28 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.lbLungRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
 
                 string eyeOccmedConclustion = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
-                string[] results = eyeOccmedConclustion.Split(',');
-
-                string description = "";
-                string recommand = "";
-                foreach (var item in results)
+                if (!string.IsNullOrEmpty(eyeOccmedConclustion))
                 {
-                    if (item.Contains("ควร"))
+                    string[] results = eyeOccmedConclustion.Split(',');
+
+                    string description = "";
+                    string recommand = "";
+                    foreach (var item in results)
                     {
-                        int index = item.IndexOf("ควร");
-                        description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
-                        recommand = item.Substring(index).Trim();
+                        if (item.Contains("ควร"))
+                        {
+                            int index = item.IndexOf("ควร");
+                            description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                            recommand = item.Substring(index).Trim();
+
+                        }
 
                     }
 
+                    page4.lbVisionOccmedResult.Text = description;
+                    page4.lbVisionOccmedRecommend.Text = recommand;
                 }
 
-                page4.lbVisionOccmedResult.Text = description;
-                page4.lbVisionOccmedRecommend.Text = recommand;
 
                 page5.lbAudioResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
                 page5.lbAudioRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();

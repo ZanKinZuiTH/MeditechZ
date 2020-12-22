@@ -423,7 +423,16 @@ namespace MediTech.ViewModels
                                 if (!string.IsNullOrEmpty(ruleItem.Text))
                                 {
                                     string[] values = ruleItem.Text.Split(',');
-                                    if (values.Any(p => p.ToLower().Trim() == resultItemValue.ResultValue.ToLower().Trim()))
+                                    string[] resultValues = resultItemValue.ResultValue.Split(',');
+                                    //if (values.Any(p => p.ToLower().Trim() == resultItemValue.ResultValue.ToLower().Trim()))
+                                    //{
+                                    //    isConrrect = true;
+                                    //    if (ruleItem.Operator == "Or")
+                                    //    {
+                                    //        break;
+                                    //    }
+                                    //}
+                                    if (values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
                                     {
                                         isConrrect = true;
                                         if (ruleItem.Operator == "Or")
