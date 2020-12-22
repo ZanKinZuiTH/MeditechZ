@@ -698,7 +698,10 @@ namespace MediTech.ViewModels
                                 {
                                     ruleCheckup = ruleColorBlindness.FirstOrDefault();
                                 }
-
+                                if (!string.IsNullOrEmpty(conclusion))
+                                {
+                                    conclusion += ", ";
+                                }
                                 foreach (var content in ruleCheckup.CheckupRuleDescription)
                                 {
                                     if (!string.IsNullOrEmpty(content.ThaiDescription))

@@ -1830,10 +1830,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetResultCumulative")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetResultCumulative(long patientUID, int requestItemUID)
+        public List<PatientResultComponentModel> GetResultCumulative(long patientUID,long patientVisitUID, int requestItemUID)
         {
             List<PatientResultComponentModel> data = null;
-            DataTable dt = SqlDirectStore.pGetResultCumulative(patientUID, requestItemUID);
+            DataTable dt = SqlDirectStore.pGetResultCumulative(patientUID, patientVisitUID, requestItemUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientResultComponentModel>();
@@ -1844,10 +1844,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetGroupResultCumulative")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, int GPRSTUID)
+        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, long patientVisitUID, int GPRSTUID, int? payorDetailUID)
         {
             List<PatientResultComponentModel> data = null;
-            DataTable dt = SqlDirectStore.pGetGroupResultCumulative(patientUID, GPRSTUID);
+            DataTable dt = SqlDirectStore.pGetGroupResultCumulative(patientUID, patientVisitUID, GPRSTUID, payorDetailUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientResultComponentModel>();
@@ -1858,10 +1858,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetVitalSignCumulative")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID)
+        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID,long patientVisitUID)
         {
             List<PatientResultComponentModel> data = null;
-            DataTable dt = SqlDirectStore.pGetVitalSignCumulative(patientUID);
+            DataTable dt = SqlDirectStore.pGetVitalSignCumulative(patientUID, patientVisitUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientResultComponentModel>();
@@ -1883,7 +1883,9 @@ namespace MediTechWebApi.Controllers
                     PatientVisitUID = p.PatientVisitUID,
                     GPRSTUID = p.GPRSTUID,
                     RABSTSUID = p.RABSTSUID,
-                    Conclusion = p.Conclusion
+                    Conclusion = p.Conclusion,
+                    Recommend = p.Recommend,
+
                 }).FirstOrDefault();
 
             return data;
@@ -1908,6 +1910,8 @@ namespace MediTechWebApi.Controllers
                                                       Conclusion = ck.Conclusion,
                                                       GroupResult = rf.Description,
                                                       ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง":  "ปกติ",
+                                                      Recommend = ck.Recommend,
+                                                      Description = ck.Description,
                                                       GroupCode = rf.ValueCode
                                                   }).ToList();
 

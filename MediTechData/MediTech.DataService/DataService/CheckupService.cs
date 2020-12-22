@@ -408,25 +408,25 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientResultComponentModel> GetResultCumulative(long patientUID, int requestItemUID)
+        public List<PatientResultComponentModel> GetResultCumulative(long patientUID, long patientVisitUID, int requestItemUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetResultCumulative?patientUID={0}&requestItemUID={1}", patientUID, requestItemUID);
+            string requestApi = string.Format("Api/Checkup/GetResultCumulative?patientUID={0}&patientVisitUID={1}&requestItemUID={2}", patientUID, patientVisitUID, requestItemUID);
             List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, int GPRSTUID)
+        public List<PatientResultComponentModel> GetGroupResultCumulative(long patientUID, long patientVisitUID, int GPRSTUID,int? payorDetailUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetGroupResultCumulative?patientUID={0}&GPRSTUID={1}", patientUID, GPRSTUID);
+            string requestApi = string.Format("Api/Checkup/GetGroupResultCumulative?patientUID={0}&patientVisitUID={1}&GPRSTUID={2}&payorDetailUID={3}", patientUID, patientVisitUID, GPRSTUID, payorDetailUID);
             List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID)
+        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID, long patientVisitUID)
         {
-            string requestApi = string.Format("Api/Checkup/GetVitalSignCumulative?patientUID={0}", patientUID);
+            string requestApi = string.Format("Api/Checkup/GetVitalSignCumulative?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
             List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
 
             return data;

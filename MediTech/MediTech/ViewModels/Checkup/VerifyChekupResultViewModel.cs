@@ -140,7 +140,7 @@ namespace MediTech.ViewModels
                 {
                     if (SelectGroupResult.Key == 3177 || SelectGroupResult.Key == 3178)
                     {
-                        ResultComponents = DataService.Checkup.GetVitalSignCumulative(SelectPatientVisit.PatientUID);
+                        ResultComponents = DataService.Checkup.GetVitalSignCumulative(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID);
 
                         VisibilityLab = Visibility.Visible;
                         VisibilityRadiology = Visibility.Collapsed;
@@ -157,7 +157,7 @@ namespace MediTech.ViewModels
                     }
                     else
                     {
-                        ResultComponents = DataService.Checkup.GetGroupResultCumulative(SelectPatientVisit.PatientUID, SelectGroupResult.Key);
+                        ResultComponents = DataService.Checkup.GetGroupResultCumulative(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key, SelectPatientVisit.PayorDetailUID);
                         VisibilityLab = Visibility.Visible;
                         VisibilityRadiology = Visibility.Collapsed;
                     }

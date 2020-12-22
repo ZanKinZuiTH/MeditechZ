@@ -165,8 +165,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 lbEmployee.Text = patient.EmployeeID;
                 lbDepartment.Text = patient.Department;
                 lbPosition.Text = patient.Position;
-                lbCompany.Text = patient.PayorName;
-                lbChildCompany.Text = patient.CompanyName;
+                lbCompany.Text = !string.IsNullOrEmpty(patient.CompanyName) ? patient.CompanyName : patient.PayorName;
+                //lbChildCompany.Text = patient.CompanyName;
                 lbDateOfBirth.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lbAge.Text = patient.Age != null ? patient.Age + " ปี" : "";
                 lbGender.Text = patient.Gender;
@@ -3475,8 +3475,25 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.lbLungResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.ResultStatus.ToString();
                 page4.lbLungRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST33")?.Conclusion.ToString();
 
-                page4.lbVisionOccmedResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.ResultStatus.ToString();
-                page4.lbVisionOccmedRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
+                string eyeOccmedConclustion = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST26")?.Conclusion.ToString();
+                string[] results = eyeOccmedConclustion.Split(',');
+
+                string description = "";
+                string recommand = "";
+                foreach (var item in results)
+                {
+                    if (item.Contains("ควร"))
+                    {
+                        int index = item.IndexOf("ควร");
+                        description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
+                        recommand = item.Substring(index).Trim();
+
+                    }
+
+                }
+
+                page4.lbVisionOccmedResult.Text = description;
+                page4.lbVisionOccmedRecommend.Text = recommand;
 
                 page5.lbAudioResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
                 page5.lbAudioRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();

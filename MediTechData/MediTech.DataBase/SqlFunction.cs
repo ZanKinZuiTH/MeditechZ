@@ -1073,12 +1073,13 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetResultCumulative(long patientUID, int requestItemUID)
+        public static DataTable pGetResultCumulative(long patientUID,long patientVisitUID, int requestItemUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetResultCumulative", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestItemUID", requestItemUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
@@ -1089,13 +1090,15 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetGroupResultCumulative(long patientUID, int GPRSTUID)
+        public static DataTable pGetGroupResultCumulative(long patientUID, long patientVisitUID, int GPRSTUID, int? payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetGroupResultCumulative", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             if (ds.Tables.Count <= 0)
@@ -1105,12 +1108,13 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetVitalSignCumulative(long patientUID)
+        public static DataTable pGetVitalSignCumulative(long patientUID,long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetVitalSignCumulative", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             if (ds.Tables.Count <= 0)
