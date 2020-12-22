@@ -22,6 +22,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> EffectiveTo { get; set; }
         public Nullable<int> UnitofMeasure { get; set; }
         public Nullable<int> RVTYPUID { get; set; }
+        public Nullable<int> GPRSTUID { get; set; }
         public string IsCumulative { get; set; }
         public string AutoValue { get; set; }
         public int CUser { get; set; }

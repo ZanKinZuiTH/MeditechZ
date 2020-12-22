@@ -575,6 +575,7 @@ namespace MediTechWebApi.Controllers
                 UnitofMeasure = p.UnitofMeasure,
                 UOM = SqlFunction.fGetRfValDescription(p.UnitofMeasure ?? 0),
                 RVTYPUID = p.RVTYPUID,
+                GPRSTUID = p.GPRSTUID,
                 ResultType = SqlFunction.fGetRfValDescription(p.RVTYPUID ?? 0),
                 IsCumulative = p.IsCumulative,
                 AutoValue = p.AutoValue,
@@ -664,6 +665,7 @@ namespace MediTechWebApi.Controllers
                     resultItem.EffectiveFrom = resultItemModel.EffectiveFrom;
                     resultItem.EffectiveTo = resultItemModel.EffectiveTo;
                     resultItem.RVTYPUID = resultItemModel.RVTYPUID;
+                    resultItem.GPRSTUID = resultItemModel.GPRSTUID;
                     resultItem.UnitofMeasure = resultItemModel.UnitofMeasure;
                     resultItem.IsCumulative = resultItemModel.IsCumulative;
                     resultItem.AutoValue = resultItemModel.AutoValue;

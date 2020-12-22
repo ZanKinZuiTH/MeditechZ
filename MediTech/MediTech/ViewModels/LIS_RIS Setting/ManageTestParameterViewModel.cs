@@ -93,7 +93,26 @@ namespace MediTech.ViewModels
                 Set(ref _SelectUnitofMeasure, value);
             }
         }
+   
+        private List<LookupReferenceValueModel> _GroupResult;
+        public List<LookupReferenceValueModel> GroupResult
+        {
+            get { return _GroupResult; }
+            set
+            {
+                Set(ref _GroupResult, value);
+            }
+        }
 
+        private LookupReferenceValueModel _SelectGroupResult;
+        public LookupReferenceValueModel SelectGroupResult
+        {
+            get { return _SelectGroupResult; }
+            set
+            {
+                Set(ref _SelectGroupResult, value);
+            }
+        }
         private DateTime? _EffectiveFrom;
 
         public DateTime? EffectiveFrom
@@ -325,12 +344,13 @@ namespace MediTech.ViewModels
 
         public ManageTestParameterViewModel()
         {
-            var referenceValue = DataService.Technical.GetReferenceValueList("RVTYP,RIUOM,SEXXX,LABRAM");
+            var referenceValue = DataService.Technical.GetReferenceValueList("RVTYP,RIUOM,SEXXX,LABRAM,GPRST");
             ParameterType = referenceValue.Where(p => p.DomainCode == "RVTYP").ToList();
             UnitofMeasure = referenceValue.Where(p => p.DomainCode == "RIUOM").OrderBy(p => p.Display).ToList();
 
             LabRangeMasters = referenceValue.Where(p => p.DomainCode == "LABRAM").ToList();
             Genders = referenceValue.Where(p => p.DomainCode == "SEXXX").ToList();
+            GroupResult = referenceValue.Where(p => p.DomainCode == "GPRST").ToList();
         }
 
 
@@ -539,6 +559,7 @@ namespace MediTech.ViewModels
             Description = Datamodel.Description;
             SelectParameterType = ParameterType.FirstOrDefault(p => p.Key == Datamodel.RVTYPUID);
             SelectUnitofMeasure = UnitofMeasure.FirstOrDefault(p => p.Key == Datamodel.UnitofMeasure);
+            SelectGroupResult = GroupResult.FirstOrDefault(p => p.Key == Datamodel.GPRSTUID);
             EffectiveFrom = Datamodel.EffectiveFrom;
             EffectiveTo = Datamodel.EffectiveTo;
             IsCumulative = Datamodel.IsCumulative == "Y" ? true : false;
@@ -558,6 +579,7 @@ namespace MediTech.ViewModels
             Datamodel.DisplyName = Name;
             Datamodel.Description = Description;
             Datamodel.RVTYPUID = SelectParameterType.Key;
+            Datamodel.GPRSTUID = SelectGroupResult.Key;
             Datamodel.UnitofMeasure = SelectUnitofMeasure != null ? SelectUnitofMeasure.Key : (int?)null;
             Datamodel.IsCumulative = IsCumulative ? "Y" : null;
             Datamodel.AutoValue = AutoValue;

@@ -115,6 +115,12 @@
                             </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="Group Result">
+                                <dxe:ComboBoxEdit ItemsSource="{Binding GroupResult}"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          SelectedItem="{Binding SelectGroupResult}"/>
+                            </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="เปิดใช้งาน">
                                 <dxe:DateEdit EditValue="{Binding EffectiveFrom}"/>
                             </dxlc:LayoutItem>
