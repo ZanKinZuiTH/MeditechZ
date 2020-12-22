@@ -574,6 +574,7 @@ namespace MediTechWebApi.Controllers
                     patientVisit.StartDttm = patientVisitInfo.StartDttm;
                     patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
                     patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
+                    patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
                     patientVisit.Comments = patientVisitInfo.Comments;
                     patientVisit.MUser = userID;
                     patientVisit.MWhen = DateTime.Now;

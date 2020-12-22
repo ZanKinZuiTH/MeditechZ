@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.XtraReports.UI;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Model.Report;
 using System;
@@ -205,6 +206,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _PreviewCheckupSummaryCommand;
+
+        public RelayCommand PreviewCheckupSummaryCommand
+        {
+            get
+            {
+                return _PreviewCheckupSummaryCommand
+                    ?? (_PreviewCheckupSummaryCommand = new RelayCommand(PreviewCheckupSummary));
+            }
+        }
+
         #endregion
 
         #region Method
@@ -223,7 +235,7 @@ namespace MediTech.ViewModels
         void LoadData()
         {
             string branchName = string.Empty;
-            string gprstUIs = string.Empty;
+            string gprstUIDs = string.Empty;
 
             if (SelectCheckupJobContact == null)
             {
@@ -233,15 +245,58 @@ namespace MediTech.ViewModels
 
             if (SelectBranch != null)
             {
-                BranchName = SelectBranch.Display;
+                branchName = SelectBranch.Display;
             }
 
             foreach (var item in CheckupJobTasks)
             {
-                gprstUIs += string.IsNullOrEmpty(gprstUIs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
+                if (item.IsSelected)
+                {
+                    gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
+                }
+
             }
 
-            CheckupSummayData = DataService.Reports.CheckupSummary(SelectCheckupJobContact.CheckupJobContactUID, gprstUIs, branchName);
+            CheckupSummayData = DataService.Reports.CheckupSummary(SelectCheckupJobContact.CheckupJobContactUID, gprstUIDs, branchName);
+        }
+
+        void PreviewCheckupSummary()
+        {
+            if (SelectCheckupJobContact != null)
+            {
+                string gprstUIDs = string.Empty;
+                foreach (var item in CheckupJobTasks)
+                {
+                    if (item.IsSelected)
+                    {
+                        gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
+                    }
+
+                }
+                string companyName = string.Empty;
+                string hearder = string.Format("โปรแกรมตรวจสุขภาพประจำปี {0}", (SelectCheckupJobContact.StartDttm.Year + 543));
+                if (SelectBranch != null)
+                {
+                    companyName = SelectBranch.Display;
+                }
+                else
+                {
+                    companyName = SelectCheckupJobContact.CompanyName;
+                }
+
+
+
+                Reports.Statistic.Checkup.CheckupSummary rpt = new Reports.Statistic.Checkup.CheckupSummary();
+                rpt.Parameters["Header"].Value = companyName + Environment.NewLine + hearder;
+                rpt.Parameters["CheckupJobUID"].Value = SelectCheckupJobContact.CheckupJobContactUID;
+                rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
+                rpt.Parameters["GPRSTUIDs"].Value = gprstUIDs;
+                rpt.Parameters["Year"].Value = (SelectCheckupJobContact.StartDttm.Year + 543);
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                printTool.ShowPreviewDialog();
+            }
         }
         #endregion
     }
