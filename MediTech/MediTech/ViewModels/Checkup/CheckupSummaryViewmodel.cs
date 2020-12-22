@@ -215,7 +215,7 @@ namespace MediTech.ViewModels
 
 #if DEBUG
             SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
-            SelectCheckupJobTask = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
+            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
 #endif
         }
 
