@@ -178,42 +178,45 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " ครั้ง/นาที" : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() + " cm." : "";
 
-                if (patient.WellnessResult.Contains("ครรภ์") == true)
+                if (patient.WellnessResult != null)
                 {
-                    lbBMI.Text = "";
-                    lbObesity.Text = "ตั้งครรภ์";
-                }
-                else
-                {
-                    lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
-                    if (patient.BMI != null)
+                    if (patient.WellnessResult.Contains("ครรภ์") == true)
                     {
-                        string bmiResult = "";
-                        if (patient.BMI < 18.5)
+                        lbBMI.Text = "";
+                        lbObesity.Text = "ตั้งครรภ์";
+                    }
+                    else
+                    {
+                        lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
+                        if (patient.BMI != null)
                         {
-                            bmiResult = "น้ำหนักน้อย";
-                        }
-                        else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
-                        {
-                            bmiResult = "น้ำหนักปกติ";
-                        }
-                        else if (patient.BMI >= 23 && patient.BMI <= 24.99)
-                        {
-                            bmiResult = "น้ำหนักเกินเกณฑ์";
-                        }
-                        else if (patient.BMI >= 25 && patient.BMI <= 29.99)
-                        {
-                            bmiResult = "โรคอ้วนระดับที่ 1";
-                        }
-                        else if (patient.BMI >= 30)
-                        {
-                            bmiResult = "โรคอ้วนระดับที่ 2";
-                        }
-                        lbObesity.Text = bmiResult;
+                            string bmiResult = "";
+                            if (patient.BMI < 18.5)
+                            {
+                                bmiResult = "น้ำหนักน้อย";
+                            }
+                            else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
+                            {
+                                bmiResult = "น้ำหนักปกติ";
+                            }
+                            else if (patient.BMI >= 23 && patient.BMI <= 24.99)
+                            {
+                                bmiResult = "น้ำหนักเกินเกณฑ์";
+                            }
+                            else if (patient.BMI >= 25 && patient.BMI <= 29.99)
+                            {
+                                bmiResult = "โรคอ้วนระดับที่ 1";
+                            }
+                            else if (patient.BMI >= 30)
+                            {
+                                bmiResult = "โรคอ้วนระดับที่ 2";
+                            }
+                            lbObesity.Text = bmiResult;
 
-                        if (bmiResult != "น้ำหนักปกติ")
-                        {
-                            lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            if (bmiResult != "น้ำหนักปกติ")
+                            {
+                                lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            }
                         }
                     }
                 }
@@ -420,9 +423,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         {
                             lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
-
-
                     }
+
 
                     page4.TitleFarVision.Text = "Far Test";
                     page4.TitleNearVision.Text = "Near Test";
@@ -609,6 +611,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         .OrderBy(p => p.Year);
                     GenerateOther(OtherTestSet);
                     #endregion
+
+                    IEnumerable<PatientResultComponentModel> BackStrength = labCompare
+                        .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
+                    GenerateBackStrength(BackStrength);
                 }
 
                 var occmed = data.MobileResult;
@@ -625,6 +631,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     IEnumerable<PatientResultComponentModel> SpiroResult = occmed
                         .Where(p => p.RequestItemCode.Contains("SPIRO"));
                     GenerateSpiro(SpiroResult);
+
+                    IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
+                        .Where(p => p.RequestItemCode.Contains("PEXAM"));
+                    GeneratePhysicalExam(PhysicalExam);
                 }
 
                 if (groupResult != null)
@@ -632,7 +642,9 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     IEnumerable<CheckupGroupResultModel> occmedGroupResult = groupResult
                         .Where(p => p.GroupCode.Contains("GPRST33")  //spiro
                         || p.GroupCode.Contains("GPRST26") //timus
-                        || p.GroupCode.Contains("GPRST25")); //audio
+                        || p.GroupCode.Contains("GPRST25") //audio
+                        || p.GroupCode.Contains("GPRST32")); //BackStrength
+
                     GenerateOccmedGroup(occmedGroupResult);
                 }
             }
@@ -3489,6 +3501,35 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
             }
         }
 
+        private void GeneratePhysicalExam(IEnumerable<PatientResultComponentModel> PhysicalExamResult)
+        {
+            if (PhysicalExamResult != null && PhysicalExamResult.Count() > 0)
+            {
+                page2.lbEye.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM1")?.ResultValue;
+                page2.lbEars.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM2")?.ResultValue;
+                page2.lbThroat.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM3")?.ResultValue;
+                page2.lbNose.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM4")?.ResultValue;
+                page2.lbTeeth.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM5")?.ResultValue;
+                page2.lbLung.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM8")?.ResultValue;
+                page2.lbHeart.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM9")?.ResultValue;
+                page2.lbSkin.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM10")?.ResultValue;
+                page2.lbThyroid.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM7")?.ResultValue;
+                page2.lbLymphNode.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM6")?.ResultValue;
+                page2.lbSmoke.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM11")?.ResultValue;
+                page2.lbDrugAllergy.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM13")?.ResultValue;
+                page2.lbAlcohol.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM12")?.ResultValue;
+                page2.lbUnderlying.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM14")?.ResultValue;
+            }
+        }
+
+        private void GenerateBackStrength(IEnumerable<PatientResultComponentModel> BackStrength)
+        {
+            if (BackStrength != null && BackStrength.Count() > 0)
+            {
+                page3.lbValueBackStrenght.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS1")?.ResultValue;
+                page3.lbBackStrenght.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS2")?.ResultValue;
+            }
+        }
         private void GenerateOccmedGroup(IEnumerable<CheckupGroupResultModel> occmedGroupResult)
         {
             if (occmedGroupResult != null && occmedGroupResult.Count() > 0)
@@ -3522,6 +3563,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                 page5.lbAudioResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
                 page5.lbAudioRecommend.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();
+                
+                page3.lbMuscleResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST32")?.Conclusion;
             }
         }
 

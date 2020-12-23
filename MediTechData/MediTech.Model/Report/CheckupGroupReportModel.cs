@@ -56,6 +56,26 @@ namespace MediTech.Model.Report
 
         public string BPDio { get; set; }
         public string Pulse { get; set; }
+        public string C0070 { get; set; }
+        public string PAR27 { get; set; }
+
+        public string A0001 { get; set; } //hb
+        public string A0020 { get; set; } //Hct
+        public string A0030 { get; set; } //MCH
+        public string A0035 { get; set; } //MCHC
+        public string A0025 { get; set; } //MCV
+        public string PAR1 { get; set; } //RDW
+        public string A0428 { get; set; } //RBC
+        public string PAR13 { get; set; } //RBC Morphology
+
+        public string A0006 { get; set; } //wbc
+        public string A0040 { get; set; } //Neutrophi
+        public string A0060 { get; set; } // Monocyte
+        public string A0050 { get; set; } // Lymphocyt 
+        public string A0070 { get; set; } // Eosinophil 
+        public string A0080 { get; set; } // Basophil  
+        public string A0010 { get; set; } 
+>>>>>>> origin/devalop
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
 
