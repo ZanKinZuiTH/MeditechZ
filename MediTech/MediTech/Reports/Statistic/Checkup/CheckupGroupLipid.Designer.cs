@@ -30,7 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -39,34 +38,35 @@
             this.xrTableCell36 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -82,8 +82,16 @@
             this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            this.CholesterolH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.CholesterolL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.TriglyH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.TriglyL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.ldlH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.ldlL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.hdlH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.hdlL = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -108,11 +116,6 @@
             this.GroupHeader1.HeightF = 65.83334F;
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.RepeatEveryPage = true;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrTable2
             // 
@@ -191,6 +194,19 @@
             this.xrTableCell38.Text = "อายุ";
             this.xrTableCell38.Weight = 0.49811814911322938D;
             // 
+            // xrTableCell39
+            // 
+            this.xrTableCell39.Name = "xrTableCell39";
+            this.xrTableCell39.RowSpan = 3;
+            this.xrTableCell39.Text = "เพศ";
+            this.xrTableCell39.Weight = 0.51492385358540038D;
+            // 
+            // xrTableCell43
+            // 
+            this.xrTableCell43.Name = "xrTableCell43";
+            this.xrTableCell43.Text = "ตรวจระดับไขมันในเลือดสูง(Lipid Profiles)";
+            this.xrTableCell43.Weight = 6.7315165960363208D;
+            // 
             // xrTableRow2
             // 
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -233,6 +249,47 @@
             // 
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Weight = 0.89091466983950018D;
+            // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Weight = 0.541861600746774D;
+            // 
+            // xrTableCell17
+            // 
+            this.xrTableCell17.Name = "xrTableCell17";
+            this.xrTableCell17.Weight = 0.56014318676891839D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Text = "Cholesterol";
+            this.xrTableCell18.Weight = 0.84463721058693542D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Text = "Triglyceride";
+            this.xrTableCell19.Weight = 0.775647384209417D;
+            // 
+            // xrTableCell20
+            // 
+            this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Text = "LDL";
+            this.xrTableCell20.Weight = 0.81271520066539527D;
+            // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.Text = "HDL";
+            this.xrTableCell1.Weight = 1.3359682197224887D;
+            // 
+            // xrTableCell21
+            // 
+            this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.RowSpan = 2;
+            this.xrTableCell21.Text = "ผลตรวจ";
+            this.xrTableCell21.Weight = 3.5536944375036188D;
             // 
             // xrTableRow3
             // 
@@ -282,28 +339,11 @@
             this.xrTableCell26.Text = "xrTableCell26";
             this.xrTableCell26.Weight = 0.89091466983950018D;
             // 
-            // xrTableCell39
-            // 
-            this.xrTableCell39.Name = "xrTableCell39";
-            this.xrTableCell39.RowSpan = 3;
-            this.xrTableCell39.Text = "เพศ";
-            this.xrTableCell39.Weight = 0.51492385358540038D;
-            // 
-            // xrTableCell16
-            // 
-            this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Weight = 0.541861600746774D;
-            // 
             // xrTableCell27
             // 
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.Text = "xrTableCell27";
             this.xrTableCell27.Weight = 0.54186160074677414D;
-            // 
-            // xrTableCell17
-            // 
-            this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Weight = 0.56014318676891839D;
             // 
             // xrTableCell28
             // 
@@ -311,42 +351,11 @@
             this.xrTableCell28.Text = "xrTableCell28";
             this.xrTableCell28.Weight = 0.56014318676891828D;
             // 
-            // xrTableCell43
+            // xrTableCell29
             // 
-            this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ตรวจระดับไขมันในเลือดสูง(Lipid Profiles)";
-            this.xrTableCell43.Weight = 6.7315165960363208D;
-            // 
-            // xrTableCell19
-            // 
-            this.xrTableCell19.Name = "xrTableCell19";
-            this.xrTableCell19.Text = "Triglyceride";
-            this.xrTableCell19.Weight = 0.775647384209417D;
-            // 
-            // xrTableCell20
-            // 
-            this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.Text = "LDL";
-            this.xrTableCell20.Weight = 0.81271520066539527D;
-            // 
-            // xrTableCell31
-            // 
-            this.xrTableCell31.Name = "xrTableCell31";
-            this.xrTableCell31.Text = "<130 mg/dl";
-            this.xrTableCell31.Weight = 0.812714611062024D;
-            // 
-            // xrTableCell32
-            // 
-            this.xrTableCell32.Name = "xrTableCell32";
-            this.xrTableCell32.Text = "xrTableCell32";
-            this.xrTableCell32.Weight = 3.5536944375036188D;
-            // 
-            // xrTableCell21
-            // 
-            this.xrTableCell21.Name = "xrTableCell21";
-            this.xrTableCell21.RowSpan = 2;
-            this.xrTableCell21.Text = "ผลตรวจ";
-            this.xrTableCell21.Weight = 3.5536944375036188D;
+            this.xrTableCell29.Name = "xrTableCell29";
+            this.xrTableCell29.Text = "<200 mg/dl";
+            this.xrTableCell29.Weight = 0.84463721073752451D;
             // 
             // xrTableCell30
             // 
@@ -354,29 +363,28 @@
             this.xrTableCell30.Text = "<150 mg/dl";
             this.xrTableCell30.Weight = 0.77564738405882794D;
             // 
-            // xrTableCell18
+            // xrTableCell31
             // 
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Text = "Cholesterol";
-            this.xrTableCell18.Weight = 0.84463721058693542D;
-            // 
-            // xrTableCell29
-            // 
-            this.xrTableCell29.Name = "xrTableCell29";
-            this.xrTableCell29.Text = "<200 mg/dl";
-            this.xrTableCell29.Weight = 0.84463721073752451D;
-            // 
-            // xrTableCell1
-            // 
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.Text = "HDL";
-            this.xrTableCell1.Weight = 1.3359682197224887D;
+            this.xrTableCell31.Name = "xrTableCell31";
+            this.xrTableCell31.Text = "<130 mg/dl";
+            this.xrTableCell31.Weight = 0.812714611062024D;
             // 
             // xrTableCell2
             // 
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Text = "(M >40 mg/dl, F>50 mg/dl)";
             this.xrTableCell2.Weight = 1.3359688093258595D;
+            // 
+            // xrTableCell32
+            // 
+            this.xrTableCell32.Name = "xrTableCell32";
+            this.xrTableCell32.Text = "xrTableCell32";
+            this.xrTableCell32.Weight = 3.5536944375036188D;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // xrTable1
             // 
@@ -471,6 +479,8 @@
             // 
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0130")});
+            this.xrTableCell10.FormattingRules.Add(this.CholesterolL);
+            this.xrTableCell10.FormattingRules.Add(this.CholesterolH);
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Text = "xrTableCell10";
             this.xrTableCell10.Weight = 0.79202599382622929D;
@@ -479,6 +489,8 @@
             // 
             this.xrTableCell40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0140")});
+            this.xrTableCell40.FormattingRules.Add(this.TriglyH);
+            this.xrTableCell40.FormattingRules.Add(this.TriglyL);
             this.xrTableCell40.Name = "xrTableCell40";
             this.xrTableCell40.Text = "xrTableCell40";
             this.xrTableCell40.Weight = 0.72733330883820013D;
@@ -487,6 +499,8 @@
             // 
             this.xrTableCell41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0159")});
+            this.xrTableCell41.FormattingRules.Add(this.ldlL);
+            this.xrTableCell41.FormattingRules.Add(this.ldlH);
             this.xrTableCell41.Name = "xrTableCell41";
             this.xrTableCell41.Text = "xrTableCell41";
             this.xrTableCell41.Weight = 0.76209219920500271D;
@@ -495,6 +509,8 @@
             // 
             this.xrTableCell42.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0150")});
+            this.xrTableCell42.FormattingRules.Add(this.hdlH);
+            this.xrTableCell42.FormattingRules.Add(this.hdlL);
             this.xrTableCell42.Name = "xrTableCell42";
             this.xrTableCell42.Text = "xrTableCell42";
             this.xrTableCell42.Weight = 1.2527533741164421D;
@@ -514,6 +530,54 @@
             this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.formattingRule1.Name = "formattingRule1";
             // 
+            // CholesterolH
+            // 
+            this.CholesterolH.Condition = "EndsWith(Trim([C0130]), \'H\')";
+            this.CholesterolH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.CholesterolH.Name = "CholesterolH";
+            // 
+            // CholesterolL
+            // 
+            this.CholesterolL.Condition = "EndsWith(Trim([C0130]), \'L\')";
+            this.CholesterolL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.CholesterolL.Name = "CholesterolL";
+            // 
+            // TriglyH
+            // 
+            this.TriglyH.Condition = "EndsWith(Trim([C0140]), \'H\')";
+            this.TriglyH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.TriglyH.Name = "TriglyH";
+            // 
+            // TriglyL
+            // 
+            this.TriglyL.Condition = "EndsWith(Trim([C0140]), \'L\')";
+            this.TriglyL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.TriglyL.Name = "TriglyL";
+            // 
+            // ldlH
+            // 
+            this.ldlH.Condition = "EndsWith(Trim([C0159]), \'H\')";
+            this.ldlH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.ldlH.Name = "ldlH";
+            // 
+            // ldlL
+            // 
+            this.ldlL.Condition = "EndsWith(Trim([C0159]), \'L\')";
+            this.ldlL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.ldlL.Name = "ldlL";
+            // 
+            // hdlH
+            // 
+            this.hdlH.Condition = "EndsWith(Trim([C0150]), \'H\')";
+            this.hdlH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.hdlH.Name = "hdlH";
+            // 
+            // hdlL
+            // 
+            this.hdlL.Condition = "EndsWith(Trim([C0150]), \'L\')";
+            this.hdlL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.hdlL.Name = "hdlL";
+            // 
             // CheckupGroupLipid
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -523,13 +587,21 @@
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
-            this.formattingRule1});
+            this.formattingRule1,
+            this.CholesterolH,
+            this.CholesterolL,
+            this.TriglyH,
+            this.TriglyL,
+            this.ldlH,
+            this.ldlL,
+            this.hdlH,
+            this.hdlL});
             this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Version = "17.1";
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -591,5 +663,13 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
         private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
+        private DevExpress.XtraReports.UI.FormattingRule CholesterolL;
+        private DevExpress.XtraReports.UI.FormattingRule CholesterolH;
+        private DevExpress.XtraReports.UI.FormattingRule TriglyH;
+        private DevExpress.XtraReports.UI.FormattingRule TriglyL;
+        private DevExpress.XtraReports.UI.FormattingRule ldlL;
+        private DevExpress.XtraReports.UI.FormattingRule ldlH;
+        private DevExpress.XtraReports.UI.FormattingRule hdlH;
+        private DevExpress.XtraReports.UI.FormattingRule hdlL;
     }
 }
