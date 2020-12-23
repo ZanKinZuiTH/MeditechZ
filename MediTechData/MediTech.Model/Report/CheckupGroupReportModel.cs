@@ -144,8 +144,18 @@ namespace MediTech.Model.Report
         public string PAR186 { get; set; } // afcon
         public string PAR40 { get; set; } //cea
         public string PAR185 { get; set; } //cea text
+        public string PAR35 { get; set; } //HBs Ag
+        public string PAR34 { get; set; } //COI of HBs Ag
+        public string PAR42 { get; set; } //HBs Ab 
+
+        public string PAR121 { get; set; } //COI of HBs Ab 
+
+        public string SPIRO3 { get; set; } //FVC (%Pred.)
+        public string SPIRO6 { get; set; } //FEV1 (%Pred.)
+        public string SPIRO9 { get; set; } //FEV1/FVC % (%Pred.)
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
+        public string Radiologist { get; set; }
 
     }
 }

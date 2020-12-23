@@ -323,7 +323,7 @@ namespace MediTech.ViewModels
                     if (item.IsSelected)
                     {
                         List<PatientResultCheckupModel> resultData = DataService.Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, item.GPRSTUID);
-                        List<CheckupGroupReportModel> reportDataSource = new List<CheckupGroupReportModel>();
+
                         var patientData = resultData.GroupBy(p => new
                         {
                             p.PatientID,
@@ -335,7 +335,8 @@ namespace MediTech.ViewModels
                             p.Age,
                             p.Gender,
                             p.Conclusion,
-                            p.CheckupResultStatus
+                            p.CheckupResultStatus,
+                            p.Radiologist
                         }).Select(g => new
                         {
                             PatientID = g.FirstOrDefault().PatientID,
@@ -347,8 +348,11 @@ namespace MediTech.ViewModels
                             Age = g.FirstOrDefault().Age,
                             Gender = g.FirstOrDefault().Gender,
                             Conclusion = g.FirstOrDefault().Conclusion,
-                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
+                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus,
+                            Radiologist = g.FirstOrDefault().Radiologist
                         });
+
+                        List<CheckupGroupReportModel> reportDataSource = new List<CheckupGroupReportModel>();
                         int i = 1;
                         foreach (var patient in patientData)
                         {
@@ -362,6 +366,7 @@ namespace MediTech.ViewModels
                             newObject.Age = patient.Age;
                             newObject.Conclusion = patient.Conclusion;
                             newObject.ResultStatus = patient.CheckupResultStatus;
+                            newObject.Radiologist = patient.Radiologist;
                             newObject.Gender = patient.Gender;
                             reportDataSource.Add(newObject);
                         }
@@ -372,14 +377,16 @@ namespace MediTech.ViewModels
                             && p.FirstName == result.FirstName).FirstOrDefault();
                             if (rowData != null)
                             {
-                                PropertyInfo properties;
+                                PropertyInfo properties = null;
                                 if (item.GPRSTUID == 3177 || item.GPRSTUID == 3178)
                                 {
-                                    properties = rowData.GetType().GetProperty(result.ResultItemName);
+                                    if (result.ResultItemName != null)
+                                        properties = rowData.GetType().GetProperty(result.ResultItemName);
                                 }
                                 else
                                 {
-                                    properties = rowData.GetType().GetProperty(result.ResultItemCode);
+                                    if (result.ResultItemCode != null)
+                                        properties = rowData.GetType().GetProperty(result.ResultItemCode);
                                 }
                                 if (properties != null)
                                 {

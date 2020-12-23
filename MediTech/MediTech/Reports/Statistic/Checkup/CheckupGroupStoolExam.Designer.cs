@@ -82,6 +82,16 @@
             this.xrTable1});
             this.DetailBase.HeightF = 25F;
             // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.StylePriority.UseBorders = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.StylePriority.UseBorders = false;
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            // 
             // lbTitle
             // 
             this.lbTitle.StylePriority.UseBorderColor = false;
@@ -172,14 +182,14 @@
             this.xrTableCell38.Name = "xrTableCell38";
             this.xrTableCell38.RowSpan = 3;
             this.xrTableCell38.Text = "อายุ";
-            this.xrTableCell38.Weight = 0.49811814911322938D;
+            this.xrTableCell38.Weight = 0.42459290320483212D;
             // 
             // xrTableCell39
             // 
             this.xrTableCell39.Name = "xrTableCell39";
             this.xrTableCell39.RowSpan = 3;
             this.xrTableCell39.Text = "เพศ";
-            this.xrTableCell39.Weight = 0.51492385358540038D;
+            this.xrTableCell39.Weight = 0.58844909949379764D;
             // 
             // xrTableCell43
             // 
@@ -234,12 +244,12 @@
             // xrTableCell16
             // 
             this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Weight = 0.541861600746774D;
+            this.xrTableCell16.Weight = 0.46187966355643006D;
             // 
             // xrTableCell17
             // 
             this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Weight = 0.56014318676891839D;
+            this.xrTableCell17.Weight = 0.64012512395926235D;
             // 
             // xrTableCell18
             // 
@@ -351,14 +361,14 @@
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Weight = 0.50810914338678437D;
+            this.xrTableCell9.Weight = 0.43310859477776426D;
             // 
             // xrTableCell41
             // 
             this.xrTableCell41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
             this.xrTableCell41.Name = "xrTableCell41";
-            this.xrTableCell41.Weight = 0.52525178211035461D;
+            this.xrTableCell41.Weight = 0.60025233071937478D;
             // 
             // xrTableCell40
             // 
@@ -417,13 +427,15 @@
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.DetailBase,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeaderBase});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
             this.formattingRule1});
             this.Version = "17.1";
+            this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();

@@ -131,10 +131,10 @@
         #endregion
         private DevExpress.XtraReports.UI.TopMarginBand TopMarginBase;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMarginBase;
-        private DevExpress.XtraReports.UI.PageHeaderBand PageHeaderBase;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         protected DevExpress.XtraReports.UI.DetailBand DetailBase;
+        protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        protected DevExpress.XtraReports.UI.XRLabel xrLabel1;
         public DevExpress.XtraReports.UI.XRLabel lbTitle;
+        protected DevExpress.XtraReports.UI.PageHeaderBand PageHeaderBase;
     }
 }

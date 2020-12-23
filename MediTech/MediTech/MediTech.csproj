@@ -663,11 +663,35 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.Designer.cs">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAcetone.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAcetone.Designer.cs">
+      <DependentUpon>CheckupGroupAcetone.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAFP.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAFP.Designer.cs">
+      <DependentUpon>CheckupGroupAFP.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAluminiumBlood.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupAluminiumBlood.Designer.cs">
+      <DependentUpon>CheckupGroupAluminiumBlood.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBase.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBase.Designer.cs">
       <DependentUpon>CheckupGroupBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzene.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzene.Designer.cs">
+      <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBMI.cs">
       <SubType>Component</SubType>
@@ -680,6 +704,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBPPluse.Designer.cs">
       <DependentUpon>CheckupGroupBPPluse.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA125.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA125.Designer.cs">
+      <DependentUpon>CheckupGroupCA125.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCBCPlatelets.cs">
       <SubType>Component</SubType>
@@ -699,11 +729,65 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCBCWbc.Designer.cs">
       <DependentUpon>CheckupGroupCBCWbc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCEA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCEA.Designer.cs">
+      <DependentUpon>CheckupGroupCEA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.Designer.cs">
+      <DependentUpon>CheckupGroupChest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.Designer.cs">
+      <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFBS.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupFBS.Designer.cs">
+      <DependentUpon>CheckupGroupFBS.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbA.Designer.cs">
+      <DependentUpon>CheckupGroupHbA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbs.Designer.cs">
+      <DependentUpon>CheckupGroupHbs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHexane.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHexane.Designer.cs">
+      <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.Designer.cs">
       <DependentUpon>CheckupGroupLipid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupLiver.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupLiver.Designer.cs">
+      <DependentUpon>CheckupGroupLiver.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethanol.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupMethanol.Designer.cs">
+      <DependentUpon>CheckupGroupMethanol.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.cs">
       <SubType>Component</SubType>
@@ -711,11 +795,65 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.Designer.cs">
       <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPhysicalExam.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPhysicalExam.Designer.cs">
+      <DependentUpon>CheckupGroupPhysicalExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPSA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPSA.Designer.cs">
+      <DependentUpon>CheckupGroupPSA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPulmonary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPulmonary.Designer.cs">
+      <DependentUpon>CheckupGroupPulmonary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupRenal.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupRenal.Designer.cs">
       <DependentUpon>CheckupGroupRenal.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStoolCul.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStoolCul.Designer.cs">
+      <DependentUpon>CheckupGroupStoolCul.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStoolExam.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStoolExam.Designer.cs">
+      <DependentUpon>CheckupGroupStoolExam.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStyrene.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupStyrene.Designer.cs">
+      <DependentUpon>CheckupGroupStyrene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupToluene.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupToluene.Designer.cs">
+      <DependentUpon>CheckupGroupToluene.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupUA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupUA.Designer.cs">
+      <DependentUpon>CheckupGroupUA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupUric.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupUric.Designer.cs">
+      <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.cs">
       <SubType>Component</SubType>
@@ -728,6 +866,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummaryChart.Designer.cs">
       <DependentUpon>CheckupSummaryChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .Designer.cs">
+      <DependentUpon>CheuckupGroupBackStrength .cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -2384,14 +2528,29 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.resx">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupAcetone.resx">
+      <DependentUpon>CheckupGroupAcetone.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupAFP.resx">
+      <DependentUpon>CheckupGroupAFP.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupAluminiumBlood.resx">
+      <DependentUpon>CheckupGroupAluminiumBlood.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBase.resx">
       <DependentUpon>CheckupGroupBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBenzene.resx">
+      <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBMI.resx">
       <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBPPluse.resx">
       <DependentUpon>CheckupGroupBPPluse.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCA125.resx">
+      <DependentUpon>CheckupGroupCA125.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCBCPlatelets.resx">
       <DependentUpon>CheckupGroupCBCPlatelets.cs</DependentUpon>
@@ -2402,20 +2561,77 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCBCWbc.resx">
       <DependentUpon>CheckupGroupCBCWbc.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCEA.resx">
+      <DependentUpon>CheckupGroupCEA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupChest.resx">
+      <DependentUpon>CheckupGroupChest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEKG.resx">
+      <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupFBS.resx">
+      <DependentUpon>CheckupGroupFBS.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHbA.resx">
+      <DependentUpon>CheckupGroupHbA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHbs.resx">
+      <DependentUpon>CheckupGroupHbs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHexane.resx">
+      <DependentUpon>CheckupGroupHexane.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLipid.resx">
       <DependentUpon>CheckupGroupLipid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLiver.resx">
+      <DependentUpon>CheckupGroupLiver.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupMethanol.resx">
+      <DependentUpon>CheckupGroupMethanol.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupOccVision.resx">
       <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupPhysicalExam.resx">
+      <DependentUpon>CheckupGroupPhysicalExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupPSA.resx">
+      <DependentUpon>CheckupGroupPSA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupPulmonary.resx">
+      <DependentUpon>CheckupGroupPulmonary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupRenal.resx">
       <DependentUpon>CheckupGroupRenal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupStoolCul.resx">
+      <DependentUpon>CheckupGroupStoolCul.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupStoolExam.resx">
+      <DependentUpon>CheckupGroupStoolExam.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupStyrene.resx">
+      <DependentUpon>CheckupGroupStyrene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupToluene.resx">
+      <DependentUpon>CheckupGroupToluene.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupUA.resx">
+      <DependentUpon>CheckupGroupUA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupUric.resx">
+      <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummary.resx">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummaryChart.resx">
       <DependentUpon>CheckupSummaryChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .resx">
+      <DependentUpon>CheuckupGroupBackStrength .cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>
