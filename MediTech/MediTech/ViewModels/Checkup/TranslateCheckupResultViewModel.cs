@@ -782,22 +782,26 @@ namespace MediTech.ViewModels
                     DataTable dtResult = new DataTable();
                     dtResult.Clear();
                     dtResult.Columns.Add("RowHandle");
+                    dtResult.Columns.Add("EmployeeID");
                     dtResult.Columns.Add("PatientID");
                     dtResult.Columns.Add("FirstName");
                     dtResult.Columns.Add("LastName");
                     dtResult.Columns.Add("Department");
+                    dtResult.Columns.Add("CompanyName");
                     dtResult.Columns.Add("Age");
                     dtResult.Columns.Add("Gender");
 
                     ColumnsResultItems = new ObservableCollection<Column>();
                     ColumnsResultItems.Add(new Column() { Header = "No", FieldName = "RowHandle", VisibleIndex = 1 });
-                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 2 });
-                    ColumnsResultItems.Add(new Column() { Header = "FirstName", FieldName = "FirstName", VisibleIndex = 3 });
-                    ColumnsResultItems.Add(new Column() { Header = "LastName", FieldName = "LastName", VisibleIndex = 4 });
-                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 5 });
-                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 5 });
-                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 7 });
-                    int visibleIndex = 8;
+                    ColumnsResultItems.Add(new Column() { Header = "EmployeeID", FieldName = "EmployeeID", VisibleIndex = 2 });
+                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 3 });
+                    ColumnsResultItems.Add(new Column() { Header = "FirstName", FieldName = "FirstName", VisibleIndex = 4 });
+                    ColumnsResultItems.Add(new Column() { Header = "LastName", FieldName = "LastName", VisibleIndex = 5 });
+                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 6 });
+                    ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 7 });
+                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 8 });
+                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 9 });
+                    int visibleIndex = 10;
                     List<PatientResultCheckupModel> resultData = DataService.Checkup
                         .GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID);
                     if (resultData != null && resultData.Count > 0)
@@ -818,9 +822,11 @@ namespace MediTech.ViewModels
                     var patientData = resultData.GroupBy(p => new
                     {
                         p.PatientID,
+                        p.EmployeeID,
                         p.FirstName,
                         p.LastName,
                         p.Department,
+                        p.CompanyName,
                         p.Age,
                         p.Gender,
                         p.Conclusion,
@@ -828,10 +834,12 @@ namespace MediTech.ViewModels
                     })
                     .Select(g => new
                     {
+                        EmployeeID = g.FirstOrDefault().EmployeeID,
                         PatientID = g.FirstOrDefault().PatientID,
                         FirstName = g.FirstOrDefault().FirstName,
                         LastName = g.FirstOrDefault().LastName,
                         Department = g.FirstOrDefault().Department,
+                        CompanyName = g.FirstOrDefault().CompanyName,
                         Age = g.FirstOrDefault().Age,
                         Gender = g.FirstOrDefault().Gender,
                         Conclusion = g.FirstOrDefault().Conclusion,
@@ -842,10 +850,12 @@ namespace MediTech.ViewModels
                     {
                         DataRow newRow = dtResult.NewRow();
                         newRow["RowHandle"] = i++;
+                        newRow["EmployeeID"] = patient.EmployeeID;
                         newRow["PatientID"] = patient.PatientID;
                         newRow["FirstName"] = patient.FirstName;
                         newRow["LastName"] = patient.LastName;
                         newRow["Department"] = patient.Department;
+                        newRow["CompanyName"] = patient.CompanyName;
                         newRow["Age"] = patient.Age;
                         newRow["Gender"] = patient.Gender;
                         newRow["Conclusion"] = patient.Conclusion;
@@ -872,7 +882,6 @@ namespace MediTech.ViewModels
             }
 
         }
-
 
         private void ExportData()
         {

@@ -51,6 +51,11 @@ namespace MediTech.Model.Report
         public string C0140 { get; set; }
         public string C0159 { get; set; }
         public string C0150 { get; set; }
+
+        public string BPSys { get; set; }
+
+        public string BPDio { get; set; }
+        public string Pulse { get; set; }
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
 

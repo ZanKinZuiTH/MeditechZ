@@ -675,6 +675,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBMI.Designer.cs">
       <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBPPluse.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBPPluse.Designer.cs">
+      <DependentUpon>CheckupGroupBPPluse.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2359,6 +2365,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBMI.resx">
       <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBPPluse.resx">
+      <DependentUpon>CheckupGroupBPPluse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLipid.resx">
       <DependentUpon>CheckupGroupLipid.cs</DependentUpon>

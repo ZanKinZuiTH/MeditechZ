@@ -373,7 +373,7 @@ namespace MediTech.ViewModels
                             if (rowData != null)
                             {
                                 PropertyInfo properties;
-                                if (item.GPRSTUID == 3177 || item.GPRSTUID == 3188)
+                                if (item.GPRSTUID == 3177 || item.GPRSTUID == 3178)
                                 {
                                     properties = rowData.GetType().GetProperty(result.ResultItemName);
                                 }
