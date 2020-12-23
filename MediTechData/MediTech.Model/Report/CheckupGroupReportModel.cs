@@ -75,7 +75,6 @@ namespace MediTech.Model.Report
         public string A0070 { get; set; } // Eosinophil 
         public string A0080 { get; set; } // Basophil  
         public string A0010 { get; set; } 
->>>>>>> origin/devalop
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
 

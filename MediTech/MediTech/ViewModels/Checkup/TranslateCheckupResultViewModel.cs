@@ -750,7 +750,7 @@ namespace MediTech.ViewModels
                         {
                             string far = timus2.ResultItemName + " " + timus2.ResultValue;
                             string near = timus3.ResultItemName + " " + timus3.ResultValue;
-                            conclusion = "กลุ่มอาชีพ : " + timus1.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + conclusion;
+                            conclusion = "กลุ่มอาชีพ : " + timus1.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
                         }
                     }
 
@@ -784,6 +784,7 @@ namespace MediTech.ViewModels
                     dtResult.Columns.Add("RowHandle");
                     dtResult.Columns.Add("EmployeeID");
                     dtResult.Columns.Add("PatientID");
+                    dtResult.Columns.Add("Title");
                     dtResult.Columns.Add("FirstName");
                     dtResult.Columns.Add("LastName");
                     dtResult.Columns.Add("Department");
@@ -794,14 +795,15 @@ namespace MediTech.ViewModels
                     ColumnsResultItems = new ObservableCollection<Column>();
                     ColumnsResultItems.Add(new Column() { Header = "No", FieldName = "RowHandle", VisibleIndex = 1 });
                     ColumnsResultItems.Add(new Column() { Header = "EmployeeID", FieldName = "EmployeeID", VisibleIndex = 2 });
-                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 3 });
-                    ColumnsResultItems.Add(new Column() { Header = "FirstName", FieldName = "FirstName", VisibleIndex = 4 });
-                    ColumnsResultItems.Add(new Column() { Header = "LastName", FieldName = "LastName", VisibleIndex = 5 });
-                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 6 });
-                    ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 7 });
-                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 8 });
-                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 9 });
-                    int visibleIndex = 10;
+                    ColumnsResultItems.Add(new Column() { Header = "Title", FieldName = "Title", VisibleIndex = 3 });
+                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 4 });
+                    ColumnsResultItems.Add(new Column() { Header = "FirstName", FieldName = "FirstName", VisibleIndex = 5 });
+                    ColumnsResultItems.Add(new Column() { Header = "LastName", FieldName = "LastName", VisibleIndex = 6 });
+                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 7 });
+                    ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 8 });
+                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 9 });
+                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 10 });
+                    int visibleIndex = 11;
                     List<PatientResultCheckupModel> resultData = DataService.Checkup
                         .GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID);
                     if (resultData != null && resultData.Count > 0)
@@ -823,6 +825,7 @@ namespace MediTech.ViewModels
                     {
                         p.PatientID,
                         p.EmployeeID,
+                        p.Title,
                         p.FirstName,
                         p.LastName,
                         p.Department,
@@ -836,6 +839,7 @@ namespace MediTech.ViewModels
                     {
                         EmployeeID = g.FirstOrDefault().EmployeeID,
                         PatientID = g.FirstOrDefault().PatientID,
+                        Title = g.FirstOrDefault().Title,
                         FirstName = g.FirstOrDefault().FirstName,
                         LastName = g.FirstOrDefault().LastName,
                         Department = g.FirstOrDefault().Department,
@@ -852,6 +856,7 @@ namespace MediTech.ViewModels
                         newRow["RowHandle"] = i++;
                         newRow["EmployeeID"] = patient.EmployeeID;
                         newRow["PatientID"] = patient.PatientID;
+                        newRow["Title"] = patient.Title;
                         newRow["FirstName"] = patient.FirstName;
                         newRow["LastName"] = patient.LastName;
                         newRow["Department"] = patient.Department;
