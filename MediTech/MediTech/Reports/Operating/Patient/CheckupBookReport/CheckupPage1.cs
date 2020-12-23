@@ -178,49 +178,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " ครั้ง/นาที" : "";
                 lbWaist.Text = patient.WaistCircumference != null ? patient.WaistCircumference.ToString() + " cm." : "";
 
-                if (patient.WellnessResult != null)
-                {
-                    if (patient.WellnessResult.Contains("ครรภ์") == true)
-                    {
-                        lbBMI.Text = "";
-                        lbObesity.Text = "ตั้งครรภ์";
-                    }
-                    else
-                    {
-                        lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
-                        if (patient.BMI != null)
-                        {
-                            string bmiResult = "";
-                            if (patient.BMI < 18.5)
-                            {
-                                bmiResult = "น้ำหนักน้อย";
-                            }
-                            else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
-                            {
-                                bmiResult = "น้ำหนักปกติ";
-                            }
-                            else if (patient.BMI >= 23 && patient.BMI <= 24.99)
-                            {
-                                bmiResult = "น้ำหนักเกินเกณฑ์";
-                            }
-                            else if (patient.BMI >= 25 && patient.BMI <= 29.99)
-                            {
-                                bmiResult = "โรคอ้วนระดับที่ 1";
-                            }
-                            else if (patient.BMI >= 30)
-                            {
-                                bmiResult = "โรคอ้วนระดับที่ 2";
-                            }
-                            lbObesity.Text = bmiResult;
-
-                            if (bmiResult != "น้ำหนักปกติ")
-                            {
-                                lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                            }
-                        }
-                    }
-                }
-
                 #endregion
 
                 #region Result Wellness
@@ -261,6 +218,52 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
 
                     page2.lbResultWellness.Text = sb.ToString();
                     //lbResultWellness2.Text = sb2.ToString();
+
+
+                    if (wellnessResult == "ตั้งครรภ์")
+                    {
+                        lbBMI.Text = "";
+                        lbObesity.Text = "ตั้งครรภ์";
+                    }
+                    else if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
+                    {
+                        lbBMI.Text = "";
+                        lbObesity.Text = "สงสัยตั้งครรภ์";
+                    }
+                    else
+                    {
+                        lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
+                        if (patient.BMI != null)
+                        {
+                            string bmiResult = "";
+                            if (patient.BMI < 18.5)
+                            {
+                                bmiResult = "น้ำหนักน้อย";
+                            }
+                            else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
+                            {
+                                bmiResult = "น้ำหนักปกติ";
+                            }
+                            else if (patient.BMI >= 23 && patient.BMI <= 24.99)
+                            {
+                                bmiResult = "น้ำหนักเกินเกณฑ์";
+                            }
+                            else if (patient.BMI >= 25 && patient.BMI <= 29.99)
+                            {
+                                bmiResult = "โรคอ้วนระดับที่ 1";
+                            }
+                            else if (patient.BMI >= 30)
+                            {
+                                bmiResult = "โรคอ้วนระดับที่ 2";
+                            }
+                            lbObesity.Text = bmiResult;
+
+                            if (bmiResult != "น้ำหนักปกติ")
+                            {
+                                lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                            }
+                        }
+                    }
                 }
 
                 #endregion
@@ -604,6 +607,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         .Where(p => p.RequestItemCode.Contains("LAB281")
                         || p.RequestItemCode.Contains("LAB411")
                         || p.RequestItemCode.Contains("LAB282")
+                        || p.RequestItemCode.Contains("LAB283")
                         || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB285")
                         || p.RequestItemCode.Contains("LAB251")
@@ -3454,6 +3458,35 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page7.cellTsh3.ForeColor = (TshAbnormal3 == "H") ? Color.Red : Color.Blue;
                     page7.cellTsh3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                 }
+
+
+                page7.cellCEARange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185")?.ReferenceRange;
+                page7.cellCEA1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.ResultValue;
+                page7.cellCEA2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.ResultValue;
+                page7.cellCEA3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.ResultValue;
+
+                string CEAAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.IsAbnormal;
+                string CEAAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.IsAbnormal;
+                string CEAAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(CEAAbnormal1))
+                {
+                    page7.cellCEA1.ForeColor = (CEAAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCEA1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(CEAAbnormal2))
+                {
+                    page7.cellCEA2.ForeColor = (CEAAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCEA2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(CEAAbnormal3))
+                {
+                    page7.cellCEA3.ForeColor = (CEAAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCEA3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
             }
             else
             {

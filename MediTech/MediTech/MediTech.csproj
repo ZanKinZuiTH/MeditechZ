@@ -699,6 +699,30 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCBCWbc.Designer.cs">
       <DependentUpon>CheckupGroupCBCWbc.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupChest.Designer.cs">
+      <DependentUpon>CheckupGroupChest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupEKG.Designer.cs">
+      <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbA.Designer.cs">
+      <DependentUpon>CheckupGroupHbA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbs.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupHbs.Designer.cs">
+      <DependentUpon>CheckupGroupHbs.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2401,6 +2425,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCBCWbc.resx">
       <DependentUpon>CheckupGroupCBCWbc.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupChest.resx">
+      <DependentUpon>CheckupGroupChest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupEKG.resx">
+      <DependentUpon>CheckupGroupEKG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHbA.resx">
+      <DependentUpon>CheckupGroupHbA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupHbs.resx">
+      <DependentUpon>CheckupGroupHbs.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLipid.resx">
       <DependentUpon>CheckupGroupLipid.cs</DependentUpon>

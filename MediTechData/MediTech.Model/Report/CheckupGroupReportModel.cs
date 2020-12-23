@@ -74,9 +74,15 @@ namespace MediTech.Model.Report
         public string A0050 { get; set; } // Lymphocyt 
         public string A0070 { get; set; } // Eosinophil 
         public string A0080 { get; set; } // Basophil  
-        public string A0010 { get; set; } 
+        public string A0010 { get; set; }
+        public string PAR35 { get; set; } //HBs Ag
+        public string PAR34 { get; set; } //COI of HBs Ag
+        public string PAR42 { get; set; } //HBs Ab 
+
+        public string PAR121 { get; set; } //COI of HBs Ab 
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
+        public string Radiologist { get; set; }
 
     }
 }

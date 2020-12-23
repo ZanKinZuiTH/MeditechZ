@@ -6,13 +6,12 @@ using DevExpress.XtraReports.UI;
 
 namespace MediTech.Reports.Statistic.Checkup
 {
-    public partial class CheckupGroupLipid : MediTech.Reports.Statistic.Checkup.CheckupGroupBase
+    public partial class CheckupGroupHbA : MediTech.Reports.Statistic.Checkup.CheckupGroupBase
     {
-        public CheckupGroupLipid()
+        public CheckupGroupHbA()
         {
             InitializeComponent();
         }
-
 
     }
 }

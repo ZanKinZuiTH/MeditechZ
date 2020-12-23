@@ -211,6 +211,7 @@ namespace MediTech.ViewModels
                 }
 
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
+                PatientVitalSign.RecordedDttm = DateTime.Now;
                 DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
                 DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
                 OrderStatus = "Reviewed";
