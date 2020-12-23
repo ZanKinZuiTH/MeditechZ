@@ -46,6 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
     <Compile Include="Checkup\CheckupJobTaskModel.cs" />
     <Compile Include="Checkup\CheckupRuleDescriptionModel.cs" />
@@ -156,6 +157,7 @@
     <Compile Include="Raiology\XrayTranslateConditionModel.cs" />
     <Compile Include="Raiology\ResultRadiologyHistoryModel.cs" />
     <Compile Include="Report\ChartStatisticModel.cs" />
+    <Compile Include="Report\CheckupGroupReportModel.cs" />
     <Compile Include="Report\CheckupSummaryModel.cs" />
     <Compile Include="Report\DoctorFeeReportModel.cs" />
     <Compile Include="Report\DrugStickerModel.cs" />

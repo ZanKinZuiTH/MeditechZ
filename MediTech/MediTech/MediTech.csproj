@@ -657,6 +657,36 @@
     <Compile Include="Reports\Statistic\Cashier\PatientNetProfit.Designer.cs">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.Designer.cs">
+      <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBase.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBase.Designer.cs">
+      <DependentUpon>CheckupGroupBase.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBMI.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBMI.Designer.cs">
+      <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupLipid.Designer.cs">
+      <DependentUpon>CheckupGroupLipid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.Designer.cs">
+      <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2320,6 +2350,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\PatientNetProfit.resx">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.resx">
+      <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBase.resx">
+      <DependentUpon>CheckupGroupBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBMI.resx">
+      <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupLipid.resx">
+      <DependentUpon>CheckupGroupLipid.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupOccVision.resx">
+      <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummary.resx">
       <DependentUpon>CheckupSummary.cs</DependentUpon>

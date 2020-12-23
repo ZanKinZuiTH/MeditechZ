@@ -102,6 +102,9 @@
                     </dxlc:LayoutItem>
                     <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
                                  SelectedItem="{Binding SelectCheckupJobTask}">
+                        <dxmvvm:Interaction.Behaviors>
+                            <helper:DeferredColumnFitBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
                         <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
                             <dxg:GridColumn.CellTemplate>
                                 <DataTemplate>
@@ -144,9 +147,6 @@
                         </dxg:GridColumn>
                         <dxg:GridColumn Header="Group Result" FieldName="GroupResultName" ReadOnly="True"
                                     AllowSorting="False"/>
-                        <dxmvvm:Interaction.Behaviors>
-                            <helper:DeferredColumnFitBehavior/>
-                        </dxmvvm:Interaction.Behaviors>
                         <dxg:GridControl.View>
                             <dxg:TableView x:Name="gvGroupResult" NavigationStyle="Row"
                                        ShowGroupPanel="False" />
@@ -168,10 +168,14 @@
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Vertical">
-                        <dx:SimpleButton Width="130" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
+                        <dx:SimpleButton Width="160" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
                                 <TextBlock Text="1. รายงานสรุปรวม" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                        <dx:SimpleButton Width="160" Height="25" Command="{Binding PreviewCheckupGroupCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="2. รายงานตามกลุ่มที่เลือก" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutGroup>

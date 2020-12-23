@@ -390,6 +390,13 @@ namespace MediTech.ViewModels
                     resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
                 }
 
+                if (patientVisit.PatientUID == 58822)
+                {
+                    if (true)
+                    {
+
+                    }
+                }
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
 
@@ -802,12 +809,10 @@ namespace MediTech.ViewModels
                             dtResult.Columns.Add(item);
                         }
 
-                        ColumnsResultItems.Add(new Column() { Header = "คำอธิบาย", FieldName = "CheckupDescription", VisibleIndex = ColumnsResultItems.Count() });
-                        ColumnsResultItems.Add(new Column() { Header = "คำแนะนำ", FieldName = "CheckupRecommend", VisibleIndex = ColumnsResultItems.Count() + 1 });
+                        ColumnsResultItems.Add(new Column() { Header = "แปลผล", FieldName = "Conclusion", VisibleIndex = ColumnsResultItems.Count() });
                         ColumnsResultItems.Add(new Column() { Header = "สรุปผลการตรวจสุขภาพ", FieldName = "CheckupResultStatus", VisibleIndex = ColumnsResultItems.Count() + 2 });
 
-                        dtResult.Columns.Add("CheckupDescription");
-                        dtResult.Columns.Add("CheckupRecommend");
+                        dtResult.Columns.Add("Conclusion");
                         dtResult.Columns.Add("CheckupResultStatus");
                     }
                     var patientData = resultData.GroupBy(p => new
@@ -818,8 +823,7 @@ namespace MediTech.ViewModels
                         p.Department,
                         p.Age,
                         p.Gender,
-                        p.CheckupDescription,
-                        p.CheckupRecommend,
+                        p.Conclusion,
                         p.CheckupResultStatus
                     })
                     .Select(g => new
@@ -830,8 +834,7 @@ namespace MediTech.ViewModels
                         Department = g.FirstOrDefault().Department,
                         Age = g.FirstOrDefault().Age,
                         Gender = g.FirstOrDefault().Gender,
-                        CheckupDescription = g.FirstOrDefault().CheckupDescription,
-                        CheckupRecommend = g.FirstOrDefault().CheckupRecommend,
+                        Conclusion = g.FirstOrDefault().Conclusion,
                         CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
                     });
                     int i = 1;
@@ -845,8 +848,7 @@ namespace MediTech.ViewModels
                         newRow["Department"] = patient.Department;
                         newRow["Age"] = patient.Age;
                         newRow["Gender"] = patient.Gender;
-                        newRow["CheckupDescription"] = patient.CheckupDescription;
-                        newRow["CheckupRecommend"] = patient.CheckupRecommend;
+                        newRow["Conclusion"] = patient.Conclusion;
                         newRow["CheckupResultStatus"] = patient.CheckupResultStatus;
                         dtResult.Rows.Add(newRow);
                     }

@@ -74,7 +74,7 @@ namespace MediTechWebApi.Controllers
 
             if (data != null)
             {
-                data.CheckupJobTasks = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == data.CheckupJobContactUID)
+                data.CheckupJobTasks = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == data.CheckupJobContactUID && p.StatusFlag == "A")
                     .Select(p => new CheckupJobTaskModel
                     {
                         CheckupJobTaskUID = p.UID,
@@ -119,15 +119,20 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CheckupJobTaskModel> GetCheckupJobTaskByJobUID(int checkupJobConatctUID)
         {
-            List<CheckupJobTaskModel> taskData = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == checkupJobConatctUID)
-                    .Select(p => new CheckupJobTaskModel
-                    {
-                        CheckupJobTaskUID = p.UID,
-                        CheckupJobContactUID = p.CheckupJobContactUID,
-                        GPRSTUID = p.GPRSTUID,
-                        GroupResultName = p.GroupResultName,
-                        DisplayOrder = p.DisplayOrder
-                    }).ToList();
+            List<CheckupJobTaskModel> taskData = (from ck in db.CheckupJobTask
+                                                  join rf in db.ReferenceValue on ck.GPRSTUID equals rf.UID
+                                                  where ck.StatusFlag == "A"
+                                                  && ck.CheckupJobContactUID == checkupJobConatctUID
+                                                  select new CheckupJobTaskModel
+                                                  {
+                                                      CheckupJobTaskUID = ck.UID,
+                                                      CheckupJobContactUID = ck.CheckupJobContactUID,
+                                                      GPRSTUID = ck.GPRSTUID,
+                                                      GroupResultName = ck.GroupResultName,
+                                                      DisplayOrder = ck.DisplayOrder,
+                                                      ReportTemplate = rf.AlternateName
+                                                  }).ToList();
+
 
             return taskData;
         }

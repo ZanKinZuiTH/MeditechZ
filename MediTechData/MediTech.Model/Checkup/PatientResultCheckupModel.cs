@@ -8,8 +8,7 @@ namespace MediTech.Model
 {
     public class PatientResultCheckupModel : PatientResultComponentModel
     {
-        public string CheckupDescription { get; set; }
-        public string CheckupRecommend { get; set; }
+        public string Conclusion { get; set; }
         public string CheckupResultStatus { get; set; }
     }
 }

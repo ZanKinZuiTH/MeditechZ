@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -217,6 +218,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _PreviewCheckupGroupCommand;
+
+        public RelayCommand PreviewCheckupGroupCommand
+        {
+            get
+            {
+                return _PreviewCheckupGroupCommand
+                    ?? (_PreviewCheckupGroupCommand = new RelayCommand(PreviewCheckupGroup));
+            }
+        }
+
         #endregion
 
         #region Method
@@ -256,8 +268,11 @@ namespace MediTech.ViewModels
                 }
 
             }
-
-            CheckupSummayData = DataService.Reports.CheckupSummary(SelectCheckupJobContact.CheckupJobContactUID, gprstUIDs, branchName);
+            CheckupBranchModel branchData = new CheckupBranchModel();
+            branchData.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
+            branchData.GPRSTUIDs = gprstUIDs;
+            branchData.BranchName = branchName;
+            CheckupSummayData = DataService.Reports.CheckupSummary(branchData);
         }
 
         void PreviewCheckupSummary()
@@ -273,21 +288,20 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                string companyName = string.Empty;
-                string hearder = string.Format("โปรแกรมตรวจสุขภาพประจำปี {0}", (SelectCheckupJobContact.StartDttm.Year + 543));
+                string title = string.Empty;
                 if (SelectBranch != null)
                 {
-                    companyName = SelectBranch.Display;
+                    title = SelectBranch.Display;
                 }
                 else
                 {
-                    companyName = SelectCheckupJobContact.CompanyName;
+                    title = SelectCheckupJobContact.CompanyName;
                 }
 
 
 
                 Reports.Statistic.Checkup.CheckupSummary rpt = new Reports.Statistic.Checkup.CheckupSummary();
-                rpt.Parameters["Header"].Value = companyName + Environment.NewLine + hearder;
+                rpt.Parameters["Title"].Value = title;
                 rpt.Parameters["CheckupJobUID"].Value = SelectCheckupJobContact.CheckupJobContactUID;
                 rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
                 rpt.Parameters["GPRSTUIDs"].Value = gprstUIDs;
@@ -297,6 +311,100 @@ namespace MediTech.ViewModels
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
                 printTool.ShowPreviewDialog();
             }
+        }
+
+        void PreviewCheckupGroup()
+        {
+            if (SelectCheckupJobContact != null)
+            {
+                string companyName = SelectBranch != null ? SelectBranch.Display : SelectCheckupJobContact.CompanyName;
+                foreach (var item in CheckupJobTasks)
+                {
+                    if (item.IsSelected)
+                    {
+                        List<PatientResultCheckupModel> resultData = DataService.Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, item.GPRSTUID);
+                        List<CheckupGroupReportModel> reportDataSource = new List<CheckupGroupReportModel>();
+                        var patientData = resultData.GroupBy(p => new
+                        {
+                            p.PatientID,
+                            p.EmployeeID,
+                            p.Title,
+                            p.FirstName,
+                            p.LastName,
+                            p.Department,
+                            p.Age,
+                            p.Gender,
+                            p.Conclusion,
+                            p.CheckupResultStatus
+                        }).Select(g => new
+                        {
+                            PatientID = g.FirstOrDefault().PatientID,
+                            EmployeeID = g.FirstOrDefault().EmployeeID,
+                            Title = g.FirstOrDefault().Title,
+                            FirstName = g.FirstOrDefault().FirstName,
+                            LastName = g.FirstOrDefault().LastName,
+                            Department = g.FirstOrDefault().Department,
+                            Age = g.FirstOrDefault().Age,
+                            Gender = g.FirstOrDefault().Gender,
+                            Conclusion = g.FirstOrDefault().Conclusion,
+                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
+                        });
+                        int i = 1;
+                        foreach (var patient in patientData)
+                        {
+                            CheckupGroupReportModel newObject = new CheckupGroupReportModel();
+                            newObject.No = i++;
+                            newObject.EmployeeID = patient.EmployeeID;
+                            newObject.PatientID = patient.PatientID;
+                            newObject.Title = patient.Title;
+                            newObject.FirstName = patient.FirstName;
+                            newObject.LastName = patient.LastName;
+                            newObject.Age = patient.Age;
+                            newObject.Conclusion = patient.Conclusion;
+                            newObject.ResultStatus = patient.CheckupResultStatus;
+                            newObject.Gender = patient.Gender;
+                            reportDataSource.Add(newObject);
+                        }
+
+                        foreach (var result in resultData)
+                        {
+                            var rowData = reportDataSource.Where(p => p.PatientID == result.PatientID
+                            && p.FirstName == result.FirstName).FirstOrDefault();
+                            if (rowData != null)
+                            {
+                                PropertyInfo properties;
+                                if (item.GPRSTUID == 3177 || item.GPRSTUID == 3188)
+                                {
+                                    properties = rowData.GetType().GetProperty(result.ResultItemName);
+                                }
+                                else
+                                {
+                                    properties = rowData.GetType().GetProperty(result.ResultItemCode);
+                                }
+                                if (properties != null)
+                                {
+                                    string value = !string.IsNullOrEmpty(result.IsAbnormal) ? result.ResultValue + " " + result.IsAbnormal : result.ResultValue;
+
+                                    properties.SetValue(rowData, value);
+                                }
+
+                            }
+                        }
+
+                        var myReport = Activator.CreateInstance(Type.GetType("MediTech.Reports.Statistic.Checkup." + item.ReportTemplate));
+                        Reports.Statistic.Checkup.CheckupGroupBase report = (Reports.Statistic.Checkup.CheckupGroupBase)myReport;
+                        report.lbTitle.Text = companyName + Environment.NewLine + item.GroupResultName;
+                        report.DataSource = reportDataSource;
+                        ReportPrintTool printTool = new ReportPrintTool(report);
+                        report.ShowPrintMarginsWarning = false;
+                        printTool.ShowPreviewDialog();
+
+                        item.IsSelected = false;
+                    }
+
+                }
+            }
+
         }
         #endregion
     }

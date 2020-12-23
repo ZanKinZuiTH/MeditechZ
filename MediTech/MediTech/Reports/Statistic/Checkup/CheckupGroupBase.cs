@@ -6,14 +6,12 @@ using DevExpress.XtraReports.UI;
 
 namespace MediTech.Reports.Statistic.Checkup
 {
-    public partial class CheckupSummaryChart : DevExpress.XtraReports.UI.XtraReport
+    public partial class CheckupGroupBase : DevExpress.XtraReports.UI.XtraReport
     {
-        public CheckupSummaryChart()
+        public CheckupGroupBase()
         {
             InitializeComponent();
         }
-
-
 
     }
 }

@@ -1002,7 +1002,8 @@ namespace MediTech.DataBase
         public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupResultGroup", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("[pGetCheckupGroupResult]", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_JobContactUID", jobContactUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
@@ -1015,6 +1016,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupMobileResult", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
@@ -1879,7 +1881,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupjobUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUIDs", GPRSTUIDs);
-            adp.SelectCommand.Parameters.AddWithValue("@P_CompanyName", companyName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_CompanyName", String.IsNullOrEmpty(companyName) ? (object)DBNull.Value : companyName);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

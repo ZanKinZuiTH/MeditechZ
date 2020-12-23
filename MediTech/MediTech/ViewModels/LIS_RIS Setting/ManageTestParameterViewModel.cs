@@ -579,7 +579,7 @@ namespace MediTech.ViewModels
             Datamodel.DisplyName = Name;
             Datamodel.Description = Description;
             Datamodel.RVTYPUID = SelectParameterType.Key;
-            Datamodel.GPRSTUID = SelectGroupResult.Key;
+            Datamodel.GPRSTUID = SelectGroupResult != null ? SelectGroupResult.Key : (int?)null;
             Datamodel.UnitofMeasure = SelectUnitofMeasure != null ? SelectUnitofMeasure.Key : (int?)null;
             Datamodel.IsCumulative = IsCumulative ? "Y" : null;
             Datamodel.AutoValue = AutoValue;
