@@ -1,6 +1,6 @@
 ﻿namespace MediTech.Reports.Statistic.Checkup
 {
-    partial class CheckupGroupRenal
+    partial class CheckupGroupFBS
     {
         /// <summary>
         /// Required designer variable.
@@ -64,22 +64,22 @@
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.CreatinineH = new DevExpress.XtraReports.UI.FormattingRule();
-            this.CreatinineL = new DevExpress.XtraReports.UI.FormattingRule();
-            this.BunH = new DevExpress.XtraReports.UI.FormattingRule();
-            this.BunL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.FBSH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.FBSL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.HbA1cH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.HbA1cL = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -103,7 +103,7 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.GroupHeader1.HeightF = 73.33334F;
+            this.GroupHeader1.HeightF = 77.50002F;
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.RepeatEveryPage = true;
             // 
@@ -114,13 +114,13 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(26.66667F, 0F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(26.66704F, 0F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4,
             this.xrTableRow2,
             this.xrTableRow3});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(1112.333F, 73.33334F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(1112.333F, 77.50002F);
             this.xrTable2.StylePriority.UseBackColor = false;
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseFont = false;
@@ -139,7 +139,7 @@
             this.xrTableCell39,
             this.xrTableCell43});
             this.xrTableRow4.Name = "xrTableRow4";
-            this.xrTableRow4.Weight = 0.80555547078450518D;
+            this.xrTableRow4.Weight = 0.99910352444266615D;
             // 
             // xrTableCell33
             // 
@@ -194,7 +194,7 @@
             // xrTableCell43
             // 
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "การทำงานของไต (Renal function test)";
+            this.xrTableCell43.Text = "ตรวจระดับน้ำตาลในเลือดและโรคเบาหวาน";
             this.xrTableCell43.Weight = 6.3067045713624D;
             // 
             // xrTableRow2
@@ -211,7 +211,7 @@
             this.xrTableCell1,
             this.xrTableCell21});
             this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 1.056069267616081D;
+            this.xrTableRow2.Weight = 0.99155332356286319D;
             // 
             // xrTableCell11
             // 
@@ -251,13 +251,13 @@
             // xrTableCell18
             // 
             this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Text = "Creatinine";
+            this.xrTableCell18.Text = "Fasting Blood Sugar : FBS";
             this.xrTableCell18.Weight = 1.9199501364408804D;
             // 
             // xrTableCell1
             // 
             this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.Text = "BUN";
+            this.xrTableCell1.Text = "HbA1c";
             this.xrTableCell1.Weight = 1.8045829316338879D;
             // 
             // xrTableCell21
@@ -281,7 +281,7 @@
             this.xrTableCell2,
             this.xrTableCell32});
             this.xrTableRow3.Name = "xrTableRow3";
-            this.xrTableRow3.Weight = 1.1383752615994138D;
+            this.xrTableRow3.Weight = 1.0093431519944707D;
             // 
             // xrTableCell22
             // 
@@ -331,7 +331,7 @@
             this.xrTableCell29.Multiline = true;
             this.xrTableCell29.Name = "xrTableCell29";
             this.xrTableCell29.StylePriority.UseFont = false;
-            this.xrTableCell29.Text = "M= 0.67 -1.17,F=0.51-0.95";
+            this.xrTableCell29.Text = "70-99 mg/dl";
             this.xrTableCell29.Weight = 1.9199501365914697D;
             // 
             // xrTableCell2
@@ -339,7 +339,7 @@
             this.xrTableCell2.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Text = "(M >40 mg/dl, F>50 mg/dl)";
+            this.xrTableCell2.Text = "0-5.7 %";
             this.xrTableCell2.Weight = 1.8045829314832986D;
             // 
             // xrTableCell32
@@ -353,7 +353,7 @@
             this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable1.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(26.66667F, 0F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(26.66702F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
@@ -366,93 +366,98 @@
             // xrTableRow1
             // 
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell10,
             this.xrTableCell3,
             this.xrTableCell4,
-            this.xrTableCell9,
-            this.xrTableCell19,
             this.xrTableCell6,
             this.xrTableCell7,
+            this.xrTableCell5,
+            this.xrTableCell8,
+            this.xrTableCell9,
+            this.xrTableCell19,
             this.xrTableCell20,
-            this.xrTableCell30,
-            this.xrTableCell5});
+            this.xrTableCell10});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
-            // 
-            // xrTableCell10
-            // 
-            this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "No")});
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Weight = 0.26694894162082267D;
             // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "No")});
             this.xrTableCell3.Name = "xrTableCell3";
-            this.xrTableCell3.Weight = 0.52671069952311866D;
+            this.xrTableCell3.Weight = 0.26694900512695297D;
             // 
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Weight = 0.71461972848877664D;
-            // 
-            // xrTableCell9
-            // 
-            this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "FirstName")});
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Weight = 0.9797251843084831D;
-            // 
-            // xrTableCell19
-            // 
-            this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LastName")});
-            this.xrTableCell19.Name = "xrTableCell19";
-            this.xrTableCell19.Weight = 0.91042085002248685D;
+            this.xrTableCell4.Weight = 0.52671096801757811D;
             // 
             // xrTableCell6
             // 
             this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Weight = 0.66644259192551658D;
+            this.xrTableCell6.Weight = 0.71461975097656261D;
             // 
             // xrTableCell7
             // 
             this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "FirstName")});
             this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Weight = 0.62525262380279978D;
-            // 
-            // xrTableCell20
-            // 
-            this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0070")});
-            this.xrTableCell20.FormattingRules.Add(this.CreatinineH);
-            this.xrTableCell20.FormattingRules.Add(this.CreatinineL);
-            this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.Weight = 1.8003593914233369D;
-            // 
-            // xrTableCell30
-            // 
-            this.xrTableCell30.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR27")});
-            this.xrTableCell30.FormattingRules.Add(this.BunH);
-            this.xrTableCell30.FormattingRules.Add(this.BunL);
-            this.xrTableCell30.Name = "xrTableCell30";
-            this.xrTableCell30.Weight = 1.6921758070389672D;
+            this.xrTableCell7.Weight = 0.97972503662109389D;
             // 
             // xrTableCell5
             // 
             this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
-            this.xrTableCell5.FormattingRules.Add(this.formattingRule1);
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LastName")});
             this.xrTableCell5.Name = "xrTableCell5";
-            this.xrTableCell5.Weight = 2.9406736496191286D;
+            this.xrTableCell5.Weight = 0.91042053222656238D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Weight = 0.66644256591796869D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Weight = 0.6252529907226565D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "C0180")});
+            this.xrTableCell19.FormattingRules.Add(this.FBSL);
+            this.xrTableCell19.FormattingRules.Add(this.FBSH);
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Weight = 1.800357971191406D;
+            // 
+            // xrTableCell20
+            // 
+            this.xrTableCell20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR7")});
+            this.xrTableCell20.FormattingRules.Add(this.HbA1cL);
+            this.xrTableCell20.FormattingRules.Add(this.HbA1cH);
+            this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Weight = 1.6921788024902345D;
+            // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
+            this.xrTableCell10.FormattingRules.Add(this.formattingRule1);
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Weight = 2.9406724548339849D;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // formattingRule1
             // 
@@ -460,36 +465,31 @@
             this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.formattingRule1.Name = "formattingRule1";
             // 
-            // objectDataSource1
+            // FBSH
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.FBSH.Condition = "EndsWith(Trim([c0180]), \'H\')";
+            this.FBSH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.FBSH.Name = "FBSH";
             // 
-            // CreatinineH
+            // FBSL
             // 
-            this.CreatinineH.Condition = "EndsWith(Trim([C0070]), \'H\')";
-            this.CreatinineH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.CreatinineH.Name = "CreatinineH";
+            this.FBSL.Condition = "EndsWith(Trim([C0180]), \'L\')";
+            this.FBSL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.FBSL.Name = "FBSL";
             // 
-            // CreatinineL
+            // HbA1cH
             // 
-            this.CreatinineL.Condition = "EndsWith(Trim([C0070]), \'L\')";
-            this.CreatinineL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.CreatinineL.Name = "CreatinineL";
+            this.HbA1cH.Condition = "EndsWith(Trim([PAR7]), \'H\')";
+            this.HbA1cH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.HbA1cH.Name = "HbA1cH";
             // 
-            // BunH
+            // HbA1cL
             // 
-            this.BunH.Condition = "EndsWith(Trim([PAR27]), \'H\')";
-            this.BunH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BunH.Name = "BunH";
+            this.HbA1cL.Condition = "EndsWith(Trim([PAR7]), \'L\')";
+            this.HbA1cL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.HbA1cL.Name = "HbA1cL";
             // 
-            // BunL
-            // 
-            this.BunL.Condition = "EndsWith(Trim([PAR27]), \'L\')";
-            this.BunL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.BunL.Name = "BunL";
-            // 
-            // CheckupGroupRenal
+            // CheckupGroupFBS
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.DetailBase,
@@ -499,10 +499,10 @@
             this.DataSource = this.objectDataSource1;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
             this.formattingRule1,
-            this.CreatinineH,
-            this.CreatinineL,
-            this.BunH,
-            this.BunL});
+            this.FBSH,
+            this.FBSL,
+            this.HbA1cH,
+            this.HbA1cL});
             this.Version = "17.1";
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
@@ -551,21 +551,21 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
-        private DevExpress.XtraReports.UI.FormattingRule CreatinineH;
-        private DevExpress.XtraReports.UI.FormattingRule CreatinineL;
-        private DevExpress.XtraReports.UI.FormattingRule BunH;
-        private DevExpress.XtraReports.UI.FormattingRule BunL;
+        private DevExpress.XtraReports.UI.FormattingRule FBSL;
+        private DevExpress.XtraReports.UI.FormattingRule FBSH;
+        private DevExpress.XtraReports.UI.FormattingRule HbA1cL;
+        private DevExpress.XtraReports.UI.FormattingRule HbA1cH;
     }
 }

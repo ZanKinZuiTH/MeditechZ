@@ -54,7 +54,7 @@
             // 
             // BottomMarginBase
             // 
-            this.BottomMarginBase.HeightF = 0F;
+            this.BottomMarginBase.HeightF = 30F;
             this.BottomMarginBase.Name = "BottomMarginBase";
             this.BottomMarginBase.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMarginBase.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -119,7 +119,7 @@
             this.BottomMarginBase,
             this.PageHeaderBase});
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 30);
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
