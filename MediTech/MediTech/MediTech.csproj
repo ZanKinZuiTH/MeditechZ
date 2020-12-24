@@ -855,11 +855,23 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupUric.Designer.cs">
       <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedSummary.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedSummary.Designer.cs">
+      <DependentUpon>CheckupOccMedSummary.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.cs">
       <SubType>Component</SubType>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.Designer.cs">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.Designer.cs">
+      <DependentUpon>CheckupOccmedSummaryChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummaryChart.cs">
       <SubType>Component</SubType>
@@ -2624,8 +2636,14 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupUric.resx">
       <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccMedSummary.resx">
+      <DependentUpon>CheckupOccMedSummary.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummary.resx">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.resx">
+      <DependentUpon>CheckupOccmedSummaryChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummaryChart.resx">
       <DependentUpon>CheckupSummaryChart.cs</DependentUpon>

@@ -999,7 +999,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID)
+        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID,string companyName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("[pGetCheckupGroupResult]", entities.Database.Connection.ConnectionString);
@@ -1007,6 +1007,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_JobContactUID", jobContactUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUID", GPRSTUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_CompanyName", !string.IsNullOrEmpty(companyName) ? companyName : (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

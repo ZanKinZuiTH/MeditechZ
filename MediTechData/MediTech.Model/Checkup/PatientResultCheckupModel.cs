@@ -10,6 +10,5 @@ namespace MediTech.Model
     {
         public string Conclusion { get; set; }
         public string CheckupResultStatus { get; set; }
-        public string Radiologist { get; set; }
     }
 }

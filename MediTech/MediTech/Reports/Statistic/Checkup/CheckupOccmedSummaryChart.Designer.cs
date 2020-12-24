@@ -1,6 +1,6 @@
 ﻿namespace MediTech.Reports.Statistic.Checkup
 {
-    partial class CheckupSummaryChart
+    partial class CheckupOccmedSummaryChart
     {
         /// <summary>
         /// Required designer variable.
@@ -33,10 +33,12 @@
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView2 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupSummaryChart));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupOccmedSummaryChart));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.checkupChart = new DevExpress.XtraReports.UI.XRChart();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
@@ -44,12 +46,12 @@
             this.Header = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.checkupChart)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -96,15 +98,24 @@
             sideBySideBarSeriesView1.BarWidth = 0.8D;
             series1.View = sideBySideBarSeriesView1;
             series2.ArgumentDataMember = "GroupName";
-            series2.Name = "ผิดปกติ";
-            series2.ToolTipHintDataMember = "GroupName";
-            series2.ValueDataMembersSerializable = "AbnormalCount";
+            series2.Name = "เฝ้าระวัง";
+            series2.ValueDataMembersSerializable = "AttentionCount";
+            series3.ArgumentDataMember = "GroupName";
+            series3.Name = "ผิดปกติ";
+            series3.ToolTipHintDataMember = "GroupName";
+            series3.ValueDataMembersSerializable = "AbnormalCount";
             sideBySideBarSeriesView2.BarWidth = 0.8D;
-            series2.View = sideBySideBarSeriesView2;
+            series3.View = sideBySideBarSeriesView2;
             this.checkupChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
-        series2};
+        series2,
+        series3};
             this.checkupChart.SizeF = new System.Drawing.SizeF(1134F, 480.8333F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupSummaryModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // TopMargin
             // 
@@ -179,12 +190,7 @@
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupSummaryModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // CheckupSummaryChart
+            // CheckupOccmedSummaryChart
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -205,8 +211,9 @@
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkupChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
