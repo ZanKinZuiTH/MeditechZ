@@ -60,6 +60,7 @@
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -77,7 +78,6 @@
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -184,7 +184,7 @@
             this.xrTableCell36.RowSpan = 3;
             this.xrTableCell36.StylePriority.UseFont = false;
             this.xrTableCell36.Text = "ชื่อ";
-            this.xrTableCell36.Weight = 0.79464360474782647D;
+            this.xrTableCell36.Weight = 0.8763381894572958D;
             // 
             // xrTableCell37
             // 
@@ -193,7 +193,7 @@
             this.xrTableCell37.RowSpan = 3;
             this.xrTableCell37.StylePriority.UseFont = false;
             this.xrTableCell37.Text = "นามสกุล";
-            this.xrTableCell37.Weight = 0.77907855540129822D;
+            this.xrTableCell37.Weight = 1.0568402630833689D;
             // 
             // xrTableCell38
             // 
@@ -202,7 +202,7 @@
             this.xrTableCell38.RowSpan = 3;
             this.xrTableCell38.StylePriority.UseFont = false;
             this.xrTableCell38.Text = "อายุ";
-            this.xrTableCell38.Weight = 0.34196595001272312D;
+            this.xrTableCell38.Weight = 0.33379638683063567D;
             // 
             // xrTableCell39
             // 
@@ -211,13 +211,13 @@
             this.xrTableCell39.RowSpan = 3;
             this.xrTableCell39.StylePriority.UseFont = false;
             this.xrTableCell39.Text = "เพศ";
-            this.xrTableCell39.Weight = 0.618887710248232D;
+            this.xrTableCell39.Weight = 0.65973522698398213D;
             // 
             // xrTableCell43
             // 
             this.xrTableCell43.Name = "xrTableCell43";
             this.xrTableCell43.Text = "ตรวจหาสารสไตรีนปัสสาวะ(Styrene in Urine)";
-            this.xrTableCell43.Weight = 6.9344864137580631D;
+            this.xrTableCell43.Weight = 6.5423521678128607D;
             // 
             // xrTableRow2
             // 
@@ -253,22 +253,22 @@
             // xrTableCell14
             // 
             this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Weight = 0.86442725081490857D;
+            this.xrTableCell14.Weight = 0.95329606087508245D;
             // 
             // xrTableCell15
             // 
             this.xrTableCell15.Name = "xrTableCell15";
-            this.xrTableCell15.Weight = 0.84749541224293246D;
+            this.xrTableCell15.Weight = 1.1496494966265238D;
             // 
             // xrTableCell16
             // 
             this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Weight = 0.3719965668650575D;
+            this.xrTableCell16.Weight = 0.36310957195241467D;
             // 
             // xrTableCell17
             // 
             this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Weight = 0.673236985904615D;
+            this.xrTableCell17.Weight = 0.71767163502032794D;
             // 
             // xrTableCell6
             // 
@@ -276,7 +276,7 @@
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "Styrene in Urine";
-            this.xrTableCell6.Weight = 1.2506374627458454D;
+            this.xrTableCell6.Weight = 1.3039581304316976D;
             // 
             // xrTableCell20
             // 
@@ -285,7 +285,7 @@
             this.xrTableCell20.RowSpan = 2;
             this.xrTableCell20.StylePriority.UseFont = false;
             this.xrTableCell20.Text = "แปลผล/คำแนะนำ";
-            this.xrTableCell20.Weight = 5.1647290184086154D;
+            this.xrTableCell20.Weight = 4.6848378020759283D;
             // 
             // xrTableCell21
             // 
@@ -334,25 +334,25 @@
             // 
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Text = "xrTableCell25";
-            this.xrTableCell25.Weight = 0.86442725081490812D;
+            this.xrTableCell25.Weight = 0.953296060875082D;
             // 
             // xrTableCell26
             // 
             this.xrTableCell26.Name = "xrTableCell26";
             this.xrTableCell26.Text = "xrTableCell26";
-            this.xrTableCell26.Weight = 0.84749541224293268D;
+            this.xrTableCell26.Weight = 1.1496494966265241D;
             // 
             // xrTableCell27
             // 
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.Text = "xrTableCell27";
-            this.xrTableCell27.Weight = 0.37199656686505761D;
+            this.xrTableCell27.Weight = 0.36310957195241478D;
             // 
             // xrTableCell28
             // 
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.Text = "xrTableCell28";
-            this.xrTableCell28.Weight = 0.67323698590461434D;
+            this.xrTableCell28.Weight = 0.71767163502032716D;
             // 
             // xrTableCell31
             // 
@@ -360,7 +360,12 @@
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.StylePriority.UseFont = false;
             this.xrTableCell31.Text = "<400 mg/g.creatinine";
-            this.xrTableCell31.Weight = 1.2506381125145818D;
+            this.xrTableCell31.Weight = 1.303958780200434D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Weight = 4.6848386907414064D;
             // 
             // xrTableCell32
             // 
@@ -434,7 +439,7 @@
             this.xrTableCell4.StylePriority.UsePadding = false;
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell4.Weight = 0.79248692173014978D;
+            this.xrTableCell4.Weight = 0.87395978864450252D;
             // 
             // xrTableCell5
             // 
@@ -445,21 +450,21 @@
             this.xrTableCell5.StylePriority.UsePadding = false;
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
             this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell5.Weight = 0.77696421980071839D;
+            this.xrTableCell5.Weight = 1.0539720866546105D;
             // 
             // xrTableCell7
             // 
             this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
             this.xrTableCell7.Name = "xrTableCell7";
-            this.xrTableCell7.Weight = 0.34103751917048819D;
+            this.xrTableCell7.Weight = 0.33289042641482863D;
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Weight = 0.61720803191454443D;
+            this.xrTableCell9.Weight = 0.65794439078103784D;
             // 
             // xrTableCell10
             // 
@@ -468,7 +473,7 @@
             this.xrTableCell10.FormattingRules.Add(this.StyreneH);
             this.xrTableCell10.FormattingRules.Add(this.StyreneL);
             this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Weight = 1.1465566736333843D;
+            this.xrTableCell10.Weight = 1.1954386334418783D;
             // 
             // StyreneH
             // 
@@ -492,7 +497,7 @@
             this.xrTableCell8.StylePriority.UsePadding = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell8.Weight = 4.7349036668156383D;
+            this.xrTableCell8.Weight = 4.2949517071280656D;
             // 
             // formattingRule1
             // 
@@ -507,11 +512,6 @@
             this.xrTableCell19.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell19.Name = "xrTableCell19";
             this.xrTableCell19.Weight = 1.0342062850875493D;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Weight = 5.1647299070740935D;
             // 
             // CheckupGroupStyrene
             // 

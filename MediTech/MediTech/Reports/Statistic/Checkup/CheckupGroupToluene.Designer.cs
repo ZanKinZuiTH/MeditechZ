@@ -359,7 +359,7 @@
             this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.Text = "0 - 0.16 g/g creatinine";
+            this.xrTableCell18.Text = "0 - 1.6 g/g creatinine";
             this.xrTableCell18.Weight = 1.4608889933184159D;
             // 
             // xrTableCell31

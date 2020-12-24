@@ -496,9 +496,10 @@
             // 
             // xrTableCell19
             // 
+            this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
             this.xrTableCell19.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell19.Name = "xrTableCell19";
-            this.xrTableCell19.Text = "xrTableCell19";
             this.xrTableCell19.Weight = 0.98509575236576652D;
             // 
             // objectDataSource1

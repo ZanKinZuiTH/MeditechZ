@@ -383,7 +383,7 @@
             this.xrTableCell31.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.StylePriority.UseFont = false;
-            this.xrTableCell31.Text = "(M >40 mg/dl, F>50 mg/dl)";
+            this.xrTableCell31.Text = "6-20 mg/dl";
             this.xrTableCell31.Weight = 0.84897275074080358D;
             // 
             // xrTableCell2
