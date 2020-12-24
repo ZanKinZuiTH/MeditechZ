@@ -49,6 +49,8 @@
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.BenzeneL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.BenzeneH = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -59,8 +61,6 @@
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.BenzeneH = new DevExpress.XtraReports.UI.FormattingRule();
-            this.BenzeneL = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -75,6 +75,9 @@
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -85,6 +88,16 @@
             this.DetailBase.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
             this.DetailBase.HeightF = 25F;
+            // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.StylePriority.UseBorders = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.StylePriority.UseBorders = false;
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
             // 
             // lbTitle
             // 
@@ -202,6 +215,7 @@
             this.xrTableCell15,
             this.xrTableCell16,
             this.xrTableCell17,
+            this.xrTableCell10,
             this.xrTableCell20,
             this.xrTableCell21});
             this.xrTableRow2.Name = "xrTableRow2";
@@ -247,15 +261,28 @@
             this.xrTableCell20.FormattingRules.Add(this.BenzeneL);
             this.xrTableCell20.FormattingRules.Add(this.BenzeneH);
             this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.Text = "Benzene in Urine";
-            this.xrTableCell20.Weight = 1.7487094860995329D;
+            this.xrTableCell20.RowSpan = 2;
+            this.xrTableCell20.Text = "แปลผล/คำแนะนำ";
+            this.xrTableCell20.Weight = 3.9314455192212572D;
+            // 
+            // BenzeneL
+            // 
+            this.BenzeneL.Condition = "EndsWith(Trim([PAR115]), \'L\')";
+            this.BenzeneL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.BenzeneL.Name = "BenzeneL";
+            // 
+            // BenzeneH
+            // 
+            this.BenzeneH.Condition = "EndsWith(Trim([PAR115]), \'H\')";
+            this.BenzeneH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.BenzeneH.Name = "BenzeneH";
             // 
             // xrTableCell21
             // 
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.RowSpan = 2;
-            this.xrTableCell21.Text = "ผลตรวจ";
-            this.xrTableCell21.Weight = 4.791907340424542D;
+            this.xrTableCell21.Text = "สรุปผล";
+            this.xrTableCell21.Weight = 1.2282643631824357D;
             // 
             // xrTableRow3
             // 
@@ -267,6 +294,7 @@
             this.xrTableCell26,
             this.xrTableCell27,
             this.xrTableCell28,
+            this.xrTableCell18,
             this.xrTableCell31,
             this.xrTableCell32});
             this.xrTableRow3.Name = "xrTableRow3";
@@ -319,26 +347,13 @@
             this.xrTableCell31.FormattingRules.Add(this.BenzeneH);
             this.xrTableCell31.FormattingRules.Add(this.BenzeneL);
             this.xrTableCell31.Name = "xrTableCell31";
-            this.xrTableCell31.Text = "0-50 mg/L";
-            this.xrTableCell31.Weight = 1.7487094660292883D;
-            // 
-            // BenzeneH
-            // 
-            this.BenzeneH.Condition = "EndsWith(Trim([PAR115]), \'H\')";
-            this.BenzeneH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.BenzeneH.Name = "BenzeneH";
-            // 
-            // BenzeneL
-            // 
-            this.BenzeneL.Condition = "EndsWith(Trim([PAR115]), \'L\')";
-            this.BenzeneL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.BenzeneL.Name = "BenzeneL";
+            this.xrTableCell31.Weight = 3.9314455091861351D;
             // 
             // xrTableCell32
             // 
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.Text = "xrTableCell32";
-            this.xrTableCell32.Weight = 4.7919073604947862D;
+            this.xrTableCell32.Weight = 1.2282643832526798D;
             // 
             // xrTable1
             // 
@@ -366,7 +381,8 @@
             this.xrTableCell5,
             this.xrTableCell7,
             this.xrTableCell8,
-            this.xrTableCell6});
+            this.xrTableCell6,
+            this.xrTableCell19});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
             // 
@@ -424,7 +440,7 @@
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR115")});
             this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Weight = 1.6397845107926288D;
+            this.xrTableCell8.Weight = 1.2948924167803717D;
             // 
             // xrTableCell6
             // 
@@ -432,7 +448,11 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
             this.xrTableCell6.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Weight = 4.4934248661744238D;
+            this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 0, 0, 100F);
+            this.xrTableCell6.StylePriority.UsePadding = false;
+            this.xrTableCell6.StylePriority.UseTextAlignment = false;
+            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell6.Weight = 3.6865579370040922D;
             // 
             // formattingRule1
             // 
@@ -445,11 +465,34 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Text = "Benzene in Urine";
+            this.xrTableCell10.Weight = 1.3809069441203821D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.StylePriority.UseFont = false;
+            this.xrTableCell18.Text = "0-50 mg/L";
+            this.xrTableCell18.Weight = 1.3809069340852598D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
+            this.xrTableCell19.FormattingRules.Add(this.formattingRule1);
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Weight = 1.1517587837338863D;
+            // 
             // CheckupGroupBenzene
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.DetailBase,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeaderBase});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -458,6 +501,7 @@
             this.BenzeneH,
             this.BenzeneL});
             this.Version = "17.1";
+            this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
@@ -516,5 +560,8 @@
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.FormattingRule BenzeneH;
         private DevExpress.XtraReports.UI.FormattingRule BenzeneL;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
     }
 }
