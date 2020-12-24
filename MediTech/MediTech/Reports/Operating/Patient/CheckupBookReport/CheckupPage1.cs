@@ -220,15 +220,15 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     //lbResultWellness2.Text = sb2.ToString();
 
 
-                    if (wellnessResult == "ตั้งครรภ์")
-                    {
-                        lbBMI.Text = "";
-                        lbObesity.Text = "ตั้งครรภ์";
-                    }
-                    else if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
+                    if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
                     {
                         lbBMI.Text = "";
                         lbObesity.Text = "สงสัยตั้งครรภ์";
+                    }
+                    else if(wellnessResult.Contains("ตั้งครรภ์") == true)
+                    {
+                        lbBMI.Text = "";
+                        lbObesity.Text = "ตั้งครรภ์";
                     }
                     else
                     {

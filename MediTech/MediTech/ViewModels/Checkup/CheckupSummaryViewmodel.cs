@@ -191,6 +191,14 @@ namespace MediTech.ViewModels
             set { Set(ref _CheckupSummayData, value); }
         }
 
+        private List<CheckupSummaryModel> _OccMedSummeryData;
+
+        public List<CheckupSummaryModel> OccMedSummeryData
+        {
+            get { return _OccMedSummeryData; }
+            set { Set(ref _OccMedSummeryData, value); }
+        }
+
 
         #endregion
 
@@ -218,6 +226,18 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _PreviewOccMedSummaryCommand;
+
+        public RelayCommand PreviewOccMedSummaryCommand
+        {
+            get
+            {
+                return _PreviewOccMedSummaryCommand
+                    ?? (_PreviewOccMedSummaryCommand = new RelayCommand(PreviewOccMedSummary));
+            }
+        }
+
         private RelayCommand _PreviewCheckupGroupCommand;
 
         public RelayCommand PreviewCheckupGroupCommand
@@ -228,6 +248,8 @@ namespace MediTech.ViewModels
                     ?? (_PreviewCheckupGroupCommand = new RelayCommand(PreviewCheckupGroup));
             }
         }
+
+
 
         #endregion
 
@@ -272,9 +294,49 @@ namespace MediTech.ViewModels
             branchData.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
             branchData.GPRSTUIDs = gprstUIDs;
             branchData.BranchName = branchName;
-            CheckupSummayData = DataService.Reports.CheckupSummary(branchData);
+            var dataSummeryData = DataService.Reports.CheckupSummary(branchData);
+            CheckupSummayData = dataSummeryData.Where(p => p.GPRSTUID != 3200 && p.GPRSTUID != 3201 && p.GPRSTUID != 3208).ToList();
+            OccMedSummeryData = dataSummeryData.Where(p => p.GPRSTUID == 3200 || p.GPRSTUID == 3201 || p.GPRSTUID == 3208).ToList();
+
         }
 
+        void PreviewOccMedSummary()
+        {
+            if (SelectCheckupJobContact != null)
+            {
+                string gprstUIDs = string.Empty;
+                foreach (var item in CheckupJobTasks)
+                {
+                    if (item.IsSelected && item.GPRSTUID == 3200 || item.GPRSTUID == 3201 || item.GPRSTUID == 3208)
+                    {
+                        gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
+                    }
+
+                }
+                string title = string.Empty;
+                if (SelectBranch != null)
+                {
+                    title = SelectBranch.Display;
+                }
+                else
+                {
+                    title = SelectCheckupJobContact.CompanyName;
+                }
+
+
+
+                Reports.Statistic.Checkup.CheckupOccMedSummary rpt = new Reports.Statistic.Checkup.CheckupOccMedSummary();
+                rpt.Parameters["Title"].Value = title;
+                rpt.Parameters["CheckupJobUID"].Value = SelectCheckupJobContact.CheckupJobContactUID;
+                rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
+                rpt.Parameters["GPRSTUIDs"].Value = gprstUIDs;
+                rpt.Parameters["Year"].Value = (SelectCheckupJobContact.StartDttm.Year + 543);
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                printTool.ShowPreviewDialog();
+            }
+        }
         void PreviewCheckupSummary()
         {
             if (SelectCheckupJobContact != null)
@@ -282,7 +344,7 @@ namespace MediTech.ViewModels
                 string gprstUIDs = string.Empty;
                 foreach (var item in CheckupJobTasks)
                 {
-                    if (item.IsSelected)
+                    if (item.IsSelected && item.GPRSTUID != 3200 && item.GPRSTUID != 3201 && item.GPRSTUID != 3208)
                     {
                         gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
                     }
@@ -312,7 +374,6 @@ namespace MediTech.ViewModels
                 printTool.ShowPreviewDialog();
             }
         }
-
         void PreviewCheckupGroup()
         {
             if (SelectCheckupJobContact != null)
@@ -322,7 +383,9 @@ namespace MediTech.ViewModels
                 {
                     if (item.IsSelected)
                     {
-                        List<PatientResultCheckupModel> resultData = DataService.Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, item.GPRSTUID);
+                        List<PatientResultCheckupModel> resultData = DataService
+                            .Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID
+                            , item.GPRSTUID, SelectBranch != null ? SelectBranch.Display : null);
 
                         var patientData = resultData.GroupBy(p => new
                         {
@@ -335,8 +398,7 @@ namespace MediTech.ViewModels
                             p.Age,
                             p.Gender,
                             p.Conclusion,
-                            p.CheckupResultStatus,
-                            p.Radiologist
+                            p.CheckupResultStatus
                         }).Select(g => new
                         {
                             PatientID = g.FirstOrDefault().PatientID,
@@ -348,8 +410,7 @@ namespace MediTech.ViewModels
                             Age = g.FirstOrDefault().Age,
                             Gender = g.FirstOrDefault().Gender,
                             Conclusion = g.FirstOrDefault().Conclusion,
-                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus,
-                            Radiologist = g.FirstOrDefault().Radiologist
+                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
                         });
 
                         List<CheckupGroupReportModel> reportDataSource = new List<CheckupGroupReportModel>();
@@ -366,7 +427,6 @@ namespace MediTech.ViewModels
                             newObject.Age = patient.Age;
                             newObject.Conclusion = patient.Conclusion;
                             newObject.ResultStatus = patient.CheckupResultStatus;
-                            newObject.Radiologist = patient.Radiologist;
                             newObject.Gender = patient.Gender;
                             reportDataSource.Add(newObject);
                         }
@@ -413,6 +473,7 @@ namespace MediTech.ViewModels
             }
 
         }
+
         #endregion
     }
 }

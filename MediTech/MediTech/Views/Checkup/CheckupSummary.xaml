@@ -168,14 +168,19 @@
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Vertical">
-                        <dx:SimpleButton Width="160" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
+                        <dx:SimpleButton Width="180" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="1. รายงานสรุปรวม" VerticalAlignment="Center"/>
                             </StackPanel>
                         </dx:SimpleButton>
-                        <dx:SimpleButton Width="160" Height="25" Command="{Binding PreviewCheckupGroupCommand}">
+                        <dx:SimpleButton Width="180" Height="25" Command="{Binding PreviewOccMedSummaryCommand}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text="2. รายงานตามกลุ่มที่เลือก" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                <TextBlock Text="2. รายงานสรุปรวมตรวจ Occmed" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                        <dx:SimpleButton Width="180" Height="25" Command="{Binding PreviewCheckupGroupCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="3. รายงานตามกลุ่มที่เลือก" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutGroup>
@@ -230,6 +235,69 @@
                             </Style>
                         </dxg:GridColumn.CellStyle>
                     </dxg:GridColumn>
+                    <dxg:GridColumn Header="% ผลผิดปกติ" FieldName="AbnormalPercent">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="สั่งตรวจทั้งหมด" FieldName="TotalCount"/>
+                    <dxg:GridColumn Header="เข้ารับการตรวจ" FieldName="CheckinCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="ไม่เข้ารับการตรวจ" FieldName="NonCheckinCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" AllowEditing="False" UseLightweightTemplates="None" />
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+                <dxg:GridControl x:Name="grdOccmed" ItemsSource="{Binding OccMedSummeryData}" Height="200">
+                    <dxmvvm:Interaction.Behaviors>
+                        <helper:DeferredColumnFitBehavior/>
+                    </dxmvvm:Interaction.Behaviors>
+                    <dxg:GridColumn FieldName="No" Width="30" Fixed="Left">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.RowHandle.Value
+                                ,Converter={StaticResource AddValueConverter}
+                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="รายการตรวจ" FieldName="GroupName"/>
+                    <dxg:GridColumn Header="ผลปกติ" FieldName="NormalCount">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="เฝ้าระวัง" FieldName="AttentionCount" />
+                    <dxg:GridColumn Header="ผลผิดปกติ" FieldName="AbnormalCount" >
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="red"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="% ผลปกติ" FieldName="NormalPercent">
+                        <dxg:GridColumn.CellStyle>
+                            <Style TargetType="{x:Type dxg:CellContentPresenter}">
+                                <Setter Property="Foreground" Value="Blue"/>
+                            </Style>
+                        </dxg:GridColumn.CellStyle>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="% เฝ้าระวัง" FieldName="AttentionPercent" />
                     <dxg:GridColumn Header="% ผลผิดปกติ" FieldName="AbnormalPercent">
                         <dxg:GridColumn.CellStyle>
                             <Style TargetType="{x:Type dxg:CellContentPresenter}">
