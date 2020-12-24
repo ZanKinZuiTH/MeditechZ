@@ -118,6 +118,16 @@
             this.xrTable1});
             this.DetailBase.HeightF = 25F;
             // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.StylePriority.UseBorders = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.StylePriority.UseBorders = false;
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            // 
             // lbTitle
             // 
             this.lbTitle.StylePriority.UseBorderColor = false;
@@ -726,7 +736,11 @@
             this.xrTableCell58.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "FirstName")});
             this.xrTableCell58.Name = "xrTableCell58";
+            this.xrTableCell58.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
+            this.xrTableCell58.StylePriority.UsePadding = false;
+            this.xrTableCell58.StylePriority.UseTextAlignment = false;
             this.xrTableCell58.Text = "xrTableCell58";
+            this.xrTableCell58.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell58.Weight = 0.65077313731029651D;
             // 
             // xrTableCell59
@@ -734,7 +748,11 @@
             this.xrTableCell59.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "LastName")});
             this.xrTableCell59.Name = "xrTableCell59";
+            this.xrTableCell59.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
+            this.xrTableCell59.StylePriority.UsePadding = false;
+            this.xrTableCell59.StylePriority.UseTextAlignment = false;
             this.xrTableCell59.Text = "xrTableCell59";
+            this.xrTableCell59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell59.Weight = 0.6570944233092777D;
             // 
             // xrTableCell60
@@ -906,7 +924,8 @@
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.DetailBase,
-            this.GroupHeader1});
+            this.GroupHeader1,
+            this.PageHeaderBase});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
@@ -914,6 +933,7 @@
             this.formattingRule1,
             this.formattingRule2});
             this.Version = "17.1";
+            this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
