@@ -152,7 +152,14 @@
                                        ShowGroupPanel="False" />
                         </dxg:GridControl.View>
                     </dxg:GridControl>
-
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="StartRow">
+                            <dxe:TextEdit Text="{Binding StartRow}" MaskType="RegEx" Mask="\d+"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="EndRow">
+                            <dxe:TextEdit Text="{Binding EndRow}" MaskType="RegEx" Mask="\d+"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutControl>
             <dxlc:LayoutGroup  dxlc:DockLayoutControl.Dock="Client" Orientation="Vertical">
@@ -190,16 +197,6 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
-                                <TextBlock Text="Load" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
                 <dxg:GridControl ItemsSource="{Binding CheckupSummayData}">
                     <dxmvvm:Interaction.Behaviors>
                         <helper:DeferredColumnFitBehavior/>
@@ -324,6 +321,16 @@
                         <dxg:TableView ShowGroupPanel="False" AllowEditing="False" UseLightweightTemplates="None" />
                     </dxg:GridControl.View>
                 </dxg:GridControl>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/Refersh.png" />
+                                <TextBlock Text="Load" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:DockLayoutControl>
     </Grid>

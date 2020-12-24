@@ -1824,9 +1824,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetCheckupGroupResultByJob")]
         [HttpGet]
-        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID,string companyName)
+        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID,string companyName, int? startRow, int? endRow)
         {
-            DataTable dtData = SqlDirectStore.pGetCheckupGroupResult(checkupJobUID, GPRSTUID, companyName);
+            DataTable dtData = SqlDirectStore.pGetCheckupGroupResult(checkupJobUID, GPRSTUID, companyName, startRow,endRow);
 
             List<PatientResultCheckupModel> data = dtData.ToList<PatientResultCheckupModel>();
 

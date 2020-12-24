@@ -805,7 +805,7 @@ namespace MediTech.ViewModels
                     ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 10 });
                     int visibleIndex = 11;
                     List<PatientResultCheckupModel> resultData = DataService.Checkup
-                        .GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID,null);
+                        .GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID, SelectCheckupJobTask.GPRSTUID,null,null,null);
                     if (resultData != null && resultData.Count > 0)
                     {
                         var resultItemList = resultData.Select(p => p.ResultItemName).Distinct();

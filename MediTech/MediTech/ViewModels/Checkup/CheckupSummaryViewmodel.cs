@@ -199,6 +199,21 @@ namespace MediTech.ViewModels
             set { Set(ref _OccMedSummeryData, value); }
         }
 
+        private int? _StartRow;
+
+        public int? StartRow
+        {
+            get { return _StartRow; }
+            set { _StartRow = value; }
+        }
+
+        private int? _EndRow;
+
+        public int? EndRow
+        {
+            get { return _EndRow; }
+            set { _EndRow = value; }
+        }
 
         #endregion
 
@@ -393,7 +408,7 @@ namespace MediTech.ViewModels
                     {
                         List<PatientResultCheckupModel> resultData = DataService
                             .Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID
-                            , item.GPRSTUID, SelectBranch != null ? SelectBranch.Display : null);
+                            , item.GPRSTUID, SelectBranch != null ? SelectBranch.Display : null,StartRow,EndRow);
 
                         var patientData = resultData.GroupBy(p => new
                         {

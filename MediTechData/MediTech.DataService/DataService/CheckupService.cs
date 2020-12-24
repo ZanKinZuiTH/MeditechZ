@@ -400,9 +400,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID, string companyName)
+        public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(int checkupJobUID, int GPRSTUID, string companyName, int? startRow, int? endRow)
         {
-            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultByJob?checkupJobUID={0}&GPRSTUID={1}&companyName={2}", checkupJobUID, GPRSTUID, companyName);
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultByJob?checkupJobUID={0}&GPRSTUID={1}&companyName={2}&startRow={3}&endRow={4}", checkupJobUID, GPRSTUID, companyName, startRow, endRow);
             List<PatientResultCheckupModel> data = MeditechApiHelper.Get<List<PatientResultCheckupModel>>(requestApi);
 
             return data;
