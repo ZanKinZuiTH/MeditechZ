@@ -85,10 +85,10 @@ namespace MediTech.Reports.Statistic.Checkup
             string Year = this.Parameters["Year"].Value.ToString();
             string title = this.Parameters["Title"].Value.ToString();
             lbTitle.Text = title + Environment.NewLine + " โปรแกรมตรวจสุขภาพประจำปี " + Year;
-            CheckupBranchModel branchModel = new CheckupBranchModel();
+            CheckupCompanyModel branchModel = new CheckupCompanyModel();
             branchModel.CheckupJobUID = checkupJobUID;
             branchModel.GPRSTUIDs = GPRSTUIDs;
-            branchModel.BranchName = companyName;
+            branchModel.CompanyName = companyName;
             var dataSummary = dbService.Reports.CheckupSummary(branchModel);
             this.DataSource = dataSummary;
         }

@@ -6,10 +6,14 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class CheckupBranchModel
+    public class CheckupCompanyModel
     {
         public int CheckupJobUID { get; set; }
         public string GPRSTUIDs { get; set; }
-        public string BranchName { get; set; }
+        public string CompanyName { get; set; }
+        public int GPRSTUID { get; set; }
+        public int? StartRow { get; set; }
+        public int? EndRow { get; set; }
+
     }
 }

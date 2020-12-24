@@ -79,16 +79,16 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>12/24/2020 23:08:24</publishTime>
     </File>
     <File Include="bin/MediTech.Model.dll">
-      <publishTime>12/24/2020 23:08:01</publishTime>
+      <publishTime>12/25/2020 02:53:27</publishTime>
     </File>
     <File Include="bin/MediTech.Model.pdb">
-      <publishTime>12/24/2020 23:08:01</publishTime>
+      <publishTime>12/25/2020 02:53:27</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.dll">
-      <publishTime>12/24/2020 23:08:25</publishTime>
+      <publishTime>12/25/2020 02:53:34</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.pdb">
-      <publishTime>12/24/2020 23:08:25</publishTime>
+      <publishTime>12/25/2020 02:53:34</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/02/2018 10:19:13</publishTime>

@@ -598,11 +598,11 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckupSummary")]
         [HttpPost]
-        public List<CheckupSummaryModel> CheckupSummary(CheckupBranchModel branchModel)
+        public List<CheckupSummaryModel> CheckupSummary(CheckupCompanyModel branchModel)
         {
             List<CheckupSummaryModel> data = null;
 
-            DataTable dt = SqlDirectStore.pRPTCheckupSummary(branchModel.CheckupJobUID, branchModel.GPRSTUIDs, branchModel.BranchName);
+            DataTable dt = SqlDirectStore.pRPTCheckupSummary(branchModel.CheckupJobUID, branchModel.GPRSTUIDs, branchModel.CompanyName);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<CheckupSummaryModel>();

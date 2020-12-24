@@ -305,10 +305,10 @@ namespace MediTech.ViewModels
                 }
 
             }
-            CheckupBranchModel branchData = new CheckupBranchModel();
+            CheckupCompanyModel branchData = new CheckupCompanyModel();
             branchData.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
             branchData.GPRSTUIDs = gprstUIDs;
-            branchData.BranchName = branchName;
+            branchData.CompanyName = branchName;
             var dataSummeryData = DataService.Reports.CheckupSummary(branchData);
             if (dataSummeryData != null && dataSummeryData.Count > 0)
             {
@@ -406,9 +406,14 @@ namespace MediTech.ViewModels
                 {
                     if (item.IsSelected)
                     {
+                        CheckupCompanyModel branchData = new CheckupCompanyModel();
+                        branchData.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
+                        branchData.GPRSTUID = item.GPRSTUID;
+                        branchData.CompanyName = SelectBranch != null ? SelectBranch.Display : null;
+                        branchData.StartRow = StartRow;
+                        branchData.EndRow = EndRow;
                         List<PatientResultCheckupModel> resultData = DataService
-                            .Checkup.GetCheckupGroupResultByJob(SelectCheckupJobContact.CheckupJobContactUID
-                            , item.GPRSTUID, SelectBranch != null ? SelectBranch.Display : null,StartRow,EndRow);
+                            .Checkup.GetCheckupGroupResultByJob(branchData);
 
                         var patientData = resultData.GroupBy(p => new
                         {
