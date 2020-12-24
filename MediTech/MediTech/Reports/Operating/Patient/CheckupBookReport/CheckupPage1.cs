@@ -278,16 +278,16 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         ResultRadiologyModel chestXray = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"));
                         if (!string.IsNullOrEmpty(chestXray.PlainText))
                         {
-                            if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
-                            {
-                                string chestEN = chestXray.PlainText;
-                                string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                                string ResultChestEn = ChestResult[1].Replace(":", "");
-                                ResultChestEn = ResultChestEn.Trim();
-                                page6.lbChest.Text = ResultChestEn;
-                            }
-                            else
-                            {
+                            //if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                            //{
+                            //    string chestEN = chestXray.PlainText;
+                            //    string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
+                            //    string ResultChestEn = ChestResult[1].Replace(":", "");
+                            //    ResultChestEn = ResultChestEn.Trim();
+                            //    page6.lbChest.Text = ResultChestEn;
+                            //}
+                            //else
+                            //{
                                 string resultChestThai = TranslateXray(chestXray.PlainText, chestXray.ResultStatus, chestXray.RequestItemName);
                                 if (!string.IsNullOrEmpty(resultChestThai))
                                 {
@@ -301,7 +301,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                                 {
                                     page6.lbChest.Text = "ยังไม่ได้แปลไทย";
                                 }
-                            }
+                            //}
                         }
                     }
                     else
