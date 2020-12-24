@@ -153,6 +153,10 @@ namespace MediTech.Model.Report
         public string SPIRO3 { get; set; } //FVC (%Pred.)
         public string SPIRO6 { get; set; } //FEV1 (%Pred.)
         public string SPIRO9 { get; set; } //FEV1/FVC % (%Pred.)
+
+        public string PAR190 { get; set; } //Anti hva 
+        public string PAR191 { get; set; } // coi Anti hav
+        public string PAR192 { get; set; } //Anti Hav เชื้อ
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
