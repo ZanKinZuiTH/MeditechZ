@@ -199,7 +199,7 @@ namespace MediTech.ViewModels
             set { Set(ref _OccMedSummeryData, value); }
         }
 
-        private int? _StartRow;
+        private int? _StartRow = 1;
 
         public int? StartRow
         {
@@ -207,7 +207,7 @@ namespace MediTech.ViewModels
             set { _StartRow = value; }
         }
 
-        private int? _EndRow;
+        private int? _EndRow = 1000;
 
         public int? EndRow
         {
@@ -330,7 +330,7 @@ namespace MediTech.ViewModels
                 string gprstUIDs = string.Empty;
                 foreach (var item in CheckupJobTasks)
                 {
-                    if (item.IsSelected && item.GPRSTUID == 3200 || item.GPRSTUID == 3201 || item.GPRSTUID == 3208)
+                    if (item.IsSelected && (item.GPRSTUID == 3200 || item.GPRSTUID == 3201 || item.GPRSTUID == 3208))
                     {
                         gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
                     }
@@ -367,7 +367,7 @@ namespace MediTech.ViewModels
                 string gprstUIDs = string.Empty;
                 foreach (var item in CheckupJobTasks)
                 {
-                    if (item.IsSelected && item.GPRSTUID != 3200 && item.GPRSTUID != 3201 && item.GPRSTUID != 3208)
+                    if (item.IsSelected && (item.GPRSTUID != 3200 && item.GPRSTUID != 3201 && item.GPRSTUID != 3208))
                     {
                         gprstUIDs += string.IsNullOrEmpty(gprstUIDs) ? item.GPRSTUID.ToString() : "," + item.GPRSTUID;
                     }
@@ -412,6 +412,7 @@ namespace MediTech.ViewModels
 
                         var patientData = resultData.GroupBy(p => new
                         {
+                            p.RowNumber,
                             p.PatientID,
                             p.EmployeeID,
                             p.Title,
@@ -424,6 +425,7 @@ namespace MediTech.ViewModels
                             p.CheckupResultStatus
                         }).Select(g => new
                         {
+                            RowNumber = g.FirstOrDefault().RowNumber,
                             PatientID = g.FirstOrDefault().PatientID,
                             EmployeeID = g.FirstOrDefault().EmployeeID,
                             Title = g.FirstOrDefault().Title,
@@ -441,7 +443,7 @@ namespace MediTech.ViewModels
                         foreach (var patient in patientData)
                         {
                             CheckupGroupReportModel newObject = new CheckupGroupReportModel();
-                            newObject.No = i++;
+                            newObject.No = patient.RowNumber;
                             newObject.EmployeeID = patient.EmployeeID;
                             newObject.PatientID = patient.PatientID;
                             newObject.Title = patient.Title;

@@ -40,7 +40,7 @@ namespace MediTech.Model
         public string WellnessResult { get; set; }
         public bool IsWellnessResult { get; set; }
         public int RowHandle { get; set; }
-        public int RowNumber { get; set; }
+        public long RowNumber { get; set; }
         public bool Select { get; set; }
     }
 }

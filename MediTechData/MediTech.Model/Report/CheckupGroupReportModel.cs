@@ -8,7 +8,7 @@ namespace MediTech.Model.Report
 {
     public class CheckupGroupReportModel
     {
-        public int No { get; set; }
+        public long No { get; set; }
         public string EmployeeID { get; set; }
         public string PatientID { get; set; }
         public string Title { get; set; }

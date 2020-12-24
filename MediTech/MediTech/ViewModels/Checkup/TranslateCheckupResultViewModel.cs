@@ -823,6 +823,7 @@ namespace MediTech.ViewModels
                     }
                     var patientData = resultData.GroupBy(p => new
                     {
+                        p.RowNumber,
                         p.PatientID,
                         p.EmployeeID,
                         p.Title,
@@ -837,6 +838,7 @@ namespace MediTech.ViewModels
                     })
                     .Select(g => new
                     {
+                        RowNumber = g.FirstOrDefault().RowNumber,
                         EmployeeID = g.FirstOrDefault().EmployeeID,
                         PatientID = g.FirstOrDefault().PatientID,
                         Title = g.FirstOrDefault().Title,
@@ -849,11 +851,11 @@ namespace MediTech.ViewModels
                         Conclusion = g.FirstOrDefault().Conclusion,
                         CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
                     });
-                    int i = 1;
+  
                     foreach (var patient in patientData)
                     {
                         DataRow newRow = dtResult.NewRow();
-                        newRow["RowHandle"] = i++;
+                        newRow["RowHandle"] = patient.RowNumber;
                         newRow["EmployeeID"] = patient.EmployeeID;
                         newRow["PatientID"] = patient.PatientID;
                         newRow["Title"] = patient.Title;
