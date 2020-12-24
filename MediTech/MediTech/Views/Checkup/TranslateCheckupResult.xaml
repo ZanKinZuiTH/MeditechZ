@@ -184,19 +184,22 @@
                 <dxlc:LayoutItem>
                     <ProgressBar Height="15"   Name="progressBar1"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem HorizontalAlignment="Right">
-                    <dx:SimpleButton Width="80" Height="25" Content="Load" Command="{Binding LoadDataCommand}"/>
-                </dxlc:LayoutItem>
                 <dxg:GridControl x:Name="gcResultList" ColumnsSource="{Binding ColumnsResultItems,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                
                                      ColumnGeneratorTemplate="{StaticResource DefaultColumnTemplate}">
                     <dxg:GridControl.View>
                         <dxg:TableView Name="gvResultList" ShowGroupPanel="False"/>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding ExportDataCommand}"
+                <dxlc:LayoutControl Padding="0" Orientation="Horizontal" VerticalAlignment="Bottom" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Height="25" Content="Load" Command="{Binding LoadDataCommand}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton  Width="80" Command="{Binding ExportDataCommand}"
                                      Height="25" Content="ExportData"/>
-                </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutControl>
+
             </dxlc:LayoutGroup>
 
         </dxlc:DockLayoutControl>

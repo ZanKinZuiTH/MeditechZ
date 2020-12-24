@@ -727,13 +727,13 @@
             // 
             // PAR1H
             // 
-            this.PAR1H.Condition = "EndsWith(Trim([PAR1H]), \'H\')";
+            this.PAR1H.Condition = "EndsWith(Trim([PAR1]), \'H\')";
             this.PAR1H.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.PAR1H.Name = "PAR1H";
             // 
             // PAR1L
             // 
-            this.PAR1L.Condition = "EndsWith(Trim([PAR1L]), \'L\')";
+            this.PAR1L.Condition = "EndsWith(Trim([PAR1]), \'L\')";
             this.PAR1L.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.PAR1L.Name = "PAR1L";
             // 

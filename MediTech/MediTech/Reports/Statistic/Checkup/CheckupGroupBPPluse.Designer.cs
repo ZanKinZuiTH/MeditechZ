@@ -50,6 +50,7 @@
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -62,6 +63,7 @@
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -81,10 +83,8 @@
             this.Pluse = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.abnormal = new DevExpress.XtraReports.UI.FormattingRule();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -281,6 +281,14 @@
             this.xrTableCell19.Text = "ตัวล่าง (BPD)";
             this.xrTableCell19.Weight = 0.79174657570794627D;
             // 
+            // xrTableCell41
+            // 
+            this.xrTableCell41.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell41.Name = "xrTableCell41";
+            this.xrTableCell41.StylePriority.UseFont = false;
+            this.xrTableCell41.Text = "ชีพจร(Pulse)";
+            this.xrTableCell41.Weight = 0.744460941626849D;
+            // 
             // xrTableCell20
             // 
             this.xrTableCell20.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
@@ -374,6 +382,14 @@
             this.xrTableCell30.StylePriority.UseFont = false;
             this.xrTableCell30.Text = "<90";
             this.xrTableCell30.Weight = 0.7917468703590369D;
+            // 
+            // xrTableCell42
+            // 
+            this.xrTableCell42.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell42.Name = "xrTableCell42";
+            this.xrTableCell42.StylePriority.UseFont = false;
+            this.xrTableCell42.Text = "<100";
+            this.xrTableCell42.Weight = 0.74445976242008494D;
             // 
             // xrTableCell31
             // 
@@ -516,7 +532,7 @@
             // 
             // Pluse
             // 
-            this.Pluse.Condition = "ToInt([Pulse])>110";
+            this.Pluse.Condition = "ToInt([Pulse])>100";
             this.Pluse.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Pluse.Name = "Pluse";
             // 
@@ -538,27 +554,6 @@
             this.abnormal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.abnormal.Name = "abnormal";
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // xrTableCell41
-            // 
-            this.xrTableCell41.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell41.Name = "xrTableCell41";
-            this.xrTableCell41.StylePriority.UseFont = false;
-            this.xrTableCell41.Text = "ชีพจร(Pulse)";
-            this.xrTableCell41.Weight = 0.744460941626849D;
-            // 
-            // xrTableCell42
-            // 
-            this.xrTableCell42.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell42.Name = "xrTableCell42";
-            this.xrTableCell42.StylePriority.UseFont = false;
-            this.xrTableCell42.Text = "<100";
-            this.xrTableCell42.Weight = 0.74445976242008494D;
-            // 
             // xrTableCell44
             // 
             this.xrTableCell44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -568,6 +563,11 @@
             this.xrTableCell44.StylePriority.UseTextAlignment = false;
             this.xrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell44.Weight = 0.740336541521637D;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // CheckupGroupBPPluse
             // 

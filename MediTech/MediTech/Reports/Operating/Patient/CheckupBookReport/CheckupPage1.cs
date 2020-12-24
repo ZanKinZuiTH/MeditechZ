@@ -390,99 +390,99 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 //.lbFarVision.Text = dataFirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;
 
 
-                if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
-                {
-                    TitleResultWellness2.Text = "Summary";
-                    page2.TitleResultWellness.Text = "Summary";
-                    TitleObesity.Text = "BMI Interpretation";
-                    lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " times/min" : "";
+                //if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                //{
+                //    TitleResultWellness2.Text = "Summary";
+                //    page2.TitleResultWellness.Text = "Summary";
+                //    TitleObesity.Text = "BMI Interpretation";
+                //    lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " times/min" : "";
 
-                    if (patient.BMI != null)
-                    {
-                        string bmiResult = "";
-                        if (patient.BMI < 18.5)
-                        {
-                            bmiResult = "Less weight";
-                        }
-                        else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
-                        {
-                            bmiResult = "Normal";
-                        }
-                        else if (patient.BMI >= 23 && patient.BMI <= 24.99)
-                        {
-                            bmiResult = "Overweight";
-                        }
-                        else if (patient.BMI >= 25 && patient.BMI <= 29.99)
-                        {
-                            bmiResult = "Obesity Class 1";
-                        }
-                        else if (patient.BMI >= 30)
-                        {
-                            bmiResult = "Obesity class 2";
-                        }
-                        lbObesity.Text = bmiResult;
+                //    if (patient.BMI != null)
+                //    {
+                //        string bmiResult = "";
+                //        if (patient.BMI < 18.5)
+                //        {
+                //            bmiResult = "Less weight";
+                //        }
+                //        else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
+                //        {
+                //            bmiResult = "Normal";
+                //        }
+                //        else if (patient.BMI >= 23 && patient.BMI <= 24.99)
+                //        {
+                //            bmiResult = "Overweight";
+                //        }
+                //        else if (patient.BMI >= 25 && patient.BMI <= 29.99)
+                //        {
+                //            bmiResult = "Obesity Class 1";
+                //        }
+                //        else if (patient.BMI >= 30)
+                //        {
+                //            bmiResult = "Obesity class 2";
+                //        }
+                //        lbObesity.Text = bmiResult;
 
-                        if (bmiResult != "Normal weight")
-                        {
-                            lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-                    }
+                //        if (bmiResult != "Normal weight")
+                //        {
+                //            lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                //        }
+                //    }
 
 
-                    page4.TitleFarVision.Text = "Far Test";
-                    page4.TitleNearVision.Text = "Near Test";
-                    page4.Title3DVision.Text = "3D Test";
-                    page4.TitleBalanceEye.Text = "Eye Balance";
-                    page4.TitleColor.Text = "Color";
-                    page4.TitleFieldVision.Text = "Visual Field";
-                    page4.TitleVisionOccmedResult.Text = "Summary";
-                    page4.TitleVisionOccmedRecommend.Text = "Suggestion";
+                //    page4.TitleFarVision.Text = "Far Test";
+                //    page4.TitleNearVision.Text = "Near Test";
+                //    page4.Title3DVision.Text = "3D Test";
+                //    page4.TitleBalanceEye.Text = "Eye Balance";
+                //    page4.TitleColor.Text = "Color";
+                //    page4.TitleFieldVision.Text = "Visual Field";
+                //    page4.TitleVisionOccmedResult.Text = "Summary";
+                //    page4.TitleVisionOccmedRecommend.Text = "Suggestion";
 
-                    if (page4.lbLungResult.Text == "ปกติ")
-                    {
-                        page4.lbLungResult.Text = "Normal";
-                    }
-                    else
-                    {
-                        page4.lbLungResult.Text = "Abnormal";
-                    }
+                //    if (page4.lbLungResult.Text == "ปกติ")
+                //    {
+                //        page4.lbLungResult.Text = "Normal";
+                //    }
+                //    else
+                //    {
+                //        page4.lbLungResult.Text = "Abnormal";
+                //    }
 
-                    page5.TitleAudiogram.Text = "Audiogram";
-                    page5.TitleAudioListResult.Text = "Result";
-                    page5.TitleAudioRight.Text = "Right ear";
-                    page5.TitleAudioLeft.Text = "Left ear";
-                    page5.TitleAudioResult.Text = "Summary";
-                    page5.TitleAudioRecommend.Text = "Suggestion";
+                //    page5.TitleAudiogram.Text = "Audiogram";
+                //    page5.TitleAudioListResult.Text = "Result";
+                //    page5.TitleAudioRight.Text = "Right ear";
+                //    page5.TitleAudioLeft.Text = "Left ear";
+                //    page5.TitleAudioResult.Text = "Summary";
+                //    page5.TitleAudioRecommend.Text = "Suggestion";
 
-                    if (page5.lbAudioResult.Text == "ปกติ")
-                    {
-                        page5.lbAudioResult.Text = "Normal";
-                    }
-                    else if (page5.lbAudioResult.Text == "เฝ้าระวัง")
-                    {
-                        page5.lbAudioResult.Text = "Mild abnormality";
-                    }
-                    else
-                    {
-                        page5.lbAudioResult.Text = "Abnormal";
-                    }
+                //    if (page5.lbAudioResult.Text == "ปกติ")
+                //    {
+                //        page5.lbAudioResult.Text = "Normal";
+                //    }
+                //    else if (page5.lbAudioResult.Text == "เฝ้าระวัง")
+                //    {
+                //        page5.lbAudioResult.Text = "Mild abnormality";
+                //    }
+                //    else
+                //    {
+                //        page5.lbAudioResult.Text = "Abnormal";
+                //    }
 
-                    page5.TitleMyopiaRight.Text = "Shortsighted Rt.";
-                    page5.TitleMyopiaLeft.Text = "Shortsighted Lt.";
-                    page5.TitleAstigmaticRight.Text = "Astigmatic Rt.";
-                    page5.TitleAstigmaticLeft.Text = "Astigmatic Lt.";
-                    page5.TitleViewRight.Text = "Degree Rt.";
-                    page5.TitleViewLeft.Text = "Degree Lt.";
-                    page5.TitleHyperopiaRight.Text = "Longsighted Rt.";
-                    page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
-                    page5.TitleVARight.Text = "VA Rt.";
-                    page5.TitleVALeft.Text = "VA Lt.";
-                    page5.TitleDisease.Text = "Eys Disease";
-                    page5.TitleBlindColor.Text = "Color Blindness";
-                    page5.TitleViewResult.Text = "Result";
-                    page5.TitleViewRecommend.Text = "Suggestion";
+                //    page5.TitleMyopiaRight.Text = "Shortsighted Rt.";
+                //    page5.TitleMyopiaLeft.Text = "Shortsighted Lt.";
+                //    page5.TitleAstigmaticRight.Text = "Astigmatic Rt.";
+                //    page5.TitleAstigmaticLeft.Text = "Astigmatic Lt.";
+                //    page5.TitleViewRight.Text = "Degree Rt.";
+                //    page5.TitleViewLeft.Text = "Degree Lt.";
+                //    page5.TitleHyperopiaRight.Text = "Longsighted Rt.";
+                //    page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
+                //    page5.TitleVARight.Text = "VA Rt.";
+                //    page5.TitleVALeft.Text = "VA Lt.";
+                //    page5.TitleDisease.Text = "Eys Disease";
+                //    page5.TitleBlindColor.Text = "Color Blindness";
+                //    page5.TitleViewResult.Text = "Result";
+                //    page5.TitleViewRecommend.Text = "Suggestion";
 
-                }
+                //}
 
                 var labCompare = data.LabCompare;
                 if (labCompare != null)

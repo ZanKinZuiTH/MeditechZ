@@ -166,6 +166,10 @@
                             <TextBlock Text="{Binding CompanyName}"
                                FontWeight="Bold" FontSize="18"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Visibility="{Binding VisibilityBranch}">
+                            <TextBlock Text="{Binding BranchName}" FontStyle="Italic"
+                               FontWeight="Bold" FontSize="16"/>
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Vertical">
                         <dx:SimpleButton Width="180" Height="25" Command="{Binding PreviewCheckupSummaryCommand}">
@@ -187,10 +191,6 @@
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Visibility="{Binding VisibilityBranch}">
-                        <TextBlock Text="{Binding BranchName}" FontStyle="Italic"
-                               FontWeight="Bold" FontSize="16"/>
-                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <dx:SimpleButton Height="30" Width="100" Command="{Binding LoadDataCommand}">
                             <StackPanel Orientation="Horizontal">

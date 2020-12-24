@@ -113,7 +113,6 @@
             this.Billirubin = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Urobil = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Trace = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell53 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Leukocyte = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -130,6 +129,7 @@
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Trace = new DevExpress.XtraReports.UI.FormattingRule();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -877,21 +877,14 @@
             this.xrTableCell44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "E0150")});
             this.xrTableCell44.FormattingRules.Add(this.Urobil);
-            this.xrTableCell44.FormattingRules.Add(this.Trace);
             this.xrTableCell44.Name = "xrTableCell44";
             this.xrTableCell44.Weight = 0.58693730977639935D;
             // 
             // Urobil
             // 
-            this.Urobil.Condition = "Lower([E0150]) !=\'negative\'";
+            this.Urobil.Condition = "Lower([E0150]) !=\'negative\'  And  Lower([E0150]) != \'trace\'";
             this.Urobil.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Urobil.Name = "Urobil";
-            // 
-            // Trace
-            // 
-            this.Trace.Condition = "Lower([E0150])!=\'trace\'";
-            this.Trace.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Trace.Name = "Trace";
             // 
             // xrTableCell53
             // 
@@ -917,7 +910,7 @@
             // 
             // Blood
             // 
-            this.Blood.Condition = "Lower([E0152])!=[negative]";
+            this.Blood.Condition = "Lower([E0152]) != \'negative\'";
             this.Blood.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.Blood.Name = "Blood";
             // 
@@ -1009,6 +1002,12 @@
             this.xrTableCell9.FormattingRules.Add(this.Abnormal);
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.Weight = 0.56316536457411992D;
+            // 
+            // Trace
+            // 
+            this.Trace.Condition = "Lower([E0150])!=\'trace\'";
+            this.Trace.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Trace.Name = "Trace";
             // 
             // objectDataSource1
             // 

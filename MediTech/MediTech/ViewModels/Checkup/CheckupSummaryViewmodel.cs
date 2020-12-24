@@ -295,8 +295,16 @@ namespace MediTech.ViewModels
             branchData.GPRSTUIDs = gprstUIDs;
             branchData.BranchName = branchName;
             var dataSummeryData = DataService.Reports.CheckupSummary(branchData);
-            CheckupSummayData = dataSummeryData.Where(p => p.GPRSTUID != 3200 && p.GPRSTUID != 3201 && p.GPRSTUID != 3208).ToList();
-            OccMedSummeryData = dataSummeryData.Where(p => p.GPRSTUID == 3200 || p.GPRSTUID == 3201 || p.GPRSTUID == 3208).ToList();
+            if (dataSummeryData != null && dataSummeryData.Count > 0)
+            {
+                CheckupSummayData = dataSummeryData.Where(p => p.GPRSTUID != 3200 && p.GPRSTUID != 3201 && p.GPRSTUID != 3208).ToList();
+                OccMedSummeryData = dataSummeryData.Where(p => p.GPRSTUID == 3200 || p.GPRSTUID == 3201 || p.GPRSTUID == 3208).ToList();
+            }
+            else
+            {
+                CheckupSummayData = null;
+                OccMedSummeryData = null;
+            }
 
         }
 
