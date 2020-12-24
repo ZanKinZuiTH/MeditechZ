@@ -92,7 +92,9 @@
             this.xrTableCell50 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Appearance = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell52 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.color = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell74 = new DevExpress.XtraReports.UI.XRTableCell();
             this.pHL = new DevExpress.XtraReports.UI.FormattingRule();
             this.pHH = new DevExpress.XtraReports.UI.FormattingRule();
@@ -100,13 +102,22 @@
             this.SpGrH = new DevExpress.XtraReports.UI.FormattingRule();
             this.SpGrL = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Protein = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell45 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Glucose = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell76 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Ketone = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell46 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Nitrites = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell77 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Billirubin = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Urobil = new DevExpress.XtraReports.UI.FormattingRule();
+            this.Trace = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell53 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Leukocyte = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Blood = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell73 = new DevExpress.XtraReports.UI.XRTableCell();
             this.CellH = new DevExpress.XtraReports.UI.FormattingRule();
             this.CellL = new DevExpress.XtraReports.UI.FormattingRule();
@@ -120,17 +131,6 @@
             this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.Appearance = new DevExpress.XtraReports.UI.FormattingRule();
-            this.color = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Protein = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Glucose = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Ketone = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Nitrites = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Billirubin = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Urobil = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Leukocyte = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Blood = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Trace = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -741,6 +741,12 @@
             this.xrTableCell41.Name = "xrTableCell41";
             this.xrTableCell41.Weight = 0.55144266665306718D;
             // 
+            // Appearance
+            // 
+            this.Appearance.Condition = " Lower([PAR21]) !=\'clear\'";
+            this.Appearance.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Appearance.Name = "Appearance";
+            // 
             // xrTableCell52
             // 
             this.xrTableCell52.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -748,6 +754,12 @@
             this.xrTableCell52.FormattingRules.Add(this.color);
             this.xrTableCell52.Name = "xrTableCell52";
             this.xrTableCell52.Weight = 0.38479772408093438D;
+            // 
+            // color
+            // 
+            this.color.Condition = "Lower([D0080])!=\'yellow\'";
+            this.color.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.color.Name = "color";
             // 
             // xrTableCell74
             // 
@@ -799,6 +811,12 @@
             this.xrTableCell42.Name = "xrTableCell42";
             this.xrTableCell42.Weight = 0.44173832635182758D;
             // 
+            // Protein
+            // 
+            this.Protein.Condition = "Lower([E0085])!=\'negative\'";
+            this.Protein.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Protein.Name = "Protein";
+            // 
             // xrTableCell45
             // 
             this.xrTableCell45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -806,6 +824,12 @@
             this.xrTableCell45.FormattingRules.Add(this.Glucose);
             this.xrTableCell45.Name = "xrTableCell45";
             this.xrTableCell45.Weight = 0.40126195810624926D;
+            // 
+            // Glucose
+            // 
+            this.Glucose.Condition = "Lower([E0090])!=\'negative\'";
+            this.Glucose.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Glucose.Name = "Glucose";
             // 
             // xrTableCell76
             // 
@@ -815,6 +839,11 @@
             this.xrTableCell76.Name = "xrTableCell76";
             this.xrTableCell76.Weight = 0.40275821987370042D;
             // 
+            // Ketone
+            // 
+            this.Ketone.Condition = "Lower([E0047])!=\'negative\'";
+            this.Ketone.Name = "Ketone";
+            // 
             // xrTableCell46
             // 
             this.xrTableCell46.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -823,6 +852,12 @@
             this.xrTableCell46.Name = "xrTableCell46";
             this.xrTableCell46.Weight = 0.41833622400731207D;
             // 
+            // Nitrites
+            // 
+            this.Nitrites.Condition = "Lower([E0154])!=\'negative\'";
+            this.Nitrites.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Nitrites.Name = "Nitrites";
+            // 
             // xrTableCell77
             // 
             this.xrTableCell77.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -830,6 +865,12 @@
             this.xrTableCell77.FormattingRules.Add(this.Billirubin);
             this.xrTableCell77.Name = "xrTableCell77";
             this.xrTableCell77.Weight = 0.45412114011822052D;
+            // 
+            // Billirubin
+            // 
+            this.Billirubin.Condition = "Lower([E0151])!=\'negative\'";
+            this.Billirubin.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Billirubin.Name = "Billirubin";
             // 
             // xrTableCell44
             // 
@@ -840,6 +881,18 @@
             this.xrTableCell44.Name = "xrTableCell44";
             this.xrTableCell44.Weight = 0.58693730977639935D;
             // 
+            // Urobil
+            // 
+            this.Urobil.Condition = "Lower([E0150]) !=\'negative\'";
+            this.Urobil.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Urobil.Name = "Urobil";
+            // 
+            // Trace
+            // 
+            this.Trace.Condition = "Lower([E0150])!=\'trace\'";
+            this.Trace.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Trace.Name = "Trace";
+            // 
             // xrTableCell53
             // 
             this.xrTableCell53.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -848,6 +901,12 @@
             this.xrTableCell53.Name = "xrTableCell53";
             this.xrTableCell53.Weight = 0.46566168066563551D;
             // 
+            // Leukocyte
+            // 
+            this.Leukocyte.Condition = "Lower([E0153])!=\'negative\'";
+            this.Leukocyte.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Leukocyte.Name = "Leukocyte";
+            // 
             // xrTableCell78
             // 
             this.xrTableCell78.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -855,6 +914,12 @@
             this.xrTableCell78.FormattingRules.Add(this.Blood);
             this.xrTableCell78.Name = "xrTableCell78";
             this.xrTableCell78.Weight = 0.39697331813068515D;
+            // 
+            // Blood
+            // 
+            this.Blood.Condition = "Lower([E0152])!=[negative]";
+            this.Blood.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Blood.Name = "Blood";
             // 
             // xrTableCell73
             // 
@@ -949,70 +1014,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // Appearance
-            // 
-            this.Appearance.Condition = "[PAR21]!=\'Clear\'";
-            this.Appearance.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Appearance.Name = "Appearance";
-            // 
-            // color
-            // 
-            this.color.Condition = "[D0080]!=\'Yellow\'";
-            this.color.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.color.Name = "color";
-            // 
-            // Protein
-            // 
-            this.Protein.Condition = "[E0085]!=\'Negative\'";
-            this.Protein.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Protein.Name = "Protein";
-            // 
-            // Glucose
-            // 
-            this.Glucose.Condition = "[E0090]!=\'Negative\'";
-            this.Glucose.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Glucose.Name = "Glucose";
-            // 
-            // Ketone
-            // 
-            this.Ketone.Condition = "[E0047]!=\'Negative\'";
-            this.Ketone.Name = "Ketone";
-            // 
-            // Nitrites
-            // 
-            this.Nitrites.Condition = "[E0154]!=\'Negative\'";
-            this.Nitrites.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Nitrites.Name = "Nitrites";
-            // 
-            // Billirubin
-            // 
-            this.Billirubin.Condition = "[E0151]!=\'Negative\'";
-            this.Billirubin.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Billirubin.Name = "Billirubin";
-            // 
-            // Urobil
-            // 
-            this.Urobil.Condition = "[E0150] !=\'negative\'";
-            this.Urobil.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Urobil.Name = "Urobil";
-            // 
-            // Leukocyte
-            // 
-            this.Leukocyte.Condition = "[E0153]!=\'Negative\'";
-            this.Leukocyte.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Leukocyte.Name = "Leukocyte";
-            // 
-            // Blood
-            // 
-            this.Blood.Condition = "[E0152]!=[Negative]";
-            this.Blood.Name = "Blood";
-            // 
-            // Trace
-            // 
-            this.Trace.Condition = "[E0150]!=\'trace\'";
-            this.Trace.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Trace.Name = "Trace";
             // 
             // CheckupGroupUA
             // 
