@@ -420,129 +420,147 @@ namespace MediTech.ViewModels
 
         void EnterResult()
         {
-            if (CheckupExamList != null)
+            try
             {
-                var selectRequestExamlist = CheckupExamList.Where(p => p.IsSelected).OrderBy(p => p.RowHandle);
-                if (selectRequestExamlist != null && selectRequestExamlist.Count() > 0)
+                if (CheckupExamList != null)
                 {
-                    foreach (var item in selectRequestExamlist)
+                    var selectRequestExamlist = CheckupExamList.Where(p => p.IsSelected).OrderBy(p => p.RowHandle);
+                    if (selectRequestExamlist != null && selectRequestExamlist.Count() > 0)
+                    {
+                        foreach (var item in selectRequestExamlist)
+                        {
+                            MediTechViewModelBase reviewViewModel = null;
+                            switch (item.PrintGroup)
+                            {
+                                case "Physical examination":
+                                    EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
+                                    (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
+                                    break;
+                                case "Audiogram":
+                                    EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
+                                    (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterAudiogramResultViewModel)LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
+                                    break;
+                                case "Elektrokardiogram":
+                                    EnterEKGResult reviewEKG = new EnterEKGResult();
+                                    (reviewEKG.DataContext as EnterEKGResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterEKGResultViewModel)LaunchViewDialogNonPermiss(reviewEKG, false, true);
+                                    break;
+                                case "Occupational Vision Test":
+                                    EnterOccuVisionTestResult reviewOccu = new EnterOccuVisionTestResult();
+                                    (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterOccuVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewOccu, false, true);
+                                    break;
+                                case "Pulmonary Function Test":
+                                    EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
+                                    (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
+                                    break;
+                                case "Physical Fitness Test":
+                                    EnterCheckupTestResult reviewMuscle = new EnterCheckupTestResult();
+                                    (reviewMuscle.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewMuscle, false, true);
+                                    break;
+                                default:
+                                    EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
+                                    (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
+                                    break;
+                            }
+
+
+
+                            if (reviewViewModel == null)
+                            {
+                                return;
+                            }
+
+                            if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Cancel)
+                            {
+                                item.IsSelected = false;
+                                break;
+                            }
+
+                            if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
+                            {
+                                System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
+                                if (OrderStatus != null)
+                                {
+                                    item.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
+
+                                }
+                            }
+
+                            item.IsSelected = false;
+                        }
+
+
+                        OnUpdateEvent();
+
+                    }
+                    else if (SelectCheckupExam != null)
                     {
                         MediTechViewModelBase reviewViewModel = null;
-                        switch (item.PrintGroup)
+                        switch (SelectCheckupExam.PrintGroup)
                         {
                             case "Physical examination":
                                 EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
-                                (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(item);
+                                (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
                                 break;
                             case "Audiogram":
                                 EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
-                                (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(item);
+                                (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterAudiogramResultViewModel)LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
                                 break;
                             case "Elektrokardiogram":
                                 EnterEKGResult reviewEKG = new EnterEKGResult();
-                                (reviewEKG.DataContext as EnterEKGResultViewModel).AssignModel(item);
+                                (reviewEKG.DataContext as EnterEKGResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterEKGResultViewModel)LaunchViewDialogNonPermiss(reviewEKG, false, true);
                                 break;
                             case "Occupational Vision Test":
                                 EnterOccuVisionTestResult reviewOccu = new EnterOccuVisionTestResult();
-                                (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(item);
+                                (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterOccuVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewOccu, false, true);
                                 break;
                             case "Pulmonary Function Test":
                                 EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
-                                (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
+                                (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
-                                break;
-                            case "Physical Fitness Test":
-                                EnterCheckupTestResult reviewMuscle = new EnterCheckupTestResult();
-                                (reviewMuscle.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
-                                reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewMuscle, false, true);
                                 break;
                             default:
                                 EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
-                                (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
+                                (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
                                 break;
+
                         }
-
-
 
                         if (reviewViewModel == null)
                         {
                             return;
                         }
 
-                        if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Cancel)
-                        {
-                            item.IsSelected = false;
-                            break;
-                        }
-
                         if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
                         {
                             System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
-                            item.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
+                            if (OrderStatus != null)
+                            {
+                                SelectCheckupExam.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
+                                OnUpdateEvent();
+
+                            }
+
                         }
-
-                        item.IsSelected = false;
-                    }
-
-                    OnUpdateEvent();
-
-                }
-                else if (SelectCheckupExam != null)
-                {
-                    MediTechViewModelBase reviewViewModel = null;
-                    switch (SelectCheckupExam.PrintGroup)
-                    {
-                        case "Physical examination":
-                            EnterPhysicalExam reviewPhyexam = new EnterPhysicalExam();
-                            (reviewPhyexam.DataContext as EnterPhysicalExamViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewPhyexam, false, true);
-                            break;
-                        case "Audiogram":
-                            EnterAudiogramResult reviewAudioGram = new EnterAudiogramResult();
-                            (reviewAudioGram.DataContext as EnterAudiogramResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterPhysicalExamViewModel)LaunchViewDialogNonPermiss(reviewAudioGram, false, true);
-                            break;
-                        case "Elektrokardiogram":
-                            EnterEKGResult reviewEKG = new EnterEKGResult();
-                            (reviewEKG.DataContext as EnterEKGResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterEKGResultViewModel)LaunchViewDialogNonPermiss(reviewEKG, false, true);
-                            break;
-                        case "Occupational Vision Test":
-                            EnterOccuVisionTestResult reviewOccu = new EnterOccuVisionTestResult();
-                            (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterOccuVisionTestResultViewModel)LaunchViewDialogNonPermiss(reviewOccu, false, true);
-                            break;
-                        case "Pulmonary Function Test":
-                            EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
-                            (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
-                            break;
-                        default:
-                            EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
-                            (reviewCheckup.DataContext as EnterCheckupTestResultViewModel).AssignModel(SelectCheckupExam);
-                            reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewCheckup, false, true);
-                            break;
-
-                    }
-
-                    if (reviewViewModel == null)
-                    {
-                        return;
-                    }
-
-                    if (reviewViewModel != null && reviewViewModel.ResultDialog == ActionDialog.Save)
-                    {
-                        System.Reflection.PropertyInfo OrderStatus = reviewViewModel.GetType().GetProperty("OrderStatus");
-                        SelectCheckupExam.OrderStatus = (String)(OrderStatus.GetValue(reviewViewModel));
-                        OnUpdateEvent();
                     }
                 }
             }
+            catch (Exception ex)
+            {
+                ErrorDialog(ex.Message);
+            }
+
         }
 
         void CancelResult()

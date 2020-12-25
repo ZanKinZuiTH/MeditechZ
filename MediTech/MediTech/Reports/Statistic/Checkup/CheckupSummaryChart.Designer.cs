@@ -91,7 +91,7 @@
             this.checkupChart.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
             this.checkupChart.Legend.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkupChart.Legend.Name = "Default Legend";
-            this.checkupChart.LocationFloat = new DevExpress.Utils.PointFloat(25F, 0F);
+            this.checkupChart.LocationFloat = new DevExpress.Utils.PointFloat(23.33333F, 0F);
             this.checkupChart.Name = "checkupChart";
             series1.ArgumentDataMember = "GroupName";
             sideBySideBarSeriesLabel1.ShowForZeroValues = true;
@@ -112,7 +112,7 @@
             this.checkupChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
         series2};
-            this.checkupChart.SizeF = new System.Drawing.SizeF(1134F, 480.8333F);
+            this.checkupChart.SizeF = new System.Drawing.SizeF(1135.667F, 480.8333F);
             // 
             // objectDataSource1
             // 

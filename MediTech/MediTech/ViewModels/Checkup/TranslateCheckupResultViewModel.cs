@@ -794,15 +794,15 @@ namespace MediTech.ViewModels
 
                     ColumnsResultItems = new ObservableCollection<Column>();
                     ColumnsResultItems.Add(new Column() { Header = "No", FieldName = "RowHandle", VisibleIndex = 1 });
-                    ColumnsResultItems.Add(new Column() { Header = "EmployeeID", FieldName = "EmployeeID", VisibleIndex = 2 });
-                    ColumnsResultItems.Add(new Column() { Header = "Title", FieldName = "Title", VisibleIndex = 3 });
-                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 4 });
+                    ColumnsResultItems.Add(new Column() { Header = "PatientID", FieldName = "PatientID", VisibleIndex = 2 });
+                    ColumnsResultItems.Add(new Column() { Header = "EmployeeID", FieldName = "EmployeeID", VisibleIndex = 3 });
+                    ColumnsResultItems.Add(new Column() { Header = "Title", FieldName = "Title", VisibleIndex = 4 });
                     ColumnsResultItems.Add(new Column() { Header = "FirstName", FieldName = "FirstName", VisibleIndex = 5 });
                     ColumnsResultItems.Add(new Column() { Header = "LastName", FieldName = "LastName", VisibleIndex = 6 });
-                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 7 });
-                    ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 8 });
-                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 9 });
-                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 10 });
+                    ColumnsResultItems.Add(new Column() { Header = "Age", FieldName = "Age", VisibleIndex = 7 });
+                    ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 8 });
+                    ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 9 });
+                    ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 10 });
                     int visibleIndex = 11;
 
                     CheckupCompanyModel chkCompanyModel = new CheckupCompanyModel();
