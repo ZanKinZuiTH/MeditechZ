@@ -274,24 +274,24 @@ namespace MediTech.ViewModels
 
         void PreviewBookCheckup2()
         {
-            if (SelectPatientResultLabList != null)
-            {
-                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    Reports.Operating.Patient.CheckupBookReport2.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport2.CheckupPage1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
+            //if (SelectPatientResultLabList != null)
+            //{
+            //    var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
+            //    foreach (var item in patientResultLabList.ToList())
+            //    {
+            //        Reports.Operating.Patient.CheckupBookReport2.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport2.CheckupPage1();
+            //        rpt.Parameters["PatientUID"].Value = item.PatientUID;
+            //        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+            //        rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+            //        ReportPrintTool printTool = new ReportPrintTool(rpt);
+            //        //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+            //        rpt.RequestParameters = false;
+            //        rpt.ShowPrintMarginsWarning = false;
+            //        printTool.ShowPreviewDialog();
 
-                    SelectPatientResultLabList.Remove(item);
-                }
-            }
+            //        SelectPatientResultLabList.Remove(item);
+            //    }
+            //}
 
         }
 

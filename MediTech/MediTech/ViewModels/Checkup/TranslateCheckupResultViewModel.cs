@@ -808,8 +808,7 @@ namespace MediTech.ViewModels
                     CheckupCompanyModel chkCompanyModel = new CheckupCompanyModel();
                     chkCompanyModel.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
                     chkCompanyModel.GPRSTUID = SelectCheckupJobTask.GPRSTUID;
-                    List<PatientResultCheckupModel> resultData = DataService.Checkup
-                        .GetCheckupGroupResultByJob(chkCompanyModel);
+                    List<PatientResultCheckupModel> resultData = DataService.Checkup.GetCheckupGroupResultByJob(chkCompanyModel);
                     if (resultData != null && resultData.Count > 0)
                     {
                         var resultItemList = resultData.Select(p => p.ResultItemName).Distinct();

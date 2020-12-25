@@ -616,9 +616,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     GenerateOther(OtherTestSet);
                     #endregion
 
-                    IEnumerable<PatientResultComponentModel> BackStrength = labCompare
-                        .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
-                    GenerateBackStrength(BackStrength);
+
                 }
 
                 var occmed = data.MobileResult;
@@ -639,6 +637,10 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
                         .Where(p => p.RequestItemCode.Contains("PEXAM"));
                     GeneratePhysicalExam(PhysicalExam);
+
+                    IEnumerable<PatientResultComponentModel> BackStrength = occmed
+    .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
+                    GenerateBackStrength(BackStrength);
                 }
 
                 if (groupResult != null)
