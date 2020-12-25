@@ -639,8 +639,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     GeneratePhysicalExam(PhysicalExam);
 
                     IEnumerable<PatientResultComponentModel> BackStrength = occmed
-    .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
-                    GenerateBackStrength(BackStrength);
+                        .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
+                                        GenerateBackStrength(BackStrength);
                 }
 
                 if (groupResult != null)
@@ -676,434 +676,82 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page3.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue;
                 page3.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.ResultValue;
 
-                string hbAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year1)?.IsAbnormal;
-                string hbAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.IsAbnormal;
-                string hbAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.IsAbnormal;
-
-
-                if (!string.IsNullOrEmpty(hbAbnormal1))
-                {
-                    page3.cellHb1.ForeColor = (hbAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHb1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hbAbnormal2))
-                {
-                    page3.cellHb2.ForeColor = (hbAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHb2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hbAbnormal3))
-                {
-                    page3.cellHb3.ForeColor = (hbAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHb3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellHctRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020")?.ReferenceRange;
                 page3.cellHct1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year1)?.ResultValue;
                 page3.cellHct2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year2)?.ResultValue;
                 page3.cellHct3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year3)?.ResultValue;
-
-                string hctAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year1)?.IsAbnormal;
-                string hctAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year2)?.IsAbnormal;
-                string hctAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(hctAbnormal1))
-                {
-                    page3.cellHct1.ForeColor = (hctAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHct1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hctAbnormal2))
-                {
-                    page3.cellHct2.ForeColor = (hctAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHct2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hctAbnormal3))
-                {
-                    page3.cellHct3.ForeColor = (hctAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellHct3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
 
                 page3.cellMcvRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025")?.ReferenceRange;
                 page3.cellMcv1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year1)?.ResultValue;
                 page3.cellMcv2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year2)?.ResultValue;
                 page3.cellMcv3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year3)?.ResultValue;
 
-                string mcvAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year1)?.IsAbnormal;
-                string mcvAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year2)?.IsAbnormal;
-                string mcvAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0025" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(mcvAbnormal1))
-                {
-                    page3.cellMcv1.ForeColor = (mcvAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMcv1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mcvAbnormal2))
-                {
-                    page3.cellMcv2.ForeColor = (mcvAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMcv2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mcvAbnormal3))
-                {
-                    page3.cellMcv3.ForeColor = (mcvAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMcv3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellMchRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030")?.ReferenceRange;
                 page3.cellMch1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year1)?.ResultValue;
                 page3.cellMch2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year2)?.ResultValue;
                 page3.cellMch3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year3)?.ResultValue;
-
-                string mchAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year1)?.IsAbnormal;
-                string mchAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year2)?.IsAbnormal;
-                string mchAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0030" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(mchAbnormal1))
-                {
-                    page3.cellMch1.ForeColor = (mchAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMch1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mchAbnormal2))
-                {
-                    page3.cellMch2.ForeColor = (mchAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMch2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mchAbnormal3))
-                {
-                    page3.cellMch3.ForeColor = (mchAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMch3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellMchcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035")?.ReferenceRange;
                 page3.cellMchc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year1)?.ResultValue;
                 page3.cellMchc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year2)?.ResultValue;
                 page3.cellMchc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year3)?.ResultValue;
 
-                string mchcAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year1)?.IsAbnormal;
-                string mchcAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year2)?.IsAbnormal;
-                string mchcAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0035" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(mchcAbnormal1))
-                {
-                    page3.cellMchc1.ForeColor = (mchcAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMchc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mchcAbnormal2))
-                {
-                    page3.cellMchc2.ForeColor = (mchcAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMchc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(mchcAbnormal3))
-                {
-                    page3.cellMchc3.ForeColor = (mchcAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMchc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellRdwRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1")?.ReferenceRange;
                 page3.cellRdw1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year1)?.ResultValue;
                 page3.cellRdw2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year2)?.ResultValue;
                 page3.cellRdw3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year3)?.ResultValue;
 
-                string rdwAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year1)?.IsAbnormal;
-                string rdwAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year2)?.IsAbnormal;
-                string rdwAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(rdwAbnormal1))
-                {
-                    page3.cellRdw1.ForeColor = (rdwAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRdw1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(rdwAbnormal2))
-                {
-                    page3.cellRdw2.ForeColor = (rdwAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRdw2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(rdwAbnormal3))
-                {
-                    page3.cellRdw3.ForeColor = (rdwAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRdw3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellRbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428")?.ReferenceRange;
                 page3.cellRbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year1)?.ResultValue;
                 page3.cellRbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year2)?.ResultValue;
                 page3.cellRbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year3)?.ResultValue;
 
-                string rbcAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year1)?.IsAbnormal;
-                string rbcAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year2)?.IsAbnormal;
-                string rbcAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0428" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(rbcAbnormal1))
-                {
-                    page3.cellRbc1.ForeColor = (rbcAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(rbcAbnormal2))
-                {
-                    page3.cellRbc2.ForeColor = (rbcAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(rbcAbnormal3))
-                {
-                    page3.cellRbc3.ForeColor = (rbcAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellRbcMorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13")?.ReferenceRange;
                 page3.cellRbcMor1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year1)?.ResultValue;
                 page3.cellRbcMor2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year2)?.ResultValue;
                 page3.cellRbcMor3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year3)?.ResultValue;
-
-                string RbcMorAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year1)?.IsAbnormal;
-                string RbcMorAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year2)?.IsAbnormal;
-                string RbcMorAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR13" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(RbcMorAbnormal1))
-                {
-                    page3.cellRbcMor1.ForeColor = (RbcMorAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbcMor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(RbcMorAbnormal2))
-                {
-                    page3.cellRbcMor2.ForeColor = (RbcMorAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbcMor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(RbcMorAbnormal3))
-                {
-                    page3.cellRbcMor3.ForeColor = (RbcMorAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellRbcMor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellWbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006")?.ReferenceRange;
                 page3.cellWbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year1)?.ResultValue;
                 page3.cellWbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year2)?.ResultValue;
                 page3.cellWbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year3)?.ResultValue;
 
-                string wbcAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year1)?.IsAbnormal;
-                string wbcAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year2)?.IsAbnormal;
-                string wbcAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0006" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(wbcAbnormal1))
-                {
-                    page3.cellWbc1.ForeColor = (wbcAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellWbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(wbcAbnormal2))
-                {
-                    page3.cellWbc2.ForeColor = (wbcAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellWbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(wbcAbnormal3))
-                {
-                    page3.cellWbc3.ForeColor = (wbcAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellWbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellNectophilRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040")?.ReferenceRange;
                 page3.cellNectophil1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year1)?.ResultValue;
                 page3.cellNectophil2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year2)?.ResultValue;
                 page3.cellNectophil3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year3)?.ResultValue;
-
-                string NectophilAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year1)?.IsAbnormal;
-                string NectophilAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year2)?.IsAbnormal;
-                string NectophilAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0040" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(NectophilAbnormal1))
-                {
-                    page3.cellNectophil1.ForeColor = (NectophilAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellNectophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(NectophilAbnormal2))
-                {
-                    page3.cellNectophil2.ForeColor = (NectophilAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellNectophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(NectophilAbnormal3))
-                {
-                    page3.cellNectophil3.ForeColor = (NectophilAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellNectophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellLymphocyteRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050")?.ReferenceRange;
                 page3.cellLymphocyte1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year1)?.ResultValue;
                 page3.cellLymphocyte2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year2)?.ResultValue;
                 page3.cellLymphocyte3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year3)?.ResultValue;
 
-                string LymphocyteAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year1)?.IsAbnormal;
-                string LymphocyteAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year2)?.IsAbnormal;
-                string LymphocyteAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0050" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(LymphocyteAbnormal1))
-                {
-                    page3.cellLymphocyte1.ForeColor = (LymphocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellLymphocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(LymphocyteAbnormal2))
-                {
-                    page3.cellLymphocyte2.ForeColor = (LymphocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellLymphocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(LymphocyteAbnormal3))
-                {
-                    page3.cellLymphocyte3.ForeColor = (LymphocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellLymphocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellMonocyteRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060")?.ReferenceRange;
                 page3.cellMonocyte1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year1)?.ResultValue;
                 page3.cellMonocyte2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year2)?.ResultValue;
                 page3.cellMonocyte3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year3)?.ResultValue;
-
-                string MonocyteAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year1)?.IsAbnormal;
-                string MonocyteAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year2)?.IsAbnormal;
-                string MonocyteAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0060" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(MonocyteAbnormal1))
-                {
-                    page3.cellMonocyte1.ForeColor = (MonocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMonocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(MonocyteAbnormal2))
-                {
-                    page3.cellMonocyte2.ForeColor = (MonocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMonocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(MonocyteAbnormal3))
-                {
-                    page3.cellMonocyte3.ForeColor = (MonocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellMonocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellEosinophilRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070")?.ReferenceRange;
                 page3.cellEosinophil1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year1)?.ResultValue;
                 page3.cellEosinophil2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year2)?.ResultValue;
                 page3.cellEosinophil3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year3)?.ResultValue;
 
-                string EosinophilAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year1)?.IsAbnormal;
-                string EosinophilAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year2)?.IsAbnormal;
-                string EosinophilAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0070" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(EosinophilAbnormal1))
-                {
-                    page3.cellEosinophil1.ForeColor = (EosinophilAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellEosinophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(EosinophilAbnormal2))
-                {
-                    page3.cellEosinophil2.ForeColor = (EosinophilAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellEosinophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(EosinophilAbnormal3))
-                {
-                    page3.cellEosinophil3.ForeColor = (EosinophilAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellEosinophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellBasophilRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080")?.ReferenceRange;
                 page3.cellBasophil1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year1)?.ResultValue;
                 page3.cellBasophil2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year2)?.ResultValue;
                 page3.cellBasophil3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year3)?.ResultValue;
-
-                string BasophilAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year1)?.IsAbnormal;
-                string BasophilAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year2)?.IsAbnormal;
-                string BasophilAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0080" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BasophilAbnormal1))
-                {
-                    page3.cellBasophil1.ForeColor = (BasophilAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellBasophil1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BasophilAbnormal2))
-                {
-                    page3.cellBasophil2.ForeColor = (BasophilAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellBasophil2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BasophilAbnormal3))
-                {
-                    page3.cellBasophil3.ForeColor = (BasophilAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellBasophil3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page3.cellPlateletSmearRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427")?.ReferenceRange;
                 page3.cellPlateletSmear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year1)?.ResultValue;
                 page3.cellPlateletSmear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year2)?.ResultValue;
                 page3.cellPlateletSmear3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year3)?.ResultValue;
 
-                string PlateletSmearAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year1)?.IsAbnormal;
-                string PlateletSmearAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year2)?.IsAbnormal;
-                string PlateletSmearAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0427" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(PlateletSmearAbnormal1))
-                {
-                    page3.cellPlateletSmear1.ForeColor = (PlateletSmearAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletSmear1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(PlateletSmearAbnormal2))
-                {
-                    page3.cellPlateletSmear2.ForeColor = (PlateletSmearAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletSmear2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(PlateletSmearAbnormal3))
-                {
-                    page3.cellPlateletSmear3.ForeColor = (PlateletSmearAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletSmear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page3.cellPlateletsCountRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010")?.ReferenceRange;
                 page3.cellPlateletsCount1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year1)?.ResultValue;
                 page3.cellPlateletsCount2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year2)?.ResultValue;
                 page3.cellPlateletsCount3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year3)?.ResultValue;
 
-                string PlateletsCountAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year1)?.IsAbnormal;
-                string PlateletsCountAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year2)?.IsAbnormal;
-                string PlateletsCountAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0010" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(PlateletsCountAbnormal1))
-                {
-                    page3.cellPlateletsCount1.ForeColor = (PlateletsCountAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletsCount1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(PlateletsCountAbnormal2))
-                {
-                    page3.cellPlateletsCount2.ForeColor = (PlateletsCountAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletsCount2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(PlateletsCountAbnormal3))
-                {
-                    page3.cellPlateletsCount3.ForeColor = (PlateletsCountAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page3.cellPlateletsCount3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
             }
             else
             {
@@ -1133,621 +781,116 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page4.cellColor2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year2)?.ResultValue;
                 page4.cellColor3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year3)?.ResultValue;
 
-                string colorAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year1)?.IsAbnormal;
-                string colorAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year2)?.IsAbnormal;
-                string colorAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0080" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(colorAbnormal1))
-                {
-                    page4.cellColor1.ForeColor = (colorAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellColor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(colorAbnormal2))
-                {
-                    page4.cellColor2.ForeColor = (colorAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellColor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(colorAbnormal3))
-                {
-                    page4.cellColor3.ForeColor = (colorAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellColor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellClarityRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21")?.ReferenceRange;
                 page4.cellClarity1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year1)?.ResultValue;
                 page4.cellClarity2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year2)?.ResultValue;
                 page4.cellClarity3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year3)?.ResultValue;
-
-                string ClarityAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year1)?.IsAbnormal;
-                string ClarityAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year2)?.IsAbnormal;
-                string ClarityAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(ClarityAbnormal1))
-                {
-                    page4.cellClarity1.ForeColor = (ClarityAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellClarity1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ClarityAbnormal2))
-                {
-                    page4.cellClarity2.ForeColor = (ClarityAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellClarity2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ClarityAbnormal3))
-                {
-                    page4.cellClarity3.ForeColor = (ClarityAbnormal3 == "H") ? Color.Red : Color.Blue; ;
-                    page4.cellClarity3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellSpacGraRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001")?.ReferenceRange;
                 page4.cellSpacGra1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year1)?.ResultValue;
                 page4.cellSpacGra2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year2)?.ResultValue;
                 page4.cellSpacGra3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year3)?.ResultValue;
 
-                string SpacGraAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year1)?.IsAbnormal;
-                string SpacGraAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year2)?.IsAbnormal;
-                string SpacGraAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0001" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(SpacGraAbnormal1))
-                {
-                    page4.cellSpacGra1.ForeColor = (SpacGraAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellSpacGra1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(SpacGraAbnormal2))
-                {
-                    page4.cellSpacGra2.ForeColor = (SpacGraAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellSpacGra2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(SpacGraAbnormal3))
-                {
-                    page4.cellSpacGra3.ForeColor = (SpacGraAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellClarity3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellPhRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080")?.ReferenceRange;
                 page4.cellPh1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year1)?.ResultValue;
                 page4.cellPh2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year2)?.ResultValue;
                 page4.cellPh3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year3)?.ResultValue;
-
-                string phAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year1)?.IsAbnormal;
-                string phAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year2)?.IsAbnormal;
-                string phAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0080" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(phAbnormal1))
-                {
-                    page4.cellPh1.ForeColor = (phAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellPh1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(phAbnormal2))
-                {
-                    page4.cellPh2.ForeColor = (phAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellPh2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(phAbnormal3))
-                {
-                    page4.cellPh3.ForeColor = (phAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellPh3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellProteinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085")?.ReferenceRange;
                 page4.cellProtein1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year1)?.ResultValue;
                 page4.cellProtein2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year2)?.ResultValue;
                 page4.cellProtein3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year3)?.ResultValue;
 
-                string ProteinAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year1)?.IsAbnormal;
-                string ProteinAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year2)?.IsAbnormal;
-                string ProteinAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0085" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(ProteinAbnormal1))
-                {
-                    page4.cellProtein1.ForeColor = (ProteinAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellProtein1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ProteinAbnormal2))
-                {
-                    page4.cellProtein2.ForeColor = (ProteinAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellProtein2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ProteinAbnormal3))
-                {
-                    page4.cellProtein3.ForeColor = (ProteinAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellProtein3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellGlucoseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090")?.ReferenceRange;
                 page4.cellGlucose1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year1)?.ResultValue;
                 page4.cellGlucose2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year2)?.ResultValue;
                 page4.cellGlucose3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year3)?.ResultValue;
-
-                string GlucoseAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year1)?.IsAbnormal;
-                string GlucoseAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year2)?.IsAbnormal;
-                string GlucoseAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0090" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(GlucoseAbnormal1))
-                {
-                    page4.cellGlucose1.ForeColor = (GlucoseAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellGlucose1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(GlucoseAbnormal2))
-                {
-                    page4.cellGlucose2.ForeColor = (GlucoseAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellGlucose2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(GlucoseAbnormal3))
-                {
-                    page4.cellGlucose3.ForeColor = (GlucoseAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellGlucose3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellKetoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047")?.ReferenceRange;
                 page4.cellKetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year1)?.ResultValue;
                 page4.cellKetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year2)?.ResultValue;
                 page4.cellKetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year3)?.ResultValue;
 
-                string KetoneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year1)?.IsAbnormal;
-                string KetoneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year2)?.IsAbnormal;
-                string KetoneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0047" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(KetoneAbnormal1))
-                {
-                    page4.cellKetone1.ForeColor = (KetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellKetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(KetoneAbnormal2))
-                {
-                    page4.cellKetone2.ForeColor = (KetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellKetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(KetoneAbnormal3))
-                {
-                    page4.cellKetone3.ForeColor = (KetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellKetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellNitritesRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154")?.ReferenceRange;
                 page4.cellNitrites1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year1)?.ResultValue;
                 page4.cellNitrites2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year2)?.ResultValue;
                 page4.cellNitrites3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year3)?.ResultValue;
-
-                string NitritesAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year1)?.IsAbnormal;
-                string NitritesAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year2)?.IsAbnormal;
-                string NitritesAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0154" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(NitritesAbnormal1))
-                {
-                    page4.cellNitrites1.ForeColor = (NitritesAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellNitrites1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(NitritesAbnormal2))
-                {
-                    page4.cellNitrites2.ForeColor = (NitritesAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellNitrites2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(NitritesAbnormal3))
-                {
-                    page4.cellNitrites3.ForeColor = (NitritesAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellNitrites3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellBilirubinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151")?.ReferenceRange;
                 page4.cellBilirubin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year1)?.ResultValue;
                 page4.cellBilirubin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year2)?.ResultValue;
                 page4.cellBilirubin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year3)?.ResultValue;
 
-                string BilirubinAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year1)?.IsAbnormal;
-                string BilirubinAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year2)?.IsAbnormal;
-                string BilirubinAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0151" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BilirubinAbnormal1))
-                {
-                    page4.cellBilirubin1.ForeColor = (BilirubinAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BilirubinAbnormal2))
-                {
-                    page4.cellBilirubin2.ForeColor = (BilirubinAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BilirubinAbnormal3))
-                {
-                    page4.cellBilirubin3.ForeColor = (BilirubinAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellUrobilinogenRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150")?.ReferenceRange;
                 page4.cellUrobilinogen1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year1)?.ResultValue;
                 page4.cellUrobilinogen2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year2)?.ResultValue;
                 page4.cellUrobilinogen3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year3)?.ResultValue;
-
-                string UrobilinogenAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year1)?.IsAbnormal;
-                string UrobilinogenAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year2)?.IsAbnormal;
-                string UrobilinogenAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0150" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(UrobilinogenAbnormal1))
-                {
-                    page4.cellUrobilinogen1.ForeColor = (UrobilinogenAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellUrobilinogen1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(UrobilinogenAbnormal2))
-                {
-                    page4.cellUrobilinogen2.ForeColor = (UrobilinogenAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellUrobilinogen2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(UrobilinogenAbnormal3))
-                {
-                    page4.cellUrobilinogen3.ForeColor = (UrobilinogenAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellUrobilinogen3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellLeukocyteRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153")?.ReferenceRange;
                 page4.cellLeukocyte1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year1)?.ResultValue;
                 page4.cellLeukocyte2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year2)?.ResultValue;
                 page4.cellLeukocyte3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year3)?.ResultValue;
 
-                string LeukocyteAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year1)?.IsAbnormal;
-                string LeukocyteAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year2)?.IsAbnormal;
-                string LeukocyteAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0153" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(LeukocyteAbnormal1))
-                {
-                    page4.cellLeukocyte1.ForeColor = (LeukocyteAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellLeukocyte1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(LeukocyteAbnormal2))
-                {
-                    page4.cellLeukocyte2.ForeColor = (LeukocyteAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellLeukocyte2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(LeukocyteAbnormal3))
-                {
-                    page4.cellLeukocyte3.ForeColor = (LeukocyteAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellLeukocyte3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152")?.ReferenceRange;
                 page4.cellBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year1)?.ResultValue;
                 page4.cellBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year2)?.ResultValue;
                 page4.cellBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year3)?.ResultValue;
 
-                string BloodAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year1)?.IsAbnormal;
-                string BloodAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year2)?.IsAbnormal;
-                string BloodAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0152" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BloodAbnormal1))
-                {
-                    page4.cellBlood1.ForeColor = (BloodAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBlood1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BloodAbnormal2))
-                {
-                    page4.cellBlood2.ForeColor = (BloodAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBlood2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BloodAbnormal3))
-                {
-                    page4.cellBlood3.ForeColor = (BloodAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBlood3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellErythrocytesRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140")?.ReferenceRange;
                 page4.cellErythrocytes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year1)?.ResultValue;
                 page4.cellErythrocytes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year2)?.ResultValue;
                 page4.cellErythrocytes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year3)?.ResultValue;
-
-                string ErythrocytesAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year1)?.IsAbnormal;
-                string ErythrocytesAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year2)?.IsAbnormal;
-                string ErythrocytesAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0140" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(ErythrocytesAbnormal1))
-                {
-                    page4.cellErythrocytes1.ForeColor = (ErythrocytesAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellErythrocytes1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ErythrocytesAbnormal2))
-                {
-                    page4.cellErythrocytes2.ForeColor = (ErythrocytesAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellErythrocytes2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ErythrocytesAbnormal3))
-                {
-                    page4.cellErythrocytes3.ForeColor = (ErythrocytesAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellErythrocytes3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+ 
                 page4.cellWbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250")?.ReferenceRange;
                 page4.cellWbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year1)?.ResultValue;
                 page4.cellWbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year2)?.ResultValue;
                 page4.cellWbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year3)?.ResultValue;
-
-                string WbcAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year1)?.IsAbnormal;
-                string WbcAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year2)?.IsAbnormal;
-                string WbcAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0250" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(WbcAbnormal1))
-                {
-                    page4.cellWbc1.ForeColor = (WbcAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellWbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(WbcAbnormal2))
-                {
-                    page4.cellWbc2.ForeColor = (WbcAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellWbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(WbcAbnormal3))
-                {
-                    page4.cellWbc3.ForeColor = (WbcAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellWbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellRbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260")?.ReferenceRange;
                 page4.cellRbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year1)?.ResultValue;
                 page4.cellRbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year2)?.ResultValue;
                 page4.cellRbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year3)?.ResultValue;
 
-                string RbcAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year1)?.IsAbnormal;
-                string RbcAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year2)?.IsAbnormal;
-                string RbcAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0260" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(RbcAbnormal1))
-                {
-                    page4.cellRbc1.ForeColor = (RbcAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellRbc1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(RbcAbnormal2))
-                {
-                    page4.cellRbc2.ForeColor = (RbcAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellRbc2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(RbcAbnormal3))
-                {
-                    page4.cellRbc3.ForeColor = (RbcAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellRbc3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellEpithelialCellsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270")?.ReferenceRange;
                 page4.cellEpithelialCells1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year1)?.ResultValue;
                 page4.cellEpithelialCells2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year2)?.ResultValue;
                 page4.cellEpithelialCells3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year3)?.ResultValue;
-
-                string EpithelialCellsAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year1)?.IsAbnormal;
-                string EpithelialCellsAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year2)?.IsAbnormal;
-                string EpithelialCellsAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "D0270" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(EpithelialCellsAbnormal1))
-                {
-                    page4.cellEpithelialCells1.ForeColor = (EpithelialCellsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellEpithelialCells1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(EpithelialCellsAbnormal2))
-                {
-                    page4.cellEpithelialCells2.ForeColor = (EpithelialCellsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellEpithelialCells2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(EpithelialCellsAbnormal3))
-                {
-                    page4.cellEpithelialCells3.ForeColor = (EpithelialCellsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellEpithelialCells3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellCastsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16")?.ReferenceRange;
                 page4.cellCasts1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year1)?.ResultValue;
                 page4.cellCasts2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year2)?.ResultValue;
                 page4.cellCasts3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year3)?.ResultValue;
 
-                string CastsAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year1)?.IsAbnormal;
-                string CastsAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year2)?.IsAbnormal;
-                string CastsAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR16" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CastsAbnormal1))
-                {
-                    page4.cellCasts1.ForeColor = (CastsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCasts1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CastsAbnormal2))
-                {
-                    page4.cellCasts2.ForeColor = (CastsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCasts2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CastsAbnormal3))
-                {
-                    page4.cellCasts3.ForeColor = (CastsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCasts3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellBacteriaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155")?.ReferenceRange;
                 page4.cellBacteria1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year1)?.ResultValue;
                 page4.cellBacteria2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year2)?.ResultValue;
                 page4.cellBacteria3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year3)?.ResultValue;
-
-                string BacteriaAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year1)?.IsAbnormal;
-                string BacteriaAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year2)?.IsAbnormal;
-                string BacteriaAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "E0155" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BacteriaAbnormal1))
-                {
-                    page4.cellBacteria1.ForeColor = (BacteriaAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBacteria1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BacteriaAbnormal2))
-                {
-                    page4.cellBacteria2.ForeColor = (BacteriaAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBacteria2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BacteriaAbnormal2))
-                {
-                    page4.cellBacteria3.ForeColor = (BacteriaAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBacteria3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellBuddingYeastRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17")?.ReferenceRange;
                 page4.cellBuddingYeast1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year1)?.ResultValue;
                 page4.cellBuddingYeast2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year2)?.ResultValue;
                 page4.cellBuddingYeast3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year3)?.ResultValue;
 
-                string BuddingYeastAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year1)?.IsAbnormal;
-                string BuddingYeastAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year2)?.IsAbnormal;
-                string BuddingYeastAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR17" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BuddingYeastAbnormal1))
-                {
-                    page4.cellBuddingYeast1.ForeColor = (BuddingYeastAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBuddingYeast1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BuddingYeastAbnormal2))
-                {
-                    page4.cellBuddingYeast2.ForeColor = (BuddingYeastAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBuddingYeast2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BuddingYeastAbnormal3))
-                {
-                    page4.cellBuddingYeast3.ForeColor = (BuddingYeastAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellBuddingYeast3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellCrystalRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19")?.ReferenceRange;
                 page4.cellCrystal1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year1)?.ResultValue;
                 page4.cellCrystal2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year2)?.ResultValue;
                 page4.cellCrystal3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year3)?.ResultValue;
-
-                string CrystalAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year1)?.IsAbnormal;
-                string CrystalAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year2)?.IsAbnormal;
-                string CrystalAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR19" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CrystalAbnormal1))
-                {
-                    page4.cellCrystal1.ForeColor = (CrystalAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCrystal1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CrystalAbnormal2))
-                {
-                    page4.cellCrystal2.ForeColor = (CrystalAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCrystal2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CrystalAbnormal3))
-                {
-                    page4.cellCrystal3.ForeColor = (CrystalAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellCrystal3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellMucousRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18")?.ReferenceRange;
                 page4.cellMucous1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year1)?.ResultValue;
                 page4.cellMucous2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year2)?.ResultValue;
                 page4.cellMucous3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year3)?.ResultValue;
 
-                string MucousAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year1)?.IsAbnormal;
-                string MucousAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year2)?.IsAbnormal;
-                string MucousAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR18" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(MucousAbnormal1))
-                {
-                    page4.cellMucous1.ForeColor = (MucousAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellMucous1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(MucousAbnormal2))
-                {
-                    page4.cellMucous2.ForeColor = (MucousAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellMucous2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(MucousAbnormal3))
-                {
-                    page4.cellMucous3.ForeColor = (MucousAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellMucous3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page4.cellAmorphousRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14")?.ReferenceRange;
                 page4.cellAmorphous1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year1)?.ResultValue;
                 page4.cellAmorphous2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year2)?.ResultValue;
                 page4.cellAmorphous3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year3)?.ResultValue;
-
-                string AmorphousAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year1)?.IsAbnormal;
-                string AmorphousAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year2)?.IsAbnormal;
-                string AmorphousAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR14" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(AmorphousAbnormal1))
-                {
-                    page4.cellAmorphous1.ForeColor = (AmorphousAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellAmorphous1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AmorphousAbnormal2))
-                {
-                    page4.cellAmorphous2.ForeColor = (AmorphousAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellAmorphous2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AmorphousAbnormal3))
-                {
-                    page4.cellAmorphous3.ForeColor = (AmorphousAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellAmorphous3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page4.cellOtherRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20")?.ReferenceRange;
                 page4.cellOther1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year1)?.ResultValue;
                 page4.cellOther2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year2)?.ResultValue;
                 page4.cellOther3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year3)?.ResultValue;
 
-                string OtherAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year1)?.IsAbnormal;
-                string OtherAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year2)?.IsAbnormal;
-                string OtherAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR20" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(OtherAbnormal1))
-                {
-                    page4.cellOther1.ForeColor = (OtherAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page4.cellOther1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(OtherAbnormal2))
-                {
-                    page4.cellOther2.ForeColor = (OtherAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page4.cellOther2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(OtherAbnormal3))
-                {
-                    page4.cellOther3.ForeColor = (OtherAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page4.cellOther3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
             }
             else
             {
@@ -1776,54 +919,11 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page5.cellBun2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year2)?.ResultValue;
                 page5.cellBun3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year3)?.ResultValue;
 
-                string bunAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year1)?.IsAbnormal;
-                string bunAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year2)?.IsAbnormal;
-                string bunAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR27" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(bunAbnormal1))
-                {
-                    page5.cellBun1.ForeColor = (bunAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellBun1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(bunAbnormal2))
-                {
-                    page5.cellBun2.ForeColor = (bunAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellBun2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(bunAbnormal3))
-                {
-                    page5.cellBun3.ForeColor = (bunAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellBun3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page5.cellCreatinineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070")?.ReferenceRange;
                 page5.cellCreatinine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year1)?.ResultValue;
                 page5.cellCreatinine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year2)?.ResultValue;
                 page5.cellCreatinine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year3)?.ResultValue;
 
-                string CreatinineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year1)?.IsAbnormal;
-                string CreatinineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year2)?.IsAbnormal;
-                string CreatinineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CreatinineAbnormal1))
-                {
-                    page5.cellCreatinine1.ForeColor = (CreatinineAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCreatinine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CreatinineAbnormal2))
-                {
-                    page5.cellCreatinine2.ForeColor = (CreatinineAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCreatinine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CreatinineAbnormal3))
-                {
-                    page5.cellCreatinine3.ForeColor = (CreatinineAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellCreatinine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
             }
             else
             {
@@ -1852,54 +952,11 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page6.cellFbs2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year2)?.ResultValue;
                 page6.cellFbs3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year3)?.ResultValue;
 
-                string fbsAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year1)?.IsAbnormal;
-                string fbsAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year2)?.IsAbnormal;
-                string fbsAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0180" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(fbsAbnormal1))
-                {
-                    page6.cellFbs1.ForeColor = (fbsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellFbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(fbsAbnormal2))
-                {
-                    page6.cellFbs2.ForeColor = (fbsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellFbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(fbsAbnormal3))
-                {
-                    page6.cellFbs3.ForeColor = (fbsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellFbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page6.cellHbA1cRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7")?.ReferenceRange;
                 page6.cellHbA1c1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.ResultValue;
                 page6.cellHbA1c2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.ResultValue;
                 page6.cellHbA1c3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.ResultValue;
-
-                string HbA1cAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year1)?.IsAbnormal;
-                string HbA1cAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year2)?.IsAbnormal;
-                string HbA1cAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR7" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(HbA1cAbnormal1))
-                {
-                    page6.cellHbA1c1.ForeColor = (HbA1cAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHbA1c1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbA1cAbnormal2))
-                {
-                    page6.cellHbA1c2.ForeColor = (HbA1cAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHbA1c2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbA1cAbnormal3))
-                {
-                    page6.cellHbA1c3.ForeColor = (HbA1cAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHbA1c3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+ 
             }
             else
             {
@@ -1927,28 +984,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page7.cellUric1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year1)?.ResultValue;
                 page7.cellUric2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year2)?.ResultValue;
                 page7.cellUric3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year3)?.ResultValue;
-
-                string uricAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year1)?.IsAbnormal;
-                string uricAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year2)?.IsAbnormal;
-                string uricAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0320" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(uricAbnormal1))
-                {
-                    page7.cellUric1.ForeColor = (uricAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellUric1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(uricAbnormal2))
-                {
-                    page7.cellUric2.ForeColor = (uricAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellUric2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(uricAbnormal3))
-                {
-                    page7.cellUric3.ForeColor = (uricAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellUric3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+   
             }
             else
             {
@@ -1977,108 +1013,21 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page6.cellCholesterol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year2)?.ResultValue;
                 page6.cellCholesterol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year3)?.ResultValue;
 
-                string cholesterolAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year1)?.IsAbnormal;
-                string cholesterolAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year2)?.IsAbnormal;
-                string cholesterolAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0130" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(cholesterolAbnormal1))
-                {
-                    page6.cellCholesterol1.ForeColor = (cholesterolAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellCholesterol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(cholesterolAbnormal2))
-                {
-                    page6.cellCholesterol2.ForeColor = (cholesterolAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellCholesterol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(cholesterolAbnormal3))
-                {
-                    page6.cellCholesterol3.ForeColor = (cholesterolAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellCholesterol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page6.cellTriglycerideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140")?.ReferenceRange;
                 page6.cellTriglyceride1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year1)?.ResultValue;
                 page6.cellTriglyceride2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year2)?.ResultValue;
                 page6.cellTriglyceride3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year3)?.ResultValue;
-
-                string TriglycerideAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year1)?.IsAbnormal;
-                string TriglycerideAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year2)?.IsAbnormal;
-                string TriglycerideAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0140" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(TriglycerideAbnormal1))
-                {
-                    page6.cellTriglyceride1.ForeColor = (TriglycerideAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellTriglyceride1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TriglycerideAbnormal2))
-                {
-                    page6.cellTriglyceride2.ForeColor = (TriglycerideAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellTriglyceride2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TriglycerideAbnormal3))
-                {
-                    page6.cellTriglyceride3.ForeColor = (TriglycerideAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellTriglyceride3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+     
                 page6.cellLdlRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159")?.ReferenceRange;
                 page6.cellLdl1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year1)?.ResultValue;
                 page6.cellLdl2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year2)?.ResultValue;
                 page6.cellLdl3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year3)?.ResultValue;
-
-                string ldlAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year1)?.IsAbnormal;
-                string ldlAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year2)?.IsAbnormal;
-                string ldlAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0159" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(ldlAbnormal1))
-                {
-                    page6.cellLdl1.ForeColor = (ldlAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellLdl1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ldlAbnormal2))
-                {
-                    page6.cellLdl2.ForeColor = (ldlAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellLdl2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(ldlAbnormal3))
-                {
-                    page6.cellLdl3.ForeColor = (ldlAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellLdl3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+    
                 page6.cellHdlRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150")?.ReferenceRange;
                 page6.cellHdl1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year1)?.ResultValue;
                 page6.cellHdl2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year2)?.ResultValue;
                 page6.cellHdl3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year3)?.ResultValue;
-
-                string hdlAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year1)?.IsAbnormal;
-                string hdlAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year2)?.IsAbnormal;
-                string hdlAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0150" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(hdlAbnormal1))
-                {
-                    page6.cellHdl1.ForeColor = (hdlAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHdl1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hdlAbnormal2))
-                {
-                    page6.cellHdl2.ForeColor = (hdlAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHdl2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(hdlAbnormal3))
-                {
-                    page6.cellHdl3.ForeColor = (hdlAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page6.cellHdl3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+            
             }
             else
             {
@@ -2106,217 +1055,42 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page5.cellAst1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year1)?.ResultValue;
                 page5.cellAst2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year2)?.ResultValue;
                 page5.cellAst3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year3)?.ResultValue;
-
-                string astAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year1)?.IsAbnormal;
-                string astAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year2)?.IsAbnormal;
-                string astAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR50" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(astAbnormal1))
-                {
-                    page5.cellAst1.ForeColor = (astAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAst1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(astAbnormal2))
-                {
-                    page5.cellAst2.ForeColor = (astAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAst2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(astAbnormal3))
-                {
-                    page5.cellAst3.ForeColor = (astAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAst3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+         
                 page5.cellAltRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51")?.ReferenceRange;
                 page5.cellAlt1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year1)?.ResultValue;
                 page5.cellAlt2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year2)?.ResultValue;
                 page5.cellAlt3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year3)?.ResultValue;
-
-                string altAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year1)?.IsAbnormal;
-                string altAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year2)?.IsAbnormal;
-                string altAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR51" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(altAbnormal1))
-                {
-                    page5.cellAlt1.ForeColor = (altAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlt1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(altAbnormal2))
-                {
-                    page5.cellAlt2.ForeColor = (altAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlt2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(altAbnormal3))
-                {
-                    page5.cellAlt3.ForeColor = (altAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlt3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+   
                 page5.cellAlpRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33")?.ReferenceRange;
                 page5.cellAlp1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year1)?.ResultValue;
                 page5.cellAlp2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year2)?.ResultValue;
                 page5.cellAlp3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year3)?.ResultValue;
-
-                string alpAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year1)?.IsAbnormal;
-                string alpAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year2)?.IsAbnormal;
-                string alpAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR33" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(alpAbnormal1))
-                {
-                    page5.cellAlp1.ForeColor = (alpAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlp1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(alpAbnormal2))
-                {
-                    page5.cellAlp2.ForeColor = (alpAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(alpAbnormal3))
-                {
-                    page5.cellAlp3.ForeColor = (alpAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlp3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+          
                 page5.cellTotalBilirubinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48")?.ReferenceRange;
                 page5.cellTotalBilirubin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year1)?.ResultValue;
                 page5.cellTotalBilirubin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year2)?.ResultValue;
-                page5.cellTotalBilirubin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year3)?.ResultValue;
-
-                string TotalBilirubinAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year1)?.IsAbnormal;
-                string TotalBilirubinAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year2)?.IsAbnormal;
-                string TotalBilirubinAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(TotalBilirubinAbnormal1))
-                {
-                    page5.cellTotalBilirubin1.ForeColor = (TotalBilirubinAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TotalBilirubinAbnormal2))
-                {
-                    page5.cellTotalBilirubin2.ForeColor = (TotalBilirubinAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TotalBilirubinAbnormal3))
-                {
-                    page5.cellTotalBilirubin3.ForeColor = (TotalBilirubinAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+                page5.cellTotalBilirubin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR48" && p.Year == year3)?.ResultValue;      
 
                 page5.cellDirectBilirubinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49")?.ReferenceRange;
                 page5.cellDirectBilirubin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year1)?.ResultValue;
                 page5.cellDirectBilirubin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year2)?.ResultValue;
                 page5.cellDirectBilirubin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year3)?.ResultValue;
-
-                string DirectBilirubiAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year1)?.IsAbnormal;
-                string DirectBilirubiAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year2)?.IsAbnormal;
-                string DirectBilirubiAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR49" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(DirectBilirubiAbnormal1))
-                {
-                    page5.cellDirectBilirubin1.ForeColor = (DirectBilirubiAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellDirectBilirubin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(DirectBilirubiAbnormal2))
-                {
-                    page5.cellDirectBilirubin2.ForeColor = (DirectBilirubiAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellDirectBilirubin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(DirectBilirubiAbnormal3))
-                {
-                    page5.cellDirectBilirubin3.ForeColor = (DirectBilirubiAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellDirectBilirubin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+      
                 page5.cellTotalProteinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105")?.ReferenceRange;
                 page5.cellTotalProtein1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year1)?.ResultValue;
                 page5.cellTotalProtein2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year2)?.ResultValue;
                 page5.cellTotalProtein3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year3)?.ResultValue;
-
-                string TotalProteinAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year1)?.IsAbnormal;
-                string TotalProteinAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year2)?.IsAbnormal;
-                string TotalProteinAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR105" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(TotalProteinAbnormal1))
-                {
-                    page5.cellTotalProtein1.ForeColor = (TotalProteinAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalProtein1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TotalProteinAbnormal2))
-                {
-                    page5.cellTotalProtein2.ForeColor = (TotalProteinAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalProtein2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TotalProteinAbnormal3))
-                {
-                    page5.cellTotalProtein3.ForeColor = (TotalProteinAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellTotalProtein3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+        
                 page5.cellAlbuminRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101")?.ReferenceRange;
                 page5.cellAlbumin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year1)?.ResultValue;
                 page5.cellAlbumin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year2)?.ResultValue;
                 page5.cellAlbumin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year3)?.ResultValue;
 
-                string AlbuminAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year1)?.IsAbnormal;
-                string AlbuminAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year2)?.IsAbnormal;
-                string AlbuminAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR101" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(AlbuminAbnormal1))
-                {
-                    page5.cellAlbumin1.ForeColor = (AlbuminAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlbumin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AlbuminAbnormal2))
-                {
-                    page5.cellAlbumin2.ForeColor = (AlbuminAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlbumin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AlbuminAbnormal3))
-                {
-                    page5.cellAlbumin3.ForeColor = (AlbuminAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellAlbumin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page5.cellGlobulinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46")?.ReferenceRange;
                 page5.cellGlobulin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year1)?.ResultValue;
                 page5.cellGlobulin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year2)?.ResultValue;
                 page5.cellGlobulin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year3)?.ResultValue;
-
-                string GlobulinAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year1)?.IsAbnormal;
-                string GlobulinAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year2)?.IsAbnormal;
-                string GlobulinAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(GlobulinAbnormal1))
-                {
-                    page5.cellGlobulin1.ForeColor = (GlobulinAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page5.cellGlobulin1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(GlobulinAbnormal2))
-                {
-                    page5.cellGlobulin2.ForeColor = (GlobulinAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page5.cellGlobulin2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(GlobulinAbnormal3))
-                {
-                    page5.cellGlobulin3.ForeColor = (GlobulinAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page5.cellGlobulin3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+                
             }
             else
             {
@@ -2344,82 +1118,16 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page7.cellHbsAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year1)?.ResultValue;
                 page7.cellHbsAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year2)?.ResultValue;
                 page7.cellHbsAg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year3)?.ResultValue;
-
-                string HbsAgAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year1)?.IsAbnormal;
-                string HbsAgAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year2)?.IsAbnormal;
-                string HbsAgAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(HbsAgAbnormal1))
-                {
-                    page7.cellHbsAg1.ForeColor = (HbsAgAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellHbsAg1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbsAgAbnormal2))
-                {
-                    page7.cellHbsAg2.ForeColor = (HbsAgAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellHbsAg2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(HbsAgAbnormal3))
-                {
-                    page7.cellHbsAg3.ForeColor = (HbsAgAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellHbsAg3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
+  
                 page7.cellCoiAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34")?.ReferenceRange;
                 page7.cellCoiAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.ResultValue;
                 page7.cellCoiAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year2)?.ResultValue;
                 page7.cellCoiAg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year3)?.ResultValue;
 
-                string CoiAgAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.IsAbnormal;
-                string CoiAgAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year2)?.IsAbnormal;
-                string CoiAgAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CoiAgAbnormal1))
-                {
-                    page7.cellCoiAg1.ForeColor = (CoiAgAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiAg1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CoiAgAbnormal2))
-                {
-                    page7.cellCoiAg2.ForeColor = (CoiAgAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiAg2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CoiAgAbnormal3))
-                {
-                    page7.cellCoiAg3.ForeColor = (CoiAgAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiAg3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page7.cellCoiHbsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121")?.ReferenceRange;
                 page7.cellCoiHbs1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year1)?.ResultValue;
                 page7.cellCoiHbs2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year2)?.ResultValue;
                 page7.cellCoiHbs3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year3)?.ResultValue;
-
-                string CoiHbsAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year1)?.IsAbnormal;
-                string CoiHbsAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year2)?.IsAbnormal;
-                string CoiHbsAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR121" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CoiHbsAbnormal1))
-                {
-                    page7.cellCoiHbs1.ForeColor = (CoiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiHbs1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CoiHbsAbnormal2))
-                {
-                    page7.cellCoiHbs2.ForeColor = (CoiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiHbs2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CoiHbsAbnormal3))
-                {
-                    page7.cellCoiHbs3.ForeColor = (CoiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCoiHbs3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page7.cellAntiHbsRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR42")?.ReferenceRange;
                 page7.cellAntiHbs1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR42" && p.Year == year1)?.ResultValue;
@@ -2463,63 +1171,24 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page8.cellStColor2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year2)?.ResultValue;
                 page8.cellStColor3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year3)?.ResultValue;
 
-                string StColorAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year1)?.IsAbnormal;
-                string StColorAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year2)?.IsAbnormal;
-                string StColorAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR69" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(StColorAbnormal1))
-                {
-                    page8.cellStColor1.ForeColor = (StColorAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStColor1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(StColorAbnormal2))
-                {
-                    page8.cellStColor2.ForeColor = (StColorAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStColor2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(StColorAbnormal3))
-                {
-                    page8.cellStColor3.ForeColor = (StColorAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStColor3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page8.cellStappearRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21")?.ReferenceRange;
                 page8.cellStappear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year1)?.ResultValue;
                 page8.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year2)?.ResultValue;
                 page8.cellStappear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year3)?.ResultValue;
 
-                string StappearAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year1)?.IsAbnormal;
-                string StappearAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year2)?.IsAbnormal;
-                string StappearAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR21" && p.Year == year3)?.IsAbnormal;
 
-                if (!string.IsNullOrEmpty(StappearAbnormal1))
-                {
-                    page8.cellStappear1.ForeColor = (StappearAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStappear1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(StappearAbnormal2))
-                {
-                    page8.cellStappear2.ForeColor = (StappearAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStappear2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(StappearAbnormal3))
-                {
-                    page8.cellStappear3.ForeColor = (StappearAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page8.cellStappear3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
                 page8.stoolOvaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73")?.ReferenceRange;
                 page8.stoolOva1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73" && p.Year == year1)?.ResultValue;
                 page8.stoolOva2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73" && p.Year == year2)?.ResultValue;
                 page8.stoolOva3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR73" && p.Year == year3)?.ResultValue;
 
+
                 page8.stoolWbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR71")?.ReferenceRange;
                 page8.stoolWbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR71" && p.Year == year1)?.ResultValue;
                 page8.stoolWbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR71" && p.Year == year2)?.ResultValue;
                 page8.stoolWbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR71" && p.Year == year3)?.ResultValue;
+
 
                 page8.stoolRbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR72")?.ReferenceRange;
                 page8.stoolRbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR72" && p.Year == year1)?.ResultValue;
@@ -2599,27 +1268,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page8.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
                     page8.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
 
-                    string AluminiumAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.IsAbnormal;
-                    string AluminiumAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.IsAbnormal;
-                    string AluminiumAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(AluminiumAbnormal1))
-                    {
-                        page8.cellAluminium1.ForeColor = (AluminiumAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page8.cellAluminium1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(AluminiumAbnormal2))
-                    {
-                        page8.cellAluminium2.ForeColor = (AluminiumAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page8.cellAluminium2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(AluminiumAbnormal3))
-                    {
-                        page8.cellAluminium3.ForeColor = (AluminiumAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page8.cellAluminium3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                     #endregion
 
                     #region Toluene
@@ -2631,29 +1279,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellToluene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year1)?.ResultValue;
                         page8.cellToluene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year2)?.ResultValue;
                         page8.cellToluene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year3)?.ResultValue;
-
-                        string TolueneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year1)?.IsAbnormal;
-                        string TolueneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year2)?.IsAbnormal;
-                        string TolueneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR124" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(TolueneAbnormal1))
-                        {
-                            page8.cellToluene1.ForeColor = (TolueneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellToluene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(TolueneAbnormal2))
-                        {
-                            page8.cellToluene2.ForeColor = (TolueneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellToluene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(TolueneAbnormal3))
-                        {
-                            page8.cellToluene3.ForeColor = (TolueneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellToluene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
                     }
                     #endregion
 
@@ -2666,28 +1291,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellXylene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year1)?.ResultValue;
                         page8.cellXylene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year2)?.ResultValue;
                         page8.cellXylene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year3)?.ResultValue;
-
-                        string XyleneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year1)?.IsAbnormal;
-                        string XyleneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year2)?.IsAbnormal;
-                        string XyleneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR125" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(XyleneAbnormal1))
-                        {
-                            page8.cellXylene1.ForeColor = (XyleneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellXylene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(XyleneAbnormal2))
-                        {
-                            page8.cellXylene2.ForeColor = (XyleneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellXylene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(XyleneAbnormal3))
-                        {
-                            page8.cellXylene3.ForeColor = (XyleneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellXylene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
 
                     #endregion
@@ -2698,27 +1301,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page8.cellLead2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.ResultValue;
                     page8.cellLead3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.ResultValue;
 
-                    string LeadAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year1)?.IsAbnormal;
-                    string LeadAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year2)?.IsAbnormal;
-                    string LeadAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR75" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(LeadAbnormal1))
-                    {
-                        page8.cellLead1.ForeColor = (LeadAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page8.cellLead1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(LeadAbnormal2))
-                    {
-                        page8.cellLead2.ForeColor = (LeadAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page8.cellLead2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(LeadAbnormal3))
-                    {
-                        page8.cellLead3.ForeColor = (LeadAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page8.cellLead3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                     #endregion
 
                     #region Carboxy
@@ -2730,28 +1312,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellCarboxy1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year1)?.ResultValue;
                         page8.cellCarboxy2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year2)?.ResultValue;
                         page8.cellCarboxy3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year3)?.ResultValue;
-
-                        string CarboxyAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year1)?.IsAbnormal;
-                        string CarboxyAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year2)?.IsAbnormal;
-                        string CarboxyAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR120" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(CarboxyAbnormal1))
-                        {
-                            page8.cellCarboxy1.ForeColor = (CarboxyAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellCarboxy1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(CarboxyAbnormal2))
-                        {
-                            page8.cellCarboxy2.ForeColor = (CarboxyAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellCarboxy2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(CarboxyAbnormal3))
-                        {
-                            page8.cellCarboxy3.ForeColor = (CarboxyAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellCarboxy3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -2764,28 +1324,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellMek1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year1)?.ResultValue;
                         page8.cellMek2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year2)?.ResultValue;
                         page8.cellMek3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year3)?.ResultValue;
-
-                        string MekAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year1)?.IsAbnormal;
-                        string MekAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year2)?.IsAbnormal;
-                        string MekAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR127" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(MekAbnormal1))
-                        {
-                            page8.cellMek1.ForeColor = (MekAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMek1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MekAbnormal2))
-                        {
-                            page8.cellMek2.ForeColor = (MekAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMek2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MekAbnormal3))
-                        {
-                            page8.cellMek3.ForeColor = (MekAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMek3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -2798,28 +1336,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellBenzene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year1)?.ResultValue;
                         page8.cellBenzene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year2)?.ResultValue;
                         page8.cellBenzene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year3)?.ResultValue;
-
-                        string BenzeneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year1)?.IsAbnormal;
-                        string BenzeneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year2)?.IsAbnormal;
-                        string BenzeneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR115" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(BenzeneAbnormal1))
-                        {
-                            page8.cellBenzene1.ForeColor = (BenzeneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellBenzene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(BenzeneAbnormal2))
-                        {
-                            page8.cellBenzene2.ForeColor = (BenzeneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellBenzene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(BenzeneAbnormal3))
-                        {
-                            page8.cellBenzene3.ForeColor = (BenzeneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellBenzene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
 
                     #endregion
@@ -2833,28 +1349,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellMethanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year1)?.ResultValue;
                         page8.cellMethanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year2)?.ResultValue;
                         page8.cellMethanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year3)?.ResultValue;
-
-                        string MethanolAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year1)?.IsAbnormal;
-                        string MethanolAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year2)?.IsAbnormal;
-                        string MethanolAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR116" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(MethanolAbnormal1))
-                        {
-                            page8.cellMethanol1.ForeColor = (MethanolAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethanol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MethanolAbnormal2))
-                        {
-                            page8.cellMethanol2.ForeColor = (MethanolAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethanol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MethanolAbnormal3))
-                        {
-                            page8.cellMethanol3.ForeColor = (MethanolAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethanol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
 
                     #endregion
@@ -2868,28 +1362,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellMethyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year1)?.ResultValue;
                         page8.cellMethyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year2)?.ResultValue;
                         page8.cellMethyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year3)?.ResultValue;
-
-                        string MethyreneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year1)?.IsAbnormal;
-                        string MethyreneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year2)?.IsAbnormal;
-                        string MethyreneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR119" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(MethyreneAbnormal1))
-                        {
-                            page8.cellMethyrene1.ForeColor = (MethyreneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethyrene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MethyreneAbnormal2))
-                        {
-                            page8.cellMethyrene2.ForeColor = (MethyreneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethyrene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(MethyreneAbnormal3))
-                        {
-                            page8.cellMethyrene3.ForeColor = (MethyreneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellMethyrene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -2902,28 +1374,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellStyrene1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
                         page8.cellStyrene2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
                         page8.cellStyrene3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
-
-                        string StyreneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.IsAbnormal;
-                        string StyreneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.IsAbnormal;
-                        string StyreneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(StyreneAbnormal1))
-                        {
-                            page8.cellStyrene1.ForeColor = (StyreneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellStyrene1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(StyreneAbnormal2))
-                        {
-                            page8.cellStyrene2.ForeColor = (StyreneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellStyrene2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(StyreneAbnormal3))
-                        {
-                            page8.cellStyrene3.ForeColor = (StyreneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellStyrene3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -2936,28 +1386,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellHexane1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year1)?.ResultValue;
                         page8.cellHexane2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year2)?.ResultValue;
                         page8.cellHexane3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year3)?.ResultValue;
-
-                        string HexaneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year1)?.IsAbnormal;
-                        string HexaneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year2)?.IsAbnormal;
-                        string HexaneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR118" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(HexaneAbnormal1))
-                        {
-                            page8.cellHexane1.ForeColor = (HexaneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellHexane1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(HexaneAbnormal2))
-                        {
-                            page8.cellHexane2.ForeColor = (HexaneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellHexane2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(HexaneAbnormal3))
-                        {
-                            page8.cellHexane3.ForeColor = (HexaneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellHexane3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -2970,28 +1398,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellIsopropanol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.ResultValue;
                         page8.cellIsopropanol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.ResultValue;
                         page8.cellIsopropanol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.ResultValue;
-
-                        string IsopropanolAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year1)?.IsAbnormal;
-                        string IsopropanolAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year2)?.IsAbnormal;
-                        string IsopropanolAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR130" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(IsopropanolAbnormal1))
-                        {
-                            page8.cellIsopropanol1.ForeColor = (IsopropanolAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellIsopropanol1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(IsopropanolAbnormal2))
-                        {
-                            page8.cellIsopropanol2.ForeColor = (IsopropanolAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellIsopropanol2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(IsopropanolAbnormal3))
-                        {
-                            page8.cellIsopropanol3.ForeColor = (IsopropanolAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellIsopropanol3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -3001,27 +1407,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page8.cellChromium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year2)?.ResultValue;
                     page8.cellChromium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year3)?.ResultValue;
 
-                    string ChromiumAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year1)?.IsAbnormal;
-                    string ChromiumAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year2)?.IsAbnormal;
-                    string ChromiumAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR132" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(ChromiumAbnormal1))
-                    {
-                        page8.cellChromium1.ForeColor = (ChromiumAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page8.cellChromium1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(ChromiumAbnormal2))
-                    {
-                        page8.cellChromium2.ForeColor = (ChromiumAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page8.cellChromium2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(ChromiumAbnormal3))
-                    {
-                        page8.cellChromium3.ForeColor = (ChromiumAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page8.cellChromium3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                     #endregion
 
                     #region Nickel (Show all)
@@ -3030,27 +1415,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page8.cellNickel2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.ResultValue;
                     page8.cellNickel3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.ResultValue;
 
-                    string NickelAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year1)?.IsAbnormal;
-                    string NickelAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.IsAbnormal;
-                    string NickelAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(NickelAbnormal1))
-                    {
-                        page8.cellNickel1.ForeColor = (NickelAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page8.cellNickel1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(NickelAbnormal2))
-                    {
-                        page8.cellNickel2.ForeColor = (NickelAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page8.cellNickel2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(NickelAbnormal3))
-                    {
-                        page8.cellNickel3.ForeColor = (NickelAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page8.cellNickel3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                     #endregion
 
                     #region Nickel In Urine
@@ -3062,28 +1426,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellNickelUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.ResultValue;
                         page8.cellNickelUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.ResultValue;
                         page8.cellNickelUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.ResultValue;
-
-                        string NickelUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year1)?.IsAbnormal;
-                        string NickelUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year2)?.IsAbnormal;
-                        string NickelUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR188" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(NickelUrineAbnormal1))
-                        {
-                            page8.cellNickelUrine1.ForeColor = (NickelUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellNickelUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(NickelUrineAbnormal2))
-                        {
-                            page8.cellNickelUrine2.ForeColor = (NickelUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellNickelUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(NickelUrineAbnormal3))
-                        {
-                            page8.cellNickelUrine3.ForeColor = (NickelUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellNickelUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
 
@@ -3096,31 +1438,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.cellAcetone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.ResultValue;
                         page8.cellAcetone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.ResultValue;
                         page8.cellAcetone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.ResultValue;
-
-                        string AcetoneAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year1)?.IsAbnormal;
-                        string AcetoneAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year2)?.IsAbnormal;
-                        string AcetoneAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR117" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal1))
-                        {
-                            page8.cellAcetone1.ForeColor = (AcetoneAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal2))
-                        {
-                            page8.cellAcetone2.ForeColor = (AcetoneAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(AcetoneAbnormal3))
-                        {
-                            page8.cellAcetone3.ForeColor = (AcetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.cellAcetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
-                    #endregion
-
+                    #endregion               
 
                     #region Aluminium in bloob
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194") != null)
@@ -3130,31 +1449,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         page8.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
                         page8.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
                         page8.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
-
-                        string AluminiumBloodAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.IsAbnormal;
-                        string AluminiumBloodAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.IsAbnormal;
-                        string AluminiumBloodAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.IsAbnormal;
-
-                        if (!string.IsNullOrEmpty(AluminiumBloodAbnormal1))
-                        {
-                            page8.AluminiumBlood1.ForeColor = (AluminiumBloodAbnormal1 == "H") ? Color.Red : Color.Blue;
-                            page8.AluminiumBlood1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(AluminiumBloodAbnormal2))
-                        {
-                            page8.AluminiumBlood2.ForeColor = (AluminiumBloodAbnormal2 == "H") ? Color.Red : Color.Blue;
-                            page8.AluminiumBlood2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
-
-                        if (!string.IsNullOrEmpty(AluminiumBloodAbnormal3))
-                        {
-                            page8.AluminiumBlood3.ForeColor = (AluminiumBloodAbnormal3 == "H") ? Color.Red : Color.Blue;
-                            page8.AluminiumBlood3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                        }
                     }
                     #endregion
-
 
                 }
                 else
@@ -3186,163 +1482,31 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page7.cellAfp2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year2)?.ResultValue;
                 page7.cellAfp3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year3)?.ResultValue;
 
-                string afpAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year1)?.IsAbnormal;
-                string afpAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year2)?.IsAbnormal;
-                string afpAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(afpAbnormal1))
-                {
-                    page7.cellAfp1.ForeColor = (afpAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfp1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(afpAbnormal2))
-                {
-                    page7.cellAfp2.ForeColor = (afpAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfp2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(afpAbnormal3))
-                {
-                    page7.cellAfp3.ForeColor = (afpAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfp3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page7.cellAfpConRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39")?.ReferenceRange;
                 page7.cellAfpCon1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year1)?.ResultValue;
                 page7.cellAfpCon2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year2)?.ResultValue;
                 page7.cellAfpCon3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year3)?.ResultValue;
-
-                string AfpConAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year1)?.IsAbnormal;
-                string AfpConAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year2)?.IsAbnormal;
-                string AfpConAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(AfpConAbnormal1))
-                {
-                    page7.cellAfpCon1.ForeColor = (AfpConAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpCon1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AfpConAbnormal2))
-                {
-                    page7.cellAfpCon2.ForeColor = (AfpConAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpCon2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AfpConAbnormal3))
-                {
-                    page7.cellAfpCon3.ForeColor = (AfpConAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpCon3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-
+         
                 page7.cellAFPInterRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
                 page7.cellAfpInter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
                 page7.cellAfpInter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
                 page7.cellAfpInter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
-
-                string AfpInerAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.IsAbnormal;
-                string AfpInerAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.IsAbnormal;
-                string AfpInerAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(AfpInerAbnormal1))
-                {
-                    page7.cellAfpInter1.ForeColor = (AfpInerAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpInter1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AfpInerAbnormal2))
-                {
-                    page7.cellAfpInter2.ForeColor = (AfpInerAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpInter2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AfpInerAbnormal3))
-                {
-                    page7.cellAfpInter3.ForeColor = (AfpInerAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAfpInter3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
 
                 page7.cellAboGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32")?.ReferenceRange;
                 page7.cellAboGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.ResultValue;
                 page7.cellAboGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.ResultValue;
                 page7.cellAboGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.ResultValue;
 
-                string AboGroupAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year1)?.IsAbnormal;
-                string AboGroupAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year2)?.IsAbnormal;
-                string AboGroupAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR32" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(AboGroupAbnormal1))
-                {
-                    page7.cellAboGroup1.ForeColor = (AboGroupAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAboGroup1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AboGroupAbnormal2))
-                {
-                    page7.cellAboGroup2.ForeColor = (AboGroupAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAboGroup2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(AboGroupAbnormal3))
-                {
-                    page7.cellAboGroup3.ForeColor = (AboGroupAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellAboGroup3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page7.cellBloodGroupRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43")?.ReferenceRange;
                 page7.cellBloodGroup1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year1)?.ResultValue;
                 page7.cellBloodGroup2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year2)?.ResultValue;
                 page7.cellBloodGroup3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year3)?.ResultValue;
 
-                string BloodGroupAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year1)?.IsAbnormal;
-                string BloodGroupAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year2)?.IsAbnormal;
-                string BloodGroupAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR43" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(BloodGroupAbnormal1))
-                {
-                    page7.cellBloodGroup1.ForeColor = (BloodGroupAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellBloodGroup1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BloodGroupAbnormal2))
-                {
-                    page7.cellBloodGroup2.ForeColor = (BloodGroupAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellBloodGroup2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(BloodGroupAbnormal3))
-                {
-                    page7.cellBloodGroup3.ForeColor = (BloodGroupAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellBloodGroup3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page7.cellCaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114")?.ReferenceRange;
                 page7.cellCa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year1)?.ResultValue;
                 page7.cellCa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year2)?.ResultValue;
                 page7.cellCa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year3)?.ResultValue;
-
-                string caAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year1)?.IsAbnormal;
-                string caAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year2)?.IsAbnormal;
-                string caAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR114" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(caAbnormal1))
-                {
-                    page7.cellCa1.ForeColor = (caAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(caAbnormal2))
-                {
-                    page7.cellCa2.ForeColor = (caAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(caAbnormal3))
-                {
-                    page7.cellCa3.ForeColor = (caAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
+ 
                 if (CheckGender.SEXXXUID == 1)
                 {
                     page7.RowCa125.Visible = false;
@@ -3350,28 +1514,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page7.cellPsa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.ResultValue;
                     page7.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.ResultValue;
                     page7.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year3)?.ResultValue;
-
-                    string psaAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.IsAbnormal;
-                    string psaAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.IsAbnormal;
-                    string psaAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAPAR187R4" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(psaAbnormal1))
-                    {
-                        page7.cellPsa1.ForeColor = (psaAbnormal1 == "H") ? Color.Red : Color.Blue;
-                        page7.cellPsa1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(psaAbnormal2))
-                    {
-                        page7.cellPsa2.ForeColor = (psaAbnormal2 == "H") ? Color.Red : Color.Blue;
-                        page7.cellPsa2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(psaAbnormal3))
-                    {
-                        page7.cellPsa3.ForeColor = (psaAbnormal3 == "H") ? Color.Red : Color.Blue;
-                        page7.cellPsa3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                 }
 
                 if (CheckGender.SEXXXUID == 2)
@@ -3381,114 +1523,22 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     page7.cellCa125_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.ResultValue;
                     page7.cellCa125_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.ResultValue;
                     page7.cellCa125_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.ResultValue;
-
-                    string Ca125Abnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.IsAbnormal;
-                    string Ca125Abnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.IsAbnormal;
-                    string Ca125Abnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.IsAbnormal;
-
-                    if (!string.IsNullOrEmpty(Ca125Abnormal1))
-                    {
-                        page7.cellCa125_1.ForeColor = (Ca125Abnormal1 == "H") ? Color.Red : Color.Blue;
-                        page7.cellCa125_1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(Ca125Abnormal2))
-                    {
-                        page7.cellCa125_2.ForeColor = (Ca125Abnormal2 == "H") ? Color.Red : Color.Blue;
-                        page7.cellCa125_2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
-
-                    if (!string.IsNullOrEmpty(Ca125Abnormal3))
-                    {
-                        page7.cellCa125_3.ForeColor = (Ca125Abnormal3 == "H") ? Color.Red : Color.Blue;
-                        page7.cellCa125_3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                    }
                 }
-
-
 
                 page7.cellCalciumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79")?.ReferenceRange;
                 page7.cellCalcium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year1)?.ResultValue;
                 page7.cellCalcium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year2)?.ResultValue;
                 page7.cellCalcium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year3)?.ResultValue;
 
-                string CalciumAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year1)?.IsAbnormal;
-                string CalciumAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year2)?.IsAbnormal;
-                string CalciumAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CalciumAbnormal1))
-                {
-                    page7.cellCalcium1.ForeColor = (CalciumAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCalcium1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CalciumAbnormal2))
-                {
-                    page7.cellCalcium2.ForeColor = (CalciumAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCalcium2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CalciumAbnormal3))
-                {
-                    page7.cellCalcium3.ForeColor = (CalciumAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCalcium3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
                 page7.cellTshRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24")?.ReferenceRange;
                 page7.cellTsh1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year1)?.ResultValue;
                 page7.cellTsh2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year2)?.ResultValue;
                 page7.cellTsh3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year3)?.ResultValue;
 
-                string TshAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year1)?.IsAbnormal;
-                string TshAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year2)?.IsAbnormal;
-                string TshAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR24" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(TshAbnormal1))
-                {
-                    page7.cellTsh1.ForeColor = (TshAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellTsh1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TshAbnormal2))
-                {
-                    page7.cellTsh2.ForeColor = (TshAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellTsh2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(TshAbnormal3))
-                {
-                    page7.cellTsh3.ForeColor = (TshAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellTsh3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-
                 page7.cellCEARange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185")?.ReferenceRange;
                 page7.cellCEA1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.ResultValue;
                 page7.cellCEA2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.ResultValue;
                 page7.cellCEA3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.ResultValue;
-
-                string CEAAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.IsAbnormal;
-                string CEAAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.IsAbnormal;
-                string CEAAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.IsAbnormal;
-
-                if (!string.IsNullOrEmpty(CEAAbnormal1))
-                {
-                    page7.cellCEA1.ForeColor = (CEAAbnormal1 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCEA1.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CEAAbnormal2))
-                {
-                    page7.cellCEA2.ForeColor = (CEAAbnormal2 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCEA2.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
-                if (!string.IsNullOrEmpty(CEAAbnormal3))
-                {
-                    page7.cellCEA3.ForeColor = (CEAAbnormal3 == "H") ? Color.Red : Color.Blue;
-                    page7.cellCEA3.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                }
-
             }
             else
             {
@@ -3602,8 +1652,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page3.lbMuscleResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST32")?.Conclusion;
             }
         }
-
-
 
 
         private void CheckupPage1_AfterPrint(object sender, EventArgs e)
