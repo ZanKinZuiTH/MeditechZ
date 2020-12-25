@@ -123,7 +123,10 @@ namespace MediTech.ViewModels
                     {
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }
-
+                    else
+                    {
+                        CheckupJobSource = null;
+                    }
                 }
             }
         }
@@ -245,7 +248,9 @@ namespace MediTech.ViewModels
                     visitInfo.PRITYUID = SelectedPriority.Key;
                     visitInfo.PayorDetailUID = SelectedPayorDetail.PayorDetailUID;
                     visitInfo.PayorAgreementUID = SelectedPayorAgreement.PayorAgreementUID;
-                    visitInfo.CheckupJobUID = SelectedCheckupJob.CheckupJobContactUID;
+
+                    visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+
                     visitInfo.Comments = CommentDoctor;
                     visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                     if (SelectedCareprovider != null)

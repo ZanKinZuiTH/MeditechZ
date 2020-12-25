@@ -689,7 +689,7 @@ namespace MediTechWebApi.Controllers
                                              PlainText = rsr.PlainText,
                                              Value = rsr.Value,
                                              Version = rsr.Version
-                                         }).ToList();
+                                         }).OrderByDescending(p => p.ResultEnteredDttm).ToList();
             return data;
         }
 
