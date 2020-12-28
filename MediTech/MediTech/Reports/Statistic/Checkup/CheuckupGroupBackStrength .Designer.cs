@@ -208,7 +208,7 @@
             // xrTableCell43
             // 
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ตรวจหาสารอลูมิเนียมในเลือด(Aluminium in Blood)";
+            this.xrTableCell43.Text = "ตรวจสมรรถภาพกล้ามเนื้อ (Back Strength muscle)";
             this.xrTableCell43.Weight = 6.2985356560857584D;
             // 
             // xrTableRow2
