@@ -100,6 +100,8 @@
             series1.ToolTipHintDataMember = "GroupName";
             series1.ValueDataMembersSerializable = "NormalCount";
             sideBySideBarSeriesView1.BarWidth = 0.8D;
+            sideBySideBarSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(48)))), ((int)(((byte)(160)))));
+            sideBySideBarSeriesView1.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
             series1.View = sideBySideBarSeriesView1;
             series2.ArgumentDataMember = "GroupName";
             sideBySideBarSeriesLabel2.ShowForZeroValues = true;
@@ -108,6 +110,8 @@
             series2.ToolTipHintDataMember = "GroupName";
             series2.ValueDataMembersSerializable = "AbnormalCount";
             sideBySideBarSeriesView2.BarWidth = 0.8D;
+            sideBySideBarSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            sideBySideBarSeriesView2.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
             series2.View = sideBySideBarSeriesView2;
             this.checkupChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,

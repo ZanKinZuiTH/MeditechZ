@@ -35,9 +35,10 @@
             DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView1 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel2 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
+            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView2 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             DevExpress.XtraCharts.Series series3 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.SideBySideBarSeriesLabel sideBySideBarSeriesLabel3 = new DevExpress.XtraCharts.SideBySideBarSeriesLabel();
-            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView2 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
+            DevExpress.XtraCharts.SideBySideBarSeriesView sideBySideBarSeriesView3 = new DevExpress.XtraCharts.SideBySideBarSeriesView();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupOccmedSummaryChart));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.checkupChart = new DevExpress.XtraReports.UI.XRChart();
@@ -56,9 +57,10 @@
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -66,7 +68,7 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.checkupChart});
-            this.Detail.HeightF = 480.8333F;
+            this.Detail.HeightF = 515F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -79,6 +81,11 @@
             xyDiagram1.AxisX.QualitativeScaleOptions.AutoGrid = false;
             xyDiagram1.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.True;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisX.VisualRange.Auto = false;
+            xyDiagram1.AxisX.VisualRange.AutoSideMargins = false;
+            xyDiagram1.AxisX.VisualRange.MaxValueSerializable = "J";
+            xyDiagram1.AxisX.VisualRange.MinValueSerializable = "A";
+            xyDiagram1.AxisX.VisualRange.SideMarginsValue = 0.5D;
             xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
             xyDiagram1.AxisX.WholeRange.SideMarginsValue = 0.5D;
             xyDiagram1.AxisY.GridLines.Visible = false;
@@ -92,12 +99,13 @@
             xyDiagram1.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.PaneDistance = 8;
             this.checkupChart.Diagram = xyDiagram1;
+            this.checkupChart.IndicatorsPaletteName = "Apex";
             this.checkupChart.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Center;
             this.checkupChart.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.BottomOutside;
             this.checkupChart.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
             this.checkupChart.Legend.Font = new System.Drawing.Font("Tahoma", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.checkupChart.Legend.Name = "Default Legend";
-            this.checkupChart.LocationFloat = new DevExpress.Utils.PointFloat(25F, 0F);
+            this.checkupChart.LocationFloat = new DevExpress.Utils.PointFloat(62.83335F, 0F);
             this.checkupChart.Name = "checkupChart";
             series1.ArgumentDataMember = "GroupName";
             sideBySideBarSeriesLabel1.ShowForZeroValues = true;
@@ -106,25 +114,32 @@
             series1.ToolTipHintDataMember = "GroupName";
             series1.ValueDataMembersSerializable = "NormalCount";
             sideBySideBarSeriesView1.BarWidth = 0.8D;
+            sideBySideBarSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(112)))), ((int)(((byte)(48)))), ((int)(((byte)(160)))));
+            sideBySideBarSeriesView1.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
             series1.View = sideBySideBarSeriesView1;
             series2.ArgumentDataMember = "GroupName";
             sideBySideBarSeriesLabel2.ShowForZeroValues = true;
             series2.Label = sideBySideBarSeriesLabel2;
             series2.Name = "เฝ้าระวัง";
             series2.ValueDataMembersSerializable = "AttentionCount";
+            sideBySideBarSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(147)))), ((int)(((byte)(137)))), ((int)(((byte)(83)))));
+            sideBySideBarSeriesView2.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
+            series2.View = sideBySideBarSeriesView2;
             series3.ArgumentDataMember = "GroupName";
             sideBySideBarSeriesLabel3.ShowForZeroValues = true;
             series3.Label = sideBySideBarSeriesLabel3;
             series3.Name = "ผิดปกติ";
             series3.ToolTipHintDataMember = "GroupName";
             series3.ValueDataMembersSerializable = "AbnormalCount";
-            sideBySideBarSeriesView2.BarWidth = 0.8D;
-            series3.View = sideBySideBarSeriesView2;
+            sideBySideBarSeriesView3.BarWidth = 0.8D;
+            sideBySideBarSeriesView3.Color = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            sideBySideBarSeriesView3.FillStyle.FillMode = DevExpress.XtraCharts.FillMode.Solid;
+            series3.View = sideBySideBarSeriesView3;
             this.checkupChart.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
         series2,
         series3};
-            this.checkupChart.SizeF = new System.Drawing.SizeF(1134F, 480.8333F);
+            this.checkupChart.SizeF = new System.Drawing.SizeF(672.3334F, 515F);
             // 
             // objectDataSource1
             // 
@@ -162,7 +177,7 @@
             new DevExpress.XtraReports.UI.XRBinding(this.Header, "Text", "")});
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 16F, System.Drawing.FontStyle.Bold);
             this.xrLabel2.ForeColor = System.Drawing.Color.Blue;
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(291.1666F, 113.6667F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(177.6667F, 113.6666F);
             this.xrLabel2.Multiline = true;
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -183,7 +198,7 @@
             // 
             this.xrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(880.6666F, 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(518.9999F, 10F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -214,10 +229,9 @@
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
-            this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
-            this.PageHeight = 827;
-            this.PageWidth = 1169;
+            this.PageHeight = 1169;
+            this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.Header});
@@ -227,9 +241,10 @@
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesLabel3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(sideBySideBarSeriesView3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.checkupChart)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
