@@ -79,6 +79,8 @@
             xyDiagram1.AxisX.QualitativeScaleOptions.AutoGrid = false;
             xyDiagram1.AxisX.Visibility = DevExpress.Utils.DefaultBoolean.True;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
+            xyDiagram1.AxisX.WholeRange.AutoSideMargins = false;
+            xyDiagram1.AxisX.WholeRange.SideMarginsValue = 0.5D;
             xyDiagram1.AxisY.GridLines.Visible = false;
             xyDiagram1.AxisY.Tickmarks.MinorVisible = false;
             xyDiagram1.AxisY.Tickmarks.Visible = false;

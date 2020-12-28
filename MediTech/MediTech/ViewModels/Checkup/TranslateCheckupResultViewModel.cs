@@ -576,7 +576,9 @@ namespace MediTech.ViewModels
                     string description = string.Empty;
                     string recommand = string.Empty;
 
-                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885 : 2883;
+                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 
+                        : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885  
+                        : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 3124) ? 3124 : 2883;
                     foreach (var item in ruleCheckupIsCorrect)
                     {
                         if (!string.IsNullOrEmpty(conclusion))
