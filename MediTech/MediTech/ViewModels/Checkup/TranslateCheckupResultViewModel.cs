@@ -390,23 +390,15 @@ namespace MediTech.ViewModels
                     resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
                 }
 
-                if (patientVisit.PatientUID == 58822)
-                {
-                    if (true)
-                    {
+                //if (patientVisit.PatientUID == 57370)
+                //{
+                //    if (true)
+                //    {
 
-                    }
-                }
+                //    }
+                //}
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
-
-                    //var ruleCheckups = dataCheckupRule
-                    //    .Where(p => p.GPRSTUID == grpstUID
-                    //    && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
-                    //    && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt > p.AgeFrom && ageInt < p.AgeTo)
-                    //    || (ageInt > p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt < p.AgeTo))
-                    //    && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883 && testType == "LAB" && resultComponent.All(x => p.CheckupRuleItem.Any(y => x.ResultItemUID == y.ResultItemUID)))
-                    //    )).ToList();
 
 
                     var ruleCheckups = dataCheckupRule
@@ -415,7 +407,25 @@ namespace MediTech.ViewModels
                         && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt >= p.AgeFrom && ageInt <= p.AgeTo)
                         || (ageInt >= p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt <= p.AgeTo))
                         && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
-                        )).ToList();
+                        )).Select(p => new CheckupRuleModel {
+                            CheckupRuleUID = p.CheckupRuleUID,
+                            Name = p.Name,
+                            SEXXXUID = p.SEXXXUID,
+                            AgeFrom = p.AgeFrom,
+                            AgeTo = p.AgeTo,
+                            RABSTSUID = p.RABSTSUID,
+                            GPRSTUID = p.GPRSTUID,
+                            CheckupRuleRecommend = p.CheckupRuleRecommend,
+                            CheckupRuleItem = p.CheckupRuleItem,
+                            CheckupRuleDescription = p.CheckupRuleDescription
+                            .Select(s => new CheckupRuleDescriptionModel {
+                                CheckupRuleUID = s.CheckupRuleUID,
+                                CheckupTextMasterUID = s.CheckupTextMasterUID,
+                                CheckupRuleDescriptionUID = s.CheckupRuleDescriptionUID,
+                                ThaiDescription = s.ThaiDescription,
+                                EngDescription = s.EngDescription
+                            }).ToList()
+                        }).ToList();
 
 
                     foreach (var ruleCheckup in ruleCheckups)

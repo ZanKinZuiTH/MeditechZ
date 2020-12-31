@@ -75,8 +75,8 @@
             this.ChormiumL = new DevExpress.XtraReports.UI.FormattingRule();
             this.ChromiumH = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -482,7 +482,15 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
             this.xrTableCell8.FormattingRules.Add(this.Abnormal);
             this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseTextAlignment = false;
+            this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell8.Weight = 3.6865621260190995D;
+            // 
+            // Abnormal
+            // 
+            this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.Abnormal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.Abnormal.Name = "Abnormal";
             // 
             // xrTableCell7
             // 
@@ -491,12 +499,6 @@
             this.xrTableCell7.FormattingRules.Add(this.Abnormal);
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Weight = 1.1517577212307777D;
-            // 
-            // Abnormal
-            // 
-            this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.Abnormal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.Abnormal.Name = "Abnormal";
             // 
             // objectDataSource1
             // 
