@@ -348,7 +348,7 @@ namespace MediTech.ViewModels
 
 
 
-                Reports.Statistic.Checkup.CheckupOccMedSummary rpt = new Reports.Statistic.Checkup.CheckupOccMedSummary();
+                Reports.Statistic.Checkup.CheckupOccMedCheckList rpt = new Reports.Statistic.Checkup.CheckupOccMedCheckList();
                 rpt.Parameters["Title"].Value = title;
                 rpt.Parameters["CheckupJobUID"].Value = SelectCheckupJobContact.CheckupJobContactUID;
                 rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
@@ -385,7 +385,7 @@ namespace MediTech.ViewModels
 
 
 
-                Reports.Statistic.Checkup.CheckupSummary rpt = new Reports.Statistic.Checkup.CheckupSummary();
+                Reports.Statistic.Checkup.CheckupGroupCheckList rpt = new Reports.Statistic.Checkup.CheckupGroupCheckList();
                 rpt.Parameters["Title"].Value = title;
                 rpt.Parameters["CheckupJobUID"].Value = SelectCheckupJobContact.CheckupJobContactUID;
                 rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;

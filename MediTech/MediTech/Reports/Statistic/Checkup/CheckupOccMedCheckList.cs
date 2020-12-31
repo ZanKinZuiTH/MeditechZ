@@ -10,12 +10,12 @@ using System.Collections.Generic;
 
 namespace MediTech.Reports.Statistic.Checkup
 {
-    public partial class CheckupOccMedSummary : DevExpress.XtraReports.UI.XtraReport
+    public partial class CheckupOccMedCheckList : DevExpress.XtraReports.UI.XtraReport
     {
         MediTech.DataService.MediTechDataService dbService = new DataService.MediTechDataService();
 
 
-        public CheckupOccMedSummary()
+        public CheckupOccMedCheckList()
         {
             InitializeComponent();
             this.AfterPrint += CheckupSummary_AfterPrint;
@@ -30,7 +30,7 @@ namespace MediTech.Reports.Statistic.Checkup
             {
                 if (dataList.Count <= 24)
                 {
-                    CheckupOccmedSummaryChart fChartSummary = new CheckupOccmedSummaryChart();
+                    CheckupOccmedCheckListChart fChartSummary = new CheckupOccmedCheckListChart();
                     string title = this.Parameters["Title"].Value.ToString();
                     string year = this.Parameters["Year"].Value.ToString();
                     fChartSummary.Parameters["Header"].Value = "กราฟแสดงผู้ที่มีผลการตรวจปกติ และผลผิดปกติประจำปี " + year
@@ -64,7 +64,7 @@ namespace MediTech.Reports.Statistic.Checkup
                             }
 
                         }
-                        CheckupSummaryChart fChartSummary = new CheckupSummaryChart();
+                        CheckupGroupCheckListChart fChartSummary = new CheckupGroupCheckListChart();
                         string title = this.Parameters["Title"].Value.ToString();
                         string year = this.Parameters["Year"].Value.ToString();
                         fChartSummary.Parameters["Header"].Value = "กราฟแสดงผู้ที่มีผลการตรวจปกติ และผลผิดปกติประจำปี " + year

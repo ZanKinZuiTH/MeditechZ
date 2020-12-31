@@ -807,11 +807,29 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupUric.Designer.cs">
       <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedSummary.cs">
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedCheckList.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedSummary.Designer.cs">
-      <DependentUpon>CheckupOccMedSummary.cs</DependentUpon>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccMedCheckList.Designer.cs">
+      <DependentUpon>CheckupOccMedCheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCheckList.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCheckList.Designer.cs">
+      <DependentUpon>CheckupGroupCheckList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedCheckListChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedCheckListChart.Designer.cs">
+      <DependentUpon>CheckupOccmedCheckListChart.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCheckListChart.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCheckListChart.Designer.cs">
+      <DependentUpon>CheckupGroupCheckListChart.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.cs">
       <SubType>Component</SubType>
@@ -819,23 +837,11 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupSummary.Designer.cs">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.cs">
+    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.Designer.cs">
-      <DependentUpon>CheckupOccmedSummaryChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupSummaryChart.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheckupSummaryChart.Designer.cs">
-      <DependentUpon>CheckupSummaryChart.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .Designer.cs">
-      <DependentUpon>CheuckupGroupBackStrength .cs</DependentUpon>
+    <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
+      <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -2564,20 +2570,23 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupUric.resx">
       <DependentUpon>CheckupGroupUric.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccMedSummary.resx">
-      <DependentUpon>CheckupOccMedSummary.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccMedCheckList.resx">
+      <DependentUpon>CheckupOccMedCheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCheckList.resx">
+      <DependentUpon>CheckupGroupCheckList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccmedCheckListChart.resx">
+      <DependentUpon>CheckupOccmedCheckListChart.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCheckListChart.resx">
+      <DependentUpon>CheckupGroupCheckListChart.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummary.resx">
       <DependentUpon>CheckupSummary.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupOccmedSummaryChart.resx">
-      <DependentUpon>CheckupOccmedSummaryChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupSummaryChart.resx">
-      <DependentUpon>CheckupSummaryChart.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength .resx">
-      <DependentUpon>CheuckupGroupBackStrength .cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
+      <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>

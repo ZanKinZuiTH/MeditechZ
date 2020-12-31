@@ -361,7 +361,15 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
+                        if (model.OwnerOrganisationUID == 24) //Traditional Chinese Medicine
+                        {
+                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 17 && p.StatusFlag == "A"); //BRXG Polyclinic
+                        }
+                        else
+                        {
+                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
+                        }
+
                     }
 
                     if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))

@@ -431,19 +431,16 @@ namespace MediTech.ViewModels
                                 {
                                     string[] values = ruleItem.Text.Split(',');
                                     string[] resultValues = resultItemValue.ResultValue.Split(',');
-                                    //if (values.Any(p => p.ToLower().Trim() == resultItemValue.ResultValue.ToLower().Trim()))
-                                    //{
-                                    //    isConrrect = true;
-                                    //    if (ruleItem.Operator == "Or")
-                                    //    {
-                                    //        break;
-                                    //    }
-                                    //}
                                     if (values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
                                     {
                                         isConrrect = true;
                                         if (ruleItem.Operator == "Or")
                                         {
+                                            var ruleDescription = ruleCheckup.CheckupRuleDescription.FirstOrDefault();
+                                            if (ruleDescription != null && ruleDescription.ThaiDescription.Contains("{0}"))
+                                            {
+                                                ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", ruleItem.Text);
+                                            }
                                             break;
                                         }
                                     }
@@ -512,10 +509,10 @@ namespace MediTech.ViewModels
                                             }
 
                                         }
-                                        else if(resultItemValue.ResultValue.Contains("<") 
+                                        else if (resultItemValue.ResultValue.Contains("<")
                                             || resultItemValue.ResultValue.Contains(">"))
                                         {
-                                            string value = resultItemValue.ResultValue.Replace("<", "").Replace(">","");
+                                            string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "");
                                             if (double.TryParse(value.Trim(), out resultValueNumber))
                                             {
                                                 if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
@@ -576,8 +573,8 @@ namespace MediTech.ViewModels
                     string description = string.Empty;
                     string recommand = string.Empty;
 
-                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882 
-                        : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885  
+                    int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882
+                        : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885
                         : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 3124) ? 3124 : 2883;
                     foreach (var item in ruleCheckupIsCorrect)
                     {
@@ -856,7 +853,7 @@ namespace MediTech.ViewModels
                         Conclusion = g.FirstOrDefault().Conclusion,
                         CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
                     });
-  
+
                     foreach (var patient in patientData)
                     {
                         DataRow newRow = dtResult.NewRow();
