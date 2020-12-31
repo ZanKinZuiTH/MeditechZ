@@ -157,6 +157,11 @@ namespace MediTech.Model.Report
         public string PAR190 { get; set; } //Anti hva 
         public string PAR191 { get; set; } // coi Anti hav
         public string PAR192 { get; set; } //Anti Hav เชื้อ
+
+        public string PAR199 { get; set; } //arsenic in urine
+        public string PAR75 { get; set; } //lead in blood
+        public string PAR132 { get; set; } //Chromium in Urine
+        public string PAR125 { get; set; } //xylene
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
