@@ -597,7 +597,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB519")
                         || p.RequestItemCode.Contains("LAB558")
                         || p.RequestItemCode.Contains("LAB518")
-                        || p.RequestItemCode.Contains("LAB560"))
+                        || p.RequestItemCode.Contains("LAB560")
+                        || p.RequestItemCode.Contains("LAB561")) //Arsenic
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1247,6 +1248,7 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page8.RowIsopropanol.Visible = false;
                 page8.RowStyreneUrine.Visible = false;
                 page8.RowAluminiumBlood.Visible = false;
+                page8.RowArsenic.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1452,6 +1454,16 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                     }
                     #endregion
 
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199") != null)
+                    {
+                        page8.RowArsenic.Visible = true;
+                        page8.ArsenicRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199")?.ReferenceRange;
+                        page8.Arsenic1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year1)?.ResultValue;
+                        page8.Arsenic2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year2)?.ResultValue;
+                        page8.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
+                    }
+
+
                 }
                 else
                 {
@@ -1547,7 +1559,6 @@ namespace MediTech.Reports.Operating.Patient.CheckupBookReport
                 page7.cellOtherYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
-
         #endregion
 
         private void GenerateTimus(IEnumerable<PatientResultComponentModel> TimusResult)

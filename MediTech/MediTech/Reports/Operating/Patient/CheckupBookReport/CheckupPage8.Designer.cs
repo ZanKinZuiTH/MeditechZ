@@ -161,6 +161,12 @@
             this.AluminiumBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.AluminiumBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.AluminiumBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowArsenic = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ArsenicRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Arsenic1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Arsenic2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Arsenic3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbStool = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -235,7 +241,7 @@
             this.xrLabel5,
             this.xrLabel1,
             this.xrLabel2});
-            this.Detail.HeightF = 432.5001F;
+            this.Detail.HeightF = 458.119F;
             this.Detail.LockedInUserDesigner = true;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -507,8 +513,9 @@
             this.RowIsopropanol,
             this.RowNickelUrine,
             this.RowStyreneUrine,
-            this.RowAluminiumBlood});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 349.9777F);
+            this.RowAluminiumBlood,
+            this.RowArsenic});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 368.8488F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -829,7 +836,7 @@
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.StylePriority.UseFont = false;
             this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "Lead in blood";
+            this.xrTableCell16.Text = "Lead in Blood";
             this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell16.Weight = 1.0081393020274905D;
             // 
@@ -1627,6 +1634,63 @@
             this.AluminiumBlood3.StylePriority.UseTextAlignment = false;
             this.AluminiumBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.AluminiumBlood3.Weight = 0.49654431607582589D;
+            // 
+            // RowArsenic
+            // 
+            this.RowArsenic.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell40,
+            this.ArsenicRange,
+            this.Arsenic1,
+            this.Arsenic2,
+            this.Arsenic3});
+            this.RowArsenic.Name = "RowArsenic";
+            this.RowArsenic.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell40
+            // 
+            this.xrTableCell40.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell40.Name = "xrTableCell40";
+            this.xrTableCell40.StylePriority.UseFont = false;
+            this.xrTableCell40.StylePriority.UseTextAlignment = false;
+            this.xrTableCell40.Text = "Arsenic in Urine";
+            this.xrTableCell40.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell40.Weight = 1.0081393020274905D;
+            // 
+            // ArsenicRange
+            // 
+            this.ArsenicRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.ArsenicRange.Name = "ArsenicRange";
+            this.ArsenicRange.StylePriority.UseFont = false;
+            this.ArsenicRange.StylePriority.UseTextAlignment = false;
+            this.ArsenicRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ArsenicRange.Weight = 1.0314162206887314D;
+            // 
+            // Arsenic1
+            // 
+            this.Arsenic1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Arsenic1.Name = "Arsenic1";
+            this.Arsenic1.StylePriority.UseFont = false;
+            this.Arsenic1.StylePriority.UseTextAlignment = false;
+            this.Arsenic1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Arsenic1.Weight = 0.52909351643135161D;
+            // 
+            // Arsenic2
+            // 
+            this.Arsenic2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Arsenic2.Name = "Arsenic2";
+            this.Arsenic2.StylePriority.UseFont = false;
+            this.Arsenic2.StylePriority.UseTextAlignment = false;
+            this.Arsenic2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Arsenic2.Weight = 0.55147320971800662D;
+            // 
+            // Arsenic3
+            // 
+            this.Arsenic3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Arsenic3.Name = "Arsenic3";
+            this.Arsenic3.StylePriority.UseFont = false;
+            this.Arsenic3.StylePriority.UseTextAlignment = false;
+            this.Arsenic3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Arsenic3.Weight = 0.49654431607582589D;
             // 
             // tbStool
             // 
@@ -2447,5 +2511,11 @@
         public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood1;
         public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood2;
         public DevExpress.XtraReports.UI.XRTableCell AluminiumBlood3;
+        public DevExpress.XtraReports.UI.XRTableRow RowArsenic;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
+        public DevExpress.XtraReports.UI.XRTableCell ArsenicRange;
+        public DevExpress.XtraReports.UI.XRTableCell Arsenic1;
+        public DevExpress.XtraReports.UI.XRTableCell Arsenic2;
+        public DevExpress.XtraReports.UI.XRTableCell Arsenic3;
     }
 }
