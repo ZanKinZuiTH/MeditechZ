@@ -195,6 +195,12 @@ namespace MediTech.ViewModels
             get { return _PreviewBookCheckupCommand ?? (_PreviewBookCheckupCommand = new RelayCommand(PreviewBookCheckup)); }
         }
 
+        private RelayCommand _PreviewAudiogramGraphCommand;
+        public RelayCommand PreviewAudiogramGraphCommand
+        {
+            get { return _PreviewAudiogramGraphCommand ?? (_PreviewAudiogramGraphCommand = new RelayCommand(PreviewAudiogramGraph)); }
+        }
+
         #endregion
 
         #region Method
@@ -357,6 +363,27 @@ namespace MediTech.ViewModels
                 }
             }
 
+        }
+
+        void PreviewAudiogramGraph()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    Reports.Operating.Checkup.AudiogramGraph rpt = new Reports.Operating.Checkup.AudiogramGraph();
+                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+
+                    SelectPatientCheckupResult.Remove(item);
+                }
+            }
         }
 
         void PrintAuto()

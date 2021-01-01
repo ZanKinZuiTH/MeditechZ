@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EnterMuscleResultViewModel : MediTechViewModelBase
+    public class EnterPhysicalFitnessTestViewModel : MediTechViewModelBase
     {
         #region Properties
         private string _RequestItemName;
@@ -67,7 +67,7 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             base.OnLoaded();
-            (this.View as EnterCheckupTestResult).patientBanner.SetPatientBanner(RequestModel);
+            (this.View as EnterPhysicalFitnessTest).patientBanner.SetPatientBanner(RequestModel);
         }
 
         public void AssignModel(RequestListModel request)
@@ -122,14 +122,14 @@ namespace MediTech.ViewModels
         }
         public void CalculateMuscleValue()
         {
-            double height = Convert.ToDouble(this.RequestModel.Height);
+            double weight = Convert.ToDouble(this.RequestModel.Weight);
             try
             {
                 var val_back_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS1" || p.ResultItemName == "Value Back Strength ");
                 var back_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS2" || p.ResultItemName == "Back Strength ");
 
 
-                back_Strength.ResultValue = (Math.Round(double.Parse(val_back_Strength.ResultValue) / height)).ToString();
+                back_Strength.ResultValue = (Math.Round(double.Parse(val_back_Strength.ResultValue) / weight,2)).ToString();
             }
             catch (Exception)
             {

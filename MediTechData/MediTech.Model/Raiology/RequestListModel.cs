@@ -19,6 +19,7 @@ namespace MediTech.Model
         public string PatientName { get; set; }
         public string Gender { get; set; }
         public double Height { get; set; }
+        public double Weight { get; set; }
         public int SEXXXUID { get; set; }
         public DateTime? BirthDate { get; set; }
         public string BirthDateString

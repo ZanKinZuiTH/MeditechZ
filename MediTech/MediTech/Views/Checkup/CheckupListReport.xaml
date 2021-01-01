@@ -163,19 +163,23 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Horizontal">
-                    <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton Width="150" Height="30" Command="{Binding RiskBookCommand}">
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                    <dxlc:LayoutItem >
+                        <dx:SimpleButton Width="130" Height="30" Command="{Binding PreviewAudiogramGraphCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="Preview Audiogram" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dx:SimpleButton Width="120" Height="30" Command="{Binding RiskBookCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Preview Risk Book" VerticalAlignment="Center"/>
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-
-                <dxlc:LayoutGroup Orientation="Horizontal">
-                    <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton Width="150" Height="30" Command="{Binding PreviewBookCheckupCommand}">
+                    <dxlc:LayoutItem >
+                        <dx:SimpleButton Width="145" Height="30" Command="{Binding PreviewBookCheckupCommand}">
                             <StackPanel Orientation="Horizontal">
                                 <TextBlock Text="Preview Checkup book" VerticalAlignment="Center"/>
                             </StackPanel>

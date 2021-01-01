@@ -646,7 +646,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("AudiogramResult")]
         [HttpGet]
-        public List<PatientResultComponentModel> AudiogramResult(long patientUID, long patientVisitUID, long payorDetailUID)
+        public List<PatientResultComponentModel> AudiogramResult(long patientUID, long patientVisitUID)
         {
             List<PatientResultComponentModel> data = (from rst in db.ResultComponent
                                                       join rs in db.Result

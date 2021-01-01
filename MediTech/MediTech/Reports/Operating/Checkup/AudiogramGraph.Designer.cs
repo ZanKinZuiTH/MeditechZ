@@ -28,11 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AudiogramGraph));
             DevExpress.XtraCharts.XYDiagram xyDiagram1 = new DevExpress.XtraCharts.XYDiagram();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel1 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel2 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel3 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel4 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel5 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel6 = new DevExpress.XtraCharts.CustomAxisLabel();
+            DevExpress.XtraCharts.CustomAxisLabel customAxisLabel7 = new DevExpress.XtraCharts.CustomAxisLabel();
             DevExpress.XtraCharts.Series series1 = new DevExpress.XtraCharts.Series();
             DevExpress.XtraCharts.LineSeriesView lineSeriesView1 = new DevExpress.XtraCharts.LineSeriesView();
+            DevExpress.XtraCharts.Series series2 = new DevExpress.XtraCharts.Series();
+            DevExpress.XtraCharts.LineSeriesView lineSeriesView2 = new DevExpress.XtraCharts.LineSeriesView();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
@@ -43,41 +51,40 @@
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbPatientName = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbAge = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbGender = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbBirthDttm = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbWeight = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbHeight = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbStartDttm = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrChart1 = new DevExpress.XtraReports.UI.XRChart();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.audioChartLine = new DevExpress.XtraReports.UI.XRChart();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.audioChartLine)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -91,7 +98,7 @@
             this.xrLabel2,
             this.xrTable1,
             this.xrLabel3,
-            this.xrChart1});
+            this.audioChartLine});
             this.Detail.HeightF = 468.3333F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -187,14 +194,14 @@
             // 
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell7,
-            this.xrTableCell1,
+            this.lbPatientName,
             this.xrTableCell2,
-            this.xrTableCell17,
+            this.lbAge,
             this.xrTableCell3,
             this.xrTableCell4,
-            this.xrTableCell6,
+            this.lbGender,
             this.xrTableCell19,
-            this.xrTableCell18,
+            this.lbBirthDttm,
             this.xrTableCell5,
             this.xrTableCell8});
             this.xrTableRow1.Name = "xrTableRow1";
@@ -212,18 +219,16 @@
             this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell7.Weight = 0.74166671752929692D;
             // 
-            // xrTableCell1
+            // lbPatientName
             // 
-            this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
-            this.xrTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell1.StylePriority.UseFont = false;
-            this.xrTableCell1.StylePriority.UsePadding = false;
-            this.xrTableCell1.StylePriority.UseTextAlignment = false;
-            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell1.Weight = 1.9649998474121095D;
+            this.lbPatientName.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbPatientName.Name = "lbPatientName";
+            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbPatientName.StylePriority.UseFont = false;
+            this.lbPatientName.StylePriority.UsePadding = false;
+            this.lbPatientName.StylePriority.UseTextAlignment = false;
+            this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbPatientName.Weight = 1.9649998474121095D;
             // 
             // xrTableCell2
             // 
@@ -237,18 +242,16 @@
             this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell2.Weight = 0.29333343505859383D;
             // 
-            // xrTableCell17
+            // lbAge
             // 
-            this.xrTableCell17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
-            this.xrTableCell17.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell17.StylePriority.UseFont = false;
-            this.xrTableCell17.StylePriority.UsePadding = false;
-            this.xrTableCell17.StylePriority.UseTextAlignment = false;
-            this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell17.Weight = 0.3333331298828125D;
+            this.lbAge.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbAge.Name = "lbAge";
+            this.lbAge.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbAge.StylePriority.UseFont = false;
+            this.lbAge.StylePriority.UsePadding = false;
+            this.lbAge.StylePriority.UseTextAlignment = false;
+            this.lbAge.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbAge.Weight = 0.3333331298828125D;
             // 
             // xrTableCell3
             // 
@@ -274,18 +277,16 @@
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell4.Weight = 0.29166717529296871D;
             // 
-            // xrTableCell6
+            // lbGender
             // 
-            this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
-            this.xrTableCell6.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell6.StylePriority.UseFont = false;
-            this.xrTableCell6.StylePriority.UsePadding = false;
-            this.xrTableCell6.StylePriority.UseTextAlignment = false;
-            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell6.Weight = 0.72499847412109375D;
+            this.lbGender.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbGender.Name = "lbGender";
+            this.lbGender.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbGender.StylePriority.UseFont = false;
+            this.lbGender.StylePriority.UsePadding = false;
+            this.lbGender.StylePriority.UseTextAlignment = false;
+            this.lbGender.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbGender.Weight = 0.72499847412109375D;
             // 
             // xrTableCell19
             // 
@@ -299,18 +300,16 @@
             this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell19.Weight = 0.92500030517578125D;
             // 
-            // xrTableCell18
+            // lbBirthDttm
             // 
-            this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "BirthDttm", "{0:MM/dd/yyyy}")});
-            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.StylePriority.UsePadding = false;
-            this.xrTableCell18.StylePriority.UseTextAlignment = false;
-            this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell18.Weight = 0.99166656494140637D;
+            this.lbBirthDttm.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbBirthDttm.Name = "lbBirthDttm";
+            this.lbBirthDttm.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbBirthDttm.StylePriority.UseFont = false;
+            this.lbBirthDttm.StylePriority.UsePadding = false;
+            this.lbBirthDttm.StylePriority.UseTextAlignment = false;
+            this.lbBirthDttm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbBirthDttm.Weight = 0.99166656494140637D;
             // 
             // xrTableCell5
             // 
@@ -339,11 +338,11 @@
             // 
             this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell9,
-            this.xrTableCell10,
+            this.lbWeight,
             this.xrTableCell11,
-            this.xrTableCell12,
+            this.lbHeight,
             this.xrTableCell13,
-            this.xrTableCell14,
+            this.lbStartDttm,
             this.xrTableCell15,
             this.xrTableCell16});
             this.xrTableRow2.Name = "xrTableRow2";
@@ -361,18 +360,16 @@
             this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell9.Weight = 0.55833347320556637D;
             // 
-            // xrTableCell10
+            // lbWeight
             // 
-            this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Weight")});
-            this.xrTableCell10.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell10.StylePriority.UseFont = false;
-            this.xrTableCell10.StylePriority.UsePadding = false;
-            this.xrTableCell10.StylePriority.UseTextAlignment = false;
-            this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell10.Weight = 0.774999656677246D;
+            this.lbWeight.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbWeight.Name = "lbWeight";
+            this.lbWeight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbWeight.StylePriority.UseFont = false;
+            this.lbWeight.StylePriority.UsePadding = false;
+            this.lbWeight.StylePriority.UseTextAlignment = false;
+            this.lbWeight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbWeight.Weight = 0.774999656677246D;
             // 
             // xrTableCell11
             // 
@@ -386,18 +383,16 @@
             this.xrTableCell11.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell11.Weight = 0.46666687011718766D;
             // 
-            // xrTableCell12
+            // lbHeight
             // 
-            this.xrTableCell12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Height")});
-            this.xrTableCell12.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell12.StylePriority.UseFont = false;
-            this.xrTableCell12.StylePriority.UsePadding = false;
-            this.xrTableCell12.StylePriority.UseTextAlignment = false;
-            this.xrTableCell12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell12.Weight = 0.90666656494140607D;
+            this.lbHeight.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbHeight.Name = "lbHeight";
+            this.lbHeight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbHeight.StylePriority.UseFont = false;
+            this.lbHeight.StylePriority.UsePadding = false;
+            this.lbHeight.StylePriority.UseTextAlignment = false;
+            this.lbHeight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbHeight.Weight = 0.90666656494140607D;
             // 
             // xrTableCell13
             // 
@@ -411,18 +406,16 @@
             this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell13.Weight = 0.43499908447265612D;
             // 
-            // xrTableCell14
+            // lbStartDttm
             // 
-            this.xrTableCell14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "StartDttm", "{0:MM/dd/yy}")});
-            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell14.StylePriority.UseFont = false;
-            this.xrTableCell14.StylePriority.UsePadding = false;
-            this.xrTableCell14.StylePriority.UseTextAlignment = false;
-            this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell14.Weight = 1.4083328247070313D;
+            this.lbStartDttm.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbStartDttm.Name = "lbStartDttm";
+            this.lbStartDttm.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbStartDttm.StylePriority.UseFont = false;
+            this.lbStartDttm.StylePriority.UsePadding = false;
+            this.lbStartDttm.StylePriority.UseTextAlignment = false;
+            this.lbStartDttm.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbStartDttm.Weight = 1.4083328247070313D;
             // 
             // xrTableCell15
             // 
@@ -459,32 +452,60 @@
             this.xrLabel3.Text = "การตรวจสมรรถภาพการได้ยิน ";
             this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // xrChart1
+            // audioChartLine
             // 
-            this.xrChart1.BorderColor = System.Drawing.Color.Black;
-            this.xrChart1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrChart1.DataSource = this.objectDataSource1;
+            this.audioChartLine.BorderColor = System.Drawing.Color.Black;
+            this.audioChartLine.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            xyDiagram1.AxisX.CrosshairAxisLabelOptions.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            customAxisLabel1.AxisValueSerializable = "500";
+            customAxisLabel1.Name = "500";
+            customAxisLabel2.AxisValueSerializable = "1000";
+            customAxisLabel2.Name = "1000";
+            customAxisLabel3.AxisValueSerializable = "2000";
+            customAxisLabel3.Name = "2000";
+            customAxisLabel4.AxisValueSerializable = "3000";
+            customAxisLabel4.Name = "3000";
+            customAxisLabel5.AxisValueSerializable = "4000";
+            customAxisLabel5.Name = "4000";
+            customAxisLabel6.AxisValueSerializable = "6000";
+            customAxisLabel6.Name = "6000";
+            customAxisLabel7.AxisValueSerializable = "8000";
+            customAxisLabel7.Name = "8000";
+            xyDiagram1.AxisX.CustomLabels.AddRange(new DevExpress.XtraCharts.CustomAxisLabel[] {
+            customAxisLabel1,
+            customAxisLabel2,
+            customAxisLabel3,
+            customAxisLabel4,
+            customAxisLabel5,
+            customAxisLabel6,
+            customAxisLabel7});
+            xyDiagram1.AxisX.NumericScaleOptions.AggregateFunction = DevExpress.XtraCharts.AggregateFunction.None;
+            xyDiagram1.AxisX.NumericScaleOptions.ScaleMode = DevExpress.XtraCharts.ScaleMode.Automatic;
+            xyDiagram1.AxisX.Title.Visibility = DevExpress.Utils.DefaultBoolean.Default;
             xyDiagram1.AxisX.VisibleInPanesSerializable = "-1";
             xyDiagram1.AxisY.VisibleInPanesSerializable = "-1";
             xyDiagram1.DefaultPane.EnableAxisXScrolling = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.DefaultPane.EnableAxisXZooming = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.DefaultPane.EnableAxisYScrolling = DevExpress.Utils.DefaultBoolean.False;
             xyDiagram1.DefaultPane.EnableAxisYZooming = DevExpress.Utils.DefaultBoolean.False;
-            this.xrChart1.Diagram = xyDiagram1;
-            this.xrChart1.Legend.Name = "Default Legend";
-            this.xrChart1.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            this.xrChart1.LocationFloat = new DevExpress.Utils.PointFloat(305.1667F, 101F);
-            this.xrChart1.Name = "xrChart1";
-            series1.Name = "Series 1";
+            this.audioChartLine.Diagram = xyDiagram1;
+            this.audioChartLine.Legend.AlignmentHorizontal = DevExpress.XtraCharts.LegendAlignmentHorizontal.Right;
+            this.audioChartLine.Legend.AlignmentVertical = DevExpress.XtraCharts.LegendAlignmentVertical.BottomOutside;
+            this.audioChartLine.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
+            this.audioChartLine.Legend.Name = "Default Legend";
+            this.audioChartLine.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
+            this.audioChartLine.LocationFloat = new DevExpress.Utils.PointFloat(305.1667F, 101F);
+            this.audioChartLine.Name = "audioChartLine";
+            series1.Name = "ขวา";
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             series1.View = lineSeriesView1;
-            this.xrChart1.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
-        series1};
-            this.xrChart1.SizeF = new System.Drawing.SizeF(511.8333F, 200F);
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.PatientResultComponentModel);
-            this.objectDataSource1.Name = "objectDataSource1";
+            series2.Name = "ซ้าย";
+            lineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            series2.View = lineSeriesView2;
+            this.audioChartLine.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
+        series1,
+        series2};
+            this.audioChartLine.SizeF = new System.Drawing.SizeF(511.8333F, 200F);
             // 
             // TopMargin
             // 
@@ -518,7 +539,8 @@
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(27.66668F, 21.00001F);
             this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(209.1667F, 60.66666F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
             // BottomMargin
@@ -542,22 +564,12 @@
             this.PatientVisitUID.ValueInfo = "0";
             this.PatientVisitUID.Visible = false;
             // 
-            // PayorDetailUID
-            // 
-            this.PayorDetailUID.Name = "PayorDetailUID";
-            this.PayorDetailUID.Type = typeof(int);
-            this.PayorDetailUID.ValueInfo = "0";
-            this.PayorDetailUID.Visible = false;
-            // 
             // AudiogramGraph
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
             this.TopMargin,
             this.BottomMargin});
-            this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
-            this.objectDataSource1});
-            this.DataSource = this.objectDataSource1;
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 93, 1);
             this.PageHeight = 583;
@@ -565,15 +577,15 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
-            this.PatientVisitUID,
-            this.PayorDetailUID});
+            this.PatientVisitUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(xyDiagram1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(lineSeriesView1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(series1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrChart1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(lineSeriesView2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(series2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.audioChartLine)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -593,31 +605,29 @@
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+        private DevExpress.XtraReports.UI.XRTableCell lbPatientName;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
+        private DevExpress.XtraReports.UI.XRTableCell lbAge;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
+        private DevExpress.XtraReports.UI.XRTableCell lbGender;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
+        private DevExpress.XtraReports.UI.XRTableCell lbBirthDttm;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
+        private DevExpress.XtraReports.UI.XRTableCell lbWeight;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.UI.XRTableCell lbHeight;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell lbStartDttm;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         protected DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRChart xrChart1;
+        private DevExpress.XtraReports.UI.XRChart audioChartLine;
         private DevExpress.XtraReports.Parameters.Parameter PatientUID;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
-        private DevExpress.XtraReports.Parameters.Parameter PayorDetailUID;
-        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
     }
 }

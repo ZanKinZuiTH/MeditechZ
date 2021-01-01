@@ -76,10 +76,10 @@ namespace MediTech.Views
                             (reviewOccu.DataContext as EnterOccuVisionTestResultViewModel).AssignModel(row);
                             reviewViewModel = (EnterOccuVisionTestResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewOccu, false, true);
                             break;
-                        case "Pulmonary Function Test":
-                            EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
-                            (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(row);
-                            reviewViewModel = (EnterPulmonaryResultViewModel)viewModel.LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
+                        case "Physical Fitness Test":
+                            EnterPhysicalFitnessTest reviewFitnessTest = new EnterPhysicalFitnessTest();
+                            (reviewFitnessTest.DataContext as EnterPhysicalFitnessTestViewModel).AssignModel(row);
+                            reviewViewModel = (EnterPhysicalFitnessTestViewModel)viewModel.LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                             break;
                         default:
                             EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();

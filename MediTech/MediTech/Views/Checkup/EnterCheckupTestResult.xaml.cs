@@ -25,23 +25,7 @@ namespace MediTech.Views
         public EnterCheckupTestResult()
         {
             InitializeComponent();
-            gvResult.CellValueChanged += GvResult_CellValueChanged;
         }
 
-        private void GvResult_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
-        {
-            var rowData = e.Row as ResultComponentModel;
-            if (rowData != null)
-            {
-                if (rowData.ResultItemCode == "MUSCLEBA")
-                {
-                    if (this.DataContext is EnterMuscleResultViewModel)
-                    {
-                        (this.DataContext as EnterMuscleResultViewModel).CalculateMuscleValue();
-                    }
-
-                }
-            }
-        }
     }
 }

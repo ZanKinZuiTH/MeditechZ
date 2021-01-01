@@ -1116,6 +1116,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EnterPhysicalFitnessTestViewModel EnterPhysicalFitnessTestViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterPhysicalFitnessTestViewModel>())
+                    SimpleIoc.Default.Register<EnterPhysicalFitnessTestViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterPhysicalFitnessTestViewModel>();
+            }
+        }
+
         public EnterAudiogramResultViewModel EnterAudiogramResultViewModel
         {
             get

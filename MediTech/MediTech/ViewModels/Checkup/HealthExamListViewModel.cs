@@ -458,9 +458,9 @@ namespace MediTech.ViewModels
                                     reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                                     break;
                                 case "Physical Fitness Test":
-                                    EnterCheckupTestResult reviewMuscle = new EnterCheckupTestResult();
-                                    (reviewMuscle.DataContext as EnterCheckupTestResultViewModel).AssignModel(item);
-                                    reviewViewModel = (EnterCheckupTestResultViewModel)LaunchViewDialogNonPermiss(reviewMuscle, false, true);
+                                    EnterPhysicalFitnessTest reviewFitnessTest = new EnterPhysicalFitnessTest();
+                                    (reviewFitnessTest.DataContext as EnterPhysicalFitnessTestViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterPhysicalFitnessTestViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                                     break;
                                 default:
                                     EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
@@ -528,6 +528,11 @@ namespace MediTech.ViewModels
                                 EnterPulmonaryResult reviewPulmonary = new EnterPulmonaryResult();
                                 (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
+                                break;
+                            case "Physical Fitness Test":
+                                EnterPhysicalFitnessTest reviewFitnessTest = new EnterPhysicalFitnessTest();
+                                (reviewFitnessTest.DataContext as EnterPhysicalFitnessTestViewModel).AssignModel(SelectCheckupExam);
+                                reviewViewModel = (EnterPhysicalFitnessTestViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                                 break;
                             default:
                                 EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
