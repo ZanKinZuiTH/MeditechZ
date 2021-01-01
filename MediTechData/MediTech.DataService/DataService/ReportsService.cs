@@ -179,6 +179,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientResultComponentModel> AudiogramResult(long patientUID, long patientVisitUID, long payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Report/AudiogramResult?patientUID={0}&patientVisitUID={1}&payorDetailUID={2}", patientUID,patientVisitUID, payorDetailUID);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
         public MedicalCertificateModel PrintMedicalCertificate(long patientVisitUID)
         {
             string requestApi = string.Format("Api/Report/PrintMedicalCertificate?patientVisitUID={0}", patientVisitUID);

@@ -644,6 +644,40 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("AudiogramResult")]
+        [HttpGet]
+        public List<PatientResultComponentModel> AudiogramResult(long patientUID, long patientVisitUID, long payorDetailUID)
+        {
+            List<PatientResultComponentModel> data = (from rst in db.ResultComponent
+                                                      join rs in db.Result
+                                                      on rst.ResultUID equals rs.UID
+                                                      join pv in db.PatientVisit
+                                                      on rs.PatientVisitUID equals pv.UID
+                                                      join pt in db.Patient
+                                                      on pv.PatientUID equals pt.UID
+                                                      join vts in db.PatientVitalSign
+                                                      on pv.UID equals vts.PatientVisitUID
+                                                      where rst.StatusFlag == "A"
+                                                      && rs.StatusFlag == "A"
+                                                      && pv.StatusFlag == "A"
+                                                      && rs.RequestItemCode == "AUDIO"
+                                                      && rs.PatientVisitUID == patientVisitUID
+
+                                                      select new PatientResultComponentModel
+                                                      {
+                                                          PatientName = SqlFunction.fGetPatientName(pt.UID),
+                                                          Age = pt.DOBDttm != null ? SqlFunction.fGetAge(pt.DOBDttm.Value) : "",
+                                                          Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
+                                                          BirthDttm = pt.DOBDttm,
+                                                          ResultItemCode = rst.ResultItemCode,
+                                                          ResultItemName = rst.ResultItemName,
+                                                          ResultValue = rst.ResultValue,
+                                                          Weight = vts.Weight,
+                                                          Height = vts.Height
+                                                      }).ToList();
+            return data;
+        }
+
 
         #region Inventory
 
