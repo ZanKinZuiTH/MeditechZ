@@ -37,97 +37,39 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
             long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
-            List<CheckupBookModel> data = DataService.Reports.PrintCheckupBook(patientUID, payorDetailUID);
+            PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
 
-            if (data != null && data.Count > 0)
+            if (data.PatientInfomation != null)
             {
-                lbRunNo.Text = data.FirstOrDefault().PatientID;
-                lbName.Text = data.FirstOrDefault().PatientName;
-                lbCompany.Text = data.FirstOrDefault().PayorName;
-                lbBranch.Text = data.FirstOrDefault().CompanyName;
-                lbDeparment.Text = data.FirstOrDefault().Department;
-                lbEmployeeID.Text = data.FirstOrDefault().EmployeeID;
-                lbDateVisit.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
+                var patient = data.PatientInfomation;
+                var groupResult = data.GroupResult;
 
-                page2.lbNameP2.Text = data.FirstOrDefault().PatientName;
-                page2.lbBrithDateP2.Text = data.FirstOrDefault().BirthDttm != null ? data.FirstOrDefault().BirthDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
-                page2.lbIDCard.Text = data.FirstOrDefault().NationalID;
-                page2.lbGenderP2.Text = data.FirstOrDefault().Gender;
+                lbRunNo.Text = patient.PatientID;
+                lbName.Text = patient.PatientName;
+                lbCompany.Text = patient.PayorName;
+                lbBranch.Text = patient.CompanyName;
+                lbDeparment.Text = patient.Department;
+                lbEmployeeID.Text = patient.EmployeeID;
+                lbDateVisit.Text = patient.StartDttm != null ? patient.StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
 
-                page4.lbBP.Text = (data.FirstOrDefault().BPSys != null ? data.FirstOrDefault().BPSys.ToString() : "") + (data.FirstOrDefault().BPDio != null ? "/" + data.FirstOrDefault().BPDio.ToString() : "");
-                page4.lbPulse.Text = data.FirstOrDefault().Pulse != null ? data.FirstOrDefault().Pulse.ToString() + " ครั้ง/นาที" : "";
-                page4.lbHeight.Text = data.FirstOrDefault().Height != null ? data.FirstOrDefault().Height.ToString() + " cm." : "";
-                page4.lbWeight.Text = data.FirstOrDefault().Weight != null ? data.FirstOrDefault().Weight.ToString() + " kg." : "";
-                page4.lbBMI.Text = data.FirstOrDefault().BMI != null ? data.FirstOrDefault().BMI.ToString() + " kg/m2" : "";
+                page2.lbNameP2.Text = patient.PatientName;
+                page2.lbBrithDateP2.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
+                page2.lbIDCard.Text = patient.NationalID;
+                page2.lbGenderP2.Text = patient.Gender;
 
-                page4.lbEye.Text = data.FirstOrDefault().Eyes != null ? data.FirstOrDefault().Eyes.ToString() : "";
-                page4.lbEar.Text = data.FirstOrDefault().Ears != null ? data.FirstOrDefault().Ears.ToString() : "";
-                page4.lbThroat.Text = data.FirstOrDefault().Throat != null ? data.FirstOrDefault().Throat.ToString() : "";
-                page4.lbNose.Text = data.FirstOrDefault().Nose != null ? data.FirstOrDefault().Nose.ToString() : "";
-                page4.lbTeeth.Text = data.FirstOrDefault().Teeth != null ? data.FirstOrDefault().Teeth.ToString() : "";
-                page4.lbLung.Text = data.FirstOrDefault().Lung != null ? data.FirstOrDefault().Lung.ToString() : "";
-                page4.lbHeart.Text = data.FirstOrDefault().Heart != null ? data.FirstOrDefault().Heart.ToString() : "";
-                page4.lbSkin.Text = data.FirstOrDefault().Skin != null ? data.FirstOrDefault().Skin.ToString() : "";
-                page4.lbThyroid.Text = data.FirstOrDefault().Thyroid != null ? data.FirstOrDefault().Thyroid.ToString() : "";
-                page4.lbSmoke.Text = data.FirstOrDefault().Smoke != null ? data.FirstOrDefault().Smoke.ToString() : "";
-                page4.lbDrugAllergy.Text = data.FirstOrDefault().DrugAllergy != null ? data.FirstOrDefault().DrugAllergy.ToString() : "";
-                page4.lbAlcohol.Text = data.FirstOrDefault().Alcohol != null ? data.FirstOrDefault().Alcohol.ToString() : "";
-                page4.lbPastHistory.Text = data.FirstOrDefault().PersonalHistory != null ? data.FirstOrDefault().PersonalHistory.ToString() : "";
-                page4.lbLymphNode.Text = data.FirstOrDefault().LymphNode != null ? data.FirstOrDefault().LymphNode.ToString() : "";
-
-                page3.PtName.Text = data.FirstOrDefault().PatientName;
-                page4.dateStart.Text = data.FirstOrDefault().StartDttm != null ? data.FirstOrDefault().StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
-
-                #region Lung occmed
-
-                page4.lbFVCPer1.Text = data.FirstOrDefault().FVCPer != null ? data.FirstOrDefault().FVCPer.ToString() + " %" : "";
-                page4.lbFEV1Per1.Text = data.FirstOrDefault().FEV1Per != null ? data.FirstOrDefault().FEV1Per.ToString() + " %" : "";
-                page4.lbFEVPer1.Text = data.FirstOrDefault().FEV1FVCPer != null ? data.FirstOrDefault().FEV1FVCPer.ToString() + " %" : "";
+                page4.lbBP.Text = (patient.BPSys != null ? patient.BPSys.ToString() : "") + (patient.BPDio != null ? "/" + patient.BPDio.ToString() : "");
+                page4.lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " ครั้ง/นาที" : "";
+                page4.lbHeight.Text = patient.Height != null ? patient.Height.ToString() + " cm." : "";
+                page4.lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() + " kg." : "";
+                page4.lbBMI.Text = patient.BMI != null ? patient.BMI.ToString() + " kg/m2" : "";
 
 
-                #endregion
-
-                #region vision occmed
-
-
-                page3.lbFarVision1.Text = data.FirstOrDefault().FarPoint != null ? data.FirstOrDefault().FarPoint.ToString() : "";
-
-                page3.lbNearVision1.Text = data.FirstOrDefault().NearPoint != null ? data.FirstOrDefault().NearPoint.ToString() : "";
-
-                page3.lb3DVision1.Text = data.FirstOrDefault().Depth != null ? data.FirstOrDefault().Depth.ToString() : "";
-
-                page3.lbBalanceEye1.Text = data.FirstOrDefault().Muscle != null ? data.FirstOrDefault().Muscle.ToString() : "";
-
-                page3.lbVisionColor1.Text = data.FirstOrDefault().Color != null ? data.FirstOrDefault().Color.ToString() : "";
-
-                page3.lbFieldVision1.Text = data.FirstOrDefault().Visualfield != null ? data.FirstOrDefault().Visualfield.ToString() : "";
-
-
-
-                #endregion
-
-                #region Audio Test
-                page4.R5001.Text = data.FirstOrDefault().R500Hz != null ? data.FirstOrDefault().R500Hz.ToString() : "";
-                page4.R10001.Text = data.FirstOrDefault().R1000Hz != null ? data.FirstOrDefault().R1000Hz.ToString() : "";
-                page4.R20001.Text = data.FirstOrDefault().R2000Hz != null ? data.FirstOrDefault().R2000Hz.ToString() : "";
-                page4.R30001.Text = data.FirstOrDefault().R3000Hz != null ? data.FirstOrDefault().R3000Hz.ToString() : "";
-                page4.R40001.Text = data.FirstOrDefault().R4000Hz != null ? data.FirstOrDefault().R4000Hz.ToString() : "";
-                page4.R60001.Text = data.FirstOrDefault().R6000Hz != null ? data.FirstOrDefault().R6000Hz.ToString() : "";
-                page4.R80001.Text = data.FirstOrDefault().R8000Hz != null ? data.FirstOrDefault().R8000Hz.ToString() : "";
-
-                page4.L5001.Text = data.FirstOrDefault().L500Hz != null ? data.FirstOrDefault().L500Hz.ToString() : "";
-                page4.L10001.Text = data.FirstOrDefault().L1000Hz != null ? data.FirstOrDefault().L1000Hz.ToString() : "";
-                page4.L20001.Text = data.FirstOrDefault().L2000Hz != null ? data.FirstOrDefault().L2000Hz.ToString() : "";
-                page4.L30001.Text = data.FirstOrDefault().L3000Hz != null ? data.FirstOrDefault().L3000Hz.ToString() : "";
-                page4.L40001.Text = data.FirstOrDefault().L4000Hz != null ? data.FirstOrDefault().L4000Hz.ToString() : "";
-                page4.L60001.Text = data.FirstOrDefault().L6000Hz != null ? data.FirstOrDefault().L6000Hz.ToString() : "";
-                page4.L80001.Text = data.FirstOrDefault().L8000Hz != null ? data.FirstOrDefault().L8000Hz.ToString() : "";
-
-                #endregion
+                page3.PtName.Text = patient.PatientName;
+                page4.dateStart.Text = patient.StartDttm != null ? patient.StartDttm.Value.AddYears(543).ToString("dd/MM/yyyy") : "";
 
                 #region Result Wellness
 
-                page4.lbResult.Text = data.FirstOrDefault().WellnessResult;
+                page4.lbResult.Text = patient.WellnessResult;
                 if (page4.lbResult.Text != null && page4.lbResult.Text.Length > 2000)
                 {
                     page4.lbResult.Font = new Font("Angsana New", 8);
@@ -143,15 +85,17 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 #endregion
 
                 #region radiology
-                if (data.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName)) != null)
+                var radilogy = data.Radiology;
+                if (radilogy.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName)) != null)
                 {
 
-                    if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology") != null)
+                    if (radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest")) != null)
                     {
-                        CheckupBookModel chestXray = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest") && p.RequestItemType == "Radiology");
-                        if (!string.IsNullOrEmpty(chestXray.RadiologyResultText))
+                        ResultRadiologyModel chestXray = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"));
+
+                        if (!string.IsNullOrEmpty(chestXray.PlainText))
                         {
-                            string resultChestThai = TranslateXray(chestXray.RadiologyResultText, chestXray.RadiologyResultStatus, chestXray.RequestItemName);
+                            string resultChestThai = TranslateXray(chestXray.PlainText, chestXray.ResultStatus, chestXray.RequestItemName);
                             if (!string.IsNullOrEmpty(resultChestThai))
                             {
                                 page4.lbChest.Text = resultChestThai;
@@ -168,13 +112,13 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                         page4.lbChest.Text = "-";
                     }
 
-                    if (data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology") != null)
+                    if (radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) != null)
                     {
-                        CheckupBookModel mammoGram = data.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo") && p.RequestItemType == "Radiology");
-                        page4.lbMam.Text = mammoGram.RadiologyResultStatus;
-                        if (!string.IsNullOrEmpty(mammoGram.RadiologyResultText))
+                        ResultRadiologyModel mammoGram = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo"));
+                        page4.lbMam.Text = mammoGram.ResultStatus;
+                        if (!string.IsNullOrEmpty(mammoGram.PlainText))
                         {
-                            string resultChestThai = TranslateXray(mammoGram.RadiologyResultText, mammoGram.RadiologyResultStatus, mammoGram.RequestItemName);
+                            string resultChestThai = TranslateXray(mammoGram.PlainText, mammoGram.ResultStatus, mammoGram.RequestItemName);
                             if (!string.IsNullOrEmpty(resultChestThai))
                             {
                                 page4.lbMam.Text = resultChestThai;
@@ -190,13 +134,13 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                         page4.lbMam.Text = "-";
                     }
 
-                    if (data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology") != null)
+                    if (radilogy.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US"))) != null)
                     {
-                        CheckupBookModel ultrsound = data.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")) && p.RequestItemType == "Radiology");
-                        page3.lbUlt.Text = ultrsound.RadiologyResultStatus;
-                        if (!string.IsNullOrEmpty(ultrsound.RadiologyResultText))
+                        ResultRadiologyModel ultrsound = radilogy.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")));
+                        page3.lbUlt.Text = ultrsound.ResultStatus;
+                        if (!string.IsNullOrEmpty(ultrsound.PlainText))
                         {
-                            string resultChestThai = TranslateXray(ultrsound.RadiologyResultText, ultrsound.RadiologyResultStatus, ultrsound.RequestItemName);
+                            string resultChestThai = TranslateXray(ultrsound.PlainText, ultrsound.ResultStatus, ultrsound.RequestItemName);
                             if (!string.IsNullOrEmpty(resultChestThai))
                             {
                                 page3.lbUlt.Text = resultChestThai;
@@ -214,9 +158,31 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 }
                 #endregion
 
-                page4.lbEKGRecommend.Text = data.FirstOrDefault().EkgConclusion != null ? data.FirstOrDefault().EkgConclusion.ToString() : "";
+                page4.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
+                
 
-                List<PatientResultComponentModel> labCompare = DataService.Reports.CheckupLabCompare(patientUID, payorDetailUID);
+                var occmed = data.MobileResult;
+                if (occmed != null)
+                {
+                    IEnumerable<PatientResultComponentModel> timusResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("TIMUS"));
+                    GenerateTimus(timusResult);
+
+                    IEnumerable<PatientResultComponentModel> AudioResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("AUDIO"));
+                    GenerateAudio(AudioResult);
+
+                    IEnumerable<PatientResultComponentModel> SpiroResult = occmed
+                        .Where(p => p.RequestItemCode.Contains("SPIRO"));
+                    GenerateSpiro(SpiroResult);
+
+                    IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
+                        .Where(p => p.RequestItemCode.Contains("PEXAM"));
+                    GeneratePhysicalExam(PhysicalExam);
+                    
+                }
+
+                var labCompare = data.LabCompare;
                 if (labCompare != null)
                 {
                     #region Complete Blood Count
@@ -247,7 +213,9 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                     IEnumerable<PatientResultComponentModel> ImmunologyTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB451")
                         || p.RequestItemCode.Contains("LAB441")
-                        || p.RequestItemCode.Contains("LAB452"))
+                        || p.RequestItemCode.Contains("LAB452")
+                        || p.RequestItemCode.Contains("LAB512") //เชื้อไวรัสตับอักเสบเอ
+                        || p.RequestItemCode.Contains("LAB554")) //ถูมิไวรัสตับอักเสบเอ
                         .OrderBy(p => p.Year);
                     GenerateImmunology(ImmunologyTestSet);
                     #endregion
@@ -291,22 +259,24 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
 
                     #region Toxicology
                     IEnumerable<PatientResultComponentModel> ToxicoTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB508")
-                        || p.RequestItemCode.Contains("LAB517")
-                        || p.RequestItemCode.Contains("LAB516")
-                        || p.RequestItemCode.Contains("LAB314")
-                        || p.RequestItemCode.Contains("LAB319")
-                        || p.RequestItemCode.Contains("LAB414")
-                        || p.RequestItemCode.Contains("LAB510")
-                        || p.RequestItemCode.Contains("LAB477")
-                        || p.RequestItemCode.Contains("LAB315")
-                        || p.RequestItemCode.Contains("LAB317")
-                        || p.RequestItemCode.Contains("LAB325")
-                        || p.RequestItemCode.Contains("LAB323")
-                        || p.RequestItemCode.Contains("LAB324")
-                        || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558")
-                        || p.RequestItemCode.Contains("LAB518"))
+                        .Where(p => p.RequestItemCode.Contains("LAB508") //Aluminium in Urine
+                        || p.RequestItemCode.Contains("LAB517") //Chromium in urine
+                        || p.RequestItemCode.Contains("LAB516") //Nickel in blood
+                        || p.RequestItemCode.Contains("LAB314") //Toluene (Urine)
+                        || p.RequestItemCode.Contains("LAB319") //Xylene in Urine
+                        || p.RequestItemCode.Contains("LAB414") //Lead (Blood)
+                        || p.RequestItemCode.Contains("LAB510") //Carboxyhemoglobin in Blood
+                        || p.RequestItemCode.Contains("LAB477") //Methyl Ethyl Ketone(MEK) Urine
+                        || p.RequestItemCode.Contains("LAB315") //Benzene (Urine)
+                        || p.RequestItemCode.Contains("LAB317") //Methanol (Urine)
+                        || p.RequestItemCode.Contains("LAB325") //Methyrene chloride in Blood
+                        || p.RequestItemCode.Contains("LAB323") //Acetone in Urine
+                        || p.RequestItemCode.Contains("LAB324") //Hexane in Urine
+                        || p.RequestItemCode.Contains("LAB519") //Isopropyl in Urine
+                        || p.RequestItemCode.Contains("LAB558") //Styrene in Urine 
+                        || p.RequestItemCode.Contains("LAB518") //Aluminium in Blood
+                        || p.RequestItemCode.Contains("LAB560") //Aluminium in Blood
+                        || p.RequestItemCode.Contains("LAB561")) //Arsenic
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -485,6 +455,15 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 page3.cellAntiHCV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year2)?.ResultValue;
                 page3.cellAntiHCV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year3)?.ResultValue;
 
+                page3.AntiHAVRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR192")?.ReferenceRange;
+                page3.AntiHAV1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR192" && p.Year == year1)?.ResultValue;
+                page3.AntiHAV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR192" && p.Year == year2)?.ResultValue;
+                page3.AntiHAV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR192" && p.Year == year3)?.ResultValue;
+
+                page3.HavIgGRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190")?.ReferenceRange;
+                page3.HavIgG1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year1)?.ResultValue;
+                page3.HavIgG2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year2)?.ResultValue;
+                page3.HavIgG3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year3)?.ResultValue;
 
             }
         }
@@ -790,10 +769,88 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
                 page3.StyreneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
                 page3.StyreneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
                 page3.StyreneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
+                
+                page3.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
+                page3.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
+                page3.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
+                page3.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
+               
+                page3.ArsenicRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199")?.ReferenceRange;
+                page3.Arsenic1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year1)?.ResultValue;
+                page3.Arsenic2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year2)?.ResultValue;
+                page3.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
+            }
+            
+        }
 
+        private void GeneratePhysicalExam(IEnumerable<PatientResultComponentModel> PhysicalExamResult)
+        {
+            if (PhysicalExamResult != null && PhysicalExamResult.Count() > 0)
+            {
+                page4.lbEye.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM1")?.ResultValue;
+                page4.lbEar.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM2")?.ResultValue;
+                page4.lbThroat.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM3")?.ResultValue;
+                page4.lbNose.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM4")?.ResultValue;
+                page4.lbTeeth.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM5")?.ResultValue;
+                page4.lbLung.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM8")?.ResultValue;
+                page4.lbHeart.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM9")?.ResultValue;
+                page4.lbSkin.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM10")?.ResultValue;
+                page4.lbThyroid.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM7")?.ResultValue;
+                page4.lbLymphNode.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM6")?.ResultValue;
+                page4.lbSmoke.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM11")?.ResultValue;
+                page4.lbDrugAllergy.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM13")?.ResultValue;
+                page4.lbAlcohol.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM12")?.ResultValue;
+                page4.lbPastHistory.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM14")?.ResultValue;
             }
         }
-        private void Riskbook1_AfterPrint(object sender, EventArgs e)
+
+        private void GenerateTimus(IEnumerable<PatientResultComponentModel> TimusResult)
+        {
+            if (TimusResult != null && TimusResult.Count() > 0)
+            {
+                page3.lbFarVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;
+                page3.lbNearVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20")?.ResultValue;
+                page3.lb3DVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS21")?.ResultValue;
+                page3.lbBalanceEye1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS23")?.ResultValue;
+                page3.lbVisionColor1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22")?.ResultValue;
+                page3.lbFieldVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS24")?.ResultValue;
+            }
+        }
+
+        private void GenerateAudio(IEnumerable<PatientResultComponentModel> AudioResult)
+        {
+            if (AudioResult != null && AudioResult.Count() > 0)
+            {
+
+                page4.R5001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO1")?.ResultValue;
+                page4.R10001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO2")?.ResultValue;
+                page4.R20001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO3")?.ResultValue;
+                page4.R30001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO4")?.ResultValue;
+                page4.R40001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO5")?.ResultValue;
+                page4.R60001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO6")?.ResultValue;
+                page4.R80001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO7")?.ResultValue;
+
+                page4.L5001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO9")?.ResultValue;
+                page4.L10001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO10")?.ResultValue;
+                page4.L20001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO11")?.ResultValue;
+                page4.L30001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO12")?.ResultValue;
+                page4.L40001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO13")?.ResultValue;
+                page4.L60001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO14")?.ResultValue;
+                page4.L80001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO15")?.ResultValue;
+            }
+        }
+
+        private void GenerateSpiro(IEnumerable<PatientResultComponentModel> SpiroResult)
+        {
+            if (SpiroResult != null && SpiroResult.Count() > 0)
+            {
+                page4.lbFVCPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO3")?.ResultValue;
+                page4.lbFEV1Per1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO6")?.ResultValue;
+                page4.lbFEVPer1.Text = SpiroResult.FirstOrDefault(p => p.ResultItemCode == "SPIRO9")?.ResultValue;
+            }
+        }
+
+            private void Riskbook1_AfterPrint(object sender, EventArgs e)
         {
             page2.CreateDocument();
             page3.CreateDocument();

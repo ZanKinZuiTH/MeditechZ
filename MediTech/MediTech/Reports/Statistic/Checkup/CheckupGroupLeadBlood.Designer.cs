@@ -111,7 +111,7 @@
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.GroupHeader1.HeightF = 99.16666F;
+            this.GroupHeader1.HeightF = 79.16666F;
             this.GroupHeader1.Name = "GroupHeader1";
             this.GroupHeader1.RepeatEveryPage = true;
             // 
@@ -128,7 +128,7 @@
             this.xrTableRow4,
             this.xrTableRow2,
             this.xrTableRow3});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(1112.333F, 99.16666F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(1112.333F, 79.16666F);
             this.xrTable2.StylePriority.UseBackColor = false;
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseFont = false;
@@ -147,7 +147,7 @@
             this.xrTableCell39,
             this.xrTableCell43});
             this.xrTableRow4.Name = "xrTableRow4";
-            this.xrTableRow4.Weight = 0.92500797755716D;
+            this.xrTableRow4.Weight = 1.126954633268223D;
             // 
             // xrTableCell33
             // 
@@ -233,7 +233,7 @@
             this.xrTableCell20,
             this.xrTableCell21});
             this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 0.59656024015715348D;
+            this.xrTableRow2.Weight = 0.9619734448152768D;
             // 
             // xrTableCell11
             // 
@@ -310,7 +310,7 @@
             this.xrTableCell31,
             this.xrTableCell32});
             this.xrTableRow3.Name = "xrTableRow3";
-            this.xrTableRow3.Weight = 1.4784317822856865D;
+            this.xrTableRow3.Weight = 0.91107192191650033D;
             // 
             // xrTableCell22
             // 
@@ -356,10 +356,10 @@
             // 
             // xrTableCell18
             // 
-            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.Text = "Exposure (Adult) : 0 - 30 , Child/Pregnant women : 0 - 10 ";
+            this.xrTableCell18.Text = " 0 - 30 ug/dl";
             this.xrTableCell18.Weight = 1.629739537164246D;
             // 
             // xrTableCell31
