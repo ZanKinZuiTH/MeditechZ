@@ -9,7 +9,7 @@ using MediTech.DataService;
 using DevExpress.DataProcessing;
 using DevExpress.Xpf.CodeView;
 
-namespace MediTech.Reports.Statistic.Checkup
+namespace MediTech.Reports.Operating.Checkup
 {
     public partial class AudiogramGraph : DevExpress.XtraReports.UI.XtraReport
     {

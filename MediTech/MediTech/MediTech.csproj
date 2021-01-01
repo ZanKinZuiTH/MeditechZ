@@ -297,100 +297,100 @@
     <Compile Include="Reports\Operating\Patient\AppointmentMobile.Designer.cs">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage1.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage1.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage1.Designer.cs">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage2.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage2.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage2.Designer.cs">
       <DependentUpon>CheckupPage2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage3.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage3.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage3.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage3.Designer.cs">
       <DependentUpon>CheckupPage3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage4.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage4.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage4.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage4.Designer.cs">
       <DependentUpon>CheckupPage4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage5.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage5.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage5.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage5.Designer.cs">
       <DependentUpon>CheckupPage5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage6.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage6.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage6.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage6.Designer.cs">
       <DependentUpon>CheckupPage6.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage7.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage7.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage7.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage7.Designer.cs">
       <DependentUpon>CheckupPage7.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage8.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage8.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage8.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage8.Designer.cs">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage1.Designer.cs">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage2.Designer.cs">
       <DependentUpon>CheckupPage2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage3.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage3.Designer.cs">
       <DependentUpon>CheckupPage3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage4.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage4.Designer.cs">
       <DependentUpon>CheckupPage4.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage5.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage5.Designer.cs">
       <DependentUpon>CheckupPage5.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage6.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage6.Designer.cs">
       <DependentUpon>CheckupPage6.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage7.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage7.Designer.cs">
       <DependentUpon>CheckupPage7.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.Designer.cs">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
@@ -608,6 +608,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\PatientNetProfit.Designer.cs">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\AudiogramGraph.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\AudiogramGraph.Designer.cs">
+      <DependentUpon>AudiogramGraph.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.cs">
       <SubType>Component</SubType>
@@ -2333,52 +2339,52 @@
     <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage1.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage1.resx">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage2.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage2.resx">
       <DependentUpon>CheckupPage2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage3.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage3.resx">
       <DependentUpon>CheckupPage3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage4.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage4.resx">
       <DependentUpon>CheckupPage4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage5.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage5.resx">
       <DependentUpon>CheckupPage5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage6.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage6.resx">
       <DependentUpon>CheckupPage6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage7.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage7.resx">
       <DependentUpon>CheckupPage7.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBookReport\CheckupPage8.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage8.resx">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage1.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage1.resx">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage2.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage2.resx">
       <DependentUpon>CheckupPage2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage3.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage3.resx">
       <DependentUpon>CheckupPage3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage4.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage4.resx">
       <DependentUpon>CheckupPage4.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage5.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage5.resx">
       <DependentUpon>CheckupPage5.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage6.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage6.resx">
       <DependentUpon>CheckupPage6.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage7.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage7.resx">
       <DependentUpon>CheckupPage7.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\CheckupBook\CheckupPage8.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.resx">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
@@ -2494,6 +2500,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\PatientNetProfit.resx">
       <DependentUpon>PatientNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\AudiogramGraph.resx">
+      <DependentUpon>AudiogramGraph.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.resx">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>

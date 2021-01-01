@@ -6,7 +6,7 @@ using DevExpress.XtraReports.UI;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace MediTech.Reports.Operating.Patient.CheckupBookReport2
+namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
     public partial class CheckupPage2 : DevExpress.XtraReports.UI.XtraReport
     {

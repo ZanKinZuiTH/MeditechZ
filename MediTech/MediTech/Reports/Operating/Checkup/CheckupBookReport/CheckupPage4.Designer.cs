@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+﻿namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
     partial class CheckupPage4
     {
@@ -269,8 +269,8 @@
             // 
             // tbVisionOccmed
             // 
-            this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(426.8333F, 249.935F);
             this.tbVisionOccmed.Name = "tbVisionOccmed";
@@ -543,8 +543,8 @@
             // 
             // tbLung
             // 
-            this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(427.6666F, 51.33347F);
             this.tbLung.Name = "tbLung";
@@ -827,8 +827,8 @@
             // 
             // tbUA
             // 
-            this.tbUA.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbUA.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(23.99999F, 51.33329F);
             this.tbUA.Name = "tbUA";
@@ -872,7 +872,7 @@
             // 
             // xrTableCell1
             // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell1.CanGrow = false;
             this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -884,7 +884,7 @@
             // 
             // xrTableCell3
             // 
-            this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell3.CanGrow = false;
             this.xrTableCell3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);

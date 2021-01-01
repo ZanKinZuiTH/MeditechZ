@@ -4,11 +4,11 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 
-namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
-    public partial class CheckupPage4 : DevExpress.XtraReports.UI.XtraReport
+    public partial class CheckupPage5 : DevExpress.XtraReports.UI.XtraReport
     {
-        public CheckupPage4()
+        public CheckupPage5()
         {
             InitializeComponent();
         }

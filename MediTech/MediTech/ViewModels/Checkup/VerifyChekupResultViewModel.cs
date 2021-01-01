@@ -525,7 +525,7 @@ namespace MediTech.ViewModels
         {
             if(SelectPatientVisit != null)
             {
-                Reports.Operating.Patient.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport.CheckupPage1();
+                Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
                 rpt.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
                 rpt.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
                 rpt.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;

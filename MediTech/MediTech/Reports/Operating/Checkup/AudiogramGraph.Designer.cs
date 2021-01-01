@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Statistic.Checkup
+﻿namespace MediTech.Reports.Operating.Checkup
 {
     partial class AudiogramGraph
     {

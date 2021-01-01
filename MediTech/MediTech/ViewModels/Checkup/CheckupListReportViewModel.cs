@@ -343,7 +343,7 @@ namespace MediTech.ViewModels
                 var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                 foreach (var item in patientResultLabList.ToList())
                 {
-                    Reports.Operating.Patient.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport.CheckupPage1();
+                    Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                     rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
@@ -373,7 +373,7 @@ namespace MediTech.ViewModels
                     var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                     foreach (var item in patientResultLabList.ToList())
                     {
-                        Reports.Operating.Patient.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport.CheckupPage1();
+                        Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;

@@ -12,7 +12,7 @@ using System.Text.RegularExpressions;
 using System.Text;
 using DevExpress.XtraPrinting;
 
-namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
     public partial class CheckupPage1 : DevExpress.XtraReports.UI.XtraReport
     {

@@ -2,7 +2,7 @@
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Patient.CheckupBook;
-using MediTech.Reports.Operating.Patient.CheckupBookReport;
+using MediTech.Reports.Operating.Checkup.CheckupBookReport;
 using MediTech.Reports.Operating.Patient.RiskBook;
 using MediTech.Views;
 using System;

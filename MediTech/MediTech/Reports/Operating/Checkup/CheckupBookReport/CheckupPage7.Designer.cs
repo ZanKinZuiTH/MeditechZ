@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+﻿namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
     partial class CheckupPage7
     {

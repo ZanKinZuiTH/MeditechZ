@@ -1,4 +1,4 @@
-﻿namespace MediTech.Reports.Operating.Patient.CheckupBookReport
+﻿namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {
     partial class CheckupPage6
     {
@@ -169,8 +169,8 @@
             // 
             // tbRediology
             // 
-            this.tbRediology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbRediology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbRediology.LocationFloat = new DevExpress.Utils.PointFloat(429.3334F, 53.73545F);
             this.tbRediology.Name = "tbRediology";
@@ -199,8 +199,8 @@
             // 
             // xrTableCell129
             // 
-            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell129.CanGrow = false;
             this.xrTableCell129.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
@@ -347,8 +347,8 @@
             // 
             // tbEKG
             // 
-            this.tbEKG.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbEKG.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(430.1668F, 371.5412F);
             this.tbEKG.Name = "tbEKG";
@@ -424,8 +424,8 @@
             // 
             // xrTable3
             // 
-            this.xrTable3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTable3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(24.73944F, 243.2558F);
             this.xrTable3.Name = "xrTable3";
@@ -452,7 +452,7 @@
             // 
             // xrTableCell44
             // 
-            this.xrTableCell44.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell44.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell44.CanGrow = false;
             this.xrTableCell44.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -467,7 +467,7 @@
             // 
             // xrTableCell45
             // 
-            this.xrTableCell45.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell45.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell45.CanGrow = false;
             this.xrTableCell45.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -640,8 +640,8 @@
             // 
             // tbLipid
             // 
-            this.tbLipid.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbLipid.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbLipid.LocationFloat = new DevExpress.Utils.PointFloat(25.66666F, 53.73545F);
             this.tbLipid.Name = "tbLipid";
@@ -670,7 +670,7 @@
             // 
             // xrTableCell29
             // 
-            this.xrTableCell29.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell29.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell29.CanGrow = false;
             this.xrTableCell29.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -685,7 +685,7 @@
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell2.CanGrow = false;
             this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
