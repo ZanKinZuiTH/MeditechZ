@@ -308,6 +308,7 @@ namespace MediTech.ViewModels
             int? ageInt = !string.IsNullOrEmpty(patientVisit.Age) ? int.Parse(patientVisit.Age) : (int?)null;
             PatientVitalSignModel vitalSign = null;
             List<ResultRadiologyModel> radiology = null;
+
             foreach (var grpstUID in GPRSTUIDs)
             {
                 List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
@@ -390,13 +391,6 @@ namespace MediTech.ViewModels
                     resultComponent = DataService.Checkup.GetGroupResultComponentByVisitUID(patientVisit.PatientVisitUID, grpstUID);
                 }
 
-                //if (patientVisit.PatientUID == 57370)
-                //{
-                //    if (true)
-                //    {
-
-                //    }
-                //}
                 if (resultComponent != null && resultComponent.Count > 0)
                 {
 
@@ -407,7 +401,8 @@ namespace MediTech.ViewModels
                         && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt >= p.AgeFrom && ageInt <= p.AgeTo)
                         || (ageInt >= p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt <= p.AgeTo))
                         && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
-                        )).Select(p => new CheckupRuleModel {
+                        )).Select(p => new CheckupRuleModel
+                        {
                             CheckupRuleUID = p.CheckupRuleUID,
                             Name = p.Name,
                             SEXXXUID = p.SEXXXUID,
@@ -418,7 +413,8 @@ namespace MediTech.ViewModels
                             CheckupRuleRecommend = p.CheckupRuleRecommend,
                             CheckupRuleItem = p.CheckupRuleItem,
                             CheckupRuleDescription = p.CheckupRuleDescription
-                            .Select(s => new CheckupRuleDescriptionModel {
+                            .Select(s => new CheckupRuleDescriptionModel
+                            {
                                 CheckupRuleUID = s.CheckupRuleUID,
                                 CheckupTextMasterUID = s.CheckupTextMasterUID,
                                 CheckupRuleDescriptionUID = s.CheckupRuleDescriptionUID,
@@ -449,7 +445,15 @@ namespace MediTech.ViewModels
                                             var ruleDescription = ruleCheckup.CheckupRuleDescription.FirstOrDefault();
                                             if (ruleDescription != null && ruleDescription.ThaiDescription.Contains("{0}"))
                                             {
-                                                ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", ruleItem.Text);
+                                                string thaiDescription = "";
+                                                for (int i = 0; i < resultValues.Count(); i++)
+                                                {
+                                                    if (ruleCheckup.CheckupRuleItem.FirstOrDefault(p => p.Text.Trim() == resultValues[i].Trim()) != null)
+                                                    {
+                                                        thaiDescription += thaiDescription == "" ? resultValues[i].Trim() : "," + resultValues[i].Trim();
+                                                    }
+                                                }
+                                                ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", thaiDescription);
                                             }
                                             break;
                                         }
