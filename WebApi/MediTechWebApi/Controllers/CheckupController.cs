@@ -1482,6 +1482,7 @@ namespace MediTechWebApi.Controllers
                                    && rsc.StatusFlag == "A"
                                    && red.StatusFlag == "A"
                                    && rs.StatusFlag == "A"
+                                   && gps.StatusFlag == "A"
                                    && red.ORDSTUID != 2848
                                    && gps.GPRSTUID == GPRSTUID
                                    select new ResultComponentModel

@@ -675,6 +675,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA125.Designer.cs">
       <DependentUpon>CheckupGroupCA125.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA19.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupCA19.Designer.cs">
+      <DependentUpon>CheckupGroupCA19.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupCBCPlatelets.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2540,6 +2546,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCA125.resx">
       <DependentUpon>CheckupGroupCA125.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCA19.resx">
+      <DependentUpon>CheckupGroupCA19.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupCBCPlatelets.resx">
       <DependentUpon>CheckupGroupCBCPlatelets.cs</DependentUpon>

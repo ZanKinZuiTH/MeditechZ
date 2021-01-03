@@ -433,7 +433,15 @@ namespace MediTech.ViewModels
 
                             if (resultItemValue != null)
                             {
-                                if (!string.IsNullOrEmpty(ruleItem.Text))
+                                if(ruleItem.NonCheckup == true)
+                                {
+                                    isConrrect = false;
+                                    if (ruleItem.Operator == "And")
+                                    {
+                                        break;
+                                    }
+                                }
+                                else if (!string.IsNullOrEmpty(ruleItem.Text))
                                 {
                                     string[] values = ruleItem.Text.Split(',');
                                     string[] resultValues = resultItemValue.ResultValue.Split(',');
