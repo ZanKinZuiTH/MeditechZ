@@ -376,13 +376,27 @@ namespace MediTech.ViewModels
                         resultComponent = new List<ResultComponentModel>();
                         foreach (var item in radiology)
                         {
-                            ResultComponentModel newResultCom = new ResultComponentModel();
-                            newResultCom.ResultItemUID = item.RequestItemName.ToLower().Contains("chest") ? 342
-                                : item.RequestItemName.ToLower().Contains("mammo") ? 343
-                                : item.RequestItemName.ToLower().Contains("ultrasound") ? 344 : 0;
-                            newResultCom.ResultValue = item.ResultStatus;
-
-                            resultComponent.Add(newResultCom);
+                            if (item.RequestItemName.ToLower().Contains("chest"))
+                            {
+                                ResultComponentModel newResultCom = new ResultComponentModel();
+                                newResultCom.ResultItemUID = 342;
+                                newResultCom.ResultValue = item.ResultStatus;
+                                resultComponent.Add(newResultCom);
+                            }
+                            else if (item.RequestItemName.ToLower().Contains("mammo"))
+                            {
+                                ResultComponentModel newResultCom = new ResultComponentModel();
+                                newResultCom.ResultItemUID = 343;
+                                newResultCom.ResultValue = item.ResultStatus;
+                                resultComponent.Add(newResultCom);
+                            }
+                            else if (item.RequestItemName.ToLower().Contains("ultrasound"))
+                            {
+                                ResultComponentModel newResultCom = new ResultComponentModel();
+                                newResultCom.ResultItemUID = 344;
+                                newResultCom.ResultValue = item.ResultStatus;
+                                resultComponent.Add(newResultCom);
+                            }
                         }
                     }
                 }
@@ -433,7 +447,7 @@ namespace MediTech.ViewModels
 
                             if (resultItemValue != null)
                             {
-                                if(ruleItem.NonCheckup == true)
+                                if (ruleItem.NonCheckup == true)
                                 {
                                     isConrrect = false;
                                     if (ruleItem.Operator == "And")
