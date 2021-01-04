@@ -278,16 +278,30 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         ResultRadiologyModel chestXray = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"));
                         if (!string.IsNullOrEmpty(chestXray.PlainText))
                         {
-                            //if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
-                            //{
-                            //    string chestEN = chestXray.PlainText;
-                            //    string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
-                            //    string ResultChestEn = ChestResult[1].Replace(":", "");
-                            //    ResultChestEn = ResultChestEn.Trim();
-                            //    page6.lbChest.Text = ResultChestEn;
-                            //}
-                            //else
-                            //{
+                            if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                            {
+                                string chestEN = chestXray.PlainText;
+                                string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
+                                if (ChestResult.Length > 1)
+                                {
+                                    string ResultChestEn = ChestResult[1].Replace(":", "");
+                                    ResultChestEn = ResultChestEn.Trim();
+                                    if(ResultChestEn.ToLower().Contains("negative study"))
+                                    {
+                                        page6.lbChest.Text = "Normal";
+                                    }
+                                    else
+                                    {
+                                        page6.lbChest.Text = ResultChestEn;
+                                    }
+                                }
+                                else if(ChestResult[0].ToLower().Contains("old fracture right clavicle"))
+                                {
+                                    page6.lbChest.Text = "Calcification in aorta Old fracture of right clavicle";
+                                }
+                            }
+                            else
+                            {
                                 string resultChestThai = TranslateXray(chestXray.PlainText, chestXray.ResultStatus, chestXray.RequestItemName);
                                 if (!string.IsNullOrEmpty(resultChestThai))
                                 {
@@ -301,7 +315,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                 {
                                     page6.lbChest.Text = "ยังไม่ได้แปลไทย";
                                 }
-                            //}
+                            }
                         }
                     }
                     else
@@ -387,102 +401,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 #endregion
 
                 page6.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
-                //.lbFarVision.Text = dataFirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;
-
-
-                //if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
-                //{
-                //    TitleResultWellness2.Text = "Summary";
-                //    page2.TitleResultWellness.Text = "Summary";
-                //    TitleObesity.Text = "BMI Interpretation";
-                //    lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " times/min" : "";
-
-                //    if (patient.BMI != null)
-                //    {
-                //        string bmiResult = "";
-                //        if (patient.BMI < 18.5)
-                //        {
-                //            bmiResult = "Less weight";
-                //        }
-                //        else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
-                //        {
-                //            bmiResult = "Normal";
-                //        }
-                //        else if (patient.BMI >= 23 && patient.BMI <= 24.99)
-                //        {
-                //            bmiResult = "Overweight";
-                //        }
-                //        else if (patient.BMI >= 25 && patient.BMI <= 29.99)
-                //        {
-                //            bmiResult = "Obesity Class 1";
-                //        }
-                //        else if (patient.BMI >= 30)
-                //        {
-                //            bmiResult = "Obesity class 2";
-                //        }
-                //        lbObesity.Text = bmiResult;
-
-                //        if (bmiResult != "Normal weight")
-                //        {
-                //            lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
-                //        }
-                //    }
-
-
-                //    page4.TitleFarVision.Text = "Far Test";
-                //    page4.TitleNearVision.Text = "Near Test";
-                //    page4.Title3DVision.Text = "3D Test";
-                //    page4.TitleBalanceEye.Text = "Eye Balance";
-                //    page4.TitleColor.Text = "Color";
-                //    page4.TitleFieldVision.Text = "Visual Field";
-                //    page4.TitleVisionOccmedResult.Text = "Summary";
-                //    page4.TitleVisionOccmedRecommend.Text = "Suggestion";
-
-                //    if (page4.lbLungResult.Text == "ปกติ")
-                //    {
-                //        page4.lbLungResult.Text = "Normal";
-                //    }
-                //    else
-                //    {
-                //        page4.lbLungResult.Text = "Abnormal";
-                //    }
-
-                //    page5.TitleAudiogram.Text = "Audiogram";
-                //    page5.TitleAudioListResult.Text = "Result";
-                //    page5.TitleAudioRight.Text = "Right ear";
-                //    page5.TitleAudioLeft.Text = "Left ear";
-                //    page5.TitleAudioResult.Text = "Summary";
-                //    page5.TitleAudioRecommend.Text = "Suggestion";
-
-                //    if (page5.lbAudioResult.Text == "ปกติ")
-                //    {
-                //        page5.lbAudioResult.Text = "Normal";
-                //    }
-                //    else if (page5.lbAudioResult.Text == "เฝ้าระวัง")
-                //    {
-                //        page5.lbAudioResult.Text = "Mild abnormality";
-                //    }
-                //    else
-                //    {
-                //        page5.lbAudioResult.Text = "Abnormal";
-                //    }
-
-                //    page5.TitleMyopiaRight.Text = "Shortsighted Rt.";
-                //    page5.TitleMyopiaLeft.Text = "Shortsighted Lt.";
-                //    page5.TitleAstigmaticRight.Text = "Astigmatic Rt.";
-                //    page5.TitleAstigmaticLeft.Text = "Astigmatic Lt.";
-                //    page5.TitleViewRight.Text = "Degree Rt.";
-                //    page5.TitleViewLeft.Text = "Degree Lt.";
-                //    page5.TitleHyperopiaRight.Text = "Longsighted Rt.";
-                //    page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
-                //    page5.TitleVARight.Text = "VA Rt.";
-                //    page5.TitleVALeft.Text = "VA Lt.";
-                //    page5.TitleDisease.Text = "Eys Disease";
-                //    page5.TitleBlindColor.Text = "Color Blindness";
-                //    page5.TitleViewResult.Text = "Result";
-                //    page5.TitleViewRecommend.Text = "Suggestion";
-
-                //}
+                //page4.lbFarVision.Text = dataFirstOrDefault(p => p.ResultItemCode == "TIMUS19")?.ResultValue;        
 
                 var labCompare = data.LabCompare;
                 if (labCompare != null)
@@ -653,6 +572,211 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.GroupCode.Contains("GPRST32")); //BackStrength
 
                     GenerateOccmedGroup(occmedGroupResult);
+                }
+
+                if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                {
+                    TitleResultWellness2.Text = "Summary";
+                    page2.TitleResultWellness.Text = "Summary";
+                    TitleObesity.Text = "BMI Interpretation";
+                    lbPulse.Text = patient.Pulse != null ? patient.Pulse.ToString() + " times/min" : "";
+
+                    if (patient.BMI != null)
+                    {
+                        string bmiResult = "";
+                        if (patient.BMI < 18.5)
+                        {
+                            bmiResult = "Less weight";
+                        }
+                        else if (patient.BMI >= 18.5 && patient.BMI <= 22.99)
+                        {
+                            bmiResult = "Normal";
+                        }
+                        else if (patient.BMI >= 23 && patient.BMI <= 24.99)
+                        {
+                            bmiResult = "Overweight";
+                        }
+                        else if (patient.BMI >= 25 && patient.BMI <= 29.99)
+                        {
+                            bmiResult = "Obesity Class 1";
+                        }
+                        else if (patient.BMI >= 30)
+                        {
+                            bmiResult = "Obesity class 2";
+                        }
+                        lbObesity.Text = bmiResult;
+
+                        if (bmiResult != "Normal weight")
+                        {
+                            lbObesity.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+
+
+                    if (page2.lbEye.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbEye.Text = "Normal";
+                    }
+                    if (page2.lbEars.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbEars.Text = "Normal";
+                    }
+                    if (page2.lbThroat.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbThroat.Text = "Normal";
+                    }
+                    if (page2.lbNose.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbNose.Text = "Normal";
+                    }
+                    if (page2.lbTeeth.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbTeeth.Text = "Normal";
+                    }
+                    if (page2.lbLung.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbLung.Text = "Normal";
+                    }
+                    if (page2.lbHeart.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbHeart.Text = "Normal";
+                    }
+                    if (page2.lbSkin.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbSkin.Text = "Normal";
+                    }
+                    if (page2.lbThyroid.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbThyroid.Text = "Normal";
+                    }
+                    if (page2.lbLymphNode.Text.Trim().Contains("ไม่พบความผิดปกติ"))
+                    {
+                        page2.lbLymphNode.Text = "Normal";
+                    }
+
+                    if (page2.lbSmoke.Text.Trim().Contains("ปฏิเสธ"))
+                    {
+                        page2.lbSmoke.Text = "Denile";
+                    }
+                    if (page2.lbSmoke.Text.Trim().Contains("10-20มวน/วัน"))
+                    {
+                        page2.lbSmoke.Text = "0.5-1 pack/day";
+                    }
+
+
+                    if (page2.lbDrugAllergy.Text.Trim().Contains("ปฏิเสธ"))
+                    {
+                        page2.lbDrugAllergy.Text = "Denile";
+                    }
+
+
+                    if (page2.lbAlcohol.Text.Trim().Contains("ปฏิเสธ"))
+                    {
+                        page2.lbAlcohol.Text = "Denile";
+                    }
+                    if (page2.lbAlcohol.Text.Trim().Contains("ดื่มตามโอกาส"))
+                    {
+                        page2.lbAlcohol.Text = "Social drinking";
+                    }
+                    if (page2.lbAlcohol.Text.Trim().Contains("6-7ครั้ง/สัปดาห์"))
+                    {
+                        page2.lbAlcohol.Text = "6-7 times/week";
+                    }
+                    if (page2.lbAlcohol.Text.Trim().Contains("2 ครั้ง/สัปดาห์"))
+                    {
+                        page2.lbAlcohol.Text = "2 times/week";
+                    }
+                    if (page2.lbAlcohol.Text.Trim().Contains("ดื่มทุกวัน"))
+                    {
+                        page2.lbAlcohol.Text = "everyday";
+                    }
+
+
+                    if (page2.lbUnderlying.Text.Trim().Contains("ปฏิเสธ"))
+                    {
+                        page2.lbUnderlying.Text = "Denile";
+                    }
+                    if (page2.lbUnderlying.Text.Trim().Contains("ความดันโลหิตสูง"))
+                    {
+                        page2.lbUnderlying.Text = "Hypertension";
+                    }
+
+                    page4.TitlePulmonaryResult.Text = "Summary";
+                    page4.TitlePulmonaryRecommend.Text = "Suggestion";
+
+                    if (page4.lbLungResult.Text == "ปกติ")
+                    {
+                        page4.lbLungResult.Text = "Normal";
+                        page4.lbLungRecommend.Text = "Annualy check up";
+                    }
+                    if (page4.lbLungResult.Text == "ผิดปกติ")
+                    {
+                        page4.lbLungResult.Text = "Abnormal";
+                    }
+
+                    page4.TitleFarVision.Text = "Far Test";
+                    page4.TitleNearVision.Text = "Near Test";
+                    page4.Title3DVision.Text = "3D Test";
+                    page4.TitleBalanceEye.Text = "Eye Balance";
+                    page4.TitleColor.Text = "Color";
+                    page4.TitleFieldVision.Text = "Visual Field";
+                    page4.TitleVisionOccmedResult.Text = "Summary";
+                    page4.TitleVisionOccmedRecommend.Text = "Suggestion";
+
+                    if (page4.lbVisionOccmedResult.Text == "ปกติ")
+                    {
+                        page4.lbVisionOccmedResult.Text = "Normal";
+                    }
+                    if (page4.lbVisionOccmedResult.Text == "ผิดปกติ")
+                    {
+                        page4.lbVisionOccmedResult.Text = "Abnormal";
+                    }
+
+                    page5.TitleAudiogram.Text = "Audiogram";
+                    page5.TitleAudioListResult.Text = "Result";
+                    page5.TitleAudioRight.Text = "Right ear";
+                    page5.TitleAudioLeft.Text = "Left ear";
+                    page5.TitleAudioResult.Text = "Summary";
+                    page5.TitleAudioRecommend.Text = "Suggestion";
+
+                    if(page5.lbAudioLeft.Text == "ไม่พบความผิดปกติ")
+                    {
+                        page5.lbAudioLeft.Text = "Normal";
+                    }
+                    if (page5.lbAudioRight.Text == "ไม่พบความผิดปกติ")
+                    {
+                        page5.lbAudioRight.Text = "Normal";
+                    }
+                    if (page5.lbAudioResult.Text == "ปกติ")
+                    {
+                        page5.lbAudioResult.Text = "Normal";
+                        page5.lbAudioRecommend.Text = "Annualy check up";
+                    }
+                    if (page5.lbAudioResult.Text == "เฝ้าระวัง")
+                    {
+                        page5.lbAudioResult.Text = "Mild abnormality";
+                    }
+                    if (page5.lbAudioResult.Text == "ผิดปกตื")
+                    {
+                        page5.lbAudioResult.Text = "Abnormal";
+                    }
+
+                    page5.TitleMyopiaRight.Text = "Shortsighted Rt.";
+                    page5.TitleMyopiaLeft.Text = "Shortsighted Lt.";
+                    page5.TitleAstigmaticRight.Text = "Astigmatic Rt.";
+                    page5.TitleAstigmaticLeft.Text = "Astigmatic Lt.";
+                    page5.TitleViewRight.Text = "Degree Rt.";
+                    page5.TitleViewLeft.Text = "Degree Lt.";
+                    page5.TitleHyperopiaRight.Text = "Longsighted Rt.";
+                    page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
+                    page5.TitleVARight.Text = "VA Rt.";
+                    page5.TitleVALeft.Text = "VA Lt.";
+                    page5.TitleDisease.Text = "Eys Disease";
+                    page5.TitleBlindColor.Text = "Color Blindness";
+                    page5.TitleViewResult.Text = "Result";
+                    page5.TitleViewRecommend.Text = "Suggestion";
+
+                    
                 }
             }
         }
@@ -1561,6 +1685,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
         }
         #endregion
 
+       
         private void GenerateTimus(IEnumerable<PatientResultComponentModel> TimusResult)
         {
             if (TimusResult != null && TimusResult.Count() > 0)
