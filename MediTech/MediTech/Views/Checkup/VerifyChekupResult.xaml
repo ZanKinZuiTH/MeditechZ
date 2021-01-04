@@ -149,10 +149,9 @@
                         </dxg:GridColumn>
                         <dxg:GridColumn FieldName="IsWillnessResult" Visible="False"/>
                         <dxg:GridControl.View>
-                            <dxg:TableView x:Name="gvGroupResult" NavigationStyle="Row"
+                            <dxg:TableView x:Name="gvPatientVisit"
                                        ShowCheckBoxSelectorColumn="True"
-                                       CheckBoxSelectorColumnWidth="30" ShowGroupPanel="False" 
-                                       AllowEditing="False">
+                                       CheckBoxSelectorColumnWidth="30" ShowGroupPanel="False">
                                 <dxg:TableView.FormatConditions>
                                     <dxg:FormatCondition ApplyToRow="True" Expression="[IsWellnessResult] = 'True'" FieldName="IsWellnessResult">
                                         <dx:Format Background="#FF83B5F1"/>
@@ -207,33 +206,33 @@
                             <dxmvvm:Interaction.Behaviors>
                                 <helper:DeferredColumnFitBehavior/>
                             </dxmvvm:Interaction.Behaviors>
-                            <dxg:GridColumn Header="รายการตรวจ" FieldName="ResultItemName" >
+                            <dxg:GridColumn Header="รายการตรวจ" FieldName="ResultItemName" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ผลตรวจ" FieldName="ResultValue1">
+                            <dxg:GridColumn Header="ผลตรวจ" FieldName="ResultValue1" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ย้อนหลัง1" FieldName="ResultValue2">
+                            <dxg:GridColumn Header="ย้อนหลัง1" FieldName="ResultValue2" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="ย้อนหลัง2" FieldName="ResultValue3">
+                            <dxg:GridColumn Header="ย้อนหลัง2" FieldName="ResultValue3" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="Normal" FieldName="ReferenceRange">
+                            <dxg:GridColumn Header="Normal" FieldName="ReferenceRange" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings TextWrapping="Wrap"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
                             <dxg:GridControl.View>
-                                <dxg:TableView Name="gvResult" ShowGroupPanel="False" AllowEditing="False"/>
+                                <dxg:TableView Name="gvResult" ShowGroupPanel="False" />
                             </dxg:GridControl.View>
                         </dxg:GridControl>
                         <dxg:GridControl Height="380" ItemsSource="{Binding ResultRadiologys}" 

@@ -781,12 +781,26 @@ namespace MediTech.ViewModels
                         var timus1 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
                         var timus2 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");
                         var timus3 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS3");
-                        if (timus1 != null && timus2 != null && timus3 != null)
+                        string far = "";
+                        string near = "";
+                        if (timus2 != null && timus3 != null)
                         {
-                            string far = timus2.ResultItemName + " " + timus2.ResultValue;
-                            string near = timus3.ResultItemName + " " + timus3.ResultValue;
-                            conclusion = "กลุ่มอาชีพ : " + timus1.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
+                            far = timus2.ResultItemName + " " + timus2.ResultValue;
+                            near = timus3.ResultItemName + " " + timus3.ResultValue;
                         }
+                        else if(timus2 != null && timus3 == null)
+                        {
+                            far = timus2.ResultItemName + " " + timus2.ResultValue;
+                            near = "ตรวจมองใกล้ (Near)" + " " + timus2.ResultValue;
+                        }
+                        else if(timus3 != null && timus2 == null)
+                        {
+                            far = "ตรวจมองไกล (Far)" + " " + timus3.ResultValue;
+                            near = timus3.ResultItemName + " " + timus3.ResultValue;
+                        }
+
+
+                        conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
                     }
 
                     CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
