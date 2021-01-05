@@ -34,7 +34,7 @@ namespace MediTech.Views
         {
             try
             {
-                if (e.Property == TextBlock.ForegroundProperty)
+                if (e.Column.FieldName == "ResultValue1" && e.Property == TextBlock.ForegroundProperty)
                 {
                     var cellValue = gcResult.GetCellValue(e.RowHandle, e.Column.FieldName);
                     if (cellValue != null && cellValue.ToString() != "")
