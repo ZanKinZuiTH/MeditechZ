@@ -428,7 +428,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     #region Renal function
                     IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB212")
-                        || p.RequestItemCode.Contains("LAB211"))
+                        || p.RequestItemCode.Contains("LAB211")
+                        || p.RequestItemCode.Contains("LAB213"))
                         .OrderBy(p => p.Year);
                     GenerateRenalFunction(RenalTestSet);
 
@@ -1051,6 +1052,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page5.cellCreatinine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year1)?.ResultValue;
                 page5.cellCreatinine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year2)?.ResultValue;
                 page5.cellCreatinine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0070" && p.Year == year3)?.ResultValue;
+
+                page5.eGFRRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0073")?.ReferenceRange;
+                page5.eGFR1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0073" && p.Year == year1)?.ResultValue;
+                page5.eGFR2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0073" && p.Year == year2)?.ResultValue;
+                page5.eGFR3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "C0073" && p.Year == year3)?.ResultValue;
 
             }
             else
