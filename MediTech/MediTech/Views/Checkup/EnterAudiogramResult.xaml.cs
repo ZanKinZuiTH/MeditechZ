@@ -34,7 +34,11 @@ namespace MediTech.Views
             {
                 if (this.DataContext is EnterAudiogramResultViewModel)
                 {
-                    (this.DataContext as EnterAudiogramResultViewModel).CalculateRightResult();
+                    if (rowData.ResultItemCode != "AUDIO8" && rowData.ResultItemCode != "AUDIO17")
+                    {
+                        (this.DataContext as EnterAudiogramResultViewModel).CalculateRightResult();
+                    }
+
                 }
             }
         }
@@ -46,7 +50,11 @@ namespace MediTech.Views
             {
                 if (this.DataContext is EnterAudiogramResultViewModel)
                 {
-                    (this.DataContext as EnterAudiogramResultViewModel).CalculateLeftResult();
+                    if (rowData.ResultItemCode != "AUDIO16" && rowData.ResultItemCode != "AUDIO18")
+                    {
+                        (this.DataContext as EnterAudiogramResultViewModel).CalculateLeftResult();
+                    }
+
                 }
             }
         }

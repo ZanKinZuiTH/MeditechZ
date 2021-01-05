@@ -32,7 +32,13 @@ namespace MediTech.Views
         {
             if (this.DataContext is EnterOccuVisionTestResultViewModel)
             {
-                (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
+                var rowData = e.Row as ResultComponentModel;
+
+                if (rowData.ResultItemCode != "TIMUS19" && rowData.ResultItemCode != "TIMUS20" && rowData.ResultItemCode != "TIMUS21"
+                    && rowData.ResultItemCode != "TIMUS22" && rowData.ResultItemCode != "TIMUS23" && rowData.ResultItemCode != "TIMUS24")
+                {
+                    (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
+                }
             }
         }
 

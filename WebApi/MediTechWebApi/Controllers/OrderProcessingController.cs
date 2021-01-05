@@ -236,16 +236,13 @@ namespace MediTechWebApi.Controllers
                                     dataRequestDetailSpecimen.MWhen = now;
                                 }
 
-                                if (dataRequestDetail.ORDSTUID == 2863) // Reviewed
+                                var result = db.Result.FirstOrDefault(p => p.RequestDetailUID == dataRequestDetail.UID && p.StatusFlag == "A");
+                                if (result != null)
                                 {
-                                    var result = db.Result.FirstOrDefault(p => p.RequestDetailUID == dataRequestDetail.UID && p.StatusFlag == "A");
-                                    if (result != null)
-                                    {
-                                        db.Result.Attach(result);
-                                        result.ORDSTUID = 2848;
-                                        result.MUser = userUID;
-                                        result.MWhen = now;
-                                    }
+                                    db.Result.Attach(result);
+                                    result.ORDSTUID = 2848;
+                                    result.MUser = userUID;
+                                    result.MWhen = now;
                                 }
                             }
                         }

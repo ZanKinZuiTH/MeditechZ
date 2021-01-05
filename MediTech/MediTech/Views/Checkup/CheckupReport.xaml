@@ -105,7 +105,7 @@
                                ShowGroupPanel="False" />
                         </dxg:GridControl.View>
                         <dxg:GridColumn FieldName="No" Header="No" Width="30"/>
-                        <dxg:GridColumn FieldName="PatientID" Header="BN"/>
+                        <dxg:GridColumn FieldName="PatientID" Header="รหัสผู้ป่วย"/>
                         <dxg:GridColumn FieldName="Title" Header="คำนำหน้า"/>
                         <dxg:GridColumn FieldName="FirstName" Header="ชื่อ"/>
                         <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>

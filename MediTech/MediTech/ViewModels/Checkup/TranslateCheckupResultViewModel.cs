@@ -23,6 +23,47 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        #region PatientSearch
+
+        private string _SearchPatientCriteria;
+
+        public string SearchPatientCriteria
+        {
+            get { return _SearchPatientCriteria; }
+            set
+            {
+                Set(ref _SearchPatientCriteria, value);
+                PatientsSearchSource = null;
+            }
+        }
+
+
+        private List<PatientInformationModel> _PatientsSearchSource;
+
+        public List<PatientInformationModel> PatientsSearchSource
+        {
+            get { return _PatientsSearchSource; }
+            set { Set(ref _PatientsSearchSource, value); }
+        }
+
+        private PatientInformationModel _SelectedPateintSearch;
+
+        public PatientInformationModel SelectedPateintSearch
+        {
+            get { return _SelectedPateintSearch; }
+            set
+            {
+                _SelectedPateintSearch = value;
+                if (SelectedPateintSearch != null)
+                {
+                    SearchPatientVisit();
+                    SearchPatientCriteria = string.Empty;
+                }
+            }
+        }
+
+        #endregion
+
         private bool _SurpassSelectAll = false;
         public bool SurpassSelectAll
         {
@@ -71,6 +112,17 @@ namespace MediTech.ViewModels
                 {
                     CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
                 }
+            }
+        }
+
+        private PayorDetailModel _SelectPayorDetail2;
+
+        public PayorDetailModel SelectPayorDetail2
+        {
+            get { return _SelectPayorDetail2; }
+            set
+            {
+                Set(ref _SelectPayorDetail2, value);
             }
         }
 
@@ -128,6 +180,48 @@ namespace MediTech.ViewModels
         }
 
         List<XrayTranslateMappingModel> dtResultMapping;
+
+        private DateTime _DateFrom;
+
+        public DateTime DateFrom
+        {
+            get { return _DateFrom; }
+            set { Set(ref _DateFrom, value); }
+        }
+
+        private DateTime _DateTo;
+
+        public DateTime DateTo
+        {
+            get { return _DateTo; }
+            set { Set(ref _DateTo, value); }
+        }
+
+        private List<PatientVisitModel> _PatientVisits;
+
+        public List<PatientVisitModel> PatientVisits
+        {
+            get { return _PatientVisits; }
+            set { Set(ref _PatientVisits, value); }
+        }
+
+        private PatientVisitModel _SelectPatientVisit;
+
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set { Set(ref _SelectPatientVisit, value); }
+        }
+
+        private ObservableCollection<PatientVisitModel> _SelectPatientVisits;
+
+        public ObservableCollection<PatientVisitModel> SelectPatientVisits
+        {
+            get { return _SelectPatientVisits ?? (_SelectPatientVisits = new ObservableCollection<PatientVisitModel>()); }
+            set { Set(ref _SelectPatientVisits, value); }
+        }
+
+
         #endregion
 
         #region Command
@@ -168,6 +262,19 @@ namespace MediTech.ViewModels
 
 
 
+        private RelayCommand _TranslatePatientCommand;
+
+        public RelayCommand TranslatePatientCommand
+        {
+            get
+            {
+                return _TranslatePatientCommand
+                    ?? (_TranslatePatientCommand = new RelayCommand(TranslatePatient));
+            }
+        }
+
+
+
         private RelayCommand _LoadDataCommand;
 
         public RelayCommand LoadDataCommand
@@ -190,12 +297,40 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _SearchPatientVisitCommand;
+
+        public RelayCommand SearchPatientVisitCommand
+        {
+            get
+            {
+                return _SearchPatientVisitCommand
+                    ?? (_SearchPatientVisitCommand = new RelayCommand(SearchPatientVisit));
+            }
+        }
+
+        private RelayCommand _PatientSearchCommand;
+        /// <summary>
+        /// Gets the PatientSearchCommand.
+        /// </summary>
+        public RelayCommand PatientSearchCommand
+        {
+            get
+            {
+                return _PatientSearchCommand
+                    ?? (_PatientSearchCommand = new RelayCommand(PatientSearch));
+            }
+        }
+
         #endregion
 
         #region Method
         public TranslateCheckupResultViewModel()
         {
+            DateTime now = DateTime.Now;
             PayorDetails = DataService.MasterData.GetPayorDetail();
+            DateFrom = now;
+            DateTo = now;
         }
 
         void TranslateSpecific()
@@ -300,6 +435,22 @@ namespace MediTech.ViewModels
             {
 
                 ErrorDialog(er.Message);
+            }
+        }
+
+        void TranslatePatient()
+        {
+            if (SelectPatientVisits != null && SelectPatientVisits.Count > 0)
+            {
+                foreach (var visit in SelectPatientVisits)
+                {
+                   var  groupResults = DataService.Checkup.GetCheckupGroupByVisitUID(visit.PatientVisitUID);
+                    if (groupResults != null)
+                    {
+                        List<int> GPRSTUIDs = groupResults.Select(p => p.Key).ToList();
+                        List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
+                    }
+                }
             }
         }
 
@@ -788,12 +939,12 @@ namespace MediTech.ViewModels
                             far = timus2.ResultItemName + " " + timus2.ResultValue;
                             near = timus3.ResultItemName + " " + timus3.ResultValue;
                         }
-                        else if(timus2 != null && timus3 == null)
+                        else if (timus2 != null && timus3 == null)
                         {
                             far = timus2.ResultItemName + " " + timus2.ResultValue;
                             near = "ตรวจมองใกล้ (Near)" + " " + timus2.ResultValue;
                         }
-                        else if(timus3 != null && timus2 == null)
+                        else if (timus3 != null && timus2 == null)
                         {
                             far = "ตรวจมองไกล (Far)" + " " + timus3.ResultValue;
                             near = timus3.ResultItemName + " " + timus3.ResultValue;
@@ -819,6 +970,8 @@ namespace MediTech.ViewModels
             }
 
         }
+
+
 
         void LoadData()
         {
@@ -988,6 +1141,64 @@ namespace MediTech.ViewModels
                     System.Windows.Forms.MessageBox.Show("Cannot find an application on your system suitable for openning the file with exported data.", System.Windows.Forms.Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void SearchPatientVisit()
+        {
+            string patientID = "";
+            int? payorDetailUID;
+            if (SearchPatientCriteria != "" && SelectedPateintSearch != null)
+            {
+                patientID = SelectedPateintSearch.PatientID;
+            }
+
+            payorDetailUID = SelectPayorDetail2 != null ? SelectPayorDetail2.PayorDetailUID : (int?)null;
+
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, null, null, null, null, DateFrom, DateTo, null, null, payorDetailUID, null);
+        }
+
+        public void PatientSearch()
+        {
+            string patientID = string.Empty;
+            string firstName = string.Empty; ;
+            string lastName = string.Empty;
+            if (SearchPatientCriteria.Length >= 3)
+            {
+                string[] patientName = SearchPatientCriteria.Split(' ');
+                if (patientName.Length >= 2)
+                {
+                    firstName = patientName[0];
+                    lastName = patientName[1];
+                }
+                else
+                {
+                    int num = 0;
+                    foreach (var ch in SearchPatientCriteria)
+                    {
+                        if (ShareLibrary.CheckValidate.IsNumber(ch.ToString()))
+                        {
+                            num++;
+                        }
+                    }
+                    if (num >= 5)
+                    {
+                        patientID = SearchPatientCriteria;
+                    }
+                    else if (num <= 2)
+                    {
+                        firstName = SearchPatientCriteria;
+                        lastName = "empty";
+                    }
+
+                }
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null);
+                PatientsSearchSource = searchResult;
+            }
+            else
+            {
+                PatientsSearchSource = null;
+            }
+
         }
         #endregion
     }

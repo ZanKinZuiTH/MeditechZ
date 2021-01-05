@@ -269,6 +269,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 #endregion
 
                 #region Radiology
+                //string chestXray = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST4")?.Conclusion;
+                //string mammogram = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST5")?.Conclusion;
+                //string ultrasound = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST6")?.Conclusion;
 
                 var radilogy = data.Radiology;
                 if (radilogy.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName)) != null)
