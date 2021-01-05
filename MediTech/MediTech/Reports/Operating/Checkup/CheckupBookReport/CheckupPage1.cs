@@ -659,7 +659,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 
                     if (page2.lbSmoke.Text.Trim().Contains("ปฏิเสธ"))
                     {
-                        page2.lbSmoke.Text = "Denile";
+                        page2.lbSmoke.Text = "Denial";
                     }
                     if (page2.lbSmoke.Text.Trim().Contains("10-20มวน/วัน"))
                     {
@@ -669,13 +669,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 
                     if (page2.lbDrugAllergy.Text.Trim().Contains("ปฏิเสธ"))
                     {
-                        page2.lbDrugAllergy.Text = "Denile";
+                        page2.lbDrugAllergy.Text = "Denial";
                     }
 
 
                     if (page2.lbAlcohol.Text.Trim().Contains("ปฏิเสธ"))
                     {
-                        page2.lbAlcohol.Text = "Denile";
+                        page2.lbAlcohol.Text = "Denial";
                     }
                     if (page2.lbAlcohol.Text.Trim().Contains("ดื่มตามโอกาส"))
                     {
@@ -697,7 +697,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 
                     if (page2.lbUnderlying.Text.Trim().Contains("ปฏิเสธ"))
                     {
-                        page2.lbUnderlying.Text = "Denile";
+                        page2.lbUnderlying.Text = "Denial";
                     }
                     if (page2.lbUnderlying.Text.Trim().Contains("ความดันโลหิตสูง"))
                     {
