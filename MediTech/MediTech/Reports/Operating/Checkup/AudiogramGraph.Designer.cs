@@ -496,11 +496,15 @@
             this.audioChartLine.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
             this.audioChartLine.LocationFloat = new DevExpress.Utils.PointFloat(305.1667F, 101F);
             this.audioChartLine.Name = "audioChartLine";
+            series1.LabelsVisibility = DevExpress.Utils.DefaultBoolean.True;
             series1.Name = "ขวา";
-            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            lineSeriesView1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(240)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            lineSeriesView1.MarkerVisibility = DevExpress.Utils.DefaultBoolean.True;
             series1.View = lineSeriesView1;
             series2.Name = "ซ้าย";
             lineSeriesView2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(176)))), ((int)(((byte)(240)))));
+            lineSeriesView2.LineMarkerOptions.Kind = DevExpress.XtraCharts.MarkerKind.Cross;
+            lineSeriesView2.MarkerVisibility = DevExpress.Utils.DefaultBoolean.True;
             series2.View = lineSeriesView2;
             this.audioChartLine.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
