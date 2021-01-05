@@ -114,8 +114,8 @@
             // lbResultWellness
             // 
             this.lbResultWellness.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left;
-            this.lbResultWellness.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.lbResultWellness.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
@@ -147,8 +147,8 @@
             // 
             // tbPhysicalExam
             // 
-            this.tbPhysicalExam.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.tbPhysicalExam.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbPhysicalExam.LocationFloat = new DevExpress.Utils.PointFloat(23.66671F, 52.42345F);
             this.tbPhysicalExam.Name = "tbPhysicalExam";
@@ -183,8 +183,8 @@
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
-            | DevExpress.XtraPrinting.BorderSide.Right)
+            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell2.CanGrow = false;
             this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
@@ -231,7 +231,6 @@
             // 
             // lbEye
             // 
-            this.lbEye.CanGrow = false;
             this.lbEye.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbEye.Multiline = true;
             this.lbEye.Name = "lbEye";
@@ -264,7 +263,6 @@
             // 
             // lbEars
             // 
-            this.lbEars.CanGrow = false;
             this.lbEars.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbEars.Multiline = true;
             this.lbEars.Name = "lbEars";
@@ -297,7 +295,6 @@
             // 
             // lbThroat
             // 
-            this.lbThroat.CanGrow = false;
             this.lbThroat.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbThroat.Multiline = true;
             this.lbThroat.Name = "lbThroat";
@@ -330,7 +327,6 @@
             // 
             // lbNose
             // 
-            this.lbNose.CanGrow = false;
             this.lbNose.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbNose.Multiline = true;
             this.lbNose.Name = "lbNose";
@@ -363,7 +359,6 @@
             // 
             // lbTeeth
             // 
-            this.lbTeeth.CanGrow = false;
             this.lbTeeth.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbTeeth.Multiline = true;
             this.lbTeeth.Name = "lbTeeth";
@@ -396,7 +391,6 @@
             // 
             // lbLung
             // 
-            this.lbLung.CanGrow = false;
             this.lbLung.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbLung.Multiline = true;
             this.lbLung.Name = "lbLung";
@@ -429,7 +423,6 @@
             // 
             // lbHeart
             // 
-            this.lbHeart.CanGrow = false;
             this.lbHeart.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbHeart.Multiline = true;
             this.lbHeart.Name = "lbHeart";
@@ -462,7 +455,6 @@
             // 
             // lbSkin
             // 
-            this.lbSkin.CanGrow = false;
             this.lbSkin.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbSkin.Multiline = true;
             this.lbSkin.Name = "lbSkin";
@@ -495,7 +487,6 @@
             // 
             // lbThyroid
             // 
-            this.lbThyroid.CanGrow = false;
             this.lbThyroid.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbThyroid.Multiline = true;
             this.lbThyroid.Name = "lbThyroid";
@@ -528,7 +519,6 @@
             // 
             // lbLymphNode
             // 
-            this.lbLymphNode.CanGrow = false;
             this.lbLymphNode.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbLymphNode.Multiline = true;
             this.lbLymphNode.Name = "lbLymphNode";
@@ -561,7 +551,6 @@
             // 
             // lbSmoke
             // 
-            this.lbSmoke.CanGrow = false;
             this.lbSmoke.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbSmoke.Multiline = true;
             this.lbSmoke.Name = "lbSmoke";
@@ -594,7 +583,6 @@
             // 
             // lbDrugAllergy
             // 
-            this.lbDrugAllergy.CanGrow = false;
             this.lbDrugAllergy.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbDrugAllergy.Multiline = true;
             this.lbDrugAllergy.Name = "lbDrugAllergy";
@@ -627,7 +615,6 @@
             // 
             // lbAlcohol
             // 
-            this.lbAlcohol.CanGrow = false;
             this.lbAlcohol.Font = new System.Drawing.Font("Angsana New", 10F);
             this.lbAlcohol.Multiline = true;
             this.lbAlcohol.Name = "lbAlcohol";

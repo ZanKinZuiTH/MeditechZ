@@ -269,9 +269,49 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 #endregion
 
                 #region Radiology
-                //string chestXray = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST4")?.Conclusion;
-                //string mammogram = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST5")?.Conclusion;
-                //string ultrasound = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST6")?.Conclusion;
+
+                string chestPA = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST4")?.Conclusion;
+                string mammogram = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST5")?.Conclusion;
+                string ultrasound = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST6")?.Conclusion;
+
+                if (!string.IsNullOrEmpty(chestPA))
+                {
+                    page6.lbChest.Text = chestPA;
+                    if (page6.lbChest.Text != null && page6.lbChest.Text.Length > 400)
+                    {
+                        page6.lbChest.Font = new Font("Angsana New", 9);
+                    }
+                }
+                else
+                {
+                    page6.lbChest.Text = "-";
+                }
+
+                if (!string.IsNullOrEmpty(mammogram))
+                {
+                    page6.lbMam.Text = mammogram;
+                    if (page6.lbMam.Text != null && page6.lbMam.Text.Length > 400)
+                    {
+                        page6.lbMam.Font = new Font("Angsana New", 9);
+                    }
+                }
+                else
+                {
+                    page6.lbMam.Text = "-";
+                }
+
+                if (!string.IsNullOrEmpty(ultrasound))
+                {
+                    page6.lbUlt.Text = ultrasound;
+                    if (page6.lbUlt.Text != null && page6.lbUlt.Text.Length > 400)
+                    {
+                        page6.lbUlt.Font = new Font("Angsana New", 9);
+                    }
+                }
+                else
+                {
+                    page6.lbUlt.Text = "-";
+                }
 
                 var radilogy = data.Radiology;
                 if (radilogy.FirstOrDefault(p => !string.IsNullOrEmpty(p.RequestItemName)) != null)
@@ -303,28 +343,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                     page6.lbChest.Text = "Calcification in aorta Old fracture of right clavicle";
                                 }
                             }
-                            else
-                            {
-                                string resultChestThai = TranslateXray(chestXray.PlainText, chestXray.ResultStatus, chestXray.RequestItemName);
-                                if (!string.IsNullOrEmpty(resultChestThai))
-                                {
-                                    page6.lbChest.Text = resultChestThai;
-                                    if (page6.lbChest.Text != null && page6.lbChest.Text.Length > 400)
-                                    {
-                                        page6.lbChest.Font = new Font("Angsana New", 9);
-                                    }
-                                }
-                                else
-                                {
-                                    page6.lbChest.Text = "ยังไม่ได้แปลไทย";
-                                }
-                            }
+                            //else
+                            //{
+                            //    string resultChestThai = TranslateXray(chestXray.PlainText, chestXray.ResultStatus, chestXray.RequestItemName);
+                            //    if (!string.IsNullOrEmpty(resultChestThai))
+                            //    {
+                            //        page6.lbChest.Text = resultChestThai;
+                            //        if (page6.lbChest.Text != null && page6.lbChest.Text.Length > 400)
+                            //        {
+                            //            page6.lbChest.Font = new Font("Angsana New", 9);
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        page6.lbChest.Text = "ยังไม่ได้แปลไทย";
+                            //    }
+                            //}
                         }
                     }
-                    else
-                    {
-                        page6.lbChest.Text = "-";
-                    }
+                    //else
+                    //{
+                    //    page6.lbChest.Text = "-";
+                    //}
 
                     if (radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) != null)
                     {
@@ -340,28 +380,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                 MamResultEn = MamResultEn.Trim();
                                 page6.lbMam.Text = MamResultEn;
                             }
-                            else
-                            {
-                                string resultChestThai = TranslateXray(mammoGram.PlainText, mammoGram.ResultStatus, mammoGram.RequestItemName);
-                                if (!string.IsNullOrEmpty(resultChestThai))
-                                {
-                                    page6.lbMam.Text = resultChestThai;
-                                    if (page6.lbMam.Text != null && page6.lbMam.Text.Length > 400)
-                                    {
-                                        page6.lbMam.Font = new Font("Angsana New", 9);
-                                    }
-                                }
-                                else
-                                {
-                                    page6.lbMam.Text = "ยังไม่ได้แปลไทย";
-                                }
-                            }
+                            //else
+                            //{
+                            //    string resultChestThai = TranslateXray(mammoGram.PlainText, mammoGram.ResultStatus, mammoGram.RequestItemName);
+                            //    if (!string.IsNullOrEmpty(resultChestThai))
+                            //    {
+                            //        page6.lbMam.Text = resultChestThai;
+                            //        if (page6.lbMam.Text != null && page6.lbMam.Text.Length > 400)
+                            //        {
+                            //            page6.lbMam.Font = new Font("Angsana New", 9);
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        page6.lbMam.Text = "ยังไม่ได้แปลไทย";
+                            //    }
+                            //}
                         }
                     }
-                    else
-                    {
-                        page6.lbMam.Text = "-";
-                    }
+                    //else
+                    //{
+                    //    page6.lbMam.Text = "-";
+                    //}
 
                     if (radilogy.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US"))) != null)
                     {
@@ -377,28 +417,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                 UltResultEn = UltResultEn.Trim();
                                 page6.lbUlt.Text = UltResultEn;
                             }
-                            else
-                            {
-                                string resultChestThai = TranslateXray(ultrsound.PlainText, ultrsound.ResultStatus, ultrsound.RequestItemName);
-                                if (!string.IsNullOrEmpty(resultChestThai))
-                                {
-                                    page6.lbUlt.Text = resultChestThai;
-                                    if (page6.lbUlt.Text != null && page6.lbUlt.Text.Length > 400)
-                                    {
-                                        page6.lbUlt.Font = new Font("Angsana New", 9);
-                                    }
-                                }
-                                else
-                                {
-                                    page6.lbUlt.Text = "ยังไม่ได้แปลไทย";
-                                }
-                            }
+                            //else
+                            //{
+                            //    string resultChestThai = TranslateXray(ultrsound.PlainText, ultrsound.ResultStatus, ultrsound.RequestItemName);
+                            //    if (!string.IsNullOrEmpty(resultChestThai))
+                            //    {
+                            //        page6.lbUlt.Text = resultChestThai;
+                            //        if (page6.lbUlt.Text != null && page6.lbUlt.Text.Length > 400)
+                            //        {
+                            //            page6.lbUlt.Font = new Font("Angsana New", 9);
+                            //        }
+                            //    }
+                            //    else
+                            //    {
+                            //        page6.lbUlt.Text = "ยังไม่ได้แปลไทย";
+                            //    }
+                            //}
                         }
                     }
-                    else
-                    {
-                        page6.lbUlt.Text = "-";
-                    }
+                    //else
+                    //{
+                    //    page6.lbUlt.Text = "-";
+                    //}
                 }
 
                 #endregion
