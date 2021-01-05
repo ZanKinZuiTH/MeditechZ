@@ -152,8 +152,8 @@ namespace MediTech.ViewModels
                         VisibilityRadiology = Visibility.Visible;
 
                         ResultRadiologys = SelectGroupResult.Key == 3179 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("chest")).ToList()
-            : SelectGroupResult.Key == 3179 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("chest")).ToList() :
-            SelectGroupResult.Key == 3179 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("chest")).ToList() : null;
+            : SelectGroupResult.Key == 3180 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("mammo")).ToList() :
+            SelectGroupResult.Key == 3181 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("ultrasound")).ToList() : null;
                     }
                     else
                     {

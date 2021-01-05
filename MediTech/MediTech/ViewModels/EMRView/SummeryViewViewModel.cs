@@ -1,6 +1,7 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Reports.Operating.Checkup.CheckupBookReport;
 using MediTech.Reports.Operating.Lab;
 using MediTech.Reports.Operating.Patient.WellnessBook;
 using MediTech.Reports.Operating.Radiology;
@@ -626,10 +627,11 @@ namespace MediTech.ViewModels
         private void PreviewWellnessBook(int wellNessDataUID)
         {
             var previewWellness = ListWellnessData.FirstOrDefault(p => p.WellnessDataUID == wellNessDataUID);
-            WellnessMainBook report = new WellnessMainBook();
+            CheckupPage1 report = new CheckupPage1();
             ReportPrintTool printTool = new ReportPrintTool(report);
             report.Parameters["PatientUID"].Value = previewWellness.PatientUID;
             report.Parameters["PatientVisitUID"].Value = previewWellness.PatientVisitUID;
+            report.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;
             report.RequestParameters = false;
             report.ShowPrintMarginsWarning = false;
             printTool.ShowPreviewDialog();

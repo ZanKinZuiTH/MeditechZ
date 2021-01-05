@@ -370,7 +370,7 @@
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
-                
+
                 <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
                     <dxlc:LayoutItem>
                         <dxe:ImageEdit Height="150" HorizontalAlignment="Center"
@@ -392,8 +392,6 @@
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-
-
 
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Name="visitGroup" 

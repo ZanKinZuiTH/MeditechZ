@@ -216,7 +216,7 @@
                                    IsExpanded="True">
                         <dxlc:LayoutControl Orientation="Vertical">
                             <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="BN" >
+                                <dxlc:LayoutItem Label="รหัสผู้ป่วย" >
                                     <dxe:TextEdit x:Name="txtHN" Text="{Binding LN}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อ">

@@ -14,7 +14,7 @@
                 </Style>
             </dxlc:LayoutControl.Resources>
             <dxlc:LayoutGroup Orientation="Horizontal" >
-                <dxlc:LayoutItem Label="BN">
+                <dxlc:LayoutItem Label="รหัสผู้ป่วย">
                     <dxe:TextEdit Text="{Binding PatientID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ชื่อ">
@@ -74,7 +74,7 @@
                         <dxg:TableView ShowGroupPanel="False" />
                     </dxg:GridControl.View>
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="BN" FieldName="PatientID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                         <dxg:GridColumn Header="คำนำหน้า" FieldName="Title" ReadOnly="True"/>
                         <dxg:GridColumn Header="ชื่อ" FieldName="FirstName" ReadOnly="True"/>
                         <dxg:GridColumn Header="นามสกุล" FieldName="LastName" ReadOnly="True"/>
