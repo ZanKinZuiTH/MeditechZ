@@ -103,7 +103,7 @@
             this.xrTable1,
             this.xrLabel3,
             this.audioChartLine});
-            this.Detail.HeightF = 468.3333F;
+            this.Detail.HeightF = 474.3337F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -111,7 +111,7 @@
             // xrLabel9
             // 
             this.xrLabel9.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(17.00002F, 353.1669F);
+            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 359.1669F);
             this.xrLabel9.Multiline = true;
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -124,7 +124,7 @@
             // xrLabel8
             // 
             this.xrLabel8.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(17.83335F, 245.0001F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(71.16669F, 251.0001F);
             this.xrLabel8.Multiline = true;
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -139,7 +139,7 @@
             // xrLabel7
             // 
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(17.83335F, 331.0002F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(71.16669F, 337.0002F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(146.6667F, 22.16666F);
@@ -151,7 +151,7 @@
             // xrLabel6
             // 
             this.xrLabel6.Font = new System.Drawing.Font("EucrosiaUPC", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(17.00002F, 222.8335F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 228.8335F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(146.6667F, 22.16666F);
@@ -163,7 +163,7 @@
             // xrLabel5
             // 
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(17.00002F, 101F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 107F);
             this.xrLabel5.Multiline = true;
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -176,7 +176,7 @@
             // xrLabel2
             // 
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(274.3333F, 0F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(274.3333F, 9F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(227.5F, 24.66667F);
@@ -187,12 +187,12 @@
             // 
             // xrTable1
             // 
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(17.00002F, 28.00001F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 37.00002F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
             this.xrTableRow2});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(800F, 46.66666F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(746.6666F, 46.66667F);
             // 
             // xrTableRow1
             // 
@@ -447,7 +447,7 @@
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 12F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(17.00002F, 80.50001F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 86.49999F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(165F, 20.5F);
@@ -498,7 +498,7 @@
             this.audioChartLine.Legend.Direction = DevExpress.XtraCharts.LegendDirection.LeftToRight;
             this.audioChartLine.Legend.Name = "Default Legend";
             this.audioChartLine.Legend.Visibility = DevExpress.Utils.DefaultBoolean.True;
-            this.audioChartLine.LocationFloat = new DevExpress.Utils.PointFloat(305.1667F, 101F);
+            this.audioChartLine.LocationFloat = new DevExpress.Utils.PointFloat(331.1666F, 110F);
             this.audioChartLine.Name = "audioChartLine";
             pointSeriesLabel1.Angle = 90;
             series1.Label = pointSeriesLabel1;
@@ -517,7 +517,7 @@
             this.audioChartLine.SeriesSerializable = new DevExpress.XtraCharts.Series[] {
         series1,
         series2};
-            this.audioChartLine.SizeF = new System.Drawing.SizeF(511.8333F, 200F);
+            this.audioChartLine.SizeF = new System.Drawing.SizeF(485.8334F, 200F);
             // 
             // TopMargin
             // 
@@ -549,7 +549,7 @@
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(27.66668F, 21.00001F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(70.33335F, 22.66668F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(209.1667F, 60.66666F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
@@ -582,11 +582,10 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin});
-            this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 93, 1);
-            this.PageHeight = 583;
+            this.PageHeight = 1169;
             this.PageWidth = 827;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A5;
+            this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID});
