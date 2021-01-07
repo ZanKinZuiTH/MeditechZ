@@ -666,6 +666,9 @@ namespace MediTechWebApi.Controllers
                                                       select new PatientResultComponentModel
                                                       {
                                                           PatientName = SqlFunction.fGetPatientName(pt.UID),
+                                                          PatientID = pt.PatientID,
+                                                          EmployeeID = pt.EmployeeID,
+                                                          Department = pt.Department,
                                                           Age = pt.DOBDttm != null ? SqlFunction.fGetAge(pt.DOBDttm.Value) : "",
                                                           Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
                                                           BirthDttm = pt.DOBDttm,
@@ -673,7 +676,8 @@ namespace MediTechWebApi.Controllers
                                                           ResultItemName = rst.ResultItemName,
                                                           ResultValue = rst.ResultValue,
                                                           Weight = vts.Weight,
-                                                          Height = vts.Height
+                                                          Height = vts.Height,
+                                                          StartDttm = pv.StartDttm
                                                       }).ToList();
             return data;
         }

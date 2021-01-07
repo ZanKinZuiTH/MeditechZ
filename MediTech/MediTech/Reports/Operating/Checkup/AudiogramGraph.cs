@@ -30,12 +30,16 @@ namespace MediTech.Reports.Operating.Checkup
             var dataAudio = (new ReportsService()).AudiogramResult(PatientUID, PatientVisitUID); 
             if (dataAudio != null && dataAudio.Count > 0)
             {
+                lbHN.Text = dataAudio.FirstOrDefault().PatientID;
+                lbEmployeeID.Text = dataAudio.FirstOrDefault().EmployeeID;
+                lbDepartment.Text = dataAudio.FirstOrDefault().Department;
                 lbPatientName.Text = dataAudio.FirstOrDefault().PatientName;
                 lbAge.Text = dataAudio.FirstOrDefault().Age;
                 lbGender.Text = dataAudio.FirstOrDefault().Gender;
                 lbBirthDttm.Text = dataAudio.FirstOrDefault().BirthDttmString;
-                lbWeight.Text = dataAudio.FirstOrDefault().Weight.ToString();
-                lbHeight.Text = dataAudio.FirstOrDefault().Height.ToString();
+                lbWeight.Text = dataAudio.FirstOrDefault().Weight != null ? dataAudio.FirstOrDefault().Weight + " กก." : "";
+                lbHeight.Text = dataAudio.FirstOrDefault().Height != null ? dataAudio.FirstOrDefault().Height + " ซม." : "";
+                lbStartDttm.Text = dataAudio.FirstOrDefault().StartDttm.Value.ToString("dd/MM/yyyy");
                 foreach (Series series in audioChartLine.Series)
                 {
                     if (series.Name == "ขวา")

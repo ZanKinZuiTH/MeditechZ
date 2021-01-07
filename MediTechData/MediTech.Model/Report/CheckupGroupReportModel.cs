@@ -162,6 +162,8 @@ namespace MediTech.Model.Report
         public string PAR75 { get; set; } //lead in blood
         public string PAR132 { get; set; } //Chromium in Urine
         public string PAR125 { get; set; } //xylene
+
+        public string C0073 { get; set; } //eGRF
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
