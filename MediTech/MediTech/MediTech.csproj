@@ -405,6 +405,12 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.Designer.cs">
       <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.Designer.cs">
+      <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2405,6 +2411,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.resx">
       <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.resx">
+      <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
