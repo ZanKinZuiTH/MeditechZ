@@ -221,6 +221,7 @@ namespace MediTechWebApi.Controllers
                                                  AccessionNumber = red.AccessionNumber,
                                                  TestName = red.RequestItemName,
                                                  ResultUID = rs.UID,
+                                                 PreparedDttm = red.PreparedDttm,
                                                  RequestedDttm = red.RequestedDttm,
                                                  Modality = SqlFunction.fGetRfValCode(red.RIMTYPUID ?? 0),
                                                  ResultEnteredDttm = rs.ResultEnteredDttm,

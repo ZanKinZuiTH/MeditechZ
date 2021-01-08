@@ -797,7 +797,7 @@ namespace MediTech.ViewModels
                                 PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
                                 pacsViewModel.PatientID = regist.PatientID;
                                 pacsViewModel.DateFrom = null;
-                                pacsViewModel.DateTo = regist.RequestedDttm;
+                                pacsViewModel.DateTo = regist.PreparedDttm != null ? regist.PreparedDttm : regist.RequestedDttm;
                                 pacsViewModel.IsCheckedPeriod = true;
                                 pacsViewModel.Modality = regist.Modality;
                                 pacsViewModel.IsOpenFromExam = true;
@@ -872,7 +872,7 @@ namespace MediTech.ViewModels
                             PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
                             pacsViewModel.PatientID = SelectRequestExam.PatientID;
                             pacsViewModel.DateFrom = null;
-                            pacsViewModel.DateTo = SelectRequestExam.RequestedDttm;
+                            pacsViewModel.DateTo = SelectRequestExam.PreparedDttm != null ? SelectRequestExam.PreparedDttm : SelectRequestExam.RequestedDttm;
                             pacsViewModel.IsCheckedPeriod = true;
                             pacsViewModel.Modality = SelectRequestExam.Modality;
                             pacsViewModel.IsOpenFromExam = true;
@@ -1070,7 +1070,7 @@ namespace MediTech.ViewModels
                 pacsViewModel.PatientID = SelectRequestExam.PatientID;
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = SelectRequestExam.RequestedDttm;
+                pacsViewModel.DateTo = SelectRequestExam.PreparedDttm != null ? SelectRequestExam.PreparedDttm : SelectRequestExam.RequestedDttm;
                 pacsViewModel.IsOpenFromExam = true;
                 pacsViewModel.Modality = SelectRequestExam.Modality;
                 LaunchViewDialog(pacs, "PACS", false, true);

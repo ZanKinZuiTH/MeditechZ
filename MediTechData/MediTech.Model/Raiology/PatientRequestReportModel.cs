@@ -54,6 +54,7 @@ namespace MediTech.Model
     {
         public System.Nullable<DateTime> RequestedDttm { get; set; }
         public System.Nullable<DateTime> ResultEnteredDttm { get; set; }
+        public System.Nullable<DateTime> PreparedDttm { get; set; }
         public string TestName { get; set; }
         public string Modality { get; set; }
         public long ResultUID { get; set; }

@@ -184,7 +184,7 @@ namespace MediTech.ViewModels
                 PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
                 pacsViewModel.PatientID = PatientRequest.PatientID;
                 pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = PatientRequest.RequestedDttm;
+                pacsViewModel.DateTo = PatientRequest.PreparedDttm != null ? PatientRequest.PreparedDttm : PatientRequest.RequestedDttm;
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.Modality = PatientRequest.Modality;
                 pacsViewModel.IsOpenFromExam = true;
@@ -360,7 +360,7 @@ IMPRESSION:
                 pacsViewModel.PatientID = PatientRequest.PatientID;
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = SelectPreviousResult.RequestedDttm;
+                pacsViewModel.DateTo = SelectPreviousResult.PreparedDttm != null ? SelectPreviousResult.PreparedDttm : SelectPreviousResult.RequestedDttm;
                 pacsViewModel.Modality = SelectPreviousResult.Modality;
                 pacsViewModel.IsOpenFromExam = true;
                 System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;

@@ -252,7 +252,7 @@
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.Text = "รหัสพนักงาน :";
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell10.Weight = 0.74833374023437527D;
+            this.xrTableCell10.Weight = 0.87696945659668035D;
             // 
             // lbEmployeeID
             // 
@@ -263,7 +263,7 @@
             this.lbEmployeeID.StylePriority.UsePadding = false;
             this.lbEmployeeID.StylePriority.UseTextAlignment = false;
             this.lbEmployeeID.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbEmployeeID.Weight = 1.0335037427070812D;
+            this.lbEmployeeID.Weight = 1.0794448296331731D;
             // 
             // xrTableCell14
             // 
@@ -275,7 +275,7 @@
             this.xrTableCell14.StylePriority.UseTextAlignment = false;
             this.xrTableCell14.Text = "ชื่อ-นามสกุล :";
             this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell14.Weight = 0.818162364470653D;
+            this.xrTableCell14.Weight = 0.90042376995346818D;
             // 
             // lbPatientName
             // 
@@ -286,7 +286,7 @@
             this.lbPatientName.StylePriority.UsePadding = false;
             this.lbPatientName.StylePriority.UseTextAlignment = false;
             this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbPatientName.Weight = 2.2499990844726558D;
+            this.lbPatientName.Weight = 1.9931608757014439D;
             // 
             // xrTableCell21
             // 
@@ -671,11 +671,10 @@
             this.Detail,
             this.TopMargin,
             this.BottomMargin});
-            this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 85, 1);
-            this.PageHeight = 583;
+            this.PageHeight = 1169;
             this.PageWidth = 827;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A5;
+            this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID});

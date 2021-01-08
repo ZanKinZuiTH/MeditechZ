@@ -777,7 +777,7 @@ namespace MediTech.ViewModels
                 pacsViewModel.PatientID = PatientRequest.PatientID;
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = SelectPreviousResult.RequestedDttm;
+                pacsViewModel.DateTo = SelectPreviousResult.PreparedDttm != null ? SelectPreviousResult.PreparedDttm : SelectPreviousResult.RequestedDttm;
                 pacsViewModel.Modality = SelectPreviousResult.Modality;
                 pacsViewModel.IsOpenFromExam = true;
                 System.Windows.Window owner = (System.Windows.Window)(this.View as ReviewRISResult).Parent;
@@ -802,7 +802,9 @@ namespace MediTech.ViewModels
                 modlity = "'" + PatientRequest.Modality + "'";
             }
 
-            var StudiesList = DataService.PACS.SearchPACSWorkList(null, PatientRequest.RequestedDttm,
+            DateTime? dateTo = PatientRequest.PreparedDttm != null ? PatientRequest.PreparedDttm : PatientRequest.RequestedDttm;
+
+            var StudiesList = DataService.PACS.SearchPACSWorkList(null, dateTo,
                 modlity, null, PatientRequest.PatientID, null, null, null, null, null);
 
             if (StudiesList != null && StudiesList.Count == 1)
@@ -817,7 +819,7 @@ namespace MediTech.ViewModels
                 PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
                 pacsViewModel.PatientID = PatientRequest.PatientID;
                 pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = PatientRequest.RequestedDttm;
+                pacsViewModel.DateTo = dateTo;
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.Modality = PatientRequest.Modality;
                 pacsViewModel.StudiesList = StudiesList;
