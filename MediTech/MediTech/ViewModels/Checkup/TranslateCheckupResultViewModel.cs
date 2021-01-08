@@ -478,6 +478,7 @@ namespace MediTech.ViewModels
                 PatientVitalSignModel vitalSign = null;
                 List<ResultRadiologyModel> radiology = null;
 
+
                 foreach (var grpstUID in GPRSTUIDs)
                 {
                     List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
@@ -498,15 +499,15 @@ namespace MediTech.ViewModels
                         if (vitalSign != null)
                         {
                             resultComponent = new List<ResultComponentModel>();
-                            double? bmiValue = null;
-                            if (vitalSign.BMIValue.HasValue)
-                                bmiValue = Math.Round(vitalSign.BMIValue.Value, 1);
+                            //double? bmiValue = null;
+                            //if (vitalSign.BMIValue.HasValue)
+                            //    bmiValue = Math.Round(vitalSign.BMIValue.Value, 1);
 
                             if (grpstUID == 3177)
                             {
                                 if (vitalSign.BMIValue != null)
                                 {
-                                    ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = bmiValue.ToString() };
+                                    ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
                                     resultComponent.Add(bmiComponent);
                                 }
                             }

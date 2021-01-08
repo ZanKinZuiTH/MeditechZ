@@ -164,85 +164,85 @@ namespace MediTech.ViewModels
                     int visibleIndex = 4;
 
                     #region CBCPrintOrder
-                    if (SelectedRequestItem.ItemName.Contains("CBC"))
-                    {
-                        foreach (var resultItem in SelectedRequestItem.RequestResultLinks)
-                        {
-                            int printOrder = 999;
-                            if (resultItem.ResultItemName.Contains("WBC"))
-                            {
-                                printOrder = 1;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("basophil"))
-                            {
-                                printOrder = 2;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("neutrophil"))
-                            {
-                                printOrder = 3;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("eosinophil "))
-                            {
-                                printOrder = 4;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("lymphocyte"))
-                            {
-                                printOrder = 5;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("monocyte"))
-                            {
-                                printOrder = 6;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("rbc"))
-                            {
-                                printOrder = 7;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("hb"))
-                            {
-                                printOrder = 8;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("mcv"))
-                            {
-                                printOrder = 9;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("mch"))
-                            {
-                                printOrder = 10;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("mchc"))
-                            {
-                                printOrder = 11;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
-                            {
-                                printOrder = 12;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
-                            {
-                                printOrder = 13;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("hct"))
-                            {
-                                printOrder = 14;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("platelets count"))
-                            {
-                                printOrder = 15;
-                            }
-                            else if (resultItem.ResultItemName.ToLower().Contains("mpv"))
-                            {
-                                printOrder = 16;
-                            }
-                        }
-                    }
-                    else if (SelectedRequestItem.ItemName.Contains("CBC"))
-                    {
-                        int printOrder = 999;
-                    }
+                    //if (SelectedRequestItem.ItemName.Contains("CBC"))
+                    //{
+                    //    foreach (var resultItem in SelectedRequestItem.RequestResultLinks)
+                    //    {
+                    //        int printOrder = 999;
+                    //        if (resultItem.ResultItemName.ToLower().Contains("wbc"))
+                    //        {
+                    //            printOrder = 1;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("basophil"))
+                    //        {
+                    //            printOrder = 2;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("neutrophil"))
+                    //        {
+                    //            printOrder = 3;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("eosinophil "))
+                    //        {
+                    //            printOrder = 4;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("lymphocyte"))
+                    //        {
+                    //            printOrder = 5;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("monocyte"))
+                    //        {
+                    //            printOrder = 6;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("rbc"))
+                    //        {
+                    //            printOrder = 7;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("hb"))
+                    //        {
+                    //            printOrder = 8;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("mcv"))
+                    //        {
+                    //            printOrder = 9;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("mch"))
+                    //        {
+                    //            printOrder = 10;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("mchc"))
+                    //        {
+                    //            printOrder = 11;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
+                    //        {
+                    //            printOrder = 12;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
+                    //        {
+                    //            printOrder = 13;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("hct"))
+                    //        {
+                    //            printOrder = 14;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("platelets count"))
+                    //        {
+                    //            printOrder = 15;
+                    //        }
+                    //        else if (resultItem.ResultItemName.ToLower().Contains("mpv"))
+                    //        {
+                    //            printOrder = 16;
+                    //        }
+                    //    }
+                    //}
+                    //else if (SelectedRequestItem.ItemName.Contains("CBC"))
+                    //{
+                    //    int printOrder = 999;
+                    //}
 
-                        #endregion
+                    #endregion
 
-                        foreach (var item in SelectedRequestItem.RequestResultLinks.OrderBy(p => p.PrintOrder))
+                    foreach (var item in SelectedRequestItem.RequestResultLinks.OrderBy(p => p.PrintOrder))
                     {
                         string parameterName = item.ResultItemName +
                             (!string.IsNullOrEmpty(item.Unit) ? " ( " + item.Unit + " )" : "");
@@ -527,7 +527,7 @@ namespace MediTech.ViewModels
                                 //    {
                                 //        continue;
                                 //    }
-                                    
+
                                 //    if (columnName == "Blood")
                                 //    {
                                 //        string rbcValue = "";
@@ -679,7 +679,7 @@ namespace MediTech.ViewModels
             {
                 if (columnParameter.Tag != null)
                 {
-                    string resultValue = rowData[columnParameter.FieldName.Replace(".","#")].ToString()?.Trim();
+                    string resultValue = rowData[columnParameter.FieldName.Replace(".", "#")].ToString()?.Trim();
                     if (!string.IsNullOrEmpty(resultValue))
                     {
                         RequestResultLinkModel resultItem = (RequestResultLinkModel)columnParameter.Tag;
