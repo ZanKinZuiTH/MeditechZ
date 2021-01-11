@@ -242,7 +242,13 @@
                                       ItemsSource="{Binding OccupationSource}"
                                       SelectedItem="{Binding SelectedOccupation}"/>
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem/>
+                            <dxlc:LayoutItem Label="ภาษาที่ต้องการ">
+                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      ItemsSource="{Binding PreferredLanguageSource}"
+                                      SelectedItem="{Binding SelectedPreferredLanguage}"/>
+                            </dxlc:LayoutItem>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Vertical">

@@ -156,7 +156,7 @@
             this.xrLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel6.CanGrow = false;
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(515.0668F, 346.8745F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(515.0668F, 321.8745F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(220.8333F, 23.00001F);
@@ -179,7 +179,7 @@
             this.xrTableRow29,
             this.xrTableRow30,
             this.xrTableRow31});
-            this.tbRediology.SizeF = new System.Drawing.SizeF(371.6667F, 270.0966F);
+            this.tbRediology.SizeF = new System.Drawing.SizeF(371.6667F, 236.7633F);
             this.tbRediology.StylePriority.UseBorders = false;
             this.tbRediology.StylePriority.UseBorderWidth = false;
             this.tbRediology.StylePriority.UseFont = false;
@@ -250,7 +250,7 @@
             // 
             // lbChest
             // 
-            this.lbChest.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.lbChest.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.lbChest.Multiline = true;
             this.lbChest.Name = "lbChest";
             this.lbChest.StylePriority.UseBorders = false;
@@ -284,7 +284,7 @@
             // 
             // lbUlt
             // 
-            this.lbUlt.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.lbUlt.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.lbUlt.Multiline = true;
             this.lbUlt.Name = "lbUlt";
             this.lbUlt.StylePriority.UseBorders = false;
@@ -318,7 +318,7 @@
             // 
             // lbMam
             // 
-            this.lbMam.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.lbMam.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.lbMam.Multiline = true;
             this.lbMam.Name = "lbMam";
             this.lbMam.StylePriority.UseBorders = false;
@@ -349,7 +349,7 @@
             this.tbEKG.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(430.1668F, 371.5412F);
+            this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(430.1668F, 346.5412F);
             this.tbEKG.Name = "tbEKG";
             this.tbEKG.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow21,

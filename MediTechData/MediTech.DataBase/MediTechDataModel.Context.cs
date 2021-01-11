@@ -3414,7 +3414,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetGroupResultCumulative_Result>("pGetGroupResultCumulative", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_GPRSTUIDParameter, p_PayorDetailUIDParameter);
         }
     
-        public virtual ObjectResult<pGetCheckupGroupResult_Result> pGetCheckupGroupResult(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID)
+        public virtual ObjectResult<pGetCheckupGroupResult_Result> pGetCheckupGroupResult(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID, string p_CompanyName, Nullable<int> p_StartRow, Nullable<int> p_EndROW)
         {
             var p_JobContactUIDParameter = p_JobContactUID.HasValue ?
                 new ObjectParameter("P_JobContactUID", p_JobContactUID) :
@@ -3424,7 +3424,19 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
                 new ObjectParameter("P_GPRSTUID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupGroupResult_Result>("pGetCheckupGroupResult", p_JobContactUIDParameter, p_GPRSTUIDParameter);
+            var p_CompanyNameParameter = p_CompanyName != null ?
+                new ObjectParameter("P_CompanyName", p_CompanyName) :
+                new ObjectParameter("P_CompanyName", typeof(string));
+    
+            var p_StartRowParameter = p_StartRow.HasValue ?
+                new ObjectParameter("P_StartRow", p_StartRow) :
+                new ObjectParameter("P_StartRow", typeof(int));
+    
+            var p_EndROWParameter = p_EndROW.HasValue ?
+                new ObjectParameter("P_EndROW", p_EndROW) :
+                new ObjectParameter("P_EndROW", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupGroupResult_Result>("pGetCheckupGroupResult", p_JobContactUIDParameter, p_GPRSTUIDParameter, p_CompanyNameParameter, p_StartRowParameter, p_EndROWParameter);
         }
     
         public virtual ObjectResult<pGetCheckupMobileResult_Result> pGetCheckupMobileResult(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
@@ -3476,6 +3488,23 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_CheckupJobUID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientCheckup_Result>("pSearchPatientCheckup", p_PatientUIDParameter, p_DateFromParameter, p_DateToParameter, p_PayorDetailUIDParameter, p_CheckupJobUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTCheckupSummary_Result> pRPTCheckupSummary(Nullable<int> p_CheckupJobUID, string p_GPRSTUIDs, string p_CompanyName)
+        {
+            var p_CheckupJobUIDParameter = p_CheckupJobUID.HasValue ?
+                new ObjectParameter("P_CheckupJobUID", p_CheckupJobUID) :
+                new ObjectParameter("P_CheckupJobUID", typeof(int));
+    
+            var p_GPRSTUIDsParameter = p_GPRSTUIDs != null ?
+                new ObjectParameter("P_GPRSTUIDs", p_GPRSTUIDs) :
+                new ObjectParameter("P_GPRSTUIDs", typeof(string));
+    
+            var p_CompanyNameParameter = p_CompanyName != null ?
+                new ObjectParameter("P_CompanyName", p_CompanyName) :
+                new ObjectParameter("P_CompanyName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupSummary_Result>("pRPTCheckupSummary", p_CheckupJobUIDParameter, p_GPRSTUIDsParameter, p_CompanyNameParameter);
         }
     }
 }

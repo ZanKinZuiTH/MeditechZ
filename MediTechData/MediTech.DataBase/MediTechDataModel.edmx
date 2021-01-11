@@ -1045,6 +1045,7 @@
           <Property Name="RELGNUID" Type="int" />
           <Property Name="IDLine" Type="nvarchar" MaxLength="50" />
           <Property Name="MobilePhone" Type="nvarchar" MaxLength="12" />
+          <Property Name="SPOKLUID" Type="int" />
           <Property Name="NATNLUID" Type="int" />
           <Property Name="IDPassport" Type="nvarchar" MaxLength="20" />
           <Property Name="MARRYUID" Type="int" />
@@ -3225,6 +3226,9 @@
         <Function Name="pGetCheckupGroupResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_JobContactUID" Type="int" Mode="In" />
           <Parameter Name="P_GPRSTUID" Type="int" Mode="In" />
+          <Parameter Name="P_CompanyName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="P_StartRow" Type="int" Mode="In" />
+          <Parameter Name="P_EndROW" Type="int" Mode="In" />
         </Function>
         <Function Name="pGetCheckupMobileResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -3491,6 +3495,11 @@
         <Function Name="pRPTCheckupLabCompare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pRPTCheckupSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
+          <Parameter Name="P_GPRSTUIDs" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="P_CompanyName" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -4927,7 +4936,7 @@
             <Parameter Name="P_RequestItemUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pGetVitalSignCumulative" ReturnType="Collection(MediTechModel.pGetVitalSignCumulative_Result)">
-          <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
             <Parameter Name="P_PatientVisitUID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="pGetGroupResultCumulative" ReturnType="Collection(MediTechModel.pGetGroupResultCumulative_Result)">
@@ -4939,6 +4948,9 @@
           <FunctionImport Name="pGetCheckupGroupResult" ReturnType="Collection(MediTechModel.pGetCheckupGroupResult_Result)">
             <Parameter Name="P_JobContactUID" Mode="In" Type="Int32" />
             <Parameter Name="P_GPRSTUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_CompanyName" Mode="In" Type="String" />
+            <Parameter Name="P_StartRow" Mode="In" Type="Int32" />
+            <Parameter Name="P_EndROW" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pGetCheckupMobileResult" ReturnType="Collection(MediTechModel.pGetCheckupMobileResult_Result)">
             <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
@@ -5112,6 +5124,11 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTCheckupSummary" ReturnType="Collection(MediTechModel.pRPTCheckupSummary_Result)">
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GPRSTUIDs" Mode="In" Type="String" />
+            <Parameter Name="P_CompanyName" Mode="In" Type="String" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8593,6 +8610,7 @@
           <Property Name="RELGNUID" Type="Int32" />
           <Property Name="IDLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="MobilePhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="SPOKLUID" Type="Int32" />
           <Property Name="NATNLUID" Type="Int32" />
           <Property Name="IDPassport" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="MARRYUID" Type="Int32" />
@@ -10571,6 +10589,19 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTCheckupSummary_Result">
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="NormalCount" Nullable="true" />
+          <Property Type="Double" Name="NormalPercent" Nullable="true" />
+          <Property Type="Int32" Name="AbnormalCount" Nullable="true" />
+          <Property Type="Double" Name="AbnormalPercent" Nullable="true" />
+          <Property Type="Int32" Name="AttentionCount" Nullable="true" />
+          <Property Type="Double" Name="AttentionPercent" Nullable="true" />
+          <Property Type="Int32" Name="CheckinCount" Nullable="true" />
+          <Property Type="Int32" Name="NonCheckinCount" Nullable="true" />
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int32" Name="GPRSTUID" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -13556,6 +13587,7 @@
                 <ScalarProperty Name="MARRYUID" ColumnName="MARRYUID" />
                 <ScalarProperty Name="IDPassport" ColumnName="IDPassport" />
                 <ScalarProperty Name="NATNLUID" ColumnName="NATNLUID" />
+                <ScalarProperty Name="SPOKLUID" ColumnName="SPOKLUID" />
                 <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
                 <ScalarProperty Name="IDLine" ColumnName="IDLine" />
                 <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
@@ -15638,6 +15670,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupSummary" FunctionName="MediTechModel.Store.pRPTCheckupSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupSummary_Result">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="NormalCount" ColumnName="NormalCount" />
+                <ScalarProperty Name="NormalPercent" ColumnName="NormalPercent" />
+                <ScalarProperty Name="AbnormalCount" ColumnName="AbnormalCount" />
+                <ScalarProperty Name="AbnormalPercent" ColumnName="AbnormalPercent" />
+                <ScalarProperty Name="AttentionCount" ColumnName="AttentionCount" />
+                <ScalarProperty Name="AttentionPercent" ColumnName="AttentionPercent" />
+                <ScalarProperty Name="CheckinCount" ColumnName="CheckinCount" />
+                <ScalarProperty Name="NonCheckinCount" ColumnName="NonCheckinCount" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

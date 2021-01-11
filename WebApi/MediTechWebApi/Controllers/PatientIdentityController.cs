@@ -267,6 +267,7 @@ namespace MediTechWebApi.Controllers
                     patient.SecondPhone = patientInfo.SecondPhone;
                     patient.Email = patientInfo.Email;
                     patient.IDLine = patientInfo.IDLine;
+                    patient.SPOKLUID = patientInfo.SPOKLUID;
                     patient.NATNLUID = patientInfo.NATNLUID;
                     patient.MARRYUID = patientInfo.MARRYUID;
                     patient.RELGNUID = patientInfo.RELGNUID;
@@ -424,7 +425,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("CheckDupicatePatient")]
         [HttpGet]
-        public PatientInformationModel CheckDupicatePatientByIDCard(string firstName, string lastName, DateTime birthDate, int SEXXXUID)
+        public PatientInformationModel CheckDupicatePatientByIDCard(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
         {
             PatientInformationModel data = SqlDirectStore.pCheckDupicatePatient(firstName, lastName, birthDate, SEXXXUID).ToList<PatientInformationModel>().FirstOrDefault();
             return data;

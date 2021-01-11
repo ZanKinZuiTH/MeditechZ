@@ -321,7 +321,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         ResultRadiologyModel chestXray = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"));
                         if (!string.IsNullOrEmpty(chestXray.PlainText))
                         {
-                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
+                            if (patient.SPOKLUID == 4240)
                             {
                                 string chestEN = chestXray.PlainText;
                                 string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -369,10 +369,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     if (radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) != null)
                     {
                         ResultRadiologyModel mammoGram = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo"));
-                        page6.lbMam.Text = mammoGram.ResultStatus;
+                        //page6.lbMam.Text = mammoGram.ResultStatus;
                         if (!string.IsNullOrEmpty(mammoGram.PlainText))
                         {
-                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
+                            if (patient.SPOKLUID == 4240)
                             {
                                 string mamEN = mammoGram.PlainText;
                                 string[] MamResult = mamEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -406,10 +406,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     if (radilogy.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US"))) != null)
                     {
                         ResultRadiologyModel ultrsound = radilogy.FirstOrDefault(p => (p.RequestItemName.ToLower().Contains("ultrasound") || p.RequestItemName.ToLower().Contains("US")));
-                        page6.lbUlt.Text = ultrsound.ResultStatus;
+                        //page6.lbUlt.Text = ultrsound.ResultStatus;
                         if (!string.IsNullOrEmpty(ultrsound.PlainText))
                         {
-                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
+                            if (patient.SPOKLUID == 4240)
                             {
                                 string UltEN = ultrsound.PlainText;
                                 string[] UltResult = UltEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -618,7 +618,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     GenerateOccmedGroup(occmedGroupResult);
                 }
 
-                if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
+                if (patient.SPOKLUID == 4240)
                 {
                     TitleResultWellness2.Text = "Summary";
                     page2.TitleResultWellness.Text = "Summary";

@@ -158,89 +158,161 @@ namespace MediTech.ViewModels
                 {
                     ImportLabResult view = (ImportLabResult)this.View;
                     view.gcTestParameter.ItemsSource = null;
+                    tempDt = new DataTable();
                     ColumnsResultItems = new ObservableCollection<Column>();
                     ColumnsResultItems.Add(new Column() { Header = "HN", FieldName = "HN", VisibleIndex = 0 });
+                    tempDt.Columns.Add("HN");
+                    tempDt.Columns.Add("PatientName");
+                    tempDt.Columns.Add("Gender");
+                    tempDt.Columns.Add("LabNumber");
+                    tempDt.Columns.Add("OrderStatus");
+                    tempDt.Columns.Add("PatientUID");
+                    tempDt.Columns.Add("PatientVisitUID");
+                    tempDt.Columns.Add("RequestUID");
+                    tempDt.Columns.Add("RequestDetailUID");
+                    tempDt.Columns.Add("SEXXXUID");
 
-                    int visibleIndex = 4;
-
-                    #region CBCPrintOrder
-                    //if (SelectedRequestItem.ItemName.Contains("CBC"))
-                    //{
-                    //    foreach (var resultItem in SelectedRequestItem.RequestResultLinks)
-                    //    {
-                    //        int printOrder = 999;
-                    //        if (resultItem.ResultItemName.ToLower().Contains("wbc"))
-                    //        {
-                    //            printOrder = 1;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("basophil"))
-                    //        {
-                    //            printOrder = 2;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("neutrophil"))
-                    //        {
-                    //            printOrder = 3;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("eosinophil "))
-                    //        {
-                    //            printOrder = 4;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("lymphocyte"))
-                    //        {
-                    //            printOrder = 5;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("monocyte"))
-                    //        {
-                    //            printOrder = 6;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("rbc"))
-                    //        {
-                    //            printOrder = 7;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("hb"))
-                    //        {
-                    //            printOrder = 8;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("mcv"))
-                    //        {
-                    //            printOrder = 9;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("mch"))
-                    //        {
-                    //            printOrder = 10;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("mchc"))
-                    //        {
-                    //            printOrder = 11;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
-                    //        {
-                    //            printOrder = 12;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("rdw"))
-                    //        {
-                    //            printOrder = 13;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("hct"))
-                    //        {
-                    //            printOrder = 14;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("platelets count"))
-                    //        {
-                    //            printOrder = 15;
-                    //        }
-                    //        else if (resultItem.ResultItemName.ToLower().Contains("mpv"))
-                    //        {
-                    //            printOrder = 16;
-                    //        }
-                    //    }
-                    //}
-                    //else if (SelectedRequestItem.ItemName.Contains("CBC"))
-                    //{
-                    //    int printOrder = 999;
-                    //}
-
-                    #endregion
+                    int visibleIndex = 5;
+                    if (SelectedRequestItem.Code == "LAB111")
+                    {
+                        foreach (var item in SelectedRequestItem.RequestResultLinks)
+                        {
+                            if (item.ResultItemName.ToLower().StartsWith("wbc"))
+                            {
+                                item.PrintOrder = 1;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("bas"))
+                            {
+                                item.PrintOrder = 2;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("neu"))
+                            {
+                                item.PrintOrder = 3;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("eos"))
+                            {
+                                item.PrintOrder = 4;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("lym"))
+                            {
+                                item.PrintOrder = 5;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("mon"))
+                            {
+                                item.PrintOrder = 6;
+                            }
+                            else if (item.ResultItemName.ToLower() == "rbc")
+                            {
+                                item.PrintOrder = 7;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("hb"))
+                            {
+                                item.PrintOrder = 8;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("mcv"))
+                            {
+                                item.PrintOrder = 9;
+                            }
+                            else if (item.ResultItemName.ToLower() == "mch")
+                            {
+                                item.PrintOrder = 10;
+                            }
+                            else if (item.ResultItemName.ToLower() == "mchc")
+                            {
+                                item.PrintOrder = 11;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("rdw"))
+                            {
+                                item.PrintOrder = 12;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("hct"))
+                            {
+                                item.PrintOrder = 13;
+                            }
+                            else if (item.ResultItemName.ToLower() == "platelets count")
+                            {
+                                item.PrintOrder = 14;
+                            }
+                            else if (item.ResultItemName.ToLower().StartsWith("mpv"))
+                            {
+                                item.PrintOrder = 15;
+                            }
+                            else
+                            {
+                                item.PrintOrder = 999;
+                            }
+                        }
+                    }
+                    else if (SelectedRequestItem.Code == "LAB311")
+                    {
+                        foreach (var item in SelectedRequestItem.RequestResultLinks)
+                        {
+                            if (item.ResultItemName.ToLower() == "leukocyte")
+                            {
+                                item.PrintOrder = 1;
+                            }
+                            else if (item.ResultItemName.ToLower() == "ketone")
+                            {
+                                item.PrintOrder = 2;
+                            }
+                            else if (item.ResultItemName.ToLower() == "nitrite")
+                            {
+                                item.PrintOrder = 3;
+                            }
+                            else if (item.ResultItemName.ToLower() == "urobilinogen")
+                            {
+                                item.PrintOrder = 4;
+                            }
+                            else if (item.ResultItemName.ToLower() == "bilirubin")
+                            {
+                                item.PrintOrder = 5;
+                            }
+                            else if (item.ResultItemName.ToLower() == "protein")
+                            {
+                                item.PrintOrder = 6;
+                            }
+                            else if (item.ResultItemName.ToLower() == "glucose")
+                            {
+                                item.PrintOrder = 7;
+                            }
+                            else if (item.ResultItemName.ToLower() == "specific gravity")
+                            {
+                                item.PrintOrder = 8;
+                            }
+                            else if (item.ResultItemName.ToLower() == "blood")
+                            {
+                                item.PrintOrder = 9;
+                            }
+                            else if (item.ResultItemName.ToLower() == "ph")
+                            {
+                                item.PrintOrder = 10;
+                            }
+                            else if (item.ResultItemName.ToLower() == "color")
+                            {
+                                item.PrintOrder = 11;
+                            }
+                            else if (item.ResultItemName.ToLower() == "appearance")
+                            {
+                                item.PrintOrder = 12;
+                            }
+                            else if (item.ResultItemName.ToLower() == "rbc in urinalysis")
+                            {
+                                item.PrintOrder = 13;
+                            }
+                            else if (item.ResultItemName.ToLower() == "wbc in urine analysis")
+                            {
+                                item.PrintOrder = 14;
+                            }
+                            else if (item.ResultItemName.ToLower() == "epithelial cells")
+                            {
+                                item.PrintOrder = 15;
+                            }
+                            else
+                            {
+                                item.PrintOrder = 999;
+                            }
+                        }
+                    }
 
                     foreach (var item in SelectedRequestItem.RequestResultLinks.OrderBy(p => p.PrintOrder))
                     {
@@ -253,7 +325,11 @@ namespace MediTech.ViewModels
                             VisibleIndex = visibleIndex++,
                             Tag = item
                         });
+
+                        tempDt.Columns.Add(parameterName);
                     }
+
+
 
                 }
 
@@ -320,6 +396,7 @@ namespace MediTech.ViewModels
 
         #region Method
 
+        DataTable tempDt;
         public ImportLabResultViewModel()
         {
             RequestItems = DataService.MasterData.GetRequestItemByCategory("Lab", true);
@@ -427,18 +504,8 @@ namespace MediTech.ViewModels
                             conn.Close();
                         }
                     }
-                    DataTable tempDt = ImportData.Clone();
+                    //tempDt = ImportData.Clone();
                     tempDt.Clear();
-                    tempDt.Columns.Add("PatientName");
-                    tempDt.Columns.Add("Gender");
-                    tempDt.Columns.Add("LabNumber");
-                    tempDt.Columns.Add("OrderStatus");
-                    tempDt.Columns.Add("PatientUID");
-                    tempDt.Columns.Add("PatientVisitUID");
-                    tempDt.Columns.Add("RequestUID");
-                    tempDt.Columns.Add("RequestDetailUID");
-                    tempDt.Columns.Add("SEXXXUID");
-
                     int upperlimit = ImportData.AsEnumerable().Count(p => !string.IsNullOrEmpty(p["HN"].ToString()) && p["HN"].ToString() != "0");
                     view.SetProgressBarLimits(0, upperlimit);
                     if (upperlimit > 0)
@@ -497,6 +564,8 @@ namespace MediTech.ViewModels
                                 //Complete blood Count
                                 if (SelectedRequestItem.Code == "LAB111")
                                 {
+
+
                                     if (columnName == "WBC ( cells/ul )")
                                     {
                                         double wbc_cells_ul = double.Parse(item[columnName].ToString());
@@ -508,7 +577,7 @@ namespace MediTech.ViewModels
                                         continue;
                                     }
 
-                                    if (column.ToString() == "Platelets Count ( cells/mcl )")
+                                    if (columnName == "Platelets Count ( cells/mcl )")
                                     {
                                         double pla_cells_ul = double.Parse(item[columnName].ToString());
                                         if (pla_cells_ul < 100000)
@@ -518,76 +587,8 @@ namespace MediTech.ViewModels
                                         view.gcTestParameter.SetCellValue(newRowHandle, columnName, pla_cells_ul);
                                         continue;
                                     }
+
                                 }
-
-                                //Urine Analysis
-                                //if (SelectedRequestItem.Code == "LAB311")
-                                //{
-                                //    if (columnName.ToLower().Contains("rbc") || columnName.ToLower().Contains("wbc"))
-                                //    {
-                                //        continue;
-                                //    }
-
-                                //    if (columnName == "Blood")
-                                //    {
-                                //        string rbcValue = "";
-                                //        switch (item[columnName].ToString().Trim())
-                                //        {
-                                //            case "Negative":
-                                //                rbcValue = "0-2";
-                                //                break;
-                                //            case "Trace":
-                                //                rbcValue = "2-10";
-                                //                break;
-                                //            case "+1":
-                                //            case "1+":
-                                //                rbcValue = "10-25";
-                                //                break;
-                                //            case "+2":
-                                //            case "2+":
-                                //                rbcValue = "25-80";
-                                //                break;
-                                //            case "+3":
-                                //            case "3+":
-                                //                rbcValue = "> 200";
-                                //                break;
-                                //        }
-                                //        var rbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                //                         where c.ColumnName.ToLower().Contains("rbc")
-                                //                         select c.ColumnName).FirstOrDefault();
-                                //        view.gcTestParameter.SetCellValue(newRowHandle, rbcColumn, rbcValue);
-                                //    }
-                                //    else if (columnName == "Leukocyte")
-                                //    {
-                                //        string wbcValue = "";
-                                //        switch (item[columnName].ToString().Trim())
-                                //        {
-                                //            case "Negative":
-                                //                wbcValue = "0-5";
-                                //                break;
-                                //            case "Trace":
-                                //                wbcValue = "5-15";
-                                //                break;
-                                //            case "+1":
-                                //            case "1+":
-                                //                wbcValue = "15-70";
-                                //                break;
-                                //            case "+2":
-                                //            case "2+":
-                                //                wbcValue = "70-125";
-                                //                break;
-                                //            case "+3":
-                                //            case "3+":
-                                //                wbcValue = "> 500";
-                                //                break;
-                                //        }
-                                //        var wbcColumn = (from c in ImportData.Columns.Cast<DataColumn>()
-                                //                         where c.ColumnName.ToLower().Contains("wbc")
-                                //                         select c.ColumnName).FirstOrDefault();
-                                //        view.gcTestParameter.SetCellValue(newRowHandle, wbcColumn, wbcValue);
-                                //    }
-
-                                //}
 
                                 view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
 

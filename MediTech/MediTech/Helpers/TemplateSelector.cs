@@ -10,31 +10,6 @@ using System.Windows.Controls;
 
 namespace MediTech.Helpers
 {
-    public class EditorTemplatePulmonary : DataTemplateSelector
-    {
-        public override DataTemplate SelectTemplate(object item, DependencyObject container)
-        {
-            DataTemplate dataTemplate = null;
-            if (item != null)
-            {
-                dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textblockEditor");
-                if (item is GridCellData)
-                {
-                    GridCellData data = (GridCellData)item;
-                    if (data.RowData.Row is ResultComponentModel)
-                    {
-                        var dataItem = data.RowData.Row as ResultComponentModel;
-                        if (dataItem.IsMandatory == "Y")
-                        {
-                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
-                        }
-                    }
-
-                }
-            }
-            return dataTemplate;
-        }
-    }
 
     public class EditorTemplateOccuVisionTest : DataTemplateSelector
     {

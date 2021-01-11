@@ -33,7 +33,7 @@ namespace MediTech.Views
             var rowData = e.Row as ResultComponentModel;
             if (rowData != null)
             {
-                if (rowData.ResultItemCode == "MUCS1")
+                if (rowData.ResultItemCode == "MUCS1" || rowData.ResultItemCode == "MUCS3" || rowData.ResultItemCode == "MUCS5")
                 {
                     if (this.DataContext is EnterPhysicalFitnessTestViewModel)
                     {

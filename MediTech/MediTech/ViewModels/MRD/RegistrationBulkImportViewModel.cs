@@ -610,7 +610,7 @@ namespace MediTech.ViewModels
                         {
                             patient = DataService.PatientIdentity.CheckDupicatePatient(CurrentImportedData.FirstName
                                 , CurrentImportedData.LastName
-                                , CurrentImportedData.BirthDttm != null ? CurrentImportedData.BirthDttm.Value : DateTime.MaxValue
+                                , CurrentImportedData.BirthDttm != null ? CurrentImportedData.BirthDttm.Value : (DateTime?)null
                                 , CurrentImportedData.SEXXXUID.Value);
                         }
 

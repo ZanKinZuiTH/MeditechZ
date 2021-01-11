@@ -30,6 +30,7 @@ namespace MediTech.DataBase
         public Nullable<int> RELGNUID { get; set; }
         public string IDLine { get; set; }
         public string MobilePhone { get; set; }
+        public Nullable<int> SPOKLUID { get; set; }
         public Nullable<int> NATNLUID { get; set; }
         public string IDPassport { get; set; }
         public Nullable<int> MARRYUID { get; set; }

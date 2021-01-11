@@ -385,6 +385,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedNational, value); }
         }
 
+        public List<LookupReferenceValueModel> PreferredLanguageSource { get; set; }
+        private LookupReferenceValueModel _SelectedPreferredLanguage;
+
+        public LookupReferenceValueModel SelectedPreferredLanguage
+        {
+            get { return _SelectedPreferredLanguage; }
+            set { Set(ref _SelectedPreferredLanguage, value); }
+        }
+
         public List<LookupReferenceValueModel> RegionSource { get; set; }
         private LookupReferenceValueModel _SelectedRegion;
 
@@ -731,7 +740,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
 
-            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,VISTY,RQPRT,OCCUP,VIPTP");
+            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,VISTY,RQPRT,OCCUP,SPOKL,VIPTP");
             GenderSource = dataLookupSource.Where(p => p.DomainCode == "SEXXX").ToList();
             TitleSource = dataLookupSource.Where(p => p.DomainCode == "TITLE").ToList();
             BloodGroupSource = dataLookupSource.Where(p => p.DomainCode == "BLOOD").ToList();
@@ -739,6 +748,7 @@ namespace MediTech.ViewModels
             OccupationSource = dataLookupSource.Where(p => p.DomainCode == "OCCUP").ToList();
             RegionSource = dataLookupSource.Where(p => p.DomainCode == "RELGN").OrderBy(p => p.DisplayOrder).ToList();
             NationalSource = dataLookupSource.Where(p => p.DomainCode == "NATNL").OrderBy(p => p.DisplayOrder).ToList();
+            PreferredLanguageSource = dataLookupSource.Where(p => p.DomainCode == "SPOKL").OrderBy(p => p.DisplayOrder).ToList();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
             VIPTypeSources = dataLookupSource.Where(P => P.DomainCode == "VIPTP").OrderBy(p => p.DisplayOrder).ToList();
@@ -762,10 +772,6 @@ namespace MediTech.ViewModels
 
         }
 
-        void LoadPatientDataSource()
-        {
-
-        }
         public void PatientSearch()
         {
             string patientID = string.Empty;
@@ -1125,6 +1131,7 @@ namespace MediTech.ViewModels
             NatinonalID = string.Empty;
             SelectedBloodGroup = null;
             SelectedNational = null;
+            SelectedPreferredLanguage = null;
             SelectedMarryStatus = null;
             SelectedRegion = null;
             Line1 = string.Empty;
@@ -1187,6 +1194,7 @@ namespace MediTech.ViewModels
             NatinonalID = patientModel.NationalID;
             SelectedBloodGroup = BloodGroupSource.FirstOrDefault(p => p.Key == patientModel.BLOODUID);
             SelectedNational = NationalSource.FirstOrDefault(p => p.Key == patientModel.NATNLUID);
+            SelectedPreferredLanguage = PreferredLanguageSource.FirstOrDefault(p => p.Key == patientModel.SPOKLUID);
             SelectedMarryStatus = MarryStatusSource.FirstOrDefault(p => p.Key == patientModel.MARRYUID);
             SelectedRegion = RegionSource.FirstOrDefault(p => p.Key == patientModel.RELGNUID);
             SelectedOccupation = OccupationSource.FirstOrDefault(p => p.Key == patientModel.OCCUPUID);
@@ -1293,6 +1301,9 @@ namespace MediTech.ViewModels
 
             if (SelectedNational != null)
                 patientModel.NATNLUID = SelectedNational.Key;
+
+            if (SelectedPreferredLanguage != null)
+                patientModel.SPOKLUID = SelectedPreferredLanguage.Key;
 
             if (SelectedMarryStatus != null)
                 patientModel.MARRYUID = SelectedMarryStatus.Key;

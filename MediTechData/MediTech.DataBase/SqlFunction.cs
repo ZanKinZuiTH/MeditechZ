@@ -836,15 +836,15 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime birthDate, int SEXXXUID)
+        public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pCheckDupicatePatient", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_FirstName", firstName);
-            adp.SelectCommand.Parameters.AddWithValue("@P_LastName", lastName);
-            adp.SelectCommand.Parameters.AddWithValue("@P_BirthDttm", birthDate);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LastName", !string.IsNullOrEmpty(lastName) ? lastName: (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BirthDttm", birthDate ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID);
             DataSet ds = new DataSet();
             adp.Fill(ds);

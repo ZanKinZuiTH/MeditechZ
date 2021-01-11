@@ -14,23 +14,6 @@
              mc:Ignorable="d"
              DataContext="{Binding Path=EnterPulmonaryResultViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="800">
-    <UserControl.Resources>
-        <helper:EditorTemplatePulmonary x:Key="TemplateSelector"/>
-        <DataTemplate x:Key="textblockEditor">
-            <TextBlock Name="PART_Editor" Text="{Binding RowData.Row.ResultValue,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                    FontSize="17"
-                                    HorizontalAlignment="Center"
-                                    VerticalAlignment="Center"/>
-        </DataTemplate>
-        <DataTemplate x:Key="textEditEditor">
-            <dxe:TextEdit Name="PART_Editor"
-                        FontSize="17"
-                        Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True" 
-                        MaskType="RegEx"
-                        HorizontalContentAlignment="Center"
-                        VerticalContentAlignment="Center"/>
-        </DataTemplate>
-    </UserControl.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -52,8 +35,17 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue" MinWidth="200" 
-                                    CellTemplateSelector="{StaticResource TemplateSelector}">
+                    <dxg:GridColumn FieldName="ResultValue" MinWidth="200" >
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:TextEdit Name="PART_Editor"
+                        FontSize="17"
+                        Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True" 
+                        MaskType="RegEx"
+                        HorizontalContentAlignment="Center"
+                        VerticalContentAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
                         <dxg:GridColumn.CellStyle>
                             <Style BasedOn="{StaticResource {dxgt:GridRowThemeKey ResourceKey=LightweightCellStyle}}" TargetType="{x:Type dxg:LightweightCellEditor}">
                                 <Style.Triggers>
@@ -75,11 +67,6 @@
                                 <Setter Property="dxg:GridRowContent.Foreground" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=TextUnfocusedBrush}}" />
                             </Style>
                         </dxg:TableView.RowStyle>
-                        <dxg:TableView.CellStyle>
-                            <Style TargetType="dxg:LightweightCellEditor">
-                                <Setter Property="BorderBrush" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=GridDataRowDelimiterBrush}}" />
-                            </Style>
-                        </dxg:TableView.CellStyle>
                     </dxg:TableView>
                 </dxg:GridControl.View>
             </dxg:GridControl>

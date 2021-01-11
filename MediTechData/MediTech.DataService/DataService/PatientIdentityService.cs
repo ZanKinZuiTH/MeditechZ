@@ -58,7 +58,7 @@ namespace MediTech.DataService
             return result;
         }
 
-        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName, DateTime birthDate, int SEXXXUID)
+        public PatientInformationModel CheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/CheckDupicatePatient?firstName={0}&lastName={1}&birthDate={2:MM/dd/yyyy}&SEXXXUID={3}", firstName, lastName, birthDate, SEXXXUID);
             PatientInformationModel result = MeditechApiHelper.Get<PatientInformationModel>(requestApi);

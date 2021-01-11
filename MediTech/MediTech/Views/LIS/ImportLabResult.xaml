@@ -7,6 +7,7 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:sys="clr-namespace:System;assembly=mscorlib"
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d"
              DataContext="{Binding Path=ImportLabResultViewModel,Source={StaticResource Locator}}"
@@ -128,9 +129,26 @@
                 <ProgressBar Height="15"  Name="progressBar1"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Width="230" 
+                <dxlc:LayoutGroup Width="230" Orientation="Vertical"
                                   dxlc:LayoutControl.AllowHorizontalSizing="True">
+                    <dxe:SearchControl
+                            Height="25"
+                            Margin="0"
+                            ShowMRUButton="False"
+                            FindMode="Always"
+                            FilterCondition="Contains"
+                            FilterByColumnsMode="Custom"
+                            x:Name="searchControl">
+                        <dxe:SearchControl.ColumnProvider>
+                            <dxe:SelectorEditColumnProvider>
+                                <dxe:SelectorEditColumnProvider.CustomColumns>
+                                    <sys:String>ItemName</sys:String>
+                                </dxe:SelectorEditColumnProvider.CustomColumns>
+                            </dxe:SelectorEditColumnProvider>
+                        </dxe:SearchControl.ColumnProvider>
+                    </dxe:SearchControl>
                     <dxe:ListBoxEdit ItemsSource="{Binding RequestItems}"
+                                     FilterCriteria="{Binding FilterCriteria, ElementName=searchControl}"
                                      SelectedItem="{Binding SelectedRequestItem}">
                         <dxe:ListBoxEdit.ItemTemplate>
                             <DataTemplate>

@@ -18,6 +18,7 @@ namespace MediTech.Model
         public string PatientName { get; set; }
         public string Gender { get; set; }
         public System.Nullable<int> SEXXXUID { get; set; }
+        public System.Nullable<int> SPOKLUID { get; set; }
         public System.Nullable<int> NATNLUID { get; set; }
         public System.Nullable<int> BLOODUID { get; set; }
         public string BloodGroup { get; set; }
