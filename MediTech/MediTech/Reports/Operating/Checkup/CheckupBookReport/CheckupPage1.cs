@@ -321,7 +321,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         ResultRadiologyModel chestXray = radilogy.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"));
                         if (!string.IsNullOrEmpty(chestXray.PlainText))
                         {
-                            if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
                             {
                                 string chestEN = chestXray.PlainText;
                                 string[] ChestResult = chestEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -372,7 +372,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         page6.lbMam.Text = mammoGram.ResultStatus;
                         if (!string.IsNullOrEmpty(mammoGram.PlainText))
                         {
-                            if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
                             {
                                 string mamEN = mammoGram.PlainText;
                                 string[] MamResult = mamEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -409,7 +409,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         page6.lbUlt.Text = ultrsound.ResultStatus;
                         if (!string.IsNullOrEmpty(ultrsound.PlainText))
                         {
-                            if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                            if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
                             {
                                 string UltEN = ultrsound.PlainText;
                                 string[] UltResult = UltEN.Split(new string[] { "IMPRESSION", "Impression", "impression" }, StringSplitOptions.None);
@@ -618,7 +618,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     GenerateOccmedGroup(occmedGroupResult);
                 }
 
-                if ((patient.Title == "MR.") || (patient.Title == "MS.") || (patient.Title == "MISS") || (patient.Title == "MRS."))
+                if ((patient.NATNLUID != 269) && (patient.NATNLUID != null))
                 {
                     TitleResultWellness2.Text = "Summary";
                     page2.TitleResultWellness.Text = "Summary";

@@ -42,7 +42,15 @@ namespace MediTech.Views
                         string[] values = cellValue.ToString().Split(' ');
                         if (values != null && values.Count() > 1)
                         {
-                            string IsAbnormal = values?[1];
+                            string IsAbnormal = "";
+                            if (values?[1] == "R" && values.Count() == 3)
+                            {
+                                IsAbnormal = values?[2];
+                            }
+                            else
+                            {
+                                IsAbnormal = values?[1];
+                            }
                             if (IsAbnormal == "H")
                             {
                                 e.Result = new SolidColorBrush(Colors.Red);

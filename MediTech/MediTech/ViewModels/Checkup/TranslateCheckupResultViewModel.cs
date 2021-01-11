@@ -716,9 +716,10 @@ namespace MediTech.ViewModels
 
                                             }
                                             else if (resultItemValue.ResultValue.Contains("<")
-                                                || resultItemValue.ResultValue.Contains(">"))
+                                                || resultItemValue.ResultValue.Contains(">")
+                                                || resultItemValue.ResultValue.Trim().EndsWith("R"))
                                             {
-                                                string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "");
+                                                string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "").Replace("R","");
                                                 if (double.TryParse(value.Trim(), out resultValueNumber))
                                                 {
                                                     if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
