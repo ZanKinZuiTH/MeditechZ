@@ -1036,7 +1036,7 @@
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "  ผลการตรวจอื่นๆ (Orther Test ) ";
+            this.xrLabel5.Text = "  ผลการตรวจอื่นๆ (Other Test ) ";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // tbUric
