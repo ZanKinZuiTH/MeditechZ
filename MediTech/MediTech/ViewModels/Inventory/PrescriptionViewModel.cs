@@ -146,17 +146,17 @@ namespace MediTech.ViewModels
 
 
 
-        private List<LookupItemModel> _PrinterLists;
+        private List<string> _PrinterLists;
 
-        public List<LookupItemModel> PrinterLists
+        public List<string> PrinterLists
         {
             get { return _PrinterLists; }
             set { Set(ref _PrinterLists, value); }
         }
 
-        private LookupItemModel _SelectPrinter;
+        private string _SelectPrinter;
 
-        public LookupItemModel SelectPrinter
+        public string SelectPrinter
         {
             get { return _SelectPrinter; }
             set { Set(ref _SelectPrinter, value); }
@@ -213,15 +213,11 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsStock();
             var refValues = DataService.Technical.GetReferenceValueMany("ORDST");
-            PrinterLists = new List<LookupItemModel>();
+            PrinterLists = new List<string>();
             int i = 1;
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
-                LookupItemModel lookupData = new LookupItemModel();
-                lookupData.Key = i;
-                lookupData.Display = printer;
-                PrinterLists.Add(lookupData);
-                i++;
+                PrinterLists.Add(printer);
             }
             PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD" 
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
@@ -275,7 +271,7 @@ namespace MediTech.ViewModels
                 rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
-                printTool.Print(SelectPrinter.Display);
+                printTool.Print(SelectPrinter);
             }
         }
         void DefaultControl()

@@ -237,8 +237,6 @@
                     <dxlc:LayoutItem>
                         <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
-                                      DisplayMember="Display"
-                                      ValueMember="Key"
                         Width="180" Height="25"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>

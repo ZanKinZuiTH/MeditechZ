@@ -1,10 +1,11 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
-using MediTech.Reports.Operating.Patient.RiskBook;
+using MediTech.Reports.Operating.Checkup.RiskBook;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -94,7 +95,7 @@ namespace MediTech.ViewModels
             get { return _SelectPatientCheckupResult ?? (_SelectPatientCheckupResult = new ObservableCollection<PatientVisitModel>()); }
             set { Set(ref _SelectPatientCheckupResult, value); }
         }
-   
+
 
         private List<PayorDetailModel> _PayorDetails;
         public List<PayorDetailModel> PayorDetails
@@ -132,18 +133,34 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPatientResultLabList, value); }
         }
 
-        private LookupItemModel _SelectPrinter;
-        public LookupItemModel SelectPrinter
+        private string _SelectPrinter;
+        public string SelectPrinter
         {
             get { return _SelectPrinter; }
             set { Set(ref _SelectPrinter, value); }
         }
 
-        private List<LookupItemModel> _PrinterLists;
-        public List<LookupItemModel> PrinterLists
+        private List<string> _PrinterLists;
+        public List<string> PrinterLists
         {
             get { return _PrinterLists; }
             set { Set(ref _PrinterLists, value); }
+        }
+
+        private List<ReportsModel> _ReportsList;
+
+        public List<ReportsModel> ReportsList
+        {
+            get { return _ReportsList; }
+            set { Set(ref _ReportsList, value); }
+        }
+
+        private ReportsModel _SelectReport;
+
+        public ReportsModel SelectReport
+        {
+            get { return _SelectReport; }
+            set { Set(ref _SelectReport, value); }
         }
         #endregion
 
@@ -171,34 +188,16 @@ namespace MediTech.ViewModels
             }
         }
 
-        private RelayCommand _RiskBookCommand;
-        public RelayCommand RiskBookCommand
+        private RelayCommand _PreviewCommand;
+        public RelayCommand PreviewCommand
         {
-            get { return _RiskBookCommand ?? (_RiskBookCommand = new RelayCommand(RiskBook)); }
+            get { return _PreviewCommand ?? (_PreviewCommand = new RelayCommand(Preview)); }
         }
 
         private RelayCommand _PrintAutoCommand;
         public RelayCommand PrintAutoCommand
         {
             get { return _PrintAutoCommand ?? (_PrintAutoCommand = new RelayCommand(PrintAuto)); }
-        }
-
-        private RelayCommand _PrintRiskAutoCommand;
-        public RelayCommand PrintRiskAutoCommand
-        {
-            get { return _PrintRiskAutoCommand ?? (_PrintRiskAutoCommand = new RelayCommand(PrintRiskbookAuto)); }
-        }
-
-        private RelayCommand _PreviewBookCheckupCommand;
-        public RelayCommand PreviewBookCheckupCommand
-        {
-            get { return _PreviewBookCheckupCommand ?? (_PreviewBookCheckupCommand = new RelayCommand(PreviewBookCheckup)); }
-        }
-
-        private RelayCommand _PreviewAudiogramGraphCommand;
-        public RelayCommand PreviewAudiogramGraphCommand
-        {
-            get { return _PreviewAudiogramGraphCommand ?? (_PreviewAudiogramGraphCommand = new RelayCommand(PreviewAudiogramGraph)); }
         }
 
         #endregion
@@ -209,17 +208,24 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             PayorDetails = DataService.MasterData.GetPayorDetail();
-            PrinterLists = new List<LookupItemModel>();
-            int i = 1;
+            PrinterLists = new List<string>();
+            PrintDocument printDoc = new PrintDocument();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {
-                LookupItemModel lookupData = new LookupItemModel();
-                lookupData.Key = i;
-                lookupData.Display = printer;
-                PrinterLists.Add(lookupData);
-                i++;
+                PrinterLists.Add(printer);
             }
-            SelectPrinter = PrinterLists.FirstOrDefault(p => p.Display.ToLower().Contains("Sticker"));
+            if (printDoc.PrinterSettings.IsDefaultPrinter)
+            {
+                SelectPrinter = printDoc.PrinterSettings.PrinterName;
+            }
+
+            ReportsList = new List<ReportsModel>();
+            ReportsList.Add(new ReportsModel { Name = "สมุดตรวจสุขภาพรายบุคคล", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupBookReport.CheckupPage1" });
+            ReportsList.Add(new ReportsModel { Name = "เล่มความเสี่ยง", NamespaceName = "MediTech.Reports.Operating.Checkup.RiskBook.RiskBook1" });
+            ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น", NamespaceName = "MediTech.Reports.Operating.Checkup.AudiogramGraph" });
+            ReportsList.Add(new ReportsModel { Name = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
+
+            SelectReport = ReportsList[0];
         }
         public void PatientSearch()
         {
@@ -286,106 +292,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        void RiskBook()
-        {
-            if (SelectPatientCheckupResult != null)
-            {
-                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    RiskBook1 rpt = new RiskBook1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
-
-                    SelectPatientCheckupResult.Remove(item);
-                }
-
-            }
-        }
-
-        void PrintRiskbookAuto()
-        {
-            if (SelectPrinter == null)
-            {
-                WarningDialog("กรุณาเลือก Printer");
-                return;
-            }
-            try
-            {
-                if (SelectPatientCheckupResult != null)
-                {
-                    var patientResult = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
-                    foreach (var item in patientResult.ToList())
-                    {
-                        RiskBook1 rpt = new RiskBook1();
-                        rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                        rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                        ReportPrintTool printTool = new ReportPrintTool(rpt);
-                        rpt.RequestParameters = false;
-                        rpt.ShowPrintMarginsWarning = false;
-                        printTool.Print();
-
-                        SelectPatientCheckupResult.Remove(item);
-                    }
-                }
-            }
-            catch (Exception er)
-            {
-
-                ErrorDialog(er.Message);
-            }
-        }
-        void PreviewBookCheckup()
-        {
-            if (SelectPatientCheckupResult != null)
-            {
-                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
-
-                    SelectPatientCheckupResult.Remove(item);
-                }
-            }
-
-        }
-
-        void PreviewAudiogramGraph()
-        {
-            if (SelectPatientCheckupResult != null)
-            {
-                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    Reports.Operating.Checkup.AudiogramGraph rpt = new Reports.Operating.Checkup.AudiogramGraph();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
-
-                    SelectPatientCheckupResult.Remove(item);
-                }
-            }
-        }
-
         void PrintAuto()
         {
             if (SelectPrinter == null)
@@ -397,17 +303,21 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientCheckupResult != null)
                 {
+                    var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                    XtraReport rpt = (XtraReport)myReport;
                     var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                     foreach (var item in patientResultLabList.ToList())
                     {
-                        Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                        rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง")
+                            rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
-                        printTool.Print();
+                        printTool.Print(SelectPrinter);
 
                         SelectPatientCheckupResult.Remove(item);
                     }
@@ -419,6 +329,31 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
-            #endregion
-     }
+
+        void Preview()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                XtraReport rpt = (XtraReport)myReport;
+                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+
+                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง")
+                        rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog();
+
+                    SelectPatientCheckupResult.Remove(item);
+                }
+            }
+        }
+        #endregion
+    }
 }

@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using MediTech.Helpers;
 
-namespace MediTech.Reports.Operating.Patient.RiskBook
+namespace MediTech.Reports.Operating.Checkup.RiskBook
 {
     public partial class RiskBook1 : DevExpress.XtraReports.UI.XtraReport
     {
@@ -23,7 +23,7 @@ namespace MediTech.Reports.Operating.Patient.RiskBook
         List<XrayTranslateMappingModel> dtResultMapping;
 
         RiskBook2 page2 = new RiskBook2();
-        PatientName page3 = new PatientName();
+        RiskBook3 page3 = new RiskBook3();
         RiskBook4 page4 = new RiskBook4();
 
         public RiskBook1()

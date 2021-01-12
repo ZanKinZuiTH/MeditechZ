@@ -525,41 +525,29 @@
     <Compile Include="Reports\Operating\Patient\PatientSticker2.Designer.cs">
       <DependentUpon>PatientSticker2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook1.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook1.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook1.Designer.cs">
       <DependentUpon>RiskBook1.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook2.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook2.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook2.Designer.cs">
       <DependentUpon>RiskBook2.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook3.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook3.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook3.Designer.cs">
       <DependentUpon>RiskBook3.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook4.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Operating\Patient\RiskBook\RiskBook4.Designer.cs">
+    <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook4.Designer.cs">
       <DependentUpon>RiskBook4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.Designer.cs">
-      <DependentUpon>WellnessBookBack.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.Designer.cs">
-      <DependentUpon>WellnessMainBook.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.cs">
       <SubType>Component</SubType>
@@ -2477,24 +2465,17 @@
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker2.resx">
       <DependentUpon>PatientSticker2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook1.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook1.resx">
       <DependentUpon>RiskBook1.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook2.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook2.resx">
       <DependentUpon>RiskBook2.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook3.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook3.resx">
       <DependentUpon>RiskBook3.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\RiskBook\RiskBook4.resx">
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook4.resx">
       <DependentUpon>RiskBook4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\WellnessBook\WellnessBookBack.resx">
-      <DependentUpon>WellnessBookBack.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\WellnessBook\WellnessMainBook.resx">
-      <DependentUpon>WellnessMainBook.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
       <DependentUpon>DrugSticker.cs</DependentUpon>
@@ -3048,8 +3029,6 @@
     <Resource Include="Resources\Images\Menu\CashierWorklist.png" />
     <Resource Include="Resources\Images\Menu\Inventory Use.png" />
     <Resource Include="Resources\Images\Other\Healthbook.png" />
-    <Resource Include="Reports\Operating\Patient\WellnessBook\HeadWellness.png" />
-    <Resource Include="Reports\Operating\Patient\WellnessBook\polyclinic.png" />
     <Resource Include="Resources\Images\Menu\SpecimenCollect.png" />
     <Resource Include="Resources\Images\Menu\Result Entry.png" />
     <Resource Include="Resources\Images\Module\LIS.png" />

@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Checkup.CheckupBookReport;
 using MediTech.Reports.Operating.Lab;
-using MediTech.Reports.Operating.Patient.WellnessBook;
 using MediTech.Reports.Operating.Radiology;
 using MediTech.Views;
 using System;

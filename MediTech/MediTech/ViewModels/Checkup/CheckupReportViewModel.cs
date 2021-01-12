@@ -3,7 +3,6 @@ using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Patient.CheckupBook;
 using MediTech.Reports.Operating.Checkup.CheckupBookReport;
-using MediTech.Reports.Operating.Patient.RiskBook;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -12,6 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using MediTech.Reports.Operating.Checkup.RiskBook;
 
 namespace MediTech.ViewModels
 {
