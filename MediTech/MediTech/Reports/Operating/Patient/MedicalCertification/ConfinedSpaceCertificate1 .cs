@@ -42,7 +42,7 @@ namespace MediTech.Reports.Operating.Patient
                 page2.lbWeight.Text = model.Weight.ToString();
                 page2.lbHeight.Text = model.Height.ToString();
                 page2.lbBMI.Text = model.BMI.ToString();
-                page2.lbBP.Text = model.BPSys.ToString() + "/" + model.BPDio.ToString();
+                page2.lbBP.Text = model.BPSys != null ? model.BPSys.ToString() + "/" + model.BPDio.ToString() : "";
                 page2.lbPuls.Text = model.Pulse.ToString();
             } 
         }
