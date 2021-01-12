@@ -120,6 +120,7 @@
             this.xrLabel50 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel51 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDoctor = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDate = new DevExpress.XtraReports.UI.XRLabel();
             this.lbWeight = new DevExpress.XtraReports.UI.XRLabel();
             this.lbHeight = new DevExpress.XtraReports.UI.XRLabel();
@@ -139,14 +140,13 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.xrLabel58 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel59 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel60 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel58 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel59 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel60 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -945,6 +945,13 @@
             this.lbDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbDoctor.SizeF = new System.Drawing.SizeF(193.3335F, 28.00001F);
             // 
+            // lbPatientName
+            // 
+            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(155.9998F, 89.50002F);
+            this.lbPatientName.Name = "lbPatientName";
+            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPatientName.SizeF = new System.Drawing.SizeF(225.4997F, 28.83334F);
+            // 
             // lbDate
             // 
             this.lbDate.LocationFloat = new DevExpress.Utils.PointFloat(155.9998F, 114.3333F);
@@ -957,7 +964,7 @@
             this.lbWeight.LocationFloat = new DevExpress.Utils.PointFloat(102.0006F, 136.5F);
             this.lbWeight.Name = "lbWeight";
             this.lbWeight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbWeight.SizeF = new System.Drawing.SizeF(92.99945F, 24.66664F);
+            this.lbWeight.SizeF = new System.Drawing.SizeF(67.99945F, 24.66664F);
             // 
             // lbHeight
             // 
@@ -1025,33 +1032,33 @@
             this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(11.00002F, 138.1667F);
             this.xrLabel10.Name = "xrLabel10";
             this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(210.8334F, 23F);
-            this.xrLabel10.Text = "น้ำหนักตัว ................................................ กก.";
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(195.0001F, 23F);
+            this.xrLabel10.Text = "น้ำหนักตัว ............................................ กก.";
             // 
             // xrLabel11
             // 
             this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(206F, 138.1667F);
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel11.SizeF = new System.Drawing.SizeF(211.6667F, 23F);
-            this.xrLabel11.Text = "ความสูง ................................................... ซม.";
+            this.xrLabel11.SizeF = new System.Drawing.SizeF(196.6667F, 23F);
+            this.xrLabel11.Text = "ความสูง .................................................ซม.";
             // 
             // xrLabel13
             // 
             this.xrLabel13.LocationFloat = new DevExpress.Utils.PointFloat(11.00002F, 161.1667F);
             this.xrLabel13.Name = "xrLabel13";
             this.xrLabel13.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel13.SizeF = new System.Drawing.SizeF(295.8334F, 23F);
-            this.xrLabel13.Text = "ความดันโลหิต ............................................................... มม. " +
-    "ปรอท  ";
+            this.xrLabel13.SizeF = new System.Drawing.SizeF(281.6667F, 23F);
+            this.xrLabel13.Text = "ความดันโลหิต .......................................................... มม. ปรอท " +
+    " ";
             // 
             // xrLabel14
             // 
             this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(294.9998F, 161.1666F);
             this.xrLabel14.Name = "xrLabel14";
             this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel14.SizeF = new System.Drawing.SizeF(162.667F, 22.99998F);
-            this.xrLabel14.Text = "ชีพจร ................................ครั้ง/นาที";
+            this.xrLabel14.SizeF = new System.Drawing.SizeF(156.8337F, 22.99998F);
+            this.xrLabel14.Text = "ชีพจร ..............................ครั้ง/นาที";
             // 
             // xrLabel12
             // 
@@ -1093,47 +1100,6 @@
             this.PageFooter.HeightF = 45.83333F;
             this.PageFooter.Name = "PageFooter";
             // 
-            // PageHeader
-            // 
-            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox1,
-            this.xrLabel1});
-            this.PageHeader.HeightF = 98.33334F;
-            this.PageHeader.Name = "PageHeader";
-            // 
-            // xrPictureBox1
-            // 
-            this.xrPictureBox1.BorderWidth = 0F;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(205F, 50.83333F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox1.StylePriority.UseBorderWidth = false;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(225.1665F, 53.66669F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(298.3334F, 37.99998F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.Text = "ใบรับรองแพทย์สำหรับการทำงานบนที่สูง";
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.Constructor = objectConstructorInfo1;
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // lbPatientName
-            // 
-            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(155.9998F, 89.50002F);
-            this.lbPatientName.Name = "lbPatientName";
-            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPatientName.SizeF = new System.Drawing.SizeF(225.4997F, 28.83334F);
-            // 
             // xrLabel58
             // 
             this.xrLabel58.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1171,6 +1137,40 @@
             this.xrLabel60.Text = "155/196 ม. 2 ต.ทับมา อำเภอเมืองระยอง จังหวัดระยอง 21000 โทรศัพท์ 033-060399 e-mai" +
     "l:brxggroup@brxggroup.com";
             this.xrLabel60.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            // 
+            // PageHeader
+            // 
+            this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPictureBox1,
+            this.xrLabel1});
+            this.PageHeader.HeightF = 98.33334F;
+            this.PageHeader.Name = "PageHeader";
+            // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.BorderWidth = 0F;
+            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(205F, 50.83333F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox1.StylePriority.UseBorderWidth = false;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(225.1665F, 53.66669F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(298.3334F, 37.99998F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.Text = "ใบรับรองแพทย์สำหรับการทำงานบนที่สูง";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.Constructor = objectConstructorInfo1;
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // WorkingHeightCertificate2
             // 
