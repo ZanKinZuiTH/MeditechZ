@@ -303,11 +303,11 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientCheckupResult != null)
                 {
-                    var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
-                    XtraReport rpt = (XtraReport)myReport;
                     var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                     foreach (var item in patientResultLabList.ToList())
                     {
+                        var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                        XtraReport rpt = (XtraReport)myReport;
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
@@ -334,11 +334,12 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientCheckupResult != null)
             {
-                var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
-                XtraReport rpt = (XtraReport)myReport;
+
                 var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                 foreach (var item in patientResultLabList.ToList())
                 {
+                    var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                    XtraReport rpt = (XtraReport)myReport;
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
