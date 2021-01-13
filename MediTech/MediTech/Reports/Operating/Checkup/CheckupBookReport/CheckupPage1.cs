@@ -1705,6 +1705,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 {
                     //PSA โชว์ตัวเลขก่อนตัวอักษร
                     page7.RowCa125.Visible = false;
+                    page7.RowCA153.Visible = false;
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4") != null)
                     {
                         page7.cellPsaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4")?.ReferenceRange;
@@ -1729,6 +1730,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     page7.cellCa125_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.ResultValue;
                     page7.cellCa125_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.ResultValue;
                     page7.cellCa125_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year3)?.ResultValue;
+
+                    page7.ca153Range.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203")?.ReferenceRange;
+                    page7.ca153_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203" && p.Year == year1)?.ResultValue;
+                    page7.ca153_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203" && p.Year == year2)?.ResultValue;
+                    page7.ca153_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203" && p.Year == year3)?.ResultValue;
                 }
 
                 page7.cellCalciumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR79")?.ReferenceRange;

@@ -115,6 +115,10 @@ namespace MediTech.Model.Report
         
         public string MUCS1 { get; set; }
         public string MUCS2 { get; set; }
+        public string MUCS3 { get; set; }
+        public string MUCS4 { get; set; }
+        public string MUCS5 { get; set; }
+        public string MUCS6 { get; set; }
 
         public string PAR117 { get; set; } //actone
 
@@ -162,8 +166,11 @@ namespace MediTech.Model.Report
         public string PAR75 { get; set; } //lead in blood
         public string PAR132 { get; set; } //Chromium in Urine
         public string PAR125 { get; set; } //xylene
-
         public string C0073 { get; set; } //eGRF
+        public string PAR203 { get; set; } //ca153
+        public string PAR79 { get; set; } //calcium in blood
+        public string PAR127 { get; set; } //Mek
+
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
