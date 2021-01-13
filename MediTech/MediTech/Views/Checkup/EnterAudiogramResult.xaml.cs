@@ -2,6 +2,7 @@
 using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,14 @@ namespace MediTech.Views
         public EnterAudiogramResult()
         {
             InitializeComponent();
+            grdRightEar.PreviewKeyDown += GrdRightEar_PreviewKeyDown;
+            grdLeftEar.PreviewKeyDown += GrdLeftEar_PreviewKeyDown;
+            gvRightEar.CellValueChanged += GvRightEar_CellValueChanged;
+            gvLeftEar.CellValueChanged += GvLeftEar_CellValueChanged;
+            grdRightEar.Focus();
+            gvRightEar.DataControl.CurrentColumn = colRightValue;
         }
+
 
         private void GvRightEar_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
@@ -58,5 +66,50 @@ namespace MediTech.Views
                 }
             }
         }
+
+        private void GrdRightEar_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab)
+            {
+                var dataSource = (grdRightEar.ItemsSource as ObservableCollection<ResultComponentModel>);
+                if (dataSource != null)
+                {
+                    if(gvRightEar.FocusedRowHandle != dataSource.Count() - 3)
+                    {
+                        gvRightEar.MoveNextRow();
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        gvLeftEar.Focus();
+                        gvLeftEar.FocusedRowHandle = 0;
+                        gvLeftEar.DataControl.CurrentColumn = colLeftValue;
+                    }
+                }
+            }
+            base.OnPreviewKeyDown(e);
+        }
+
+        private void GrdLeftEar_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab)
+            {
+                var dataSource = (grdLeftEar.ItemsSource as ObservableCollection<ResultComponentModel>);
+                if (dataSource != null)
+                {
+                    if (gvLeftEar.FocusedRowHandle != dataSource.Count() - 3)
+                    {
+                        gvLeftEar.MoveNextRow();
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            base.OnPreviewKeyDown(e);
+        }
+
     }
 }

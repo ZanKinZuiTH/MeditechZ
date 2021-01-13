@@ -77,6 +77,7 @@
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
             <dxg:GridControl x:Name="gcOccVision" ItemsSource="{Binding ResultComponentItems}"
+                             SelectionMode="Cell"
                              AutoGenerateColumns="None">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True" Width="200">

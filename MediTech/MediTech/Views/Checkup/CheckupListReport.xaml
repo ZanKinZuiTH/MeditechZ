@@ -144,6 +144,7 @@
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
+                    <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>
                     <dxg:GridColumn FieldName="Position" Header="ตำแหน่ง"/>
                     <dxg:GridColumn FieldName="RefNo" Header="RefNo"/>

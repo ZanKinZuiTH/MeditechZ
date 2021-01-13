@@ -103,7 +103,13 @@ namespace MediTech.Model
 
         public List<string> AutoValueList { get; set; }
 
-        public IList<object> CheckDataList { get; set; }
+        private IList<object> _CheckDataList;
+
+        public IList<object> CheckDataList
+        {
+            get { return _CheckDataList; }
+            set { _CheckDataList = value; OnPropertyRaised("CheckDataList"); }
+        }
         public IList<object> TokenDataList { get; set; }
 
         public string ResultItemCode { get; set; }
