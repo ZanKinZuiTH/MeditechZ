@@ -87,7 +87,7 @@
             <dxlc:LayoutItem>
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl ItemsSource="{Binding ResultComponentItems}"
+            <dxg:GridControl ItemsSource="{Binding ResultComponentItems}" SelectionMode="Cell"
                              AutoGenerateColumns="None">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True">

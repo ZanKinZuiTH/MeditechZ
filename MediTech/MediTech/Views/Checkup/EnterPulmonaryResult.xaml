@@ -35,7 +35,7 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue" MinWidth="200" >
+                    <dxg:GridColumn Name="colResultValue" FieldName="ResultValue" MinWidth="200" >
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:TextEdit Name="PART_Editor"
@@ -71,7 +71,7 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
                 <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

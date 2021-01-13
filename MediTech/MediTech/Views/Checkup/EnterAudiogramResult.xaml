@@ -71,7 +71,7 @@
                         <TextBlock Text="Right Ear" FontWeight="Bold" FontSize="18"/>
                     </dxlc:LayoutItem>
                     <dxg:GridControl Name="grdRightEar" ItemsSource="{Binding RightEarResultComponentItems}"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" SelectionMode="Cell">
                         <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
                             <dxg:GridColumn.CellTemplate>
                                 <DataTemplate>
@@ -105,7 +105,7 @@
                         <TextBlock Text="Left Ear" FontWeight="Bold" FontSize="18"/>
                     </dxlc:LayoutItem>
                     <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" SelectionMode="Cell">
                         <dxg:GridColumn FieldName="ResultItemName" 
                                     Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
                             <dxg:GridColumn.CellTemplate>

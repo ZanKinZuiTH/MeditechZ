@@ -29,7 +29,7 @@
                     </ItemsPanelTemplate>
                 </dxe:ListBoxEdit.ItemsPanel>
                 <dxe:ListBoxEdit.StyleSettings>
-                    <dxe:RadioListBoxEditStyleSettings/>
+                    <dxe:RadioListBoxEditStyleSettings />
                 </dxe:ListBoxEdit.StyleSettings>
             </dxe:ListBoxEdit>
         </DataTemplate>
@@ -88,7 +88,7 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue"  
+                    <dxg:GridColumn Name="colResultValue" FieldName="ResultValue"  
                                     Width="*"
                                     CellTemplateSelector="{StaticResource TemplateSelector}"/>
                 </dxg:GridControl.Columns>
