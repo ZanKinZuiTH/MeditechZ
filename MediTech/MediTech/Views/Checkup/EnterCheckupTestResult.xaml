@@ -20,7 +20,7 @@
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
             <dxg:GridControl x:Name="gcResult" ItemsSource="{Binding ResultComponentItems}" SelectionMode="Cell"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" >
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName"  ReadOnly="True" Width="200">
                         <dxg:GridColumn.CellTemplate>
@@ -30,7 +30,7 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn FieldName="ResultValue"  Width="200">
+                    <dxg:GridColumn Name="colResultValue" FieldName="ResultValue"  Width="200">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:ComboBoxEdit IsTextEditable="True" 
@@ -62,7 +62,7 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
                 <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

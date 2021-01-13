@@ -25,7 +25,19 @@ namespace MediTech.Views
         public EnterPhysicalFitnessTest()
         {
             InitializeComponent();
+            gcResult.PreviewKeyDown += GcResult_PreviewKeyDown;
             gvResult.CellValueChanged += GvResult_CellValueChanged;
+            gcResult.Focus();
+            gvResult.DataControl.CurrentColumn = colResultValue;
+        }
+
+        private void GcResult_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab)
+            {
+                btnSave.Focus();
+            }
+            base.OnPreviewKeyDown(e);
         }
 
         private void GvResult_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)

@@ -1881,6 +1881,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupSummary", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupjobUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUIDs", GPRSTUIDs);

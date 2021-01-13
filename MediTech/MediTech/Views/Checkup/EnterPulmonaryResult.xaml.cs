@@ -27,10 +27,34 @@ namespace MediTech.Views
         public EnterPulmonaryResult()
         {
             InitializeComponent();
+            gcPulmonary.PreviewKeyDown += GcPulmonary_PreviewKeyDown;
             if (this.DataContext is EnterPulmonaryResultViewModel)
             {
                 (this.DataContext as EnterPulmonaryResultViewModel).UpdateEvent += EnterPulmonaryResult_UpdateEvent; ;
             }
+            gcPulmonary.Focus();
+            gvPulmonary.DataControl.CurrentColumn = colResultValue;
+        }
+
+        private void GcPulmonary_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab)
+            {
+                var dataSource = (gcPulmonary.ItemsSource as ObservableCollection<ResultComponentModel>);
+                if (dataSource != null)
+                {
+                    if (gvPulmonary.FocusedRowHandle != 1)
+                    {
+                        gvPulmonary.MoveNextRow();
+                        e.Handled = true;
+                    }
+                    else
+                    {
+                        btnSave.Focus();
+                    }
+                }
+            }
+            base.OnPreviewKeyDown(e);
         }
 
         private void EnterPulmonaryResult_UpdateEvent(object sender, EventArgs e)
@@ -50,7 +74,7 @@ namespace MediTech.Views
                     {
                         (this.DataContext as EnterPulmonaryResultViewModel).CalculateSpiroValue();
                     }
-                    
+
                 }
             }
         }

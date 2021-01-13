@@ -20,7 +20,7 @@
                 <TextBlock Text="{Binding RequestItemName}" FontWeight="Bold" FontSize="18"/>
             </dxlc:LayoutItem>
             <dxg:GridControl ItemsSource="{Binding ResultComponentItems}"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" SelectionMode="Cell">
                 <dxg:GridControl.Columns>
                     <dxg:GridColumn FieldName="ResultItemName" Width="200"  ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>

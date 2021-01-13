@@ -71,7 +71,7 @@
                         <TextBlock Text="Right Ear" FontWeight="Bold" FontSize="18"/>
                     </dxlc:LayoutItem>
                     <dxg:GridControl Name="grdRightEar" ItemsSource="{Binding RightEarResultComponentItems}"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" SelectionMode="Cell">
                         <dxg:GridColumn FieldName="ResultItemName" Header="Frequency in Herts (Hz)" ReadOnly="True">
                             <dxg:GridColumn.CellTemplate>
                                 <DataTemplate>
@@ -81,7 +81,7 @@
                                 </DataTemplate>
                             </dxg:GridColumn.CellTemplate>
                         </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="ResultValue" Header="Intensity in Decibels (dB HL)" Width="*" 
+                        <dxg:GridColumn x:Name="colRightValue" FieldName="ResultValue" Header="Intensity in Decibels (dB HL)" Width="*"
                                     HorizontalHeaderContentAlignment="Center"
                                     CellTemplateSelector="{StaticResource TemplateSelector}">
                             <dxg:GridColumn.DisplayTemplate>
@@ -94,7 +94,6 @@
                         </dxg:GridColumn>
                         <dxg:GridControl.View>
                             <dxg:TableView Name="gvRightEar" ShowGroupPanel="False"
-                                           CellValueChanged="GvRightEar_CellValueChanged"
                                            AllowSorting="False" RowMinHeight="50"/>
                         </dxg:GridControl.View>
                     </dxg:GridControl>
@@ -106,7 +105,7 @@
                         <TextBlock Text="Left Ear" FontWeight="Bold" FontSize="18"/>
                     </dxlc:LayoutItem>
                     <dxg:GridControl Name="grdLeftEar" ItemsSource="{Binding LeftEarResultComponentItems}"
-                             AutoGenerateColumns="None">
+                             AutoGenerateColumns="None" SelectionMode="Cell">
                         <dxg:GridColumn FieldName="ResultItemName" 
                                     Header="Frequency in Herts (Hz)" Width="Auto" ReadOnly="True">
                             <dxg:GridColumn.CellTemplate>
@@ -117,7 +116,7 @@
                                 </DataTemplate>
                             </dxg:GridColumn.CellTemplate>
                         </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*"
+                        <dxg:GridColumn Name="colLeftValue" FieldName="ResultValue"  Header="Intensity in Decibels (dB HL)" Width="*"
                                     CellTemplateSelector="{StaticResource TemplateSelector}"
                                     HorizontalHeaderContentAlignment="Center">
                             <dxg:GridColumn.DisplayTemplate>
@@ -129,7 +128,7 @@
                             </dxg:GridColumn.DisplayTemplate>
                         </dxg:GridColumn>
                         <dxg:GridControl.View>
-                            <dxg:TableView Name="gvLeftEar" CellValueChanged="GvLeftEar_CellValueChanged"
+                            <dxg:TableView Name="gvLeftEar"
                                            ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
                         </dxg:GridControl.View>
                     </dxg:GridControl>
@@ -139,7 +138,7 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dx:SimpleButton Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                <dx:SimpleButton x:Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
                 <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>

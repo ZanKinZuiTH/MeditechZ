@@ -2,6 +2,7 @@
 using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -25,7 +26,20 @@ namespace MediTech.Views
         public EnterOccuVisionTestResult()
         {
             InitializeComponent();
+            gcOccVision.PreviewKeyDown += GcOccVision_PreviewKeyDown;
             gvOccVision.CellValueChanged += GvOccVision_CellValueChanged;
+            gcOccVision.Focus();
+            gvOccVision.DataControl.CurrentColumn = colResultValue;
+        }
+
+        private void GcOccVision_PreviewKeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.Key == System.Windows.Input.Key.Tab)
+            {
+                gvOccVision.MoveNextRow();
+                e.Handled = true;
+            }
+            base.OnPreviewKeyDown(e);
         }
 
         private void GvOccVision_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
@@ -46,6 +60,132 @@ namespace MediTech.Views
         {
             if (this.DataContext is EnterOccuVisionTestResultViewModel)
             {
+                #region คำนวนตาบอดสี
+
+                var rowData = (gvOccVision.DataControl.CurrentItem as ResultComponentModel);
+                if (rowData != null && rowData.ResultItemName.ToLower().Trim() == "color")
+                {
+                    if (rowData.CheckDataList != null)
+                    {
+                        var newvalue = (e.NewValue as IList<object>);
+                        var oldvalue = (e.OldValue as IList<object>);
+
+                        if (newvalue != null && oldvalue != null && (newvalue.Count < oldvalue.Count))
+                        {
+                            object value = null;
+                            foreach (var item in oldvalue)
+                            {
+
+                                if (!newvalue.Any(p => p.ToString() == item.ToString()))
+                                {
+                                    value = item;
+                                }
+
+                            }
+                            if (value.ToString() == "X")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                                rowData.CheckDataList.Add("6");
+                                rowData.CheckDataList.Add("16");
+                            }
+                            else if (value.ToString() == "16")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                                rowData.CheckDataList.Add("6");
+                            }
+                            else if (value.ToString() == "6")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                            }
+                            else if (value.ToString() == "26")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                            }
+                            else if (value.ToString() == "5")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                            }
+                            else if (value.ToString() == "12")
+                            {
+                                rowData.CheckDataList = null;
+                            }
+                        }
+                        else
+                        {
+                            object value = rowData.CheckDataList.Last<object>();
+                            if (value.ToString() == "มองไม่เห็น")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("มองไม่เห็น");
+                            }
+                            else if (value.ToString() == "ไม่ได้ตรวจ")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("ไม่ได้ตรวจ");
+                            }
+                            else if (value.ToString() == "X")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                                rowData.CheckDataList.Add("6");
+                                rowData.CheckDataList.Add("16");
+                                rowData.CheckDataList.Add("X");
+                            }
+                            else if (value.ToString() == "16")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                                rowData.CheckDataList.Add("6");
+                                rowData.CheckDataList.Add("16");
+                            }
+                            else if (value.ToString() == "6")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                                rowData.CheckDataList.Add("6");
+                            }
+                            else if (value.ToString() == "26")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                                rowData.CheckDataList.Add("26");
+                            }
+                            else if (value.ToString() == "5")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                                rowData.CheckDataList.Add("5");
+                            }
+                            else if (value.ToString() == "12")
+                            {
+                                rowData.CheckDataList = new ObservableCollection<object>();
+                                rowData.CheckDataList.Add("12");
+                            }
+                        }
+
+                        gcOccVision.RefreshData();
+                    }
+                }
+                #endregion
                 (this.DataContext as EnterOccuVisionTestResultViewModel).CalculateOccuVisionResult();
             }
         }
