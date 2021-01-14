@@ -80,8 +80,8 @@
             this.SGOTH = new DevExpress.XtraReports.UI.FormattingRule();
             this.SGOTL = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -221,7 +221,7 @@
             // xrTableCell43
             // 
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ค่าการทำงานของตับ(Liver function test)";
+            this.xrTableCell43.Text = "ค่าการทำงานของตับ (Liver Function Test)";
             this.xrTableCell43.Weight = 6.9275835946591791D;
             // 
             // xrTableRow2
@@ -542,6 +542,12 @@
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell8.Weight = 4.1294225127360242D;
             // 
+            // formattingRule1
+            // 
+            this.formattingRule1.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.formattingRule1.Name = "formattingRule1";
+            // 
             // xrTableCell40
             // 
             this.xrTableCell40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -549,12 +555,6 @@
             this.xrTableCell40.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell40.Name = "xrTableCell40";
             this.xrTableCell40.Weight = 0.91567246035838146D;
-            // 
-            // formattingRule1
-            // 
-            this.formattingRule1.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.formattingRule1.Name = "formattingRule1";
             // 
             // objectDataSource1
             // 

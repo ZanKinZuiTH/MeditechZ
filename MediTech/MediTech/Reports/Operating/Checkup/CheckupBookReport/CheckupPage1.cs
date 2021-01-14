@@ -580,7 +580,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     GenerateOther(OtherTestSet);
                     #endregion
 
-
+                    #region muscle
+                    IEnumerable<PatientResultComponentModel> commentMuscle = labCompare
+                       .Where(p => p.RequestItemCode.Contains("MUSCLEBA")
+                       || p.RequestItemCode.Contains("MUSCLEGR")
+                       || p.RequestItemCode.Contains("MUSCLELEG"));
+                    GenerateCommentMuscle(commentMuscle);
+                    #endregion
                 }
 
                 var occmed = data.MobileResult;
@@ -603,8 +609,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     GeneratePhysicalExam(PhysicalExam);
 
                     IEnumerable<PatientResultComponentModel> BackStrength = occmed
-                        .Where(p => p.RequestItemCode.Contains("MUSCLEBA"));
-                                        GenerateBackStrength(BackStrength);
+                        .Where(p => p.RequestItemCode.Contains("MUSCLEBA") 
+                        || p.RequestItemCode.Contains("MUSCLEGR")
+                        || p.RequestItemCode.Contains("MUSCLELEG"));
+                    GenerateBackStrength(BackStrength);
                 }
 
                 if (groupResult != null)
@@ -1835,9 +1843,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
         {
             if (BackStrength != null && BackStrength.Count() > 0)
             {
-                page3.lbValueBackStrenght.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS1")?.ResultValue;
+                page3.lbBackValue.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS1")?.ResultValue;
                 page3.lbBackStrenght.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS2")?.ResultValue;
+                page3.lbValueLegStrength.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS5")?.ResultValue;
+                page3.lbLegStrength.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS6")?.ResultValue;
+                page3.lbValueGripStrength.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS3")?.ResultValue;
+                page3.lbGripStrength.Text = BackStrength.FirstOrDefault(p => p.ResultItemCode == "MUCS4")?.ResultValue;
             }
+            
         }
         private void GenerateOccmedGroup(IEnumerable<CheckupGroupResultModel> occmedGroupResult)
         {
@@ -1875,6 +1888,21 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 
                 page3.lbMuscleResult.Text = occmedGroupResult.FirstOrDefault(p => p.GroupCode == "GPRST32")?.Conclusion;
             }
+        }
+        private void GenerateCommentMuscle(IEnumerable<PatientResultComponentModel> CommentMuscle)
+        {
+            //if(CommentMuscle.Count() > 2 ) 
+            //{
+            //    page3.lbNoteMuscle.Text = CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLEBA")?.Comments.ToString() + ","
+            //                             + CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLELEG")?.Comments.ToString() + ","
+            //                             + CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLEGR")?.Comments.ToString();
+            //}
+            //else
+            //{
+            //    page3.lbNoteMuscle.Text = CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLEBA")?.Comments.ToString();
+            //    page3.lbNoteMuscle.Text = CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLELEG")?.Comments.ToString();
+            //    page3.lbNoteMuscle.Text = CommentMuscle.FirstOrDefault(p => p.ResultItemCode == "MUSCLEGR")?.Comments.ToString();
+            //}
         }
 
 

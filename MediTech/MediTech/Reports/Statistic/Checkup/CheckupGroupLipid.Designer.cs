@@ -238,7 +238,7 @@
             // 
             this.xrTableCell43.LockedInUserDesigner = true;
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ตรวจระดับไขมันในเลือดสูง(Lipid Profiles)";
+            this.xrTableCell43.Text = "ตรวจระดับไขมันในเลือดสูง (Lipid Profiles)";
             this.xrTableCell43.Weight = 7.1154820267361547D;
             // 
             // xrTableRow2
