@@ -38,9 +38,9 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPayorDetail, value); }
         }
 
-        private List<PatientVisitModel> _PatientVisits;
+        private ObservableCollection<PatientVisitModel> _PatientVisits;
 
-        public List<PatientVisitModel> PatientVisits
+        public ObservableCollection<PatientVisitModel> PatientVisits
         {
             get { return _PatientVisits; }
             set { Set(ref _PatientVisits, value); }
@@ -309,7 +309,7 @@ namespace MediTech.ViewModels
             int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID,null);
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID,null));
         }
 
         private void VitalSign()
@@ -332,9 +332,13 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                if (SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
                     return;
                 }
                 PatientOrderEntry pageview = new PatientOrderEntry();
@@ -395,9 +399,13 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
                     return;
                 }
                 PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor);
@@ -417,9 +425,13 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
                     return;
                 }
                 PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge);

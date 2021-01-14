@@ -422,7 +422,6 @@ namespace MediTechWebApi.Controllers
         }
 
 
-
         [Route("CheckDupicatePatient")]
         [HttpGet]
         public PatientInformationModel CheckDupicatePatientByIDCard(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
@@ -647,7 +646,7 @@ namespace MediTechWebApi.Controllers
                             VISTYUID = p.VISTYUID,
                             VISTSUID = p.VISTSUID,
                             IsBillFinalized = p.IsBillFinalized,
-                            VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
+                            VisitStatus = SqlFunction.fGetRfValDescription(p.VISTSUID ?? 0),
                             VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
                             VisitID = p.VisitID,
                             PRITYUID = p.PRITYUID,

@@ -935,19 +935,11 @@ namespace MediTech.ViewModels
             {
                 if (SelectVisitMedical != null)
                 {
-                    if (SelectVisitMedical.VISTSUID == CHKOUT || SelectVisitMedical.VISTSUID == FINDIS)
+                    var patientVisitCurrent = DataService.PatientIdentity.GetPatientVisitByUID(SelectVisitMedical.PatientVisitUID);
+                    if (patientVisitCurrent != null && patientVisitCurrent.VISTSUID == CHKOUT || patientVisitCurrent.VISTSUID == FINDIS)
                     {
-                        WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                        WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน โปรดตรวจสอบ หรือ Refersh ข้อมูล");
                         return;
-                    }
-                    else
-                    {
-                       var patientVisitCurrent =  DataService.PatientIdentity.GetPatientVisitByUID(SelectVisitMedical.PatientVisitUID);
-                        if (patientVisitCurrent!= null && patientVisitCurrent.VISTSUID == CHKOUT || patientVisitCurrent.VISTSUID == FINDIS)
-                        {
-                            WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน โปรดตรวจสอบ หรือ Refersh ข้อมูล");
-                            return;
-                        }
                     }
                     MessageBoxResult result = QuestionDialog("ต้องการจบการรักษา");
                     if (result == MessageBoxResult.Yes)

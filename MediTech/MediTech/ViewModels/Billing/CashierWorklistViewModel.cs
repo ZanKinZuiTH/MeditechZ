@@ -547,6 +547,12 @@ namespace MediTech.ViewModels
             {
                 if (SelectPatientCloseMed != null)
                 {
+                    var currentPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientCloseMed.PatientVisitUID);
+                    if (currentPatientVisit.VISTSUID != CHKOUT)
+                    {
+                        WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน โปรดตรวจสอบ หรือ Refersh ข้อมูล");
+                        return;
+                    }
                     MessageBoxResult result = QuestionDialog("คูณต้องการส่งผู้ป่วยกลับไปรักษาใช้หรือไม่ ?");
                     if (result == MessageBoxResult.Yes)
                     {
@@ -694,9 +700,10 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientCloseMed != null)
             {
-                if (SelectPatientCloseMed.VISTSUID == FINDIS)
+                var currentPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientCloseMed.PatientVisitUID);
+                if (currentPatientVisit.VISTSUID == FINDIS)
                 {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน โปรดตรวจสอบ หรือ Refersh ข้อมูล");
                     return;
                 }
                 PatientOrderEntry pageview = new PatientOrderEntry();

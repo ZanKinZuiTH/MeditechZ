@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,7 +24,12 @@ namespace MediTech.Views
         public PatientList()
         {
             InitializeComponent();
+            (this.DataContext as PatientListViewModel).UpdateEvent += PatientList_UpdateEvent;
         }
 
+        private void PatientList_UpdateEvent(object sender, EventArgs e)
+        {
+            grdVisitList.RefreshData();
+        }
     }
 }
