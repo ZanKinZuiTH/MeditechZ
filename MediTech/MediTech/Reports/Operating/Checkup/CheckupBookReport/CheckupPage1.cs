@@ -219,13 +219,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     page2.lbResultWellness.Text = sb.ToString();
                     //lbResultWellness2.Text = sb2.ToString();
 
-
+               
                     if (wellnessResult.Contains("สงสัยตั้งครรภ์") == true)
                     {
                         lbBMI.Text = "";
                         lbObesity.Text = "สงสัยตั้งครรภ์";
                     }
-                    else if(wellnessResult.Contains("ตั้งครรภ์") == true)
+                    else if (wellnessResult.Contains("ตั้งครรภ์") == true)
                     {
                         lbBMI.Text = "";
                         lbObesity.Text = "ตั้งครรภ์";
@@ -329,7 +329,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                 {
                                     string ResultChestEn = ChestResult[1].Replace(":", "");
                                     ResultChestEn = ResultChestEn.Trim();
-                                    if(ResultChestEn.ToLower().Contains("negative study"))
+                                    if (ResultChestEn.ToLower().Contains("negative study"))
                                     {
                                         page6.lbChest.Text = "Normal";
                                     }
@@ -338,7 +338,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                                         page6.lbChest.Text = ResultChestEn;
                                     }
                                 }
-                                else if(ChestResult[0].ToLower().Contains("old fracture right clavicle"))
+                                else if (ChestResult[0].ToLower().Contains("old fracture right clavicle"))
                                 {
                                     page6.lbChest.Text = "Calcification in aorta Old fracture of right clavicle";
                                 }
@@ -561,7 +561,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB558")
                         || p.RequestItemCode.Contains("LAB518")
                         || p.RequestItemCode.Contains("LAB560")
-                        || p.RequestItemCode.Contains("LAB561")) //Arsenic
+                        || p.RequestItemCode.Contains("LAB561") //Arsenic 
+                        || p.RequestItemCode.Contains("LAB562")) //Cyclohexanone
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -575,7 +576,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB284")
                         || p.RequestItemCode.Contains("LAB285")
                         || p.RequestItemCode.Contains("LAB251")
-                        || p.RequestItemCode.Contains("LAB271"))
+                        || p.RequestItemCode.Contains("LAB271")
+                        || p.RequestItemCode.Contains("LAB286"))
                         .OrderBy(p => p.Year);
                     GenerateOther(OtherTestSet);
                     #endregion
@@ -1430,6 +1432,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.RowStyreneUrine.Visible = false;
                 page8.RowAluminiumBlood.Visible = false;
                 page8.RowArsenic.Visible = false;
+                page8.CyclohexanoneRow.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1635,6 +1638,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     }
                     #endregion
 
+                    #region Arsenic
+
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199") != null)
                     {
                         page8.RowArsenic.Visible = true;
@@ -1644,6 +1649,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         page8.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
                     }
 
+                    #endregion
+
+                    #region Cyclohexanone
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202") != null)
+                    {
+                        page8.CyclohexanoneRow.Visible = true;
+                        page8.CyclohexanoneRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202")?.ReferenceRange;
+                        page8.Cyclohexanone1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year1)?.ResultValue;
+                        page8.Cyclohexanone2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year2)?.ResultValue;
+                        page8.Cyclohexanone3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR202" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
 
                 }
                 else
