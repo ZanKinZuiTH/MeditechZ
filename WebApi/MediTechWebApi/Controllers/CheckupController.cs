@@ -1498,6 +1498,33 @@ namespace MediTechWebApi.Controllers
             return resultComponent;
         }
 
+        [Route("GetResultComponentByVisitUID")]
+        public List<ResultComponentModel> GetResultComponentByVisitUID(long patientVisitUID)
+        {
+            var resultComponent = (from rs in db.Result
+                                   join rsc in db.ResultComponent on rs.UID equals rsc.ResultUID
+                                   join red in db.RequestDetail on rs.RequestDetailUID equals red.UID
+                                   join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
+                                   join rti in db.RequestItem on red.RequestitemUID equals rti.UID
+                                   where rs.PatientVisitUID == patientVisitUID
+                                   && rsc.StatusFlag == "A"
+                                   && red.StatusFlag == "A"
+                                   && rs.StatusFlag == "A"
+                                   && gps.StatusFlag == "A"
+                                   && red.ORDSTUID != 2848
+                                   select new ResultComponentModel
+                                   {
+                                       ResultComponentUID = rsc.UID,
+                                       ResultItemUID = rsc.ResultItemUID,
+                                       ResultItemCode = rsc.ResultItemCode,
+                                       ResultItemName = rsc.ResultItemName,
+                                       ResultValue = rsc.ResultValue,
+                                       TestType = SqlFunction.fGetRfValDescription(rti.TSTTPUID ?? 0)
+                                   }).ToList();
+
+            return resultComponent;
+        }
+
         [Route("GetCheckupMobileResultByVisitUID")]
         [HttpGet]
         public List<PatientResultComponentModel> GetCheckupMobileResultByVisitUID(long patientUID, long patientVisitUID)

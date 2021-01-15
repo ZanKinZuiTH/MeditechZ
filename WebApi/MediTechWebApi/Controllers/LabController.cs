@@ -178,6 +178,7 @@ namespace MediTechWebApi.Controllers
                                       where rs.StatusFlag == "A"
                                       && red.StatusFlag == "A"
                                       && re.BSMDDUID == 2813
+                                      && red.ORDSTUID != 2848
                                       && rs.PatientVisitUID == patientVisitUID
                                       select new ResultModel
                                       {
@@ -192,7 +193,28 @@ namespace MediTechWebApi.Controllers
                                           OrderStatus = SqlFunction.fGetCareProviderName(rs.ORDSTUID)
                                       }).ToList();
 
-
+            if (data != null)
+            {
+                foreach (var result in data)
+                {
+                    result.ResultComponents = db.ResultComponent.Where(p => p.ResultUID == result.ResultUID && p.StatusFlag == "A")
+                                .Select(p => new ResultComponentModel
+                                {
+                                    ResultUID = p.ResultUID,
+                                    ReferenceRange = p.ReferenceRange,
+                                    ResultItemCode = p.ResultItemCode,
+                                    ResultValue = p.ResultValue,
+                                    ResultComponentUID = p.UID,
+                                    RVTYPUID = p.RVTYPUID,
+                                    ResultValueType = SqlFunction.fGetRfValDescription(p.RVTYPUID),
+                                    Low = p.Low,
+                                    High = p.High,
+                                    ResultItemName = p.ResultItemName,
+                                    UnitofMeasure = SqlFunction.fGetRfValDescription(p.RSUOMUID ?? 0),
+                                    IsAbnormal = p.IsAbnormal
+                                }).ToList();
+                }
+            }
 
             return data;
         }

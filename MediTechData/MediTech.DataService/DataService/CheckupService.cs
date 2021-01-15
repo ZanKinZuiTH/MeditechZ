@@ -392,6 +392,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<ResultComponentModel> GetResultComponentByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Checkup/GetResultComponentByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<ResultComponentModel> data = MeditechApiHelper.Get<List<ResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
         public List<ResultComponentModel> GetCheckupMobileResultByVisitUID(long patientUID, long patientVisitUID)
         {
             string requestApi = string.Format("Api/Checkup/GetCheckupMobileResultByVisitUID?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
