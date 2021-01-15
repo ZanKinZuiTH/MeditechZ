@@ -72,12 +72,12 @@
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.abnomal = new DevExpress.XtraReports.UI.FormattingRule();
             this.mekH = new DevExpress.XtraReports.UI.FormattingRule();
             this.mekL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.abnomal = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -386,7 +386,7 @@
             this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
-            this.xrTableCell18.Text = "mg/L";
+            this.xrTableCell18.Text = "<2 mg/L";
             this.xrTableCell18.Weight = 1.5798582683286628D;
             // 
             // xrTableCell31
@@ -500,6 +500,18 @@
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Weight = 0.3995523669549787D;
             // 
+            // mekH
+            // 
+            this.mekH.Condition = "EndsWith(Trim([PAR127]), \'H\')";
+            this.mekH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.mekH.Name = "mekH";
+            // 
+            // mekL
+            // 
+            this.mekL.Condition = "EndsWith(Trim([PAR127]), \'L\')";
+            this.mekL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.mekL.Name = "mekL";
+            // 
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -512,6 +524,12 @@
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell4.Weight = 1.0473475223147779D;
             // 
+            // abnomal
+            // 
+            this.abnomal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.abnomal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.abnomal.Name = "abnomal";
+            // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -523,24 +541,6 @@
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // abnomal
-            // 
-            this.abnomal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.abnomal.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.abnomal.Name = "abnomal";
-            // 
-            // mekH
-            // 
-            this.mekH.Condition = "EndsWith(Trim([PAR127]), \'H\')";
-            this.mekH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.mekH.Name = "mekH";
-            // 
-            // mekL
-            // 
-            this.mekL.Condition = "EndsWith(Trim([PAR127]), \'L\')";
-            this.mekL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
-            this.mekL.Name = "mekL";
             // 
             // CheckupGroupMEK
             // 
