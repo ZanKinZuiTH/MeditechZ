@@ -257,7 +257,7 @@
                                 <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
-                        <dxg:GridColumn Header="ภาษาอังกฤษ" FieldName="EngResult" Width="350">
+                        <dxg:GridColumn Header="ภาษาอังกฤษ" FieldName="EngWord" Width="350">
                             <dxg:GridColumn.EditSettings>
                                 <dxe:TextEditSettings AcceptsReturn="True"   TextWrapping="Wrap"/>
                             </dxg:GridColumn.EditSettings>
