@@ -313,7 +313,7 @@
             this.xrTableCell47.RowSpan = 2;
             this.xrTableCell47.StylePriority.UseBackColor = false;
             this.xrTableCell47.StylePriority.UseFont = false;
-            this.xrTableCell47.Text = "หูขาว";
+            this.xrTableCell47.Text = "หูขวา";
             this.xrTableCell47.Weight = 0.96309062525411371D;
             // 
             // xrTableCell24

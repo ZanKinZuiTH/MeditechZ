@@ -49,6 +49,7 @@
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -61,6 +62,7 @@
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -79,6 +81,9 @@
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.SGOTH = new DevExpress.XtraReports.UI.FormattingRule();
             this.SGOTL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.alpH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.alpL = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -235,6 +240,7 @@
             this.xrTableCell16,
             this.xrTableCell17,
             this.xrTableCell18,
+            this.xrTableCell41,
             this.xrTableCell30,
             this.xrTableCell1,
             this.xrTableCell21});
@@ -278,19 +284,27 @@
             // 
             // xrTableCell18
             // 
-            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
             this.xrTableCell18.Text = "ALT(SGPT)";
-            this.xrTableCell18.Weight = 1.0756967663167307D;
+            this.xrTableCell18.Weight = 0.97794047317266253D;
+            // 
+            // xrTableCell41
+            // 
+            this.xrTableCell41.Font = new System.Drawing.Font("EucrosiaUPC", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.xrTableCell41.Name = "xrTableCell41";
+            this.xrTableCell41.StylePriority.UseFont = false;
+            this.xrTableCell41.Text = "AST(SGOT)";
+            this.xrTableCell41.Weight = 0.96658557978673232D;
             // 
             // xrTableCell30
             // 
-            this.xrTableCell30.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell30.Font = new System.Drawing.Font("EucrosiaUPC", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.StylePriority.UseFont = false;
-            this.xrTableCell30.Text = "AST(SGOT)";
-            this.xrTableCell30.Weight = 1.0800281095947877D;
+            this.xrTableCell30.Text = "Alkaline Phosphatase";
+            this.xrTableCell30.Weight = 1.2154162301807121D;
             // 
             // xrTableCell1
             // 
@@ -299,7 +313,7 @@
             this.xrTableCell1.RowSpan = 2;
             this.xrTableCell1.StylePriority.UseFont = false;
             this.xrTableCell1.Text = "แปลผล/คำแนะนำ";
-            this.xrTableCell1.Weight = 4.403724827775549D;
+            this.xrTableCell1.Weight = 3.54169803735924D;
             // 
             // xrTableCell21
             // 
@@ -308,7 +322,7 @@
             this.xrTableCell21.RowSpan = 2;
             this.xrTableCell21.StylePriority.UseFont = false;
             this.xrTableCell21.Text = "สรุปผล";
-            this.xrTableCell21.Weight = 0.97649796941607492D;
+            this.xrTableCell21.Weight = 0.83430735260379507D;
             // 
             // xrTableRow3
             // 
@@ -321,6 +335,7 @@
             this.xrTableCell27,
             this.xrTableCell28,
             this.xrTableCell29,
+            this.xrTableCell42,
             this.xrTableCell31,
             this.xrTableCell2,
             this.xrTableCell32});
@@ -371,33 +386,41 @@
             // 
             // xrTableCell29
             // 
-            this.xrTableCell29.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell29.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.xrTableCell29.Multiline = true;
             this.xrTableCell29.Name = "xrTableCell29";
             this.xrTableCell29.StylePriority.UseFont = false;
             this.xrTableCell29.Text = "(M=0-41, F=0-33)";
-            this.xrTableCell29.Weight = 1.0756967664673196D;
+            this.xrTableCell29.Weight = 0.9779404733232514D;
+            // 
+            // xrTableCell42
+            // 
+            this.xrTableCell42.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
+            this.xrTableCell42.Name = "xrTableCell42";
+            this.xrTableCell42.StylePriority.UseFont = false;
+            this.xrTableCell42.Text = "(M=0-40, F= 0-32)";
+            this.xrTableCell42.Weight = 0.96658557974908532D;
             // 
             // xrTableCell31
             // 
-            this.xrTableCell31.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell31.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(222)));
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.StylePriority.UseFont = false;
-            this.xrTableCell31.Text = "(M=0-40, F= 0-32)";
-            this.xrTableCell31.Weight = 1.0800281095194937D;
+            this.xrTableCell31.Text = "(M=40-129, F=35-104)";
+            this.xrTableCell31.Weight = 1.2154162301430651D;
             // 
             // xrTableCell2
             // 
             this.xrTableCell2.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.Weight = 4.4037248277002536D;
+            this.xrTableCell2.Weight = 3.5416980372839446D;
             // 
             // xrTableCell32
             // 
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.Text = "xrTableCell32";
-            this.xrTableCell32.Weight = 0.97649796941607492D;
+            this.xrTableCell32.Weight = 0.83430735260379507D;
             // 
             // xrTable1
             // 
@@ -426,6 +449,7 @@
             this.xrTableCell7,
             this.xrTableCell20,
             this.xrTableCell19,
+            this.xrTableCell44,
             this.xrTableCell8,
             this.xrTableCell40});
             this.xrTableRow1.Name = "xrTableRow1";
@@ -495,7 +519,7 @@
             this.xrTableCell20.FormattingRules.Add(this.SGPTH);
             this.xrTableCell20.FormattingRules.Add(this.SGPTL);
             this.xrTableCell20.Name = "xrTableCell20";
-            this.xrTableCell20.Weight = 1.008692922334119D;
+            this.xrTableCell20.Weight = 0.91702605507526191D;
             // 
             // SGPTH
             // 
@@ -516,7 +540,7 @@
             this.xrTableCell19.FormattingRules.Add(this.SGOTH);
             this.xrTableCell19.FormattingRules.Add(this.SGOTL);
             this.xrTableCell19.Name = "xrTableCell19";
-            this.xrTableCell19.Weight = 1.0127544304420044D;
+            this.xrTableCell19.Weight = 0.90637816727950693D;
             // 
             // SGOTH
             // 
@@ -530,6 +554,31 @@
             this.SGOTL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
             this.SGOTL.Name = "SGOTL";
             // 
+            // xrTableCell44
+            // 
+            this.xrTableCell44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR33")});
+            this.xrTableCell44.FormattingRules.Add(this.alpH);
+            this.xrTableCell44.FormattingRules.Add(this.alpL);
+            this.xrTableCell44.Name = "xrTableCell44";
+            this.xrTableCell44.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 0, 0, 100F);
+            this.xrTableCell44.StylePriority.UsePadding = false;
+            this.xrTableCell44.StylePriority.UseTextAlignment = false;
+            this.xrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell44.Weight = 1.1397093778625267D;
+            // 
+            // alpH
+            // 
+            this.alpH.Condition = "EndsWith(Trim([PAR33]), \'H\')";
+            this.alpH.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.alpH.Name = "alpH";
+            // 
+            // alpL
+            // 
+            this.alpL.Condition = "EndsWith(Trim([PAR33]), \'L\')";
+            this.alpL.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(255)))));
+            this.alpL.Name = "alpL";
+            // 
             // xrTableCell8
             // 
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -540,7 +589,7 @@
             this.xrTableCell8.StylePriority.UsePadding = false;
             this.xrTableCell8.StylePriority.UseTextAlignment = false;
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell8.Weight = 4.1294225127360242D;
+            this.xrTableCell8.Weight = 3.321090001371652D;
             // 
             // formattingRule1
             // 
@@ -554,7 +603,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
             this.xrTableCell40.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell40.Name = "xrTableCell40";
-            this.xrTableCell40.Weight = 0.91567246035838146D;
+            this.xrTableCell40.Weight = 0.78233872428158135D;
             // 
             // objectDataSource1
             // 
@@ -575,7 +624,9 @@
             this.SGPTH,
             this.SGPTL,
             this.SGOTH,
-            this.SGOTL});
+            this.SGOTL,
+            this.alpH,
+            this.alpL});
             this.Version = "17.1";
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
@@ -644,5 +695,10 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell42;
+        private DevExpress.XtraReports.UI.FormattingRule alpH;
+        private DevExpress.XtraReports.UI.FormattingRule alpL;
     }
 }

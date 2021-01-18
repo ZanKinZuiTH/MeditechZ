@@ -695,14 +695,14 @@
             this.xrTableCell49.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "No")});
             this.xrTableCell49.Name = "xrTableCell49";
-            this.xrTableCell49.Weight = 0.30861575044590822D;
+            this.xrTableCell49.Weight = 0.33053836050816154D;
             // 
             // xrTableCell47
             // 
             this.xrTableCell47.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell47.Name = "xrTableCell47";
-            this.xrTableCell47.Weight = 0.50989120278886513D;
+            this.xrTableCell47.Weight = 0.48796859272661181D;
             // 
             // xrTableCell48
             // 
