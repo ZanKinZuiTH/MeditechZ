@@ -88,6 +88,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientEKG> PatientEKG { get; set; }
         public virtual DbSet<PatientExamination> PatientExamination { get; set; }
         public virtual DbSet<PatientImage> PatientImage { get; set; }
+        public virtual DbSet<PatientInjury> PatientInjury { get; set; }
         public virtual DbSet<PatientMedicalHistory> PatientMedicalHistory { get; set; }
         public virtual DbSet<PatientMerge> PatientMerge { get; set; }
         public virtual DbSet<PatientMergeDetail> PatientMergeDetail { get; set; }
@@ -106,6 +107,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientVisitPayor> PatientVisitPayor { get; set; }
         public virtual DbSet<PatientVisualAcuity> PatientVisualAcuity { get; set; }
         public virtual DbSet<PatientVitalSign> PatientVitalSign { get; set; }
+        public virtual DbSet<PatientWorkHistory> PatientWorkHistory { get; set; }
         public virtual DbSet<PayorAgreement> PayorAgreement { get; set; }
         public virtual DbSet<PayorDetail> PayorDetail { get; set; }
         public virtual DbSet<Permission> Permission { get; set; }

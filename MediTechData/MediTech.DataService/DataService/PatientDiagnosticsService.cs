@@ -127,29 +127,5 @@ namespace MediTech.DataService
              return flag;
          }
 
-        public bool ManagePatientMedical(PatientMedicalHistoryModel model, int userUID)
-        {
-            bool flag = false;
-            try
-            {
-                string requestApi = string.Format("Api/PatientDiagnosis/ManagePatientMedical?userUID={0}", userUID);
-                MeditechApiHelper.Post<PatientMedicalHistoryModel>(requestApi, model);
-                flag = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return flag;
-
-        }
-
-        public PatientMedicalHistoryModel GetPatientMedicalByVisitUID(long patientVisitUID)
-        {
-            string requestApi = string.Format("Api/PatientDiagnosis/GetPatientMedicalByVisitUID?patientVisitUID={0}", patientVisitUID);
-            PatientMedicalHistoryModel dataRequest = MeditechApiHelper.Get<PatientMedicalHistoryModel>(requestApi);
-
-            return dataRequest;
-        }
     }
 }

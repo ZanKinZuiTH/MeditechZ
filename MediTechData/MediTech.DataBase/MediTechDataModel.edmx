@@ -1076,11 +1076,13 @@
           <Property Name="Line1" Type="nvarchar" MaxLength="200" />
           <Property Name="Line2" Type="nvarchar" MaxLength="200" />
           <Property Name="Line3" Type="nvarchar" MaxLength="200" />
+          <Property Name="Line4" Type="nvarchar" MaxLength="200" />
           <Property Name="ADTYPUID" Type="int" />
           <Property Name="DistrictUID" Type="int" />
           <Property Name="AmphurUID" Type="int" />
           <Property Name="ProvinceUID" Type="int" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
+          <Property Name="Phone" Type="nvarchar" MaxLength="20" />
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
@@ -1316,23 +1318,53 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="PatientInjury">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="OccuredDate" Type="datetime" />
+          <Property Name="BodyLocation" Type="nvarchar" MaxLength="500" />
+          <Property Name="InjuryDetail" Type="nvarchar" MaxLength="500" />
+          <Property Name="INRYSEVUID" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="PatientMedicalHistory">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
-          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
-          <Property Name="CC" Type="nvarchar(max)" />
-          <Property Name="PI" Type="nvarchar(max)" />
-          <Property Name="PE" Type="nvarchar(max)" />
-          <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="PastMedical" Type="nvarchar" MaxLength="500" />
+          <Property Name="PastMedicalDttm" Type="datetime" />
+          <Property Name="ChronicDisease" Type="nvarchar" MaxLength="500" />
+          <Property Name="SurgicalDetail" Type="nvarchar" MaxLength="500" />
+          <Property Name="ImmunizationDetail" Type="nvarchar" MaxLength="500" />
+          <Property Name="Familyhistory" Type="nvarchar" MaxLength="500" />
+          <Property Name="LongTemMedication" Type="nvarchar" MaxLength="500" />
+          <Property Name="AllergyDescription" Type="nvarchar" MaxLength="500" />
+          <Property Name="Smoke" Type="nvarchar" MaxLength="500" />
+          <Property Name="SmokePeriodYear" Type="nvarchar" MaxLength="500" />
+          <Property Name="SmokePeriodMonth" Type="nvarchar" MaxLength="500" />
+          <Property Name="BFQuitSmoke" Type="nvarchar" MaxLength="500" />
+          <Property Name="Alcohol" Type="nvarchar" MaxLength="500" />
+          <Property Name="AlcohoPeriodYear" Type="nchar" MaxLength="10" />
+          <Property Name="AlcohoPeriodMonth" Type="nchar" MaxLength="10" />
+          <Property Name="Narcotic" Type="nvarchar" MaxLength="500" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="500" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientMerge">
           <Key>
@@ -1717,6 +1749,25 @@
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientWorkHistory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="500" />
+          <Property Name="Business" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="Riskfactor" Type="nvarchar" MaxLength="500" />
+          <Property Name="Timeperiod" Type="nvarchar" MaxLength="50" />
+          <Property Name="Equipment" Type="nvarchar" MaxLength="500" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
@@ -3058,6 +3109,9 @@
         <Function Name="fGetAgeString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_BirthDate" Type="datetime" Mode="In" />
         </Function>
+        <Function Name="fGetAmphurName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_AmphurUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetBigIntList" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_KeyWordList" Type="varchar" Mode="In" />
           <ReturnType>
@@ -3095,6 +3149,9 @@
         <Function Name="fGetDispenseLabel" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
           <Parameter Name="P_Language" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fGetDistrictName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_DistrictUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetDrugLocalInstructionByInsType" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_DrugCatalogItemUID" Type="int" Mode="In" />
@@ -3153,6 +3210,9 @@
         </Function>
         <Function Name="fGetPayorName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fGetProvinceName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_ProvinceUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetResultItemRange" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="ResultItemUID" Type="int" Mode="In" />
@@ -3904,6 +3964,7 @@
           <EntitySet Name="PatientEKG" EntityType="Self.PatientEKG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientExamination" EntityType="Self.PatientExamination" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientImage" EntityType="Self.PatientImage" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientInjury" EntityType="Self.PatientInjury" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMedicalHistory" EntityType="Self.PatientMedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMerge" EntityType="Self.PatientMerge" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientMergeDetail" EntityType="Self.PatientMergeDetail" Schema="dbo" store:Type="Tables" />
@@ -3922,6 +3983,7 @@
           <EntitySet Name="PatientVisitPayor" EntityType="Self.PatientVisitPayor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVisualAcuity" EntityType="Self.PatientVisualAcuity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVitalSign" EntityType="Self.PatientVitalSign" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientWorkHistory" EntityType="Self.PatientWorkHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayorAgreement" EntityType="Self.PayorAgreement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PayorDetail" EntityType="Self.PayorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
@@ -4967,6 +5029,11 @@
             <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
             <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pRPTCheckupSummary" ReturnType="Collection(MediTechModel.pRPTCheckupSummary_Result)">
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GPRSTUIDs" Mode="In" Type="String" />
+            <Parameter Name="P_CompanyName" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -5028,6 +5095,7 @@
           <EntitySet Name="PatientEKG" EntityType="MediTechModel.PatientEKG" />
           <EntitySet Name="PatientExamination" EntityType="MediTechModel.PatientExamination" />
           <EntitySet Name="PatientImage" EntityType="MediTechModel.PatientImage" />
+          <EntitySet Name="PatientInjury" EntityType="MediTechModel.PatientInjury" />
           <EntitySet Name="PatientMedicalHistory" EntityType="MediTechModel.PatientMedicalHistory" />
           <EntitySet Name="PatientMerge" EntityType="MediTechModel.PatientMerge" />
           <EntitySet Name="PatientMergeDetail" EntityType="MediTechModel.PatientMergeDetail" />
@@ -5046,6 +5114,7 @@
           <EntitySet Name="PatientVisitPayor" EntityType="MediTechModel.PatientVisitPayor" />
           <EntitySet Name="PatientVisualAcuity" EntityType="MediTechModel.PatientVisualAcuity" />
           <EntitySet Name="PatientVitalSign" EntityType="MediTechModel.PatientVitalSign" />
+          <EntitySet Name="PatientWorkHistory" EntityType="MediTechModel.PatientWorkHistory" />
           <EntitySet Name="PayorAgreement" EntityType="MediTechModel.PayorAgreement" />
           <EntitySet Name="PayorDetail" EntityType="MediTechModel.PayorDetail" />
           <EntitySet Name="Permission" EntityType="MediTechModel.Permission" />
@@ -5124,11 +5193,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pRPTCheckupSummary" ReturnType="Collection(MediTechModel.pRPTCheckupSummary_Result)">
-            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_GPRSTUIDs" Mode="In" Type="String" />
-            <Parameter Name="P_CompanyName" Mode="In" Type="String" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7570,6 +7634,19 @@
           <Property Type="Int32" Name="CheckupJobUID" Nullable="true" />
           <Property Type="Boolean" Name="IsWellnessResult" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pRPTCheckupSummary_Result">
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="500" />
+          <Property Type="Int32" Name="NormalCount" Nullable="true" />
+          <Property Type="Double" Name="NormalPercent" Nullable="true" />
+          <Property Type="Int32" Name="AbnormalCount" Nullable="true" />
+          <Property Type="Double" Name="AbnormalPercent" Nullable="true" />
+          <Property Type="Int32" Name="AttentionCount" Nullable="true" />
+          <Property Type="Double" Name="AttentionPercent" Nullable="true" />
+          <Property Type="Int32" Name="CheckinCount" Nullable="true" />
+          <Property Type="Int32" Name="NonCheckinCount" Nullable="true" />
+          <Property Type="Int32" Name="TotalCount" Nullable="true" />
+          <Property Type="Int32" Name="GPRSTUID" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -8641,11 +8718,13 @@
           <Property Name="Line1" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Line2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Line3" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Line4" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="ADTYPUID" Type="Int32" />
           <Property Name="DistrictUID" Type="Int32" />
           <Property Name="AmphurUID" Type="Int32" />
           <Property Name="ProvinceUID" Type="Int32" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Phone" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -8881,23 +8960,53 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="PatientInjury">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="OccuredDate" Type="DateTime" Precision="3" />
+          <Property Name="BodyLocation" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="InjuryDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="INRYSEVUID" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="PatientMedicalHistory">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
-          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
-          <Property Name="CC" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PI" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="PE" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
-          <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="PastMedical" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PastMedicalDttm" Type="DateTime" Precision="3" />
+          <Property Name="ChronicDisease" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SurgicalDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ImmunizationDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Familyhistory" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LongTemMedication" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AllergyDescription" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Smoke" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SmokePeriodYear" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="SmokePeriodMonth" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="BFQuitSmoke" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Alcohol" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="AlcohoPeriodYear" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="AlcohoPeriodMonth" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Narcotic" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="PatientMerge">
           <Key>
@@ -9282,6 +9391,25 @@
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientWorkHistory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Business" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Riskfactor" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Timeperiod" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Equipment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
@@ -10589,19 +10717,6 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pRPTCheckupSummary_Result">
-          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="NormalCount" Nullable="true" />
-          <Property Type="Double" Name="NormalPercent" Nullable="true" />
-          <Property Type="Int32" Name="AbnormalCount" Nullable="true" />
-          <Property Type="Double" Name="AbnormalPercent" Nullable="true" />
-          <Property Type="Int32" Name="AttentionCount" Nullable="true" />
-          <Property Type="Double" Name="AttentionPercent" Nullable="true" />
-          <Property Type="Int32" Name="CheckinCount" Nullable="true" />
-          <Property Type="Int32" Name="NonCheckinCount" Nullable="true" />
-          <Property Type="Int32" Name="TotalCount" Nullable="true" />
-          <Property Type="Int32" Name="GPRSTUID" Nullable="true" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12494,6 +12609,23 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupSummary" FunctionName="MediTechModel.Store.pRPTCheckupSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupSummary_Result">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="NormalCount" ColumnName="NormalCount" />
+                <ScalarProperty Name="NormalPercent" ColumnName="NormalPercent" />
+                <ScalarProperty Name="AbnormalCount" ColumnName="AbnormalCount" />
+                <ScalarProperty Name="AbnormalPercent" ColumnName="AbnormalPercent" />
+                <ScalarProperty Name="AttentionCount" ColumnName="AttentionCount" />
+                <ScalarProperty Name="AttentionPercent" ColumnName="AttentionPercent" />
+                <ScalarProperty Name="CheckinCount" ColumnName="CheckinCount" />
+                <ScalarProperty Name="NonCheckinCount" ColumnName="NonCheckinCount" />
+                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -13616,11 +13748,13 @@
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="Phone" ColumnName="Phone" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="ProvinceUID" ColumnName="ProvinceUID" />
                 <ScalarProperty Name="AmphurUID" ColumnName="AmphurUID" />
                 <ScalarProperty Name="DistrictUID" ColumnName="DistrictUID" />
                 <ScalarProperty Name="ADTYPUID" ColumnName="ADTYPUID" />
+                <ScalarProperty Name="Line4" ColumnName="Line4" />
                 <ScalarProperty Name="Line3" ColumnName="Line3" />
                 <ScalarProperty Name="Line2" ColumnName="Line2" />
                 <ScalarProperty Name="Line1" ColumnName="Line1" />
@@ -13866,20 +14000,51 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="PatientMedicalHistory">
-            <EntityTypeMapping TypeName="MediTechModel.PatientMedicalHistory">
-              <MappingFragment StoreEntitySet="PatientMedicalHistory">
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+          <EntitySetMapping Name="PatientInjury">
+            <EntityTypeMapping TypeName="MediTechModel.PatientInjury">
+              <MappingFragment StoreEntitySet="PatientInjury">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="Note" ColumnName="Note" />
-                <ScalarProperty Name="PE" ColumnName="PE" />
-                <ScalarProperty Name="PI" ColumnName="PI" />
-                <ScalarProperty Name="CC" ColumnName="CC" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="INRYSEVUID" ColumnName="INRYSEVUID" />
+                <ScalarProperty Name="InjuryDetail" ColumnName="InjuryDetail" />
+                <ScalarProperty Name="BodyLocation" ColumnName="BodyLocation" />
+                <ScalarProperty Name="OccuredDate" ColumnName="OccuredDate" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientMedicalHistory">
+            <EntityTypeMapping TypeName="MediTechModel.PatientMedicalHistory">
+              <MappingFragment StoreEntitySet="PatientMedicalHistory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Narcotic" ColumnName="Narcotic" />
+                <ScalarProperty Name="AlcohoPeriodMonth" ColumnName="AlcohoPeriodMonth" />
+                <ScalarProperty Name="AlcohoPeriodYear" ColumnName="AlcohoPeriodYear" />
+                <ScalarProperty Name="Alcohol" ColumnName="Alcohol" />
+                <ScalarProperty Name="BFQuitSmoke" ColumnName="BFQuitSmoke" />
+                <ScalarProperty Name="SmokePeriodMonth" ColumnName="SmokePeriodMonth" />
+                <ScalarProperty Name="SmokePeriodYear" ColumnName="SmokePeriodYear" />
+                <ScalarProperty Name="Smoke" ColumnName="Smoke" />
+                <ScalarProperty Name="AllergyDescription" ColumnName="AllergyDescription" />
+                <ScalarProperty Name="LongTemMedication" ColumnName="LongTemMedication" />
+                <ScalarProperty Name="Familyhistory" ColumnName="Familyhistory" />
+                <ScalarProperty Name="ImmunizationDetail" ColumnName="ImmunizationDetail" />
+                <ScalarProperty Name="SurgicalDetail" ColumnName="SurgicalDetail" />
+                <ScalarProperty Name="ChronicDisease" ColumnName="ChronicDisease" />
+                <ScalarProperty Name="PastMedicalDttm" ColumnName="PastMedicalDttm" />
+                <ScalarProperty Name="PastMedical" ColumnName="PastMedical" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -14283,6 +14448,26 @@
                 <ScalarProperty Name="Height" ColumnName="Height" />
                 <ScalarProperty Name="Weight" ColumnName="Weight" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientWorkHistory">
+            <EntityTypeMapping TypeName="MediTechModel.PatientWorkHistory">
+              <MappingFragment StoreEntitySet="PatientWorkHistory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Equipment" ColumnName="Equipment" />
+                <ScalarProperty Name="Timeperiod" ColumnName="Timeperiod" />
+                <ScalarProperty Name="Riskfactor" ColumnName="Riskfactor" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Business" ColumnName="Business" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -15670,23 +15855,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pRPTCheckupSummary" FunctionName="MediTechModel.Store.pRPTCheckupSummary">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupSummary_Result">
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="NormalCount" ColumnName="NormalCount" />
-                <ScalarProperty Name="NormalPercent" ColumnName="NormalPercent" />
-                <ScalarProperty Name="AbnormalCount" ColumnName="AbnormalCount" />
-                <ScalarProperty Name="AbnormalPercent" ColumnName="AbnormalPercent" />
-                <ScalarProperty Name="AttentionCount" ColumnName="AttentionCount" />
-                <ScalarProperty Name="AttentionPercent" ColumnName="AttentionPercent" />
-                <ScalarProperty Name="CheckinCount" ColumnName="CheckinCount" />
-                <ScalarProperty Name="NonCheckinCount" ColumnName="NonCheckinCount" />
-                <ScalarProperty Name="TotalCount" ColumnName="TotalCount" />
-                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

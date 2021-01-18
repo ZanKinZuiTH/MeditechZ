@@ -25,13 +25,13 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientVitalSign")]
         [HttpGet]
-        public List<PatientVitalSignModel> SearchPatientVitalSign(long patientUID,DateTime dateFrom,DateTime dateTo)
+        public List<PatientVitalSignModel> SearchPatientVitalSign(long patientUID, DateTime dateFrom, DateTime dateTo)
         {
 
             List<PatientVitalSignModel> data = db.PatientVitalSign
                 .Where(p => p.PatientUID == patientUID
                 && p.StatusFlag == "A"
-                &&  (dateFrom == null || DbFunctions.TruncateTime(p.RecordedDttm) >= DbFunctions.TruncateTime(dateFrom))
+                && (dateFrom == null || DbFunctions.TruncateTime(p.RecordedDttm) >= DbFunctions.TruncateTime(dateFrom))
                 && (dateTo == null || DbFunctions.TruncateTime(p.RecordedDttm) <= DbFunctions.TruncateTime(dateTo)))
                 .Select(p => new PatientVitalSignModel
                 {
@@ -799,6 +799,83 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+        #endregion
+
+
+        #region RiskBookData
+
+        [Route("GetPatientMedicalHistoryByPatientUID")]
+        [HttpGet]
+        public PatientMedicalHistoryModel GetPatientMedicalHistoryByPatientUID(long patientUID)
+        {
+            PatientMedicalHistoryModel data = null;
+            PatientMedicalHistory medicalData = db.PatientMedicalHistory.FirstOrDefault(p => p.StatusFlag == "A" && p.PatientUID == patientUID);
+            if (medicalData != null)
+            {
+
+                data = new PatientMedicalHistoryModel();
+                data.PatientMedicalHistoryUID = medicalData.UID;
+                data.PatientUID = medicalData.PatientUID;
+                data.PastMedical = medicalData.PastMedical;
+                data.PastMedicalDttm = medicalData.PastMedicalDttm;
+                data.ChronicDisease = medicalData.ChronicDisease;
+                data.SurgicalDetail = medicalData.SurgicalDetail;
+                data.ImmunizationDetail = medicalData.ImmunizationDetail;
+                data.Familyhistory = medicalData.Familyhistory;
+                data.LongTemMedication = medicalData.LongTemMedication;
+                data.AllergyDescription = medicalData.AllergyDescription;
+                data.Smoke = medicalData.Smoke;
+                data.SmokePeriodYear = medicalData.SmokePeriodYear;
+                data.SmokePeriodMonth = medicalData.SmokePeriodMonth;
+                data.BFQuitSmoke = medicalData.BFQuitSmoke;
+                data.Alcohol = medicalData.Alcohol;
+                data.AlcohoPeriodYear = medicalData.AlcohoPeriodYear;
+                data.AlcohoPeriodMonth = medicalData.AlcohoPeriodMonth;
+                data.Narcotic = medicalData.Narcotic;
+                data.Comments = medicalData.Comments;
+            }
+            return data;
+        }
+
+        [Route("GetInjuryByPatientUID")]
+        [HttpGet]
+        public List<PatientInjuryModel> GetInjuryByPatientUID(long patientUID)
+        {
+            List<PatientInjuryModel> data = db.PatientInjury.Where(p => p.StatusFlag == "A" && p.PatientUID == patientUID)
+                .Select(p => new PatientInjuryModel
+                {
+                    PatientInjuryUID = p.UID,
+                    PatientUID = p.PatientUID,
+                    BodyLocation = p.BodyLocation,
+                    InjuryDetail = p.InjuryDetail,
+                    INRYSEVUID = p.INRYSEVUID,
+                    InjuryServerity = SqlFunction.fGetRfValDescription(p.INRYSEVUID ?? 0),
+                    OccuredDate = p.OccuredDate
+                }).ToList();
+            return data;
+        }
+
+        [Route("GetPatientWorkHistoryByPatientUID")]
+        [HttpGet]
+        public List<PatientWorkHistoryModel> GetPatientWorkHistoryByPatientUID(long patientUID)
+        {
+            List<PatientWorkHistoryModel> data = db.PatientWorkHistory.Where(p => p.StatusFlag == "A" && p.PatientUID == patientUID)
+                .Select(p => new PatientWorkHistoryModel
+                {
+                    PatientWorkHistoryUID = p.UID,
+                    PatientUID = p.PatientUID,
+                    CompanyName = p.CompanyName,
+                    Business = p.Business,
+                    Description = p.Description,
+                    Riskfactor = p.Riskfactor,
+                    Equipment = p.Equipment,
+                    Timeperiod = p.Timeperiod
+
+                }).ToList();
+            return data;
+        }
+
 
         #endregion
     }

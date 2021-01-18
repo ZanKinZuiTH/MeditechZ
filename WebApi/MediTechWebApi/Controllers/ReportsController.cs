@@ -583,7 +583,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("PrintWellnessBook")]
         [HttpGet]
-        public PatientWellnessModel PrintWellnessBook(long patientUID,long patientVisitUID, int payorDetailUID)
+        public PatientWellnessModel PrintWellnessBook(long patientUID, long patientVisitUID, int payorDetailUID)
         {
             PatientWellnessModel data = new PatientWellnessModel();
 
@@ -592,6 +592,26 @@ namespace MediTechWebApi.Controllers
             data.MobileResult = (new CheckupController()).GetCheckupMobileResultByVisitUID(patientUID, patientVisitUID);
             data.LabCompare = CheckupLabCompare(patientUID, payorDetailUID);
             data.GroupResult = (new CheckupController()).GetCheckupGroupResultListByVisit(patientUID, patientVisitUID);
+
+            return data;
+        }
+
+        [Route("PrintRiskBook")]
+        [HttpGet]
+        public PatientRiskBookModel PrintRiskBook(long patientUID, long patientVisitUID, int payorDetailUID)
+        {
+            PatientRiskBookModel data = new PatientRiskBookModel();
+            var wellnessData = PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+            data.PatientInfomation = wellnessData.PatientInfomation;
+            data.Radiology = wellnessData.Radiology;
+            data.MobileResult = wellnessData.MobileResult;
+            data.LabCompare = wellnessData.LabCompare;
+            data.GroupResult = wellnessData.GroupResult;
+            PatientHistoryController hisController = new PatientHistoryController();
+            data.MedicalHistory = hisController.GetPatientMedicalHistoryByPatientUID(patientUID);
+            data.WorkHistorys = hisController.GetPatientWorkHistoryByPatientUID(patientUID);
+            data.InjuryDetails = hisController.GetInjuryByPatientUID(patientUID);
+            data.PatientAddresss = (new PatientIdentityController()).GetPatientAddressByPatientUID(patientUID);
 
             return data;
         }

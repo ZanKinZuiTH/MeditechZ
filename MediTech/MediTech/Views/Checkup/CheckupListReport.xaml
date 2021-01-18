@@ -193,6 +193,14 @@
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToPDFCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Document/pdf.png"/>
+                                <TextBlock Text="PrintToPDF" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>

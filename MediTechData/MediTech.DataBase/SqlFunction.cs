@@ -107,6 +107,24 @@ namespace MediTech.DataBase
             throw new NotSupportedException("Direct calls are not supported.");
         }
 
+        [DbFunction("MediTechModel.Store", "fGetDistrictName")]
+        public static string fGetDistrictName(int districtUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+        [DbFunction("MediTechModel.Store", "fGetAmphurName")]
+        public static string fGetAmphurName(int amphurUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+        [DbFunction("MediTechModel.Store", "fGetProvinceName")]
+        public static string fGetProvinceName(int provinceUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
 
         [DbFunction("MediTechModel.Store", "fGetAddressOrganisation")]
         public static string fGetAddressOrganisation(int organisationUID)

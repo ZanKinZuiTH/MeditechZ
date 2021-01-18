@@ -255,6 +255,9 @@
     <Compile Include="PatientImage.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientInjury.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientMedicalHistory.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -307,6 +310,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientVitalSign.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientWorkHistory.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PayorAgreement.cs">

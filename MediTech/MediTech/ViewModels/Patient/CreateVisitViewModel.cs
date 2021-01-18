@@ -59,7 +59,7 @@ namespace MediTech.ViewModels
                 if (_SelectedVisitType != null)
                 {
                     VisibiltyCheckupCompany = Visibility.Collapsed;
-                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP")
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }

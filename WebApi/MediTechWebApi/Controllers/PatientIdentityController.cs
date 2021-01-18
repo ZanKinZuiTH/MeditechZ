@@ -146,6 +146,33 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPatientAddressByPatientUID")]
+        [HttpGet]
+        public List<PatientAddressModel> GetPatientAddressByPatientUID(long patientUID)
+        {
+            List<PatientAddressModel> patAdd = db.PatientAddress.Where(p => p.StatusFlag == "A" && p.PatientUID == patientUID)
+                .Select(p => new PatientAddressModel
+                {
+                    PatientAddressUID = p.UID,
+                    PatientUID = p.PatientUID,
+                    Line1 = p.Line1,
+                    Line2 = p.Line2,
+                    Line3 = p.Line3,
+                    Line4 = p.Line4,
+                    DistrictUID = p.DistrictUID,
+                    AmphurUID = p.AmphurUID,
+                    ProvinceUID = p.ProvinceUID,
+                    DistrictName = SqlFunction.fGetDistrictName(p.DistrictUID ?? 0),
+                    AmphurName = SqlFunction.fGetDistrictName(p.AmphurUID ?? 0),
+                    ProvinceName = SqlFunction.fGetDistrictName(p.ProvinceUID ?? 0),
+                    ZipCode = p.ZipCode,
+                    ADTYPUID = p.ADTYPUID,
+                    AddressType = SqlFunction.fGetRfValDescription(p.ADTYPUID ?? 0)
+                }).ToList();
+
+           return patAdd;
+        }
+
         [Route("SearchPatient")]
         [HttpGet]
         public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate)
@@ -662,31 +689,31 @@ namespace MediTechWebApi.Controllers
         {
             List<PatientVisitModel> visitData = null;
             visitData = (from pv in db.PatientVisit
-                        join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
-                        where pv.StatusFlag == "A"
-                        && pvp.StatusFlag == "A"
-                        && pv.PatientUID == patientUID
-                        && pv.VISTSUID != 410
-                        select new PatientVisitModel
-                        {
-                            PatientUID = pv.PatientUID,
-                            PatientVisitUID = pv.UID,
-                            StartDttm = pv.StartDttm,
-                            EndDttm = pv.EndDttm,
-                            ArrivedDttm = pv.ArrivedDttm,
-                            CareProviderUID = pv.CareProviderUID,
-                            Comments = pv.Comments,
-                            VISTYUID = pv.VISTYUID,
-                            VISTSUID = pv.VISTSUID,
-                            IsBillFinalized = pv.IsBillFinalized,
-                            VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
-                            VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
-                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),
-                            VisitID = pv.VisitID,
-                            PRITYUID = pv.PRITYUID,
-                            PayorDetailUID = pvp.PayorDetailUID,
-                            OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
-                        }).ToList();
+                         join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
+                         where pv.StatusFlag == "A"
+                         && pvp.StatusFlag == "A"
+                         && pv.PatientUID == patientUID
+                         && pv.VISTSUID != 410
+                         select new PatientVisitModel
+                         {
+                             PatientUID = pv.PatientUID,
+                             PatientVisitUID = pv.UID,
+                             StartDttm = pv.StartDttm,
+                             EndDttm = pv.EndDttm,
+                             ArrivedDttm = pv.ArrivedDttm,
+                             CareProviderUID = pv.CareProviderUID,
+                             Comments = pv.Comments,
+                             VISTYUID = pv.VISTYUID,
+                             VISTSUID = pv.VISTSUID,
+                             IsBillFinalized = pv.IsBillFinalized,
+                             VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
+                             VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
+                             OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),
+                             VisitID = pv.VisitID,
+                             PRITYUID = pv.PRITYUID,
+                             PayorDetailUID = pvp.PayorDetailUID,
+                             OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
+                         }).ToList();
 
             return visitData;
         }

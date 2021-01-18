@@ -9,6 +9,7 @@ using System.Drawing.Printing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -200,6 +201,13 @@ namespace MediTech.ViewModels
             get { return _PrintAutoCommand ?? (_PrintAutoCommand = new RelayCommand(PrintAuto)); }
         }
 
+
+        private RelayCommand _PrintToPDFCommand;
+        public RelayCommand PrintToPDFCommand
+        {
+            get { return _PrintToPDFCommand ?? (_PrintToPDFCommand = new RelayCommand(PrintToPDF)); }
+        }
+
         #endregion
 
         #region Method
@@ -352,6 +360,40 @@ namespace MediTech.ViewModels
                     printTool.ShowPreviewDialog();
 
                     SelectPatientCheckupResult.Remove(item);
+                }
+            }
+        }
+
+        void PrintToPDF()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+                DialogResult result = folderDlg.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    string path = folderDlg.SelectedPath;
+                    var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                    foreach (var item in patientResultLabList.ToList())
+                    {
+                        string fileName = (string.IsNullOrEmpty(item.EmployeeID) ? "" : item.EmployeeID + " ") + item.PatientName + ".pdf";
+
+                        var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                        XtraReport rpt = (XtraReport)myReport;
+                        rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง")
+                            rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                        rpt.ExportToPdf(path + "\\" + fileName);
+
+                        SelectPatientCheckupResult.Remove(item);
+                    }
                 }
             }
         }

@@ -154,6 +154,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public PatientRiskBookModel PrintRiskBook(long patientUID, long patientVisitUID, int payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Report/PrintRiskBook?patientUID={0}&patientVisitUID={1}&payorDetailUID={2}", patientUID, patientVisitUID, payorDetailUID);
+            PatientRiskBookModel data = MeditechApiHelper.Get<PatientRiskBookModel>(requestApi);
+
+            return data;
+        }
+
         public List<CheckupSummaryModel> CheckupSummary(CheckupCompanyModel branchModel)
         {
             string requestApi = string.Format("Api/Report/CheckupSummary");

@@ -236,7 +236,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ManagePatientProblem")]
         [HttpPost]
-        public HttpResponseMessage ManagePatientProblem(List<PatientProblemModel> model,long patientVisitUID, int userUID)
+        public HttpResponseMessage ManagePatientProblem(List<PatientProblemModel> model, long patientVisitUID, int userUID)
         {
             try
             {
@@ -332,99 +332,6 @@ namespace MediTechWebApi.Controllers
         }
 
 
-        [Route("GetPatientMedicalByVisitUID")]
-        [HttpGet]
-        public PatientMedicalHistoryModel GetPatientMedicalByVisitUID(long patientVisitUID)
-        {
-            PatientMedicalHistoryModel data = null;
-            PatientMedicalHistory medicalData = db.PatientMedicalHistory.FirstOrDefault(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisitUID);
-            if (medicalData != null)
-            {
-
-                data = new PatientMedicalHistoryModel();
-                data.PatientMedicalHistoryUID = medicalData.UID;
-                data.PatientUID = medicalData.PatientUID;
-                data.PatientVisitUID = medicalData.PatientVisitUID;
-                data.PI = medicalData.PI;
-                data.PE = medicalData.PE;
-                data.CC = medicalData.CC;
-                data.Note = medicalData.Note;
-            }
-            return data;
-        }
-
-
-        [Route("ManagePatientMedical")]
-        [HttpPost]
-        public HttpResponseMessage ManagePatientMedical(PatientMedicalHistoryModel model, int userUID)
-        {
-            try
-            {
-                DateTime now = DateTime.Now;
-
-
-                #region PatientMedicalHistory
-
-                PatientMedicalHistory patMedicalHIS = db.PatientMedicalHistory.Find(model.PatientMedicalHistoryUID);
-                if (patMedicalHIS == null)
-                {
-                    patMedicalHIS = new PatientMedicalHistory();
-                    patMedicalHIS.CUser = userUID;
-                    patMedicalHIS.CWhen = now;
-                    patMedicalHIS.MUser = userUID;
-                    patMedicalHIS.MWhen = now;
-                    patMedicalHIS.StatusFlag = "A";
-                    patMedicalHIS.PatientUID = model.PatientUID;
-                    patMedicalHIS.PatientVisitUID = model.PatientVisitUID;
-                    patMedicalHIS.OwnerOrganisationUID = model.OwnerOrganisationUID;
-                    patMedicalHIS.CC = model.CC;
-                    patMedicalHIS.PI = model.PI;
-                    patMedicalHIS.PE = model.PE;
-                    patMedicalHIS.Note = model.Note;
-
-                    db.PatientMedicalHistory.Add(patMedicalHIS);
-                }
-                else
-                {
-                    db.PatientMedicalHistory.Attach(patMedicalHIS);
-                    if (string.IsNullOrEmpty(model.CC) &&
-                        string.IsNullOrEmpty(model.PI) &&
-                        string.IsNullOrEmpty(model.PE) &&
-                        string.IsNullOrEmpty(model.Note))
-                    {
-                        patMedicalHIS.MUser = userUID;
-                        patMedicalHIS.MWhen = now;
-                        patMedicalHIS.StatusFlag = "D";
-                    }
-                    else
-                    {
-                        patMedicalHIS.MUser = userUID;
-                        patMedicalHIS.MWhen = now;
-                        patMedicalHIS.StatusFlag = "A";
-                        patMedicalHIS.PatientUID = model.PatientUID;
-                        patMedicalHIS.PatientVisitUID = model.PatientVisitUID;
-                        patMedicalHIS.OwnerOrganisationUID = model.OwnerOrganisationUID;
-                        patMedicalHIS.CC = model.CC;
-                        patMedicalHIS.PI = model.PI;
-                        patMedicalHIS.PE = model.PE;
-                        patMedicalHIS.Note = model.Note;
-                    }
-                }
-
-                db.PatientMedicalHistory.AddOrUpdate(patMedicalHIS);
-
-                db.SaveChanges();
-
-                #endregion
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
-            }
-        }
 
     }
 }

@@ -11,6 +11,7 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Text;
 using DevExpress.XtraPrinting;
+using MediTech.Model.Report;
 
 namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
 {

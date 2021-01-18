@@ -374,5 +374,32 @@ namespace MediTech.DataService
         }
 
         #endregion
+
+        #region RiskBookData
+        public PatientMedicalHistoryModel GetPatientMedicalHistoryByPatientUID(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientHistory/GetPatientMedicalHistoryByPatientUID?patientUID={0}", patientUID);
+            PatientMedicalHistoryModel dataRequest = MeditechApiHelper.Get<PatientMedicalHistoryModel>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<PatientInjuryModel> GetInjuryByPatientUID(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientHistory/GetInjuryByPatientUID?patientUID={0}", patientUID);
+            List<PatientInjuryModel> dataRequest = MeditechApiHelper.Get<List<PatientInjuryModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<PatientWorkHistoryModel> GetPatientWorkHistoryByPatientUID(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientHistory/GetPatientWorkHistoryByPatientUID?patientUID={0}", patientUID);
+            List<PatientWorkHistoryModel> dataRequest = MeditechApiHelper.Get<List<PatientWorkHistoryModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        #endregion
     }
 }

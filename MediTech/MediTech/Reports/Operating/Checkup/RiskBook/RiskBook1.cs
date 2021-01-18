@@ -8,6 +8,7 @@ using MediTech.Model;
 using System.Collections.Generic;
 using System.Linq;
 using MediTech.Helpers;
+using MediTech.Model.Report;
 
 namespace MediTech.Reports.Operating.Checkup.RiskBook
 {
@@ -37,7 +38,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
             long patientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
-            PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+            PatientRiskBookModel data = DataService.Reports.PrintRiskBook(patientUID, patientVisitUID, payorDetailUID);
 
             if (data.PatientInfomation != null)
             {

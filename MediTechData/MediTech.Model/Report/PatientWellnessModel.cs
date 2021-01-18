@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MediTech.Model
+namespace MediTech.Model.Report
 {
     public class PatientWellnessModel
     {
@@ -13,5 +13,6 @@ namespace MediTech.Model
         public List<ResultRadiologyModel> Radiology { get; set; }
         public List<PatientResultComponentModel> LabCompare { get; set; }
         public List<CheckupGroupResultModel> GroupResult { get; set; }
+
     }
 }

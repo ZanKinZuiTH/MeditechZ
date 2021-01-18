@@ -113,12 +113,15 @@
     <Compile Include="PatientDiagnosis\ProblemModel.cs" />
     <Compile Include="PatientHistory\CCHPIModel.cs" />
     <Compile Include="PatientHistory\CCHPIMasterModel.cs" />
+    <Compile Include="PatientHistory\PatientInjuryModel.cs" />
     <Compile Include="PatientHistory\PatientVitalSignModel.cs" />
+    <Compile Include="PatientHistory\PatientWorkHistoryModel.cs" />
     <Compile Include="PatientHistory\PhysicalExamModel.cs" />
     <Compile Include="PatientHistory\PhysicalExamTemplateModel.cs" />
     <Compile Include="PatientHistory\ProgressModel.cs" />
     <Compile Include="PatientHistory\WellnessDataModel.cs" />
     <Compile Include="Patient\BookingModel.cs" />
+    <Compile Include="Patient\PatientAddressModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />
@@ -172,6 +175,7 @@
     <Compile Include="LookUp\LookupReferenceValueModel.cs" />
     <Compile Include="OrderProcessing\SearchOrderItem.cs" />
     <Compile Include="Report\PatientRevenueModel.cs" />
+    <Compile Include="Report\PatientRiskBookModel.cs" />
     <Compile Include="Report\PatientSummeryDataModel.cs" />
     <Compile Include="Report\PatientWellnessModel.cs" />
     <Compile Include="Report\ProblemStatisticModel.cs" />
