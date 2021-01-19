@@ -167,8 +167,8 @@ namespace MediTechWebApi.Controllers
                     ProvinceName = SqlFunction.fGetProvinceName(p.ProvinceUID ?? 0),
                     ZipCode = p.ZipCode,
                     ADTYPUID = p.ADTYPUID,
-                    AddressType = SqlFunction.fGetRfValDescription(p.ADTYPUID ?? 0),
-                    Phone = p.Phone
+                    Phone = p.Phone,
+                    AddressType = SqlFunction.fGetRfValDescription(p.ADTYPUID ?? 0)
                 }).ToList();
 
            return patAdd;

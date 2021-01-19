@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
+using System.Collections.Generic;
 
 namespace MediTech.Reports.Operating.Checkup.RiskBook
 {
@@ -15,7 +16,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
         private void Detail_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-
         }
     }
 }

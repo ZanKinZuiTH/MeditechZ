@@ -16,8 +16,6 @@ namespace MediTech.DataBase
     {
         public int UID { get; set; }
         public long PatientUID { get; set; }
-        public string PastMedical { get; set; }
-        public Nullable<System.DateTime> PastMedicalDttm { get; set; }
         public string ChronicDisease { get; set; }
         public string SurgicalDetail { get; set; }
         public string ImmunizationDetail { get; set; }

@@ -1025,6 +1025,21 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="PastMedicalHistory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientMedicalHistoryUID" Type="int" Nullable="false" />
+          <Property Name="MedicalDttm" Type="datetime" />
+          <Property Name="MedicalName" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="Patient">
           <Key>
             <PropertyRef Name="UID" />
@@ -1342,8 +1357,6 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
-          <Property Name="PastMedical" Type="nvarchar" MaxLength="500" />
-          <Property Name="PastMedicalDttm" Type="datetime" />
           <Property Name="ChronicDisease" Type="nvarchar" MaxLength="500" />
           <Property Name="SurgicalDetail" Type="nvarchar" MaxLength="500" />
           <Property Name="ImmunizationDetail" Type="nvarchar" MaxLength="500" />
@@ -3953,6 +3966,7 @@
           <EntitySet Name="PageView" EntityType="Self.PageView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageViewModule" EntityType="Self.PageViewModule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageViewPermission" EntityType="Self.PageViewPermission" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PastMedicalHistory" EntityType="Self.PastMedicalHistory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAddress" EntityType="Self.PatientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAddressMerge" EntityType="Self.PatientAddressMerge" Schema="dbo" store:Type="Tables" />
@@ -5084,6 +5098,7 @@
           <EntitySet Name="PageView" EntityType="MediTechModel.PageView" />
           <EntitySet Name="PageViewModule" EntityType="MediTechModel.PageViewModule" />
           <EntitySet Name="PageViewPermission" EntityType="MediTechModel.PageViewPermission" />
+          <EntitySet Name="PastMedicalHistory" EntityType="MediTechModel.PastMedicalHistory" />
           <EntitySet Name="Patient" EntityType="MediTechModel.Patient" />
           <EntitySet Name="PatientAddress" EntityType="MediTechModel.PatientAddress" />
           <EntitySet Name="PatientAddressMerge" EntityType="MediTechModel.PatientAddressMerge" />
@@ -8667,6 +8682,21 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="PastMedicalHistory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientMedicalHistoryUID" Type="Int32" Nullable="false" />
+          <Property Name="MedicalDttm" Type="DateTime" Precision="3" />
+          <Property Name="MedicalName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="Patient">
           <Key>
             <PropertyRef Name="UID" />
@@ -8984,8 +9014,6 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
-          <Property Name="PastMedical" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="PastMedicalDttm" Type="DateTime" Precision="3" />
           <Property Name="ChronicDisease" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="SurgicalDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="ImmunizationDetail" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -13696,6 +13724,22 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PastMedicalHistory">
+            <EntityTypeMapping TypeName="MediTechModel.PastMedicalHistory">
+              <MappingFragment StoreEntitySet="PastMedicalHistory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="MedicalName" ColumnName="MedicalName" />
+                <ScalarProperty Name="MedicalDttm" ColumnName="MedicalDttm" />
+                <ScalarProperty Name="PatientMedicalHistoryUID" ColumnName="PatientMedicalHistoryUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Patient">
             <EntityTypeMapping TypeName="MediTechModel.Patient">
               <MappingFragment StoreEntitySet="Patient">
@@ -14043,8 +14087,6 @@
                 <ScalarProperty Name="ImmunizationDetail" ColumnName="ImmunizationDetail" />
                 <ScalarProperty Name="SurgicalDetail" ColumnName="SurgicalDetail" />
                 <ScalarProperty Name="ChronicDisease" ColumnName="ChronicDisease" />
-                <ScalarProperty Name="PastMedicalDttm" ColumnName="PastMedicalDttm" />
-                <ScalarProperty Name="PastMedical" ColumnName="PastMedical" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
