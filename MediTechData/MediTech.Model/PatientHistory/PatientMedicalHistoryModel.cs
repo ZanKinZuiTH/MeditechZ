@@ -10,8 +10,6 @@ namespace MediTech.Model
     {
         public int PatientMedicalHistoryUID { get; set; }
         public long PatientUID { get; set; }
-        public string PastMedical { get; set; }
-        public Nullable<System.DateTime> PastMedicalDttm { get; set; }
         public string ChronicDisease { get; set; }
         public string SurgicalDetail { get; set; }
         public string ImmunizationDetail { get; set; }
@@ -32,5 +30,7 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+
+        public List<PastMedicalHistoryModel> PastMedicalHistorys { get; set; }
     }
 }

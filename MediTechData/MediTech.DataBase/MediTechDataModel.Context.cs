@@ -77,6 +77,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PageView> PageView { get; set; }
         public virtual DbSet<PageViewModule> PageViewModule { get; set; }
         public virtual DbSet<PageViewPermission> PageViewPermission { get; set; }
+        public virtual DbSet<PastMedicalHistory> PastMedicalHistory { get; set; }
         public virtual DbSet<Patient> Patient { get; set; }
         public virtual DbSet<PatientAddress> PatientAddress { get; set; }
         public virtual DbSet<PatientAddressMerge> PatientAddressMerge { get; set; }

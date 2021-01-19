@@ -817,8 +817,6 @@ namespace MediTechWebApi.Controllers
                 data = new PatientMedicalHistoryModel();
                 data.PatientMedicalHistoryUID = medicalData.UID;
                 data.PatientUID = medicalData.PatientUID;
-                data.PastMedical = medicalData.PastMedical;
-                data.PastMedicalDttm = medicalData.PastMedicalDttm;
                 data.ChronicDisease = medicalData.ChronicDisease;
                 data.SurgicalDetail = medicalData.SurgicalDetail;
                 data.ImmunizationDetail = medicalData.ImmunizationDetail;
@@ -834,6 +832,18 @@ namespace MediTechWebApi.Controllers
                 data.AlcohoPeriodMonth = medicalData.AlcohoPeriodMonth;
                 data.Narcotic = medicalData.Narcotic;
                 data.Comments = medicalData.Comments;
+            }
+
+            if (data != null)
+            {
+                data.PastMedicalHistorys = db.PastMedicalHistory.Where(p => p.StatusFlag == "A" && p.PatientMedicalHistoryUID == data.PatientMedicalHistoryUID)
+                    .Select(p => new PastMedicalHistoryModel
+                    {
+                        PastMedicalHistoryUID = p.UID,
+                        PatientMedicalHistoryUID = p.PatientMedicalHistoryUID,
+                        MedicalDttm = p.MedicalDttm,
+                        MedicalName = p.MedicalName
+                    }).ToList();
             }
             return data;
         }

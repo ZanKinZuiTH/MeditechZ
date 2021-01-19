@@ -611,7 +611,7 @@ namespace MediTechWebApi.Controllers
             data.MedicalHistory = hisController.GetPatientMedicalHistoryByPatientUID(patientUID);
             data.WorkHistorys = hisController.GetPatientWorkHistoryByPatientUID(patientUID);
             data.InjuryDetails = hisController.GetInjuryByPatientUID(patientUID);
-            data.PatientAddresss = (new PatientIdentityController()).GetPatientAddressByPatientUID(patientUID);
+            data.PatientAddresses = (new PatientIdentityController()).GetPatientAddressByPatientUID(patientUID);
 
             return data;
         }

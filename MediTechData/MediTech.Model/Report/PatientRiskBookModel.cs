@@ -9,7 +9,7 @@ namespace MediTech.Model.Report
     public class PatientRiskBookModel : PatientWellnessModel
     {
         public PatientMedicalHistoryModel MedicalHistory { get; set; }
-        public List<PatientAddressModel> PatientAddresss { get; set; }
+        public List<PatientAddressModel> PatientAddresses { get; set; }
         public List<PatientWorkHistoryModel> WorkHistorys { get; set; }
         public List<PatientInjuryModel> InjuryDetails { get; set; }
     }
