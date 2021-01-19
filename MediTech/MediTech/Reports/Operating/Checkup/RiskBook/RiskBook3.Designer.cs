@@ -437,9 +437,9 @@
             this.xrTableCell78 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell79 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.DateInjury1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.BodyLocation1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.InjuryDetail1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell36 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -5488,20 +5488,20 @@
             this.xrCheckBox4.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrCheckBox4.LocationFloat = new DevExpress.Utils.PointFloat(516.7501F, 80.66668F);
             this.xrCheckBox4.Name = "xrCheckBox4";
-            this.xrCheckBox4.SizeF = new System.Drawing.SizeF(242.0834F, 18.00003F);
+            this.xrCheckBox4.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
             this.xrCheckBox4.StylePriority.UseFont = false;
             this.xrCheckBox4.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox4.Text = "มี ระบุ..............................................................";
+            this.xrCheckBox4.Text = "มี ";
             // 
             // xrCheckBox2
             // 
             this.xrCheckBox2.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrCheckBox2.LocationFloat = new DevExpress.Utils.PointFloat(516.7501F, 42.33335F);
             this.xrCheckBox2.Name = "xrCheckBox2";
-            this.xrCheckBox2.SizeF = new System.Drawing.SizeF(242.0834F, 18.00003F);
+            this.xrCheckBox2.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
             this.xrCheckBox2.StylePriority.UseFont = false;
             this.xrCheckBox2.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox2.Text = "มี ระบุ .............................................................";
+            this.xrCheckBox2.Text = "มี ";
             // 
             // xrCheckBox1
             // 
@@ -6404,9 +6404,9 @@
             // xrTableRow7
             // 
             this.xrTableRow7.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell1,
-            this.xrTableCell2,
-            this.xrTableCell33,
+            this.DateInjury1,
+            this.BodyLocation1,
+            this.InjuryDetail1,
             this.xrTableCell34,
             this.xrTableCell35,
             this.xrTableCell36,
@@ -6414,41 +6414,41 @@
             this.xrTableRow7.Name = "xrTableRow7";
             this.xrTableRow7.Weight = 0.83864417423199433D;
             // 
-            // xrTableCell1
+            // DateInjury1
             // 
-            this.xrTableCell1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.DateInjury1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell1.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.StylePriority.UseBorders = false;
-            this.xrTableCell1.StylePriority.UseFont = false;
-            this.xrTableCell1.StylePriority.UseTextAlignment = false;
-            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell1.Weight = 0.80152412364685466D;
+            this.DateInjury1.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.DateInjury1.Name = "DateInjury1";
+            this.DateInjury1.StylePriority.UseBorders = false;
+            this.DateInjury1.StylePriority.UseFont = false;
+            this.DateInjury1.StylePriority.UseTextAlignment = false;
+            this.DateInjury1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.DateInjury1.Weight = 0.80152412364685466D;
             // 
-            // xrTableCell2
+            // BodyLocation1
             // 
-            this.xrTableCell2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.BodyLocation1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.StylePriority.UseBorders = false;
-            this.xrTableCell2.StylePriority.UseFont = false;
-            this.xrTableCell2.StylePriority.UseTextAlignment = false;
-            this.xrTableCell2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell2.Weight = 1.1263840519524864D;
+            this.BodyLocation1.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.BodyLocation1.Name = "BodyLocation1";
+            this.BodyLocation1.StylePriority.UseBorders = false;
+            this.BodyLocation1.StylePriority.UseFont = false;
+            this.BodyLocation1.StylePriority.UseTextAlignment = false;
+            this.BodyLocation1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.BodyLocation1.Weight = 1.1263840519524864D;
             // 
-            // xrTableCell33
+            // InjuryDetail1
             // 
-            this.xrTableCell33.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.InjuryDetail1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell33.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrTableCell33.Name = "xrTableCell33";
-            this.xrTableCell33.StylePriority.UseBorders = false;
-            this.xrTableCell33.StylePriority.UseFont = false;
-            this.xrTableCell33.StylePriority.UseTextAlignment = false;
-            this.xrTableCell33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell33.Weight = 1.2184964248557495D;
+            this.InjuryDetail1.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.InjuryDetail1.Name = "InjuryDetail1";
+            this.InjuryDetail1.StylePriority.UseBorders = false;
+            this.InjuryDetail1.StylePriority.UseFont = false;
+            this.InjuryDetail1.StylePriority.UseTextAlignment = false;
+            this.InjuryDetail1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.InjuryDetail1.Weight = 1.2184964248557495D;
             // 
             // xrTableCell34
             // 
@@ -7482,7 +7482,6 @@
         public DevExpress.XtraReports.UI.XRTableCell cellCr2;
         public DevExpress.XtraReports.UI.XRTableCell cellCr3;
         public DevExpress.XtraReports.UI.XRTableCell cellCrRange;
-        private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell88;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell89;
@@ -7504,9 +7503,9 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell78;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell79;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow7;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
+        private DevExpress.XtraReports.UI.XRTableCell DateInjury1;
+        private DevExpress.XtraReports.UI.XRTableCell BodyLocation1;
+        private DevExpress.XtraReports.UI.XRTableCell InjuryDetail1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
@@ -7635,5 +7634,6 @@
         public DevExpress.XtraReports.UI.XRTableCell HavIgGRange;
         private DevExpress.XtraReports.UI.XRRichText xrRichText1;
         private DevExpress.XtraReports.UI.XRRichText xrRichText2;
+        public DevExpress.XtraReports.UI.XRTable xrTable1;
     }
 }

@@ -163,11 +163,12 @@ namespace MediTechWebApi.Controllers
                     AmphurUID = p.AmphurUID,
                     ProvinceUID = p.ProvinceUID,
                     DistrictName = SqlFunction.fGetDistrictName(p.DistrictUID ?? 0),
-                    AmphurName = SqlFunction.fGetDistrictName(p.AmphurUID ?? 0),
-                    ProvinceName = SqlFunction.fGetDistrictName(p.ProvinceUID ?? 0),
+                    AmphurName = SqlFunction.fGetAmphurName(p.AmphurUID ?? 0),
+                    ProvinceName = SqlFunction.fGetProvinceName(p.ProvinceUID ?? 0),
                     ZipCode = p.ZipCode,
                     ADTYPUID = p.ADTYPUID,
-                    AddressType = SqlFunction.fGetRfValDescription(p.ADTYPUID ?? 0)
+                    AddressType = SqlFunction.fGetRfValDescription(p.ADTYPUID ?? 0),
+                    Phone = p.Phone
                 }).ToList();
 
            return patAdd;

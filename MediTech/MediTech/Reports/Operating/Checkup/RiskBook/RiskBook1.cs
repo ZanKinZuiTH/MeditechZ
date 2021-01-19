@@ -160,7 +160,92 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 #endregion
 
                 page4.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
+
+                var WorkHistorys = data.WorkHistorys;
+                if (WorkHistorys != null)
+                {
+                    if (data.WorkHistorys != null && data.WorkHistorys.Count > 0)
+                    {
+                        for (int i = 0; i < data.WorkHistorys.Count; i++)
+                        {
+                            xrTable3.Rows[i + 1].Cells[0].Text = data.WorkHistorys[i].CompanyName;
+                            xrTable3.Rows[i + 1].Cells[1].Text = data.WorkHistorys[i].Business;
+                            xrTable3.Rows[i + 1].Cells[2].Text = data.WorkHistorys[i].Description;
+                            xrTable3.Rows[i + 1].Cells[3].Text = data.WorkHistorys[i].Timeperiod;
+                            xrTable3.Rows[i + 1].Cells[4].Text = data.WorkHistorys[i].Riskfactor;
+                            xrTable3.Rows[i + 1].Cells[5].Text = data.WorkHistorys[i].Equipment;
+                        }
+                    }
+                }
+
                 
+                    if (data.InjuryDetails != null && data.InjuryDetails.Count > 0)
+                    {
+                        for (int i = 0; i < data.InjuryDetails.Count; i++)
+                        {
+                            page3.xrTable1.Rows[i + 3].Cells[0].Text = data.InjuryDetails[i].OccuredDate != null ? (data.InjuryDetails[i].OccuredDate?.Year + 543).ToString() : "";
+                            page3.xrTable1.Rows[i + 3].Cells[1].Text = data.InjuryDetails[i].BodyLocation != null ? data.InjuryDetails[i].BodyLocation.ToString() : "";
+                            page3.xrTable1.Rows[i + 3].Cells[2].Text = data.InjuryDetails[i].InjuryDetail != null ? data.InjuryDetails[i].InjuryDetail.ToString() : "";
+                            switch (data.InjuryDetails[i].InjuryServerity)
+                            {
+                                case "ทุพพลภาพ":
+                                    page3.xrTable1.Rows[i + 3].Cells[3].Text = "/";
+                                    break;
+                                case "สูยเสียอวัยวะบางส่วน":
+                                    page3.xrTable1.Rows[i + 3].Cells[4].Text = "/";
+                                    break;
+                                case "หยุดงานไม่เกิน 3 วัน":
+                                    page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
+                                    break;
+                                case "หยุดงานเกิน 3 วัน":
+                                    page3.xrTable1.Rows[i + 3].Cells[6].Text = "/";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        }
+                    }
+                
+
+                var PatientAddresss = data.PatientAddresss;
+                if (PatientAddresss != null)
+                {
+                    page2.DefaultLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line1;
+                    page2.DefaultLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line2;
+                    page2.DefaultLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line3;
+                    page2.DefaultLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line4;
+                    page2.DefaultDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.DistrictName;
+                    page2.DefaultAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.AmphurName;
+                    page2.DefaultProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.ProvinceName;
+                    page2.DefaultZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.ZipCode;
+                    page2.DefaultPhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Phone;
+
+                    page2.ContartLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line1;
+                    page2.ContartLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line2;
+                    page2.ContartLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line3;
+                    page2.ContartLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line4;
+                    page2.ContartDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.DistrictName;
+                    page2.ContactAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.AmphurName;
+                    page2.ContartProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.ProvinceName;
+                    page2.ContartZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.ZipCode;
+                    page2.ContartPhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Phone;
+
+                    page2.OfficeLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line1;
+                    page2.OfficeLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line2;
+                    page2.OfficeLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line3;
+                    page2.OfficeLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line4;
+                    page2.OfficeDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.DistrictName;
+                    page2.OfficeAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.AmphurName;
+                    page2.OfficeProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.ProvinceName;
+                    page2.OfficeZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.ZipCode;
+                    page2.OfficePhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Phone;
+                }
+                var MedicalHistory = data.MedicalHistory;
+                if (MedicalHistory != null)
+                {
+                    if (MedicalHistory.)
+                }
 
                 var occmed = data.MobileResult;
                 if (occmed != null)
@@ -180,7 +265,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     IEnumerable<PatientResultComponentModel> PhysicalExam = occmed
                         .Where(p => p.RequestItemCode.Contains("PEXAM"));
                     GeneratePhysicalExam(PhysicalExam);
-                    
+
                 }
 
                 var labCompare = data.LabCompare;
@@ -203,7 +288,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                     #region Renal function
                     IEnumerable<PatientResultComponentModel> RenalTestSet = labCompare
-                        .Where(p => p.RequestItemCode.Contains("LAB212") 
+                        .Where(p => p.RequestItemCode.Contains("LAB212")
                         || p.RequestItemCode.Contains("LAB211"))
                         .OrderBy(p => p.Year);
                     GenerateRenalFunction(RenalTestSet);
@@ -770,18 +855,18 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.StyreneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year1)?.ResultValue;
                 page3.StyreneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year2)?.ResultValue;
                 page3.StyreneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195" && p.Year == year3)?.ResultValue;
-                
+
                 page3.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
                 page3.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
                 page3.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
                 page3.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
-               
+
                 page3.ArsenicRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199")?.ReferenceRange;
                 page3.Arsenic1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year1)?.ResultValue;
                 page3.Arsenic2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year2)?.ResultValue;
                 page3.Arsenic3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR199" && p.Year == year3)?.ResultValue;
             }
-            
+
         }
 
         private void GeneratePhysicalExam(IEnumerable<PatientResultComponentModel> PhysicalExamResult)
@@ -851,7 +936,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
             }
         }
 
-            private void Riskbook1_AfterPrint(object sender, EventArgs e)
+        private void Riskbook1_AfterPrint(object sender, EventArgs e)
         {
             page2.CreateDocument();
             page3.CreateDocument();
