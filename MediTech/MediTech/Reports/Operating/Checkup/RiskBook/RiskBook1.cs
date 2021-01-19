@@ -208,7 +208,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     }
                 
 
-                var PatientAddresss = data.PatientAddresss;
+                var PatientAddresss = data.PatientAddresses;
                 if (PatientAddresss != null)
                 {
                     page2.DefaultLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line1;
@@ -244,7 +244,169 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 var MedicalHistory = data.MedicalHistory;
                 if (MedicalHistory != null)
                 {
-                    if (MedicalHistory.)
+                    if (MedicalHistory.PastMedicalHistorys != null && MedicalHistory.PastMedicalHistorys.Count > 0)
+                    {
+                        foreach (var medical in MedicalHistory.PastMedicalHistorys)
+                        {
+                            page2.lbPastMedical1.Text = medical.MedicalName;
+                            page2.lbPastMedicalDttm1.Text = medical.MedicalDttm != null ? (medical.MedicalDttm.Value.Year + 543).ToString() : "";
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(MedicalHistory.ChronicDisease))
+                    {
+                        if (MedicalHistory.ChronicDisease.Trim() == "ไม่มี")
+                        {
+                            page2.CheckChronicNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckChronicYes.Checked = true;
+                            page2.ChronicDisease.Text = MedicalHistory.ChronicDisease;
+                        }
+
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.SurgicalDetail))
+                    {
+                        if (MedicalHistory.SurgicalDetail.Trim() == "ไม่เคย")
+                        {
+                            page2.CheckSurgicalNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckSurgicalYes.Checked = true;
+                            page2.SurgicalDetail.Text = MedicalHistory.SurgicalDetail;
+                        }
+              
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.ImmunizationDetail))
+                    {
+                        if (MedicalHistory.ImmunizationDetail.Trim() == "ไม่เคย")
+                        {
+                            page2.CheckImmunizationNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckImmunizationYes.Checked = true;
+                            page2.ImmunizationDetail.Text = MedicalHistory.ImmunizationDetail;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Familyhistory))
+                    {
+                        if (MedicalHistory.Familyhistory.Trim() == "ไม่มี")
+                        {
+                            page2.CheckFamilyhistoryNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckFamilyhistoryY.Checked = true;
+                            page2.Familyhistory.Text = MedicalHistory.Familyhistory;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.LongTemMedication))
+                    {
+                        if (MedicalHistory.LongTemMedication.Trim() == "ไม่มี")
+                        {
+                            page3.CheckLongTemMedicationNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckLongTemMedicationYes.Checked = true;
+                            page3.LongTemMedication.Text = MedicalHistory.LongTemMedication;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.AllergyDescription))
+                    {
+                        if (MedicalHistory.AllergyDescription.Trim() == "ไม่มี")
+                        {
+                            page3.CheckAllergyDescriptionNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckAllergyDescriptionYes.Checked = true;
+                            page3.AllergyDescription.Text = MedicalHistory.AllergyDescription;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Narcotic))
+                    {
+                        if (MedicalHistory.Narcotic.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckNarcoticNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckNarcoticYes.Checked = true;
+                            page3.Narcotic.Text = MedicalHistory.Narcotic;
+                        }
+
+                    }
+
+                    if (!String.IsNullOrEmpty(MedicalHistory.Smoke))
+                    {
+                        if (MedicalHistory.Smoke?.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckSmokeNo.Checked = true;
+                        }
+                        else if (MedicalHistory.Smoke?.Trim() == "เคยแต่เลิกแล้ว")
+                        {
+                            page3.CheckSmokeUsed.Checked = true;
+
+                        }
+                        else if (MedicalHistory.Smoke?.Trim() != "")
+                        {
+                            page3.CheckSmokeDay.Checked = true;
+                            page3.Smoke.Text = MedicalHistory.Smoke;
+                        }
+
+                        page3.SmokePeriodYear.Text = MedicalHistory.SmokePeriodYear;
+                        page3.SmokePeriodMonth.Text = MedicalHistory.SmokePeriodMonth;
+                        page3.BFQuitSmoke.Text = MedicalHistory.BFQuitSmoke;
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Alcohol))
+                    {
+                        if (MedicalHistory.Alcohol?.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckAlcoholNo.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มน้อยกว่า 1 ครั้งต่อสัปดาห์")
+                        {
+                            page3.CheckAlcoholLess1Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่ม 1 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcohol1Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่ม 2-3 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcohol2Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มมากกว่า 3 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcoholMore3Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "เคยแต่เลิกแล้ว")
+                        {
+                            page3.CheckAlcohoLast.Checked = true;
+                        }
+                        page3.AlcohoPeriodYear.Text = MedicalHistory.AlcohoPeriodYear;
+                        page3.AlcohoPeriodMonth.Text = MedicalHistory.AlcohoPeriodMonth;
+                    }
+
                 }
 
                 var occmed = data.MobileResult;

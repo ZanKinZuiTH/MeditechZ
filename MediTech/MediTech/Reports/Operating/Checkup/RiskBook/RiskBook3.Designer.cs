@@ -164,8 +164,8 @@
             this.Arsenic2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Arsenic3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.ArsenicRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrCheckBox13 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox14 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcohol2Week = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcoholLess1Week = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrTable12 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow24 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell95 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -351,24 +351,23 @@
             this.cellMcv3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellMcvRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox15 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox16 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckNarcoticNo = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckNarcoticYes = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox9 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcoholNo = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox10 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox11 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox12 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox8 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox7 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox6 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox5 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcohol1Week = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcoholMore3Week = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAlcohoLast = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckSmokeUsed = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckSmokeDay = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckSmokeNo = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrCheckBox3 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox4 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox2 = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.xrCheckBox1 = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAllergyDescriptionNo = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckAllergyDescriptionYes = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckLongTemMedicationYes = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.CheckLongTemMedicationNo = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -498,6 +497,22 @@
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrLabel64 = new DevExpress.XtraReports.UI.XRLabel();
+            this.LongTemMedication = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.AllergyDescription = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.sssss = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Smoke = new DevExpress.XtraReports.UI.XRLabel();
+            this.SmokePeriodYear = new DevExpress.XtraReports.UI.XRLabel();
+            this.SmokePeriodMonth = new DevExpress.XtraReports.UI.XRLabel();
+            this.BFQuitSmoke = new DevExpress.XtraReports.UI.XRLabel();
+            this.AlcohoPeriodYear = new DevExpress.XtraReports.UI.XRLabel();
+            this.AlcohoPeriodMonth = new DevExpress.XtraReports.UI.XRLabel();
+            this.Narcotic = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
@@ -513,33 +528,44 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.Narcotic,
+            this.AlcohoPeriodMonth,
+            this.AlcohoPeriodYear,
+            this.BFQuitSmoke,
+            this.SmokePeriodMonth,
+            this.SmokePeriodYear,
+            this.Smoke,
+            this.xrLabel17,
+            this.xrLabel4,
+            this.AllergyDescription,
+            this.xrLabel3,
+            this.LongTemMedication,
             this.xrTable6,
             this.tbToxicology,
-            this.xrCheckBox13,
-            this.xrCheckBox14,
+            this.CheckAlcohol2Week,
+            this.CheckAlcoholLess1Week,
             this.xrTable12,
             this.xrLabel16,
             this.xrTable8,
             this.xrTable5,
             this.xrLabel14,
-            this.xrCheckBox15,
-            this.xrCheckBox16,
+            this.CheckNarcoticNo,
+            this.CheckNarcoticYes,
             this.xrLabel13,
-            this.xrCheckBox9,
+            this.CheckAlcoholNo,
             this.xrLabel12,
-            this.xrCheckBox10,
-            this.xrCheckBox11,
-            this.xrCheckBox12,
-            this.xrCheckBox8,
-            this.xrCheckBox7,
-            this.xrCheckBox6,
-            this.xrCheckBox5,
+            this.CheckAlcohol1Week,
+            this.CheckAlcoholMore3Week,
+            this.CheckAlcohoLast,
+            this.CheckSmokeUsed,
+            this.CheckSmokeDay,
+            this.CheckSmokeNo,
             this.xrLabel11,
             this.xrLabel10,
-            this.xrCheckBox3,
-            this.xrCheckBox4,
-            this.xrCheckBox2,
-            this.xrCheckBox1,
+            this.CheckAllergyDescriptionNo,
+            this.CheckAllergyDescriptionYes,
+            this.CheckLongTemMedicationYes,
+            this.CheckLongTemMedicationNo,
             this.xrTable3,
             this.xrLabel1,
             this.xrLabel2,
@@ -552,7 +578,11 @@
             this.PtName,
             this.xrRichText5,
             this.xrRichText1,
-            this.xrRichText2});
+            this.xrRichText2,
+            this.xrLabel64,
+            this.sssss,
+            this.xrLabel8,
+            this.xrLabel5});
             this.Detail.HeightF = 1182.66F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -2595,25 +2625,25 @@
             this.ArsenicRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.ArsenicRange.Weight = 1.02262920318444D;
             // 
-            // xrCheckBox13
+            // CheckAlcohol2Week
             // 
-            this.xrCheckBox13.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox13.LocationFloat = new DevExpress.Utils.PointFloat(622.1603F, 219.6668F);
-            this.xrCheckBox13.Name = "xrCheckBox13";
-            this.xrCheckBox13.SizeF = new System.Drawing.SizeF(152.5F, 18.00003F);
-            this.xrCheckBox13.StylePriority.UseFont = false;
-            this.xrCheckBox13.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox13.Text = "ดื่ม ๒ - ๓ ครั้ง/สัปดาห์";
+            this.CheckAlcohol2Week.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcohol2Week.LocationFloat = new DevExpress.Utils.PointFloat(622.1603F, 219.6668F);
+            this.CheckAlcohol2Week.Name = "CheckAlcohol2Week";
+            this.CheckAlcohol2Week.SizeF = new System.Drawing.SizeF(118.3F, 18.00003F);
+            this.CheckAlcohol2Week.StylePriority.UseFont = false;
+            this.CheckAlcohol2Week.StylePriority.UseTextAlignment = false;
+            this.CheckAlcohol2Week.Text = "ดื่ม ๒ - ๓ ครั้ง/สัปดาห์";
             // 
-            // xrCheckBox14
+            // CheckAlcoholLess1Week
             // 
-            this.xrCheckBox14.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox14.LocationFloat = new DevExpress.Utils.PointFloat(622.1603F, 201.6668F);
-            this.xrCheckBox14.Name = "xrCheckBox14";
-            this.xrCheckBox14.SizeF = new System.Drawing.SizeF(159.173F, 18.00003F);
-            this.xrCheckBox14.StylePriority.UseFont = false;
-            this.xrCheckBox14.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox14.Text = "โดยปกติดื่มน้อยกว่า ๑ ครั้ง/สัปดาห์ ";
+            this.CheckAlcoholLess1Week.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcoholLess1Week.LocationFloat = new DevExpress.Utils.PointFloat(622.1603F, 201.6668F);
+            this.CheckAlcoholLess1Week.Name = "CheckAlcoholLess1Week";
+            this.CheckAlcoholLess1Week.SizeF = new System.Drawing.SizeF(159.173F, 18.00003F);
+            this.CheckAlcoholLess1Week.StylePriority.UseFont = false;
+            this.CheckAlcoholLess1Week.StylePriority.UseTextAlignment = false;
+            this.CheckAlcoholLess1Week.Text = "โดยปกติดื่มน้อยกว่า ๑ ครั้ง/สัปดาห์ ";
             // 
             // xrTable12
             // 
@@ -5329,26 +5359,26 @@
             this.xrLabel14.StylePriority.UseFont = false;
             this.xrLabel14.Text = "๑๑. ข้อมูลทางสุขภาพอื่นๆ ที่เป็นประโยชน์";
             // 
-            // xrCheckBox15
+            // CheckNarcoticNo
             // 
-            this.xrCheckBox15.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox15.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 291.6669F);
-            this.xrCheckBox15.Name = "xrCheckBox15";
-            this.xrCheckBox15.SizeF = new System.Drawing.SizeF(45.83328F, 18.00003F);
-            this.xrCheckBox15.StylePriority.UseFont = false;
-            this.xrCheckBox15.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox15.Text = "ไม่มี";
-            this.xrCheckBox15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CheckNarcoticNo.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckNarcoticNo.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 291.6669F);
+            this.CheckNarcoticNo.Name = "CheckNarcoticNo";
+            this.CheckNarcoticNo.SizeF = new System.Drawing.SizeF(45.83328F, 18.00003F);
+            this.CheckNarcoticNo.StylePriority.UseFont = false;
+            this.CheckNarcoticNo.StylePriority.UseTextAlignment = false;
+            this.CheckNarcoticNo.Text = "ไม่เคย";
+            this.CheckNarcoticNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // xrCheckBox16
+            // CheckNarcoticYes
             // 
-            this.xrCheckBox16.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox16.LocationFloat = new DevExpress.Utils.PointFloat(515.9167F, 291.6669F);
-            this.xrCheckBox16.Name = "xrCheckBox16";
-            this.xrCheckBox16.SizeF = new System.Drawing.SizeF(242.0834F, 18.00003F);
-            this.xrCheckBox16.StylePriority.UseFont = false;
-            this.xrCheckBox16.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox16.Text = "มี ระบุ .............................................................";
+            this.CheckNarcoticYes.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckNarcoticYes.LocationFloat = new DevExpress.Utils.PointFloat(496.3333F, 291.6669F);
+            this.CheckNarcoticYes.Name = "CheckNarcoticYes";
+            this.CheckNarcoticYes.SizeF = new System.Drawing.SizeF(43.81085F, 18.00003F);
+            this.CheckNarcoticYes.StylePriority.UseFont = false;
+            this.CheckNarcoticYes.StylePriority.UseTextAlignment = false;
+            this.CheckNarcoticYes.Text = "เคย";
             // 
             // xrLabel13
             // 
@@ -5360,15 +5390,15 @@
             this.xrLabel13.StylePriority.UseFont = false;
             this.xrLabel13.Text = "๑o. เคยเสพยาเสพติดใด ๆ บ้างหรือไม่";
             // 
-            // xrCheckBox9
+            // CheckAlcoholNo
             // 
-            this.xrCheckBox9.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox9.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 201.6668F);
-            this.xrCheckBox9.Name = "xrCheckBox9";
-            this.xrCheckBox9.SizeF = new System.Drawing.SizeF(152.5F, 18.00003F);
-            this.xrCheckBox9.StylePriority.UseFont = false;
-            this.xrCheckBox9.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox9.Text = " ไม่เคย";
+            this.CheckAlcoholNo.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcoholNo.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 201.6668F);
+            this.CheckAlcoholNo.Name = "CheckAlcoholNo";
+            this.CheckAlcoholNo.SizeF = new System.Drawing.SizeF(92.45508F, 18.00003F);
+            this.CheckAlcoholNo.StylePriority.UseFont = false;
+            this.CheckAlcoholNo.StylePriority.UseTextAlignment = false;
+            this.CheckAlcoholNo.Text = " ไม่เคย";
             // 
             // xrLabel12
             // 
@@ -5380,77 +5410,63 @@
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.Text = "๙. เคยดื่มสุรา เบียร์ หรือเครื่องดื่มที่มีแอลกอฮอล์ บ้างหรือไม่ ";
             // 
-            // xrCheckBox10
+            // CheckAlcohol1Week
             // 
-            this.xrCheckBox10.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox10.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 219.6668F);
-            this.xrCheckBox10.Name = "xrCheckBox10";
-            this.xrCheckBox10.SizeF = new System.Drawing.SizeF(152.5F, 18.00003F);
-            this.xrCheckBox10.StylePriority.UseFont = false;
-            this.xrCheckBox10.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox10.Text = " ดื่ม ๑ ครั้ง/สัปดาห์";
+            this.CheckAlcohol1Week.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcohol1Week.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 219.6668F);
+            this.CheckAlcohol1Week.Name = "CheckAlcohol1Week";
+            this.CheckAlcohol1Week.SizeF = new System.Drawing.SizeF(102.5328F, 18.00003F);
+            this.CheckAlcohol1Week.StylePriority.UseFont = false;
+            this.CheckAlcohol1Week.StylePriority.UseTextAlignment = false;
+            this.CheckAlcohol1Week.Text = " ดื่ม ๑ ครั้ง/สัปดาห์";
             // 
-            // xrCheckBox11
+            // CheckAlcoholMore3Week
             // 
-            this.xrCheckBox11.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox11.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 237.6668F);
-            this.xrCheckBox11.Name = "xrCheckBox11";
-            this.xrCheckBox11.SizeF = new System.Drawing.SizeF(167.5001F, 18.00003F);
-            this.xrCheckBox11.StylePriority.UseFont = false;
-            this.xrCheckBox11.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox11.Text = " ดื่มมากกว่า ๓ ครั้ง/สัปดาห์";
+            this.CheckAlcoholMore3Week.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcoholMore3Week.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 237.6668F);
+            this.CheckAlcoholMore3Week.Name = "CheckAlcoholMore3Week";
+            this.CheckAlcoholMore3Week.SizeF = new System.Drawing.SizeF(136.9001F, 18.00003F);
+            this.CheckAlcoholMore3Week.StylePriority.UseFont = false;
+            this.CheckAlcoholMore3Week.StylePriority.UseTextAlignment = false;
+            this.CheckAlcoholMore3Week.Text = " ดื่มมากกว่า ๓ ครั้ง/สัปดาห์";
             // 
-            // xrCheckBox12
+            // CheckAlcohoLast
             // 
-            this.xrCheckBox12.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox12.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 255.667F);
-            this.xrCheckBox12.Name = "xrCheckBox12";
-            this.xrCheckBox12.SizeF = new System.Drawing.SizeF(308.3336F, 18.00003F);
-            this.xrCheckBox12.StylePriority.UseFont = false;
-            this.xrCheckBox12.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox12.Text = " เคยแต่เลิกแล้วระยะเวลาที่ดื่มนาน .................. ปี........................ เ" +
-    "ดือน";
+            this.CheckAlcohoLast.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAlcohoLast.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 255.667F);
+            this.CheckAlcohoLast.Name = "CheckAlcohoLast";
+            this.CheckAlcohoLast.SizeF = new System.Drawing.SizeF(16.73373F, 18.00005F);
+            this.CheckAlcohoLast.StylePriority.UseFont = false;
+            this.CheckAlcohoLast.StylePriority.UseTextAlignment = false;
             // 
-            // xrCheckBox8
+            // CheckSmokeUsed
             // 
-            this.xrCheckBox8.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox8.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 167.3334F);
-            this.xrCheckBox8.Name = "xrCheckBox8";
-            this.xrCheckBox8.SizeF = new System.Drawing.SizeF(308.3335F, 16.33336F);
-            this.xrCheckBox8.StylePriority.UseFont = false;
-            this.xrCheckBox8.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox8.Text = "  ปริมาณขณะก่อนเลิก .............................. มวน/วัน";
+            this.CheckSmokeUsed.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckSmokeUsed.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 150.1668F);
+            this.CheckSmokeUsed.Name = "CheckSmokeUsed";
+            this.CheckSmokeUsed.SizeF = new System.Drawing.SizeF(17.30099F, 17.1667F);
+            this.CheckSmokeUsed.StylePriority.UseFont = false;
+            this.CheckSmokeUsed.StylePriority.UseTextAlignment = false;
             // 
-            // xrCheckBox7
+            // CheckSmokeDay
             // 
-            this.xrCheckBox7.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox7.LocationFloat = new DevExpress.Utils.PointFloat(449.6665F, 150.1668F);
-            this.xrCheckBox7.Name = "xrCheckBox7";
-            this.xrCheckBox7.SizeF = new System.Drawing.SizeF(308.3336F, 17.16669F);
-            this.xrCheckBox7.StylePriority.UseFont = false;
-            this.xrCheckBox7.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox7.Text = "  เคยแต่เลิกแล้ว ระยะที่เคยสูบนาน .................. ปี........................ เ" +
-    "ดือน";
+            this.CheckSmokeDay.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckSmokeDay.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 134.6667F);
+            this.CheckSmokeDay.Name = "CheckSmokeDay";
+            this.CheckSmokeDay.SizeF = new System.Drawing.SizeF(17.30081F, 15.50005F);
+            this.CheckSmokeDay.StylePriority.UseFont = false;
+            this.CheckSmokeDay.StylePriority.UseTextAlignment = false;
+            this.CheckSmokeDay.Text = "  ";
             // 
-            // xrCheckBox6
+            // CheckSmokeNo
             // 
-            this.xrCheckBox6.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox6.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 134.6667F);
-            this.xrCheckBox6.Name = "xrCheckBox6";
-            this.xrCheckBox6.SizeF = new System.Drawing.SizeF(308.3335F, 15.50003F);
-            this.xrCheckBox6.StylePriority.UseFont = false;
-            this.xrCheckBox6.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox6.Text = "  เคยและปัจจุบันยังสูบอยู่ปริมาณ ....................... มวน/วัน";
-            // 
-            // xrCheckBox5
-            // 
-            this.xrCheckBox5.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox5.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 116.6667F);
-            this.xrCheckBox5.Name = "xrCheckBox5";
-            this.xrCheckBox5.SizeF = new System.Drawing.SizeF(152.5F, 18.00003F);
-            this.xrCheckBox5.StylePriority.UseFont = false;
-            this.xrCheckBox5.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox5.Text = " ไม่เคย";
+            this.CheckSmokeNo.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckSmokeNo.LocationFloat = new DevExpress.Utils.PointFloat(449.6667F, 116.6667F);
+            this.CheckSmokeNo.Name = "CheckSmokeNo";
+            this.CheckSmokeNo.SizeF = new System.Drawing.SizeF(90.47742F, 18.00007F);
+            this.CheckSmokeNo.StylePriority.UseFont = false;
+            this.CheckSmokeNo.StylePriority.UseTextAlignment = false;
+            this.CheckSmokeNo.Text = " ไม่เคย";
             // 
             // xrLabel11
             // 
@@ -5464,6 +5480,7 @@
             // 
             // xrLabel10
             // 
+            this.xrLabel10.CanGrow = false;
             this.xrLabel10.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(425.5001F, 62.66668F);
             this.xrLabel10.Name = "xrLabel10";
@@ -5472,47 +5489,47 @@
             this.xrLabel10.StylePriority.UseFont = false;
             this.xrLabel10.Text = "๗. มีประวัติการแพ้ยาหรือไม่";
             // 
-            // xrCheckBox3
+            // CheckAllergyDescriptionNo
             // 
-            this.xrCheckBox3.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox3.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 80.66668F);
-            this.xrCheckBox3.Name = "xrCheckBox3";
-            this.xrCheckBox3.SizeF = new System.Drawing.SizeF(45.83334F, 18.00003F);
-            this.xrCheckBox3.StylePriority.UseFont = false;
-            this.xrCheckBox3.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox3.Text = "ไม่มี";
-            this.xrCheckBox3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CheckAllergyDescriptionNo.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAllergyDescriptionNo.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 80.66668F);
+            this.CheckAllergyDescriptionNo.Name = "CheckAllergyDescriptionNo";
+            this.CheckAllergyDescriptionNo.SizeF = new System.Drawing.SizeF(45.83334F, 18.00003F);
+            this.CheckAllergyDescriptionNo.StylePriority.UseFont = false;
+            this.CheckAllergyDescriptionNo.StylePriority.UseTextAlignment = false;
+            this.CheckAllergyDescriptionNo.Text = "ไม่มี";
+            this.CheckAllergyDescriptionNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // xrCheckBox4
+            // CheckAllergyDescriptionYes
             // 
-            this.xrCheckBox4.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox4.LocationFloat = new DevExpress.Utils.PointFloat(516.7501F, 80.66668F);
-            this.xrCheckBox4.Name = "xrCheckBox4";
-            this.xrCheckBox4.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
-            this.xrCheckBox4.StylePriority.UseFont = false;
-            this.xrCheckBox4.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox4.Text = "มี ";
+            this.CheckAllergyDescriptionYes.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckAllergyDescriptionYes.LocationFloat = new DevExpress.Utils.PointFloat(513.3717F, 80.66668F);
+            this.CheckAllergyDescriptionYes.Name = "CheckAllergyDescriptionYes";
+            this.CheckAllergyDescriptionYes.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
+            this.CheckAllergyDescriptionYes.StylePriority.UseFont = false;
+            this.CheckAllergyDescriptionYes.StylePriority.UseTextAlignment = false;
+            this.CheckAllergyDescriptionYes.Text = "มี ";
             // 
-            // xrCheckBox2
+            // CheckLongTemMedicationYes
             // 
-            this.xrCheckBox2.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox2.LocationFloat = new DevExpress.Utils.PointFloat(516.7501F, 42.33335F);
-            this.xrCheckBox2.Name = "xrCheckBox2";
-            this.xrCheckBox2.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
-            this.xrCheckBox2.StylePriority.UseFont = false;
-            this.xrCheckBox2.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox2.Text = "มี ";
+            this.CheckLongTemMedicationYes.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckLongTemMedicationYes.LocationFloat = new DevExpress.Utils.PointFloat(513.3717F, 42.33334F);
+            this.CheckLongTemMedicationYes.Name = "CheckLongTemMedicationYes";
+            this.CheckLongTemMedicationYes.SizeF = new System.Drawing.SizeF(28.75006F, 18.00003F);
+            this.CheckLongTemMedicationYes.StylePriority.UseFont = false;
+            this.CheckLongTemMedicationYes.StylePriority.UseTextAlignment = false;
+            this.CheckLongTemMedicationYes.Text = "มี ";
             // 
-            // xrCheckBox1
+            // CheckLongTemMedicationNo
             // 
-            this.xrCheckBox1.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrCheckBox1.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 42.33335F);
-            this.xrCheckBox1.Name = "xrCheckBox1";
-            this.xrCheckBox1.SizeF = new System.Drawing.SizeF(45.83334F, 18.00003F);
-            this.xrCheckBox1.StylePriority.UseFont = false;
-            this.xrCheckBox1.StylePriority.UseTextAlignment = false;
-            this.xrCheckBox1.Text = "ไม่มี";
-            this.xrCheckBox1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CheckLongTemMedicationNo.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.CheckLongTemMedicationNo.LocationFloat = new DevExpress.Utils.PointFloat(450.5F, 42.33334F);
+            this.CheckLongTemMedicationNo.Name = "CheckLongTemMedicationNo";
+            this.CheckLongTemMedicationNo.SizeF = new System.Drawing.SizeF(45.83334F, 18.00003F);
+            this.CheckLongTemMedicationNo.StylePriority.UseFont = false;
+            this.CheckLongTemMedicationNo.StylePriority.UseTextAlignment = false;
+            this.CheckLongTemMedicationNo.Text = "ไม่มี";
+            this.CheckLongTemMedicationNo.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrTable3
             // 
@@ -6083,6 +6100,7 @@
             // 
             // xrLabel9
             // 
+            this.xrLabel9.CanGrow = false;
             this.xrLabel9.Font = new System.Drawing.Font("Angsana New", 11F);
             this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(425.5001F, 24.33334F);
             this.xrLabel9.Name = "xrLabel9";
@@ -6104,10 +6122,11 @@
             // 
             // xrTable1
             // 
+            this.xrTable1.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(24.63255F, 105.141F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(25.96586F, 106.4998F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow19,
@@ -6121,6 +6140,7 @@
             this.xrTableRow15,
             this.xrTableRow16});
             this.xrTable1.SizeF = new System.Drawing.SizeF(371.6667F, 273.6669F);
+            this.xrTable1.StylePriority.UseBorderColor = false;
             this.xrTable1.StylePriority.UseBorders = false;
             // 
             // xrTableRow19
@@ -6416,8 +6436,7 @@
             // 
             // DateInjury1
             // 
-            this.DateInjury1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.DateInjury1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.DateInjury1.Font = new System.Drawing.Font("Angsana New", 11F);
             this.DateInjury1.Name = "DateInjury1";
             this.DateInjury1.StylePriority.UseBorders = false;
@@ -6428,8 +6447,7 @@
             // 
             // BodyLocation1
             // 
-            this.BodyLocation1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.BodyLocation1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.BodyLocation1.Font = new System.Drawing.Font("Angsana New", 11F);
             this.BodyLocation1.Name = "BodyLocation1";
             this.BodyLocation1.StylePriority.UseBorders = false;
@@ -6440,8 +6458,7 @@
             // 
             // InjuryDetail1
             // 
-            this.InjuryDetail1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.InjuryDetail1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.InjuryDetail1.Font = new System.Drawing.Font("Angsana New", 11F);
             this.InjuryDetail1.Name = "InjuryDetail1";
             this.InjuryDetail1.StylePriority.UseBorders = false;
@@ -6452,8 +6469,7 @@
             // 
             // xrTableCell34
             // 
-            this.xrTableCell34.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell34.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell34.Font = new System.Drawing.Font("Angsana New", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell34.Name = "xrTableCell34";
             this.xrTableCell34.StylePriority.UseBorders = false;
@@ -6464,8 +6480,7 @@
             // 
             // xrTableCell35
             // 
-            this.xrTableCell35.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell35.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell35.Font = new System.Drawing.Font("Angsana New", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.StylePriority.UseBorders = false;
@@ -6476,8 +6491,7 @@
             // 
             // xrTableCell36
             // 
-            this.xrTableCell36.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell36.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell36.Font = new System.Drawing.Font("Angsana New", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell36.Name = "xrTableCell36";
             this.xrTableCell36.StylePriority.UseBorders = false;
@@ -6488,8 +6502,7 @@
             // 
             // xrTableCell37
             // 
-            this.xrTableCell37.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell37.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell37.Font = new System.Drawing.Font("Angsana New", 13.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.xrTableCell37.Name = "xrTableCell37";
@@ -7140,6 +7153,219 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrLabel64
+            // 
+            this.xrLabel64.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel64.CanGrow = false;
+            this.xrLabel64.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel64.LocationFloat = new DevExpress.Utils.PointFloat(544.1488F, 40.30632F);
+            this.xrLabel64.Name = "xrLabel64";
+            this.xrLabel64.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel64.SizeF = new System.Drawing.SizeF(255.844F, 20.02706F);
+            this.xrLabel64.StylePriority.UseBorders = false;
+            this.xrLabel64.StylePriority.UseFont = false;
+            this.xrLabel64.StylePriority.UsePadding = false;
+            this.xrLabel64.StylePriority.UseTextAlignment = false;
+            this.xrLabel64.Text = "ระบุ ............................................................................" +
+    "...........";
+            this.xrLabel64.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // LongTemMedication
+            // 
+            this.LongTemMedication.CanGrow = false;
+            this.LongTemMedication.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.LongTemMedication.LocationFloat = new DevExpress.Utils.PointFloat(569.0714F, 37.60361F);
+            this.LongTemMedication.Name = "LongTemMedication";
+            this.LongTemMedication.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.LongTemMedication.SizeF = new System.Drawing.SizeF(208.2917F, 18.22113F);
+            this.LongTemMedication.StylePriority.UseFont = false;
+            this.LongTemMedication.StylePriority.UseTextAlignment = false;
+            this.LongTemMedication.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel3
+            // 
+            this.xrLabel3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel3.CanGrow = false;
+            this.xrLabel3.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(544.1488F, 78.63966F);
+            this.xrLabel3.Name = "xrLabel3";
+            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(255.844F, 22.05408F);
+            this.xrLabel3.StylePriority.UseBorders = false;
+            this.xrLabel3.StylePriority.UseFont = false;
+            this.xrLabel3.StylePriority.UsePadding = false;
+            this.xrLabel3.StylePriority.UseTextAlignment = false;
+            this.xrLabel3.Text = "ระบุ ............................................................................" +
+    "...........";
+            this.xrLabel3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // AllergyDescription
+            // 
+            this.AllergyDescription.CanGrow = false;
+            this.AllergyDescription.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.AllergyDescription.LocationFloat = new DevExpress.Utils.PointFloat(567.72F, 76.61263F);
+            this.AllergyDescription.Name = "AllergyDescription";
+            this.AllergyDescription.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.AllergyDescription.SizeF = new System.Drawing.SizeF(208.2917F, 18.22113F);
+            this.AllergyDescription.StylePriority.UseFont = false;
+            this.AllergyDescription.StylePriority.UseTextAlignment = false;
+            this.AllergyDescription.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // xrLabel4
+            // 
+            this.xrLabel4.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLabel4.CanGrow = false;
+            this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(539.5768F, 291.6669F);
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(255.8441F, 17.32434F);
+            this.xrLabel4.StylePriority.UseBorders = false;
+            this.xrLabel4.StylePriority.UseFont = false;
+            this.xrLabel4.StylePriority.UsePadding = false;
+            this.xrLabel4.StylePriority.UseTextAlignment = false;
+            this.xrLabel4.Text = "ระบุ ............................................................................" +
+    "...........";
+            this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // sssss
+            // 
+            this.sssss.CanGrow = false;
+            this.sssss.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.sssss.LocationFloat = new DevExpress.Utils.PointFloat(466.4002F, 131.7943F);
+            this.sssss.Name = "sssss";
+            this.sssss.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.sssss.SizeF = new System.Drawing.SizeF(309.6114F, 18.37244F);
+            this.sssss.StylePriority.UseFont = false;
+            this.sssss.StylePriority.UseTextAlignment = false;
+            this.sssss.Text = "เคยและปัจจุบันยังสูบอยู่ปริมาณ ....................... มวน/วัน";
+            this.sssss.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel8
+            // 
+            this.xrLabel8.CanGrow = false;
+            this.xrLabel8.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(466.4002F, 150.1668F);
+            this.xrLabel8.Name = "xrLabel8";
+            this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel8.SizeF = new System.Drawing.SizeF(309.6114F, 18.37244F);
+            this.xrLabel8.StylePriority.UseFont = false;
+            this.xrLabel8.StylePriority.UseTextAlignment = false;
+            this.xrLabel8.Text = "เคยแต่เลิกแล้ว ระยะที่เคยสูบนาน .................. ปี........................ เดื" +
+    "อน";
+            this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.CanGrow = false;
+            this.xrLabel5.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(466.4002F, 168.5392F);
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(309.6114F, 18.37244F);
+            this.xrLabel5.StylePriority.UseFont = false;
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "ปริมาณขณะก่อนเลิก .............................. มวน/วัน";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel17
+            // 
+            this.xrLabel17.CanGrow = false;
+            this.xrLabel17.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(466.4002F, 255.2946F);
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.SizeF = new System.Drawing.SizeF(309.6114F, 18.37244F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.StylePriority.UseTextAlignment = false;
+            this.xrLabel17.Text = " เคยแต่เลิกแล้วระยะเวลาที่ดื่มนาน .................. ปี........................ เ" +
+    "ดือน";
+            this.xrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // Smoke
+            // 
+            this.Smoke.CanGrow = false;
+            this.Smoke.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.Smoke.LocationFloat = new DevExpress.Utils.PointFloat(602.6161F, 129.5456F);
+            this.Smoke.Name = "Smoke";
+            this.Smoke.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.Smoke.SizeF = new System.Drawing.SizeF(35.4549F, 18.22113F);
+            this.Smoke.StylePriority.UseFont = false;
+            this.Smoke.StylePriority.UseTextAlignment = false;
+            this.Smoke.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // SmokePeriodYear
+            // 
+            this.SmokePeriodYear.CanGrow = false;
+            this.SmokePeriodYear.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.SmokePeriodYear.LocationFloat = new DevExpress.Utils.PointFloat(607.032F, 147.7667F);
+            this.SmokePeriodYear.Name = "SmokePeriodYear";
+            this.SmokePeriodYear.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.SmokePeriodYear.SizeF = new System.Drawing.SizeF(35.4549F, 18.22113F);
+            this.SmokePeriodYear.StylePriority.UseFont = false;
+            this.SmokePeriodYear.StylePriority.UseTextAlignment = false;
+            this.SmokePeriodYear.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // SmokePeriodMonth
+            // 
+            this.SmokePeriodMonth.CanGrow = false;
+            this.SmokePeriodMonth.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.SmokePeriodMonth.LocationFloat = new DevExpress.Utils.PointFloat(676.7048F, 148.7449F);
+            this.SmokePeriodMonth.Name = "SmokePeriodMonth";
+            this.SmokePeriodMonth.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.SmokePeriodMonth.SizeF = new System.Drawing.SizeF(35.4549F, 18.22113F);
+            this.SmokePeriodMonth.StylePriority.UseFont = false;
+            this.SmokePeriodMonth.StylePriority.UseTextAlignment = false;
+            this.SmokePeriodMonth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // BFQuitSmoke
+            // 
+            this.BFQuitSmoke.CanGrow = false;
+            this.BFQuitSmoke.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.BFQuitSmoke.LocationFloat = new DevExpress.Utils.PointFloat(578.4841F, 165.4456F);
+            this.BFQuitSmoke.Name = "BFQuitSmoke";
+            this.BFQuitSmoke.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.BFQuitSmoke.SizeF = new System.Drawing.SizeF(36.02216F, 18.22115F);
+            this.BFQuitSmoke.StylePriority.UseFont = false;
+            this.BFQuitSmoke.StylePriority.UseTextAlignment = false;
+            this.BFQuitSmoke.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // AlcohoPeriodYear
+            // 
+            this.AlcohoPeriodYear.CanGrow = false;
+            this.AlcohoPeriodYear.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.AlcohoPeriodYear.LocationFloat = new DevExpress.Utils.PointFloat(613.939F, 253.2258F);
+            this.AlcohoPeriodYear.Name = "AlcohoPeriodYear";
+            this.AlcohoPeriodYear.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.AlcohoPeriodYear.SizeF = new System.Drawing.SizeF(35.4549F, 18.22113F);
+            this.AlcohoPeriodYear.StylePriority.UseFont = false;
+            this.AlcohoPeriodYear.StylePriority.UseTextAlignment = false;
+            this.AlcohoPeriodYear.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // AlcohoPeriodMonth
+            // 
+            this.AlcohoPeriodMonth.CanGrow = false;
+            this.AlcohoPeriodMonth.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.AlcohoPeriodMonth.LocationFloat = new DevExpress.Utils.PointFloat(676.7048F, 253.2258F);
+            this.AlcohoPeriodMonth.Name = "AlcohoPeriodMonth";
+            this.AlcohoPeriodMonth.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.AlcohoPeriodMonth.SizeF = new System.Drawing.SizeF(35.4549F, 18.22113F);
+            this.AlcohoPeriodMonth.StylePriority.UseFont = false;
+            this.AlcohoPeriodMonth.StylePriority.UseTextAlignment = false;
+            this.AlcohoPeriodMonth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // Narcotic
+            // 
+            this.Narcotic.CanGrow = false;
+            this.Narcotic.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.Narcotic.LocationFloat = new DevExpress.Utils.PointFloat(578.4841F, 290.1345F);
+            this.Narcotic.Name = "Narcotic";
+            this.Narcotic.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.Narcotic.SizeF = new System.Drawing.SizeF(161.9761F, 18.22113F);
+            this.Narcotic.StylePriority.UseFont = false;
+            this.Narcotic.StylePriority.UseTextAlignment = false;
+            this.Narcotic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
             // RiskBook3
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -7190,24 +7416,10 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel14;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox15;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox16;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox10;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox11;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox12;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox8;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox7;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox6;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox3;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox4;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox2;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel15;
         private DevExpress.XtraReports.UI.XRTable xrTable12;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow73;
@@ -7375,8 +7587,6 @@
         public DevExpress.XtraReports.UI.XRTableCell lbVisionColor1;
         public DevExpress.XtraReports.UI.XRTableCell lbBalanceEye1;
         public DevExpress.XtraReports.UI.XRTableCell lbFieldVision1;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox13;
-        private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox14;
         public DevExpress.XtraReports.UI.XRLabel lbUlt;
         private DevExpress.XtraReports.UI.XRTable tbToxicology;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
@@ -7635,5 +7845,36 @@
         private DevExpress.XtraReports.UI.XRRichText xrRichText1;
         private DevExpress.XtraReports.UI.XRRichText xrRichText2;
         public DevExpress.XtraReports.UI.XRTable xrTable1;
+        public DevExpress.XtraReports.UI.XRLabel LongTemMedication;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel64;
+        public DevExpress.XtraReports.UI.XRLabel AllergyDescription;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAllergyDescriptionNo;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAllergyDescriptionYes;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckLongTemMedicationYes;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckLongTemMedicationNo;
+        public DevExpress.XtraReports.UI.XRLabel sssss;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckNarcoticNo;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckNarcoticYes;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel17;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel5;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel8;
+        public DevExpress.XtraReports.UI.XRLabel Narcotic;
+        public DevExpress.XtraReports.UI.XRLabel AlcohoPeriodMonth;
+        public DevExpress.XtraReports.UI.XRLabel AlcohoPeriodYear;
+        public DevExpress.XtraReports.UI.XRLabel BFQuitSmoke;
+        public DevExpress.XtraReports.UI.XRLabel SmokePeriodMonth;
+        public DevExpress.XtraReports.UI.XRLabel SmokePeriodYear;
+        public DevExpress.XtraReports.UI.XRLabel Smoke;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcoholNo;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcohol1Week;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcoholMore3Week;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcohoLast;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckSmokeUsed;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckSmokeDay;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckSmokeNo;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcohol2Week;
+        public DevExpress.XtraReports.UI.XRCheckBox CheckAlcoholLess1Week;
     }
 }
