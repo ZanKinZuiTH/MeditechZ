@@ -1519,7 +1519,8 @@ namespace MediTechWebApi.Controllers
                                        ResultItemCode = rsc.ResultItemCode,
                                        ResultItemName = rsc.ResultItemName,
                                        ResultValue = rsc.ResultValue,
-                                       TestType = SqlFunction.fGetRfValDescription(rti.TSTTPUID ?? 0)
+                                       TestType = SqlFunction.fGetRfValDescription(rti.TSTTPUID ?? 0),
+                                       GPRSTUID = gps.GPRSTUID
                                    }).ToList();
 
             return resultComponent;

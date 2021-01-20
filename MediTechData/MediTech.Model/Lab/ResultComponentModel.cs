@@ -116,6 +116,7 @@ namespace MediTech.Model
         public string TestType { get; set; }
         public string UnitofMeasure { get; set; }
         public int? RSUOMUID { get; set; }
+        public int? GPRSTUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

@@ -484,22 +484,22 @@ namespace MediTech.ViewModels
                     var vitalSign = dataVital.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
                     if (vitalSign.BMIValue != null)
                     {
-                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
+                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328,GPRSTUID = 3177, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
                         resultComponent.Add(bmiComponent);
                     }
                     if (vitalSign.BPSys != null)
                     {
-                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
+                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, GPRSTUID = 3178,ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
                         resultComponent.Add(sdpComponent);
                     }
                     if (vitalSign.BPDio != null)
                     {
-                        ResultComponentModel dbpComponent = new ResultComponentModel() { ResultItemUID = 330, ResultItemCode = "PEDBP", ResultItemName = "ความดันโลหิต (DBP)", ResultValue = vitalSign.BPDio.ToString() };
+                        ResultComponentModel dbpComponent = new ResultComponentModel() { ResultItemUID = 330, GPRSTUID = 3178, ResultItemCode = "PEDBP", ResultItemName = "ความดันโลหิต (DBP)", ResultValue = vitalSign.BPDio.ToString() };
                         resultComponent.Add(dbpComponent);
                     }
                     if (vitalSign.Pulse != null)
                     {
-                        ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
+                        ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, GPRSTUID = 3178, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
                         resultComponent.Add(pluseComponent);
                     }
                 }
@@ -512,6 +512,7 @@ namespace MediTech.ViewModels
                         {
                             ResultComponentModel newResultCom = new ResultComponentModel();
                             newResultCom.ResultItemUID = 342;
+                            newResultCom.GPRSTUID = 3179;
                             newResultCom.ResultValue = item.ResultStatus;
                             resultComponent.Add(newResultCom);
                         }
@@ -519,6 +520,7 @@ namespace MediTech.ViewModels
                         {
                             ResultComponentModel newResultCom = new ResultComponentModel();
                             newResultCom.ResultItemUID = 343;
+                            newResultCom.GPRSTUID = 3180;
                             newResultCom.ResultValue = item.ResultStatus;
                             resultComponent.Add(newResultCom);
                         }
@@ -526,6 +528,7 @@ namespace MediTech.ViewModels
                         {
                             ResultComponentModel newResultCom = new ResultComponentModel();
                             newResultCom.ResultItemUID = 344;
+                            newResultCom.GPRSTUID = 3181;
                             newResultCom.ResultValue = item.ResultStatus;
                             resultComponent.Add(newResultCom);
                         }
@@ -544,81 +547,50 @@ namespace MediTech.ViewModels
                 {
                     foreach (var grpstUID in GPRSTUIDs)
                     {
-                        List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
-                        string wellNessResult = string.Empty;
-
-                        var ruleCheckups = dataCheckupRule
-                            .Where(p => p.GPRSTUID == grpstUID
-                            && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
-                            && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt >= p.AgeFrom && ageInt <= p.AgeTo)
-                            || (ageInt >= p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt <= p.AgeTo))
-                            && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
-                            )).Select(p => new CheckupRuleModel
-                            {
-                                CheckupRuleUID = p.CheckupRuleUID,
-                                Name = p.Name,
-                                SEXXXUID = p.SEXXXUID,
-                                AgeFrom = p.AgeFrom,
-                                AgeTo = p.AgeTo,
-                                RABSTSUID = p.RABSTSUID,
-                                GPRSTUID = p.GPRSTUID,
-                                CheckupRuleRecommend = p.CheckupRuleRecommend,
-                                CheckupRuleItem = p.CheckupRuleItem,
-                                CheckupRuleDescription = p.CheckupRuleDescription
-                                .Select(s => new CheckupRuleDescriptionModel
-                                {
-                                    CheckupRuleUID = s.CheckupRuleUID,
-                                    CheckupTextMasterUID = s.CheckupTextMasterUID,
-                                    CheckupRuleDescriptionUID = s.CheckupRuleDescriptionUID,
-                                    ThaiDescription = s.ThaiDescription,
-                                    EngDescription = s.EngDescription
-                                }).ToList()
-                            }).ToList();
-
-
-                        foreach (var ruleCheckup in ruleCheckups)
+                        if (resultComponent.Any(p => p.GPRSTUID == grpstUID))
                         {
-                            bool isConrrect = false;
-                            foreach (var ruleItem in ruleCheckup.CheckupRuleItem.OrderBy(p => p.Operator))
-                            {
-                                var resultItemValue = resultComponent.FirstOrDefault(p => p.ResultItemUID == ruleItem.ResultItemUID);
+                            List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
+                            string wellNessResult = string.Empty;
 
-                                if (resultItemValue != null)
+                            var ruleCheckups = dataCheckupRule
+                                .Where(p => p.GPRSTUID == grpstUID
+                                && (p.SEXXXUID == 3 || p.SEXXXUID == patientVisit.SEXXXUID)
+                                && ((p.AgeFrom == null && p.AgeTo == null) || (ageInt >= p.AgeFrom && ageInt <= p.AgeTo)
+                                || (ageInt >= p.AgeFrom && p.AgeTo == null) || (p.AgeFrom == null && ageInt <= p.AgeTo))
+                                && (p.RABSTSUID != 2883 || (p.RABSTSUID == 2883)
+                                )).Select(p => new CheckupRuleModel
                                 {
-                                    if (ruleItem.NonCheckup == true)
+                                    CheckupRuleUID = p.CheckupRuleUID,
+                                    Name = p.Name,
+                                    SEXXXUID = p.SEXXXUID,
+                                    AgeFrom = p.AgeFrom,
+                                    AgeTo = p.AgeTo,
+                                    RABSTSUID = p.RABSTSUID,
+                                    GPRSTUID = p.GPRSTUID,
+                                    CheckupRuleRecommend = p.CheckupRuleRecommend,
+                                    CheckupRuleItem = p.CheckupRuleItem,
+                                    CheckupRuleDescription = p.CheckupRuleDescription
+                                    .Select(s => new CheckupRuleDescriptionModel
                                     {
-                                        isConrrect = false;
-                                        if (ruleItem.Operator == "And")
-                                        {
-                                            break;
-                                        }
-                                    }
-                                    else if (!string.IsNullOrEmpty(ruleItem.Text))
+                                        CheckupRuleUID = s.CheckupRuleUID,
+                                        CheckupTextMasterUID = s.CheckupTextMasterUID,
+                                        CheckupRuleDescriptionUID = s.CheckupRuleDescriptionUID,
+                                        ThaiDescription = s.ThaiDescription,
+                                        EngDescription = s.EngDescription
+                                    }).ToList()
+                                }).ToList();
+
+
+                            foreach (var ruleCheckup in ruleCheckups)
+                            {
+                                bool isConrrect = false;
+                                foreach (var ruleItem in ruleCheckup.CheckupRuleItem.OrderBy(p => p.Operator))
+                                {
+                                    var resultItemValue = resultComponent.FirstOrDefault(p => p.ResultItemUID == ruleItem.ResultItemUID);
+
+                                    if (resultItemValue != null)
                                     {
-                                        string[] values = ruleItem.Text.Split(',');
-                                        string[] resultValues = resultItemValue.ResultValue.Split(',');
-                                        if (values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
-                                        {
-                                            isConrrect = true;
-                                            if (ruleItem.Operator == "Or")
-                                            {
-                                                var ruleDescription = ruleCheckup.CheckupRuleDescription.FirstOrDefault();
-                                                if (ruleDescription != null && ruleDescription.ThaiDescription.Contains("{0}"))
-                                                {
-                                                    string thaiDescription = "";
-                                                    for (int i = 0; i < resultValues.Count(); i++)
-                                                    {
-                                                        if (ruleCheckup.CheckupRuleItem.FirstOrDefault(p => p.Text.Trim() == resultValues[i].Trim()) != null)
-                                                        {
-                                                            thaiDescription += thaiDescription == "" ? resultValues[i].Trim() : "," + resultValues[i].Trim();
-                                                        }
-                                                    }
-                                                    ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", thaiDescription);
-                                                }
-                                                break;
-                                            }
-                                        }
-                                        else
+                                        if (ruleItem.NonCheckup == true)
                                         {
                                             isConrrect = false;
                                             if (ruleItem.Operator == "And")
@@ -626,20 +598,28 @@ namespace MediTech.ViewModels
                                                 break;
                                             }
                                         }
-                                    }
-                                    else
-                                    {
-                                        #region  CriteriaNumber
-                                        double resultValueNumber;
-                                        if (double.TryParse(resultItemValue.ResultValue.Trim(), out resultValueNumber))
+                                        else if (!string.IsNullOrEmpty(ruleItem.Text))
                                         {
-                                            if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
-                                                || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
-                                                || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
+                                            string[] values = ruleItem.Text.Split(',');
+                                            string[] resultValues = resultItemValue.ResultValue.Split(',');
+                                            if (values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
                                             {
                                                 isConrrect = true;
                                                 if (ruleItem.Operator == "Or")
                                                 {
+                                                    var ruleDescription = ruleCheckup.CheckupRuleDescription.FirstOrDefault();
+                                                    if (ruleDescription != null && ruleDescription.ThaiDescription.Contains("{0}"))
+                                                    {
+                                                        string thaiDescription = "";
+                                                        for (int i = 0; i < resultValues.Count(); i++)
+                                                        {
+                                                            if (ruleCheckup.CheckupRuleItem.FirstOrDefault(p => p.Text.Trim() == resultValues[i].Trim()) != null)
+                                                            {
+                                                                thaiDescription += thaiDescription == "" ? resultValues[i].Trim() : "," + resultValues[i].Trim();
+                                                            }
+                                                        }
+                                                        ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", thaiDescription);
+                                                    }
                                                     break;
                                                 }
                                             }
@@ -654,12 +634,66 @@ namespace MediTech.ViewModels
                                         }
                                         else
                                         {
-                                            if (resultItemValue.ResultValue.Contains("-"))
+                                            #region  CriteriaNumber
+                                            double resultValueNumber;
+                                            if (double.TryParse(resultItemValue.ResultValue.Trim(), out resultValueNumber))
                                             {
-                                                string[] values = resultItemValue.ResultValue.Split('-');
-                                                if (values.Count() == 2)
+                                                if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
+                                                    || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
+                                                    || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
                                                 {
-                                                    if (double.TryParse(values[1].Trim(), out resultValueNumber))
+                                                    isConrrect = true;
+                                                    if (ruleItem.Operator == "Or")
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    isConrrect = false;
+                                                    if (ruleItem.Operator == "And")
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                            else
+                                            {
+                                                if (resultItemValue.ResultValue.Contains("-"))
+                                                {
+                                                    string[] values = resultItemValue.ResultValue.Split('-');
+                                                    if (values.Count() == 2)
+                                                    {
+                                                        if (double.TryParse(values[1].Trim(), out resultValueNumber))
+                                                        {
+                                                            if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
+                                                                || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
+                                                                || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
+                                                            {
+                                                                isConrrect = true;
+                                                                if (ruleItem.Operator == "Or")
+                                                                {
+                                                                    break;
+                                                                }
+                                                            }
+                                                            else
+                                                            {
+                                                                isConrrect = false;
+                                                                if (ruleItem.Operator == "And")
+                                                                {
+                                                                    break;
+                                                                }
+                                                            }
+                                                        }
+                                                    }
+
+                                                }
+                                                else if (resultItemValue.ResultValue.Contains("<")
+                                                    || resultItemValue.ResultValue.Contains(">")
+                                                    || resultItemValue.ResultValue.Trim().EndsWith("R"))
+                                                {
+                                                    string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "").Replace("R", "");
+                                                    if (double.TryParse(value.Trim(), out resultValueNumber))
                                                     {
                                                         if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
                                                             || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
@@ -681,151 +715,54 @@ namespace MediTech.ViewModels
                                                         }
                                                     }
                                                 }
-
                                             }
-                                            else if (resultItemValue.ResultValue.Contains("<")
-                                                || resultItemValue.ResultValue.Contains(">")
-                                                || resultItemValue.ResultValue.Trim().EndsWith("R"))
+                                            #endregion
+
+                                        }
+                                    }
+                                    else
+                                    {
+                                        if (ruleItem.NonCheckup == true)
+                                        {
+                                            isConrrect = true;
+                                            if (ruleItem.Operator == "Or")
                                             {
-                                                string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "").Replace("R", "");
-                                                if (double.TryParse(value.Trim(), out resultValueNumber))
-                                                {
-                                                    if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
-                                                        || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
-                                                        || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
-                                                    {
-                                                        isConrrect = true;
-                                                        if (ruleItem.Operator == "Or")
-                                                        {
-                                                            break;
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        isConrrect = false;
-                                                        if (ruleItem.Operator == "And")
-                                                        {
-                                                            break;
-                                                        }
-                                                    }
-                                                }
+                                                break;
                                             }
                                         }
-                                        #endregion
-
-                                    }
-                                }
-                                else
-                                {
-                                    if (ruleItem.NonCheckup == true)
-                                    {
-                                        isConrrect = true;
-                                        if (ruleItem.Operator == "Or")
+                                        else
                                         {
-                                            break;
+                                            isConrrect = false;
+                                            if (ruleItem.Operator == "And")
+                                            {
+                                                break;
+                                            }
                                         }
-                                    }
-                                    else
-                                    {
-                                        isConrrect = false;
-                                        if (ruleItem.Operator == "And")
-                                        {
-                                            break;
-                                        }
+
                                     }
 
                                 }
-
-                            }
-                            if (isConrrect == true)
-                            {
-                                ruleCheckupIsCorrect.Add(ruleCheckup);
-                            }
-                        }
-
-
-                        string conclusion = string.Empty;
-                        string description = string.Empty;
-                        string recommand = string.Empty;
-
-                        int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882
-                            : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885
-                            : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 3124) ? 3124 : 2883;
-                        foreach (var item in ruleCheckupIsCorrect)
-                        {
-                            if (!string.IsNullOrEmpty(conclusion))
-                            {
-                                conclusion += ", ";
-                            }
-                            foreach (var content in item.CheckupRuleDescription)
-                            {
-                                if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                if (isConrrect == true)
                                 {
-                                    conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                    description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                    ruleCheckupIsCorrect.Add(ruleCheckup);
                                 }
                             }
-                            foreach (var content in item.CheckupRuleRecommend)
+
+
+                            string conclusion = string.Empty;
+                            string description = string.Empty;
+                            string recommand = string.Empty;
+
+                            int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882
+                                : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885
+                                : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 3124) ? 3124 : 2883;
+                            foreach (var item in ruleCheckupIsCorrect)
                             {
-                                if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                                if (!string.IsNullOrEmpty(conclusion))
                                 {
-                                    conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
-                                    recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                    conclusion += ", ";
                                 }
-                            }
-                        }
-
-                        if (grpstUID == 3182 || grpstUID == 3183 || grpstUID == 3184 || grpstUID == 3190 || grpstUID == 3193) //แปล LAB,CBC,UA,ไขมัน
-                        {
-                            if (RABSTSUID == 2883 && !ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2883))
-                            {
-                                conclusion = "อยู่ในเกณฑ์ปกติ";
-                            }
-
-                        }
-                        else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181) //แปล Chest,mammo,Ultrasound
-                        {
-                            if (RABSTSUID == 2883)
-                            {
-                                conclusion = "ปกติ";
-                            }
-                            else
-                            {
-                                List<string> listNoMapResult = new List<string>();
-                                var resultRadiology = grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"))
-                                    : grpstUID == 3180 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) :
-                                    grpstUID == 3181 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("ultrasound")) : null;
-                                if (resultRadiology != null)
-                                {
-                                    string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, ",", dtResultMapping, ref listNoMapResult);
-                                    if (!string.IsNullOrEmpty(thairesult))
-                                    {
-                                        conclusion = thairesult;
-                                    }
-                                    else
-                                    {
-                                        thairesult = "ผิดปกติ";
-                                    }
-                                }
-
-                            }
-                        }
-                        else if (grpstUID == 3176) //พบแพทย์ PE
-                        {
-                            if (RABSTSUID == 2883)
-                            {
-                                conclusion = "ไม่พบความผิดปกติ";
-                            }
-                        }
-                        else if (grpstUID == 3200) //แปลหู
-                        {
-                            if (RABSTSUID == 2882 || RABSTSUID == 2885)
-                            {
-                                conclusion = string.Empty;
-                                description = string.Empty;
-                                recommand = string.Empty;
-                                var ruleCheckup = ruleCheckupIsCorrect.FirstOrDefault(p => p.RABSTSUID == RABSTSUID);
-                                foreach (var content in ruleCheckup.CheckupRuleDescription)
+                                foreach (var content in item.CheckupRuleDescription)
                                 {
                                     if (!string.IsNullOrEmpty(content.ThaiDescription))
                                     {
@@ -833,7 +770,7 @@ namespace MediTech.ViewModels
                                         description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
                                     }
                                 }
-                                foreach (var content in ruleCheckup.CheckupRuleRecommend)
+                                foreach (var content in item.CheckupRuleRecommend)
                                 {
                                     if (!string.IsNullOrEmpty(content.ThaiRecommend))
                                     {
@@ -843,61 +780,56 @@ namespace MediTech.ViewModels
                                 }
                             }
 
-                        }
-                        else if (grpstUID == 3201) //แปลตาอาชีวะ
-                        {
-                            if (RABSTSUID == 2883 && string.IsNullOrEmpty(conclusion))
+                            if (grpstUID == 3182 || grpstUID == 3183 || grpstUID == 3184 || grpstUID == 3190 || grpstUID == 3193) //แปล LAB,CBC,UA,ไขมัน
                             {
-                                conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                                description = "ผลการตรวจปกติ";
-                                recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                            }
-                            else if (RABSTSUID == 2882 || RABSTSUID == 2885)
-                            {
-                                conclusion = string.Empty;
-                                description = string.Empty;
-                                recommand = string.Empty;
-                                var ruleNonColorBlindness = ruleCheckupIsCorrect.Where(p => !p.Name.StartsWith("ตาบอดสี")).ToList();
-                                if (ruleNonColorBlindness != null && ruleNonColorBlindness.Count > 0)
+                                if (RABSTSUID == 2883 && !ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2883))
                                 {
-                                    foreach (var ruleData in ruleNonColorBlindness)
-                                    {
-                                        foreach (var content in ruleData.CheckupRuleDescription)
-                                        {
-                                            if (!string.IsNullOrEmpty(content.ThaiDescription))
-                                            {
-                                                conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                                description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                            }
-                                        }
-
-                                    }
-
-                                    if (ruleNonColorBlindness != null)
-                                    {
-                                        string thaiRecommend = ruleNonColorBlindness.FirstOrDefault().CheckupRuleRecommend.Where(p => !String.IsNullOrEmpty(p.ThaiRecommend)).FirstOrDefault().ThaiRecommend;
-                                        conclusion += string.IsNullOrEmpty(conclusion) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
-                                        recommand += string.IsNullOrEmpty(recommand) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
-                                    }
+                                    conclusion = "อยู่ในเกณฑ์ปกติ";
                                 }
 
-
-                                var ruleColorBlindness = ruleCheckupIsCorrect.Where(p => p.Name.StartsWith("ตาบอดสี")).ToList();
-                                if (ruleColorBlindness != null && ruleColorBlindness.Count > 0)
+                            }
+                            else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181) //แปล Chest,mammo,Ultrasound
+                            {
+                                if (RABSTSUID == 2883)
                                 {
-                                    CheckupRuleModel ruleCheckup = null;
-                                    if (ruleColorBlindness.Count() > 1)
+                                    conclusion = "ปกติ";
+                                }
+                                else
+                                {
+                                    List<string> listNoMapResult = new List<string>();
+                                    var resultRadiology = grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"))
+                                        : grpstUID == 3180 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) :
+                                        grpstUID == 3181 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("ultrasound")) : null;
+                                    if (resultRadiology != null)
                                     {
-                                        ruleCheckup = ruleColorBlindness.Where(p => p.Name != "ตาบอดสี").FirstOrDefault();
+                                        string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, ",", dtResultMapping, ref listNoMapResult);
+                                        if (!string.IsNullOrEmpty(thairesult))
+                                        {
+                                            conclusion = thairesult;
+                                        }
+                                        else
+                                        {
+                                            thairesult = "ผิดปกติ";
+                                        }
                                     }
-                                    else
-                                    {
-                                        ruleCheckup = ruleColorBlindness.FirstOrDefault();
-                                    }
-                                    if (!string.IsNullOrEmpty(conclusion))
-                                    {
-                                        conclusion += ", ";
-                                    }
+
+                                }
+                            }
+                            else if (grpstUID == 3176) //พบแพทย์ PE
+                            {
+                                if (RABSTSUID == 2883)
+                                {
+                                    conclusion = "ไม่พบความผิดปกติ";
+                                }
+                            }
+                            else if (grpstUID == 3200) //แปลหู
+                            {
+                                if (RABSTSUID == 2882 || RABSTSUID == 2885)
+                                {
+                                    conclusion = string.Empty;
+                                    description = string.Empty;
+                                    recommand = string.Empty;
+                                    var ruleCheckup = ruleCheckupIsCorrect.FirstOrDefault(p => p.RABSTSUID == RABSTSUID);
                                     foreach (var content in ruleCheckup.CheckupRuleDescription)
                                     {
                                         if (!string.IsNullOrEmpty(content.ThaiDescription))
@@ -915,53 +847,125 @@ namespace MediTech.ViewModels
                                         }
                                     }
                                 }
-                            }
-                            //else
-                            //{
-                            //    conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                            //    description = "ผลการตรวจปกติ";
-                            //    recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                            //}
 
-                            var timus1 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
-                            var timus2 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");
-                            var timus3 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS3");
-                            string far = "";
-                            string near = "";
-                            if (timus2 != null && timus3 != null)
-                            {
-                                far = timus2.ResultItemName + " " + timus2.ResultValue;
-                                near = timus3.ResultItemName + " " + timus3.ResultValue;
                             }
-                            else if (timus2 != null && timus3 == null)
+                            else if (grpstUID == 3201) //แปลตาอาชีวะ
                             {
-                                far = timus2.ResultItemName + " " + timus2.ResultValue;
-                                near = "ตรวจมองใกล้ (Near)" + " " + timus2.ResultValue;
-                            }
-                            else if (timus3 != null && timus2 == null)
-                            {
-                                far = "ตรวจมองไกล (Far)" + " " + timus3.ResultValue;
-                                near = timus3.ResultItemName + " " + timus3.ResultValue;
-                            }
+                                if (RABSTSUID == 2883 && string.IsNullOrEmpty(conclusion))
+                                {
+                                    conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                                    description = "ผลการตรวจปกติ";
+                                    recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                                }
+                                else if (RABSTSUID == 2882 || RABSTSUID == 2885)
+                                {
+                                    conclusion = string.Empty;
+                                    description = string.Empty;
+                                    recommand = string.Empty;
+                                    var ruleNonColorBlindness = ruleCheckupIsCorrect.Where(p => !p.Name.StartsWith("ตาบอดสี")).ToList();
+                                    if (ruleNonColorBlindness != null && ruleNonColorBlindness.Count > 0)
+                                    {
+                                        foreach (var ruleData in ruleNonColorBlindness)
+                                        {
+                                            foreach (var content in ruleData.CheckupRuleDescription)
+                                            {
+                                                if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                                {
+                                                    conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                                    description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                                }
+                                            }
+
+                                        }
+
+                                        if (ruleNonColorBlindness != null)
+                                        {
+                                            string thaiRecommend = ruleNonColorBlindness.FirstOrDefault().CheckupRuleRecommend.Where(p => !String.IsNullOrEmpty(p.ThaiRecommend)).FirstOrDefault().ThaiRecommend;
+                                            conclusion += string.IsNullOrEmpty(conclusion) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
+                                            recommand += string.IsNullOrEmpty(recommand) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
+                                        }
+                                    }
 
 
-                            conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
+                                    var ruleColorBlindness = ruleCheckupIsCorrect.Where(p => p.Name.StartsWith("ตาบอดสี")).ToList();
+                                    if (ruleColorBlindness != null && ruleColorBlindness.Count > 0)
+                                    {
+                                        CheckupRuleModel ruleCheckup = null;
+                                        if (ruleColorBlindness.Count() > 1)
+                                        {
+                                            ruleCheckup = ruleColorBlindness.Where(p => p.Name != "ตาบอดสี").FirstOrDefault();
+                                        }
+                                        else
+                                        {
+                                            ruleCheckup = ruleColorBlindness.FirstOrDefault();
+                                        }
+                                        if (!string.IsNullOrEmpty(conclusion))
+                                        {
+                                            conclusion += ", ";
+                                        }
+                                        foreach (var content in ruleCheckup.CheckupRuleDescription)
+                                        {
+                                            if (!string.IsNullOrEmpty(content.ThaiDescription))
+                                            {
+                                                conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                                description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                                            }
+                                        }
+                                        foreach (var content in ruleCheckup.CheckupRuleRecommend)
+                                        {
+                                            if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                                            {
+                                                conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                                recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                                            }
+                                        }
+                                    }
+                                }
+                                //else
+                                //{
+                                //    conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                                //    description = "ผลการตรวจปกติ";
+                                //    recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
+                                //}
+
+                                var timus1 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS1");
+                                var timus2 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS2");
+                                var timus3 = resultComponent.FirstOrDefault(p => p.ResultItemCode == "TIMUS3");
+                                string far = "";
+                                string near = "";
+                                if (timus2 != null && timus3 != null)
+                                {
+                                    far = timus2.ResultItemName + " " + timus2.ResultValue;
+                                    near = timus3.ResultItemName + " " + timus3.ResultValue;
+                                }
+                                else if (timus2 != null && timus3 == null)
+                                {
+                                    far = timus2.ResultItemName + " " + timus2.ResultValue;
+                                    near = "ตรวจมองใกล้ (Near)" + " " + timus2.ResultValue;
+                                }
+                                else if (timus3 != null && timus2 == null)
+                                {
+                                    far = "ตรวจมองไกล (Far)" + " " + timus3.ResultValue;
+                                    near = timus3.ResultItemName + " " + timus3.ResultValue;
+                                }
+
+
+                                conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
+                            }
+
+                            if (!string.IsNullOrEmpty(conclusion))
+                            {
+                                CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
+                                checkupResult.PatientUID = patientVisit.PatientUID;
+                                checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                                checkupResult.GPRSTUID = grpstUID;
+                                checkupResult.RABSTSUID = RABSTSUID;
+                                checkupResult.Description = description;
+                                checkupResult.Recommend = recommand;
+                                checkupResult.Conclusion = conclusion.Trim();
+                                DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
+                            }
                         }
-
-                        if (!string.IsNullOrEmpty(conclusion))
-                        {
-                            CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
-                            checkupResult.PatientUID = patientVisit.PatientUID;
-                            checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                            checkupResult.GPRSTUID = grpstUID;
-                            checkupResult.RABSTSUID = RABSTSUID;
-                            checkupResult.Description = description;
-                            checkupResult.Recommend = recommand;
-                            checkupResult.Conclusion = conclusion.Trim();
-                            DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
-                        }
-
-
                     }
                 }
 
