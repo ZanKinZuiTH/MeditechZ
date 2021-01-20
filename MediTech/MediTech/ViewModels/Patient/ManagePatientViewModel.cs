@@ -240,7 +240,22 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectedVisitType
         {
             get { return _SelectedVisitType; }
-            set { Set(ref _SelectedVisitType, value); }
+            set
+            {
+                Set(ref _SelectedVisitType, value);
+                if (_SelectedVisitType != null)
+                {
+                    VisibiltyCheckupCompany = Visibility.Collapsed;
+                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
+                    {
+                        VisibiltyCheckupCompany = Visibility.Visible;
+                    }
+                    else
+                    {
+                        CheckupJobSource = null;
+                    }
+                }
+            }
         }
 
         public List<LookupReferenceValueModel> PrioritySource { get; set; }
@@ -264,9 +279,14 @@ namespace MediTech.ViewModels
                 if (_SelectedPayorDetail != null)
                 {
                     PayorAgreementSource = DataService.MasterData.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {
                         SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
+                    }
+                    if (CheckupJobSource != null)
+                    {
+                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                     }
                 }
             }
@@ -696,6 +716,30 @@ namespace MediTech.ViewModels
 
         #endregion
 
+        private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
+
+        public Visibility VisibiltyCheckupCompany
+        {
+            get { return _VisibiltyCheckupCompany; }
+            set { Set(ref _VisibiltyCheckupCompany, value); }
+        }
+
+        private List<CheckupJobContactModel> _CheckupJobSource;
+
+        public List<CheckupJobContactModel> CheckupJobSource
+        {
+            get { return _CheckupJobSource; }
+            set { Set(ref _CheckupJobSource, value); }
+        }
+
+        private CheckupJobContactModel _SelectedCheckupJob;
+
+        public CheckupJobContactModel SelectedCheckupJob
+        {
+            get { return _SelectedCheckupJob; }
+            set { Set(ref _SelectedCheckupJob, value); }
+        }
+
         #region Command
 
 
@@ -978,6 +1022,7 @@ namespace MediTech.ViewModels
                 visitInfo.PayorAgreementUID = SelectedPayorAgreement.PayorAgreementUID;
                 visitInfo.Comments = CommentDoctor;
                 visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
                 if (SelectedCareprovider != null)
                     visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
 
@@ -1104,6 +1149,15 @@ namespace MediTech.ViewModels
             {
                 WarningDialog("กรุณาเลือก Agreemnet");
                 return true;
+            }
+
+            if (VisibiltyCheckupCompany == Visibility.Visible)
+            {
+                if (SelectedCheckupJob == null)
+                {
+                    WarningDialog("กรุณาเลือก Checkup Job");
+                    return true;
+                }
             }
 
             if (SelectedPriority == null)
@@ -1252,7 +1306,7 @@ namespace MediTech.ViewModels
                     {
                         VIPActiveTo = null;
                     }
-                    else if(resultDiag == MessageBoxResult.No)
+                    else if (resultDiag == MessageBoxResult.No)
                     {
                         IsVIP = false;
                     }

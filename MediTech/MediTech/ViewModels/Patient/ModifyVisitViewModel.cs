@@ -38,6 +38,10 @@ namespace MediTech.ViewModels
                     {
                         SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
                     }
+                    if (CheckupJobSource != null)
+                    {
+                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
+                    }
                 }
             }
         }
@@ -351,7 +355,7 @@ namespace MediTech.ViewModels
             {
                 if (SelectedCheckupJob == null)
                 {
-                    WarningDialog("กรุณาเลือก บริษัท");
+                    WarningDialog("กรุณาเลือก Checkup Job");
                     return true;
                 }
             }

@@ -948,17 +948,18 @@ namespace MediTech.ViewModels
                             conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
                         }
 
-                        CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
-                        checkupResult.PatientUID = patientVisit.PatientUID;
-                        checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                        checkupResult.GPRSTUID = grpstUID;
-                        checkupResult.RABSTSUID = RABSTSUID;
-                        checkupResult.Description = description;
-                        checkupResult.Recommend = recommand;
-                        checkupResult.Conclusion = conclusion;
-                        checkupResult.Conclusion = checkupResult.Conclusion.Trim();
-                        DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
-
+                        if (!string.IsNullOrEmpty(conclusion))
+                        {
+                            CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
+                            checkupResult.PatientUID = patientVisit.PatientUID;
+                            checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                            checkupResult.GPRSTUID = grpstUID;
+                            checkupResult.RABSTSUID = RABSTSUID;
+                            checkupResult.Description = description;
+                            checkupResult.Recommend = recommand;
+                            checkupResult.Conclusion = conclusion.Trim();
+                            DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
+                        }
 
 
                     }

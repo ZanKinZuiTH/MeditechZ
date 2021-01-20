@@ -1908,7 +1908,7 @@ namespace MediTechWebApi.Controllers
         public CheckupGroupResultModel GetCheckupGroupResultByVisit(long patientVisitUID, int GPRSTUID)
         {
             CheckupGroupResultModel data = db.CheckupGroupResult
-                .Where(p => p.PatientVisitUID == patientVisitUID && p.GPRSTUID == GPRSTUID)
+                .Where(p => p.StatusFlag == "A" && p.PatientVisitUID == patientVisitUID && p.GPRSTUID == GPRSTUID)
                 .Select(p => new CheckupGroupResultModel
                 {
                     CheckupGroupResultUID = p.UID,
