@@ -222,6 +222,9 @@
     <Compile Include="PageViewPermission.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PastMedicalHistory.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="Patient.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

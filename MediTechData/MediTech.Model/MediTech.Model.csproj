@@ -108,7 +108,8 @@
     <Compile Include="PACS\SeriesModel.cs" />
     <Compile Include="PACS\StudiesModel.cs" />
     <Compile Include="PatientDiagnosis\FavouriteItemModel.cs" />
-    <Compile Include="PatientDiagnosis\PatientMedicalHistoryModel.cs" />
+    <Compile Include="PatientHistory\PastMedicalHistoryModel.cs" />
+    <Compile Include="PatientHistory\PatientMedicalHistoryModel.cs" />
     <Compile Include="PatientDiagnosis\PatientProblemModel.cs" />
     <Compile Include="PatientDiagnosis\ProblemModel.cs" />
     <Compile Include="PatientHistory\CCHPIModel.cs" />
