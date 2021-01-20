@@ -161,6 +161,253 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                 page4.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
 
+                var WorkHistorys = data.WorkHistorys;
+                if (WorkHistorys != null)
+                {
+                    if (data.WorkHistorys != null && data.WorkHistorys.Count > 0)
+                    {
+                        for (int i = 0; i < data.WorkHistorys.Count; i++)
+                        {
+                            xrTable3.Rows[i + 1].Cells[0].Text = data.WorkHistorys[i].CompanyName;
+                            xrTable3.Rows[i + 1].Cells[1].Text = data.WorkHistorys[i].Business;
+                            xrTable3.Rows[i + 1].Cells[2].Text = data.WorkHistorys[i].Description;
+                            xrTable3.Rows[i + 1].Cells[3].Text = data.WorkHistorys[i].Timeperiod;
+                            xrTable3.Rows[i + 1].Cells[4].Text = data.WorkHistorys[i].Riskfactor;
+                            xrTable3.Rows[i + 1].Cells[5].Text = data.WorkHistorys[i].Equipment;
+                        }
+                    }
+                }
+
+                
+                    if (data.InjuryDetails != null && data.InjuryDetails.Count > 0)
+                    {
+                        for (int i = 0; i < data.InjuryDetails.Count; i++)
+                        {
+                            page3.xrTable1.Rows[i + 3].Cells[0].Text = data.InjuryDetails[i].OccuredDate != null ? (data.InjuryDetails[i].OccuredDate?.Year + 543).ToString() : "";
+                            page3.xrTable1.Rows[i + 3].Cells[1].Text = data.InjuryDetails[i].BodyLocation != null ? data.InjuryDetails[i].BodyLocation.ToString() : "";
+                            page3.xrTable1.Rows[i + 3].Cells[2].Text = data.InjuryDetails[i].InjuryDetail != null ? data.InjuryDetails[i].InjuryDetail.ToString() : "";
+                            switch (data.InjuryDetails[i].InjuryServerity)
+                            {
+                                case "ทุพพลภาพ":
+                                    page3.xrTable1.Rows[i + 3].Cells[3].Text = "/";
+                                    break;
+                                case "สูยเสียอวัยวะบางส่วน":
+                                    page3.xrTable1.Rows[i + 3].Cells[4].Text = "/";
+                                    break;
+                                case "หยุดงานไม่เกิน 3 วัน":
+                                    page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
+                                    break;
+                                case "หยุดงานเกิน 3 วัน":
+                                    page3.xrTable1.Rows[i + 3].Cells[6].Text = "/";
+                                    break;
+                                default:
+                                    break;
+                            }
+
+                        }
+                    }
+                
+
+                var PatientAddresss = data.PatientAddresses;
+                if (PatientAddresss != null)
+                {
+                    page2.DefaultLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line1;
+                    page2.DefaultLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line2;
+                    page2.DefaultLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line3;
+                    page2.DefaultLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Line4;
+                    page2.DefaultDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.DistrictName;
+                    page2.DefaultAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.AmphurName;
+                    page2.DefaultProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.ProvinceName;
+                    page2.DefaultZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.ZipCode;
+                    page2.DefaultPhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 401)?.Phone;
+
+                    page2.ContartLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line1;
+                    page2.ContartLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line2;
+                    page2.ContartLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line3;
+                    page2.ContartLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Line4;
+                    page2.ContartDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.DistrictName;
+                    page2.ContactAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.AmphurName;
+                    page2.ContartProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.ProvinceName;
+                    page2.ContartZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.ZipCode;
+                    page2.ContartPhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 4256)?.Phone;
+
+                    page2.OfficeLine1.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line1;
+                    page2.OfficeLine2.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line2;
+                    page2.OfficeLine3.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line3;
+                    page2.OfficeLine4.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Line4;
+                    page2.OfficeDistrict.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.DistrictName;
+                    page2.OfficeAmphur.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.AmphurName;
+                    page2.OfficeProvince.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.ProvinceName;
+                    page2.OfficeZipCode.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.ZipCode;
+                    page2.OfficePhone.Text = PatientAddresss.FirstOrDefault(p => p.ADTYPUID == 405)?.Phone;
+                }
+                var MedicalHistory = data.MedicalHistory;
+                if (MedicalHistory != null)
+                {
+                    if (MedicalHistory.PastMedicalHistorys != null && MedicalHistory.PastMedicalHistorys.Count > 0)
+                    {
+                        foreach (var medical in MedicalHistory.PastMedicalHistorys)
+                        {
+                            page2.lbPastMedical1.Text = medical.MedicalName;
+                            page2.lbPastMedicalDttm1.Text = medical.MedicalDttm != null ? (medical.MedicalDttm.Value.Year + 543).ToString() : "";
+                        }
+                    }
+                    if (!string.IsNullOrEmpty(MedicalHistory.ChronicDisease))
+                    {
+                        if (MedicalHistory.ChronicDisease.Trim() == "ไม่มี")
+                        {
+                            page2.CheckChronicNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckChronicYes.Checked = true;
+                            page2.ChronicDisease.Text = MedicalHistory.ChronicDisease;
+                        }
+
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.SurgicalDetail))
+                    {
+                        if (MedicalHistory.SurgicalDetail.Trim() == "ไม่เคย")
+                        {
+                            page2.CheckSurgicalNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckSurgicalYes.Checked = true;
+                            page2.SurgicalDetail.Text = MedicalHistory.SurgicalDetail;
+                        }
+              
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.ImmunizationDetail))
+                    {
+                        if (MedicalHistory.ImmunizationDetail.Trim() == "ไม่เคย")
+                        {
+                            page2.CheckImmunizationNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckImmunizationYes.Checked = true;
+                            page2.ImmunizationDetail.Text = MedicalHistory.ImmunizationDetail;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Familyhistory))
+                    {
+                        if (MedicalHistory.Familyhistory.Trim() == "ไม่มี")
+                        {
+                            page2.CheckFamilyhistoryNo.Checked = true;
+                        }
+                        else
+                        {
+                            page2.CheckFamilyhistoryY.Checked = true;
+                            page2.Familyhistory.Text = MedicalHistory.Familyhistory;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.LongTemMedication))
+                    {
+                        if (MedicalHistory.LongTemMedication.Trim() == "ไม่มี")
+                        {
+                            page3.CheckLongTemMedicationNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckLongTemMedicationYes.Checked = true;
+                            page3.LongTemMedication.Text = MedicalHistory.LongTemMedication;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.AllergyDescription))
+                    {
+                        if (MedicalHistory.AllergyDescription.Trim() == "ไม่มี")
+                        {
+                            page3.CheckAllergyDescriptionNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckAllergyDescriptionYes.Checked = true;
+                            page3.AllergyDescription.Text = MedicalHistory.AllergyDescription;
+                        }
+
+                    }
+
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Narcotic))
+                    {
+                        if (MedicalHistory.Narcotic.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckNarcoticNo.Checked = true;
+                        }
+                        else
+                        {
+                            page3.CheckNarcoticYes.Checked = true;
+                            page3.Narcotic.Text = MedicalHistory.Narcotic;
+                        }
+
+                    }
+
+                    if (!String.IsNullOrEmpty(MedicalHistory.Smoke))
+                    {
+                        if (MedicalHistory.Smoke?.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckSmokeNo.Checked = true;
+                        }
+                        else if (MedicalHistory.Smoke?.Trim() == "เคยแต่เลิกแล้ว")
+                        {
+                            page3.CheckSmokeUsed.Checked = true;
+
+                        }
+                        else if (MedicalHistory.Smoke?.Trim() != "")
+                        {
+                            page3.CheckSmokeDay.Checked = true;
+                            page3.Smoke.Text = MedicalHistory.Smoke;
+                        }
+
+                        page3.SmokePeriodYear.Text = MedicalHistory.SmokePeriodYear;
+                        page3.SmokePeriodMonth.Text = MedicalHistory.SmokePeriodMonth;
+                        page3.BFQuitSmoke.Text = MedicalHistory.BFQuitSmoke;
+                    }
+
+                    if (!string.IsNullOrEmpty(MedicalHistory.Alcohol))
+                    {
+                        if (MedicalHistory.Alcohol?.Trim() == "ไม่เคย")
+                        {
+                            page3.CheckAlcoholNo.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มน้อยกว่า 1 ครั้งต่อสัปดาห์")
+                        {
+                            page3.CheckAlcoholLess1Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่ม 1 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcohol1Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่ม 2-3 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcohol2Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "ดื่มมากกว่า 3 ครั้ง/สัปดาห์")
+                        {
+                            page3.CheckAlcoholMore3Week.Checked = true;
+                        }
+                        else if (MedicalHistory.Alcohol?.Trim() == "เคยแต่เลิกแล้ว")
+                        {
+                            page3.CheckAlcohoLast.Checked = true;
+                        }
+                        page3.AlcohoPeriodYear.Text = MedicalHistory.AlcohoPeriodYear;
+                        page3.AlcohoPeriodMonth.Text = MedicalHistory.AlcohoPeriodMonth;
+                    }
+
+                }
 
                 var occmed = data.MobileResult;
                 if (occmed != null)
@@ -281,34 +528,6 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
-                }
-            }
-
-            if (data.InjuryDetails != null && data.InjuryDetails.Count > 0)
-            {
-                for (int i = 0; i < data.InjuryDetails.Count; i++)
-                {
-                    page3.xrTable1.Rows[i + 3].Cells[0].Text = data.InjuryDetails[i].OccuredDate != null ? (data.InjuryDetails[i].OccuredDate?.Year + 543).Value.ToString() : "";
-                    page3.xrTable1.Rows[i + 3].Cells[1].Text = data.InjuryDetails[i].BodyLocation != null ? data.InjuryDetails[i].BodyLocation.ToString() : "";
-                    page3.xrTable1.Rows[i + 3].Cells[2].Text = data.InjuryDetails[i].InjuryDetail != null ? data.InjuryDetails[i].InjuryDetail.ToString() : "";
-                    switch (data.InjuryDetails[i].InjuryServerity)
-                    {
-                        case "ทุพพลภาพ":
-                            page3.xrTable1.Rows[i + 3].Cells[3].Text = "/";
-                            break;
-                        case "สูยเสียอวัยวะบางส่วน":
-                            page3.xrTable1.Rows[i + 3].Cells[4].Text = "/";
-                            break;
-                        case "หยุดงานไม่เกิน 3 วัน":
-                            page3.xrTable1.Rows[i + 3].Cells[5].Text = "/";
-                            break;
-                        case "หยุดงานเกิน 3 วัน":
-                            page3.xrTable1.Rows[i + 3].Cells[6].Text = "/";
-                            break;
-                        default:
-                            break;
-                    }
-
                 }
             }
         }

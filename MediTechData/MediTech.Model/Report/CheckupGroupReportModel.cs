@@ -175,6 +175,8 @@ namespace MediTech.Model.Report
         public string PAR119 { get; set; } //Methyrene
         public string PAR122 { get; set; } //Alumium in urine
         public string PAR33 { get; set; } //alp
+        public string PAR32 { get; set; } //blood group
+        public string PAR204 { get; set; } //Phenol in urin
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
