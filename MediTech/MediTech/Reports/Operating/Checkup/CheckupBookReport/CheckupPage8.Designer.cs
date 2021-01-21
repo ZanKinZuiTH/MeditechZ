@@ -167,6 +167,12 @@
             this.Arsenic1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Arsenic2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Arsenic3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CyclohexanoneRow = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.CyclohexanoneRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cyclohexanone1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cyclohexanone2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Cyclohexanone3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbStool = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -223,12 +229,12 @@
             this.lbName8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.CyclohexanoneRow = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.CyclohexanoneRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cyclohexanone1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cyclohexanone2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Cyclohexanone3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowPhenol = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.PhenolRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phenol1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phenol2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Phenol3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbStool)).BeginInit();
@@ -247,7 +253,7 @@
             this.xrLabel5,
             this.xrLabel1,
             this.xrLabel2});
-            this.Detail.HeightF = 458.119F;
+            this.Detail.HeightF = 493.9523F;
             this.Detail.LockedInUserDesigner = true;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -521,8 +527,9 @@
             this.RowStyreneUrine,
             this.RowAluminiumBlood,
             this.RowArsenic,
-            this.CyclohexanoneRow});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 387.7199F);
+            this.CyclohexanoneRow,
+            this.RowPhenol});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(360.5632F, 406.591F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -1699,6 +1706,63 @@
             this.Arsenic3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Arsenic3.Weight = 0.49654431607582589D;
             // 
+            // CyclohexanoneRow
+            // 
+            this.CyclohexanoneRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell28,
+            this.CyclohexanoneRange,
+            this.Cyclohexanone1,
+            this.Cyclohexanone2,
+            this.Cyclohexanone3});
+            this.CyclohexanoneRow.Name = "CyclohexanoneRow";
+            this.CyclohexanoneRow.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell28
+            // 
+            this.xrTableCell28.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell28.Name = "xrTableCell28";
+            this.xrTableCell28.StylePriority.UseFont = false;
+            this.xrTableCell28.StylePriority.UseTextAlignment = false;
+            this.xrTableCell28.Text = "Cyclohexanone in Urine";
+            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell28.Weight = 1.0081393020274905D;
+            // 
+            // CyclohexanoneRange
+            // 
+            this.CyclohexanoneRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.CyclohexanoneRange.Name = "CyclohexanoneRange";
+            this.CyclohexanoneRange.StylePriority.UseFont = false;
+            this.CyclohexanoneRange.StylePriority.UseTextAlignment = false;
+            this.CyclohexanoneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.CyclohexanoneRange.Weight = 1.0314162206887314D;
+            // 
+            // Cyclohexanone1
+            // 
+            this.Cyclohexanone1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Cyclohexanone1.Name = "Cyclohexanone1";
+            this.Cyclohexanone1.StylePriority.UseFont = false;
+            this.Cyclohexanone1.StylePriority.UseTextAlignment = false;
+            this.Cyclohexanone1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cyclohexanone1.Weight = 0.52909351643135161D;
+            // 
+            // Cyclohexanone2
+            // 
+            this.Cyclohexanone2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Cyclohexanone2.Name = "Cyclohexanone2";
+            this.Cyclohexanone2.StylePriority.UseFont = false;
+            this.Cyclohexanone2.StylePriority.UseTextAlignment = false;
+            this.Cyclohexanone2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cyclohexanone2.Weight = 0.55147320971800662D;
+            // 
+            // Cyclohexanone3
+            // 
+            this.Cyclohexanone3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Cyclohexanone3.Name = "Cyclohexanone3";
+            this.Cyclohexanone3.StylePriority.UseFont = false;
+            this.Cyclohexanone3.StylePriority.UseTextAlignment = false;
+            this.Cyclohexanone3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Cyclohexanone3.Weight = 0.49654431607582589D;
+            // 
             // tbStool
             // 
             this.tbStool.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
@@ -2306,62 +2370,62 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // CyclohexanoneRow
+            // RowPhenol
             // 
-            this.CyclohexanoneRow.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell28,
-            this.CyclohexanoneRange,
-            this.Cyclohexanone1,
-            this.Cyclohexanone2,
-            this.Cyclohexanone3});
-            this.CyclohexanoneRow.Name = "CyclohexanoneRow";
-            this.CyclohexanoneRow.Weight = 0.92341768297675519D;
+            this.RowPhenol.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell34,
+            this.PhenolRange,
+            this.Phenol1,
+            this.Phenol2,
+            this.Phenol3});
+            this.RowPhenol.Name = "RowPhenol";
+            this.RowPhenol.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell28
+            // xrTableCell34
             // 
-            this.xrTableCell28.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell28.Name = "xrTableCell28";
-            this.xrTableCell28.StylePriority.UseFont = false;
-            this.xrTableCell28.StylePriority.UseTextAlignment = false;
-            this.xrTableCell28.Text = "Cyclohexanone in Urine";
-            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell28.Weight = 1.0081393020274905D;
+            this.xrTableCell34.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell34.Name = "xrTableCell34";
+            this.xrTableCell34.StylePriority.UseFont = false;
+            this.xrTableCell34.StylePriority.UseTextAlignment = false;
+            this.xrTableCell34.Text = "Phenol in Urine";
+            this.xrTableCell34.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell34.Weight = 1.0081393020274905D;
             // 
-            // CyclohexanoneRange
+            // PhenolRange
             // 
-            this.CyclohexanoneRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.CyclohexanoneRange.Name = "CyclohexanoneRange";
-            this.CyclohexanoneRange.StylePriority.UseFont = false;
-            this.CyclohexanoneRange.StylePriority.UseTextAlignment = false;
-            this.CyclohexanoneRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.CyclohexanoneRange.Weight = 1.0314162206887314D;
+            this.PhenolRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.PhenolRange.Name = "PhenolRange";
+            this.PhenolRange.StylePriority.UseFont = false;
+            this.PhenolRange.StylePriority.UseTextAlignment = false;
+            this.PhenolRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.PhenolRange.Weight = 1.0314162206887314D;
             // 
-            // Cyclohexanone1
+            // Phenol1
             // 
-            this.Cyclohexanone1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Cyclohexanone1.Name = "Cyclohexanone1";
-            this.Cyclohexanone1.StylePriority.UseFont = false;
-            this.Cyclohexanone1.StylePriority.UseTextAlignment = false;
-            this.Cyclohexanone1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cyclohexanone1.Weight = 0.52909351643135161D;
+            this.Phenol1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phenol1.Name = "Phenol1";
+            this.Phenol1.StylePriority.UseFont = false;
+            this.Phenol1.StylePriority.UseTextAlignment = false;
+            this.Phenol1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phenol1.Weight = 0.52909351643135161D;
             // 
-            // Cyclohexanone2
+            // Phenol2
             // 
-            this.Cyclohexanone2.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Cyclohexanone2.Name = "Cyclohexanone2";
-            this.Cyclohexanone2.StylePriority.UseFont = false;
-            this.Cyclohexanone2.StylePriority.UseTextAlignment = false;
-            this.Cyclohexanone2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cyclohexanone2.Weight = 0.55147320971800662D;
+            this.Phenol2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phenol2.Name = "Phenol2";
+            this.Phenol2.StylePriority.UseFont = false;
+            this.Phenol2.StylePriority.UseTextAlignment = false;
+            this.Phenol2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phenol2.Weight = 0.55147320971800662D;
             // 
-            // Cyclohexanone3
+            // Phenol3
             // 
-            this.Cyclohexanone3.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.Cyclohexanone3.Name = "Cyclohexanone3";
-            this.Cyclohexanone3.StylePriority.UseFont = false;
-            this.Cyclohexanone3.StylePriority.UseTextAlignment = false;
-            this.Cyclohexanone3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Cyclohexanone3.Weight = 0.49654431607582589D;
+            this.Phenol3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.Phenol3.Name = "Phenol3";
+            this.Phenol3.StylePriority.UseFont = false;
+            this.Phenol3.StylePriority.UseTextAlignment = false;
+            this.Phenol3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Phenol3.Weight = 0.49654431607582589D;
             // 
             // CheckupPage8
             // 
@@ -2587,5 +2651,11 @@
         public DevExpress.XtraReports.UI.XRTableCell Cyclohexanone2;
         public DevExpress.XtraReports.UI.XRTableCell Cyclohexanone3;
         public DevExpress.XtraReports.UI.XRTableRow CyclohexanoneRow;
+        public DevExpress.XtraReports.UI.XRTableRow RowPhenol;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
+        public DevExpress.XtraReports.UI.XRTableCell PhenolRange;
+        public DevExpress.XtraReports.UI.XRTableCell Phenol1;
+        public DevExpress.XtraReports.UI.XRTableCell Phenol2;
+        public DevExpress.XtraReports.UI.XRTableCell Phenol3;
     }
 }
