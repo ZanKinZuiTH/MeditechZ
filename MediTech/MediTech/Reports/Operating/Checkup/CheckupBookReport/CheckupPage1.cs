@@ -563,7 +563,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("LAB518")
                         || p.RequestItemCode.Contains("LAB560")
                         || p.RequestItemCode.Contains("LAB561") //Arsenic 
-                        || p.RequestItemCode.Contains("LAB562")) //Cyclohexanone
+                        || p.RequestItemCode.Contains("LAB562") //Cyclohexanone
+                        || p.RequestItemCode.Contains("LAB316")) //Phenol
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1434,6 +1435,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page8.RowAluminiumBlood.Visible = false;
                 page8.RowArsenic.Visible = false;
                 page8.CyclohexanoneRow.Visible = false;
+                page8.RowPhenol.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1664,6 +1666,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     }
                     #endregion
 
+                    #region Phenol
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204") != null)
+                    {
+                        page8.RowPhenol.Visible = true;
+                        page8.PhenolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204")?.ReferenceRange;
+                        page8.Phenol1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year1)?.ResultValue;
+                        page8.Phenol2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year2)?.ResultValue;
+                        page8.Phenol3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
                 }
                 else
                 {
