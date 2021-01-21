@@ -245,7 +245,7 @@ namespace MediTechWebApi.Controllers
                                     result.MWhen = now;
 
                                     var itemGroupResult = db.RequestItemGroupResult.Where(p => p.RequestItemUID == dataRequestDetail.RequestitemUID && p.StatusFlag == "A");
-                                    if (itemGroupResult != null)
+                                    if (itemGroupResult != null && itemGroupResult.Count() > 0)
                                     {
                                         foreach (var itemResult in itemGroupResult)
                                         {

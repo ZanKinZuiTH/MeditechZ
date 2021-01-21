@@ -580,6 +580,25 @@ namespace MediTechWebApi.Controllers
                             result.MUser = userUID;
                             result.MWhen = now;
 
+                            var itemGroupResult = db.RequestItemGroupResult.Where(p => p.RequestItemUID == dataRequestDetail.RequestitemUID && p.StatusFlag == "A");
+                            if (itemGroupResult != null && itemGroupResult.Count() > 0)
+                            {
+                                foreach (var itemResult in itemGroupResult)
+                                {
+                                    var groupResult = db.CheckupGroupResult.FirstOrDefault(p => p.StatusFlag == "A"
+                                    && p.PatientVisitUID == result.PatientVisitUID
+                                    && p.GPRSTUID == itemResult.GPRSTUID);
+                                    if (groupResult != null)
+                                    {
+                                        db.CheckupGroupResult.Attach(groupResult);
+                                        groupResult.StatusFlag = "D";
+                                        groupResult.MUser = userUID;
+                                        groupResult.MWhen = now;
+                                    }
+                                }
+
+                            }
+
                             db.SaveChanges();
                         }
 
