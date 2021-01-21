@@ -657,6 +657,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBenzene.Designer.cs">
       <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBloodGroup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupBloodGroup.Designer.cs">
+      <DependentUpon>CheckupGroupBloodGroup.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupBMI.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -812,6 +818,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupOccVision.Designer.cs">
       <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPhenolUrine.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroupPhenolUrine.Designer.cs">
+      <DependentUpon>CheckupGroupPhenolUrine.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupPhysicalExam.cs">
       <SubType>Component</SubType>
@@ -2573,6 +2585,9 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBenzene.resx">
       <DependentUpon>CheckupGroupBenzene.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBloodGroup.resx">
+      <DependentUpon>CheckupGroupBloodGroup.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupBMI.resx">
       <DependentUpon>CheckupGroupBMI.cs</DependentUpon>
     </EmbeddedResource>
@@ -2650,6 +2665,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupOccVision.resx">
       <DependentUpon>CheckupGroupOccVision.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupPhenolUrine.resx">
+      <DependentUpon>CheckupGroupPhenolUrine.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupPhysicalExam.resx">
       <DependentUpon>CheckupGroupPhysicalExam.cs</DependentUpon>

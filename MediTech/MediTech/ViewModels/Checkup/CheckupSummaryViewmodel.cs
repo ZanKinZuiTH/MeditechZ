@@ -401,7 +401,7 @@ namespace MediTech.ViewModels
         {
             if (SelectCheckupJobContact != null)
             {
-                string companyName = SelectBranch != null ? SelectBranch.Display : SelectCheckupJobContact.CompanyName;
+                string companyName = (SelectBranch != null && !string.IsNullOrEmpty(SelectBranch.Display)) ? SelectBranch.Display : SelectCheckupJobContact.CompanyName;
                 foreach (var item in CheckupJobTasks)
                 {
                     if (item.IsSelected)
