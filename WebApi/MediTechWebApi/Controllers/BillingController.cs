@@ -350,26 +350,21 @@ namespace MediTechWebApi.Controllers
                     var visitPayor = db.PatientVisitPayor.FirstOrDefault(p => p.PatientVisitUID == patpv.UID && p.StatusFlag == "A");
                     PayorDetail payorDetail = db.PayorDetail.Find(visitPayor.PayorDetailUID);
                     IEnumerable<HealthOrganisationID> healthOrganisationIDs;
-
-                    if (patpv.VISTYUID == nonMed?.UID)
+                    if (model.OwnerOrganisationUID == 24)//Traditional Chinese Medicine
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 17 && p.StatusFlag == "A"); //BRXG Polyclinic
+                    }
+                    else if (patpv.VISTYUID == nonMed?.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
                     }
-                    else if(patpv.VISTYUID == businessUnits?.UID)
+                    else if (patpv.VISTYUID == businessUnits?.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 16 && p.StatusFlag == "A"); //BusinessUnits
                     }
                     else
                     {
-                        if (model.OwnerOrganisationUID == 24) //Traditional Chinese Medicine
-                        {
-                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 17 && p.StatusFlag == "A"); //BRXG Polyclinic
-                        }
-                        else
-                        {
-                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
-                        }
-
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
                     }
 
                     if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
@@ -445,7 +440,7 @@ namespace MediTechWebApi.Controllers
                     {
                         patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
                     }
-                  
+
 
 
                     if (string.IsNullOrEmpty(patientBillID))

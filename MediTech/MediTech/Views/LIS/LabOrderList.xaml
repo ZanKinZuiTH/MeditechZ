@@ -169,14 +169,18 @@
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
-                <dxg:GridControl x:Name="grdRequestItemList" ItemsSource="{Binding RequestDetailLabs}" SelectedItem="{Binding SelectRequestDetailLab}">
+                <dxg:GridControl x:Name="grdRequestItemList" ItemsSource="{Binding RequestDetailLabs}" 
+                                 SelectionMode="MultipleRow"
+                                 SelectedItems="{Binding SelectRequestDetailLabs}"
+                                 SelectedItem="{Binding SelectRequestDetailLab}">
                     <dxg:GridColumn Header="รายการ" FieldName="RequestItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="รหัส" FieldName="RequestItemCode" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="ความสำคัญ" FieldName="PriorityStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                     <dxg:GridControl.View>
-                        <dxg:TableView x:Name="grvRequestItemList" ShowGroupPanel="False" AllowEditing="False" >
+                        <dxg:TableView x:Name="grvRequestItemList" CheckBoxSelectorColumnWidth="40" ShowCheckBoxSelectorColumn="True" 
+                                       ShowGroupPanel="False" AllowEditing="False" >
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
@@ -208,10 +212,14 @@
                         <dx:SimpleButton Command="{Binding EnterResultCommand}" Content="Enter Result" Height="25" Width="85"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
-                        <dx:SimpleButton Command="{Binding PrintPreviewCommand}" Content="Print Preview" Height="25" Width="93"/>
+                        <dx:SimpleButton Command="{Binding PrintPreviewCommand}" Content="Preview" Height="25" Width="93"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding CancelResultCommand}" Foreground="Red"
+                                     Content="Cancel Result" Height="25" Width="90"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>

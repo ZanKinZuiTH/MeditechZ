@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MediTech.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace MediTech.Views
         public LabOrderList()
         {
             InitializeComponent();
+            (this.DataContext as LabOrderListViewModel).UpdateEvent += LabOrderList_UpdateEvent;
+        }
+
+        private void LabOrderList_UpdateEvent(object sender, EventArgs e)
+        {
+            grdRequestItemList.RefreshData();
         }
     }
 }

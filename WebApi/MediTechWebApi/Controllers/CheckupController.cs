@@ -587,7 +587,7 @@ namespace MediTechWebApi.Controllers
                         if (dataOrderDetail != null)
                         {
                             db.PatientOrderDetail.Attach(dataOrderDetail);
-                            dataOrderDetail.ORDSTUID = 2848;
+                            dataOrderDetail.ORDSTUID = 2847; //RAISED
                             dataOrderDetail.MUser = userUID;
                             dataOrderDetail.MWhen = now;
 

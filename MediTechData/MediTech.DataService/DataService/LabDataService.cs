@@ -143,6 +143,22 @@ namespace MediTech.DataService
 
         }
 
+        public bool CancelLabResult(long requestDetailUID, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Lab/CancelLabResult?requestDetailUID={0}&userUID={1}", requestDetailUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
         public void UpdateRequestDetailSpecimens(List<RequestDetailSpecimenModel> requestDetailSpecimens, int userID)
         {
             try

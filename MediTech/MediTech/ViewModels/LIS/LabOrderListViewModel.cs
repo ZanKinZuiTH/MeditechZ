@@ -201,6 +201,14 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRequestDetailLab, value); }
         }
 
+        private List<RequestDetailItemModel> _SelectRequestDetailLabs;
+
+        public List<RequestDetailItemModel> SelectRequestDetailLabs
+        {
+            get { return _SelectRequestDetailLabs ?? (_SelectRequestDetailLabs = new List<RequestDetailItemModel>()); }
+            set { Set(ref _SelectRequestDetailLabs, value); }
+        }
+
         private LookupItemModel _SelectPrinter;
         public LookupItemModel SelectPrinter
         {
@@ -329,6 +337,20 @@ namespace MediTech.ViewModels
             {
                 return _PrintAutoCommand
                     ?? (_PrintAutoCommand = new RelayCommand(PrintAuto));
+            }
+        }
+
+        private RelayCommand _CancelResultCommand;
+
+        /// <summary>
+        /// Gets the EnterResultCommand.
+        /// </summary>
+        public RelayCommand CancelResultCommand
+        {
+            get
+            {
+                return _CancelResultCommand
+                    ?? (_CancelResultCommand = new RelayCommand(CancelResult));
             }
         }
 
@@ -586,6 +608,39 @@ namespace MediTech.ViewModels
             rpt.RequestParameters = false;
             rpt.ShowPrintMarginsWarning = false;
             printTool.Print();
+
+        }
+
+        private void CancelResult()
+        {
+            try
+            {
+                if (SelectRequestDetailLabs != null && SelectRequestDetailLabs.Count > 0)
+                {
+                    MessageBoxResult messResult = QuestionDialog(string.Format("คุณต้องการยกเลิกผลของ {0} ใช้หรือไม่ ?", SelectRequestLab.PatientName));
+
+                    if (messResult == MessageBoxResult.Yes)
+                    {
+                        foreach (var item in SelectRequestDetailLabs)
+                        {
+                            if (item.OrderStatus == "Reviewed")
+                            {
+                                DataService.Lab.CancelLabResult(item.RequestDetailUID, AppUtil.Current.UserID);
+                                item.OrderStatus = "Raised";
+                                item.ResultEnteredDttm = null;
+                            }
+                        }
+                        SaveSuccessDialog();
+                        OnUpdateEvent();
+                    }
+                }
+
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
 
         }
 
