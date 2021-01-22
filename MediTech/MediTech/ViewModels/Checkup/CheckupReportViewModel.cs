@@ -117,14 +117,7 @@ namespace MediTech.ViewModels
             get { return _PatientResultLabList; }
             set { Set(ref _PatientResultLabList, value); }
         }
-
-        private ObservableCollection<PatientResultComponentModel> _SelectPatientResultLabList;
-
-        public ObservableCollection<PatientResultComponentModel> SelectPatientResultLabList
-        {
-            get { return _SelectPatientResultLabList ?? (_SelectPatientResultLabList = new ObservableCollection<PatientResultComponentModel>()); }
-            set { Set(ref _SelectPatientResultLabList, value); }
-        }
+        
 
         private List<PatientResultComponentModel> _PivotPatientLabData;
 
@@ -147,31 +140,6 @@ namespace MediTech.ViewModels
                 return _SearchCommand
                     ?? (_SearchCommand = new RelayCommand(Search));
             }
-        }
-
-        private RelayCommand _RiskBookCommand;
-        public RelayCommand RiskBookCommand
-        {
-            get { return _RiskBookCommand ?? (_RiskBookCommand = new RelayCommand(RiskBook)); }
-        }
-
-        private RelayCommand _PrintRiskAutoCommand;
-        public RelayCommand PrintRiskAutoCommand
-        {
-            get { return _PrintRiskAutoCommand ?? (_PrintRiskAutoCommand = new RelayCommand(PrintRiskbook)); }
-        }
-
-        private RelayCommand _PreviewBookCheckupCommand;
-        public RelayCommand PreviewBookCheckupCommand
-        {
-            get { return _PreviewBookCheckupCommand ?? (_PreviewBookCheckupCommand = new RelayCommand(PreviewBookCheckup)); }
-        }
-
-        private RelayCommand _PreviewBook2CheckupCommand;
-
-        public RelayCommand PreviewBook2CheckupCommand
-        {
-            get { return _PreviewBook2CheckupCommand ?? (_PreviewBook2CheckupCommand = new RelayCommand(PreviewBookCheckup2)); }
         }
 
 
@@ -208,92 +176,6 @@ namespace MediTech.ViewModels
 
 
 
-        void RiskBook()
-        {
-            if (SelectPatientResultLabList != null)
-            {
-                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    RiskBook1 rpt = new RiskBook1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
-
-                    SelectPatientResultLabList.Remove(item);
-                }
-
-            }
-        }
-
-        void PrintRiskbook()
-        {
-            if (SelectPatientResultLabList != null)
-            {
-                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    RiskBook1 rpt = new RiskBook1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.Print();
-                }
-            }
-        }
-
-        void PreviewBookCheckup()
-        {
-            if (SelectPatientResultLabList != null)
-            {
-                var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-                foreach (var item in patientResultLabList.ToList())
-                {
-                    Reports.Operating.Patient.CheckupBook.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBook.CheckupPage1();
-                    rpt.Parameters["PatientUID"].Value = item.PatientUID;
-                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-                    rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-                    //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.ShowPreviewDialog();
-
-                    SelectPatientResultLabList.Remove(item);
-                }
-            }
-        }
-
-        void PreviewBookCheckup2()
-        {
-            //if (SelectPatientResultLabList != null)
-            //{
-            //    var patientResultLabList = SelectPatientResultLabList.OrderBy(p => p.No);
-            //    foreach (var item in patientResultLabList.ToList())
-            //    {
-            //        Reports.Operating.Patient.CheckupBookReport2.CheckupPage1 rpt = new Reports.Operating.Patient.CheckupBookReport2.CheckupPage1();
-            //        rpt.Parameters["PatientUID"].Value = item.PatientUID;
-            //        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-            //        rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
-            //        ReportPrintTool printTool = new ReportPrintTool(rpt);
-            //        //rpt.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-            //        rpt.RequestParameters = false;
-            //        rpt.ShowPrintMarginsWarning = false;
-            //        printTool.ShowPreviewDialog();
-
-            //        SelectPatientResultLabList.Remove(item);
-            //    }
-            //}
-
-        }
 
         private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
         {
@@ -335,7 +217,7 @@ namespace MediTech.ViewModels
 
             if (dataCheckupValue != null)
             {
-                PatientResultLabList = dataCheckupValue
+                PivotPatientLabData = dataCheckupValue
                     .GroupBy(g => new {  g.PatientUID, g.PatientID, g.FirstName, g.LastName, g.StartDttm, g.TITLEUID, g.Title, g.SEXXXUID, g.Gender, g.Age })
                     .Select(p => new PatientResultComponentModel
                     {
@@ -358,18 +240,10 @@ namespace MediTech.ViewModels
                     }).ToList();
 
                 PivotPatientLabData = dataCheckupValue;
-
-                if (PatientResultLabList != null && PatientResultLabList.Count > 0)
-                {
-                    int i = 1;
-                    PatientResultLabList.ForEach(p => p.No = i++);
-                }
-
-                //(this.View as CheckupReport).pivotData.BestFit();
+                
             }
             else
             {
-                PatientResultLabList = null;
                 PivotPatientLabData = null;
             }
 
