@@ -177,6 +177,8 @@ namespace MediTech.Model.Report
         public string PAR33 { get; set; } //alp
         public string PAR32 { get; set; } //blood group
         public string PAR204 { get; set; } //Phenol in urin
+        public string PAR38 { get; set; } //afp ng
+        public string PAR4 { get; set; } //psa
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }

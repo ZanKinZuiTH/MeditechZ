@@ -150,7 +150,7 @@
             this.xrTableCell39,
             this.xrTableCell43});
             this.xrTableRow4.Name = "xrTableRow4";
-            this.xrTableRow4.Weight = 0.80908332152244444D;
+            this.xrTableRow4.Weight = 0.888729328466678D;
             // 
             // xrTableCell33
             // 
@@ -219,7 +219,7 @@
             // xrTableCell43
             // 
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ตรวจหาระดับสารก่อมะเร็งทางเดินอาหาร (CEA)";
+            this.xrTableCell43.Text = "ตรวจหาสารบ่งชี้มะเร็งลำไส้ (CEA)";
             this.xrTableCell43.Weight = 6.4537554119099525D;
             // 
             // xrTableRow2
@@ -337,7 +337,7 @@
             this.xrTableCell31,
             this.xrTableCell32});
             this.xrTableRow3.Name = "xrTableRow3";
-            this.xrTableRow3.Weight = 1.3836047274002772D;
+            this.xrTableRow3.Weight = 1.3039587204560437D;
             // 
             // xrTableCell22
             // 
@@ -383,7 +383,7 @@
             // 
             // xrTableCell2
             // 
-            this.xrTableCell2.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell2.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.StylePriority.UseFont = false;
             this.xrTableCell2.Text = "Non smoker <3.8, Smoker <5.5";
@@ -391,7 +391,7 @@
             // 
             // xrTableCell30
             // 
-            this.xrTableCell30.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell30.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.xrTableCell30.Name = "xrTableCell30";
             this.xrTableCell30.StylePriority.UseFont = false;
             this.xrTableCell30.Text = "Negative";
