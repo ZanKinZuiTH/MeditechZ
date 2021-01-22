@@ -22,6 +22,22 @@ namespace MediTech.Model.Report
 
         public string VisitID { get; set; }
         public DateTime StartDateTime { get; set; }
+
+        private string _StartDate;
+
+        public string StartDate
+        {
+            get { return StartDateTime.ToString("dd/MM/yyyy"); }
+            set { _StartDate = value; }
+        }
+
+        private string _StartTime;
+
+        public string StartTime
+        {
+            get { return StartDateTime.ToString("HH:mm:ss"); }
+            set { _StartTime = value; }
+        }
         public string VisitStatus { get; set; }
         public string VisitType { get; set; }
         public double? NetAmountVisit { get; set; }

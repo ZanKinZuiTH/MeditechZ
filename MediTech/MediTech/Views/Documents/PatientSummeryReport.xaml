@@ -60,16 +60,8 @@
                 <dxg:GridColumn Header="เบอร์โทร" FieldName="MobilePhone"/>
                 <dxg:GridColumn Header="เบอร์โทร2" FieldName="SecondPhone"/>
                 <dxg:GridColumn Header="VisitID" FieldName="VisitID"/>
-                <dxg:GridColumn Header="วันที่มา" FieldName="StartDateTime">
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"  MaskType="DateTime"/>
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
-                <dxg:GridColumn Header="เวลาที่มา" FieldName="StartDateTime">
-                    <dxg:GridColumn.EditSettings>
-                        <dxe:TextEditSettings DisplayFormat="HH:mm:ss"  MaskType="DateTime"/>
-                    </dxg:GridColumn.EditSettings>
-                </dxg:GridColumn>
+                <dxg:GridColumn Header="วันที่มา" FieldName="StartDate"/>
+                <dxg:GridColumn Header="เวลาที่มา" FieldName="StartTime"/>
                 <dxg:GridColumn Header="สถานะ Visit" FieldName="VisitStatus"/>
                 <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType"/>
                 <dxg:GridColumn Header="ยอดซื้อรวมแต่ละ Visit" FieldName="NetAmountVisit"/>
