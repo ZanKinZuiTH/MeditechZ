@@ -86,10 +86,10 @@
         <EntityTypeShape EntityType="MediTechModel.PatientVisitPayor" Width="1.5" PointX="30.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.PatientVisualAcuity" Width="1.5" PointX="0.75" PointY="30.75" />
         <EntityTypeShape EntityType="MediTechModel.PatientVitalSign" Width="1.5" PointX="30.75" PointY="5.75" />
-        <EntityTypeShape EntityType="MediTechModel.PatientWorkHistory" Width="1.5" PointX="30.75" PointY="11.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorAgreement" Width="1.5" PointX="30.75" PointY="16.75" />
-        <EntityTypeShape EntityType="MediTechModel.PayorDetail" Width="1.5" PointX="30.75" PointY="21.75" />
-        <EntityTypeShape EntityType="MediTechModel.Permission" Width="1.5" PointX="30.75" PointY="29.75" />
+        <EntityTypeShape EntityType="MediTechModel.PatientWorkHistory" Width="1.5" PointX="30.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MediTechModel.PayorAgreement" Width="1.5" PointX="30.75" PointY="17.75" />
+        <EntityTypeShape EntityType="MediTechModel.PayorDetail" Width="1.5" PointX="30.75" PointY="22.75" />
+        <EntityTypeShape EntityType="MediTechModel.Permission" Width="1.5" PointX="30.75" PointY="30.75" />
         <EntityTypeShape EntityType="MediTechModel.PhysicalExam" Width="1.5" PointX="2.75" PointY="31.75" />
         <EntityTypeShape EntityType="MediTechModel.PhysicalExamTemplate" Width="1.5" PointX="12.75" PointY="31.75" />
         <EntityTypeShape EntityType="MediTechModel.PostalCode" Width="1.5" PointX="14.75" PointY="31.75" />

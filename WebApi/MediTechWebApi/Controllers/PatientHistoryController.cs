@@ -50,6 +50,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
@@ -80,6 +81,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
@@ -110,6 +112,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    IsPregnant = p.IsPregnant,
                     Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
@@ -149,6 +152,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.BPDio = model.BPDio;
                 vitalsign.OxygenSat = model.OxygenSat;
                 vitalsign.WaistCircumference = model.WaistCircumference;
+                vitalsign.IsPregnant = model.IsPregnant;
                 vitalsign.Comments = model.Comments;
                 vitalsign.MUser = userID;
                 vitalsign.MWhen = now;

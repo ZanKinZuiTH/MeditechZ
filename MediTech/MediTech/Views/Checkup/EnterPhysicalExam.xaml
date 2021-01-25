@@ -80,10 +80,9 @@
                         <TextBlock Text="ซม." FontSize="17"/>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="หมายเหตุ" FontSize="17">
-                            <dxe:TextEdit  Height="25" EditValue="{Binding PatientVitalSign.Comments,Mode=TwoWay}"
-                                           AllowNullInput="True"
-                                           Name="txtNote" VerticalAlignment="Top"/>
+                        <dxlc:LayoutItem Label="ตั้งครรภ์" FontSize="17">
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding PatientVitalSign.IsPregnant,Mode=TwoWay}"
+                                            VerticalAlignment="Top"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutItem/>

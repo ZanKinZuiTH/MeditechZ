@@ -149,13 +149,11 @@
                             <TextBlock />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup>
-                            <TextBlock Name="lblNote" Text="Note" FontSize="14" />
-                            <dxe:TextEdit  Height="25" EditValue="{Binding Comment}"
-                                           AllowNullInput="True"
-                                 Name="txtNote"
-                                 Width="100" 
-                                 VerticalAlignment="Top"/>
-                            <TextBlock Text="" FontSize="14" />
+                            <TextBlock Name="lblPregnant" Text="Pregnant" FontSize="14" />
+                            <dxe:CheckEdit  Height="25" EditValue="{Binding IsPregnant}"
+                                            AllowNullInput="True"
+                                            Width="100" VerticalAlignment="Top"/>
+                            <TextBlock />
                             <TextBlock />
                             <TextBlock />
                         </dxlc:LayoutGroup>
@@ -333,13 +331,9 @@
                                 <TextBlock />
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
-                                <TextBlock Name="lblReNote" Text="Note" FontSize="14" />
-                                <dxe:TextEdit  Height="25" EditValue="{Binding CommentRe}"
-                                               AllowNullInput="True" 
-                                 Name="txtReNote"
-                                 Width="100" 
-                                 VerticalAlignment="Top"/>
-                                <TextBlock Text="" FontSize="14" />
+                                <TextBlock Name="lblPregnantRe" Text="Pregnant" FontSize="14" />
+                                <dxe:CheckEdit   EditValue="{Binding IsPregnantRe}"  />
+                                <TextBlock />
                                 <TextBlock />
                                 <TextBlock />
                             </dxlc:LayoutGroup>

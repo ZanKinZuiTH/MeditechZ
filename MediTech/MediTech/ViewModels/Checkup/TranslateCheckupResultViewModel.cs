@@ -485,9 +485,9 @@ namespace MediTech.ViewModels
                     if (vitalSign.BMIValue != null)
                     {
                         ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, GPRSTUID = 3177, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
-                        ResultComponentModel vitalSignComment = new ResultComponentModel() { ResultItemUID = 116, GPRSTUID = 3177, ResultItemCode = "PAR67", ResultItemName = "Comment", ResultValue = vitalSign.Comments ?? "" };
+                        ResultComponentModel commentComponent = new ResultComponentModel() { ResultItemUID = 116, GPRSTUID = 3177, ResultItemCode = "PAR67", ResultItemName = "Comment", ResultValue = (vitalSign.IsPregnant ?? false) ? "ตั้งครรภ์" : "" };
                         resultComponent.Add(bmiComponent);
-                        resultComponent.Add(vitalSignComment);
+                        resultComponent.Add(commentComponent);
                     }
 
                     if (vitalSign.BPSys != null)
@@ -970,15 +970,15 @@ namespace MediTech.ViewModels
 
                             if (!string.IsNullOrEmpty(conclusion))
                             {
-                                //CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
-                                //checkupResult.PatientUID = patientVisit.PatientUID;
-                                //checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                                //checkupResult.GPRSTUID = grpstUID;
-                                //checkupResult.RABSTSUID = RABSTSUID;
-                                //checkupResult.Description = description;
-                                //checkupResult.Recommend = recommand;
-                                //checkupResult.Conclusion = conclusion.Trim();
-                                //DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
+                                CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
+                                checkupResult.PatientUID = patientVisit.PatientUID;
+                                checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                                checkupResult.GPRSTUID = grpstUID;
+                                checkupResult.RABSTSUID = RABSTSUID;
+                                checkupResult.Description = description;
+                                checkupResult.Recommend = recommand;
+                                checkupResult.Conclusion = conclusion.Trim();
+                                DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
                             }
                         }
                     }

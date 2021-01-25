@@ -160,6 +160,15 @@ namespace MediTech.ViewModels
             set { Set(ref _WaistCircumference, value); }
         }
 
+        private bool _IsPregnant;
+
+        public bool IsPregnant
+        {
+            get { return _IsPregnant; }
+            set { Set(ref _IsPregnant, value); }
+        }
+
+
         private string _Comment;
 
         public string Comment
@@ -257,6 +266,14 @@ namespace MediTech.ViewModels
         {
             get { return _WaistCircumferenceRe; }
             set { Set(ref _WaistCircumferenceRe, value); }
+        }
+
+        private bool _IsPregnantRe;
+
+        public bool IsPregnantRe
+        {
+            get { return _IsPregnantRe; }
+            set { Set(ref _IsPregnantRe, value); }
         }
 
         private string _CommentRe;
@@ -357,6 +374,7 @@ namespace MediTech.ViewModels
                     DBPRe = null;
                     OxygenSatRe = null;
                     WaistCircumferenceRe = null;
+                    IsPregnant = false;
                     CommentRe = null;
 
 
@@ -390,6 +408,7 @@ namespace MediTech.ViewModels
             DBPRe = model.BPDio;
             OxygenSatRe = model.OxygenSat;
             WaistCircumferenceRe = model.WaistCircumference;
+            IsPregnantRe = model.IsPregnant ?? false;
             CommentRe = model.Comments;
         }
 
@@ -412,6 +431,7 @@ namespace MediTech.ViewModels
                 model.OxygenSat = OxygenSat;
                 model.RecordedDttm = DateTime.Now;
                 model.WaistCircumference = WaistCircumference;
+                model.IsPregnant = IsPregnant;
                 model.Comments = !string.IsNullOrEmpty(Comment) ? Comment.Trim() : null;
             }
             else if (SelectTabIndex == 1)
@@ -429,6 +449,7 @@ namespace MediTech.ViewModels
                     model.BPDio = DBPRe;
                     model.OxygenSat = OxygenSatRe;
                     model.WaistCircumference = WaistCircumferenceRe;
+                    model.IsPregnant = IsPregnantRe;
                     model.Comments = !string.IsNullOrEmpty(CommentRe) ? CommentRe.Trim() : null;
                 }
             }
