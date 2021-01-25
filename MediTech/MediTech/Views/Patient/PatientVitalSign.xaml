@@ -332,7 +332,7 @@
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
                                 <TextBlock Name="lblPregnantRe" Text="Pregnant" FontSize="14" />
-                                <dxe:CheckEdit   EditValue="{Binding IsPregnantRe}"  />
+                                <dxe:CheckEdit Width="100"   EditValue="{Binding IsPregnantRe}"  />
                                 <TextBlock />
                                 <TextBlock />
                                 <TextBlock />
