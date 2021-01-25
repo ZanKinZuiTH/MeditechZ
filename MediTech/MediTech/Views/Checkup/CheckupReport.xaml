@@ -17,7 +17,7 @@
     </UserControl.DataContext>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutGroup Orientation="Horizontal" Visibility="Collapsed">
+            <!--<dxlc:LayoutGroup Orientation="Horizontal" Visibility="Collapsed">
                 <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
                     <TextBox Text="{Binding FileLocation}" IsReadOnly="True" Background="Gainsboro"/>
                 </dxlc:LayoutItem>
@@ -30,7 +30,7 @@
                 <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
                     <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>-->
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="จากวันที่">
                     <dxe:DateEdit EditValue="{Binding DateFrom}"/>
@@ -93,8 +93,8 @@
                                      Height="25" Content="ค้นหา"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Name="layoutTab" View="Tabs">
-                <dxlc:LayoutGroup Header="รายชื่อผู้ตรวจ" Orientation="Vertical">
+            
+                <!--<dxlc:LayoutGroup Header="รายชื่อผู้ตรวจ" Orientation="Vertical">
                     <dxg:GridControl ItemsSource="{Binding PatientResultLabList}" 
                                      SelectedItems="{Binding SelectPatientResultLabList}" 
                                      SelectionMode="MultipleRow">
@@ -115,60 +115,7 @@
                         <dxg:GridColumn FieldName="Position" Header="ตำแหน่ง"/>
                         <dxg:GridColumn FieldName="StartDttm" Header="วันที่ตรวจ"/>
                     </dxg:GridControl>
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <!--<dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
-                                        <TextBlock Text="Preview Book" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>-->
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton Width="120" Height="30" Command="{Binding RiskBookCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Text="Preview Risk Book" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem HorizontalAlignment="Left">
-                                <dx:SimpleButton Width="130" Height="30" Command="{Binding PrintRiskAutoCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
-                                        <TextBlock Text=" Print Risk Book" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton Width="120" Height="30" Command="{Binding PreviewBookCheckupCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
-                                        <TextBlock Text="Preview book" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
-                            <!--<dxlc:LayoutItem HorizontalAlignment="Right">
-                                <dx:SimpleButton Width="130" Height="30" Command="{Binding PreviewBook2CheckupCommand}">
-                                    <StackPanel Orientation="Horizontal">
-                                        <Image Source="/MediTech;component/Resources/Images/Menu/Books.png" />
-                                        <TextBlock Text="Preview book2" VerticalAlignment="Center"/>
-                                    </StackPanel>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>-->
-                        </dxlc:LayoutGroup>
-
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
                 <dxlc:LayoutGroup Header="ผลตรวจ" Orientation="Vertical">
                     <dxpg:PivotGridControl Name="pivotData" DataSource="{Binding PivotPatientLabData}"
                                            ShowGrandTotalsForSingleValues="False"
@@ -209,7 +156,7 @@
                         <dx:SimpleButton Width="100" Height="30" Content="ExportToXlsx" Command="{Binding ExportPivotGridToExcelCommand}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
-            </dxlc:LayoutGroup>
+            
 
 
         </dxlc:LayoutControl>

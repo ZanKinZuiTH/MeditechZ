@@ -225,7 +225,7 @@
             // 
             this.xrTableCell43.CanGrow = false;
             this.xrTableCell43.Name = "xrTableCell43";
-            this.xrTableCell43.Text = "ตรวจหาสารเมททิว เอททิว โตน ในปัสสาวะ (MEK)";
+            this.xrTableCell43.Text = "ตรวจหาสารเมทิลเอทิลคีโตนในปัสสาวะ (MEK)";
             this.xrTableCell43.Weight = 6.2250101857963456D;
             // 
             // xrTableRow2
