@@ -211,6 +211,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CheckupJobSummeryReportViewModel CheckupJobSummeryReportViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CheckupJobSummeryReportViewModel>())
+                    SimpleIoc.Default.Register<CheckupJobSummeryReportViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CheckupJobSummeryReportViewModel>();
+            }
+        }
+
         public InventoryReportViewModel InventoryReportViewModel
         {
             get
@@ -1078,21 +1089,20 @@ namespace MediTech.ViewModels
             }
         }
 
+        public LabResultMassViewModel CheckupReportViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<LabResultMassViewModel>())
+                    SimpleIoc.Default.Register<LabResultMassViewModel>();
 
+                return ServiceLocator.Current.GetInstance<LabResultMassViewModel>();
+            }
+        }
 
         #endregion
 
         #region Checkup
-        public CheckupReportViewModel CheckupReportViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<CheckupReportViewModel>())
-                    SimpleIoc.Default.Register<CheckupReportViewModel>();
-
-                return ServiceLocator.Current.GetInstance<CheckupReportViewModel>();
-            }
-        }
 
         public HealthExamListViewModel HealthExamListViewModel
         {

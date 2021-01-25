@@ -1132,7 +1132,7 @@
     <Compile Include="ViewModels\LIS_RIS Setting\MappingTranslateXrayViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
-    <Compile Include="ViewModels\Checkup\CheckupReportViewModel.cs" />
+    <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1382,8 +1382,8 @@
     <Compile Include="Views\LIS_RIS Setting\ManageSpecimen.xaml.cs">
       <DependentUpon>ManageSpecimen.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\CheckupReport.xaml.cs">
-      <DependentUpon>CheckupReport.xaml</DependentUpon>
+    <Compile Include="Views\MRD\LabResultMass.xaml.cs">
+      <DependentUpon>LabResultMass.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
@@ -1935,7 +1935,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Checkup\CheckupReport.xaml">
+    <Page Include="Views\MRD\LabResultMass.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

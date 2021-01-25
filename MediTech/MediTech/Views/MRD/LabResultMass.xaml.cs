@@ -18,9 +18,9 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for CheckupReport.xaml
     /// </summary>
-    public partial class CheckupReport : UserControl
+    public partial class LabResultMass : UserControl
     {
-        public CheckupReport()
+        public LabResultMass()
         {
             InitializeComponent();
             pivotData.CustomCellAppearance += PivotData_CustomCellAppearance;

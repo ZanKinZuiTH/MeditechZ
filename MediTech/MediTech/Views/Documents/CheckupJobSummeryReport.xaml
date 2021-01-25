@@ -7,11 +7,148 @@
              xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" 
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d"
              DataContext="{Binding Path=CheckupJobSummeryReportViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="450" d:DesignWidth="1200">
     <Grid>
-            
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Payor" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="400"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                    </dxg:GridControl.View>
+                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Job">
+                    <dxg:LookUpEdit x:Name="lkeCompanyName" ItemsSource="{Binding CheckupJobContactList}" 
+                                      SelectedItem="{Binding SelectCheckupJobContact}"
+                                      ValueMember="CheckupJobContactUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="600"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.PopupContentTemplate>
+                            <ControlTemplate>
+                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView
+                        x:Name="View"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                    </dxg:GridControl.View>
+                                    <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                    <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                    <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                    <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                </dxg:GridControl>
+                            </ControlTemplate>
+                        </dxg:LookUpEdit.PopupContentTemplate>
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="DateFrom">
+                    <dxe:DateEdit x:Name="dteFrom" DateTime="{Binding DateFrom}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem  Label="DateTo">
+                    <dxe:DateEdit x:Name="dteTo" DateTime="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem >
+                <dx:SimpleButton Width="80" Command="{Binding SearchCommand}" HorizontalAlignment="Right" 
+                                     Height="25" Content="ค้นหา"/>
+            </dxlc:LayoutItem>
+            <dxpg:PivotGridControl Name="pivotData" DataSource="{Binding PivotCheckupJobData}"
+                                   ScrollViewer.HorizontalScrollBarVisibility="Visible"
+                                   ShowGrandTotalsForSingleValues="False"
+                                   AllowCrossGroupVariation="False"
+                                   RowTotalsLocation="Near"
+                                   MergeRowFieldValues="True"
+                                   ShowDataHeaders="False"
+                                   ShowFilterHeaders="False"
+                                   ShowColumnHeaders="False"
+                                   ShowRowGrandTotalHeader="True"
+                                   ShowRowGrandTotals="True"
+                                   PrintColumnHeaders="False"
+                                   PrintDataHeaders="False"
+                                   AllowExpand="False"
+                                   ShowColumnTotals="False"
+                                   ShowColumnGrandTotalHeader="True"
+                                   FixedRowHeaders="False"
+                                   ShowColumnGrandTotals="True"
+                                   ShowRowTotals="False">
+                <dxpg:PivotGridControl.Fields>
+                    <dxpg:PivotGridField Area="RowArea" Caption="HN" FieldName="PatientID" AreaIndex="0"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="EmployeeID" Width="90"  FieldName="EmployeeID" AreaIndex="1"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="คำนำหน้า" Width="90" FieldName="Title" AreaIndex="2"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="ชื่อ" FieldName="FirstName" AreaIndex="3"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="นามสกุล" FieldName="LastName" AreaIndex="4"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="เพศ" FieldName="Gender" AreaIndex="5"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="อายุ" Width="70" FieldName="Age" AreaIndex="6"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="บริษัท" FieldName="CompanyName"  AreaIndex="7" />
+                    <dxpg:PivotGridField Area="RowArea" Caption="แผนก" FieldName="Department"  AreaIndex="8" />
+                    <dxpg:PivotGridField Area="RowArea" Caption="ตำแหน่ง" FieldName="Position"  AreaIndex="9"/>
+                    <dxpg:PivotGridField Area="RowArea" Caption="วันที่ตรวจ" Width="90"  FieldName="StartDttm" AreaIndex="10" ValueFormat="dd/MM/yyyy"/>
+                </dxpg:PivotGridControl.Fields>
+            </dxpg:PivotGridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                <dxlc:LayoutItem >
+                    <dx:SimpleButton Width="110" Command="{Binding ExportToExcelCommand}"
+                                     Height="25" Content="Export To Excel"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="Cancel"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
     </Grid>
 </UserControl>

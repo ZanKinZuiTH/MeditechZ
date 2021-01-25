@@ -15,7 +15,7 @@ using MediTech.Reports.Operating.Checkup.RiskBook;
 
 namespace MediTech.ViewModels
 {
-    public class CheckupReportViewModel : MediTechViewModelBase
+    public class LabResultMassViewModel : MediTechViewModelBase
     {
         #region Properties
 
@@ -166,7 +166,7 @@ namespace MediTech.ViewModels
 
         #region Method
 
-        public CheckupReportViewModel()
+        public LabResultMassViewModel()
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
@@ -193,13 +193,12 @@ namespace MediTech.ViewModels
                 string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
                 if (fileName != "")
                 {
-                    CheckupReport view = (CheckupReport)this.View;
+                    LabResultMass view = (LabResultMass)this.View;
                     view.pivotData.ExportToXlsx(fileName);
                     OpenFile(fileName);
                 }
 
             }
-            (this.View as CheckupReport).pivotData.ExportToXlsx(@"C:\Users\asus\Desktop\text.xlsx");
         }
         void Search()
         {

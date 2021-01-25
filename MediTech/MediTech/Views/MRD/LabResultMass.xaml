@@ -6,7 +6,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
              xmlns:cc="clr-namespace:MediTech.CustomControl"
-             xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" x:Class="MediTech.Views.CheckupReport"
+             xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" x:Class="MediTech.Views.LabResultMass"
              mc:Ignorable="d"
              d:DesignHeight="600" d:DesignWidth="1200">
     <UserControl.Resources>
@@ -133,7 +133,8 @@
                                            ShowColumnTotals="False" 
                                            ShowColumnGrandTotalHeader="False" 
                                            ShowColumnGrandTotals="False"
-                                           ShowRowTotals="False">
+                                           ShowRowTotals="False"
+                                           FixedRowHeaders="False">
                         <dxpg:PivotGridControl.Fields>
                             <dxpg:PivotGridField Area="RowArea" Caption="HN" FieldName="PatientID" AreaIndex="0"/>
                             <dxpg:PivotGridField Area="RowArea" Caption="EmployeeID" Width="90"  FieldName="EmployeeID" AreaIndex="1"/>

@@ -103,6 +103,10 @@ namespace MediTech.ViewModels
                 {
                     ChangeView(new PatientSummeryReport(), SelectReport.Name, this.View);
                 }
+                else if(SelectReport.ViewCode == "CHKJRP")
+                {
+                    ChangeView(new CheckupJobSummeryReport(), SelectReport.Name, this.View);
+                }
             }
         }
 
