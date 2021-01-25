@@ -736,6 +736,7 @@ namespace MediTechWebApi.Controllers
                             newCheckupRuleItem.Hight = item.Hight;
                             newCheckupRuleItem.Text = item.Text;
                             newCheckupRuleItem.Operator = item.Operator;
+                            newCheckupRuleItem.NotEqual = item.NotEqual;
                             newCheckupRuleItem.NonCheckup = item.NonCheckup;
                             newCheckupRuleItem.CUser = userID;
                             newCheckupRuleItem.CWhen = now;
@@ -840,6 +841,7 @@ namespace MediTechWebApi.Controllers
                                                    Text = j.Text,
                                                    Low = j.Low,
                                                    Hight = j.Hight,
+                                                   NotEqual = j.NotEqual,
                                                    NonCheckup = j.NonCheckup
                                                }).ToList();
             return data;
@@ -867,6 +869,7 @@ namespace MediTechWebApi.Controllers
                 checkupRuleItem.Hight = chekcupRuleItemModel.Hight;
                 checkupRuleItem.Text = chekcupRuleItemModel.Text;
                 checkupRuleItem.Operator = chekcupRuleItemModel.Operator;
+                checkupRuleItem.NotEqual = chekcupRuleItemModel.NotEqual;
                 checkupRuleItem.NonCheckup = chekcupRuleItemModel.NonCheckup;
                 checkupRuleItem.MUser = userID;
                 checkupRuleItem.MWhen = now;
@@ -1481,6 +1484,7 @@ namespace MediTechWebApi.Controllers
                                                 Hight = itm.Hight,
                                                 Text = itm.Text,
                                                 Operator = itm.Operator,
+                                                NotEqual = itm.NotEqual,
                                                 NonCheckup = itm.NonCheckup
                                             }).ToList();
                 }

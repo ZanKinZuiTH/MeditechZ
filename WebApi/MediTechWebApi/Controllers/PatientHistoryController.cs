@@ -50,6 +50,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -79,6 +80,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -108,6 +110,7 @@ namespace MediTechWebApi.Controllers
                     BPDio = p.BPDio,
                     OxygenSat = p.OxygenSat,
                     WaistCircumference = p.WaistCircumference,
+                    Comments = p.Comments,
                     RecordedBy = SqlFunction.fGetCareProviderName(p.CUser)
                 }).ToList();
 
@@ -146,6 +149,7 @@ namespace MediTechWebApi.Controllers
                 vitalsign.BPDio = model.BPDio;
                 vitalsign.OxygenSat = model.OxygenSat;
                 vitalsign.WaistCircumference = model.WaistCircumference;
+                vitalsign.Comments = model.Comments;
                 vitalsign.MUser = userID;
                 vitalsign.MWhen = now;
                 vitalsign.StatusFlag = "A";

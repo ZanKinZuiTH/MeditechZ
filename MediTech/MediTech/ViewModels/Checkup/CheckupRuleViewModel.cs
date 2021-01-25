@@ -173,6 +173,7 @@ namespace MediTech.ViewModels
                 if (_ValueLow != null)
                 {
                     TextualValue = null;
+                    NotEqual = null;
                     NonCheckup = null;
                 }
             }
@@ -189,6 +190,7 @@ namespace MediTech.ViewModels
                 if (_ValueHigh != null)
                 {
                     TextualValue = null;
+                    NotEqual = null;
                     NonCheckup = null;
                 }
             }
@@ -240,9 +242,27 @@ namespace MediTech.ViewModels
                     ValueLow = null;
                     ValueHigh = null;
                     TextualValue = null;
+                    NotEqual = null;
                 }
             }
         }
+
+        private bool? _NotEqual;
+
+        public bool? NotEqual
+        {
+            get { return _NotEqual; }
+            set {
+                Set(ref _NotEqual, value);
+                if (_NotEqual != null && _NotEqual.Value != false)
+                {
+                    ValueLow = null;
+                    ValueHigh = null;
+                    NonCheckup = null;
+                }
+            }
+        }
+
 
 
         private List<CheckupRuleItemModel> _CheckupRuleItems;
@@ -266,6 +286,7 @@ namespace MediTech.ViewModels
                     ValueLow = SelectCheckupRuleItem.Low;
                     ValueHigh = SelectCheckupRuleItem.Hight;
                     TextualValue = SelectCheckupRuleItem.Text;
+                    NotEqual = SelectCheckupRuleItem.NotEqual;
                     NonCheckup = SelectCheckupRuleItem.NonCheckup;
                     if (SelectCheckupRuleItem.Operator == "And")
                     {
@@ -649,6 +670,7 @@ namespace MediTech.ViewModels
                 newRuleItem.Low = ValueLow;
                 newRuleItem.Hight = ValueHigh;
                 newRuleItem.Text = TextualValue;
+                newRuleItem.NotEqual = NotEqual;
                 newRuleItem.NonCheckup = NonCheckup;
                 string Operator = "";
                 if (OperatorAnd)
@@ -700,6 +722,7 @@ namespace MediTech.ViewModels
                     newRuleItem.Low = ValueLow;
                     newRuleItem.Hight = ValueHigh;
                     newRuleItem.Text = TextualValue;
+                    newRuleItem.NotEqual = NotEqual;
                     newRuleItem.NonCheckup = NonCheckup;
                     string Operator = "";
                     if (OperatorAnd)

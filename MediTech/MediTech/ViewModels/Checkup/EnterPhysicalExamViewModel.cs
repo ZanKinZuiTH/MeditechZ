@@ -123,7 +123,7 @@ namespace MediTech.ViewModels
 
                                 item.CheckDataList.Add(values[i]);
                             }
-                            else if(values[i] != "ไม่พบความผิดปกติ" && values[i] != "ปฏิเสธ")
+                            else if (values[i] != "ไม่พบความผิดปกติ" && values[i] != "ปฏิเสธ")
                             {
                                 if (item.TokenDataList == null)
                                     item.TokenDataList = new List<object>();
@@ -211,8 +211,15 @@ namespace MediTech.ViewModels
                 }
 
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
-                PatientVitalSign.RecordedDttm = DateTime.Now;
-                DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
+                if (PatientVitalSign.Weight != null || PatientVitalSign.Height != null || PatientVitalSign.BPSys != null || PatientVitalSign.BPDio != null
+                    || PatientVitalSign.Pulse != null || PatientVitalSign.WaistCircumference != null
+                    || !string.IsNullOrEmpty(PatientVitalSign.Comments))
+                {
+                    PatientVitalSign.Comments = !string.IsNullOrEmpty(PatientVitalSign.Comments) ? PatientVitalSign.Comments.Trim() : null;
+                    PatientVitalSign.RecordedDttm = DateTime.Now;
+                    DataService.PatientHistory.ManagePatientVitalSign(PatientVitalSign, AppUtil.Current.UserID);
+                }
+
                 DataService.Checkup.SaveOccmedExamination(reviewRequestDetail, AppUtil.Current.UserID);
                 OrderStatus = "Reviewed";
 

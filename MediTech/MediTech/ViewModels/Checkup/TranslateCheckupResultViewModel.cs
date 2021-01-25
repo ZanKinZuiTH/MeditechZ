@@ -484,12 +484,15 @@ namespace MediTech.ViewModels
                     var vitalSign = dataVital.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
                     if (vitalSign.BMIValue != null)
                     {
-                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328,GPRSTUID = 3177, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
+                        ResultComponentModel bmiComponent = new ResultComponentModel() { ResultItemUID = 328, GPRSTUID = 3177, ResultItemCode = "PEBMI", ResultItemName = "BMI (ดัชนีมวลกาย)", ResultValue = vitalSign.BMIValue.ToString() };
+                        ResultComponentModel vitalSignComment = new ResultComponentModel() { ResultItemUID = 116, GPRSTUID = 3177, ResultItemCode = "PAR67", ResultItemName = "Comment", ResultValue = vitalSign.Comments ?? "" };
                         resultComponent.Add(bmiComponent);
+                        resultComponent.Add(vitalSignComment);
                     }
+
                     if (vitalSign.BPSys != null)
                     {
-                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, GPRSTUID = 3178,ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
+                        ResultComponentModel sdpComponent = new ResultComponentModel() { ResultItemUID = 329, GPRSTUID = 3178, ResultItemCode = "PESBP", ResultItemName = "ความดันโลหิต (SBP)", ResultValue = vitalSign.BPSys.ToString() };
                         resultComponent.Add(sdpComponent);
                     }
                     if (vitalSign.BPDio != null)
@@ -502,6 +505,7 @@ namespace MediTech.ViewModels
                         ResultComponentModel pluseComponent = new ResultComponentModel() { ResultItemUID = 331, GPRSTUID = 3178, ResultItemCode = "PEPLUSE", ResultItemName = "ชีพจร(Pulse)", ResultValue = vitalSign.Pulse.ToString() };
                         resultComponent.Add(pluseComponent);
                     }
+
                 }
 
                 if (radiology != null)
@@ -601,8 +605,19 @@ namespace MediTech.ViewModels
                                         else if (!string.IsNullOrEmpty(ruleItem.Text))
                                         {
                                             string[] values = ruleItem.Text.Split(',');
-                                            string[] resultValues = resultItemValue.ResultValue.Split(',');
-                                            if (values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
+                                            string[] resultValues = resultItemValue.ResultValue?.Split(',');
+                                            bool flagCondition = false;
+
+                                            if (!(ruleItem.NotEqual ?? false) && values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
+                                            {
+                                                flagCondition = true;
+                                            }
+                                            else if ((ruleItem.NotEqual ?? false) && !values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
+                                            {
+                                                flagCondition = true;
+                                            }
+
+                                            if (flagCondition)
                                             {
                                                 isConrrect = true;
                                                 if (ruleItem.Operator == "Or")
@@ -955,15 +970,15 @@ namespace MediTech.ViewModels
 
                             if (!string.IsNullOrEmpty(conclusion))
                             {
-                                CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
-                                checkupResult.PatientUID = patientVisit.PatientUID;
-                                checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
-                                checkupResult.GPRSTUID = grpstUID;
-                                checkupResult.RABSTSUID = RABSTSUID;
-                                checkupResult.Description = description;
-                                checkupResult.Recommend = recommand;
-                                checkupResult.Conclusion = conclusion.Trim();
-                                DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
+                                //CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();
+                                //checkupResult.PatientUID = patientVisit.PatientUID;
+                                //checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
+                                //checkupResult.GPRSTUID = grpstUID;
+                                //checkupResult.RABSTSUID = RABSTSUID;
+                                //checkupResult.Description = description;
+                                //checkupResult.Recommend = recommand;
+                                //checkupResult.Conclusion = conclusion.Trim();
+                                //DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
                             }
                         }
                     }

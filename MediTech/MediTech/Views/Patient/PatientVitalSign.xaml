@@ -9,7 +9,7 @@
              mc:Ignorable="d"
              DataContext="{Binding PatientVitalSignModel,Source={StaticResource Locator}}"
              xmlns:ban="clr-namespace:MediTech.CustomControl.Banner" Padding="10"
-             d:DesignHeight="560" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -138,13 +138,24 @@
                         </dxlc:LayoutGroup>
                         
                         <dxlc:LayoutGroup Orientation="Horizontal">
-                            <TextBlock Name="lblWaist" Text=" Waist Circumference" FontSize="14" />
+                            <TextBlock Name="lblWaist" Text="Waist Circumference" FontSize="14" />
                             <dxe:TextEdit  Height="25" EditValue="{Binding WaistCircumference}"
                                Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
                                  Name="txtWaist"
                                  Width="100" 
                                  VerticalAlignment="Top"/>
                             <TextBlock Name="lblWaistUnit" Text="Cms" FontSize="14" />
+                            <TextBlock />
+                            <TextBlock />
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup>
+                            <TextBlock Name="lblNote" Text="Note" FontSize="14" />
+                            <dxe:TextEdit  Height="25" EditValue="{Binding Comment}"
+                                           AllowNullInput="True"
+                                 Name="txtNote"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                            <TextBlock Text="" FontSize="14" />
                             <TextBlock />
                             <TextBlock />
                         </dxlc:LayoutGroup>
@@ -318,6 +329,17 @@
                                  Width="100" 
                                  VerticalAlignment="Top"/>
                                 <TextBlock Name="lblReWaistUnit" Text="Inch" FontSize="14" />
+                                <TextBlock />
+                                <TextBlock />
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup>
+                                <TextBlock Name="lblReNote" Text="Note" FontSize="14" />
+                                <dxe:TextEdit  Height="25" EditValue="{Binding CommentRe}"
+                                               AllowNullInput="True" 
+                                 Name="txtReNote"
+                                 Width="100" 
+                                 VerticalAlignment="Top"/>
+                                <TextBlock Text="" FontSize="14" />
                                 <TextBlock />
                                 <TextBlock />
                             </dxlc:LayoutGroup>
