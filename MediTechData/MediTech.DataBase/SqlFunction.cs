@@ -1908,6 +1908,20 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
+
+        public static DataTable pRPTCheckupJobOrderSummary(int checkupjobUID, DateTime? dateFrom, DateTime? dateTo)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupJobOrderSummary", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupjobUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
         public static DataTable pRPTPatientWellness(long patientUID, long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();

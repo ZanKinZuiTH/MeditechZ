@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Model.Report;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -32,6 +33,7 @@ namespace MediTech.ViewModels
                 if (_SelectPayorDetail != null)
                 {
                     CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
         }
@@ -77,9 +79,9 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private List<PatientResultComponentModel> _PivotCheckupJobData;
+        private List<CheckupJobOrderModel> _PivotCheckupJobData;
 
-        public List<PatientResultComponentModel> PivotCheckupJobData
+        public List<CheckupJobOrderModel> PivotCheckupJobData
         {
             get { return _PivotCheckupJobData; }
             set { Set(ref _PivotCheckupJobData, value); }
@@ -119,10 +121,21 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
-
+        public CheckupJobSummeryReportViewModel()
+        {
+            PayorDetails = DataService.MasterData.GetPayorDetail();
+            DateFrom = DateTime.Now;
+            DateTo = null;
+        }
         void SearchCheckJobSummery()
         {
-
+            if (SelectCheckupJobContact == null)
+            {
+                WarningDialog("กรูณาเลือก Job");
+                return;
+            }
+            var checkupJobOrderData = DataService.Reports.CheckupJobOrderSummary(SelectCheckupJobContact.CheckupJobContactUID, DateFrom, DateTo);
+            PivotCheckupJobData = checkupJobOrderData?.OrderBy(p => p.OrderSetName).ToList();
         }
         void ExportPivotGridToExcel()
         {

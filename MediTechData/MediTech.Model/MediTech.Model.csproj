@@ -171,6 +171,7 @@
     <Compile Include="Report\OrderRequestCardModel.cs" />
     <Compile Include="Report\PatientBookingModel.cs" />
     <Compile Include="Report\PatientLabResult.cs" />
+    <Compile Include="Report\CheckupJobOrderModel.cs" />
     <Compile Include="Report\PatientResultRadiology.cs" />
     <Compile Include="LookUp\LookupItemModel.cs" />
     <Compile Include="LookUp\LookupReferenceValueModel.cs" />

@@ -632,6 +632,22 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("CheckupJobOrderSummary")]
+        [HttpGet]
+        public List<CheckupJobOrderModel> CheckupJobOrderSummary(int checkupjobUID, DateTime? dateFrom, DateTime? dateTo)
+        {
+            List<CheckupJobOrderModel> data = null;
+
+            DataTable dt = SqlDirectStore.pRPTCheckupJobOrderSummary(checkupjobUID, dateFrom, dateTo);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<CheckupJobOrderModel>();
+                data = dt.ToList<CheckupJobOrderModel>();
+            }
+
+            return data;
+        }
+
 
         [Route("PatientInfomationWellness")]
         [HttpGet]

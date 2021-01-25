@@ -77,6 +77,7 @@ namespace MediTech.ViewModels
                 if (_SelectPayorDetail != null)
                 {
                     CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
         }

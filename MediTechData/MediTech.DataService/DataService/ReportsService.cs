@@ -170,7 +170,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CheckupJobOrderModel> CheckupJobOrderSummary(int checkupjobUID, DateTime? dateFrom, DateTime? dateTo)
+        {
+            string requestApi = string.Format("Api/Report/CheckupJobOrderSummary?checkupjobUID={0}&dateFrom={1:MM/dd/yyyy}&dateTo={2:MM/dd/yyyy}", checkupjobUID, dateFrom, dateTo);
+            List<CheckupJobOrderModel> data = MeditechApiHelper.Get<List<CheckupJobOrderModel>>(requestApi);
 
+            return data;
+        }
         public PatientVisitModel PatientInfomationWellness(long patientUID, long patientVisitUID)
         {
             string requestApi = string.Format("Api/Report/PatientInfomationWellness?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
