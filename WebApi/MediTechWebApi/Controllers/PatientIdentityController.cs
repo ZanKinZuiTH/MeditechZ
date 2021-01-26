@@ -181,51 +181,6 @@ namespace MediTechWebApi.Controllers
             DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate);
 
             List<PatientInformationModel> data = dataTable.ToList<PatientInformationModel>();
-            //List<PatientInformationModel> data = (from pa in db.Patient
-            //                                      join pdd in db.PatientAddress on
-            //                                      new
-            //                                      {
-            //                                          key1 = pa.UID,
-            //                                          key2 = SqlFunction.fGetRfValUIDByCode("ADTYP", "DEFADD"),
-            //                                          key3 = "A"
-            //                                      }
-            //                                      equals
-            //                                      new
-            //                                      {
-            //                                          key1 = pdd.PatientUID,
-            //                                          key2 = pdd.ADTYPUID ?? 0,
-            //                                          key3 = pdd.StatusFlag
-            //                                      }
-            //                                      into joined
-            //                                      from j in joined.DefaultIfEmpty()
-            //                                      where pa.StatusFlag == "A"
-            //                                      && (pa.FirstName.Contains(firstName) || string.IsNullOrEmpty(firstName))
-            //                                      && (pa.LastName.Contains(lastName) || string.IsNullOrEmpty(lastName))
-            //                                      && (pa.IDCard == idCard || string.IsNullOrEmpty(idCard))
-            //                                      && (pa.DOBDttm == birthDttm || birthDttm == null)
-            //                                      select new PatientInformationModel
-            //                                      {
-            //                                          PatientUID = pa.UID,
-            //                                          AgeString = pa.DOBDttm.Value != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
-            //                                          BirthDttm = pa.DOBDttm.Value,
-            //                                          DOBComputed = pa.DOBComputed,
-            //                                          Email = pa.Email,
-            //                                          FirstName = pa.FirstName,
-            //                                          LastName = pa.LastName,
-            //                                          MobilePhone = pa.MobilePhon,
-            //                                          NatinalID = pa.IDCard,
-            //                                          NATNLUID = pa.NATNLUID,
-            //                                          PatientID = pa.PatientID,
-            //                                          RELGNUID = pa.RELGNUID,
-            //                                          SecondPhone = pa.SecondPhone,
-            //                                          SEXXXUID = pa.SEXXXUID,
-            //                                          TITLEUID = pa.TITLEUID,
-            //                                          Address = j.Address,
-            //                                          AmphurUID = j.AmphurUID,
-            //                                          DistrictUID = j.DistrictUID,
-            //                                          ProvinceUID = j.ProvinceUID,
-            //                                          ZipCode = j.ZipCode,
-            //                                      }).Take(50).ToList();
 
             return data;
         }

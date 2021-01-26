@@ -585,13 +585,6 @@ namespace MediTech.ViewModels
                                         ((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                                 }
                             }
-                            //if (AppUtil.Current.ApplicationId == "BRXG")
-                            //{
-                            //    if (patient == null)
-                            //    {
-                            //        CurrentImportedData.BN = string.Empty;
-                            //    }
-                            //}
                         }
                         else if (!string.IsNullOrEmpty(drow["IDCard"].ToString()))
                         {
@@ -622,8 +615,21 @@ namespace MediTech.ViewModels
                             CurrentImportedData.BN = patient.PatientID;
 
                             CurrentImportedData.PatientUID = patient.PatientUID;
-                            //CurrentImportedData.RegistrationDTTM = patient.RegisterDate.Value;
 
+                            if (string.IsNullOrEmpty(CurrentImportedData.DateOfBirth) && patient.BirthDttm != null)
+                            {
+                                CurrentImportedData.BirthDttm = patient.BirthDttm;
+                                CurrentImportedData.DateOfBirth = patient.BirthDttm?.ToString("dd/MM/yyyy");
+                            }
+                            if (CurrentImportedData.SEXXXUID == null && patient.SEXXXUID != null)
+                            {
+                                CurrentImportedData.SEXXXUID = patient.SEXXXUID;
+                            }
+
+                            if (CurrentImportedData.TITLEUID == null && patient.TITLEUID != null)
+                            {
+                                CurrentImportedData.TITLEUID = patient.TITLEUID;
+                            }
                             PatientVisitModel visitData = DataService.PatientIdentity.GetLatestPatientVisit(patient.PatientUID);
 
                             if (visitData != null)

@@ -339,7 +339,6 @@ namespace MediTech.ViewModels
 
         #endregion
 
-
         #region Method
 
         public SpecimenAcceptViewModel()
