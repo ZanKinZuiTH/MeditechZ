@@ -40,6 +40,8 @@
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Age = new DevExpress.XtraReports.Parameters.Parameter();
             this.BirthDate = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Payor = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -48,7 +50,8 @@
             this.xrLabel2,
             this.xrLabel4,
             this.xrLabel5,
-            this.xrBarCode1});
+            this.xrBarCode1,
+            this.xrLabel1});
             this.Detail.HeightF = 95F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -59,10 +62,10 @@
             // 
             this.xrLabel2.CanGrow = false;
             this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(10.35089F, 30.86842F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(10.35089F, 29.69654F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(182.9298F, 13.8333F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(182.9298F, 15.00518F);
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.StylePriority.UseTextAlignment = false;
             this.xrLabel2.Text = "DOB : [Parameters.BirthDate] Age: [Parameters.Age]";
@@ -102,12 +105,12 @@
             this.xrBarCode1.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrBarCode1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.HN, "Text", "")});
-            this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(10.21929F, 44.70171F);
+            this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(10.21929F, 55.53505F);
             this.xrBarCode1.Module = 1F;
             this.xrBarCode1.Name = "xrBarCode1";
             this.xrBarCode1.Padding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 0, 100F);
             this.xrBarCode1.ShowText = false;
-            this.xrBarCode1.SizeF = new System.Drawing.SizeF(183.5F, 34.6531F);
+            this.xrBarCode1.SizeF = new System.Drawing.SizeF(183.5F, 23.81976F);
             this.xrBarCode1.StylePriority.UseTextAlignment = false;
             this.xrBarCode1.Symbology = code128Generator1;
             this.xrBarCode1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -150,6 +153,28 @@
             this.BirthDate.Name = "BirthDate";
             this.BirthDate.Visible = false;
             // 
+            // xrLabel1
+            // 
+            this.xrLabel1.CanGrow = false;
+            this.xrLabel1.CanShrink = true;
+            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Payor, "Text", "")});
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(10.3509F, 44.70172F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(183.3684F, 10.83333F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel1.WordWrap = false;
+            // 
+            // Payor
+            // 
+            this.Payor.Description = "Parameter1";
+            this.Payor.Name = "Payor";
+            this.Payor.Visible = false;
+            // 
             // PatientSticker
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -165,7 +190,8 @@
             this.PatientName,
             this.Age,
             this.HN,
-            this.BirthDate});
+            this.BirthDate,
+            this.Payor});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -184,5 +210,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.UI.XRBarCode xrBarCode1;
         private DevExpress.XtraReports.Parameters.Parameter BirthDate;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.Parameters.Parameter Payor;
     }
 }
