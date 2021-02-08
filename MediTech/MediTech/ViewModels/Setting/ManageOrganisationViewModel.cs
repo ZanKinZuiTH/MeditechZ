@@ -65,6 +65,15 @@ namespace MediTech.ViewModels
             set { Set(ref _MobileNo, value); }
         }
 
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { Set(ref _Email, value); }
+        }
+
+
         private string _FaxNo;
 
         public string FaxNo
@@ -129,6 +138,14 @@ namespace MediTech.ViewModels
         {
             get { return _Address; }
             set { Set(ref _Address, value); }
+        }
+
+        private string _Address2;
+
+        public string Address2
+        {
+            get { return _Address2; }
+            set { Set(ref _Address2, value); }
         }
 
         public bool SuppressZipCodeEvent { get; set; }
@@ -545,8 +562,10 @@ namespace MediTech.ViewModels
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
             Address = model.Address;
+            Address2 = model.Address2;
             TINNo = model.TINNo;
             LicenseNo = model.LicenseNo;
+            Email = model.Email;
             IsStock = model.IsStock == "Y" ? true : false;
 
             if (HealthOrganisationTypes != null)
@@ -583,6 +602,7 @@ namespace MediTech.ViewModels
             model.ActiveFrom = ActiveFrom;
             model.ActiveTo = ActiveTo;
             model.Address = Address;
+            model.Address2 = Address2;
             model.HOTYPUID = SelectHealthOrganisationType.Key;
             model.IsStock = IsStock ? "Y" : "N";
             model.TINNo = TINNo;
@@ -591,7 +611,7 @@ namespace MediTech.ViewModels
             model.AmphurUID = SelectedProvince != null ? SelectedAmphur.Key : (int?)null;
             model.DistrictUID = SelectedProvince != null ? SelectedDistrict.Key : (int?)null;
             model.ZipCode = ZipCode;
-
+            model.Email = Email;
             model.IDFormat = IDFormat;
             model.IDLength = IDLength;
             model.NumberValue = IDNumberValue;

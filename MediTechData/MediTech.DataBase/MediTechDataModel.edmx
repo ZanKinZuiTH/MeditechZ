@@ -559,6 +559,7 @@
           <Property Name="FaxNo" Type="nvarchar" MaxLength="50" />
           <Property Name="Email" Type="nvarchar" MaxLength="100" />
           <Property Name="Address" Type="nvarchar" MaxLength="200" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="200" />
           <Property Name="IsStock" Type="nvarchar" MaxLength="1" />
           <Property Name="ProvinceUID" Type="int" />
           <Property Name="AmphurUID" Type="int" />
@@ -8219,6 +8220,7 @@
           <Property Name="FaxNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Address" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="IsStock" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="ProvinceUID" Type="Int32" />
           <Property Name="AmphurUID" Type="Int32" />
@@ -13247,6 +13249,7 @@
                 <ScalarProperty Name="AmphurUID" ColumnName="AmphurUID" />
                 <ScalarProperty Name="ProvinceUID" ColumnName="ProvinceUID" />
                 <ScalarProperty Name="IsStock" ColumnName="IsStock" />
+                <ScalarProperty Name="Address2" ColumnName="Address2" />
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
                 <ScalarProperty Name="FaxNo" ColumnName="FaxNo" />

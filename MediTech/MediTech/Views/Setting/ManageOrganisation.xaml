@@ -64,6 +64,9 @@
                                           DisplayMember="Display"
                                           ValueMember="Key"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="E-mail">
+                            <dxe:TextEdit EditValue="{Binding Email}"/>
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="เบอร์โทร">
                             <dxe:TextEdit Text="{Binding MobileNo}"/>
                         </dxlc:LayoutItem>
@@ -86,6 +89,9 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="ทีอยู่">
                             <dxe:TextEdit EditValue="{Binding Address}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ทีอยู่2">
+                            <dxe:TextEdit EditValue="{Binding Address2}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="จังหวัด">
                             <dxe:ComboBoxEdit DisplayMember="Display"                                    
@@ -126,7 +132,6 @@
                                                     SelectedItem="{Binding SelectedZipCode,Mode=OneWayToSource}"
                                                     />
                         </dxlc:LayoutItem>
-       
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Width="150">
                         <dxlc:LayoutItem/>

@@ -383,6 +383,7 @@ namespace MediTech.ViewModels
                 AppointmentCard rpt = new AppointmentCard();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
+                rpt.Parameters["OrganisationUID"].Value = SelectOrganisation.HealthOrganisationUID;
                 rpt.Parameters["BookUID"].Value = SelectBooking.BookingUID;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;

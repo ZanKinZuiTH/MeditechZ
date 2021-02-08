@@ -86,13 +86,14 @@
             this.xrCheckBox18 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddress2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.DateNow = new DevExpress.XtraReports.UI.CalculatedField();
+            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -435,10 +436,10 @@
             this.xrCheckBox18,
             this.xrLabel9,
             this.xrLabel2,
-            this.xrLabel4,
-            this.xrLabel3,
+            this.lbAddress2,
+            this.lbAddress,
             this.xrPictureBox1,
-            this.xrLabel1,
+            this.lbOrganisation,
             this.xrLabel18,
             this.xrLabel26,
             this.xrLine1,
@@ -523,7 +524,7 @@
             this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel33.SizeF = new System.Drawing.SizeF(160.2619F, 23F);
             this.xrLabel33.StylePriority.UseFont = false;
-            this.xrLabel33.Text = "ชื่่อ-นามสกุล(PatientName) :";
+            this.xrLabel33.Text = "ชื่อ-นามสกุล(PatientName) :";
             // 
             // xrLabel34
             // 
@@ -696,27 +697,31 @@
             this.xrLabel2.Text = "บัตรนัด /APPOINTMENT SLIP";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrLabel4
+            // lbAddress2
             // 
-            this.xrLabel4.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 86.64583F);
-            this.xrLabel4.Name = "xrLabel4";
-            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
-            this.xrLabel4.StylePriority.UseFont = false;
-            this.xrLabel4.Text = "155/196 moo 2, Thapma,Mueang,Rayong 21000 Tel. 033-060399  e-mail:brxggroup@brxgg" +
+            this.lbAddress2.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAddress2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 86.64583F);
+            this.lbAddress2.Name = "lbAddress2";
+            this.lbAddress2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbAddress2.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
+            this.lbAddress2.StylePriority.UseFont = false;
+            this.lbAddress2.StylePriority.UseTextAlignment = false;
+            this.lbAddress2.Text = "155/196 moo 2, Thapma,Mueang,Rayong 21000 Tel. 033-060399  e-mail:brxggroup@brxgg" +
     "roup.com";
+            this.lbAddress2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // xrLabel3
+            // lbAddress
             // 
-            this.xrLabel3.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(0F, 73.43151F);
-            this.xrLabel3.Name = "xrLabel3";
-            this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
-            this.xrLabel3.StylePriority.UseFont = false;
-            this.xrLabel3.Text = "155/196 ม. 2 ต.ทับมา อำเภอเมืองระยอง จังหวัดระยอง 21000 โทรศัพท์ 033-060399 e-mai" +
+            this.lbAddress.Font = new System.Drawing.Font("Tahoma", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(0F, 73.43151F);
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbAddress.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
+            this.lbAddress.StylePriority.UseFont = false;
+            this.lbAddress.StylePriority.UseTextAlignment = false;
+            this.lbAddress.Text = "155/196 ม. 2 ต.ทับมา อำเภอเมืองระยอง จังหวัดระยอง 21000 โทรศัพท์ 033-060399 e-mai" +
     "l:brxggroup@brxggroup.com";
+            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrPictureBox1
             // 
@@ -728,15 +733,17 @@
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.xrPictureBox1.StylePriority.UseBorderWidth = false;
             // 
-            // xrLabel1
+            // lbOrganisation
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Times New Roman", 9F);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 56.09818F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(448.0953F, 21.33334F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.Text = "บีอาร์เอ็กซ์จีสหคลินิค (BRXG Polyclinic) ใบอนุญาตเลขที่ 21110000362";
+            this.lbOrganisation.Font = new System.Drawing.Font("Times New Roman", 9F);
+            this.lbOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(0F, 56.09818F);
+            this.lbOrganisation.Name = "lbOrganisation";
+            this.lbOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbOrganisation.SizeF = new System.Drawing.SizeF(448.0953F, 21.33334F);
+            this.lbOrganisation.StylePriority.UseFont = false;
+            this.lbOrganisation.StylePriority.UseTextAlignment = false;
+            this.lbOrganisation.Text = "บีอาร์เอ็กซ์จีสหคลินิค (BRXG Polyclinic) ใบอนุญาตเลขที่ 21110000362";
+            this.lbOrganisation.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel18
             // 
@@ -761,6 +768,13 @@
             this.DateNow.Expression = "GetDate(Now())";
             this.DateNow.Name = "DateNow";
             // 
+            // OrganisationUID
+            // 
+            this.OrganisationUID.Name = "OrganisationUID";
+            this.OrganisationUID.Type = typeof(long);
+            this.OrganisationUID.ValueInfo = "0";
+            this.OrganisationUID.Visible = false;
+            // 
             // AppointmentCard
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -782,7 +796,8 @@
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
-            this.BookUID});
+            this.BookUID,
+            this.OrganisationUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -826,10 +841,10 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel26;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel4;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.XRLabel lbAddress2;
+        private DevExpress.XtraReports.UI.XRLabel lbAddress;
         private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRLabel lbOrganisation;
         private DevExpress.XtraReports.UI.XRLabel xrLabel18;
         private DevExpress.XtraReports.UI.XRLabel xrLabel29;
         private DevExpress.XtraReports.UI.XRLabel xrLabel28;
@@ -854,5 +869,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel21;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.CalculatedField DateNow;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
     }
 }

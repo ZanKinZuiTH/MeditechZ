@@ -19,6 +19,7 @@ namespace MediTech.Model
         public int HOTYPUID { get; set; }
         public string HealthOrganisationType { get; set; }
         public string Address { get; set; }
+        public string Address2 { get; set; }
         public string AddressFull { get; set; }
         public Nullable<int> ProvinceUID { get; set; }
         public string Province { get; set; }

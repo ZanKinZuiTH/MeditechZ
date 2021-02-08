@@ -111,12 +111,13 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrLabel38 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel37 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel36 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddress2Page1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddressPage1 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -814,49 +815,44 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel38,
-            this.xrLabel37,
-            this.xrLabel36});
+            this.lbFooterOrganisation,
+            this.lbAddress2Page1,
+            this.lbAddressPage1});
             this.PageFooter.HeightF = 56.54765F;
             this.PageFooter.Name = "PageFooter";
             // 
-            // xrLabel38
+            // lbFooterOrganisation
             // 
-            this.xrLabel38.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(239.9047F, 7.354126F);
-            this.xrLabel38.Name = "xrLabel38";
-            this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel38.SizeF = new System.Drawing.SizeF(448.0953F, 20.09827F);
-            this.xrLabel38.StylePriority.UseFont = false;
-            this.xrLabel38.StylePriority.UseTextAlignment = false;
-            this.xrLabel38.Text = "บีอาร์เอ็กซ์จีสหคลินิค (BRXG Polyclinic) ใบอนุญาตเลขที่ 21110000362";
-            this.xrLabel38.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(239.9047F, 7.354126F);
+            this.lbFooterOrganisation.Name = "lbFooterOrganisation";
+            this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbFooterOrganisation.SizeF = new System.Drawing.SizeF(448.0953F, 20.09827F);
+            this.lbFooterOrganisation.StylePriority.UseFont = false;
+            this.lbFooterOrganisation.StylePriority.UseTextAlignment = false;
+            this.lbFooterOrganisation.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
-            // xrLabel37
+            // lbAddress2Page1
             // 
-            this.xrLabel37.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(103.714F, 36.66667F);
-            this.xrLabel37.Name = "xrLabel37";
-            this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel37.SizeF = new System.Drawing.SizeF(584.2858F, 13.21432F);
-            this.xrLabel37.StylePriority.UseFont = false;
-            this.xrLabel37.StylePriority.UseTextAlignment = false;
-            this.xrLabel37.Text = "155/196 moo 2, Thapma,Mueang,Rayong 21000 Tel. 033-060399  e-mail:brxggroup@brxgg" +
-    "roup.com";
-            this.xrLabel37.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.lbAddress2Page1.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbAddress2Page1.LocationFloat = new DevExpress.Utils.PointFloat(103.714F, 36.66667F);
+            this.lbAddress2Page1.Name = "lbAddress2Page1";
+            this.lbAddress2Page1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbAddress2Page1.SizeF = new System.Drawing.SizeF(584.2858F, 13.21432F);
+            this.lbAddress2Page1.StylePriority.UseFont = false;
+            this.lbAddress2Page1.StylePriority.UseTextAlignment = false;
+            this.lbAddress2Page1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
-            // xrLabel36
+            // lbAddressPage1
             // 
-            this.xrLabel36.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrLabel36.LocationFloat = new DevExpress.Utils.PointFloat(103.714F, 23.45235F);
-            this.xrLabel36.Name = "xrLabel36";
-            this.xrLabel36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel36.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
-            this.xrLabel36.StylePriority.UseFont = false;
-            this.xrLabel36.StylePriority.UseTextAlignment = false;
-            this.xrLabel36.Text = "155/196 ม. 2 ต.ทับมา อำเภอเมืองระยอง จังหวัดระยอง 21000 โทรศัพท์ 033-060399 e-mai" +
-    "l:brxggroup@brxggroup.com";
-            this.xrLabel36.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
+            this.lbAddressPage1.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbAddressPage1.LocationFloat = new DevExpress.Utils.PointFloat(103.714F, 23.45235F);
+            this.lbAddressPage1.Name = "lbAddressPage1";
+            this.lbAddressPage1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbAddressPage1.SizeF = new System.Drawing.SizeF(584.2858F, 13.21431F);
+            this.lbAddressPage1.StylePriority.UseFont = false;
+            this.lbAddressPage1.StylePriority.UseTextAlignment = false;
+            this.lbAddressPage1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
             // objectDataSource1
             // 
@@ -879,6 +875,13 @@
             this.PatientVisitUID.ValueInfo = "0";
             this.PatientVisitUID.Visible = false;
             // 
+            // OrganisationUID
+            // 
+            this.OrganisationUID.Name = "OrganisationUID";
+            this.OrganisationUID.Type = typeof(long);
+            this.OrganisationUID.ValueInfo = "0";
+            this.OrganisationUID.Visible = false;
+            // 
             // ConfinedSpaceCertificate1
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -897,7 +900,8 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
-            this.PatientVisitUID});
+            this.PatientVisitUID,
+            this.OrganisationUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -990,8 +994,9 @@
         private DevExpress.XtraReports.UI.XRLabel lbIdCard;
         private DevExpress.XtraReports.Parameters.Parameter PatientUID;
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel38;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel37;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel36;
+        private DevExpress.XtraReports.UI.XRLabel lbFooterOrganisation;
+        private DevExpress.XtraReports.UI.XRLabel lbAddress2Page1;
+        private DevExpress.XtraReports.UI.XRLabel lbAddressPage1;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
     }
 }

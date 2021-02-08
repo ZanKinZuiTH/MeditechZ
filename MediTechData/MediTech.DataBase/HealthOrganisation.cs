@@ -23,6 +23,7 @@ namespace MediTech.DataBase
         public string FaxNo { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
+        public string Address2 { get; set; }
         public string IsStock { get; set; }
         public Nullable<int> ProvinceUID { get; set; }
         public Nullable<int> AmphurUID { get; set; }

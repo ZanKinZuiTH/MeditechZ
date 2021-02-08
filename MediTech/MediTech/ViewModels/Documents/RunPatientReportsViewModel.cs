@@ -177,6 +177,7 @@ namespace MediTech.ViewModels
                 }
                 else
                 {
+                    report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                     report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
                     report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
                     report.RequestParameters = false;
@@ -210,6 +211,7 @@ namespace MediTech.ViewModels
                     }
                     else
                     {
+                        report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                         report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
                         report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
                         report.RequestParameters = false;

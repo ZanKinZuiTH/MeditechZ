@@ -1716,6 +1716,7 @@ namespace MediTechWebApi.Controllers
                     FaxNo = p.FaxNo,
                     Email = p.Email,
                     Address = p.Address,
+                    Address2 = p.Address2,
                     ProvinceUID = p.ProvinceUID,
                     DistrictUID = p.DistrictUID,
                     AmphurUID = p.AmphurUID,
@@ -1803,6 +1804,7 @@ namespace MediTechWebApi.Controllers
                 data.FaxNo = healthOwn.FaxNo;
                 data.Email = healthOwn.Email;
                 data.Address = healthOwn.Address;
+                data.Address2 = healthOwn.Address2;
                 data.ProvinceUID = healthOwn.ProvinceUID;
                 data.DistrictUID = healthOwn.DistrictUID;
                 data.AmphurUID = healthOwn.AmphurUID;
@@ -1891,6 +1893,7 @@ namespace MediTechWebApi.Controllers
                     healthOrganisation.MUser = userID;
                     healthOrganisation.MWhen = now;
                     healthOrganisation.StatusFlag = "A";
+                    healthOrganisation.Address2 = healthOrganisationModel.Address2;
 
 
                     db.HealthOrganisation.AddOrUpdate(healthOrganisation);

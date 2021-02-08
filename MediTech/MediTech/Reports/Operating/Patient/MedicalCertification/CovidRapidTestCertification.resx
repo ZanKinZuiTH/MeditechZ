@@ -117,22 +117,10 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="xrLabel13.Text" xml:space="preserve">
-    <value>บีอาร์เอ็กซ์จีสหคลินิก (BRXG Polyclinic)
-155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 (155/196 Moo 2, Thapma, Mueang, Rayong, Thailand 2100 )
-Tel. +66-33-060-399, E-mail: brxggroup@brxggroup.com 
-เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล 21110000362</value>
-  </data>
   <data name="xrLabel9.Text" xml:space="preserve">
     <value>..........................................................................................................................
 ..........................................................................................................................
 </value>
-  </data>
-  <data name="xrLabel1.Text" xml:space="preserve">
-    <value>บีอาร์เอ็กซ์จีสหคลินิก (BRXG Polyclinic)
-155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 (155/196 Moo 2, Thapma, Mueang, Rayong, Thailand 2100 )
-Tel. +66-33-060-399, E-mail: brxggroup@brxggroup.com 
-เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล 21110000362</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="xrPictureBox1.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
