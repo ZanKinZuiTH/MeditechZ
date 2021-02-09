@@ -35,13 +35,14 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
             this.HN = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Payor = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientName = new DevExpress.XtraReports.Parameters.Parameter();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Age = new DevExpress.XtraReports.Parameters.Parameter();
             this.BirthDate = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.Payor = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -121,6 +122,28 @@
             this.HN.Name = "HN";
             this.HN.Visible = false;
             // 
+            // xrLabel1
+            // 
+            this.xrLabel1.CanGrow = false;
+            this.xrLabel1.CanShrink = true;
+            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.Payor, "Text", "")});
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(10.3509F, 44.70172F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(183.3684F, 10.83333F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel1.WordWrap = false;
+            // 
+            // Payor
+            // 
+            this.Payor.Description = "Parameter1";
+            this.Payor.Name = "Payor";
+            this.Payor.Visible = false;
+            // 
             // PatientName
             // 
             this.PatientName.Description = "PatientName";
@@ -153,27 +176,12 @@
             this.BirthDate.Name = "BirthDate";
             this.BirthDate.Visible = false;
             // 
-            // xrLabel1
+            // OrganisationUID
             // 
-            this.xrLabel1.CanGrow = false;
-            this.xrLabel1.CanShrink = true;
-            this.xrLabel1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.Payor, "Text", "")});
-            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(10.3509F, 44.70172F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(183.3684F, 10.83333F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrLabel1.WordWrap = false;
-            // 
-            // Payor
-            // 
-            this.Payor.Description = "Parameter1";
-            this.Payor.Name = "Payor";
-            this.Payor.Visible = false;
+            this.OrganisationUID.Name = "OrganisationUID";
+            this.OrganisationUID.Type = typeof(int);
+            this.OrganisationUID.ValueInfo = "0";
+            this.OrganisationUID.Visible = false;
             // 
             // PatientSticker
             // 
@@ -191,7 +199,8 @@
             this.Age,
             this.HN,
             this.BirthDate,
-            this.Payor});
+            this.Payor,
+            this.OrganisationUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -212,5 +221,6 @@
         private DevExpress.XtraReports.Parameters.Parameter BirthDate;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.Parameters.Parameter Payor;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
     }
 }

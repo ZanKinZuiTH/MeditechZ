@@ -672,13 +672,15 @@ namespace MediTech.ViewModels
                 var groupItemStore = printStickers.GroupBy(p => new
                 {
                     p.IdentifyingUID,
-                    p.ItemName
+                    p.ItemName,
+                    p.OwnerOrganisationUID
                 })
                      .Select(
                      g => new
                      {
                          PrescriptionItemUID = g.FirstOrDefault().IdentifyingUID,
-                         ExpiryDate = g.Max(expy => expy.ExpiryDate)
+                         ExpiryDate = g.Max(expy => expy.ExpiryDate),
+                         OrganisationUID = g.FirstOrDefault().OwnerOrganisationUID
                      });
 
 
@@ -687,6 +689,7 @@ namespace MediTech.ViewModels
                     DrugSticker rpt = new DrugSticker();
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
 
+                    rpt.Parameters["OrganisationUID"].Value = item.OrganisationUID;
                     rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
                     rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
                     rpt.RequestParameters = false;
@@ -735,7 +738,8 @@ namespace MediTech.ViewModels
                 ItemMutiplier = p.Quantity ?? 1,
                 BSMDDUID = p.BSMDDUID,
                 IdentifyingUID = p.IdentifyingUID,
-                BillingService = p.BillingService
+                BillingService = p.BillingService,
+                OwnerOrganisationUID = p.OwnerOrganisationUID
             }));
 
 
@@ -782,7 +786,8 @@ namespace MediTech.ViewModels
         ClinicalComments = g.FirstOrDefault(p => !string.IsNullOrEmpty(p.ClinicalComments)) != null ? g.FirstOrDefault(p => !string.IsNullOrEmpty(p.ClinicalComments)).ClinicalComments : "",
         TypeDrug = g.FirstOrDefault().TypeDrug,
         IdentifyingUID = g.FirstOrDefault().IdentifyingUID,
-        BillingService = g.FirstOrDefault().BillingService
+        BillingService = g.FirstOrDefault().BillingService,
+        OwnerOrganisationUID = g.FirstOrDefault().OwnerOrganisationUID
     }));
                 foreach (var stockItem in StoreOrderList)
                 {

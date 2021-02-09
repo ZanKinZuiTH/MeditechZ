@@ -42,14 +42,15 @@
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
             this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PrescriptionItemUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.ExpiryDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -67,8 +68,8 @@
             this.xrLabel4,
             this.xrLabel12,
             this.xrLabel5,
-            this.xrLabel9,
-            this.xrLabel10,
+            this.lbFooterOrganisation,
+            this.lbAddress,
             this.logo});
             this.Detail.HeightF = 173.3162F;
             this.Detail.Name = "Detail";
@@ -247,35 +248,32 @@
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
-            // xrLabel9
+            // lbFooterOrganisation
             // 
-            this.xrLabel9.CanGrow = false;
-            this.xrLabel9.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 144.2745F);
-            this.xrLabel9.Name = "xrLabel9";
-            this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel9.SizeF = new System.Drawing.SizeF(321.4166F, 15F);
-            this.xrLabel9.StylePriority.UseFont = false;
-            this.xrLabel9.StylePriority.UsePadding = false;
-            this.xrLabel9.StylePriority.UseTextAlignment = false;
-            this.xrLabel9.Text = "[OrganisationName]";
-            this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.lbFooterOrganisation.CanGrow = false;
+            this.lbFooterOrganisation.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbFooterOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 141.886F);
+            this.lbFooterOrganisation.Name = "lbFooterOrganisation";
+            this.lbFooterOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.lbFooterOrganisation.SizeF = new System.Drawing.SizeF(321.4166F, 18.82166F);
+            this.lbFooterOrganisation.StylePriority.UseFont = false;
+            this.lbFooterOrganisation.StylePriority.UsePadding = false;
+            this.lbFooterOrganisation.StylePriority.UseTextAlignment = false;
+            this.lbFooterOrganisation.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
-            // xrLabel10
+            // lbAddress
             // 
-            this.xrLabel10.CanGrow = false;
-            this.xrLabel10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "OrganisationAddress")});
-            this.xrLabel10.Font = new System.Drawing.Font("Angsana New", 11F);
-            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 158.3162F);
-            this.xrLabel10.Multiline = true;
-            this.xrLabel10.Name = "xrLabel10";
-            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel10.SizeF = new System.Drawing.SizeF(321.4166F, 15F);
-            this.xrLabel10.StylePriority.UseFont = false;
-            this.xrLabel10.StylePriority.UsePadding = false;
-            this.xrLabel10.StylePriority.UseTextAlignment = false;
-            this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
+            this.lbAddress.CanGrow = false;
+            this.lbAddress.Font = new System.Drawing.Font("Angsana New", 11F);
+            this.lbAddress.LocationFloat = new DevExpress.Utils.PointFloat(9.000003F, 158.3162F);
+            this.lbAddress.Multiline = true;
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.lbAddress.SizeF = new System.Drawing.SizeF(321.4166F, 15F);
+            this.lbAddress.StylePriority.UseFont = false;
+            this.lbAddress.StylePriority.UsePadding = false;
+            this.lbAddress.StylePriority.UseTextAlignment = false;
+            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
             // 
             // logo
             // 
@@ -319,6 +317,13 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.DrugStickerModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
+            // OrganisationUID
+            // 
+            this.OrganisationUID.Name = "OrganisationUID";
+            this.OrganisationUID.Type = typeof(long);
+            this.OrganisationUID.ValueInfo = "0";
+            this.OrganisationUID.Visible = false;
+            // 
             // DrugSticker
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -334,7 +339,8 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PrescriptionItemUID,
-            this.ExpiryDate});
+            this.ExpiryDate,
+            this.OrganisationUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
@@ -346,8 +352,8 @@
         private DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel9;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel10;
+        private DevExpress.XtraReports.UI.XRLabel lbFooterOrganisation;
+        private DevExpress.XtraReports.UI.XRLabel lbAddress;
         private DevExpress.XtraReports.UI.XRPictureBox logo;
         private DevExpress.XtraReports.Parameters.Parameter PrescriptionItemUID;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
@@ -363,5 +369,6 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.Parameters.Parameter ExpiryDate;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
     }
 }

@@ -106,8 +106,8 @@
             this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.lbAddress1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbAddress2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -125,7 +125,6 @@
             this.xrLabel46,
             this.xrLabel47,
             this.xrLabel48,
-            this.xrLabel64,
             this.xrLabel61,
             this.xrLabel79,
             this.xrLabel40,
@@ -172,9 +171,10 @@
             this.xrLabel54,
             this.xrLabel80,
             this.xrLabel65,
-            this.xrLabel55,
             this.xrLabel56,
-            this.xrLabel57});
+            this.xrLabel57,
+            this.xrLabel64,
+            this.xrLabel55});
             this.Detail.HeightF = 751.4167F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -1005,17 +1005,17 @@
             this.lbAddress2.StylePriority.UseTextAlignment = false;
             this.lbAddress2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // OrganisationUID
             // 
             this.OrganisationUID.Name = "OrganisationUID";
             this.OrganisationUID.Type = typeof(long);
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // MedicalCertificate
             // 

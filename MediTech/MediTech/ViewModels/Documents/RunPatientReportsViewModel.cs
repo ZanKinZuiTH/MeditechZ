@@ -128,6 +128,7 @@ namespace MediTech.ViewModels
         {
             ListPatientReports = new List<ReportsModel>();
             ListPatientReports.Add(new ReportsModel { Name = "OPD Card", NamespaceName = "MediTech.Reports.Operating.Patient.OPDCard" });
+            ListPatientReports.Add(new ReportsModel { Name = "OPD กายภาพ", NamespaceName = "MediTech.Reports.Operating.Patient.RehabPhysical" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบ Request Order", NamespaceName = "MediTech.Reports.Operating.Patient.OrderRequest" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
@@ -166,6 +167,7 @@ namespace MediTech.ViewModels
                 ReportPrintTool printTool = new ReportPrintTool(report);
                 if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
                 {
+                    report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                     report.Parameters["HN"].Value = SelectPatientVisit.PatientID;
                     report.Parameters["PatientName"].Value = SelectPatientVisit.PatientName;
                     report.Parameters["Age"].Value = SelectPatientVisit.Age;

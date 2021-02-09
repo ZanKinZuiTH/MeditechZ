@@ -23,6 +23,7 @@ namespace MediTech.Reports.Operating.Pharmacy
 
         void DrugSticker_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long prescriptionItemUID = long.Parse(this.Parameters["PrescriptionItemUID"].Value.ToString());
             List<DrugStickerModel> drugSticker = (new PharmacyService()).PrintStrickerDrug(prescriptionItemUID);
             if (drugSticker != null)
@@ -52,6 +53,15 @@ namespace MediTech.Reports.Operating.Pharmacy
                         this.logo.Image = System.Drawing.Image.FromStream(outStream);
                     }
                 }
+                if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+                {
+                    var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                    if (Organisation != null)
+                    {
+                        lbFooterOrganisation.Text = Organisation.Description?.ToString();
+                        lbAddress.Text = Organisation.Address?.ToString();
+                    }
+                }
                 else if (healthOrganisationCode.ToUpper().Contains("DRC"))
                 {
                     Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoDRC.png", UriKind.Absolute);
@@ -76,8 +86,18 @@ namespace MediTech.Reports.Operating.Pharmacy
                     enc.Save(outStream);
                     this.logo.Image = System.Drawing.Image.FromStream(outStream);
                 }
+                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
+                if (Organisation != null)
+                {
+                    lbFooterOrganisation.Text = Organisation.Description?.ToString();
+                    lbAddress.Text = Organisation.Address?.ToString();
+                }
             }
 
+            if (OrganisationUID == 24)
+            {
+                logo.Visible = false;
+            }
         }
 
     }

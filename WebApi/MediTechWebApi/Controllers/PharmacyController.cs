@@ -503,7 +503,7 @@ namespace MediTechWebApi.Controllers
                     drugDetail.StoreName = store.Name;
                     drugDetail.StoreUID = store.UID;
                     drugDetail.BatchID = item.BatchID;
-
+                    drugDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
 
                     drugDetail.QNUOMUID = IMUOMUID;
                     drugDetail.QuantityUnit = db.ReferenceValue.Find(IMUOMUID).Description;
