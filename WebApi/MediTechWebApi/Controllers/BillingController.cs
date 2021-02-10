@@ -350,22 +350,17 @@ namespace MediTechWebApi.Controllers
                     var visitPayor = db.PatientVisitPayor.FirstOrDefault(p => p.PatientVisitUID == patpv.UID && p.StatusFlag == "A");
                     PayorDetail payorDetail = db.PayorDetail.Find(visitPayor.PayorDetailUID);
                     IEnumerable<HealthOrganisationID> healthOrganisationIDs;
-                    if (model.OwnerOrganisationUID == 24)//Traditional Chinese Medicine
-                    {
-                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 17 && p.StatusFlag == "A"); //BRXG Polyclinic
-                    }
-                    else if (patpv.VISTYUID == nonMed?.UID)
+                    if (patpv.VISTYUID == nonMed?.UID)
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
-                    }
-                    else if (patpv.VISTYUID == businessUnits?.UID)
-                    {
-                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 16 && p.StatusFlag == "A"); //BusinessUnits
                     }
                     else
                     {
                         healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisationUID && p.StatusFlag == "A");
                     }
+
+                    var agreement = db.PayorAgreement.FirstOrDefault(p => p.UID == visitPayor.PayorAgreementUID);
+                    string billType = "";
 
                     if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
                     {
@@ -395,8 +390,7 @@ namespace MediTechWebApi.Controllers
                     }
                     else if (healthOrganisationIDs != null && healthOrganisationIDs.Count() > 0)
                     {
-                        var agreement = db.PayorAgreement.FirstOrDefault(p => p.UID == visitPayor.PayorAgreementUID);
-                        string billType = "";
+
                         HealthOrganisationID healthIDBillType = null;
                         if (agreement.PBTYPUID == BLTYP_Receive)
                         {
@@ -438,19 +432,28 @@ namespace MediTechWebApi.Controllers
                     }
                     else
                     {
-                        patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                        if (agreement.PBTYPUID == BLTYP_Receive)
+                        {
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                            billType = "Cash";
+                        }
+                        else if (agreement.PBTYPUID == BLTYP_Invoice)
+                        {
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                            billType = "Credit";
+                        }
+
+                        if (string.IsNullOrEmpty(patientBillID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                        }
+
                     }
 
-
-
-                    if (string.IsNullOrEmpty(patientBillID))
-                    {
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill in SEQCONFIGURATION");
-                    }
 
                     if (seqBillID == 0)
                     {
-                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientBill is Fail");
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientBill Or SEQPatientINVBill is Fail");
                     }
                     patBill.CUser = model.CUser;
                     patBill.CWhen = now;

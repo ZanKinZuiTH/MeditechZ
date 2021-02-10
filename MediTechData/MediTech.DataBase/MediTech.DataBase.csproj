@@ -553,6 +553,9 @@
     <Compile Include="pRPTCheckupBook_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTCheckupJobOrderSummary_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTCheckupLabCompare_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
