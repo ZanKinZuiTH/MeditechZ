@@ -190,6 +190,7 @@ namespace MediTech.ViewModels
                     {
                         report = new PatientBill2();
                     }
+                    report.Parameters["OrganisationUID"].Value = SelectPatientBill.OwnerOrganisationUID;
                     report.Parameters["PatientBillUID"].Value = SelectPatientBill.PatientBillUID;
                     report.RequestParameters = false;
 

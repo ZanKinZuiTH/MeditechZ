@@ -25,9 +25,24 @@ namespace MediTech.Reports.Operating.Cashier
 
         void PatientBill_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
+            int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int reportType = Convert.ToInt32(this.Parameters["ReportType"].Value.ToString());
             var listStatementBill = service.PrintStatementBill(Convert.ToInt64(this.Parameters["PatientBillUID"].Value.ToString()));
             this.DataSource = listStatementBill;
+
+            if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+            {
+                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                if (Organisation != null)
+                {
+                    string mobile = Organisation.MobileNo != null ? "โทร " + Organisation.MobileNo?.ToString() : "";
+                    string address = Organisation.Address?.ToString();
+                    lbOrganisation.Text = Organisation.Description?.ToString();
+                    lbAddress.Text = address + mobile;
+                    lbOrganisationCopy.Text = Organisation.Description?.ToString();
+                    lbAddressCopy.Text = address + mobile;
+                }
+            }
 
             string billType = listStatementBill.Select(p => p.BillType).FirstOrDefault();
             if (billType != "Invoice")
