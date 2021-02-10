@@ -32,6 +32,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkingHeightCertificate2));
             DevExpress.DataAccess.ObjectBinding.ObjectConstructorInfo objectConstructorInfo1 = new DevExpress.DataAccess.ObjectBinding.ObjectConstructorInfo();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.infoOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel48 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox35 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrLabel49 = new DevExpress.XtraReports.UI.XRLabel();
@@ -147,7 +148,6 @@
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.infoOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -266,6 +266,13 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // infoOrganisation
+            // 
+            this.infoOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(51.00014F, 28.66669F);
+            this.infoOrganisation.Name = "infoOrganisation";
+            this.infoOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.infoOrganisation.SizeF = new System.Drawing.SizeF(398.1662F, 22.99999F);
             // 
             // xrLabel48
             // 
@@ -1168,13 +1175,6 @@
             this.objectDataSource1.Constructor = objectConstructorInfo1;
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // infoOrganisation
-            // 
-            this.infoOrganisation.LocationFloat = new DevExpress.Utils.PointFloat(51.00014F, 28.66669F);
-            this.infoOrganisation.Name = "infoOrganisation";
-            this.infoOrganisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.infoOrganisation.SizeF = new System.Drawing.SizeF(256.6664F, 22.99999F);
             // 
             // WorkingHeightCertificate2
             // 

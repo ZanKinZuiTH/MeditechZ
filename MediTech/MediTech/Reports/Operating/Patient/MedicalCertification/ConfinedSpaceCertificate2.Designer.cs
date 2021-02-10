@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ConfinedSpaceCertificate2));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDate = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel39 = new DevExpress.XtraReports.UI.XRLabel();
@@ -116,7 +117,6 @@
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
@@ -206,6 +206,13 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // lbOrganisationPlace
+            // 
+            this.lbOrganisationPlace.LocationFloat = new DevExpress.Utils.PointFloat(50F, 28.66669F);
+            this.lbOrganisationPlace.Name = "lbOrganisationPlace";
+            this.lbOrganisationPlace.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbOrganisationPlace.SizeF = new System.Drawing.SizeF(396.667F, 22.99999F);
             // 
             // lbDate
             // 
@@ -900,13 +907,6 @@
             this.xrLabel1.SizeF = new System.Drawing.SizeF(349.1666F, 27.16668F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.Text = "ใบรับรองแพทย์สำหรับทำงานที่อับอากาศ";
-            // 
-            // lbOrganisationPlace
-            // 
-            this.lbOrganisationPlace.LocationFloat = new DevExpress.Utils.PointFloat(50F, 28.66669F);
-            this.lbOrganisationPlace.Name = "lbOrganisationPlace";
-            this.lbOrganisationPlace.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbOrganisationPlace.SizeF = new System.Drawing.SizeF(220F, 22.99999F);
             // 
             // ConfinedSpaceCertificate2
             // 

@@ -28,7 +28,7 @@ namespace MediTech.Reports.Operating.Patient
                 if (Organisation != null)
                 {
                     lbOgenisation.Text = Organisation.Description?.ToString();
-                    lbOrganisationPlace.Text = Organisation.Description?.ToString();
+                    lbOrganisationPlace.Text = Organisation.Description.ToString() != null ? "สถานที่ตรวจ " + Organisation.Description.ToString() : "";
                     lbLicenseNo.Text = Organisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + Organisation.LicenseNo.ToString() : "";
                     lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
 
@@ -48,7 +48,7 @@ namespace MediTech.Reports.Operating.Patient
                 if (Organisation != null)
                 {
                     lbOgenisation.Text = Organisation.Description?.ToString();
-                    lbOrganisationPlace.Text = Organisation.Description?.ToString();
+                    lbOrganisationPlace.Text = Organisation.Description.ToString() != null ? "สถานที่ตรวจ " + Organisation.Description.ToString() : "";
                     lbLicenseNo.Text = Organisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + Organisation.LicenseNo.ToString() : "";
                     lbFooterOrganisation.Text = lbOgenisation.Text + " " + lbLicenseNo.Text;
 
