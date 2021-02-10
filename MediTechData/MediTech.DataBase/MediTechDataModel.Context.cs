@@ -3509,5 +3509,22 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupSummary_Result>("pRPTCheckupSummary", p_CheckupJobUIDParameter, p_GPRSTUIDsParameter, p_CompanyNameParameter);
         }
+    
+        public virtual ObjectResult<pRPTCheckupJobOrderSummary_Result> pRPTCheckupJobOrderSummary(Nullable<int> p_CheckupJobUID, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
+        {
+            var p_CheckupJobUIDParameter = p_CheckupJobUID.HasValue ?
+                new ObjectParameter("P_CheckupJobUID", p_CheckupJobUID) :
+                new ObjectParameter("P_CheckupJobUID", typeof(int));
+    
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupJobOrderSummary_Result>("pRPTCheckupJobOrderSummary", p_CheckupJobUIDParameter, p_DateFromParameter, p_DateToParameter);
+        }
     }
 }

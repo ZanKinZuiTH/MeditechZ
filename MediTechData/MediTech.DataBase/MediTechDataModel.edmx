@@ -3569,6 +3569,11 @@
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="pRPTCheckupJobOrderSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
+          <Parameter Name="P_DateFrom" Type="date" Mode="In" />
+          <Parameter Name="P_DateTo" Type="date" Mode="In" />
+        </Function>
         <Function Name="pRPTCheckupLabCompare" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
@@ -5212,6 +5217,11 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTCheckupJobOrderSummary" ReturnType="Collection(MediTechModel.pRPTCheckupJobOrderSummary_Result)">
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -10753,6 +10763,22 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTCheckupJobOrderSummary_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrderSetName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
+          <Property Type="Double" Name="NetAmount" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15909,6 +15935,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupJobOrderSummary" FunctionName="MediTechModel.Store.pRPTCheckupJobOrderSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupJobOrderSummary_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="OrderSetName" ColumnName="OrderSetName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
