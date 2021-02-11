@@ -19,6 +19,33 @@ namespace MediTechWebApi
             SEQConfiguration sqlConfig = db.SEQConfiguration.FirstOrDefault(p => p.SEQTableName == seqTableName && p.StatusFlag == "A");
             seqFormatID = sqlConfig.IDFormat;
             seqPreFix = sqlConfig.SEQPrefix;
+            double dateDiff = 0;
+            switch (sqlConfig.ReseedInterval)
+            {
+                case "Y":
+                    dateDiff = sqlConfig.LastReseedDttm != null ? (now.Year - sqlConfig.LastReseedDttm.Value.Year) : 1;
+                    if (dateDiff >= 1)
+                    {
+                        SqlStatement.TruncateTableSEQID(seqTableName);
+                        db.SEQConfiguration.Attach(sqlConfig);
+                        sqlConfig.LastReseedDttm = now;
+                        db.SaveChanges();
+                    }
+                    break;
+                case "M":
+                    dateDiff = sqlConfig.LastReseedDttm != null ? (((now.Year - sqlConfig.LastReseedDttm.Value.Year) * 12) + now.Month - sqlConfig.LastReseedDttm.Value.Month) : 1;
+                    if (dateDiff >= 1)
+                    {
+                        SqlStatement.TruncateTableSEQID(seqTableName);
+                        db.SEQConfiguration.Attach(sqlConfig);
+                        sqlConfig.LastReseedDttm = now;
+                        db.SaveChanges();
+                    }
+                    break;
+                default:
+                    break;
+            }
+
 
             int seqUID = SqlDirectStore.pGetSEQID(seqTableName) ?? 0;
 

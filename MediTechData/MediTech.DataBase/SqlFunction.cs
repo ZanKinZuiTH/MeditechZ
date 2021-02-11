@@ -157,7 +157,7 @@ namespace MediTech.DataBase
         }
 
         [DbFunction("MediTechModel.Store", "fGetItemTotalQuantity")]
-        public static double fGetItemTotalQuantity(int itemMasterUID, int storeUID,int ownerOrganisation)
+        public static double fGetItemTotalQuantity(int itemMasterUID, int storeUID, int ownerOrganisation)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -169,7 +169,7 @@ namespace MediTech.DataBase
         }
 
         [DbFunction("MediTechModel.Store", "fGetBillingGroupDesc")]
-        public static string fGetBillingGroupDesc(int groupUID,string type)
+        public static string fGetBillingGroupDesc(int groupUID, string type)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -215,6 +215,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteScalar();
+                flag = true;
             }
             catch (Exception)
             {
@@ -236,7 +237,7 @@ namespace MediTech.DataBase
             try
             {
                 SqlDataAdapter da = new SqlDataAdapter();
-                 da.SelectCommand = new SqlCommand("pDispensePrescriptionItem", con);
+                da.SelectCommand = new SqlCommand("pDispensePrescriptionItem", con);
                 da.SelectCommand.Parameters.AddWithValue("@P_PrescriptionItemUID", prescriptionItemUID);
                 da.SelectCommand.Parameters.AddWithValue("@P_UserUID", userUID);
                 da.SelectCommand.CommandType = CommandType.StoredProcedure;
@@ -258,7 +259,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static bool pInvenAdjustStock(string stockAdjustmentID,int storeUID,int stockUID,int itemMasterUID,string itemName,string batchID,double actualQuantity,int actualUOM,double quantityAdjusted,double adjustedQuantity,int adjustedUOM,string comments,double itemCost,DateTime? expiryDate,int userUID,int organisationUID)
+        public static bool pInvenAdjustStock(string stockAdjustmentID, int storeUID, int stockUID, int itemMasterUID, string itemName, string batchID, double actualQuantity, int actualUOM, double quantityAdjusted, double adjustedQuantity, int adjustedUOM, string comments, double itemCost, DateTime? expiryDate, int userUID, int organisationUID)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -290,6 +291,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_OrganisationUID", organisationUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -302,7 +304,7 @@ namespace MediTech.DataBase
             }
             return flag;
         }
-        public static bool pInvenGoodReceive(int itemMasterUID, int storeUID,int? toStoreUID, int userUID, int organisationUID, string comments, int IMUOMUID, DateTime? expiryDate, string batchID, double quantity, double itemCost, int? VendorDetailUID, int? ManufacturerUID, int? GRNDeailUID, DateTime? GRNDttm, string refNo, string refTable, int? refUID, string noteMovement)
+        public static bool pInvenGoodReceive(int itemMasterUID, int storeUID, int? toStoreUID, int userUID, int organisationUID, string comments, int IMUOMUID, DateTime? expiryDate, string batchID, double quantity, double itemCost, int? VendorDetailUID, int? ManufacturerUID, int? GRNDeailUID, DateTime? GRNDttm, string refNo, string refTable, int? refUID, string noteMovement)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -338,6 +340,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_NoteMovement", noteMovement ?? (object)DBNull.Value);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -369,6 +372,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_ItemIssueUID", itemIssueUID);
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -383,7 +387,7 @@ namespace MediTech.DataBase
             return flag;
         }
 
-        public static bool pInvenTransferItem(int itemIssueUID,int userUID)
+        public static bool pInvenTransferItem(int itemIssueUID, int userUID)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -401,6 +405,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_ItemIssueUID", itemIssueUID);
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -434,6 +439,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -468,6 +474,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -510,6 +517,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_OrganisationUID", organisationUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -522,8 +530,8 @@ namespace MediTech.DataBase
             }
             return flag;
         }
-        public static bool pInvenInsertStockMovement(int stockUID, int storeUID,int? toStoreUID, int itemMasterUID, string batchID, DateTime stockDttm,double totalBFQty
-            , double bfQty, double inQty, double outQty, double balQty,double totalBalQty, int IMUOMUID,double unitCost ,string refNo, string refTable, int? refUID, long? refPatientUID, string note, int userUID)
+        public static bool pInvenInsertStockMovement(int stockUID, int storeUID, int? toStoreUID, int itemMasterUID, string batchID, DateTime stockDttm, double totalBFQty
+            , double bfQty, double inQty, double outQty, double balQty, double totalBalQty, int IMUOMUID, double unitCost, string refNo, string refTable, int? refUID, long? refPatientUID, string note, int userUID)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -560,6 +568,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -593,6 +602,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -627,6 +637,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -661,6 +672,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -695,6 +707,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -726,6 +739,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -861,7 +875,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_FirstName", firstName);
-            adp.SelectCommand.Parameters.AddWithValue("@P_LastName", !string.IsNullOrEmpty(lastName) ? lastName: (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LastName", !string.IsNullOrEmpty(lastName) ? lastName : (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_BirthDttm", birthDate ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID);
             DataSet ds = new DataSet();
@@ -1017,7 +1031,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID,string companyName,int? startRow,int? endRow)
+        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID, string companyName, int? startRow, int? endRow)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("[pGetCheckupGroupResult]", entities.Database.Connection.ConnectionString);
@@ -1096,7 +1110,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetResultCumulative(long patientUID,long patientVisitUID, int requestItemUID)
+        public static DataTable pGetResultCumulative(long patientUID, long patientVisitUID, int requestItemUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetResultCumulative", entities.Database.Connection.ConnectionString);
@@ -1131,7 +1145,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetVitalSignCumulative(long patientUID,long patientVisitUID)
+        public static DataTable pGetVitalSignCumulative(long patientUID, long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetVitalSignCumulative", entities.Database.Connection.ConnectionString);
@@ -1181,7 +1195,7 @@ namespace MediTech.DataBase
 
         public static DataTable pSearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
      , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-            ,int? PayorDetailUID,int? checkupJobUID)
+            , int? PayorDetailUID, int? checkupJobUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientVisit", entities.Database.Connection.ConnectionString);
@@ -1261,8 +1275,8 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchRequestExamListForAssign(DateTime? dateFrom,DateTime? dateTo, int? organisationUID,long? patientUID,string requestItemName
-            , int? RIMTYPUID,int? payorDetailUID,int? ORDSTUID)
+        public static DataTable pSearchRequestExamListForAssign(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, long? patientUID, string requestItemName
+            , int? RIMTYPUID, int? payorDetailUID, int? ORDSTUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestExamListForAssign", entities.Database.Connection.ConnectionString);
@@ -1280,9 +1294,9 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
-      
 
-        public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? storeUID, int? itemType,string itemCode, string itemName)
+
+        public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockBatch", entities.Database.Connection.ConnectionString);
@@ -1304,7 +1318,7 @@ namespace MediTech.DataBase
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockForDispose", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-                        adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_BatchID", string.IsNullOrEmpty(batchID) ? (object)DBNull.Value : batchID);
@@ -1330,7 +1344,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockMovement(int? ownerOrganisationUID, int? storeUID, string itemCode,string itemName,
+        public static DataTable pSearchStockMovement(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName,
              string transactionType, DateTime? dateFrom, DateTime? dateTo)
         {
             MediTechEntities entities = new MediTechEntities();
@@ -1340,7 +1354,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_Itemcode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);
-            adp.SelectCommand.Parameters.AddWithValue("@p_ItemName",string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);
+            adp.SelectCommand.Parameters.AddWithValue("@p_ItemName", string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);
             adp.SelectCommand.Parameters.AddWithValue("@P_TransactionType", transactionType ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
@@ -1349,7 +1363,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockBalance(int? ownerOrganisationUID, int? storeUID, string itemCode,string itemName, DateTime? dateFrom, DateTime? dateTo)
+        public static DataTable pSearchStockBalance(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockBalance", entities.Database.Connection.ConnectionString);
@@ -1358,7 +1372,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_Itemcode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);
-            adp.SelectCommand.Parameters.AddWithValue("@p_ItemName",string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);
+            adp.SelectCommand.Parameters.AddWithValue("@p_ItemName", string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
@@ -1381,7 +1395,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo,string statusList, long? patientUID, int? requestItemUID,string labNumber, int? payorDetailUID, int? organisationUID)
+        public static DataTable pSearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, long? patientUID, int? requestItemUID, string labNumber, int? payorDetailUID, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestLabList", entities.Database.Connection.ConnectionString);
@@ -1400,7 +1414,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo,string statusList, int? RQPRTUID,long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID,int? rduStaffUID,int? payorDetailUID, int? organisationUID)
+        public static DataTable pSearchRequestExamList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusList, int? RQPRTUID, long? patientUID, string orderName, int? RIMTYPUID, int? radiologistUID, int? rduStaffUID, int? payorDetailUID, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchRequestExamList", entities.Database.Connection.ConnectionString);
@@ -1437,7 +1451,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID,string itemName,int? RABSTSUID, int? payorDetailUID)
+        public static DataTable pSearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string itemName, int? RABSTSUID, int? payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchResultRadiologyForTranslate", entities.Database.Connection.ConnectionString);
@@ -1494,7 +1508,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pPrintOPDCard(long patientUID,long patientVisitUID)
+        public static DataTable pPrintOPDCard(long patientUID, long patientVisitUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pPrintOPDCard", entities.Database.Connection.ConnectionString);
@@ -1545,7 +1559,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo,int? organisationUID)
+        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryData", entities.Database.Connection.ConnectionString);
@@ -1729,7 +1743,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockExpiry(int month,int? organisationUID)
+        public static DataTable pRPTStockExpiry(int month, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockExpiry", entities.Database.Connection.ConnectionString);
@@ -1833,7 +1847,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockSummary(DateTime dateFrom,DateTime dateTo,int? organisationUID)
+        public static DataTable pRPTStockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockSummary", entities.Database.Connection.ConnectionString);
@@ -1895,7 +1909,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTCheckupSummary(int checkupjobUID, string GPRSTUIDs ,string companyName)
+        public static DataTable pRPTCheckupSummary(int checkupjobUID, string GPRSTUIDs, string companyName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupSummary", entities.Database.Connection.ConnectionString);
@@ -1983,6 +1997,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -2016,6 +2031,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -2030,7 +2046,7 @@ namespace MediTech.DataBase
             return flag;
         }
 
-        public static bool pEncounterMergePatient(long majorPatientUID, long minorPatientUID,string minorVisitUIDS, int userUID)
+        public static bool pEncounterMergePatient(long majorPatientUID, long minorPatientUID, string minorVisitUIDS, int userUID)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -2051,6 +2067,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_UserID", userUID);
 
                 cmd.ExecuteNonQuery();
+                flag = true;
             }
             catch (Exception)
             {
@@ -2099,12 +2116,11 @@ namespace MediTech.DataBase
             return seqUID;
         }
 
-
     }
 
     public static class SqlStatement
     {
-        public static double GetItemTotalQuantity(int itemMasterUID, int storeUID,int ownerOrganisation)
+        public static double GetItemTotalQuantity(int itemMasterUID, int storeUID, int ownerOrganisation)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
@@ -2277,7 +2293,7 @@ and GPRSTUID in (@GPRSTUID)";
 
                 foreach (var item in GPRSTUIDs)
                 {
-                    gprstUID = string.IsNullOrEmpty(gprstUID) ? item.ToString() : ","+ item.ToString();
+                    gprstUID = string.IsNullOrEmpty(gprstUID) ? item.ToString() : "," + item.ToString();
                 }
 
                 command.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID);
@@ -2295,6 +2311,37 @@ and GPRSTUID in (@GPRSTUID)";
                 con.Close();
                 con.Dispose();
             }
+        }
+
+        public static bool TruncateTableSEQID(string seqName)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = "truncate table " + seqName;
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
         }
     }
 }
