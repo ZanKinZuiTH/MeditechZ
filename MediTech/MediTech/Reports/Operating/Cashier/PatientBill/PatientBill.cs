@@ -41,6 +41,10 @@ namespace MediTech.Reports.Operating.Cashier
                     lbAddress.Text = address + mobile;
                     lbOrganisationCopy.Text = Organisation.Description?.ToString();
                     lbAddressCopy.Text = address + mobile;
+
+                    lbTaxNo.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
+                    lbTaxNoCopy.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
+                    
                 }
             }
 
