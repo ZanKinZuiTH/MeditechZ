@@ -274,14 +274,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 string chestPA = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST4")?.Conclusion;
                 string mammogram = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST5")?.Conclusion;
                 string ultrasound = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST6")?.Conclusion;
+                string ultrasound_thyroid = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST62")?.Conclusion;
 
                 if (!string.IsNullOrEmpty(chestPA))
                 {
                     page6.lbChest.Text = chestPA;
-                    if (page6.lbChest.Text != null && page6.lbChest.Text.Length > 400)
-                    {
-                        page6.lbChest.Font = new Font("Angsana New", 9);
-                    }
                 }
                 else
                 {
@@ -291,10 +288,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 if (!string.IsNullOrEmpty(mammogram))
                 {
                     page6.lbMam.Text = mammogram;
-                    if (page6.lbMam.Text != null && page6.lbMam.Text.Length > 400)
-                    {
-                        page6.lbMam.Font = new Font("Angsana New", 9);
-                    }
                 }
                 else
                 {
@@ -304,14 +297,20 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 if (!string.IsNullOrEmpty(ultrasound))
                 {
                     page6.lbUlt.Text = ultrasound;
-                    if (page6.lbUlt.Text != null && page6.lbUlt.Text.Length > 400)
-                    {
-                        page6.lbUlt.Font = new Font("Angsana New", 9);
-                    }
                 }
                 else
                 {
                     page6.lbUlt.Text = "-";
+                }
+
+
+                if (!string.IsNullOrEmpty(ultrasound_thyroid))
+                {
+                    page6.lbThyroid.Text = ultrasound_thyroid;
+                }
+                else
+                {
+                    page6.lbThyroid.Text = "-";
                 }
 
                 var radilogy = data.Radiology;

@@ -146,7 +146,7 @@ namespace MediTech.ViewModels
                         VisibilityLab = Visibility.Visible;
                         VisibilityRadiology = Visibility.Collapsed;
                     }
-                    else if (SelectGroupResult.Key == 3179 || SelectGroupResult.Key == 3180 || SelectGroupResult.Key == 3181)
+                    else if (SelectGroupResult.Key == 3179 || SelectGroupResult.Key == 3180 || SelectGroupResult.Key == 3181 || SelectGroupResult.Key == 4258)
                     {
                         ResultRadiologys = DataService.Radiology.GetResultRadiologyByVisitUID(SelectPatientVisit.PatientVisitUID);
                         VisibilityLab = Visibility.Collapsed;
@@ -154,7 +154,8 @@ namespace MediTech.ViewModels
 
                         ResultRadiologys = SelectGroupResult.Key == 3179 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("chest")).ToList()
             : SelectGroupResult.Key == 3180 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("mammo")).ToList() :
-            SelectGroupResult.Key == 3181 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("ultrasound")).ToList() : null;
+            SelectGroupResult.Key == 3181 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("ultrasound") && !p.RequestItemName.ToLower().Contains("thyroid")).ToList() :
+            SelectGroupResult.Key == 4258 ? ResultRadiologys.Where(p => p.RequestItemName.ToLower().Contains("thyroid")).ToList() : null;
                     }
                     else
                     {
@@ -524,7 +525,7 @@ namespace MediTech.ViewModels
 
         void PreviewWellness()
         {
-            if(SelectPatientVisit != null)
+            if (SelectPatientVisit != null)
             {
                 Reports.Operating.Checkup.CheckupBookReport.CheckupPage1 rpt = new Reports.Operating.Checkup.CheckupBookReport.CheckupPage1();
                 rpt.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;

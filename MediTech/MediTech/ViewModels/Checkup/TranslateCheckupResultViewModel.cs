@@ -344,7 +344,7 @@ namespace MediTech.ViewModels
                     List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
                     if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
                     {
-                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181 || p == 4258))
                         {
                             dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                         }
@@ -378,7 +378,7 @@ namespace MediTech.ViewModels
                     List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
                     if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
                     {
-                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181 || p == 4258))
                         {
                             dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                         }
@@ -414,7 +414,7 @@ namespace MediTech.ViewModels
                     List<int> GPRSTUIDs = CheckupJobTasks.Where(p => p.IsSelected).Select(p => p.GPRSTUID).ToList();
                     if (GPRSTUIDs != null && GPRSTUIDs.Count > 0)
                     {
-                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                        if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181 || p == 4258))
                         {
                             dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                         }
@@ -452,7 +452,7 @@ namespace MediTech.ViewModels
                         {
                             List<int> GPRSTUIDs = groupResults.Select(p => p.Key).ToList();
                             List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
-                            if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181))
+                            if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181 || p == 4258))
                             {
                                 dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                             }
@@ -529,11 +529,19 @@ namespace MediTech.ViewModels
                             newResultCom.ResultValue = item.ResultStatus;
                             resultComponent.Add(newResultCom);
                         }
-                        else if (item.RequestItemName.ToLower().Contains("ultrasound"))
+                        else if (item.RequestItemName.ToLower().Contains("ultrasound") && !item.RequestItemName.ToLower().Contains("thyroid"))
                         {
                             ResultComponentModel newResultCom = new ResultComponentModel();
                             newResultCom.ResultItemUID = 344;
                             newResultCom.GPRSTUID = 3181;
+                            newResultCom.ResultValue = item.ResultStatus;
+                            resultComponent.Add(newResultCom);
+                        }
+                        else if (item.RequestItemName.ToLower().Contains("thyroid"))
+                        {
+                            ResultComponentModel newResultCom = new ResultComponentModel();
+                            newResultCom.ResultItemUID = 356;
+                            newResultCom.GPRSTUID = 4258;
                             newResultCom.ResultValue = item.ResultStatus;
                             resultComponent.Add(newResultCom);
                         }
@@ -804,7 +812,7 @@ namespace MediTech.ViewModels
                                 }
 
                             }
-                            else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181) //แปล Chest,mammo,Ultrasound
+                            else if (grpstUID == 3179 || grpstUID == 3180 || grpstUID == 3181 || grpstUID == 4258) //แปล Chest,mammo,Ultrasound
                             {
                                 if (RABSTSUID == 2883)
                                 {
@@ -815,7 +823,8 @@ namespace MediTech.ViewModels
                                     List<string> listNoMapResult = new List<string>();
                                     var resultRadiology = grpstUID == 3179 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("chest"))
                                         : grpstUID == 3180 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("mammo")) :
-                                        grpstUID == 3181 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("ultrasound")) : null;
+                                        grpstUID == 3181 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("ultrasound") && !p.RequestItemName.ToLower().Contains("thyroid")) :
+                                        grpstUID == 4258 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("thyroid")) : null;
                                     if (resultRadiology != null)
                                     {
                                         string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, ",", dtResultMapping, ref listNoMapResult);

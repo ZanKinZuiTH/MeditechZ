@@ -1411,7 +1411,7 @@ namespace MediTechWebApi.Controllers
             {
                 foreach (var result in groupResult)
                 {
-                    var task = db.CheckupJobTask.FirstOrDefault(p => p.GPRSTUID == result.Key && p.CheckupJobContactUID == patientVisit.CheckupJobUID);
+                    var task = db.CheckupJobTask.FirstOrDefault(p => p.GPRSTUID == result.Key && p.CheckupJobContactUID == patientVisit.CheckupJobUID && p.StatusFlag == "A");
                     if (task != null)
                         result.DisplayOrder = task.DisplayOrder ?? 0;
                 }

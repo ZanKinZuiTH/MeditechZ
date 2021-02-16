@@ -43,6 +43,9 @@
             this.xrTableRow31 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell143 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbMam = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbThyroid = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbEKG = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow21 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -146,7 +149,7 @@
             this.tbFBS,
             this.xrLabel1,
             this.xrLabel2});
-            this.Detail.HeightF = 454.1667F;
+            this.Detail.HeightF = 467.1223F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -156,7 +159,7 @@
             this.xrLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel6.CanGrow = false;
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(515.0668F, 321.8745F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(515.0668F, 369.8745F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(220.8333F, 23.00001F);
@@ -178,8 +181,9 @@
             this.xrTableRow27,
             this.xrTableRow29,
             this.xrTableRow30,
-            this.xrTableRow31});
-            this.tbRediology.SizeF = new System.Drawing.SizeF(371.6667F, 236.7633F);
+            this.xrTableRow31,
+            this.xrTableRow3});
+            this.tbRediology.SizeF = new System.Drawing.SizeF(371.6667F, 295.0518F);
             this.tbRediology.StylePriority.UseBorders = false;
             this.tbRediology.StylePriority.UseBorderWidth = false;
             this.tbRediology.StylePriority.UseFont = false;
@@ -232,7 +236,7 @@
             this.xrTableCell131,
             this.lbChest});
             this.xrTableRow29.Name = "xrTableRow29";
-            this.xrTableRow29.Weight = 1.5486629868687389D;
+            this.xrTableRow29.Weight = 1.2572461103570611D;
             // 
             // xrTableCell131
             // 
@@ -266,7 +270,7 @@
             this.xrTableCell139,
             this.lbUlt});
             this.xrTableRow30.Name = "xrTableRow30";
-            this.xrTableRow30.Weight = 1.6890263740595082D;
+            this.xrTableRow30.Weight = 1.9804432505711858D;
             // 
             // xrTableCell139
             // 
@@ -328,6 +332,34 @@
             this.lbMam.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbMam.Weight = 2.1838731824606321D;
             // 
+            // xrTableRow3
+            // 
+            this.xrTableRow3.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell9,
+            this.lbThyroid});
+            this.xrTableRow3.Name = "xrTableRow3";
+            this.xrTableRow3.Weight = 1.7133151519824179D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell9.Multiline = true;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.StylePriority.UseFont = false;
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            this.xrTableCell9.Text = "อัลตราซาวด์ไทรอยด์\r\n(Thyroid)";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell9.Weight = 0.82979465794383811D;
+            // 
+            // lbThyroid
+            // 
+            this.lbThyroid.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.lbThyroid.Name = "lbThyroid";
+            this.lbThyroid.StylePriority.UseFont = false;
+            this.lbThyroid.StylePriority.UseTextAlignment = false;
+            this.lbThyroid.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.lbThyroid.Weight = 2.1838731824606321D;
+            // 
             // xrLabel5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
@@ -349,7 +381,7 @@
             this.tbEKG.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(430.1668F, 346.5412F);
+            this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(430.1668F, 394.5412F);
             this.tbEKG.Name = "tbEKG";
             this.tbEKG.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow21,
@@ -1373,5 +1405,8 @@
         public DevExpress.XtraReports.UI.XRTableCell cellHbA1c1;
         public DevExpress.XtraReports.UI.XRTableCell cellHbA1c2;
         public DevExpress.XtraReports.UI.XRTableCell cellHbA1c3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        public DevExpress.XtraReports.UI.XRTableCell lbThyroid;
     }
 }

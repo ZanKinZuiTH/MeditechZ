@@ -549,6 +549,12 @@
     <Compile Include="Reports\Operating\Checkup\RiskBook\RiskBook4.Designer.cs">
       <DependentUpon>RiskBook4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\RehabPhysical.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\RehabPhysical.Designer.cs">
+      <DependentUpon>RehabPhysical.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Pharmacy\DrugSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2538,6 +2544,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\RiskBook\RiskBook4.resx">
       <DependentUpon>RiskBook4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\RehabPhysical.resx">
+      <DependentUpon>RehabPhysical.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
       <DependentUpon>DrugSticker.cs</DependentUpon>
