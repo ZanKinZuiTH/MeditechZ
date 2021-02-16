@@ -49,10 +49,8 @@
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblReportHeader = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationAddress = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OrganisationName = new DevExpress.XtraReports.Parameters.Parameter();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
@@ -311,18 +309,6 @@
             this.lblReportHeader.Text = "รายงานการโยกย้ายสินค้าออก";
             this.lblReportHeader.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // OrganisationAddress
-            // 
-            this.OrganisationAddress.Description = "OrganisationAddress";
-            this.OrganisationAddress.Name = "OrganisationAddress";
-            this.OrganisationAddress.Visible = false;
-            // 
-            // OrganisationName
-            // 
-            this.OrganisationName.Description = "OrganisationName";
-            this.OrganisationName.Name = "OrganisationName";
-            this.OrganisationName.Visible = false;
-            // 
             // BottomMargin
             // 
             this.BottomMargin.HeightF = 0F;
@@ -330,13 +316,11 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // OrganisationUID
+            // OrganisationList
             // 
-            this.OrganisationUID.Description = "OrganisationUID";
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Description = "OrganisationList";
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // ReportHeader
             // 
@@ -944,9 +928,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationUID,
-            this.OrganisationName,
-            this.OrganisationAddress});
+            this.OrganisationList});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
@@ -991,8 +973,7 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField8;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField9;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField10;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationName;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField11;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField12;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField13;
@@ -1003,7 +984,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField18;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField19;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField20;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationAddress;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.XRPageInfo xrPageInfo1;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;

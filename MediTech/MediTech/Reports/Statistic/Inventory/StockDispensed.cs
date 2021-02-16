@@ -18,10 +18,10 @@ namespace MediTech.Reports.Statistic.Inventory
 
         void StockDispensed_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            var dataDispense = (new ReportsService()).StockDispensedReport(dateFrom, dateTo, organisationUID != 0 ? organisationUID : (int?)null);
+            var dataDispense = (new ReportsService()).StockDispensedReport(dateFrom, dateTo, organisationList);
             if(dataDispense != null)
             {
                 this.DataSource = dataDispense;

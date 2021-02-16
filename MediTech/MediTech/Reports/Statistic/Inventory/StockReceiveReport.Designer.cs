@@ -50,7 +50,7 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblReportHeader = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -285,12 +285,10 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // OrganisationUID
+            // OrganisationList
             // 
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // xrTable4
             // 
@@ -693,7 +691,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationUID});
+            this.OrganisationList});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
@@ -719,7 +717,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.Parameters.Parameter DateFrom;
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.XtraReports.UI.XRTable xrTable2;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;

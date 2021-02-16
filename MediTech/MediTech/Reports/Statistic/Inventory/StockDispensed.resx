@@ -226,7 +226,7 @@
     <value>Angsana New, 18pt, style=Bold</value>
   </data>
   <data name="lblReportHeader.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>499.3332, 16</value>
+    <value>462.3332, 16</value>
   </data>
   <data name="lblReportHeader.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>293.75, 29.25</value>
@@ -241,7 +241,7 @@
     <value>Angsana New, 16pt</value>
   </data>
   <data name="xrLabel1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>426.4165, 61.87498</value>
+    <value>389.4165, 61.87498</value>
   </data>
   <data name="xrLabel1.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>72.91667, 23</value>
@@ -253,7 +253,7 @@
     <value>Angsana New, 16pt</value>
   </data>
   <data name="xrLabel3.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>683.2914, 63.62497</value>
+    <value>646.2914, 63.62497</value>
   </data>
   <data name="xrLabel3.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>56.29172, 23</value>
@@ -269,7 +269,7 @@
     <value>Angsana New, 16pt</value>
   </data>
   <data name="xrLabel4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>499.3332, 61.87498</value>
+    <value>462.3332, 61.87498</value>
   </data>
   <data name="xrLabel4.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>141.625, 23</value>
@@ -281,42 +281,15 @@
     <value>Angsana New, 16pt</value>
   </data>
   <data name="xrLabel5.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>739.5831, 63.62497</value>
+    <value>702.5831, 63.62497</value>
   </data>
   <data name="xrLabel5.SizeF" type="System.Drawing.SizeF, System.Drawing">
     <value>141.625, 23</value>
   </data>
-  <data name="OrganisationName.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel6.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 15pt</value>
-  </data>
-  <data name="xrLabel6.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>77.91672, 16</value>
-  </data>
-  <data name="xrLabel6.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>260.5813, 26.95832</value>
-  </data>
-  <data name="xrLabel6.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v17.1">
-    <value>TopLeft</value>
-  </data>
-  <data name="OrganisationAddress.Description" xml:space="preserve">
-    <value>Parameter1</value>
-  </data>
-  <data name="xrLabel19.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Angsana New, 13pt</value>
-  </data>
-  <data name="xrLabel19.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v17.1">
-    <value>77.91672, 42.95834</value>
-  </data>
-  <data name="xrLabel19.SizeF" type="System.Drawing.SizeF, System.Drawing">
-    <value>260.5813, 28.625</value>
-  </data>
   <data name="ReportHeader.HeightF" type="System.Single, mscorlib">
     <value>100</value>
   </data>
-  <data name="OrganisationUID.Description" xml:space="preserve">
+  <data name="OrganisationList.Description" xml:space="preserve">
     <value>Parameter1</value>
   </data>
   <data name="xrTable3.Font" type="System.Drawing.Font, System.Drawing">

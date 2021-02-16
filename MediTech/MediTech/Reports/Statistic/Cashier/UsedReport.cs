@@ -31,10 +31,10 @@ namespace MediTech.Reports.Statistic.Cashier
 
         void UsedReport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int? organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "0" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : (int?)null;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            xrPivotGrid1.DataSource = (new ReportsService()).GetUsedReport(dateFrom, dateTo, organisationUID);
+            xrPivotGrid1.DataSource = (new ReportsService()).GetUsedReport(dateFrom, dateTo, organisationList);
         }
 
     }

@@ -62,10 +62,10 @@ namespace MediTechWebApi.Controllers
         #region Cashier
         [Route("GetPatientNetProfit")]
         [HttpGet]
-        public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<PatientRevenueModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTPatientNetProfit(dateFrom, dateTo, vistyuid, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTPatientNetProfit(dateFrom, dateTo, vistyuid, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientRevenueModel>();
@@ -78,10 +78,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetUsedReport")]
         [HttpGet]
-        public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<PatientRevenueModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTUsedReport(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTUsedReport(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientRevenueModel>();
@@ -126,10 +126,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("PatientProblemStaistic")]
         [HttpGet]
-        public List<ProblemStatisticModel> PatientProblemStaistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ProblemStatisticModel> PatientProblemStaistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<ProblemStatisticModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTPatientProblemStatistic(dateFrom, dateTo, vistyuid, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTPatientProblemStatistic(dateFrom, dateTo, vistyuid, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<ProblemStatisticModel>();
@@ -146,10 +146,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("PatientSummaryPerMonth")]
         [HttpGet]
-        public List<PatientSummaryModel> PatientSummaryPerMonth(int year, string monthLists, int? organisationUID)
+        public List<PatientSummaryModel> PatientSummaryPerMonth(int year, string monthLists, string organisationList)
         {
             List<PatientSummaryModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTPatientSummaryPerMonth(year, monthLists, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTPatientSummaryPerMonth(year, monthLists, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientSummaryModel>();
@@ -200,10 +200,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("VisitDaysStatistic")]
         [HttpGet]
-        public List<ChartStatisticModel> VisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ChartStatisticModel> VisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<ChartStatisticModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTVisitDaysStatistic(dateFrom, dateTo, vistyuid, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTVisitDaysStatistic(dateFrom, dateTo, vistyuid, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<ChartStatisticModel>();
@@ -224,10 +224,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("VisitTimesStatistic")]
         [HttpGet]
-        public List<ChartStatisticModel> VisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ChartStatisticModel> VisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<ChartStatisticModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTVisitTimesStatistic(dateFrom, dateTo, vistyuid, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTVisitTimesStatistic(dateFrom, dateTo, vistyuid, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<ChartStatisticModel>();
@@ -246,10 +246,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("PatientSumByAreaPerMonth")]
         [HttpGet]
-        public List<PatientSumByAreaModel> PatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<PatientSumByAreaModel> PatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<PatientSumByAreaModel> data = null;
-            DataSet ds = SqlDirectStore.pRPTPatientSumByAreaPerMonth(dateFrom, dateTo, vistyuid, organisationUID);
+            DataSet ds = SqlDirectStore.pRPTPatientSumByAreaPerMonth(dateFrom, dateTo, vistyuid, organisationList);
 
             if (ds != null && ds.Tables.Count > 0)
             {
@@ -274,10 +274,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("PatientSummaryData")]
         [HttpGet]
-        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<PatientSummaryDataModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTPatientSummaryData(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTPatientSummaryData(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientSummaryDataModel>();
@@ -723,10 +723,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockOnHand")]
         [HttpGet]
-        public List<StockReportModel> StockOnHand(int? organisationUID)
+        public List<StockReportModel> StockOnHand(string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockOnHand(organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockOnHand(organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -739,10 +739,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockDispensedReport")]
         [HttpGet]
-        public List<StockReportModel> StockDispensedReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockDispensedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockDispensed(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockDispensed(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -754,10 +754,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockNonMovement")]
         [HttpGet]
-        public List<StockReportModel> StockNonMovement(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockNonMovement(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockNonMovement(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockNonMovement(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -769,10 +769,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockExpiryReport")]
         [HttpGet]
-        public List<StockReportModel> StockExpiryReport(int month, int? organisationUID)
+        public List<StockReportModel> StockExpiryReport(int month, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockExpiry(month, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockExpiry(month, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -784,10 +784,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockExpiredReport")]
         [HttpGet]
-        public List<StockReportModel> StockExpiredReport(int? organisationUID)
+        public List<StockReportModel> StockExpiredReport(string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockExpired(organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockExpired(organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -799,10 +799,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockGoodReceiveReport")]
         [HttpGet]
-        public List<StockReportModel> StockGoodReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockGoodReceiveReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockGoodReceive(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockGoodReceive(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -815,10 +815,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockReceiveReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockReceive(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockReceive(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();
@@ -830,10 +830,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockBalancePerMounth")]
         [HttpGet]
-        public List<StockReportModel> StockBalancePerMounth(int year, string monthLists, int? organisationUID)
+        public List<StockReportModel> StockBalancePerMounth(int year, string monthLists, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockBalancePerMounth(year, monthLists, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockBalancePerMounth(year, monthLists, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -879,10 +879,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockIssueReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockTransactionReportModel> result = null;
-            DataTable dataTable = SqlDirectStore.pRPTStockIssued(dateFrom, dateTo, organisationUID);
+            DataTable dataTable = SqlDirectStore.pRPTStockIssued(dateFrom, dateTo, organisationList);
             if (dataTable != null && dataTable.Rows.Count > 0)
             {
                 result = new List<StockTransactionReportModel>();
@@ -893,10 +893,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockTransferredOutReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockTransferredOut(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockTransferredOut(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();
@@ -908,10 +908,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockTransferredInReport")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockTransferredIn(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockTransferredIn(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();
@@ -1001,10 +1001,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockConsumption")]
         [HttpGet]
-        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockConsumtion(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockConsumtion(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -1016,10 +1016,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockAdjustmentOut")]
         [HttpGet]
-        public List<StockReportModel> StockAdjustmentOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockAdjustmentOut(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockAdjustmentOut(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockAdjustmentOut(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -1031,10 +1031,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockAdjustmentIn")]
         [HttpGet]
-        public List<StockReportModel> StockAdjustmentIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockAdjustmentIn(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockAdjustmentIn(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockAdjustmentIn(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockReportModel>();
@@ -1046,10 +1046,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockDispose")]
         [HttpGet]
-        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockTransactionReportModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockDispose(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockDispose(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockTransactionReportModel>();
@@ -1063,12 +1063,12 @@ namespace MediTechWebApi.Controllers
 
         #region Radiology
 
-        //[Route("GetRadiologyRDUReview")]
-        //[HttpGet]
-        public List<RadiologyRDUReviewModel> GetRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        [Route("GetRadiologyRDUReview")]
+        [HttpGet]
+        public List<RadiologyRDUReviewModel> GetRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<RadiologyRDUReviewModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTRadiologyRDUReview(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTRadiologyRDUReview(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<RadiologyRDUReviewModel>();

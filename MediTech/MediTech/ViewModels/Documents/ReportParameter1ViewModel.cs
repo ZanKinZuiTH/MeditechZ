@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.Xpf.Editors;
+using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Model.Report;
@@ -35,13 +36,15 @@ namespace MediTech.ViewModels
             set { Set(ref _Organisations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
 
-        public HealthOrganisationModel SelectOrganisation
+        private List<object> _SelectOrganisations;
+
+        public List<object> SelectOrganisations
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectOrganisations ?? (_SelectOrganisations = new List<object>()); }
+            set { Set(ref _SelectOrganisations, value); }
         }
+
 
 
         private DateTime? _DateFrom;
@@ -60,6 +63,7 @@ namespace MediTech.ViewModels
             get { return _DateTo; }
             set { Set(ref _DateTo, value); }
         }
+
 
         #endregion
 
@@ -94,16 +98,33 @@ namespace MediTech.ViewModels
             DateTo = DateTime.Now;
             VisitTypeSource = DataService.Technical.GetReferenceValueMany("VISTY").ToList();
             Organisations = GetHealthOrganisationRole();
-            if (Organisations != null)
-            {
-                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            }
+            var SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectOrganisations.Add(SelectOrganisation.HealthOrganisationUID);
         }
 
         void Print()
         {
             var myReport = Activator.CreateInstance(Type.GetType(ReportTemplate.NamespaceName));
             XtraReport report = (XtraReport)myReport;
+            string healthOrganisationList = "";
+            if (SelectOrganisations != null)
+            {
+                foreach (object item in SelectOrganisations)
+                {
+                    if (item.ToString() != "0")
+                    {
+                        if (healthOrganisationList == "")
+                        {
+                            healthOrganisationList = item.ToString();
+                        }
+                        else
+                        {
+                            healthOrganisationList += "," + item.ToString();
+                        }
+                    }
+
+                }
+            }
 
             foreach (var item in report.Parameters)
             {
@@ -118,14 +139,8 @@ namespace MediTech.ViewModels
                     case "VISTYUID":
                         item.Value = (SelectedVisitType != null) ? SelectedVisitType.Key : (object)null;
                         break;
-                    case "OrganisationName":
-                        item.Value = (SelectOrganisation != null) ? !string.IsNullOrEmpty(SelectOrganisation.Description) ? SelectOrganisation.Description : SelectOrganisation.Name : null;
-                        break;
-                    case "OrganisationAddress":
-                        item.Value = SelectOrganisation != null ? SelectOrganisation.AddressFull : null;
-                        break;
-                    case "OrganisationUID":
-                        item.Value = (SelectOrganisation != null) ? SelectOrganisation.HealthOrganisationUID : (object)null;
+                    case "OrganisationList":
+                        item.Value = healthOrganisationList;
                         break;
                 }
             }

@@ -51,11 +51,7 @@
             this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationAddress = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -203,9 +199,7 @@
             this.xrLabel1,
             this.xrLabel3,
             this.xrLabel4,
-            this.xrLabel5,
-            this.xrLabel6,
-            this.xrLabel19});
+            this.xrLabel5});
             this.ReportHeader.HeightF = 100F;
             this.ReportHeader.Name = "ReportHeader";
             // 
@@ -278,49 +272,11 @@
             this.DateTo.Type = typeof(System.DateTime);
             this.DateTo.Visible = false;
             // 
-            // xrLabel6
+            // OrganisationList
             // 
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.OrganisationName, "Text", "")});
-            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 15F);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(77.91672F, 16F);
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(260.5813F, 26.95832F);
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // OrganisationName
-            // 
-            this.OrganisationName.Description = "Parameter1";
-            this.OrganisationName.Name = "OrganisationName";
-            this.OrganisationName.Visible = false;
-            // 
-            // xrLabel19
-            // 
-            this.xrLabel19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.OrganisationAddress, "Text", "")});
-            this.xrLabel19.Font = new System.Drawing.Font("Angsana New", 13F);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(77.91672F, 42.95834F);
-            this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(260.5813F, 28.625F);
-            this.xrLabel19.StylePriority.UseFont = false;
-            // 
-            // OrganisationAddress
-            // 
-            this.OrganisationAddress.Description = "Parameter1";
-            this.OrganisationAddress.Name = "OrganisationAddress";
-            this.OrganisationAddress.Visible = false;
-            // 
-            // OrganisationUID
-            // 
-            this.OrganisationUID.Description = "Parameter1";
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Description = "Parameter1";
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // PageHeader
             // 
@@ -438,9 +394,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationAddress,
-            this.OrganisationName,
-            this.OrganisationUID});
+            this.OrganisationList});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -457,16 +411,12 @@
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         private DevExpress.XtraReports.Parameters.Parameter DateFrom;
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationAddress;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationName;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.XtraReports.UI.XRLabel lblReportHeader;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
         private DevExpress.XtraReports.UI.XRLabel xrLabel5;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel19;
         private DevExpress.XtraReports.UI.PageHeaderBand PageHeader;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;

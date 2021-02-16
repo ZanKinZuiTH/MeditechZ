@@ -58,7 +58,7 @@
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -112,7 +112,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.xrTableCell2.Name = "xrTableCell2";
             this.xrTableCell2.Text = "xrTableCell2";
-            this.xrTableCell2.Weight = 1.4030010840716372D;
+            this.xrTableCell2.Weight = 1.4166669815379669D;
             // 
             // xrTableCell3
             // 
@@ -120,7 +120,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "RDUStaff")});
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.Text = "xrTableCell3";
-            this.xrTableCell3.Weight = 1.3969986397967913D;
+            this.xrTableCell3.Weight = 1.3833327423304616D;
             // 
             // xrTableCell9
             // 
@@ -307,14 +307,12 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.RadiologyRDUReviewModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // OrganisationUID
+            // OrganisationList
             // 
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
-            // RadiologyRDUReview
+            // RDUReview
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -332,7 +330,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationUID});
+            this.OrganisationList});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
@@ -371,6 +369,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
     }
 }

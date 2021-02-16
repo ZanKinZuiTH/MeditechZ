@@ -37,20 +37,20 @@
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.xrPageInfo1 = new DevExpress.XtraReports.UI.XRPageInfo();
             this.Year = new DevExpress.XtraReports.Parameters.Parameter();
             this.lblReportHeader = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.OrganisationAddress = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OrganisationName = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -71,8 +71,6 @@
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.MonthLists = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -156,6 +154,18 @@
             this.xrTableCell8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             this.xrTableCell8.Weight = 0.53814168874267676D;
             // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "TotalCost")});
+            this.xrTableCell16.Font = new System.Drawing.Font("Angsana New", 14F);
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.StylePriority.UseFont = false;
+            this.xrTableCell16.StylePriority.UseTextAlignment = false;
+            this.xrTableCell16.Text = "xrTableCell16";
+            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrTableCell16.Weight = 0.53814168874267676D;
+            // 
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -200,23 +210,10 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // OrganisationAddress
+            // OrganisationList
             // 
-            this.OrganisationAddress.Name = "OrganisationAddress";
-            this.OrganisationAddress.Visible = false;
-            // 
-            // OrganisationName
-            // 
-            this.OrganisationName.Description = "Parameter1";
-            this.OrganisationName.Name = "OrganisationName";
-            this.OrganisationName.Visible = false;
-            // 
-            // OrganisationUID
-            // 
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // xrTable4
             // 
@@ -276,6 +273,14 @@
             this.xrTableCell15.StylePriority.UseFont = false;
             this.xrTableCell15.Text = "จำนวนคงเหลือ";
             this.xrTableCell15.Weight = 0.56161036212634474D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.StylePriority.UseFont = false;
+            this.xrTableCell12.Text = "มูลค่ารวมในคลัง";
+            this.xrTableCell12.Weight = 0.56161036212634474D;
             // 
             // xrTable1
             // 
@@ -443,26 +448,6 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.StockReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // xrTableCell12
-            // 
-            this.xrTableCell12.Font = new System.Drawing.Font("Angsana New", 14F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.StylePriority.UseFont = false;
-            this.xrTableCell12.Text = "มูลค่ารวมในคลัง";
-            this.xrTableCell12.Weight = 0.56161036212634474D;
-            // 
-            // xrTableCell16
-            // 
-            this.xrTableCell16.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "TotalCost")});
-            this.xrTableCell16.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.StylePriority.UseFont = false;
-            this.xrTableCell16.StylePriority.UseTextAlignment = false;
-            this.xrTableCell16.Text = "xrTableCell16";
-            this.xrTableCell16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell16.Weight = 0.53814168874267676D;
-            // 
             // StockBalancePerMounth
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -482,9 +467,7 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.Year,
-            this.OrganisationAddress,
-            this.OrganisationName,
-            this.OrganisationUID,
+            this.OrganisationList,
             this.MonthLists});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
@@ -503,9 +486,7 @@
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.XRLabel lblReportHeader;
         private DevExpress.XtraReports.Parameters.Parameter Year;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationAddress;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationName;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;

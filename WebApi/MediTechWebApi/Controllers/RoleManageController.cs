@@ -339,6 +339,9 @@ namespace MediTechWebApi.Controllers
                                                     join PER in db.Permission on RPP.PermissionUID equals PER.UID
                                                     where RO.UID == roleUID
                                                     && RPT.ReportGroup == reportGroup
+                                                    && RPT.StatusFlag == "A"
+                                                    && RPP.StatusFlag == "A"
+                                                    && ROPT.StatusFlag == "A"
                                                     select new RoleReportPermissionModel
                                                     {
                                                         ReportsUID = RPT.UID,

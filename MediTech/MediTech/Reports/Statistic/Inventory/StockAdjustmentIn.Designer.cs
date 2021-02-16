@@ -71,14 +71,13 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.GroupHeader2 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationName = new DevExpress.XtraReports.Parameters.Parameter();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
             this.xrTable6 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow6 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLine1 = new DevExpress.XtraReports.UI.XRLine();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -448,11 +447,6 @@
             this.xrLabel6.StylePriority.UseTextAlignment = false;
             this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // OrganisationName
-            // 
-            this.OrganisationName.Name = "OrganisationName";
-            this.OrganisationName.Visible = false;
-            // 
             // GroupFooter1
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -506,13 +500,11 @@
             this.xrLine1.Name = "xrLine1";
             this.xrLine1.SizeF = new System.Drawing.SizeF(1118.333F, 16.66667F);
             // 
-            // OrganisationUID
+            // OrganisationList
             // 
-            this.OrganisationUID.Description = "Parameter1";
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Description = "Parameter1";
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // objectDataSource1
             // 
@@ -541,8 +533,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationUID,
-            this.OrganisationName});
+            this.OrganisationList});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
@@ -573,7 +564,7 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
         private DevExpress.XtraReports.Parameters.Parameter DateFrom;
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.XRTable xrTable2;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
@@ -599,7 +590,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationName;
         private DevExpress.XtraReports.UI.XRLine xrLine1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;

@@ -1531,7 +1531,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTPatientProblemStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public static DataTable pRPTPatientProblemStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientProblemStatistic", entities.Database.Connection.ConnectionString);
@@ -1539,13 +1539,13 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
             adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTPatientSummaryPerMonth(int year, string monthLists, int? organisationUID)
+        public static DataTable pRPTPatientSummaryPerMonth(int year, string monthLists, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryPerMonth", entities.Database.Connection.ConnectionString);
@@ -1553,13 +1553,13 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_Year", year);
             adp.SelectCommand.Parameters.AddWithValue("@P_MonthLists", monthLists);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTPatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSummaryData", entities.Database.Connection.ConnectionString);
@@ -1567,12 +1567,12 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
-        public static DataTable pRPTVisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public static DataTable pRPTVisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTVisitDaysStatistic", entities.Database.Connection.ConnectionString);
@@ -1581,27 +1581,13 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
             adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataSet pRPTPatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
-        {
-            MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSumByAreaPerMonth", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
-            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
-            DataSet ds = new DataSet();
-            adp.Fill(ds);
-            return ds;
-        }
-
-        public static DataTable pRPTVisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public static DataTable pRPTVisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTVisitTimesStatistic", entities.Database.Connection.ConnectionString);
@@ -1609,13 +1595,26 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
             adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
+        public static DataSet pRPTPatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientSumByAreaPerMonth", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds;
+        }
 
-        public static DataTable pRPTPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public static DataTable pRPTPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientNetProfit", entities.Database.Connection.ConnectionString);
@@ -1623,20 +1622,20 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
             adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTUsedReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTUsedReport", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1669,179 +1668,179 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockTransferredOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockTransferredOut(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockTransferredOut", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockTransferredIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockTransferredIn(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockTransferredIn", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockDispensed(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockDispensed(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockDispensed", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockOnHand(int? organisationUID)
+        public static DataTable pRPTStockOnHand(string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockOnHand", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockNonMovement(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockNonMovement(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockNonMovement", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockExpired(int? organisationUID)
+        public static DataTable pRPTStockExpired(string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockExpired", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockExpiry(int month, int? organisationUID)
+        public static DataTable pRPTStockExpiry(int month, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockExpiry", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_Month", month);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockGoodReceive(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockGoodReceive(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockGoodReceive", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockReceive(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockReceive(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockReceive", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockIssued(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockIssued(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities mediTechEntities = new MediTechEntities();
             SqlDataAdapter sqlDataAdapter = new SqlDataAdapter("pRPTStockIssued", mediTechEntities.Database.Connection.ConnectionString);
             sqlDataAdapter.SelectCommand.CommandType = CommandType.StoredProcedure;
             sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            sqlDataAdapter.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet dataSet = new DataSet();
             sqlDataAdapter.Fill(dataSet);
             return dataSet.Tables[0];
         }
 
 
-        public static DataTable pRPTStockBalancePerMounth(int year, string monthLists, int? organisationUID)
+        public static DataTable pRPTStockBalancePerMounth(int year, string monthLists, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockBalancePerMounth", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_Year", year);
             adp.SelectCommand.Parameters.AddWithValue("@P_MonthLists", monthLists);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockConsumtion(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockConsumtion(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockConsumption", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockAdjustmentOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockAdjustmentOut(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockAdjustmentOut", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockAdjustmentIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockAdjustmentIn(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockAdjustmentIn", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1860,14 +1859,14 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockDispose(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockDispose", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1959,14 +1958,14 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
-        public static DataTable pRPTRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTRadiologyRDUReview", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

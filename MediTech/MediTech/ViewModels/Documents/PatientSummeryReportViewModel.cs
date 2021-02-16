@@ -22,12 +22,12 @@ namespace MediTech.ViewModels
             set { Set(ref _Organisations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private List<object> _SelectOrganisations;
 
-        public HealthOrganisationModel SelectOrganisation
+        public List<object> SelectOrganisations
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectOrganisations ?? (_SelectOrganisations = new List<object>()); }
+            set { Set(ref _SelectOrganisations, value); }
         }
 
         private DateTime _DateFrom;
@@ -99,16 +99,34 @@ namespace MediTech.ViewModels
             DateFrom = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
             DateTo = DateTime.Now;
             Organisations = GetHealthOrganisationRole();
-            if (Organisations != null)
-            {
-                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            }
+            var SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectOrganisations.Add(SelectOrganisation.HealthOrganisationUID);
         }
 
         void Search()
         {
-            int? OwnerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientSummaryDatas = DataService.Reports.PatientSummaryData(DateFrom, DateTo, OwnerOrganisationUID);
+
+            string healthOrganisationList = "";
+            if (SelectOrganisations != null)
+            {
+                foreach (object item in SelectOrganisations)
+                {
+                    if (item.ToString() != "0")
+                    {
+                        if (healthOrganisationList == "")
+                        {
+                            healthOrganisationList = item.ToString();
+                        }
+                        else
+                        {
+                            healthOrganisationList += "," + item.ToString();
+                        }
+                    }
+
+                }
+            }
+
+            PatientSummaryDatas = DataService.Reports.PatientSummaryData(DateFrom, DateTo, healthOrganisationList);
         }
 
         void ExportToExcel()

@@ -17,26 +17,15 @@
                     <dxe:DateEdit DateTime="{Binding Date}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานประกอบการ">
-                    <dxg:LookUpEdit Name="lkeOrganisationFrom" ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
-                                      DisplayMember="Name"
-                                      AllowNullInput="True"
-                                      AutoComplete="True" 
-                                      ImmediatePopup="True"
-                                      FindButtonPlacement = "Popup"
-                                      FindMode = "Always"
-                                      PopupMinHeight="100"
-                                      PopupMinWidth="100"
-                                      PopupHeight="400" 
-                                      IsPopupAutoWidth="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
-                                      AutoPopulateColumns="False">
-                        <dxg:LookUpEdit.StyleSettings>
-                            <dxg:SearchLookUpEditStyleSettings/>
-                        </dxg:LookUpEdit.StyleSettings>
-                    </dxg:LookUpEdit>
+                    <dxe:ComboBoxEdit x:Name="lkeOrganisationFrom" ItemsSource="{Binding Organisations}"
+                                                          IsTextEditable="False" 
+                                                          DisplayMember="Name"
+                                                          ValueMember="HealthOrganisationUID"
+                                                          EditValue="{Binding Path=SelectOrganisations}">
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
+                    </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 

@@ -29,10 +29,10 @@ namespace MediTech.Reports.Statistic.Cashier
 
         void DrugStoreNetProfit_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int? organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "0" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : (int?)null;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString() ;
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            var dataReport = (new ReportsService()).StockTransferredOutReport(dateFrom, dateTo, organisationUID);
+            var dataReport = (new ReportsService()).StockTransferredOutReport(dateFrom, dateTo, organisationList);
             this.DataSource = dataReport;
         }
 

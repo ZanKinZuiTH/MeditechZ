@@ -17,10 +17,10 @@ namespace MediTech.Reports.Statistic.Inventory
 
         private void StockReceiveReport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            this.DataSource = (new ReportsService()).StockReceiveReport(dateFrom, dateTo, organisationUID != 0 ? organisationUID : (int?)null);
+            this.DataSource = (new ReportsService()).StockReceiveReport(dateFrom, dateTo, organisationList);
         }
     }
 }

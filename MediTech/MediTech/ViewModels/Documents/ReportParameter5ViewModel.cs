@@ -26,12 +26,13 @@ namespace MediTech.ViewModels
             set { Set(ref _Organisations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
 
-        public HealthOrganisationModel SelectOrganisation
+        private List<object> _SelectOrganisations;
+
+        public List<object> SelectOrganisations
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectOrganisations ?? (_SelectOrganisations = new List<object>()); }
+            set { Set(ref _SelectOrganisations, value); }
         }
 
 
@@ -90,10 +91,8 @@ namespace MediTech.ViewModels
         {
             Year = DateTime.Now;
             Organisations = GetHealthOrganisationRole();
-            if (Organisations != null)
-            {
-                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            }
+            var SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectOrganisations.Add(SelectOrganisation.HealthOrganisationUID);
 
             Months = new List<LookupReferenceValueModel>()
             {
@@ -143,6 +142,25 @@ namespace MediTech.ViewModels
             }
             var myReport = Activator.CreateInstance(Type.GetType(ReportTemplate.NamespaceName));
             XtraReport report = (XtraReport)myReport;
+            string healthOrganisationList = "";
+            if (SelectOrganisations != null)
+            {
+                foreach (object item in SelectOrganisations)
+                {
+                    if (item.ToString() != "0")
+                    {
+                        if (healthOrganisationList == "")
+                        {
+                            healthOrganisationList = item.ToString();
+                        }
+                        else
+                        {
+                            healthOrganisationList += "," + item.ToString();
+                        }
+                    }
+
+                }
+            }
 
             foreach (var item in report.Parameters)
             {
@@ -154,14 +172,8 @@ namespace MediTech.ViewModels
                     case "MonthLists":
                         item.Value = months;
                         break;
-                    case "OrganisationName":
-                        item.Value = (SelectOrganisation != null && SelectOrganisation.Name != "All") ? !string.IsNullOrEmpty(SelectOrganisation.Description) ? SelectOrganisation.Description : SelectOrganisation.Name : null;
-                        break;
-                    case "OrganisationAddress":
-                        item.Value = SelectOrganisation != null ? SelectOrganisation.AddressFull : null;
-                        break;
-                    case "OrganisationUID":
-                        item.Value = (SelectOrganisation != null && SelectOrganisation.Name != "All") ? SelectOrganisation.HealthOrganisationUID : (object)null;
+                    case "OrganisationList":
+                        item.Value = healthOrganisationList;
                         break;
                 }
             }

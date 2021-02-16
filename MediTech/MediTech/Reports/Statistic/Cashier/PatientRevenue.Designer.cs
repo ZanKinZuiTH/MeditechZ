@@ -44,13 +44,9 @@
             this.pivotGridField5 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField29 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField1 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrPivotGridField29 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
-            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationAddress = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
-            this.OrganisationName = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -59,7 +55,7 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblReportHeader = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.colPatientName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.colVisitID = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -264,14 +260,6 @@
             this.xrPivotGridField26.Name = "xrPivotGridField26";
             this.xrPivotGridField26.Width = 70;
             // 
-            // xrPivotGridField29
-            // 
-            this.xrPivotGridField29.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.xrPivotGridField29.AreaIndex = 3;
-            this.xrPivotGridField29.FieldName = "NetPrice";
-            this.xrPivotGridField29.Name = "xrPivotGridField29";
-            this.xrPivotGridField29.Width = 70;
-            // 
             // pivotGridField1
             // 
             this.pivotGridField1.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
@@ -280,11 +268,17 @@
             this.pivotGridField1.Name = "pivotGridField1";
             this.pivotGridField1.Width = 70;
             // 
+            // xrPivotGridField29
+            // 
+            this.xrPivotGridField29.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
+            this.xrPivotGridField29.AreaIndex = 3;
+            this.xrPivotGridField29.FieldName = "NetPrice";
+            this.xrPivotGridField29.Name = "xrPivotGridField29";
+            this.xrPivotGridField29.Width = 70;
+            // 
             // TopMargin
             // 
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel19,
-            this.xrLabel6,
             this.xrLabel5,
             this.xrLabel4,
             this.xrLabel3,
@@ -294,42 +288,6 @@
             this.TopMargin.Name = "TopMargin";
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel19
-            // 
-            this.xrLabel19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.OrganisationAddress, "Text", "")});
-            this.xrLabel19.Font = new System.Drawing.Font("Angsana New", 13F);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(50.91672F, 42.95834F);
-            this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(260.5813F, 28.625F);
-            this.xrLabel19.StylePriority.UseFont = false;
-            // 
-            // OrganisationAddress
-            // 
-            this.OrganisationAddress.Description = "OrganisationAddress";
-            this.OrganisationAddress.Name = "OrganisationAddress";
-            this.OrganisationAddress.Visible = false;
-            // 
-            // xrLabel6
-            // 
-            this.xrLabel6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.OrganisationName, "Text", "")});
-            this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 15F);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(50.91672F, 16F);
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(260.5813F, 26.95832F);
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // OrganisationName
-            // 
-            this.OrganisationName.Description = "OrganisationName";
-            this.OrganisationName.Name = "OrganisationName";
-            this.OrganisationName.Visible = false;
             // 
             // xrLabel5
             // 
@@ -407,13 +365,11 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // OrganisationUID
+            // OrganisationList
             // 
-            this.OrganisationUID.Description = "OrganisationUID";
-            this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(int);
-            this.OrganisationUID.ValueInfo = "0";
-            this.OrganisationUID.Visible = false;
+            this.OrganisationList.Description = "OrganisationList";
+            this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // VISTYUID
             // 
@@ -652,9 +608,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
-            this.OrganisationUID,
-            this.OrganisationName,
-            this.OrganisationAddress,
+            this.OrganisationList,
             this.VISTYUID});
             this.Version = "17.1";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
@@ -696,10 +650,7 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField8;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField9;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField10;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel19;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationName;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField11;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField12;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField13;
@@ -710,7 +661,6 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField18;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField19;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField20;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationAddress;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField21;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField22;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField23;

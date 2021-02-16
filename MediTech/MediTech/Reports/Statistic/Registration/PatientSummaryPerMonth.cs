@@ -20,10 +20,10 @@ namespace MediTech.Reports.Statistic.Registration
 
         private void VisitSummary_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;        
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString() ;        
             int year = Convert.ToInt32(this.Parameters["Year"].Value);
             string monthLists = this.Parameters["MonthLists"].Value.ToString();
-            List<PatientSummaryModel> dataStatistic = (new ReportsService()).PatientSummaryPerMonth(year, monthLists, organisationUID != 0 ? organisationUID : (int?)null);
+            List<PatientSummaryModel> dataStatistic = (new ReportsService()).PatientSummaryPerMonth(year, monthLists, organisationList);
             if (dataStatistic != null && dataStatistic.Count > 0)
             {
                 this.DataSource = dataStatistic;

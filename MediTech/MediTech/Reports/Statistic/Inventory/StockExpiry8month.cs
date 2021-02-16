@@ -17,8 +17,8 @@ namespace MediTech.Reports.Statistic.Inventory
 
         void StockExpiry8month_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
-            this.DataSource = (new ReportsService()).StockExpiryReport(8, organisationUID != 0 ? organisationUID : (int?)null);
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
+            this.DataSource = (new ReportsService()).StockExpiryReport(8, organisationList);
         }
 
     }

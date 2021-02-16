@@ -19,10 +19,10 @@ namespace MediTech.Reports.Statistic.Radiology
 
         private void RadiologyRDUReview_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString() ;
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            List<RadiologyRDUReviewModel> dataStatistic = (new ReportsService()).GetRadiologyRDUReview(dateFrom, dateTo, organisationUID != 0 ? organisationUID : (int?)null);
+            List<RadiologyRDUReviewModel> dataStatistic = (new ReportsService()).GetRadiologyRDUReview(dateFrom, dateTo, organisationList);
             this.DataSource = dataStatistic;
         }
     }

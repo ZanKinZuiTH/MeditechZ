@@ -30,17 +30,17 @@ namespace MediTech.DataService
         #endregion
 
         #region Cashier
-        public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/GetPatientNetProfit?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationUID={3}", dateFrom, dateTo, vistyuid, organisationUID);
+            string requestApi = string.Format("Api/Report/GetPatientNetProfit?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
             List<PatientRevenueModel> data = MeditechApiHelper.Get<List<PatientRevenueModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/GetUsedReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/GetUsedReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<PatientRevenueModel> data = MeditechApiHelper.Get<List<PatientRevenueModel>>(requestApi);
 
             return data;
@@ -66,9 +66,9 @@ namespace MediTech.DataService
 
         #region Patient
 
-        public List<ProblemStatisticModel> PatientProblemStaistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ProblemStatisticModel> PatientProblemStaistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/PatientProblemStaistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationUID={3}", dateFrom, dateTo, vistyuid, organisationUID);
+            string requestApi = string.Format("Api/Report/PatientProblemStaistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
             List<ProblemStatisticModel> data = MeditechApiHelper.Get<List<ProblemStatisticModel>>(requestApi);
 
             return data;
@@ -78,41 +78,41 @@ namespace MediTech.DataService
 
         #region Registration
 
-        public List<PatientSummaryModel> PatientSummaryPerMonth(int year, string monthLists, int? organisationUID)
+        public List<PatientSummaryModel> PatientSummaryPerMonth(int year, string monthLists, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/PatientSummaryPerMonth?year={0}&monthLists={1}&organisationUID={2}", year, monthLists, organisationUID);
+            string requestApi = string.Format("Api/Report/PatientSummaryPerMonth?year={0}&monthLists={1}&organisationList={2}", year, monthLists, organisationList);
             List<PatientSummaryModel> data = MeditechApiHelper.Get<List<PatientSummaryModel>>(requestApi);
 
             return data;
         }
 
-        public List<ChartStatisticModel> VisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ChartStatisticModel> VisitDaysStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/VisitDaysStatistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationUID={3}", dateFrom, dateTo, vistyuid, organisationUID);
+            string requestApi = string.Format("Api/Report/VisitDaysStatistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
             List<ChartStatisticModel> data = MeditechApiHelper.Get<List<ChartStatisticModel>>(requestApi);
 
             return data;
         }
 
-        public List<ChartStatisticModel> VisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<ChartStatisticModel> VisitTimesStatistic(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/VisitTimesStatistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationUID={3}", dateFrom, dateTo, vistyuid, organisationUID);
+            string requestApi = string.Format("Api/Report/VisitTimesStatistic?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
             List<ChartStatisticModel> data = MeditechApiHelper.Get<List<ChartStatisticModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientSumByAreaModel> PatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, int? organisationUID)
+        public List<PatientSumByAreaModel> PatientSumByAreaPerMonth(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/PatientSumByAreaPerMonth?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationUID={3}", dateFrom, dateTo, vistyuid, organisationUID);
+            string requestApi = string.Format("Api/Report/PatientSumByAreaPerMonth?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
             List<PatientSumByAreaModel> data = MeditechApiHelper.Get<List<PatientSumByAreaModel>>(requestApi);
 
             return data;
         }
 
-        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<PatientSummaryDataModel> PatientSummaryData(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/PatientSummaryData?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/PatientSummaryData?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<PatientSummaryDataModel> data = MeditechApiHelper.Get<List<PatientSummaryDataModel>>(requestApi);
 
             return data;
@@ -242,67 +242,67 @@ namespace MediTech.DataService
 
         #region Inventory
 
-        public List<StockReportModel> StockOnHand(int? organisationUID)
+        public List<StockReportModel> StockOnHand(string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockOnHand?organisationUID={0}", organisationUID);
+            string requestApi = string.Format("Api/Report/StockOnHand?organisationList={0}", organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
 
-        public List<StockReportModel> StockDispensedReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockDispensedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockDispensedReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockDispensedReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockNonMovement(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockNonMovement(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockNonMovement?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockNonMovement?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockExpiryReport(int month, int? organisationUID)
+        public List<StockReportModel> StockExpiryReport(int month, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockExpiryReport?month={0}&organisationUID={1}", month, organisationUID);
+            string requestApi = string.Format("Api/Report/StockExpiryReport?month={0}&organisationList={1}", month, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockExpiredReport(int? organisationUID)
+        public List<StockReportModel> StockExpiredReport(string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockExpiredReport?organisationUID={0}", organisationUID);
+            string requestApi = string.Format("Api/Report/StockExpiredReport?organisationList={0}", organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockGoodReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockGoodReceiveReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockGoodReceiveReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockGoodReceiveReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
 
-        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockReceiveReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockReceiveReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockReceiveReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockBalancePerMounth(int year, string monthLists, int? organisationUID)
+        public List<StockReportModel> StockBalancePerMounth(int year, string monthLists, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockBalancePerMounth?year={0}&monthLists={1}&organisationUID={2}", year, monthLists, organisationUID);
+            string requestApi = string.Format("Api/Report/StockBalancePerMounth?year={0}&monthLists={1}&organisationList={2}", year, monthLists, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
@@ -313,22 +313,22 @@ namespace MediTech.DataService
             return MeditechApiHelper.Get<List<StockTransactionReportModel>>(string.Format("Api/Report/StockIssueReport?issueID={0}", issueID));
         }
 
-        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockIssueReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            return MeditechApiHelper.Get<List<StockTransactionReportModel>>(string.Format("Api/Report/StockIssueReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID));
+            return MeditechApiHelper.Get<List<StockTransactionReportModel>>(string.Format("Api/Report/StockIssueReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList));
         }
 
-        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredOutReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockTransferredOutReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockTransferredOutReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockTransferredInReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockTransferredInReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockTransferredInReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
 
             return data;
@@ -349,9 +349,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockConsumption(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockConsumption?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockConsumption?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
@@ -365,25 +365,25 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<StockReportModel> StockAdjustmentOut(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockAdjustmentOut(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockAdjustmentOut?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockAdjustmentOut?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockReportModel> StockAdjustmentIn(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockReportModel> StockAdjustmentIn(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockAdjustmentIn?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockAdjustmentIn?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockReportModel> data = MeditechApiHelper.Get<List<StockReportModel>>(requestApi);
 
             return data;
         }
 
-        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockTransactionReportModel> StockDispose(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockDispose?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockDispose?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockTransactionReportModel> data = MeditechApiHelper.Get<List<StockTransactionReportModel>>(requestApi);
 
             return data;
@@ -393,9 +393,9 @@ namespace MediTech.DataService
 
         #region Radiology
 
-        public List<RadiologyRDUReviewModel> GetRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<RadiologyRDUReviewModel> GetRadiologyRDUReview(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/GetRadiologyRDUReview?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/GetRadiologyRDUReview?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<RadiologyRDUReviewModel> data = MeditechApiHelper.Get<List<RadiologyRDUReviewModel>>(requestApi);
 
             return data;

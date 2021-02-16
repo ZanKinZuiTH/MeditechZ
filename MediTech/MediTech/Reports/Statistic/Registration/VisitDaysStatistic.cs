@@ -22,11 +22,11 @@ namespace MediTech.Reports.Statistic.Registration
 
         private void VisitDaysStatistic_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString();
             int? vistyuid = this.Parameters["VISTYUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["VISTYUID"].Value) : 0;
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
-            List<ChartStatisticModel> dataStatistic = (new ReportsService()).VisitDaysStatistic(dateFrom, dateTo, vistyuid != 0 ? vistyuid : (int?)null, organisationUID != 0 ? organisationUID : (int?)null);
+            List<ChartStatisticModel> dataStatistic = (new ReportsService()).VisitDaysStatistic(dateFrom, dateTo, vistyuid != 0 ? vistyuid : (int?)null, organisationList);
 
             this.xrChart1.BeginInit();
             Series series = new Series("Day", ViewType.Bar);

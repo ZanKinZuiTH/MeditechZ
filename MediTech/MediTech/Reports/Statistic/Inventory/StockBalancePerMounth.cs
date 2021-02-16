@@ -17,10 +17,10 @@ namespace MediTech.Reports.Statistic.Inventory
 
         private void StockBalancePerMounth_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
-            int organisationUID = this.Parameters["OrganisationUID"].Value.ToString() != "" ? Convert.ToInt32(this.Parameters["OrganisationUID"].Value) : 0;
+            string organisationList = this.Parameters["OrganisationList"].Value.ToString() ;
             int year = Convert.ToInt32(this.Parameters["Year"].Value);
             string monthLists = this.Parameters["MonthLists"].Value.ToString();
-            this.DataSource = (new ReportsService()).StockBalancePerMounth(year, monthLists, organisationUID != 0 ? organisationUID : (int?)null);
+            this.DataSource = (new ReportsService()).StockBalancePerMounth(year, monthLists, organisationList);
         }
     }
 }
