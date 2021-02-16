@@ -508,6 +508,7 @@ namespace MediTech.ViewModels
                         }
 
                         report.RequestParameters = false;
+                        report.Parameters["OrganisationUID"].Value = patBillResult.OwnerOrganisationUID;
                         report.Parameters["PatientBillUID"].Value = patBillResult.PatientBillUID;
                         ReportPrintTool printTool = new ReportPrintTool(report);
                         report.ShowPrintMarginsWarning = false;
