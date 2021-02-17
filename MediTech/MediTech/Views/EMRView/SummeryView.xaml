@@ -942,57 +942,56 @@
                         </Grid>
                     </DataTemplate>
                 </dxlc:GroupBox.MaximizedContentTemplate>
-                <Grid>
-                    <dxg:GridControl ShowBorder="False"
+                <dxg:GridControl ShowBorder="False"
                                  ItemsSource="{Binding ListRadiologyResult}"
                                  SelectedItem="{Binding SelectRadiologyResult}"
                                  Name="listRadiologyResult" >
-                        <dxg:GridControl.Columns>
-                            <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding RowData.Row.RequestItemName}"
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RowData.Row.RequestItemName}"
                                                ToolTip="{Binding RowData.Row.RequestItemName}"
                                                VerticalAlignment="Center"
                                                TextTrimming="CharacterEllipsis"
                                                FontWeight="Bold" />
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Width="70">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <dxe:HyperlinkEdit EditValue="View Result">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger  EventName="RequestNavigation">
-                                                    <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyViewCommand}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </dxe:HyperlinkEdit>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Width="40">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <dxe:HyperlinkEdit EditValue="Image">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger  EventName="RequestNavigation">
-                                                    <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyImageCommand}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </dxe:HyperlinkEdit>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                        </dxg:GridControl.Columns>
-                        <dxg:GridControl.View>
-                            <dxg:TableView  ShowGroupPanel="False" 
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Width="70">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:HyperlinkEdit EditValue="View Result">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyViewCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </dxe:HyperlinkEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Width="40">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:HyperlinkEdit EditValue="Image">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyImageCommand}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </dxe:HyperlinkEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView  ShowGroupPanel="False" 
                                         AllowEditing="False"
                                         ShowIndicator="False"
                                         AllowMasterDetail="False"
@@ -1002,10 +1001,9 @@
                                         VerticalScrollbarVisibility="Auto"
                                         HorizontalScrollbarVisibility="Auto"
                                         BorderThickness="0">
-                            </dxg:TableView>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>
-                </Grid>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
 
             </dxlc:GroupBox>
             <dxlc:GroupBox Width="350" Height="220" 
@@ -1077,50 +1075,47 @@
                         </Grid>
                     </DataTemplate>
                 </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxlc:GroupBox.ContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <dxg:GridControl ShowBorder="False"
-                                 ItemsSource="{Binding DataContext.ListLabsResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
-                                 SelectedItem="{Binding DataContext.SelectLabResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"                 
+                <dxg:GridControl ShowBorder="False"
+                                 ItemsSource="{Binding ListLabsResult}"
+                                 SelectedItem="{Binding SelectLabResult}"                 
                                  Name="ListLabsResult" >
-                                <dxg:GridControl.Columns>
-                                    <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding RowData.Row.RequestItemName}" 
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Text="{Binding RowData.Row.RequestItemName}" 
                                                            ToolTip="{Binding RowData.Row.RequestItemName}"
                                                            VerticalAlignment="Center"
                                                            TextWrapping="NoWrap"
                                                            TextTrimming="CharacterEllipsis" FontWeight="Bold" />
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn Width="70">
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
-                                                    <i:Interaction.Triggers>
-                                                        <i:EventTrigger  EventName="RequestNavigation">
-                                                            <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}"  
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Width="70">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}"  
                                                                                  Command="{Binding DataContext.LabViewCommand
                                                                 ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                        </i:EventTrigger>
-                                                    </i:Interaction.Triggers>
-                                                </dxe:HyperlinkEdit>
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="LabNumber" Width="Auto" />
-                                </dxg:GridControl.Columns>
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </dxe:HyperlinkEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="LabNumber" Width="Auto" />
+                    </dxg:GridControl.Columns>
 
-                                <dxg:GridControl.View>
-                                    <dxg:TableView  ShowGroupPanel="False"
+                    <dxg:GridControl.View>
+                        <dxg:TableView  ShowGroupPanel="False"
                                         NavigationStyle="Row"
                                         ShowIndicator="False"
                                         ShowVerticalLines="False"
@@ -1128,12 +1123,8 @@
                                         VerticalScrollbarVisibility="Auto"
                                         HorizontalScrollbarVisibility="Auto"
                                         BorderThickness="0"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-
-                    </DataTemplate>
-                </dxlc:GroupBox.ContentTemplate>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
             </dxlc:GroupBox>
             <dxlc:GroupBox Width="350" Padding="0" Height="220" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">

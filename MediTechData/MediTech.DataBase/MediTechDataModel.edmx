@@ -251,7 +251,6 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="CheckupJobContactUID" Type="int" Nullable="false" />
           <Property Name="GPRSTUID" Type="int" Nullable="false" />
-          <Property Name="GroupResultName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="DisplayOrder" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2301,7 +2300,6 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RequestItemUID" Type="int" Nullable="false" />
           <Property Name="GPRSTUID" Type="int" Nullable="false" />
-          <Property Name="GroupResultName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="PrintOrder" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2734,6 +2732,13 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SEQPatientINVBill">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="SEQPatientOrder">
           <Key>
@@ -3600,30 +3605,30 @@
         <Function Name="pRPTPatientNetProfit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTPatientProblemStatistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTPatientSumByAreaPerMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTPatientSummaryData" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTPatientSummaryPerMonth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_Year" Type="int" Mode="In" />
           <Parameter Name="P_MonthLists" Type="nvarchar" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTPatientWellness" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -3632,67 +3637,67 @@
         <Function Name="pRPTRadiologyRDUReview" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockAdjustmentIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockAdjustmentOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockBalancePerMounth" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_Year" Type="int" Mode="In" />
           <Parameter Name="P_MonthLists" Type="nvarchar" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockConsumption" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockDispensed" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockDispose" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockExpired" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockExpiry" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_Month" Type="int" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockGoodReceive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockIssued" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockNonMovement" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockOnHand" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockReceive" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -3702,28 +3707,28 @@
         <Function Name="pRPTStockTransferredIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockTransferredOut" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTUsedReport" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTVisitDaysStatistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTVisitTimesStatistic" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTWellNessBook" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
@@ -4062,6 +4067,7 @@
           <EntitySet Name="SEQLISRequest" EntityType="Self.SEQLISRequest" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQPatientBill" EntityType="Self.SEQPatientBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQPatientID" EntityType="Self.SEQPatientID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEQPatientINVBill" EntityType="Self.SEQPatientINVBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQPatientOrder" EntityType="Self.SEQPatientOrder" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQPrescription" EntityType="Self.SEQPrescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQPROID" EntityType="Self.SEQPROID" Schema="dbo" store:Type="Tables" />
@@ -4672,27 +4678,27 @@
           <FunctionImport Name="pRPTStockDispensed" ReturnType="Collection(MediTechModel.pRPTStockDispensed_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockExpired" ReturnType="Collection(MediTechModel.pRPTStockExpired_Result)">
-          <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockExpiry" ReturnType="Collection(MediTechModel.pRPTStockExpiry_Result)">
             <Parameter Name="P_Month" Mode="In" Type="Int32" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockGoodReceive" ReturnType="Collection(MediTechModel.pRPTStockGoodReceive_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockNonMovement">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockOnHand" ReturnType="Collection(MediTechModel.pRPTStockOnHand_Result)">
-          <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+          <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pSearchRequestExamList" ReturnType="Collection(MediTechModel.pSearchRequestExamList_Result)">
             <Parameter Name="P_RequestDateFrom" Mode="In" Type="DateTime" />
@@ -4726,7 +4732,7 @@
           <FunctionImport Name="pRPTVisitDaysStatistic" ReturnType="Collection(MediTechModel.pRPTVisitDaysStatistic_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pInvenClearItemReceiveDetail1">
@@ -4739,7 +4745,7 @@
           <FunctionImport Name="pRPTPatientProblemStatistic" ReturnType="Collection(MediTechModel.pRPTPatientProblemStatistic_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pRPTVisitSumByArea" ReturnType="Collection(MediTechModel.pRPTVisitSumByArea_Result)">
@@ -4751,7 +4757,7 @@
           <FunctionImport Name="pRPTVisitTimesStatistic" ReturnType="Collection(MediTechModel.pRPTVisitTimesStatistic_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pSearchRequestExamListForAssign" ReturnType="Collection(MediTechModel.pSearchRequestExamListForAssign_Result)">
@@ -4773,7 +4779,7 @@
           <FunctionImport Name="pRPTPatientNetProfit" ReturnType="Collection(MediTechModel.pRPTPatientNetProfit_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockReceiveReportAll" ReturnType="Collection(MediTechModel.pRPTStockReceiveReportAll_Result)">
@@ -4784,12 +4790,12 @@
           <FunctionImport Name="pRPTStockBalancePerMounth">
             <Parameter Name="P_Year" Mode="In" Type="Int32" />
             <Parameter Name="P_MonthLists" Mode="In" Type="String" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTRadiologyRDUReview" ReturnType="Collection(MediTechModel.pRPTRadiologyRDUReview_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pInvenCancelStockAdjustmentByStockUID">
             <Parameter Name="P_StockUID" Mode="In" Type="Int32" />
@@ -4803,13 +4809,13 @@
           <FunctionImport Name="pRPTPatientSumByAreaPerMonth" ReturnType="Collection(MediTechModel.pRPTPatientSumByAreaPerMonth_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pRPTPatientSummaryPerMonth" ReturnType="Collection(MediTechModel.pRPTPatientSummaryPerMonth_Result)">
             <Parameter Name="P_Year" Mode="In" Type="Int32" />
             <Parameter Name="P_MonthLists" Mode="In" Type="String" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockSummery" ReturnType="Collection(MediTechModel.pRPTStockSummery_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
@@ -4824,7 +4830,7 @@
           <FunctionImport Name="pRPTUsedReport" ReturnType="Collection(MediTechModel.pRPTUsedReport_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pInvenCancelStockTransactionByStockUID">
             <Parameter Name="P_StockUID" Mode="In" Type="Int32" />
@@ -4907,7 +4913,7 @@
           <FunctionImport Name="pRPTPatientSummaryData" ReturnType="Collection(MediTechModel.pRPTPatientSummaryData_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pMergePatient">
             <Parameter Name="P_MajorPatientUID" Mode="In" Type="Int64" />
@@ -4935,42 +4941,42 @@
           <FunctionImport Name="pRPTStockConsumption" ReturnType="Collection(MediTechModel.pRPTStockConsumption_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockAdjustmentIn" ReturnType="Collection(MediTechModel.pRPTStockAdjustmentIn_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockAdjustmentOut" ReturnType="Collection(MediTechModel.pRPTStockAdjustmentOut_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockIssued" ReturnType="Collection(MediTechModel.pRPTStockIssued_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockReceive" ReturnType="Collection(MediTechModel.pRPTStockReceive_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockTransferredIn" ReturnType="Collection(MediTechModel.pRPTStockTransferredIn_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockTransferredOut" ReturnType="Collection(MediTechModel.pRPTStockTransferredOut_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTStockDispose" ReturnType="Collection(MediTechModel.pRPTStockDispose_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pSearchResultLabList">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
@@ -5056,6 +5062,11 @@
             <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
             <Parameter Name="P_GPRSTUIDs" Mode="In" Type="String" />
             <Parameter Name="P_CompanyName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTCheckupJobOrderSummary" ReturnType="Collection(MediTechModel.pRPTCheckupJobOrderSummary_Result)">
+            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
@@ -5194,6 +5205,7 @@
           <EntitySet Name="SEQLISRequest" EntityType="MediTechModel.SEQLISRequest" />
           <EntitySet Name="SEQPatientBill" EntityType="MediTechModel.SEQPatientBill" />
           <EntitySet Name="SEQPatientID" EntityType="MediTechModel.SEQPatientID" />
+          <EntitySet Name="SEQPatientINVBill" EntityType="MediTechModel.SEQPatientINVBill" />
           <EntitySet Name="SEQPatientOrder" EntityType="MediTechModel.SEQPatientOrder" />
           <EntitySet Name="SEQPrescription" EntityType="MediTechModel.SEQPrescription" />
           <EntitySet Name="SEQPROID" EntityType="MediTechModel.SEQPROID" />
@@ -5217,11 +5229,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pRPTCheckupJobOrderSummary" ReturnType="Collection(MediTechModel.pRPTCheckupJobOrderSummary_Result)">
-            <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7676,6 +7683,22 @@
           <Property Type="Int32" Name="TotalCount" Nullable="true" />
           <Property Type="Int32" Name="GPRSTUID" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pRPTCheckupJobOrderSummary_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrderSetName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
+          <Property Type="Double" Name="NetAmount" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -7922,7 +7945,6 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="CheckupJobContactUID" Type="Int32" Nullable="false" />
           <Property Name="GPRSTUID" Type="Int32" Nullable="false" />
-          <Property Name="GroupResultName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="DisplayOrder" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -9972,7 +9994,6 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RequestItemUID" Type="Int32" Nullable="false" />
           <Property Name="GPRSTUID" Type="Int32" Nullable="false" />
-          <Property Name="GroupResultName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="PrintOrder" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -10406,6 +10427,13 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SEQPatientINVBill">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="SEQPatientOrder">
           <Key>
             <PropertyRef Name="UID" />
@@ -10763,22 +10791,6 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pRPTCheckupJobOrderSummary_Result">
-          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
-          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="OrderSetName" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12688,6 +12700,26 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupJobOrderSummary" FunctionName="MediTechModel.Store.pRPTCheckupJobOrderSummary">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupJobOrderSummary_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="OrderSetName" ColumnName="OrderSetName" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -12949,7 +12981,6 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-                <ScalarProperty Name="GroupResultName" ColumnName="GroupResultName" />
                 <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
                 <ScalarProperty Name="CheckupJobContactUID" ColumnName="CheckupJobContactUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
@@ -15093,7 +15124,6 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="PrintOrder" ColumnName="PrintOrder" />
-                <ScalarProperty Name="GroupResultName" ColumnName="GroupResultName" />
                 <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
                 <ScalarProperty Name="RequestItemUID" ColumnName="RequestItemUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
@@ -15555,6 +15585,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SEQPatientINVBill">
+            <EntityTypeMapping TypeName="MediTechModel.SEQPatientINVBill">
+              <MappingFragment StoreEntitySet="SEQPatientINVBill">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SEQPatientOrder">
             <EntityTypeMapping TypeName="MediTechModel.SEQPatientOrder">
               <MappingFragment StoreEntitySet="SEQPatientOrder">
@@ -15935,26 +15973,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pRPTCheckupJobOrderSummary" FunctionName="MediTechModel.Store.pRPTCheckupJobOrderSummary">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupJobOrderSummary_Result">
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
-                <ScalarProperty Name="OrderSetName" ColumnName="OrderSetName" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

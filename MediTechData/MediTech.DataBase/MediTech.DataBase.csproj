@@ -889,6 +889,9 @@
     <Compile Include="SEQPatientID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEQPatientINVBill.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEQPatientOrder.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

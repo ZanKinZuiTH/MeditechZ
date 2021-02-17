@@ -1,6 +1,7 @@
 ﻿using MediTech.Model;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,27 +32,39 @@ namespace MediTech.Views
         {
             if (e.Column.Equals(colDisplayOrder))
             {
-                var dataTaskList = (grdJobTask.ItemsSource as List<CheckupJobTaskModel>);
+                var dataTaskList = (grdJobTask.ItemsSource as ObservableCollection<CheckupJobTaskModel>);
                 if (dataTaskList != null)
                 {
                     int oldValue = int.Parse(e.OldValue.ToString());
                     int value = int.Parse(e.Value.ToString());
                     foreach (var task in dataTaskList)
                     {
+
                         if (!task.Equals(e.Row) && (task.DisplayOrder < oldValue))
                         {
                             int number = (task.DisplayOrder ?? 0) - value;
-                            if ((number == 1 && value != 0)|| number == 0)
+                            if ((number == 1 && value != 0) || number == 0)
+                            {
+                                value = (++task.DisplayOrder ?? 0);
+                            }
+                        }
+                        else if (!task.Equals(e.Row) && (task.DisplayOrder > oldValue))
+                        {
+                            int number = (task.DisplayOrder ?? 0) - value;
+                            if (number == 0)
                             {
                                 value = (++task.DisplayOrder ?? 0);
                             }
                         }
                     }
-                    grdJobTask.ItemsSource = dataTaskList?.OrderBy(p => p.DisplayOrder).ToList();
-                    grdJobTask.RefreshData();
-                }
-            }
 
+
+                }
+                grdJobTask.ItemsSource = new ObservableCollection<CheckupJobTaskModel>(dataTaskList?.OrderBy(p => p.DisplayOrder));
+                grdJobTask.RefreshData();
+                grdJobTask.RefreshRow(e.RowHandle);
+            }
         }
+
     }
 }

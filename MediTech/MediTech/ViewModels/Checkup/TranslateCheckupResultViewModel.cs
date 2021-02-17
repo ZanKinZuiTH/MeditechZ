@@ -480,7 +480,7 @@ namespace MediTech.ViewModels
                 var dataVital = DataService.PatientHistory.GetPatientVitalSignByVisitUID(patientVisit.PatientVisitUID);
                 var radiology = DataService.Radiology.GetResultRadiologyByVisitUID(patientVisit.PatientVisitUID);
                 var resultLab_Occ = DataService.Checkup.GetResultComponentByVisitUID(patientVisit.PatientVisitUID);
-                if (dataVital != null)
+                if (dataVital != null && dataVital.Count > 0)
                 {
                     var vitalSign = dataVital.OrderByDescending(p => p.RecordedDttm).FirstOrDefault();
                     if (vitalSign.BMIValue != null)
@@ -509,7 +509,7 @@ namespace MediTech.ViewModels
 
                 }
 
-                if (radiology != null)
+                if (radiology != null && radiology.Count > 0)
                 {
                     foreach (var item in radiology)
                     {
@@ -548,7 +548,7 @@ namespace MediTech.ViewModels
                     }
                 }
 
-                if (resultLab_Occ != null)
+                if (resultLab_Occ != null && resultLab_Occ.Count > 0)
                 {
                     foreach (var result in resultLab_Occ)
                     {

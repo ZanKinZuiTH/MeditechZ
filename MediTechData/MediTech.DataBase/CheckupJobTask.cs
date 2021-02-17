@@ -17,7 +17,6 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public int CheckupJobContactUID { get; set; }
         public int GPRSTUID { get; set; }
-        public string GroupResultName { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

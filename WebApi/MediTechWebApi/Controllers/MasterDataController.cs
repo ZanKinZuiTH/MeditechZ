@@ -136,16 +136,17 @@ namespace MediTechWebApi.Controllers
                                                  SpecimenType = SqlFunction.fGetRfValDescription(spc.SPMTPUID ?? 0)
                                              }).ToList();
 
-                data.RequestItemGroupResults = db.RequestItemGroupResult
-                    .Where(p => p.StatusFlag == "A" && p.RequestItemUID == data.RequestItemUID)
-                    .Select(p => new RequestItemGroupResultModel
-                    {
-                        RequestItemGroupResultUID = p.UID,
-                        RequestItemUID = p.RequestItemUID,
-                        GroupResultName = p.GroupResultName,
-                        GPRSTUID = p.GPRSTUID,
-                        PrintOrder = p.PrintOrder
-                    }).ToList();
+                data.RequestItemGroupResults = (from gps in db.RequestItemGroupResult
+                                                join rf in db.ReferenceValue on gps.GPRSTUID equals rf.UID
+                                                where gps.StatusFlag == "A" && gps.RequestItemUID == data.RequestItemUID
+                                                select new RequestItemGroupResultModel
+                                                {
+                                                    RequestItemGroupResultUID = gps.UID,
+                                                    RequestItemUID = gps.RequestItemUID,
+                                                    GroupResultName = rf.Description,
+                                                    GPRSTUID = gps.GPRSTUID,
+                                                    PrintOrder = gps.PrintOrder
+                                                }).ToList();
             }
 
             return data;
@@ -449,7 +450,6 @@ namespace MediTechWebApi.Controllers
                             }
                             requestItemGroupResult.RequestItemUID = requestItem.UID;
                             requestItemGroupResult.GPRSTUID = item.GPRSTUID;
-                            requestItemGroupResult.GroupResultName = item.GroupResultName;
                             requestItemGroupResult.PrintOrder = item.PrintOrder;
                             db.RequestItemGroupResult.AddOrUpdate(requestItemGroupResult);
                             db.SaveChanges();

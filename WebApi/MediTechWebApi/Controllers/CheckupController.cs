@@ -74,15 +74,17 @@ namespace MediTechWebApi.Controllers
 
             if (data != null)
             {
-                data.CheckupJobTasks = db.CheckupJobTask.Where(p => p.CheckupJobContactUID == data.CheckupJobContactUID && p.StatusFlag == "A")
-                    .Select(p => new CheckupJobTaskModel
-                    {
-                        CheckupJobTaskUID = p.UID,
-                        CheckupJobContactUID = p.CheckupJobContactUID,
-                        GPRSTUID = p.GPRSTUID,
-                        GroupResultName = p.GroupResultName,
-                        DisplayOrder = p.DisplayOrder
-                    }).ToList();
+                data.CheckupJobTasks = (from job in db.CheckupJobTask
+                                        join rf in db.ReferenceValue on job.GPRSTUID equals rf.UID
+                                        where job.CheckupJobContactUID == data.CheckupJobContactUID && job.StatusFlag == "A"
+                                        select new CheckupJobTaskModel
+                                        {
+                                            CheckupJobTaskUID = job.UID,
+                                            CheckupJobContactUID = job.CheckupJobContactUID,
+                                            GPRSTUID = job.GPRSTUID,
+                                            GroupResultName = rf.Description,
+                                            DisplayOrder = job.DisplayOrder
+                                        }).ToList();
             }
 
             return data;
@@ -128,7 +130,7 @@ namespace MediTechWebApi.Controllers
                                                       CheckupJobTaskUID = ck.UID,
                                                       CheckupJobContactUID = ck.CheckupJobContactUID,
                                                       GPRSTUID = ck.GPRSTUID,
-                                                      GroupResultName = ck.GroupResultName,
+                                                      GroupResultName = rf.Description,
                                                       DisplayOrder = ck.DisplayOrder,
                                                       ReportTemplate = rf.AlternateName
                                                   }).ToList();
@@ -351,7 +353,6 @@ namespace MediTechWebApi.Controllers
                             }
                             checkupJobTask.CheckupJobContactUID = checkupJob.UID;
                             checkupJobTask.GPRSTUID = item.GPRSTUID;
-                            checkupJobTask.GroupResultName = item.GroupResultName;
                             checkupJobTask.DisplayOrder = item.DisplayOrder;
                             db.CheckupJobTask.AddOrUpdate(checkupJobTask);
                             db.SaveChanges();
@@ -1380,6 +1381,7 @@ namespace MediTechWebApi.Controllers
             var data = (from re in db.Request
                         join red in db.RequestDetail on re.UID equals red.RequestUID
                         join gps in db.RequestItemGroupResult on red.RequestitemUID equals gps.RequestItemUID
+                        join rf in db.ReferenceValue on gps.GPRSTUID equals rf.UID
                         where re.StatusFlag == "A"
                          && re.StatusFlag == "A"
                          && red.StatusFlag == "A"
@@ -1389,7 +1391,7 @@ namespace MediTechWebApi.Controllers
                         select new LookupReferenceValueModel
                         {
                             Key = gps.GPRSTUID,
-                            Display = gps.GroupResultName
+                            Display = rf.Description
                         });
 
             LookupReferenceValueModel bmi = new LookupReferenceValueModel();

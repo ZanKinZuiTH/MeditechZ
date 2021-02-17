@@ -346,7 +346,7 @@ namespace MediTech.ViewModels
             StartDttm = modelCheckupJobContact.StartDttm;
             EndDttm = modelCheckupJobContact.EndDttm;
             CollectDttm = modelCheckupJobContact.CollectDttm;
-            CheckupJobTask = new ObservableCollection<CheckupJobTaskModel>(modelCheckupJobContact.CheckupJobTasks);
+            CheckupJobTask = new ObservableCollection<CheckupJobTaskModel>(modelCheckupJobContact.CheckupJobTasks.OrderBy(p => p.DisplayOrder));
 
             if (CheckupJobTask != null && CheckupJobTask.Count > 0)
             {
