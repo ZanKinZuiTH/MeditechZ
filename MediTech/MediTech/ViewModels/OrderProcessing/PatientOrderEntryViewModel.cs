@@ -356,7 +356,7 @@ namespace MediTech.ViewModels
             Careproviders = DataService.UserManage.GetCareproviderAll();
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
 
-            HealthOrganisations = GetHealthOrganisationRoleMedical();
+            HealthOrganisations = GetHealthOrganisationIsStock();
             SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == PatientVisit.OwnerOrganisationUID);
 
             if (SelectHealthOrganisation == null)

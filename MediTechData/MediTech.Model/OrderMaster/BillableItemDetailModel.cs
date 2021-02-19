@@ -17,6 +17,7 @@ namespace MediTech.Model
         public Nullable<DateTime> ActiveFrom { get; set; }
         public Nullable<DateTime> ActiveTo { get; set; }
         public double Price { get; set; }
+        public double Cost { get; set; }
         public int CURNCUID { get; set; }
         public String Unit { get; set; }
         public int CUser { get; set; }

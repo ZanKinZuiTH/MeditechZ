@@ -10,6 +10,7 @@ using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
 using ShareLibrary;
+using System.Data.Entity;
 
 namespace MediTechWebApi.Controllers
 {
@@ -26,17 +27,9 @@ namespace MediTechWebApi.Controllers
             {
                 selectBillItemDetail = billItmDetail
                     .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date >= DateTime.Now.Date))
-                    && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date <= DateTime.Now.Date))
+                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && DbFunctions.TruncateTime(p.ActiveFrom) >= DbFunctions.TruncateTime(DateTime.Now)))
+                    && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) <= DbFunctions.TruncateTime(DateTime.Now)))
                     );
-            }
-            else
-            {
-                selectBillItemDetail = billItmDetail
-    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
-    && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
-    );
             }
 
             return selectBillItemDetail;
@@ -596,6 +589,12 @@ namespace MediTechWebApi.Controllers
                         }
                         else
                         {
+                            BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
+                            && p.OwnerOrganisationUID == model.OwnerOrganisationUID
+                            && p.BillableItemUID == item.BillableItemUID
+                            && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                            && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
+
                             PatientBilledItem patBilled = new PatientBilledItem();
                             patBilled.CWhen = now;
                             patBilled.StatusFlag = "A";
@@ -612,7 +611,7 @@ namespace MediTechWebApi.Controllers
                             patBilled.MWhen = now;
                             patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
                             patBilled.ItemName = item.ItemName;
-                            patBilled.ItemCost = billItem.TotalCost;
+                            patBilled.ItemCost = billItemDetail?.Cost;
                             patBilled.ItemMutiplier = item.ItemMutiplier;
                             patBilled.Amount = item.Amount;
                             patBilled.Discount = item.Discount;

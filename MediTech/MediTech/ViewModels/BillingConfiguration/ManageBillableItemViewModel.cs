@@ -62,25 +62,7 @@ namespace MediTech.ViewModels
         }
 
 
-        private double _Cost;
 
-        public double Cost
-        {
-            get { return _Cost; }
-            set
-            {
-                Set(ref _Cost, value);
-                TotalCost = Cost + (DoctorFee ?? 0);
-            }
-        }
-
-        private double _TotalCost;
-
-        public double TotalCost
-        {
-            get { return _TotalCost; }
-            set { Set(ref _TotalCost, value); }
-        }
 
         private bool _IsShareDoctor;
 
@@ -116,6 +98,14 @@ namespace MediTech.ViewModels
         {
             get { return _Price; }
             set { Set(ref _Price, value); }
+        }
+
+        private double _Cost;
+
+        public double Cost
+        {
+            get { return _Cost; }
+            set { Set(ref _Cost, value); }
         }
 
         private List<LookupReferenceValueModel> _Units;
@@ -174,6 +164,7 @@ namespace MediTech.ViewModels
                     IsVisibilityAvgCost = Visibility.Collapsed;
                     IsVisibilityRefCode = Visibility.Collapsed;
                     IsVisibilityCost = Visibility.Visible;
+                    VisibleCost = true;
                     string serviceType = SelectServiceType.Display;
                     IsVisibilityItem = Visibility.Visible;
                     IsEnableCode = false;
@@ -242,7 +233,8 @@ namespace MediTech.ViewModels
                             ActiveTo = p.ActiveTo
                         }).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Collapsed;
+                        IsVisibilityCost = Visibility.Hidden;
+                        VisibleCost = false;
                     }
                     else if (serviceType == "Medical Supplies")
                     {
@@ -256,7 +248,8 @@ namespace MediTech.ViewModels
                             ActiveTo = p.ActiveTo
                         }).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Collapsed;
+                        IsVisibilityCost = Visibility.Hidden;
+                        VisibleCost = false;
                     }
                     else if (serviceType == "Supply")
                     {
@@ -270,7 +263,8 @@ namespace MediTech.ViewModels
                             ActiveTo = p.ActiveTo
                         }).ToList();
                         IsVisibilityAvgCost = Visibility.Visible;
-                        IsVisibilityCost = Visibility.Collapsed;
+                        IsVisibilityCost = Visibility.Hidden;
+                        VisibleCost = false;
                     }
                     else
                     {
@@ -313,7 +307,11 @@ namespace MediTech.ViewModels
 
                     if (serviceType == "Drug" || serviceType == "Medical Supplies" || serviceType == "Supply")
                     {
-                        ItemAverageCost = DataService.Inventory.GetItemAverageCost(SelectedItemService.ItemUID,null);
+                        var roleOrgan = Organisations;
+                        var itemAverageCost = DataService.Inventory.GetItemAverageCost(SelectedItemService.ItemUID, null);
+                        ItemAverageCost = (from i in itemAverageCost
+                                           join j in roleOrgan on i.OwnerOrganisationUID equals j.HealthOrganisationUID
+                                           select i).ToList();
                     }
                     else
                     {
@@ -424,6 +422,7 @@ namespace MediTech.ViewModels
                 if (_SelectBillableItemDetail != null)
                 {
                     Price = _SelectBillableItemDetail.Price;
+                    Cost = _SelectBillableItemDetail.Cost;
                     ActiveFrom2 = _SelectBillableItemDetail.ActiveFrom;
                     ActiveTo2 = _SelectBillableItemDetail.ActiveTo;
                     SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == _SelectBillableItemDetail.OwnerOrganisationUID);
@@ -447,11 +446,15 @@ namespace MediTech.ViewModels
             get { return _SelectItemAverageCost; }
             set {
                 _SelectItemAverageCost = value;
-                if (_SelectItemAverageCost != null)
-                {
-                    TotalCost = SelectItemAverageCost.AvgCost + (DoctorFee ?? 0);
-                }
             }
+        }
+
+        private bool _VisibleCost = false;
+
+        public bool VisibleCost
+        {
+            get { return _VisibleCost; }
+            set { Set(ref _VisibleCost, value); }
         }
 
 
@@ -463,7 +466,7 @@ namespace MediTech.ViewModels
             set { Set(ref _IsVisibilityAvgCost, value); }
         }
 
-        private Visibility _IsVisibilityCost = Visibility.Collapsed;
+        private Visibility _IsVisibilityCost = Visibility.Hidden;
 
         public Visibility IsVisibilityCost
         {
@@ -540,10 +543,11 @@ namespace MediTech.ViewModels
         {
             ServiceTypes = DataService.Technical.GetReferenceValueMany("BSMDD");
             BillingGroup = DataService.MasterData.GetBillingGroup();
-            Organisations = DataService.MasterData.GetHealthOrganisationActive();
-            Organisations.Add(new HealthOrganisationModel { HealthOrganisationUID = 0, Name = "ราคามาตรฐานส่วนกลาง" });
+            Organisations = GetHealthOrganisationRole();
+            //Organisations.Add(new HealthOrganisationModel { HealthOrganisationUID = 0, Name = "ราคามาตรฐานส่วนกลาง" });
             Organisations = Organisations.OrderBy(p => p.HealthOrganisationUID).ToList();
             Units = DataService.Technical.GetReferenceValueMany("CURNC");
+            SelectOrganisation = Organisations.FirstOrDefault();
             SelectUnit = Units.FirstOrDefault();
             ActiveFrom = DateTime.Now;
             ActiveFrom2 = ActiveFrom;
@@ -653,6 +657,7 @@ namespace MediTech.ViewModels
             newBillItmDetail.OwnerOrganisationName = SelectOrganisation.Name;
 
             newBillItmDetail.Price = Price;
+            newBillItmDetail.Cost = Cost;
             newBillItmDetail.CURNCUID = SelectUnit.Key;
             newBillItmDetail.Unit = SelectUnit.Display;
             newBillItmDetail.StatusFlag = "A";
@@ -687,6 +692,7 @@ namespace MediTech.ViewModels
                 SelectBillableItemDetail.OwnerOrganisationName = SelectOrganisation.Name;
 
                 SelectBillableItemDetail.Price = Price;
+                SelectBillableItemDetail.Cost = Cost;
                 SelectBillableItemDetail.CURNCUID = SelectUnit.Key;
                 SelectBillableItemDetail.Unit = SelectUnit.Display;
                 SelectBillableItemDetail.MWhen = DateTime.Now;
@@ -746,13 +752,17 @@ namespace MediTech.ViewModels
             Code = model.Code;
             Name = model.ItemName;
             Description = model.Description;
-            Cost = model.Cost;
             DoctorFee = model.DoctorFee;
             ActiveFrom = model.ActiveFrom;
             Comments = model.Comments;
             //Price = model.Price;
             ActiveTo = model.ActiveTo;
-            BillableItemDetail = new ObservableCollection<BillableItemDetailModel>(model.BillableItemDetails);
+            var roleOrgan = Organisations;
+            BillableItemDetail = new ObservableCollection<BillableItemDetailModel>(
+                from j in roleOrgan
+                join i in model.BillableItemDetails on j.HealthOrganisationUID equals i.OwnerOrganisationUID
+                select i
+                );
         }
 
         void AssingPropertiesToModel()
@@ -778,9 +788,7 @@ namespace MediTech.ViewModels
             model.BillingSubGroupUID = SelectBillingSubGroup.BillingSubGroupUID;
             //model.CURNCUID = SelectUnit.Key;
             model.DoctorFee = DoctorFee;
-            model.Cost = Cost;
             //model.Price = Price;
-            model.TotalCost = TotalCost;
             model.Comments = Comments;
             model.ActiveFrom = ActiveFrom;
             model.ActiveTo = ActiveTo;

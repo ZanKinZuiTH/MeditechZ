@@ -342,6 +342,7 @@ namespace PACSWebApi.Controllers
                             ActiveFrom = p.ActiveFrom,
                             ActiveTo = p.ActiveTo,
                             Price = p.Price,
+                            Cost = p.Cost ?? 0,
                             StatusFlag = p.StatusFlag,
                             OwnerOrganisationUID = p.OwnerOrganisationUID,
                             OwnerOrganisationName = p.OwnerOrganisationUID != 0 ? SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID) : "ราคามาตรฐานส่วนกลาง",

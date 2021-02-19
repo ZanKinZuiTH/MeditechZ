@@ -57,6 +57,7 @@
           <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="Cost" Type="float" />
           <Property Name="Price" Type="float" Nullable="false" />
           <Property Name="CURNCUID" Type="int" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -3143,6 +3144,10 @@
               </RowType>
             </CollectionType>
           </ReturnType>
+        </Function>
+        <Function Name="fGetBillableItemCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
+          <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetBillableItemPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
@@ -7751,6 +7756,7 @@
           <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="Cost" Type="Double" />
           <Property Name="Price" Type="Double" Nullable="false" />
           <Property Name="CURNCUID" Type="Int32" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -12776,6 +12782,7 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="CURNCUID" ColumnName="CURNCUID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />

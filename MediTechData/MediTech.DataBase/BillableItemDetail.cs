@@ -19,6 +19,7 @@ namespace MediTech.DataBase
         public int OwnerOrganisationUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public Nullable<double> Cost { get; set; }
         public double Price { get; set; }
         public int CURNCUID { get; set; }
         public int CUser { get; set; }

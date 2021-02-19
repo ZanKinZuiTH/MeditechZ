@@ -618,7 +618,7 @@ namespace MediTech.ViewModels
             SelectVisitStatus = VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC");
             VisitDate = DateTime.Now;
 
-            Organisations = GetHealthOrganisationRoleMedical();
+            Organisations = GetHealthOrganisationMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
         }

@@ -993,9 +993,9 @@ namespace MediTechWebApi.Controllers
                                                 Code = p.Code,
                                                 Description = p.Description,
                                                 ItemName = p.ItemName,
-                                                Cost = p.Cost,
                                                 DoctorFee = p.DoctorFee,
-                                                TotalCost = (p.BSMDDUID == 2826 || p.BSMDDUID == 2953) ? SqlFunction.fGetItemAverageCost(p.ItemUID ?? 0, ownerUID ?? 0) : p.TotalCost,
+                                                Cost = (p.BSMDDUID == 2826 || p.BSMDDUID == 2953) ? SqlFunction.fGetItemAverageCost(p.ItemUID ?? 0, ownerUID ?? 0)
+                                                : SqlFunction.fGetBillableItemCost(p.UID, ownerUID ?? 0),
                                                 BSMDDUID = p.BSMDDUID,
                                                 Price = SqlFunction.fGetBillableItemPrice(p.UID, ownerUID ?? 0),
                                                 BillingServiceMetaData = SqlFunction.fGetRfValDescription(p.BSMDDUID),
@@ -1013,7 +1013,7 @@ namespace MediTechWebApi.Controllers
                                                 StatusFlag = p.StatusFlag
                                             }).ToList();
 
-            data.ForEach(p => p.Profit = p.Price - p.TotalCost);
+            data.ForEach(p => p.Profit = p.Price - p.Cost);
 
             return data;
         }
@@ -1147,6 +1147,7 @@ namespace MediTechWebApi.Controllers
                         ActiveFrom = p.ActiveFrom,
                         ActiveTo = p.ActiveTo,
                         Price = p.Price,
+                        Cost = p.Cost ?? 0,
                         StatusFlag = p.StatusFlag,
                         OwnerOrganisationUID = p.OwnerOrganisationUID,
                         OwnerOrganisationName = p.OwnerOrganisationUID != 0 ? SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID) : "ราคามาตรฐานส่วนกลาง",
@@ -1347,6 +1348,7 @@ namespace MediTechWebApi.Controllers
                             billItemDetail.ActiveFrom = item.ActiveFrom;
                             billItemDetail.ActiveTo = item.ActiveTo;
                             billItemDetail.Price = item.Price;
+                            billItemDetail.Cost = item.Cost;
                             billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
                             billItemDetail.CURNCUID = item.CURNCUID;
 

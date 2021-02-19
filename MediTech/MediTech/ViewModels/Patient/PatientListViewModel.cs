@@ -277,7 +277,7 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
 
-            Organisations = GetHealthOrganisationRoleMedical();
+            Organisations = GetHealthOrganisationMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             PayorDetails = DataService.MasterData.GetPayorDetail();
 

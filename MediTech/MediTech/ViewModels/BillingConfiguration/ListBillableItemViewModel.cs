@@ -126,7 +126,7 @@ namespace MediTech.ViewModels
 
                 BillItemTypes = BillItemTypes.OrderBy(p => p.Key).ToList();
             }
-            Organisations = DataService.MasterData.GetHealthOrganisationActive();
+            Organisations = GetHealthOrganisationRole();
             BillingGroup = DataService.MasterData.GetBillingGroup();
             AllSubGroup = DataService.MasterData.GetBillingSubGroup();
             BillingSubGroup = AllSubGroup;

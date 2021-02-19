@@ -180,6 +180,12 @@ namespace MediTech.DataBase
             throw new NotSupportedException("Direct calls are not supported.");
         }
 
+        [DbFunction("MediTechModel.Store", "fGetBillableItemCost")]
+        public static Double fGetBillableItemCost(int billingItemUID, int ownerOrganisationUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
         [DbFunction("MediTechModel.Store", "fGetPatientAllergy")]
         public static string fGetPatientAllergy(long patientUID)
         {
