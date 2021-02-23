@@ -243,8 +243,7 @@
                                               IsTextEditable="False" 
                                               DisplayMember="Display"
                                               ValueMember="Key"
-                                              EditValue="{Binding Path=SelectVisitStatusList,UpdateSourceTrigger=PropertyChanged}"
-                                              SelectedItem="{Binding Path=SelectVisitStatus,UpdateSourceTrigger=PropertyChanged}">
+                                              EditValue="{Binding Path=SelectVisitStatusList,UpdateSourceTrigger=PropertyChanged}">
                                         <dxe:ComboBoxEdit.StyleSettings>
                                             <dxe:CheckedComboBoxStyleSettings />
                                         </dxe:ComboBoxEdit.StyleSettings>

@@ -66,17 +66,11 @@ namespace MediTech.ViewModels
         public ObservableCollection<LookupReferenceValueModel> VisitStatus { get; set; }
         private LookupReferenceValueModel _SelectVisitStatus;
 
-        public LookupReferenceValueModel SelectVisitStatus
-        {
-            get { return _SelectVisitStatus; }
-            set { Set(ref _SelectVisitStatus, value); }
-        }
-
         private List<object> _SelectVisitStatusList;
 
         public List<object> SelectVisitStatusList
         {
-            get { return _SelectVisitStatusList; }
+            get { return _SelectVisitStatusList ?? (_SelectVisitStatusList = new List<object>()); }
             set { Set(ref _SelectVisitStatusList, value); }
         }
 
@@ -270,7 +264,8 @@ namespace MediTech.ViewModels
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
-            SelectVisitStatus = VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST");
+            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
+            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC").Key);
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 1, Display = "วันนี้" });
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });
