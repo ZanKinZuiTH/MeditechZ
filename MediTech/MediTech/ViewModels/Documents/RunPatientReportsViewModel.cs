@@ -203,6 +203,7 @@ namespace MediTech.ViewModels
                 {
                     if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
                     {
+                        report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                         report.Parameters["HN"].Value = SelectPatientVisit.PatientID;
                         report.Parameters["PatientName"].Value = SelectPatientVisit.PatientName;
                         report.Parameters["Age"].Value = SelectPatientVisit.Age;
