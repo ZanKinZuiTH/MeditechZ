@@ -269,7 +269,7 @@ namespace MediTech.ViewModels
             AppointmentMassage = refDAta.Where(p => p.DomainCode == "PATMSG").ToList();
             SelectBookingStatus = BookingStatus.FirstOrDefault(p => p.Key == 2944);
 
-            Organisations = GetHealthOrganisationRoleMedical();
+            Organisations = GetHealthOrganisationMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
             Search();
@@ -383,7 +383,7 @@ namespace MediTech.ViewModels
                 AppointmentCard rpt = new AppointmentCard();
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
-                rpt.Parameters["OrganisationUID"].Value = SelectOrganisation.HealthOrganisationUID;
+                rpt.Parameters["OrganisationUID"].Value = SelectBooking.OwnerOrganisationUID;
                 rpt.Parameters["BookUID"].Value = SelectBooking.BookingUID;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;

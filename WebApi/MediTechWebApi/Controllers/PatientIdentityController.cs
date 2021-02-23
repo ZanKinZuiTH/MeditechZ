@@ -946,6 +946,7 @@ namespace MediTechWebApi.Controllers
                                            BKSTSUID = bki.BKSTSUID,
                                            BookingStatus = SqlFunction.fGetRfValDescription(bki.BKSTSUID),
                                            OwnerOrganisationUID = bki.OwnerOrganisationUID,
+                                           OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(bki.OwnerOrganisationUID),
                                            PATMSGUID = bki.PATMSGUID,
                                            PatientReminderMessage = SqlFunction.fGetRfValDescription(bki.PATMSGUID ?? 0),
                                        }).ToList();

@@ -114,6 +114,23 @@ namespace MediTech.ViewModels
         {
             get { return _SelectAppointmentMassage; }
             set { Set(ref _SelectAppointmentMassage, value); }
+
+        }
+
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set { Set(ref _SelectOrganisation, value); }
         }
 
         private List<CareproviderModel> _Doctors;
@@ -202,6 +219,8 @@ namespace MediTech.ViewModels
             AppointmentStatus = refDAta.Where(p => p.DomainCode == "BKSTS").ToList();
             AppointmentMassage = refDAta.Where(p => p.DomainCode == "PATMSG").ToList();
             SelectAppointmentStatus = AppointmentStatus.FirstOrDefault(p => p.Key == 2944);
+            Organisations = GetHealthOrganisationMedical();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             AppointmentDate = DateTime.Now;
         }
 
@@ -217,6 +236,12 @@ namespace MediTech.ViewModels
                 if (AppointmentTime == null)
                 {
                     WarningDialog("กรุณาเลือกเวลาทำนัด");
+                    return;
+                }
+
+                if (SelectOrganisation == null)
+                {
+                    WarningDialog("กรุณาเลือกสถานประกอบการ");
                     return;
                 }
 
@@ -316,6 +341,8 @@ namespace MediTech.ViewModels
         {
             SelectPatientVisit = visitModel;
             VisibilityPatientSearch = Visibility.Collapsed;
+
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientVisit.OwnerOrganisationUID);
         }
 
         public void AssignModel(BookingModel model)
@@ -345,7 +372,7 @@ namespace MediTech.ViewModels
                     SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
                 }
 
-
+                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisationUID);
             }
         }
         public void AssingPropertiesToModel(long patientUID)
@@ -362,7 +389,7 @@ namespace MediTech.ViewModels
             model.Comments = Comments;
             model.CUser = AppUtil.Current.UserID;
             model.MUser = AppUtil.Current.UserID;
-            model.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            model.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
         }
 
         #endregion

@@ -23,12 +23,12 @@ namespace MediTech.Views
     /// </summary>
     public partial class OrderDrugItem : UserControl
     {
-        public OrderDrugItem(BillableItemModel billablItem,int? ownerOrganisationUID)
+        public OrderDrugItem(BillableItemModel billablItem,int ownerOrganisationUID)
         {
             InitializeComponent();
             if (this.DataContext is OrderDrugItemViewModel)
             {
-                (this.DataContext as OrderDrugItemViewModel).OwnerOrgansitaion = ownerOrganisationUID;
+                (this.DataContext as OrderDrugItemViewModel).OwnerOrgansitaionUID = ownerOrganisationUID;
                 (this.DataContext as OrderDrugItemViewModel).BillableItem = billablItem;
                 (this.DataContext as OrderDrugItemViewModel).BindingFromBillableItem();
             }

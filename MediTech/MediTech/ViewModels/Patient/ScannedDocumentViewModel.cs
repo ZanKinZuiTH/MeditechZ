@@ -382,14 +382,23 @@ namespace MediTech.ViewModels
             catch (Exception ex)
             {
 
-                ErrorDialog(ex.Message);
+
             }
 
         }
 
         void Close()
         {
-            this.CloseViewDialog(ActionDialog.Cancel);
+            try
+            {
+                this.CloseViewDialog(ActionDialog.Cancel);
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
+            }
+
         }
 
         public void AssingPatientVisit(PatientVisitModel visitModel)

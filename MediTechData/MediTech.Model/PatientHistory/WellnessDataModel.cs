@@ -11,6 +11,7 @@ namespace MediTech.Model
         public int WellnessDataUID { get; set; }
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
+        public int PayorDetailUID { get; set; }
         public string WellnessResult { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

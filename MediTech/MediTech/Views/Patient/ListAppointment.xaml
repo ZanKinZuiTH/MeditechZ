@@ -106,6 +106,7 @@
                     <dxg:GridColumn Header="สถานะ" FieldName="BookingStatus"/>
                     <dxg:GridColumn Header="มาเพื่อ" FieldName="PatientReminderMessage"/>
                     <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
+                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisationName"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>

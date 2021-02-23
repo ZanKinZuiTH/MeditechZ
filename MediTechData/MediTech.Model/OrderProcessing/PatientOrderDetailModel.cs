@@ -74,6 +74,7 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public string OwnerOrganisationName { get; set; }
         public int OwnerOrganisationUID { get; set; }
 
         public System.Nullable<double> Discount { get; set; }

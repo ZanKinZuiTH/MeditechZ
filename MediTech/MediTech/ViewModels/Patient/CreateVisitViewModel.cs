@@ -230,7 +230,7 @@ namespace MediTech.ViewModels
             DateTime now = DateTime.Now;
 
             List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT");
-            Organisations = GetHealthOrganisationRoleMedical();
+            Organisations = GetHealthOrganisationMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
             PayorDetailSource = DataService.MasterData.GetPayorDetail();

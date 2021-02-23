@@ -17,7 +17,7 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
-        public int OwnerOrganisationUID { get; set; }
+        public int OwnerOrgansitaionUID { get; set; }
 
         private BillableItemModel _BillableItem;
 
@@ -139,10 +139,6 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
-        public OrderWithOutStockItemViewModel()
-        {
-
-        }
 
 
         public void BindingFromBillableItem()
@@ -217,6 +213,11 @@ namespace MediTech.ViewModels
                     //PatientOrderDetail.NetAmount = (PatientOrderDetail.UnitPrice ?? 0) + (PatientOrderDetail.DoctorFee ?? 0);
                     PatientOrderDetail.NetAmount = ((PatientOrderDetail.UnitPrice ?? 0) * PatientOrderDetail.Quantity);
                     PatientOrderDetail.DisplayPrice = PatientOrderDetail.UnitPrice;
+                }
+
+                if (PatientOrderDetail.OwnerOrganisationUID == 0)
+                {
+                    PatientOrderDetail.OwnerOrganisationUID = OwnerOrgansitaionUID;
                 }
 
                 CloseViewDialog(ActionDialog.Save);

@@ -22,11 +22,12 @@ namespace MediTech.Views
     /// </summary>
     public partial class OrderWithOutStockItem : UserControl
     {
-        public OrderWithOutStockItem(BillableItemModel billablItem)
+        public OrderWithOutStockItem(BillableItemModel billablItem, int ownerOrganisationUID)
         {
             InitializeComponent();
             if (this.DataContext is OrderWithOutStockItemViewModel)
             {
+                (this.DataContext as OrderWithOutStockItemViewModel).OwnerOrgansitaionUID = ownerOrganisationUID;
                 (this.DataContext as OrderWithOutStockItemViewModel).BillableItem = billablItem;
                 (this.DataContext as OrderWithOutStockItemViewModel).BindingFromBillableItem();
             }

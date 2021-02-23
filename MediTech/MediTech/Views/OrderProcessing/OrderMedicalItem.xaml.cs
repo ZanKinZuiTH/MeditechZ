@@ -24,12 +24,12 @@ namespace MediTech.Views
     {
 
 
-        public OrderMedicalItem(BillableItemModel billablItem, int? ownerOrganisationUID)
+        public OrderMedicalItem(BillableItemModel billablItem, int ownerOrganisationUID)
         {
             InitializeComponent();
             if (this.DataContext is OrderMedicalItemViewModel)
             {
-                (this.DataContext as OrderMedicalItemViewModel).OwnerOrgansitaion = ownerOrganisationUID;
+                (this.DataContext as OrderMedicalItemViewModel).OwnerOrgansitaionUID = ownerOrganisationUID;
                 (this.DataContext as OrderMedicalItemViewModel).BillableItem = billablItem;
                 (this.DataContext as OrderMedicalItemViewModel).BindingFromBillableItem();
             }

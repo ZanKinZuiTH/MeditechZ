@@ -20,7 +20,7 @@ namespace MediTech.ViewModels
 
         public bool SuppressQuantityEvent { get; set; }
         public bool SuppressDurationEvent { get; set; }
-        public int? OwnerOrgansitaion { get; set; }
+        public int OwnerOrgansitaionUID { get; set; }
         public BillableItemModel BillableItem { get; set; }
 
         public ItemMasterModel ItemMaster { get; set; }
@@ -413,8 +413,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
             ItemMaster = DataService.Inventory.GetItemMasterByUID(BillableItem.ItemUID.Value);
-            int? ownerOrganisatinUID = (OwnerOrgansitaion != null && OwnerOrgansitaion != 0) ? OwnerOrgansitaion : AppUtil.Current.OwnerOrganisationUID;
-            Stores = DataService.Inventory.GetStockRemainByItemMasterUID(ItemMaster.ItemMasterUID, ownerOrganisatinUID ?? 0);
+            Stores = DataService.Inventory.GetStockRemainByItemMasterUID(ItemMaster.ItemMasterUID, OwnerOrgansitaionUID);
             BindingData();
 
             TypeOrder = BillableItem.BillingServiceMetaData;
@@ -638,7 +637,7 @@ namespace MediTech.ViewModels
 
                 if (PatientOrderDetail.OwnerOrganisationUID == 0)
                 {
-                    PatientOrderDetail.OwnerOrganisationUID = (OwnerOrgansitaion != null && OwnerOrgansitaion != 0) ? OwnerOrgansitaion.Value : AppUtil.Current.OwnerOrganisationUID;
+                    PatientOrderDetail.OwnerOrganisationUID = OwnerOrgansitaionUID;
                 }
 
                 CloseViewDialog(ActionDialog.Save);

@@ -686,15 +686,18 @@ namespace MediTechWebApi.Controllers
         public List<WellnessDataModel> GetWellnessDataByPatient(long patientUID)
         {
             var wellNessData = (from pv in db.PatientVisit
+                                join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
                                 join well in db.WellnessData on pv.UID equals well.PatientVisitUID
                                 where pv.StatusFlag == "A"
                                 && well.StatusFlag == "A"
+                                && pvp.StatusFlag == "A"
                                 && pv.PatientUID == patientUID
                                 select new WellnessDataModel
                                 {
                                     WellnessDataUID = well.UID,
                                     PatientUID = well.PatientUID,
                                     PatientVisitUID = well.PatientVisitUID,
+                                    PayorDetailUID = pvp.PayorDetailUID,
                                     WellnessResult = well.WellnessResult,
                                     CUser = well.CUser,
                                     CWhen = well.CWhen,
@@ -710,20 +713,24 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<WellnessDataModel> GetWellnessDataByVisit(long patientVisitUID)
         {
-            var wellNessData = db.WellnessData.Where(p => p.StatusFlag == "A"
-                && p.PatientVisitUID == patientVisitUID)
-                .Select(p => new WellnessDataModel
-                {
-                    WellnessDataUID = p.UID,
-                    PatientUID = p.PatientUID,
-                    PatientVisitUID = p.PatientVisitUID,
-                    WellnessResult = p.WellnessResult,
-                    CUser = p.CUser,
-                    CWhen = p.CWhen,
-                    MUser = p.MUser,
-                    MWhen = p.MWhen,
-                    RecordBy = SqlFunction.fGetCareProviderName(p.MUser)
-                }).OrderBy(p => p.MWhen).ToList();
+            var wellNessData = (from well in db.WellnessData
+                                join pvp in db.PatientVisitPayor on well.PatientVisitUID equals pvp.PatientVisitUID
+                                where well.StatusFlag == "A" 
+                                && pvp.StatusFlag == "A"
+                                && well.PatientVisitUID == patientVisitUID
+                                select new WellnessDataModel
+                                {
+                                    WellnessDataUID = well.UID,
+                                    PatientUID = well.PatientUID,
+                                    PatientVisitUID = well.PatientVisitUID,
+                                    WellnessResult = well.WellnessResult,
+                                    PayorDetailUID = pvp.PayorDetailUID,
+                                    CUser = well.CUser,
+                                    CWhen = well.CWhen,
+                                    MUser = well.MUser,
+                                    MWhen = well.MWhen,
+                                    RecordBy = SqlFunction.fGetCareProviderName(well.MUser)
+                                }).OrderBy(p => p.MWhen).ToList();
 
             return wellNessData;
         }

@@ -630,7 +630,7 @@ namespace MediTech.ViewModels
             ReportPrintTool printTool = new ReportPrintTool(report);
             report.Parameters["PatientUID"].Value = previewWellness.PatientUID;
             report.Parameters["PatientVisitUID"].Value = previewWellness.PatientVisitUID;
-            report.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;
+            report.Parameters["PayorDetailUID"].Value = previewWellness.PayorDetailUID;
             report.RequestParameters = false;
             report.ShowPrintMarginsWarning = false;
             printTool.ShowPreviewDialog();

@@ -519,7 +519,7 @@ namespace MediTech.ViewModels
                 if (orderItem.TypeOrder == "OrderSet")
                 {
                     OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
-                    int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
+                    int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
                     if (orderSet.OrderSetBillableItems != null)
                     {
                         var OrderSetBillItmActive = orderSet.OrderSetBillableItems
@@ -575,7 +575,7 @@ namespace MediTech.ViewModels
                                     continue;
                                 }
 
-                                stores = DataService.Inventory.GetStockRemainByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
+                                stores = DataService.Inventory.GetStockRemainByItemMasterUID(itemMaster.ItemMasterUID, ownerUID);
 
                                 if (stores == null || stores.Count <= 0)
                                 {
@@ -645,7 +645,7 @@ namespace MediTech.ViewModels
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
 
-                            newOrder.OwnerOrganisationUID = ownerUID ?? 0;
+                            newOrder.OwnerOrganisationUID = ownerUID;
 
                             if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
                                 newOrder.PatientOrderAlert = PatientOrderAlerts;
@@ -678,9 +678,9 @@ namespace MediTech.ViewModels
                 }
                 BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
 
-                int? ownerUID = SelectHealthOrganisation != null ? SelectHealthOrganisation.HealthOrganisationUID : (int?)null;
+                int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
 
-                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID);
 
                 if (billItemPrice == null)
                 {
@@ -713,7 +713,7 @@ namespace MediTech.ViewModels
                         case "Mobile Checkup":
                         case "Order Item":
                             {
-                                OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem);
+                                OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem, ownerUID);
                                 OrderWithOutStockItemViewModel resultRe = (OrderWithOutStockItemViewModel)LaunchViewDialog(ordRe, "ORDLAB", true);
                                 if (resultRe != null && resultRe.ResultDialog == ActionDialog.Save)
                                 {
@@ -816,14 +816,6 @@ namespace MediTech.ViewModels
                     && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
-            }
-            else
-            {
-                selectBillItemDetail = billItmDetail
-    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
-    && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
-    );
             }
 
             return selectBillItemDetail;
