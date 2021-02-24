@@ -381,67 +381,94 @@ namespace MediTechWebApi.Controllers
 
                         db.SaveChanges();
                     }
-                    else if (healthOrganisationIDs != null && healthOrganisationIDs.Count() > 0)
+                    else
                     {
-
                         HealthOrganisationID healthIDBillType = null;
                         if (agreement.PBTYPUID == BLTYP_Receive)
                         {
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
-                            billType = "Cash";
-                        }
-                        else if (agreement.PBTYPUID == BLTYP_Invoice)
-                        {
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
-                            billType = "Credit";
-                        }
-
-                        if (healthIDBillType == null)
-                        {
-                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
-                        }
-
-                        db.HealthOrganisationID.Attach(healthIDBillType);
-                        if (healthIDBillType.LastRenumberDttm == null)
-                        {
-                            healthIDBillType.LastRenumberDttm = now;
-                        }
-                        else
-                        {
-                            double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
-                            if (dateDiff >= 1)
+                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
                             {
-                                healthIDBillType.LastRenumberDttm = now;
-                                healthIDBillType.NumberValue = 1;
+                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                                if (healthIDBillType == null)
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                                }
+                                db.HealthOrganisationID.Attach(healthIDBillType);
+                                if (healthIDBillType.LastRenumberDttm == null)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                }
+                                else
+                                {
+                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                    if (dateDiff >= 1)
+                                    {
+                                        healthIDBillType.LastRenumberDttm = now;
+                                        healthIDBillType.NumberValue = 1;
+                                    }
+                                }
+
+                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                                seqBillID = healthIDBillType.NumberValue.Value;
+
+                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                                db.SaveChanges();
                             }
-                        }
+                            else
+                            {
+                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                                if (string.IsNullOrEmpty(patientBillID))
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                }
+                            }
 
-                        patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
-                        seqBillID = healthIDBillType.NumberValue.Value;
-
-                        healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
-
-                        db.SaveChanges();
-                    }
-                    else
-                    {
-                        if (agreement.PBTYPUID == BLTYP_Receive)
-                        {
-                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
                             billType = "Cash";
                         }
                         else if (agreement.PBTYPUID == BLTYP_Invoice)
                         {
-                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
+                            {
+                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
+                                if (healthIDBillType == null)
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                                }
+                                db.HealthOrganisationID.Attach(healthIDBillType);
+                                if (healthIDBillType.LastRenumberDttm == null)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                }
+                                else
+                                {
+                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                    if (dateDiff >= 1)
+                                    {
+                                        healthIDBillType.LastRenumberDttm = now;
+                                        healthIDBillType.NumberValue = 1;
+                                    }
+                                }
+
+                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                                seqBillID = healthIDBillType.NumberValue.Value;
+
+                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                                db.SaveChanges();
+                            }
+                            else
+                            {
+                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                                if (string.IsNullOrEmpty(patientBillID))
+                                {
+                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                }
+                            }
                             billType = "Credit";
                         }
-
-                        if (string.IsNullOrEmpty(patientBillID))
-                        {
-                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
-                        }
-
                     }
+            
 
 
                     if (seqBillID == 0)
