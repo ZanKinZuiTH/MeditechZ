@@ -707,7 +707,8 @@ namespace MediTech.ViewModels
         {
             if (SelectBillableItemDetail != null)
             {
-                BillableItemDetail.Remove(SelectBillableItemDetail);
+                SelectBillableItemDetail.StatusFlag = "D";
+                //BillableItemDetail.Remove(SelectBillableItemDetail);
                 OnUpdateEvent();
 
                 ClearBillItmdetail();

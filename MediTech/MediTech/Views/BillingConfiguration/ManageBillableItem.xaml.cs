@@ -15,6 +15,8 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MediTech.ViewModels;
 using DevExpress.Data.Filtering;
+using MediTech.Model;
+using System.Collections.ObjectModel;
 
 namespace MediTech.Views
 {
@@ -35,6 +37,8 @@ namespace MediTech.Views
 
         void ManageBillableItem_UpdateEvent(object sender, EventArgs e)
         {
+            grdBillDetail.ItemsSource = new ObservableCollection<BillableItemDetailModel>(
+                (grdBillDetail.ItemsSource as ObservableCollection<BillableItemDetailModel>).Where(p => p.StatusFlag == "A"));
             grdBillDetail.RefreshData();
         }
 
