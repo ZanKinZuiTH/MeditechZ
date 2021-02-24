@@ -1285,38 +1285,38 @@ namespace MediTechWebApi.Controllers
                     db.BillableItem.AddOrUpdate(billableItem);
                     db.SaveChanges();
 
-                    #region Delete BillableItemDetail
-                    IEnumerable<BillableItemDetail> billItmDetails = db.BillableItemDetail.Where(p => p.StatusFlag == "A" && p.BillableItemUID == billableItem.UID);
+                    //#region Delete BillableItemDetail
+                    //IEnumerable<BillableItemDetail> billItmDetails = db.BillableItemDetail.Where(p => p.StatusFlag == "A" && p.BillableItemUID == billableItem.UID);
 
-                    if (billableItemModel.BillableItemDetails == null)
-                    {
-                        foreach (var item in billItmDetails)
-                        {
-                            db.BillableItemDetail.Attach(item);
-                            item.MUser = userID;
-                            item.MWhen = now;
-                            item.StatusFlag = "D";
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in billItmDetails)
-                        {
-                            var data = billableItemModel.BillableItemDetails.FirstOrDefault(p => p.BillableItemDetailUID == item.UID);
-                            if (data == null)
-                            {
-                                db.BillableItemDetail.Attach(item);
-                                item.MUser = userID;
-                                item.MWhen = now;
-                                item.StatusFlag = "D";
-                            }
+                    //if (billableItemModel.BillableItemDetails == null)
+                    //{
+                    //    foreach (var item in billItmDetails)
+                    //    {
+                    //        db.BillableItemDetail.Attach(item);
+                    //        item.MUser = userID;
+                    //        item.MWhen = now;
+                    //        item.StatusFlag = "D";
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    foreach (var item in billItmDetails)
+                    //    {
+                    //        var data = billableItemModel.BillableItemDetails.FirstOrDefault(p => p.BillableItemDetailUID == item.UID);
+                    //        if (data == null)
+                    //        {
+                    //            db.BillableItemDetail.Attach(item);
+                    //            item.MUser = userID;
+                    //            item.MWhen = now;
+                    //            item.StatusFlag = "D";
+                    //        }
 
-                        }
-                    }
+                    //    }
+                    //}
 
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
-                    #endregion
+                    //#endregion
 
                     if (billableItemModel.BillableItemDetails != null)
                     {
@@ -1332,25 +1332,39 @@ namespace MediTechWebApi.Controllers
                                 billItemDetail.CWhen = now;
                                 billItemDetail.MUser = userID;
                                 billItemDetail.MWhen = now;
-                                billItemDetail.StatusFlag = "A";
+                                billItemDetail.StatusFlag = item.StatusFlag;
+                                billItemDetail.BillableItemUID = billableItem.UID;
+                                billItemDetail.ActiveFrom = item.ActiveFrom;
+                                billItemDetail.ActiveTo = item.ActiveTo;
+                                billItemDetail.Price = item.Price;
+                                billItemDetail.Cost = item.Cost;
+                                billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                                billItemDetail.CURNCUID = item.CURNCUID;
                             }
-                            else
+                            else if (item.StatusFlag == "A")
                             {
                                 if (item.MWhen != DateTime.MinValue)
                                 {
                                     billItemDetail.MUser = userID;
                                     billItemDetail.MWhen = now;
+                                    billItemDetail.BillableItemUID = billableItem.UID;
+                                    billItemDetail.ActiveFrom = item.ActiveFrom;
+                                    billItemDetail.ActiveTo = item.ActiveTo;
+                                    billItemDetail.Price = item.Price;
+                                    billItemDetail.Cost = item.Cost;
+                                    billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                                    billItemDetail.CURNCUID = item.CURNCUID;
                                 }
 
                             }
+                            else if (item.StatusFlag == "D")
+                            {
+                                billItemDetail.MUser = userID;
+                                billItemDetail.MWhen = now;
+                                billItemDetail.StatusFlag = "D";
+                            }
 
-                            billItemDetail.BillableItemUID = billableItem.UID;
-                            billItemDetail.ActiveFrom = item.ActiveFrom;
-                            billItemDetail.ActiveTo = item.ActiveTo;
-                            billItemDetail.Price = item.Price;
-                            billItemDetail.Cost = item.Cost;
-                            billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
-                            billItemDetail.CURNCUID = item.CURNCUID;
+
 
                             db.BillableItemDetail.AddOrUpdate(billItemDetail);
                             db.SaveChanges();
@@ -1565,27 +1579,47 @@ namespace MediTechWebApi.Controllers
                                 orderSetBill.MUser = userID;
                                 orderSetBill.MWhen = now;
                                 orderSetBill.StatusFlag = "A";
+                                orderSetBill.OrderSetUID = orderSet.UID;
+                                orderSetBill.BillableItemUID = item.BillableItemUID;
+                                orderSetBill.ActiveFrom = item.ActiveFrom;
+                                orderSetBill.ActiveTo = item.ActiveTo;
+                                orderSetBill.OrderCatalogName = item.OrderCatalogName;
+                                orderSetBill.Quantity = item.Quantity;
+                                orderSetBill.FRQNCUID = item.FRQNCUID;
+                                orderSetBill.DoseQty = item.DoseQty;
+                                orderSetBill.Price = item.Price;
+                                orderSetBill.DoctorFee = item.DoctorFee;
+                                orderSetBill.ProcessingNotes = item.ProcessingNotes;
                             }
                             else
                             {
-                                if (item.MWhen != DateTime.MinValue)
+                                if (item.StatusFlag == "A")
                                 {
+                                    if (item.MWhen != DateTime.MinValue)
+                                    {
+                                        orderSetBill.MUser = userID;
+                                        orderSetBill.MWhen = now;
+                                        orderSetBill.OrderSetUID = orderSet.UID;
+                                        orderSetBill.BillableItemUID = item.BillableItemUID;
+                                        orderSetBill.ActiveFrom = item.ActiveFrom;
+                                        orderSetBill.ActiveTo = item.ActiveTo;
+                                        orderSetBill.OrderCatalogName = item.OrderCatalogName;
+                                        orderSetBill.Quantity = item.Quantity;
+                                        orderSetBill.FRQNCUID = item.FRQNCUID;
+                                        orderSetBill.DoseQty = item.DoseQty;
+                                        orderSetBill.Price = item.Price;
+                                        orderSetBill.DoctorFee = item.DoctorFee;
+                                        orderSetBill.ProcessingNotes = item.ProcessingNotes;
+                                    }
+                                }
+                                else if (item.StatusFlag == "D")
+                                {
+                                    orderSetBill.StatusFlag = "D";
                                     orderSetBill.MUser = userID;
                                     orderSetBill.MWhen = now;
                                 }
-                            }
 
-                            orderSetBill.OrderSetUID = orderSet.UID;
-                            orderSetBill.BillableItemUID = item.BillableItemUID;
-                            orderSetBill.ActiveFrom = item.ActiveFrom;
-                            orderSetBill.ActiveTo = item.ActiveTo;
-                            orderSetBill.OrderCatalogName = item.OrderCatalogName;
-                            orderSetBill.Quantity = item.Quantity;
-                            orderSetBill.FRQNCUID = item.FRQNCUID;
-                            orderSetBill.DoseQty = item.DoseQty;
-                            orderSetBill.Price = item.Price;
-                            orderSetBill.DoctorFee = item.DoctorFee;
-                            orderSetBill.ProcessingNotes = item.ProcessingNotes;
+                            }
 
                             db.OrderSetBillableItem.AddOrUpdate(orderSetBill);
                             db.SaveChanges();

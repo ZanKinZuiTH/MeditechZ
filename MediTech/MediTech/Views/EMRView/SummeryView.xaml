@@ -700,6 +700,7 @@
                                     <dxg:GridColumn FieldName="OrderNumber"/>
                                     <dxg:GridColumn FieldName="NetAmount" Header="ราคา"/>
                                     <dxg:GridColumn FieldName="OrderSetName" Header="OrderSet"/>
+                                    <dxg:GridColumn FieldName="OwnerOrganisationName" Header="Order จาก"/>
                                     <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.View>

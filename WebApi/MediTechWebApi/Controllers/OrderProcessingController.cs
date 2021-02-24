@@ -86,6 +86,8 @@ namespace MediTechWebApi.Controllers
                     addItem.Comments = item["Comments"].ToString();
                     addItem.CWhen = DateTime.Parse(item["CWhen"].ToString());
                     addItem.PaymentStatus = item["PaymentStatus"].ToString();
+                    addItem.OwnerOrganisationName = item["OwnerOrganisationName"].ToString();
+                    addItem.OwnerOrganisationUID = int.Parse(item["OwnerOrganisationUID"].ToString());
                     if (addItem.IsPriceOverwrite == "Y")
                     {
                         addItem.DisplayPrice = addItem.OverwritePrice;
