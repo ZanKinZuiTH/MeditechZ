@@ -467,12 +467,17 @@ namespace MediTech.ViewModels
                 if (index >= 0)
                 {
                     ListGroupResult[index] = "O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim();
+                    List<int> indexRemove = new List<int>();
                     for (int i = index + 1; i < ListGroupResult.Count; i++)
                     {
-                        if (!ListGroupResult[index].StartsWith("O"))
-                            ListGroupResult.RemoveAt(index);
+                        if (!ListGroupResult[i].StartsWith("O"))
+                            indexRemove.Add(i);
                         else
                             break;
+                    }
+                    if (indexRemove.Count > 0)
+                    {
+                        ListGroupResult.RemoveRange(indexRemove.Min(), indexRemove.Count);
                     }
                 }
                 else
