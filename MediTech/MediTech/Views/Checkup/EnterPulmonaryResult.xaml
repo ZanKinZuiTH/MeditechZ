@@ -35,12 +35,13 @@
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Name="colResultValue" FieldName="ResultValue" MinWidth="200" >
+                    <dxg:GridColumn Name="colResultValue" FieldName="ResultValue" MinWidth="500" >
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxe:TextEdit Name="PART_Editor"
                         FontSize="17"
-                        Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True" 
+                        Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"
+                        TextWrapping="Wrap"
                         MaskType="RegEx"
                         HorizontalContentAlignment="Center"
                         VerticalContentAlignment="Center"/>

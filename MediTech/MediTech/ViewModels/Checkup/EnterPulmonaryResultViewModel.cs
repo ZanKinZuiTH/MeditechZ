@@ -61,7 +61,7 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
-
+        List<CheckupRuleModel> dataCheckupRule;
         public override void OnLoaded()
         {
             base.OnLoaded();
@@ -96,6 +96,9 @@ namespace MediTech.ViewModels
             if (dataList != null)
             {
                 ResultComponentItems = new ObservableCollection<ResultComponentModel>(dataList);
+                List<int> gprsts = new List<int>();
+                gprsts.Add(3208);// SPIRORULE
+                dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(gprsts);
             }
         }
 
@@ -115,6 +118,7 @@ namespace MediTech.ViewModels
                 var fev1_fvc_meas = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "SPIRO7" || p.ResultItemName == "FEV1/FVC % (Meas.)");
                 var fev1_fvc_pred = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "SPIRO8" || p.ResultItemName == "FEV1/FVC % (Pred.)");
                 var fev1_fvc_perpread = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "SPIRO9" || p.ResultItemName == "FEV1/FVC % (%Pred.)");
+                var resultspiro = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "SPIRORST" || p.ResultItemName == "สรุปผลสมรรถภาพปอด");
 
 
                 fvc_pred.ResultValue = gender == "ชาย (Male)" ? (Math.Round(-2.601 + (0.122 * age) - (0.00046 * age * age) + (0.00023 * height * height) - (0.00061 * age * height), 2)).ToString()
@@ -130,6 +134,224 @@ namespace MediTech.ViewModels
                 fev1_perpred.ResultValue = (Math.Round(double.Parse(fev1_meas.ResultValue) / double.Parse(fev1_pred.ResultValue) * 100, 2)).ToString();
                 fev1_fvc_meas.ResultValue = (Math.Round(double.Parse(fev1_meas.ResultValue) / double.Parse(fvc_meas.ResultValue) * 100, 2)).ToString();
                 fev1_fvc_perpread.ResultValue = (Math.Round(double.Parse(fev1_fvc_meas.ResultValue) / double.Parse(fev1_fvc_pred.ResultValue) * 100, 2)).ToString();
+
+                List<ResultComponentModel> resultComponent = new List<ResultComponentModel>();
+                resultComponent.Add(new ResultComponentModel { ResultItemUID = 282,ResultValue = fvc_perpred.ResultValue });
+                resultComponent.Add(new ResultComponentModel { ResultItemUID = 285, ResultValue = fev1_perpred.ResultValue });
+                resultComponent.Add(new ResultComponentModel { ResultItemUID = 288, ResultValue = fev1_fvc_perpread.ResultValue });
+                List<CheckupRuleModel> ruleCheckupIsCorrect = new List<CheckupRuleModel>();
+
+                foreach (var ruleCheckup in dataCheckupRule)
+                {
+                    bool isConrrect = false;
+                    foreach (var ruleItem in ruleCheckup.CheckupRuleItem.OrderBy(p => p.Operator))
+                    {
+                        var resultItemValue = resultComponent.FirstOrDefault(p => p.ResultItemUID == ruleItem.ResultItemUID);
+
+                        if (resultItemValue != null)
+                        {
+                            if (ruleItem.NonCheckup == true)
+                            {
+                                isConrrect = false;
+                                if (ruleItem.Operator == "And")
+                                {
+                                    break;
+                                }
+                            }
+                            else if (!string.IsNullOrEmpty(ruleItem.Text))
+                            {
+                                string[] values = ruleItem.Text.Split(',');
+                                string[] resultValues = resultItemValue.ResultValue?.Split(',');
+                                bool flagCondition = false;
+
+                                if (!(ruleItem.NotEqual ?? false) && values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
+                                {
+                                    flagCondition = true;
+                                }
+                                else if ((ruleItem.NotEqual ?? false) && !values.Any(p => resultValues.Any(x => x.ToLower().Trim() == p.ToLower().Trim())))
+                                {
+                                    flagCondition = true;
+                                }
+
+                                if (flagCondition)
+                                {
+                                    isConrrect = true;
+                                    if (ruleItem.Operator == "Or")
+                                    {
+                                        var ruleDescription = ruleCheckup.CheckupRuleDescription.FirstOrDefault();
+                                        if (ruleDescription != null && ruleDescription.ThaiDescription.Contains("{0}"))
+                                        {
+                                            string thaiDescription = "";
+                                            for (int i = 0; i < resultValues.Count(); i++)
+                                            {
+                                                if (ruleCheckup.CheckupRuleItem.FirstOrDefault(p => p.Text.Trim() == resultValues[i].Trim()) != null)
+                                                {
+                                                    thaiDescription += thaiDescription == "" ? resultValues[i].Trim() : "," + resultValues[i].Trim();
+                                                }
+                                            }
+                                            ruleDescription.ThaiDescription = ruleDescription.ThaiDescription.Replace("{0}", thaiDescription);
+                                        }
+                                        break;
+                                    }
+                                }
+                                else
+                                {
+                                    isConrrect = false;
+                                    if (ruleItem.Operator == "And")
+                                    {
+                                        break;
+                                    }
+                                }
+                            }
+                            else
+                            {
+                                #region  CriteriaNumber
+                                double resultValueNumber;
+                                if (double.TryParse(resultItemValue.ResultValue.Trim(), out resultValueNumber))
+                                {
+                                    if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
+                                        || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
+                                        || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
+                                    {
+                                        isConrrect = true;
+                                        if (ruleItem.Operator == "Or")
+                                        {
+                                            break;
+                                        }
+                                    }
+                                    else
+                                    {
+                                        isConrrect = false;
+                                        if (ruleItem.Operator == "And")
+                                        {
+                                            break;
+                                        }
+                                    }
+                                }
+                                else
+                                {
+                                    if (resultItemValue.ResultValue.Contains("-"))
+                                    {
+                                        string[] values = resultItemValue.ResultValue.Split('-');
+                                        if (values.Count() == 2)
+                                        {
+                                            if (double.TryParse(values[1].Trim(), out resultValueNumber))
+                                            {
+                                                if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
+                                                    || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
+                                                    || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
+                                                {
+                                                    isConrrect = true;
+                                                    if (ruleItem.Operator == "Or")
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    isConrrect = false;
+                                                    if (ruleItem.Operator == "And")
+                                                    {
+                                                        break;
+                                                    }
+                                                }
+                                            }
+                                        }
+
+                                    }
+                                    else if (resultItemValue.ResultValue.Contains("<")
+                                        || resultItemValue.ResultValue.Contains(">")
+                                        || resultItemValue.ResultValue.Trim().EndsWith("R"))
+                                    {
+                                        string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "").Replace("R", "");
+                                        if (double.TryParse(value.Trim(), out resultValueNumber))
+                                        {
+                                            if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
+                                                || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
+                                                || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
+                                            {
+                                                isConrrect = true;
+                                                if (ruleItem.Operator == "Or")
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                            else
+                                            {
+                                                isConrrect = false;
+                                                if (ruleItem.Operator == "And")
+                                                {
+                                                    break;
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                                #endregion
+
+                            }
+                        }
+                        else
+                        {
+                            if (ruleItem.NonCheckup == true)
+                            {
+                                isConrrect = true;
+                                if (ruleItem.Operator == "Or")
+                                {
+                                    break;
+                                }
+                            }
+                            else
+                            {
+                                isConrrect = false;
+                                if (ruleItem.Operator == "And")
+                                {
+                                    break;
+                                }
+                            }
+
+                        }
+
+                    }
+                    if (isConrrect == true)
+                    {
+                        ruleCheckupIsCorrect.Add(ruleCheckup);
+                    }
+                }
+
+
+                string conclusion = string.Empty;
+                string description = string.Empty;
+                string recommand = string.Empty;
+
+                foreach (var item in ruleCheckupIsCorrect)
+                {
+                    if (!string.IsNullOrEmpty(conclusion))
+                    {
+                        conclusion += ", ";
+                    }
+                    foreach (var content in item.CheckupRuleDescription)
+                    {
+                        if (!string.IsNullOrEmpty(content.ThaiDescription))
+                        {
+                            conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                            //description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
+                        }
+                    }
+                    foreach (var content in item.CheckupRuleRecommend)
+                    {
+                        if (!string.IsNullOrEmpty(content.ThaiRecommend))
+                        {
+                            conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                            //recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
+                        }
+                    }
+                }
+
+                if(!string.IsNullOrEmpty(conclusion))
+                {
+                    resultspiro.ResultValue = conclusion;
+                }
             }
             catch (Exception)
             {
