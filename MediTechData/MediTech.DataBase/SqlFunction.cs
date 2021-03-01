@@ -1446,7 +1446,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchResultLabList", entities.Database.Connection.ConnectionString);
-            adp.SelectCommand.CommandTimeout = 5000;
+            adp.SelectCommand.CommandTimeout = 10000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);

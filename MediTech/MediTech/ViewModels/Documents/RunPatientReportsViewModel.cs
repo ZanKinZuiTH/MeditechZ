@@ -207,7 +207,8 @@ namespace MediTech.ViewModels
                         report.Parameters["HN"].Value = SelectPatientVisit.PatientID;
                         report.Parameters["PatientName"].Value = SelectPatientVisit.PatientName;
                         report.Parameters["Age"].Value = SelectPatientVisit.Age;
-                        report.Parameters["BirthDate"].Value = SelectPatientVisit.BirthDttm.Value.ToString("dd/MM/yyyy");
+                        report.Parameters["BirthDate"].Value = SelectPatientVisit.BirthDttm != null ? SelectPatientVisit.BirthDttm.Value.ToString("dd/MM/yyyy") : null;
+                        report.Parameters["Payor"].Value = SelectPatientVisit.PayorName;
                         report.RequestParameters = false;
                         report.ShowPrintMarginsWarning = false;
                         printTool.Print();
