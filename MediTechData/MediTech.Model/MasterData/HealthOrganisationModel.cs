@@ -42,7 +42,7 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-
+        public byte[] LogoImage { get; set; }
         public List<HealthOrganisationIDModel> HealthOrganisationIDs { get; set; }
     }
 }

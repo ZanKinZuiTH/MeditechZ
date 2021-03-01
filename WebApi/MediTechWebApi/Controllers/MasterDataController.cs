@@ -1769,6 +1769,7 @@ namespace MediTechWebApi.Controllers
                     CWhen = p.CWhen,
                     MUser = p.MUser,
                     MWhen = p.MWhen,
+                    LogoImage = p.LogoImage,
                     StatusFlag = p.StatusFlag
                 }).ToList();
 
@@ -1855,6 +1856,7 @@ namespace MediTechWebApi.Controllers
                 data.CWhen = healthOwn.CWhen;
                 data.MUser = healthOwn.MUser;
                 data.MWhen = healthOwn.MWhen;
+                data.LogoImage = healthOwn.LogoImage;
                 data.StatusFlag = healthOwn.StatusFlag;
             }
 
@@ -1930,7 +1932,8 @@ namespace MediTechWebApi.Controllers
                     healthOrganisation.MWhen = now;
                     healthOrganisation.StatusFlag = "A";
                     healthOrganisation.Address2 = healthOrganisationModel.Address2;
-
+                    healthOrganisation.LogoImage = healthOrganisationModel.LogoImage;
+                    
 
                     db.HealthOrganisation.AddOrUpdate(healthOrganisation);
                     db.SaveChanges();

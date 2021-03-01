@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight;
 using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;
+using MediTech.Helpers;
 using MediTech.Model;
 using MediTech.Models;
 using MediTech.Views;
@@ -10,7 +11,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
-
+using System.Windows.Forms;
+using System.Windows.Media.Imaging;
 
 namespace MediTech.ViewModels
 {
@@ -114,6 +116,18 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectHealthOrganisationType, value); }
         }
 
+        private BitmapImage _LogoImage;
+        public BitmapImage LogoImage
+        {
+            get
+            {
+                return _LogoImage;
+            }
+            set
+            {
+                Set(ref _LogoImage, value);
+            }
+        }
 
         private string _TINNo;
 
@@ -386,8 +400,12 @@ namespace MediTech.ViewModels
         {
             get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
-
-
+        
+        private RelayCommand _UploadCommand;
+        public RelayCommand UploadCommand
+        {
+            get { return _UploadCommand ?? (_UploadCommand = new RelayCommand(Upload)); }
+        }
         #endregion
 
         #region Method
@@ -545,6 +563,17 @@ namespace MediTech.ViewModels
             ChangeViewPermission(pageListOrgan);
         }
 
+        private void Upload()
+        {
+            OpenFileDialog op = new OpenFileDialog();
+            op.Filter = "(*.bmp;*.jpg;*.jpeg,*.png)|*.BMP;*.JPG;*.JPEG;*.PNG";
+            if (op.ShowDialog() == DialogResult.OK)
+            {
+                LogoImage = new BitmapImage(new Uri(op.FileName));
+            }
+
+        }
+
         public void AssignModelData(HealthOrganisationModel modelData)
         {
             model = modelData;
@@ -579,6 +608,18 @@ namespace MediTech.ViewModels
                 SelectedDistrict = DistrictSource.FirstOrDefault(p => p.Key == model.DistrictUID);
             ZipCode = model.ZipCode;
 
+            if (model.LogoImage != null)
+            {
+                if (model.LogoImage.Length > 0)
+                {
+                    LogoImage = ImageHelpers.ConvertByteToBitmap(model.LogoImage);
+                }
+
+            }
+            else
+            {
+                LogoImage = null;
+            }
 
             IDFormat = model.IDFormat;
             IDLength = model.IDLength;
@@ -615,6 +656,16 @@ namespace MediTech.ViewModels
             model.IDFormat = IDFormat;
             model.IDLength = IDLength;
             model.NumberValue = IDNumberValue;
+
+            if (LogoImage != null)
+            {
+                byte[] patImage = ImageHelpers.ResizeImage(ImageHelpers.ConvertBitmapToByte(LogoImage), 600, 400, true);
+                model.LogoImage = patImage;
+            }
+            else
+            {
+                model.LogoImage = null;
+            }
 
             model.HealthOrganisationIDs = HealthOrganisationIDs;
         }

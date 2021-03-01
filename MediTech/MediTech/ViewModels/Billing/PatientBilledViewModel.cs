@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.XtraReports.Parameters;
+using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.DataService;
 using MediTech.Model;

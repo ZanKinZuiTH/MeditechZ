@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Windows.Media.Imaging;
 using System.IO;
 using System.Linq;
+using DevExpress.XtraReports.Parameters;
 
 namespace MediTech.Reports.Operating.Cashier
 {
@@ -17,9 +18,20 @@ namespace MediTech.Reports.Operating.Cashier
     {
         BillingService service = new BillingService();
         List<PatientBilledItemModel> listbill = new List<PatientBilledItemModel>();
+        List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
+
         public PatientBill()
         {
             InitializeComponent();
+            Organisations = (new MasterDataService()).GetHealthOrganisation();
+            
+            StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
+            foreach (var item in Organisations)
+            {
+                lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
+            }
+
+            this.LogoType.LookUpSettings = lookupSettings;
             this.BeforePrint += PatientBill_BeforePrint;
         }
 
@@ -27,14 +39,14 @@ namespace MediTech.Reports.Operating.Cashier
         {
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int reportType = Convert.ToInt32(this.Parameters["ReportType"].Value.ToString());
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var listStatementBill = service.PrintStatementBill(Convert.ToInt64(this.Parameters["PatientBillUID"].Value.ToString()));
             this.DataSource = listStatementBill;
 
-            if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
-            {
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                if (Organisation != null)
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            if (logoType == 0)
                 {
+                    var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
                     string mobile = Organisation.MobileNo != null ? "โทร " + Organisation.MobileNo?.ToString() : "";
                     string address = Organisation.Address?.ToString();
                     lbOrganisation.Text = Organisation.Description?.ToString();
@@ -44,10 +56,48 @@ namespace MediTech.Reports.Operating.Cashier
 
                     lbTaxNo.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
-                    
+
+                if (Organisation.LogoImage != null)
+                {
+                    MemoryStream ms = new MemoryStream(Organisation.LogoImage);
+                    logo1.Image = Image.FromStream(ms);
+                    logo2.Image = Image.FromStream(ms);
+                }
+                else
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                    logo1.Image = Image.FromStream(ms);
+                    logo2.Image = Image.FromStream(ms);
                 }
             }
+            else 
+            {
+                    var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
+                    string mobile = SelectOrganisation.MobileNo != null ? "โทร " + SelectOrganisation.MobileNo?.ToString() : "";
+                    string address = SelectOrganisation.Address?.ToString();
+                    lbOrganisation.Text = SelectOrganisation.Description?.ToString();
+                    lbAddress.Text = address + mobile;
+                    lbOrganisationCopy.Text = SelectOrganisation.Description?.ToString();
+                    lbAddressCopy.Text = address + mobile;
 
+                    lbTaxNo.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
+                    lbTaxNoCopy.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
+
+                    if(SelectOrganisation.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                        logo1.Image = Image.FromStream(ms);
+                        logo2.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo1.Image = Image.FromStream(ms);
+                        logo2.Image = Image.FromStream(ms);
+                    }
+                
+            }
+            
             string billType = listStatementBill.Select(p => p.BillType).FirstOrDefault();
             if (billType != "Invoice")
             {
@@ -68,8 +118,6 @@ namespace MediTech.Reports.Operating.Cashier
             {
                 listbill = service.GetPatientBillingGroup(Convert.ToInt64(this.Parameters["PatientBillUID"].Value.ToString()));
             }
-
-
 
             double amountTotal_net = 0;
             double discountTotal_Net = 0;
@@ -134,16 +182,16 @@ namespace MediTech.Reports.Operating.Cashier
             //    }
             //}
 
-            Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
-            BitmapImage imageSource = new BitmapImage(uri);
-            using (MemoryStream outStream = new MemoryStream())
-            {
-                BitmapEncoder enc = new BmpBitmapEncoder();
-                enc.Frames.Add(BitmapFrame.Create(imageSource));
-                enc.Save(outStream);
-                this.logo1.Image = System.Drawing.Image.FromStream(outStream);
-                this.logo2.Image = System.Drawing.Image.FromStream(outStream);
-            }
+            //Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
+            //BitmapImage imageSource = new BitmapImage(uri);
+            //using (MemoryStream outStream = new MemoryStream())
+            //{
+            //    BitmapEncoder enc = new BmpBitmapEncoder();
+            //    enc.Frames.Add(BitmapFrame.Create(imageSource));
+            //    enc.Save(outStream);
+            //    //this.logo1.Image = System.Drawing.Image.FromStream(outStream);
+            //    //this.logo2.Image = System.Drawing.Image.FromStream(outStream);
+            //}
 
             if (reportType == 0)
             {
@@ -188,6 +236,7 @@ namespace MediTech.Reports.Operating.Cashier
             }
 
         }
+
 
         private void BillingDetail_supreport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
