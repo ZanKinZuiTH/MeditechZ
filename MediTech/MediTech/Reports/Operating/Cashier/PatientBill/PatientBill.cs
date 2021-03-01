@@ -89,7 +89,7 @@ namespace MediTech.Reports.Operating.Cashier
                         logo1.Image = Image.FromStream(ms);
                         logo2.Image = Image.FromStream(ms);
                     }
-                    else
+                    else if (OrganisationBRXG.LogoImage != null)
                     {
                         MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
                         logo1.Image = Image.FromStream(ms);

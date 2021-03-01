@@ -67,6 +67,25 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="BillableItemDetail_Backup">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" Nullable="false" />
+          <Property Name="BillableItemUID" Type="int" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="Cost" Type="float" />
+          <Property Name="Price" Type="float" Nullable="false" />
+          <Property Name="CURNCUID" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="BillingGroup">
           <Key>
             <PropertyRef Name="UID" />
@@ -567,6 +586,7 @@
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="TINNo" Type="nvarchar" MaxLength="20" />
           <Property Name="LicenseNo" Type="nvarchar" MaxLength="50" />
+          <Property Name="LogoImage" Type="varbinary(max)" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -3938,6 +3958,7 @@
           <EntitySet Name="Amphur" EntityType="Self.Amphur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItem" EntityType="Self.BillableItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItemDetail" EntityType="Self.BillableItemDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BillableItemDetail_Backup" EntityType="Self.BillableItemDetail_Backup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillingGroup" EntityType="Self.BillingGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillingSubGroup" EntityType="Self.BillingSubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -5076,6 +5097,7 @@
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
+          <EntitySet Name="BillableItemDetail_Backup" EntityType="MediTechModel.BillableItemDetail_Backup" />
           <EntitySet Name="BillingGroup" EntityType="MediTechModel.BillingGroup" />
           <EntitySet Name="BillingSubGroup" EntityType="MediTechModel.BillingSubGroup" />
           <EntitySet Name="Booking" EntityType="MediTechModel.Booking" />
@@ -7766,6 +7788,25 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="BillableItemDetail_Backup">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" />
+          <Property Name="BillableItemUID" Type="Int32" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="Cost" Type="Double" />
+          <Property Name="Price" Type="Double" Nullable="false" />
+          <Property Name="CURNCUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="BillingGroup">
           <Key>
             <PropertyRef Name="UID" />
@@ -8266,6 +8307,7 @@
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TINNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="LicenseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="LogoImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -12791,6 +12833,26 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="BillableItemDetail_Backup">
+            <EntityTypeMapping TypeName="MediTechModel.BillableItemDetail_Backup">
+              <MappingFragment StoreEntitySet="BillableItemDetail_Backup">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="CURNCUID" ColumnName="CURNCUID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="BillingGroup">
             <EntityTypeMapping TypeName="MediTechModel.BillingGroup">
               <MappingFragment StoreEntitySet="BillingGroup">
@@ -13306,6 +13368,7 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="LogoImage" ColumnName="LogoImage" />
                 <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
                 <ScalarProperty Name="TINNo" ColumnName="TINNo" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />

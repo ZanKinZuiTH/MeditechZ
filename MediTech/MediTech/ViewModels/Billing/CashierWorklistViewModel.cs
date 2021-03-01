@@ -471,7 +471,7 @@ namespace MediTech.ViewModels
 
 
                     //patbill.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                    patbill.OwnerOrganisationUID = SelectPatientCloseMed.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
+                    patbill.OwnerOrganisationUID = SelectPatientCloseMed.OwnerOrganisationUID.Value;
                     patbill.CUser = AppUtil.Current.UserID;
                     patbill.MUser = AppUtil.Current.UserID;
                     patbill.PaidAmount = Payment;

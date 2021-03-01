@@ -30,6 +30,7 @@ namespace MediTech.DataBase
         public virtual DbSet<Amphur> Amphur { get; set; }
         public virtual DbSet<BillableItem> BillableItem { get; set; }
         public virtual DbSet<BillableItemDetail> BillableItemDetail { get; set; }
+        public virtual DbSet<BillableItemDetail_Backup> BillableItemDetail_Backup { get; set; }
         public virtual DbSet<BillingGroup> BillingGroup { get; set; }
         public virtual DbSet<BillingSubGroup> BillingSubGroup { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
