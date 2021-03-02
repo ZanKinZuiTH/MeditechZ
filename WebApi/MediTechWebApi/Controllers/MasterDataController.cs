@@ -1741,6 +1741,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<HealthOrganisationModel> GetHealthOrganisation()
         {
+
             List<HealthOrganisationModel> data = db.HealthOrganisation
                 .Where(p => p.StatusFlag == "A").Select(p => new HealthOrganisationModel()
                 {
