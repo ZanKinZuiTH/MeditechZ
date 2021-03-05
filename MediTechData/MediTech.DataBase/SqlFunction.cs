@@ -1852,14 +1852,14 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public static DataTable pRPTStockSummary(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTStockSummary", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
-            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", (organisationUID != null && organisationUID != 0) ? organisationUID : (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

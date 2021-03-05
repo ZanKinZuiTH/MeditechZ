@@ -266,7 +266,7 @@ namespace MediTech.ViewModels
         {
             if (SelectOrganisation == null)
             {
-                WarningDialog("กรุณาเลือก สถานที่");
+                WarningDialog("กรุณาเลือก สถานประกอบการ");
                 return true;
             }
             if (SelectedVisitType == null)
