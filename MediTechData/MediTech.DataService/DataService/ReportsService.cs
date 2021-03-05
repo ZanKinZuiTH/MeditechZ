@@ -341,9 +341,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
-            string requestApi = string.Format("Api/Report/StockSummary?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationUID);
+            string requestApi = string.Format("Api/Report/StockSummary?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);
             List<StockSummaryModel> data = MeditechApiHelper.Get<List<StockSummaryModel>>(requestApi);
 
             return data;
