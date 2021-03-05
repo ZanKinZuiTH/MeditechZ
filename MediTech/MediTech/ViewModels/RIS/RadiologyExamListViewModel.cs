@@ -626,8 +626,9 @@ namespace MediTech.ViewModels
             Radiologist = Radiologist.OrderBy(p => p.FullName).ToList();
 
             Logos = new List<LookupItemModel>();
-            Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG" });
-            Logos.Add(new LookupItemModel { Key = 1, Display = "DRC" });
+            Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG Polyclinic" });
+            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
+            Logos.Add(new LookupItemModel { Key = 2, Display = "DRC" });
             SelectLogo = Logos.FirstOrDefault();
 
 

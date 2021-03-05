@@ -347,7 +347,7 @@
                                       DisplayMember="Display"
                                       ValueMember="Key"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Logo" Width="140" >
+                    <dxlc:LayoutItem Label="Logo" Width="200" >
                         <dxe:ComboBoxEdit ItemsSource="{Binding Logos}"
                                       SelectedItem="{Binding SelectLogo}"
                                       NullValueButtonPlacement="EditBox"

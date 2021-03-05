@@ -467,8 +467,9 @@ namespace MediTech.ViewModels
             SelectReport = Reports.FirstOrDefault();
 
             Logos = new List<LookupItemModel>();
-            Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG" });
-            Logos.Add(new LookupItemModel { Key = 1, Display = "โรงพยาบาลพระยุพราช" });
+            Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG Polyclinic" });
+            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
+            Logos.Add(new LookupItemModel { Key = 2, Display = "โรงพยาบาลพระยุพราช" });
             SelectLogo = Logos.FirstOrDefault();
 
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");

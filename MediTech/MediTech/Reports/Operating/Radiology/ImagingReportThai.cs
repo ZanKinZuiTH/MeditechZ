@@ -45,8 +45,8 @@ namespace MediTech.Reports.Operating.Radiology
                 this.lblPatientOrder.Text = dataReport.RequestItemName;
                 this.lblFREportDoc.Text = dataReport.Doctor;
                 this.lblFReportDate.Text = dataReport.ResultEnteredDttm.Value.ToString("dd MMM yyyy HH:mm:ss", culture);
-
-                if (LogoType.ToUpper() == "BRXG")
+                
+                if (LogoType.ToUpper() == "BRXG POLYCLINIC")
                 {
                     Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
                     BitmapImage imageSource = new BitmapImage(uri);
@@ -62,6 +62,21 @@ namespace MediTech.Reports.Operating.Radiology
                     this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
                     this.lblOrganisationAddress.Text = "155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร. 033060399";
+                }
+                else if (LogoType.ToUpper() == "BRXG")
+                {
+                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG4.jpg", UriKind.Absolute);
+                    BitmapImage imageSource = new BitmapImage(uri);
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        BitmapEncoder enc = new BmpBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(imageSource));
+                        enc.Save(outStream);
+                        this.logo.Image = System.Drawing.Image.FromStream(outStream);
+                    }
+                    this.logo.LocationFloat = new DevExpress.Utils.PointFloat(36.4584F, 33.41668F);
+                    this.logo.SizeF = new System.Drawing.SizeF(205.4585F, 64.16669F);
+                    this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
                 }
                 else if (LogoType.ToUpper() == "DRC")
                 {
