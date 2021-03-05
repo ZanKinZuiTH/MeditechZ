@@ -986,10 +986,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("StockSummary")]
         [HttpGet]
-        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, int? organisationUID)
+        public List<StockSummaryModel> StockSummary(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             List<StockSummaryModel> data = null;
-            DataTable dt = SqlDirectStore.pRPTStockSummary(dateFrom, dateTo, organisationUID);
+            DataTable dt = SqlDirectStore.pRPTStockSummary(dateFrom, dateTo, organisationList);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<StockSummaryModel>();
