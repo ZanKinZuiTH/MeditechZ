@@ -1104,7 +1104,7 @@ namespace MediTech.ViewModels
                 //{
                 //    logo = "DRC";
                 //}
-                logo = "BRXG";
+                logo = "BRXG Polyclinic";
                 rpt.LogoType = logo;
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
