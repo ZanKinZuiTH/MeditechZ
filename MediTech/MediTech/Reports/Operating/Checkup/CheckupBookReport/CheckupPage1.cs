@@ -839,7 +839,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
                     page5.TitleVARight.Text = "VA Rt.";
                     page5.TitleVALeft.Text = "VA Lt.";
-                    page5.TitleDisease.Text = "Eys Disease";
                     page5.TitleBlindColor.Text = "Color Blindness";
                     page5.TitleViewResult.Text = "Result";
                     page5.TitleViewRecommend.Text = "Suggestion";
@@ -1945,6 +1944,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page5.lbHyperopiaLeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY9")?.ResultValue;
                 page5.lbVALeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY10")?.ResultValue;
                 page5.lbBlindColor.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY11")?.ResultValue;
+                page5.lbViewResult.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY12")?.ResultValue;
+                page5.lbViewRecommend.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY13")?.ResultValue;
             }
         }
 
