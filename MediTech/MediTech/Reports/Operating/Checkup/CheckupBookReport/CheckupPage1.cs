@@ -626,6 +626,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.RequestItemCode.Contains("MUSCLEGR")
                         || p.RequestItemCode.Contains("MUSCLELEG"));
                     GenerateBackStrength(BackStrength);
+
+                    IEnumerable<PatientResultComponentModel> VisualAcuityTest = occmed
+                        .Where(p => p.RequestItemCode.Contains("VISAY"));
+                    GenerateVisualAcuityTest(VisualAcuityTest);
                 }
 
                 if (groupResult != null)
@@ -635,7 +639,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                         || p.GroupCode.Contains("GPRST26") //timus
                         || p.GroupCode.Contains("GPRST25") //audio
                         || p.GroupCode.Contains("GPRST32")); //BackStrength
-
                     GenerateOccmedGroup(occmedGroupResult);
                 }
 
@@ -836,7 +839,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     page5.TitleHyperopiaLeft.Text = "Longsighted Lt.";
                     page5.TitleVARight.Text = "VA Rt.";
                     page5.TitleVALeft.Text = "VA Lt.";
-                    page5.TitleDisease.Text = "Eys Disease";
                     page5.TitleBlindColor.Text = "Color Blindness";
                     page5.TitleViewResult.Text = "Result";
                     page5.TitleViewRecommend.Text = "Suggestion";
@@ -1924,6 +1926,26 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                 page2.lbDrugAllergy.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM13")?.ResultValue;
                 page2.lbAlcohol.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM12")?.ResultValue;
                 page2.lbUnderlying.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM14")?.ResultValue;
+            }
+        }
+
+        private void GenerateVisualAcuityTest(IEnumerable<PatientResultComponentModel> VisualAcuityTestResult)
+        {
+            if (VisualAcuityTestResult != null && VisualAcuityTestResult.Count() > 0)
+            {
+                page5.lbMyopiaRight.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY1")?.ResultValue;
+                page5.lbAstigmaticRight.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY2")?.ResultValue;
+                page5.lbViewRight.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY3")?.ResultValue;
+                page5.lbHyperopiaRight.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY4")?.ResultValue;
+                page5.lbVARight.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY5")?.ResultValue;
+                page5.lbMyopiaLeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY6")?.ResultValue;
+                page5.lbAstigmaticLeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY7")?.ResultValue;
+                page5.lbViewLeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY8")?.ResultValue;
+                page5.lbHyperopiaLeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY9")?.ResultValue;
+                page5.lbVALeft.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY10")?.ResultValue;
+                page5.lbBlindColor.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY11")?.ResultValue;
+                page5.lbViewResult.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY12")?.ResultValue;
+                page5.lbViewRecommend.Text = VisualAcuityTestResult.FirstOrDefault(p => p.ResultItemCode == "VISAY13")?.ResultValue;
             }
         }
 
