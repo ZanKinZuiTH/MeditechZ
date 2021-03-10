@@ -1485,7 +1485,8 @@ namespace MediTechWebApi.Controllers
                                                   NetPrice = (ord.Price ?? 0) * ord.Quantity,
                                                   DoctorFee = ord.DoctorFee ?? 0,
                                                   Quantity = ord.Quantity,
-                                                  ProcessingNotes = ord.ProcessingNotes
+                                                  ProcessingNotes = ord.ProcessingNotes,
+                                                  StatusFlag = ord.StatusFlag
                                               }).ToList();
 
                 if (data.OrderSetBillableItems != null)

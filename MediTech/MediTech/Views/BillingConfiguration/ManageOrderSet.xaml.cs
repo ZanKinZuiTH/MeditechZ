@@ -15,6 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using MediTech.ViewModels;
+using System.Collections.ObjectModel;
 
 namespace MediTech.Views
 {
@@ -34,6 +35,8 @@ namespace MediTech.Views
 
         void ManageOrderSet_UpdateEvent(object sender, EventArgs e)
         {
+            grdOrderSetBill.ItemsSource = new ObservableCollection<OrderSetBillableItemModel>(
+    (grdOrderSetBill.ItemsSource as ObservableCollection<OrderSetBillableItemModel>).Where(p => p.StatusFlag == "A"));
             grdOrderSetBill.RefreshData();
         }
 

@@ -3108,6 +3108,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\LogoBRXG4.jpg" />
     <Resource Include="Resources\Images\Menu\Report lab.png" />
     <Resource Include="Resources\Images\Document\pdf.png" />
     <Resource Include="Resources\Images\LogoBRXG3.png" />

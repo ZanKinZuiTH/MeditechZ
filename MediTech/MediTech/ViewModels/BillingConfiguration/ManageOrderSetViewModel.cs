@@ -212,11 +212,11 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<OrderSetBillableItemModel> _OrderSetBillableItems;
+        private ObservableCollection<OrderSetBillableItemModel> _OrderSetBillableItems;
 
-        public List<OrderSetBillableItemModel> OrderSetBillableItems
+        public ObservableCollection<OrderSetBillableItemModel> OrderSetBillableItems
         {
-            get { return _OrderSetBillableItems ?? (_OrderSetBillableItems = new List<OrderSetBillableItemModel>()); }
+            get { return _OrderSetBillableItems ?? (_OrderSetBillableItems = new ObservableCollection<OrderSetBillableItemModel>()); }
             set { Set(ref _OrderSetBillableItems, value); }
         }
 
@@ -542,7 +542,7 @@ namespace MediTech.ViewModels
         {
             if (SelectOrderSetBillableItem != null)
             {
-                OrderSetBillableItems.Remove(SelectOrderSetBillableItem);
+                SelectOrderSetBillableItem.StatusFlag = "D";
                 OnUpdateEvent();
                 Reset();
             }
@@ -578,7 +578,7 @@ namespace MediTech.ViewModels
             Description = model.Description;
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
-            OrderSetBillableItems = model.OrderSetBillableItems;
+            OrderSetBillableItems = new ObservableCollection<OrderSetBillableItemModel>(model.OrderSetBillableItems);
             //if (OrderSetBillableItems != null && OrderSetBillableItems.Count > 0)
             //{
             //    foreach (var item in OrderSetBillableItems)
@@ -602,7 +602,7 @@ namespace MediTech.ViewModels
             model.Description = Description;
             model.ActiveFrom = ActiveFrom;
             model.ActiveTo = ActiveTo;
-            model.OrderSetBillableItems = OrderSetBillableItems;
+            model.OrderSetBillableItems = OrderSetBillableItems.ToList();
         }
 
         #endregion
