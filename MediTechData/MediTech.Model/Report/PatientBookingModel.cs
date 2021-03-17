@@ -1,5 +1,4 @@
 ﻿using System;
-using DevExpress.Xpo;
 using System.Collections.Generic;
 
 namespace MediTech.Model.Report
