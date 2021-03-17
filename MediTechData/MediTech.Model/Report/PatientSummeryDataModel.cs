@@ -57,5 +57,8 @@ namespace MediTech.Model.Report
         public double? NetAmount { get; set; }
         public double? ItemCost { get; set; }
 
+        public string NoteCashier { get; set; }
+        public string CancelBillReason { get; set; }
+
     }
 }

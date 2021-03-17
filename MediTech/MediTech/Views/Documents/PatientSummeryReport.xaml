@@ -67,6 +67,8 @@
                 <dxg:GridColumn Header="Order แยกที่ใช้" FieldName="ItemName"/>
                 <dxg:GridColumn Header="ราคาขายออก" FieldName="NetAmount"/>
                 <dxg:GridColumn Header="ต้นทุนต่อหน่วย" FieldName="ItemCost"/>
+                <dxg:GridColumn Header="Note Cashier" FieldName="NoteCashier"/>
+                <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelBillReason"/>
                 <dxg:GridColumn Header="จำนวนที่ใช้" FieldName="ItemMutiplier"/>
                 <dxg:GridColumn Header="ICD10" FieldName="ICD10"/>
                 <dxg:GridControl.View>
