@@ -179,6 +179,8 @@ namespace MediTech.Model.Report
         public string PAR204 { get; set; } //Phenol in urin
         public string PAR38 { get; set; } //afp ng
         public string PAR4 { get; set; } //psa
+        public string PAR48 { get; set; } //total billrubin
+        public string PAR49 { get; set; } //direct billrubin
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }
