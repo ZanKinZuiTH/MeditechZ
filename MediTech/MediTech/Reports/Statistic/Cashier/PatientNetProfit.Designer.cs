@@ -42,6 +42,8 @@
             this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField5 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField9 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField8 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField25 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -97,7 +99,6 @@
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPivotGrid1});
-            this.Detail.HeightF = 100F;
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -125,6 +126,8 @@
             this.pivotGridField6,
             this.pivotGridField7,
             this.pivotGridField5,
+            this.pivotGridField9,
+            this.pivotGridField8,
             this.xrPivotGridField24,
             this.xrPivotGridField25,
             this.xrPivotGridField26,
@@ -135,7 +138,7 @@
             this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(53.91673F, 10F);
             this.xrPivotGrid1.Name = "xrPivotGrid1";
             this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
-            this.xrPivotGrid1.OptionsPrint.PrintHeadersOnEveryPage = true;
+            this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
             this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
             this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(1232.333F, 67.70834F);
             // 
@@ -243,6 +246,21 @@
             this.pivotGridField5.Name = "pivotGridField5";
             this.pivotGridField5.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
             this.pivotGridField5.Width = 70;
+            // 
+            // pivotGridField9
+            // 
+            this.pivotGridField9.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField9.AreaIndex = 10;
+            this.pivotGridField9.Caption = "Note Cashier";
+            this.pivotGridField9.FieldName = "Comments";
+            this.pivotGridField9.Name = "pivotGridField9";
+            // 
+            // pivotGridField8
+            // 
+            this.pivotGridField8.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField8.AreaIndex = 11;
+            this.pivotGridField8.FieldName = "CancelReason";
+            this.pivotGridField8.Name = "pivotGridField8";
             // 
             // xrPivotGridField24
             // 
@@ -616,15 +634,15 @@
             this.DataSource = this.objectDataSource1;
             this.Landscape = true;
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 105, 0);
-            this.PageHeight = 1169;
-            this.PageWidth = 1654;
-            this.PaperKind = System.Drawing.Printing.PaperKind.A3;
+            this.PageHeight = 1268;
+            this.PageWidth = 1752;
+            this.PaperKind = System.Drawing.Printing.PaperKind.A3Extra;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
             this.DateTo,
             this.OrganisationList,
             this.VISTYUID});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -693,5 +711,7 @@
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField5;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField6;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField7;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField9;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField8;
     }
 }

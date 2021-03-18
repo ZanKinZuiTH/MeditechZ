@@ -173,9 +173,10 @@
                         <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
-                        <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView Name="view" AllowScrollAnimation="True" UseLightweightTemplates="None"

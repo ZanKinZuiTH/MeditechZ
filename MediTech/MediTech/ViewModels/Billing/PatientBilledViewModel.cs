@@ -222,6 +222,11 @@ namespace MediTech.ViewModels
                     CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILL", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
+                        if (String.IsNullOrEmpty(result.Comments))
+                        {
+                            WarningDialog("ไม่สามารถยกเลิกได้ กรุณาใส่เหตุผล");
+                            return;
+                        }
                         DataService.Billing.CancelBill(SelectPatientBill.PatientBillUID, result.Comments, AppUtil.Current.UserID);
                         SaveSuccessDialog();
                         SearchPatientBill();
