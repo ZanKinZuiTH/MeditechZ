@@ -30,7 +30,6 @@ namespace MediTech.DataBase
         public virtual DbSet<Amphur> Amphur { get; set; }
         public virtual DbSet<BillableItem> BillableItem { get; set; }
         public virtual DbSet<BillableItemDetail> BillableItemDetail { get; set; }
-        public virtual DbSet<BillableItemDetail_Backup> BillableItemDetail_Backup { get; set; }
         public virtual DbSet<BillingGroup> BillingGroup { get; set; }
         public virtual DbSet<BillingSubGroup> BillingSubGroup { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
@@ -3309,7 +3308,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompare_Result>("pRPTCheckupLabCompare", p_PatientUIDParameter, p_PayorDetailUIDParameter);
         }
     
-        public virtual ObjectResult<pRPTStockSummary_Result> pRPTStockSummary(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        public virtual ObjectResult<pRPTStockSummary_Result> pRPTStockSummary(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, string p_OrganisationList)
         {
             var p_DateFromParameter = p_DateFrom.HasValue ?
                 new ObjectParameter("P_DateFrom", p_DateFrom) :
@@ -3319,11 +3318,11 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_DateTo", p_DateTo) :
                 new ObjectParameter("P_DateTo", typeof(System.DateTime));
     
-            var p_OrganisationUIDParameter = p_OrganisationUID.HasValue ?
-                new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
-                new ObjectParameter("P_OrganisationUID", typeof(int));
+            var p_OrganisationListParameter = p_OrganisationList != null ?
+                new ObjectParameter("P_OrganisationList", p_OrganisationList) :
+                new ObjectParameter("P_OrganisationList", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockSummary_Result>("pRPTStockSummary", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockSummary_Result>("pRPTStockSummary", p_DateFromParameter, p_DateToParameter, p_OrganisationListParameter);
         }
     
         public virtual ObjectResult<pSearchCheckupExamList_Result> pSearchCheckupExamList(Nullable<System.DateTime> p_RequestDateFrom, Nullable<System.DateTime> p_RequestDateTo, Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID, Nullable<int> p_CheckupJobUID, Nullable<int> p_PRTGPUID)

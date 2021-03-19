@@ -37,9 +37,8 @@
             <dxe:ComboBoxEdit Name="PART_Editor" IsTextEditable="True" 
                               ItemsSource="{Binding RowData.Row.AutoValueList}"
                               ValidateOnTextInput="False"
-                              ValidateOnEnterKeyPressed="True"
+                              ValidateOnEnterKeyPressed="False"
                               AutoComplete="True"
-                              EditValue="{Binding RowData.Row.ResultValue,Mode=TwoWay}"
                               FontSize="17" FontWeight="Bold"/>
         </DataTemplate>
         <DataTemplate x:Key="ListBoxCheckEdit">

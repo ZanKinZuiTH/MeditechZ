@@ -34,7 +34,6 @@ namespace MediTech.Views
             gvRightEar.DataControl.CurrentColumn = colRightValue;
         }
 
-
         private void GvRightEar_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
             var rowData = e.Row as ResultComponentModel;
@@ -66,6 +65,7 @@ namespace MediTech.Views
                 }
             }
         }
+
 
         private void GrdRightEar_PreviewKeyDown(object sender, KeyEventArgs e)
         {

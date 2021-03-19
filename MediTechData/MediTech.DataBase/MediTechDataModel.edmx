@@ -67,25 +67,6 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
-        <EntityType Name="BillableItemDetail_Backup">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="int" Nullable="false" />
-          <Property Name="BillableItemUID" Type="int" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
-          <Property Name="ActiveFrom" Type="datetime" />
-          <Property Name="ActiveTo" Type="datetime" />
-          <Property Name="Cost" Type="float" />
-          <Property Name="Price" Type="float" Nullable="false" />
-          <Property Name="CURNCUID" Type="int" Nullable="false" />
-          <Property Name="CUser" Type="int" Nullable="false" />
-          <Property Name="CWhen" Type="datetime" Nullable="false" />
-          <Property Name="MUser" Type="int" Nullable="false" />
-          <Property Name="MWhen" Type="datetime" Nullable="false" />
-          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
-        </EntityType>
         <EntityType Name="BillingGroup">
           <Key>
             <PropertyRef Name="UID" />
@@ -3727,7 +3708,7 @@
         <Function Name="pRPTStockSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockTransferredIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -3958,7 +3939,6 @@
           <EntitySet Name="Amphur" EntityType="Self.Amphur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItem" EntityType="Self.BillableItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItemDetail" EntityType="Self.BillableItemDetail" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="BillableItemDetail_Backup" EntityType="Self.BillableItemDetail_Backup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillingGroup" EntityType="Self.BillingGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillingSubGroup" EntityType="Self.BillingSubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -5033,7 +5013,7 @@
           <FunctionImport Name="pRPTStockSummary" ReturnType="Collection(MediTechModel.pRPTStockSummary_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_OrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pSearchCheckupExamList" ReturnType="Collection(MediTechModel.pSearchCheckupExamList_Result)">
             <Parameter Name="P_RequestDateFrom" Mode="In" Type="DateTime" />
@@ -5097,7 +5077,6 @@
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
-          <EntitySet Name="BillableItemDetail_Backup" EntityType="MediTechModel.BillableItemDetail_Backup" />
           <EntitySet Name="BillingGroup" EntityType="MediTechModel.BillingGroup" />
           <EntitySet Name="BillingSubGroup" EntityType="MediTechModel.BillingSubGroup" />
           <EntitySet Name="Booking" EntityType="MediTechModel.Booking" />
@@ -7774,25 +7753,6 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="BillableItemUID" Type="Int32" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
-          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
-          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
-          <Property Name="Cost" Type="Double" />
-          <Property Name="Price" Type="Double" Nullable="false" />
-          <Property Name="CURNCUID" Type="Int32" Nullable="false" />
-          <Property Name="CUser" Type="Int32" Nullable="false" />
-          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MUser" Type="Int32" Nullable="false" />
-          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="BillableItemDetail_Backup">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" />
           <Property Name="BillableItemUID" Type="Int32" Nullable="false" />
           <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
@@ -12816,26 +12776,6 @@
           <EntitySetMapping Name="BillableItemDetail">
             <EntityTypeMapping TypeName="MediTechModel.BillableItemDetail">
               <MappingFragment StoreEntitySet="BillableItemDetail">
-                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
-                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
-                <ScalarProperty Name="MUser" ColumnName="MUser" />
-                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
-                <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="CURNCUID" ColumnName="CURNCUID" />
-                <ScalarProperty Name="Price" ColumnName="Price" />
-                <ScalarProperty Name="Cost" ColumnName="Cost" />
-                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
-                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="BillableItemDetail_Backup">
-            <EntityTypeMapping TypeName="MediTechModel.BillableItemDetail_Backup">
-              <MappingFragment StoreEntitySet="BillableItemDetail_Backup">
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
