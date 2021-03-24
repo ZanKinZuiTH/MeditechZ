@@ -104,6 +104,7 @@
             // xrBarCode1
             // 
             this.xrBarCode1.Alignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrBarCode1.AutoModule = true;
             this.xrBarCode1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.HN, "Text", "")});
             this.xrBarCode1.LocationFloat = new DevExpress.Utils.PointFloat(10.21929F, 55.53505F);
@@ -201,7 +202,7 @@
             this.BirthDate,
             this.Payor,
             this.OrganisationUID});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
