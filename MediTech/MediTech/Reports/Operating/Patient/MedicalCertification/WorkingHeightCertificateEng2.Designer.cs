@@ -137,7 +137,7 @@
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.logo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.ReportFooter = new DevExpress.XtraReports.UI.ReportFooterBand();
             this.lbFooterOrganisationPage2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -1262,27 +1262,26 @@
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox1,
+            this.logo2,
             this.xrLabel1});
             this.PageHeader.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.PageHeader.HeightF = 100F;
             this.PageHeader.Name = "PageHeader";
             this.PageHeader.StylePriority.UseFont = false;
             // 
-            // xrPictureBox1
+            // logo2
             // 
-            this.xrPictureBox1.BorderWidth = 0F;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(197.6671F, 47.76484F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox1.StylePriority.UseBorderWidth = false;
+            this.logo2.BorderWidth = 0F;
+            this.logo2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo2.ImageSource"));
+            this.logo2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.logo2.Name = "logo2";
+            this.logo2.SizeF = new System.Drawing.SizeF(215F, 78F);
+            this.logo2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.logo2.StylePriority.UseBorderWidth = false;
             // 
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(221.0001F, 47.00002F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(221F, 62.00002F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(327.5F, 37.99998F);
@@ -1353,7 +1352,7 @@
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1461,7 +1460,6 @@
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox12;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         public DevExpress.XtraReports.UI.XRLabel lbDoctorNo;
         public DevExpress.XtraReports.UI.XRLabel lbDateNow;
@@ -1475,5 +1473,6 @@
         public DevExpress.XtraReports.UI.XRLabel lbFooterOrganisationPage2;
         public DevExpress.XtraReports.UI.XRLabel lbAddressPage2;
         public DevExpress.XtraReports.UI.XRLabel lbAddress2Page2;
+        public DevExpress.XtraReports.UI.XRPictureBox logo2;
     }
 }

@@ -30,7 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkingHeightCertificateEng1));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
             this.xrCheckBox45 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox46 = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrCheckBox43 = new DevExpress.XtraReports.UI.XRCheckBox();
@@ -107,16 +109,16 @@
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel33 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbIdCard = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
             this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
@@ -126,7 +128,7 @@
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -222,6 +224,13 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.StylePriority.UseFont = false;
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // lbPatientName
+            // 
+            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(111.3808F, 27.83333F);
+            this.lbPatientName.Name = "lbPatientName";
+            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPatientName.SizeF = new System.Drawing.SizeF(306.1669F, 28F);
             // 
             // xrCheckBox45
             // 
@@ -790,16 +799,6 @@
             this.xrLabel2.StylePriority.UseFont = false;
             this.xrLabel2.Text = "Part 1 for Examinee";
             // 
-            // xrLabel4
-            // 
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(36.49993F, 55F);
-            this.xrLabel4.Name = "xrLabel4";
-            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(641.6667F, 23.00001F);
-            this.xrLabel4.Text = "Personal identification number / Passport number................................." +
-    "................................................................................" +
-    "....................................";
-            // 
             // xrLabel35
             // 
             this.xrLabel35.LocationFloat = new DevExpress.Utils.PointFloat(491.5002F, 800.9166F);
@@ -843,6 +842,16 @@
             this.xrLabel3.SizeF = new System.Drawing.SizeF(641.6667F, 23F);
             this.xrLabel3.Text = resources.GetString("xrLabel3.Text");
             // 
+            // xrLabel4
+            // 
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(36.49993F, 55F);
+            this.xrLabel4.Name = "xrLabel4";
+            this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(641.6667F, 23.00001F);
+            this.xrLabel4.Text = "Personal identification number / Passport number................................." +
+    "................................................................................" +
+    "....................................";
+            // 
             // TopMargin
             // 
             this.TopMargin.HeightF = 48.33333F;
@@ -860,25 +869,25 @@
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox1,
+            this.logo,
             this.xrLabel1});
             this.PageHeader.HeightF = 101.6667F;
             this.PageHeader.Name = "PageHeader";
             // 
-            // xrPictureBox1
+            // logo
             // 
-            this.xrPictureBox1.BorderWidth = 0F;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(198.9286F, 51.09818F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox1.StylePriority.UseBorderWidth = false;
+            this.logo.BorderWidth = 0F;
+            this.logo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo.ImageSource"));
+            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.logo.Name = "logo";
+            this.logo.SizeF = new System.Drawing.SizeF(215F, 78F);
+            this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.logo.StylePriority.UseBorderWidth = false;
             // 
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(224.8333F, 53.66669F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(222.3333F, 62.83335F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(327.5F, 37.99998F);
@@ -955,12 +964,12 @@
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
             // 
-            // lbPatientName
+            // LogoType
             // 
-            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(111.3808F, 27.83333F);
-            this.lbPatientName.Name = "lbPatientName";
-            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPatientName.SizeF = new System.Drawing.SizeF(306.1669F, 28F);
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
             // 
             // WorkingHeightCertificateEng1
             // 
@@ -980,8 +989,9 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientUID,
             this.PatientVisitUID,
-            this.OrganisationUID});
-            this.Version = "17.1";
+            this.OrganisationUID,
+            this.LogoType});
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1032,7 +1042,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel35;
         private DevExpress.XtraReports.UI.XRLabel xrLabel34;
         private DevExpress.XtraReports.UI.XRLabel xrLabel33;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        private DevExpress.XtraReports.UI.XRPictureBox logo;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox45;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox46;
         private DevExpress.XtraReports.UI.XRCheckBox xrCheckBox43;
@@ -1086,5 +1096,6 @@
         private DevExpress.XtraReports.UI.XRLabel lbAddressPage1;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         public DevExpress.XtraReports.UI.XRLabel lbPatientName;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }

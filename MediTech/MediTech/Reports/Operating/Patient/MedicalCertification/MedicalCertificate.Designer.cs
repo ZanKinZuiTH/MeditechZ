@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MedicalCertificate));
+            DevExpress.XtraReports.Parameters.StaticListLookUpSettings staticListLookUpSettings1 = new DevExpress.XtraReports.Parameters.StaticListLookUpSettings();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.infoOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisationPlace = new DevExpress.XtraReports.UI.XRLabel();
@@ -101,13 +102,14 @@
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
-            this.xrPictureBox2 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.logoFooter = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lbFooterOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.lbAddress1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbAddress2 = new DevExpress.XtraReports.UI.XRLabel();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -194,11 +196,11 @@
             // lbOrganisationPlace
             // 
             this.lbOrganisationPlace.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.lbOrganisationPlace.LocationFloat = new DevExpress.Utils.PointFloat(296.4359F, 0F);
+            this.lbOrganisationPlace.LocationFloat = new DevExpress.Utils.PointFloat(270.7499F, 0F);
             this.lbOrganisationPlace.Multiline = true;
             this.lbOrganisationPlace.Name = "lbOrganisationPlace";
             this.lbOrganisationPlace.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbOrganisationPlace.SizeF = new System.Drawing.SizeF(389.2819F, 23F);
+            this.lbOrganisationPlace.SizeF = new System.Drawing.SizeF(374.7726F, 23F);
             this.lbOrganisationPlace.StylePriority.UseFont = false;
             this.lbOrganisationPlace.StylePriority.UseTextAlignment = false;
             this.lbOrganisationPlace.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopRight;
@@ -881,13 +883,13 @@
             this.lbOgenisation,
             this.logo,
             this.xrLabel1});
-            this.PageHeader.HeightF = 101.0549F;
+            this.PageHeader.HeightF = 135.3882F;
             this.PageHeader.Name = "PageHeader";
             // 
             // lbLicenseNo
             // 
             this.lbLicenseNo.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.lbLicenseNo.LocationFloat = new DevExpress.Utils.PointFloat(3.99999F, 79.35326F);
+            this.lbLicenseNo.LocationFloat = new DevExpress.Utils.PointFloat(4.000002F, 108.52F);
             this.lbLicenseNo.Multiline = true;
             this.lbLicenseNo.Name = "lbLicenseNo";
             this.lbLicenseNo.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -898,7 +900,7 @@
             // lbOgenisation
             // 
             this.lbOgenisation.Font = new System.Drawing.Font("Angsana New", 14F);
-            this.lbOgenisation.LocationFloat = new DevExpress.Utils.PointFloat(4.000015F, 56.09818F);
+            this.lbOgenisation.LocationFloat = new DevExpress.Utils.PointFloat(4.000002F, 85.26487F);
             this.lbOgenisation.Multiline = true;
             this.lbOgenisation.Name = "lbOgenisation";
             this.lbOgenisation.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -909,17 +911,17 @@
             // logo
             // 
             this.logo.BorderWidth = 0F;
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(4F, 2.543131E-05F);
+            this.logo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo.ImageSource"));
+            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(4.000002F, 2.543131E-05F);
             this.logo.Name = "logo";
-            this.logo.SizeF = new System.Drawing.SizeF(213.9286F, 56.09818F);
+            this.logo.SizeF = new System.Drawing.SizeF(215F, 78F);
             this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.logo.StylePriority.UseBorderWidth = false;
             // 
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 20F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(467.2183F, 29.73524F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(467.2183F, 36.58841F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -947,22 +949,22 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPictureBox2,
+            this.logoFooter,
             this.lbFooterOrganisation,
             this.lbAddress1,
             this.lbAddress2});
             this.PageFooter.HeightF = 57.5F;
             this.PageFooter.Name = "PageFooter";
             // 
-            // xrPictureBox2
+            // logoFooter
             // 
-            this.xrPictureBox2.BorderWidth = 0F;
-            this.xrPictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox2.Image")));
-            this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
-            this.xrPictureBox2.Name = "xrPictureBox2";
-            this.xrPictureBox2.SizeF = new System.Drawing.SizeF(112.7084F, 46.5269F);
-            this.xrPictureBox2.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.xrPictureBox2.StylePriority.UseBorderWidth = false;
+            this.logoFooter.BorderWidth = 0F;
+            this.logoFooter.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logoFooter.ImageSource"));
+            this.logoFooter.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.logoFooter.Name = "logoFooter";
+            this.logoFooter.SizeF = new System.Drawing.SizeF(122.7141F, 46.5269F);
+            this.logoFooter.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.logoFooter.StylePriority.UseBorderWidth = false;
             // 
             // lbFooterOrganisation
             // 
@@ -1014,6 +1016,13 @@
             this.formattingRule1.DataMember = "Detail";
             this.formattingRule1.Name = "formattingRule1";
             // 
+            // LogoType
+            // 
+            this.LogoType.Name = "LogoType";
+            this.LogoType.Type = typeof(int);
+            this.LogoType.ValueInfo = "0";
+            this.LogoType.ValueSourceSettings = staticListLookUpSettings1;
+            // 
             // MedicalCertificate
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1035,8 +1044,9 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.PatientVisitUID,
             this.PatientUID,
-            this.OrganisationUID});
-            this.Version = "17.1";
+            this.OrganisationUID,
+            this.LogoType});
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -1082,7 +1092,7 @@
         private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
         private DevExpress.XtraReports.Parameters.Parameter PatientUID;
         private DevExpress.XtraReports.UI.PageFooterBand PageFooter;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox2;
+        private DevExpress.XtraReports.UI.XRPictureBox logoFooter;
         private DevExpress.XtraReports.UI.XRLabel lbFooterOrganisation;
         private DevExpress.XtraReports.UI.XRLabel lbAddress1;
         private DevExpress.XtraReports.UI.XRLabel lbAddress2;
@@ -1122,5 +1132,6 @@
         private DevExpress.XtraReports.UI.XRLabel lbOrganisationPlace;
         private DevExpress.XtraReports.UI.XRLabel infoOrganisation;
         private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
+        private DevExpress.XtraReports.Parameters.Parameter LogoType;
     }
 }

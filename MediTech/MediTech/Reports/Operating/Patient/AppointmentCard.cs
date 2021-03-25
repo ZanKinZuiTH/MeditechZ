@@ -4,14 +4,27 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using MediTech.DataService;
+using MediTech.Model;
+using System.Collections.Generic;
+using DevExpress.XtraReports.Parameters;
+using System.IO;
 
 namespace MediTech.Reports.Operating.Patient
 {
     public partial class AppointmentCard : DevExpress.XtraReports.UI.XtraReport
     {
+        List<HealthOrganisationModel> Organisations = new List<HealthOrganisationModel>();
         public AppointmentCard()
         {
             InitializeComponent();
+            Organisations = (new MasterDataService()).GetHealthOrganisation();
+
+            StaticListLookUpSettings lookupSettings = new StaticListLookUpSettings();
+            foreach (var item in Organisations)
+            {
+                lookupSettings.LookUpValues.Add(new LookUpValue(item.HealthOrganisationUID, item.Name));
+            }
+            this.LogoType.LookUpSettings = lookupSettings;
             this.BeforePrint += AppointmentCard_BeforePrint;
         }
 
@@ -20,39 +33,63 @@ namespace MediTech.Reports.Operating.Patient
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int bookUID = int.Parse(this.Parameters["BookUID"].Value.ToString());
             var dataSource = (new ReportsService()).PrintPatientBooking(bookUID);
+            int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
-            if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+            if (logoType == 0)
             {
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                if (Organisation != null)
+                var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                if (OrganisationDefault != null)
                 {
-                    string organisation = Organisation.Description?.ToString();
-                    string lisence = Organisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + Organisation.LicenseNo.ToString() : "";
+                    string organisation = OrganisationDefault.Description?.ToString();
+                    string lisence = OrganisationDefault.LicenseNo != null ? "ใบอนุญาตเลขที่ " + OrganisationDefault.LicenseNo.ToString() : "";
                     lbOrganisation.Text = organisation + " " + lisence;
 
-                    string mobile1 = Organisation.MobileNo != null ? "โทรศัพท์ " + Organisation.MobileNo.ToString() : "";
-                    string mobile2 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
-                    string email = Organisation.Email != null ? "e-mail:" + Organisation.Email.ToString() : "";
+                    string mobile1 = OrganisationDefault.MobileNo != null ? "โทรศัพท์ " + OrganisationDefault.MobileNo.ToString() : "";
+                    string mobile2 = OrganisationDefault.MobileNo != null ? "Tel. " + OrganisationDefault.MobileNo.ToString() : "";
+                    string email = OrganisationDefault.Email != null ? "e-mail:" + OrganisationDefault.Email.ToString() : "";
 
-                    lbAddress.Text = Organisation.Address?.ToString() + " " + mobile1 + " " + email;
-                    lbAddress2.Text = Organisation.Address2?.ToString() + " " + mobile2 + " " + email;
+                    lbAddress.Text = OrganisationDefault.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = OrganisationDefault.Address2?.ToString() + " " + mobile2 + " " + email;
+
+                    if (OrganisationDefault.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
                 }
             }
             else
             {
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
-                if (Organisation != null)
+                var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
+                if (SelectOrganisation != null)
                 {
-                    string organisation = Organisation.Description?.ToString();
-                    string lisence = Organisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + Organisation.LicenseNo.ToString() : "";
+                    string organisation = SelectOrganisation.Description?.ToString();
+                    string lisence = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
                     lbOrganisation.Text = organisation + " " + lisence;
 
-                    string mobile1 = Organisation.MobileNo != null ? "โทรศัพท์ " + Organisation.MobileNo.ToString() : "";
-                    string mobile2 = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
-                    string email = Organisation.Email != null ? "e-mail:" + Organisation.Email.ToString() : "";
+                    string mobile1 = SelectOrganisation.MobileNo != null ? "โทรศัพท์ " + SelectOrganisation.MobileNo.ToString() : "";
+                    string mobile2 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
+                    string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
 
-                    lbAddress.Text = Organisation.Address?.ToString() + " " + mobile1 + " " + email;
-                    lbAddress2.Text = Organisation.Address2?.ToString() + " " + mobile2 + " " + email;
+                    lbAddress.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
+                    lbAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
+
+                    if (SelectOrganisation.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
                 }
 
             }
