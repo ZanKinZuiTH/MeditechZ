@@ -2828,9 +2828,6 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="RDNIDLib.DLD">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config">
@@ -3139,6 +3136,9 @@
     <Resource Include="Resources\Images\Menu\Result Entry.png" />
     <Resource Include="Resources\Images\Module\LIS.png" />
     <Resource Include="Resources\Images\LogoBRXG.png" />
+    <None Include="RDNIDLib.DLD">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
     <None Include="Resources\soundforTERC.wav" />
     <Resource Include="Resources\Images\LogoBRXG2.png" />
     <Resource Include="Untitled-2.ico" />

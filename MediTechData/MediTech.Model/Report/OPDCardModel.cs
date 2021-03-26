@@ -21,6 +21,10 @@ namespace MediTech.Model.Report
         public double? Weight { get; set; }
         public double? Height { get; set; }
         public string BP { get; set; }
+        public string Temprature { get; set; }
+        public string Pulse { get; set; }
+        public string RespiratoryRate { get; set; }
+        public string OxygenSat { get; set; }
         public string PI { get; set; }
         public string ChiefComplaint { get; set; }
         public string PhysicalExam { get; set; }

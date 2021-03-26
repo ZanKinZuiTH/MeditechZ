@@ -144,7 +144,6 @@ namespace MediTech.Reports.Operating.Patient
             }
         }
 
-
         void xrSubreport1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             if (listData != null)
