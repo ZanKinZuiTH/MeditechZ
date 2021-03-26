@@ -38,60 +38,77 @@ namespace MediTech.Reports.Operating.Pharmacy
             }
             this.DataSource = drugSticker;
 
+            var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
             if (drugSticker != null && drugSticker.Count > 0)
             {
-                string healthOrganisationCode = drugSticker.FirstOrDefault().OrganisationCode;
-                if (healthOrganisationCode.ToUpper().Contains("BRXG"))
-                {
-                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
-                    BitmapImage imageSource = new BitmapImage(uri);
-                    using (MemoryStream outStream = new MemoryStream())
-                    {
-                        BitmapEncoder enc = new BmpBitmapEncoder();
-                        enc.Frames.Add(BitmapFrame.Create(imageSource));
-                        enc.Save(outStream);
-                        this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                    }
-                }
-                if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+                if (!string.IsNullOrEmpty(OrganisationUID.ToString()) && OrganisationUID != 0)
                 {
                     var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                    if (Organisation != null)
+                    lbFooterOrganisation.Text = Organisation.Description != null ? Organisation.Description?.ToString() : "";
+                    lbAddress.Text = Organisation.Address != null ? Organisation.Address?.ToString() : "";
+
+                    if (Organisation.LogoImage != null)
                     {
-                        lbFooterOrganisation.Text = Organisation.Description?.ToString();
-                        lbAddress.Text = Organisation.Address?.ToString();
+                        MemoryStream ms = new MemoryStream(Organisation.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+
+                }
+                else
+                {
+                    var OrganisationDefault = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
+                    lbFooterOrganisation.Text = OrganisationDefault.Description?.ToString();
+                    lbAddress.Text = OrganisationDefault.Address?.ToString();
+                    if (OrganisationDefault.LogoImage != null)
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                        logo.Image = Image.FromStream(ms);
+                    }
+                    else
+                    {
+                        MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
+                        logo.Image = Image.FromStream(ms);
                     }
                 }
-                else if (healthOrganisationCode.ToUpper().Contains("DRC"))
-                {
-                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoDRC.png", UriKind.Absolute);
-                    BitmapImage imageSource = new BitmapImage(uri);
-                    using (MemoryStream outStream = new MemoryStream())
-                    {
-                        BitmapEncoder enc = new BmpBitmapEncoder();
-                        enc.Frames.Add(BitmapFrame.Create(imageSource));
-                        enc.Save(outStream);
-                        this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                    }
-                }
-            }
-            else
-            {
-                Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
-                BitmapImage imageSource = new BitmapImage(uri);
-                using (MemoryStream outStream = new MemoryStream())
-                {
-                    BitmapEncoder enc = new BmpBitmapEncoder();
-                    enc.Frames.Add(BitmapFrame.Create(imageSource));
-                    enc.Save(outStream);
-                    this.logo.Image = System.Drawing.Image.FromStream(outStream);
-                }
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
-                if (Organisation != null)
-                {
-                    lbFooterOrganisation.Text = Organisation.Description?.ToString();
-                    lbAddress.Text = Organisation.Address?.ToString();
-                }
+                //string healthOrganisationCode = drugSticker.FirstOrDefault().OrganisationCode;
+                //if (healthOrganisationCode.ToUpper().Contains("BRXG"))
+                //{
+                //    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoBRXG.png", UriKind.Absolute);
+                //    BitmapImage imageSource = new BitmapImage(uri);
+                //    using (MemoryStream outStream = new MemoryStream())
+                //    {
+                //        BitmapEncoder enc = new BmpBitmapEncoder();
+                //        enc.Frames.Add(BitmapFrame.Create(imageSource));
+                //        enc.Save(outStream);
+                //        this.logo.Image = System.Drawing.Image.FromStream(outStream);
+                //    }
+                //}
+                //if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+                //{
+                //    var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
+                //    if (Organisation != null)
+                //    {
+                //        lbFooterOrganisation.Text = Organisation.Description?.ToString();
+                //        lbAddress.Text = Organisation.Address?.ToString();
+                //    }
+                //}
+                //else if (healthOrganisationCode.ToUpper().Contains("DRC"))
+                //{
+                //    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoDRC.png", UriKind.Absolute);
+                //    BitmapImage imageSource = new BitmapImage(uri);
+                //    using (MemoryStream outStream = new MemoryStream())
+                //    {
+                //        BitmapEncoder enc = new BmpBitmapEncoder();
+                //        enc.Frames.Add(BitmapFrame.Create(imageSource));
+                //        enc.Save(outStream);
+                //        this.logo.Image = System.Drawing.Image.FromStream(outStream);
+                //    }
+                //}
             }
 
             if (OrganisationUID == 24)

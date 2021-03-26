@@ -45,7 +45,7 @@
             this.BirthDate = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.Age = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
@@ -66,7 +66,7 @@
             this.xrLabel3,
             this.xrLabel2,
             this.xrLabel1,
-            this.xrPictureBox1,
+            this.logo,
             this.xrLabel8});
             this.Detail.HeightF = 156.4286F;
             this.Detail.Name = "Detail";
@@ -228,13 +228,13 @@
             this.Age.Name = "Age";
             this.Age.Visible = false;
             // 
-            // xrPictureBox1
+            // logo
             // 
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
-            this.xrPictureBox1.Name = "xrPictureBox1";
-            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(154.1667F, 49.66667F);
-            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
+            this.logo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo.ImageSource"));
+            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.logo.Name = "logo";
+            this.logo.SizeF = new System.Drawing.SizeF(134.8808F, 51.00001F);
+            this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
             // 
             // xrLabel8
             // 
@@ -292,7 +292,7 @@
             this.OrderName,
             this.OrganisationUID,
             this.Payor});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -310,7 +310,7 @@
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.Parameters.Parameter BirthDate;
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
-        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        private DevExpress.XtraReports.UI.XRPictureBox logo;
         private DevExpress.XtraReports.UI.XRLabel lbFooterOrganisation;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;

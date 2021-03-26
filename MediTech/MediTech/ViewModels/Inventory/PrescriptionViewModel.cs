@@ -268,6 +268,7 @@ namespace MediTech.ViewModels
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
 
                 rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
+                rpt.Parameters["OrganisationUID"].Value = SelectOrganisation.HealthOrganisationUID;
                 rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;

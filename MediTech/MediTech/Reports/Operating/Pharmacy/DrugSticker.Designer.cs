@@ -277,10 +277,10 @@
             // 
             // logo
             // 
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
+            this.logo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo.ImageSource"));
             this.logo.LocationFloat = new DevExpress.Utils.PointFloat(9.000002F, 0F);
             this.logo.Name = "logo";
-            this.logo.SizeF = new System.Drawing.SizeF(115.2953F, 37.61111F);
+            this.logo.SizeF = new System.Drawing.SizeF(105.279F, 42.26072F);
             this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // TopMargin
@@ -341,7 +341,7 @@
             this.PrescriptionItemUID,
             this.ExpiryDate,
             this.OrganisationUID});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
