@@ -470,6 +470,7 @@ namespace MediTech.ViewModels
                 newBillItem.ProcessingNotes = NoteProcessing;
                 newBillItem.ActiveFrom = ActiveFrom2;
                 newBillItem.ActiveTo = ActiveTo2;
+                newBillItem.StatusFlag = "A";
                 //newBillItem.BillableItemDetails = DataService.MasterData.GetBillableItemDetailByBillableItemUID(SelectBillableItem.BillableItemUID);
 
                 //int ownerOrganisationUID = SelectOrganisation == null ? 0 : SelectOrganisation.HealthOrganisationUID;

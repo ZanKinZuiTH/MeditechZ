@@ -25,20 +25,21 @@ namespace MediTech.Views
     /// </summary>
     public partial class ManageBillableItem : UserControl
     {
+        MediTechViewModelBase viewModel;
         public ManageBillableItem()
         {
             InitializeComponent();
             cmbOrganisation.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
             if (this.DataContext is ManageBillableItemViewModel)
             {
-                (this.DataContext as ManageBillableItemViewModel).UpdateEvent += ManageBillableItem_UpdateEvent;
+                viewModel = (this.DataContext as ManageBillableItemViewModel);
+                viewModel.UpdateEvent += ManageBillableItem_UpdateEvent;
             }
         }
 
         void ManageBillableItem_UpdateEvent(object sender, EventArgs e)
         {
-            grdBillDetail.ItemsSource = new ObservableCollection<BillableItemDetailModel>(
-                (grdBillDetail.ItemsSource as ObservableCollection<BillableItemDetailModel>).Where(p => p.StatusFlag == "A"));
+            grdBillDetail.ItemsSource = (viewModel as ManageBillableItemViewModel).BillableItemDetail.Where(p => p.StatusFlag == "A");
             grdBillDetail.RefreshData();
         }
 

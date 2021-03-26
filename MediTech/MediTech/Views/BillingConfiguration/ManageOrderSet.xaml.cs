@@ -24,19 +24,20 @@ namespace MediTech.Views
     /// </summary>
     public partial class ManageOrderSet : UserControl
     {
+        MediTechViewModelBase viewModel;
         public ManageOrderSet()
         {
             InitializeComponent();
             if (this.DataContext is ManageOrderSetViewModel)
             {
-                (this.DataContext as ManageOrderSetViewModel).UpdateEvent += ManageOrderSet_UpdateEvent;
+                viewModel = (this.DataContext as ManageOrderSetViewModel);
+                viewModel.UpdateEvent += ManageOrderSet_UpdateEvent;
             }
         }
 
         void ManageOrderSet_UpdateEvent(object sender, EventArgs e)
         {
-            grdOrderSetBill.ItemsSource = new ObservableCollection<OrderSetBillableItemModel>(
-    (grdOrderSetBill.ItemsSource as ObservableCollection<OrderSetBillableItemModel>).Where(p => p.StatusFlag == "A"));
+            grdOrderSetBill.ItemsSource = (viewModel as ManageOrderSetViewModel).OrderSetBillableItems.Where(p => p.StatusFlag == "A");
             grdOrderSetBill.RefreshData();
         }
 
