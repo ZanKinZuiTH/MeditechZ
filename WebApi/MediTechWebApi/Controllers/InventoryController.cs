@@ -2603,7 +2603,8 @@ namespace MediTechWebApi.Controllers
                     PatientID = SqlFunction.fGetPatientID(p.PatientUID),
                     PatientName = SqlFunction.fGetPatientName(p.PatientUID),
                     PrescribedDttm = p.PrescribedDttm,
-                    OrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0)
+                    OrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
+                    OwnerOrganisationUID = p.OwnerOrganisationUID
                 }).ToList();
 
 

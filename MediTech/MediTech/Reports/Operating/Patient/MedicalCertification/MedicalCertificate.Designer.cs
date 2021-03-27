@@ -338,6 +338,8 @@
             // 
             // xrLabel40
             // 
+            this.xrLabel40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.xrLabel40.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(374.2499F, 642.625F);
             this.xrLabel40.Name = "xrLabel40";
@@ -349,6 +351,8 @@
             // 
             // xrLabel39
             // 
+            this.xrLabel39.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
             this.xrLabel39.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(376.3883F, 571.2918F);
             this.xrLabel39.Name = "xrLabel39";
