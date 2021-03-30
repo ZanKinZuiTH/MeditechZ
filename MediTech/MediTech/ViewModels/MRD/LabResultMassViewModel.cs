@@ -194,7 +194,9 @@ namespace MediTech.ViewModels
                 if (fileName != "")
                 {
                     LabResultMass view = (LabResultMass)this.View;
-                    view.pivotData.ExportToXlsx(fileName);
+                    var exportOptions = new DevExpress.XtraPrinting.XlsxExportOptionsEx();
+                    exportOptions.ExportType = DevExpress.Export.ExportType.WYSIWYG;
+                    view.pivotData.ExportToXlsx(fileName, exportOptions);
                     OpenFile(fileName);
                 }
 

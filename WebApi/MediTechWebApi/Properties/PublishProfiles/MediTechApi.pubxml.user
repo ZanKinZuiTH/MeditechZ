@@ -7,7 +7,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
   <PropertyGroup>
     <TimeStampOfAssociatedLegacyPublishXmlFile />
     <_PublishTargetUrl>C:\Users\asus\Documents\MediTechApi</_PublishTargetUrl>
-    <History>True|2021-03-17T09:37:39.1809483Z;</History>
+    <History>True|2021-03-28T09:10:55.7966787Z;True|2021-03-26T10:27:07.7373098+07:00;True|2021-03-17T16:37:39.1809483+07:00;</History>
   </PropertyGroup>
   <ItemGroup>
     <File Include="Areas/HelpPage/HelpPage.css">
@@ -71,25 +71,25 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>07/02/2018 10:19:12</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll">
-      <publishTime>03/17/2021 16:37:36</publishTime>
+      <publishTime>03/28/2021 16:10:53</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.dll.config">
       <publishTime>12/21/2020 18:18:28</publishTime>
     </File>
     <File Include="bin/MediTech.DataBase.pdb">
-      <publishTime>03/17/2021 16:37:36</publishTime>
+      <publishTime>03/28/2021 16:10:53</publishTime>
     </File>
     <File Include="bin/MediTech.Model.dll">
-      <publishTime>03/17/2021 16:36:43</publishTime>
+      <publishTime>03/28/2021 16:06:08</publishTime>
     </File>
     <File Include="bin/MediTech.Model.pdb">
-      <publishTime>03/17/2021 16:36:43</publishTime>
+      <publishTime>03/28/2021 16:06:08</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.dll">
-      <publishTime>03/17/2021 16:37:37</publishTime>
+      <publishTime>03/28/2021 16:10:54</publishTime>
     </File>
     <File Include="bin/MediTechWebApi.pdb">
-      <publishTime>03/17/2021 16:37:37</publishTime>
+      <publishTime>03/28/2021 16:10:54</publishTime>
     </File>
     <File Include="bin/Microsoft.Web.Infrastructure.dll">
       <publishTime>07/02/2018 10:19:13</publishTime>
@@ -215,7 +215,7 @@ by editing this MSBuild file. In order to learn more about this please visit htt
       <publishTime>08/16/2018 15:08:08</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>03/17/2021 16:37:38</publishTime>
+      <publishTime>03/28/2021 16:10:54</publishTime>
     </File>
   </ItemGroup>
 </Project>
