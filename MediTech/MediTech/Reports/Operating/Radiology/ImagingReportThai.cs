@@ -28,6 +28,7 @@ namespace MediTech.Reports.Operating.Radiology
             this.BeforePrint += XrayReport_BeforePrint;
         }
 
+
         void XrayReport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             CultureInfo culture = new CultureInfo("en-US");

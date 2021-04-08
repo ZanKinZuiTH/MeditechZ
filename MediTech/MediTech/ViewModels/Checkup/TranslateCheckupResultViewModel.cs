@@ -827,7 +827,7 @@ namespace MediTech.ViewModels
                                         grpstUID == 4258 ? radiology.FirstOrDefault(p => p.RequestItemName.ToLower().Contains("thyroid")) : null;
                                     if (resultRadiology != null)
                                     {
-                                        string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, ",", dtResultMapping, ref listNoMapResult);
+                                        string thairesult = TranslateResult.TranslateResultXray(resultRadiology.PlainText, resultRadiology.ResultStatus, resultRadiology.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
                                         if (!string.IsNullOrEmpty(thairesult))
                                         {
                                             conclusion = thairesult;

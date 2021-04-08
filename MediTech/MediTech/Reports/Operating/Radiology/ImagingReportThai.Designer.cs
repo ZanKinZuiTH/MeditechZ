@@ -71,9 +71,9 @@
             this.DetailReport = new DevExpress.XtraReports.UI.DetailReportBand();
             this.Detail1 = new DevExpress.XtraReports.UI.DetailBand();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lblThaiReult = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.lblThaiReult = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -567,29 +567,6 @@
             this.xrLabel2.Text = "รายงานผลตรวจ ( ภาษาไทย )";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // lblThaiReult
-            // 
-            this.lblThaiReult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lblThaiReult.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding(this.ResultThai, "Text", "")});
-            this.lblThaiReult.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.lblThaiReult.Name = "lblThaiReult";
-            this.lblThaiReult.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100F);
-            this.lblThaiReult.StylePriority.UseBorders = false;
-            this.lblThaiReult.StylePriority.UseFont = false;
-            this.lblThaiReult.StylePriority.UsePadding = false;
-            this.lblThaiReult.Text = "lblThaiReult";
-            this.lblThaiReult.Weight = 1D;
-            // 
-            // xrTableRow2
-            // 
-            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.lblThaiReult});
-            this.xrTableRow2.Name = "xrTableRow2";
-            this.xrTableRow2.Weight = 1D;
-            // 
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 9.75F);
@@ -599,6 +576,29 @@
             this.xrTableRow2});
             this.xrTable1.SizeF = new System.Drawing.SizeF(762.5002F, 96.35417F);
             this.xrTable1.StylePriority.UseFont = false;
+            // 
+            // xrTableRow2
+            // 
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.lblThaiReult});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.Weight = 1D;
+            // 
+            // lblThaiReult
+            // 
+            this.lblThaiReult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lblThaiReult.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding(this.ResultThai, "Text", "")});
+            this.lblThaiReult.Font = new System.Drawing.Font("Angsana New", 15F);
+            this.lblThaiReult.Name = "lblThaiReult";
+            this.lblThaiReult.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100F);
+            this.lblThaiReult.StylePriority.UseBorders = false;
+            this.lblThaiReult.StylePriority.UseFont = false;
+            this.lblThaiReult.StylePriority.UsePadding = false;
+            this.lblThaiReult.Text = "lblThaiReult";
+            this.lblThaiReult.Weight = 1D;
             // 
             // ImagingReportThai
             // 
@@ -616,7 +616,7 @@
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.ResultUID,
             this.ResultThai});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();

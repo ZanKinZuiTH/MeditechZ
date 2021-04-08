@@ -483,7 +483,7 @@
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.ResultUID});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
