@@ -788,8 +788,8 @@
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel20.SizeF = new System.Drawing.SizeF(296.6667F, 23.00002F);
-            this.xrLabel20.Text = "(ระบุจำนวนที่สูบ)................................................................" +
-    "........";
+            this.xrLabel20.Text = "(ระบุจำนวนที่ดื่ม)..............................................................." +
+    ".........";
             // 
             // xrLabel19
             // 

@@ -140,7 +140,7 @@ namespace MediTech.ViewModels
 
         public override void OnLoaded()
         {
-            Search();
+            //Search();
         }
 
         private void Search()

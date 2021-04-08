@@ -161,11 +161,11 @@
             this.RichTXT.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.RichTXT.CanShrink = true;
             this.RichTXT.Font = new System.Drawing.Font("Cordia New", 16F);
-            this.RichTXT.LocationFloat = new DevExpress.Utils.PointFloat(13.54181F, 8.597244F);
+            this.RichTXT.LocationFloat = new DevExpress.Utils.PointFloat(13.54181F, 8.597229F);
             this.RichTXT.Name = "RichTXT";
             this.RichTXT.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.RichTXT.SerializableRtfString = resources.GetString("RichTXT.SerializableRtfString");
-            this.RichTXT.SizeF = new System.Drawing.SizeF(726.0418F, 14.49998F);
+            this.RichTXT.SizeF = new System.Drawing.SizeF(738.9583F, 14.49998F);
             this.RichTXT.StylePriority.UseBorders = false;
             this.RichTXT.StylePriority.UseFont = false;
             this.RichTXT.StylePriority.UsePadding = false;
@@ -592,6 +592,7 @@
             this.lblThaiReult.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.ResultThai, "Text", "")});
             this.lblThaiReult.Font = new System.Drawing.Font("Angsana New", 15F);
+            this.lblThaiReult.Multiline = true;
             this.lblThaiReult.Name = "lblThaiReult";
             this.lblThaiReult.Padding = new DevExpress.XtraPrinting.PaddingInfo(5, 0, 0, 0, 100F);
             this.lblThaiReult.StylePriority.UseBorders = false;

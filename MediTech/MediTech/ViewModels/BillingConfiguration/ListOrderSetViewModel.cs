@@ -142,7 +142,7 @@ namespace MediTech.ViewModels
 
         public ListOrderSetViewModel()
         {
-            SearchOrderSet();
+            //SearchOrderSet();
         }
         private void SearchOrderSet()
         {

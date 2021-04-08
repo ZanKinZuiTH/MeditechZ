@@ -10,6 +10,8 @@ using MediTech.DataService;
 using MediTech.Model.Report;
 using System.Windows.Media.Imaging;
 using System.IO;
+using DevExpress.XtraRichEdit;
+using DevExpress.XtraRichEdit.API.Native;
 
 namespace MediTech.Reports.Operating.Radiology
 {
@@ -27,6 +29,7 @@ namespace MediTech.Reports.Operating.Radiology
             InitializeComponent();
             this.BeforePrint += XrayReport_BeforePrint;
         }
+
 
 
         void XrayReport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
@@ -120,7 +123,13 @@ namespace MediTech.Reports.Operating.Radiology
                     this.lblOrganisationAddress.Text = "";
                 }
 
-                this.RichTXT.Html = dataReport.ResultHtml;
+                RichEditDocumentServer docServer = new RichEditDocumentServer();
+                docServer.HtmlText = dataReport.ResultHtml;
+                docServer.Document.DefaultParagraphProperties.LineSpacingType = ParagraphLineSpacing.Multiple;
+                docServer.Document.DefaultParagraphProperties.LineSpacingMultiplier = 0.8f;
+                this.RichTXT.Html = docServer.HtmlText;
+
+                //this.RichTXT.Html = dataReport.ResultHtml;
                 //this.lblThaiReult.Text = dataReport.ThaiResult;
             }
 
