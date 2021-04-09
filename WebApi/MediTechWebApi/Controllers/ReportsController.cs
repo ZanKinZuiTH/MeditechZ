@@ -386,9 +386,11 @@ namespace MediTechWebApi.Controllers
         {
             MedicalCertificateModel data = (from pa in db.Patient
                                             join pv in db.PatientVisit on pa.UID equals pv.PatientUID
+                                            join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
                                             where pa.StatusFlag == "A"
                                              && pv.StatusFlag == "A"
                                              && pv.UID == patientVisitUID
+                                             && pvp.StatusFlag == "A"
                                             select new MedicalCertificateModel
                                             {
                                                 No = pv.UID,
@@ -404,7 +406,11 @@ namespace MediTechWebApi.Controllers
                                                 Doctor = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
                                                 DoctorEngName = SqlFunction.fGetCareProviderEngName(pv.CareProviderUID ?? 0),
                                                 DoctorLicenseNo = SqlFunction.fGetCareProviderLicenseNo(pv.CareProviderUID ?? 0),
-                                                PatientAddress = SqlFunction.fGetAddressPatient(pv.PatientUID)
+                                                PatientAddress = SqlFunction.fGetAddressPatient(pv.PatientUID),
+                                                PatientPayor = SqlFunction.fGetPayorName(pvp.PayorDetailUID),
+                                                MobilePhone = pa.MobilePhone,
+                                                PatientEmail = pa.Email
+
                                             }).FirstOrDefault();
 
             return data;

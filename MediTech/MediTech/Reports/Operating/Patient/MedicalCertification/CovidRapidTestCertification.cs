@@ -4,59 +4,42 @@ using System.Collections;
 using System.ComponentModel;
 using DevExpress.XtraReports.UI;
 using MediTech.DataService;
+using MediTech.Reports.Operating.Patient.MedicalCertification;
 
 namespace MediTech.Reports.Operating.Patient
 {
     public partial class CovidRapidTestCertification : DevExpress.XtraReports.UI.XtraReport
     {
+        CovidRapidTestCertification2 page2 = new CovidRapidTestCertification2();
         public CovidRapidTestCertification()
         {
             InitializeComponent();
             this.BeforePrint += CovidRapidTest_BeforePrint;
+            AfterPrint += Page2_AfterPrint;
         }
         private void CovidRapidTest_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
-            var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
+            var model = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
 
-            if (!String.IsNullOrEmpty(OrganisationUID.ToString()))
+            if (model != null)
             {
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
-                if (Organisation != null)
-                {
-                    lbOrganisation.Text = Organisation.Description?.ToString();
-                    string mobile = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
-                    string email = Organisation.Email != null ? "E-mail:" + Organisation.Email.ToString() : "";
-                    lbAddress.Text = Organisation.Address?.ToString() + " " + mobile +" "+ email;
-                    lbAddress2.Text = Organisation.Address2?.ToString() + " " + mobile + " " + email;
-                    lbLicense.Text = Organisation.LicenseNo != null ? "เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล " + Organisation.LicenseNo.ToString() : "";
-
-                    footerOrganisation.Text = Organisation.Description?.ToString();
-                    footerAddress.Text = Organisation.Address?.ToString() + " " + mobile + " " + email;
-                    footerAddress2.Text = Organisation.Address2?.ToString() + " " + mobile + " " + email;
-                    footerLicense.Text = Organisation.LicenseNo != null ? "เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล " + Organisation.LicenseNo.ToString() : "";
-                }
+                page2.lbStartDate1.Text = model.strVisitData?.ToString("dd'/'MM'/'yyyy");
+                page2.lbStartDate2.Text = model.strVisitData?.ToString("dd'/'MM'/'yyyy");
+                page2.lbDoctor.Text = model.Doctor;
+                page2.lbDoctorLicense.Text = model.DoctorLicenseNo;
+                page2.lbSignDoctor.Text = model.Doctor;
+                page2.lbSignPatient.Text = model.PatientName;
+                page2.lbPatientName.Text = model.PatientName;
             }
-            else
-            {
-                var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(AppUtil.Current.OwnerOrganisationUID);
-                if (Organisation != null)
-                {
-                    lbOrganisation.Text = Organisation.Description?.ToString();
-                    string mobile = Organisation.MobileNo != null ? "Tel. " + Organisation.MobileNo.ToString() : "";
-                    string email = Organisation.Email != null ? "E-mail:" + Organisation.Email.ToString() : "";
-                    lbAddress.Text = Organisation.Address?.ToString() + " " + mobile + " " + email;
-                    lbAddress2.Text = Organisation.Address2?.ToString() + " " + mobile + " " + email;
-                    lbLicense.Text = Organisation.LicenseNo != null ? "เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล " + Organisation.LicenseNo.ToString() : "";
+                this.DataSource = model;
+        }
+        private void Page2_AfterPrint(object sender, EventArgs e)
+        {
 
-                    footerOrganisation.Text = Organisation.Description?.ToString();
-                    footerAddress.Text = Organisation.Address?.ToString() + " " + mobile + " " + email;
-                    footerAddress2.Text = Organisation.Address2?.ToString() + " " + mobile + " " + email;
-                    footerLicense.Text = Organisation.LicenseNo != null ? "เลขที่ใบอนุญาตให้ประกอบกิจการสถานพยาบาล " + Organisation.LicenseNo.ToString() : "";
-                }
-            }
-            this.DataSource = dataSource;
+            page2.CreateDocument();
+            this.Pages.AddRange(page2.Pages);
         }
     }
 }
