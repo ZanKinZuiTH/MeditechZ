@@ -30,12 +30,17 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CovidRapidTestCertification2));
-            DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle3 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
             DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle1 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
             DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle2 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
+            DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle3 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbStartDate2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbStartDate1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbDoctorLicense = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbDoctor = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
@@ -55,7 +60,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrTableRow18 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrShape3 = new DevExpress.XtraReports.UI.XRShape();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -101,19 +105,15 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrShape3 = new DevExpress.XtraReports.UI.XRShape();
+            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageHeader = new DevExpress.XtraReports.UI.PageHeaderBand();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.lbDoctor = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbDoctorLicense = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbStartDate1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbStartDate2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel19 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -162,6 +162,64 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel20});
             this.Detail.HeightF = 941.017F;
             this.Detail.Name = "Detail";
+            // 
+            // lbPatientName
+            // 
+            this.lbPatientName.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(179.0565F, 263.7957F);
+            this.lbPatientName.Name = "lbPatientName";
+            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbPatientName.SizeF = new System.Drawing.SizeF(198.9401F, 27.97617F);
+            this.lbPatientName.StylePriority.UseFont = false;
+            this.lbPatientName.StylePriority.UseTextAlignment = false;
+            this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lbStartDate2
+            // 
+            this.lbStartDate2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.lbStartDate2.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 827.9423F);
+            this.lbStartDate2.Name = "lbStartDate2";
+            this.lbStartDate2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbStartDate2.SizeF = new System.Drawing.SizeF(132.903F, 27.52386F);
+            this.lbStartDate2.StylePriority.UseFont = false;
+            this.lbStartDate2.StylePriority.UseTextAlignment = false;
+            this.lbStartDate2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lbStartDate1
+            // 
+            this.lbStartDate1.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.lbStartDate1.LocationFloat = new DevExpress.Utils.PointFloat(386.0709F, 440.5545F);
+            this.lbStartDate1.Multiline = true;
+            this.lbStartDate1.Name = "lbStartDate1";
+            this.lbStartDate1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbStartDate1.SizeF = new System.Drawing.SizeF(137.5188F, 26.6626F);
+            this.lbStartDate1.StylePriority.UseFont = false;
+            this.lbStartDate1.StylePriority.UsePadding = false;
+            this.lbStartDate1.StylePriority.UseTextAlignment = false;
+            this.lbStartDate1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbStartDate1.TextFormatString = "{0:dd/MM/yyyy}";
+            // 
+            // lbDoctorLicense
+            // 
+            this.lbDoctorLicense.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.lbDoctorLicense.LocationFloat = new DevExpress.Utils.PointFloat(702.2515F, 189.3671F);
+            this.lbDoctorLicense.Name = "lbDoctorLicense";
+            this.lbDoctorLicense.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbDoctorLicense.SizeF = new System.Drawing.SizeF(55.94287F, 20.97626F);
+            this.lbDoctorLicense.StylePriority.UseFont = false;
+            this.lbDoctorLicense.StylePriority.UseTextAlignment = false;
+            this.lbDoctorLicense.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
+            // lbDoctor
+            // 
+            this.lbDoctor.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.lbDoctor.LocationFloat = new DevExpress.Utils.PointFloat(222.8183F, 189.3671F);
+            this.lbDoctor.Name = "lbDoctor";
+            this.lbDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbDoctor.SizeF = new System.Drawing.SizeF(219.5831F, 20.381F);
+            this.lbDoctor.StylePriority.UseFont = false;
+            this.lbDoctor.StylePriority.UseTextAlignment = false;
+            this.lbDoctor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrLabel8
             // 
@@ -340,14 +398,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             this.xrLabel4.Text = "ผลการตรวจ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // xrShape3
-            // 
-            this.xrShape3.LocationFloat = new DevExpress.Utils.PointFloat(74.6714F, 415.5288F);
-            this.xrShape3.Name = "xrShape3";
-            shapeRectangle3.Fillet = 10;
-            this.xrShape3.Shape = shapeRectangle3;
-            this.xrShape3.SizeF = new System.Drawing.SizeF(717.7996F, 225.5508F);
             // 
             // xrTable3
             // 
@@ -738,6 +788,70 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
     "..........................)\r\nผู้เข้ารับการตรวจ\r\n";
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // xrLabel15
+            // 
+            this.xrLabel15.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(302.1884F, 442.9355F);
+            this.xrLabel15.Multiline = true;
+            this.xrLabel15.Name = "xrLabel15";
+            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel15.SizeF = new System.Drawing.SizeF(68.38044F, 23.6864F);
+            this.xrLabel15.StylePriority.UseFont = false;
+            this.xrLabel15.StylePriority.UsePadding = false;
+            this.xrLabel15.StylePriority.UseTextAlignment = false;
+            this.xrLabel15.Text = "วันที่ตรวจ";
+            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrLabel16
+            // 
+            this.xrLabel16.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
+            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(370.5688F, 442.9355F);
+            this.xrLabel16.Multiline = true;
+            this.xrLabel16.Name = "xrLabel16";
+            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel16.SizeF = new System.Drawing.SizeF(231.6196F, 23.6864F);
+            this.xrLabel16.StylePriority.UseFont = false;
+            this.xrLabel16.StylePriority.UsePadding = false;
+            this.xrLabel16.StylePriority.UseTextAlignment = false;
+            this.xrLabel16.Text = "..........................................";
+            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrShape3
+            // 
+            this.xrShape3.LocationFloat = new DevExpress.Utils.PointFloat(74.6714F, 415.5288F);
+            this.xrShape3.Name = "xrShape3";
+            shapeRectangle3.Fillet = 10;
+            this.xrShape3.Shape = shapeRectangle3;
+            this.xrShape3.SizeF = new System.Drawing.SizeF(717.7996F, 225.5508F);
+            // 
+            // xrLabel19
+            // 
+            this.xrLabel19.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(555.1437F, 830.4662F);
+            this.xrLabel19.Multiline = true;
+            this.xrLabel19.Name = "xrLabel19";
+            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel19.SizeF = new System.Drawing.SizeF(83.81464F, 25F);
+            this.xrLabel19.StylePriority.UseFont = false;
+            this.xrLabel19.StylePriority.UsePadding = false;
+            this.xrLabel19.StylePriority.UseTextAlignment = false;
+            this.xrLabel19.Text = "รายงานผลเมื่อ";
+            this.xrLabel19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrLabel20
+            // 
+            this.xrLabel20.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(638.9583F, 830.4662F);
+            this.xrLabel20.Multiline = true;
+            this.xrLabel20.Name = "xrLabel20";
+            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel20.SizeF = new System.Drawing.SizeF(166.1854F, 25F);
+            this.xrLabel20.StylePriority.UseFont = false;
+            this.xrLabel20.StylePriority.UsePadding = false;
+            this.xrLabel20.StylePriority.UseTextAlignment = false;
+            this.xrLabel20.Text = "...........................................";
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
             // PageHeader
             // 
             this.PageHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
@@ -779,120 +893,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220.8333F, 68.99998F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
-            // 
-            // lbDoctor
-            // 
-            this.lbDoctor.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbDoctor.LocationFloat = new DevExpress.Utils.PointFloat(222.8183F, 189.3671F);
-            this.lbDoctor.Name = "lbDoctor";
-            this.lbDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbDoctor.SizeF = new System.Drawing.SizeF(219.5831F, 20.381F);
-            this.lbDoctor.StylePriority.UseFont = false;
-            this.lbDoctor.StylePriority.UseTextAlignment = false;
-            this.lbDoctor.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // lbDoctorLicense
-            // 
-            this.lbDoctorLicense.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbDoctorLicense.LocationFloat = new DevExpress.Utils.PointFloat(702.2515F, 189.3671F);
-            this.lbDoctorLicense.Name = "lbDoctorLicense";
-            this.lbDoctorLicense.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbDoctorLicense.SizeF = new System.Drawing.SizeF(55.94287F, 20.97626F);
-            this.lbDoctorLicense.StylePriority.UseFont = false;
-            this.lbDoctorLicense.StylePriority.UseTextAlignment = false;
-            this.lbDoctorLicense.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // xrLabel15
-            // 
-            this.xrLabel15.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(302.1884F, 442.9355F);
-            this.xrLabel15.Multiline = true;
-            this.xrLabel15.Name = "xrLabel15";
-            this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel15.SizeF = new System.Drawing.SizeF(68.38044F, 23.6864F);
-            this.xrLabel15.StylePriority.UseFont = false;
-            this.xrLabel15.StylePriority.UsePadding = false;
-            this.xrLabel15.StylePriority.UseTextAlignment = false;
-            this.xrLabel15.Text = "วันที่ตรวจ";
-            this.xrLabel15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel16
-            // 
-            this.xrLabel16.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.xrLabel16.LocationFloat = new DevExpress.Utils.PointFloat(370.5688F, 442.9355F);
-            this.xrLabel16.Multiline = true;
-            this.xrLabel16.Name = "xrLabel16";
-            this.xrLabel16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel16.SizeF = new System.Drawing.SizeF(231.6196F, 23.6864F);
-            this.xrLabel16.StylePriority.UseFont = false;
-            this.xrLabel16.StylePriority.UsePadding = false;
-            this.xrLabel16.StylePriority.UseTextAlignment = false;
-            this.xrLabel16.Text = "..........................................";
-            this.xrLabel16.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // lbStartDate1
-            // 
-            this.lbStartDate1.Font = new System.Drawing.Font("EucrosiaUPC", 16F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))));
-            this.lbStartDate1.LocationFloat = new DevExpress.Utils.PointFloat(386.0709F, 440.5545F);
-            this.lbStartDate1.Multiline = true;
-            this.lbStartDate1.Name = "lbStartDate1";
-            this.lbStartDate1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbStartDate1.SizeF = new System.Drawing.SizeF(137.5188F, 26.6626F);
-            this.lbStartDate1.StylePriority.UseFont = false;
-            this.lbStartDate1.StylePriority.UsePadding = false;
-            this.lbStartDate1.StylePriority.UseTextAlignment = false;
-            this.lbStartDate1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbStartDate1.TextFormatString = "{0:MM/dd/yyyy}";
-            // 
-            // lbStartDate2
-            // 
-            this.lbStartDate2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbStartDate2.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 827.9423F);
-            this.lbStartDate2.Name = "lbStartDate2";
-            this.lbStartDate2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbStartDate2.SizeF = new System.Drawing.SizeF(132.903F, 27.52386F);
-            this.lbStartDate2.StylePriority.UseFont = false;
-            this.lbStartDate2.StylePriority.UseTextAlignment = false;
-            this.lbStartDate2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // xrLabel19
-            // 
-            this.xrLabel19.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(555.1437F, 830.4662F);
-            this.xrLabel19.Multiline = true;
-            this.xrLabel19.Name = "xrLabel19";
-            this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel19.SizeF = new System.Drawing.SizeF(83.81464F, 25F);
-            this.xrLabel19.StylePriority.UseFont = false;
-            this.xrLabel19.StylePriority.UsePadding = false;
-            this.xrLabel19.StylePriority.UseTextAlignment = false;
-            this.xrLabel19.Text = "รายงานผลเมื่อ";
-            this.xrLabel19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel20
-            // 
-            this.xrLabel20.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(638.9583F, 830.4662F);
-            this.xrLabel20.Multiline = true;
-            this.xrLabel20.Name = "xrLabel20";
-            this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel20.SizeF = new System.Drawing.SizeF(166.1854F, 25F);
-            this.xrLabel20.StylePriority.UseFont = false;
-            this.xrLabel20.StylePriority.UsePadding = false;
-            this.xrLabel20.StylePriority.UseTextAlignment = false;
-            this.xrLabel20.Text = "...........................................";
-            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // lbPatientName
-            // 
-            this.lbPatientName.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbPatientName.LocationFloat = new DevExpress.Utils.PointFloat(179.0565F, 263.7957F);
-            this.lbPatientName.Name = "lbPatientName";
-            this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbPatientName.SizeF = new System.Drawing.SizeF(198.9401F, 27.97617F);
-            this.lbPatientName.StylePriority.UseFont = false;
-            this.lbPatientName.StylePriority.UseTextAlignment = false;
-            this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // CovidRapidTestCertification2
             // 
