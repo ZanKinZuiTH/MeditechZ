@@ -37,7 +37,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.lbPatientName = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbStartDate2 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbStartDate1 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDoctorLicense = new DevExpress.XtraReports.UI.XRLabel();
             this.lbDoctor = new DevExpress.XtraReports.UI.XRLabel();
@@ -134,7 +133,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.lbPatientName,
-            this.lbStartDate2,
             this.lbStartDate1,
             this.lbDoctorLicense,
             this.lbDoctor,
@@ -173,17 +171,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.lbPatientName.StylePriority.UseFont = false;
             this.lbPatientName.StylePriority.UseTextAlignment = false;
             this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            // 
-            // lbStartDate2
-            // 
-            this.lbStartDate2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbStartDate2.LocationFloat = new DevExpress.Utils.PointFloat(646.6667F, 827.9423F);
-            this.lbStartDate2.Name = "lbStartDate2";
-            this.lbStartDate2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbStartDate2.SizeF = new System.Drawing.SizeF(132.903F, 27.52386F);
-            this.lbStartDate2.StylePriority.UseFont = false;
-            this.lbStartDate2.StylePriority.UseTextAlignment = false;
-            this.lbStartDate2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // lbStartDate1
             // 
@@ -989,7 +976,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
         public DevExpress.XtraReports.UI.XRLabel lbStartDate1;
         public DevExpress.XtraReports.UI.XRLabel lbDoctorLicense;
         public DevExpress.XtraReports.UI.XRLabel lbDoctor;
-        public DevExpress.XtraReports.UI.XRLabel lbStartDate2;
         private DevExpress.XtraReports.UI.XRLabel xrLabel19;
         private DevExpress.XtraReports.UI.XRLabel xrLabel20;
         public DevExpress.XtraReports.UI.XRLabel lbSignDoctor;

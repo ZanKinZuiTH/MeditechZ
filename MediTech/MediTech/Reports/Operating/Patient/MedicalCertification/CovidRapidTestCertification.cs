@@ -26,7 +26,6 @@ namespace MediTech.Reports.Operating.Patient
             if (model != null)
             {
                 page2.lbStartDate1.Text = model.strVisitData?.ToString("dd'/'MM'/'yyyy");
-                page2.lbStartDate2.Text = model.strVisitData?.ToString("dd'/'MM'/'yyyy");
                 page2.lbDoctor.Text = model.Doctor;
                 page2.lbDoctorLicense.Text = model.DoctorLicenseNo;
                 page2.lbSignDoctor.Text = model.Doctor;
