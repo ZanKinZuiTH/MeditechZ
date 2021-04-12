@@ -59,7 +59,8 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView x:Name="gvPulmonary" ShowGroupPanel="False" RowMinHeight="50" 
+                    <dxg:TableView x:Name="gvPulmonary" ShowGroupPanel="False" RowMinHeight="50"
+                                   EditorShowMode="MouseDown"
                                    CellValueChanged="GvPulmonary_CellValueChanged"
                                    ShowColumnHeaders="True" AllowSorting="False" >
                         <dxg:TableView.RowStyle>

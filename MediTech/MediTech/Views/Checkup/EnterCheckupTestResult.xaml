@@ -45,7 +45,7 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView x:Name="gvResult" ShowGroupPanel="False"
+                    <dxg:TableView x:Name="gvResult" ShowGroupPanel="False" EditorShowMode="MouseDown"
                                    ShowColumnHeaders="False" RowMinHeight="60" AllowSorting="False">
                         <dxg:TableView.RowStyle>
                             <Style TargetType="{x:Type dxg:RowControl}">

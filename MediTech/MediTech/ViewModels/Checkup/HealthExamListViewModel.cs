@@ -458,10 +458,15 @@ namespace MediTech.ViewModels
                                     (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(item);
                                     reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                                     break;
+                                case "Muscle Test":
+                                    EnterMuscleTest reviewMuscleTest = new EnterMuscleTest();
+                                    (reviewMuscleTest.DataContext as EnterMuscleTestViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterMuscleTestViewModel)LaunchViewDialogNonPermiss(reviewMuscleTest, false, true);
+                                    break;
                                 case "Physical Fitness Test":
-                                    EnterPhysicalFitnessTest reviewFitnessTest = new EnterPhysicalFitnessTest();
-                                    (reviewFitnessTest.DataContext as EnterPhysicalFitnessTestViewModel).AssignModel(item);
-                                    reviewViewModel = (EnterPhysicalFitnessTestViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
+                                    EnterFitnessTestResult reviewFitnessTest = new EnterFitnessTestResult();
+                                    (reviewFitnessTest.DataContext as EnterFitnessTestResultViewModel).AssignModel(item);
+                                    reviewViewModel = (EnterFitnessTestResultViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                                     break;
                                 default:
                                     EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
@@ -530,10 +535,15 @@ namespace MediTech.ViewModels
                                 (reviewPulmonary.DataContext as EnterPulmonaryResultViewModel).AssignModel(SelectCheckupExam);
                                 reviewViewModel = (EnterPulmonaryResultViewModel)LaunchViewDialogNonPermiss(reviewPulmonary, false, true);
                                 break;
+                            case "Muscle Test":
+                                EnterMuscleTest reviewMuscleTest = new EnterMuscleTest();
+                                (reviewMuscleTest.DataContext as EnterMuscleTestViewModel).AssignModel(SelectCheckupExam);
+                                reviewViewModel = (EnterMuscleTestViewModel)LaunchViewDialogNonPermiss(reviewMuscleTest, false, true);
+                                break;
                             case "Physical Fitness Test":
-                                EnterPhysicalFitnessTest reviewFitnessTest = new EnterPhysicalFitnessTest();
-                                (reviewFitnessTest.DataContext as EnterPhysicalFitnessTestViewModel).AssignModel(SelectCheckupExam);
-                                reviewViewModel = (EnterPhysicalFitnessTestViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
+                                EnterFitnessTestResult reviewFitnessTest = new EnterFitnessTestResult();
+                                (reviewFitnessTest.DataContext as EnterFitnessTestResultViewModel).AssignModel(SelectCheckupExam);
+                                reviewViewModel = (EnterFitnessTestResultViewModel)LaunchViewDialogNonPermiss(reviewFitnessTest, false, true);
                                 break;
                             default:
                                 EnterCheckupTestResult reviewCheckup = new EnterCheckupTestResult();
