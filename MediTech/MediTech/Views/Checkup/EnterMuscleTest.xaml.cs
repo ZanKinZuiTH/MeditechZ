@@ -20,9 +20,9 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for EnterOccuVisionTest.xaml
     /// </summary>
-    public partial class EnterPhysicalFitnessTest : UserControl
+    public partial class EnterMuscleTest : UserControl
     {
-        public EnterPhysicalFitnessTest()
+        public EnterMuscleTest()
         {
             InitializeComponent();
             gcResult.PreviewKeyDown += GcResult_PreviewKeyDown;
@@ -47,9 +47,9 @@ namespace MediTech.Views
             {
                 if (rowData.ResultItemCode == "MUCS1" || rowData.ResultItemCode == "MUCS3" || rowData.ResultItemCode == "MUCS5")
                 {
-                    if (this.DataContext is EnterPhysicalFitnessTestViewModel)
+                    if (this.DataContext is EnterMuscleTestViewModel)
                     {
-                        (this.DataContext as EnterPhysicalFitnessTestViewModel).CalculateMuscleValue();
+                        (this.DataContext as EnterMuscleTestViewModel).CalculateMuscleValue();
                     }
 
                 }

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EnterPhysicalFitnessTestViewModel : MediTechViewModelBase
+    public class EnterFitnessTestResultViewModel : MediTechViewModelBase
     {
         #region Properties
         private string _RequestItemName;
@@ -29,7 +29,6 @@ namespace MediTech.ViewModels
             get { return _ResultComponentItems; }
             set { Set(ref _ResultComponentItems, value); }
         }
-
 
         public string OrderStatus { get; set; }
 
@@ -67,7 +66,7 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             base.OnLoaded();
-            (this.View as EnterPhysicalFitnessTest).patientBanner.SetPatientBanner(RequestModel);
+            (this.View as EnterFitnessTestResult).patientBanner.SetPatientBanner(RequestModel);
         }
 
         public void AssignModel(RequestListModel request)
@@ -120,34 +119,7 @@ namespace MediTech.ViewModels
         {
             CloseViewDialog(ActionDialog.Cancel);
         }
-        public void CalculateMuscleValue()
-        {
-            double weight = Convert.ToDouble(this.RequestModel.Weight);
-            try
-            {
-                var val_back_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS1" || p.ResultItemName == "Value Back Strength");
-                var back_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS2" || p.ResultItemName == "Back Strength");
 
-                var val_grip_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS3" || p.ResultItemName == "Value Grip Strength");
-                var grip_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS4" || p.ResultItemName == "Grip Strength");
-
-                var val_leg_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS5" || p.ResultItemName == "Value Leg Strength");
-                var leg_Strength = ResultComponentItems.FirstOrDefault(p => p.ResultItemCode == "MUCS6" || p.ResultItemName == "Leg Strength");
-
-                if (val_back_Strength != null)
-                    back_Strength.ResultValue = (Math.Round(double.Parse(val_back_Strength.ResultValue) / weight, 2)).ToString();
-
-                if (val_grip_Strength != null)
-                    grip_Strength.ResultValue = (Math.Round(double.Parse(val_grip_Strength.ResultValue) / weight, 2)).ToString();
-
-                if (val_leg_Strength != null)
-                    leg_Strength.ResultValue = (Math.Round(double.Parse(val_leg_Strength.ResultValue) / weight, 2)).ToString();
-            }
-            catch (Exception)
-            {
-
-            }
-        }
         #endregion
     }
 }

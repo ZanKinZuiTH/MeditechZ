@@ -77,4 +77,40 @@ namespace MediTech.Helpers
             return dataTemplate;
         }
     }
+
+    public class EditorTemplateFitnessTest : DataTemplateSelector
+    {
+        public override DataTemplate SelectTemplate(object item, DependencyObject container)
+        {
+            DataTemplate dataTemplate = null;
+            if (item != null)
+            {
+
+                dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
+                if (item is GridCellData)
+                {
+                    GridCellData data = (GridCellData)item;
+                    if (data.RowData.Row is ResultComponentModel)
+                    {
+                        var dataItem = data.RowData.Row as ResultComponentModel;
+                        if (dataItem.ResultItemCode == "PAR1221"   || dataItem.ResultItemCode == "PAR1225")
+                        {
+                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("ListBoxCheckEdit");
+                        }
+                        else if (dataItem.ResultItemCode == "PAR1223" || dataItem.ResultItemCode == "PAR1227" || dataItem.ResultItemCode == "PAR1228")
+                        {
+                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("RadioListBoxEdit");
+                        }
+                        else if (dataItem.ResultItemCode == "PAR1222" || dataItem.ResultItemCode == "PAR1224" || dataItem.ResultItemCode == "PAR1226"
+                            || dataItem.ResultItemCode == "PAR1229" || dataItem.ResultItemCode == "PAR1230")
+                        {
+                            dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("textEditEditor");
+                        }
+                    }
+
+                }
+            }
+            return dataTemplate;
+        }
+    }
 }

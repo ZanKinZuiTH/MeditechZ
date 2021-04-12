@@ -96,7 +96,7 @@
                             </dxg:GridColumn.DisplayTemplate>
                         </dxg:GridColumn>
                         <dxg:GridControl.View>
-                            <dxg:TableView Name="gvRightEar" ShowGroupPanel="False"
+                            <dxg:TableView Name="gvRightEar" ShowGroupPanel="False" EditorShowMode="MouseDown"
                                            AllowSorting="False" RowMinHeight="50"/>
                         </dxg:GridControl.View>
                     </dxg:GridControl>
@@ -132,7 +132,7 @@
                             </dxg:GridColumn.DisplayTemplate>
                         </dxg:GridColumn>
                         <dxg:GridControl.View>
-                            <dxg:TableView Name="gvLeftEar"
+                            <dxg:TableView Name="gvLeftEar" EditorShowMode="MouseDown"
                                            ShowGroupPanel="False" AllowSorting="False" RowMinHeight="50"/>
                         </dxg:GridControl.View>
                     </dxg:GridControl>

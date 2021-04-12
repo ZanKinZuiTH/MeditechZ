@@ -143,7 +143,7 @@
                     </dxg:GridColumn>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False" ShowColumnHeaders="False" AllowSorting="False">
+                    <dxg:TableView EditorShowMode="MouseDown" ShowGroupPanel="False" ShowColumnHeaders="False" AllowSorting="False">
                         <dxg:TableView.RowStyle>
                             <Style TargetType="{x:Type dxg:RowControl}">
                                 <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />

@@ -416,6 +416,12 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.Designer.cs">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.Designer.cs">
+      <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1092,7 +1098,8 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
-    <Compile Include="ViewModels\Checkup\EnterPhysicalFitnessTestViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\EnterMuscleTestViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
@@ -1251,8 +1258,11 @@
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Checkup\EnterPhysicalFitnessTest.xaml.cs">
-      <DependentUpon>EnterPhysicalFitnessTest.xaml</DependentUpon>
+    <Compile Include="Views\Checkup\EnterFitnessTestResult.xaml.cs">
+      <DependentUpon>EnterFitnessTestResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\EnterMuscleTest.xaml.cs">
+      <DependentUpon>EnterMuscleTest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
       <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
@@ -1758,7 +1768,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Checkup\EnterPhysicalFitnessTest.xaml">
+    <Page Include="Views\Checkup\EnterFitnessTestResult.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\EnterMuscleTest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2418,6 +2432,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\AppointmentMobile.resx">
       <DependentUpon>AppointmentMobile.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookReport\CheckupPage1.resx">
       <DependentUpon>CheckupPage1.cs</DependentUpon>
@@ -2469,12 +2484,17 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
       <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate2.resx">
       <DependentUpon>ConfinedSpaceCertificate2.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.resx">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.resx">
+      <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificate2Parts.resx">
       <DependentUpon>MedicalCertificate2Parts.cs</DependentUpon>
@@ -2555,6 +2575,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Pharmacy\DrugSticker.resx">
       <DependentUpon>DrugSticker.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReport.resx">
       <DependentUpon>ImagingReport.cs</DependentUpon>

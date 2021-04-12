@@ -1126,14 +1126,25 @@ namespace MediTech.ViewModels
             }
         }
 
-        public EnterPhysicalFitnessTestViewModel EnterPhysicalFitnessTestViewModel
+        public EnterMuscleTestViewModel EnterMuscleTestViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<EnterPhysicalFitnessTestViewModel>())
-                    SimpleIoc.Default.Register<EnterPhysicalFitnessTestViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<EnterMuscleTestViewModel>())
+                    SimpleIoc.Default.Register<EnterMuscleTestViewModel>();
 
-                return ServiceLocator.Current.GetInstance<EnterPhysicalFitnessTestViewModel>();
+                return ServiceLocator.Current.GetInstance<EnterMuscleTestViewModel>();
+            }
+        }
+
+        public EnterFitnessTestResultViewModel EnterFitnessTestResultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EnterFitnessTestResultViewModel>())
+                    SimpleIoc.Default.Register<EnterFitnessTestResultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EnterFitnessTestResultViewModel>();
             }
         }
 
