@@ -190,7 +190,7 @@
             this.xrLabel19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientEmail")});
             this.xrLabel19.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(588.861F, 220.1993F);
+            this.xrLabel19.LocationFloat = new DevExpress.Utils.PointFloat(591.361F, 199.1993F);
             this.xrLabel19.Multiline = true;
             this.xrLabel19.Name = "xrLabel19";
             this.xrLabel19.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -204,7 +204,7 @@
             this.lbStartDate.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
             this.lbStartDate.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbStartDate.LocationFloat = new DevExpress.Utils.PointFloat(644.2853F, 63.52193F);
+            this.lbStartDate.LocationFloat = new DevExpress.Utils.PointFloat(646.7853F, 42.52192F);
             this.lbStartDate.Multiline = true;
             this.lbStartDate.Name = "lbStartDate";
             this.lbStartDate.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -233,21 +233,21 @@
             this.xrLabel20.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientPayor")});
             this.xrLabel20.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(378.3327F, 244.0553F);
+            this.xrLabel20.LocationFloat = new DevExpress.Utils.PointFloat(380.8327F, 223.0553F);
             this.xrLabel20.Multiline = true;
             this.xrLabel20.Name = "xrLabel20";
             this.xrLabel20.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel20.SizeF = new System.Drawing.SizeF(387.9172F, 25.47165F);
             this.xrLabel20.StylePriority.UseFont = false;
             this.xrLabel20.StylePriority.UseTextAlignment = false;
-            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrLabel20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel17
             // 
             this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "MobilePhone")});
             this.xrLabel17.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(228.3334F, 221.2504F);
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(230.8334F, 200.2504F);
             this.xrLabel17.Multiline = true;
             this.xrLabel17.Name = "xrLabel17";
             this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -261,7 +261,7 @@
             this.lbIdCard.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "IDCard")});
             this.lbIdCard.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbIdCard.LocationFloat = new DevExpress.Utils.PointFloat(255.0001F, 169.2646F);
+            this.lbIdCard.LocationFloat = new DevExpress.Utils.PointFloat(257.5001F, 148.2646F);
             this.lbIdCard.Multiline = true;
             this.lbIdCard.Name = "lbIdCard";
             this.lbIdCard.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -275,7 +275,7 @@
             this.xrLabel15.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientAddress")});
             this.xrLabel15.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(255.0001F, 193.5158F);
+            this.xrLabel15.LocationFloat = new DevExpress.Utils.PointFloat(257.5001F, 172.5158F);
             this.xrLabel15.Multiline = true;
             this.xrLabel15.Name = "xrLabel15";
             this.xrLabel15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -289,7 +289,7 @@
             this.Gender.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
             this.Gender.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.Gender.LocationFloat = new DevExpress.Utils.PointFloat(653.1917F, 145.9258F);
+            this.Gender.LocationFloat = new DevExpress.Utils.PointFloat(655.6917F, 124.9258F);
             this.Gender.Multiline = true;
             this.Gender.Name = "Gender";
             this.Gender.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -303,7 +303,7 @@
             this.lbPatientAge.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "AgeYear")});
             this.lbPatientAge.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbPatientAge.LocationFloat = new DevExpress.Utils.PointFloat(564.3119F, 145.9258F);
+            this.lbPatientAge.LocationFloat = new DevExpress.Utils.PointFloat(566.8119F, 124.9258F);
             this.lbPatientAge.Multiline = true;
             this.lbPatientAge.Name = "lbPatientAge";
             this.lbPatientAge.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -317,7 +317,7 @@
             this.lbDateBirth.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DateOfBirth")});
             this.lbDateBirth.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbDateBirth.LocationFloat = new DevExpress.Utils.PointFloat(450.0001F, 144.6438F);
+            this.lbDateBirth.LocationFloat = new DevExpress.Utils.PointFloat(452.5001F, 123.6438F);
             this.lbDateBirth.Multiline = true;
             this.lbDateBirth.Name = "lbDateBirth";
             this.lbDateBirth.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -332,7 +332,7 @@
             this.lbName.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.lbName.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(143.1572F, 144.6438F);
+            this.lbName.LocationFloat = new DevExpress.Utils.PointFloat(145.6572F, 123.6438F);
             this.lbName.Multiline = true;
             this.lbName.Name = "lbName";
             this.lbName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -834,7 +834,7 @@
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(79.16669F, 149.772F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(81.66669F, 128.772F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -1037,14 +1037,14 @@
             // 
             this.xrTableCell23.Multiline = true;
             this.xrTableCell23.Name = "xrTableCell23";
-            this.xrTableCell23.Text = "................................................................................." +
-    "....................";
+            this.xrTableCell23.StylePriority.UseTextAlignment = false;
+            this.xrTableCell23.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell23.Weight = 1.734985798711407D;
             // 
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 18F, System.Drawing.FontStyle.Underline);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(69.16677F, 66.50002F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(71.66677F, 45.50003F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1057,7 +1057,7 @@
             // xrLabel1
             // 
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(79.16669F, 119.2719F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(81.66669F, 98.27189F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1069,16 +1069,16 @@
             // 
             // xrShape1
             // 
-            this.xrShape1.LocationFloat = new DevExpress.Utils.PointFloat(69.16677F, 105.9386F);
+            this.xrShape1.LocationFloat = new DevExpress.Utils.PointFloat(71.66677F, 84.9386F);
             this.xrShape1.Name = "xrShape1";
             shapeRectangle2.Fillet = 10;
             this.xrShape1.Shape = shapeRectangle2;
-            this.xrShape1.SizeF = new System.Drawing.SizeF(716.9664F, 176.7307F);
+            this.xrShape1.SizeF = new System.Drawing.SizeF(716.9664F, 199.3333F);
             // 
             // xrTable2
             // 
             this.xrTable2.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(603.3334F, 66.50002F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(605.8334F, 45.50003F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -1113,7 +1113,7 @@
             // xrLabel2
             // 
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 22F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(255.0001F, 21.00001F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(257.5001F, 0F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(348.3333F, 45.5F);
