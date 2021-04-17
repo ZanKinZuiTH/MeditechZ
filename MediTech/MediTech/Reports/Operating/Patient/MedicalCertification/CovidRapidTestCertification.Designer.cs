@@ -325,7 +325,7 @@
             this.lbDateBirth.StylePriority.UseFont = false;
             this.lbDateBirth.StylePriority.UseTextAlignment = false;
             this.lbDateBirth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbDateBirth.TextFormatString = "{0:MM/dd/yyyy}";
+            this.lbDateBirth.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // lbName
             // 
