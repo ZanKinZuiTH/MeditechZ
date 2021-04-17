@@ -83,6 +83,24 @@ namespace MediTech.ViewModels
                         item.AutoValueList = item.AutoValue.Split(new string[] { "\n" }, StringSplitOptions.RemoveEmptyEntries)
                             .Select(p => p.Trim()).Where(p => !string.IsNullOrEmpty(p)).ToList();
                 }
+
+                foreach (var item in ResultComponentItems)
+                {
+                    if (item.ResultUID != null && !string.IsNullOrEmpty(item.ResultValue))
+                    {
+                        string[] values = item.ResultValue.Split(',');
+                        for (int i = 0; i < values.Length; i++)
+                        {
+                            if (item.AutoValueList != null && item.AutoValueList.Any(p => p == values[i]))
+                            {
+                                if (item.CheckDataList == null)
+                                    item.CheckDataList = new List<object>();
+
+                                item.CheckDataList.Add(values[i]);
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -97,6 +115,23 @@ namespace MediTech.ViewModels
                 reviewRequestDetail.PatientVisitUID = RequestModel.PatientVisitUID;
                 reviewRequestDetail.RequestItemCode = RequestModel.RequestItemCode;
                 reviewRequestDetail.RequestItemName = RequestModel.RequestItemName;
+
+                foreach (var item in ResultComponentItems)
+                {
+                    if (item.ResultItemCode == "PAR1221")
+                    {
+                        string resultValue = string.Empty;
+                        if (item.CheckDataList != null)
+                        {
+                            foreach (var phyExam in item.CheckDataList)
+                            {
+                                resultValue += string.IsNullOrEmpty(resultValue) ? phyExam.ToString() : "," + phyExam.ToString();
+                            }
+                        }
+                        item.ResultValue = resultValue;
+                    }
+
+                }
 
                 reviewRequestDetail.ResultComponents = new ObservableCollection<ResultComponentModel>(ResultComponentItems.Where(p => !string.IsNullOrEmpty(p.ResultValue)));
 

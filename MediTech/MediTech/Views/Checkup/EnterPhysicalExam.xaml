@@ -111,7 +111,7 @@
                                                  FontWeight="Bold" FontSize="16">
                                     <dxe:ListBoxEdit.Resources>
                                         <Style TargetType="dxe:CheckEdit">
-                                            <Setter Property="Margin" Value="15,5,0,0"/>
+                                            <Setter Property="Margin" Value="5,5,0,0"/>
                                         </Style>
                                     </dxe:ListBoxEdit.Resources>
                                     <dxe:ListBoxEdit.ItemsPanel>

@@ -193,6 +193,7 @@ namespace MediTech.ViewModels
                 WellnessData = null;
                 WellnessResult = null;
                 ListGroupResult = null;
+                ListFitnessTestResult = null;
                 SelectResultStatus = null;
                 ResultComponents = null;
                 ResultRadiologys = null;
@@ -212,7 +213,7 @@ namespace MediTech.ViewModels
                     {
                         var groupResults = DataService.Checkup.GetCheckupGroupResultListByVisit(_SelectPatientVisit.PatientUID, _SelectPatientVisit.PatientVisitUID);
 
-                        if (groupResults != null)
+                        if (groupResults != null && groupResults.Count > 0)
                         {
                             foreach (var groupResult in groupResults)
                             {
@@ -224,7 +225,11 @@ namespace MediTech.ViewModels
                             }
                             groupResults = groupResults.OrderBy(p => p.DisplayOrder).ToList();
 
-                            foreach (var groupResult in groupResults)
+                            var groupResultOther = groupResults.Where(p => !groupFitnessTest.Any(n => n == p.GPRSTUID));
+
+                            var groupFitnessResult = groupResults.Where(p => groupFitnessTest.Any(n => n == p.GPRSTUID));
+
+                            foreach (var groupResult in groupResultOther)
                             {
                                 if (ListGroupResult == null)
                                 {
@@ -233,11 +238,32 @@ namespace MediTech.ViewModels
                                 ListGroupResult.Add("O " + groupResult.GroupResult + " : " + groupResult.Conclusion);
                             }
 
-                            StringBuilder sb = new StringBuilder();
-                            foreach (var resultvalue in ListGroupResult)
+                            foreach (var groupResult in groupFitnessResult)
                             {
-                                if (!string.IsNullOrEmpty(resultvalue))
-                                    sb.AppendLine(resultvalue);
+                                if (ListFitnessTestResult == null)
+                                {
+                                    ListFitnessTestResult = new List<string>();
+                                    ListFitnessTestResult.Add("O " + "Fitness test :");
+                                }
+                                ListFitnessTestResult.Add("- " + groupResult.GroupResult + " : " + groupResult.Conclusion);
+                            }
+
+                            StringBuilder sb = new StringBuilder();
+
+                            if (ListGroupResult != null)
+                                foreach (var resultvalue in ListGroupResult)
+                                {
+                                    if (!string.IsNullOrEmpty(resultvalue))
+                                        sb.AppendLine(resultvalue);
+                                }
+
+                            if (ListFitnessTestResult != null)
+                            {
+                                foreach (var resultvalue in ListFitnessTestResult)
+                                {
+                                    if (!string.IsNullOrEmpty(resultvalue))
+                                        sb.AppendLine(resultvalue);
+                                }
                             }
 
                             WellnessResult = sb.ToString();
@@ -296,6 +322,13 @@ namespace MediTech.ViewModels
         {
             get { return _ListGroupResult; }
             set { _ListGroupResult = value; }
+        }
+
+        private List<string> _ListFitnessTestResult;
+        public List<string> ListFitnessTestResult
+        {
+            get { return _ListFitnessTestResult; }
+            set { _ListFitnessTestResult = value; }
         }
 
         private List<LookupReferenceValueModel> _ResultStatus;
@@ -393,6 +426,10 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
+
+
+        int[] groupFitnessTest = new int[] { 4265, 4269, 4270, 4271, 4272, 4273 };
+
         public VerifyChekupResultViewModel()
         {
             PayorDetails = DataService.MasterData.GetPayorDetail();
@@ -451,6 +488,10 @@ namespace MediTech.ViewModels
                 {
                     ListGroupResult = new List<string>();
                 }
+                if (ListFitnessTestResult == null)
+                {
+                    ListFitnessTestResult = new List<string>();
+                }
                 if (CheckupGroupResult == null)
                 {
                     CheckupGroupResult = new CheckupGroupResultModel();
@@ -463,31 +504,73 @@ namespace MediTech.ViewModels
                 DataService.Checkup.SaveCheckupGroupResult(CheckupGroupResult, AppUtil.Current.UserID);
 
                 StringBuilder sb = new StringBuilder();
-                int index = ListGroupResult.FindIndex(n => n.Contains(SelectGroupResult.Display));
-                if (index >= 0)
+
+                if (!groupFitnessTest.Any(n => n == SelectGroupResult.Key))
                 {
-                    ListGroupResult[index] = "O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim();
-                    List<int> indexRemove = new List<int>();
-                    for (int i = index + 1; i < ListGroupResult.Count; i++)
+                    int index = ListGroupResult.FindIndex(n => n.Contains(SelectGroupResult.Display));
+
+
+                    if (index >= 0)
                     {
-                        if (!ListGroupResult[i].StartsWith("O"))
-                            indexRemove.Add(i);
-                        else
-                            break;
+                        ListGroupResult[index] = "O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim();
+                        List<int> indexRemove = new List<int>();
+                        for (int i = index + 1; i < ListGroupResult.Count; i++)
+                        {
+                            if (!ListGroupResult[i].StartsWith("O"))
+                                indexRemove.Add(i);
+                            else
+                                break;
+                        }
+                        if (indexRemove.Count > 0)
+                        {
+                            ListGroupResult.RemoveRange(indexRemove.Min(), indexRemove.Count);
+                        }
                     }
-                    if (indexRemove.Count > 0)
+                    else
                     {
-                        ListGroupResult.RemoveRange(indexRemove.Min(), indexRemove.Count);
+                        ListGroupResult.Add("O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim());
                     }
                 }
-                else
+
+                if (groupFitnessTest.Any(n => n == SelectGroupResult.Key))
                 {
-                    ListGroupResult.Add("O " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim());
+                    int indexFitness = ListFitnessTestResult.FindIndex(n => n.Contains(SelectGroupResult.Display));
+
+                    if (indexFitness >= 0)
+                    {
+                        ListFitnessTestResult[indexFitness] = "- " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim();
+                        List<int> indexRemove = new List<int>();
+                        for (int i = indexFitness + 1; i < ListFitnessTestResult.Count; i++)
+                        {
+                            if (!ListFitnessTestResult[i].StartsWith("-"))
+                                indexRemove.Add(i);
+                            else
+                                break;
+                        }
+                        if (indexRemove.Count > 0)
+                        {
+                            ListFitnessTestResult.RemoveRange(indexRemove.Min(), indexRemove.Count);
+                        }
+                    }
+                    else
+                    {
+                        ListFitnessTestResult.Add("- " + SelectGroupResult.Display + " : " + TextSummeryReslt.Trim());
+                    }
                 }
+
+
+
+
                 foreach (var result in ListGroupResult)
                 {
                     if (!string.IsNullOrEmpty(result))
                         sb.AppendLine(result);
+                }
+
+                foreach (var resultvalue in ListFitnessTestResult)
+                {
+                    if (!string.IsNullOrEmpty(resultvalue))
+                        sb.AppendLine(resultvalue);
                 }
 
                 WellnessResult = sb.ToString();

@@ -1581,8 +1581,6 @@ namespace MediTechWebApi.Controllers
                 checkupTran.PatientVisitUID = groupResult.PatientVisitUID;
                 checkupTran.GPRSTUID = groupResult.GPRSTUID;
                 checkupTran.RABSTSUID = groupResult.RABSTSUID;
-                checkupTran.Description = groupResult.Description;
-                checkupTran.Recommend = groupResult.Recommend;
                 checkupTran.Conclusion = groupResult.Conclusion;
                 checkupTran.MUser = userUID;
                 checkupTran.MWhen = DateTime.Now;
@@ -1855,8 +1853,6 @@ namespace MediTechWebApi.Controllers
                         checkupTran.PatientVisitUID = patientVisitUID;
                         checkupTran.GPRSTUID = grpstUID;
                         checkupTran.RABSTSUID = RABSTSUID;
-                        checkupTran.Description = descriptionString;
-                        checkupTran.Recommend = recommandString;
                         checkupTran.Conclusion = descriptionString + " " + recommandString;
                         checkupTran.MUser = userUID;
                         checkupTran.MWhen = DateTime.Now;
@@ -1942,8 +1938,7 @@ namespace MediTechWebApi.Controllers
                     PatientVisitUID = p.PatientVisitUID,
                     GPRSTUID = p.GPRSTUID,
                     RABSTSUID = p.RABSTSUID,
-                    Conclusion = p.Conclusion,
-                    Recommend = p.Recommend,
+                    Conclusion = p.Conclusion
 
                 }).FirstOrDefault();
 
@@ -1969,8 +1964,6 @@ namespace MediTechWebApi.Controllers
                                                       Conclusion = ck.Conclusion,
                                                       GroupResult = rf.Description,
                                                       ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง":  "ปกติ",
-                                                      Recommend = ck.Recommend,
-                                                      Description = ck.Description,
                                                       GroupCode = rf.ValueCode
                                                   }).ToList();
 

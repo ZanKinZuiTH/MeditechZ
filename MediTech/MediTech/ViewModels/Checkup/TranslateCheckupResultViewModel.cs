@@ -774,8 +774,6 @@ namespace MediTech.ViewModels
 
 
                             string conclusion = string.Empty;
-                            string description = string.Empty;
-                            string recommand = string.Empty;
 
                             int RABSTSUID = ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2882) ? 2882
                                 : ruleCheckupIsCorrect.Any(p => p.RABSTSUID == 2885) ? 2885
@@ -791,7 +789,6 @@ namespace MediTech.ViewModels
                                     if (!string.IsNullOrEmpty(content.ThaiDescription))
                                     {
                                         conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                        description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
                                     }
                                 }
                                 foreach (var content in item.CheckupRuleRecommend)
@@ -799,7 +796,6 @@ namespace MediTech.ViewModels
                                     if (!string.IsNullOrEmpty(content.ThaiRecommend))
                                     {
                                         conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
-                                        recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
                                     }
                                 }
                             }
@@ -852,15 +848,12 @@ namespace MediTech.ViewModels
                                 if (RABSTSUID == 2882 || RABSTSUID == 2885)
                                 {
                                     conclusion = string.Empty;
-                                    description = string.Empty;
-                                    recommand = string.Empty;
                                     var ruleCheckup = ruleCheckupIsCorrect.FirstOrDefault(p => p.RABSTSUID == RABSTSUID);
                                     foreach (var content in ruleCheckup.CheckupRuleDescription)
                                     {
                                         if (!string.IsNullOrEmpty(content.ThaiDescription))
                                         {
                                             conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                            description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
                                         }
                                     }
                                     foreach (var content in ruleCheckup.CheckupRuleRecommend)
@@ -868,7 +861,6 @@ namespace MediTech.ViewModels
                                         if (!string.IsNullOrEmpty(content.ThaiRecommend))
                                         {
                                             conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
-                                            recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
                                         }
                                     }
                                 }
@@ -879,14 +871,10 @@ namespace MediTech.ViewModels
                                 if (RABSTSUID == 2883 && string.IsNullOrEmpty(conclusion))
                                 {
                                     conclusion = "ผลการตรวจปกติ ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
-                                    description = "ผลการตรวจปกติ";
-                                    recommand = "ควรตรวจสมรรถภาพการมองเห็นปีละ 1 ครั้ง";
                                 }
                                 else if (RABSTSUID == 2882 || RABSTSUID == 2885)
                                 {
                                     conclusion = string.Empty;
-                                    description = string.Empty;
-                                    recommand = string.Empty;
                                     var ruleNonColorBlindness = ruleCheckupIsCorrect.Where(p => !p.Name.StartsWith("ตาบอดสี")).ToList();
                                     if (ruleNonColorBlindness != null && ruleNonColorBlindness.Count > 0)
                                     {
@@ -897,7 +885,6 @@ namespace MediTech.ViewModels
                                                 if (!string.IsNullOrEmpty(content.ThaiDescription))
                                                 {
                                                     conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                                    description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
                                                 }
                                             }
 
@@ -907,7 +894,6 @@ namespace MediTech.ViewModels
                                         {
                                             string thaiRecommend = ruleNonColorBlindness.FirstOrDefault().CheckupRuleRecommend.Where(p => !String.IsNullOrEmpty(p.ThaiRecommend)).FirstOrDefault().ThaiRecommend;
                                             conclusion += string.IsNullOrEmpty(conclusion) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
-                                            recommand += string.IsNullOrEmpty(recommand) ? thaiRecommend.Trim() : " " + thaiRecommend.Trim();
                                         }
                                     }
 
@@ -933,7 +919,6 @@ namespace MediTech.ViewModels
                                             if (!string.IsNullOrEmpty(content.ThaiDescription))
                                             {
                                                 conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
-                                                description += string.IsNullOrEmpty(description) ? content.ThaiDescription.Trim() : " " + content.ThaiDescription.Trim();
                                             }
                                         }
                                         foreach (var content in ruleCheckup.CheckupRuleRecommend)
@@ -941,7 +926,6 @@ namespace MediTech.ViewModels
                                             if (!string.IsNullOrEmpty(content.ThaiRecommend))
                                             {
                                                 conclusion += string.IsNullOrEmpty(conclusion) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
-                                                recommand += string.IsNullOrEmpty(recommand) ? content.ThaiRecommend.Trim() : " " + content.ThaiRecommend.Trim();
                                             }
                                         }
                                     }
@@ -985,8 +969,6 @@ namespace MediTech.ViewModels
                                 checkupResult.PatientVisitUID = patientVisit.PatientVisitUID;
                                 checkupResult.GPRSTUID = grpstUID;
                                 checkupResult.RABSTSUID = RABSTSUID;
-                                checkupResult.Description = description;
-                                checkupResult.Recommend = recommand;
                                 checkupResult.Conclusion = conclusion.Trim();
                                 DataService.Checkup.SaveCheckupGroupResult(checkupResult, AppUtil.Current.UserID);
                             }

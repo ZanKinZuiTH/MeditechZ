@@ -12,14 +12,14 @@
     <UserControl.Resources>
         <helper:EditorTemplateFitnessTest x:Key="TemplateSelector"/>
         <DataTemplate x:Key="ListBoxCheckEdit">
-            <dxe:ListBoxEdit ShowCustomItems="False" ShowBorder="False"
+            <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False" ShowBorder="False"
                              ItemsSource="{Binding RowData.Row.AutoValueList}"
                              EditValue="{Binding RowData.Row.CheckDataList,Mode=TwoWay}"
                              VerticalAlignment="Center"
                              FontWeight="Bold" FontSize="16">
                 <dxe:ListBoxEdit.Resources>
                     <Style x:Key="{dxet:EditorListBoxThemeKey ResourceKey=CheckBoxItemStyle, IsThemeIndependent=True}" TargetType="{x:Type dxe:ListBoxEditItem}" BasedOn="{StaticResource {dxet:EditorListBoxThemeKey ResourceKey=CheckBoxItemStyle}}" >
-                        <Setter Property="Margin" Value="15,5,0,5"/>
+                        <Setter Property="Margin" Value="0,5,0,5"/>
                     </Style>
                 </dxe:ListBoxEdit.Resources>
                 <dxe:ListBoxEdit.ItemsPanel>
@@ -33,11 +33,9 @@
             </dxe:ListBoxEdit>
         </DataTemplate>
         <DataTemplate x:Key="RadioListBoxEdit">
-            <dxe:ListBoxEdit ShowCustomItems="False"
-                             ItemsSource="{Binding RowData.Row.AutoValueList}" ShowBorder="False"
-                             EditValue="{Binding RowData.Row.CheckDataList,Mode=TwoWay}"
-                             VerticalAlignment="Center"
-                             Margin="15,0,0,0"
+            <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False"
+                             ItemsSource="{Binding RowData.Row.AutoValueList}"
+                             EditValue="{Binding RowData.Row.ResultValue,Mode=TwoWay}"
                              FontWeight="Bold" FontSize="16">
                 <dxe:ListBoxEdit.Resources>
                     <Style TargetType="dxe:ListBoxRadioButton">

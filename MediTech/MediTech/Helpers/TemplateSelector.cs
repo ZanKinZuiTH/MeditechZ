@@ -93,11 +93,12 @@ namespace MediTech.Helpers
                     if (data.RowData.Row is ResultComponentModel)
                     {
                         var dataItem = data.RowData.Row as ResultComponentModel;
-                        if (dataItem.ResultItemCode == "PAR1221"   || dataItem.ResultItemCode == "PAR1225")
+                        if (dataItem.ResultItemCode == "PAR1221")
                         {
                             dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("ListBoxCheckEdit");
                         }
-                        else if (dataItem.ResultItemCode == "PAR1223" || dataItem.ResultItemCode == "PAR1227" || dataItem.ResultItemCode == "PAR1228")
+                        else if (dataItem.ResultItemCode == "PAR1223" || dataItem.ResultItemCode == "PAR1225" 
+                            || dataItem.ResultItemCode == "PAR1227" || dataItem.ResultItemCode == "PAR1228")
                         {
                             dataTemplate = (DataTemplate)((FrameworkElement)container).FindResource("RadioListBoxEdit");
                         }

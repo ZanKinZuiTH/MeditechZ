@@ -13,8 +13,6 @@ namespace MediTech.Model
         public long PatientVisitUID { get; set; }
         public long GPRSTUID { get; set; }
         public int RABSTSUID { get; set; }
-        public string Description { get; set; }
-        public string Recommend { get; set; }
         public string Conclusion { get; set; }
         public string GroupCode { get; set; }
         public string GroupResult { get; set; }
