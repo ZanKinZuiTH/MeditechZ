@@ -375,7 +375,7 @@ namespace MediTech.ViewModels
                 var requestLabSelected = RequestLabs.Where(p => p.Selected);
                 if (requestLabSelected != null && requestLabSelected.Count() > 0)
                 {
-                    LabOrderList view = (LabOrderList)this.View;
+                    //LabOrderList view = (LabOrderList)this.View;
                     foreach (var item in requestLabSelected)
                     {
                         PatientStickerBarcode rpt = new PatientStickerBarcode();
@@ -598,16 +598,29 @@ namespace MediTech.ViewModels
 
         private void PrintAuto()
         {
-            LabResultReport rpt = new LabResultReport();
-            ReportPrintTool printTool = new ReportPrintTool(rpt);
+            if (SelectPrinter == null)
+            {
+                WarningDialog("กรุณาเลือก Printer");
+                return;
+            }
+            var requestLabSelected = RequestLabs.Where(p => p.Selected);
+            if (requestLabSelected != null && requestLabSelected.Count() > 0)
+            {
+                foreach (var item in requestLabSelected)
+                {
+                    LabResultReport rpt = new LabResultReport();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
 
 
-            rpt.Parameters["PatientVisitUID"].Value = SelectRequestLab.PatientVisitUID;
-            rpt.Parameters["RequestNumber"].Value = SelectRequestLab.LabNumber;
-            rpt.PrintAuto = true;
-            rpt.RequestParameters = false;
-            rpt.ShowPrintMarginsWarning = false;
-            printTool.Print();
+                    rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                    rpt.Parameters["RequestNumber"].Value = item.LabNumber;
+                    rpt.PrintAuto = true;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.Print(SelectPrinter.Display);
+                }
+            }
+
 
         }
 
