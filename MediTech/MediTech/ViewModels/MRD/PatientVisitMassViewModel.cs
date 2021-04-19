@@ -16,6 +16,7 @@ using MediTech.Views;
 using System.Drawing;
 using System.Collections.ObjectModel;
 using System.Windows.Forms;
+using DevExpress.XtraReports.UI;
 
 namespace MediTech.ViewModels
 {
@@ -346,6 +347,35 @@ namespace MediTech.ViewModels
             set { Set(ref _VisitStatusDoctorVisibility, value); }
         }
 
+        private LookupItemModel _SelectPrinter;
+        public LookupItemModel SelectPrinter
+        {
+            get { return _SelectPrinter; }
+            set { Set(ref _SelectPrinter, value); }
+        }
+
+        private List<LookupItemModel> _PrinterLists;
+        public List<LookupItemModel> PrinterLists
+        {
+            get { return _PrinterLists; }
+            set { Set(ref _PrinterLists, value); }
+        }
+
+        private List<ReportsModel> _ListPatientReports;
+
+        public List<ReportsModel> ListPatientReports
+        {
+            get { return _ListPatientReports; }
+            set { Set(ref _ListPatientReports, value); }
+        }
+
+        private ReportsModel _SelectReport;
+
+        public ReportsModel SelectReport
+        {
+            get { return _SelectReport; }
+            set { Set(ref _SelectReport, value); }
+        }
 
         private bool _SelectAll;
 
@@ -444,7 +474,19 @@ namespace MediTech.ViewModels
         }
 
 
+        private RelayCommand _PrintAutoCommand;
 
+        /// <summary>
+        /// Gets the EnterResultCommand.
+        /// </summary>
+        public RelayCommand PrintAutoCommand
+        {
+            get
+            {
+                return _PrintAutoCommand
+                    ?? (_PrintAutoCommand = new RelayCommand(PrintAuto));
+            }
+        }
         #endregion
 
         #region Method
@@ -491,6 +533,43 @@ namespace MediTech.ViewModels
 
             SaveVisitStatusList = refVisitStatus;
             SaveVisitStatusTime = DateTime.Now;
+            GetPrinters();
+            GetReports();
+
+        }
+
+        private void GetPrinters()
+        {
+            PrinterLists = new List<LookupItemModel>();
+            int i = 1;
+            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
+            {
+                LookupItemModel lookupData = new LookupItemModel();
+                lookupData.Key = i;
+                lookupData.Display = printer;
+                PrinterLists.Add(lookupData);
+                i++;
+            }
+        }
+        private void GetReports()
+        {
+            ListPatientReports = new List<ReportsModel>();
+            ListPatientReports.Add(new ReportsModel { Name = "OPD Card", NamespaceName = "MediTech.Reports.Operating.Patient.OPDCard" });
+            ListPatientReports.Add(new ReportsModel { Name = "OPD กายภาพ", NamespaceName = "MediTech.Reports.Operating.Patient.RehabPhysical" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบ Request Order", NamespaceName = "MediTech.Reports.Operating.Patient.OrderRequest" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate2Parts" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 2 ส่วน (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificateEng2Parts" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองรังสีแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.RadilogyCertificate" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ที่อับอากาศ", NamespaceName = "MediTech.Reports.Operating.Patient.ConfinedSpaceCertificate1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificate1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificateEng1" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์โควิดส่วนที่ 2", NamespaceName = "MediTech.Reports.Operating.Patient.CovidRapidTestCertification" });
+            ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
+            ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบ Wellness", NamespaceName = "MediTech.Reports.Operating.Patient.WellnessBook.WellnessMainBook" });
         }
 
         private void SearchPatientVisit()
@@ -514,7 +593,7 @@ namespace MediTech.ViewModels
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             int? payorDetailUID = (SelectPayorDetail != null && SelectPayorDetail.PayorDetailUID != 0) ? SelectPayorDetail.PayorDetailUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID,null));
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID, null));
 
         }
 
@@ -680,7 +759,7 @@ namespace MediTech.ViewModels
                                 }
                                 else
                                 {
-                                    List<PatientOrderDetailModel>  orderAll = new List<PatientOrderDetailModel>();
+                                    List<PatientOrderDetailModel> orderAll = new List<PatientOrderDetailModel>();
                                     List<PatientOrderDetailModel> DrugOrderList = new List<PatientOrderDetailModel>();
                                     orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
                                     orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
@@ -764,7 +843,7 @@ namespace MediTech.ViewModels
                     }
                 }
 
-                }
+            }
             catch (Exception er)
             {
 
@@ -950,7 +1029,7 @@ namespace MediTech.ViewModels
             }
             BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
 
-            int ownerUID = SelectHealthOrganisation.HealthOrganisationUID ;
+            int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
 
             var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID);
 
@@ -1020,6 +1099,92 @@ namespace MediTech.ViewModels
             }
 
             return selectBillItemDetail;
+        }
+
+        private void PrintAuto()
+        {
+            try
+            {
+                if (SelectPrinter == null)
+                {
+                    WarningDialog("กรุณาเลือก Printer");
+                    return;
+                }
+                if (SelectReport == null)
+                {
+                    WarningDialog("กรุณาเลือก เอกสาร");
+                    return;
+                }
+                if (PatientVisits != null)
+                {
+                    PatientVisitMass view = (PatientVisitMass)this.View;
+                    int upperlimit = 0;
+                    int loopCounter = 0;
+                    foreach (var currentData in PatientVisits)
+                    {
+                        if (currentData.Select == true)
+                        {
+                            upperlimit++;
+                        }
+                    }
+                    view.SetProgressBarLimits(0, upperlimit);
+                    foreach (var patientVisit in PatientVisits)
+                    {
+                        if (patientVisit.Select)
+                        {
+
+                            var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                            XtraReport report = (XtraReport)myReport;
+                            ReportPrintTool printTool = new ReportPrintTool(report);
+                            if (SelectReport.Name == "ใบรับรองแพทย์โควิดส่วนที่ 2")
+                            {
+                                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                            }
+                            if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
+                            {
+                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                                report.Parameters["HN"].Value = patientVisit.PatientID;
+                                report.Parameters["PatientName"].Value = patientVisit.PatientName;
+                                report.Parameters["Age"].Value = patientVisit.Age;
+                                report.Parameters["BirthDate"].Value = patientVisit.BirthDttm != null ? patientVisit.BirthDttm.Value.ToString("dd/MM/yyyy") : null;
+                                report.Parameters["Payor"].Value = patientVisit.PayorName;
+                                report.RequestParameters = false;
+                                report.ShowPrintMarginsWarning = false;
+                                printTool.Print(SelectPrinter.Display);
+                            }
+                            else
+                            {
+                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                                report.RequestParameters = false;
+                                report.ShowPrintMarginsWarning = false;
+                                printTool.Print(SelectPrinter.Display);
+                            }
+
+                            patientVisit.Select = false;
+                            loopCounter = loopCounter + 1;
+                            view.SetProgressBarValue(loopCounter);
+                        }
+                    }
+                    view.SetProgressBarValue(upperlimit);
+                    view.PatientGrid.RefreshData();
+                    view.progressBar1.Value = 0;
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+
+        }
+
+        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
+        {
+            e.PrintDocument.PrinterSettings.FromPage = 2;
+            e.PrintDocument.PrinterSettings.ToPage = 2;
         }
 
         #endregion

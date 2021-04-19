@@ -42,6 +42,7 @@ namespace MediTech.Views
         {
             pnlOrder.ItemWidth = new GridLength(800);
             pnlVisitStatus.ItemWidth = new GridLength(250);
+            pnlReports.ItemWidth = new GridLength(800);
         }
 
         private delegate void UpdateProgressBarDelegate(System.Windows.DependencyProperty dp, Object value);
