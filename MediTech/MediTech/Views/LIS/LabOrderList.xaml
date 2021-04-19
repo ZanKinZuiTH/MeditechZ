@@ -206,6 +206,9 @@
 
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                     <dxlc:LayoutItem>
@@ -213,9 +216,6 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Command="{Binding PrintPreviewCommand}" Content="Preview" Height="25" Width="93"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Command="{Binding CancelResultCommand}" Foreground="Red"
