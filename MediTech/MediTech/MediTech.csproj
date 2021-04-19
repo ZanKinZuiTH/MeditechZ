@@ -210,6 +210,7 @@
     <Compile Include="Helpers\BurnData\MediaItem\FileItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\IMediaItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\Win32.cs" />
+    <Compile Include="Helpers\ConstantData.cs" />
     <Compile Include="Helpers\DeferredColumnFitBehavior.cs" />
     <Compile Include="Helpers\HtmlRichTextBoxHelper.cs" />
     <Compile Include="CustomControl\MyLookUpEdit\MyLookUpEdit.cs" />
