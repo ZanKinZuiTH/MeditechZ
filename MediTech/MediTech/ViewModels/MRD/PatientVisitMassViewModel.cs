@@ -554,7 +554,6 @@ namespace MediTech.ViewModels
         private void GetReports()
         {
             var tempReports = ConstantData.GetPatientReports();
-            tempReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์โควิดส่วนที่ 2", NamespaceName = "MediTech.Reports.Operating.Patient.CovidRapidTestCertification" });
             ListPatientReports = tempReports;
         }
 
@@ -1122,10 +1121,6 @@ namespace MediTech.ViewModels
                             var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
                             XtraReport report = (XtraReport)myReport;
                             ReportPrintTool printTool = new ReportPrintTool(report);
-                            if (SelectReport.Name == "ใบรับรองแพทย์โควิดส่วนที่ 2")
-                            {
-                                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
-                            }
                             if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
                             {
                                 report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
@@ -1165,12 +1160,6 @@ namespace MediTech.ViewModels
             }
 
 
-        }
-
-        private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
-        {
-            e.PrintDocument.PrinterSettings.FromPage = 2;
-            e.PrintDocument.PrinterSettings.ToPage = 2;
         }
 
         #endregion
