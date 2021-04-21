@@ -1,4 +1,5 @@
 ﻿using MediTech.Model;
+using MediTech.Model.Report;
 using ShareLibrary;
 using System;
 using System.Collections.Generic;
@@ -85,6 +86,67 @@ namespace MediTech.DataService
                 throw;
             }
             return flag;
+        }
+
+        public List<GroupReceiptModel> SearchGroupReceipt(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? payorDetailUID, string receiptNumber)
+        {
+            string requestApi = string.Format("Api/Purchaseing/SearchGroupReceipt?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}&payorDetailUID={3}&receiptNumber={4}", dateFrom, dateTo, organisationUID, payorDetailUID, receiptNumber);
+            List<GroupReceiptModel> dataRequest = MeditechApiHelper.Get<List<GroupReceiptModel>>(requestApi);
+
+            return dataRequest;
+        }
+        public List<GroupReceiptModel> GetGroupReceipt()
+        {
+            string requestApi = string.Format("Api/Purchaseing/GetGroupReceipt?");
+            List<GroupReceiptModel> dataRequest = MeditechApiHelper.Get<List<GroupReceiptModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public GroupReceiptModel GetGroupReceiptByUID(int groupReceiptUID)
+        {
+            string requestApi = string.Format("Api/Purchaseing/GetGroupReceiptByUID?groupReceiptUID={0}", groupReceiptUID);
+            GroupReceiptModel dataRequest = MeditechApiHelper.Get<GroupReceiptModel>(requestApi);
+
+            return dataRequest;
+        }
+
+        public bool ManageGroupReceipt(GroupReceiptModel model, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Purchaseing/ManageGroupReceipt?userID={0}", userID);
+                MeditechApiHelper.Post<GroupReceiptModel>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+        public bool DeleteGroupReceiptDetail(int GroupReceiptDetailUID, int userID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Purchaseing/DeleteGroupReceiptDetail?GroupReceiptDetailUID={0}&userID={1}", GroupReceiptDetailUID, userID);
+                MeditechApiHelper.Delete(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+
         }
         #endregion
 

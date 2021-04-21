@@ -55,6 +55,8 @@ namespace MediTech.DataBase
         public virtual DbSet<FrequencyDefinition> FrequencyDefinition { get; set; }
         public virtual DbSet<GRNDetail> GRNDetail { get; set; }
         public virtual DbSet<GRNItemList> GRNItemList { get; set; }
+        public virtual DbSet<GroupReceipt> GroupReceipt { get; set; }
+        public virtual DbSet<GroupReceiptDetail> GroupReceiptDetail { get; set; }
         public virtual DbSet<HealthOrganisation> HealthOrganisation { get; set; }
         public virtual DbSet<HealthOrganisationID> HealthOrganisationID { get; set; }
         public virtual DbSet<ItemAverageCost> ItemAverageCost { get; set; }
@@ -157,6 +159,7 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQConfiguration> SEQConfiguration { get; set; }
         public virtual DbSet<SEQDISPOSEID> SEQDISPOSEID { get; set; }
         public virtual DbSet<SEQGRNID> SEQGRNID { get; set; }
+        public virtual DbSet<SEQGroupReceipt> SEQGroupReceipt { get; set; }
         public virtual DbSet<SEQITCODE> SEQITCODE { get; set; }
         public virtual DbSet<SEQItemIssue> SEQItemIssue { get; set; }
         public virtual DbSet<SEQItemReceive> SEQItemReceive { get; set; }

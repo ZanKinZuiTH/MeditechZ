@@ -1,0 +1,158 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="xrLabel8.Text" xml:space="preserve">
+    <value>ถ้าค่า Glucose มากกว่า 100 mg/dl แต่ไม่เกิน 125 mg/dl แสดงว่าอาจเริ่มมีอาการของโรคเบาหวาน  ควรควบคุมการรับประทานอาหารที่มีรสหวาน, น้ำอัดลม , น้ำตาลหรือผลไม้ที่มีรสหวานจัด เช่น ทุเรียน มะม่วงสุก ลำไย เป็นต้น</value>
+  </data>
+  <data name="xrLabel87.Text" xml:space="preserve">
+    <value>-  ภาวะเกล็ดเลือดสูง พบได้ในภาวะที่มีปัจจัยการกระตุ้นการสร้างเกล็ดเลือดให้มากขึ้น ได้แก่ การอักเสบหรือติดเชื้อเรื้อรัง การมีมะเร็งในร่างกาย การเสียเลือดหรือเม็ดเลือดแดงแตกเฉียบพลัน หากภาวะเกล็ดเลือดสูงเองโดยไม่มีปัจจัยใดมากระตุ้น มักเกิดจากโรคของไขกระดูกที่ทำให้มีการเกล็ดเลือดสูงขึ้นเองโดยอัตโนมัติ</value>
+  </data>
+  <data name="xrLabel20.Text" xml:space="preserve">
+    <value>          เป็นการตรวจเพื่อประเมินความสามารถของการมองเห็นในด้านต่างๆ ของคนทํางาน เช่น การมองเห็นความคมชัดของภาพ การมองภาพ 3 มิติ การแยกสี ลานสายตา ความสมดุลของกล้ามเนื้อตา ซึ่งจะมีผลต่อความสามารถในการทำงานของบางกลุ่มอาชีพ และยังถือเป็นข้อห้ามร้ายแรงในการปฏิบัติงาน เช่น ค่าลานสายตาที่ผิดปกติเกินเกณฑ์กำหนดในคนขับรถโดยสารขนส่งสาธารณะ ตาบอดสีประเภทรุนแรงในอาชีพนักบิน เพราะจะเกิดอันตรายจากการปฏิบัติงานทั้งต่อตนเองและผู้อื่นได้
+          การตรวจสายตาอาชีวอนามัยนี้ ถือว่าเป็นแค่การตรวจคัดกรอง ซึ่งหากพบว่ามีความผิดปกติ แพทย์อาชีวเวชศาสตร์อาจพิจารณาตรวจซ้ำ หรือ พิจารณาส่งพบจักษุแพทย์เพื่อตรวจวินิจฉัยยืนยัน โดยจักษุแพทย์จะใช้เครื่องมือการตรวจที่ละเอียดขึ้นเป็นลำดับต่อไป 
+          ในบางครั้ง ผลการตรวจการมองภาพใกล้-ไกล อาจได้ผลที่ไม่ตรงกับค่าจากการวัดสายตาทั่วไปได้ เนื่องจากใช้การตรวจคนละประเภท และคนละเป้าหมาย โดยการตรวจทางอาชีวอนามัย เป็นการตรวจพิจารณาเพื่อการทำงาน แต่การตรวจวัดสายตาโดยนักทัศนมาตร เป็นการตรวจเพื่อการตัดแว่นใช้งาน ทั้งสองส่วนนี้ แนะนำให้ตรวจประเมินร่วมกันเสมอ
+</value>
+  </data>
+  <data name="xrLabel45.Text" xml:space="preserve">
+    <value>          คือ การตรวจความชัดเจนหรือรายละเอียดในการมองเห็น (การตรวจความสามารถในการมองเห็นได้อย่างชัดเจน) จัดเป็นการตรวจสายตาอย่างง่าย เพียงแค่ผู้รับการตรวจอ่านตัวเลข ตัวอักษร หรือสัญลักษณ์ที่แสดงในป้ายมาตรฐานจากระยะห่างที่กำหนดตามที่พนักงานประจำอุปกรณ์ชี้ให้อ่านก็เป็นอันเสร็จสิ้นการตรวจ ผลที่ได้หากมีความผิดปกติ ก็จะเป็นค่าสายตาสั้น ยาว เอียง
+          จุดประสงค์ในการตรวจ เพื่อตรวจสุขภาพตาเบื้องต้น ตรวจสอบปัญหาที่เกิดขึ้นกับดวงตา (เช่น ภาวะเบาหวานขึ้นตา) และตรวจสอบความสามารถในการมองเห็น เพื่อใช้เป็นข้อมูลชั้นต้นในกรณีที่มีอาการผิดปกติเกี่ยวกับดวงตา นอกจากนี้ยังใช้พิจารณาว่ามีความจำเป็นต้องใส่แว่นสายตาหรือคอนแทคเลนส์เพื่อช่วยในการมองเห็นหรือไม่  เพื่อใช้สอบใบขับขี่หรือต่อใบขับขี่ใหม่ หรือตรวจวัดสายตาสำหรับสายงานบางประเภท</value>
+  </data>
+  <data name="xrLabel19.Text" xml:space="preserve">
+    <value>          เพื่อประเมินสมรรถภาพการได้ยินและดูความพร้อมในการทำงานของพนักในบางตำแหน่งที่จำเป็นต้องใช้ความสามารถในการรับฟังเสียงที่ดีเพียงพอ จึงจะสามารถทำงานได้อย่างปลอดภัย เช่น พนักงานขับรถ ขับเรือ ผู้ที่ต้องทำงานในที่สูง ช่างเครื่องยนต์ นักดนตรี และเพื่อมีข้อมูลพื้นฐานเก็บไว้ว่าพนักงานรายนั้นก่อนที่จะเข้าทำงานในบริษัท มีสมรรถภาพการได้ยินพื้นฐานเป็นอย่างไร เมื่อทำงานไปนาน ๆ แล้วการได้ยินยังคงดีเท่าเดิมหรือลดลงหรือไม่ โดยเฉพาะในสถานที่ทำงานที่มีสภาพแวดล้อมที่มีเสียงดัง
+          ในการทดสอบจะใช้เสียงที่มีความถี่สูงหรือเสียงแหลม (3,000-6,000 Hz.) และเสียงมีความถี่ต่ำหรือเสียงทุ้ม (500-2,000 Hz) ซึ่งเป็นความถี่ที่ใช้พูดคุยกันตามปกติ ผู้ที่หูเริ่มเสื่อมพบว่า การได้ยินลดลงในช่วงความถี่สูงก่อน โดยหูยังไม่ตึง (การได้ยินเสียงช่วงความถี่เสียงพูดคุยจะยังปกติ) แต่ต่อมาเป็นมากขึ้น การได้ยินที่ลดลงจะลามมาในช่วงความถี่เสียงพูดคุย ซึ่งจะทำให้มีภาวะหูตึงเกิดขึ้น 
+เราจะแบ่งกลุ่มตามผลการตรวจ 4 กลุ่ม
+          กลุ่มที่ 1 การได้ยินปกติ
+          กลุ่มที่ 2 การได้ยินลดลงในช่วงความถี่สูง (3,000 – 6,000 Hz ) ซึ่งหมายถึงหูเริ่มมีความเสื่อมเกิดขึ้น ส่วนใหญ่เกิดขึ้นในผู้ที่ทำงานในสถานที่มีเสียงดังมานาน ควรใช้อุปกรณ์ลดเสียง ( Ear plug/ Ear muff) อย่างสม่ำเสมอในเวลาทำงาน
+          กลุ่มที่ 3 การได้ยินลดลงทุกความถี่ มักพบในภาวะหูตึง หูเสียหายจากอุบัติเหตุ หูหนวกแต่กำเนิด หรืออาจมีภาวะความผิดปกติที่หูชั้นกลาง เช่น หูน้ำหนวก หรือหูชั้นนอก เช่น ขี้หูอุดตัน หูชั้นนอกอักเสบเฉียบพลัน  ควรมีการตรวจการส่องหูเพิ่มเติม
+          กลุ่มที่ 4 การได้ยินลดลง ในช่วงความถี่เสียงพูดคุย มักจะไม่ได้เกิดจากปัญหาการสัมผัสเสียงดัง อาจเกิดจาก โรคของเยื่อแก้วหู หูชั้นกลางอักเสบ หรือโรคหูอื่นๆ ควรพบแพทย์ ตรวจหาสาเหตุต่อไป
+          กรณีมีความผิดปกติที่ไม่เข้ากับ 4 กลุ่มที่กล่าวมา อาจเป็นเพียง error ในการเตรียมตัวก่อนตรวจหรือขณะตรวจ จึงแนะนำให้ดูค่าร่วมกับการประเมินทางคลินิก</value>
+  </data>
+  <data name="xrLabel24.Text" xml:space="preserve">
+    <value>-  ปริมาณเม็ดเลือดขาวต่ำลงกว่าค่าอ้างอิง สาเหตุที่ทำให้เม็ดเลือดขาวต่ำที่พบบ่อย ได้แก่ ยาบางชนิด สารเคมี ได้รับรังสีเกินขนาดการติดเชื้อไวรัส และโรคของไขกระดูก เช่น ไขกระดูกทำงานผิดปกติ หรือไขกระดูกติดเชื้อหรือถูกแทรกซึมจากมะเร็ง</value>
+  </data>
+  <data name="xrLabel27.Text" xml:space="preserve">
+    <value>-  ปริมาณเม็ดเลือดขาวสูงขึ้นกว่าค่าอ้างอิง พบได้บ่อย ซึ่งเป็นภาวะที่ร่างกายตอบสนองต่อภาวะอักเสบหรือติดเชื้อในร่างกายปริมาณที่เพิ่มขึ้นมักไม่สูงมาก โดยทั่วไปมักไม่เกิน 30,000 เซลล์ต่อไมโครลิตร นอกจากนี้ปริมาณที่เพิ่มขึ้นอาจพบได้ในโรคมะเร็งเม็ดเลือดขาว ซึ่งพบได้ทั้งเมื่อเม็ดเลือดขาวมีระดับต่ำจนถึงสูงมากผิดปกติ </value>
+  </data>
+  <data name="xrLabel36.Text" xml:space="preserve">
+    <value>-  Monocytes (Mono) ถ้าสูงกว่าค่าอ้างอิง อาจเกิดจากร่างกายติดเชื้อบางโรค เช่นโรคตับอักเสบ วัณโรค มาลาเรีย หรือ มีภาวะลำไส้อักเสบ หรือมะเร็งบางชนิด   ถ้าต่ำกว่าค่าอ้างอิง อาจเกิดจากโรคไขกระดูกเสื่อมหรือมะเร็งเม็ดเลือดขาว</value>
+  </data>
+  <data name="xrLabel47.Text" xml:space="preserve">
+    <value>-  เกล็ดเลือดต่ำ สามารถเกิดได้จาก ยาบางชนิด สารเคมี การได้รับรังสีเกินค่ามาตรฐาน ภูมิต้านทานตนเองทำลายเกล็ด การติดเชื้อไวรัสบางชนิดเช่น ไข้เลือดออก ไข้ออกผื่น และม้ามที่โตผิดปกติ นอกจากนี้ยังพบได้ในโรคของไขกระดูกทำให้ผลิตเกล็ดเลือดได้ลดลง เช่น ไขกระดูกทำงานผิดปกติหรือไขกระดูกฝ่อ โรคมะเร็งแทรกซึมในไขกระดูก เป็นต้นเลือด</value>
+  </data>
+</root>

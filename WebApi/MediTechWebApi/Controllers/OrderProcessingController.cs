@@ -11,6 +11,7 @@ using System.Transactions;
 using System.Web.Http;
 using ShareLibrary;
 using System.Data.Entity;
+using MediTech.Model.Report;
 
 namespace MediTechWebApi.Controllers
 {
@@ -25,6 +26,25 @@ namespace MediTechWebApi.Controllers
         {
             List<SearchOrderItem> data = SqlDirectStore.pSearchOrderItem(text, ownerOrganisationUID).ToList<SearchOrderItem>();
 
+            return data;
+        }
+
+        [Route("GetOrderPriceByUID")]
+        [HttpGet]
+        public List<GroupReceiptModel> GetOrderPriceByUID(int orderSetUID)
+        {
+            List<GroupReceiptModel> data = (from set in db.OrderSet
+                                            join item in db.OrderSetBillableItem
+                                            on set.UID equals item.OrderSetUID
+                                            where set.StatusFlag == "A"
+                                            && set.UID == orderSetUID
+                                            select new GroupReceiptModel
+                                            {
+                                                ItemName = set.Name,
+                                                PriceUnit = item.Price,
+                                                OrderSetUID = set.UID,
+
+                                            }).ToList();
             return data;
         }
 
