@@ -1209,7 +1209,7 @@
             // OrganisationUID
             // 
             this.OrganisationUID.Name = "OrganisationUID";
-            this.OrganisationUID.Type = typeof(long);
+            this.OrganisationUID.Type = typeof(int);
             this.OrganisationUID.ValueInfo = "0";
             this.OrganisationUID.Visible = false;
             // 

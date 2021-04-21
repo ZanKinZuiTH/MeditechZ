@@ -32,7 +32,7 @@ namespace MediTech.Reports.Operating.Patient
                 page2.lbSignPatient.Text = model.PatientName;
                 page2.lbPatientName.Text = model.PatientName;
             }
-                this.DataSource = model;
+            this.DataSource = model;
         }
         private void Page2_AfterPrint(object sender, EventArgs e)
         {

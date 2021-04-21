@@ -376,6 +376,48 @@
                                 </dxlc:LayoutGroup>
                             </dxlc:LayoutControl>
                         </dxdo:LayoutPanel>
+                        <dxdo:LayoutPanel x:Name="pnlReports" Caption="Reports"
+                                          AllowClose="False"
+                                          AutoHidden="True"
+                                          AllowFloat="False"
+                                          >
+                            <dxdo:LayoutPanel.CaptionTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Horizontal">
+                                        <Image Source="/MediTech;component/Resources/Images/Module/Reports.png" Height="30" Width="30"/>
+                                        <TextBlock Text="{Binding}" FontSize="16" FontWeight="Bold" />
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxdo:LayoutPanel.CaptionTemplate>
+                            <dxlc:LayoutControl Orientation="Vertical">
+                                <dxlc:LayoutItem>
+                                    <TextBlock Text="พิมพ์เอกสาร" x:Name="txtViewName" Margin="10,0,0,0" 
+                           FontSize="16" FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <Border BorderThickness="0,0,0,1" BorderBrush="Black"/>
+                                </dxlc:LayoutItem>
+                                <dxg:GridControl ItemsSource="{Binding ListPatientReports}"
+                             SelectedItem="{Binding SelectReport}">
+                                    <dxg:GridColumn Header="ชื่อเอกสาร" FieldName="Name" Width="*"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowGroupPanel="False"
+                                   NavigationStyle="Row"/>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                                <dxlc:LayoutGroup  VerticalAlignment="Bottom" Orientation="Horizontal">
+                                    <dxlc:LayoutGroup HorizontalAlignment="Right">
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                                      SelectedItem="{Binding SelectPrinter}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                        Width="180" Height="25"/>
+                                        <dx:SimpleButton Width="85" Command="{Binding PrintAutoCommand}"
+                                     Height="25" Content="Print Auto"/>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutControl>
+                        </dxdo:LayoutPanel>
                     </dxdo:TabbedGroup>
  
                 </dxdo:LayoutGroup>

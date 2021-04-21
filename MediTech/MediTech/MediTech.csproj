@@ -210,6 +210,7 @@
     <Compile Include="Helpers\BurnData\MediaItem\FileItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\IMediaItem.cs" />
     <Compile Include="Helpers\BurnData\MediaItem\Win32.cs" />
+    <Compile Include="Helpers\ConstantData.cs" />
     <Compile Include="Helpers\DeferredColumnFitBehavior.cs" />
     <Compile Include="Helpers\HtmlRichTextBoxHelper.cs" />
     <Compile Include="CustomControl\MyLookUpEdit\MyLookUpEdit.cs" />
@@ -481,6 +482,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.Designer.cs">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.Designer.cs">
+      <DependentUpon>CovidRapidTestCertificationMobile.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.cs">
       <SubType>Component</SubType>
@@ -2615,6 +2622,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.resx">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.resx">
+      <DependentUpon>CovidRapidTestCertificationMobile.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.resx">
       <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
