@@ -1,0 +1,502 @@
+﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Model;
+using MediTech.Model.Report;
+using MediTech.Views;
+using System;
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace MediTech.ViewModels
+{
+    public class ManageReceiptViewModel : MediTechViewModelBase
+    {
+        #region Propoties
+        public List<HealthOrganisationModel> _Organisations;
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+        }
+
+        private ObservableCollection<GroupReceiptDetailModel> _OrderGroupReceipt;
+        public ObservableCollection<GroupReceiptDetailModel> OrderGroupReceipt
+        {
+            get { return _OrderGroupReceipt ?? (_OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>()); }
+            set { Set(ref _OrderGroupReceipt, value); }
+        }
+        
+        private GroupReceiptDetailModel _SelectOrderGroupReceipt;
+        public GroupReceiptDetailModel SelectOrderGroupReceipt
+        {
+            get { return _SelectOrderGroupReceipt; }
+            set
+            {
+                Set(ref _SelectOrderGroupReceipt, value);
+            }
+        }
+
+
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                if (SelectOrganisation == null)
+                {
+                    EnableSearchItem = false;
+                }
+                else
+                {
+                    EnableSearchItem = true;
+                }
+            }
+        }
+
+        private ObservableCollection<GroupReceiptModel> _GroupReceiptOrders;
+
+        public ObservableCollection<GroupReceiptModel> GroupReceiptOrders
+        {
+            get { return _GroupReceiptOrders ?? (_GroupReceiptOrders = new ObservableCollection<GroupReceiptModel>()); }
+            set { Set(ref _GroupReceiptOrders, value); }
+        }
+
+        private GroupReceiptModel _model;
+
+        public GroupReceiptModel model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
+
+        public DateTime ? BillDate { get; set; }
+
+        private List<PayorDetailModel> _PayorDetails;
+        public List<PayorDetailModel> PayorDetails
+        {
+            get { return _PayorDetails; }
+            set { Set(ref _PayorDetails, value); }
+        }
+
+        //private string _ReceiptNumber;
+        //public string ReceiptNumber
+        //{
+        //    get { return _ReceiptNumber; }
+        //    set { Set(ref _ReceiptNumber, value); }
+        //}
+
+        private string _Address;
+        public string Address
+        {
+            get { return _Address; }
+            set { Set(ref _Address, value); }
+        }
+
+        private string _TaxNumber;
+        public string TaxNumber
+        {
+            get { return _TaxNumber; }
+            set { Set(ref _TaxNumber, value); }
+        }
+
+        private string _Seller;
+        public string Seller
+        {
+            get { return _Seller; }
+            set { Set(ref _Seller, value); }
+        }
+
+        private PayorDetailModel _SelectPayorDetail;
+        public PayorDetailModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set
+            {
+                Set(ref _SelectPayorDetail, value);
+                if (_SelectPayorDetail != null)
+                {
+                    AddressCustomer();
+                }
+            }
+        }
+
+        private PatientVisitModel _PatientVisit;
+        public PatientVisitModel PatientVisit
+        {
+            get { return _PatientVisit; }
+            set { Set(ref _PatientVisit, value); }
+        }
+
+        private string _SearchOrderCriteria;
+        public string SearchOrderCriteria
+        {
+            get { return _SearchOrderCriteria; }
+            set
+            {
+                Set(ref _SearchOrderCriteria, value);
+                if (!string.IsNullOrEmpty(_SearchOrderCriteria) && _SearchOrderCriteria.Length >= 3)
+                {
+                    int ownerOrganisationUID = 0;
+                    if (SelectOrganisation != null)
+                    {
+                        ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                    }
+                    OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+
+                }
+                else
+                {
+                    OrderItems = null;
+                }
+            }
+        }
+
+        private List<SearchOrderItem> _OrderItems;
+        public List<SearchOrderItem> OrderItems
+        {
+            get { return _OrderItems; }
+            set { Set(ref _OrderItems, value); }
+        }
+
+        private bool _EnableSearchItem = false;
+        public bool EnableSearchItem
+        {
+            get { return _EnableSearchItem; ; }
+            set { Set(ref _EnableSearchItem, value); }
+        }
+
+        private SearchOrderItem _SelectOrderItem;
+        public SearchOrderItem SelectOrderItem
+        {
+            get { return _SelectOrderItem; }
+            set
+            {
+                _SelectOrderItem = value;
+                if (_SelectOrderItem != null)
+                {
+                    ApplyOrderItem(_SelectOrderItem);
+                }
+            }
+        }
+
+        private List<PatientOrderAlertModel> _PatientOrderAlerts;
+        public List<PatientOrderAlertModel> PatientOrderAlerts
+        {
+            get { return _PatientOrderAlerts; }
+            set { Set(ref _PatientOrderAlerts, value); }
+        }
+
+        private ObservableCollection<PatientOrderDetailModel> _PatientOrders;
+        public ObservableCollection<PatientOrderDetailModel> PatientOrders
+        {
+            get { return _PatientOrders ?? (_PatientOrders = new ObservableCollection<PatientOrderDetailModel>()); }
+            set { Set(ref _PatientOrders, value); }
+        }
+
+
+        #endregion
+
+        #region Command
+        private RelayCommand _SaveReceiptCommand;
+        public RelayCommand SaveReceiptCommand
+        {
+            get
+            {
+                return _SaveReceiptCommand ?? (_SaveReceiptCommand = new RelayCommand(Save));
+            }
+        }
+
+        private RelayCommand _CancelReceiptCommand;
+        public RelayCommand CancelReceiptCommand
+        {
+            get
+            {
+                return _CancelReceiptCommand ?? (_CancelReceiptCommand = new RelayCommand(Cancel));
+            }
+        }
+
+        private RelayCommand _DeleteItemCommand;
+        public RelayCommand DeleteItemCommand
+        {
+            get
+            {
+                return _DeleteItemCommand ?? (_DeleteItemCommand = new RelayCommand(DeleteItem));
+            }
+        }
+
+        private RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs> _ChangeValueCommand;
+        public RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs> ChangeValueCommand
+        {
+            get { return _ChangeValueCommand ?? (_ChangeValueCommand = new RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs>(ChangeValue)); }
+        }
+        #endregion
+
+        #region Method
+        public ManageReceiptViewModel()
+        {
+            DateTime now = DateTime.Now;
+            Organisations = GetHealthOrganisationIsRoleStock();
+            PayorDetails = DataService.MasterData.GetPayorDetail();
+            BillDate = now.Date;
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);  
+
+            if (SelectOrganisation == null)
+            {
+                int ownerOrganisationUID = 0;
+                ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+                OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+            }
+            //(this.View as ManageReceipt).txtOrder.Focus();
+        }
+
+        public void ChangeValue(DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
+        {
+            CalculateNetAmount();
+        }
+        void CalculateNetAmount()
+        {
+            double? NetAmount;
+            foreach (var item in OrderGroupReceipt)
+            {
+                NetAmount = 0;
+                NetAmount += item.Quantity* item.PriceUnit;
+                if (item.Discount != null)
+                {
+                    NetAmount -= item.Discount;
+                }
+                item.TotalPrice = NetAmount;
+            }
+        }
+        private void DeleteItem()
+        {
+            if (SelectOrderGroupReceipt != null)
+            {
+                MessageBoxResult result = QuestionDialog("คุณต้องการลบ Order ลบใช่หรือไม่ ?");
+                if (result == MessageBoxResult.Yes)
+                {
+                    //OrderGroupReceipt = null;
+
+                    DataService.Purchaseing.DeleteGroupReceiptDetail(SelectOrderGroupReceipt.GroupReceiptDetailUID, AppUtil.Current.UserID);
+                    var item = OrderGroupReceipt.Single(p => p.GroupReceiptDetailUID == SelectOrderGroupReceipt.GroupReceiptDetailUID);
+                    OrderGroupReceipt.Remove(item);
+
+                    DeleteSuccessDialog();
+
+                }
+            }
+        }
+
+        private void Save()
+        {
+            if (OrderGroupReceipt != null)
+            {
+                try
+                {
+                    if (SelectPayorDetail == null)
+                    {
+                        WarningDialog("กรุณาใส่ชื่อลูกค้า");
+                        return;
+                    }
+                    AssingPropertiesToModel();
+                    DataService.Purchaseing.ManageGroupReceipt(model, AppUtil.Current.UserID);
+                    SaveSuccessDialog();
+
+                    ListGroupReceipt groupReceipt = new ListGroupReceipt();
+                    ChangeViewPermission(groupReceipt);
+                }
+                catch (Exception ex)
+                {
+                    ErrorDialog(ex.Message);
+                }
+            }
+        }
+        private void Cancel()
+        {
+            ListGroupReceipt groupReceipt = new ListGroupReceipt();
+            ChangeViewPermission(groupReceipt);
+        }
+
+        private void AddressCustomer()
+        {
+            if(SelectPayorDetail != null)
+            {
+                Address = SelectPayorDetail.Address1;
+                TaxNumber = SelectPayorDetail.TINNo;
+            }
+        }
+
+        void ApplyOrderItem(SearchOrderItem orderItem)
+        {
+            try
+            {
+                if (SelectOrganisation == null)
+                {
+                    WarningDialog("กรุณาเลือก Order จาก");
+                    return;
+                }
+
+                if (orderItem.TypeOrder == "OrderSet")
+                {
+                    OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
+                    int? ownerUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+                    
+                    if (orderSet.OrderSetBillableItems != null)
+                    {
+                        OrderGroupReceipt order = new OrderGroupReceipt(orderSet, ownerUID);
+                        OrderGroupReceiptViewModel resultMed = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
+                        if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
+                        {
+                            OrderGroupReceipt.Add(resultMed.OrderGroupReceipt);
+
+                            if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                            {
+                                int i = 1;
+                                OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                            }
+                            OnUpdateEvent();
+                        }
+                    }
+                }
+                else
+                {
+                    PopUpOrder(orderItem.BillableItemUID);
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorDialog(ex.Message);
+            }
+
+        }
+
+        void PopUpOrder(int billableItemUID)
+        {
+            try
+            {
+                BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
+                int? ownerUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+                var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID ?? 0);
+                if (billItemPrice == null)
+                {
+                    WarningDialog("รายการ " + billItem.ItemName + " นี้ยังไม่ได้กำหนดราคาสำหรับขาย โปรดตรวจสอบ");
+                    return;
+                }
+
+                billItem.Price = billItemPrice.Price;
+                billItem.CURNCUID = billItemPrice.CURNCUID;
+
+                if (billItem != null)
+                {
+                    OrderGroupReceipt order = new OrderGroupReceipt(billItem, ownerUID);
+                    OrderGroupReceiptViewModel result = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
+
+                    if (result != null && result.ResultDialog == ActionDialog.Save)
+                    {
+                        OrderGroupReceipt.Add(result.OrderGroupReceipt);
+
+                        if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                        {
+                            int i = 1;
+                            OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                        }
+                        OnUpdateEvent();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                ErrorDialog(ex.Message);
+            }
+        }
+
+        public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
+        {
+            BillableItemDetailModel selectBillItemDetail = null;
+
+            if (billItmDetail.Count(p => p.OwnerOrganisationUID == ownerOrganisationUID) > 0)
+            {
+                selectBillItemDetail = billItmDetail
+                    .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
+                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+                    && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
+                    );
+            }
+            else
+            {
+                selectBillItemDetail = billItmDetail
+                .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
+                && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+                && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
+                );
+            }
+
+            return selectBillItemDetail;
+        }
+
+        public void AssignModel(GroupReceiptModel modelData)
+        {
+            model = modelData;
+            AssingModelToProperties();
+        }
+
+        public void AssingModelToProperties()
+        {
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisation);
+            //ReceiptNumber = model.ReceiptNo;
+            Seller = model.Seller;
+            BillDate = model.StartDttm;
+            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == model.PayorDetailUID);
+
+            //model.GroupReceiptUID = model.GroupReceiptUID;
+            AddressCustomer();
+            
+            foreach (var item in model.GroupReceiptDetailModel)
+            {
+                GroupReceiptDetailModel newItems = new GroupReceiptDetailModel();
+                newItems.GroupReceiptDetailUID = item.GroupReceiptDetailUID;
+                newItems.GroupReceiptUID = item.GroupReceiptUID;
+                newItems.ItemName = item.ItemName;
+                newItems.ItemCode = item.ItemCode;
+                newItems.PriceUnit = item.PriceUnit;
+                newItems.Quantity = item.Quantity;
+                newItems.UnitItem = item.UnitItem;
+                newItems.TotalPrice = item.TotalPrice;
+                newItems.Discount = item.Discount;
+                OrderGroupReceipt.Add(newItems);
+            }
+        }
+
+        public void AssingPropertiesToModel()
+        {
+            if (model == null)
+            {
+                model = new GroupReceiptModel();
+            }
+            model.GroupReceiptDetailModel = new List<GroupReceiptDetailModel>();
+            if (GroupReceiptOrders != null)
+            {
+                double? allPrice = OrderGroupReceipt.Sum(item => item.TotalPrice);
+                //model.ReceiptNo = ReceiptNumber;
+                model.OwnerOrganisation = SelectOrganisation.HealthOrganisationUID;
+                model.PayorName = SelectPayorDetail.PayorName;
+                model.StartDttm = BillDate;
+                model.Seller = Seller;
+                model.PayorDetailUID = SelectPayorDetail.PayorDetailUID;
+                model.PayerAddress = Address;
+                model.PriceUnit = allPrice;
+
+                model.GroupReceiptDetailModel.AddRange(OrderGroupReceipt);
+            }
+        }
+
+            #endregion
+    }
+}

@@ -62,6 +62,11 @@ namespace MediTechWebApi
 
             if (!String.IsNullOrEmpty(seqFormatID))
             {
+                if (seqFormatID.Contains("[YYYY]"))
+                {
+                    seqFormatID = seqFormatID.Replace("[YYYY]", now.Year.ToString());
+                }
+
                 if (seqFormatID.Contains("[YY]"))
                 {
                     seqFormatID = seqFormatID.Replace("[YY]", now.Year.ToString().Substring(2, 2));

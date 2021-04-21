@@ -1,4 +1,5 @@
 ﻿using MediTech.Model;
+using MediTech.Model.Report;
 using ShareLibrary;
 using System;
 using System.Collections.Generic;
@@ -58,6 +59,13 @@ namespace MediTech.DataService
         {
             string requestApi = string.Format("Api/OrderProcessing/GetOrderAllByPatientUID?patientUID={0}&dateFrom={1:MM/dd/yyyy}&dateTo={2:MM/dd/yyyy}", patientUID, dateFrom, dateTo);
             List<PatientOrderDetailModel> data = MeditechApiHelper.Get<List<PatientOrderDetailModel>>(requestApi);
+            return data;
+        }
+
+        public List<GroupReceiptModel> GetOrderPriceByUID(int orderSetUID)
+        {
+            string requestApi = string.Format("Api/OrderProcessing/GetOrderPriceByUID?OrderSetUID={0}", orderSetUID);
+            List<GroupReceiptModel> data = MeditechApiHelper.Get<List<GroupReceiptModel>>(requestApi);
             return data;
         }
 

@@ -1,4 +1,5 @@
 ﻿using MediTech.Model;
+using MediTech.Model.Report;
 using ShareLibrary;
 using System;
 using System.Collections.Generic;
@@ -100,6 +101,12 @@ namespace MediTech.DataService
             return listPatBill;
         }
 
+        public List<GroupReceiptDetailModel> GetGroupReceiptDetail(int groupReceiptUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetGroupReceiptDetail?groupReceiptUID={0}", groupReceiptUID);
+            List<GroupReceiptDetailModel> data = MeditechApiHelper.Get<List<GroupReceiptDetailModel>>(requestApi);
+            return data;
+        }
 
     }
 }

@@ -11,6 +11,7 @@ using System.Transactions;
 using System.Web.Http;
 using ShareLibrary;
 using System.Data.Entity;
+using MediTech.Model.Report;
 
 namespace MediTechWebApi.Controllers
 {
@@ -753,6 +754,29 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetGroupReceiptDetail")]
+        [HttpGet]
+        public List<GroupReceiptDetailModel> GetGroupReceiptDetail(int groupReceiptUID)
+        {
+
+            List<GroupReceiptDetailModel> data = (from p in db.GroupReceiptDetail
+                                                  where p.GroupReceiptUID == groupReceiptUID
+                                                  && p.StatusFlag == "A"
+                                                  select new GroupReceiptDetailModel
+                                                  {
+                                                      GroupReceiptUID = p.GroupReceiptUID,
+                                                      GroupReceiptDetailUID = p.UID,
+                                                      ItemName = p.ItemName,
+                                                      ItemCode = p.ItemCode,
+                                                      Quantity = p.Quantity,
+                                                      UnitItem = p.Unit,
+                                                      PriceUnit = p.Price,
+                                                      TotalPrice = p.TotalPrice,
+                                                      Discount = p.Discount
+                                                  }).ToList();
+
+            return data;
+        }
 
         [Route("GetPatientBilledItem")]
         [HttpGet]

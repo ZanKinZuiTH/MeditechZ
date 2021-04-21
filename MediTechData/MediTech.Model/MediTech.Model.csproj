@@ -162,6 +162,8 @@
     <Compile Include="Report\DoctorFeeReportModel.cs" />
     <Compile Include="Report\DrugStickerModel.cs" />
     <Compile Include="Report\GoodReceiveReportModel.cs" />
+    <Compile Include="Report\GroupReceiptDetailModel.cs" />
+    <Compile Include="Report\GroupReceiptModel.cs" />
     <Compile Include="Report\MedicalCertificateModel.cs" />
     <Compile Include="Report\OPDCardModel.cs" />
     <Compile Include="Report\OrderRequestCardModel.cs" />

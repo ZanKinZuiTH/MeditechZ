@@ -10,6 +10,7 @@ using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
 using System.Data.Entity;
+using MediTech.Model.Report;
 
 namespace MediTechWebApi.Controllers
 {
@@ -426,8 +427,218 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+        [Route("SearchGroupReceipt")]
+        [HttpGet]
+        public List<GroupReceiptModel> SearchGroupReceipt(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? payorDetailUID, string receiptNumber)
+        {
+            List<GroupReceiptModel> data = (from gpr in db.GroupReceipt
+                                            where gpr.StatusFlag == "A"
+                                            && (dateFrom == null || DbFunctions.TruncateTime(gpr.StartDttm) >= DbFunctions.TruncateTime(dateFrom))
+                                            && (dateTo == null || DbFunctions.TruncateTime(gpr.StartDttm) <= DbFunctions.TruncateTime(dateTo))
+                                            && (organisationUID == null || gpr.OwnerOrganisationUID == organisationUID)
+                                            && (payorDetailUID == null || gpr.PayorDetailUID == payorDetailUID)
+                                            && (string.IsNullOrEmpty(receiptNumber) || gpr.ReceiptNo == receiptNumber)
+                                            select new GroupReceiptModel
+                                            {
+                                                GroupReceiptUID = gpr.UID,
+                                                ReceiptNo = gpr.ReceiptNo,
+                                                PayorName = gpr.PayorName,
+                                                PayorDetailUID = gpr.PayorDetailUID,
+                                                PayerAddress = gpr.PayorAddress,
+                                                Seller = gpr.Seller,
+                                                StartDttm = gpr.StartDttm,
+                                                PriceUnit = gpr.TotalPrice,
+                                                OwnerOrganisation = gpr.OwnerOrganisationUID
+                                            }).ToList();
 
+            return data;
+        }
+
+        [Route("GetGroupReceipt")]
+        [HttpGet]
+        public List<GroupReceiptModel> GetGroupReceipt()
+        {
+            List<GroupReceiptModel> data = (from p in db.GroupReceipt
+                                            where p.StatusFlag == "A"
+                                            select new GroupReceiptModel
+                                            {
+                                                GroupReceiptUID = p.UID,
+                                                ReceiptNo = p.ReceiptNo,
+                                                PayorName = p.PayorName,
+                                                PayorDetailUID = p.PayorDetailUID,
+                                                PayerAddress = p.PayorAddress,
+                                                Seller = p.Seller,
+                                                StartDttm = p.StartDttm,
+                                                PriceUnit = p.TotalPrice,
+                                                OwnerOrganisation = p.OwnerOrganisationUID
+                                            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetGroupReceiptByUID")]
+        [HttpGet]
+        public GroupReceiptModel GetGroupReceiptByUID(int groupReceiptUID)
+        {
+            GroupReceiptModel data = (from p in db.GroupReceipt
+                                      where p.UID == groupReceiptUID
+                                      && p.StatusFlag == "A"
+                                      select new GroupReceiptModel
+                                      {
+                                          GroupReceiptUID = p.UID,
+                                          ReceiptNo = p.ReceiptNo,
+                                          PayorName = p.PayorName,
+                                          PayorDetailUID = p.PayorDetailUID,
+                                          PayerAddress = p.PayorAddress,
+                                          Seller = p.Seller,
+                                          StartDttm = p.StartDttm,
+                                          PriceUnit = p.TotalPrice,
+                                          OwnerOrganisation = p.OwnerOrganisationUID
+                                      }).FirstOrDefault();
+            if (data != null)
+            {
+                data.GroupReceiptDetailModel = db.GroupReceiptDetail.Where(p => p.GroupReceiptUID == data.GroupReceiptUID && p.StatusFlag == "A")
+                    .Select(p => new GroupReceiptDetailModel
+                    {
+                        GroupReceiptUID = p.GroupReceiptUID,
+                        GroupReceiptDetailUID = p.UID,
+                        ItemName = p.ItemName,
+                        ItemCode = p.ItemCode,
+                        Quantity = p.Quantity,
+                        UnitItem = p.Unit,
+                        PriceUnit = p.Price,
+                        TotalPrice = p.TotalPrice,
+                        Discount = p.Discount
+                    }).ToList();
+            }
+            return data;
+        }
+
+        [Route("ManageGroupReceipt")]
+        [HttpPost]
+        public HttpResponseMessage ManageGroupReceipt(GroupReceiptModel model, int userID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    string BillID = "";
+                    GroupReceipt receipt = db.GroupReceipt.Find(model.GroupReceiptUID);
+
+                    if (receipt == null)
+                    {
+                        receipt = new GroupReceipt();
+                        int seqBillID = 0;
+                        BillID = SEQHelper.GetSEQIDFormat("SEQGroupReceipt", out seqBillID);
+
+                        if (string.IsNullOrEmpty(BillID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                        }
+
+                        receipt.ReceiptNo = BillID;
+                        receipt.CUser = userID;
+                        receipt.CWhen = DateTime.Now;
+                    }
+
+                    receipt.TotalPrice = model.PriceUnit;
+                    receipt.Seller = model.Seller;
+                    receipt.PayorDetailUID = model.PayorDetailUID;
+                    receipt.PayorAddress = model.PayerAddress;
+                    receipt.PayorName = model.PayorName;
+                    receipt.CUser = userID;
+                    receipt.CWhen = DateTime.Now;
+                    receipt.MUser = userID;
+                    receipt.MWhen = DateTime.Now;
+                    receipt.OwnerOrganisationUID = model.OwnerOrganisation;
+                    receipt.StaffUID = userID;
+                    receipt.StartDttm = model.StartDttm;
+                    receipt.StatusFlag = "A";
+
+                    db.GroupReceipt.AddOrUpdate(receipt);
+                    db.SaveChanges();
+
+                    foreach (var item in model.GroupReceiptDetailModel)
+                    {
+
+                        GroupReceiptDetail order = db.GroupReceiptDetail.Find(item.GroupReceiptDetailUID);
+                        if (order != null)
+                        {
+                            if (order.GroupReceiptUID == item.GroupReceiptUID)
+                            {
+                                order.ItemCode = item.ItemCode;
+                                order.ItemName = item.ItemName;
+                                order.Quantity = item.Quantity;
+                                order.Discount = item.Discount;
+                                order.Price = item.PriceUnit;
+                                order.Unit = item.UnitItem;
+                                order.TotalPrice = item.TotalPrice;
+                                order.MUser = userID;
+                                order.MWhen = DateTime.Now;
+                                order.StatusFlag = "A";
+
+                                db.GroupReceiptDetail.AddOrUpdate(order);
+                                db.SaveChanges();
+                            }
+                        }
+                        else
+                        {
+                            order = new GroupReceiptDetail();
+                            order.GroupReceiptUID = receipt.UID;
+                            order.ItemCode = item.ItemCode;
+                            order.ItemName = item.ItemName;
+                            order.Quantity = item.Quantity;
+                            order.Price = item.PriceUnit;
+                            order.Unit = item.UnitItem;
+                            order.Discount = item.Discount;
+                            order.TotalPrice = item.TotalPrice;
+                            order.CUser = userID;
+                            order.CWhen = DateTime.Now;
+                            order.MUser = userID;
+                            order.MWhen = DateTime.Now;
+                            order.StatusFlag = "A";
+
+                            db.GroupReceiptDetail.AddOrUpdate(order);
+                            db.SaveChanges();
+                        }
+                    }
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
         #endregion
+
+        [Route("DeleteGroupReceiptDetail")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteGroupReceiptDetail(int groupReceiptDetailUID, int userID)
+        {
+            try
+            {
+                GroupReceiptDetail data = db.GroupReceiptDetail.Find(groupReceiptDetailUID);
+                if(data != null)
+                {
+                    db.GroupReceiptDetail.Attach(data);
+                    data.MUser = userID;
+                    data.MWhen = DateTime.Now;
+                    data.StatusFlag = "D";
+                    
+                    db.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
 
         #region GoodReceive
         [Route("SearchGoodReceive")]
