@@ -242,6 +242,12 @@
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
     <Compile Include="Models\StoreItemList.cs" />
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.Designer.cs">
+      <DependentUpon>GroupReceipt.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBill2.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -265,6 +271,66 @@
     </Compile>
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.Designer.cs">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.Designer.cs">
+      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.Designer.cs">
+      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.Designer.cs">
+      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.Designer.cs">
+      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.Designer.cs">
+      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.Designer.cs">
+      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.Designer.cs">
+      <DependentUpon>LabDefinition1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.Designer.cs">
+      <DependentUpon>LabDefinition2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.Designer.cs">
+      <DependentUpon>LabDefinition3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.Designer.cs">
+      <DependentUpon>LabDefinition4.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
@@ -1151,6 +1217,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1177,6 +1244,8 @@
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\ManageReceiptViewModel.cs" />
     <Compile Include="ViewModels\RIS\AssignForRDUViewModel.cs" />
     <Compile Include="ViewModels\RIS\BurnImageViewModel.cs" />
     <Compile Include="ViewModels\RIS\EditStudyViewModel.cs" />
@@ -1406,6 +1475,9 @@
     <Compile Include="Views\MRD\LabResultMass.xaml.cs">
       <DependentUpon>LabResultMass.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderProcessing\OrderGroupReceipt.xaml.cs">
+      <DependentUpon>OrderGroupReceipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
     </Compile>
@@ -1535,6 +1607,9 @@
     <Compile Include="Views\Inventory\ListStockWorkList.xaml.cs">
       <DependentUpon>ListStockWorkList.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Purchase\ListGroupReceipt.xaml.cs">
+      <DependentUpon>ListGroupReceipt.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Purchase\ListVendors.xaml.cs">
       <DependentUpon>ListVendors.xaml</DependentUpon>
     </Compile>
@@ -1552,6 +1627,9 @@
     </Compile>
     <Compile Include="Views\ClinicalData\ManageBilledItemSale.xaml.cs">
       <DependentUpon>ManageBilledItemSale.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\ManageReceipt.xaml.cs">
+      <DependentUpon>ManageReceipt.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RIS\AssignForRDU.xaml.cs">
       <DependentUpon>AssignForRDU.xaml</DependentUpon>
@@ -1964,6 +2042,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\OrderProcessing\OrderGroupReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2136,6 +2218,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Purchase\ListGroupReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Purchase\ListVendors.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2157,6 +2243,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ClinicalData\ManageBilledItemSale.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Purchase\ManageReceipt.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2397,6 +2487,9 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Cashier\GroupReceipt.resx">
+      <DependentUpon>GroupReceipt.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBill2.resx">
       <DependentUpon>PatientBill2.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -2411,6 +2504,36 @@
     <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.resx">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.resx">
+      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.resx">
+      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.resx">
+      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.resx">
+      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.resx">
+      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.resx">
+      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.resx">
+      <DependentUpon>LabDefinition1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.resx">
+      <DependentUpon>LabDefinition2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.resx">
+      <DependentUpon>LabDefinition3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.resx">
+      <DependentUpon>LabDefinition4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>
@@ -3131,6 +3254,8 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\Action\Manage.png" />
+    <Resource Include="Resources\Images\Menu\Invoice.png" />
     <Resource Include="Resources\Images\LogoBRXG4.jpg" />
     <Resource Include="Resources\Images\Menu\Report lab.png" />
     <Resource Include="Resources\Images\Document\pdf.png" />
