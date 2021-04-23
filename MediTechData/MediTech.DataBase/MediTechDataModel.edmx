@@ -3196,6 +3196,10 @@
             </CollectionType>
           </ReturnType>
         </Function>
+        <Function Name="fGetBillableItemCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
+          <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
+          <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetBillableItemPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="float">
           <Parameter Name="P_BillableItemUID" Type="int" Mode="In" />
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
