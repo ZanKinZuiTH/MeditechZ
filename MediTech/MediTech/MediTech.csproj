@@ -243,9 +243,7 @@
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
     <Compile Include="Models\StoreItemList.cs" />
-    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs">
-      <SubType>Component</SubType>
-    </Compile>
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs" />
     <Compile Include="Reports\Operating\Cashier\GroupReceipt.Designer.cs">
       <DependentUpon>GroupReceipt.cs</DependentUpon>
     </Compile>
@@ -272,66 +270,6 @@
     </Compile>
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.Designer.cs">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.Designer.cs">
-      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.Designer.cs">
-      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.Designer.cs">
-      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.Designer.cs">
-      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.Designer.cs">
-      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.Designer.cs">
-      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.Designer.cs">
-      <DependentUpon>LabDefinition1.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.Designer.cs">
-      <DependentUpon>LabDefinition2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.Designer.cs">
-      <DependentUpon>LabDefinition3.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.Designer.cs">
-      <DependentUpon>LabDefinition4.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
@@ -2511,36 +2449,6 @@
     <EmbeddedResource Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.resx">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
       <SubType>Designer</SubType>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.resx">
-      <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge2.resx">
-      <DependentUpon>CheckupBookLarge2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge3.resx">
-      <DependentUpon>CheckupBookLarge3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge4.resx">
-      <DependentUpon>CheckupBookLarge4.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge5.resx">
-      <DependentUpon>CheckupBookLarge5.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge6.resx">
-      <DependentUpon>CheckupBookLarge6.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition1.resx">
-      <DependentUpon>LabDefinition1.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition2.resx">
-      <DependentUpon>LabDefinition2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition3.resx">
-      <DependentUpon>LabDefinition3.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.resx">
-      <DependentUpon>LabDefinition4.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>

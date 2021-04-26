@@ -209,6 +209,9 @@
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Command="{Binding PrintAutoCommand}" Content="Print Auto" Height="25" Width="80"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Command="{Binding PrintPDFCommand}" Content="Print PDF" Height="25" Width="80"/>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                     <dxlc:LayoutItem>

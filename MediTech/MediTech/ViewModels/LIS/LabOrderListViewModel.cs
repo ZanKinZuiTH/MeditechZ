@@ -340,6 +340,20 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _PrintPDFCommand;
+
+        /// <summary>
+        /// Gets the EnterResultCommand.
+        /// </summary>
+        public RelayCommand PrintPDFCommand
+        {
+            get
+            {
+                return _PrintPDFCommand
+                    ?? (_PrintPDFCommand = new RelayCommand(PrintPDF));
+            }
+        }
+
         private RelayCommand _CancelResultCommand;
 
         /// <summary>
@@ -621,6 +635,38 @@ namespace MediTech.ViewModels
                 }
             }
 
+
+        }
+
+        private void PrintPDF()
+        {
+            var requestLabSelected = RequestLabs.Where(p => p.Selected);
+            if (requestLabSelected != null && requestLabSelected.Count() > 0)
+            {
+                FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+                DialogResult result = folderDlg.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    string path = folderDlg.SelectedPath;
+
+                    foreach (var item in requestLabSelected)
+                    {
+                        string fileName = (string.IsNullOrEmpty(item.PatientID) ? "" : item.PatientID + " ") + item.PatientName + ".pdf";
+
+                        LabResultReport rpt = new LabResultReport();
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+
+                        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                        rpt.Parameters["RequestNumber"].Value = item.LabNumber;
+                        rpt.PrintAuto = true;
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+
+                        rpt.ExportToPdf(path + "\\" + fileName);
+                    }
+                }
+            }
 
         }
 
