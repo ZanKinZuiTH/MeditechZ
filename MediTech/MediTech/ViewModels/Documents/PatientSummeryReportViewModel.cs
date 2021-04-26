@@ -148,38 +148,6 @@ namespace MediTech.ViewModels
             ChangeViewPermission(this.BackwardView);
         }
 
-
-        private string ShowSaveFileDialog(string title, string filter)
-        {
-            SaveFileDialog dlg = new SaveFileDialog();
-            string name = System.Windows.Forms.Application.ProductName;
-            int n = name.LastIndexOf(".") + 1;
-            if (n > 0) name = name.Substring(n, name.Length - n);
-            dlg.Title = "Export To " + title;
-            dlg.FileName = name;
-            dlg.Filter = filter;
-            if (dlg.ShowDialog() == DialogResult.OK) return dlg.FileName;
-            return "";
-        }
-
-        private void OpenFile(string fileName)
-        {
-            if (System.Windows.Forms.MessageBox.Show("Do you want to open this file?", "Export To...", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
-            {
-                try
-                {
-                    System.Diagnostics.Process process = new System.Diagnostics.Process();
-                    process.StartInfo.FileName = fileName;
-                    process.StartInfo.Verb = "Open";
-                    process.StartInfo.WindowStyle = System.Diagnostics.ProcessWindowStyle.Normal;
-                    process.Start();
-                }
-                catch
-                {
-                    System.Windows.Forms.MessageBox.Show("Cannot find an application on your system suitable for openning the file with exported data.", System.Windows.Forms.Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
         #endregion
     }
 }

@@ -955,6 +955,12 @@
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Checkup\XtraReport1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\XtraReport1.Designer.cs">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2803,6 +2809,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\XtraReport1.resx">
+      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>

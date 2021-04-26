@@ -64,7 +64,6 @@ namespace MediTech.ViewModels
         }
 
         public ObservableCollection<LookupReferenceValueModel> VisitStatus { get; set; }
-        private LookupReferenceValueModel _SelectVisitStatus;
 
         private List<object> _SelectVisitStatusList;
 
@@ -246,6 +245,15 @@ namespace MediTech.ViewModels
         {
             get { return _SalesItemCommand ?? (_SalesItemCommand = new RelayCommand(SalesItem)); }
         }
+
+        private RelayCommand _ExportToXLSXCommand;
+
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
+
+        
         #endregion
 
         #region Method
@@ -472,6 +480,30 @@ namespace MediTech.ViewModels
             }
         }
 
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (PatientVisits != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        PatientList view = (PatientList)this.View;
+                        view.tableViewVisitList.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
         private void RunPatientReport()
         {
             if (SelectPatientVisit != null)
@@ -479,7 +511,6 @@ namespace MediTech.ViewModels
                 ShowModalDialogUsingViewModel(new RunPatientReports(), new RunPatientReportsViewModel() { SelectPatientVisit = SelectPatientVisit }, true);
             }
         }
-
         #endregion
     }
 }
