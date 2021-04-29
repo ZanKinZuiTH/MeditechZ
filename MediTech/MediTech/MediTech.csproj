@@ -243,7 +243,9 @@
     <Compile Include="Models\ItemMasterList.cs" />
     <Compile Include="Models\PatientRegistrationBulkData.cs" />
     <Compile Include="Models\StoreItemList.cs" />
-    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs" />
+    <Compile Include="Reports\Operating\Cashier\GroupReceipt.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Reports\Operating\Cashier\GroupReceipt.Designer.cs">
       <DependentUpon>GroupReceipt.cs</DependentUpon>
     </Compile>
@@ -420,12 +422,6 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.Designer.cs">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.Designer.cs">
-      <DependentUpon>CovidRapidTestCertificationMobile.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.cs">
       <SubType>Component</SubType>
@@ -954,12 +950,6 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\XtraReport1.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Statistic\Checkup\XtraReport1.Designer.cs">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -2537,9 +2527,6 @@
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification.resx">
       <DependentUpon>CovidRapidTestCertification.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertificationMobile.resx">
-      <DependentUpon>CovidRapidTestCertificationMobile.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\CovidRapidTestCertification2.resx">
       <DependentUpon>CovidRapidTestCertification2.cs</DependentUpon>
     </EmbeddedResource>
@@ -2809,9 +2796,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Checkup\XtraReport1.resx">
-      <DependentUpon>XtraReport1.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>

@@ -744,7 +744,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel1.SizeF = new System.Drawing.SizeF(280F, 39.66669F);
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "ส่วนที่ 2 สำหรับสถานพยาบาล";
+            this.xrLabel1.Text = "ใบรับรองแพทย์";
             this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel11
