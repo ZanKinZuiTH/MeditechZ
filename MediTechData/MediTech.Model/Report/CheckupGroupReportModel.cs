@@ -181,6 +181,15 @@ namespace MediTech.Model.Report
         public string PAR4 { get; set; } //psa
         public string PAR48 { get; set; } //total billrubin
         public string PAR49 { get; set; } //direct billrubin
+
+        public string PAR1232 { get; set; } //mibk in Urine
+        public string PAR1233 { get; set; } //Cadmium in Urine
+        public string PAR1234 { get; set; } //Ethyl benzene in Urine
+        public string PAR1235 { get; set; } //Mercury in Urine
+
+        public string PAR1236 { get; set; } //Methyrene chloride in Urine
+        public string PAR1215 { get; set; } //Benzene (t,t-muconic acid)
+
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }

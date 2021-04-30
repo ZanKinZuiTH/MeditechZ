@@ -649,7 +649,8 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         .Where(p => p.RequestItemCode.Contains("LAB451")
                         || p.RequestItemCode.Contains("LAB441")
                         || p.RequestItemCode.Contains("LAB512")
-                        || p.RequestItemCode.Contains("LAB554"))
+                        || p.RequestItemCode.Contains("LAB554")
+                        || p.RequestItemCode.Contains("LAB452")) //anti Hvc
                         .OrderBy(p => p.Year);
                     GenerateImmunology(ImmunologyTestSet);
                     #endregion
@@ -684,9 +685,14 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         || p.RequestItemCode.Contains("LAB325")
                         || p.RequestItemCode.Contains("LAB323")
                         || p.RequestItemCode.Contains("LAB324")
-                        || p.RequestItemCode.Contains("LAB519")
-                        || p.RequestItemCode.Contains("LAB558")
-                        || p.RequestItemCode.Contains("LAB518"))
+                        || p.RequestItemCode.Contains("LAB519") //Isopropyl in Urine
+                        || p.RequestItemCode.Contains("LAB558") //Nickel in urine
+                        || p.RequestItemCode.Contains("LAB316") //Phenol in Urine
+                        || p.RequestItemCode.Contains("LAB518")
+                        || p.RequestItemCode.Contains("LAB570") //MIBK in  Urine
+                        || p.RequestItemCode.Contains("LAB571") //Cadmium in Urine
+                        || p.RequestItemCode.Contains("LAB572") //Ethyl benzene in urine
+                        || p.RequestItemCode.Contains("LAB489")) //Mercury in Urine
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -2460,6 +2466,38 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 page7.cellHavIgg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year1)?.ResultValue;
                 page7.cellHavIgg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year2)?.ResultValue;
                 page7.cellHavIgg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year3)?.ResultValue;
+
+                page7.cellAntiHCVRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53")?.ReferenceRange;
+                page7.cellAntiHCV1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year1)?.ResultValue;
+                page7.cellAntiHCV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year2)?.ResultValue;
+                page7.cellAntiHCV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR53" && p.Year == year3)?.ResultValue;
+
+                page7.cellCoiAntiHCVRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54")?.ReferenceRange;
+                page7.cellCoiAntiHCV1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year1)?.ResultValue;
+                page7.cellCoiAntiHCV2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year2)?.ResultValue;
+                page7.cellCoiAntiHCV3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year3)?.ResultValue;
+
+                string CoiAntiHCVAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year1)?.IsAbnormal;
+                string CoiAntiHCVAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year2)?.IsAbnormal;
+                string CoiAntiHCVAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR54" && p.Year == year3)?.IsAbnormal;
+
+                if (!string.IsNullOrEmpty(CoiAntiHCVAbnormal1))
+                {
+                    page7.cellCoiAntiHCV1.ForeColor = (CoiHbsAbnormal1 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCoiAntiHCV1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(CoiAntiHCVAbnormal2))
+                {
+                    page7.cellCoiAntiHCV2.ForeColor = (CoiHbsAbnormal2 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCoiAntiHCV2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
+
+                if (!string.IsNullOrEmpty(CoiAntiHCVAbnormal3))
+                {
+                    page7.cellCoiAntiHCV3.ForeColor = (CoiHbsAbnormal3 == "H") ? Color.Red : Color.Blue;
+                    page7.cellCoiAntiHCV3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                }
             }
             else
             {
@@ -2590,6 +2628,11 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                 page8.RowHexane.Visible = false;
                 page8.RowIsopropanol.Visible = false;
                 page8.RowStyreneUrine.Visible = false;
+                page8.RowMibkUrine.Visible = false;
+                page8.RowCadmiumUrine.Visible = false;
+                page8.RowEthylbenzeneUrine.Visible = false;
+                page8.RowMercuryUrine.Visible = false;
+                page8.RowPhenolUrine.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -3129,6 +3172,176 @@ namespace MediTech.Reports.Operating.Patient.CheckupBook
                         {
                             page8.cellAcetone3.ForeColor = (AcetoneAbnormal3 == "H") ? Color.Red : Color.Blue;
                             page8.cellAcetone3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region MIBK Urine 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232") != null)
+                    {
+                        page8.RowMibkUrine.Visible = true;
+                        page8.cellMibkUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232")?.ReferenceRange;
+                        page8.cellMibkUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year1)?.ResultValue;
+                        page8.cellMibkUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year2)?.ResultValue;
+                        page8.cellMibkUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year3)?.ResultValue;
+
+                        string MibkUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year1)?.IsAbnormal;
+                        string MibkUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year2)?.IsAbnormal;
+                        string MibkUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1232" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(MibkUrineAbnormal1))
+                        {
+                            page8.cellMibkUrine1.ForeColor = (MibkUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMibkUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(MibkUrineAbnormal2))
+                        {
+                            page8.cellMibkUrine2.ForeColor = (MibkUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMibkUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(MibkUrineAbnormal3))
+                        {
+                            page8.cellMibkUrine3.ForeColor = (MibkUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMibkUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region Cadmium Urine 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233") != null)
+                    {
+                        page8.RowCadmiumUrine.Visible = true;
+                        page8.cellCadmiumUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233")?.ReferenceRange;
+                        page8.cellCadmiumUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year1)?.ResultValue;
+                        page8.cellCadmiumUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year2)?.ResultValue;
+                        page8.cellCadmiumUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year3)?.ResultValue;
+
+                        string CadmiumUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year1)?.IsAbnormal;
+                        string CadmiumUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year2)?.IsAbnormal;
+                        string CadmiumUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1233" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(CadmiumUrineAbnormal1))
+                        {
+                            page8.cellCadmiumUrine1.ForeColor = (CadmiumUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellCadmiumUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(CadmiumUrineAbnormal2))
+                        {
+                            page8.cellCadmiumUrine2.ForeColor = (CadmiumUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellCadmiumUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(CadmiumUrineAbnormal3))
+                        {
+                            page8.cellCadmiumUrine3.ForeColor = (CadmiumUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellCadmiumUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region Ethyl benzene in Urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234") != null)
+                    {
+                        page8.RowEthylbenzeneUrine.Visible = true;
+                        page8.cellEthylbenzeneUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234")?.ReferenceRange;
+                        page8.cellEthylbenzeneUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year1)?.ResultValue;
+                        page8.cellEthylbenzeneUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year2)?.ResultValue;
+                        page8.cellEthylbenzeneUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year3)?.ResultValue;
+
+                        string EthylbenzeneUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year1)?.IsAbnormal;
+                        string EthylbenzeneUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year2)?.IsAbnormal;
+                        string EthylbenzeneUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1234" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(EthylbenzeneUrineAbnormal1))
+                        {
+                            page8.cellEthylbenzeneUrine1.ForeColor = (EthylbenzeneUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellEthylbenzeneUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(EthylbenzeneUrineAbnormal2))
+                        {
+                            page8.cellEthylbenzeneUrine2.ForeColor = (EthylbenzeneUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellEthylbenzeneUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(EthylbenzeneUrineAbnormal3))
+                        {
+                            page8.cellEthylbenzeneUrine3.ForeColor = (EthylbenzeneUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellEthylbenzeneUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region Mercury Urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235") != null)
+                    {
+                        page8.RowMercuryUrine.Visible = true;
+                        page8.cellMercuryUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235")?.ReferenceRange;
+                        page8.cellMercuryUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year1)?.ResultValue;
+                        page8.cellMercuryUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year2)?.ResultValue;
+                        page8.cellMercuryUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year3)?.ResultValue;
+
+                        string MercuryUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year1)?.IsAbnormal;
+                        string MercuryUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year2)?.IsAbnormal;
+                        string MercuryUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1235" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(MercuryUrineAbnormal1))
+                        {
+                            page8.cellMercuryUrine1.ForeColor = (MercuryUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMercuryUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(MercuryUrineAbnormal2))
+                        {
+                            page8.cellMercuryUrine2.ForeColor = (MercuryUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMercuryUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(MercuryUrineAbnormal3))
+                        {
+                            page8.cellMercuryUrine3.ForeColor = (MercuryUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellMercuryUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+                    }
+                    #endregion
+
+                    #region Phenol Urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204") != null)
+                    {
+                        page8.RowPhenolUrine.Visible = true;
+                        page8.cellPhenolUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204")?.ReferenceRange;
+                        page8.cellPhenolUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year1)?.ResultValue;
+                        page8.cellPhenolUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year2)?.ResultValue;
+                        page8.cellPhenolUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year3)?.ResultValue;
+
+                        string PhenolUrineAbnormal1 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year1)?.IsAbnormal;
+                        string PhenolUrineAbnormal2 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year2)?.IsAbnormal;
+                        string PhenolUrineAbnormal3 = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204" && p.Year == year3)?.IsAbnormal;
+
+                        if (!string.IsNullOrEmpty(PhenolUrineAbnormal1))
+                        {
+                            page8.cellPhenolUrine1.ForeColor = (PhenolUrineAbnormal1 == "H") ? Color.Red : Color.Blue;
+                            page8.cellPhenolUrine1.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(PhenolUrineAbnormal2))
+                        {
+                            page8.cellPhenolUrine2.ForeColor = (PhenolUrineAbnormal2 == "H") ? Color.Red : Color.Blue;
+                            page8.cellPhenolUrine2.Font = new Font("Angsana New", 11, FontStyle.Bold);
+                        }
+
+                        if (!string.IsNullOrEmpty(PhenolUrineAbnormal3))
+                        {
+                            page8.cellPhenolUrine3.ForeColor = (PhenolUrineAbnormal3 == "H") ? Color.Red : Color.Blue;
+                            page8.cellPhenolUrine3.Font = new Font("Angsana New", 11, FontStyle.Bold);
                         }
                     }
                     #endregion

@@ -187,6 +187,18 @@
             this.lbName10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrTableRow13 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellAntiHCVRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellAntiHCV1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellAntiHCV2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellAntiHCV3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow14 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiAntiHCVRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiAntiHCV1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiAntiHCV2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellCoiAntiHCV3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbImmunology)).BeginInit();
@@ -1283,8 +1295,10 @@
             this.xrTableRow44,
             this.xrTableRow9,
             this.xrTableRow5,
-            this.xrTableRow6});
-            this.tbImmunology.SizeF = new System.Drawing.SizeF(360.7059F, 142.8449F);
+            this.xrTableRow6,
+            this.xrTableRow13,
+            this.xrTableRow14});
+            this.tbImmunology.SizeF = new System.Drawing.SizeF(360.7059F, 183.2584F);
             this.tbImmunology.StylePriority.UseBorders = false;
             this.tbImmunology.StylePriority.UseBorderWidth = false;
             this.tbImmunology.StylePriority.UseFont = false;
@@ -1932,6 +1946,130 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrTableRow13
+            // 
+            this.xrTableRow13.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell19,
+            this.cellAntiHCVRange,
+            this.cellAntiHCV1,
+            this.cellAntiHCV2,
+            this.cellAntiHCV3});
+            this.xrTableRow13.Name = "xrTableRow13";
+            this.xrTableRow13.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell19.Multiline = true;
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.StylePriority.UseFont = false;
+            this.xrTableCell19.StylePriority.UseTextAlignment = false;
+            this.xrTableCell19.Text = "Anti HCV";
+            this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell19.Weight = 0.98138329941407976D;
+            // 
+            // cellAntiHCVRange
+            // 
+            this.cellAntiHCVRange.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.cellAntiHCVRange.Multiline = true;
+            this.cellAntiHCVRange.Name = "cellAntiHCVRange";
+            this.cellAntiHCVRange.StylePriority.UseFont = false;
+            this.cellAntiHCVRange.StylePriority.UseTextAlignment = false;
+            this.cellAntiHCVRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellAntiHCVRange.Weight = 0.97912335765253322D;
+            // 
+            // cellAntiHCV1
+            // 
+            this.cellAntiHCV1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellAntiHCV1.Multiline = true;
+            this.cellAntiHCV1.Name = "cellAntiHCV1";
+            this.cellAntiHCV1.StylePriority.UseFont = false;
+            this.cellAntiHCV1.StylePriority.UseTextAlignment = false;
+            this.cellAntiHCV1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellAntiHCV1.Weight = 0.54549280630434127D;
+            // 
+            // cellAntiHCV2
+            // 
+            this.cellAntiHCV2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellAntiHCV2.Multiline = true;
+            this.cellAntiHCV2.Name = "cellAntiHCV2";
+            this.cellAntiHCV2.StylePriority.UseFont = false;
+            this.cellAntiHCV2.StylePriority.UseTextAlignment = false;
+            this.cellAntiHCV2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellAntiHCV2.Weight = 0.54307486192148535D;
+            // 
+            // cellAntiHCV3
+            // 
+            this.cellAntiHCV3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellAntiHCV3.Multiline = true;
+            this.cellAntiHCV3.Name = "cellAntiHCV3";
+            this.cellAntiHCV3.StylePriority.UseFont = false;
+            this.cellAntiHCV3.StylePriority.UseTextAlignment = false;
+            this.cellAntiHCV3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellAntiHCV3.Weight = 0.56759223964896666D;
+            // 
+            // xrTableRow14
+            // 
+            this.xrTableRow14.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell28,
+            this.cellCoiAntiHCVRange,
+            this.cellCoiAntiHCV1,
+            this.cellCoiAntiHCV2,
+            this.cellCoiAntiHCV3});
+            this.xrTableRow14.Name = "xrTableRow14";
+            this.xrTableRow14.Weight = 0.91678080629563641D;
+            // 
+            // xrTableCell28
+            // 
+            this.xrTableCell28.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell28.Multiline = true;
+            this.xrTableCell28.Name = "xrTableCell28";
+            this.xrTableCell28.StylePriority.UseFont = false;
+            this.xrTableCell28.StylePriority.UseTextAlignment = false;
+            this.xrTableCell28.Text = "COI of Anti HCV";
+            this.xrTableCell28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell28.Weight = 0.98138329941407976D;
+            // 
+            // cellCoiAntiHCVRange
+            // 
+            this.cellCoiAntiHCVRange.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.cellCoiAntiHCVRange.Multiline = true;
+            this.cellCoiAntiHCVRange.Name = "cellCoiAntiHCVRange";
+            this.cellCoiAntiHCVRange.StylePriority.UseFont = false;
+            this.cellCoiAntiHCVRange.StylePriority.UseTextAlignment = false;
+            this.cellCoiAntiHCVRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiAntiHCVRange.Weight = 0.97912335765253322D;
+            // 
+            // cellCoiAntiHCV1
+            // 
+            this.cellCoiAntiHCV1.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellCoiAntiHCV1.Multiline = true;
+            this.cellCoiAntiHCV1.Name = "cellCoiAntiHCV1";
+            this.cellCoiAntiHCV1.StylePriority.UseFont = false;
+            this.cellCoiAntiHCV1.StylePriority.UseTextAlignment = false;
+            this.cellCoiAntiHCV1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiAntiHCV1.Weight = 0.54549280630434127D;
+            // 
+            // cellCoiAntiHCV2
+            // 
+            this.cellCoiAntiHCV2.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellCoiAntiHCV2.Multiline = true;
+            this.cellCoiAntiHCV2.Name = "cellCoiAntiHCV2";
+            this.cellCoiAntiHCV2.StylePriority.UseFont = false;
+            this.cellCoiAntiHCV2.StylePriority.UseTextAlignment = false;
+            this.cellCoiAntiHCV2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiAntiHCV2.Weight = 0.54307486192148535D;
+            // 
+            // cellCoiAntiHCV3
+            // 
+            this.cellCoiAntiHCV3.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellCoiAntiHCV3.Multiline = true;
+            this.cellCoiAntiHCV3.Name = "cellCoiAntiHCV3";
+            this.cellCoiAntiHCV3.StylePriority.UseFont = false;
+            this.cellCoiAntiHCV3.StylePriority.UseTextAlignment = false;
+            this.cellCoiAntiHCV3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellCoiAntiHCV3.Weight = 0.56759223964896666D;
+            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1943,7 +2081,7 @@
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.tbOtherTest)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbImmunology)).EndInit();
@@ -2114,5 +2252,17 @@
         public DevExpress.XtraReports.UI.XRTableCell cellTsh1;
         public DevExpress.XtraReports.UI.XRTableCell cellTsh2;
         public DevExpress.XtraReports.UI.XRTableCell cellTsh3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow13;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow14;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
+        public DevExpress.XtraReports.UI.XRTableCell cellAntiHCVRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellAntiHCV1;
+        public DevExpress.XtraReports.UI.XRTableCell cellAntiHCV2;
+        public DevExpress.XtraReports.UI.XRTableCell cellAntiHCV3;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiAntiHCVRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiAntiHCV1;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiAntiHCV2;
+        public DevExpress.XtraReports.UI.XRTableCell cellCoiAntiHCV3;
     }
 }
