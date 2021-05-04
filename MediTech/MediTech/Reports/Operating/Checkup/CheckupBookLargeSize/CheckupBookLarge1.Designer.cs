@@ -28,8 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupBookLarge1));
             this.lbDateOfBirth = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.TitleResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
@@ -64,6 +67,9 @@
             this.xrTableRow7 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbDepartment = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbAddress = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel3 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -85,7 +91,6 @@
             this.xrTableRow15 = new DevExpress.XtraReports.UI.XRTableRow();
             this.TitleObesity = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbObesity = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbBP = new DevExpress.XtraReports.UI.XRTableCell();
@@ -104,6 +109,7 @@
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
@@ -114,7 +120,7 @@
             // 
             // lbDateOfBirth
             // 
-            this.lbDateOfBirth.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbDateOfBirth.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbDateOfBirth.Multiline = true;
             this.lbDateOfBirth.Name = "lbDateOfBirth";
             this.lbDateOfBirth.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -122,11 +128,13 @@
             this.lbDateOfBirth.StylePriority.UsePadding = false;
             this.lbDateOfBirth.StylePriority.UseTextAlignment = false;
             this.lbDateOfBirth.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbDateOfBirth.Weight = 0.91788851779633041D;
+            this.lbDateOfBirth.Weight = 0.83408932859534868D;
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrPictureBox3,
+            this.xrPictureBox1,
             this.xrLabel4,
             this.TitleResultWellness2,
             this.lbResultWellness2,
@@ -144,15 +152,33 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrPictureBox3
+            // 
+            this.xrPictureBox3.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrPictureBox3.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox3.ImageSource"));
+            this.xrPictureBox3.LocationFloat = new DevExpress.Utils.PointFloat(948.741F, 42.26208F);
+            this.xrPictureBox3.Name = "xrPictureBox3";
+            this.xrPictureBox3.SizeF = new System.Drawing.SizeF(174.1667F, 51.49998F);
+            this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.xrPictureBox3.StylePriority.UseBorders = false;
+            // 
+            // xrPictureBox1
+            // 
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(980.5613F, 659.5275F);
+            this.xrPictureBox1.Name = "xrPictureBox1";
+            this.xrPictureBox1.SizeF = new System.Drawing.SizeF(99.99994F, 53.34705F);
+            this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // xrLabel4
             // 
             this.xrLabel4.CanGrow = false;
-            this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Italic);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(726.2894F, 565.3217F);
+            this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Italic);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(692.1228F, 594.0276F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(350.1943F, 40.49994F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(382.6052F, 40.49994F);
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.Text = "หมายเหตุ : หากมีข้อสงสัยเพิ่มเติมกรุณาติดต่อ บีอาร์เอ็กซ์จีสหคลินิก ที่เบอร์ 033 " +
     "060 399 หรือ \r\nหากกรณีไปพบแพทย์ที่สหคลินิก หรือสถานพยาบาลอื่น กรุณานำสมุดรายงานผ" +
@@ -181,13 +207,13 @@
             this.lbResultWellness2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbResultWellness2.ForeColor = System.Drawing.Color.Black;
             this.lbResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(36.49993F, 68.59541F);
             this.lbResultWellness2.Multiline = true;
             this.lbResultWellness2.Name = "lbResultWellness2";
             this.lbResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.lbResultWellness2.SizeF = new System.Drawing.SizeF(514.6668F, 566.6356F);
+            this.lbResultWellness2.SizeF = new System.Drawing.SizeF(514.6668F, 690.5533F);
             this.lbResultWellness2.StylePriority.UseBorderColor = false;
             this.lbResultWellness2.StylePriority.UseFont = false;
             this.lbResultWellness2.StylePriority.UseForeColor = false;
@@ -196,11 +222,11 @@
             // xrTable2
             // 
             this.xrTable2.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(696.1656F, 226.6989F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(680.3323F, 242.5322F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow13});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(353.5756F, 20.41626F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(423.3345F, 20.41626F);
             this.xrTable2.StylePriority.UseFont = false;
             // 
             // xrTableRow13
@@ -217,19 +243,19 @@
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "บริษัท /Company :";
-            this.xrTableCell6.Weight = 1.2244602161196627D;
+            this.xrTableCell6.Weight = 1.286298595312275D;
             // 
             // lbCompany
             // 
-            this.lbCompany.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbCompany.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbCompany.Name = "lbCompany";
             this.lbCompany.StylePriority.UseFont = false;
-            this.lbCompany.Weight = 4.2059920977333336D;
+            this.lbCompany.Weight = 4.4988210708861756D;
             // 
             // xrTable5
             // 
             this.xrTable5.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(343.6668F, 699.3203F);
+            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(902.9077F, 691.8203F);
             this.xrTable5.Name = "xrTable5";
             this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow31,
@@ -289,14 +315,15 @@
             // tbPatientDetail
             // 
             this.tbPatientDetail.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(696.166F, 247.1152F);
+            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(680.3329F, 262.9485F);
             this.tbPatientDetail.Name = "tbPatientDetail";
             this.tbPatientDetail.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3,
             this.xrTableRow5,
             this.xrTableRow4,
-            this.xrTableRow7});
-            this.tbPatientDetail.SizeF = new System.Drawing.SizeF(353.5752F, 82.38559F);
+            this.xrTableRow7,
+            this.xrTableRow2});
+            this.tbPatientDetail.SizeF = new System.Drawing.SizeF(423.334F, 101.7688F);
             this.tbPatientDetail.StylePriority.UseBorderWidth = false;
             this.tbPatientDetail.StylePriority.UseFont = false;
             this.tbPatientDetail.StylePriority.UseTextAlignment = false;
@@ -315,7 +342,7 @@
             // xrTableCell5
             // 
             this.xrTableCell5.CanGrow = false;
-            this.xrTableCell5.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell5.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell5.StylePriority.UseFont = false;
@@ -323,23 +350,23 @@
             this.xrTableCell5.StylePriority.UseTextAlignment = false;
             this.xrTableCell5.Text = "ชื่อ-สกุล /Name :";
             this.xrTableCell5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell5.Weight = 0.69648679680365577D;
+            this.xrTableCell5.Weight = 0.71418233887771465D;
             // 
             // lbPatientName
             // 
             this.lbPatientName.CanGrow = false;
-            this.lbPatientName.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbPatientName.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbPatientName.Name = "lbPatientName";
             this.lbPatientName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbPatientName.StylePriority.UseFont = false;
             this.lbPatientName.StylePriority.UsePadding = false;
             this.lbPatientName.StylePriority.UseTextAlignment = false;
             this.lbPatientName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbPatientName.Weight = 1.5651467529114236D;
+            this.lbPatientName.Weight = 1.5314919313286808D;
             // 
             // xrTableCell25
             // 
-            this.xrTableCell25.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell25.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell25.Multiline = true;
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -348,11 +375,11 @@
             this.xrTableCell25.StylePriority.UseTextAlignment = false;
             this.xrTableCell25.Text = "เพศ (Sex) :";
             this.xrTableCell25.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell25.Weight = 0.48349453111999496D;
+            this.xrTableCell25.Weight = 0.48090425478204191D;
             // 
             // lbGender
             // 
-            this.lbGender.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbGender.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbGender.Multiline = true;
             this.lbGender.Name = "lbGender";
             this.lbGender.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -360,7 +387,7 @@
             this.lbGender.StylePriority.UsePadding = false;
             this.lbGender.StylePriority.UseTextAlignment = false;
             this.lbGender.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbGender.Weight = 0.487153620382386D;
+            this.lbGender.Weight = 0.71680502153306291D;
             // 
             // xrTableRow5
             // 
@@ -378,7 +405,7 @@
             // xrTableCell9
             // 
             this.xrTableCell9.CanGrow = false;
-            this.xrTableCell9.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell9.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell9.StylePriority.UseFont = false;
@@ -391,7 +418,7 @@
             // lbHN
             // 
             this.lbHN.CanGrow = false;
-            this.lbHN.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.lbHN.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHN.Name = "lbHN";
             this.lbHN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbHN.StylePriority.UseFont = false;
@@ -403,7 +430,7 @@
             // xrTableCell14
             // 
             this.xrTableCell14.CanGrow = false;
-            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell14.Name = "xrTableCell14";
             this.xrTableCell14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell14.StylePriority.UseFont = false;
@@ -411,11 +438,11 @@
             this.xrTableCell14.StylePriority.UseTextAlignment = false;
             this.xrTableCell14.Text = "DOB :";
             this.xrTableCell14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell14.Weight = 0.27971264730139089D;
+            this.xrTableCell14.Weight = 0.36351183650237268D;
             // 
             // xrTableCell16
             // 
-            this.xrTableCell16.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell16.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell16.Multiline = true;
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -428,7 +455,7 @@
             // 
             // lbAge
             // 
-            this.lbAge.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbAge.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbAge.Multiline = true;
             this.lbAge.Name = "lbAge";
             this.lbAge.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -436,11 +463,11 @@
             this.lbAge.StylePriority.UsePadding = false;
             this.lbAge.StylePriority.UseTextAlignment = false;
             this.lbAge.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbAge.Weight = 0.3683824554716848D;
+            this.lbAge.Weight = 0.2395950999572474D;
             // 
             // xrTableCell18
             // 
-            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Multiline = true;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -449,7 +476,7 @@
             this.xrTableCell18.StylePriority.UseTextAlignment = false;
             this.xrTableCell18.Text = "ปี";
             this.xrTableCell18.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell18.Weight = 0.11877207545404585D;
+            this.xrTableCell18.Weight = 0.45866127627252323D;
             // 
             // xrTableRow4
             // 
@@ -464,7 +491,7 @@
             // xrTableCell7
             // 
             this.xrTableCell7.CanGrow = false;
-            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell7.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell7.StylePriority.UseFont = false;
@@ -476,7 +503,7 @@
             // 
             // lbEmployee
             // 
-            this.lbEmployee.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbEmployee.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbEmployee.Multiline = true;
             this.lbEmployee.Name = "lbEmployee";
             this.lbEmployee.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -489,7 +516,7 @@
             // xrTableCell15
             // 
             this.xrTableCell15.CanGrow = false;
-            this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell15.StylePriority.UseFont = false;
@@ -497,11 +524,11 @@
             this.xrTableCell15.StylePriority.UseTextAlignment = false;
             this.xrTableCell15.Text = "Position :";
             this.xrTableCell15.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell15.Weight = 0.38740926095797495D;
+            this.xrTableCell15.Weight = 0.46359134702202393D;
             // 
             // lbPosition
             // 
-            this.lbPosition.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.lbPosition.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbPosition.Multiline = true;
             this.lbPosition.Name = "lbPosition";
             this.lbPosition.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
@@ -509,7 +536,7 @@
             this.lbPosition.StylePriority.UsePadding = false;
             this.lbPosition.StylePriority.UseTextAlignment = false;
             this.lbPosition.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbPosition.Weight = 1.5568865492214887D;
+            this.lbPosition.Weight = 1.6918063084614796D;
             // 
             // xrTableRow7
             // 
@@ -522,7 +549,7 @@
             // xrTableCell21
             // 
             this.xrTableCell21.CanGrow = false;
-            this.xrTableCell21.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell21.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.xrTableCell21.StylePriority.UseFont = false;
@@ -535,23 +562,56 @@
             // lbDepartment
             // 
             this.lbDepartment.CanGrow = false;
-            this.lbDepartment.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.lbDepartment.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbDepartment.Name = "lbDepartment";
             this.lbDepartment.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbDepartment.StylePriority.UseFont = false;
             this.lbDepartment.StylePriority.UsePadding = false;
             this.lbDepartment.StylePriority.UseTextAlignment = false;
             this.lbDepartment.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.lbDepartment.Weight = 2.6866662312712819D;
+            this.lbDepartment.Weight = 2.8977680765753218D;
+            // 
+            // xrTableRow2
+            // 
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell17,
+            this.lbAddress});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.Weight = 1.1164535885036331D;
+            // 
+            // xrTableCell17
+            // 
+            this.xrTableCell17.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell17.Multiline = true;
+            this.xrTableCell17.Name = "xrTableCell17";
+            this.xrTableCell17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell17.StylePriority.UseFont = false;
+            this.xrTableCell17.StylePriority.UsePadding = false;
+            this.xrTableCell17.StylePriority.UseTextAlignment = false;
+            this.xrTableCell17.Text = "Address :";
+            this.xrTableCell17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell17.Weight = 0.54561546994617871D;
+            // 
+            // lbAddress
+            // 
+            this.lbAddress.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.lbAddress.Multiline = true;
+            this.lbAddress.Name = "lbAddress";
+            this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.lbAddress.StylePriority.UseFont = false;
+            this.lbAddress.StylePriority.UsePadding = false;
+            this.lbAddress.StylePriority.UseTextAlignment = false;
+            this.lbAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.lbAddress.Weight = 2.8977680765753218D;
             // 
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(746.2895F, 82.76207F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(743.6058F, 108.1761F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(281.8118F, 78.00003F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(281.8118F, 68.00003F);
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
             this.xrLabel3.Text = "รายงานการตรวจสุขภาพประจำปี\r\nMEDICAL CHECK UP REPORT\r\n";
@@ -560,7 +620,7 @@
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(621.9993F, 180.3428F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(620.9823F, 181.1761F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
@@ -602,7 +662,7 @@
             this.tbVatalSign.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.tbVatalSign.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(621.9993F, 358.8666F);
+            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(621.9994F, 392.0957F);
             this.tbVatalSign.Name = "tbVatalSign";
             this.tbVatalSign.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow9,
@@ -652,7 +712,7 @@
             this.lbHeight.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbHeight.CanGrow = false;
-            this.lbHeight.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbHeight.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHeight.Name = "lbHeight";
             this.lbHeight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbHeight.StylePriority.UseBorderColor = false;
@@ -714,7 +774,7 @@
             this.lbWeight.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbWeight.CanGrow = false;
-            this.lbWeight.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbWeight.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbWeight.Name = "lbWeight";
             this.lbWeight.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbWeight.StylePriority.UseBorderColor = false;
@@ -776,7 +836,7 @@
             this.lbBMI.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbBMI.CanGrow = false;
-            this.lbBMI.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbBMI.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbBMI.Name = "lbBMI";
             this.lbBMI.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbBMI.StylePriority.UseBorderColor = false;
@@ -836,7 +896,7 @@
             this.lbObesity.BorderColor = System.Drawing.Color.DarkGray;
             this.lbObesity.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.lbObesity.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbObesity.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbObesity.Name = "lbObesity";
             this.lbObesity.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbObesity.StylePriority.UseBorderColor = false;
@@ -846,23 +906,6 @@
             this.lbObesity.StylePriority.UseTextAlignment = false;
             this.lbObesity.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.lbObesity.Weight = 1.1403381179738579D;
-            // 
-            // xrTableCell10
-            // 
-            this.xrTableCell10.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell10.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.xrTableCell10.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell10.Multiline = true;
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
-            this.xrTableCell10.StylePriority.UseBorderColor = false;
-            this.xrTableCell10.StylePriority.UseBorders = false;
-            this.xrTableCell10.StylePriority.UseFont = false;
-            this.xrTableCell10.StylePriority.UsePadding = false;
-            this.xrTableCell10.StylePriority.UseTextAlignment = false;
-            this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell10.Weight = 2.1441920766751434D;
             // 
             // xrTableRow12
             // 
@@ -897,7 +940,7 @@
             this.lbBP.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbBP.CanGrow = false;
-            this.lbBP.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbBP.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbBP.Name = "lbBP";
             this.lbBP.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbBP.StylePriority.UseBorderColor = false;
@@ -960,7 +1003,7 @@
             this.lbPulse.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbPulse.CanGrow = false;
-            this.lbPulse.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbPulse.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbPulse.Name = "lbPulse";
             this.lbPulse.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbPulse.StylePriority.UseBorderColor = false;
@@ -1026,7 +1069,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbWaist.CanGrow = false;
-            this.lbWaist.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.lbWaist.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbWaist.Name = "lbWaist";
             this.lbWaist.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
             this.lbWaist.StylePriority.UseBorderColor = false;
@@ -1061,7 +1104,9 @@
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
             this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(10F, 10F);
             this.xrRichText1.Name = "xrRichText1";
+            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(17.5F, 23F);
+            this.xrRichText1.StylePriority.UseFont = false;
             // 
             // TopMargin
             // 
@@ -1100,6 +1145,24 @@
             this.PayorDetailUID.Type = typeof(int);
             this.PayorDetailUID.ValueInfo = "0";
             this.PayorDetailUID.Visible = false;
+            // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell10.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.xrTableCell10.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell10.Multiline = true;
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 0, 0, 0, 100F);
+            this.xrTableCell10.StylePriority.UseBorderColor = false;
+            this.xrTableCell10.StylePriority.UseBorders = false;
+            this.xrTableCell10.StylePriority.UseFont = false;
+            this.xrTableCell10.StylePriority.UsePadding = false;
+            this.xrTableCell10.StylePriority.UseTextAlignment = false;
+            this.xrTableCell10.Text = "ระดับ BMI";
+            this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrTableCell10.Weight = 2.1441920766751434D;
             // 
             // CheckupBookLarge1
             // 
@@ -1196,7 +1259,6 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
@@ -1205,5 +1267,11 @@
         public DevExpress.XtraReports.UI.XRTableCell lbAge;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.UI.XRTableCell lbDateOfBirth;
+        private DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
+        protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox3;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
+        private DevExpress.XtraReports.UI.XRTableCell lbAddress;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
     }
 }

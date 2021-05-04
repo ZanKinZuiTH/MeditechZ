@@ -154,6 +154,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 lbDateOfBirth.Text = patient.BirthDttm != null ? patient.BirthDttm.Value.ToString("dd/MM/yyyy") : "";
                 lbAge.Text = patient.Age != null ? patient.Age : "";
                 lbGender.Text = patient.Gender;
+                lbAddress.Text = patient.PatientAddress != null ? patient.PatientAddress : "";
 
                 lbHeight.Text = patient.Height != null ? patient.Height.ToString() : "";
                 lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() : "";
@@ -562,7 +563,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                         || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
                         || p.RequestItemCode.Contains("LAB489") //Mercury
                         || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
-                        || p.RequestItemCode.Contains("LAB568")) //Benzene (t,t-Muconic acid) in Urine
+                        || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
+                        || p.RequestItemCode.Contains("LAB488")) //Mercury in blood
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1406,6 +1408,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page6.RowMercuryUrine.Visible = false;
                 page6.RowMethyreneUrine.Visible = false;
                 page6.RowBenzenettUrine.Visible = false;
+                page6.RowMercuryBlood.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1700,6 +1703,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                         page6.cellBenzenettUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year1)?.ResultValue;
                         page6.cellBenzenettUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year2)?.ResultValue;
                         page6.cellBenzenettUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Mercury Blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
+                    {
+                        page6.RowMercuryBlood.Visible = true;
+                        page6.cellMercuryBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
+                        page6.cellMercuryBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
+                        page6.cellMercuryBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
+                        page6.cellMercuryBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }

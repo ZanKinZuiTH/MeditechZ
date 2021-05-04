@@ -33,6 +33,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel48 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel44 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel53 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel46 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel47 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
@@ -78,8 +82,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel41 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel42 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel43 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel53 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -99,6 +101,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel48,
+            this.xrLabel44,
             this.xrLabel43,
             this.xrLabel53,
             this.xrLabel46,
@@ -152,6 +156,52 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             this.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail.Name = "Detail";
             this.Detail.StylePriority.UseFont = false;
+            // 
+            // xrLabel48
+            // 
+            this.xrLabel48.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel48.LocationFloat = new DevExpress.Utils.PointFloat(32.49556F, 15F);
+            this.xrLabel48.Name = "xrLabel48";
+            this.xrLabel48.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel48.SizeF = new System.Drawing.SizeF(21.66669F, 23F);
+            this.xrLabel48.StylePriority.UseFont = false;
+            this.xrLabel48.Text = "h.";
+            // 
+            // xrLabel44
+            // 
+            this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(1126F, 15F);
+            this.xrLabel44.Name = "xrLabel44";
+            this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel44.SizeF = new System.Drawing.SizeF(21.66669F, 23F);
+            this.xrLabel44.StylePriority.UseFont = false;
+            this.xrLabel44.Text = "a.";
+            // 
+            // xrLabel43
+            // 
+            this.xrLabel43.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(613.8932F, 702.7299F);
+            this.xrLabel43.Multiline = true;
+            this.xrLabel43.Name = "xrLabel43";
+            this.xrLabel43.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel43.SizeF = new System.Drawing.SizeF(149.5924F, 16.87817F);
+            this.xrLabel43.StylePriority.UseFont = false;
+            this.xrLabel43.StylePriority.UseTextAlignment = false;
+            this.xrLabel43.Text = "ข้อแนะนำในการปฏิบัติตน";
+            this.xrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrLabel53
+            // 
+            this.xrLabel53.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
+            this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(613.3374F, 719.6082F);
+            this.xrLabel53.Multiline = true;
+            this.xrLabel53.Name = "xrLabel53";
+            this.xrLabel53.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel53.SizeF = new System.Drawing.SizeF(524.6593F, 55.48395F);
+            this.xrLabel53.StylePriority.UseFont = false;
+            this.xrLabel53.StylePriority.UseTextAlignment = false;
+            this.xrLabel53.Text = resources.GetString("xrLabel53.Text");
+            this.xrLabel53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel46
             // 
@@ -603,13 +653,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             this.xrLabel30.StylePriority.UsePadding = false;
             this.xrLabel30.StylePriority.UseTextAlignment = false;
             this.xrLabel30.Text = "อัตโนมัติมีความซับซ้อนในการแปลผล ไม่แนะนำให้อ่านค่าด้วยตนเอง หากพบความผิดปกติควรป" +
-    "ฏิบัติตามคำแนะนำ หรือปรึกษาแพทย์ ได้แก่";
+    "ฏิบัติตามคำแนะนำ \r\nหรือปรึกษาแพทย์ ได้แก่";
             this.xrLabel30.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel31
             // 
             this.xrLabel31.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(647.9916F, 537.4898F);
+            this.xrLabel31.LocationFloat = new DevExpress.Utils.PointFloat(647.8776F, 537.1868F);
             this.xrLabel31.Multiline = true;
             this.xrLabel31.Name = "xrLabel31";
             this.xrLabel31.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -623,7 +673,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel32
             // 
             this.xrLabel32.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(656.1039F, 537.4898F);
+            this.xrLabel32.LocationFloat = new DevExpress.Utils.PointFloat(655.9901F, 537.1868F);
             this.xrLabel32.Multiline = true;
             this.xrLabel32.Name = "xrLabel32";
             this.xrLabel32.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -637,7 +687,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel33
             // 
             this.xrLabel33.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel33.LocationFloat = new DevExpress.Utils.PointFloat(907.0117F, 537.4898F);
+            this.xrLabel33.LocationFloat = new DevExpress.Utils.PointFloat(907.4185F, 537.1868F);
             this.xrLabel33.Multiline = true;
             this.xrLabel33.Name = "xrLabel33";
             this.xrLabel33.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -651,11 +701,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel34
             // 
             this.xrLabel34.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(647.2841F, 554.9988F);
+            this.xrLabel34.LocationFloat = new DevExpress.Utils.PointFloat(647.1701F, 554.6958F);
             this.xrLabel34.Multiline = true;
             this.xrLabel34.Name = "xrLabel34";
             this.xrLabel34.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel34.SizeF = new System.Drawing.SizeF(487.6375F, 35.71967F);
+            this.xrLabel34.SizeF = new System.Drawing.SizeF(487.6376F, 41.55298F);
             this.xrLabel34.StylePriority.UseFont = false;
             this.xrLabel34.StylePriority.UsePadding = false;
             this.xrLabel34.StylePriority.UseTextAlignment = false;
@@ -667,7 +717,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel35
             // 
             this.xrLabel35.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel35.LocationFloat = new DevExpress.Utils.PointFloat(647.384F, 590.7186F);
+            this.xrLabel35.LocationFloat = new DevExpress.Utils.PointFloat(647.2699F, 596.249F);
             this.xrLabel35.Multiline = true;
             this.xrLabel35.Name = "xrLabel35";
             this.xrLabel35.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -681,7 +731,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel36
             // 
             this.xrLabel36.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel36.LocationFloat = new DevExpress.Utils.PointFloat(655.1344F, 590.7186F);
+            this.xrLabel36.LocationFloat = new DevExpress.Utils.PointFloat(655.0203F, 596.249F);
             this.xrLabel36.Multiline = true;
             this.xrLabel36.Name = "xrLabel36";
             this.xrLabel36.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -695,7 +745,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel37
             // 
             this.xrLabel37.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(959.4626F, 590.7186F);
+            this.xrLabel37.LocationFloat = new DevExpress.Utils.PointFloat(959.3486F, 596.249F);
             this.xrLabel37.Multiline = true;
             this.xrLabel37.Name = "xrLabel37";
             this.xrLabel37.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -709,7 +759,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel38
             // 
             this.xrLabel38.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(647.3839F, 607.9622F);
+            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(647.2699F, 613.4926F);
             this.xrLabel38.Multiline = true;
             this.xrLabel38.Name = "xrLabel38";
             this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -724,7 +774,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel39
             // 
             this.xrLabel39.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(647.0313F, 628.0349F);
+            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(646.9172F, 633.5652F);
             this.xrLabel39.Multiline = true;
             this.xrLabel39.Name = "xrLabel39";
             this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -738,7 +788,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel40
             // 
             this.xrLabel40.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(655.1344F, 628.0349F);
+            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(655.0203F, 633.5652F);
             this.xrLabel40.Multiline = true;
             this.xrLabel40.Name = "xrLabel40";
             this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -753,11 +803,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel41
             // 
             this.xrLabel41.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(1055.429F, 628.0349F);
+            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(1059.813F, 633.5652F);
             this.xrLabel41.Multiline = true;
             this.xrLabel41.Name = "xrLabel41";
             this.xrLabel41.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel41.SizeF = new System.Drawing.SizeF(86.01575F, 19.66724F);
+            this.xrLabel41.SizeF = new System.Drawing.SizeF(87.73962F, 19.66724F);
             this.xrLabel41.StylePriority.UseFont = false;
             this.xrLabel41.StylePriority.UsePadding = false;
             this.xrLabel41.StylePriority.UseTextAlignment = false;
@@ -767,7 +817,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             // xrLabel42
             // 
             this.xrLabel42.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel42.LocationFloat = new DevExpress.Utils.PointFloat(647.0314F, 645.7413F);
+            this.xrLabel42.LocationFloat = new DevExpress.Utils.PointFloat(646.9172F, 651.2716F);
             this.xrLabel42.Multiline = true;
             this.xrLabel42.Name = "xrLabel42";
             this.xrLabel42.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -777,32 +827,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
             this.xrLabel42.StylePriority.UseTextAlignment = false;
             this.xrLabel42.Text = resources.GetString("xrLabel42.Text");
             this.xrLabel42.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel43
-            // 
-            this.xrLabel43.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel43.LocationFloat = new DevExpress.Utils.PointFloat(614.0074F, 697.1996F);
-            this.xrLabel43.Multiline = true;
-            this.xrLabel43.Name = "xrLabel43";
-            this.xrLabel43.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel43.SizeF = new System.Drawing.SizeF(149.5924F, 16.87817F);
-            this.xrLabel43.StylePriority.UseFont = false;
-            this.xrLabel43.StylePriority.UseTextAlignment = false;
-            this.xrLabel43.Text = "ข้อแนะนำในการปฏิบัติตน";
-            this.xrLabel43.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
-            // xrLabel53
-            // 
-            this.xrLabel53.Font = new System.Drawing.Font("EucrosiaUPC", 10F);
-            this.xrLabel53.LocationFloat = new DevExpress.Utils.PointFloat(613.4515F, 714.0778F);
-            this.xrLabel53.Multiline = true;
-            this.xrLabel53.Name = "xrLabel53";
-            this.xrLabel53.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel53.SizeF = new System.Drawing.SizeF(524.6593F, 55.48395F);
-            this.xrLabel53.StylePriority.UseFont = false;
-            this.xrLabel53.StylePriority.UseTextAlignment = false;
-            this.xrLabel53.Text = resources.GetString("xrLabel53.Text");
-            this.xrLabel53.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // LabDefinition1
             // 
@@ -873,5 +897,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.UI.XRLabel xrLabel43;
         private DevExpress.XtraReports.UI.XRLabel xrLabel53;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel48;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel44;
     }
 }

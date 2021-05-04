@@ -532,7 +532,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         || p.RequestItemCode.Contains("LAB572") //Ethylbenzene
                         || p.RequestItemCode.Contains("LAB489") //Mercury
                         || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
-                        || p.RequestItemCode.Contains("LAB568")) //Benzene (t,t-Muconic acid) in Urine
+                        || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
+                        || p.RequestItemCode.Contains("LAB488")) //Mercury in blood
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -949,6 +950,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.RowMercuryUrine.Visible = false;
                 page3.RowMethyreneUrine.Visible = false;
                 page3.RowBenzenettUrine.Visible = false;
+                page3.RowMercuryBlood.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1209,6 +1211,18 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         page3.cellBenzenettUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year1)?.ResultValue;
                         page3.cellBenzenettUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year2)?.ResultValue;
                         page3.cellBenzenettUrine3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1215" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Mercury Blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
+                    {
+                        page3.RowMercuryBlood.Visible = true;
+                        page3.cellMercuryBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
+                        page3.cellMercuryBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
+                        page3.cellMercuryBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
+                        page3.cellMercuryBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
                 }

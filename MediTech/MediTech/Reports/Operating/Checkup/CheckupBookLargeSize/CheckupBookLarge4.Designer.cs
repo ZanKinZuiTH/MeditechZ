@@ -326,7 +326,7 @@
             this.tbFBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tbFBS.CanGrow = false;
             this.tbFBS.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(164.0108F, 657.8688F);
+            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(164.0108F, 657.1112F);
             this.tbFBS.Name = "tbFBS";
             this.tbFBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.tbFBS.SizeF = new System.Drawing.SizeF(273.0529F, 25F);
@@ -3128,7 +3128,7 @@
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(685.9612F, 374.0952F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(685.9612F, 373.3376F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -3380,7 +3380,7 @@
             this.xrLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel4.CanGrow = false;
             this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(685.9612F, 581.9317F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(685.9612F, 580.4166F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -3419,19 +3419,19 @@
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1,
             this.xrTable4});
-            this.BottomMargin.HeightF = 30.83333F;
+            this.BottomMargin.HeightF = 48.75F;
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // xrTable1
             // 
-            this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(648.6635F, 10F);
+            this.xrTable1.Font = new System.Drawing.Font("EucrosiaUPC", 8F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(625.298F, 10F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow37});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(252.5F, 15F);
             this.xrTable1.StylePriority.UseBorderWidth = false;
             this.xrTable1.StylePriority.UseFont = false;
             // 
@@ -3454,26 +3454,26 @@
             // 
             // lbHN9
             // 
-            this.lbHN9.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN9.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbHN9.Name = "lbHN9";
             this.lbHN9.StylePriority.UseFont = false;
-            this.lbHN9.Weight = 0.40000005660517463D;
+            this.lbHN9.Weight = 0.5750000824466811D;
             // 
             // lbName9
             // 
-            this.lbName9.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName9.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbName9.Name = "lbName9";
             this.lbName9.StylePriority.UseFont = false;
-            this.lbName9.Weight = 1.5083327681018564D;
+            this.lbName9.Weight = 1.7916665501749209D;
             // 
             // xrTable4
             // 
-            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 8F);
+            this.xrTable4.Font = new System.Drawing.Font("EucrosiaUPC", 8F);
             this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(50.24999F, 10F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow17});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(206.6666F, 15F);
+            this.xrTable4.SizeF = new System.Drawing.SizeF(249.9999F, 15F);
             this.xrTable4.StylePriority.UseBorderWidth = false;
             this.xrTable4.StylePriority.UseFont = false;
             // 
@@ -3496,17 +3496,17 @@
             // 
             // lbHN4
             // 
-            this.lbHN4.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbHN4.Name = "lbHN4";
             this.lbHN4.StylePriority.UseFont = false;
-            this.lbHN4.Weight = 0.40000005660517463D;
+            this.lbHN4.Weight = 0.56666679874543757D;
             // 
             // lbName4
             // 
-            this.lbName4.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
             this.lbName4.Name = "lbName4";
             this.lbName4.StylePriority.UseFont = false;
-            this.lbName4.Weight = 1.5083327681018564D;
+            this.lbName4.Weight = 1.7749992198328681D;
             // 
             // CheckupBookLarge4
             // 
@@ -3515,7 +3515,7 @@
             this.TopMargin,
             this.BottomMargin});
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(0, 2, 0, 31);
+            this.Margins = new System.Drawing.Printing.Margins(0, 2, 0, 49);
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
