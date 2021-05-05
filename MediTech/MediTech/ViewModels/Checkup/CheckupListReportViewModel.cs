@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.XtraPrinting;
+using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Reports.Operating.Checkup.RiskBook;
@@ -209,6 +210,12 @@ namespace MediTech.ViewModels
             get { return _PrintToPDFCommand ?? (_PrintToPDFCommand = new RelayCommand(PrintToPDF)); }
         }
 
+        private RelayCommand _PrintToXLSXCommand;
+        public RelayCommand PrintToXLSXCommand
+        {
+            get { return _PrintToXLSXCommand ?? (_PrintToXLSXCommand = new RelayCommand(PrintToXLSX)); }
+        }
+
         #endregion
 
         #region Method
@@ -393,6 +400,45 @@ namespace MediTech.ViewModels
                         rpt.RequestParameters = false;
                         rpt.ShowPrintMarginsWarning = false;
                         rpt.ExportToPdf(path + "\\" + fileName);
+
+                        SelectPatientCheckupResult.Remove(item);
+                    }
+                }
+            }
+        }
+
+        void PrintToXLSX()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                FolderBrowserDialog folderDlg = new FolderBrowserDialog();
+                DialogResult result = folderDlg.ShowDialog();
+
+                if (result == DialogResult.OK)
+                {
+                    string path = folderDlg.SelectedPath;
+                    var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                    foreach (var item in patientResultLabList.ToList())
+                    {
+                        string fileName = (string.IsNullOrEmpty(item.EmployeeID) ? "" : item.EmployeeID + " ") + item.PatientName + ".xlsx";
+
+                        var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
+                        XtraReport rpt = (XtraReport)myReport;
+                        rpt.Parameters["PatientUID"].Value = item.PatientUID;
+                        rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่")
+                            rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
+                        XlsxExportOptions xlsxExportOptions = new XlsxExportOptions()
+                        {
+                            ExportMode = XlsxExportMode.SingleFilePageByPage
+                        };
+
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                        rpt.ExportToXlsx(path + "\\" + fileName, xlsxExportOptions);
 
                         SelectPatientCheckupResult.Remove(item);
                     }

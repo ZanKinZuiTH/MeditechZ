@@ -112,6 +112,12 @@ namespace MediTech.ViewModels
             get { return _DeleteCommand ?? (_DeleteCommand = new RelayCommand(Delete)); }
         }
 
+        private RelayCommand _ExportToXLSXCommand;
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
+
         #endregion
 
         #region Method
@@ -165,6 +171,30 @@ namespace MediTech.ViewModels
                 ManageBillableItem pageManage = new ManageBillableItem();
                 (pageManage.DataContext as ManageBillableItemViewModel).AssingModel(SelectBillableItem);
                 ChangeViewPermission(pageManage);
+            }
+
+        }
+
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (BillableItems != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        ListBillableItem view = (ListBillableItem)this.View;
+                        view.gvBillableItem.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
             }
 
         }

@@ -201,6 +201,14 @@
                             </StackPanel>
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="110" Height="30"  Command="{Binding PrintToXLSXCommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Document/xls.png"/>
+                                <TextBlock Text="PrintToExcel" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
             </dxlc:LayoutGroup>
