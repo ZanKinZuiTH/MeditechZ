@@ -53,6 +53,8 @@ namespace MediTech.Reports.Operating.Cashier
                     lbAddress.Text = address + mobile;
                     lbOrganisationCopy.Text = Organisation.Description?.ToString();
                     lbAddressCopy.Text = address + mobile;
+                    lbComment.Text = Organisation.Comment != null ? Organisation.Comment.ToString() : "";
+                    lbComment2.Text = Organisation.Comment != null ? Organisation.Comment.ToString() : "";
 
                     lbTaxNo.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
@@ -79,6 +81,8 @@ namespace MediTech.Reports.Operating.Cashier
                     lbAddress.Text = address + mobile;
                     lbOrganisationCopy.Text = SelectOrganisation.Description?.ToString();
                     lbAddressCopy.Text = address + mobile;
+                    lbComment.Text = SelectOrganisation.Comment != null ? SelectOrganisation.Comment.ToString() : "";
+                    lbComment2.Text = SelectOrganisation.Comment != null ? SelectOrganisation.Comment.ToString() : "";
 
                     lbTaxNo.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";

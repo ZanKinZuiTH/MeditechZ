@@ -121,6 +121,9 @@
                                       ItemsSource="{Binding DistrictSource}"
                                       SelectedItem="{Binding SelectedDistrict}"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Comment">
+                            <dxe:TextEdit EditValue="{Binding Comment}"/>
+                        </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="รหัสไปษณีย์" >
                             <cc:AutoCompleteTextBox Text="{Binding ZipCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource ZipCodeColumn}}"

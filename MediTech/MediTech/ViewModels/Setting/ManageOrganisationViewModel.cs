@@ -291,6 +291,13 @@ namespace MediTech.ViewModels
             set { Set(ref _IDFormat, value); }
         }
 
+        private string _Comment;
+        public string Comment
+        {
+            get { return _Comment; }
+            set { Set(ref _Comment, value); }
+        }
+
         private int? _IDLength;
 
         public int? IDLength
@@ -624,6 +631,7 @@ namespace MediTech.ViewModels
             IDFormat = model.IDFormat;
             IDLength = model.IDLength;
             IDNumberValue = model.NumberValue;
+            Comment = model.Comment;
 
             HealthOrganisationIDs = model.HealthOrganisationIDs;
         }
@@ -668,6 +676,7 @@ namespace MediTech.ViewModels
             }
 
             model.HealthOrganisationIDs = HealthOrganisationIDs;
+            model.Comment = Comment;
         }
         #endregion
     }

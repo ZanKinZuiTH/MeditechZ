@@ -609,6 +609,7 @@
           <Property Name="DistrictUID" Type="int" />
           <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
           <Property Name="TINNo" Type="nvarchar" MaxLength="20" />
+          <Property Name="Comment" Type="nvarchar" MaxLength="255" />
           <Property Name="LicenseNo" Type="nvarchar" MaxLength="50" />
           <Property Name="LogoImage" Type="varbinary(max)" />
           <Property Name="ActiveFrom" Type="datetime" />
@@ -8365,6 +8366,7 @@
           <Property Name="DistrictUID" Type="Int32" />
           <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="TINNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="LicenseNo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="LogoImage" Type="Binary" MaxLength="Max" FixedLength="false" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
@@ -13461,6 +13463,7 @@
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="LogoImage" ColumnName="LogoImage" />
                 <ScalarProperty Name="LicenseNo" ColumnName="LicenseNo" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="TINNo" ColumnName="TINNo" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="DistrictUID" ColumnName="DistrictUID" />
