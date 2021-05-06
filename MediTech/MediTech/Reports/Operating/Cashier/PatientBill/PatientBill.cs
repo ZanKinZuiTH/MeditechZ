@@ -49,13 +49,24 @@ namespace MediTech.Reports.Operating.Cashier
                     var Organisation = (new MasterDataService()).GetHealthOrganisationByUID(OrganisationUID);
                     string mobile = Organisation.MobileNo != null ? "โทร " + Organisation.MobileNo?.ToString() : "";
                     string address = Organisation.Address?.ToString();
-                    lbOrganisation.Text = Organisation.Description?.ToString();
-                    lbAddress.Text = address + mobile;
-                    lbOrganisationCopy.Text = Organisation.Description?.ToString();
-                    lbAddressCopy.Text = address + mobile;
-                    lbComment.Text = Organisation.Comment != null ? Organisation.Comment.ToString() : "";
-                    lbComment2.Text = Organisation.Comment != null ? Organisation.Comment.ToString() : "";
 
+                    if(Organisation.HealthOrganisationUID == 26)
+                    {
+                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                        lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                        lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                        lbComment2.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                    }
+                    else
+                    {
+                        lbOrganisation.Text = Organisation.Description?.ToString();
+                        lbOrganisationCopy.Text = Organisation.Description?.ToString();
+                        lbAddress.Text = address + mobile;
+                        lbAddressCopy.Text = address + mobile;
+                    }
+                    
                     lbTaxNo.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = Organisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + Organisation.TINNo.ToString() : "";
 
@@ -77,12 +88,25 @@ namespace MediTech.Reports.Operating.Cashier
                     var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
                     string mobile = SelectOrganisation.MobileNo != null ? "โทร " + SelectOrganisation.MobileNo?.ToString() : "";
                     string address = SelectOrganisation.Address?.ToString();
-                    lbOrganisation.Text = SelectOrganisation.Description?.ToString();
-                    lbAddress.Text = address + mobile;
-                    lbOrganisationCopy.Text = SelectOrganisation.Description?.ToString();
-                    lbAddressCopy.Text = address + mobile;
-                    lbComment.Text = SelectOrganisation.Comment != null ? SelectOrganisation.Comment.ToString() : "";
-                    lbComment2.Text = SelectOrganisation.Comment != null ? SelectOrganisation.Comment.ToString() : "";
+
+                    if (SelectOrganisation.HealthOrganisationUID != 26)
+                    {
+                        lbOrganisation.Text = SelectOrganisation.Description?.ToString();
+                        lbAddress.Text = address + mobile;
+                        lbOrganisationCopy.Text = SelectOrganisation.Description?.ToString();
+                        lbAddressCopy.Text = address + mobile;
+                        lbComment.Text = "";
+                        lbComment2.Text = "";
+                    }
+                    else
+                    {
+                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                        lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                        lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                        lbComment2.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                    }
 
                     lbTaxNo.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
