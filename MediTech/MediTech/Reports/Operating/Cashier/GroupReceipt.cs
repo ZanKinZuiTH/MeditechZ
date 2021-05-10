@@ -28,7 +28,7 @@ namespace MediTech.Reports.Operating.Cashier
                 lbSell.Text = data.Seller;
                 lbCompany.Text = data.PayorName;
                 lbAddress.Text = data.PayerAddress;
-                var tex = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo.ToString();
+                var tex = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
                 lbTexNo.Text = tex != null ? "เลขประจำตัวผู้เลียภาษี " + tex : "";
                 
 
