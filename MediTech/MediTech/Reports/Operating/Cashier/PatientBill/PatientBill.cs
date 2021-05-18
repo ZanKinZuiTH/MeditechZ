@@ -52,8 +52,8 @@ namespace MediTech.Reports.Operating.Cashier
 
                     if(Organisation.HealthOrganisationUID == 26)
                     {
-                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
-                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
+                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
                         lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
                         lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
                         lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
@@ -100,8 +100,8 @@ namespace MediTech.Reports.Operating.Cashier
                     }
                     else
                     {
-                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
-                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด";
+                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
+                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
                         lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
                         lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
                         lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";

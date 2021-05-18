@@ -155,6 +155,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 lbAge.Text = patient.Age != null ? patient.Age : "";
                 lbGender.Text = patient.Gender;
                 lbAddress.Text = patient.PatientAddress != null ? patient.PatientAddress : "";
+                lbPhoneNumber.Text = patient.MobilePhone != null ? patient.MobilePhone : "";
 
                 lbHeight.Text = patient.Height != null ? patient.Height.ToString() : "";
                 lbWeight.Text = patient.Weight != null ? patient.Weight.ToString() : "";
@@ -1957,6 +1958,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page2.lbDrugAllergy.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM13")?.ResultValue;
                 page2.lbAlcohol.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM12")?.ResultValue;
                 page2.lbUnderlying.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM14")?.ResultValue;
+
+                var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.RequestItemCode == "PEXAM15")?.ResultValue;
+                if(waterCheck == "ใช่")
+                {
+                    page2.waterY.Checked = true;
+                }
+                else
+                {
+                    page2.WaterN.Checked = true;
+                }
             }
         }
 
