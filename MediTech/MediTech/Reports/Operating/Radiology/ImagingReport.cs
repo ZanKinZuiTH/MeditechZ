@@ -44,10 +44,11 @@ namespace MediTech.Reports.Operating.Radiology
                 this.lblRegisterNo.Text = dataReport.HN;
                 this.lblRequestDate.Text = dataReport.RequestedDttm.ToString("dd MMM yyyy HH:mm:ss", culture);
                 this.lblReportDate.Text = dataReport.ResultEnteredDttm.Value.ToString("dd MMM yyyy HH:mm:ss", culture);
-                this.lblDoctor.Text = dataReport.Doctor;
+                this.lblDoctor.Text = dataReport.Doctor +"  " + dataReport.DoctorLicense;
                 this.lblPatientOrder.Text = dataReport.RequestItemName;
                 this.lblFREportDoc.Text = dataReport.Doctor;
                 this.lblFReportDate.Text = dataReport.ResultEnteredDttm.Value.ToString("dd MMM yyyy HH:mm:ss", culture);
+               
 
                 if (LogoType.ToUpper() == "BRXG POLYCLINIC")
                 {

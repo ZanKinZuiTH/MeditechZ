@@ -1106,6 +1106,7 @@ namespace MediTechWebApi.Controllers
                                            {
                                                Age = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                                Doctor = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
+                                               DoctorLicense = SqlFunction.fGetCareProviderLicenseNo(rs.RadiologistUID ?? 0),
                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
                                                HN = pa.PatientID,
                                                Location = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),

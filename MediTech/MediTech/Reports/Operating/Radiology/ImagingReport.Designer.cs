@@ -190,7 +190,7 @@
             this.lblDoctor.LocationFloat = new DevExpress.Utils.PointFloat(514.5833F, 210.625F);
             this.lblDoctor.Name = "lblDoctor";
             this.lblDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblDoctor.SizeF = new System.Drawing.SizeF(284.375F, 22.99997F);
+            this.lblDoctor.SizeF = new System.Drawing.SizeF(284.3751F, 22.99998F);
             this.lblDoctor.StylePriority.UseFont = false;
             this.lblDoctor.StylePriority.UseTextAlignment = false;
             this.lblDoctor.Text = "xrLabel16";
