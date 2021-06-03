@@ -51,20 +51,29 @@
                     <dxe:DateEdit EditValue="{Binding LastVisitDate,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dxlc:LayoutItem >
-                    <dx:SimpleButton x:Name="btnSearch" Content="ค้นหา"
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="เบอร์โทรศัพท์">
+                    <dxe:TextEdit Name="txtMobilePhone" Text="{Binding MobilePhone,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem />
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dxlc:LayoutItem >
+                            <dx:SimpleButton x:Name="btnSearch" Content="ค้นหา"
                                      Width="80"
                                      Height="25"
                                      Command="{Binding SearchCommand}" IsDefault="True"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
-                    <dx:SimpleButton Content="คื่นค่า"
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem >
+                            <dx:SimpleButton Content="คื่นค่า"
                                      Width="80"
                                      Height="25"
                                      Command="{Binding ResetCommand}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
+            
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl Name="grdPatient" ItemsSource="{Binding PatientSource}"
                                  AutoGenerateColumns="None"

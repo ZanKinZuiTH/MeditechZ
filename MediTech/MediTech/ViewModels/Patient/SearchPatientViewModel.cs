@@ -97,6 +97,13 @@ namespace MediTech.ViewModels
             set { _NationalID = value; RaisePropertyChanged("NationalID"); }
         }
 
+        private string _MobilePhone;
+        public string MobilePhone
+        {
+            get { return _MobilePhone; }
+            set { _MobilePhone = value; RaisePropertyChanged("MobilePhone"); }
+        }
+
         private DateTime? _LastVisitDate = null;
 
         public DateTime? LastVisitDate
@@ -193,7 +200,7 @@ namespace MediTech.ViewModels
             {
                 gender = SelectedGender.Display;
             }
-            SearchPatient(PatientID, FirstName, LastName, MiddleName, NickName, BirthDate, NationalID, LastVisitDate, gender);
+            SearchPatient(PatientID, FirstName, LastName, MiddleName, NickName, BirthDate, NationalID, LastVisitDate, gender, MobilePhone);
             if (PatientSource == null || PatientSource.Count <= 0)
             {
                 InformationDialog("ไม่พบข้อมูลปู้ป่วย");
@@ -205,7 +212,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void SearchPatient(string pateintID, string firstName, string lastName, string middleName, string nickName, DateTime? birthDate, string nationalID, DateTime? lastVisitData, string gender)
+        public void SearchPatient(string pateintID, string firstName, string lastName, string middleName, string nickName, DateTime? birthDate, string nationalID, DateTime? lastVisitData, string gender, string mobilePhone)
         {
             int? sexxxUID = null;
             if (GenderSource != null)
@@ -217,14 +224,14 @@ namespace MediTech.ViewModels
                }
             }
 
-            if (String.IsNullOrEmpty(pateintID) && String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName) && String.IsNullOrEmpty(middleName) && String.IsNullOrEmpty(nickName) && birthDate == null && String.IsNullOrEmpty(nationalID) && lastVisitData == null && sexxxUID == null)
+            if (String.IsNullOrEmpty(pateintID) && String.IsNullOrEmpty(firstName) && String.IsNullOrEmpty(lastName) && String.IsNullOrEmpty(middleName) && String.IsNullOrEmpty(nickName) && birthDate == null && String.IsNullOrEmpty(nationalID) && lastVisitData == null && sexxxUID == null && mobilePhone == null)
             {
                 PatientSource = null;
                 return;
             }
 
 
-            PatientSource = DataService.PatientIdentity.SearchPatient(pateintID, firstName, middleName, lastName, nickName, birthDate, sexxxUID, nationalID, lastVisitData);
+            PatientSource = DataService.PatientIdentity.SearchPatient(pateintID, firstName, middleName, lastName, nickName, birthDate, sexxxUID, nationalID, lastVisitData, MobilePhone);
             SelectedPatient = PatientSource.FirstOrDefault();
         }
 
@@ -239,6 +246,7 @@ namespace MediTech.ViewModels
             NationalID = string.Empty;
             LastVisitDate = null;
             SelectedGender = null;
+            MobilePhone = null;
 
             PatientSource = null;
         }

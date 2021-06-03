@@ -522,7 +522,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null);
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "");
                 PatientsPrimarySearchSource = searchResult;
             }
             else
@@ -566,7 +566,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null);
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "");
                 PatientsSecondarySearchSource = searchResult;
             }
             else
