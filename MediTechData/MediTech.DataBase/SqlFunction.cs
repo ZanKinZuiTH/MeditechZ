@@ -853,7 +853,7 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate
-            , int? SEXXXUID, string idCard, DateTime? lastVisitDate)
+            , int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatient", entities.Database.Connection.ConnectionString);
@@ -868,6 +868,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_IDCard", idCard ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_LastVisitDate", lastVisitDate ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_MobilePhone", mobilePhone ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
