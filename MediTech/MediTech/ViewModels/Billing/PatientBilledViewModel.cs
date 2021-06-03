@@ -106,6 +106,14 @@ namespace MediTech.ViewModels
             set { _SelectPatientBill = value; }
         }
 
+        private List<LookupReferenceValueModel> _PaymentMethods;
+
+        public List<LookupReferenceValueModel> PaymentMethods
+        {
+            get { return _PaymentMethods; }
+            set { Set(ref _PaymentMethods, value); }
+        }
+
 
         #endregion
 
@@ -156,6 +164,7 @@ namespace MediTech.ViewModels
             DateTo = DateTime.Now;
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            PaymentMethods = DataService.Technical.GetReferenceValueMany("PAYMD");
         }
 
         public override void OnLoaded()

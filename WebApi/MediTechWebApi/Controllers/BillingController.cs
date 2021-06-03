@@ -1022,6 +1022,28 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("UpdatePaymentMethod")]
+        [HttpPut]
+        public HttpResponseMessage UpdatePaymentMethod(int patientBillUID,string PAYMDUID,int userUID)
+        {
+            try
+            {
+                var patientBill = db.PatientBill.Find(patientBillUID);
+                if (patientBill != null)
+                {
+                    patientBill.MUser = userUID;
+                    patientBill.MWhen = DateTime.Now;
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                return Request.CreateResponse(HttpStatusCode.NoContent);
+            }
+            catch (Exception)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         [Route("PrintStatementBill")]
         [HttpGet]
         public List<PatientBillModel> PrintStatementBill(long patientBillUID)

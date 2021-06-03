@@ -173,6 +173,14 @@
                         <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
+                        <dxg:GridColumn Header="วิธีการชำระเงิน" FieldName="PAYMDUID" ReadOnly="False">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:ComboBoxEditSettings ItemsSource="{Binding PaymentMethods}"
+                                                          NullValueButtonPlacement="EditBox"
+                                                      ValueMember="Key"
+                                                      DisplayMember="Display"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
                         <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
@@ -181,7 +189,6 @@
                     <dxg:GridControl.View>
                         <dxg:TableView Name="view" AllowScrollAnimation="True" UseLightweightTemplates="None"
                                        ShowGroupPanel="False"
-                                       NavigationStyle="Row"
                                        RowStyle="{StaticResource BackgroundStyle}"
                                        DataRowTemplate="{StaticResource expandableRowDetailTemplate}">
                         </dxg:TableView>

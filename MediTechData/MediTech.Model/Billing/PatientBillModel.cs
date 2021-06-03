@@ -52,6 +52,8 @@ namespace MediTech.Model
         public string OrganisationName { get; set; }
         public string OrganisationAddress { get; set; }
         public string OperationBy { get; set; }
+        public int PAYMDUID { get; set; }
+        public string PaymentMethod { get; set; }
         public List<PatientBilledItemModel> PatientBilledItems {get; set;}
     }
 }
