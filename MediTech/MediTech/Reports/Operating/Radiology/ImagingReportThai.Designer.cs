@@ -74,6 +74,7 @@
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lblThaiReult = new DevExpress.XtraReports.UI.XRTableCell();
+            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -442,10 +443,10 @@
             // lblOrganisationAddress
             // 
             this.lblOrganisationAddress.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.lblOrganisationAddress.LocationFloat = new DevExpress.Utils.PointFloat(267.9166F, 64.70836F);
+            this.lblOrganisationAddress.LocationFloat = new DevExpress.Utils.PointFloat(229.1667F, 64.70835F);
             this.lblOrganisationAddress.Name = "lblOrganisationAddress";
             this.lblOrganisationAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblOrganisationAddress.SizeF = new System.Drawing.SizeF(395.83F, 23F);
+            this.lblOrganisationAddress.SizeF = new System.Drawing.SizeF(449.9999F, 23F);
             this.lblOrganisationAddress.StylePriority.UseFont = false;
             this.lblOrganisationAddress.StylePriority.UseTextAlignment = false;
             this.lblOrganisationAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -465,6 +466,7 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.logobutton,
             this.lblFReportDate,
             this.lblFREportDoc,
             this.xrLabel15,
@@ -601,6 +603,13 @@
             this.lblThaiReult.Text = "lblThaiReult";
             this.lblThaiReult.Weight = 1D;
             // 
+            // logobutton
+            // 
+            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
+            this.logobutton.Name = "logobutton";
+            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
+            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // ImagingReportThai
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -671,5 +680,6 @@
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell lblThaiReult;
+        private DevExpress.XtraReports.UI.XRPictureBox logobutton;
     }
 }

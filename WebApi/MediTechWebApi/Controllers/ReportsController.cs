@@ -1104,7 +1104,7 @@ namespace MediTechWebApi.Controllers
                                            && rs.UID == resultUID
                                            select new PatientResultRadiology
                                            {
-                                               Age = pa.DOBDttm != null ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                               Age = pa.DOBDttm != null ? SqlFunction.fGetAge(pa.DOBDttm.Value) : "",
                                                Doctor = SqlFunction.fGetCareProviderName(rs.RadiologistUID ?? 0),
                                                DoctorLicense = SqlFunction.fGetCareProviderLicenseNo(rs.RadiologistUID ?? 0),
                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),

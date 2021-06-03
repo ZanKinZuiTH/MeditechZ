@@ -40,7 +40,7 @@ namespace MediTech.Reports.Operating.Radiology
             {
                 this.lblOrderName.Text = dataReport.RequestItemName;
                 this.lblPatientName.Text = dataReport.PatientName;
-                this.lblAge.Text = dataReport.Age;
+                this.lblAge.Text = dataReport.Age != null ? dataReport.Age + " Y" : "";
                 this.lblSex.Text = dataReport.Gender;
                 this.lblRegisterNo.Text = dataReport.HN;
                 this.lblRequestDate.Text = dataReport.RequestedDttm.ToString("dd MMM yyyy HH:mm:ss", culture);
@@ -101,7 +101,7 @@ namespace MediTech.Reports.Operating.Radiology
                 }
                 else if (LogoType.ToUpper() == "โรงพยาบาลพระยุพราช")
                 {
-                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoHospital.png", UriKind.Absolute);
+                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/LogoHospital.jpg", UriKind.Absolute);
                     BitmapImage imageSource = new BitmapImage(uri);
                     using (MemoryStream outStream = new MemoryStream())
                     {
@@ -114,8 +114,36 @@ namespace MediTech.Reports.Operating.Radiology
                     this.logo.SizeF = new System.Drawing.SizeF(95.83336F, 108.7084F);
                     this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
-                    this.lblOrganisationAddress.Text = dataReport.OgranastionAddress;
+                    this.lblOrganisationAddress.Text = "155/196 หมู่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร. 033060399";
                     this.lblRegisterNo.Text = dataReport.OtherID;
+                }
+                else if (LogoType.ToUpper() == "แม่ฟ้าหลวง")
+                {
+                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoMFU.jpg", UriKind.Absolute);
+                    BitmapImage imageSource = new BitmapImage(uri);
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        BitmapEncoder enc = new BmpBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(imageSource));
+                        enc.Save(outStream);
+                        this.logo.Image = System.Drawing.Image.FromStream(outStream);
+                    }
+                    this.logo.LocationFloat = new DevExpress.Utils.PointFloat(70.54F, 23F);
+                    this.logo.SizeF = new System.Drawing.SizeF(95.83336F, 150.7084F);
+                    this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+
+                    this.lblOrganisationAddress.Text = "ศูนย์บริการสุขภาพแบบครบวงจรแห่งภาคเหนือและอนุภูมิภาคลุ่มแม่น้ำโขง 333 ม.1 ต.ท่าสุด อ.เมือง จ.เชียงราย 57100 โทรศัพท์ 053 - 917556";
+                    this.lblRegisterNo.Text = dataReport.OtherID;
+
+                    Uri uri2 = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoBRXG4.jpg", UriKind.Absolute);
+                    BitmapImage imageSource2= new BitmapImage(uri2);
+                    using (MemoryStream outStream2 = new MemoryStream())
+                    {
+                        BitmapEncoder enc2 = new BmpBitmapEncoder();
+                        enc2.Frames.Add(BitmapFrame.Create(imageSource2));
+                        enc2.Save(outStream2);
+                        this.logobutton.Image = System.Drawing.Image.FromStream(outStream2);
+                    }
                 }
                 else
                 {
