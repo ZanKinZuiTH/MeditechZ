@@ -272,7 +272,7 @@ namespace MediTech.ViewModels
                 if (SelectPageIndex == 0)
                 {
                     SearchPatientViewModel searchPatViewModel = (searchPatient.DataContext as SearchPatientViewModel);
-                    searchPatViewModel.SearchPatient("", firstName, lastName, middleName, "", birthDttm, "", null, gender);
+                    searchPatViewModel.SearchPatient("", firstName, lastName, middleName, "", birthDttm, "", null, gender, "");
 
                     if (searchPatViewModel.PatientSource == null || searchPatViewModel.PatientSource.Count <= 0)
                     {

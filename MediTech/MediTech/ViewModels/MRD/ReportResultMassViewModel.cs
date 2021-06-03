@@ -470,6 +470,7 @@ namespace MediTech.ViewModels
             Logos.Add(new LookupItemModel { Key = 0, Display = "BRXG Polyclinic" });
             Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
             Logos.Add(new LookupItemModel { Key = 2, Display = "โรงพยาบาลพระยุพราช" });
+            Logos.Add(new LookupItemModel { Key = 3, Display = "แม่ฟ้าหลวง"});
             SelectLogo = Logos.FirstOrDefault();
 
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
@@ -1435,7 +1436,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null);
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "");
                 PatientsSearchSource = searchResult;
             }
             else

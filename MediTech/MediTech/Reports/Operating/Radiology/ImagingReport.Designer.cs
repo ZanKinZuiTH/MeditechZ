@@ -65,6 +65,7 @@
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             this.ResultUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -190,7 +191,7 @@
             this.lblDoctor.LocationFloat = new DevExpress.Utils.PointFloat(514.5833F, 210.625F);
             this.lblDoctor.Name = "lblDoctor";
             this.lblDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblDoctor.SizeF = new System.Drawing.SizeF(284.375F, 22.99997F);
+            this.lblDoctor.SizeF = new System.Drawing.SizeF(284.3751F, 22.99998F);
             this.lblDoctor.StylePriority.UseFont = false;
             this.lblDoctor.StylePriority.UseTextAlignment = false;
             this.lblDoctor.Text = "xrLabel16";
@@ -371,10 +372,10 @@
             // lblOrganisationAddress
             // 
             this.lblOrganisationAddress.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.lblOrganisationAddress.LocationFloat = new DevExpress.Utils.PointFloat(262.5F, 63.70835F);
+            this.lblOrganisationAddress.LocationFloat = new DevExpress.Utils.PointFloat(229.1667F, 66.20834F);
             this.lblOrganisationAddress.Name = "lblOrganisationAddress";
             this.lblOrganisationAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblOrganisationAddress.SizeF = new System.Drawing.SizeF(395.8332F, 23F);
+            this.lblOrganisationAddress.SizeF = new System.Drawing.SizeF(448.3334F, 23F);
             this.lblOrganisationAddress.StylePriority.UseFont = false;
             this.lblOrganisationAddress.StylePriority.UseTextAlignment = false;
             this.lblOrganisationAddress.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -401,6 +402,7 @@
             // PageFooter
             // 
             this.PageFooter.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.logobutton,
             this.lblFReportDate,
             this.lblFREportDoc,
             this.xrLabel15,
@@ -469,6 +471,13 @@
             this.ResultUID.Name = "ResultUID";
             this.ResultUID.Visible = false;
             // 
+            // logobutton
+            // 
+            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
+            this.logobutton.Name = "logobutton";
+            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
+            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // ImagingReport
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -527,5 +536,6 @@
         private DevExpress.XtraReports.UI.XRLine xrLine3;
         private DevExpress.XtraReports.UI.XRPictureBox logo;
         public DevExpress.XtraReports.UI.XRLabel lblOrganisationAddress;
+        private DevExpress.XtraReports.UI.XRPictureBox logobutton;
     }
 }

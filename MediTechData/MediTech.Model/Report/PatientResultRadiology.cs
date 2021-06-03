@@ -32,6 +32,7 @@ namespace MediTech.Model.Report
         public DateTime? ResultEnteredDttm { get; set; }
         public string ResultStatus { get; set; }
         public string Doctor { get; set; }
+        public string DoctorLicense { get; set; }
         public string PayorName { get; set; }
         public string ThaiResult { get; set; }
         public string ResultValue { get; set; }
