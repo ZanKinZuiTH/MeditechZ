@@ -176,9 +176,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatient")]
         [HttpGet]
-        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate)
+        public List<PatientInformationModel> SearchPatient(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate);
+            DataTable dataTable = SqlDirectStore.pSearchPatient(patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone);
 
             List<PatientInformationModel> data = dataTable.ToList<PatientInformationModel>();
 
