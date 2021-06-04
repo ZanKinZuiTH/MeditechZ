@@ -90,9 +90,9 @@ namespace MediTech.ViewModels
             set { Set(ref _BillNumber, value); }
         }
 
-        private List<PatientBillModel> _PatientBillSource;
+        private ObservableCollection<PatientBillModel> _PatientBillSource;
 
-        public List<PatientBillModel> PatientBillSource
+        public ObservableCollection<PatientBillModel> PatientBillSource
         {
             get { return _PatientBillSource; }
             set { Set(ref _PatientBillSource, value); }
@@ -113,7 +113,6 @@ namespace MediTech.ViewModels
             get { return _PaymentMethods; }
             set { Set(ref _PaymentMethods, value); }
         }
-
 
         #endregion
 
@@ -146,6 +145,7 @@ namespace MediTech.ViewModels
         {
             get { return _SearchCommand ?? (_SearchCommand = new RelayCommand(SearchPatientBill)); }
         }
+
 
         private RelayCommand _ClearCommand;
 
@@ -181,7 +181,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientBillSource = DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID);
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID));
         }
 
         public void ViewBill()
@@ -190,7 +190,6 @@ namespace MediTech.ViewModels
             {
                 try
                 {
-
                     XtraReport report;
                     if (SelectPatientBill.VisitType != "Non Medical")
                     {
@@ -248,6 +247,22 @@ namespace MediTech.ViewModels
                     ErrorDialog(er.Message);
                 }
 
+            }
+        }
+
+        public void UpdatePatientBill(int PAYMDUID)
+        {
+            try
+            {
+                if (SelectPatientBill != null)
+                {
+                    DataService.Billing.UpdatePaymentMethod(SelectPatientBill.PatientBillUID, PAYMDUID, AppUtil.Current.UserID);
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
             }
         }
 

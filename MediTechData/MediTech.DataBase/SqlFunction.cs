@@ -1635,6 +1635,18 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable pRPTRevenuePerDay(DateTime billGeneratedDttm,string organisationList)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTRevenuePerDay", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_BillGeneratedDttm", billGeneratedDttm);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pRPTUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();

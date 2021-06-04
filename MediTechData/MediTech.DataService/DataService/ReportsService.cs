@@ -38,6 +38,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<RevenuePerDayModel> GetRevenuePerDay(DateTime billGeneratedDttm, string organisationList)
+        {
+            string requestApi = string.Format("Api/Report/GetRevenuePerDay?billGeneratedDttm={0:MM/dd/yyyy}&organisationList={1}", billGeneratedDttm, organisationList);
+            List<RevenuePerDayModel> data = MeditechApiHelper.Get<List<RevenuePerDayModel>>(requestApi);
+
+            return data;
+        }
+
         public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {
             string requestApi = string.Format("Api/Report/GetUsedReport?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationList={2}", dateFrom, dateTo, organisationList);

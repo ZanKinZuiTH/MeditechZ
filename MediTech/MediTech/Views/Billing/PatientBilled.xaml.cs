@@ -1,4 +1,5 @@
-﻿using MediTech.ViewModels;
+﻿using MediTech.Model;
+using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -33,6 +34,11 @@ namespace MediTech.Views
         void PatientBilledViewModel_UpdateEvent(object sender, EventArgs e)
         {
             grdPatBill.RefreshData();
+        }
+
+        private void PART_Editor_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+            (this.DataContext as PatientBilledViewModel).UpdatePatientBill((int)e.NewValue);
         }
     }
 }

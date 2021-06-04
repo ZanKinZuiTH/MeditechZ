@@ -93,6 +93,23 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public bool UpdatePaymentMethod(long patientBillUID, int PAYMDUID, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/UpdatePaymentMethod?patientBillUID={0}&PAYMDUID={1}&userUID={2}", patientBillUID, PAYMDUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
         public List<PatientBillModel> PrintStatementBill(long patientBillUID)
         {
             string requestApi = string.Format("Api/Billing/PrintStatementBill?patientBillUID={0}", patientBillUID);

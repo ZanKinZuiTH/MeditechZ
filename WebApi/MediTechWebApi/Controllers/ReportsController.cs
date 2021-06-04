@@ -75,6 +75,20 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetRevenuePerDay")]
+        [HttpGet]
+        public List<RevenuePerDayModel> GetRevenuePerDay(DateTime billGeneratedDttm, string organisationList)
+        {
+            List<RevenuePerDayModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTRevenuePerDay(billGeneratedDttm, organisationList);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<RevenuePerDayModel>();
+                data = dt.ToList<RevenuePerDayModel>();
+            }
+
+            return data;
+        }
 
         [Route("GetUsedReport")]
         [HttpGet]

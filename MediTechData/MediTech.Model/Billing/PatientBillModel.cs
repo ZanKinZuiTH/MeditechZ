@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -54,6 +55,9 @@ namespace MediTech.Model
         public string OperationBy { get; set; }
         public int PAYMDUID { get; set; }
         public string PaymentMethod { get; set; }
+
+
         public List<PatientBilledItemModel> PatientBilledItems {get; set;}
+
     }
 }

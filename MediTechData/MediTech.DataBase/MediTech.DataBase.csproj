@@ -601,6 +601,9 @@
     <Compile Include="pRPTRadiologyRDUReview_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pRPTRevenuePerDay_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pRPTStockAdjustmentIn_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

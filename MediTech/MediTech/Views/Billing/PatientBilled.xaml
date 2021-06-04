@@ -174,12 +174,16 @@
                         <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="วิธีการชำระเงิน" FieldName="PAYMDUID" ReadOnly="False">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:ComboBoxEditSettings ItemsSource="{Binding PaymentMethods}"
-                                                          NullValueButtonPlacement="EditBox"
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:ComboBoxEdit Name="PART_Editor"
+                                                      ItemsSource="{Binding Path=DataContext.PaymentMethods,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientBilled}}}"
+                                                      EditValueChanged="PART_Editor_EditValueChanged"
+                                                      NullValueButtonPlacement="EditBox"
                                                       ValueMember="Key"
-                                                      DisplayMember="Display"/>
-                            </dxg:GridColumn.EditSettings>
+                                                      DisplayMember="AlternateName"/>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
                         </dxg:GridColumn>
                         <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>

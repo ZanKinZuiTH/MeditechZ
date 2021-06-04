@@ -1252,6 +1252,7 @@
           <Property Name="ChangeAmount" Type="float" />
           <Property Name="ReferredBy" Type="nvarchar" MaxLength="255" />
           <Property Name="StaffUID" Type="int" />
+          <Property Name="PAYMDUID" Type="int" />
           <Property Name="SALTOUID" Type="int" />
           <Property Name="IdentifyingType" Type="nvarchar" MaxLength="50" />
           <Property Name="PatientName" Type="nvarchar" MaxLength="255" />
@@ -3696,6 +3697,10 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
+        <Function Name="pRPTRevenuePerDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="BillGeneratedDttm" Type="date" Mode="In" />
+          <Parameter Name="OwnerOrganisationUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pRPTStockAdjustmentIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
@@ -3817,6 +3822,7 @@
           <Parameter Name="P_SEXXXUID" Type="int" Mode="In" />
           <Parameter Name="P_IDCard" Type="nvarchar" Mode="In" />
           <Parameter Name="P_LastVisitDate" Type="date" Mode="In" />
+          <Parameter Name="P_MobilePhone" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="pSearchPatientBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -4344,6 +4350,7 @@
             <Parameter Name="P_SEXXXUID" Mode="In" Type="Int32" />
             <Parameter Name="P_IDCard" Mode="In" Type="String" />
             <Parameter Name="P_LastVisitDate" Mode="In" Type="DateTime" />
+            <Parameter Name="P_MobilePhone" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pStoreConvertUOM" ReturnType="Collection(MediTechModel.pStoreConvertUOM_Result)">
           <Parameter Name="ItemMasterUID" Mode="In" Type="Int32" />
@@ -5292,6 +5299,10 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTRevenuePerDay" ReturnType="Collection(MediTechModel.pRPTRevenuePerDay_Result)">
+            <Parameter Name="BillGeneratedDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="OwnerOrganisationUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -9009,6 +9020,7 @@
           <Property Name="ChangeAmount" Type="Double" />
           <Property Name="ReferredBy" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="StaffUID" Type="Int32" />
+          <Property Name="PAYMDUID" Type="Int32" />
           <Property Name="SALTOUID" Type="Int32" />
           <Property Name="IdentifyingType" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="PatientName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
@@ -10907,6 +10919,14 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTRevenuePerDay_Result">
+          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" />
+          <Property Type="String" Name="VisitType" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="PatientCount" Nullable="true" />
+          <Property Type="Double" Name="NetAmount" Nullable="true" />
+          <Property Type="String" Name="PaymentMethod" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="BeforeRevenue" Nullable="true" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14143,6 +14163,7 @@
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
                 <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
                 <ScalarProperty Name="SALTOUID" ColumnName="SALTOUID" />
+                <ScalarProperty Name="PAYMDUID" ColumnName="PAYMDUID" />
                 <ScalarProperty Name="StaffUID" ColumnName="StaffUID" />
                 <ScalarProperty Name="ReferredBy" ColumnName="ReferredBy" />
                 <ScalarProperty Name="ChangeAmount" ColumnName="ChangeAmount" />
@@ -16145,6 +16166,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTRevenuePerDay" FunctionName="MediTechModel.Store.pRPTRevenuePerDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTRevenuePerDay_Result">
+                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
+                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
+                <ScalarProperty Name="PatientCount" ColumnName="PatientCount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="BeforeRevenue" ColumnName="BeforeRevenue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -181,6 +181,7 @@
     <Compile Include="Report\ProblemStatisticModel.cs" />
     <Compile Include="Report\RadiologyRDUStaffModel.cs" />
     <Compile Include="Report\ReportsModel.cs" />
+    <Compile Include="Report\RevenuePerDayModel.cs" />
     <Compile Include="Report\StockTransactionReportModel.cs" />
     <Compile Include="Report\StockReportModel.cs" />
     <Compile Include="Report\PatientDiagnosisModel.cs" />

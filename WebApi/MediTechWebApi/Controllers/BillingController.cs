@@ -804,7 +804,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)
         {
-            List<PatientBillModel> data = null;
+            List<PatientBillModel> data = new List<PatientBillModel>();
             DataTable dt = SqlDirectStore.pSearchPatientBill(dateFrom, dateTo, patientUID, billNumber, owerOrganisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -1024,20 +1024,23 @@ namespace MediTechWebApi.Controllers
 
         [Route("UpdatePaymentMethod")]
         [HttpPut]
-        public HttpResponseMessage UpdatePaymentMethod(int patientBillUID,string PAYMDUID,int userUID)
+        public HttpResponseMessage UpdatePaymentMethod(long patientBillUID,int PAYMDUID,int userUID)
         {
             try
             {
                 var patientBill = db.PatientBill.Find(patientBillUID);
                 if (patientBill != null)
                 {
+                    db.PatientBill.Attach(patientBill);
+                    patientBill.PAYMDUID = PAYMDUID;
                     patientBill.MUser = userUID;
                     patientBill.MWhen = DateTime.Now;
+                    db.SaveChanges();
                     return Request.CreateResponse(HttpStatusCode.OK);
                 }
                 return Request.CreateResponse(HttpStatusCode.NoContent);
             }
-            catch (Exception)
+            catch (Exception ex)
             {
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);

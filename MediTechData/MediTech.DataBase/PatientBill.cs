@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public Nullable<double> ChangeAmount { get; set; }
         public string ReferredBy { get; set; }
         public Nullable<int> StaffUID { get; set; }
+        public Nullable<int> PAYMDUID { get; set; }
         public Nullable<int> SALTOUID { get; set; }
         public string IdentifyingType { get; set; }
         public string PatientName { get; set; }
