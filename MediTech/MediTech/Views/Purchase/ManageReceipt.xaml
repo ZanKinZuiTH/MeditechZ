@@ -56,7 +56,8 @@
                     <dxlc:LayoutItem Label="วันที่ออกบิล">
                         <dxe:DateEdit EditValue="{Binding BillDate}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="ค้นหา Item :" >
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="ค้นหา Item :" >
                         <dxlc:LayoutGroup>
                             <cc:AutoCompleteTextBox x:Name="txtOrder"   Text="{Binding SearchOrderCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource OrderItemColumn}}"
@@ -70,11 +71,17 @@
                             </cc:AutoCompleteTextBox>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutItem>
+                        
+                        <dx:SimpleButton Width="80" Command="{Binding AddItemCommand}"
+                                     Height="25" Content="เพิ่ม Item"/>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
 
                 <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutItem Label="ชื่อลูกค้า">
-                        <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="ชื่อลูกค้า">
+                                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
                                       ValueMember="PayorDetailUID"
                                       DisplayMember="PayorName"
@@ -89,34 +96,55 @@
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">
-                            <dxg:LookUpEdit.PopupContentTemplate>
-                                <ControlTemplate>
-                                    <dxg:GridControl x:Name="PART_GridControl"  >
-                                        <dxg:GridControl.Columns>
-                                            <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
-                                        </dxg:GridControl.Columns>
-                                        <dxg:GridControl.View>
-                                            <dxg:TableView
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                                <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
+                                                </dxg:GridControl.Columns>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView
                         Name="View"  ShowColumnHeaders="False"
                         AutoWidth="True"
                         ShowGroupedColumns="False" >
-                                            </dxg:TableView>
-                                        </dxg:GridControl.View>
-                                    </dxg:GridControl>
-                                </ControlTemplate>
-                            </dxg:LookUpEdit.PopupContentTemplate>
-                            <dxg:LookUpEdit.StyleSettings>
-                                <dxg:SearchLookUpEditStyleSettings/>
-                            </dxg:LookUpEdit.StyleSettings>
-                        </dxg:LookUpEdit>
-                    </dxlc:LayoutItem>
+                                                    </dxg:TableView>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
 
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup>
+                        <dx:SimpleButton Width="80" Command="{Binding AddPayorCommand}"
+                                     Height="25" Content="เพิ่ม Payor"/>
+                    </dxlc:LayoutGroup>
+                    
+                    
                     <dxlc:LayoutItem Label="เลขประจำตัวผู้เสียภาษี">
-                        <dxe:TextEdit Text="{Binding TaxNumber}" IsReadOnly="True"/>
+                        <dxe:TextEdit Text="{Binding TaxNumber}" />
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Label="รายละเอียดลูกค้า">
                         <dxe:TextEdit Text="{Binding Address}" />
+                    </dxlc:LayoutItem>
+                    
+                    <dxlc:LayoutItem>
+                        <Image Width="30" Height="30" HorizontalAlignment="Right"
+                           Visibility="{Binding VisibilitySearchRequest}"
+                           ToolTip="ค้นหาการร้องขอ"
+                           Cursor="Hand"
+                           Source="/MediTech;component/Resources/Images/Document/Documents01.png" >
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonUp">
+                                    <mvvm:EventToCommand Command="{Binding SearchPatientBillCommand}"/>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                        </Image>
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
@@ -137,19 +165,25 @@
                         <dxg:GridColumn Header="หน่วย" FieldName="UnitItem" AllowEditing="True"/>
                         <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="PriceUnit" />
                         <dxg:GridColumn Header="ส่วนลด" FieldName="Discount" AllowEditing="True"/>
-                        <dxg:GridColumn Header="มูลค่า" FieldName="TotalPrice"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="ภาษี" FieldName="Tax" AllowEditing="True">
+
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:ComboBoxEditSettings ItemsSource="{Binding TaxChoice}" DisplayMember="Display" ValueMember="Display"/>
+                            </dxg:GridColumn.EditSettings>
+
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="มูลค่ารวม" FieldName="TotalPrice"  ReadOnly="True"/>
                     </dxg:GridControl.Columns>
-                    <dxg:GridControl.TotalSummary>
+                    <!--<dxg:GridControl.TotalSummary>
                         <dxg:GridSummaryItem  FieldName="TotalPrice" 
                                               Alignment="Right" 
                                               SummaryType="sum" 
                                               DisplayFormat="จำนวนรวมทั้งสิ้น : {0:n2} บาท"/>
-                        
-                    </dxg:GridControl.TotalSummary>
+
+                    </dxg:GridControl.TotalSummary>-->
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False"
-                                       AutoWidth="True"
-                                       ShowFixedTotalSummary="True">
+                                       AutoWidth="True">
                             <i:Interaction.Triggers>
                                 <i:EventTrigger  EventName="CellValueChanged">
                                     <mvvm:EventToCommand Command="{Binding ChangeValueCommand}" PassEventArgsToCommand="True" />
@@ -159,22 +193,83 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+            <dxlc:LayoutGroup Orientation="Horizontal" Margin="0,10,0,0">
                 <dxlc:LayoutItem >
-                    <StackPanel Orientation="Horizontal">
-                        <dxlc:LayoutItem HorizontalAlignment="Right">
-                            <dx:SimpleButton Width="100" Height="30" Command="{Binding DeleteItemCommand}">
-                                <StackPanel Orientation="Horizontal">
-                                    <Image Source="/MediTech;component/Resources/Images/Action/trash.png"/>
-                                    <TextBlock Text="ลบ order" VerticalAlignment="Center"/>
-                                </StackPanel>
-                            </dx:SimpleButton>
-                        </dxlc:LayoutItem>
-                    </StackPanel>
+                    <dxlc:LayoutGroup>
+                        <dx:SimpleButton HorizontalAlignment="Left" Width="100" Height="25" Command="{Binding DeleteItemCommand}">
+                            <StackPanel Orientation="Horizontal">
+                            <Image Source="/MediTech;component/Resources/Images/Action/trash.png"/>
+                            <TextBlock Text="ลบ order" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        </dx:SimpleButton>
+                        <dx:SimpleButton Width="100" Height="25" Command="{Binding EditItemCommand}">
+                            <StackPanel Orientation="Horizontal">
+                            <!--<Image Source="/MediTech;component/Resources/Images/Action/trash.png"/>-->
+                            <TextBlock Text="แก้ไข order" VerticalAlignment="Center"/>
+                        </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
+
             </dxlc:LayoutGroup>
             
+            <dxlc:LayoutGroup Orientation="Horizontal" Margin="0,10,0,0">
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="ยอดรวม">
+                        <TextBlock Text="{Binding SumTotalPrice, StringFormat={}{0:F2}}"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="ส่วนลด" Margin="0,5,0,0">
+                        <TextBlock Text="{Binding Discount, StringFormat={}{0:F2}}"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="ภาษีมูลค่าเพิ่ม 7%" Margin="0,5,0,0">
+                        <TextBlock Text="{Binding TaxSum, StringFormat={}{0:F2}}"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="จำนวนรวมทั้งสิ้น" Margin="0,5,0,20">
+                        <TextBlock Text="{Binding NetPrice, StringFormat={}{0:F2}}"
+                                   HorizontalAlignment="Right" 
+                                   VerticalAlignment="Center" 
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            
+
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem >
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">

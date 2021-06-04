@@ -19,5 +19,9 @@ namespace MediTech.Model.Report
         public Nullable<double> PriceUnit { get; set; }
         public Nullable<double> TotalPrice { get; set; }
         public Nullable<double> Discount { get; set; }
+        public int TypeOrderUID { get; set; }
+        public string TypeOrder { get; set; }
+        public string Tax { get; set; }
+
     }
 }

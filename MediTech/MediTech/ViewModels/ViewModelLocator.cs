@@ -1360,6 +1360,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public OrderOtherTypeViewModel OrderOtherTypeViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<OrderOtherTypeViewModel>())
+                    SimpleIoc.Default.Register<OrderOtherTypeViewModel>();
+
+                return ServiceLocator.Current.GetInstance<OrderOtherTypeViewModel>();
+            }
+        }
+
         #endregion
 
         #region Patient
@@ -1690,6 +1701,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<ListGroupReceiptViewModel>();
 
                 return ServiceLocator.Current.GetInstance<ListGroupReceiptViewModel>();
+            }
+        }
+
+        public SearchPatientBillViewModel SearchPatientBillViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<SearchPatientBillViewModel>())
+                    SimpleIoc.Default.Register<SearchPatientBillViewModel>();
+
+                return ServiceLocator.Current.GetInstance<SearchPatientBillViewModel>();
             }
         }
 

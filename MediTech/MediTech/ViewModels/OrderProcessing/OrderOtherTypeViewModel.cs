@@ -9,10 +9,9 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class OrderGroupReceiptViewModel : MediTechViewModelBase
+    public class OrderOtherTypeViewModel : MediTechViewModelBase
     {
         #region Properties
-        public OrderSetModel orderSet { get; set; }
 
         private GroupReceiptDetailModel _OrderGroupReceipt;
         public GroupReceiptDetailModel OrderGroupReceipt
@@ -21,12 +20,6 @@ namespace MediTech.ViewModels
             set { Set(ref _OrderGroupReceipt, value); }
         }
 
-        private DateTime _StartDate;
-        public DateTime StartDate
-        {
-            get { return _StartDate; }
-            set { Set(ref _StartDate, value); }
-        }
 
         public List<LookupReferenceValueModel> TaxChoice { get; set; }
 
@@ -45,32 +38,14 @@ namespace MediTech.ViewModels
             }
         }
 
-        public int? OwnerOrgansitaion { get; set; }
-
-        public BillableItemModel BillableItem { get; set; }
-
-        private List<StockModel> _Stores;
-        public List<StockModel> Stores
-        {
-            get { return _Stores; }
-            set { Set(ref _Stores, value); }
-        }
-
-        //private double _Quantity;
-        //public double Quantity
-        //{
-        //    get { return _Quantity; }
-        //    set { Set(ref _Quantity, value); }
-        //}
-
-        private double  _Quantity;
+        private double _Quantity;
         public double Quantity
         {
             get { return _Quantity; }
             set
             {
                 Set(ref _Quantity, value);
-                
+
                 ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
                 UnitPrice = ReCash;
             }
@@ -83,18 +58,18 @@ namespace MediTech.ViewModels
             set { Set(ref _ReCash, value); }
         }
 
+        private string _ItemName;
+        public string ItemName
+        {
+            get { return _ItemName; }
+            set { Set(ref _ItemName, value); }
+        }
+
         private string _TypeOrder;
         public string TypeOrder
         {
             get { return _TypeOrder; }
             set { Set(ref _TypeOrder, value); }
-        }
-
-        private string _OrderName;
-        public string OrderName
-        {
-            get { return _OrderName; }
-            set { Set(ref _OrderName, value); }
         }
 
         private string _OrderCode;
@@ -108,8 +83,8 @@ namespace MediTech.ViewModels
         public double Discount
         {
             get { return _Discount; }
-            set 
-            { 
+            set
+            {
                 Set(ref _Discount, value);
 
                 ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
@@ -117,19 +92,19 @@ namespace MediTech.ViewModels
             }
         }
 
-        private string _Tax;
-        public string Tax
-        {
-            get { return _Tax; }
-            set { Set(ref _Tax, value); }
-        }
+        //private string _Tax;
+        //public string Tax
+        //{
+        //    get { return _Tax; }
+        //    set { Set(ref _Tax, value); }
+        //}
 
         private string _Price;
         public string Price
         {
             get { return _Price; }
-            set 
-            { 
+            set
+            {
                 Set(ref _Price, value);
 
                 ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
@@ -151,9 +126,17 @@ namespace MediTech.ViewModels
             set { Set(ref _UnitPrice, value); }
         }
 
+        private GroupReceiptDetailModel _model;
+        public GroupReceiptDetailModel model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
+
         #endregion
 
-        #region Command
+        #region Command 
+
         private RelayCommand _AddCommand;
         public RelayCommand AddCommand
         {
@@ -166,66 +149,50 @@ namespace MediTech.ViewModels
         {
             get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
+
         #endregion
 
         #region Method
 
-        public OrderGroupReceiptViewModel()
+        public OrderOtherTypeViewModel()
         {
-
-            TaxChoice = new List<LookupReferenceValueModel>{
+            
+            TaxChoice = new List<LookupReferenceValueModel>{ 
                 new LookupReferenceValueModel { Key = 0, Display = "7%" },
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
             };
         }
 
-        public void BindingFromOrderset()
-        {
-            List<GroupReceiptModel> orderPrice = DataService.OrderProcessing.GetOrderPriceByUID(orderSet.OrderSetUID);
-            double? ordersetPrice = orderPrice.Sum(item => item.PriceUnit);
-            DateTime now = DateTime.Now;
-            //TypeOrder = BillableItem.BillingServiceMetaData;
-            OrderName = orderSet.Name;
-            OrderCode = "Code : " + orderSet.Code;
-
-
-            Price = ordersetPrice.ToString();
-            UnitPrice = ReCash;
-
-            StartDate = now.Date;
-        }
-
-        public void BindingFromBillableItem()
-        {
-            DateTime now = DateTime.Now;
-            Unit = Unit;
-            OrderName = BillableItem.ItemName;
-            OrderCode = "Code : " + BillableItem.Code;
-            Price = BillableItem.Price.ToString();
-            UnitPrice = ReCash;
-            StartDate = now.Date;
-        }
-
-
         private void Add()
         {
             try
             {
-                if(Quantity == 0)
+                if(ItemName == null)
+                {
+                    WarningDialog("กรุณาใส่รายการ");
+                    return;
+                }
+                if (Quantity == 0)
                 {
                     WarningDialog("กรุณาใส่จำนวน");
+                    return;
+                }
+                if(TaxSelect == null)
+                {
+                    WarningDialog("กรุณาเลือกประเภทภาษี");
                     return;
                 }
                 if (OrderGroupReceipt == null)
                 {
                     OrderGroupReceipt = new GroupReceiptDetailModel();
-                    OrderGroupReceipt.ItemName = OrderName;
+                    OrderGroupReceipt.ItemName = ItemName;
                     OrderGroupReceipt.Quantity = Quantity;
                     OrderGroupReceipt.UnitItem = Unit;
                     OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
                     OrderGroupReceipt.Tax = TaxSelect.Display;
+                    OrderGroupReceipt.TypeOrder = "OrtherType";
                 }
 
                 CloseViewDialog(ActionDialog.Save);
@@ -237,21 +204,46 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        public void AssignModel(GroupReceiptDetailModel modelData)
+        {
+            model = modelData;
+            AssingModelToProperties();
+        }
+
+        public void AssingModelToProperties()
+        {
+            ItemName = model.ItemName;
+            Price = model.PriceUnit.ToString();
+            Discount = model.Discount.Value;
+            Quantity = model.Quantity.Value;
+            Unit = model.UnitItem;
+            //UnitPrice = model.TotalPrice.Value;
+            //TaxSelect.Display = model.Tax;
+            //TaxChoice = new List<LookupReferenceValueModel>{
+            //    new LookupReferenceValueModel {Display = model.Tax} };
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == model.Tax);
+
+
+        }
+
         public void Cancel()
         {
             CloseViewDialog(ActionDialog.Cancel);
         }
 
-        public double SumPrice(double quantity, double total, double discount)
+
+        public double SumPrice(double quantity, double total, double  discount)
         {
             double result = 0;
+            
             double tax = 0;
             if (quantity != 0 && total != 0)
             {
                 result = quantity * total;
             }
 
-            if (TaxSelect != null)
+            if(TaxSelect != null)
             {
                 if (TaxSelect.Display == "7%")
                 {
@@ -263,6 +255,8 @@ namespace MediTech.ViewModels
 
             return result;
         }
+
+
 
         #endregion
     }

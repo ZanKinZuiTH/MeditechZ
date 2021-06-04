@@ -348,7 +348,8 @@ namespace MediTech.ViewModels
 
             if (IssueStocks != null)
             {
-                if (IssueStocks.FirstOrDefault(p => p.StockUID == SelectCurrentStock.StockUID) != null)
+                if ((IssueStocks.FirstOrDefault(p => p.StockUID == SelectCurrentStock.StockUID) != null ) 
+                    && (IssueStocks.FirstOrDefault(p => p.Location == SelectLocation.Display) != null))
                 {
                     WarningDialog("มีรายการที่เลือกแล้ว");
                     return;

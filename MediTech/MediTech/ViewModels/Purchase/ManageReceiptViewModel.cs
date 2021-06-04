@@ -92,6 +92,34 @@ namespace MediTech.ViewModels
         //    set { Set(ref _ReceiptNumber, value); }
         //}
 
+        private double ? _SumTotalPrice;
+        public double ? SumTotalPrice
+        {
+            get { return _SumTotalPrice; }
+            set { Set(ref _SumTotalPrice, value); }
+        }
+
+        private double ? _TaxSum;
+        public double ? TaxSum
+        {
+            get { return _TaxSum; }
+            set { Set(ref _TaxSum, value); }
+        }
+
+        private double? _NetPrice;
+        public double? NetPrice
+        {
+            get { return _NetPrice; }
+            set { Set(ref _NetPrice, value); }
+        }
+
+        private double? _Discount;
+        public double? Discount
+        {
+            get { return _Discount; }
+            set { Set(ref _Discount, value); }
+        }
+
         private string _Address;
         public string Address
         {
@@ -200,6 +228,24 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientOrders, value); }
         }
 
+        private Visibility _VisibilitySearchRequest = Visibility.Visible;
+
+        public Visibility VisibilitySearchRequest
+        {
+            get { return _VisibilitySearchRequest; }
+            set { Set(ref _VisibilitySearchRequest, value); }
+        }
+
+        public List<LookupReferenceValueModel> _TaxChoice;
+        public List<LookupReferenceValueModel> TaxChoice
+        {
+            get { return _TaxChoice; }
+            set
+            {
+                Set(ref _TaxChoice, value);
+                
+            }
+        }
 
         #endregion
 
@@ -231,11 +277,46 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _EditItemCommand;
+        public RelayCommand EditItemCommand
+        {
+            get
+            {
+                return _EditItemCommand ?? (_EditItemCommand = new RelayCommand(EditItem));
+            }
+        }
+
         private RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs> _ChangeValueCommand;
         public RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs> ChangeValueCommand
         {
             get { return _ChangeValueCommand ?? (_ChangeValueCommand = new RelayCommand<DevExpress.Xpf.Grid.CellValueChangedEventArgs>(ChangeValue)); }
         }
+
+        private RelayCommand _AddPayorCommand;
+        public RelayCommand AddPayorCommand
+        {
+            get
+            {
+                return _AddPayorCommand ?? (_AddPayorCommand = new RelayCommand(AddPayor));
+            }
+        }
+
+        private RelayCommand _AddItemCommand;
+        public RelayCommand AddItemCommand
+        {
+            get
+            {
+                return _AddItemCommand ?? (_AddItemCommand = new RelayCommand(AddItem));
+            }
+        }
+
+        private RelayCommand _SearchPatientBillCommand;
+
+        public RelayCommand SearchPatientBillCommand
+        {
+            get { return _SearchPatientBillCommand ?? (_SearchPatientBillCommand = new RelayCommand(SearchPatientBill)); }
+        }
+
         #endregion
 
         #region Method
@@ -245,7 +326,7 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationIsRoleStock();
             PayorDetails = DataService.MasterData.GetPayorDetail();
             BillDate = now.Date;
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);  
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
             if (SelectOrganisation == null)
             {
@@ -254,27 +335,54 @@ namespace MediTech.ViewModels
                 SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
                 OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
             }
-            //(this.View as ManageReceipt).txtOrder.Focus();
+
+            TaxChoice = new List<LookupReferenceValueModel>{
+                new LookupReferenceValueModel { Key = 0, Display = "7%" },
+                new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
+            };
+
+           
         }
 
         public void ChangeValue(DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
-        {
+         {
             CalculateNetAmount();
         }
         void CalculateNetAmount()
         {
-            double? NetAmount;
+            double ? NetAmount = 0;
+            double ? discout = 0;
+            double? sumprice = 0;
+            double ? totalprice;
+            double ? tax = 0;
+            string taxtype = "";
             foreach (var item in OrderGroupReceipt)
             {
-                NetAmount = 0;
-                NetAmount += item.Quantity* item.PriceUnit;
+                totalprice = 0;
+                double ? unitdiscout = 0;
+
+                if (item.Tax == "7%")
+                {
+                    tax = (item.PriceUnit * 0.07) * item.Quantity;
+                    //taxtype = item.Tax;
+                }
                 if (item.Discount != null)
                 {
-                    NetAmount -= item.Discount;
+                    unitdiscout = item.Discount;
                 }
-                item.TotalPrice = NetAmount;
+
+                totalprice += item.Quantity * item.PriceUnit;
+                discout += unitdiscout;
+                NetAmount += (totalprice + tax) - unitdiscout;
+                item.TotalPrice = (totalprice + tax) - unitdiscout;
+                sumprice += totalprice;
             }
+            Discount = discout;
+            SumTotalPrice = sumprice;
+            TaxSum = tax;
+            NetPrice = NetAmount;
         }
+
         private void DeleteItem()
         {
             if (SelectOrderGroupReceipt != null)
@@ -289,7 +397,27 @@ namespace MediTech.ViewModels
                     OrderGroupReceipt.Remove(item);
 
                     DeleteSuccessDialog();
+                }
+            }
+        }
 
+        private void EditItem()
+        {
+            if (SelectOrderGroupReceipt != null)
+            {
+                if(SelectOrderGroupReceipt.TypeOrder == "OrtherType")
+                {
+                    OrderOtherType receipt = new OrderOtherType();
+                    (receipt.DataContext as OrderOtherTypeViewModel).AssignModel(SelectOrderGroupReceipt);
+                    OrderOtherTypeViewModel result = (OrderOtherTypeViewModel)LaunchViewDialog(receipt, "ORDOTT", true);
+
+                }
+                else
+                {
+                    //ManageReceipt receipt = new ManageReceipt();
+                    //var data = DataService.Purchaseing.GetGroupReceiptByUID(SelectGroupReceipt.GroupReceiptUID);
+                    //(receipt.DataContext as ManageReceiptViewModel).AssignModel(data);
+                    //ChangeViewPermission(receipt);
                 }
             }
         }
@@ -333,6 +461,41 @@ namespace MediTech.ViewModels
             }
         }
 
+        public void AddPayor()
+        {
+            bool pageWindow = true;
+            ManagePayorDetail order = new ManagePayorDetail(pageWindow);
+            ManagePayorDetailViewModel result = (ManagePayorDetailViewModel)LaunchViewDialog(order, "PAYMN", false);
+            
+            PayorDetails = DataService.MasterData.GetPayorDetail();
+            
+        }
+
+        private void SearchPatientBill()
+        {
+            SearchPatientBill order = new SearchPatientBill();
+            SearchPatientBillViewModel result = (SearchPatientBillViewModel)LaunchViewDialog(order, "SRRCPTB", false);
+
+        }
+
+        public void AddItem()
+        {
+            OrderOtherType order = new OrderOtherType();
+            OrderOtherTypeViewModel resultitem = (OrderOtherTypeViewModel)LaunchViewDialog(order, "ORDOTT", true);
+            if (resultitem != null && resultitem.ResultDialog == ActionDialog.Save)
+            {
+                OrderGroupReceipt.Add(resultitem.OrderGroupReceipt);
+
+                if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                {
+                    int i = 1;
+                    OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                }
+                CalculateNetAmount();
+                OnUpdateEvent();
+            }
+        }
+
         void ApplyOrderItem(SearchOrderItem orderItem)
         {
             try
@@ -361,6 +524,7 @@ namespace MediTech.ViewModels
                                 int i = 1;
                                 OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
                             }
+                            CalculateNetAmount();
                             OnUpdateEvent();
                         }
                     }
@@ -407,6 +571,7 @@ namespace MediTech.ViewModels
                             int i = 1;
                             OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
                         }
+                        CalculateNetAmount();
                         OnUpdateEvent();
                     }
                 }
@@ -470,6 +635,7 @@ namespace MediTech.ViewModels
                 newItems.UnitItem = item.UnitItem;
                 newItems.TotalPrice = item.TotalPrice;
                 newItems.Discount = item.Discount;
+                newItems.Tax = item.Tax;
                 OrderGroupReceipt.Add(newItems);
             }
         }
@@ -496,7 +662,6 @@ namespace MediTech.ViewModels
                 model.GroupReceiptDetailModel.AddRange(OrderGroupReceipt);
             }
         }
-
-            #endregion
+        #endregion
     }
 }

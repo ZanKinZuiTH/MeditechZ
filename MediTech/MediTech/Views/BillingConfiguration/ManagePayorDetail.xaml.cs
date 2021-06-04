@@ -34,5 +34,14 @@ namespace MediTech.Views
         {
             grdPayorAgreement.RefreshData();
         }
+
+        public ManagePayorDetail(bool PageDetail)
+        {
+            InitializeComponent();
+            if (this.DataContext is ManagePayorDetailViewModel)
+            {
+                (this.DataContext as ManagePayorDetailViewModel).ObjectWindow(PageDetail);
+            }
+        }
     }
 }
