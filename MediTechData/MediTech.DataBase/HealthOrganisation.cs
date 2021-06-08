@@ -30,8 +30,8 @@ namespace MediTech.DataBase
         public Nullable<int> DistrictUID { get; set; }
         public string ZipCode { get; set; }
         public string TINNo { get; set; }
-        public string Comment { get; set; }
         public string LicenseNo { get; set; }
+        public string Comment { get; set; }
         public byte[] LogoImage { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }

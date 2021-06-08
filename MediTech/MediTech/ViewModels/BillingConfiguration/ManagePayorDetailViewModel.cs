@@ -17,6 +17,13 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        private bool _PageDialog;
+        public bool PageDialog
+        {
+            get { return _PageDialog; }
+            set { Set(ref _PageDialog, value); }
+        }
+
         private string _Code;
 
         public string Code
@@ -565,9 +572,18 @@ namespace MediTech.ViewModels
                 AssingPropertiesToModel();
                 DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
                 SaveSuccessDialog();
+                
+                
+                if(PageDialog)
+                {
+                    CloseViewDialog(ActionDialog.Cancel);
+                }
+                else
+                {
+                    ListPayorDetail listView = new ListPayorDetail();
+                    ChangeViewPermission(listView);
+                }
 
-                ListPayorDetail listView = new ListPayorDetail();
-                ChangeViewPermission(listView);
             }
             catch (Exception ex)
             {
@@ -579,8 +595,15 @@ namespace MediTech.ViewModels
 
         private void Cancel()
         {
-            ListPayorDetail listView = new ListPayorDetail();
-            ChangeViewPermission(listView);
+            if (PageDialog)
+            {
+                CloseViewDialog(ActionDialog.Cancel);
+            }
+            else
+            {
+                ListPayorDetail listView = new ListPayorDetail();
+                ChangeViewPermission(listView);
+            }
         }
 
         private void AddAgreement()
@@ -735,6 +758,11 @@ namespace MediTech.ViewModels
             IDLength = model.IDLength;
             IDNumberValue = model.NumberValue;
 
+        }
+
+        public void ObjectWindow(bool pageWin)
+        {
+            PageDialog = pageWin;
         }
         #endregion
     }

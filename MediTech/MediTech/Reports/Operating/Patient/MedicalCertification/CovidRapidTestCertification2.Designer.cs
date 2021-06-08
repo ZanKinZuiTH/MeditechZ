@@ -42,7 +42,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.lbDoctor = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel8 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel9 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbSignDoctor = new DevExpress.XtraReports.UI.XRLabel();
             this.lbSignPatient = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
@@ -113,6 +112,16 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrTableRow11 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow19 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -132,6 +141,9 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel17,
+            this.xrLabel10,
+            this.xrLabel14,
             this.lbPatientName,
             this.lbStartDate1,
             this.lbDoctorLicense,
@@ -211,7 +223,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // xrLabel8
             // 
             this.xrLabel8.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(181.1956F, 867.9322F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(181.1956F, 855.4662F);
             this.xrLabel8.Multiline = true;
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -224,7 +236,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // xrLabel9
             // 
             this.xrLabel9.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
-            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(181.1956F, 883.4323F);
+            this.xrLabel9.LocationFloat = new DevExpress.Utils.PointFloat(181.1956F, 870.9662F);
             this.xrLabel9.Multiline = true;
             this.xrLabel9.Name = "xrLabel9";
             this.xrLabel9.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -234,23 +246,10 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel9.Text = resources.GetString("xrLabel9.Text");
             this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // xrLabel5
-            // 
-            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(92.707F, 648.2224F);
-            this.xrLabel5.Multiline = true;
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(339.522F, 27.95764F);
-            this.xrLabel5.StylePriority.UseFont = false;
-            this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "จึงรับรองมาเป็นหลักฐานว่าได้มารับการตรวจจริง";
-            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            // 
             // lbSignDoctor
             // 
             this.lbSignDoctor.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbSignDoctor.LocationFloat = new DevExpress.Utils.PointFloat(136.7307F, 746.7485F);
+            this.lbSignDoctor.LocationFloat = new DevExpress.Utils.PointFloat(136.7307F, 765.7287F);
             this.lbSignDoctor.Name = "lbSignDoctor";
             this.lbSignDoctor.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbSignDoctor.SizeF = new System.Drawing.SizeF(194.5831F, 26.33337F);
@@ -261,7 +260,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // lbSignPatient
             // 
             this.lbSignPatient.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbSignPatient.LocationFloat = new DevExpress.Utils.PointFloat(523.5898F, 746.7485F);
+            this.lbSignPatient.LocationFloat = new DevExpress.Utils.PointFloat(523.5898F, 765.7287F);
             this.lbSignPatient.Name = "lbSignPatient";
             this.lbSignPatient.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.lbSignPatient.SizeF = new System.Drawing.SizeF(193.3333F, 26.33337F);
@@ -281,8 +280,11 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrTableRow14,
             this.xrTableRow15,
             this.xrTableRow16,
-            this.xrTableRow18});
-            this.xrTable5.SizeF = new System.Drawing.SizeF(591.1111F, 146.1864F);
+            this.xrTableRow18,
+            this.xrTableRow11,
+            this.xrTableRow12,
+            this.xrTableRow19});
+            this.xrTable5.SizeF = new System.Drawing.SizeF(591.1111F, 219.2796F);
             this.xrTable5.StylePriority.UseFont = false;
             // 
             // xrTableRow17
@@ -389,7 +391,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // xrTable3
             // 
             this.xrTable3.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(170.3277F, 294.9499F);
+            this.xrTable3.LocationFloat = new DevExpress.Utils.PointFloat(164.1546F, 294.9499F);
             this.xrTable3.Name = "xrTable3";
             this.xrTable3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable3.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -397,7 +399,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrTableRow8,
             this.xrTableRow9,
             this.xrTableRow10});
-            this.xrTable3.SizeF = new System.Drawing.SizeF(563.6112F, 100F);
+            this.xrTable3.SizeF = new System.Drawing.SizeF(618.4151F, 100F);
             this.xrTable3.StylePriority.UseFont = false;
             // 
             // xrTableRow7
@@ -411,7 +413,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // 
             this.xrTableCell27.Multiline = true;
             this.xrTableCell27.Name = "xrTableCell27";
-            this.xrTableCell27.Text = "O หาเชื้อ SARS-CoV-2 (COVID-19) ด้วยวิธี RT-PCR ";
+            this.xrTableCell27.Text = "O หาเชื้อ SARS-CoV-2 (COVID-19) ด้วย";
             this.xrTableCell27.Weight = 3D;
             // 
             // xrTableRow8
@@ -439,8 +441,8 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // 
             this.xrTableCell29.Multiline = true;
             this.xrTableCell29.Name = "xrTableCell29";
-            this.xrTableCell29.Text = "O หาภูมิคุ้มกันต่อเชื้อ SARS-CoV-2 หรือ COVID-19 ด้วยวิธี Rapid Test Antibody IgG" +
-    "/IgM";
+            this.xrTableCell29.Text = "O หาเชื้อ SARS-CoV-2 (COVID-19) ด้วย                              โดยการทำ Nasal " +
+    "Swab";
             this.xrTableCell29.Weight = 3D;
             // 
             // xrTableRow10
@@ -454,7 +456,8 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // 
             this.xrTableCell30.Multiline = true;
             this.xrTableCell30.Name = "xrTableCell30";
-            this.xrTableCell30.Text = "   โดยการเจาะเลือด";
+            this.xrTableCell30.Text = "O หาภูมิคุ้มกันต่อเชื้อ SARS-CoV-2 หรือ COVID-19 ด้วย                            " +
+    "                  โดยการเจาะเลือด";
             this.xrTableCell30.Weight = 3D;
             // 
             // xrTable2
@@ -750,7 +753,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // xrLabel11
             // 
             this.xrLabel11.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(108.3761F, 713.5001F);
+            this.xrLabel11.LocationFloat = new DevExpress.Utils.PointFloat(108.3761F, 732.4803F);
             this.xrLabel11.Multiline = true;
             this.xrLabel11.Name = "xrLabel11";
             this.xrLabel11.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -764,7 +767,7 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // xrLabel12
             // 
             this.xrLabel12.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(473.1944F, 713.5001F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(473.1944F, 732.4803F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -805,11 +808,11 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             // 
             // xrShape3
             // 
-            this.xrShape3.LocationFloat = new DevExpress.Utils.PointFloat(74.6714F, 415.5288F);
+            this.xrShape3.LocationFloat = new DevExpress.Utils.PointFloat(74.6714F, 440.5545F);
             this.xrShape3.Name = "xrShape3";
             shapeRectangle3.Fillet = 10;
             this.xrShape3.Shape = shapeRectangle3;
-            this.xrShape3.SizeF = new System.Drawing.SizeF(717.7996F, 225.5508F);
+            this.xrShape3.SizeF = new System.Drawing.SizeF(717.7996F, 269.9694F);
             // 
             // xrLabel19
             // 
@@ -880,6 +883,99 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220.8333F, 68.99998F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
+            // 
+            // xrLabel5
+            // 
+            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(101.1403F, 704.5227F);
+            this.xrLabel5.Multiline = true;
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(339.522F, 27.95764F);
+            this.xrLabel5.StylePriority.UseFont = false;
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "จึงรับรองมาเป็นหลักฐานว่าได้มารับการตรวจจริง";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrTableRow11
+            // 
+            this.xrTableRow11.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell14});
+            this.xrTableRow11.Name = "xrTableRow11";
+            this.xrTableRow11.Weight = 1D;
+            // 
+            // xrTableCell14
+            // 
+            this.xrTableCell14.Font = new System.Drawing.Font("EucrosiaUPC", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Underline))));
+            this.xrTableCell14.Multiline = true;
+            this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.StylePriority.UseFont = false;
+            this.xrTableCell14.Text = "O วิธี Rapid Test Antigen Nasal Swab";
+            this.xrTableCell14.Weight = 3D;
+            // 
+            // xrTableRow12
+            // 
+            this.xrTableRow12.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell18});
+            this.xrTableRow12.Name = "xrTableRow12";
+            this.xrTableRow12.Weight = 1D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Multiline = true;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Text = "\tO ไม่พบเชื้อ SARS-CoV-2 หรือ COVID-19 ณ วันตรวจ (Negative)";
+            this.xrTableCell18.Weight = 3D;
+            // 
+            // xrTableRow19
+            // 
+            this.xrTableRow19.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell19});
+            this.xrTableRow19.Name = "xrTableRow19";
+            this.xrTableRow19.Weight = 1D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.Multiline = true;
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Text = "\tO พบเชื้อ SARS-CoV-2 หรือ COVID-19 ณ วันตรวจ (Positive)";
+            this.xrTableCell19.Weight = 3D;
+            // 
+            // xrLabel10
+            // 
+            this.xrLabel10.Font = new System.Drawing.Font("EucrosiaUPC", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))));
+            this.xrLabel10.LocationFloat = new DevExpress.Utils.PointFloat(409.3963F, 344.9499F);
+            this.xrLabel10.Name = "xrLabel10";
+            this.xrLabel10.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel10.SizeF = new System.Drawing.SizeF(139.244F, 25F);
+            this.xrLabel10.StylePriority.UseFont = false;
+            this.xrLabel10.StylePriority.UseTextAlignment = false;
+            this.xrLabel10.Text = "วิธี Rapid Test Antigen";
+            this.xrLabel10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel14
+            // 
+            this.xrLabel14.Font = new System.Drawing.Font("EucrosiaUPC", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))));
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(407.4355F, 294.9499F);
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.SizeF = new System.Drawing.SizeF(231.5229F, 25F);
+            this.xrLabel14.StylePriority.UseFont = false;
+            this.xrLabel14.StylePriority.UseTextAlignment = false;
+            this.xrLabel14.Text = "วิธี RT-PCR ";
+            this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel17
+            // 
+            this.xrLabel17.Font = new System.Drawing.Font("EucrosiaUPC", 14F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Italic | System.Drawing.FontStyle.Underline))));
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(492.0814F, 369.95F);
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.SizeF = new System.Drawing.SizeF(239.7201F, 25F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.StylePriority.UseTextAlignment = false;
+            this.xrLabel17.Text = "วิธี Rapid Test Antibody IgG/IgM";
+            this.xrLabel17.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // CovidRapidTestCertification2
             // 
@@ -966,7 +1062,6 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
         private DevExpress.XtraReports.UI.XRShape xrShape3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel xrLabel12;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
         private DevExpress.XtraReports.UI.XRLabel xrLabel8;
         private DevExpress.XtraReports.UI.XRLabel xrLabel9;
         private DevExpress.XtraReports.UI.XRLabel xrLabel7;
@@ -981,5 +1076,15 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
         public DevExpress.XtraReports.UI.XRLabel lbSignDoctor;
         public DevExpress.XtraReports.UI.XRLabel lbSignPatient;
         public DevExpress.XtraReports.UI.XRLabel lbPatientName;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel5;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow11;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow12;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow19;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel17;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel10;
+        public DevExpress.XtraReports.UI.XRLabel xrLabel14;
     }
 }

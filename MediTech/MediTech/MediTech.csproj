@@ -1273,6 +1273,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
+    <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1301,6 +1302,7 @@
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ManageReceiptViewModel.cs" />
+    <Compile Include="ViewModels\Purchase\SearchPatientBillViewModel.cs" />
     <Compile Include="ViewModels\RIS\AssignForRDUViewModel.cs" />
     <Compile Include="ViewModels\RIS\BurnImageViewModel.cs" />
     <Compile Include="ViewModels\RIS\EditStudyViewModel.cs" />
@@ -1533,6 +1535,9 @@
     <Compile Include="Views\OrderProcessing\OrderGroupReceipt.xaml.cs">
       <DependentUpon>OrderGroupReceipt.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\OrderProcessing\OrderOtherType.xaml.cs">
+      <DependentUpon>OrderOtherType.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
     </Compile>
@@ -1685,6 +1690,9 @@
     </Compile>
     <Compile Include="Views\Purchase\ManageReceipt.xaml.cs">
       <DependentUpon>ManageReceipt.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Purchase\SearchPatientBill.xaml.cs">
+      <DependentUpon>SearchPatientBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\RIS\AssignForRDU.xaml.cs">
       <DependentUpon>AssignForRDU.xaml</DependentUpon>
@@ -2101,6 +2109,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\OrderProcessing\OrderOtherType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2302,6 +2314,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Purchase\ManageReceipt.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Purchase\SearchPatientBill.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -3336,6 +3352,7 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\logoMFU.jpg" />
     <Resource Include="Resources\Images\Document\xls.png" />
     <Resource Include="Resources\Images\Action\Manage.png" />
     <Resource Include="Resources\Images\Menu\Invoice.png" />

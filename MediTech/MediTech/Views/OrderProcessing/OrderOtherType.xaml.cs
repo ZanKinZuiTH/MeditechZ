@@ -1,5 +1,4 @@
-﻿using MediTech.ViewModels;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -17,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for MangeRecep.xaml
+    /// Interaction logic for OrderOtherType.xaml
     /// </summary>
-    public partial class ManageReceipt : UserControl
+    public partial class OrderOtherType : UserControl
     {
-        public ManageReceipt()
+        public OrderOtherType()
         {
             InitializeComponent();
         }
