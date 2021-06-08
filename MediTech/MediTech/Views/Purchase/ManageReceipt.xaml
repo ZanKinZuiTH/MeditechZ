@@ -216,61 +216,66 @@
             <dxlc:LayoutGroup Orientation="Horizontal" Margin="0,10,0,0">
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ยอดรวม">
+                    <dxlc:LayoutItem Label="ยอดรวม" FontWeight="Bold">
                         <TextBlock Text="{Binding SumTotalPrice, StringFormat={}{0:F2}}"
-                                   HorizontalAlignment="Right" 
+                                   HorizontalAlignment="Center" 
                                    VerticalAlignment="Center" 
                                    FontWeight="Bold"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right" FontWeight="Bold"/>
+                    <dxlc:LayoutItem/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ส่วนลด" Margin="0,5,0,0">
+                    <dxlc:LayoutItem Label="ส่วนลด" FontWeight="Bold" Margin="0,5,0,0">
                         <TextBlock Text="{Binding Discount, StringFormat={}{0:F2}}"
-                                   HorizontalAlignment="Right" 
+                                   HorizontalAlignment="Center" 
                                    VerticalAlignment="Center" 
                                    FontWeight="Bold"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ภาษีมูลค่าเพิ่ม 7%" Margin="0,5,0,0">
+                    <dxlc:LayoutItem Label="ภาษีมูลค่าเพิ่ม 7%" FontWeight="Bold" Margin="0,5,0,0">
                         <TextBlock Text="{Binding TaxSum, StringFormat={}{0:F2}}"
-                                   HorizontalAlignment="Right" 
+                                   HorizontalAlignment="Center" 
                                    VerticalAlignment="Center" 
                                    FontWeight="Bold"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
+                 <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="จำนวนรวมทั้งสิ้น" Margin="0,5,0,20">
+                    <dxlc:LayoutItem Label="จำนวนรวมทั้งสิ้น" FontWeight="Bold" Margin="0,5,0,20">
                         <TextBlock Text="{Binding NetPrice, StringFormat={}{0:F2}}"
-                                   HorizontalAlignment="Right" 
+                                   HorizontalAlignment="Center" 
                                    VerticalAlignment="Center" 
                                    FontWeight="Bold"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
             
 
-            <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutGroup Orientation="Horizontal" >
                 <dxlc:LayoutItem >
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                         <dx:SimpleButton Width="80" Command="{Binding SaveReceiptCommand}"

@@ -174,6 +174,12 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _CancelCommand;
+        public RelayCommand CancelCommand
+        {
+            get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
+        }
+
         private RelayCommand _RemoveCommand;
         public RelayCommand RemoveCommand
         {
@@ -199,6 +205,13 @@ namespace MediTech.ViewModels
                 new LookupReferenceValueModel { Key = 0, Display = "7%" },
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
             };
+
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
+        }
+
+        public void Cancel()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
         }
 
         public void SearchPatientBill()
@@ -289,7 +302,6 @@ namespace MediTech.ViewModels
 
             return result;
         }
-
 
         #endregion
     }

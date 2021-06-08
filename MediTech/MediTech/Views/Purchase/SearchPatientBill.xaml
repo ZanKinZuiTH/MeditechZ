@@ -7,7 +7,7 @@
              xmlns:local="clr-namespace:MediTech.Views" xmlns:cv="clr-namespace:MediTech.Converter"
              mc:Ignorable="d"
              DataContext="{Binding Path=SearchPatientBillViewModel, Source={StaticResource Locator}}"  
-             d:DesignHeight="800" d:DesignWidth="900">
+             d:DesignHeight="800" d:DesignWidth="1000">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup Orientation="Horizontal">
@@ -152,7 +152,7 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
-
+            
             <dxlc:LayoutGroup Orientation="Horizontal" Margin="0,10,0,0">
                 <dxlc:LayoutItem Label="Tax">
                     <dxe:ComboBoxEdit DisplayMember="Display" 
@@ -162,15 +162,20 @@
                                       SelectedItem="{Binding TaxSelect}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ยอดรวม">
+                    <dxlc:LayoutItem Label="ยอดรวม" FontWeight="Bold">
                         <TextBlock Text="{Binding UnitPrice, StringFormat={}{0:F2}}"
                                    HorizontalAlignment="Right" 
                                    VerticalAlignment="Center" 
-                                   FontWeight="Bold"
-                                   FontSize="15" />
+                                   FontWeight="Bold"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
@@ -178,14 +183,13 @@
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ส่วนลด">
+                    <dxlc:LayoutItem Label="ส่วนลด" FontWeight="Bold">
                     <TextBlock Text="{Binding Discount, StringFormat={}{0:F2}}"
                                    HorizontalAlignment="Right" 
                                    VerticalAlignment="Center" 
-                                   FontWeight="Bold"
-                                   FontSize="15" />
+                                   FontWeight="Bold"/>
                 </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
@@ -193,32 +197,30 @@
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="ภาษีมูลค่าเพิ่ม 7%">
+                    <dxlc:LayoutItem Label="ภาษีมูลค่าเพิ่ม 7%" FontWeight="Bold">
                     <TextBlock Text="{Binding TaxSum, StringFormat={}{0:F2}}"
                                    HorizontalAlignment="Right" 
                                    VerticalAlignment="Center" 
-                                   FontWeight="Bold"
-                                   FontSize="15" />
+                                   FontWeight="Bold"/>
                 </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem/>
                 <dxlc:LayoutItem/>
-                <dxlc:LayoutGroup HorizontalAlignment="Left" Margin="-185.8,0,0,-0.4" Width="289">
-                    <dxlc:LayoutItem Label="จำนวนรวมทั้งสิ้น" Margin="0,0,0,10">
-                    <TextBlock Text="{Binding NetPrice, StringFormat={}{0:F2}}"
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Label="จำนวนรวมทั้งสิ้น" FontWeight="Bold">
+                        <TextBlock Text="{Binding NetPrice, StringFormat={}{0:F2}}"
                                    HorizontalAlignment="Right" 
                                    VerticalAlignment="Center" 
-                                   FontWeight="Bold"
-                                   FontSize="15" />
-                </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="บาท" HorizontalAlignment="Right"/>
+                                   FontWeight="Bold"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="บาท" FontWeight="Bold" HorizontalAlignment="Right"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
                 <dx:SimpleButton Width="80" Command="{Binding SaveCommand}" IsEnabled="{Binding IsEnableEdit}"
                                      Height="25" Content="บันทึก"/>

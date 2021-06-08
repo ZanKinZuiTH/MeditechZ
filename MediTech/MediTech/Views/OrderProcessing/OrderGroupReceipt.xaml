@@ -31,12 +31,12 @@
             
             <dxlc:LayoutGroup Orientation="Vertical">
 
-                <dxlc:LayoutGroup Orientation="Horizontal" Width="190" HorizontalAlignment="Left">
+                <!--<dxlc:LayoutGroup Orientation="Horizontal" Width="190" HorizontalAlignment="Left">
                     <dxlc:LayoutItem  Label="วัน/เวลา" >
                         <dxe:DateEdit EditValue="{Binding StartDate}" DisplayFormatString="dd/MM/yyyy"/>
                     </dxlc:LayoutItem>
 
-                </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>-->
 
                 <dxlc:LayoutGroup Orientation="Horizontal" >
                     <dxlc:LayoutGroup Orientation="Vertical" >

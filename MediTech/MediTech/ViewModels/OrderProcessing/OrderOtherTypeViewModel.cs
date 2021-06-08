@@ -30,11 +30,10 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _TaxSelect, value);
-                if (TaxSelect != null)
-                {
-                    ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                    UnitPrice = ReCash;
-                }
+                Calculate();
+                    //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                    //UnitPrice = ReCash;
+
             }
         }
 
@@ -45,9 +44,17 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _Quantity, value);
-
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+                if(Price != null)
+                {
+                    Calculate();
+                    //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                    //UnitPrice = ReCash;
+                }
+                else
+                {
+                    WarningDialog("กรุณาใส่ราคาต่อหน่วย");
+                    return;
+                }
             }
         }
 
@@ -86,9 +93,9 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _Discount, value);
-
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+                Calculate();
+                //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //UnitPrice = ReCash;
             }
         }
 
@@ -107,8 +114,9 @@ namespace MediTech.ViewModels
             {
                 Set(ref _Price, value);
 
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+                Calculate();
+                //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //UnitPrice = ReCash;
             }
         }
 
@@ -161,6 +169,8 @@ namespace MediTech.ViewModels
                 new LookupReferenceValueModel { Key = 0, Display = "7%" },
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
             };
+
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
         }
 
         private void Add()
@@ -168,6 +178,11 @@ namespace MediTech.ViewModels
             try
             {
                 if(ItemName == null)
+                {
+                    WarningDialog("กรุณาใส่รายการ");
+                    return;
+                }
+                if (Price == null)
                 {
                     WarningDialog("กรุณาใส่รายการ");
                     return;
@@ -191,8 +206,13 @@ namespace MediTech.ViewModels
                     OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
-                    OrderGroupReceipt.Tax = TaxSelect.Display;
+                    OrderGroupReceipt.Tax = TaxSelect != null ? TaxSelect.Display : "";
                     OrderGroupReceipt.TypeOrder = "OrtherType";
+
+                    if (model != null)
+                    {
+                        OrderGroupReceipt.No = model.No;
+                    }
                 }
 
                 CloseViewDialog(ActionDialog.Save);
@@ -223,8 +243,6 @@ namespace MediTech.ViewModels
             //TaxChoice = new List<LookupReferenceValueModel>{
             //    new LookupReferenceValueModel {Display = model.Tax} };
             TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == model.Tax);
-
-
         }
 
         public void Cancel()
@@ -256,7 +274,14 @@ namespace MediTech.ViewModels
             return result;
         }
 
-
+        public void Calculate()
+        {
+            if(Quantity != 0 && Price != null)
+            {
+                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                UnitPrice = ReCash;
+            }
+        }
 
         #endregion
     }

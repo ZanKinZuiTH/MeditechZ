@@ -28,7 +28,7 @@ namespace MediTech.ViewModels
             get { return _OrderGroupReceipt ?? (_OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>()); }
             set { Set(ref _OrderGroupReceipt, value); }
         }
-        
+
         private GroupReceiptDetailModel _SelectOrderGroupReceipt;
         public GroupReceiptDetailModel SelectOrderGroupReceipt
         {
@@ -411,13 +411,46 @@ namespace MediTech.ViewModels
                     (receipt.DataContext as OrderOtherTypeViewModel).AssignModel(SelectOrderGroupReceipt);
                     OrderOtherTypeViewModel result = (OrderOtherTypeViewModel)LaunchViewDialog(receipt, "ORDOTT", true);
 
+                    if(result != null)
+                    {
+                        var item = OrderGroupReceipt.Where(p => p.No == result.OrderGroupReceipt.No);
+                        OrderGroupReceipt.Remove(item.FirstOrDefault());
+
+                        OrderGroupReceipt.Add(result.OrderGroupReceipt);
+                    }
+
+                    CalculateNetAmount();
                 }
                 else
                 {
-                    //ManageReceipt receipt = new ManageReceipt();
-                    //var data = DataService.Purchaseing.GetGroupReceiptByUID(SelectGroupReceipt.GroupReceiptUID);
-                    //(receipt.DataContext as ManageReceiptViewModel).AssignModel(data);
-                    //ChangeViewPermission(receipt);
+                    OrderGroupReceipt order = new OrderGroupReceipt();
+                    (order.DataContext as OrderGroupReceiptViewModel).AssignModel(SelectOrderGroupReceipt);
+                    OrderGroupReceiptViewModel result = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
+                    if (result != null)
+                    {
+                        var item = OrderGroupReceipt.Where(p => p.No == result.OrderGroupReceipt.No);
+                        OrderGroupReceipt.Remove(item.FirstOrDefault());
+
+                        OrderGroupReceipt.Add(result.OrderGroupReceipt);
+                    }
+
+                    //OrderGroupReceipt.Remove.Where(p => p.No == model.FirstOrDefault().No).ToList().Add(result.OrderGroupReceipt);
+
+                    //foreach (var test in OrderGroupReceipt.Where(p => p.No == model.FirstOrDefault().No))
+                    //{
+                    //    //test.Quantity = model.FirstOrDefault().Quantity;
+                    //    //test.PriceUnit = model.FirstOrDefault().PriceUnit;
+                    //    //test.Discount = model.FirstOrDefault().Discount;
+                    //}
+
+                    //if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                    //{
+                    //    int i = 1;
+                    //    OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                    //}
+                    
+                    CalculateNetAmount();
+                    OnUpdateEvent();
                 }
             }
         }
@@ -513,7 +546,7 @@ namespace MediTech.ViewModels
                     
                     if (orderSet.OrderSetBillableItems != null)
                     {
-                        OrderGroupReceipt order = new OrderGroupReceipt(orderSet, ownerUID);
+                        OrderGroupReceipt order = new OrderGroupReceipt(orderSet, ownerUID, orderItem.TypeOrder);
                         OrderGroupReceiptViewModel resultMed = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
                         if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
                         {
@@ -531,7 +564,7 @@ namespace MediTech.ViewModels
                 }
                 else
                 {
-                    PopUpOrder(orderItem.BillableItemUID);
+                    PopUpOrder(orderItem.BillableItemUID, orderItem.TypeOrder);
                 }
             }
             catch (Exception ex)
@@ -541,7 +574,7 @@ namespace MediTech.ViewModels
 
         }
 
-        void PopUpOrder(int billableItemUID)
+        void PopUpOrder(int billableItemUID, string typeOrder)
         {
             try
             {
@@ -559,7 +592,7 @@ namespace MediTech.ViewModels
 
                 if (billItem != null)
                 {
-                    OrderGroupReceipt order = new OrderGroupReceipt(billItem, ownerUID);
+                    OrderGroupReceipt order = new OrderGroupReceipt(billItem, ownerUID,typeOrder);
                     OrderGroupReceiptViewModel result = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)

@@ -21,12 +21,12 @@ namespace MediTech.ViewModels
             set { Set(ref _OrderGroupReceipt, value); }
         }
 
-        private DateTime _StartDate;
-        public DateTime StartDate
-        {
-            get { return _StartDate; }
-            set { Set(ref _StartDate, value); }
-        }
+        //private DateTime _StartDate;
+        //public DateTime StartDate
+        //{
+        //    get { return _StartDate; }
+        //    set { Set(ref _StartDate, value); }
+        //}
 
         public List<LookupReferenceValueModel> TaxChoice { get; set; }
 
@@ -37,11 +37,12 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _TaxSelect, value);
-                if (TaxSelect != null)
-                {
-                    ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                    UnitPrice = ReCash;
-                }
+                Calculate();
+                //if (TaxSelect != null)
+                //{
+                //    ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //    UnitPrice = ReCash;
+                //}
             }
         }
 
@@ -63,6 +64,13 @@ namespace MediTech.ViewModels
         //    set { Set(ref _Quantity, value); }
         //}
 
+        private GroupReceiptDetailModel _model;
+        public GroupReceiptDetailModel model
+        {
+            get { return _model; }
+            set { _model = value; }
+        }
+
         private double  _Quantity;
         public double Quantity
         {
@@ -70,9 +78,10 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _Quantity, value);
-                
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+
+                Calculate();
+                //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //UnitPrice = ReCash;
             }
         }
 
@@ -112,8 +121,9 @@ namespace MediTech.ViewModels
             { 
                 Set(ref _Discount, value);
 
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+                Calculate();
+                //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //UnitPrice = ReCash;
             }
         }
 
@@ -131,9 +141,9 @@ namespace MediTech.ViewModels
             set 
             { 
                 Set(ref _Price, value);
-
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
-                UnitPrice = ReCash;
+                Calculate();
+                //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                //UnitPrice = ReCash;
             }
         }
 
@@ -177,6 +187,8 @@ namespace MediTech.ViewModels
                 new LookupReferenceValueModel { Key = 0, Display = "7%" },
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
             };
+
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
         }
 
         public void BindingFromOrderset()
@@ -184,7 +196,6 @@ namespace MediTech.ViewModels
             List<GroupReceiptModel> orderPrice = DataService.OrderProcessing.GetOrderPriceByUID(orderSet.OrderSetUID);
             double? ordersetPrice = orderPrice.Sum(item => item.PriceUnit);
             DateTime now = DateTime.Now;
-            //TypeOrder = BillableItem.BillingServiceMetaData;
             OrderName = orderSet.Name;
             OrderCode = "Code : " + orderSet.Code;
 
@@ -192,7 +203,7 @@ namespace MediTech.ViewModels
             Price = ordersetPrice.ToString();
             UnitPrice = ReCash;
 
-            StartDate = now.Date;
+            //StartDate = now.Date;
         }
 
         public void BindingFromBillableItem()
@@ -203,9 +214,30 @@ namespace MediTech.ViewModels
             OrderCode = "Code : " + BillableItem.Code;
             Price = BillableItem.Price.ToString();
             UnitPrice = ReCash;
-            StartDate = now.Date;
+            //StartDate = now.Date;
         }
 
+        public void AssignModel(GroupReceiptDetailModel modelData)
+        {
+            model = modelData;
+            AssingModelToProperties();
+        }
+
+        public void AssingModelToProperties()
+        {
+            OrderName = model.ItemName;
+            Price = model.PriceUnit.ToString();
+            Discount = model.Discount.Value;
+            Quantity = model.Quantity.Value;
+            Unit = model.UnitItem;
+            //UnitPrice = model.TotalPrice.Value;
+            //TaxSelect.Display = model.Tax;
+            //TaxChoice = new List<LookupReferenceValueModel>{
+            //    new LookupReferenceValueModel {Display = model.Tax} };
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == model.Tax);
+            //StartDate = model.
+
+        }
 
         private void Add()
         {
@@ -225,7 +257,14 @@ namespace MediTech.ViewModels
                     OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
-                    OrderGroupReceipt.Tax = TaxSelect.Display;
+                    OrderGroupReceipt.Tax = TaxSelect != null ? TaxSelect.Display : "";
+                    //OrderGroupReceipt.ItemCode = orderSet.Code;
+                    OrderGroupReceipt.TypeOrder = TypeOrder;
+
+                    if(model != null)
+                    {
+                        OrderGroupReceipt.No = model.No;
+                    }
                 }
 
                 CloseViewDialog(ActionDialog.Save);
@@ -262,6 +301,15 @@ namespace MediTech.ViewModels
             result = (result + tax) - discount;
 
             return result;
+        }
+
+        public void Calculate()
+        {
+            if (Quantity != 0 && Price != null)
+            {
+                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                UnitPrice = ReCash;
+            }
         }
 
         #endregion

@@ -22,24 +22,29 @@ namespace MediTech.Views
     /// </summary>
     public partial class OrderGroupReceipt : UserControl
     {
-
-        public OrderGroupReceipt(OrderSetModel orderSet, int? ownerOrganisationUID)
+        public OrderGroupReceipt()
+        {
+            InitializeComponent();
+        }
+        public OrderGroupReceipt(OrderSetModel orderSet, int? ownerOrganisationUID, string typeOrder)
         {
             InitializeComponent();
             if (this.DataContext is OrderGroupReceiptViewModel)
             {
                 (this.DataContext as OrderGroupReceiptViewModel).OwnerOrgansitaion = ownerOrganisationUID;
                 (this.DataContext as OrderGroupReceiptViewModel).orderSet = orderSet;
+                (this.DataContext as OrderGroupReceiptViewModel).TypeOrder = typeOrder;
                 (this.DataContext as OrderGroupReceiptViewModel).BindingFromOrderset();
             }
         }
-        public OrderGroupReceipt(BillableItemModel billablItem, int? ownerOrganisationUID)
+        public OrderGroupReceipt(BillableItemModel billablItem, int? ownerOrganisationUID, string typeOrder)
         {
             InitializeComponent();
             if (this.DataContext is OrderGroupReceiptViewModel)
             {
                 (this.DataContext as OrderGroupReceiptViewModel).OwnerOrgansitaion = ownerOrganisationUID;
                 (this.DataContext as OrderGroupReceiptViewModel).BillableItem = billablItem;
+                (this.DataContext as OrderGroupReceiptViewModel).TypeOrder = typeOrder;
                 (this.DataContext as OrderGroupReceiptViewModel).BindingFromBillableItem();
             }
         }
