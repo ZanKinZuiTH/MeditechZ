@@ -13,10 +13,10 @@ using System.Windows;
 
 namespace MediTech.Reports.Statistic.Cashier
 {
-    public partial class RevenuePerDay2 : DevExpress.XtraReports.UI.XtraReport
+    public partial class RevenuePerDayNewPage : DevExpress.XtraReports.UI.XtraReport
     {
 
-        public RevenuePerDay2()
+        public RevenuePerDayNewPage()
         {
             InitializeComponent();
             this.BeforePrint += RevenuePerDay_BeforePrint;

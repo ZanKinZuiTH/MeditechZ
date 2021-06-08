@@ -84,6 +84,11 @@ namespace MediTech.ViewModels
             var myReport = Activator.CreateInstance(Type.GetType(ReportTemplate.NamespaceName));
             XtraReport report = (XtraReport)myReport;
             string healthOrganisationList = "";
+            if (SelectOrganisations == null || SelectOrganisations.Count == 0)
+            {
+                WarningDialog("กรุณาเลือกสถานประกอบการ");
+                return;
+            }
             if (SelectOrganisations != null)
             {
                 foreach (object item in SelectOrganisations)

@@ -1,7 +1,7 @@
 ﻿
 namespace MediTech.Reports.Statistic.Cashier
 {
-    partial class RevenuePerDay2
+    partial class RevenuePerDayNewPage
     {
         /// <summary>
         /// Required designer variable.
@@ -108,7 +108,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.lblReportHeader.LocationFloat = new DevExpress.Utils.PointFloat(27.70591F, 19.37501F);
             this.lblReportHeader.Name = "lblReportHeader";
             this.lblReportHeader.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblReportHeader.SizeF = new System.Drawing.SizeF(293.75F, 36.54167F);
+            this.lblReportHeader.SizeF = new System.Drawing.SizeF(723.1895F, 36.54167F);
             this.lblReportHeader.StylePriority.UseFont = false;
             this.lblReportHeader.StylePriority.UseTextAlignment = false;
             this.lblReportHeader.Text = "รายงานรายรับต่อวัน";
@@ -497,7 +497,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.GroupHeader1.StylePriority.UseTextAlignment = false;
             this.GroupHeader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
-            // RevenuePerDay2
+            // RevenuePerDayNewPage
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,

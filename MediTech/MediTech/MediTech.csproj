@@ -669,11 +669,11 @@
     <Compile Include="Reports\Statistic\Cashier\DrugStoreNetProfit.Designer.cs">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay2.cs">
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay2.Designer.cs">
-      <DependentUpon>RevenuePerDay2.cs</DependentUpon>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.Designer.cs">
+      <DependentUpon>RevenuePerDayNewPage.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.cs">
       <SubType>Component</SubType>
@@ -2786,8 +2786,8 @@
     <EmbeddedResource Include="Reports\Statistic\Cashier\DrugStoreNetProfit.resx">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay2.resx">
-      <DependentUpon>RevenuePerDay2.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.resx">
+      <DependentUpon>RevenuePerDayNewPage.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.resx">
       <DependentUpon>RevenuePerDay.cs</DependentUpon>

@@ -70,7 +70,7 @@ namespace MediTech.Reports.Statistic.Cashier
         {
             foreach (var dataGroupOrg in listDataGroup)
             {
-                RevenuePerDay2 newPage = new RevenuePerDay2();
+                RevenuePerDayNewPage newPage = new RevenuePerDayNewPage();
                 newPage.Parameters["Date"].Value = this.Parameters["Date"].Value;
                 newPage.DataSource = dataGroupOrg;
 

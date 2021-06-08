@@ -109,7 +109,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.lblReportHeader.LocationFloat = new DevExpress.Utils.PointFloat(27.71F, 19.38F);
             this.lblReportHeader.Name = "lblReportHeader";
             this.lblReportHeader.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lblReportHeader.SizeF = new System.Drawing.SizeF(293.75F, 36.54167F);
+            this.lblReportHeader.SizeF = new System.Drawing.SizeF(723.19F, 36.54F);
             this.lblReportHeader.StylePriority.UseFont = false;
             this.lblReportHeader.StylePriority.UseTextAlignment = false;
             this.lblReportHeader.Text = "รายงานรายรับต่อวัน";
