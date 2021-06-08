@@ -38,7 +38,8 @@ namespace MediTech.Views
 
         private void PART_Editor_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
-            (this.DataContext as PatientBilledViewModel).UpdatePatientBill((int)e.NewValue);
+            if (e.NewValue != null)
+                (this.DataContext as PatientBilledViewModel).UpdatePatientBill((int)e.NewValue);
         }
     }
 }
