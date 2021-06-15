@@ -21,8 +21,6 @@ namespace PACS.DataBase
         public string TransferSyntaxUID { get; set; }
         public string PatientID { get; set; }
         public string PatientName { get; set; }
-        public string ReferringPhysicianName { get; set; }
-        public string PerformingPhysicianName { get; set; }
         public string PatientComments { get; set; }
         public string PatientBirthDate { get; set; }
         public string PatientSex { get; set; }
@@ -62,12 +60,12 @@ namespace PACS.DataBase
         public Nullable<int> HighBit { get; set; }
         public Nullable<int> PixelRepresentation { get; set; }
         public Nullable<int> PixelData { get; set; }
-        public string AETitle { get; set; }
+        public string Sender { get; set; }
         public long FileSize { get; set; }
         public System.DateTime Created { get; set; }
         public string SpecificCharacterSet { get; set; }
         public string ImageType { get; set; }
-        public string PhotometricInterpretation { get; set; }
+        public string PhotoMatricInterpretation { get; set; }
         public string PatientAge { get; set; }
         public string LossyImageCompression { get; set; }
         public int Method { get; set; }

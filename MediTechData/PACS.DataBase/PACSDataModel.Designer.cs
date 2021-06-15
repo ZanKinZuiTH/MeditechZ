@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\MediTechData\PACS.DataBase\PACSDataModel.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Users\BRXG_MRD_1\Documents\Project\Meditech\MediTechData\PACS.DataBase\PACSDataModel.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

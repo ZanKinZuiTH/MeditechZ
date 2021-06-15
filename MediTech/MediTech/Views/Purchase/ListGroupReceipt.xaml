@@ -40,7 +40,7 @@
                 <dxlc:LayoutItem Label="ถึงวันที่">
                     <dxe:DateEdit EditValue="{Binding DateTo}"/>
                 </dxlc:LayoutItem>
-                
+
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="Payor">
@@ -84,7 +84,7 @@
                     <dxe:TextEdit Text="{Binding ReceiptNumber}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem >
-                    
+
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                         <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
@@ -101,39 +101,75 @@
                         <dxg:GridColumn Header="ชื่อลูกค้า" FieldName="PayorName"  ReadOnly="True" Width="300"/>
                         <dxg:GridColumn Header="ผู้ขาย" FieldName="Seller"  ReadOnly="True"/>
                         <dxg:GridColumn Header="วันที่ออกบิล" FieldName="StartDttm"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="ยอดรวม" FieldName="PriceUnit"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="ยอดรวม" FieldName="Amount"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ส่วนลด" FieldName="Discount"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ยอดหลังส่วนลด" FieldName="NetAmount"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="ภาษีมูลค่าเพิ่ม 7%" FieldName="TaxAmount"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="#,#.00"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="มีอ้างอิงใบ Invoice"  FieldName="IsInvoice" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="วัน เวลา ยกเลิกบิล" FieldName="CancelledDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelledReason" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False"/>
+                        <dxg:TableView ShowGroupPanel="False">
+                            <dxg:TableView.FormatConditions>
+                                <dxg:FormatCondition Expression="[CancelledDttm] Is Not Null" FieldName="CancelledDttm" ApplyToRow="True">
+                                    <dx:Format Background="#FFA5A5A5"/>
+                                </dxg:FormatCondition>
+                            </dxg:TableView.FormatConditions>
+                        </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
-                    <dx:SimpleButton Width="110" Height="30" Command="{Binding PrintRecriptCommand}">
-                        <StackPanel Orientation="Horizontal">
-                            <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
-                            <TextBlock Text=" พิมพ์ใบเสร็จ" VerticalAlignment="Center"/>
-                        </StackPanel>
-                    </dx:SimpleButton>
-                </dxlc:LayoutGroup>
-                
+
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="100" Height="30" Command="{Binding AddRecriptCommand}">
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Left">
+                        <dx:SimpleButton Width="110" Height="30" Command="{Binding PrintRecriptCommand}">
                             <StackPanel Orientation="Horizontal">
-                                <TextBlock Text=" เพิ่มใบเสร็จ" VerticalAlignment="Center"/>
+                                <Image Source="/MediTech;component/Resources/Images/Print/Print_32x32.png"/>
+                                <TextBlock Text=" พิมพ์ใบเสร็จ" VerticalAlignment="Center"/>
                             </StackPanel>
                         </dx:SimpleButton>
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="100" Height="30" Command="{Binding ManageRecriptCommand}">
-                            <StackPanel Orientation="Horizontal">
-                                <TextBlock Text=" แก้ไขใบเสร็จ" VerticalAlignment="Center"/>
-                            </StackPanel>
-                        </dx:SimpleButton>
+                        <dx:SimpleButton Content="แก้ไขใบเสร็จ" Width="100" Height="30"
+                                         IsEnabled="{Binding IsEnableEditReceipt}"
+                                         Command="{Binding ModifyReceiptCommand}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Content="ยกเลิกใบเสร็จ" Width="100" Height="30"
+                                         IsEnabled="{Binding IsEnableCancel}"
+                                         Command="{Binding CancelReceiptCommand}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem HorizontalAlignment="Right">
+                        <dx:SimpleButton Content="สร้างใบเสร็จ" Width="100" Height="30" 
+                                         Command="{Binding CreateRecriptCommand}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>

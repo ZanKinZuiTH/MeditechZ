@@ -286,6 +286,8 @@ namespace MediTech.ViewModels
             }
 
             NetAmount += OtherChages - Discount;
+
+            NetAmount = Math.Round(NetAmount, 2);
         }
 
         public void CalculateVat()
@@ -293,8 +295,13 @@ namespace MediTech.ViewModels
             VATPercentage = 0;
             foreach (var item in GRNItems)
             {
-                VATPercentage += (item.UnitPrice * ((item.TaxPercentage ?? 0) / 100));
+                if ((item.TaxPercentage ?? 0) != 0)
+                {
+                    VATPercentage +=  ((item.NetAmount * item.TaxPercentage) / (100 + item.TaxPercentage));
+                }
+
             }
+            VATPercentage = Math.Round(VATPercentage ?? 0, 2);
         }
 
         private void Save()

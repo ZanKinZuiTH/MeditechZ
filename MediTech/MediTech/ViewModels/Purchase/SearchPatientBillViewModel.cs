@@ -61,15 +61,15 @@ namespace MediTech.ViewModels
             set { _SelectPatientBill = value; }
         }
 
-        private ObservableCollection<PatientBillModel> _PatientBillGroup;
-        public ObservableCollection<PatientBillModel> PatientBillGroup
+        private ObservableCollection<GroupReceiptPatientBillModel> _PatientBillGroup;
+        public ObservableCollection<GroupReceiptPatientBillModel> PatientBillGroup
         {
             get { return _PatientBillGroup; }
             set { Set(ref _PatientBillGroup, value); }
         }
 
-        private PatientBillModel _SelectPatientBillGroup;
-        public PatientBillModel SelectPatientBillGroup
+        private GroupReceiptPatientBillModel _SelectPatientBillGroup;
+        public GroupReceiptPatientBillModel SelectPatientBillGroup
         {
             get { return _SelectPatientBillGroup; }
             set { _SelectPatientBillGroup = value; }
@@ -88,71 +88,7 @@ namespace MediTech.ViewModels
             set { Set(ref _UnitPrice, value); }
         }
 
-        private double _Quantity;
-        public double Quantity
-        {
-            get { return _Quantity; }
-            set { Set(ref _Quantity, value); }
-        }
-
-        private double ? _ReCash;
-        public double ? ReCash
-        {
-            get { return _ReCash; }
-            set { Set(ref _ReCash, value); }
-        }
-
-        private string _Price;
-        public string Price
-        {
-            get { return _Price; }
-            set { Set(ref _Price, value); }
-        }
-
-        private double ? _Discount;
-        public double ? Discount
-        {
-            get { return _Discount; }
-            set { Set(ref _Discount, value); }
-        }
-
-        private double ? _TaxSum;
-        public double ? TaxSum
-        {
-            get { return _TaxSum; }
-            set { Set(ref _TaxSum, value); }
-        }
-
-        private double ? _NetPrice;
-        public double ? NetPrice
-        {
-            get { return _NetPrice; }
-            set { Set(ref _NetPrice, value); }
-        }
-
-        public List<LookupReferenceValueModel> TaxChoice { get; set; }
-
-        private LookupReferenceValueModel _TaxSelect;
-        public LookupReferenceValueModel TaxSelect
-        {
-            get { return _TaxSelect; }
-            set
-            {
-                Set(ref _TaxSelect, value);
-                if (TaxSelect != null)
-                {
-                    if(PatientBillGroup != null)
-                    {
-                        Quantity = PatientBillGroup.Count;
-                        double? billprice = PatientBillGroup[0].TotalAmount;
-                        double? billdiscount = PatientBillGroup[0].DiscountAmount;
-
-                        ReCash = SumPrice(Quantity, billprice, billdiscount);
-                        NetPrice = ReCash;
-                    }
-                }
-            }
-        }
+      
 
         #endregion
 
@@ -180,6 +116,12 @@ namespace MediTech.ViewModels
             get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
 
+        private RelayCommand _SaveCommand;
+        public RelayCommand SaveCommand
+        {
+            get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(Save)); }
+        }
+
         private RelayCommand _RemoveCommand;
         public RelayCommand RemoveCommand
         {
@@ -201,12 +143,16 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
-            TaxChoice = new List<LookupReferenceValueModel>{
-                new LookupReferenceValueModel { Key = 0, Display = "7%" },
-                new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
-            };
+        }
 
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
+        public void Save()
+        {
+            if (PatientBillGroup == null || PatientBillGroup.Count <= 0)
+            {
+                WarningDialog("กรุณาเลือกใบ Invoice อย่างน้อย 1 รายการ");
+                return;
+            }
+            CloseViewDialog(ActionDialog.Save);
         }
 
         public void Cancel()
@@ -224,28 +170,33 @@ namespace MediTech.ViewModels
 
         public void AddGroupResult()
         {
-            double ? billprice = 0;
-            double ? billdiscount = 0;
-            double ? billNet = 0;
-            TaxSum = 0;
+
             if(SelectPatientBill != null)
             {
+                if (PatientBillGroup == null)
+                    PatientBillGroup = new ObservableCollection<GroupReceiptPatientBillModel>();
+
                 foreach (var item in SelectPatientBill)
                 {
-                    Quantity = SelectPatientBill.Count;
-                    
-
-                    break;
+                    if (PatientBillGroup.FirstOrDefault(p => p.PatientBillUID == item.PatientBillUID) == null)
+                    {
+                        GroupReceiptPatientBillModel newPatBill = new GroupReceiptPatientBillModel();
+                        newPatBill.PatientBillUID = item.PatientBillUID;
+                        newPatBill.PatientID = item.PatientID;
+                        newPatBill.PatientName = item.PatientName;
+                        newPatBill.BillNumber = item.BillNumber;
+                        newPatBill.BillGeneratedDttm = item.BillGeneratedDttm;
+                        newPatBill.TotalAmount = item.TotalAmount;
+                        newPatBill.DiscountAmount = item.DiscountAmount;
+                        newPatBill.NetAmount = item.NetAmount;
+                        newPatBill.Comments = item.Comments;
+                        newPatBill.PayorName = item.PayorName;
+                        newPatBill.OrganisationName = item.OrganisationName;
+                        newPatBill.CancelReason = item.CancelReason;
+                        PatientBillGroup.Add(newPatBill);
+                    }
                 }
 
-                billprice = SelectPatientBill[0].TotalAmount;
-                billdiscount = SelectPatientBill[0].DiscountAmount;
-                billNet = SelectPatientBill[0].NetAmount;
-
-                ReCash = SumPrice(Quantity, billprice, billdiscount);
-                NetPrice = ReCash;
-
-                PatientBillGroup = SelectPatientBill;
             }
         }
 
@@ -253,56 +204,9 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientBillGroup != null)
             {
-                ObservableCollection<PatientBillModel> billRemove = new ObservableCollection<PatientBillModel>();
-                billRemove = PatientBillGroup;
-                ObservableCollection<PatientBillModel> test = new ObservableCollection<PatientBillModel>();
-
-                PatientBillGroup = null;
-
-                foreach(var item in billRemove)
-                {
-                    if(SelectPatientBillGroup.BillNumber != item.BillNumber)
-                    {
-                        test.Add(item);
-                    }
-                }
-                PatientBillGroup = test;
-
-                Quantity = PatientBillGroup.Count;
-                double ? billprice = PatientBillGroup[0].TotalAmount;
-                double?  billdiscount = PatientBillGroup[0].DiscountAmount;
-
-                ReCash = SumPrice(Quantity, billprice, billdiscount);
-                NetPrice = ReCash;
+                PatientBillGroup.Remove(SelectPatientBillGroup);
             }
         }
-
-        public double ? SumPrice(double ? quantity, double ? total, double ? discount)
-        {
-            double ? result = 0;
-            double ? tax = 0;
-            if (quantity != 0 && total != 0 && discount != null)
-            {
-                UnitPrice = total * quantity;
-                Discount = discount * quantity;
-                result = (total - discount) * quantity;
-
-            }
-
-            if (TaxSelect != null)
-            {
-                if (TaxSelect.Display == "7%")
-                {
-                    tax = (total * 0.07) * quantity;
-                    TaxSum = tax;
-                }
-            }
-
-            result = result + tax;
-
-            return result;
-        }
-
         #endregion
     }
 }

@@ -55,7 +55,7 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="Tax">
                             <dxe:ComboBoxEdit  DisplayMember="Display" 
-                                      ValueMember="Key"
+                                      ValueMember="NumericValue"
                                       NullValueButtonPlacement="EditBox" 
                                       ItemsSource="{Binding TaxChoice}"
                                       SelectedItem="{Binding TaxSelect}"/>

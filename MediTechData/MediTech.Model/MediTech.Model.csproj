@@ -141,6 +141,7 @@
     <Compile Include="Inventory\PrescriptionItemModel.cs" />
     <Compile Include="Purchaseing\GRNDetailModel.cs" />
     <Compile Include="Purchaseing\GRNItemListModel.cs" />
+    <Compile Include="Purchaseing\GroupReceiptPatientBillModel.cs" />
     <Compile Include="Purchaseing\PurchaseOrderItemListModel.cs" />
     <Compile Include="Purchaseing\PurchaseOrderModel.cs" />
     <Compile Include="Purchaseing\PurchaseOrderPaymentModel.cs" />
@@ -162,8 +163,8 @@
     <Compile Include="Report\DoctorFeeReportModel.cs" />
     <Compile Include="Report\DrugStickerModel.cs" />
     <Compile Include="Report\GoodReceiveReportModel.cs" />
-    <Compile Include="Report\GroupReceiptDetailModel.cs" />
-    <Compile Include="Report\GroupReceiptModel.cs" />
+    <Compile Include="Purchaseing\GroupReceiptDetailModel.cs" />
+    <Compile Include="Purchaseing\GroupReceiptModel.cs" />
     <Compile Include="Report\MedicalCertificateModel.cs" />
     <Compile Include="Report\OPDCardModel.cs" />
     <Compile Include="Report\OrderRequestCardModel.cs" />

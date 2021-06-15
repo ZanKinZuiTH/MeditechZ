@@ -17,6 +17,12 @@ namespace MediTech.DataBase
             throw new NotSupportedException("Direct calls are not supported.");
         }
 
+        [DbFunction("MediTechModel.Store", "fGetRfValAlternateName")]
+        public static string fGetRfValAlternateName(int referencevalueUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
         [DbFunction("MediTechModel.Store", "fGetRfValCode")]
         public static string fGetRfValCode(int referencevalueUID)
         {

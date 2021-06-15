@@ -111,21 +111,20 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
-        public bool ManageGroupReceipt(GroupReceiptModel model, int userID)
+        public int? ManageGroupReceipt(GroupReceiptModel model, int userID)
         {
-            bool flag = false;
+            int? groupReceiptUID;
             try
             {
                 string requestApi = string.Format("Api/Purchaseing/ManageGroupReceipt?userID={0}", userID);
-                MeditechApiHelper.Post<GroupReceiptModel>(requestApi, model);
-                flag = true;
+                groupReceiptUID = MeditechApiHelper.Post<GroupReceiptModel, int?>(requestApi, model);
             }
             catch (Exception)
             {
 
                 throw;
             }
-            return flag;
+            return groupReceiptUID;
         }
 
         public bool DeleteGroupReceiptDetail(int GroupReceiptDetailUID, int userID)
@@ -147,6 +146,26 @@ namespace MediTech.DataService
 
             return flag;
 
+        }
+
+        public bool CancelReceipt(long groupReceiptUID, string cancelReason, int userUID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Purchaseing/CancelReceipt?groupReceiptUID={0}&cancelReason={1}&userUID={2}", groupReceiptUID, cancelReason, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
         }
         #endregion
 

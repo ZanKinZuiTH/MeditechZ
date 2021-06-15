@@ -32,12 +32,12 @@ namespace MediTech.Reports.Operating.Cashier
                 lbTexNo.Text = tex != null ? "เลขประจำตัวผู้เลียภาษี " + tex : "";
                 
 
-                if (data.GroupReceiptDetailModel.Count > 0)
+                if (data.GroupReceiptDetails.Count > 0)
                 {
                     int i = 1;
                     double priceTotal = 0;
 
-                    foreach (var item in data.GroupReceiptDetailModel)
+                    foreach (var item in data.GroupReceiptDetails)
                     {
                         item.No = i;
                         i++;

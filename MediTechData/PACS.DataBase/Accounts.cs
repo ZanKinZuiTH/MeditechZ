@@ -17,6 +17,5 @@ namespace PACS.DataBase
         public string Id { get; set; }
         public string Name { get; set; }
         public int Authority { get; set; }
-        public string ReferringPhysicianName { get; set; }
     }
 }

@@ -77,6 +77,11 @@
                         <dxb:Bar.DockInfo>
                             <dxb:BarDockInfo ContainerType="Top"/>
                         </dxb:Bar.DockInfo>
+                        <dxb:BarEditItem x:Name="biFormatFontName" Content="" Command="{Binding FormatFontName, Mode=OneTime, Source={StaticResource commands}}" EditWidth="150">
+                            <dxb:BarEditItem.EditSettings>
+                                <dxre:FontComboBoxEditSettings/>
+                            </dxb:BarEditItem.EditSettings>
+                        </dxb:BarEditItem>
                         <dxb:Bar.ItemLinks>
                             <dxb:BarEditItemLink BarItemName="biFormatFontSize"/>
                             <dxb:BarButtonItemLink BarItemName="biFormatIncreaseFontSize"/>

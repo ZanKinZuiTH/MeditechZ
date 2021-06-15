@@ -280,7 +280,8 @@ namespace MediTech.Models
         double CalculateNetAmount()
         {
             double NetAmount = 0;
-            NetAmount = (((Quantity ?? 0) * (UnitPrice ?? 0)) + ((UnitPrice ?? 0) * ((TaxPercentage ?? 0) / 100))) - (Discount ?? 0);
+            //NetAmount = (((Quantity ?? 0) * (UnitPrice ?? 0)) + ((UnitPrice ?? 0) * ((TaxPercentage ?? 0) / 100))) - (Discount ?? 0);
+            NetAmount = ((Quantity ?? 0) * (UnitPrice ?? 0)) - (Discount ?? 0);
             return NetAmount;
         }
 

@@ -507,7 +507,7 @@
             // 
             // objectDataSource1
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.GroupReceiptModel);
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.GroupReceiptModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
             // PageHeader

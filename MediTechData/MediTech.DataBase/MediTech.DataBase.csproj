@@ -142,6 +142,9 @@
     <Compile Include="GroupReceiptDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="GroupReceiptPatientBill.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="HealthOrganisation.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -875,9 +878,6 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQGRNID.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
-    <Compile Include="SEQGroupReceipt.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQITCODE.cs">

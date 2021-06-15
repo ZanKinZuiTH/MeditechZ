@@ -1,6 +1,7 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿using DevExpress.XtraReports.UI;
+using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
-using MediTech.Model.Report;
+using MediTech.Reports.Operating.Cashier;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
@@ -28,6 +29,25 @@ namespace MediTech.ViewModels
             get { return _OrderGroupReceipt ?? (_OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>()); }
             set { Set(ref _OrderGroupReceipt, value); }
         }
+
+        private List<GroupReceiptPatientBillModel> _GroupReceiptPatientBill;
+
+        public List<GroupReceiptPatientBillModel> GroupReceiptPatientBill
+        {
+            get { return _GroupReceiptPatientBill ?? (_GroupReceiptPatientBill = new List<GroupReceiptPatientBillModel>()); }
+            set { 
+                _GroupReceiptPatientBill = value;
+                if (_GroupReceiptPatientBill != null && _GroupReceiptPatientBill.Count > 0)
+                {
+                    VisibilityTextInvocice = Visibility.Visible;
+                }
+                else
+                {
+                    VisibilityTextInvocice = Visibility.Hidden;
+                }
+            }
+        }
+
 
         private GroupReceiptDetailModel _SelectOrderGroupReceipt;
         public GroupReceiptDetailModel SelectOrderGroupReceipt
@@ -76,7 +96,7 @@ namespace MediTech.ViewModels
             set { _model = value; }
         }
 
-        public DateTime ? BillDate { get; set; }
+        public DateTime? BillDate { get; set; }
 
         private List<PayorDetailModel> _PayorDetails;
         public List<PayorDetailModel> PayorDetails
@@ -92,32 +112,47 @@ namespace MediTech.ViewModels
         //    set { Set(ref _ReceiptNumber, value); }
         //}
 
-        private double ? _SumTotalPrice;
-        public double ? SumTotalPrice
+        private double _Amount;
+        public double Amount
         {
-            get { return _SumTotalPrice; }
-            set { Set(ref _SumTotalPrice, value); }
+            get { return _Amount; }
+            set { Set(ref _Amount, value); }
         }
 
-        private double ? _TaxSum;
-        public double ? TaxSum
-        {
-            get { return _TaxSum; }
-            set { Set(ref _TaxSum, value); }
-        }
-
-        private double? _NetPrice;
-        public double? NetPrice
-        {
-            get { return _NetPrice; }
-            set { Set(ref _NetPrice, value); }
-        }
-
-        private double? _Discount;
-        public double? Discount
+        private double _Discount;
+        public double Discount
         {
             get { return _Discount; }
             set { Set(ref _Discount, value); }
+        }
+
+
+        private double _NetAmount;
+        public double NetAmount
+        {
+            get { return _NetAmount; }
+            set { Set(ref _NetAmount, value); }
+        }
+
+        private double _NoTaxAmount;
+        public double NoTaxAmount
+        {
+            get { return _NoTaxAmount; }
+            set { Set(ref _NoTaxAmount, value); }
+        }
+
+        private double _BfTaxAmount;
+        public double BfTaxAmount
+        {
+            get { return _BfTaxAmount; }
+            set { Set(ref _BfTaxAmount, value); }
+        }
+
+        private double _TaxAmount;
+        public double TaxAmount
+        {
+            get { return _TaxAmount; }
+            set { Set(ref _TaxAmount, value); }
         }
 
         private string _Address;
@@ -140,6 +175,26 @@ namespace MediTech.ViewModels
             get { return _Seller; }
             set { Set(ref _Seller, value); }
         }
+
+        private string _ReceiptNo;
+
+        public string ReceiptNo
+        {
+            get { return _ReceiptNo; }
+            set { 
+                Set(ref _ReceiptNo, value);
+                VisibilityReceiptNo = string.IsNullOrEmpty(ReceiptNo) ? Visibility.Hidden : Visibility.Visible;
+            }
+        }
+
+        private Visibility _VisibilityReceiptNo = Visibility.Hidden;
+
+        public Visibility VisibilityReceiptNo
+        {
+            get { return _VisibilityReceiptNo; }
+            set { Set(ref _VisibilityReceiptNo, value); }
+        }
+
 
         private PayorDetailModel _SelectPayorDetail;
         public PayorDetailModel SelectPayorDetail
@@ -228,12 +283,12 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientOrders, value); }
         }
 
-        private Visibility _VisibilitySearchRequest = Visibility.Visible;
+        private Visibility _VisibilityTextInvocice = Visibility.Hidden;
 
-        public Visibility VisibilitySearchRequest
+        public Visibility VisibilityTextInvocice
         {
-            get { return _VisibilitySearchRequest; }
-            set { Set(ref _VisibilitySearchRequest, value); }
+            get { return _VisibilityTextInvocice; }
+            set { Set(ref _VisibilityTextInvocice, value); }
         }
 
         public List<LookupReferenceValueModel> _TaxChoice;
@@ -243,9 +298,18 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _TaxChoice, value);
-                
+
             }
         }
+
+        private bool _IsPrintReceipt = true;
+
+        public bool IsPrintReceipt
+        {
+            get { return _IsPrintReceipt; }
+            set { Set(ref _IsPrintReceipt, value); }
+        }
+
 
         #endregion
 
@@ -337,50 +401,43 @@ namespace MediTech.ViewModels
             }
 
             TaxChoice = new List<LookupReferenceValueModel>{
-                new LookupReferenceValueModel { Key = 0, Display = "7%" },
-                new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
+                new LookupReferenceValueModel { Key = 0, Display = "7%" ,NumericValue = 7},
+                new LookupReferenceValueModel { Key = 1, Display = "ยกเว้นภาษี",NumericValue = 0 }
             };
 
-           
+
         }
 
         public void ChangeValue(DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
-         {
+        {
             CalculateNetAmount();
         }
         void CalculateNetAmount()
         {
-            double ? NetAmount = 0;
-            double ? discout = 0;
-            double? sumprice = 0;
-            double ? totalprice;
-            double ? tax = 0;
-            string taxtype = "";
+            Amount = 0;
+            Discount = 0;
+            NetAmount = 0;
+            NoTaxAmount = 0;
+            BfTaxAmount = 0;
+            TaxAmount = 0;
             foreach (var item in OrderGroupReceipt)
             {
-                totalprice = 0;
-                double ? unitdiscout = 0;
+                Amount += (item.PriceUnit * item.Quantity) ?? 0;
+                Discount += item.Discount ?? 0;
 
-                if (item.Tax == "7%")
+                if (item.PTaxPercentage == 0)
                 {
-                    tax = (item.PriceUnit * 0.07) * item.Quantity;
-                    //taxtype = item.Tax;
+                    NoTaxAmount += ((item.PriceUnit * item.Quantity) ?? 0) - item.Discount ?? 0;
                 }
-                if (item.Discount != null)
+                else if (item.PTaxPercentage == 7)
                 {
-                    unitdiscout = item.Discount;
+                    double amountTax = (item.PriceUnit * item.Quantity) ?? 0;
+                    BfTaxAmount += amountTax - (amountTax * 7 / 107);
+                    TaxAmount += (amountTax * 7 / 107);
                 }
-
-                totalprice += item.Quantity * item.PriceUnit;
-                discout += unitdiscout;
-                NetAmount += (totalprice + tax) - unitdiscout;
-                item.TotalPrice = (totalprice + tax) - unitdiscout;
-                sumprice += totalprice;
             }
-            Discount = discout;
-            SumTotalPrice = sumprice;
-            TaxSum = tax;
-            NetPrice = NetAmount;
+            NetAmount = Amount - Discount;
+
         }
 
         private void DeleteItem()
@@ -390,13 +447,8 @@ namespace MediTech.ViewModels
                 MessageBoxResult result = QuestionDialog("คุณต้องการลบ Order ลบใช่หรือไม่ ?");
                 if (result == MessageBoxResult.Yes)
                 {
-                    //OrderGroupReceipt = null;
-
-                    DataService.Purchaseing.DeleteGroupReceiptDetail(SelectOrderGroupReceipt.GroupReceiptDetailUID, AppUtil.Current.UserID);
-                    var item = OrderGroupReceipt.Single(p => p.GroupReceiptDetailUID == SelectOrderGroupReceipt.GroupReceiptDetailUID);
-                    OrderGroupReceipt.Remove(item);
-
-                    DeleteSuccessDialog();
+                    OrderGroupReceipt.Remove(SelectOrderGroupReceipt);
+                    CalculateNetAmount();
                 }
             }
         }
@@ -405,13 +457,13 @@ namespace MediTech.ViewModels
         {
             if (SelectOrderGroupReceipt != null)
             {
-                if(SelectOrderGroupReceipt.TypeOrder == "OrtherType")
+                if (SelectOrderGroupReceipt.TypeOrder == "OrtherType")
                 {
                     OrderOtherType receipt = new OrderOtherType();
                     (receipt.DataContext as OrderOtherTypeViewModel).AssignModel(SelectOrderGroupReceipt);
                     OrderOtherTypeViewModel result = (OrderOtherTypeViewModel)LaunchViewDialog(receipt, "ORDOTT", true);
 
-                    if(result != null)
+                    if (result != null)
                     {
                         var item = OrderGroupReceipt.Where(p => p.No == result.OrderGroupReceipt.No);
                         OrderGroupReceipt.Remove(item.FirstOrDefault());
@@ -448,7 +500,7 @@ namespace MediTech.ViewModels
                     //    int i = 1;
                     //    OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
                     //}
-                    
+
                     CalculateNetAmount();
                     OnUpdateEvent();
                 }
@@ -467,11 +519,22 @@ namespace MediTech.ViewModels
                         return;
                     }
                     AssingPropertiesToModel();
-                    DataService.Purchaseing.ManageGroupReceipt(model, AppUtil.Current.UserID);
+                    int? groupReceiptUID = DataService.Purchaseing.ManageGroupReceipt(model, AppUtil.Current.UserID);
                     SaveSuccessDialog();
 
-                    ListGroupReceipt groupReceipt = new ListGroupReceipt();
-                    ChangeViewPermission(groupReceipt);
+                    if (IsPrintReceipt)
+                    {
+
+                        GroupReceipt rpt = new GroupReceipt();
+                        rpt.Parameters["GroupReceiptUID"].Value = groupReceiptUID;
+                        //rpt.DataSource = SelectGroupReceipt;
+                        ReportPrintTool printTool = new ReportPrintTool(rpt);
+                        rpt.RequestParameters = false;
+                        rpt.ShowPrintMarginsWarning = false;
+                        printTool.ShowPreviewDialog();
+                    }
+                    ListGroupReceipt listgroupReceipt = new ListGroupReceipt();
+                    ChangeViewPermission(listgroupReceipt);
                 }
                 catch (Exception ex)
                 {
@@ -479,6 +542,7 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
         private void Cancel()
         {
             ListGroupReceipt groupReceipt = new ListGroupReceipt();
@@ -487,7 +551,7 @@ namespace MediTech.ViewModels
 
         private void AddressCustomer()
         {
-            if(SelectPayorDetail != null)
+            if (SelectPayorDetail != null)
             {
                 Address = SelectPayorDetail.Address1;
                 TaxNumber = SelectPayorDetail.TINNo;
@@ -499,15 +563,99 @@ namespace MediTech.ViewModels
             bool pageWindow = true;
             ManagePayorDetail order = new ManagePayorDetail(pageWindow);
             ManagePayorDetailViewModel result = (ManagePayorDetailViewModel)LaunchViewDialog(order, "PAYMN", false);
-            
+
             PayorDetails = DataService.MasterData.GetPayorDetail();
-            
+
         }
 
         private void SearchPatientBill()
         {
             SearchPatientBill order = new SearchPatientBill();
+            if (GroupReceiptPatientBill != null)
+                (order.DataContext as SearchPatientBillViewModel).PatientBillGroup = new ObservableCollection<GroupReceiptPatientBillModel>(GroupReceiptPatientBill);
             SearchPatientBillViewModel result = (SearchPatientBillViewModel)LaunchViewDialog(order, "SRRCPTB", false);
+            if (result != null && result.ResultDialog == ActionDialog.Save)
+            {
+                GroupReceiptPatientBill = result.PatientBillGroup.ToList();
+
+                List<PatientBilledItemModel> patientBilledOrderDetail = new List<PatientBilledItemModel>();
+                foreach (var patientBill in GroupReceiptPatientBill)
+                {
+                    var patientBillOrder = DataService.Billing.GetPatientBilledOrderDetail(patientBill.PatientBillUID);
+                    patientBilledOrderDetail.AddRange(patientBillOrder);
+                }
+
+                var orerSetGroupBill = patientBilledOrderDetail.Where(p => p.OrderSetUID != null)
+                    .GroupBy(p => new { p.PatientBillUID, p.OrderSetUID })
+                    .Select(s => new
+                    {
+                        OrderSetUID = s.FirstOrDefault().OrderSetUID,
+                        Quantity = s.Select(z => new { z.PatientBillUID, z.OrderSetUID }).Distinct().Count()
+                    });
+
+                var orerSetCollect = orerSetGroupBill.Where(p => p.OrderSetUID != null)
+                  .GroupBy(p => new { p.OrderSetUID })
+                  .Select(s => new
+                  {
+                      OrderSetUID = s.FirstOrDefault().OrderSetUID,
+                      Quantity = s.Sum(p => p.Quantity)
+                  });
+
+
+                var billableItemCollect = patientBilledOrderDetail.Where(p => p.OrderSetUID == null)
+                    .GroupBy(p => new { p.BillableItemUID })
+                    .Select(s => new
+                    {
+                        BillableItemName = s.FirstOrDefault().ItemName,
+                        BillableItemUID = s.FirstOrDefault().BillableItemUID,
+                        PriceUnit = s.FirstOrDefault().Amount,
+                        Unit = s.FirstOrDefault().Unit,
+                        Discount = s.Sum(p => p.Discount),
+                        Quantity = s.Sum(p => p.ItemMutiplier),
+                        NetAmount = s.Sum(p => p.NetAmount)
+                    });
+
+                OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>();
+
+
+                foreach (var item in orerSetCollect)
+                {
+                    var OrderSet = DataService.MasterData.GetOrderSetByUID(item.OrderSetUID.Value);
+                    GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
+                    newOrderReceipt.OrderSetUID = OrderSet.OrderSetUID;
+                    newOrderReceipt.ItemName = OrderSet.Name;
+                    newOrderReceipt.Quantity = item.Quantity;
+                    newOrderReceipt.UnitItem = "ชุด";
+                    newOrderReceipt.PriceUnit = OrderSet.OrderSetBillableItems.Sum(p => p.NetPrice);
+                    newOrderReceipt.Discount = 0;
+                    newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity);
+                    newOrderReceipt.PTaxPercentage =0;
+                    OrderGroupReceipt.Add(newOrderReceipt);
+                }
+
+                foreach (var item in billableItemCollect)
+                {
+                    GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
+                    newOrderReceipt.BillableItemUID = item.BillableItemUID;
+                    newOrderReceipt.ItemName = item.BillableItemName;
+                    newOrderReceipt.Quantity = item.Quantity;
+                    newOrderReceipt.UnitItem = item.Unit;
+                    newOrderReceipt.PriceUnit = item.PriceUnit;
+                    newOrderReceipt.Discount = item.Discount;
+                    newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity)-item.Discount;
+                    newOrderReceipt.PTaxPercentage = 0;
+                    OrderGroupReceipt.Add(newOrderReceipt);
+                }
+
+
+                if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                {
+                    int i = 1;
+                    OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                }
+                CalculateNetAmount();
+                OnUpdateEvent();
+            }
 
         }
 
@@ -543,7 +691,7 @@ namespace MediTech.ViewModels
                 {
                     OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
                     int? ownerUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-                    
+
                     if (orderSet.OrderSetBillableItems != null)
                     {
                         OrderGroupReceipt order = new OrderGroupReceipt(orderSet, ownerUID, orderItem.TypeOrder);
@@ -592,7 +740,7 @@ namespace MediTech.ViewModels
 
                 if (billItem != null)
                 {
-                    OrderGroupReceipt order = new OrderGroupReceipt(billItem, ownerUID,typeOrder);
+                    OrderGroupReceipt order = new OrderGroupReceipt(billItem, ownerUID, typeOrder);
                     OrderGroupReceiptViewModel result = (OrderGroupReceiptViewModel)LaunchViewDialog(order, "ORGRPT", true);
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
@@ -648,29 +796,36 @@ namespace MediTech.ViewModels
         public void AssingModelToProperties()
         {
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisation);
-            //ReceiptNumber = model.ReceiptNo;
             Seller = model.Seller;
             BillDate = model.StartDttm;
             SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == model.PayorDetailUID);
-
-            //model.GroupReceiptUID = model.GroupReceiptUID;
-            AddressCustomer();
-            
-            foreach (var item in model.GroupReceiptDetailModel)
+            Address = model.PayerAddress;
+            TaxNumber = model.TINNo;
+            ReceiptNo = model.ReceiptNo;
+            foreach (var item in model.GroupReceiptDetails)
             {
                 GroupReceiptDetailModel newItems = new GroupReceiptDetailModel();
                 newItems.GroupReceiptDetailUID = item.GroupReceiptDetailUID;
                 newItems.GroupReceiptUID = item.GroupReceiptUID;
                 newItems.ItemName = item.ItemName;
-                newItems.ItemCode = item.ItemCode;
+                newItems.BillableItemUID = item.BillableItemUID;
+                newItems.OrderSetUID = item.OrderSetUID;
                 newItems.PriceUnit = item.PriceUnit;
                 newItems.Quantity = item.Quantity;
                 newItems.UnitItem = item.UnitItem;
                 newItems.TotalPrice = item.TotalPrice;
                 newItems.Discount = item.Discount;
-                newItems.Tax = item.Tax;
+                newItems.PTaxPercentage = item.PTaxPercentage;
                 OrderGroupReceipt.Add(newItems);
             }
+
+            foreach (var item in model.GroupReceiptPatientBills)
+            {
+                GroupReceiptPatientBill.Add(item);
+            }
+
+            CalculateNetAmount();
+            OnUpdateEvent();
         }
 
         public void AssingPropertiesToModel()
@@ -679,7 +834,8 @@ namespace MediTech.ViewModels
             {
                 model = new GroupReceiptModel();
             }
-            model.GroupReceiptDetailModel = new List<GroupReceiptDetailModel>();
+            model.GroupReceiptDetails = new List<GroupReceiptDetailModel>();
+            model.GroupReceiptPatientBills = new List<GroupReceiptPatientBillModel>();
             if (GroupReceiptOrders != null)
             {
                 double? allPrice = OrderGroupReceipt.Sum(item => item.TotalPrice);
@@ -690,9 +846,16 @@ namespace MediTech.ViewModels
                 model.Seller = Seller;
                 model.PayorDetailUID = SelectPayorDetail.PayorDetailUID;
                 model.PayerAddress = Address;
-                model.PriceUnit = allPrice;
+                model.Amount = Amount;
+                model.Discount = Discount;
+                model.NetAmount = NetAmount;
+                model.TaxAmount = TaxAmount;
+                model.NoTaxAmount = NoTaxAmount;
+                model.BfTaxAmount = BfTaxAmount;
 
-                model.GroupReceiptDetailModel.AddRange(OrderGroupReceipt);
+                model.GroupReceiptDetails.AddRange(OrderGroupReceipt);
+
+                model.GroupReceiptPatientBills.AddRange(GroupReceiptPatientBill);
             }
         }
         #endregion

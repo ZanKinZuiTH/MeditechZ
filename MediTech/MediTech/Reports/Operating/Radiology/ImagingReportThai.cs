@@ -133,7 +133,6 @@ namespace MediTech.Reports.Operating.Radiology
                     this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
 
                     this.lblOrganisationAddress.Text = "ศูนย์บริการสุขภาพแบบครบวงจรแห่งภาคเหนือและอนุภูมิภาคลุ่มแม่น้ำโขง 333 ม.1 ต.ท่าสุด อ.เมือง จ.เชียงราย 57100 โทรศัพท์ 053 - 917556";
-                    this.lblRegisterNo.Text = dataReport.OtherID;
 
                     Uri uri2 = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoBRXG4.jpg", UriKind.Absolute);
                     BitmapImage imageSource2= new BitmapImage(uri2);

@@ -62,6 +62,7 @@
             this.lblOrganisationAddress = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lblFReportDate = new DevExpress.XtraReports.UI.XRLabel();
             this.lblFREportDoc = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
@@ -74,7 +75,6 @@
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lblThaiReult = new DevExpress.XtraReports.UI.XRTableCell();
-            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
@@ -161,7 +161,7 @@
             // 
             this.RichTXT.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.RichTXT.CanShrink = true;
-            this.RichTXT.Font = new System.Drawing.Font("Cordia New", 16F);
+            this.RichTXT.Font = new System.Drawing.Font("Cordia New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RichTXT.LocationFloat = new DevExpress.Utils.PointFloat(13.54181F, 8.597229F);
             this.RichTXT.Name = "RichTXT";
             this.RichTXT.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
@@ -475,6 +475,13 @@
             this.PageFooter.HeightF = 126.0417F;
             this.PageFooter.Name = "PageFooter";
             // 
+            // logobutton
+            // 
+            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
+            this.logobutton.Name = "logobutton";
+            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
+            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // lblFReportDate
             // 
             this.lblFReportDate.Font = new System.Drawing.Font("Angsana New", 16F);
@@ -602,13 +609,6 @@
             this.lblThaiReult.StylePriority.UsePadding = false;
             this.lblThaiReult.Text = "lblThaiReult";
             this.lblThaiReult.Weight = 1D;
-            // 
-            // logobutton
-            // 
-            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
-            this.logobutton.Name = "logobutton";
-            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
-            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // ImagingReportThai
             // 

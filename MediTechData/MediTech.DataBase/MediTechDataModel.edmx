@@ -552,13 +552,21 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="ReceiptNo" Type="nvarchar" MaxLength="12" Nullable="false" />
-          <Property Name="TotalPrice" Type="float" />
           <Property Name="OwnerOrganisationUID" Type="int" />
           <Property Name="PayorName" Type="nvarchar" MaxLength="200" />
           <Property Name="PayorDetailUID" Type="int" Nullable="false" />
           <Property Name="PayorAddress" Type="nvarchar" MaxLength="200" />
+          <Property Name="TINNo" Type="nvarchar" MaxLength="80" />
+          <Property Name="Amount" Type="float" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="NetAmount" Type="float" />
+          <Property Name="TaxAmount" Type="float" />
+          <Property Name="NoTaxAmount" Type="float" />
+          <Property Name="BfTaxAmount" Type="float" />
           <Property Name="Seller" Type="nvarchar" MaxLength="200" />
           <Property Name="Comment" Type="nvarchar" MaxLength="200" />
+          <Property Name="CancelledReason" Type="nvarchar" MaxLength="200" />
+          <Property Name="CancelledDttm" Type="datetime" />
           <Property Name="StaffUID" Type="int" />
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -574,14 +582,30 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="GroupReceiptUID" Type="int" Nullable="false" />
-          <Property Name="ItemCode" Type="nvarchar" MaxLength="20" />
           <Property Name="ItemName" Type="nvarchar" MaxLength="200" />
+          <Property Name="BillableItemUID" Type="int" />
+          <Property Name="OrderSetUID" Type="int" />
           <Property Name="Price" Type="float" />
           <Property Name="Quantity" Type="float" />
-          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
           <Property Name="Discount" Type="float" />
+          <Property Name="PTaxPercentage" Type="float" />
           <Property Name="TotalPrice" Type="float" />
+          <Property Name="Unit" Type="nvarchar" MaxLength="20" />
           <Property Name="Comment" Type="nvarchar" MaxLength="200" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GroupReceiptPatientBill">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupReceiptUID" Type="int" Nullable="false" />
+          <Property Name="PatientBillUID" Type="bigint" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -2731,13 +2755,6 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
         </EntityType>
-        <EntityType Name="SEQGroupReceipt">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
-        </EntityType>
         <EntityType Name="SEQITCODE">
           <Key>
             <PropertyRef Name="UID" />
@@ -3698,8 +3715,8 @@
           <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTRevenuePerDay" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="BillGeneratedDttm" Type="date" Mode="In" />
-          <Parameter Name="OwnerOrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_BillGeneratedDttm" Type="date" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
         </Function>
         <Function Name="pRPTStockAdjustmentIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -4023,6 +4040,7 @@
           <EntitySet Name="GRNItemList" EntityType="Self.GRNItemList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupReceipt" EntityType="Self.GroupReceipt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="GroupReceiptDetail" EntityType="Self.GroupReceiptDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GroupReceiptPatientBill" EntityType="Self.GroupReceiptPatientBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthOrganisation" EntityType="Self.HealthOrganisation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthOrganisationID" EntityType="Self.HealthOrganisationID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemAverageCost" EntityType="Self.ItemAverageCost" Schema="dbo" store:Type="Tables" />
@@ -4125,7 +4143,6 @@
           <EntitySet Name="SEQConfiguration" EntityType="Self.SEQConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQDISPOSEID" EntityType="Self.SEQDISPOSEID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQGRNID" EntityType="Self.SEQGRNID" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="SEQGroupReceipt" EntityType="Self.SEQGroupReceipt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQITCODE" EntityType="Self.SEQITCODE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQItemIssue" EntityType="Self.SEQItemIssue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQItemReceive" EntityType="Self.SEQItemReceive" Schema="dbo" store:Type="Tables" />
@@ -5135,6 +5152,10 @@
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pRPTRevenuePerDay" ReturnType="Collection(MediTechModel.pRPTRevenuePerDay_Result)">
+            <Parameter Name="P_BillGeneratedDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -5165,6 +5186,7 @@
           <EntitySet Name="GRNItemList" EntityType="MediTechModel.GRNItemList" />
           <EntitySet Name="GroupReceipt" EntityType="MediTechModel.GroupReceipt" />
           <EntitySet Name="GroupReceiptDetail" EntityType="MediTechModel.GroupReceiptDetail" />
+          <EntitySet Name="GroupReceiptPatientBill" EntityType="MediTechModel.GroupReceiptPatientBill" />
           <EntitySet Name="HealthOrganisation" EntityType="MediTechModel.HealthOrganisation" />
           <EntitySet Name="HealthOrganisationID" EntityType="MediTechModel.HealthOrganisationID" />
           <EntitySet Name="ItemAverageCost" EntityType="MediTechModel.ItemAverageCost" />
@@ -5267,7 +5289,6 @@
           <EntitySet Name="SEQConfiguration" EntityType="MediTechModel.SEQConfiguration" />
           <EntitySet Name="SEQDISPOSEID" EntityType="MediTechModel.SEQDISPOSEID" />
           <EntitySet Name="SEQGRNID" EntityType="MediTechModel.SEQGRNID" />
-          <EntitySet Name="SEQGroupReceipt" EntityType="MediTechModel.SEQGroupReceipt" />
           <EntitySet Name="SEQITCODE" EntityType="MediTechModel.SEQITCODE" />
           <EntitySet Name="SEQItemIssue" EntityType="MediTechModel.SEQItemIssue" />
           <EntitySet Name="SEQItemReceive" EntityType="MediTechModel.SEQItemReceive" />
@@ -5299,10 +5320,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pRPTRevenuePerDay" ReturnType="Collection(MediTechModel.pRPTRevenuePerDay_Result)">
-            <Parameter Name="BillGeneratedDttm" Mode="In" Type="DateTime" />
-            <Parameter Name="OwnerOrganisationUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -7773,6 +7790,14 @@
           <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
           <Property Type="Double" Name="NetAmount" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="pRPTRevenuePerDay_Result">
+          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" />
+          <Property Type="String" Name="VisitType" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="PatientCount" Nullable="true" />
+          <Property Type="Double" Name="NetAmount" Nullable="true" />
+          <Property Type="String" Name="PaymentMethod" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="BeforeRevenue" Nullable="true" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -8320,13 +8345,21 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="ReceiptNo" Type="String" Nullable="false" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="TotalPrice" Type="Double" />
           <Property Name="OwnerOrganisationUID" Type="Int32" />
           <Property Name="PayorName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="PayorDetailUID" Type="Int32" Nullable="false" />
           <Property Name="PayorAddress" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="TINNo" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Amount" Type="Double" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="NetAmount" Type="Double" />
+          <Property Name="TaxAmount" Type="Double" />
+          <Property Name="NoTaxAmount" Type="Double" />
+          <Property Name="BfTaxAmount" Type="Double" />
           <Property Name="Seller" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CancelledReason" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CancelledDttm" Type="DateTime" Precision="3" />
           <Property Name="StaffUID" Type="Int32" />
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -8342,14 +8375,30 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="GroupReceiptUID" Type="Int32" Nullable="false" />
-          <Property Name="ItemCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="ItemName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="BillableItemUID" Type="Int32" />
+          <Property Name="OrderSetUID" Type="Int32" />
           <Property Name="Price" Type="Double" />
           <Property Name="Quantity" Type="Double" />
-          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Discount" Type="Double" />
+          <Property Name="PTaxPercentage" Type="Double" />
           <Property Name="TotalPrice" Type="Double" />
+          <Property Name="Unit" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="GroupReceiptPatientBill">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GroupReceiptUID" Type="Int32" Nullable="false" />
+          <Property Name="PatientBillUID" Type="Int64" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -10499,13 +10548,6 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="SEQGroupReceipt">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="SEQITCODE">
           <Key>
             <PropertyRef Name="UID" />
@@ -10919,14 +10961,6 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
-        <ComplexType Name="pRPTRevenuePerDay_Result">
-          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" />
-          <Property Type="String" Name="VisitType" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="PatientCount" Nullable="true" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-          <Property Type="String" Name="PaymentMethod" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="BeforeRevenue" Nullable="true" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -12856,6 +12890,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTRevenuePerDay" FunctionName="MediTechModel.Store.pRPTRevenuePerDay">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTRevenuePerDay_Result">
+                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
+                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
+                <ScalarProperty Name="PatientCount" ColumnName="PatientCount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
+                <ScalarProperty Name="BeforeRevenue" ColumnName="BeforeRevenue" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -13436,13 +13482,21 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
                 <ScalarProperty Name="StaffUID" ColumnName="StaffUID" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="CancelledReason" ColumnName="CancelledReason" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
                 <ScalarProperty Name="Seller" ColumnName="Seller" />
+                <ScalarProperty Name="BfTaxAmount" ColumnName="BfTaxAmount" />
+                <ScalarProperty Name="NoTaxAmount" ColumnName="NoTaxAmount" />
+                <ScalarProperty Name="TaxAmount" ColumnName="TaxAmount" />
+                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="TINNo" ColumnName="TINNo" />
                 <ScalarProperty Name="PayorAddress" ColumnName="PayorAddress" />
                 <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
                 <ScalarProperty Name="PayorName" ColumnName="PayorName" />
                 <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
                 <ScalarProperty Name="ReceiptNo" ColumnName="ReceiptNo" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -13458,13 +13512,30 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="TotalPrice" ColumnName="TotalPrice" />
+                <ScalarProperty Name="PTaxPercentage" ColumnName="PTaxPercentage" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="OrderSetUID" ColumnName="OrderSetUID" />
+                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="GroupReceiptUID" ColumnName="GroupReceiptUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GroupReceiptPatientBill">
+            <EntityTypeMapping TypeName="MediTechModel.GroupReceiptPatientBill">
+              <MappingFragment StoreEntitySet="GroupReceiptPatientBill">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
                 <ScalarProperty Name="GroupReceiptUID" ColumnName="GroupReceiptUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -15714,14 +15785,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SEQGroupReceipt">
-            <EntityTypeMapping TypeName="MediTechModel.SEQGroupReceipt">
-              <MappingFragment StoreEntitySet="SEQGroupReceipt">
-                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SEQITCODE">
             <EntityTypeMapping TypeName="MediTechModel.SEQITCODE">
               <MappingFragment StoreEntitySet="SEQITCODE">
@@ -16166,18 +16229,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pRPTRevenuePerDay" FunctionName="MediTechModel.Store.pRPTRevenuePerDay">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTRevenuePerDay_Result">
-                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
-                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
-                <ScalarProperty Name="PatientCount" ColumnName="PatientCount" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="PaymentMethod" ColumnName="PaymentMethod" />
-                <ScalarProperty Name="BeforeRevenue" ColumnName="BeforeRevenue" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

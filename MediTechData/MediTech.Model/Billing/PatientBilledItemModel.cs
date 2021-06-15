@@ -14,10 +14,14 @@ namespace MediTech.Model
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
         public double ItemMutiplier { get; set; }
+
+        public string Unit { get; set; }
         public Nullable<double> Amount { get; set; }
         public Nullable<double> Discount { get; set; }
         public Nullable<double> NetAmount { get; set; }
         public long PatientOrderDetailUID { get; set; }
+        public int? OrderSetUID { get; set; }
+        public double? OrderSetAmount { get; set; }
         public int BSMDDUID { get; set; }
         public string BillingService { get; set; }
 

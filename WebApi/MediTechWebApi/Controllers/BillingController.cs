@@ -389,6 +389,7 @@ namespace MediTechWebApi.Controllers
                         {
                             if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
                             {
+                                billType = "Cash";
                                 healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
                                 if (healthIDBillType == null)
                                 {
@@ -425,12 +426,13 @@ namespace MediTechWebApi.Controllers
                                 }
                             }
 
-                            billType = "Cash";
+
                         }
                         else if (agreement.PBTYPUID == BLTYP_Invoice)
                         {
                             if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
                             {
+                                billType = "Credit";
                                 healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
                                 if (healthIDBillType == null)
                                 {
@@ -466,7 +468,7 @@ namespace MediTechWebApi.Controllers
                                     return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
                                 }
                             }
-                            billType = "Credit";
+
                         }
                     }
             
@@ -767,7 +769,8 @@ namespace MediTechWebApi.Controllers
                                                       GroupReceiptUID = p.GroupReceiptUID,
                                                       GroupReceiptDetailUID = p.UID,
                                                       ItemName = p.ItemName,
-                                                      ItemCode = p.ItemCode,
+                                                      BillableItemUID = p.BillableItemUID,
+                                                      OrderSetUID = p.OrderSetUID,
                                                       Quantity = p.Quantity,
                                                       UnitItem = p.Unit,
                                                       PriceUnit = p.Price,
@@ -800,6 +803,35 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPatientBilledOrderDetail")]
+        [HttpGet]
+        public List<PatientBilledItemModel> GetPatientBilledOrderDetail(long patientBillUID)
+        {
+            List<PatientBilledItemModel> data = new List<PatientBilledItemModel>(); ;
+            data = (from billed in db.PatientBilledItem
+                    join pod in db.PatientOrderDetail on billed.PatientOrderDetailUID equals pod.UID
+                    where billed.StatusFlag == "A"
+                    && billed.PatientBillUID == patientBillUID
+                    select new PatientBilledItemModel
+                    {
+                        PatientBillUID = billed.PatientBillUID,
+                        Amount = billed.Amount,
+                        NetAmount = billed.NetAmount,
+                        Discount = billed.Discount,
+                        ItemName = billed.ItemName,
+                        ItemMutiplier = billed.ItemMutiplier,
+                        Unit = SqlFunction.fGetRfValDescription(pod.QNUOMUID ?? 0),
+                        BillingGroupUID = billed.BillingGroupUID ?? 0,
+                        BillingSubGroupUID = billed.BillingSubGroupUID ?? 0,
+                        BillingGroup = SqlFunction.fGetBillingGroupDesc(billed.BillingGroupUID ?? 0, "G"),
+                        BillinsgSubGroup = SqlFunction.fGetBillingGroupDesc(billed.BillingSubGroupUID ?? 0, "S"),
+                        PatientOrderDetailUID = pod.UID,
+                        OrderSetUID = pod.OrderSetUID,
+                        BillableItemUID = billed.BillableItemUID
+                    }).ToList();
+            return data;
+        }
+
         [Route("SearchPatientBill")]
         [HttpGet]
         public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)
@@ -813,6 +845,8 @@ namespace MediTechWebApi.Controllers
             }
             return data;
         }
+
+
 
         [Route("CancelBill")]
         [HttpPut]

@@ -404,7 +404,7 @@ on ser.SeriesInstanceUID = ins.SeriesInstanceUID";
                 string whereConditionQuery = @"Where sty.PatientID = @PatientID
 and sty.ModalitiesInStudy IN(" + modality + ")" +
 @" and Convert(Date,sty.StudyDate) <= Convert(Date,@StudyDate)
-and DATEDIFF(year,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
+and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
 
                 if (IsSINE == true)
                 {
@@ -889,8 +889,8 @@ Update Instances Set PatientID = @NewHN  Where PatientID = @OldHN
 
                     string photometricInterpretation = dicomDataSet.GetSingleValue<string>(DicomTag.PhotometricInterpretation);
 
-                    instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
-                    //instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
+                    //instances.PhotometricInterpretation = photometricInterpretation; //192.168.2.2
+                    instances.PhotoMatricInterpretation = photometricInterpretation; //192.168.2.3
 
                     instances.PatientAge = dicomDataSet.GetSingleValueOrDefault<string>(DicomTag.PatientAge, null);
                     instances.FileSize = 0;

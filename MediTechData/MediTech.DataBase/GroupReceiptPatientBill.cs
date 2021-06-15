@@ -7,15 +7,21 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace PACS.DataBase
+namespace MediTech.DataBase
 {
     using System;
     using System.Collections.Generic;
     
-    public partial class Roles
+    public partial class GroupReceiptPatientBill
     {
-        public int No { get; set; }
-        public string Name { get; set; }
-        public string Permissions { get; set; }
+        public int UID { get; set; }
+        public int GroupReceiptUID { get; set; }
+        public long PatientBillUID { get; set; }
+        public int CUser { get; set; }
+        public System.DateTime CWhen { get; set; }
+        public int MUser { get; set; }
+        public System.DateTime MWhen { get; set; }
+        public string StatusFlag { get; set; }
+        public byte[] TIMESTAMP { get; set; }
     }
 }

@@ -246,6 +246,8 @@
                 <dxlc:LayoutItem Label="ภาษี ทั้งหมด บาท">
                     <dxe:TextEdit EditValue="{Binding VATPercentage}" 
                                   FontWeight="Bold"
+                                  FontSize="20"
+                                  Foreground="Black"
                                   AllowNullInput="True"
                                   DisplayFormatString="#,0.###"
                                   IsEnabled="False"
@@ -259,6 +261,8 @@
                 <dxlc:LayoutItem Label="รวมเป็นเงิน บาท">
                     <dxe:TextEdit EditValue="{Binding NetAmount}"
                                   FontWeight="Bold"
+                                  FontSize="20"
+                                  Foreground="Black"
                                   AllowNullInput="True"
                                   DisplayFormatString="#,0.###"
                                   IsEnabled="False"

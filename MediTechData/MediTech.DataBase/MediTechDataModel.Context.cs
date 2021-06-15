@@ -57,6 +57,7 @@ namespace MediTech.DataBase
         public virtual DbSet<GRNItemList> GRNItemList { get; set; }
         public virtual DbSet<GroupReceipt> GroupReceipt { get; set; }
         public virtual DbSet<GroupReceiptDetail> GroupReceiptDetail { get; set; }
+        public virtual DbSet<GroupReceiptPatientBill> GroupReceiptPatientBill { get; set; }
         public virtual DbSet<HealthOrganisation> HealthOrganisation { get; set; }
         public virtual DbSet<HealthOrganisationID> HealthOrganisationID { get; set; }
         public virtual DbSet<ItemAverageCost> ItemAverageCost { get; set; }
@@ -159,7 +160,6 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQConfiguration> SEQConfiguration { get; set; }
         public virtual DbSet<SEQDISPOSEID> SEQDISPOSEID { get; set; }
         public virtual DbSet<SEQGRNID> SEQGRNID { get; set; }
-        public virtual DbSet<SEQGroupReceipt> SEQGroupReceipt { get; set; }
         public virtual DbSet<SEQITCODE> SEQITCODE { get; set; }
         public virtual DbSet<SEQItemIssue> SEQItemIssue { get; set; }
         public virtual DbSet<SEQItemReceive> SEQItemReceive { get; set; }
@@ -3535,17 +3535,17 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupJobOrderSummary_Result>("pRPTCheckupJobOrderSummary", p_CheckupJobUIDParameter, p_DateFromParameter, p_DateToParameter);
         }
     
-        public virtual ObjectResult<pRPTRevenuePerDay_Result> pRPTRevenuePerDay(Nullable<System.DateTime> billGeneratedDttm, Nullable<int> ownerOrganisationUID)
+        public virtual ObjectResult<pRPTRevenuePerDay_Result> pRPTRevenuePerDay(Nullable<System.DateTime> p_BillGeneratedDttm, string p_OrganisationList)
         {
-            var billGeneratedDttmParameter = billGeneratedDttm.HasValue ?
-                new ObjectParameter("BillGeneratedDttm", billGeneratedDttm) :
-                new ObjectParameter("BillGeneratedDttm", typeof(System.DateTime));
+            var p_BillGeneratedDttmParameter = p_BillGeneratedDttm.HasValue ?
+                new ObjectParameter("P_BillGeneratedDttm", p_BillGeneratedDttm) :
+                new ObjectParameter("P_BillGeneratedDttm", typeof(System.DateTime));
     
-            var ownerOrganisationUIDParameter = ownerOrganisationUID.HasValue ?
-                new ObjectParameter("OwnerOrganisationUID", ownerOrganisationUID) :
-                new ObjectParameter("OwnerOrganisationUID", typeof(int));
+            var p_OrganisationListParameter = p_OrganisationList != null ?
+                new ObjectParameter("P_OrganisationList", p_OrganisationList) :
+                new ObjectParameter("P_OrganisationList", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTRevenuePerDay_Result>("pRPTRevenuePerDay", billGeneratedDttmParameter, ownerOrganisationUIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTRevenuePerDay_Result>("pRPTRevenuePerDay", p_BillGeneratedDttmParameter, p_OrganisationListParameter);
         }
     }
 }

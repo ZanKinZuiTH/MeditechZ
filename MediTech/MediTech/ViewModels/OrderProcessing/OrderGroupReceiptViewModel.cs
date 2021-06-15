@@ -12,7 +12,7 @@ namespace MediTech.ViewModels
     public class OrderGroupReceiptViewModel : MediTechViewModelBase
     {
         #region Properties
-        public OrderSetModel orderSet { get; set; }
+        public OrderSetModel OrderSet { get; set; }
 
         private GroupReceiptDetailModel _OrderGroupReceipt;
         public GroupReceiptDetailModel OrderGroupReceipt
@@ -71,7 +71,7 @@ namespace MediTech.ViewModels
             set { _model = value; }
         }
 
-        private double  _Quantity;
+        private double _Quantity;
         public double Quantity
         {
             get { return _Quantity; }
@@ -117,8 +117,8 @@ namespace MediTech.ViewModels
         public double Discount
         {
             get { return _Discount; }
-            set 
-            { 
+            set
+            {
                 Set(ref _Discount, value);
 
                 Calculate();
@@ -138,8 +138,8 @@ namespace MediTech.ViewModels
         public string Price
         {
             get { return _Price; }
-            set 
-            { 
+            set
+            {
                 Set(ref _Price, value);
                 Calculate();
                 //ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
@@ -184,20 +184,20 @@ namespace MediTech.ViewModels
         {
 
             TaxChoice = new List<LookupReferenceValueModel>{
-                new LookupReferenceValueModel { Key = 0, Display = "7%" },
-                new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
+                new LookupReferenceValueModel { Key = 0, Display = "7%" ,NumericValue = 7},
+                new LookupReferenceValueModel { Key = 1, Display = "ยกเว้นภาษี",NumericValue = 0 }
             };
 
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Key == 0);
         }
 
         public void BindingFromOrderset()
         {
-            List<GroupReceiptModel> orderPrice = DataService.OrderProcessing.GetOrderPriceByUID(orderSet.OrderSetUID);
-            double? ordersetPrice = orderPrice.Sum(item => item.PriceUnit);
+            OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(OrderSet.OrderSetUID);
+            double? ordersetPrice = orderSet.OrderSetBillableItems.Sum(item => item.NetPrice);
             DateTime now = DateTime.Now;
-            OrderName = orderSet.Name;
-            OrderCode = "Code : " + orderSet.Code;
+            OrderName = OrderSet.Name;
+            OrderCode = "Code : " + OrderSet.Code;
 
 
             Price = ordersetPrice.ToString();
@@ -234,7 +234,7 @@ namespace MediTech.ViewModels
             //TaxSelect.Display = model.Tax;
             //TaxChoice = new List<LookupReferenceValueModel>{
             //    new LookupReferenceValueModel {Display = model.Tax} };
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == model.Tax);
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.NumericValue == model.PTaxPercentage);
             //StartDate = model.
 
         }
@@ -243,7 +243,7 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if(Quantity == 0)
+                if (Quantity == 0)
                 {
                     WarningDialog("กรุณาใส่จำนวน");
                     return;
@@ -252,16 +252,20 @@ namespace MediTech.ViewModels
                 {
                     OrderGroupReceipt = new GroupReceiptDetailModel();
                     OrderGroupReceipt.ItemName = OrderName;
+                    if (BillableItem != null)
+                        OrderGroupReceipt.BillableItemUID = BillableItem.BillableItemUID;
+                    if(OrderSet != null)
+                        OrderGroupReceipt.OrderSetUID = OrderSet.OrderSetUID;
                     OrderGroupReceipt.Quantity = Quantity;
                     OrderGroupReceipt.UnitItem = Unit;
                     OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
-                    OrderGroupReceipt.Tax = TaxSelect != null ? TaxSelect.Display : "";
+                    OrderGroupReceipt.PTaxPercentage = TaxSelect != null ? TaxSelect.NumericValue : 0;
                     //OrderGroupReceipt.ItemCode = orderSet.Code;
                     OrderGroupReceipt.TypeOrder = TypeOrder;
 
-                    if(model != null)
+                    if (model != null)
                     {
                         OrderGroupReceipt.No = model.No;
                     }
@@ -307,7 +311,7 @@ namespace MediTech.ViewModels
         {
             if (Quantity != 0 && Price != null)
             {
-                ReCash = SumPrice(Quantity, Int64.Parse(Price), Discount);
+                ReCash = SumPrice(Quantity, Double.Parse(Price), Discount);
                 UnitPrice = ReCash;
             }
         }

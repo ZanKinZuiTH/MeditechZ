@@ -29,24 +29,6 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("GetOrderPriceByUID")]
-        [HttpGet]
-        public List<GroupReceiptModel> GetOrderPriceByUID(int orderSetUID)
-        {
-            List<GroupReceiptModel> data = (from set in db.OrderSet
-                                            join item in db.OrderSetBillableItem
-                                            on set.UID equals item.OrderSetUID
-                                            where set.StatusFlag == "A"
-                                            && set.UID == orderSetUID
-                                            select new GroupReceiptModel
-                                            {
-                                                ItemName = set.Name,
-                                                PriceUnit = item.Price,
-                                                OrderSetUID = set.UID,
-
-                                            }).ToList();
-            return data;
-        }
 
         [Route("GetOrderAllByPatientUID")]
         [HttpGet]
@@ -1016,6 +998,8 @@ namespace MediTechWebApi.Controllers
         #endregion
 
         #region OrderItem
+
+        [Route("Get")]
 
 
         [Route("GetOrderItemByVisitUID")]

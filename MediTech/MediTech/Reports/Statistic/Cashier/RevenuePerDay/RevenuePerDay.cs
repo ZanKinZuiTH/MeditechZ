@@ -32,6 +32,7 @@ namespace MediTech.Reports.Statistic.Cashier
         {
             string organisationList = this.Parameters["OrganisationList"].Value.ToString();
             DateTime date = Convert.ToDateTime(this.Parameters["Date"].Value);
+
             dataSourceBinding = (new ReportsService()).GetRevenuePerDay(date, organisationList);
             if (dataSourceBinding == null)
             {
@@ -72,6 +73,7 @@ namespace MediTech.Reports.Statistic.Cashier
             {
                 RevenuePerDayNewPage newPage = new RevenuePerDayNewPage();
                 newPage.Parameters["Date"].Value = this.Parameters["Date"].Value;
+                newPage.Parameters["Incharge"].Value = this.Parameters["Incharge"].Value;
                 newPage.DataSource = dataGroupOrg;
 
                 newPage.CreateDocument();

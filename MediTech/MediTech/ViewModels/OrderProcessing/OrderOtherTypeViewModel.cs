@@ -165,12 +165,12 @@ namespace MediTech.ViewModels
         public OrderOtherTypeViewModel()
         {
             
-            TaxChoice = new List<LookupReferenceValueModel>{ 
-                new LookupReferenceValueModel { Key = 0, Display = "7%" },
-                new LookupReferenceValueModel { Key = 1, Display = "ยกเลิกภาษี" }
+            TaxChoice = new List<LookupReferenceValueModel>{
+                new LookupReferenceValueModel { Key = 0, Display = "7%" ,NumericValue = 7},
+                new LookupReferenceValueModel { Key = 1, Display = "ยกเว้นภาษี",NumericValue = 0 }
             };
 
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == "ยกเลิกภาษี");
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Key == 0);
         }
 
         private void Add()
@@ -206,7 +206,7 @@ namespace MediTech.ViewModels
                     OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
-                    OrderGroupReceipt.Tax = TaxSelect != null ? TaxSelect.Display : "";
+                    OrderGroupReceipt.PTaxPercentage = TaxSelect != null ? TaxSelect.NumericValue : 0;
                     OrderGroupReceipt.TypeOrder = "OrtherType";
 
                     if (model != null)
@@ -242,7 +242,7 @@ namespace MediTech.ViewModels
             //TaxSelect.Display = model.Tax;
             //TaxChoice = new List<LookupReferenceValueModel>{
             //    new LookupReferenceValueModel {Display = model.Tax} };
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Display == model.Tax);
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.NumericValue == model.PTaxPercentage);
         }
 
         public void Cancel()

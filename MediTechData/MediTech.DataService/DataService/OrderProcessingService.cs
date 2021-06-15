@@ -62,12 +62,6 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<GroupReceiptModel> GetOrderPriceByUID(int orderSetUID)
-        {
-            string requestApi = string.Format("Api/OrderProcessing/GetOrderPriceByUID?OrderSetUID={0}", orderSetUID);
-            List<GroupReceiptModel> data = MeditechApiHelper.Get<List<GroupReceiptModel>>(requestApi);
-            return data;
-        }
 
         #region OrderDrugItem
 

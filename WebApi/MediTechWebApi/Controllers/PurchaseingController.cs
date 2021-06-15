@@ -10,7 +10,6 @@ using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
 using System.Data.Entity;
-using MediTech.Model.Report;
 
 namespace MediTechWebApi.Controllers
 {
@@ -427,6 +426,10 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+
+
+        #region GroupReceipt
         [Route("SearchGroupReceipt")]
         [HttpGet]
         public List<GroupReceiptModel> SearchGroupReceipt(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? payorDetailUID, string receiptNumber)
@@ -447,9 +450,30 @@ namespace MediTechWebApi.Controllers
                                                 PayerAddress = gpr.PayorAddress,
                                                 Seller = gpr.Seller,
                                                 StartDttm = gpr.StartDttm,
-                                                PriceUnit = gpr.TotalPrice,
-                                                OwnerOrganisation = gpr.OwnerOrganisationUID
+                                                NetAmount = gpr.NetAmount,
+                                                Discount = gpr.Discount,
+                                                Amount = gpr.Amount,
+                                                TaxAmount = gpr.TaxAmount,
+                                                BfTaxAmount = gpr.BfTaxAmount,
+                                                NoTaxAmount = gpr.NoTaxAmount,
+                                                TINNo = gpr.TINNo,
+                                                OwnerOrganisation = gpr.OwnerOrganisationUID,
+                                                CancelledDttm = gpr.CancelledDttm,
+                                                CancelledReason = gpr.CancelledReason
                                             }).ToList();
+
+            if (data != null && data.Count > 0)
+            {
+                foreach (var item in data)
+                {
+                    var count = db.GroupReceiptPatientBill.Count(p => p.StatusFlag == "A" && p.GroupReceiptUID == item.GroupReceiptUID);
+                    if (count > 0)
+                    {
+                        item.IsInvoice = "Y";
+                    }
+                }
+
+            }
 
             return data;
         }
@@ -469,7 +493,12 @@ namespace MediTechWebApi.Controllers
                                                 PayerAddress = p.PayorAddress,
                                                 Seller = p.Seller,
                                                 StartDttm = p.StartDttm,
-                                                PriceUnit = p.TotalPrice,
+                                                NetAmount = p.NetAmount,
+                                                Discount = p.Discount,
+                                                Amount = p.Amount,
+                                                TaxAmount = p.TaxAmount,
+                                                BfTaxAmount = p.BfTaxAmount,
+                                                NoTaxAmount = p.NoTaxAmount,
                                                 OwnerOrganisation = p.OwnerOrganisationUID
                                             }).ToList();
 
@@ -490,26 +519,63 @@ namespace MediTechWebApi.Controllers
                                           PayorName = p.PayorName,
                                           PayorDetailUID = p.PayorDetailUID,
                                           PayerAddress = p.PayorAddress,
+                                          TINNo = p.TINNo,
                                           Seller = p.Seller,
                                           StartDttm = p.StartDttm,
-                                          PriceUnit = p.TotalPrice,
+                                          NetAmount = p.NetAmount,
+                                          TaxAmount = p.TaxAmount,
+                                          BfTaxAmount = p.BfTaxAmount,
+                                          NoTaxAmount = p.NoTaxAmount,
+                                          Discount = p.Discount,
+                                          Amount = p.Amount,
                                           OwnerOrganisation = p.OwnerOrganisationUID
                                       }).FirstOrDefault();
             if (data != null)
             {
-                data.GroupReceiptDetailModel = db.GroupReceiptDetail.Where(p => p.GroupReceiptUID == data.GroupReceiptUID && p.StatusFlag == "A")
+                data.GroupReceiptDetails = db.GroupReceiptDetail.Where(p => p.GroupReceiptUID == data.GroupReceiptUID && p.StatusFlag == "A")
                     .Select(p => new GroupReceiptDetailModel
                     {
                         GroupReceiptUID = p.GroupReceiptUID,
                         GroupReceiptDetailUID = p.UID,
                         ItemName = p.ItemName,
-                        ItemCode = p.ItemCode,
+                        BillableItemUID = p.BillableItemUID,
+                        OrderSetUID = p.OrderSetUID,
                         Quantity = p.Quantity,
                         UnitItem = p.Unit,
                         PriceUnit = p.Price,
+                        PTaxPercentage = p.PTaxPercentage,
                         TotalPrice = p.TotalPrice,
                         Discount = p.Discount
                     }).ToList();
+
+                data.GroupReceiptPatientBills = (from gp in db.GroupReceiptPatientBill
+                                                 join pb in db.PatientBill on gp.PatientBillUID equals pb.UID
+                                                 where gp.StatusFlag == "A"
+                                                 && gp.GroupReceiptUID == data.GroupReceiptUID
+                                                 select new GroupReceiptPatientBillModel
+                                                 {
+                                                     GroupReceiptPatientBillUID = gp.UID,
+                                                     GroupReceiptUID = gp.GroupReceiptUID,
+                                                     PatientBillUID = gp.PatientBillUID,
+                                                     PatientID = SqlFunction.fGetPatientID(pb.PatientUID ?? 0),
+                                                     PatientName = SqlFunction.fGetPatientName(pb.PatientUID ?? 0),
+                                                     PayorName = SqlFunction.fGetPayorName(pb.PayorDetailUID ?? 0),
+                                                     PatientAddress = SqlFunction.fGetAddressPatient(pb.PatientUID ?? 0),
+                                                     BillNumber = pb.BillNumber,
+                                                     BillGeneratedDttm = pb.BillGeneratedDttm,
+                                                     DiscountAmount = pb.DiscountAmount,
+                                                     TotalAmount = pb.TotalAmount,
+                                                     NetAmount = pb.NetAmount,
+                                                     Comments = pb.Comments,
+                                                     CancelReason = pb.CancelReason,
+                                                     CancelledDttm = pb.CancelledDttm,
+                                                     PAYMDUID = pb.PAYMDUID,
+                                                     PaymentMethod = SqlFunction.fGetRfValAlternateName(pb.PAYMDUID ?? 0),
+                                                     OwnerOrganisationUID = pb.OwnerOrganisationUID ?? 0,
+                                                     OrganisationName = SqlFunction.fGetHealthOrganisationName(pb.OwnerOrganisationUID ?? 0),
+
+
+                                                 }).ToList();
             }
             return data;
         }
@@ -520,20 +586,64 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
+                int? groupReceiptUID;
                 using (var tran = new TransactionScope())
                 {
                     string BillID = "";
+                    DateTime now = DateTime.Now;
                     GroupReceipt receipt = db.GroupReceipt.Find(model.GroupReceiptUID);
-
+                    int BLTYP_Cash = db.ReferenceValue.FirstOrDefault(p => p.ValueCode == "CASHBL" && p.DomainCode == "BLTYP").UID;
                     if (receipt == null)
                     {
                         receipt = new GroupReceipt();
                         int seqBillID = 0;
-                        BillID = SEQHelper.GetSEQIDFormat("SEQGroupReceipt", out seqBillID);
-
-                        if (string.IsNullOrEmpty(BillID))
+                        IEnumerable<HealthOrganisationID> healthOrganisationIDs;
+                        if (receipt.TaxAmount != null && receipt.TaxAmount != 0)
                         {
-                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
+                        }
+                        else
+                        {
+                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisation && p.StatusFlag == "A");
+                        }
+
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
+                        {
+                            HealthOrganisationID healthIDBillType = null;
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                            if (healthIDBillType == null)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type Cash in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
+                            }
+                            else
+                            {
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                    healthIDBillType.NumberValue = 1;
+                                }
+                            }
+
+                            BillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            BillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                            if (string.IsNullOrEmpty(BillID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                            }
                         }
 
                         receipt.ReceiptNo = BillID;
@@ -541,11 +651,16 @@ namespace MediTechWebApi.Controllers
                         receipt.CWhen = DateTime.Now;
                     }
 
-                    receipt.TotalPrice = model.PriceUnit;
                     receipt.Seller = model.Seller;
                     receipt.PayorDetailUID = model.PayorDetailUID;
                     receipt.PayorAddress = model.PayerAddress;
                     receipt.PayorName = model.PayorName;
+                    receipt.Amount = model.Amount;
+                    receipt.Discount = model.Discount;
+                    receipt.NetAmount = model.NetAmount;
+                    receipt.TaxAmount = model.TaxAmount;
+                    receipt.NoTaxAmount = model.NoTaxAmount;
+                    receipt.BfTaxAmount = model.BfTaxAmount;
                     receipt.CUser = userID;
                     receipt.CWhen = DateTime.Now;
                     receipt.MUser = userID;
@@ -557,55 +672,143 @@ namespace MediTechWebApi.Controllers
 
                     db.GroupReceipt.AddOrUpdate(receipt);
                     db.SaveChanges();
+                    groupReceiptUID = receipt.UID;
 
-                    foreach (var item in model.GroupReceiptDetailModel)
+                    #region Delete GroupReceiptDetails
+                    IEnumerable<GroupReceiptDetail> groupReceiptDetails = db.GroupReceiptDetail.Where(p => p.StatusFlag == "A" && p.GroupReceiptUID == model.GroupReceiptUID);
+
+                    if (model.GroupReceiptDetails == null)
                     {
-
-                        GroupReceiptDetail order = db.GroupReceiptDetail.Find(item.GroupReceiptDetailUID);
-                        if (order != null)
+                        foreach (var item in groupReceiptDetails)
                         {
-                            if (order.GroupReceiptUID == item.GroupReceiptUID)
-                            {
-                                order.ItemCode = item.ItemCode;
-                                order.ItemName = item.ItemName;
-                                order.Quantity = item.Quantity;
-                                order.Discount = item.Discount;
-                                order.Price = item.PriceUnit;
-                                order.Unit = item.UnitItem;
-                                order.TotalPrice = item.TotalPrice;
-                                order.MUser = userID;
-                                order.MWhen = DateTime.Now;
-                                order.StatusFlag = "A";
-
-                                db.GroupReceiptDetail.AddOrUpdate(order);
-                                db.SaveChanges();
-                            }
+                            db.GroupReceiptDetail.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
                         }
-                        else
+                    }
+                    else
+                    {
+                        foreach (var item in groupReceiptDetails)
                         {
-                            order = new GroupReceiptDetail();
-                            order.GroupReceiptUID = receipt.UID;
-                            order.ItemCode = item.ItemCode;
-                            order.ItemName = item.ItemName;
-                            order.Quantity = item.Quantity;
-                            order.Price = item.PriceUnit;
-                            order.Unit = item.UnitItem;
-                            order.Discount = item.Discount;
-                            order.TotalPrice = item.TotalPrice;
-                            order.CUser = userID;
-                            order.CWhen = DateTime.Now;
-                            order.MUser = userID;
-                            order.MWhen = DateTime.Now;
-                            order.StatusFlag = "A";
+                            var data = model.GroupReceiptDetails.FirstOrDefault(p => p.GroupReceiptDetailUID == item.UID);
+                            if (data == null)
+                            {
+                                db.GroupReceiptDetail.Attach(item);
+                                item.MUser = userID;
+                                item.MWhen = now;
+                                item.StatusFlag = "D";
+                            }
 
-                            db.GroupReceiptDetail.AddOrUpdate(order);
+                        }
+                    }
+
+                    db.SaveChanges();
+                    #endregion
+
+                    #region Delete GroupReceiptPatientBill
+
+                    IEnumerable<GroupReceiptPatientBill> groupReceiptPatientBill = db.GroupReceiptPatientBill.Where(p => p.StatusFlag == "A" && p.GroupReceiptUID == model.GroupReceiptUID);
+
+                    if (model.GroupReceiptPatientBills == null)
+                    {
+                        foreach (var item in groupReceiptPatientBill)
+                        {
+                            db.GroupReceiptPatientBill.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in groupReceiptPatientBill)
+                        {
+                            var data = model.GroupReceiptPatientBills.FirstOrDefault(p => p.GroupReceiptPatientBillUID == item.UID);
+                            if (data == null)
+                            {
+                                db.GroupReceiptPatientBill.Attach(item);
+                                item.MUser = userID;
+                                item.MWhen = now;
+                                item.StatusFlag = "D";
+                            }
+
+                        }
+                    }
+
+                    db.SaveChanges();
+                    #endregion
+
+                    if (model.GroupReceiptDetails != null)
+                    {
+                        foreach (var item in model.GroupReceiptDetails)
+                        {
+                            GroupReceiptDetail groupReceiptDetail = db.GroupReceiptDetail.Find(item.GroupReceiptDetailUID);
+                            if (groupReceiptDetail == null)
+                            {
+                                groupReceiptDetail = new GroupReceiptDetail();
+                                groupReceiptDetail.CUser = userID;
+                                groupReceiptDetail.CWhen = now;
+                                groupReceiptDetail.MUser = userID;
+                                groupReceiptDetail.MWhen = now;
+                                groupReceiptDetail.StatusFlag = "A";
+                            }
+                            else
+                            {
+                                if (item.MWhen != DateTime.MinValue)
+                                {
+                                    item.MUser = userID;
+                                    item.MWhen = now;
+                                }
+                            }
+                            groupReceiptDetail.GroupReceiptUID = receipt.UID;
+                            groupReceiptDetail.BillableItemUID = item.BillableItemUID;
+                            groupReceiptDetail.OrderSetUID = item.OrderSetUID;
+                            groupReceiptDetail.ItemName = item.ItemName;
+                            groupReceiptDetail.Price = item.PriceUnit;
+                            groupReceiptDetail.Quantity = item.Quantity;
+                            groupReceiptDetail.Discount = item.Discount;
+                            groupReceiptDetail.PTaxPercentage = item.PTaxPercentage;
+                            groupReceiptDetail.TotalPrice = item.TotalPrice;
+                            groupReceiptDetail.Unit = item.Unit;
+                            db.GroupReceiptDetail.AddOrUpdate(groupReceiptDetail);
+                            db.SaveChanges();
+                        }
+                    }
+
+
+                    if (model.GroupReceiptPatientBills != null)
+                    {
+                        foreach (var item in model.GroupReceiptPatientBills)
+                        {
+                            GroupReceiptPatientBill groupReceiptPatientBills = db.GroupReceiptPatientBill.Find(item.GroupReceiptPatientBillUID);
+                            if (groupReceiptPatientBills == null)
+                            {
+                                groupReceiptPatientBills = new GroupReceiptPatientBill();
+                                groupReceiptPatientBills.CUser = userID;
+                                groupReceiptPatientBills.CWhen = now;
+                                groupReceiptPatientBills.MUser = userID;
+                                groupReceiptPatientBills.MWhen = now;
+                                groupReceiptPatientBills.StatusFlag = "A";
+                            }
+                            else
+                            {
+                                if (item.MWhen != DateTime.MinValue)
+                                {
+                                    item.MUser = userID;
+                                    item.MWhen = now;
+                                }
+                            }
+                            groupReceiptPatientBills.GroupReceiptUID = receipt.UID;
+                            groupReceiptPatientBills.PatientBillUID = item.PatientBillUID;
+                            db.GroupReceiptPatientBill.AddOrUpdate(groupReceiptPatientBills);
                             db.SaveChanges();
                         }
                     }
                     tran.Complete();
                 }
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                return Request.CreateResponse(HttpStatusCode.OK, groupReceiptUID);
             }
             catch (Exception ex)
             {
@@ -622,13 +825,13 @@ namespace MediTechWebApi.Controllers
             try
             {
                 GroupReceiptDetail data = db.GroupReceiptDetail.Find(groupReceiptDetailUID);
-                if(data != null)
+                if (data != null)
                 {
                     db.GroupReceiptDetail.Attach(data);
                     data.MUser = userID;
                     data.MWhen = DateTime.Now;
                     data.StatusFlag = "D";
-                    
+
                     db.SaveChanges();
                 }
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -639,6 +842,37 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+        [Route("CancelReceipt")]
+        [HttpPut]
+        public HttpResponseMessage CancelReceipt(long groupReceiptUID, string cancelReason, int userUID)
+        {
+            try
+            {
+                GroupReceipt groupReceipt = db.GroupReceipt.Find(groupReceiptUID);
+                DateTime now = DateTime.Now;
+
+                if (groupReceipt != null)
+                {
+                    db.GroupReceipt.Attach(groupReceipt);
+                    groupReceipt.CancelledReason = cancelReason;
+                    groupReceipt.CancelledDttm = now;
+                    groupReceipt.MUser = userUID;
+                    groupReceipt.MWhen = now;
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+
+        }
+        #endregion
 
         #region GoodReceive
         [Route("SearchGoodReceive")]

@@ -16,13 +16,15 @@ namespace MediTech.DataBase
     {
         public int UID { get; set; }
         public int GroupReceiptUID { get; set; }
-        public string ItemCode { get; set; }
         public string ItemName { get; set; }
+        public Nullable<int> BillableItemUID { get; set; }
+        public Nullable<int> OrderSetUID { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> Quantity { get; set; }
-        public string Unit { get; set; }
         public Nullable<double> Discount { get; set; }
+        public Nullable<double> PTaxPercentage { get; set; }
         public Nullable<double> TotalPrice { get; set; }
+        public string Unit { get; set; }
         public string Comment { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

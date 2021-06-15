@@ -37,7 +37,19 @@ namespace MediTech.ViewModels
         public GroupReceiptModel SelectGroupReceipt
         {
             get { return _SelectGroupReceipt; }
-            set { Set(ref _SelectGroupReceipt, value); }
+            set { 
+                Set(ref _SelectGroupReceipt, value);
+                if (SelectGroupReceipt != null && SelectGroupReceipt.CancelledDttm == null)
+                {
+                    IsEnableEditReceipt = true;
+                    IsEnableCancel = true;
+                }
+                else
+                {
+                    IsEnableEditReceipt = false;
+                    IsEnableCancel = false;
+                }
+            }
         }
         private List<PayorDetailModel> _PayorDetails;
         public List<PayorDetailModel> PayorDetails
@@ -63,6 +75,23 @@ namespace MediTech.ViewModels
         public DateTime? DateFrom { get; set; }
         public DateTime? DateTo { get; set; }
 
+
+        private bool _IsEnableEditReceipt = false;
+
+        public bool IsEnableEditReceipt
+        {
+            get { return _IsEnableEditReceipt; }
+            set { Set(ref _IsEnableEditReceipt, value); }
+        }
+
+        private bool _IsEnableCancel = false;
+
+        public bool IsEnableCancel
+        {
+            get { return _IsEnableCancel; }
+            set { Set(ref _IsEnableCancel, value); }
+        }
+
         #endregion
 
         #region Command
@@ -75,21 +104,30 @@ namespace MediTech.ViewModels
             }
         }
 
-        private RelayCommand _AddRecriptCommand;
-        public RelayCommand AddRecriptCommand
+        private RelayCommand _CreateRecriptCommand;
+        public RelayCommand CreateRecriptCommand
         {
             get
             {
-                return _AddRecriptCommand ?? (_AddRecriptCommand = new RelayCommand(AddReceipt));
+                return _CreateRecriptCommand ?? (_CreateRecriptCommand = new RelayCommand(CreateReceipt));
             }
         }
 
-        private RelayCommand _ManageRecriptCommand;
-        public RelayCommand ManageRecriptCommand
+        private RelayCommand _ModifyReceiptCommand;
+        public RelayCommand ModifyReceiptCommand
         {
             get
             {
-                return _ManageRecriptCommand ?? (_ManageRecriptCommand = new RelayCommand(ManageReceipt));
+                return _ModifyReceiptCommand ?? (_ModifyReceiptCommand = new RelayCommand(ModifyReceipt));
+            }
+        }
+
+        private RelayCommand _CancelReceiptCommand;
+        public RelayCommand CancelReceiptCommand
+        {
+            get
+            {
+                return _CancelReceiptCommand ?? (_CancelReceiptCommand = new RelayCommand(CancelReceipt));
             }
         }
 
@@ -113,6 +151,7 @@ namespace MediTech.ViewModels
             PayorDetails = DataService.MasterData.GetPayorDetail();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             //GroupReceipt = DataService.Purchaseing.GetGroupReceipt();
+            Search();
         }
         public override void OnLoaded()
         {
@@ -143,20 +182,49 @@ namespace MediTech.ViewModels
             }
         }
 
-        private void AddReceipt()
+        private void CreateReceipt()
         {
             ManageReceipt receipt = new ManageReceipt();
             ChangeViewPermission(receipt);
         }
 
-        private void ManageReceipt()
+        private void ModifyReceipt()
         {
-            if(SelectGroupReceipt != null)
+            if(SelectGroupReceipt != null && SelectGroupReceipt.CancelledDttm == null)
             {
                 ManageReceipt receipt = new ManageReceipt();
                 var data = DataService.Purchaseing.GetGroupReceiptByUID(SelectGroupReceipt.GroupReceiptUID);
                 (receipt.DataContext as ManageReceiptViewModel).AssignModel(data);
                 ChangeViewPermission(receipt);
+            }
+        }
+
+        private void CancelReceipt()
+        {
+            if (SelectGroupReceipt != null && SelectGroupReceipt.CancelledDttm == null)
+            {
+                try
+                {
+                    CancelPopup cancelPopup = new CancelPopup();
+                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILL", true);
+                    if (result != null && result.ResultDialog == ActionDialog.Save)
+                    {
+                        if (String.IsNullOrEmpty(result.Comments))
+                        {
+                            WarningDialog("ไม่สามารถยกเลิกได้ กรุณาใส่เหตุผล");
+                            return;
+                        }
+                        DataService.Purchaseing.CancelReceipt(SelectGroupReceipt.GroupReceiptUID, result.Comments, AppUtil.Current.UserID);
+                        SaveSuccessDialog();
+                        Search();
+                    }
+
+                }
+                catch (Exception er)
+                {
+
+                    ErrorDialog(er.Message);
+                }
             }
         }
 

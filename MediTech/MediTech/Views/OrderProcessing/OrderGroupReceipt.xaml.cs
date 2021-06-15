@@ -32,7 +32,7 @@ namespace MediTech.Views
             if (this.DataContext is OrderGroupReceiptViewModel)
             {
                 (this.DataContext as OrderGroupReceiptViewModel).OwnerOrgansitaion = ownerOrganisationUID;
-                (this.DataContext as OrderGroupReceiptViewModel).orderSet = orderSet;
+                (this.DataContext as OrderGroupReceiptViewModel).OrderSet = orderSet;
                 (this.DataContext as OrderGroupReceiptViewModel).TypeOrder = typeOrder;
                 (this.DataContext as OrderGroupReceiptViewModel).BindingFromOrderset();
             }

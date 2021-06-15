@@ -59,13 +59,13 @@
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.PageFooter = new DevExpress.XtraReports.UI.PageFooterBand();
+            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lblFReportDate = new DevExpress.XtraReports.UI.XRLabel();
             this.lblFREportDoc = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel15 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLine3 = new DevExpress.XtraReports.UI.XRLine();
             this.ResultUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.logobutton = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.RichTXT)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -106,7 +106,7 @@
             // 
             // RichTXT
             // 
-            this.RichTXT.Font = new System.Drawing.Font("Cordia New", 16F);
+            this.RichTXT.Font = new System.Drawing.Font("Cordia New", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.RichTXT.LocationFloat = new DevExpress.Utils.PointFloat(36.45827F, 22.99999F);
             this.RichTXT.Name = "RichTXT";
             this.RichTXT.SerializableRtfString = resources.GetString("RichTXT.SerializableRtfString");
@@ -411,6 +411,13 @@
             this.PageFooter.HeightF = 126.0417F;
             this.PageFooter.Name = "PageFooter";
             // 
+            // logobutton
+            // 
+            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
+            this.logobutton.Name = "logobutton";
+            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
+            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            // 
             // lblFReportDate
             // 
             this.lblFReportDate.Font = new System.Drawing.Font("Angsana New", 16F);
@@ -470,13 +477,6 @@
             this.ResultUID.Description = "ResultUID";
             this.ResultUID.Name = "ResultUID";
             this.ResultUID.Visible = false;
-            // 
-            // logobutton
-            // 
-            this.logobutton.LocationFloat = new DevExpress.Utils.PointFloat(643.75F, 34.91663F);
-            this.logobutton.Name = "logobutton";
-            this.logobutton.SizeF = new System.Drawing.SizeF(155.2083F, 49.07408F);
-            this.logobutton.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             // 
             // ImagingReport
             // 
