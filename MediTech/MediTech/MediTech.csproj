@@ -669,6 +669,12 @@
     <Compile Include="Reports\Statistic\Cashier\DrugStoreNetProfit.Designer.cs">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.Designer.cs">
+      <DependentUpon>PayorSummeryCount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2785,6 +2791,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DrugStoreNetProfit.resx">
       <DependentUpon>DrugStoreNetProfit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\PayorSummeryCount.resx">
+      <DependentUpon>PayorSummeryCount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDayNewPage.resx">
       <DependentUpon>RevenuePerDayNewPage.cs</DependentUpon>

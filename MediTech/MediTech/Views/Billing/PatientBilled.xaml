@@ -181,6 +181,7 @@
                                                       EditValueChanged="PART_Editor_EditValueChanged"
                                                       NullValueButtonPlacement="EditBox"
                                                       ValueMember="Key"
+                                                      AllowSpinOnMouseWheel="False"
                                                       DisplayMember="AlternateName"/>
                                 </DataTemplate>
                             </dxg:GridColumn.CellTemplate>

@@ -427,7 +427,7 @@ namespace MediTechWebApi.Controllers
             }
         }
 
-
+        #endregion
 
         #region GroupReceipt
         [Route("SearchGroupReceipt")]
@@ -598,7 +598,7 @@ namespace MediTechWebApi.Controllers
                         receipt = new GroupReceipt();
                         int seqBillID = 0;
                         IEnumerable<HealthOrganisationID> healthOrganisationIDs;
-                        if (receipt.TaxAmount != null && receipt.TaxAmount != 0)
+                        if (receipt.TaxAmount != null && receipt.TaxAmount > 0)
                         {
                             healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
                         }
@@ -816,7 +816,6 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
-        #endregion
 
         [Route("DeleteGroupReceiptDetail")]
         [HttpDelete]

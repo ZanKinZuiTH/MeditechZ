@@ -27,7 +27,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.AfterPrint += RevenuePerDay_AfterPrint;
         }
 
-
+        int OwnerOrganisationUID;
         private void RevenuePerDay_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             string organisationList = this.Parameters["OrganisationList"].Value.ToString();
@@ -53,17 +53,16 @@ namespace MediTech.Reports.Statistic.Cashier
                             this.DataSource = dataGroupOrg;
                             xrCrossTab1.DataSource = this.DataSource;
                             lblReportHeader.Text = "รายรับ " + dataGroupOrg.FirstOrDefault().HealthOrganisationName;
+                            OwnerOrganisationUID = dataGroupOrg.FirstOrDefault().OwnerOrganisationUID;
                         }
                         else
                         {
                             listDataGroup.Add(dataGroupOrg);
-
                         }
 
                     }
                 }
             }
-
 
         }
 
@@ -81,5 +80,10 @@ namespace MediTech.Reports.Statistic.Cashier
             }
         }
 
+        private void xrSubreport1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            DateTime date = Convert.ToDateTime(this.Parameters["Date"].Value);
+            ((XRSubreport)sender).ReportSource.DataSource = (new ReportsService()).GetPayorSummeryCount(date, "3112, 4266", OwnerOrganisationUID);
+        }
     }
 }

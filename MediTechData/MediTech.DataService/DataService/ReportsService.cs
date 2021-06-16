@@ -45,6 +45,12 @@ namespace MediTech.DataService
 
             return data;
         }
+        public List<PatientVisitModel> GetPayorSummeryCount(DateTime billGeneratedDttm, string vistyuids, int organisationUID)
+        {
+            string requestApi = string.Format("Api/Report/GetPayorSummeryCount?billGeneratedDttm={0:MM/dd/yyyy}&vistyuids={1}&organisationUID={2}", billGeneratedDttm, vistyuids, organisationUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+            return data;
+        }
 
         public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)
         {

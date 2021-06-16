@@ -23,16 +23,23 @@ namespace MediTech.Reports.Statistic.Cashier
         }
 
 
-
+        int OwnerOrganisationUID;
         private void RevenuePerDay_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
         {
             if (this.DataSource != null)
             {
                 xrCrossTab1.DataSource = this.DataSource;
                 lblReportHeader.Text = "รายรับ " + (this.DataSource as List<RevenuePerDayModel>).FirstOrDefault().HealthOrganisationName;
+                OwnerOrganisationUID = (this.DataSource as List<RevenuePerDayModel>).FirstOrDefault().OwnerOrganisationUID;
             }
 
 
+        }
+
+        private void xrSubreport1_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            DateTime date = Convert.ToDateTime(this.Parameters["Date"].Value);
+            ((XRSubreport)sender).ReportSource.DataSource = (new ReportsService()).GetPayorSummeryCount(date, "3112, 4266", OwnerOrganisationUID);
         }
     }
 }

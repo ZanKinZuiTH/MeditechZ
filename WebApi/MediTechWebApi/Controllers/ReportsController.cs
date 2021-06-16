@@ -90,6 +90,45 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPayorSummeryCount")]
+        [HttpGet]
+        public List<PatientVisitModel> GetPayorSummeryCount(DateTime billGeneratedDttm, string vistyuids, int organisationUID)
+        {
+            List<PatientVisitModel> data = new List<PatientVisitModel>();
+            var listvisittype = vistyuids.Split(',').Select(Int32.Parse).ToList();
+            var patientVisit = (from pv in db.PatientVisit
+                                join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
+                                join pb in db.PatientBill on pv.UID equals pb.PatientVisitUID
+                                where pv.StatusFlag == "A"
+                                && pvp.StatusFlag == "A"
+                                && pb.StatusFlag == "A"
+                                && (pb.IsRefund == null || pb.IsRefund != "Y")
+                                && listvisittype.Contains(pv.VISTYUID ?? 0)
+                                && pb.OwnerOrganisationUID == organisationUID
+                                && DbFunctions.TruncateTime(pb.BillGeneratedDttm) == DbFunctions.TruncateTime(billGeneratedDttm)
+                                select new PatientVisitModel
+                                {
+                                    PayorDetailUID = pvp.PayorDetailUID,
+                                    PayorName = SqlFunction.fGetPayorName(pvp.PayorDetailUID),
+                                    VISTYUID = pv.VISTYUID,
+                                    VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0)
+                                }).ToList();
+
+            if (patientVisit != null && patientVisit.Count() > 0)
+                data = patientVisit
+                    .GroupBy(p => new { p.VISTYUID, p.PayorDetailUID })
+                    .Select(p => new PatientVisitModel
+                    {
+                        VISTYUID = p.FirstOrDefault().VISTYUID,
+                        VisitType = p.FirstOrDefault().VisitType,
+                        PayorDetailUID = p.FirstOrDefault().PayorDetailUID,
+                        PayorName = p.FirstOrDefault().PayorName,
+                        RowNumber = p.Count()
+                    }).ToList();
+
+            return data;
+        }
+
         [Route("GetUsedReport")]
         [HttpGet]
         public List<PatientRevenueModel> GetUsedReport(DateTime dateFrom, DateTime dateTo, string organisationList)

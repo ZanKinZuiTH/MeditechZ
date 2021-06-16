@@ -78,13 +78,14 @@ namespace MediTech.Reports.Statistic.Cashier
             this.crossTabDataStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.crossTabTotalStyle1 = new DevExpress.XtraReports.UI.XRControlStyle();
             this.GroupFooter1 = new DevExpress.XtraReports.UI.GroupFooterBand();
-            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow4 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow5 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.GroupHeader1 = new DevExpress.XtraReports.UI.GroupHeaderBand();
             this.Incharge = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrSubreport1 = new DevExpress.XtraReports.UI.XRSubreport();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrCrossTab1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -148,7 +149,7 @@ namespace MediTech.Reports.Statistic.Cashier
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(407.6663F, 24.125F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(407.6663F, 8.125F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -496,21 +497,11 @@ namespace MediTech.Reports.Statistic.Cashier
             // GroupFooter1
             // 
             this.GroupFooter1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrSubreport1,
             this.xrTable2,
             this.xrTable1});
-            this.GroupFooter1.HeightF = 123.7918F;
+            this.GroupFooter1.HeightF = 280.3686F;
             this.GroupFooter1.Name = "GroupFooter1";
-            // 
-            // GroupHeader1
-            // 
-            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrLabel4,
-            this.lblReportHeader,
-            this.xrCrossTab1});
-            this.GroupHeader1.HeightF = 261.7116F;
-            this.GroupHeader1.Name = "GroupHeader1";
-            this.GroupHeader1.StylePriority.UseTextAlignment = false;
-            this.GroupHeader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // xrTable2
             // 
@@ -518,7 +509,7 @@ namespace MediTech.Reports.Statistic.Cashier
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Font = new System.Drawing.Font("Angsana New", 16F);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(885.4167F, 54.12502F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(885.4167F, 38.12502F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -567,11 +558,30 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell8.Text = "xrTableCell8";
             this.xrTableCell8.Weight = 1D;
             // 
+            // GroupHeader1
+            // 
+            this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel4,
+            this.lblReportHeader,
+            this.xrCrossTab1});
+            this.GroupHeader1.HeightF = 261.7116F;
+            this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.StylePriority.UseTextAlignment = false;
+            this.GroupHeader1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            // 
             // Incharge
             // 
             this.Incharge.AllowNull = true;
             this.Incharge.Description = "เจ้าหน้าที่ Incharge";
             this.Incharge.Name = "Incharge";
+            // 
+            // xrSubreport1
+            // 
+            this.xrSubreport1.LocationFloat = new DevExpress.Utils.PointFloat(42.04F, 101.6217F);
+            this.xrSubreport1.Name = "xrSubreport1";
+            this.xrSubreport1.ReportSource = new MediTech.Reports.Statistic.Cashier.PayorSummeryCount();
+            this.xrSubreport1.SizeF = new System.Drawing.SizeF(387.5F, 162.7469F);
+            this.xrSubreport1.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrSubreport1_BeforePrint);
             // 
             // RevenuePerDay
             // 
@@ -658,5 +668,6 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow5;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         private DevExpress.XtraReports.Parameters.Parameter Incharge;
+        private DevExpress.XtraReports.UI.XRSubreport xrSubreport1;
     }
 }
