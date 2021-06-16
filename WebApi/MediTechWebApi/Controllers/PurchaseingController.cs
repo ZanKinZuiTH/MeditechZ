@@ -597,14 +597,10 @@ namespace MediTechWebApi.Controllers
                     {
                         receipt = new GroupReceipt();
                         int seqBillID = 0;
-                        IEnumerable<HealthOrganisationID> healthOrganisationIDs;
-                        if (receipt.TaxAmount != null && receipt.TaxAmount > 0)
+                        IEnumerable<HealthOrganisationID> healthOrganisationIDs = null;
+                        if (model.TaxAmount != null && model.TaxAmount > 0)
                         {
                             healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
-                        }
-                        else
-                        {
-                            healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == model.OwnerOrganisation && p.StatusFlag == "A");
                         }
 
                         if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
@@ -639,10 +635,10 @@ namespace MediTechWebApi.Controllers
                         }
                         else
                         {
-                            BillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                            BillID = SEQHelper.GetSEQIDFormat("SEQGroupReceipt", out seqBillID);
                             if (string.IsNullOrEmpty(BillID))
                             {
-                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQGroupReceipt in SEQCONFIGURATION");
                             }
                         }
 
