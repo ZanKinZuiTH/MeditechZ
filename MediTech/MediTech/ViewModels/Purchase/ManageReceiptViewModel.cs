@@ -435,6 +435,7 @@ namespace MediTech.ViewModels
                     BfTaxAmount += amountTax - (amountTax * 7 / 107);
                     TaxAmount += (amountTax * 7 / 107);
                 }
+                item.TotalPrice = ((item.PriceUnit * item.Quantity) ?? 0) - item.Discount ?? 0;
             }
             NetAmount = Amount - Discount;
 
@@ -818,11 +819,15 @@ namespace MediTech.ViewModels
                 newItems.PTaxPercentage = item.PTaxPercentage;
                 OrderGroupReceipt.Add(newItems);
             }
-
-            foreach (var item in model.GroupReceiptPatientBills)
+            if (model.GroupReceiptPatientBills.Count > 0)
             {
-                GroupReceiptPatientBill.Add(item);
+                foreach (var item in model.GroupReceiptPatientBills)
+                {
+                    GroupReceiptPatientBill.Add(item);
+                }
+                VisibilityTextInvocice = Visibility.Visible;
             }
+            
 
             CalculateNetAmount();
             OnUpdateEvent();
