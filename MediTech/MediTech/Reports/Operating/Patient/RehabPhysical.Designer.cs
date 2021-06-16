@@ -102,6 +102,7 @@
             this.xrLabel27 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrLabel22 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel21 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel20 = new DevExpress.XtraReports.UI.XRLabel();
@@ -126,7 +127,6 @@
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.logo = new DevExpress.XtraReports.UI.XRPictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).BeginInit();
@@ -712,7 +712,7 @@
             // 
             // xrPictureBox2
             // 
-            this.xrPictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox2.Image")));
+            this.xrPictureBox2.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox2.ImageSource"));
             this.xrPictureBox2.LocationFloat = new DevExpress.Utils.PointFloat(295.8498F, 272.75F);
             this.xrPictureBox2.Name = "xrPictureBox2";
             this.xrPictureBox2.SizeF = new System.Drawing.SizeF(264.3981F, 192.6667F);
@@ -805,6 +805,16 @@
             this.TopMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.TopMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // logo
+            // 
+            this.logo.BorderWidth = 0F;
+            this.logo.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("logo.ImageSource"));
+            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(44.09951F, 49.1304F);
+            this.logo.Name = "logo";
+            this.logo.SizeF = new System.Drawing.SizeF(218.0952F, 71.32609F);
+            this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+            this.logo.StylePriority.UseBorderWidth = false;
+            // 
             // xrLabel22
             // 
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -821,7 +831,7 @@
             // xrLabel21
             // 
             this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData", "{0:MM/dd/yyyy}")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
             this.xrLabel21.Font = new System.Drawing.Font("Angsana New", 14F);
             this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(711.47F, 104.9565F);
             this.xrLabel21.Name = "xrLabel21";
@@ -830,6 +840,7 @@
             this.xrLabel21.StylePriority.UseFont = false;
             this.xrLabel21.StylePriority.UseTextAlignment = false;
             this.xrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrLabel21.TextFormatString = "{0:dd/MM/yyyy}";
             // 
             // xrLabel20
             // 
@@ -1109,16 +1120,6 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.MedicalCertificateModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // logo
-            // 
-            this.logo.BorderWidth = 0F;
-            this.logo.Image = ((System.Drawing.Image)(resources.GetObject("logo.Image")));
-            this.logo.LocationFloat = new DevExpress.Utils.PointFloat(44.09951F, 49.1304F);
-            this.logo.Name = "logo";
-            this.logo.SizeF = new System.Drawing.SizeF(218.0952F, 71.32609F);
-            this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
-            this.logo.StylePriority.UseBorderWidth = false;
-            // 
             // RehabPhysical
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1134,7 +1135,7 @@
             this.OrganisationUID,
             this.PatientVisitUID,
             this.PatientUID});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable8)).EndInit();

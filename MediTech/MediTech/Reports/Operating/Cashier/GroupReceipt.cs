@@ -27,6 +27,7 @@ namespace MediTech.Reports.Operating.Cashier
                 lbDate.Text = data.StartDttm?.ToString("dd'/'MM'/'yyyy");
                 lbSell.Text = data.Seller;
                 lbCompany.Text = data.PayorName;
+                lbCompany2.Text = data.PayorName;
                 lbAddress.Text = data.PayerAddress;
                 var tex = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
                 lbTexNo.Text = tex != null ? "เลขประจำตัวผู้เลียภาษี " + tex : "";
@@ -41,11 +42,15 @@ namespace MediTech.Reports.Operating.Cashier
                     {
                         item.No = i;
                         i++;
+
                         priceTotal = priceTotal + item.TotalPrice.Value;
                     }
                     lbThaiPrice.Text = ShareLibrary.NumberToText.ThaiBaht(priceTotal.ToString());
                 }
-                
+
+                lbBeforeTaxAmount.Text = data.BfTaxAmount != null ? string.Format("{0:#,#.00}", data.BfTaxAmount): "0.00";
+                lbTaxAmount.Text = data.TaxAmount != null ? string.Format("{0:#,#.00}", data.TaxAmount) : "0.00";
+                lbNetAmount.Text = string.Format("{0:#,#.00}", data.NetAmount);
             }
             this.DataSource = data;
         }

@@ -66,8 +66,7 @@
                                                     MaxCompletions="30"
                                                     IsEnabled="{Binding EnableSearchItem}"
                                                     ItemsSource="{Binding OrderItems}"
-                                                    SelectedItem="{Binding SelectOrderItem,Mode=OneWayToSource}"
-                                                    >
+                                                    SelectedItem="{Binding SelectOrderItem,Mode=OneWayToSource}">
                             </cc:AutoCompleteTextBox>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem  HorizontalAlignment="Right">
@@ -84,7 +83,7 @@
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem Label="ชื่อลูกค้า" >
-                                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}"
                                       SelectedItem="{Binding SelectPayorDetail}"
                                       ValueMember="PayorDetailUID"
                                       DisplayMember="PayorName"
@@ -103,6 +102,7 @@
                                         <ControlTemplate>
                                             <dxg:GridControl x:Name="PART_GridControl"  >
                                                 <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn Name="colPayorCode" FieldName="Code"/>
                                                     <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
                                                 </dxg:GridControl.Columns>
                                                 <dxg:GridControl.View>
