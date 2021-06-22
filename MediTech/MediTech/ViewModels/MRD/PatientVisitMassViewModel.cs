@@ -197,7 +197,8 @@ namespace MediTech.ViewModels
                     {
                         ownerOrganisationUID = SelectHealthOrganisation.HealthOrganisationUID;
                     }
-                    OrderItems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+                    var dataOrderIitems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
+                    OrderItems = dataOrderIitems.Where(p => p.TypeOrder != "Drug" && p.TypeOrder != "Medical Supplies" && p.TypeOrder != "Supply").ToList();
 
                 }
                 else
@@ -898,6 +899,13 @@ namespace MediTech.ViewModels
                     var OrderSetBillItmActive = orderSet.OrderSetBillableItems
                         .Where(p => (p.ActiveFrom == null || p.ActiveFrom.Value.Date <= DateTime.Now.Date)
                         && (p.ActiveTo == null || p.ActiveTo.Value.Date >= DateTime.Now.Date));
+
+                    if (OrderSetBillItmActive.Any(p => p.BillingServiceMetaData == "Drug" || p.BillingServiceMetaData == "Medical Supplies" || p.BillingServiceMetaData == "Supply"))
+                    {
+                        WarningDialog("ไม่สามารถคีย์ OrderSet นี่ในการจัดการ Visit แบบกลุ่มได้ เนื่องจาก OrderSet นี้มีการผูกกลับคลังสินค้า กรุณาตรวจสอบ");
+                        return;
+                    }
+
                     foreach (var item in OrderSetBillItmActive)
                     {
 

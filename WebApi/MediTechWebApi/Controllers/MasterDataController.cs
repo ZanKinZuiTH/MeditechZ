@@ -1480,6 +1480,7 @@ namespace MediTechWebApi.Controllers
                                                   ActiveFrom = ord.ActiveFrom,
                                                   ActiveTo = ord.ActiveTo,
                                                   FRQNCUID = ord.FRQNCUID,
+                                                  BillingServiceMetaData = SqlFunction.fGetRfValDescription(bill.BSMDDUID),
                                                   DoseQty = ord.DoseQty,
                                                   Price = ord.Price ?? 0,
                                                   NetPrice = (ord.Price ?? 0) * ord.Quantity,
