@@ -19,19 +19,29 @@ namespace MediTech.Reports.Operating.Cashier
         {
 
             int GroupReceiptUID = int.Parse(this.Parameters["GroupReceiptUID"].Value.ToString());
+            int ReceiptCopy = int.Parse(this.Parameters["ReceiptCopy"].Value.ToString());
             var data = (new PurchaseingService()).GetGroupReceiptByUID(GroupReceiptUID);
 
             if(data != null)
             {
+                lbReceiptCopy.Text = "ต้นฉบับ";
                 lbBillNunber.Text = data.ReceiptNo;
                 lbDate.Text = data.StartDttm?.ToString("dd'/'MM'/'yyyy");
                 lbSell.Text = data.Seller;
                 lbCompany.Text = data.PayorName;
                 lbCompany2.Text = data.PayorName;
                 lbAddress.Text = data.PayerAddress;
-                var tex = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
-                lbTexNo.Text = tex != null ? "เลขประจำตัวผู้เลียภาษี " + tex : "";
-                
+                var tax = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
+                lbTexNo.Text = tax != null ? "เลขประจำตัวผู้เลียภาษี " + tax : "";
+
+                if (ReceiptCopy == 0)
+                {
+                    lbReceiptCopy.Text = "ต้นฉบับ";
+                }
+                if (ReceiptCopy == 1)
+                {
+                    lbReceiptCopy.Text = "สำเนา";
+                }
 
                 if (data.GroupReceiptDetails.Count > 0)
                 {
