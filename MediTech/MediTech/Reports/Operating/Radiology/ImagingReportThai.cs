@@ -40,7 +40,7 @@ namespace MediTech.Reports.Operating.Radiology
             {
                 this.lblOrderName.Text = dataReport.RequestItemName;
                 this.lblPatientName.Text = dataReport.PatientName;
-                this.lblAge.Text = dataReport.Age != null ? dataReport.Age + " Y" : "";
+                this.lblAge.Text = dataReport.Age != "" ? dataReport.Age + " Y" : "";
                 this.lblSex.Text = dataReport.Gender;
                 this.lblRegisterNo.Text = dataReport.HN;
                 this.lblRequestDate.Text = dataReport.RequestedDttm.ToString("dd MMM yyyy HH:mm:ss", culture);
