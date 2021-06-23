@@ -249,7 +249,7 @@
             this.xrTableCell20.StylePriority.UseFont = false;
             this.xrTableCell20.StylePriority.UseTextAlignment = false;
             this.xrTableCell20.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell20.TextFormatString = "{0:#.00}";
+            this.xrTableCell20.TextFormatString = "{0:n2}";
             this.xrTableCell20.Weight = 1.013887882317726D;
             // 
             // xrTableCell21
@@ -263,7 +263,7 @@
             this.xrTableCell21.StylePriority.UseFont = false;
             this.xrTableCell21.StylePriority.UseTextAlignment = false;
             this.xrTableCell21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell21.TextFormatString = "{0:#.00}";
+            this.xrTableCell21.TextFormatString = "{0:n2}";
             this.xrTableCell21.Weight = 0.77777950775001792D;
             // 
             // xrTableCell22
@@ -277,7 +277,7 @@
             this.xrTableCell22.StylePriority.UseFont = false;
             this.xrTableCell22.StylePriority.UseTextAlignment = false;
             this.xrTableCell22.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell22.TextFormatString = "{0:#.00}";
+            this.xrTableCell22.TextFormatString = "{0:n2}";
             this.xrTableCell22.Weight = 0.966666157883194D;
             // 
             // TopMargin
@@ -668,7 +668,7 @@
             xrSummary1.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell24.Summary = xrSummary1;
             this.xrTableCell24.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell24.TextFormatString = "{0:#.00}";
+            this.xrTableCell24.TextFormatString = "{0:n2}";
             this.xrTableCell24.Weight = 0.81666643622876767D;
             // 
             // xrTableCell2
@@ -714,7 +714,7 @@
             xrSummary2.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell10.Summary = xrSummary2;
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell10.TextFormatString = "{0:#.00}";
+            this.xrTableCell10.TextFormatString = "{0:n2}";
             this.xrTableCell10.Weight = 0.81666643622876767D;
             // 
             // xrTableCell11
@@ -760,7 +760,7 @@
             xrSummary3.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.xrTableCell13.Summary = xrSummary3;
             this.xrTableCell13.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.xrTableCell13.TextFormatString = "{0:#.00}";
+            this.xrTableCell13.TextFormatString = "{0:n2}";
             this.xrTableCell13.Weight = 0.81666643622876767D;
             // 
             // xrTableCell14
@@ -841,7 +841,7 @@
             this.lbBeforeTaxAmount.StylePriority.UseFont = false;
             this.lbBeforeTaxAmount.StylePriority.UseTextAlignment = false;
             this.lbBeforeTaxAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.lbBeforeTaxAmount.TextFormatString = "{0:#.00}";
+            this.lbBeforeTaxAmount.TextFormatString = "{0:n2}";
             this.lbBeforeTaxAmount.Weight = 0.81666643622876767D;
             // 
             // xrTableCell48
@@ -881,7 +881,7 @@
             this.lbTaxAmount.StylePriority.UseFont = false;
             this.lbTaxAmount.StylePriority.UseTextAlignment = false;
             this.lbTaxAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.lbTaxAmount.TextFormatString = "{0:#.00}";
+            this.lbTaxAmount.TextFormatString = "{0:n2}";
             this.lbTaxAmount.Weight = 0.81666643622876767D;
             // 
             // xrTableCell4
@@ -927,7 +927,7 @@
             xrSummary4.Running = DevExpress.XtraReports.UI.SummaryRunning.Report;
             this.lbNetAmount.Summary = xrSummary4;
             this.lbNetAmount.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleRight;
-            this.lbNetAmount.TextFormatString = "{0:#.00}";
+            this.lbNetAmount.TextFormatString = "{0:n2}";
             this.lbNetAmount.Weight = 0.81666643622876767D;
             // 
             // xrTableCell6
