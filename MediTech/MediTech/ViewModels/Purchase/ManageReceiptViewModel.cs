@@ -427,7 +427,7 @@ namespace MediTech.ViewModels
 
                 if (item.PTaxPercentage == 0)
                 {
-                    NoTaxAmount += ((item.PriceUnit * item.Quantity) ?? 0) - item.Discount ?? 0;
+                    NoTaxAmount += ((item.PriceUnit * item.Quantity) ?? 0) - (item.Discount ?? 0);
                 }
                 else if (item.PTaxPercentage == 7)
                 {
@@ -435,7 +435,7 @@ namespace MediTech.ViewModels
                     BfTaxAmount += amountTax - (amountTax * 7 / 107);
                     TaxAmount += (amountTax * 7 / 107);
                 }
-                item.TotalPrice = ((item.PriceUnit * item.Quantity) ?? 0) - item.Discount ?? 0;
+                item.TotalPrice = ((item.PriceUnit * item.Quantity) ?? 0) - (item.Discount ?? 0);
             }
             NetAmount = Amount - Discount;
 
