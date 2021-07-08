@@ -432,6 +432,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayorName")});
             this.xrLabel45.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrLabel45.LocationFloat = new DevExpress.Utils.PointFloat(0.5411083F, 82.41669F);
+            this.xrLabel45.Multiline = true;
             this.xrLabel45.Name = "xrLabel45";
             this.xrLabel45.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel45.SizeF = new System.Drawing.SizeF(526.959F, 19.83F);
@@ -840,6 +841,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PayorName")});
             this.xrLabel44.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrLabel44.LocationFloat = new DevExpress.Utils.PointFloat(1.958241F, 82.41668F);
+            this.xrLabel44.Multiline = true;
             this.xrLabel44.Name = "xrLabel44";
             this.xrLabel44.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel44.SizeF = new System.Drawing.SizeF(526.994F, 19.83002F);

@@ -24,6 +24,10 @@ namespace MediTech.Reports.Operating.Cashier
 
             if(data != null)
             {
+                if (data.ReceiptNo.Contains("NM"))
+                {
+                    TitleReceipt.Text = "ใบเสร็จรับเงิน/ใบกำกับภาษี";
+                }
                 lbReceiptCopy.Text = "ต้นฉบับ";
                 lbBillNunber.Text = data.ReceiptNo;
                 lbDate.Text = data.StartDttm?.ToString("dd'/'MM'/'yyyy");

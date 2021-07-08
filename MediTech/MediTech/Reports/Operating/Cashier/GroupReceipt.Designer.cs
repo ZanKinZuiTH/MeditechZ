@@ -123,7 +123,7 @@
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.TitleReceipt = new DevExpress.XtraReports.UI.XRLabel();
             this.lbReceiptCopy = new DevExpress.XtraReports.UI.XRLabel();
             this.lbCompany = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
@@ -1075,7 +1075,7 @@
             // 
             this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPictureBox1,
-            this.xrLabel1,
+            this.TitleReceipt,
             this.lbReceiptCopy,
             this.lbCompany,
             this.xrLabel4,
@@ -1096,17 +1096,17 @@
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(235.8333F, 73.99998F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
-            // xrLabel1
+            // TitleReceipt
             // 
-            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(588.5557F, 96.33339F);
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(119.1667F, 25.5F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "ใบเสร็จรับเงิน";
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.TitleReceipt.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
+            this.TitleReceipt.LocationFloat = new DevExpress.Utils.PointFloat(508.3336F, 96.33339F);
+            this.TitleReceipt.Name = "TitleReceipt";
+            this.TitleReceipt.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.TitleReceipt.SizeF = new System.Drawing.SizeF(275.8333F, 25.50001F);
+            this.TitleReceipt.StylePriority.UseFont = false;
+            this.TitleReceipt.StylePriority.UseTextAlignment = false;
+            this.TitleReceipt.Text = "ใบเสร็จรับเงิน";
+            this.TitleReceipt.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
             // 
             // lbReceiptCopy
             // 
@@ -1438,7 +1438,7 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell52;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
         protected DevExpress.XtraReports.UI.XRPictureBox xrPictureBox1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
+        private DevExpress.XtraReports.UI.XRLabel TitleReceipt;
         private DevExpress.XtraReports.UI.XRLabel lbReceiptCopy;
         private DevExpress.XtraReports.UI.XRLabel lbCompany;
         protected DevExpress.XtraReports.UI.XRLabel xrLabel4;
