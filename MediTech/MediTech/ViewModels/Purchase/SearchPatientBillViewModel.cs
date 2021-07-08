@@ -147,11 +147,6 @@ namespace MediTech.ViewModels
 
         public void Save()
         {
-            if (PatientBillGroup == null || PatientBillGroup.Count <= 0)
-            {
-                WarningDialog("กรุณาเลือกใบ Invoice อย่างน้อย 1 รายการ");
-                return;
-            }
             CloseViewDialog(ActionDialog.Save);
         }
 

@@ -35,7 +35,8 @@ namespace MediTech.ViewModels
         public List<GroupReceiptPatientBillModel> GroupReceiptPatientBill
         {
             get { return _GroupReceiptPatientBill ?? (_GroupReceiptPatientBill = new List<GroupReceiptPatientBillModel>()); }
-            set { 
+            set
+            {
                 _GroupReceiptPatientBill = value;
                 if (_GroupReceiptPatientBill != null && _GroupReceiptPatientBill.Count > 0)
                 {
@@ -181,7 +182,8 @@ namespace MediTech.ViewModels
         public string ReceiptNo
         {
             get { return _ReceiptNo; }
-            set { 
+            set
+            {
                 Set(ref _ReceiptNo, value);
                 VisibilityReceiptNo = string.IsNullOrEmpty(ReceiptNo) ? Visibility.Hidden : Visibility.Visible;
             }
@@ -579,83 +581,88 @@ namespace MediTech.ViewModels
             {
                 GroupReceiptPatientBill = result.PatientBillGroup.ToList();
 
-                List<PatientBilledItemModel> patientBilledOrderDetail = new List<PatientBilledItemModel>();
-                foreach (var patientBill in GroupReceiptPatientBill)
+                if (model == null || model.GroupReceiptDetails.Count <= 0)
                 {
-                    var patientBillOrder = DataService.Billing.GetPatientBilledOrderDetail(patientBill.PatientBillUID);
-                    patientBilledOrderDetail.AddRange(patientBillOrder);
-                }
-
-                var orerSetGroupBill = patientBilledOrderDetail.Where(p => p.OrderSetUID != null)
-                    .GroupBy(p => new { p.PatientBillUID, p.OrderSetUID })
-                    .Select(s => new
+                    List<PatientBilledItemModel> patientBilledOrderDetail = new List<PatientBilledItemModel>();
+                    foreach (var patientBill in GroupReceiptPatientBill)
                     {
-                        OrderSetUID = s.FirstOrDefault().OrderSetUID,
-                        Quantity = s.Select(z => new { z.PatientBillUID, z.OrderSetUID }).Distinct().Count()
-                    });
+                        var patientBillOrder = DataService.Billing.GetPatientBilledOrderDetail(patientBill.PatientBillUID);
+                        patientBilledOrderDetail.AddRange(patientBillOrder);
+                    }
 
-                var orerSetCollect = orerSetGroupBill.Where(p => p.OrderSetUID != null)
-                  .GroupBy(p => new { p.OrderSetUID })
-                  .Select(s => new
-                  {
-                      OrderSetUID = s.FirstOrDefault().OrderSetUID,
-                      Quantity = s.Sum(p => p.Quantity)
-                  });
+                    var orerSetGroupBill = patientBilledOrderDetail.Where(p => p.OrderSetUID != null)
+                        .GroupBy(p => new { p.PatientBillUID, p.OrderSetUID })
+                        .Select(s => new
+                        {
+                            OrderSetUID = s.FirstOrDefault().OrderSetUID,
+                            Quantity = s.Select(z => new { z.PatientBillUID, z.OrderSetUID }).Distinct().Count()
+                        });
+
+                    var orerSetCollect = orerSetGroupBill.Where(p => p.OrderSetUID != null)
+                      .GroupBy(p => new { p.OrderSetUID })
+                      .Select(s => new
+                      {
+                          OrderSetUID = s.FirstOrDefault().OrderSetUID,
+                          Quantity = s.Sum(p => p.Quantity)
+                      });
 
 
-                var billableItemCollect = patientBilledOrderDetail.Where(p => p.OrderSetUID == null)
-                    .GroupBy(p => new { p.BillableItemUID })
-                    .Select(s => new
+                    var billableItemCollect = patientBilledOrderDetail.Where(p => p.OrderSetUID == null)
+                        .GroupBy(p => new { p.BillableItemUID })
+                        .Select(s => new
+                        {
+                            BillableItemName = s.FirstOrDefault().ItemName,
+                            BillableItemUID = s.FirstOrDefault().BillableItemUID,
+                            PriceUnit = s.FirstOrDefault().Amount,
+                            Unit = s.FirstOrDefault().Unit,
+                            Discount = s.Sum(p => p.Discount),
+                            Quantity = s.Sum(p => p.ItemMutiplier),
+                            NetAmount = s.Sum(p => p.NetAmount)
+                        });
+
+                    OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>();
+
+
+                    foreach (var item in orerSetCollect)
                     {
-                        BillableItemName = s.FirstOrDefault().ItemName,
-                        BillableItemUID = s.FirstOrDefault().BillableItemUID,
-                        PriceUnit = s.FirstOrDefault().Amount,
-                        Unit = s.FirstOrDefault().Unit,
-                        Discount = s.Sum(p => p.Discount),
-                        Quantity = s.Sum(p => p.ItemMutiplier),
-                        NetAmount = s.Sum(p => p.NetAmount)
-                    });
+                        var OrderSet = DataService.MasterData.GetOrderSetByUID(item.OrderSetUID.Value);
+                        GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
+                        newOrderReceipt.OrderSetUID = OrderSet.OrderSetUID;
+                        newOrderReceipt.ItemName = OrderSet.Name;
+                        newOrderReceipt.Quantity = item.Quantity;
+                        newOrderReceipt.UnitItem = "ชุด";
+                        newOrderReceipt.PriceUnit = OrderSet.OrderSetBillableItems.Sum(p => p.NetPrice);
+                        newOrderReceipt.Discount = 0;
+                        newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity);
+                        newOrderReceipt.PTaxPercentage = 0;
+                        OrderGroupReceipt.Add(newOrderReceipt);
+                    }
 
-                OrderGroupReceipt = new ObservableCollection<GroupReceiptDetailModel>();
+                    foreach (var item in billableItemCollect)
+                    {
+                        GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
+                        newOrderReceipt.BillableItemUID = item.BillableItemUID;
+                        newOrderReceipt.ItemName = item.BillableItemName;
+                        newOrderReceipt.Quantity = item.Quantity;
+                        newOrderReceipt.UnitItem = item.Unit;
+                        newOrderReceipt.PriceUnit = item.PriceUnit;
+                        newOrderReceipt.Discount = item.Discount;
+                        newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity) - item.Discount;
+                        newOrderReceipt.PTaxPercentage = 0;
+                        OrderGroupReceipt.Add(newOrderReceipt);
+                    }
 
 
-                foreach (var item in orerSetCollect)
-                {
-                    var OrderSet = DataService.MasterData.GetOrderSetByUID(item.OrderSetUID.Value);
-                    GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
-                    newOrderReceipt.OrderSetUID = OrderSet.OrderSetUID;
-                    newOrderReceipt.ItemName = OrderSet.Name;
-                    newOrderReceipt.Quantity = item.Quantity;
-                    newOrderReceipt.UnitItem = "ชุด";
-                    newOrderReceipt.PriceUnit = OrderSet.OrderSetBillableItems.Sum(p => p.NetPrice);
-                    newOrderReceipt.Discount = 0;
-                    newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity);
-                    newOrderReceipt.PTaxPercentage =0;
-                    OrderGroupReceipt.Add(newOrderReceipt);
-                }
-
-                foreach (var item in billableItemCollect)
-                {
-                    GroupReceiptDetailModel newOrderReceipt = new GroupReceiptDetailModel();
-                    newOrderReceipt.BillableItemUID = item.BillableItemUID;
-                    newOrderReceipt.ItemName = item.BillableItemName;
-                    newOrderReceipt.Quantity = item.Quantity;
-                    newOrderReceipt.UnitItem = item.Unit;
-                    newOrderReceipt.PriceUnit = item.PriceUnit;
-                    newOrderReceipt.Discount = item.Discount;
-                    newOrderReceipt.TotalPrice = (newOrderReceipt.PriceUnit * newOrderReceipt.Quantity)-item.Discount;
-                    newOrderReceipt.PTaxPercentage = 0;
-                    OrderGroupReceipt.Add(newOrderReceipt);
+                    if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
+                    {
+                        int i = 1;
+                        OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
+                    }
+                    CalculateNetAmount();
+                    OnUpdateEvent();
                 }
 
 
-                if (OrderGroupReceipt != null && OrderGroupReceipt.Count > 0)
-                {
-                    int i = 1;
-                    OrderGroupReceipt.ToList().ForEach(p => p.No = i++);
-                }
-                CalculateNetAmount();
-                OnUpdateEvent();
             }
 
         }
@@ -827,7 +834,7 @@ namespace MediTech.ViewModels
                 }
                 VisibilityTextInvocice = Visibility.Visible;
             }
-            
+
 
             CalculateNetAmount();
             OnUpdateEvent();

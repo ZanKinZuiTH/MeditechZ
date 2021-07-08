@@ -39,6 +39,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        private bool _UseReadCard = false;
+
+        public bool UseReadCard
+        {
+            get { return _UseReadCard = false; }
+            set { _UseReadCard = value; }
+        }
+
+
+
         private bool _CheckBuddhist = true;
 
         public bool CheckBuddhist
@@ -850,7 +860,7 @@ namespace MediTech.ViewModels
                     }
 
                 }
-                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null , "");
+                List<PatientInformationModel> searchResult = DataService.PatientIdentity.SearchPatient(patientID, firstName, "", lastName, "", null, null, "", null, "");
                 PatientsSearchSource = searchResult;
             }
             else
@@ -1012,6 +1022,20 @@ namespace MediTech.ViewModels
                 else
                 {
                     visitInfo.VISTSUID = 419;   //Registered Status
+                }
+
+                if (UseReadCard && patientInfo.PatientUID != 0)
+                {
+                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, patientInfo.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
+                    if (Bookings != null && Bookings.Count > 0)
+                    {
+                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด "+ reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Booking = Bookings.FirstOrDefault();
+                        }
+                    }
                 }
 
                 if (Booking != null)
