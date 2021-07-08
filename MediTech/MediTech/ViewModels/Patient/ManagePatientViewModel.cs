@@ -43,7 +43,7 @@ namespace MediTech.ViewModels
 
         public bool UseReadCard
         {
-            get { return _UseReadCard = false; }
+            get { return _UseReadCard; }
             set { _UseReadCard = value; }
         }
 
