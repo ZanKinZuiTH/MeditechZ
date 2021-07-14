@@ -333,11 +333,14 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อขา", DisplayOrder = 18 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง+ขา", DisplayOrder = 19 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "PAP Smear", DisplayOrder = 20 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 21 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 22 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 23 });
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]
                 , MobileStickerSource[10],MobileStickerSource[11],MobileStickerSource[12],MobileStickerSource[13],MobileStickerSource[14],MobileStickerSource[15]
-                ,MobileStickerSource[16],MobileStickerSource[17],MobileStickerSource[18],MobileStickerSource[19]};
+                ,MobileStickerSource[16],MobileStickerSource[17],MobileStickerSource[18],MobileStickerSource[19],MobileStickerSource[20],MobileStickerSource[21],MobileStickerSource[22]};
         }
         private void ChooseFile()
         {
