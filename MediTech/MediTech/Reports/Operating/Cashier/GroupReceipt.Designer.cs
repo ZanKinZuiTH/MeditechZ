@@ -951,8 +951,8 @@
             this.xrLabel8.SizeF = new System.Drawing.SizeF(292.5F, 98F);
             this.xrLabel8.StylePriority.UseFont = false;
             this.xrLabel8.StylePriority.UseTextAlignment = false;
-            this.xrLabel8.Text = "โอนเงินธนาคาร ทหารไทยประเภท ออมทรัพย์\r\nสาขาแพชชัน แหลมทองระยอง\r\nชื่อบัญชี บริษัท " +
-    "บีอาร์เอ็กซ์จี จำกัด\r\nเลขที่บัญชี 6282382222";
+            this.xrLabel8.Text = "โอนเงินธนาคาร กสิกรไทย\r\nสาขาแพชชัน ช้อปปิง ระยอง\r\nชื่อบัญชี บจก. บีอาร์เอ็กซ์จี\r\n" +
+    "เลขที่บัญชี 0608058508";
             this.xrLabel8.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel7
