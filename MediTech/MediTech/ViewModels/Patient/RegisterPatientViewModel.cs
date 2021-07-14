@@ -92,7 +92,7 @@ namespace MediTech.ViewModels
 
         public RegisterPatientViewModel()
         {
-        
+
         }
 
         private void ReadCard()
@@ -214,7 +214,15 @@ namespace MediTech.ViewModels
 
                 DateTime? birthDttm = _yyyymmdd_(fields[(int)NID_FIELD.BIRTH_DATE]);
 
-                PatientInformationModel patientData = new PatientInformationModel();
+                PatientInformationModel patientData = DataService.PatientIdentity.GetPatientByIDCard(nationalID);
+                if (patientData == null)
+                {
+                    var dataPat = DataService.PatientIdentity.SearchPatient(null, firstName, middleName, lastName, null, birthDttm, null, null, null, null);
+                    patientData = (dataPat != null && dataPat.Count > 0) ? dataPat.FirstOrDefault() : null;
+                }
+
+                if (patientData == null)
+                    patientData = new PatientInformationModel();
 
                 patientData.FirstName = firstName;
                 patientData.LastName = lastName;
@@ -271,41 +279,46 @@ namespace MediTech.ViewModels
 
                 if (SelectPageIndex == 0)
                 {
-                    SearchPatientViewModel searchPatViewModel = (searchPatient.DataContext as SearchPatientViewModel);
-                    searchPatViewModel.SearchPatient("", firstName, lastName, middleName, "", birthDttm, "", null, gender, "");
+                    OpenPage(PageRegister.Manage, patientData,userCardRead: true);
+                    IsManageRegister = true;
+                    //SearchPatientViewModel searchPatViewModel = (searchPatient.DataContext as SearchPatientViewModel);
+                    //searchPatViewModel.SearchPatient("", firstName, lastName, middleName, "", birthDttm, "", null, gender, "");
 
-                    if (searchPatViewModel.PatientSource == null || searchPatViewModel.PatientSource.Count <= 0)
-                    {
-                        OpenPage(PageRegister.Manage, patientData);
-                        IsManageRegister = true;
-                    }
+                    //if (searchPatViewModel.PatientSource == null || searchPatViewModel.PatientSource.Count <= 0)
+                    //{
+                    //    OpenPage(PageRegister.Manage, patientData);
+                    //    IsManageRegister = true;
+                    //}
                 }
                 else if (SelectPageIndex == 1)
                 {
-                    managePatientViewModel.FirstName = firstName;
-                    managePatientViewModel.LastName = lastName;
-                    managePatientViewModel.SelectedTitle = managePatientViewModel.TitleSource.FirstOrDefault(p => p.Key == patientData.TITLEUID);
-                    managePatientViewModel.SelectedGender = managePatientViewModel.GenderSource.FirstOrDefault(p => p.Key == patientData.SEXXXUID);
-                    managePatientViewModel.NatinonalID = nationalID;
+                    managePatientViewModel.UseReadCard = true;
+                    managePatientViewModel.AssingModel(patientData);
+                    //managePatientViewModel.PatientID = patientData.PatientID;
+                    //managePatientViewModel.FirstName = firstName;
+                    //managePatientViewModel.LastName = lastName;
+                    //managePatientViewModel.SelectedTitle = managePatientViewModel.TitleSource.FirstOrDefault(p => p.Key == patientData.TITLEUID);
+                    //managePatientViewModel.SelectedGender = managePatientViewModel.GenderSource.FirstOrDefault(p => p.Key == patientData.SEXXXUID);
+                    //managePatientViewModel.NatinonalID = nationalID;
 
-                    managePatientViewModel.BirthDate = patientData.BirthDttm;
-                    if (managePatientViewModel.BirthDate != null)
-                    {
-                        if (managePatientViewModel.CheckBuddhist == true)
-                        {
-                            managePatientViewModel.BirthDate = managePatientViewModel.BirthDate.Value.AddYears(543);
-                        }
-                        else
-                        {
-                            managePatientViewModel.BirthDate = managePatientViewModel.BirthDate.Value.AddYears(-543);
-                        }
-                    }
-                    managePatientViewModel.Line1 = patientData.Line1;
-                    managePatientViewModel.Line2 = patientData.Line2;
-                    managePatientViewModel.Line3 = patientData.Line3;
-                    managePatientViewModel.SuppressZipCodeEvent = true;
-                    managePatientViewModel.ZipCode = patientData.ZipCode;
-                    managePatientViewModel.PatientImage = ImageHelpers.ConvertByteToBitmap(patientData.PatientImage);
+                    //managePatientViewModel.BirthDate = patientData.BirthDttm;
+                    //if (managePatientViewModel.BirthDate != null)
+                    //{
+                    //    if (managePatientViewModel.CheckBuddhist == true)
+                    //    {
+                    //        managePatientViewModel.BirthDate = managePatientViewModel.BirthDate.Value.AddYears(543);
+                    //    }
+                    //    else
+                    //    {
+                    //        managePatientViewModel.BirthDate = managePatientViewModel.BirthDate.Value.AddYears(-543);
+                    //    }
+                    //}
+                    //managePatientViewModel.Line1 = patientData.Line1;
+                    //managePatientViewModel.Line2 = patientData.Line2;
+                    //managePatientViewModel.Line3 = patientData.Line3;
+                    //managePatientViewModel.SuppressZipCodeEvent = true;
+                    //managePatientViewModel.ZipCode = patientData.ZipCode;
+                    //managePatientViewModel.PatientImage = ImageHelpers.ConvertByteToBitmap(patientData.PatientImage);
                 }
             }
             catch (Exception er)
@@ -313,7 +326,7 @@ namespace MediTech.ViewModels
 
                 ErrorDialog(er.Message);
             }
-           
+
         }
 
         public PatientInformationModel AssingPatientData(PatientInformationModel patientData)
@@ -337,9 +350,9 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาเลือกผู้ป่วย");
                     return;
                 }
-                if (SelectedBooking != null)
+                if (SelectedBooking != null && SelectedBooking.AppointmentDttm.Date == DateTime.Now.Date)
                 {
-                    MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                    MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัดวันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
                     if (result == MessageBoxResult.Yes)
                     {
                         OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
@@ -375,10 +388,9 @@ namespace MediTech.ViewModels
                 ChangeViewPermission(BackwardView);
             }
 
-
         }
 
-        public void OpenPage(PageRegister page,PatientInformationModel patientData,BookingModel booking = null)
+        public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null,bool userCardRead = false)
         {
             if (page == PageRegister.Search)
             {
@@ -391,6 +403,7 @@ namespace MediTech.ViewModels
                 if (managePatient.DataContext is ManagePatientViewModel)
                 {
                     ManagePatientViewModel managePatViewModel = (managePatient.DataContext as ManagePatientViewModel);
+                    managePatViewModel.UseReadCard = userCardRead;
                     managePatViewModel.View = managePatient;
                     managePatViewModel.ClearPropertiesControl();
                     managePatViewModel.Booking = booking;
