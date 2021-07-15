@@ -59,6 +59,15 @@ namespace MediTech.Reports.Operating.Cashier
                         lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
                         lbComment2.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
                     }
+                    else if (Organisation.HealthOrganisationUID == 25)
+                    {
+                        lbOrganisation.Text = OrganisationBRXG.Description?.ToString();
+                        lbOrganisationCopy.Text = OrganisationBRXG.Description?.ToString();
+                        string mobileSRC = OrganisationBRXG.MobileNo != null ? "โทร " + OrganisationBRXG.MobileNo?.ToString() : "";
+                        string addressSRC = OrganisationBRXG.Address?.ToString();
+                        lbAddress.Text = addressSRC + mobileSRC;
+                        lbAddressCopy.Text = addressSRC + mobileSRC;
+                    }
                     else
                     {
                         lbOrganisation.Text = Organisation.Description?.ToString();
@@ -99,14 +108,14 @@ namespace MediTech.Reports.Operating.Cashier
                         lbComment2.Text = "";
                     }
                     else
-                    {
-                        lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
-                        lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
-                        lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
-                        lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
-                        lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
-                        lbComment2.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
-                    }
+                        {
+                            lbOrganisation.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
+                            lbOrganisationCopy.Text = "บริษัท เคเอส อีเคจี รีดดิ้ง จำกัด (สำนักงานใหญ่)";
+                            lbAddress.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                            lbAddressCopy.Text = "20/47 หมู่ 8 ต.หนองปลาไหล อ.บางละมุง จ.ชลบุรี 20150";
+                            lbComment.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                            lbComment2.Text = "(คลินิกหัวใจบูรพารักษ์ 155 / 204 หมู่ที่ 2 ต.ทับมา อ.เมือง จ.ระยอง 21000 โทร 097-4655997)";
+                        }
 
                     lbTaxNo.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
                     lbTaxNoCopy.Text = SelectOrganisation.TINNo != null ? "เลขประจำตัวผู้เสียภาษี : " + SelectOrganisation.TINNo.ToString() : "";
