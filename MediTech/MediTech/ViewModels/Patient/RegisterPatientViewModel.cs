@@ -421,7 +421,8 @@ namespace MediTech.ViewModels
                             LastName = searchPatient.txtLastName.Text,
                             NickName = searchPatient.txtNickName.Text,
                             NationalID = searchPatient.txtNationalID.Text,
-                            SEXXXUID = searchPatient.cmbGender.EditValue != null ? (int?)searchPatient.cmbGender.EditValue : null
+                            SEXXXUID = searchPatient.cmbGender.EditValue != null ? (int?)searchPatient.cmbGender.EditValue : null,
+                            MobilePhone = searchPatient.txtMobilePhone.Text
                         });
                     }
 

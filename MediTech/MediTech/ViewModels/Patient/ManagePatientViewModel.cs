@@ -1472,6 +1472,7 @@ namespace MediTech.ViewModels
             NickName = patientData.NickName;
             NatinonalID = patientData.NationalID;
             SelectedGender = GenderSource.FirstOrDefault(p => p.Key == patientData.SEXXXUID);
+            MobilePhone = patientData.MobilePhone;
         }
 
         #endregion
