@@ -232,7 +232,7 @@ namespace MediTech.ViewModels
 
 
             PatientSource = DataService.PatientIdentity.SearchPatient(pateintID, firstName, middleName, lastName, nickName, birthDate, sexxxUID, nationalID, lastVisitData, MobilePhone);
-            SelectedPatient = PatientSource.FirstOrDefault();
+            SelectedPatient = PatientSource?.FirstOrDefault();
         }
 
         public void ResetInput()
