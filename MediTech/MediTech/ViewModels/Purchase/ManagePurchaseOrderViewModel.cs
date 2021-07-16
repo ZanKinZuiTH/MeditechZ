@@ -382,10 +382,10 @@ namespace MediTech.ViewModels
                 PurchaseOrderPayments = new ObservableCollection<PurchaseOrderPaymentModel>();
             }
             PurchaseOrderPaymentModel purchasePayment = new PurchaseOrderPaymentModel();
-            purchasePayment.CURNCUID = SelectUnitCash.Key;
+            purchasePayment.CURNCUID = SelectUnitCash.Key.Value;
             purchasePayment.CurrencyType = SelectUnitCash.Display;
             purchasePayment.Amount = PaymentAmount;
-            purchasePayment.PAYMDUID = SelectPaymentType.Key;
+            purchasePayment.PAYMDUID = SelectPaymentType.Key.Value;
             purchasePayment.PaymentType = SelectPaymentType.Display;
             purchasePayment.PaidDttm = PaidDttm;
             purchasePayment.ExpiryDttm = ExpiryDttm;
@@ -455,7 +455,7 @@ namespace MediTech.ViewModels
             model.HealthOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             model.DelieryToStoreUID = SelectStore != null ? SelectStore.StoreUID : (int?)null;
             model.VendorDetailUID = SelectVendor.VendorDetailUID;
-            model.POSTSUID = SelectPOStatus.Key;
+            model.POSTSUID = SelectPOStatus.Key.Value;
             model.Comments = Comments;
             model.OtherCharges = OtherChages;
             model.Discount = Discount;

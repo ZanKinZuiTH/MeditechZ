@@ -369,7 +369,7 @@ namespace MediTech.ViewModels
                     CheckupJobTask = new ObservableCollection<CheckupJobTaskModel>();
 
                 CheckupJobTaskModel newCheckupJobTask = new CheckupJobTaskModel();
-                newCheckupJobTask.GPRSTUID = SelectGroupResult.Key;
+                newCheckupJobTask.GPRSTUID = SelectGroupResult.Key.Value;
                 newCheckupJobTask.GroupResultName = SelectGroupResult.Display;
                 newCheckupJobTask.DisplayOrder = (CheckupJobTask.Max(p => p.DisplayOrder) ?? 0) + 1;
                 newCheckupJobTask.TempDisplayOrder = SelectGroupResult.DisplayOrder;

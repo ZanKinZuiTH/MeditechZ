@@ -443,7 +443,7 @@ namespace MediTech.ViewModels
         }
         void SearchExistingOrder()
         {
-            ExistingOrders = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectLookupVisit.Key2, DateExitingFrom, DateExitingTo));
+            ExistingOrders = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectLookupVisit.Key2.Value, DateExitingFrom, DateExitingTo));
 
             TotalExistingAmount = ExistingOrders.Where(p => p.ORDSTUID != 2848).Sum(p => p.NetAmount);
         }

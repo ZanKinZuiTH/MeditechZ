@@ -127,8 +127,8 @@ namespace MediTech.ViewModels
             {
                 model = new StoreUOMConversionModel();
             }
-            model.BaseUOMUID = SelectBaseUOM.Key;
-            model.ConversionUOMUID = SelectConverionsUOM.Key;
+            model.BaseUOMUID = SelectBaseUOM.Key.Value;
+            model.ConversionUOMUID = SelectConverionsUOM.Key.Value;
             model.ConversionValue = ConversionValue;
         }
 

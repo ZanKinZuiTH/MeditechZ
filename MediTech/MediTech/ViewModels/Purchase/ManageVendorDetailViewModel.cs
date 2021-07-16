@@ -171,7 +171,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedProvince, value);
                 if (_SelectedProvince != null)
                 {
-                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key);
+                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key.Value);
                     DistrictSource = null;
                     ZipCode = string.Empty;
                 }
@@ -198,7 +198,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedAmphur, value);
                 if (_SelectedAmphur != null)
                 {
-                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key);
+                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key.Value);
                     ZipCode = string.Empty;
                 }
             }
@@ -339,7 +339,7 @@ namespace MediTech.ViewModels
             model.ActiveTo = ActiveTo;
             model.Address = Address;
             model.TINNo = TINNo;
-            model.MNFTPUID = SelectVendorType != null ? SelectVendorType.Key : 0;
+            model.MNFTPUID = SelectVendorType != null ? SelectVendorType.Key.Value : 0;
             model.ProvinceUID = SelectedProvince != null ? SelectedProvince.Key : (int?)null;
             model.AmphurUID = SelectedAmphur != null ? SelectedAmphur.Key : (int?)null;
             model.DistrictUID = SelectedDistrict != null ? SelectedDistrict.Key : (int?)null;

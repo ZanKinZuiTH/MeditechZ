@@ -136,7 +136,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedProvince, value);
                 if (_SelectedProvince != null)
                 {
-                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key);
+                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key.Value);
                     DistrictSource = null;
                     ZipCode = string.Empty;
                 }
@@ -168,7 +168,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedAmphur, value);
                 if (_SelectedAmphur != null)
                 {
-                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key);
+                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key.Value);
                     ZipCode = string.Empty;
                 }
                 else
@@ -988,7 +988,7 @@ namespace MediTech.ViewModels
                         birthDttm = BirthDate != null ? BirthDate.Value : (DateTime?)null;
                     }
 
-                    PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName, birthDttm.Value, SelectedGender.Key);
+                    PatientInformationModel patAlready = DataService.PatientIdentity.CheckDupicatePatient(FirstName, LastName, birthDttm.Value, SelectedGender.Key.Value);
                     if (patAlready != null)
                     {
                         MessageBoxResult dialogResult = System.Windows.MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล เพศ วันเดือนปีเกิด ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);

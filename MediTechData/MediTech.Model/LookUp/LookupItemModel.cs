@@ -8,8 +8,8 @@ namespace MediTech.Model
 {
     public class LookupItemModel
     {
-        public int Key { get; set; }
-        public long Key2 { get; set; }
+        public int? Key { get; set; }
+        public long? Key2 { get; set; }
         public string Display { get; set; }
     }
 }

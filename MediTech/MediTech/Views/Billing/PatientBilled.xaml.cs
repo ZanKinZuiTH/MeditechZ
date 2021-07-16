@@ -36,10 +36,19 @@ namespace MediTech.Views
             grdPatBill.RefreshData();
         }
 
-        private void PART_Editor_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+
+
+        private void view_CellValueChanged(object sender, DevExpress.Xpf.Grid.CellValueChangedEventArgs e)
         {
-            if (e.NewValue != null)
-                (this.DataContext as PatientBilledViewModel).UpdatePatientBill((int)e.NewValue);
+            if (e != null)
+            {
+                PatientBillModel rowSelected = (e.Row as PatientBillModel);
+                if (rowSelected != null)
+                {
+                    (this.DataContext as PatientBilledViewModel).UpdatePatientBill(rowSelected.PatientBillUID, rowSelected.PAYMDUID ?? 0);
+                }
+
+            }
         }
     }
 }

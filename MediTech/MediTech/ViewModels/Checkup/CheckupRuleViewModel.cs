@@ -524,7 +524,7 @@ namespace MediTech.ViewModels
 
         void GetChekcupRule()
         {
-            CheckupRules = DataService.Checkup.GetCheckupRuleByGroup(SelectGroupResult.Key);
+            CheckupRules = DataService.Checkup.GetCheckupRuleByGroup(SelectGroupResult.Key.Value);
         }
 
         void GetCheckupRuleItem()
@@ -564,9 +564,9 @@ namespace MediTech.ViewModels
 
                 CheckupRuleModel newRule = new CheckupRuleModel();
                 newRule.Name = RuleName;
-                newRule.RABSTSUID = SelectResultStatus.Key;
+                newRule.RABSTSUID = SelectResultStatus.Key.Value;
                 newRule.SEXXXUID = SelectGender.Key;
-                newRule.GPRSTUID = SelectGroupResult.Key;
+                newRule.GPRSTUID = SelectGroupResult.Key.Value;
                 newRule.AgeFrom = AgeFrom;
                 newRule.AgeTo = AgeTo;
                 DataService.Checkup.SaveCheckupRule(newRule, AppUtil.Current.UserID);
@@ -606,9 +606,9 @@ namespace MediTech.ViewModels
                     CheckupRuleModel newRule = new CheckupRuleModel();
                     newRule.CheckupRuleUID = SelectCheckupRule.CheckupRuleUID;
                     newRule.Name = RuleName;
-                    newRule.RABSTSUID = SelectResultStatus.Key;
+                    newRule.RABSTSUID = SelectResultStatus.Key.Value;
                     newRule.SEXXXUID = SelectGender.Key;
-                    newRule.GPRSTUID = SelectGroupResult.Key;
+                    newRule.GPRSTUID = SelectGroupResult.Key.Value;
                     newRule.AgeFrom = AgeFrom;
                     newRule.AgeTo = AgeTo;
                     DataService.Checkup.SaveCheckupRule(newRule, AppUtil.Current.UserID);

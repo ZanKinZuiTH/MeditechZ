@@ -312,7 +312,7 @@ namespace MediTech.ViewModels
                 patScanDoc.ScannedDocument = FileUploedCotent;
                 patScanDoc.Comments = Comments;
                 patScanDoc.DocUploadedDttm = DateTime.Now;
-                patScanDoc.SCDTYUID = SelectDocumentType.Key;
+                patScanDoc.SCDTYUID = SelectDocumentType.Key.Value;
                 DataService.PatientIdentity.UploadedScannedDocument(patScanDoc, AppUtil.Current.UserID);
                 GetPatientScannedDocument();
                 DocumentName = "";

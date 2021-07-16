@@ -226,7 +226,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedProvince, value);
                 if (_SelectedProvince != null)
                 {
-                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key);
+                    AmphurSource = DataService.Technical.GetAmphurByPronvince(_SelectedProvince.Key.Value);
                     DistrictSource = null;
                     ZipCode = string.Empty;
                 }
@@ -253,7 +253,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedAmphur, value);
                 if (_SelectedAmphur != null)
                 {
-                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key);
+                    DistrictSource = DataService.Technical.GetDistrictByAmphur(_SelectedAmphur.Key.Value);
                     ZipCode = string.Empty;
                 }
             }
@@ -652,7 +652,7 @@ namespace MediTech.ViewModels
             model.ActiveTo = ActiveTo;
             model.Address = Address;
             model.Address2 = Address2;
-            model.HOTYPUID = SelectHealthOrganisationType.Key;
+            model.HOTYPUID = SelectHealthOrganisationType.Key.Value;
             model.IsStock = IsStock ? "Y" : "N";
             model.TINNo = TINNo;
             model.LicenseNo = LicenseNo;

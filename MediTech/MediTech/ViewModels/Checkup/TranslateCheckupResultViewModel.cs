@@ -450,7 +450,7 @@ namespace MediTech.ViewModels
                         var groupResults = DataService.Checkup.GetCheckupGroupByVisitUID(visit.PatientVisitUID);
                         if (groupResults != null)
                         {
-                            List<int> GPRSTUIDs = groupResults.Select(p => p.Key).ToList();
+                            List<int> GPRSTUIDs = groupResults.Select(p => p.Key.Value).ToList();
                             List<CheckupRuleModel> dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(GPRSTUIDs);
                             if (GPRSTUIDs.Any(p => p == 3179 || p == 3180 || p == 3181 || p == 4258))
                             {

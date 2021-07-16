@@ -330,9 +330,9 @@ namespace MediTech.ViewModels
                     ApprovePOViewModel result = (ApprovePOViewModel)LaunchViewDialog(poApprove,"APRPO",true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        DataService.Purchaseing.UpdatePurchaseOrderStatus(SelectPurchaseOrder.PurchaseOrderUID, result.SelectPOStatus.Key, result.Comments, AppUtil.Current.UserID);
+                        DataService.Purchaseing.UpdatePurchaseOrderStatus(SelectPurchaseOrder.PurchaseOrderUID, result.SelectPOStatus.Key.Value, result.Comments, AppUtil.Current.UserID);
                         SaveSuccessDialog();
-                        SelectPurchaseOrder.POSTSUID = result.SelectPOStatus.Key;
+                        SelectPurchaseOrder.POSTSUID = result.SelectPOStatus.Key.Value;
                         SelectPurchaseOrder.POStatus = result.SelectPOStatus.Display;
                         OnUpdateEvent();
                     }

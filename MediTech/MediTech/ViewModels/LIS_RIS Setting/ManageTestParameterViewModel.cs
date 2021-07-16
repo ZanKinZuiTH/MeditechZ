@@ -371,7 +371,7 @@ namespace MediTech.ViewModels
             resulItemRangeModel.DisplayValue = DisplayValue;
             resulItemRangeModel.Low = Low;
             resulItemRangeModel.High = High;
-            resulItemRangeModel.LABRAMUID = SelectLabRangeMasters.Key;
+            resulItemRangeModel.LABRAMUID = SelectLabRangeMasters.Key.Value;
             resulItemRangeModel.LabRangeMaster = SelectLabRangeMasters.Display;
             resulItemRangeModel.SEXXXUID = SelectGender.Key;
             resulItemRangeModel.Gender = SelectGender.Display;
@@ -406,7 +406,7 @@ namespace MediTech.ViewModels
                 SelectResultItemRange.DisplayValue = DisplayValue;
                 SelectResultItemRange.Low = Low;
                 SelectResultItemRange.High = High;
-                SelectResultItemRange.LABRAMUID = SelectLabRangeMasters.Key;
+                SelectResultItemRange.LABRAMUID = SelectLabRangeMasters.Key.Value;
                 SelectResultItemRange.LabRangeMaster = SelectLabRangeMasters.Display;
                 SelectResultItemRange.SEXXXUID = SelectGender.Key;
                 SelectResultItemRange.Gender = SelectGender.Display;

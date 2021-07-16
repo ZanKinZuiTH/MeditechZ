@@ -159,12 +159,12 @@ namespace MediTech.ViewModels
                     }
                     else
                     {
-                        ResultComponents = DataService.Checkup.GetGroupResultCumulative(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key, SelectPatientVisit.PayorDetailUID);
+                        ResultComponents = DataService.Checkup.GetGroupResultCumulative(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key.Value, SelectPatientVisit.PayorDetailUID);
                         VisibilityLab = Visibility.Visible;
                         VisibilityRadiology = Visibility.Collapsed;
                     }
                     TextSummeryReslt = string.Empty;
-                    CheckupGroupResult = DataService.Checkup.GetCheckupGroupResultByVisit(SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key);
+                    CheckupGroupResult = DataService.Checkup.GetCheckupGroupResultByVisit(SelectPatientVisit.PatientVisitUID, SelectGroupResult.Key.Value);
                     if (CheckupGroupResult != null)
                     {
                         TextSummeryReslt = CheckupGroupResult.Conclusion;
@@ -498,9 +498,9 @@ namespace MediTech.ViewModels
                 }
                 CheckupGroupResult.PatientUID = SelectPatientVisit.PatientUID;
                 CheckupGroupResult.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
-                CheckupGroupResult.GPRSTUID = SelectGroupResult.Key;
+                CheckupGroupResult.GPRSTUID = SelectGroupResult.Key.Value;
                 CheckupGroupResult.Conclusion = TextSummeryReslt.Trim();
-                CheckupGroupResult.RABSTSUID = SelectResultStatus.Key;
+                CheckupGroupResult.RABSTSUID = SelectResultStatus.Key.Value;
                 DataService.Checkup.SaveCheckupGroupResult(CheckupGroupResult, AppUtil.Current.UserID);
 
                 StringBuilder sb = new StringBuilder();

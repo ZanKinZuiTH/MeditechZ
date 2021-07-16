@@ -587,7 +587,7 @@ namespace MediTech.ViewModels
             model.CanDispenseWithOutStock = CanDispenseWithOutStock == true ? "Y" : "N";
             model.MinSalesQty = MinSalesQty;
             model.DoseQuantity = DoseQuantity;
-            model.ITMTYPUID = SelectItemType != null ? SelectItemType.Key : 0;
+            model.ITMTYPUID = SelectItemType != null ? SelectItemType.Key.Value : 0;
             model.DrugGenaricUID = SelectDrugGenaric != null ? SelectDrugGenaric.DrugGenericUID : (int?)null;
             model.GenaricName = SelectDrugGenaric != null ? SelectDrugGenaric.Name : "";
             model.PDSTSUID = SelectDrugInstruction != null ? SelectDrugInstruction.Key : (int?)null;

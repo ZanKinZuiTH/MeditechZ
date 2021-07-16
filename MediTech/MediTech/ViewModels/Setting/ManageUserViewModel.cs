@@ -371,7 +371,7 @@ namespace MediTech.ViewModels
                 }
             }
             RoleProfileModel newRole = new RoleProfileModel();
-            newRole.RoleUID = SelectRole.Key;
+            newRole.RoleUID = SelectRole.Key.Value;
             newRole.RoleName = SelectRole.Display;
             RoleProfiles.Add(newRole);
             OnUpdateEvent();
@@ -392,7 +392,7 @@ namespace MediTech.ViewModels
             }
             if (SelectRoleProfile != null)
             {
-                SelectRoleProfile.RoleUID = SelectRole.Key;
+                SelectRoleProfile.RoleUID = SelectRole.Key.Value;
                 SelectRoleProfile.RoleName = SelectRole.Display;
                 SelectRoleProfile.MWhen = DateTime.Now;
                 OnUpdateEvent();
@@ -524,7 +524,7 @@ namespace MediTech.ViewModels
             modelCareprovider.loginModel.LoginName = LoginName;
             modelCareprovider.loginModel.ActiveFrom = LoginActiveFrom;
             modelCareprovider.loginModel.ActiveTo = LoginActiveTo;
-            modelCareprovider.loginModel.RoleUID = SelectRole != null ? SelectRole.Key : 0;
+            modelCareprovider.loginModel.RoleUID = SelectRole != null ? SelectRole.Key.Value : 0;
 
             modelCareprovider.loginModel.RoleProfiles = RoleProfiles;
 

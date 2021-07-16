@@ -106,7 +106,7 @@ namespace MediTech.ViewModels
                     if (!SuppressEvent)
                     {
                         SelectWithDrawSession.WithDrawReason = SelectReason == null ? null : SelectReason.Display;
-                        SelectWithDrawSession.WTHRSUID = SelectReason == null ? 0 : SelectReason.Key;
+                        SelectWithDrawSession.WTHRSUID = SelectReason == null ? 0 : SelectReason.Key.Value;
                         OnUpdateEvent();
                     }
 

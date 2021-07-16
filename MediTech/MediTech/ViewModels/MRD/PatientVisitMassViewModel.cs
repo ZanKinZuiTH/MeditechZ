@@ -696,7 +696,7 @@ namespace MediTech.ViewModels
 
                         view.SetProgressBarLimits(0, upperlimit);
 
-                        int selectVisitStatus = SelectSaveVisitStatusList.Key;
+                        int selectVisitStatus = SelectSaveVisitStatusList.Key.Value;
                         int? CareProviderUID = null;
                         DateTime arriveTime = SaveVisitStatusTime;
                         if (selectVisitStatus == SNDDOC)

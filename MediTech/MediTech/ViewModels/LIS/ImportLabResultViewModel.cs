@@ -50,7 +50,7 @@ namespace MediTech.ViewModels
                 if (SelectDateType != null)
                 {
                     IsEditDate = false;
-                    DateFrom = DateTime.Now.AddDays(-SelectDateType.Key);
+                    DateFrom = DateTime.Now.AddDays(-SelectDateType.Key.Value);
                     DateTo = DateTime.Now;
                     IsEditDate = true;
                 }

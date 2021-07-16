@@ -154,6 +154,12 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(ClearData)); }
         }
 
+        private RelayCommand _ExportToXLSXCommand;
+
+        public RelayCommand ExportToXLSXCommand
+        {
+            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+        }
         #endregion
 
         #region Method
@@ -250,14 +256,11 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void UpdatePatientBill(int PAYMDUID)
+        public void UpdatePatientBill(long patientBillUID,int PAYMDUID)
         {
             try
             {
-                if (SelectPatientBill != null)
-                {
-                    DataService.Billing.UpdatePaymentMethod(SelectPatientBill.PatientBillUID, PAYMDUID, AppUtil.Current.UserID);
-                }
+                DataService.Billing.UpdatePaymentMethod(patientBillUID, PAYMDUID, AppUtil.Current.UserID);
             }
             catch (Exception er)
             {
@@ -314,6 +317,30 @@ namespace MediTech.ViewModels
             else
             {
                 PatientsSearchSource = null;
+            }
+
+        }
+
+
+        private void ExportToXLSX()
+        {
+            try
+            {
+                if (PatientBillSource != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        PatientBilled view = (PatientBilled)this.View;
+                        view.gvPatBill.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
             }
 
         }

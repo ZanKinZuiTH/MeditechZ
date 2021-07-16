@@ -89,7 +89,7 @@ namespace MediTech.ViewModels
             foreach (var item in OrderAlerts)
             {
                 item.OverrideRemarks = OverrideRemark;
-                item.OverrideRSNUID = SelectOverrideReason.Key;
+                item.OverrideRSNUID = SelectOverrideReason.Key.Value;
             }
             CloseViewDialog(ActionDialog.Save);
         }

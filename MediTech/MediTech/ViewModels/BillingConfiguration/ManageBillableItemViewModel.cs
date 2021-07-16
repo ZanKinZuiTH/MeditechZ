@@ -658,7 +658,7 @@ namespace MediTech.ViewModels
 
             newBillItmDetail.Price = Price;
             newBillItmDetail.Cost = Cost;
-            newBillItmDetail.CURNCUID = SelectUnit.Key;
+            newBillItmDetail.CURNCUID = SelectUnit.Key.Value;
             newBillItmDetail.Unit = SelectUnit.Display;
             newBillItmDetail.StatusFlag = "A";
             BillableItemDetail.Add(newBillItmDetail);
@@ -693,7 +693,7 @@ namespace MediTech.ViewModels
 
                 SelectBillableItemDetail.Price = Price;
                 SelectBillableItemDetail.Cost = Cost;
-                SelectBillableItemDetail.CURNCUID = SelectUnit.Key;
+                SelectBillableItemDetail.CURNCUID = SelectUnit.Key.Value;
                 SelectBillableItemDetail.Unit = SelectUnit.Display;
                 SelectBillableItemDetail.MWhen = DateTime.Now;
                 OnUpdateEvent();
@@ -775,7 +775,7 @@ namespace MediTech.ViewModels
             model.Code = Code;
             model.ItemName = Name;
             model.Description = Description;
-            model.BSMDDUID = SelectServiceType.Key;
+            model.BSMDDUID = SelectServiceType.Key.Value;
 
             if (SelectedItemService != null)
                 model.ItemUID = SelectedItemService.ItemUID;

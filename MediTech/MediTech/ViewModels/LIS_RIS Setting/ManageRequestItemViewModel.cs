@@ -744,7 +744,7 @@ namespace MediTech.ViewModels
 
             RequestItemGroupResultModel newGroupResult = new RequestItemGroupResultModel();
             newGroupResult.GroupResultName = SelectGroupResult.Display;
-            newGroupResult.GPRSTUID = SelectGroupResult.Key;
+            newGroupResult.GPRSTUID = SelectGroupResult.Key.Value;
             newGroupResult.PrintOrder = PrintOrderGroupResult;
 
             RequestItemGroupResults.Add(newGroupResult);

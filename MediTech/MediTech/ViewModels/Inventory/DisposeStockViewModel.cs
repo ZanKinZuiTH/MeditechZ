@@ -205,7 +205,7 @@ namespace MediTech.ViewModels
                         (new DisposeStockReason(), new DisposeStockReasonViewModel(SelectStockList.ToList()), true);
                     if (dsrvm.ResultDialog == ActionDialog.Save)
                     {
-                        DataService.Inventory.DisposeStock(dsrvm.StockForDispose, SelectStore.StoreUID, dsrvm.SelectDisposeReason.Key, dsrvm.Comments, AppUtil.Current.UserID);
+                        DataService.Inventory.DisposeStock(dsrvm.StockForDispose, SelectStore.StoreUID, dsrvm.SelectDisposeReason.Key.Value, dsrvm.Comments, AppUtil.Current.UserID);
                         SaveSuccessDialog();
                         Search();
                     }
