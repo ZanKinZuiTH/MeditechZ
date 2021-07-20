@@ -942,8 +942,6 @@ namespace MediTech.ViewModels
             #endregion
         }
 
-
-
         private void PrintSticker()
         {
             int upperlimit = 0;
@@ -1186,6 +1184,7 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+
         #endregion
 
     }

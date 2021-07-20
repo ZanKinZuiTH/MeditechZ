@@ -1100,6 +1100,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public BulkAlertDialogViewModel BulkAlertDialogViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BulkAlertDialogViewModel>())
+                    SimpleIoc.Default.Register<BulkAlertDialogViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BulkAlertDialogViewModel>();
+            }
+        }
+
         #endregion
 
         #region Checkup
