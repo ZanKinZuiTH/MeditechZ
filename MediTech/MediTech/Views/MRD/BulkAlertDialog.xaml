@@ -16,6 +16,7 @@
             <TextBlock Text="รายชื่อที่มี HN ซ้ำกับในระบบ แต่ชื่อกับนามสกุลไม่ตรงกัน โปรดตรวจสอบ" FontSize="20" FontWeight="Bold"/>
         </dxlc:LayoutItem>
         <dxg:GridControl ItemsSource="{Binding PatientHNDupicate}">
+            <dxg:GridColumn FieldName="No"  Width="30" Fixed="Left"/>
             <dxg:GridColumn Header="HN" FieldName="BN"/>
             <dxg:GridColumn Header="Other ID" FieldName="PatientOtherID"/>
             <dxg:GridColumn Header="EmployeeID" FieldName="EmployeeID"/>

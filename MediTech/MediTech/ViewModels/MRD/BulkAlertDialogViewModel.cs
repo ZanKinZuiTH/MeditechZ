@@ -11,8 +11,8 @@ namespace MediTech.ViewModels
     public class BulkAlertDialogViewModel : MediTechViewModelBase
     {
         #region Propeties
-        private PatientRegistrationBulkData _PatientHNDupicate;
-        public PatientRegistrationBulkData PatientHNDupicate
+        private List<PatientRegistrationBulkData> _PatientHNDupicate;
+        public List<PatientRegistrationBulkData> PatientHNDupicate
         {
             get
             {
@@ -47,6 +47,11 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
+
+        public BulkAlertDialogViewModel(List<PatientRegistrationBulkData> patientHNDupicate)
+        {
+            this.PatientHNDupicate = patientHNDupicate;
+        }
 
         void Cancel()
         {

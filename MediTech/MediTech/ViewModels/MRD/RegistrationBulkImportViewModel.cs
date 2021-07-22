@@ -376,6 +376,7 @@ namespace MediTech.ViewModels
                 bool IsIncompleteRecordPresent = false;
                 bool isFutureBirthDatePresent = false;
                 PatientInformationModel patient;
+                List<PatientRegistrationBulkData> patientHNDupicate = null;
                 Double doublebirthdttm;
                 int pgBarCounter = 0;
                 TotalRecord = 0;
@@ -585,7 +586,14 @@ namespace MediTech.ViewModels
                                 if (!NonCheckHNDuplicate)
                                 {
                                     if (drow["FirstName"].ToString().Trim() != patient.FirstName?.ToString() && drow["LastName"].ToString().Trim() != patient.LastName?.ToString())
-                                        ((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                                    {
+                                        if (patientHNDupicate == null)
+                                        {
+                                            patientHNDupicate = new List<PatientRegistrationBulkData>();
+                                        }
+                                        patientHNDupicate.Add(CurrentImportedData);
+                                    }
+                                        //((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                                 }
                             }
                         }
@@ -713,6 +721,11 @@ namespace MediTech.ViewModels
                         msg = msg + "\r\n* Some records are Duplicate in Excel";
                     }
                     ((RegistrationBulkImport)View).ShowMessageBox(msg, "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Information);
+
+                    if (patientHNDupicate != null && patientHNDupicate.Count > 0)
+                    {
+                        ShowModalDialogUsingViewModel(new BulkAlertDialog(),new BulkAlertDialogViewModel(patientHNDupicate),false);
+                    }
 
                     PatientDataList = new ObservableCollection<PatientRegistrationBulkData>(ImportedDataList);
                 }
