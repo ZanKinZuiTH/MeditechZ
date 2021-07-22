@@ -766,7 +766,7 @@ namespace MediTechWebApi.Controllers
                             groupReceiptDetail.Discount = item.Discount;
                             groupReceiptDetail.PTaxPercentage = item.PTaxPercentage;
                             groupReceiptDetail.TotalPrice = item.TotalPrice;
-                            groupReceiptDetail.Unit = item.Unit;
+                            groupReceiptDetail.Unit = item.UnitItem;
                             db.GroupReceiptDetail.AddOrUpdate(groupReceiptDetail);
                             db.SaveChanges();
                         }
