@@ -188,7 +188,7 @@ namespace MediTech.ViewModels
                 new LookupReferenceValueModel { Key = 1, Display = "ยกเว้นภาษี",NumericValue = 0 }
             };
 
-            TaxSelect = TaxChoice.FirstOrDefault(p => p.Key == 0);
+            TaxSelect = TaxChoice.FirstOrDefault(p => p.Key == 1);
         }
 
         public void BindingFromOrderset()

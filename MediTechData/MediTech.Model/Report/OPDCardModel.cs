@@ -26,6 +26,7 @@ namespace MediTech.Model.Report
         public double? RespiratoryRate { get; set; }
         public double? OxygenSat { get; set; }
         public string PI { get; set; }
+        public string ProgressNote { get; set; }
         public string ChiefComplaint { get; set; }
         public string PhysicalExam { get; set; }
         public string CareproviderName { get; set; }

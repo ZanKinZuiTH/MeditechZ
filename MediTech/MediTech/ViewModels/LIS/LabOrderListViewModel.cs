@@ -374,6 +374,15 @@ namespace MediTech.ViewModels
             get { return _PrintStickerCommand ?? (_PrintStickerCommand = new RelayCommand(PrintSticker)); }
         }
 
+
+        private RelayCommand _ExportToExcelCommand;
+
+        public RelayCommand ExportToExcelCommand
+        {
+            get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
+        }
+
+
         #endregion
 
         #region Method
@@ -714,6 +723,28 @@ namespace MediTech.ViewModels
             SelectRequestStatus = null;
             SelectOrganisation = null;
             SelectPayorDetail = null;
+        }
+
+        private void ExportToExcel()
+        {
+            try
+            {
+                if (RequestLabs != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        LabOrderList view = (LabOrderList)this.View;
+                        view.grvRequestList.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
         }
 
         #endregion
