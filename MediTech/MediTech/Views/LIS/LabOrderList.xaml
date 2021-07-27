@@ -169,7 +169,7 @@
                         <dxg:TableView x:Name="grvRequestList" ShowGroupPanel="False" AllowEditing="True">
                             <dxg:TableView.ColumnMenuCustomizations>
                                 <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
-                                                   Command="{Binding ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:LabOrderList}}}"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:LabOrderList}}}"
                                                    Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
                                                    dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
                                 <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
