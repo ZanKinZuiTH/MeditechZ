@@ -6,6 +6,8 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
+             xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d"
              DataContext="{Binding Path=ListGroupReceiptViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
@@ -134,12 +136,19 @@
                         <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelledReason" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False">
+                        <dxg:TableView x:Name="viewGroupReceipt" ShowGroupPanel="False">
                             <dxg:TableView.FormatConditions>
                                 <dxg:FormatCondition Expression="[CancelledDttm] Is Not Null" FieldName="CancelledDttm" ApplyToRow="True">
                                     <dx:Format Background="#FFA5A5A5"/>
                                 </dxg:FormatCondition>
                             </dxg:TableView.FormatConditions>
+                            <dxg:TableView.ColumnMenuCustomizations>
+                                <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:ListGroupReceipt}}}"
+                                                   Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
+                                                   dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
+                                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
+                            </dxg:TableView.ColumnMenuCustomizations>
                         </dxg:TableView>
                     </dxg:GridControl.View>
                 </dxg:GridControl>

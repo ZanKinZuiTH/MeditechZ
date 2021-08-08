@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
              xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
@@ -211,22 +210,7 @@
         <Binding Path="PatientListViewModel" Source="{StaticResource Locator}"/>
     </UserControl.DataContext>
     <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon"
-                               IsMinimized="True" MinimizationButtonVisibility="Collapsed"                              
-                               AllowCustomization="False">
-            <dxr:RibbonDefaultPageCategory >
-                <dxr:RibbonPage Caption="มุมมอง" MergeOrder="99">
-                    <dxr:RibbonPageGroup Caption="Export" >
-                        <dxb:BarButtonItem Content="Export to XLSX" Command="{Binding ExportToXLSXCommand}" LargeGlyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}"/>
-                    </dxr:RibbonPageGroup>
-                </dxr:RibbonPage>
-            </dxr:RibbonDefaultPageCategory>
-        </dxr:RibbonControl>
-        <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutGroup VerticalAlignment="Top">
                 <dxa:AccordionControl SelectionMode="None">
                     <dxa:AccordionItem Header="ค้นหาผู้ป่วย"  
@@ -349,7 +333,15 @@
                         <dxg:TableView x:Name="tableViewVisitList" AllowScrollAnimation="True" 
                                        UseLightweightTemplates="None"
                                        NavigationStyle="Row"
-                                       DataRowTemplate="{StaticResource expandableRowDetailTemplate}"/>
+                                       DataRowTemplate="{StaticResource expandableRowDetailTemplate}">
+                            <dxg:TableView.ColumnMenuCustomizations>
+                                <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}"
+                                                   Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
+                                                   dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
+                                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
+                            </dxg:TableView.ColumnMenuCustomizations>
+                        </dxg:TableView>
                     </dxg:GridControl.View>
                     <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>

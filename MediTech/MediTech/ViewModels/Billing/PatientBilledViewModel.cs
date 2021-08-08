@@ -154,11 +154,11 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(ClearData)); }
         }
 
-        private RelayCommand _ExportToXLSXCommand;
+        private RelayCommand _ExportToExcelCommand;
 
-        public RelayCommand ExportToXLSXCommand
+        public RelayCommand ExportToExcelCommand
         {
-            get { return _ExportToXLSXCommand ?? (_ExportToXLSXCommand = new RelayCommand(ExportToXLSX)); }
+            get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
         }
         #endregion
 
@@ -322,7 +322,7 @@ namespace MediTech.ViewModels
         }
 
 
-        private void ExportToXLSX()
+        private void ExportToExcel()
         {
             try
             {

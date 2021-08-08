@@ -140,6 +140,14 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        private RelayCommand _ExportToExcelCommand;
+
+        public RelayCommand ExportToExcelCommand
+        {
+            get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
+        }
+
         #endregion
 
         #region Method
@@ -226,6 +234,30 @@ namespace MediTech.ViewModels
                     ErrorDialog(er.Message);
                 }
             }
+        }
+
+        private void ExportToExcel()
+        {
+            try
+            {
+                if (GroupReceipt != null)
+                {
+                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
+                    if (fileName != "")
+                    {
+                        ListGroupReceipt view = (ListGroupReceipt)this.View;
+                        view.viewGroupReceipt.ExportToXlsx(fileName);
+                        OpenFile(fileName);
+                    }
+
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
         }
 
         #endregion

@@ -1,16 +1,15 @@
-﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxgt="http://schemas.devexpress.com/winfx/2008/xaml/grid/themekeys" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
              x:Class="MediTech.Views.PatientBilled"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars"
-             xmlns:dxr="http://schemas.devexpress.com/winfx/2008/xaml/ribbon"
              mc:Ignorable="d"
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:cc="clr-namespace:MediTech.CustomControl"
-             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:local="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=PatientBilledViewModel, Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
@@ -67,7 +66,7 @@
                                    ToolTip="ดูใบเสร็จ">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.ViewBillCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientBilled}}}" />
+                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.ViewBillCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilled}}}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Image>
@@ -77,7 +76,7 @@
                                    ToolTip="ยกเลิกใบเสร็จ">
                                 <i:Interaction.Triggers>
                                     <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.CancelBillCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientBilled}}}" />
+                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.CancelBillCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilled}}}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Image>
@@ -115,132 +114,122 @@
             </Style.Triggers>
         </Style>
     </UserControl.Resources>
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <dxr:RibbonControl RibbonStyle="Office2010" x:Name="ribbon"
-                               IsMinimized="True" MinimizationButtonVisibility="Collapsed"                              
-                               AllowCustomization="False">
-            <dxr:RibbonDefaultPageCategory >
-                <dxr:RibbonPage Caption="มุมมอง" MergeOrder="99">
-                    <dxr:RibbonPageGroup Caption="Export" >
-                        <dxb:BarButtonItem Content="Export to XLSX" Command="{Binding ExportToXLSXCommand}" LargeGlyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}"/>
-                    </dxr:RibbonPageGroup>
-                </dxr:RibbonPage>
-            </dxr:RibbonDefaultPageCategory>
-        </dxr:RibbonControl>
-        <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutItem Label="จากวันที่">
-                    <dxe:DateEdit EditValue="{Binding DateFrom}" />
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="ถึงวันที่">
-                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานประกอบการ">
-                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+    <dxlc:LayoutControl Grid.Row="1" Orientation="Vertical">
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutItem Label="จากวันที่">
+                <dxe:DateEdit EditValue="{Binding DateFrom}" />
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="ถึงวันที่">
+                <dxe:DateEdit EditValue="{Binding DateTo}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="สถานประกอบการ">
+                <dxe:ComboBoxEdit Name="cmbOrganisation" 
                                       ItemsSource="{Binding Organisations}" 
                                       SelectedItem="{Binding SelectOrganisation}"
                                       ValueMember="HealthOrganisationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"/>
-                </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup>
-                <dxlc:LayoutItem Label="ค้นหาผู้ป่วย">
-                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
+        <dxlc:LayoutGroup>
+            <dxlc:LayoutItem Label="ค้นหาผู้ป่วย">
+                <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
                                                     OnTextChangedEvent="False"
                                                     Binding="{Binding PatientName}"
                                                     MaxCompletions="30"
                                                     ItemsSource="{Binding PatientsSearchSource}"
                                                     SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
-                        <cc:AutoCompleteTextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
-                        </cc:AutoCompleteTextBox.InputBindings>
-                    </cc:AutoCompleteTextBox>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="เลขที่ใบเสร็จ">
-                    <dxe:TextEdit EditValue="{Binding BillNumber}"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                    <cc:AutoCompleteTextBox.InputBindings>
+                        <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                    </cc:AutoCompleteTextBox.InputBindings>
+                </cc:AutoCompleteTextBox>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem Label="เลขที่ใบเสร็จ">
+                <dxe:TextEdit EditValue="{Binding BillNumber}"/>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
-                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                    <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
                                      Height="25" Content="Clear"/>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
 
-            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup>
-                <dxg:GridControl x:Name="grdPatBill"
+        <dxlc:LayoutGroup>
+            <dxg:GridControl x:Name="grdPatBill"
                                  ItemsSource="{Binding PatientBillSource}"
                                  SelectedItem="{Binding SelectPatientBill}">
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Visit ID" FieldName="VisitID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="เลขที่ใบเสร็จ" FieldName="BillNumber" ReadOnly="True"/>
-                        <dxg:GridColumn Header="วันที่ออก" FieldName="BillGeneratedDttm" ReadOnly="True"/>
-                        <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
-                        <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
-                        <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
-                        <dxg:GridColumn Header="วิธีการชำระเงิน" FieldName="PAYMDUID" ReadOnly="False">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:ComboBoxEditSettings ItemsSource="{Binding Path=DataContext.PaymentMethods
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:PatientBilled}}}"
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID"  ReadOnly="True"/>
+                    <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Visit ID" FieldName="VisitID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขที่ใบเสร็จ" FieldName="BillNumber" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันที่ออก" FieldName="BillGeneratedDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วิธีการชำระเงิน" FieldName="PAYMDUID" ReadOnly="False">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:ComboBoxEditSettings ItemsSource="{Binding Path=DataContext.PaymentMethods
+                                    ,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilled}}}"
                                     NullValueButtonPlacement="EditBox" AllowSpinOnMouseWheel="False"
                                     ValueMember="Key"  
                                     DisplayMember="AlternateName">
-                                </dxe:ComboBoxEditSettings>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView Name="gvPatBill" AllowScrollAnimation="True" UseLightweightTemplates="None"
+                            </dxe:ComboBoxEditSettings>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="gvPatBill" AllowScrollAnimation="True" UseLightweightTemplates="None"
                                        ShowGroupPanel="False"
                                        RowStyle="{StaticResource BackgroundStyle}"
                                        DataRowTemplate="{StaticResource expandableRowDetailTemplate}" CellValueChanged="view_CellValueChanged">
-                        </dxg:TableView>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-            </dxlc:LayoutGroup>
+                        <dxg:TableView.ColumnMenuCustomizations>
+                            <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilled}}}"
+                                                   Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
+                                                   dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
+                            <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
+                        </dxg:TableView.ColumnMenuCustomizations>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dxlc:LayoutItem >
-                    <StackPanel Orientation="Horizontal">
-                        <Border Background="Gainsboro"
+        <dxlc:LayoutGroup HorizontalAlignment="Right">
+            <dxlc:LayoutItem >
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="Gainsboro"
                                 CornerRadius="3"
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 Height="20" 
                                 Width="40"/>
-                        <TextBlock Text="Cancelled" Margin="3,0,0,0"/>
-                    </StackPanel>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
-                    <StackPanel Orientation="Horizontal">
-                        <Border Background="AliceBlue"
+                    <TextBlock Text="Cancelled" Margin="3,0,0,0"/>
+                </StackPanel>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutItem >
+                <StackPanel Orientation="Horizontal">
+                    <Border Background="AliceBlue"
                                 CornerRadius="3"
                                 BorderBrush="Black"
                                 BorderThickness="1"
                                 Height="20" 
                                 Width="40"/>
-                        <TextBlock Text="Billed" Margin="3,0,0,0"/>
-                    </StackPanel>
-                </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
+                    <TextBlock Text="Billed" Margin="3,0,0,0"/>
+                </StackPanel>
+            </dxlc:LayoutItem>
+        </dxlc:LayoutGroup>
 
 
-        </dxlc:LayoutControl>
-    </Grid>
+    </dxlc:LayoutControl>
 </UserControl>
