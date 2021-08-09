@@ -288,6 +288,14 @@ namespace MediTech.ViewModels
         }
 
 
+
+        private DateTime _SaveVisitStatusDate;
+
+        public DateTime SaveVisitStatusDate
+        {
+            get { return _SaveVisitStatusDate; }
+            set { Set(ref _SaveVisitStatusDate, value); }
+        }
         private DateTime _SaveVisitStatusTime;
 
         public DateTime SaveVisitStatusTime
@@ -533,7 +541,8 @@ namespace MediTech.ViewModels
 
 
             SaveVisitStatusList = refVisitStatus;
-            SaveVisitStatusTime = DateTime.Now;
+            SaveVisitStatusDate = DateTime.Now;
+            SaveVisitStatusTime = SaveVisitStatusDate;
             GetPrinters();
             GetReports();
 
@@ -698,7 +707,7 @@ namespace MediTech.ViewModels
 
                         int selectVisitStatus = SelectSaveVisitStatusList.Key.Value;
                         int? CareProviderUID = null;
-                        DateTime arriveTime = SaveVisitStatusTime;
+                        DateTime arriveTime = DateTime.Parse(SaveVisitStatusDate.ToString("dd/MM/yyyy") + " " + SaveVisitStatusTime.ToString("HH:mm"));
                         if (selectVisitStatus == SNDDOC)
                         {
                             if (SelectDoctorSaveVisitStatus == null)

@@ -355,7 +355,12 @@
                                               />
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup>
-                                        <dxlc:LayoutItem Label="เวลา ">
+                                        <dxlc:LayoutItem Label="วันที่">
+                                            <dxe:DateEdit x:Name="dateEditor"
+                                                          EditValue="{Binding SaveVisitStatusDate}"
+                                                          />
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="เวลา " Width="90">
                                             <dxe:DateEdit x:Name="timeEditor"
                                                           EditValue="{Binding SaveVisitStatusTime}"
                                       DisplayFormatString="HH:mm"
@@ -365,7 +370,6 @@
                                                 </dxe:DateEdit.StyleSettings>
                                             </dxe:DateEdit>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem />
                                     </dxlc:LayoutGroup>
                                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
 

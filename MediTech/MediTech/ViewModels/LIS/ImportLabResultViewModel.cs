@@ -453,11 +453,6 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก สถานประกอบการ");
                 return;
             }
-            if (SelectPayorDetail == null)
-            {
-                WarningDialog("กรุณาเลือก Payor");
-                return;
-            }
             OleDbConnection conn;
             OleDbCommand cmd;
             System.Data.DataTable dt;
@@ -511,7 +506,7 @@ namespace MediTech.ViewModels
                     if (upperlimit > 0)
                     {
                         int ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
-                        int payorDetailUID = SelectPayorDetail.PayorDetailUID;
+                        int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
                         int requestItemUID = SelectedRequestItem.RequestItemUID;
                         if (!ColumnsResultItems.Any(p => p.Header == "PatientName"))
                         {
