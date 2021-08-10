@@ -133,8 +133,18 @@
             this.LogoType = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrLine5 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine6 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine7 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine8 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine9 = new DevExpress.XtraReports.UI.XRLine();
             this.BillingDetail_supreport = new DevExpress.XtraReports.UI.XRSubreport();
             this.BillingDetail_supreport2 = new DevExpress.XtraReports.UI.XRSubreport();
+            this.xrLine10 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine11 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine12 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine13 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine14 = new DevExpress.XtraReports.UI.XRLine();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -145,9 +155,19 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLine14,
+            this.xrLine13,
+            this.xrLine12,
+            this.xrLine11,
+            this.xrLine10,
+            this.xrLine9,
+            this.xrLine8,
+            this.xrLine7,
+            this.xrLine6,
+            this.xrLine5,
             this.BillingDetail_supreport,
             this.BillingDetail_supreport2});
-            this.Detail.HeightF = 28.50005F;
+            this.Detail.HeightF = 364.6411F;
             this.Detail.MultiColumn.ColumnCount = 2;
             this.Detail.MultiColumn.Layout = DevExpress.XtraPrinting.ColumnLayout.AcrossThenDown;
             this.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
@@ -1320,12 +1340,67 @@
             this.formattingRule1.Formatting.Visible = DevExpress.Utils.DefaultBoolean.True;
             this.formattingRule1.Name = "formattingRule1";
             // 
+            // xrLine5
+            // 
+            this.xrLine5.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine5.ForeColor = System.Drawing.Color.Black;
+            this.xrLine5.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine5.LocationFloat = new DevExpress.Utils.PointFloat(307.2F, 0F);
+            this.xrLine5.Name = "xrLine5";
+            this.xrLine5.SizeF = new System.Drawing.SizeF(2F, 364.6411F);
+            this.xrLine5.StylePriority.UseBorders = false;
+            this.xrLine5.StylePriority.UseForeColor = false;
+            // 
+            // xrLine6
+            // 
+            this.xrLine6.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine6.ForeColor = System.Drawing.Color.Black;
+            this.xrLine6.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine6.LocationFloat = new DevExpress.Utils.PointFloat(30F, 0.0001070794F);
+            this.xrLine6.Name = "xrLine6";
+            this.xrLine6.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine6.StylePriority.UseBorders = false;
+            this.xrLine6.StylePriority.UseForeColor = false;
+            // 
+            // xrLine7
+            // 
+            this.xrLine7.BorderColor = System.Drawing.Color.Black;
+            this.xrLine7.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine7.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine7.LocationFloat = new DevExpress.Utils.PointFloat(394.3F, 0.0001070794F);
+            this.xrLine7.Name = "xrLine7";
+            this.xrLine7.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine7.StylePriority.UseBorderColor = false;
+            this.xrLine7.StylePriority.UseBorders = false;
+            // 
+            // xrLine8
+            // 
+            this.xrLine8.BorderColor = System.Drawing.Color.Black;
+            this.xrLine8.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine8.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine8.LocationFloat = new DevExpress.Utils.PointFloat(480.4F, 0.0001070794F);
+            this.xrLine8.Name = "xrLine8";
+            this.xrLine8.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine8.StylePriority.UseBorderColor = false;
+            this.xrLine8.StylePriority.UseBorders = false;
+            // 
+            // xrLine9
+            // 
+            this.xrLine9.BorderColor = System.Drawing.Color.Black;
+            this.xrLine9.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine9.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine9.LocationFloat = new DevExpress.Utils.PointFloat(566.5F, 0.0001070794F);
+            this.xrLine9.Name = "xrLine9";
+            this.xrLine9.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine9.StylePriority.UseBorderColor = false;
+            this.xrLine9.StylePriority.UseBorders = false;
+            // 
             // BillingDetail_supreport
             // 
-            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55553F, 9.536742E-05F);
+            this.BillingDetail_supreport.LocationFloat = new DevExpress.Utils.PointFloat(30.55551F, 0F);
             this.BillingDetail_supreport.Name = "BillingDetail_supreport";
             this.BillingDetail_supreport.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail();
-            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5001F, 28.49995F);
+            this.BillingDetail_supreport.SizeF = new System.Drawing.SizeF(537.5004F, 364.6411F);
             this.BillingDetail_supreport.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
             // 
             // BillingDetail_supreport2
@@ -1335,6 +1410,61 @@
             this.BillingDetail_supreport2.ReportSource = new MediTech.Reports.Operating.Cashier.PatientBillDetail();
             this.BillingDetail_supreport2.SizeF = new System.Drawing.SizeF(537.5002F, 28.49995F);
             this.BillingDetail_supreport2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.BillingDetail_supreport_BeforePrint);
+            // 
+            // xrLine10
+            // 
+            this.xrLine10.BorderColor = System.Drawing.Color.Black;
+            this.xrLine10.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine10.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine10.LocationFloat = new DevExpress.Utils.PointFloat(588.7F, 0.0001105711F);
+            this.xrLine10.Name = "xrLine10";
+            this.xrLine10.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine10.StylePriority.UseBorderColor = false;
+            this.xrLine10.StylePriority.UseBorders = false;
+            // 
+            // xrLine11
+            // 
+            this.xrLine11.BorderColor = System.Drawing.Color.Black;
+            this.xrLine11.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine11.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine11.LocationFloat = new DevExpress.Utils.PointFloat(865.7F, 0.0001326853F);
+            this.xrLine11.Name = "xrLine11";
+            this.xrLine11.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine11.StylePriority.UseBorderColor = false;
+            this.xrLine11.StylePriority.UseBorders = false;
+            // 
+            // xrLine12
+            // 
+            this.xrLine12.BorderColor = System.Drawing.Color.Black;
+            this.xrLine12.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine12.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine12.LocationFloat = new DevExpress.Utils.PointFloat(952.83F, 0F);
+            this.xrLine12.Name = "xrLine12";
+            this.xrLine12.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine12.StylePriority.UseBorderColor = false;
+            this.xrLine12.StylePriority.UseBorders = false;
+            // 
+            // xrLine13
+            // 
+            this.xrLine13.BorderColor = System.Drawing.Color.Black;
+            this.xrLine13.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine13.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine13.LocationFloat = new DevExpress.Utils.PointFloat(1039F, 0.0001326853F);
+            this.xrLine13.Name = "xrLine13";
+            this.xrLine13.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine13.StylePriority.UseBorderColor = false;
+            this.xrLine13.StylePriority.UseBorders = false;
+            // 
+            // xrLine14
+            // 
+            this.xrLine14.BorderColor = System.Drawing.Color.Black;
+            this.xrLine14.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine14.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine14.LocationFloat = new DevExpress.Utils.PointFloat(1124.9F, 0.0001326853F);
+            this.xrLine14.Name = "xrLine14";
+            this.xrLine14.SizeF = new System.Drawing.SizeF(2F, 364.641F);
+            this.xrLine14.StylePriority.UseBorderColor = false;
+            this.xrLine14.StylePriority.UseBorders = false;
             // 
             // PatientBill
             // 
@@ -1475,5 +1605,15 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
+        private DevExpress.XtraReports.UI.XRLine xrLine5;
+        private DevExpress.XtraReports.UI.XRLine xrLine8;
+        private DevExpress.XtraReports.UI.XRLine xrLine7;
+        private DevExpress.XtraReports.UI.XRLine xrLine6;
+        private DevExpress.XtraReports.UI.XRLine xrLine9;
+        private DevExpress.XtraReports.UI.XRLine xrLine14;
+        private DevExpress.XtraReports.UI.XRLine xrLine13;
+        private DevExpress.XtraReports.UI.XRLine xrLine12;
+        private DevExpress.XtraReports.UI.XRLine xrLine11;
+        private DevExpress.XtraReports.UI.XRLine xrLine10;
     }
 }
