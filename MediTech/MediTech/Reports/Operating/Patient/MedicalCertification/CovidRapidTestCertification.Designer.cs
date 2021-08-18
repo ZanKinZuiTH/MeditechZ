@@ -103,12 +103,7 @@
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -219,7 +214,7 @@
             this.xrLabel22.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "strVisitData")});
             this.xrLabel22.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(564.7947F, 862.1634F);
+            this.xrLabel22.LocationFloat = new DevExpress.Utils.PointFloat(591.361F, 862.1634F);
             this.xrLabel22.Name = "xrLabel22";
             this.xrLabel22.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel22.SizeF = new System.Drawing.SizeF(101.0143F, 30.5F);
@@ -289,11 +284,11 @@
             this.Gender.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
             this.Gender.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.Gender.LocationFloat = new DevExpress.Utils.PointFloat(655.6917F, 124.9258F);
+            this.Gender.LocationFloat = new DevExpress.Utils.PointFloat(624.8584F, 149.1824F);
             this.Gender.Multiline = true;
             this.Gender.Name = "Gender";
             this.Gender.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.Gender.SizeF = new System.Drawing.SizeF(99.0025F, 23.33342F);
+            this.Gender.SizeF = new System.Drawing.SizeF(110.1417F, 23.33342F);
             this.Gender.StylePriority.UseFont = false;
             this.Gender.StylePriority.UseTextAlignment = false;
             this.Gender.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -303,7 +298,7 @@
             this.lbPatientAge.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "AgeYear")});
             this.lbPatientAge.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbPatientAge.LocationFloat = new DevExpress.Utils.PointFloat(566.8119F, 124.9258F);
+            this.lbPatientAge.LocationFloat = new DevExpress.Utils.PointFloat(705.4229F, 125.2079F);
             this.lbPatientAge.Multiline = true;
             this.lbPatientAge.Name = "lbPatientAge";
             this.lbPatientAge.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -317,7 +312,7 @@
             this.lbDateBirth.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DateOfBirth")});
             this.lbDateBirth.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.lbDateBirth.LocationFloat = new DevExpress.Utils.PointFloat(452.5001F, 123.6438F);
+            this.lbDateBirth.LocationFloat = new DevExpress.Utils.PointFloat(582.8611F, 123.6438F);
             this.lbDateBirth.Multiline = true;
             this.lbDateBirth.Name = "lbDateBirth";
             this.lbDateBirth.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -336,7 +331,7 @@
             this.lbName.Multiline = true;
             this.lbName.Name = "lbName";
             this.lbName.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbName.SizeF = new System.Drawing.SizeF(201.8272F, 25.25638F);
+            this.lbName.SizeF = new System.Drawing.SizeF(336.4262F, 25.25638F);
             this.lbName.StylePriority.UseFont = false;
             this.lbName.StylePriority.UseTextAlignment = false;
             this.lbName.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
@@ -351,7 +346,7 @@
             this.xrLabel9.SizeF = new System.Drawing.SizeF(481.4294F, 15.5F);
             this.xrLabel9.StylePriority.UseFont = false;
             this.xrLabel9.StylePriority.UseTextAlignment = false;
-            this.xrLabel9.Text = "บีอาร์เอ็กซ์สหคลินิก (BRXG Polyclinic)";
+            this.xrLabel9.Text = "บีอาร์เอ็กซ์จีสหคลินิก (BRXG Polyclinic)";
             this.xrLabel9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel10
@@ -372,10 +367,10 @@
             this.xrLabel21.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
             this.xrLabel21.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(527.0825F, 810.681F);
+            this.xrLabel21.LocationFloat = new DevExpress.Utils.PointFloat(516.2492F, 810.6811F);
             this.xrLabel21.Name = "xrLabel21";
             this.xrLabel21.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel21.SizeF = new System.Drawing.SizeF(177.0922F, 26.33337F);
+            this.xrLabel21.SizeF = new System.Drawing.SizeF(242.1949F, 26.33337F);
             this.xrLabel21.StylePriority.UseFont = false;
             this.xrLabel21.StylePriority.UseTextAlignment = false;
             this.xrLabel21.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -383,12 +378,12 @@
             // xrTable6
             // 
             this.xrTable6.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(527.0825F, 864.0385F);
+            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(536.8716F, 864.0385F);
             this.xrTable6.Name = "xrTable6";
             this.xrTable6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable6.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow20});
-            this.xrTable6.SizeF = new System.Drawing.SizeF(191.3978F, 25F);
+            this.xrTable6.SizeF = new System.Drawing.SizeF(207.9176F, 25F);
             this.xrTable6.StylePriority.UseFont = false;
             this.xrTable6.StylePriority.UseTextAlignment = false;
             this.xrTable6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
@@ -413,7 +408,7 @@
             this.xrTableCell55.Multiline = true;
             this.xrTableCell55.Name = "xrTableCell55";
             this.xrTableCell55.Text = "...........................................";
-            this.xrTableCell55.Weight = 1.6368560791015625D;
+            this.xrTableCell55.Weight = 1.8020544431787351D;
             // 
             // xrLabel5
             // 
@@ -586,7 +581,8 @@
             // 
             this.xrTableCell39.Multiline = true;
             this.xrTableCell39.Name = "xrTableCell39";
-            this.xrTableCell39.Text = "O ได้รับวัคซีนแล้ว จำนวน.....ครั้ง ๆสุดท้ายเมื่อวันที่.............";
+            this.xrTableCell39.Text = "O ได้รับวัคซีนแล้ว จำนวน.....ครั้ง ๆสุดท้ายเมื่อวันที่..........................." +
+    ".....";
             this.xrTableCell39.Weight = 2D;
             // 
             // xrTableRow11
@@ -853,12 +849,7 @@
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell1,
             this.xrTableCell4,
-            this.xrTableCell2,
-            this.xrTableCell3,
-            this.xrTableCell8,
-            this.xrTableCell10,
-            this.xrTableCell9,
-            this.xrTableCell11});
+            this.xrTableCell9});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
             // 
@@ -873,50 +864,15 @@
             // 
             this.xrTableCell4.Multiline = true;
             this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Text = "........................................................";
-            this.xrTableCell4.Weight = 0.96804143164798151D;
-            // 
-            // xrTableCell2
-            // 
-            this.xrTableCell2.Multiline = true;
-            this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.Text = "วันเดือนปีเกิด ";
-            this.xrTableCell2.Weight = 0.37090955626945254D;
-            // 
-            // xrTableCell3
-            // 
-            this.xrTableCell3.Multiline = true;
-            this.xrTableCell3.Name = "xrTableCell3";
-            this.xrTableCell3.Text = "......................";
-            this.xrTableCell3.Weight = 0.38299026583808954D;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.Multiline = true;
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Text = "อายุ .........";
-            this.xrTableCell8.Weight = 0.29656006772919158D;
-            // 
-            // xrTableCell10
-            // 
-            this.xrTableCell10.Multiline = true;
-            this.xrTableCell10.Name = "xrTableCell10";
-            this.xrTableCell10.Text = "ปี";
-            this.xrTableCell10.Weight = 0.070054309225199216D;
+            this.xrTableCell4.Text = "................................................................................." +
+    "............ วันเดือนปีเกิด ...................... อายุ ........... ปี";
+            this.xrTableCell4.Weight = 2.7551085595038813D;
             // 
             // xrTableCell9
             // 
             this.xrTableCell9.Multiline = true;
             this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Text = "เพศ";
-            this.xrTableCell9.Weight = 0.12762938741794233D;
-            // 
-            // xrTableCell11
-            // 
-            this.xrTableCell11.Multiline = true;
-            this.xrTableCell11.Name = "xrTableCell11";
-            this.xrTableCell11.Text = "...........................";
-            this.xrTableCell11.Weight = 0.54821992494830485D;
+            this.xrTableCell9.Weight = 0.00929638357227991D;
             // 
             // xrTableRow2
             // 
@@ -938,7 +894,7 @@
             this.xrTableCell15.Multiline = true;
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Text = "................................................................................." +
-    "............................................................";
+    "........... เพศ ...................................";
             this.xrTableCell15.Weight = 2.4026382232252459D;
             // 
             // xrTableRow21
@@ -1125,15 +1081,15 @@
             // xrLabel12
             // 
             this.xrLabel12.Font = new System.Drawing.Font("EucrosiaUPC", 14F);
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(465.008F, 772.3477F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(465.008F, 772.3478F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.SizeF = new System.Drawing.SizeF(285F, 111.3333F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(321.1251F, 111.3333F);
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.StylePriority.UseTextAlignment = false;
-            this.xrLabel12.Text = "ลงชื่อ .....................................................\r\n      (............" +
-    ".......................................)\r\nผู้เข้ารับการตรวจ\r\n";
+            this.xrLabel12.Text = "ลงชื่อ ...........................................................\r\n      (......" +
+    ".........................................................)\r\nผู้เข้ารับการตรวจ\r\n";
             this.xrLabel12.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // TopMargin
@@ -1169,7 +1125,7 @@
             this.xrLabel7.SizeF = new System.Drawing.SizeF(260.8333F, 15.5F);
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
-            this.xrLabel7.Text = "บีอาร์เอ็กซ์สหคลินิก (BRXG Polyclinic)";
+            this.xrLabel7.Text = "บีอาร์เอ็กซ์จีสหคลินิก (BRXG Polyclinic)";
             this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel8
@@ -1336,12 +1292,7 @@
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
