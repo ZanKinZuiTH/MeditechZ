@@ -230,10 +230,11 @@ namespace MediTech.Reports.Operating.Cashier
             //    //this.logo2.Image = System.Drawing.Image.FromStream(outStream);
             //}
 
+
+            BillingDetail_supreport.ReportSource = (new PatientBillDetail());
+            BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
             if (reportType == 0)
             {
-                BillingDetail_supreport.ReportSource = (new PatientBillDetail());
-                BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
                 PatientBilledItemModel newModel = new PatientBilledItemModel();
                 newModel.BillinsgSubGroup = "ค่าบริการยา และ เวชภัณฑ์ทางการแพทย์";
                 newModel.Amount = amountTotal_net;
@@ -244,8 +245,6 @@ namespace MediTech.Reports.Operating.Cashier
             }
             else if(reportType == 2)
             {
-                BillingDetail_supreport.ReportSource = (new PatientBillDetail());
-                BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
                 PatientBilledItemModel newModel = new PatientBilledItemModel();
                 newModel.BillinsgSubGroup = "ค่าบริการตรวจสุขภาพ";
                 newModel.Amount = amountTotal_net;
@@ -256,8 +255,6 @@ namespace MediTech.Reports.Operating.Cashier
             }
             else if (reportType == 3)
             {
-                BillingDetail_supreport.ReportSource = (new PatientBillDetail());
-                BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
                 PatientBilledItemModel newModel = new PatientBilledItemModel();
                 newModel.BillinsgSubGroup = "ค่าบริการเยี่ยมบ้าน";
                 newModel.Amount = amountTotal_net;
@@ -266,25 +263,10 @@ namespace MediTech.Reports.Operating.Cashier
                 listbill = new List<PatientBilledItemModel>();
                 listbill.Add(newModel);
             }
-            else
-            {
-                BillingDetail_supreport.ReportSource = (new PatientBillDetail());
-                BillingDetail_supreport2.ReportSource = (new PatientBillDetail());
-            }
 
-        }
+            BillingDetail_supreport.ReportSource.DataSource = listbill;
+            BillingDetail_supreport2.ReportSource.DataSource = listbill;
 
-
-        private void BillingDetail_supreport_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-
-            ((XRSubreport)sender).ReportSource.DataSource = listbill;
-
-        }
-
-        private void xrSubreport2_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
-        {
-            ((XRSubreport)sender).ReportSource.DataSource = listbill;
         }
 
     }
