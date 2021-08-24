@@ -591,7 +591,7 @@ namespace MediTech.ViewModels
 
             TotalPrice = OrderAllList.Sum(p => p.Amount) ?? 0;
             DiscountAmount = OrderAllList.Sum(p => p.Discount) ?? 0;
-            TotalAmount = OrderAllList.Sum(p => p.NetAmount) ?? 0;
+            TotalAmount = Math.Round(OrderAllList.Sum(p => p.NetAmount) ?? 0,2);
             OnUpdateEvent();
         }
 
