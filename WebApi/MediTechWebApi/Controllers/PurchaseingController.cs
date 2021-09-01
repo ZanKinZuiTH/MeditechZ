@@ -657,8 +657,6 @@ namespace MediTechWebApi.Controllers
                     receipt.TaxAmount = model.TaxAmount;
                     receipt.NoTaxAmount = model.NoTaxAmount;
                     receipt.BfTaxAmount = model.BfTaxAmount;
-                    receipt.CUser = userID;
-                    receipt.CWhen = DateTime.Now;
                     receipt.MUser = userID;
                     receipt.MWhen = DateTime.Now;
                     receipt.OwnerOrganisationUID = model.OwnerOrganisation;

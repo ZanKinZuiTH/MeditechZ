@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.CompanyName = new DevExpress.XtraReports.Parameters.Parameter();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
@@ -49,6 +50,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel1,
             this.xrLabel2,
             this.xrLabel6,
             this.xrLabel3,
@@ -59,13 +61,25 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
+            // xrLabel1
+            // 
+            this.xrLabel1.CanGrow = false;
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(8.771342F, 41.15922F);
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(180F, 18F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.Text = "[Parameters.BirthDttm] Age [Parameters.Age] EmpID. [Parameters.EmployeeID]";
+            this.xrLabel1.WordWrap = false;
+            // 
             // xrLabel2
             // 
             this.xrLabel2.CanGrow = false;
             this.xrLabel2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding(this.CompanyName, "Text", "")});
             this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(10F, 65.93726F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(10F, 72.93726F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(179.2605F, 17.16667F);
@@ -82,7 +96,7 @@
             // 
             this.xrLabel6.CanGrow = false;
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(10F, 44.27803F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(10F, 56.27803F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel6.SizeF = new System.Drawing.SizeF(179.4712F, 21.33333F);
@@ -107,12 +121,12 @@
             // 
             this.xrLabel4.CanGrow = false;
             this.xrLabel4.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(10F, 24.4869F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(10F, 22.4869F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(179.4712F, 23F);
             this.xrLabel4.StylePriority.UseFont = false;
-            this.xrLabel4.Text = "[Parameters.PatientName] [Parameters.BirthDttm]";
+            this.xrLabel4.Text = "[Parameters.PatientName]";
             this.xrLabel4.WordWrap = false;
             // 
             // xrLabel5
@@ -202,7 +216,7 @@
             this.Department,
             this.EmployeeID,
             this.CompanyName});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -225,5 +239,6 @@
         private DevExpress.XtraReports.Parameters.Parameter EmployeeID;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
         private DevExpress.XtraReports.Parameters.Parameter CompanyName;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel1;
     }
 }

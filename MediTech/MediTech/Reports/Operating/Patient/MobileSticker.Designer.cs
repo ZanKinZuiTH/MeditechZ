@@ -30,6 +30,7 @@
         {
             DevExpress.XtraPrinting.BarCode.Code128Generator code128Generator1 = new DevExpress.XtraPrinting.BarCode.Code128Generator();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblNo = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrBarCode1 = new DevExpress.XtraReports.UI.XRBarCode();
@@ -51,6 +52,7 @@
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel2,
             this.lblNo,
             this.xrLabel6,
             this.xrBarCode1,
@@ -63,6 +65,18 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 2, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.CanGrow = false;
+            this.xrLabel2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(104.2265F, 11.80327F);
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(84.77353F, 13.57871F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.Text = "DOB: [Parameters.BirthDttm]";
+            this.xrLabel2.WordWrap = false;
             // 
             // lblNo
             // 
@@ -124,12 +138,12 @@
             // 
             this.xrLabel1.CanGrow = false;
             this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(105.2265F, 22.06716F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(105.2265F, 21.45604F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(84.77354F, 14.04167F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(84.77353F, 16.15278F);
             this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.Text = "DOB: [Parameters.BirthDttm] Age: [Parameters.Age]";
+            this.xrLabel1.Text = "Age: [Parameters.Age]";
             this.xrLabel1.WordWrap = false;
             // 
             // xrLabel4
@@ -240,7 +254,7 @@
             this.BirthDttm,
             this.CheckUp,
             this.Company});
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -263,5 +277,6 @@
         internal DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.Parameters.Parameter Company;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel2;
     }
 }
