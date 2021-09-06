@@ -30,6 +30,7 @@
         {
             DevExpress.XtraPrinting.BarCode.Code128Generator code128Generator1 = new DevExpress.XtraPrinting.BarCode.Code128Generator();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
             this.lblNo = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
@@ -47,11 +48,13 @@
             this.Age = new DevExpress.XtraReports.Parameters.Parameter();
             this.BirthDttm = new DevExpress.XtraReports.Parameters.Parameter();
             this.CheckUp = new DevExpress.XtraReports.Parameters.Parameter();
+            this.Program = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel7,
             this.xrLabel2,
             this.lblNo,
             this.xrLabel6,
@@ -65,6 +68,21 @@
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.SnapLinePadding = new DevExpress.XtraPrinting.PaddingInfo(10, 10, 0, 2, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel7
+            // 
+            this.xrLabel7.CanGrow = false;
+            this.xrLabel7.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(63.04424F, 0F);
+            this.xrLabel7.Name = "xrLabel7";
+            this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(41.18227F, 21.5116F);
+            this.xrLabel7.StylePriority.UseFont = false;
+            this.xrLabel7.StylePriority.UsePadding = false;
+            this.xrLabel7.StylePriority.UseTextAlignment = false;
+            this.xrLabel7.Text = "[?Program]";
+            this.xrLabel7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
+            this.xrLabel7.WordWrap = false;
             // 
             // xrLabel2
             // 
@@ -97,10 +115,10 @@
             // 
             this.xrLabel6.CanGrow = false;
             this.xrLabel6.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(58.97015F, 0F);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(104.2265F, 0F);
             this.xrLabel6.Name = "xrLabel6";
             this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(132.3632F, 17.43752F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(87.10686F, 17.43752F);
             this.xrLabel6.StylePriority.UseFont = false;
             this.xrLabel6.StylePriority.UsePadding = false;
             this.xrLabel6.StylePriority.UseTextAlignment = false;
@@ -235,6 +253,12 @@
             this.CheckUp.Name = "CheckUp";
             this.CheckUp.Visible = false;
             // 
+            // Program
+            // 
+            this.Program.Description = "Program";
+            this.Program.Name = "Program";
+            this.Program.Visible = false;
+            // 
             // MobileSticker
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -253,7 +277,8 @@
             this.No,
             this.BirthDttm,
             this.CheckUp,
-            this.Company});
+            this.Company,
+            this.Program});
             this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -278,5 +303,7 @@
         private DevExpress.XtraReports.Parameters.Parameter Company;
         private DevExpress.XtraReports.UI.XRLabel xrLabel3;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel7;
+        private DevExpress.XtraReports.Parameters.Parameter Program;
     }
 }
