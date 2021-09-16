@@ -34,10 +34,17 @@ namespace MediTech.Reports.Operating.Patient
 
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
+            string ReportName = this.Parameters["ReportName"].Value.ToString();
             var dataSource = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
 
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
+
+            if(ReportName == "ใบรับรองแพทย์กายภาพ")
+            {
+                haederName.Text = "ใบรับรองกายภาพบำบัด";
+                fromDoctor.Text = "ความเห็นจากนักกายภาพบำบัด";
+            }
 
             if (logoType == 0)
             {

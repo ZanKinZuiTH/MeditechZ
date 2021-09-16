@@ -165,6 +165,16 @@ namespace MediTech.ViewModels
                     report.ShowPrintMarginsWarning = false;
                     printTool.ShowPreviewDialog();
                 }
+                else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ")
+                {
+                    report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
+                    report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
+                    report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
+                    report.Parameters["ReportName"].Value = SelectReport.Name;
+                    report.RequestParameters = false;
+                    report.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog(); ;
+                }
                 else
                 {
                     report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
@@ -199,6 +209,16 @@ namespace MediTech.ViewModels
                         report.Parameters["Age"].Value = SelectPatientVisit.Age;
                         report.Parameters["BirthDate"].Value = SelectPatientVisit.BirthDttm != null ? SelectPatientVisit.BirthDttm.Value.ToString("dd/MM/yyyy") : null;
                         report.Parameters["Payor"].Value = SelectPatientVisit.PayorName;
+                        report.RequestParameters = false;
+                        report.ShowPrintMarginsWarning = false;
+                        printTool.Print();
+                    }
+                    else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ")
+                    {
+                        report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
+                        report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
+                        report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
+                        report.Parameters["ReportName"].Value = SelectReport.Name;
                         report.RequestParameters = false;
                         report.ShowPrintMarginsWarning = false;
                         printTool.Print();
