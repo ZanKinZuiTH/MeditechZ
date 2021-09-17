@@ -430,6 +430,20 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
 
                 }
 
+                page3.RowNickelBlood.Visible = false;
+                page3.RowNickelUrine.Visible = false;
+                page3.RowXylene.Visible = false;
+                page3.RowCarboxy.Visible = false;
+                page3.RowMEK.Visible = false;
+                page3.RowAluminiumUrine.Visible = false;
+                page3.RowAluminiumBlood.Visible = false;
+                page3.RowPhenol.Visible = false;
+                page3.RowIsopropanol.Visible = false;
+
+                page3.RowMethyreneUrine.Visible = false;
+                page3.RowBenzenettUrine.Visible = false;
+                page3.RowMercuryBlood.Visible = false;
+
                 var labCompare = data.LabCompare;
                 if (labCompare != null)
                 {
@@ -934,23 +948,11 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
         {
             if (labTestSet != null)
             {
-                page3.RowNickelBlood.Visible = false;
-                page3.RowNickelUrine.Visible = false;
-                page3.RowXylene.Visible = false;
-                page3.RowCarboxy.Visible = false;
-                page3.RowMEK.Visible = false;
-                page3.RowAluminiumUrine.Visible = false;
-                page3.RowAluminiumBlood.Visible = false;
-                page3.RowPhenol.Visible = false;
-                page3.RowIsopropanol.Visible = false;
-
                 page3.RowMibkUrine.Visible = false;
                 page3.RowCadmiumUrine.Visible = false;
                 page3.RowEthylbenzeneUrine.Visible = false;
                 page3.RowMercuryUrine.Visible = false;
-                page3.RowMethyreneUrine.Visible = false;
-                page3.RowBenzenettUrine.Visible = false;
-                page3.RowMercuryBlood.Visible = false;
+                
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
