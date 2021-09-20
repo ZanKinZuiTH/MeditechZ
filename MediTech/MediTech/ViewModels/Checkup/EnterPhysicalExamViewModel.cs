@@ -201,6 +201,10 @@ namespace MediTech.ViewModels
                         {
                             resultValue = "ปฏิเสธ";
                         }
+                        else if (item.ResultItemName == "งดน้ำงดอาหาร")
+                        {
+                            resultValue = "ใช่";
+                        }
                         else
                         {
                             resultValue = "ไม่พบความผิดปกติ";

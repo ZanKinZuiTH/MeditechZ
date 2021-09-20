@@ -1959,14 +1959,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page2.lbAlcohol.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM12")?.ResultValue;
                 page2.lbUnderlying.Text = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM14")?.ResultValue;
 
-                var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.RequestItemCode == "PEXAM15")?.ResultValue;
-                if(waterCheck == "ใช่")
+                var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM15")?.ResultValue;
+                if (waterCheck != null)
                 {
-                    page2.waterY.Checked = true;
-                }
-                else
-                {
-                    page2.WaterN.Checked = true;
+                    if (waterCheck == "ใช่")
+                    {
+                        page2.waterY.Checked = true;
+                    }
+                    else
+                    {
+                        page2.WaterN.Checked = true;
+                    }
                 }
             }
         }

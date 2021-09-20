@@ -28,9 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupBookLarge2));
             DevExpress.XtraPrinting.Shape.ShapeRectangle shapeRectangle1 = new DevExpress.XtraPrinting.Shape.ShapeRectangle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupBookLarge2));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.WaterN = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.waterY = new DevExpress.XtraReports.UI.XRCheckBox();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrShape1 = new DevExpress.XtraReports.UI.XRShape();
             this.lbResultWellness = new DevExpress.XtraReports.UI.XRLabel();
             this.TitleResultWellness = new DevExpress.XtraReports.UI.XRLabel();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
@@ -99,10 +103,6 @@
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHN2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrShape1 = new DevExpress.XtraReports.UI.XRShape();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.waterY = new DevExpress.XtraReports.UI.XRCheckBox();
-            this.WaterN = new DevExpress.XtraReports.UI.XRCheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPhysicalExam)).BeginInit();
@@ -129,6 +129,46 @@
             this.Detail.Name = "Detail";
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // WaterN
+            // 
+            this.WaterN.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.WaterN.LocationFloat = new DevExpress.Utils.PointFloat(406.7795F, 641.9048F);
+            this.WaterN.Name = "WaterN";
+            this.WaterN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.WaterN.SizeF = new System.Drawing.SizeF(69.04764F, 23F);
+            this.WaterN.StylePriority.UseFont = false;
+            this.WaterN.Text = " ไม่ใช่";
+            // 
+            // waterY
+            // 
+            this.waterY.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.waterY.LocationFloat = new DevExpress.Utils.PointFloat(351.4224F, 641.9048F);
+            this.waterY.Name = "waterY";
+            this.waterY.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.waterY.SizeF = new System.Drawing.SizeF(55.35712F, 23F);
+            this.waterY.StylePriority.UseFont = false;
+            this.waterY.Text = " ใช่";
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(52.95244F, 641.9048F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(198.2143F, 23F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.Text = "งดน้ำ-งดอาหารมาแล้ว 8-12 ชั่วโมง";
+            // 
+            // xrShape1
+            // 
+            this.xrShape1.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrShape1.LocationFloat = new DevExpress.Utils.PointFloat(43.77496F, 627.0455F);
+            this.xrShape1.Name = "xrShape1";
+            this.xrShape1.Shape = shapeRectangle1;
+            this.xrShape1.SizeF = new System.Drawing.SizeF(494.5584F, 52.5F);
+            this.xrShape1.StylePriority.UseBorderColor = false;
             // 
             // lbResultWellness
             // 
@@ -881,46 +921,6 @@
             this.lbName2.Name = "lbName2";
             this.lbName2.StylePriority.UseFont = false;
             this.lbName2.Weight = 1.8833326634573677D;
-            // 
-            // xrShape1
-            // 
-            this.xrShape1.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrShape1.LocationFloat = new DevExpress.Utils.PointFloat(43.77496F, 627.0455F);
-            this.xrShape1.Name = "xrShape1";
-            this.xrShape1.Shape = shapeRectangle1;
-            this.xrShape1.SizeF = new System.Drawing.SizeF(494.5584F, 52.5F);
-            this.xrShape1.StylePriority.UseBorderColor = false;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(52.95244F, 641.9048F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(198.2143F, 23F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.Text = "งดน้ำ-งดอาหารมาแล้ว 8-12 ชั่วโมง";
-            // 
-            // waterY
-            // 
-            this.waterY.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.waterY.LocationFloat = new DevExpress.Utils.PointFloat(351.4224F, 641.9048F);
-            this.waterY.Name = "waterY";
-            this.waterY.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.waterY.SizeF = new System.Drawing.SizeF(55.35712F, 23F);
-            this.waterY.StylePriority.UseFont = false;
-            this.waterY.Text = " ใช่";
-            // 
-            // WaterN
-            // 
-            this.WaterN.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.WaterN.LocationFloat = new DevExpress.Utils.PointFloat(406.7795F, 641.9048F);
-            this.WaterN.Name = "WaterN";
-            this.WaterN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.WaterN.SizeF = new System.Drawing.SizeF(69.04764F, 23F);
-            this.WaterN.StylePriority.UseFont = false;
-            this.WaterN.Text = " ไม่ใช่";
             // 
             // CheckupBookLarge2
             // 
