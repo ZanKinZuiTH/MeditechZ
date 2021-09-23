@@ -209,7 +209,7 @@
             this.xrTableCell34.RowSpan = 3;
             this.xrTableCell34.StylePriority.UseFont = false;
             this.xrTableCell34.Text = "Employee\r\nID";
-            this.xrTableCell34.Weight = 0.58835906020301654D;
+            this.xrTableCell34.Weight = 0.62544375599555957D;
             // 
             // xrTableCell35
             // 
@@ -219,7 +219,7 @@
             this.xrTableCell35.RowSpan = 3;
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.Text = "คำนำ\r\nหน้า";
-            this.xrTableCell35.Weight = 0.48838731377717115D;
+            this.xrTableCell35.Weight = 0.45130261798462812D;
             // 
             // xrTableCell36
             // 
@@ -456,12 +456,12 @@
             // xrTableCell12
             // 
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 0.588359042006282D;
+            this.xrTableCell12.Weight = 0.625443737798825D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.48838731377717115D;
+            this.xrTableCell13.Weight = 0.45130261798462812D;
             // 
             // xrTableCell14
             // 
@@ -720,8 +720,8 @@
             this.xrTableCell56.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell56.Name = "xrTableCell56";
-            this.xrTableCell56.Text = "xrTableCell56";
-            this.xrTableCell56.Weight = 0.44832600215811574D;
+            this.xrTableCell56.Text = "1234567890";
+            this.xrTableCell56.Weight = 0.47657765726301887D;
             // 
             // xrTableCell57
             // 
@@ -729,7 +729,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell57.Name = "xrTableCell57";
             this.xrTableCell57.Text = "xrTableCell57";
-            this.xrTableCell57.Weight = 0.37214810821497341D;
+            this.xrTableCell57.Weight = 0.34389645311007028D;
             // 
             // xrTableCell58
             // 
@@ -932,7 +932,7 @@
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
             this.formattingRule1,
             this.formattingRule2});
-            this.Version = "17.1";
+            this.Version = "20.2";
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);

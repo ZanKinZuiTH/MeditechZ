@@ -681,7 +681,7 @@ namespace MediTechWebApi.Controllers
         {
             List<CheckupSummaryModel> data = null;
 
-            DataTable dt = SqlDirectStore.pRPTCheckupSummary(branchModel.CheckupJobUID, branchModel.GPRSTUIDs, branchModel.CompanyName);
+            DataTable dt = SqlDirectStore.pRPTCheckupSummary(branchModel.CheckupJobUID, branchModel.GPRSTUIDs, branchModel.CompanyName, branchModel.DateFrom, branchModel.DateTo);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<CheckupSummaryModel>();

@@ -86,6 +86,22 @@ namespace MediTech.ViewModels
             set { Set(ref _PayorDetails, value); }
         }
 
+        private DateTime? _DateFrom;
+
+        public DateTime? DateFrom
+        {
+            get { return _DateFrom; }
+            set { Set(ref _DateFrom, value); }
+        }
+
+        private DateTime? _DateTo;
+
+        public DateTime? DateTo
+        {
+            get { return _DateTo; }
+            set { Set(ref _DateTo, value); }
+        }
+
         private PayorDetailModel _SelectPayorDetail;
 
         public PayorDetailModel SelectPayorDetail
@@ -275,10 +291,10 @@ namespace MediTech.ViewModels
         {
             PayorDetails = DataService.MasterData.GetPayorDetail();
 
-#if DEBUG
-            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
-            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
-#endif
+//#if DEBUG
+//            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
+//            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
+//#endif
         }
 
 
@@ -310,6 +326,8 @@ namespace MediTech.ViewModels
             branchData.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
             branchData.GPRSTUIDs = gprstUIDs;
             branchData.CompanyName = branchName;
+            branchData.DateFrom = DateFrom;
+            branchData.DateTo = DateTo;
             var dataSummeryData = DataService.Reports.CheckupSummary(branchData);
             if (dataSummeryData != null && dataSummeryData.Count > 0)
             {
@@ -355,6 +373,8 @@ namespace MediTech.ViewModels
                 rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
                 rpt.Parameters["GPRSTUIDs"].Value = gprstUIDs;
                 rpt.Parameters["Year"].Value = (SelectCheckupJobContact.StartDttm.Year + 543);
+                rpt.Parameters["DateFrom"].Value = DateFrom;
+                rpt.Parameters["DateTo"].Value = DateTo;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -392,6 +412,8 @@ namespace MediTech.ViewModels
                 rpt.Parameters["CompanyName"].Value = SelectBranch != null ? SelectBranch.Display : null;
                 rpt.Parameters["GPRSTUIDs"].Value = gprstUIDs;
                 rpt.Parameters["Year"].Value = (SelectCheckupJobContact.StartDttm.Year + 543);
+                rpt.Parameters["DateFrom"].Value = DateFrom;
+                rpt.Parameters["DateTo"].Value = DateTo;
                 rpt.RequestParameters = false;
                 rpt.ShowPrintMarginsWarning = false;
                 ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -413,6 +435,8 @@ namespace MediTech.ViewModels
                         branchData.CompanyName = SelectBranch != null ? SelectBranch.Display : null;
                         branchData.StartRow = StartRow;
                         branchData.EndRow = EndRow;
+                        branchData.DateFrom = DateFrom;
+                        branchData.DateTo = DateTo;
                         List<PatientResultCheckupModel> resultData = DataService
                             .Checkup.GetCheckupGroupResultByJob(branchData);
 

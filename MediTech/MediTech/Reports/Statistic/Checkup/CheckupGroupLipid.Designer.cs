@@ -182,7 +182,7 @@
             this.xrTableCell34.RowSpan = 3;
             this.xrTableCell34.StylePriority.UseFont = false;
             this.xrTableCell34.Text = "Employee\r\nID";
-            this.xrTableCell34.Weight = 0.508183872381796D;
+            this.xrTableCell34.Weight = 0.59800471473738737D;
             // 
             // xrTableCell35
             // 
@@ -192,7 +192,7 @@
             this.xrTableCell35.RowSpan = 3;
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.Text = "คำนำหน้า";
-            this.xrTableCell35.Weight = 0.38195827712159963D;
+            this.xrTableCell35.Weight = 0.37383201947547762D;
             // 
             // xrTableCell36
             // 
@@ -202,7 +202,7 @@
             this.xrTableCell36.RowSpan = 3;
             this.xrTableCell36.StylePriority.UseFont = false;
             this.xrTableCell36.Text = "ชื่อ";
-            this.xrTableCell36.Weight = 0.76798216194354874D;
+            this.xrTableCell36.Weight = 0.70262640442356716D;
             // 
             // xrTableCell37
             // 
@@ -212,7 +212,7 @@
             this.xrTableCell37.RowSpan = 3;
             this.xrTableCell37.StylePriority.UseFont = false;
             this.xrTableCell37.Text = "นามสกุล";
-            this.xrTableCell37.Weight = 0.84807964689196569D;
+            this.xrTableCell37.Weight = 0.83174081970247793D;
             // 
             // xrTableCell38
             // 
@@ -272,25 +272,25 @@
             // 
             this.xrTableCell12.LockedInUserDesigner = true;
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 0.5528114081436809D;
+            this.xrTableCell12.Weight = 0.65052010459071274D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.LockedInUserDesigner = true;
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.4155009203443793D;
+            this.xrTableCell13.Weight = 0.40666103395752135D;
             // 
             // xrTableCell14
             // 
             this.xrTableCell14.LockedInUserDesigner = true;
             this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Weight = 0.83542458887430415D;
+            this.xrTableCell14.Weight = 0.76432944319191476D;
             // 
             // xrTableCell15
             // 
             this.xrTableCell15.LockedInUserDesigner = true;
             this.xrTableCell15.Name = "xrTableCell15";
-            this.xrTableCell15.Weight = 0.92255597768682063D;
+            this.xrTableCell15.Weight = 0.90478231330903625D;
             // 
             // xrTableCell16
             // 
@@ -393,28 +393,28 @@
             this.xrTableCell23.LockedInUserDesigner = true;
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Text = "xrTableCell23";
-            this.xrTableCell23.Weight = 0.55281140599994649D;
+            this.xrTableCell23.Weight = 0.65052010244697822D;
             // 
             // xrTableCell24
             // 
             this.xrTableCell24.LockedInUserDesigner = true;
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.Text = "xrTableCell24";
-            this.xrTableCell24.Weight = 0.4155009203443793D;
+            this.xrTableCell24.Weight = 0.40666103395752135D;
             // 
             // xrTableCell25
             // 
             this.xrTableCell25.LockedInUserDesigner = true;
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Text = "xrTableCell25";
-            this.xrTableCell25.Weight = 0.83542458887430415D;
+            this.xrTableCell25.Weight = 0.76432944319191476D;
             // 
             // xrTableCell26
             // 
             this.xrTableCell26.LockedInUserDesigner = true;
             this.xrTableCell26.Name = "xrTableCell26";
             this.xrTableCell26.Text = "xrTableCell26";
-            this.xrTableCell26.Weight = 0.92255597768682063D;
+            this.xrTableCell26.Weight = 0.90478231330903625D;
             // 
             // xrTableCell27
             // 
@@ -532,7 +532,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Text = "xrTableCell4";
-            this.xrTableCell4.Weight = 0.518377616285842D;
+            this.xrTableCell4.Weight = 0.6100000953582021D;
             // 
             // xrTableCell5
             // 
@@ -540,7 +540,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.Text = "xrTableCell5";
-            this.xrTableCell5.Weight = 0.38961997363323325D;
+            this.xrTableCell5.Weight = 0.38133076890094308D;
             // 
             // xrTableCell6
             // 
@@ -552,7 +552,7 @@
             this.xrTableCell6.StylePriority.UseTextAlignment = false;
             this.xrTableCell6.Text = "xrTableCell6";
             this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell6.Weight = 0.78338709248716243D;
+            this.xrTableCell6.Weight = 0.716720385277058D;
             // 
             // xrTableCell7
             // 
@@ -564,7 +564,7 @@
             this.xrTableCell7.StylePriority.UseTextAlignment = false;
             this.xrTableCell7.Text = "xrTableCell7";
             this.xrTableCell7.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell7.Weight = 0.86509121559990132D;
+            this.xrTableCell7.Weight = 0.84842464846993593D;
             // 
             // xrTableCell8
             // 
@@ -685,7 +685,7 @@
             this.C0159H,
             this.C0150L});
             this.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.Version = "17.1";
+            this.Version = "20.2";
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);

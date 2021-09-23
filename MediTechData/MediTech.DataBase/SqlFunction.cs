@@ -1044,7 +1044,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID, string companyName, int? startRow, int? endRow)
+        public static DataTable pGetCheckupGroupResult(int jobContactUID, int GPRSTUID, string companyName, int? startRow, int? endRow, DateTime? dateFrom = null, DateTime? dateTo = null)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("[pGetCheckupGroupResult]", entities.Database.Connection.ConnectionString);
@@ -1055,6 +1055,8 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_CompanyName", !string.IsNullOrEmpty(companyName) ? companyName : (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StartRow", startRow);
             adp.SelectCommand.Parameters.AddWithValue("@P_EndROW", endRow);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
@@ -1933,7 +1935,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTCheckupSummary(int checkupjobUID, string GPRSTUIDs, string companyName)
+        public static DataTable pRPTCheckupSummary(int checkupjobUID, string GPRSTUIDs, string companyName, DateTime? dateFrom, DateTime? dateTo)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTCheckupSummary", entities.Database.Connection.ConnectionString);
@@ -1942,6 +1944,8 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_CheckupJobUID", checkupjobUID);
             adp.SelectCommand.Parameters.AddWithValue("@P_GPRSTUIDs", GPRSTUIDs);
             adp.SelectCommand.Parameters.AddWithValue("@P_CompanyName", String.IsNullOrEmpty(companyName) ? (object)DBNull.Value : companyName);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

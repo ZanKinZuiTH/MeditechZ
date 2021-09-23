@@ -74,6 +74,8 @@
             this.GPRSTUIDs = new DevExpress.XtraReports.Parameters.Parameter();
             this.Year = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -285,7 +287,7 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
             this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(20.83333F, 14F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
@@ -546,7 +548,21 @@
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupSummaryModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // CheckupSummary
+            // DateFrom
+            // 
+            this.DateFrom.AllowNull = true;
+            this.DateFrom.Name = "DateFrom";
+            this.DateFrom.Type = typeof(System.DateTime);
+            this.DateFrom.Visible = false;
+            // 
+            // DateTo
+            // 
+            this.DateTo.AllowNull = true;
+            this.DateTo.Name = "DateTo";
+            this.DateTo.Type = typeof(System.DateTime);
+            this.DateTo.Visible = false;
+            // 
+            // CheckupGroupCheckList
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.Detail,
@@ -569,8 +585,10 @@
             this.Title,
             this.CheckupJobUID,
             this.GPRSTUIDs,
-            this.Year});
-            this.Version = "17.1";
+            this.Year,
+            this.DateFrom,
+            this.DateTo});
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
@@ -624,5 +642,7 @@
         private DevExpress.XtraReports.Parameters.Parameter CheckupJobUID;
         private DevExpress.XtraReports.Parameters.Parameter GPRSTUIDs;
         private DevExpress.XtraReports.Parameters.Parameter Year;
+        private DevExpress.XtraReports.Parameters.Parameter DateFrom;
+        private DevExpress.XtraReports.Parameters.Parameter DateTo;
     }
 }

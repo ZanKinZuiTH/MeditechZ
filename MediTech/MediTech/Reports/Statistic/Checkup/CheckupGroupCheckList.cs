@@ -94,6 +94,14 @@ namespace MediTech.Reports.Statistic.Checkup
             branchModel.CheckupJobUID = checkupJobUID;
             branchModel.GPRSTUIDs = GPRSTUIDs;
             branchModel.CompanyName = companyName;
+            if (this.Parameters["DateFrom"].Value != null)
+            {
+                branchModel.DateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value); ;
+            }
+            if (this.Parameters["DateTo"].Value != null)
+            {
+                branchModel.DateTo= Convert.ToDateTime(this.Parameters["DateTo"].Value); ;
+            }
             var dataSummary = dbService.Reports.CheckupSummary(branchModel);
             this.DataSource = dataSummary;
         }

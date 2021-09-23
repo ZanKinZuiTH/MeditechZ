@@ -410,7 +410,7 @@ namespace MediTech.DataService
 
         public List<PatientResultCheckupModel> GetCheckupGroupResultByJob(CheckupCompanyModel branchModel)
         {
-            string requestApi = "Api/Checkup/GetCheckupGroupResultByJob";
+            string requestApi = string.Format("Api/Checkup/GetCheckupGroupResultByJob");
             List<PatientResultCheckupModel> data = MeditechApiHelper.Post<CheckupCompanyModel, List<PatientResultCheckupModel>>(requestApi, branchModel);
 
             return data;

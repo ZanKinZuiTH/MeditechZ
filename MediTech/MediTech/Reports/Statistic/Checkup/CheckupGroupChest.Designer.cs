@@ -157,7 +157,7 @@
             this.xrTableCell2.RowSpan = 2;
             this.xrTableCell2.StylePriority.UseFont = false;
             this.xrTableCell2.Text = "Employee\r\nID\r";
-            this.xrTableCell2.Weight = 0.39300997188580661D;
+            this.xrTableCell2.Weight = 0.43676941220139365D;
             // 
             // xrTableCell3
             // 
@@ -166,7 +166,7 @@
             this.xrTableCell3.RowSpan = 2;
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.Text = "คำนำหน้า";
-            this.xrTableCell3.Weight = 0.31422463966139685D;
+            this.xrTableCell3.Weight = 0.27046519934580981D;
             // 
             // xrTableCell4
             // 
@@ -233,13 +233,13 @@
             // 
             this.xrTableCell9.Name = "xrTableCell9";
             this.xrTableCell9.Text = "xrTableCell9";
-            this.xrTableCell9.Weight = 0.39300997188580661D;
+            this.xrTableCell9.Weight = 0.43676941220139365D;
             // 
             // xrTableCell10
             // 
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Text = "xrTableCell10";
-            this.xrTableCell10.Weight = 0.3142246396613968D;
+            this.xrTableCell10.Weight = 0.27046519934580976D;
             // 
             // xrTableCell11
             // 
@@ -324,7 +324,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell17.Name = "xrTableCell17";
             this.xrTableCell17.Text = "xrTableCell16";
-            this.xrTableCell17.Weight = 0.7858710201253839D;
+            this.xrTableCell17.Weight = 0.87337290703745118D;
             // 
             // xrTableCell18
             // 
@@ -332,7 +332,7 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Text = "xrTableCell17";
-            this.xrTableCell18.Weight = 0.62833038142322306D;
+            this.xrTableCell18.Weight = 0.54082849451115578D;
             // 
             // xrTableCell19
             // 
@@ -415,7 +415,7 @@
             this.Landscape = false;
             this.PageHeight = 1169;
             this.PageWidth = 827;
-            this.Version = "17.1";
+            this.Version = "20.2";
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);

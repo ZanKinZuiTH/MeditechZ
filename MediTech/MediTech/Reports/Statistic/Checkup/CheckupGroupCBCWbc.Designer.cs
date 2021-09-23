@@ -191,7 +191,7 @@
             this.xrTableCell34.RowSpan = 3;
             this.xrTableCell34.StylePriority.UseFont = false;
             this.xrTableCell34.Text = "Employee\r\nID";
-            this.xrTableCell34.Weight = 0.49184519477965166D;
+            this.xrTableCell34.Weight = 0.59800486432473077D;
             // 
             // xrTableCell35
             // 
@@ -200,7 +200,7 @@
             this.xrTableCell35.RowSpan = 3;
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.Text = "คำนำหน้า";
-            this.xrTableCell35.Weight = 0.35744943798799378D;
+            this.xrTableCell35.Weight = 0.31664567555023987D;
             // 
             // xrTableCell36
             // 
@@ -209,7 +209,7 @@
             this.xrTableCell36.RowSpan = 3;
             this.xrTableCell36.StylePriority.UseFont = false;
             this.xrTableCell36.Text = "ชื่อ";
-            this.xrTableCell36.Weight = 0.62551113706300521D;
+            this.xrTableCell36.Weight = 0.56015522995568D;
             // 
             // xrTableCell37
             // 
@@ -273,17 +273,17 @@
             // xrTableCell12
             // 
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 0.53503790648964689D;
+            this.xrTableCell12.Weight = 0.65052026731446311D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.38883977288270044D;
+            this.xrTableCell13.Weight = 0.34445276114496176D;
             // 
             // xrTableCell14
             // 
             this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Weight = 0.68044209530738664D;
+            this.xrTableCell14.Weight = 0.609346746220309D;
             // 
             // xrTableCell15
             // 
@@ -397,19 +397,19 @@
             // 
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Text = "xrTableCell23";
-            this.xrTableCell23.Weight = 0.53503790434591247D;
+            this.xrTableCell23.Weight = 0.6505202651707287D;
             // 
             // xrTableCell24
             // 
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.Text = "xrTableCell24";
-            this.xrTableCell24.Weight = 0.38883977288270055D;
+            this.xrTableCell24.Weight = 0.34445276114496187D;
             // 
             // xrTableCell25
             // 
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.Text = "xrTableCell25";
-            this.xrTableCell25.Weight = 0.68044209530738675D;
+            this.xrTableCell25.Weight = 0.60934674622030927D;
             // 
             // xrTableCell26
             // 
@@ -539,14 +539,14 @@
             this.xrTableCell44.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell44.Name = "xrTableCell44";
-            this.xrTableCell44.Weight = 0.50171076084325472D;
+            this.xrTableCell44.Weight = 0.609999566589558D;
             // 
             // xrTableCell45
             // 
             this.xrTableCell45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell45.Name = "xrTableCell45";
-            this.xrTableCell45.Weight = 0.36461888192547742D;
+            this.xrTableCell45.Weight = 0.32299730149857209D;
             // 
             // xrTableCell19
             // 
@@ -557,7 +557,7 @@
             this.xrTableCell19.StylePriority.UsePadding = false;
             this.xrTableCell19.StylePriority.UseTextAlignment = false;
             this.xrTableCell19.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell19.Weight = 0.63805788151894482D;
+            this.xrTableCell19.Weight = 0.57139065619954688D;
             // 
             // xrTableCell46
             // 
@@ -764,7 +764,7 @@
             this.A0070L,
             this.A0080H,
             this.A0080L});
-            this.Version = "17.1";
+            this.Version = "20.2";
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);

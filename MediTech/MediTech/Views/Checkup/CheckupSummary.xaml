@@ -100,6 +100,14 @@
                                           NullValueButtonPlacement="EditBox"
                                           />
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="จากวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ถึงวันที่">
+                            <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                     <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
                                  SelectedItem="{Binding SelectCheckupJobTask}">
                         <dxmvvm:Interaction.Behaviors>

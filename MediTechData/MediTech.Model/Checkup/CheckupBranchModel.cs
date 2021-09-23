@@ -14,6 +14,7 @@ namespace MediTech.Model
         public int GPRSTUID { get; set; }
         public int? StartRow { get; set; }
         public int? EndRow { get; set; }
-
+        public DateTime? DateFrom { get; set; }
+        public DateTime? DateTo { get; set; }
     }
 }

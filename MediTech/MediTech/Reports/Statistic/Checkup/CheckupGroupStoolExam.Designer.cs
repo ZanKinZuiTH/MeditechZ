@@ -62,8 +62,8 @@
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -152,7 +152,7 @@
             this.xrTableCell34.RowSpan = 3;
             this.xrTableCell34.StylePriority.UseFont = false;
             this.xrTableCell34.Text = "Employee\r\nID";
-            this.xrTableCell34.Weight = 0.54086186333229436D;
+            this.xrTableCell34.Weight = 0.60780803348918144D;
             // 
             // xrTableCell35
             // 
@@ -161,7 +161,7 @@
             this.xrTableCell35.RowSpan = 3;
             this.xrTableCell35.StylePriority.UseFont = false;
             this.xrTableCell35.Text = "คำนำหน้า";
-            this.xrTableCell35.Weight = 0.53717773377110745D;
+            this.xrTableCell35.Weight = 0.47023156361422036D;
             // 
             // xrTableCell36
             // 
@@ -179,7 +179,7 @@
             this.xrTableCell37.RowSpan = 3;
             this.xrTableCell37.StylePriority.UseFont = false;
             this.xrTableCell37.Text = "นามสกุล";
-            this.xrTableCell37.Weight = 0.778145020785107D;
+            this.xrTableCell37.Weight = 0.77814502078510694D;
             // 
             // xrTableCell38
             // 
@@ -229,12 +229,12 @@
             // xrTableCell12
             // 
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 0.588359042006282D;
+            this.xrTableCell12.Weight = 0.66118426660453944D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.58435138282833365D;
+            this.xrTableCell13.Weight = 0.51152615823007619D;
             // 
             // xrTableCell14
             // 
@@ -323,14 +323,14 @@
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
             this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Weight = 0.55171158978608892D;
+            this.xrTableCell8.Weight = 0.62000009758596675D;
             // 
             // xrTableCell6
             // 
             this.xrTableCell6.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
             this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Weight = 0.54795232996837029D;
+            this.xrTableCell6.Weight = 0.47966382216849246D;
             // 
             // xrTableCell10
             // 
@@ -375,6 +375,12 @@
             this.xrTableCell42.Name = "xrTableCell42";
             this.xrTableCell42.Weight = 4.108334588378284D;
             // 
+            // formattingRule1
+            // 
+            this.formattingRule1.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.formattingRule1.Name = "formattingRule1";
+            // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -382,12 +388,6 @@
             this.xrTableCell3.FormattingRules.Add(this.formattingRule1);
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.Weight = 1.1740073948191325D;
-            // 
-            // formattingRule1
-            // 
-            this.formattingRule1.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.formattingRule1.Formatting.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.formattingRule1.Name = "formattingRule1";
             // 
             // objectDataSource1
             // 
@@ -405,7 +405,7 @@
             this.DataSource = this.objectDataSource1;
             this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
             this.formattingRule1});
-            this.Version = "17.1";
+            this.Version = "20.2";
             this.Controls.SetChildIndex(this.PageHeaderBase, 0);
             this.Controls.SetChildIndex(this.GroupHeader1, 0);
             this.Controls.SetChildIndex(this.DetailBase, 0);
