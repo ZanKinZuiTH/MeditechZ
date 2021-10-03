@@ -203,7 +203,7 @@ namespace MediTech.ViewModels
                     OrderGroupReceipt.ItemName = ItemName;
                     OrderGroupReceipt.Quantity = Quantity;
                     OrderGroupReceipt.UnitItem = Unit;
-                    OrderGroupReceipt.PriceUnit = Int64.Parse(Price);
+                    OrderGroupReceipt.PriceUnit = Double.Parse(Price);
                     OrderGroupReceipt.Discount = Discount;
                     OrderGroupReceipt.TotalPrice = UnitPrice;
                     OrderGroupReceipt.PTaxPercentage = TaxSelect != null ? TaxSelect.NumericValue : 0;

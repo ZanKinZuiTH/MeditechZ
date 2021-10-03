@@ -310,7 +310,7 @@
 
                             <dxlc:LayoutGroup>
                                 <dxlc:LayoutItem>
-                                    <Label Content="มูลค่าที่คำรวณภาษี" FontWeight="Bold"/>
+                                    <Label Content="มูลค่าที่คำนวณภาษี" FontWeight="Bold"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup>
                                     <dxlc:LayoutItem >
