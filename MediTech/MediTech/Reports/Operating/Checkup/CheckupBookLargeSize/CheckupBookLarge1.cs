@@ -315,7 +315,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                                     ResultChestEn = ResultChestEn.Trim();
                                     if (ResultChestEn.ToLower().Contains("negative study"))
                                     {
-                                        page5.lbChest.Text = "Normal";
+                                        page5.lbChest.Text = "Negative";
                                     }
                                     else
                                     {
@@ -1962,7 +1962,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM15")?.ResultValue;
                 if (waterCheck != null)
                 {
-                    if (waterCheck == "ใช่")
+                    if (waterCheck == "ใช่" || waterCheck == "YES" || waterCheck == "Yes")
                     {
                         page2.waterY.Checked = true;
                     }
