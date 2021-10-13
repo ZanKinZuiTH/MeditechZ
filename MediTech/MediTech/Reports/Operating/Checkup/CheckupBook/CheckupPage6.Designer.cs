@@ -1073,7 +1073,7 @@
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(25.66666F, 10.83344F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(27.33F, 11.67F);
             this.xrTable1.LockedInUserDesigner = true;
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -1095,7 +1095,7 @@
             // xrTableCell7
             // 
             this.xrTableCell7.CanGrow = false;
-            this.xrTableCell7.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell7.Font = new System.Drawing.Font("Angsana New", 8F);
             this.xrTableCell7.LockedInUserDesigner = true;
             this.xrTableCell7.Name = "xrTableCell7";
             this.xrTableCell7.StylePriority.UseFont = false;
@@ -1105,7 +1105,7 @@
             // lbHN6
             // 
             this.lbHN6.CanGrow = false;
-            this.lbHN6.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN6.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbHN6.LockedInUserDesigner = true;
             this.lbHN6.Name = "lbHN6";
             this.lbHN6.StylePriority.UseFont = false;
@@ -1114,7 +1114,7 @@
             // lbName6
             // 
             this.lbName6.CanGrow = false;
-            this.lbName6.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName6.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName6.LockedInUserDesigner = true;
             this.lbName6.Name = "lbName6";
             this.lbName6.StylePriority.UseFont = false;
@@ -1123,7 +1123,7 @@
             // xrTable4
             // 
             this.xrTable4.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(429.3334F, 10.83344F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(429.33F, 11.67F);
             this.xrTable4.LockedInUserDesigner = true;
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -1147,7 +1147,7 @@
             // xrTableCell8
             // 
             this.xrTableCell8.CanGrow = false;
-            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 8F);
             this.xrTableCell8.LockedInUserDesigner = true;
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseFont = false;
@@ -1157,7 +1157,7 @@
             // lbHN11
             // 
             this.lbHN11.CanGrow = false;
-            this.lbHN11.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN11.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbHN11.LockedInUserDesigner = true;
             this.lbHN11.Name = "lbHN11";
             this.lbHN11.StylePriority.UseFont = false;
@@ -1166,7 +1166,7 @@
             // lbName11
             // 
             this.lbName11.CanGrow = false;
-            this.lbName11.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName11.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName11.LockedInUserDesigner = true;
             this.lbName11.Name = "lbName11";
             this.lbName11.StylePriority.UseFont = false;
@@ -1200,7 +1200,7 @@
             this.PageHeight = 583;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.tbRediology)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbEKG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();

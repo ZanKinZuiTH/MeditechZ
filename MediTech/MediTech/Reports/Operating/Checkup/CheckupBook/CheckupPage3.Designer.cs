@@ -161,6 +161,9 @@
             this.xrTableRow25 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbMuscleResult = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableRow33 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell48 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbNoteMuscle = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow32 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -202,9 +205,6 @@
             this.lbName14 = new DevExpress.XtraReports.UI.XRTableCell();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrTableRow33 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell48 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbNoteMuscle = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbCBC)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -1546,6 +1546,35 @@
             this.lbMuscleResult.StylePriority.UseFont = false;
             this.lbMuscleResult.StylePriority.UseTextAlignment = false;
             // 
+            // xrTableRow33
+            // 
+            this.xrTableRow33.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell48,
+            this.lbNoteMuscle});
+            this.xrTableRow33.Name = "xrTableRow33";
+            resources.ApplyResources(this.xrTableRow33, "xrTableRow33");
+            // 
+            // xrTableCell48
+            // 
+            this.xrTableCell48.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.xrTableCell48, "xrTableCell48");
+            this.xrTableCell48.Name = "xrTableCell48";
+            this.xrTableCell48.StylePriority.UseBorders = false;
+            this.xrTableCell48.StylePriority.UseFont = false;
+            this.xrTableCell48.StylePriority.UseTextAlignment = false;
+            // 
+            // lbNoteMuscle
+            // 
+            this.lbNoteMuscle.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            resources.ApplyResources(this.lbNoteMuscle, "lbNoteMuscle");
+            this.lbNoteMuscle.Name = "lbNoteMuscle";
+            this.lbNoteMuscle.StylePriority.UseBorders = false;
+            this.lbNoteMuscle.StylePriority.UseFont = false;
+            this.lbNoteMuscle.StylePriority.UseTextAlignment = false;
+            // 
             // xrRichText1
             // 
             resources.ApplyResources(this.xrRichText1, "xrRichText1");
@@ -1896,35 +1925,6 @@
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             // 
-            // xrTableRow33
-            // 
-            this.xrTableRow33.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell48,
-            this.lbNoteMuscle});
-            this.xrTableRow33.Name = "xrTableRow33";
-            resources.ApplyResources(this.xrTableRow33, "xrTableRow33");
-            // 
-            // xrTableCell48
-            // 
-            this.xrTableCell48.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.xrTableCell48, "xrTableCell48");
-            this.xrTableCell48.Name = "xrTableCell48";
-            this.xrTableCell48.StylePriority.UseBorders = false;
-            this.xrTableCell48.StylePriority.UseFont = false;
-            this.xrTableCell48.StylePriority.UseTextAlignment = false;
-            // 
-            // lbNoteMuscle
-            // 
-            this.lbNoteMuscle.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Top | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            resources.ApplyResources(this.lbNoteMuscle, "lbNoteMuscle");
-            this.lbNoteMuscle.Name = "lbNoteMuscle";
-            this.lbNoteMuscle.StylePriority.UseBorders = false;
-            this.lbNoteMuscle.StylePriority.UseFont = false;
-            this.lbNoteMuscle.StylePriority.UseTextAlignment = false;
-            // 
             // CheckupPage3
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1932,7 +1932,7 @@
             this.TopMargin,
             this.BottomMargin});
             resources.ApplyResources(this, "$this");
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbCBC)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();

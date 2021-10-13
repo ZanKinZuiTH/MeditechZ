@@ -958,7 +958,7 @@
             // 
             // xrTable4
             // 
-            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 8F);
+            this.xrTable4.Font = new System.Drawing.Font("Angsana New", 72F);
             this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(27.33329F, 11.66667F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
@@ -978,7 +978,7 @@
             // 
             // xrTableCell8
             // 
-            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 8F);
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.StylePriority.UseFont = false;
             this.xrTableCell8.Text = "HN";
@@ -986,14 +986,14 @@
             // 
             // lbHN16
             // 
-            this.lbHN16.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbHN16.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbHN16.Name = "lbHN16";
             this.lbHN16.StylePriority.UseFont = false;
             this.lbHN16.Weight = 0.40000005660517463D;
             // 
             // lbName16
             // 
-            this.lbName16.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.lbName16.Font = new System.Drawing.Font("Angsana New", 8F);
             this.lbName16.Name = "lbName16";
             this.lbName16.StylePriority.UseFont = false;
             this.lbName16.Weight = 1.5083327681018564D;
