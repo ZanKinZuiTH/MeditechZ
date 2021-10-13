@@ -86,7 +86,7 @@
                     <dxg:GridColumn Header="Code" FieldName="Code"/>
                     <dxg:GridColumn Header="ชื่อ" FieldName="ItemName"/>
                     <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
-                    <dxg:GridColumn Header="ราคาทุน" FieldName="Cost"/>
+                    <!--<dxg:GridColumn Header="ราคาทุน" FieldName="Cost"/>-->
                     <dxg:GridColumn Header="ราคาขาย" FieldName="Price"/>
                     <dxg:GridColumn Header="กำไร" FieldName="Profit"/>
                     <dxg:GridColumn Header="ประเภท" FieldName="BillingServiceMetaData"/>
