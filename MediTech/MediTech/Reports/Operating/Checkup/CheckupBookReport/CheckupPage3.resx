@@ -2029,7 +2029,7 @@ Strength</value>
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable1.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
-    <value>428.833374, 11.6664124</value>
+    <value>428.833374, 9</value>
   </data>
   <data name="xrTableCell1.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 9pt</value>
@@ -2062,7 +2062,7 @@ Strength</value>
     <value>Angsana New, 8pt</value>
   </data>
   <data name="xrTable4.LocationFloat" type="DevExpress.Utils.PointFloat, DevExpress.Data.v20.2">
-    <value>24.166666, 11.6664124</value>
+    <value>24.166666, 9</value>
   </data>
   <data name="xrTableCell8.Font" type="System.Drawing.Font, System.Drawing">
     <value>Angsana New, 9pt</value>
@@ -2098,7 +2098,7 @@ Strength</value>
     <value>TopLeft</value>
   </data>
   <data name="BottomMargin.HeightF" type="System.Single, mscorlib">
-    <value>37</value>
+    <value>39</value>
   </data>
   <data name="BottomMargin.TextAlignment" type="DevExpress.XtraPrinting.TextAlignment, DevExpress.Data.v20.2">
     <value>TopLeft</value>
@@ -2110,7 +2110,7 @@ Strength</value>
     <value>True</value>
   </data>
   <data name="$this.Margins" type="System.Drawing.Printing.Margins, System.Drawing">
-    <value>0, 0, 0, 37</value>
+    <value>0, 0, 0, 39</value>
   </data>
   <data name="$this.PageHeight" type="System.Int32, mscorlib">
     <value>583</value>
