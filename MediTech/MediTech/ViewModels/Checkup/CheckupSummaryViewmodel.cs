@@ -452,7 +452,8 @@ namespace MediTech.ViewModels
                             p.Age,
                             p.Gender,
                             p.Conclusion,
-                            p.CheckupResultStatus
+                            p.CheckupResultStatus,
+                            p.StartDttm
                         }).Select(g => new
                         {
                             RowNumber = g.FirstOrDefault().RowNumber,
@@ -465,7 +466,8 @@ namespace MediTech.ViewModels
                             Age = g.FirstOrDefault().Age,
                             Gender = g.FirstOrDefault().Gender,
                             Conclusion = g.FirstOrDefault().Conclusion,
-                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
+                            CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus,
+                            StartDttm = g.FirstOrDefault().StartDttm
                         });
 
                         List<CheckupGroupReportModel> reportDataSource = new List<CheckupGroupReportModel>();
@@ -479,10 +481,20 @@ namespace MediTech.ViewModels
                             newObject.Title = patient.Title;
                             newObject.FirstName = patient.FirstName;
                             newObject.LastName = patient.LastName;
+                            newObject.Fullname = patient.Title + ' ' + patient.FirstName +' '+ patient.LastName;
                             newObject.Age = patient.Age;
                             newObject.Conclusion = patient.Conclusion;
                             newObject.ResultStatus = patient.CheckupResultStatus;
                             newObject.Gender = patient.Gender;
+                            newObject.StartDate = patient.StartDttm;
+                            if (patient.Gender == "ชาย (Male)")
+                            {
+                                newObject.GenderCode = "M";
+                            }
+                            if (patient.Gender == "หญิง (Female)")
+                            {
+                                newObject.GenderCode = "F";
+                            }
                             reportDataSource.Add(newObject);
                         }
 

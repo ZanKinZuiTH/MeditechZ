@@ -182,6 +182,22 @@ namespace MediTech.ViewModels
 
         List<XrayTranslateMappingModel> dtResultMapping;
 
+        private DateTime _JobDateFrom;
+
+        public DateTime JobDateFrom
+        {
+            get { return _JobDateFrom; }
+            set { Set(ref _JobDateFrom, value); }
+        }
+
+        private DateTime _JobDateTo;
+
+        public DateTime JobDateTo
+        {
+            get { return _JobDateTo; }
+            set { Set(ref _JobDateTo, value); }
+        }
+
         private DateTime _DateFrom;
 
         public DateTime DateFrom
@@ -332,6 +348,8 @@ namespace MediTech.ViewModels
             PayorDetails = DataService.MasterData.GetPayorDetail();
             DateFrom = now;
             DateTo = now;
+            JobDateFrom = now;
+            JobDateTo = now;
         }
 
         void TranslateSpecific()
@@ -1006,6 +1024,7 @@ namespace MediTech.ViewModels
                     dtResult.Columns.Add("CompanyName");
                     dtResult.Columns.Add("Age");
                     dtResult.Columns.Add("Gender");
+                    dtResult.Columns.Add("StartDttm");
 
                     ColumnsResultItems = new ObservableCollection<Column>();
                     ColumnsResultItems.Add(new Column() { Header = "No", FieldName = "RowHandle", VisibleIndex = 1 });
@@ -1018,11 +1037,14 @@ namespace MediTech.ViewModels
                     ColumnsResultItems.Add(new Column() { Header = "Gender", FieldName = "Gender", VisibleIndex = 8 });
                     ColumnsResultItems.Add(new Column() { Header = "Department", FieldName = "Department", VisibleIndex = 9 });
                     ColumnsResultItems.Add(new Column() { Header = "CompanyName", FieldName = "CompanyName", VisibleIndex = 10 });
-                    int visibleIndex = 11;
+                    ColumnsResultItems.Add(new Column() { Header = "StartDttm", FieldName = "StartDttm", VisibleIndex = 11 });
+                    int visibleIndex = 12;
 
                     CheckupCompanyModel chkCompanyModel = new CheckupCompanyModel();
                     chkCompanyModel.CheckupJobUID = SelectCheckupJobContact.CheckupJobContactUID;
                     chkCompanyModel.GPRSTUID = SelectCheckupJobTask.GPRSTUID;
+                    chkCompanyModel.DateFrom = JobDateFrom;
+                    chkCompanyModel.DateTo = JobDateTo;
                     List<PatientResultCheckupModel> resultData = DataService.Checkup.GetCheckupGroupResultByJob(chkCompanyModel);
                     if (resultData != null && resultData.Count > 0)
                     {
@@ -1052,7 +1074,8 @@ namespace MediTech.ViewModels
                         p.Age,
                         p.Gender,
                         p.Conclusion,
-                        p.CheckupResultStatus
+                        p.CheckupResultStatus,
+                        p.StartDttm
                     })
                     .Select(g => new
                     {
@@ -1067,7 +1090,8 @@ namespace MediTech.ViewModels
                         Age = g.FirstOrDefault().Age,
                         Gender = g.FirstOrDefault().Gender,
                         Conclusion = g.FirstOrDefault().Conclusion,
-                        CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus
+                        CheckupResultStatus = g.FirstOrDefault().CheckupResultStatus,
+                        StartDttm = g.FirstOrDefault().StartDttm
                     });
 
                     foreach (var patient in patientData)
@@ -1085,6 +1109,7 @@ namespace MediTech.ViewModels
                         newRow["Gender"] = patient.Gender;
                         newRow["Conclusion"] = patient.Conclusion;
                         newRow["CheckupResultStatus"] = patient.CheckupResultStatus;
+                        newRow["StartDttm"] = patient.StartDttm;
                         dtResult.Rows.Add(newRow);
                     }
                     foreach (var result in resultData)

@@ -1273,14 +1273,14 @@
             // 
             this.xrLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(167.5027F, 39.36362F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(139.4335F, 39.36362F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(246.6668F, 25F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(320.1087F, 25F);
             this.xrLabel4.StylePriority.UseBackColor = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
-            this.xrLabel4.Text = "ผลการตรวจสมรรถภาพกล้ามเนื้อ";
+            this.xrLabel4.Text = "ผลการตรวจสมรรถภาพกล้ามเนื้อ (Strength  muscle)";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrTable3
@@ -3646,10 +3646,10 @@
             this.xrLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel1.CanGrow = false;
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(168.336F, 457.3068F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(139.4334F, 457.3068F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(245.8335F, 25F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(320.1087F, 25F);
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;

@@ -314,7 +314,7 @@
             this.xrLabel4,
             this.xrRichText2,
             this.xrRichText1});
-            this.Detail.HeightF = 789.7917F;
+            this.Detail.HeightF = 790.625F;
             this.Detail.MultiColumn.ColumnCount = 2;
             this.Detail.MultiColumn.Mode = DevExpress.XtraReports.UI.MultiColumnMode.UseColumnCount;
             this.Detail.Name = "Detail";
@@ -326,14 +326,14 @@
             this.tbFBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tbFBS.CanGrow = false;
             this.tbFBS.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(164.0108F, 657.1112F);
+            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 657.1112F);
             this.tbFBS.Name = "tbFBS";
             this.tbFBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.tbFBS.SizeF = new System.Drawing.SizeF(273.0529F, 25F);
+            this.tbFBS.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
             this.tbFBS.StylePriority.UseBackColor = false;
             this.tbFBS.StylePriority.UseFont = false;
             this.tbFBS.StylePriority.UseTextAlignment = false;
-            this.tbFBS.Text = "ผลการตรวจระดับน้ำตาลในเลือดและเบาหวาน";
+            this.tbFBS.Text = "ผลการตรวจระดับน้ำตาลในเลือดและเบาหวาน (Blood sugar)";
             this.tbFBS.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tbFBS.WordWrap = false;
             // 
@@ -816,10 +816,10 @@
             // 
             this.xrLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(164.0108F, 38.1273F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 38.1273F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(273.0529F, 25F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -2424,10 +2424,10 @@
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(164.0108F, 564.2973F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 564.2973F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(273.0529F, 25F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;

@@ -36,49 +36,45 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell36 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow3 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.EthBenzeneL = new DevExpress.XtraReports.UI.FormattingRule();
-            this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
             this.EthBenzeneH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.EthBenzeneL = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
+            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -142,17 +138,16 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell33,
             this.xrTableCell34,
             this.xrTableCell35,
-            this.xrTableCell36,
-            this.xrTableCell37,
             this.xrTableCell38,
             this.xrTableCell39,
-            this.xrTableCell43});
+            this.xrTableCell43,
+            this.xrTableCell29});
             this.xrTableRow4.Name = "xrTableRow4";
             this.xrTableRow4.Weight = 1.1518987396783D;
             // 
             // xrTableCell33
             // 
-            this.xrTableCell33.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell33.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell33.Name = "xrTableCell33";
             this.xrTableCell33.RowSpan = 3;
             this.xrTableCell33.StylePriority.UseFont = false;
@@ -161,64 +156,58 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             // xrTableCell34
             // 
-            this.xrTableCell34.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell34.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell34.Multiline = true;
             this.xrTableCell34.Name = "xrTableCell34";
             this.xrTableCell34.RowSpan = 3;
             this.xrTableCell34.StylePriority.UseFont = false;
-            this.xrTableCell34.Text = "Employee\r\nID";
-            this.xrTableCell34.Weight = 0.65523438289700831D;
+            this.xrTableCell34.Text = "Employee ID";
+            this.xrTableCell34.Weight = 0.78594597273064326D;
             // 
             // xrTableCell35
             // 
-            this.xrTableCell35.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell35.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.RowSpan = 3;
             this.xrTableCell35.StylePriority.UseFont = false;
-            this.xrTableCell35.Text = "คำนำหน้า";
-            this.xrTableCell35.Weight = 0.52900846976370708D;
-            // 
-            // xrTableCell36
-            // 
-            this.xrTableCell36.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell36.Name = "xrTableCell36";
-            this.xrTableCell36.RowSpan = 3;
-            this.xrTableCell36.StylePriority.UseFont = false;
-            this.xrTableCell36.Text = "ชื่อ";
-            this.xrTableCell36.Weight = 1.033983013498947D;
-            // 
-            // xrTableCell37
-            // 
-            this.xrTableCell37.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell37.Name = "xrTableCell37";
-            this.xrTableCell37.RowSpan = 3;
-            this.xrTableCell37.StylePriority.UseFont = false;
-            this.xrTableCell37.Text = "นามสกุล";
-            this.xrTableCell37.Weight = 1.0967549557428096D;
+            this.xrTableCell35.Text = "ชื่อ-นามสกุล";
+            this.xrTableCell35.Weight = 2.3656453805782029D;
             // 
             // xrTableCell38
             // 
-            this.xrTableCell38.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell38.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell38.Name = "xrTableCell38";
             this.xrTableCell38.RowSpan = 3;
             this.xrTableCell38.StylePriority.UseFont = false;
             this.xrTableCell38.Text = "อายุ";
-            this.xrTableCell38.Weight = 0.32655964089321871D;
+            this.xrTableCell38.Weight = 0.36740745680365583D;
             // 
             // xrTableCell39
             // 
-            this.xrTableCell39.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell39.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell39.Name = "xrTableCell39";
             this.xrTableCell39.RowSpan = 3;
             this.xrTableCell39.StylePriority.UseFont = false;
             this.xrTableCell39.Text = "เพศ";
-            this.xrTableCell39.Weight = 0.66197397143383585D;
+            this.xrTableCell39.Weight = 0.39238048064776054D;
             // 
             // xrTableCell43
             // 
+            this.xrTableCell43.Font = new System.Drawing.Font("Angsana New", 13F, System.Drawing.FontStyle.Bold);
             this.xrTableCell43.Name = "xrTableCell43";
+            this.xrTableCell43.StylePriority.UseFont = false;
             this.xrTableCell43.Text = "ตรวจหาสารเอทธิลเบนซินในปัสสาวะ (Ethyl Benzene in Urine)";
-            this.xrTableCell43.Weight = 6.2250101857963456D;
+            this.xrTableCell43.Weight = 5.9618570795056822D;
+            // 
+            // xrTableCell29
+            // 
+            this.xrTableCell29.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell29.Multiline = true;
+            this.xrTableCell29.Name = "xrTableCell29";
+            this.xrTableCell29.RowSpan = 3;
+            this.xrTableCell29.StylePriority.UseFont = false;
+            this.xrTableCell29.Text = "วันที่ตรวจ";
+            this.xrTableCell29.Weight = 0.65528824975992883D;
             // 
             // xrTableRow2
             // 
@@ -226,13 +215,12 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell11,
             this.xrTableCell12,
             this.xrTableCell13,
-            this.xrTableCell14,
-            this.xrTableCell15,
             this.xrTableCell16,
             this.xrTableCell17,
             this.xrTableCell6,
             this.xrTableCell20,
-            this.xrTableCell21});
+            this.xrTableCell21,
+            this.xrTableCell30});
             this.xrTableRow2.Name = "xrTableRow2";
             this.xrTableRow2.Weight = 0.92429136023256819D;
             // 
@@ -244,58 +232,57 @@ namespace MediTech.Reports.Statistic.Checkup
             // xrTableCell12
             // 
             this.xrTableCell12.Name = "xrTableCell12";
-            this.xrTableCell12.Weight = 0.71277550626952579D;
+            this.xrTableCell12.Weight = 0.85496587899617982D;
             // 
             // xrTableCell13
             // 
             this.xrTableCell13.Name = "xrTableCell13";
-            this.xrTableCell13.Weight = 0.57546471336319194D;
-            // 
-            // xrTableCell14
-            // 
-            this.xrTableCell14.Name = "xrTableCell14";
-            this.xrTableCell14.Weight = 1.1247849658610645D;
-            // 
-            // xrTableCell15
-            // 
-            this.xrTableCell15.Name = "xrTableCell15";
-            this.xrTableCell15.Weight = 1.1930694051180937D;
+            this.xrTableCell13.Weight = 2.5733909287715977D;
             // 
             // xrTableCell16
             // 
             this.xrTableCell16.Name = "xrTableCell16";
-            this.xrTableCell16.Weight = 0.35523735184222233D;
+            this.xrTableCell16.Weight = 0.39967232640543621D;
             // 
             // xrTableCell17
             // 
             this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Weight = 0.720106979787731D;
+            this.xrTableCell17.Weight = 0.42683838512208977D;
             // 
             // xrTableCell6
             // 
-            this.xrTableCell6.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell6.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell6.Name = "xrTableCell6";
             this.xrTableCell6.StylePriority.UseFont = false;
             this.xrTableCell6.Text = "Ethyl Benzene in Urine";
-            this.xrTableCell6.Weight = 1.5443106358639871D;
+            this.xrTableCell6.Weight = 1.7131611390288792D;
             // 
             // xrTableCell20
             // 
-            this.xrTableCell20.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell20.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell20.Name = "xrTableCell20";
             this.xrTableCell20.RowSpan = 2;
             this.xrTableCell20.StylePriority.UseFont = false;
             this.xrTableCell20.Text = "แปลผล/คำแนะนำ";
-            this.xrTableCell20.Weight = 4.1768342368435629D;
+            this.xrTableCell20.Weight = 3.7324897797333176D;
             // 
             // xrTableCell21
             // 
-            this.xrTableCell21.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell21.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
             this.xrTableCell21.Name = "xrTableCell21";
             this.xrTableCell21.RowSpan = 2;
             this.xrTableCell21.StylePriority.UseFont = false;
             this.xrTableCell21.Text = "สรุปผล";
-            this.xrTableCell21.Weight = 1.0505309738796025D;
+            this.xrTableCell21.Weight = 1.0397630819404911D;
+            // 
+            // xrTableCell30
+            // 
+            this.xrTableCell30.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell30.Multiline = true;
+            this.xrTableCell30.Name = "xrTableCell30";
+            this.xrTableCell30.StylePriority.UseFont = false;
+            this.xrTableCell30.Text = "xrTableCell30";
+            this.xrTableCell30.Weight = 0.71283324883099086D;
             // 
             // xrTableRow3
             // 
@@ -303,13 +290,12 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell22,
             this.xrTableCell23,
             this.xrTableCell24,
-            this.xrTableCell25,
-            this.xrTableCell26,
             this.xrTableCell27,
             this.xrTableCell28,
             this.xrTableCell18,
             this.xrTableCell31,
-            this.xrTableCell32});
+            this.xrTableCell32,
+            this.xrTableCell40});
             this.xrTableRow3.Name = "xrTableRow3";
             this.xrTableRow3.Weight = 0.92380990008913177D;
             // 
@@ -323,57 +309,52 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             this.xrTableCell23.Name = "xrTableCell23";
             this.xrTableCell23.Text = "xrTableCell23";
-            this.xrTableCell23.Weight = 0.71277550412579127D;
+            this.xrTableCell23.Weight = 0.85496587685244529D;
             // 
             // xrTableCell24
             // 
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.Text = "xrTableCell24";
-            this.xrTableCell24.Weight = 0.57546471336319216D;
-            // 
-            // xrTableCell25
-            // 
-            this.xrTableCell25.Name = "xrTableCell25";
-            this.xrTableCell25.Text = "xrTableCell25";
-            this.xrTableCell25.Weight = 1.1247849658610643D;
-            // 
-            // xrTableCell26
-            // 
-            this.xrTableCell26.Name = "xrTableCell26";
-            this.xrTableCell26.Text = "xrTableCell26";
-            this.xrTableCell26.Weight = 1.1930694051180939D;
+            this.xrTableCell24.Weight = 2.5733909287715986D;
             // 
             // xrTableCell27
             // 
             this.xrTableCell27.Name = "xrTableCell27";
             this.xrTableCell27.Text = "xrTableCell27";
-            this.xrTableCell27.Weight = 0.35523735184222249D;
+            this.xrTableCell27.Weight = 0.39967232640543632D;
             // 
             // xrTableCell28
             // 
             this.xrTableCell28.Name = "xrTableCell28";
             this.xrTableCell28.Text = "xrTableCell28";
-            this.xrTableCell28.Weight = 0.72010697978773075D;
+            this.xrTableCell28.Weight = 0.42683838512208955D;
             // 
             // xrTableCell18
             // 
-            this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell18.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
             this.xrTableCell18.Text = "<400 ug/g creatinine";
-            this.xrTableCell18.Weight = 1.5443106258288646D;
+            this.xrTableCell18.Weight = 1.7131611289937565D;
             // 
             // xrTableCell31
             // 
             this.xrTableCell31.Name = "xrTableCell31";
             this.xrTableCell31.Text = "<35 U/mL";
-            this.xrTableCell31.Weight = 4.1768342268084409D;
+            this.xrTableCell31.Weight = 3.7324897696981956D;
             // 
             // xrTableCell32
             // 
             this.xrTableCell32.Name = "xrTableCell32";
             this.xrTableCell32.Text = "xrTableCell32";
-            this.xrTableCell32.Weight = 1.0505309939498466D;
+            this.xrTableCell32.Weight = 1.0397630919756129D;
+            // 
+            // xrTableCell40
+            // 
+            this.xrTableCell40.Multiline = true;
+            this.xrTableCell40.Name = "xrTableCell40";
+            this.xrTableCell40.Text = "xrTableCell40";
+            this.xrTableCell40.Weight = 0.71283325886611271D;
             // 
             // xrTable1
             // 
@@ -395,14 +376,13 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell7,
             this.xrTableCell8,
-            this.xrTableCell9,
             this.xrTableCell10,
-            this.xrTableCell1,
             this.xrTableCell19,
             this.xrTableCell2,
             this.xrTableCell3,
             this.xrTableCell4,
-            this.xrTableCell5});
+            this.xrTableCell5,
+            this.xrTableCell41});
             this.xrTableRow1.Name = "xrTableRow1";
             this.xrTableRow1.Weight = 1D;
             // 
@@ -410,92 +390,67 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             this.xrTableCell7.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "No")});
+            this.xrTableCell7.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.StylePriority.UseFont = false;
             this.xrTableCell7.Weight = 0.38361931121834253D;
             // 
             // xrTableCell8
             // 
             this.xrTableCell8.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "EmployeeID")});
+            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.Weight = 0.66837760925292122D;
-            // 
-            // xrTableCell9
-            // 
-            this.xrTableCell9.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Title")});
-            this.xrTableCell9.Name = "xrTableCell9";
-            this.xrTableCell9.Weight = 0.53961964873461654D;
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.Weight = 0.8017114949043378D;
             // 
             // xrTableCell10
             // 
             this.xrTableCell10.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "FirstName")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Fullname")});
+            this.xrTableCell10.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
+            this.xrTableCell10.StylePriority.UseFont = false;
             this.xrTableCell10.StylePriority.UsePadding = false;
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell10.Weight = 1.0547240375309903D;
-            // 
-            // xrTableCell1
-            // 
-            this.xrTableCell1.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "LastName")});
-            this.xrTableCell1.Name = "xrTableCell1";
-            this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
-            this.xrTableCell1.StylePriority.UsePadding = false;
-            this.xrTableCell1.StylePriority.UseTextAlignment = false;
-            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell1.Weight = 1.1187541243562569D;
+            this.xrTableCell10.Weight = 2.41309822066482D;
             // 
             // xrTableCell19
             // 
             this.xrTableCell19.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Age")});
+            this.xrTableCell19.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell19.Name = "xrTableCell19";
-            this.xrTableCell19.Weight = 0.33311007352650457D;
+            this.xrTableCell19.StylePriority.UseFont = false;
+            this.xrTableCell19.Weight = 0.37477760586548264D;
             // 
             // xrTableCell2
             // 
             this.xrTableCell2.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Gender")});
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "GenderCode")});
+            this.xrTableCell2.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell2.Name = "xrTableCell2";
-            this.xrTableCell2.Weight = 0.67525272830207306D;
+            this.xrTableCell2.StylePriority.UseFont = false;
+            this.xrTableCell2.Weight = 0.40025130258595648D;
             // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR1234")});
+            this.xrTableCell3.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell3.FormattingRules.Add(this.EthBenzeneH);
             this.xrTableCell3.FormattingRules.Add(this.EthBenzeneL);
             this.xrTableCell3.Name = "xrTableCell3";
-            this.xrTableCell3.Weight = 1.4481175478374739D;
+            this.xrTableCell3.StylePriority.UseFont = false;
+            this.xrTableCell3.Weight = 1.6064509587494351D;
             // 
-            // xrTableCell4
+            // EthBenzeneH
             // 
-            this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
-            this.xrTableCell4.FormattingRules.Add(this.Abnormal);
-            this.xrTableCell4.Name = "xrTableCell4";
-            this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
-            this.xrTableCell4.StylePriority.UsePadding = false;
-            this.xrTableCell4.StylePriority.UseTextAlignment = false;
-            this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell4.Weight = 3.9166648942884552D;
-            // 
-            // xrTableCell5
-            // 
-            this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
-            this.xrTableCell5.FormattingRules.Add(this.Abnormal);
-            this.xrTableCell5.Name = "xrTableCell5";
-            this.xrTableCell5.Weight = 0.985093766561647D;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.EthBenzeneH.Condition = "EndsWith(Trim([PAR1234]), \'H\')";
+            this.EthBenzeneH.Formatting.ForeColor = System.Drawing.Color.Red;
+            this.EthBenzeneH.Name = "EthBenzeneH";
             // 
             // EthBenzeneL
             // 
@@ -503,17 +458,51 @@ namespace MediTech.Reports.Statistic.Checkup
             this.EthBenzeneL.Formatting.ForeColor = System.Drawing.Color.Blue;
             this.EthBenzeneL.Name = "EthBenzeneL";
             // 
+            // xrTableCell4
+            // 
+            this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Conclusion")});
+            this.xrTableCell4.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell4.FormattingRules.Add(this.Abnormal);
+            this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 2, 2, 2, 100F);
+            this.xrTableCell4.StylePriority.UseFont = false;
+            this.xrTableCell4.StylePriority.UsePadding = false;
+            this.xrTableCell4.StylePriority.UseTextAlignment = false;
+            this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell4.Weight = 3.4999980395293941D;
+            // 
             // Abnormal
             // 
             this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
             this.Abnormal.Formatting.ForeColor = System.Drawing.Color.Red;
             this.Abnormal.Name = "Abnormal";
             // 
-            // EthBenzeneH
+            // xrTableCell5
             // 
-            this.EthBenzeneH.Condition = "EndsWith(Trim([PAR1234]), \'H\')";
-            this.EthBenzeneH.Formatting.ForeColor = System.Drawing.Color.Red;
-            this.EthBenzeneH.Name = "EthBenzeneH";
+            this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ResultStatus")});
+            this.xrTableCell5.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell5.FormattingRules.Add(this.Abnormal);
+            this.xrTableCell5.Name = "xrTableCell5";
+            this.xrTableCell5.StylePriority.UseFont = false;
+            this.xrTableCell5.Weight = 0.97499790887590809D;
+            // 
+            // xrTableCell41
+            // 
+            this.xrTableCell41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "StartDate")});
+            this.xrTableCell41.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell41.Multiline = true;
+            this.xrTableCell41.Name = "xrTableCell41";
+            this.xrTableCell41.StylePriority.UseFont = false;
+            this.xrTableCell41.TextFormatString = "{0:dd/MM/yyyy}";
+            this.xrTableCell41.Weight = 0.66842889921560422D;
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // CheckupGroupEthylBenzeneUrine
             // 
@@ -548,8 +537,6 @@ namespace MediTech.Reports.Statistic.Checkup
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
@@ -557,8 +544,6 @@ namespace MediTech.Reports.Statistic.Checkup
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
@@ -568,8 +553,6 @@ namespace MediTech.Reports.Statistic.Checkup
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
@@ -579,9 +562,7 @@ namespace MediTech.Reports.Statistic.Checkup
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
@@ -591,5 +572,9 @@ namespace MediTech.Reports.Statistic.Checkup
         private DevExpress.XtraReports.UI.FormattingRule Abnormal;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
         private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
     }
 }

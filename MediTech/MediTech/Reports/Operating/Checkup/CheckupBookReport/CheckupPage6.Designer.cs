@@ -1140,7 +1140,7 @@
             this.tbFBS.StylePriority.UseBackColor = false;
             this.tbFBS.StylePriority.UseFont = false;
             this.tbFBS.StylePriority.UseTextAlignment = false;
-            this.tbFBS.Text = "ผลการตรวจระดับน้ำตาลในเลือดและโรคเบาหวาน ";
+            this.tbFBS.Text = "ผลการตรวจระดับน้ำตาลในเลือดและโรคเบาหวาน (Blood sugar)";
             this.tbFBS.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // xrLabel1

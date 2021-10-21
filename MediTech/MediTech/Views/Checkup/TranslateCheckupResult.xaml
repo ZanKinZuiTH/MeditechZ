@@ -96,6 +96,15 @@
                                     </dxg:LookUpEdit.StyleSettings>
                                 </dxg:LookUpEdit>
                             </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="จากวันที่">
+                                    <dxe:DateEdit EditValue="{Binding JobDateFrom}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ถึงวันที่">
+                                    <dxe:DateEdit EditValue="{Binding JobDateTo}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            
                             <dxg:GridControl x:Name="gcGroupResult" ItemsSource="{Binding CheckupJobTasks}" 
                                  SelectedItem="{Binding SelectCheckupJobTask}">
                                 <dxg:GridColumn x:Name="colSelected" 

@@ -12,6 +12,5 @@ namespace MediTech.Reports.Statistic.Checkup
         {
             InitializeComponent();
         }
-
     }
 }

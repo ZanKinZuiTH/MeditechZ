@@ -40,7 +40,6 @@
             // 
             // DetailBase
             // 
-            this.DetailBase.HeightF = 100F;
             this.DetailBase.Name = "DetailBase";
             this.DetailBase.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.DetailBase.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
@@ -65,20 +64,20 @@
             this.lbTitle,
             this.xrLabel1,
             this.xrPictureBox1});
-            this.PageHeaderBase.HeightF = 96.00002F;
+            this.PageHeaderBase.HeightF = 121F;
             this.PageHeaderBase.Name = "PageHeaderBase";
             // 
             // lbTitle
             // 
             this.lbTitle.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.lbTitle.CanShrink = true;
-            this.lbTitle.Font = new System.Drawing.Font("EucrosiaUPC", 16F, System.Drawing.FontStyle.Bold);
+            this.lbTitle.Font = new System.Drawing.Font("Angsana New", 16F, System.Drawing.FontStyle.Bold);
             this.lbTitle.ForeColor = System.Drawing.Color.Blue;
-            this.lbTitle.LocationFloat = new DevExpress.Utils.PointFloat(320.3751F, 59.66665F);
+            this.lbTitle.LocationFloat = new DevExpress.Utils.PointFloat(256.6667F, 65.99995F);
             this.lbTitle.Multiline = true;
             this.lbTitle.Name = "lbTitle";
             this.lbTitle.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbTitle.SizeF = new System.Drawing.SizeF(455.5832F, 29.66669F);
+            this.lbTitle.SizeF = new System.Drawing.SizeF(591.7916F, 29.6667F);
             this.lbTitle.StylePriority.UseBorderColor = false;
             this.lbTitle.StylePriority.UseBorders = false;
             this.lbTitle.StylePriority.UseFont = false;
@@ -89,12 +88,12 @@
             // xrLabel1
             // 
             this.xrLabel1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(860.6667F, 11.66667F);
+            this.xrLabel1.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(860.6667F, 10F);
             this.xrLabel1.Multiline = true;
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(278.3333F, 84.33334F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(278.3333F, 94.33334F);
             this.xrLabel1.StylePriority.UseBorders = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -105,8 +104,8 @@
             // xrPictureBox1
             // 
             this.xrPictureBox1.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrPictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("xrPictureBox1.Image")));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(26.66667F, 10F);
+            this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(26.66667F, 26.66666F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220F, 68.99999F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
@@ -123,7 +122,7 @@
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

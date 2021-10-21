@@ -16,6 +16,9 @@ namespace MediTech.Model.Report
         public string LastName { get; set; }
         public string Age { get; set; }
         public string Gender { get; set; }
+        public string Fullname { get; set; }
+        public string GenderCode { get; set; }
+        public DateTime? StartDate { get; set; }
         public string Height { get; set; }
         public string Weight { get; set; }
         public string BMIValue { get; set; }
@@ -189,6 +192,10 @@ namespace MediTech.Model.Report
 
         public string PAR1236 { get; set; } //Methyrene chloride in Urine
         public string PAR1215 { get; set; } //Benzene (t,t-muconic acid)
+
+        public string PAR130 { get; set; } //Isopropyl in Urine
+
+        //public string PAR130 { get; set; } //Isopropyl in Urine
 
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
