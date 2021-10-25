@@ -719,8 +719,13 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CareproviderOrganisationModel> GetCareProviderOrganisation()
         {
+            DateTime dateNow = DateTime.Now.Date;
             List<CareproviderOrganisationModel> data = (from j in db.CareproviderOrganisation
+                                                        join i in db.Careprovider on j.CareproviderUID equals i.UID
                                                         where j.StatusFlag == "A"
+                                                        && i.StatusFlag == "A"
+                                                        && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
                                                         select new CareproviderOrganisationModel
                                                         {
                                                             CareproviderOrganisationUID = j.UID,
@@ -740,9 +745,14 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CareproviderOrganisationModel> GetCareProviderOrganisation(int organisationUID)
         {
+            DateTime dateNow = DateTime.Now.Date;
             List<CareproviderOrganisationModel> data = (from j in db.CareproviderOrganisation
+                                                        join i in db.Careprovider on j.CareproviderUID equals i.UID
                                                         where j.StatusFlag == "A"
+                                                        && i.StatusFlag == "A"
                                                         && j.HealthOrganisationUID == organisationUID
+                                                        && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
                                                         select new CareproviderOrganisationModel
                                                         {
                                                             CareproviderOrganisationUID = j.UID,
