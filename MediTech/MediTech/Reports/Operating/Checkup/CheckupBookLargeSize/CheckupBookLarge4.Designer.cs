@@ -326,7 +326,7 @@
             this.tbFBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tbFBS.CanGrow = false;
             this.tbFBS.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 657.1112F);
+            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(121.9167F, 646.0959F);
             this.tbFBS.Name = "tbFBS";
             this.tbFBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.tbFBS.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
@@ -343,7 +343,7 @@
             this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(50.24998F, 682.8688F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(49.41663F, 672.5816F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
@@ -374,7 +374,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell1.CanGrow = false;
-            this.xrTableCell1.CanShrink = true;
             this.xrTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.RowSpan = 2;
@@ -394,7 +393,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell22.CanGrow = false;
-            this.xrTableCell22.CanShrink = true;
             this.xrTableCell22.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell22.Name = "xrTableCell22";
             this.xrTableCell22.RowSpan = 2;
@@ -414,7 +412,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell24.CanGrow = false;
-            this.xrTableCell24.CanShrink = true;
             this.xrTableCell24.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.xrTableCell24.Name = "xrTableCell24";
             this.xrTableCell24.StylePriority.UseBorderColor = false;
@@ -440,7 +437,6 @@
             // xrTableCell25
             // 
             this.xrTableCell25.CanGrow = false;
-            this.xrTableCell25.CanShrink = true;
             this.xrTableCell25.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrTableCell25.Name = "xrTableCell25";
             this.xrTableCell25.StylePriority.UseBorders = false;
@@ -453,7 +449,6 @@
             // xrTableCell3
             // 
             this.xrTableCell3.CanGrow = false;
-            this.xrTableCell3.CanShrink = true;
             this.xrTableCell3.Font = new System.Drawing.Font("Angsana New", 12F);
             this.xrTableCell3.Name = "xrTableCell3";
             this.xrTableCell3.StylePriority.UseBorders = false;
@@ -470,7 +465,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbsYear1.CanGrow = false;
-            this.cellFbsYear1.CanShrink = true;
             this.cellFbsYear1.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellFbsYear1.Name = "cellFbsYear1";
             this.cellFbsYear1.StylePriority.UseBorderColor = false;
@@ -489,7 +483,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbsYear2.CanGrow = false;
-            this.cellFbsYear2.CanShrink = true;
             this.cellFbsYear2.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellFbsYear2.Name = "cellFbsYear2";
             this.cellFbsYear2.StylePriority.UseBorderColor = false;
@@ -508,7 +501,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbsYear3.CanGrow = false;
-            this.cellFbsYear3.CanShrink = true;
             this.cellFbsYear3.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellFbsYear3.Name = "cellFbsYear3";
             this.cellFbsYear3.StylePriority.UseBorderColor = false;
@@ -538,7 +530,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell4.CanGrow = false;
-            this.xrTableCell4.CanShrink = true;
             this.xrTableCell4.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell4.Name = "xrTableCell4";
             this.xrTableCell4.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -558,7 +549,7 @@
             this.cellFbsRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellFbsRange.CanShrink = true;
+            this.cellFbsRange.CanGrow = false;
             this.cellFbsRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellFbsRange.Name = "cellFbsRange";
             this.cellFbsRange.StylePriority.UseBorderColor = false;
@@ -576,7 +567,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbs1.CanGrow = false;
-            this.cellFbs1.CanShrink = true;
             this.cellFbs1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellFbs1.Name = "cellFbs1";
             this.cellFbs1.StylePriority.UseBorderColor = false;
@@ -594,7 +584,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbs2.CanGrow = false;
-            this.cellFbs2.CanShrink = true;
             this.cellFbs2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellFbs2.Name = "cellFbs2";
             this.cellFbs2.StylePriority.UseBorderColor = false;
@@ -612,7 +601,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellFbs3.CanGrow = false;
-            this.cellFbs3.CanShrink = true;
             this.cellFbs3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellFbs3.Name = "cellFbs3";
             this.cellFbs3.StylePriority.UseBorderColor = false;
@@ -640,7 +628,7 @@
             this.xrTableCell38.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell38.CanShrink = true;
+            this.xrTableCell38.CanGrow = false;
             this.xrTableCell38.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell38.Name = "xrTableCell38";
             this.xrTableCell38.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -659,7 +647,7 @@
             this.lbHbA1cRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbHbA1cRange.CanShrink = true;
+            this.lbHbA1cRange.CanGrow = false;
             this.lbHbA1cRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHbA1cRange.Name = "lbHbA1cRange";
             this.lbHbA1cRange.StylePriority.UseBorderColor = false;
@@ -675,7 +663,7 @@
             this.lbHbA1c1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbHbA1c1.CanShrink = true;
+            this.lbHbA1c1.CanGrow = false;
             this.lbHbA1c1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHbA1c1.Name = "lbHbA1c1";
             this.lbHbA1c1.StylePriority.UseBorderColor = false;
@@ -691,7 +679,7 @@
             this.lbHbA1c2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbHbA1c2.CanShrink = true;
+            this.lbHbA1c2.CanGrow = false;
             this.lbHbA1c2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHbA1c2.Name = "lbHbA1c2";
             this.lbHbA1c2.StylePriority.UseBorderColor = false;
@@ -707,7 +695,7 @@
             this.lbHbA1c3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbHbA1c3.CanShrink = true;
+            this.lbHbA1c3.CanGrow = false;
             this.lbHbA1c3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.lbHbA1c3.Name = "lbHbA1c3";
             this.lbHbA1c3.StylePriority.UseBorderColor = false;
@@ -771,7 +759,7 @@
             this.xrTableCell150.StylePriority.UseTextAlignment = false;
             this.xrTableCell150.Text = "Test";
             this.xrTableCell150.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell150.Weight = 0.55413070217297178D;
+            this.xrTableCell150.Weight = 0.46427509718544646D;
             // 
             // xrTableCell149
             // 
@@ -782,7 +770,7 @@
             this.xrTableCell149.StylePriority.UseTextAlignment = false;
             this.xrTableCell149.Text = "Result";
             this.xrTableCell149.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell149.Weight = 1.8379508805609615D;
+            this.xrTableCell149.Weight = 1.9278064855484867D;
             // 
             // xrTableRow36
             // 
@@ -800,7 +788,7 @@
             this.lbEKGResult.StylePriority.UseTextAlignment = false;
             this.lbEKGResult.Text = "สรุปผล / คำแนะนำ";
             this.lbEKGResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEKGResult.Weight = 0.55413070217297178D;
+            this.lbEKGResult.Weight = 0.46427509718544646D;
             // 
             // lbEKGRecommend
             // 
@@ -810,7 +798,7 @@
             this.lbEKGRecommend.StylePriority.UseFont = false;
             this.lbEKGRecommend.StylePriority.UseTextAlignment = false;
             this.lbEKGRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEKGRecommend.Weight = 1.8379508805609615D;
+            this.lbEKGRecommend.Weight = 1.9278064855484867D;
             // 
             // xrLabel1
             // 
@@ -853,7 +841,7 @@
             this.xrTableRow57,
             this.xrTableRow63,
             this.xrTableRow64});
-            this.tbUA.SizeF = new System.Drawing.SizeF(499.8725F, 489.1721F);
+            this.tbUA.SizeF = new System.Drawing.SizeF(499.8725F, 482.5054F);
             this.tbUA.StylePriority.UseBorderColor = false;
             this.tbUA.StylePriority.UseBorders = false;
             this.tbUA.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -939,7 +927,6 @@
             // 
             this.cellUAYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellUAYear1.CanGrow = false;
-            this.cellUAYear1.CanShrink = true;
             this.cellUAYear1.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellUAYear1.Name = "cellUAYear1";
             this.cellUAYear1.StylePriority.UseBorders = false;
@@ -952,7 +939,6 @@
             // 
             this.cellUAYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellUAYear2.CanGrow = false;
-            this.cellUAYear2.CanShrink = true;
             this.cellUAYear2.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellUAYear2.Name = "cellUAYear2";
             this.cellUAYear2.StylePriority.UseBorders = false;
@@ -966,7 +952,6 @@
             this.cellUAYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellUAYear3.CanGrow = false;
-            this.cellUAYear3.CanShrink = true;
             this.cellUAYear3.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Bold);
             this.cellUAYear3.Name = "cellUAYear3";
             this.cellUAYear3.StylePriority.UseBorders = false;
@@ -990,7 +975,6 @@
             // 
             this.xrTableCell15.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell15.CanGrow = false;
-            this.xrTableCell15.CanShrink = true;
             this.xrTableCell15.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell15.Name = "xrTableCell15";
             this.xrTableCell15.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1006,7 +990,6 @@
             // 
             this.cellColorRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellColorRange.CanGrow = false;
-            this.cellColorRange.CanShrink = true;
             this.cellColorRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellColorRange.Name = "cellColorRange";
             this.cellColorRange.StylePriority.UseBorders = false;
@@ -1019,7 +1002,6 @@
             // 
             this.cellColor1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellColor1.CanGrow = false;
-            this.cellColor1.CanShrink = true;
             this.cellColor1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellColor1.Name = "cellColor1";
             this.cellColor1.StylePriority.UseBorders = false;
@@ -1032,7 +1014,6 @@
             // 
             this.cellColor2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellColor2.CanGrow = false;
-            this.cellColor2.CanShrink = true;
             this.cellColor2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellColor2.Name = "cellColor2";
             this.cellColor2.StylePriority.UseBorders = false;
@@ -1046,7 +1027,6 @@
             this.cellColor3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellColor3.CanGrow = false;
-            this.cellColor3.CanShrink = true;
             this.cellColor3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellColor3.Name = "cellColor3";
             this.cellColor3.StylePriority.UseBorders = false;
@@ -1070,7 +1050,6 @@
             // 
             this.xrTableCell59.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell59.CanGrow = false;
-            this.xrTableCell59.CanShrink = true;
             this.xrTableCell59.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell59.Name = "xrTableCell59";
             this.xrTableCell59.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1086,7 +1065,6 @@
             // 
             this.cellClarityRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellClarityRange.CanGrow = false;
-            this.cellClarityRange.CanShrink = true;
             this.cellClarityRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellClarityRange.Name = "cellClarityRange";
             this.cellClarityRange.StylePriority.UseBorders = false;
@@ -1099,7 +1077,6 @@
             // 
             this.cellClarity1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellClarity1.CanGrow = false;
-            this.cellClarity1.CanShrink = true;
             this.cellClarity1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellClarity1.Name = "cellClarity1";
             this.cellClarity1.StylePriority.UseBorders = false;
@@ -1112,7 +1089,6 @@
             // 
             this.cellClarity2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellClarity2.CanGrow = false;
-            this.cellClarity2.CanShrink = true;
             this.cellClarity2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellClarity2.Name = "cellClarity2";
             this.cellClarity2.StylePriority.UseBorders = false;
@@ -1126,7 +1102,6 @@
             this.cellClarity3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellClarity3.CanGrow = false;
-            this.cellClarity3.CanShrink = true;
             this.cellClarity3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellClarity3.Name = "cellClarity3";
             this.cellClarity3.StylePriority.UseBorders = false;
@@ -1150,7 +1125,6 @@
             // 
             this.xrTableCell64.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell64.CanGrow = false;
-            this.xrTableCell64.CanShrink = true;
             this.xrTableCell64.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell64.Name = "xrTableCell64";
             this.xrTableCell64.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1166,7 +1140,6 @@
             // 
             this.cellSpacGraRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellSpacGraRange.CanGrow = false;
-            this.cellSpacGraRange.CanShrink = true;
             this.cellSpacGraRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellSpacGraRange.Name = "cellSpacGraRange";
             this.cellSpacGraRange.StylePriority.UseBorders = false;
@@ -1179,7 +1152,6 @@
             // 
             this.cellSpacGra1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellSpacGra1.CanGrow = false;
-            this.cellSpacGra1.CanShrink = true;
             this.cellSpacGra1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellSpacGra1.Name = "cellSpacGra1";
             this.cellSpacGra1.StylePriority.UseBorders = false;
@@ -1192,7 +1164,6 @@
             // 
             this.cellSpacGra2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellSpacGra2.CanGrow = false;
-            this.cellSpacGra2.CanShrink = true;
             this.cellSpacGra2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellSpacGra2.Name = "cellSpacGra2";
             this.cellSpacGra2.StylePriority.UseBorders = false;
@@ -1206,7 +1177,6 @@
             this.cellSpacGra3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSpacGra3.CanGrow = false;
-            this.cellSpacGra3.CanShrink = true;
             this.cellSpacGra3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellSpacGra3.Name = "cellSpacGra3";
             this.cellSpacGra3.StylePriority.UseBorders = false;
@@ -1230,7 +1200,6 @@
             // 
             this.xrTableCell69.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell69.CanGrow = false;
-            this.xrTableCell69.CanShrink = true;
             this.xrTableCell69.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell69.Name = "xrTableCell69";
             this.xrTableCell69.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1246,7 +1215,6 @@
             // 
             this.cellPhRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellPhRange.CanGrow = false;
-            this.cellPhRange.CanShrink = true;
             this.cellPhRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellPhRange.Name = "cellPhRange";
             this.cellPhRange.StylePriority.UseBorders = false;
@@ -1259,7 +1227,6 @@
             // 
             this.cellPh1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellPh1.CanGrow = false;
-            this.cellPh1.CanShrink = true;
             this.cellPh1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellPh1.Name = "cellPh1";
             this.cellPh1.StylePriority.UseBorders = false;
@@ -1272,7 +1239,6 @@
             // 
             this.cellPh2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellPh2.CanGrow = false;
-            this.cellPh2.CanShrink = true;
             this.cellPh2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellPh2.Name = "cellPh2";
             this.cellPh2.StylePriority.UseBorders = false;
@@ -1286,7 +1252,6 @@
             this.cellPh3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellPh3.CanGrow = false;
-            this.cellPh3.CanShrink = true;
             this.cellPh3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellPh3.Name = "cellPh3";
             this.cellPh3.StylePriority.UseBorders = false;
@@ -1310,7 +1275,6 @@
             // 
             this.xrTableCell74.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell74.CanGrow = false;
-            this.xrTableCell74.CanShrink = true;
             this.xrTableCell74.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell74.Name = "xrTableCell74";
             this.xrTableCell74.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1326,7 +1290,6 @@
             // 
             this.cellProteinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellProteinRange.CanGrow = false;
-            this.cellProteinRange.CanShrink = true;
             this.cellProteinRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellProteinRange.Name = "cellProteinRange";
             this.cellProteinRange.StylePriority.UseBorders = false;
@@ -1339,7 +1302,6 @@
             // 
             this.cellProtein1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellProtein1.CanGrow = false;
-            this.cellProtein1.CanShrink = true;
             this.cellProtein1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellProtein1.Name = "cellProtein1";
             this.cellProtein1.StylePriority.UseBorders = false;
@@ -1352,7 +1314,6 @@
             // 
             this.cellProtein2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellProtein2.CanGrow = false;
-            this.cellProtein2.CanShrink = true;
             this.cellProtein2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellProtein2.Name = "cellProtein2";
             this.cellProtein2.StylePriority.UseBorders = false;
@@ -1366,7 +1327,6 @@
             this.cellProtein3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellProtein3.CanGrow = false;
-            this.cellProtein3.CanShrink = true;
             this.cellProtein3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellProtein3.Name = "cellProtein3";
             this.cellProtein3.StylePriority.UseBorders = false;
@@ -1390,7 +1350,6 @@
             // 
             this.xrTableCell79.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell79.CanGrow = false;
-            this.xrTableCell79.CanShrink = true;
             this.xrTableCell79.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell79.Name = "xrTableCell79";
             this.xrTableCell79.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1406,7 +1365,6 @@
             // 
             this.cellGlucoseRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellGlucoseRange.CanGrow = false;
-            this.cellGlucoseRange.CanShrink = true;
             this.cellGlucoseRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellGlucoseRange.Name = "cellGlucoseRange";
             this.cellGlucoseRange.StylePriority.UseBorders = false;
@@ -1419,7 +1377,6 @@
             // 
             this.cellGlucose1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellGlucose1.CanGrow = false;
-            this.cellGlucose1.CanShrink = true;
             this.cellGlucose1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellGlucose1.Name = "cellGlucose1";
             this.cellGlucose1.StylePriority.UseBorders = false;
@@ -1432,7 +1389,6 @@
             // 
             this.cellGlucose2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellGlucose2.CanGrow = false;
-            this.cellGlucose2.CanShrink = true;
             this.cellGlucose2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellGlucose2.Name = "cellGlucose2";
             this.cellGlucose2.StylePriority.UseBorders = false;
@@ -1446,7 +1402,6 @@
             this.cellGlucose3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellGlucose3.CanGrow = false;
-            this.cellGlucose3.CanShrink = true;
             this.cellGlucose3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellGlucose3.Name = "cellGlucose3";
             this.cellGlucose3.StylePriority.UseBorders = false;
@@ -1470,7 +1425,6 @@
             // 
             this.xrTableCell84.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell84.CanGrow = false;
-            this.xrTableCell84.CanShrink = true;
             this.xrTableCell84.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell84.Name = "xrTableCell84";
             this.xrTableCell84.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1486,7 +1440,6 @@
             // 
             this.cellKetoneRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellKetoneRange.CanGrow = false;
-            this.cellKetoneRange.CanShrink = true;
             this.cellKetoneRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellKetoneRange.Name = "cellKetoneRange";
             this.cellKetoneRange.StylePriority.UseBorders = false;
@@ -1499,7 +1452,6 @@
             // 
             this.cellKetone1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellKetone1.CanGrow = false;
-            this.cellKetone1.CanShrink = true;
             this.cellKetone1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellKetone1.Name = "cellKetone1";
             this.cellKetone1.StylePriority.UseBorders = false;
@@ -1512,7 +1464,6 @@
             // 
             this.cellKetone2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellKetone2.CanGrow = false;
-            this.cellKetone2.CanShrink = true;
             this.cellKetone2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellKetone2.Name = "cellKetone2";
             this.cellKetone2.StylePriority.UseBorders = false;
@@ -1526,7 +1477,6 @@
             this.cellKetone3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellKetone3.CanGrow = false;
-            this.cellKetone3.CanShrink = true;
             this.cellKetone3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellKetone3.Name = "cellKetone3";
             this.cellKetone3.StylePriority.UseBorders = false;
@@ -1550,7 +1500,6 @@
             // 
             this.xrTableCell89.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell89.CanGrow = false;
-            this.xrTableCell89.CanShrink = true;
             this.xrTableCell89.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell89.Name = "xrTableCell89";
             this.xrTableCell89.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1566,7 +1515,6 @@
             // 
             this.cellNitritesRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellNitritesRange.CanGrow = false;
-            this.cellNitritesRange.CanShrink = true;
             this.cellNitritesRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellNitritesRange.Name = "cellNitritesRange";
             this.cellNitritesRange.StylePriority.UseBorders = false;
@@ -1579,7 +1527,6 @@
             // 
             this.cellNitrites1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellNitrites1.CanGrow = false;
-            this.cellNitrites1.CanShrink = true;
             this.cellNitrites1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellNitrites1.Name = "cellNitrites1";
             this.cellNitrites1.StylePriority.UseBorders = false;
@@ -1592,7 +1539,6 @@
             // 
             this.cellNitrites2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellNitrites2.CanGrow = false;
-            this.cellNitrites2.CanShrink = true;
             this.cellNitrites2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellNitrites2.Name = "cellNitrites2";
             this.cellNitrites2.StylePriority.UseBorders = false;
@@ -1606,7 +1552,6 @@
             this.cellNitrites3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellNitrites3.CanGrow = false;
-            this.cellNitrites3.CanShrink = true;
             this.cellNitrites3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellNitrites3.Name = "cellNitrites3";
             this.cellNitrites3.StylePriority.UseBorders = false;
@@ -1630,7 +1575,6 @@
             // 
             this.xrTableCell94.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell94.CanGrow = false;
-            this.xrTableCell94.CanShrink = true;
             this.xrTableCell94.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell94.Name = "xrTableCell94";
             this.xrTableCell94.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1646,7 +1590,6 @@
             // 
             this.cellBilirubinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBilirubinRange.CanGrow = false;
-            this.cellBilirubinRange.CanShrink = true;
             this.cellBilirubinRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBilirubinRange.Name = "cellBilirubinRange";
             this.cellBilirubinRange.StylePriority.UseBorders = false;
@@ -1659,7 +1602,6 @@
             // 
             this.cellBilirubin1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBilirubin1.CanGrow = false;
-            this.cellBilirubin1.CanShrink = true;
             this.cellBilirubin1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBilirubin1.Name = "cellBilirubin1";
             this.cellBilirubin1.StylePriority.UseBorders = false;
@@ -1672,7 +1614,6 @@
             // 
             this.cellBilirubin2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBilirubin2.CanGrow = false;
-            this.cellBilirubin2.CanShrink = true;
             this.cellBilirubin2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBilirubin2.Name = "cellBilirubin2";
             this.cellBilirubin2.StylePriority.UseBorders = false;
@@ -1686,7 +1627,6 @@
             this.cellBilirubin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBilirubin3.CanGrow = false;
-            this.cellBilirubin3.CanShrink = true;
             this.cellBilirubin3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBilirubin3.Name = "cellBilirubin3";
             this.cellBilirubin3.StylePriority.UseBorders = false;
@@ -1710,7 +1650,6 @@
             // 
             this.xrTableCell99.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell99.CanGrow = false;
-            this.xrTableCell99.CanShrink = true;
             this.xrTableCell99.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell99.Name = "xrTableCell99";
             this.xrTableCell99.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1726,7 +1665,6 @@
             // 
             this.cellUrobilinogenRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellUrobilinogenRange.CanGrow = false;
-            this.cellUrobilinogenRange.CanShrink = true;
             this.cellUrobilinogenRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellUrobilinogenRange.Name = "cellUrobilinogenRange";
             this.cellUrobilinogenRange.StylePriority.UseBorders = false;
@@ -1739,7 +1677,6 @@
             // 
             this.cellUrobilinogen1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellUrobilinogen1.CanGrow = false;
-            this.cellUrobilinogen1.CanShrink = true;
             this.cellUrobilinogen1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellUrobilinogen1.Name = "cellUrobilinogen1";
             this.cellUrobilinogen1.StylePriority.UseBorders = false;
@@ -1752,7 +1689,6 @@
             // 
             this.cellUrobilinogen2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellUrobilinogen2.CanGrow = false;
-            this.cellUrobilinogen2.CanShrink = true;
             this.cellUrobilinogen2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellUrobilinogen2.Name = "cellUrobilinogen2";
             this.cellUrobilinogen2.StylePriority.UseBorders = false;
@@ -1766,7 +1702,6 @@
             this.cellUrobilinogen3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellUrobilinogen3.CanGrow = false;
-            this.cellUrobilinogen3.CanShrink = true;
             this.cellUrobilinogen3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellUrobilinogen3.Name = "cellUrobilinogen3";
             this.cellUrobilinogen3.StylePriority.UseBorders = false;
@@ -1790,7 +1725,6 @@
             // 
             this.xrTableCell104.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell104.CanGrow = false;
-            this.xrTableCell104.CanShrink = true;
             this.xrTableCell104.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell104.Name = "xrTableCell104";
             this.xrTableCell104.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1798,7 +1732,7 @@
             this.xrTableCell104.StylePriority.UseFont = false;
             this.xrTableCell104.StylePriority.UsePadding = false;
             this.xrTableCell104.StylePriority.UseTextAlignment = false;
-            this.xrTableCell104.Text = "Leukocyte esterase :เม็ดเลือดขาว";
+            this.xrTableCell104.Text = "Leukocyte esterase : เม็ดเลือดขาว";
             this.xrTableCell104.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell104.Weight = 1.0824664911085831D;
             // 
@@ -1806,7 +1740,6 @@
             // 
             this.cellLeukocyteRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellLeukocyteRange.CanGrow = false;
-            this.cellLeukocyteRange.CanShrink = true;
             this.cellLeukocyteRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellLeukocyteRange.Name = "cellLeukocyteRange";
             this.cellLeukocyteRange.StylePriority.UseBorders = false;
@@ -1819,7 +1752,6 @@
             // 
             this.cellLeukocyte1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellLeukocyte1.CanGrow = false;
-            this.cellLeukocyte1.CanShrink = true;
             this.cellLeukocyte1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellLeukocyte1.Name = "cellLeukocyte1";
             this.cellLeukocyte1.StylePriority.UseBorders = false;
@@ -1832,7 +1764,6 @@
             // 
             this.cellLeukocyte2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellLeukocyte2.CanGrow = false;
-            this.cellLeukocyte2.CanShrink = true;
             this.cellLeukocyte2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellLeukocyte2.Name = "cellLeukocyte2";
             this.cellLeukocyte2.StylePriority.UseBorders = false;
@@ -1846,7 +1777,6 @@
             this.cellLeukocyte3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellLeukocyte3.CanGrow = false;
-            this.cellLeukocyte3.CanShrink = true;
             this.cellLeukocyte3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellLeukocyte3.Name = "cellLeukocyte3";
             this.cellLeukocyte3.StylePriority.UseBorders = false;
@@ -1870,7 +1800,6 @@
             // 
             this.xrTableCell109.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell109.CanGrow = false;
-            this.xrTableCell109.CanShrink = true;
             this.xrTableCell109.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell109.Name = "xrTableCell109";
             this.xrTableCell109.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1886,7 +1815,6 @@
             // 
             this.cellBloodRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBloodRange.CanGrow = false;
-            this.cellBloodRange.CanShrink = true;
             this.cellBloodRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBloodRange.Name = "cellBloodRange";
             this.cellBloodRange.StylePriority.UseBorders = false;
@@ -1899,7 +1827,6 @@
             // 
             this.cellBlood1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBlood1.CanGrow = false;
-            this.cellBlood1.CanShrink = true;
             this.cellBlood1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBlood1.Name = "cellBlood1";
             this.cellBlood1.StylePriority.UseBorders = false;
@@ -1912,7 +1839,6 @@
             // 
             this.cellBlood2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellBlood2.CanGrow = false;
-            this.cellBlood2.CanShrink = true;
             this.cellBlood2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBlood2.Name = "cellBlood2";
             this.cellBlood2.StylePriority.UseBorders = false;
@@ -1926,7 +1852,6 @@
             this.cellBlood3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBlood3.CanGrow = false;
-            this.cellBlood3.CanShrink = true;
             this.cellBlood3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellBlood3.Name = "cellBlood3";
             this.cellBlood3.StylePriority.UseBorders = false;
@@ -1950,7 +1875,6 @@
             // 
             this.xrTableCell114.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell114.CanGrow = false;
-            this.xrTableCell114.CanShrink = true;
             this.xrTableCell114.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell114.Name = "xrTableCell114";
             this.xrTableCell114.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -1966,7 +1890,6 @@
             // 
             this.cellErythrocytesRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellErythrocytesRange.CanGrow = false;
-            this.cellErythrocytesRange.CanShrink = true;
             this.cellErythrocytesRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellErythrocytesRange.Name = "cellErythrocytesRange";
             this.cellErythrocytesRange.StylePriority.UseBorders = false;
@@ -1979,7 +1902,6 @@
             // 
             this.cellErythrocytes1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellErythrocytes1.CanGrow = false;
-            this.cellErythrocytes1.CanShrink = true;
             this.cellErythrocytes1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellErythrocytes1.Name = "cellErythrocytes1";
             this.cellErythrocytes1.StylePriority.UseBorders = false;
@@ -1992,7 +1914,6 @@
             // 
             this.cellErythrocytes2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellErythrocytes2.CanGrow = false;
-            this.cellErythrocytes2.CanShrink = true;
             this.cellErythrocytes2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellErythrocytes2.Name = "cellErythrocytes2";
             this.cellErythrocytes2.StylePriority.UseBorders = false;
@@ -2006,7 +1927,6 @@
             this.cellErythrocytes3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellErythrocytes3.CanGrow = false;
-            this.cellErythrocytes3.CanShrink = true;
             this.cellErythrocytes3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellErythrocytes3.Name = "cellErythrocytes3";
             this.cellErythrocytes3.StylePriority.UseBorders = false;
@@ -2030,7 +1950,6 @@
             // 
             this.xrTableCell119.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell119.CanGrow = false;
-            this.xrTableCell119.CanShrink = true;
             this.xrTableCell119.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell119.Name = "xrTableCell119";
             this.xrTableCell119.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2046,7 +1965,6 @@
             // 
             this.cellWbcRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellWbcRange.CanGrow = false;
-            this.cellWbcRange.CanShrink = true;
             this.cellWbcRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellWbcRange.Name = "cellWbcRange";
             this.cellWbcRange.StylePriority.UseBorders = false;
@@ -2059,7 +1977,6 @@
             // 
             this.cellWbc1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellWbc1.CanGrow = false;
-            this.cellWbc1.CanShrink = true;
             this.cellWbc1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellWbc1.Name = "cellWbc1";
             this.cellWbc1.StylePriority.UseBorders = false;
@@ -2072,7 +1989,6 @@
             // 
             this.cellWbc2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellWbc2.CanGrow = false;
-            this.cellWbc2.CanShrink = true;
             this.cellWbc2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellWbc2.Name = "cellWbc2";
             this.cellWbc2.StylePriority.UseBorders = false;
@@ -2086,7 +2002,6 @@
             this.cellWbc3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellWbc3.CanGrow = false;
-            this.cellWbc3.CanShrink = true;
             this.cellWbc3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellWbc3.Name = "cellWbc3";
             this.cellWbc3.StylePriority.UseBorders = false;
@@ -2110,7 +2025,6 @@
             // 
             this.xrTableCell124.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell124.CanGrow = false;
-            this.xrTableCell124.CanShrink = true;
             this.xrTableCell124.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell124.Name = "xrTableCell124";
             this.xrTableCell124.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2126,7 +2040,6 @@
             // 
             this.cellRbcRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellRbcRange.CanGrow = false;
-            this.cellRbcRange.CanShrink = true;
             this.cellRbcRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellRbcRange.Name = "cellRbcRange";
             this.cellRbcRange.StylePriority.UseBorders = false;
@@ -2139,7 +2052,6 @@
             // 
             this.cellRbc1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellRbc1.CanGrow = false;
-            this.cellRbc1.CanShrink = true;
             this.cellRbc1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellRbc1.Name = "cellRbc1";
             this.cellRbc1.StylePriority.UseBorders = false;
@@ -2152,7 +2064,6 @@
             // 
             this.cellRbc2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellRbc2.CanGrow = false;
-            this.cellRbc2.CanShrink = true;
             this.cellRbc2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellRbc2.Name = "cellRbc2";
             this.cellRbc2.StylePriority.UseBorders = false;
@@ -2166,7 +2077,6 @@
             this.cellRbc3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellRbc3.CanGrow = false;
-            this.cellRbc3.CanShrink = true;
             this.cellRbc3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellRbc3.Name = "cellRbc3";
             this.cellRbc3.StylePriority.UseBorders = false;
@@ -2190,7 +2100,6 @@
             // 
             this.xrTableCell16.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell16.CanGrow = false;
-            this.xrTableCell16.CanShrink = true;
             this.xrTableCell16.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell16.Name = "xrTableCell16";
             this.xrTableCell16.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2206,7 +2115,6 @@
             // 
             this.cellEpithelialCellsRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellEpithelialCellsRange.CanGrow = false;
-            this.cellEpithelialCellsRange.CanShrink = true;
             this.cellEpithelialCellsRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellEpithelialCellsRange.Name = "cellEpithelialCellsRange";
             this.cellEpithelialCellsRange.StylePriority.UseBorders = false;
@@ -2219,7 +2127,6 @@
             // 
             this.cellEpithelialCells1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellEpithelialCells1.CanGrow = false;
-            this.cellEpithelialCells1.CanShrink = true;
             this.cellEpithelialCells1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellEpithelialCells1.Name = "cellEpithelialCells1";
             this.cellEpithelialCells1.StylePriority.UseBorders = false;
@@ -2232,7 +2139,6 @@
             // 
             this.cellEpithelialCells2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellEpithelialCells2.CanGrow = false;
-            this.cellEpithelialCells2.CanShrink = true;
             this.cellEpithelialCells2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellEpithelialCells2.Name = "cellEpithelialCells2";
             this.cellEpithelialCells2.StylePriority.UseBorders = false;
@@ -2246,7 +2152,6 @@
             this.cellEpithelialCells3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellEpithelialCells3.CanGrow = false;
-            this.cellEpithelialCells3.CanShrink = true;
             this.cellEpithelialCells3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellEpithelialCells3.Name = "cellEpithelialCells3";
             this.cellEpithelialCells3.StylePriority.UseBorders = false;
@@ -2270,7 +2175,6 @@
             // 
             this.xrTableCell18.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.xrTableCell18.CanGrow = false;
-            this.xrTableCell18.CanShrink = true;
             this.xrTableCell18.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2286,7 +2190,6 @@
             // 
             this.cellAmorphousRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellAmorphousRange.CanGrow = false;
-            this.cellAmorphousRange.CanShrink = true;
             this.cellAmorphousRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellAmorphousRange.Name = "cellAmorphousRange";
             this.cellAmorphousRange.StylePriority.UseBorders = false;
@@ -2299,7 +2202,6 @@
             // 
             this.cellAmorphous1.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellAmorphous1.CanGrow = false;
-            this.cellAmorphous1.CanShrink = true;
             this.cellAmorphous1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellAmorphous1.Name = "cellAmorphous1";
             this.cellAmorphous1.StylePriority.UseBorders = false;
@@ -2312,7 +2214,6 @@
             // 
             this.cellAmorphous2.Borders = ((DevExpress.XtraPrinting.BorderSide)((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)));
             this.cellAmorphous2.CanGrow = false;
-            this.cellAmorphous2.CanShrink = true;
             this.cellAmorphous2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellAmorphous2.Name = "cellAmorphous2";
             this.cellAmorphous2.StylePriority.UseBorders = false;
@@ -2326,7 +2227,6 @@
             this.cellAmorphous3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAmorphous3.CanGrow = false;
-            this.cellAmorphous3.CanShrink = true;
             this.cellAmorphous3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellAmorphous3.Name = "cellAmorphous3";
             this.cellAmorphous3.StylePriority.UseBorders = false;
@@ -2351,7 +2251,6 @@
             this.xrTableCell63.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell63.CanGrow = false;
-            this.xrTableCell63.CanShrink = true;
             this.xrTableCell63.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
             this.xrTableCell63.Name = "xrTableCell63";
             this.xrTableCell63.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
@@ -2368,7 +2267,6 @@
             this.cellOtherRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellOtherRange.CanGrow = false;
-            this.cellOtherRange.CanShrink = true;
             this.cellOtherRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellOtherRange.Name = "cellOtherRange";
             this.cellOtherRange.StylePriority.UseBorders = false;
@@ -2382,7 +2280,6 @@
             this.cellOther1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellOther1.CanGrow = false;
-            this.cellOther1.CanShrink = true;
             this.cellOther1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellOther1.Name = "cellOther1";
             this.cellOther1.StylePriority.UseBorders = false;
@@ -2396,7 +2293,6 @@
             this.cellOther2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellOther2.CanGrow = false;
-            this.cellOther2.CanShrink = true;
             this.cellOther2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellOther2.Name = "cellOther2";
             this.cellOther2.StylePriority.UseBorders = false;
@@ -2411,7 +2307,6 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellOther3.CanGrow = false;
-            this.cellOther3.CanShrink = true;
             this.cellOther3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellOther3.Name = "cellOther3";
             this.cellOther3.StylePriority.UseBorders = false;
@@ -2423,8 +2318,9 @@
             // xrLabel5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.xrLabel5.CanGrow = false;
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 564.2973F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(122.75F, 555F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
@@ -2433,6 +2329,7 @@
             this.xrLabel5.StylePriority.UseTextAlignment = false;
             this.xrLabel5.Text = "ผลการตรวจระดับกรดยูริค (Uric acid) ";
             this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.xrLabel5.WordWrap = false;
             // 
             // tbUric
             // 
@@ -2441,7 +2338,7 @@
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUric.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(50.24996F, 589.2973F);
+            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(50.24996F, 580.4166F);
             this.tbUric.Name = "tbUric";
             this.tbUric.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow48,
@@ -2613,6 +2510,7 @@
             // 
             // cellUricRange
             // 
+            this.cellUricRange.CanGrow = false;
             this.cellUricRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
             this.cellUricRange.Name = "cellUricRange";
             this.cellUricRange.StylePriority.UseBorders = false;
@@ -2708,7 +2606,7 @@
             this.TitleAudiogram.StylePriority.UseTextAlignment = false;
             this.TitleAudiogram.Text = "การได้ยิน ";
             this.TitleAudiogram.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.TitleAudiogram.Weight = 0.88711300339682075D;
+            this.TitleAudiogram.Weight = 0.75633979526302D;
             // 
             // TitleAudioListResult
             // 
@@ -2718,7 +2616,7 @@
             this.TitleAudioListResult.StylePriority.UseTextAlignment = false;
             this.TitleAudioListResult.Text = "ผลการตรวจการได้ยิน ณ ความถี่";
             this.TitleAudioListResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.TitleAudioListResult.Weight = 2.9423926204644313D;
+            this.TitleAudioListResult.Weight = 3.0731658285982317D;
             // 
             // xrTableRow30
             // 
@@ -2738,7 +2636,7 @@
             this.TitleAudioRight.StylePriority.UseTextAlignment = false;
             this.TitleAudioRight.Text = "แปลหูขวา";
             this.TitleAudioRight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioRight.Weight = 0.88711300339682075D;
+            this.TitleAudioRight.Weight = 0.75633979526302D;
             // 
             // lbAudioRight
             // 
@@ -2747,7 +2645,7 @@
             this.lbAudioRight.StylePriority.UseFont = false;
             this.lbAudioRight.StylePriority.UseTextAlignment = false;
             this.lbAudioRight.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioRight.Weight = 2.9423926204644313D;
+            this.lbAudioRight.Weight = 3.0731658285982317D;
             // 
             // xrTableRow31
             // 
@@ -2767,7 +2665,7 @@
             this.TitleAudioLeft.StylePriority.UseTextAlignment = false;
             this.TitleAudioLeft.Text = "แปลหูซ้าย";
             this.TitleAudioLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioLeft.Weight = 0.88711300339682075D;
+            this.TitleAudioLeft.Weight = 0.75633979526302D;
             // 
             // lbAudioLeft
             // 
@@ -2776,7 +2674,7 @@
             this.lbAudioLeft.StylePriority.UseFont = false;
             this.lbAudioLeft.StylePriority.UseTextAlignment = false;
             this.lbAudioLeft.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioLeft.Weight = 2.9423926204644313D;
+            this.lbAudioLeft.Weight = 3.0731658285982317D;
             // 
             // xrTableRow34
             // 
@@ -2796,7 +2694,7 @@
             this.TitleAudioResult.StylePriority.UseTextAlignment = false;
             this.TitleAudioResult.Text = "สรุปผล ";
             this.TitleAudioResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioResult.Weight = 0.88711300339682075D;
+            this.TitleAudioResult.Weight = 0.75633979526302D;
             // 
             // lbAudioResult
             // 
@@ -2805,7 +2703,7 @@
             this.lbAudioResult.StylePriority.UseFont = false;
             this.lbAudioResult.StylePriority.UseTextAlignment = false;
             this.lbAudioResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioResult.Weight = 2.9423926204644313D;
+            this.lbAudioResult.Weight = 3.0731658285982317D;
             // 
             // xrTableRow35
             // 
@@ -2825,7 +2723,7 @@
             this.TitleAudioRecommend.StylePriority.UseTextAlignment = false;
             this.TitleAudioRecommend.Text = "คำแนะนำแพทย์";
             this.TitleAudioRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitleAudioRecommend.Weight = 0.88711300339682075D;
+            this.TitleAudioRecommend.Weight = 0.75633979526302D;
             // 
             // lbAudioRecommend
             // 
@@ -2837,7 +2735,7 @@
             this.lbAudioRecommend.StylePriority.UsePadding = false;
             this.lbAudioRecommend.StylePriority.UseTextAlignment = false;
             this.lbAudioRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbAudioRecommend.Weight = 2.9423926204644313D;
+            this.lbAudioRecommend.Weight = 3.0731658285982317D;
             // 
             // tbLung
             // 
@@ -2853,7 +2751,7 @@
             this.xrTableRow21,
             this.xrTableRow47,
             this.xrTableRow27});
-            this.tbLung.SizeF = new System.Drawing.SizeF(487.2267F, 164.9274F);
+            this.tbLung.SizeF = new System.Drawing.SizeF(487.2267F, 161.594F);
             this.tbLung.StylePriority.UseBorderColor = false;
             this.tbLung.StylePriority.UseBorders = false;
             // 
@@ -2875,7 +2773,7 @@
             this.xrTableCell26.StylePriority.UseTextAlignment = false;
             this.xrTableCell26.Text = "รายการ (List)";
             this.xrTableCell26.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell26.Weight = 0.844095907124549D;
+            this.xrTableCell26.Weight = 0.71247227884618369D;
             // 
             // xrTableCell27
             // 
@@ -2885,7 +2783,7 @@
             this.xrTableCell27.StylePriority.UseTextAlignment = false;
             this.xrTableCell27.Text = "ค่าที่วัดได้ (Measure)";
             this.xrTableCell27.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell27.Weight = 0.94016845936078131D;
+            this.xrTableCell27.Weight = 0.97150772998414547D;
             // 
             // xrTableCell112
             // 
@@ -2895,7 +2793,7 @@
             this.xrTableCell112.StylePriority.UseTextAlignment = false;
             this.xrTableCell112.Text = "ค่าที่ควรได้ (Predicted)";
             this.xrTableCell112.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell112.Weight = 0.94016844976493752D;
+            this.xrTableCell112.Weight = 0.99031034167582332D;
             // 
             // xrTableCell111
             // 
@@ -2905,7 +2803,7 @@
             this.xrTableCell111.StylePriority.UseTextAlignment = false;
             this.xrTableCell111.Text = "ร้อยละ (%Predicted)";
             this.xrTableCell111.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell111.Weight = 0.94016833091142149D;
+            this.xrTableCell111.Weight = 0.990310796655537D;
             // 
             // xrTableRow42
             // 
@@ -2927,7 +2825,7 @@
             this.xrTableCell113.StylePriority.UseTextAlignment = false;
             this.xrTableCell113.Text = "FVC";
             this.xrTableCell113.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell113.Weight = 0.844095907124549D;
+            this.xrTableCell113.Weight = 0.71247227884618369D;
             // 
             // lbFVCMeasure
             // 
@@ -2936,7 +2834,7 @@
             this.lbFVCMeasure.StylePriority.UseFont = false;
             this.lbFVCMeasure.StylePriority.UseTextAlignment = false;
             this.lbFVCMeasure.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFVCMeasure.Weight = 0.94016845936078131D;
+            this.lbFVCMeasure.Weight = 0.97150772998414547D;
             // 
             // lbFVCPredic
             // 
@@ -2945,7 +2843,7 @@
             this.lbFVCPredic.StylePriority.UseFont = false;
             this.lbFVCPredic.StylePriority.UseTextAlignment = false;
             this.lbFVCPredic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFVCPredic.Weight = 0.94016844976493752D;
+            this.lbFVCPredic.Weight = 0.99031034167582332D;
             // 
             // lbFVCPer
             // 
@@ -2954,7 +2852,7 @@
             this.lbFVCPer.StylePriority.UseFont = false;
             this.lbFVCPer.StylePriority.UseTextAlignment = false;
             this.lbFVCPer.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFVCPer.Weight = 0.94016833091142149D;
+            this.lbFVCPer.Weight = 0.990310796655537D;
             // 
             // xrTableRow43
             // 
@@ -2976,7 +2874,7 @@
             this.xrTableCell117.StylePriority.UseTextAlignment = false;
             this.xrTableCell117.Text = "FEV1";
             this.xrTableCell117.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell117.Weight = 0.844095907124549D;
+            this.xrTableCell117.Weight = 0.71247227884618369D;
             // 
             // lbFEV1Measure
             // 
@@ -2985,7 +2883,7 @@
             this.lbFEV1Measure.StylePriority.UseFont = false;
             this.lbFEV1Measure.StylePriority.UseTextAlignment = false;
             this.lbFEV1Measure.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEV1Measure.Weight = 0.94016845936078131D;
+            this.lbFEV1Measure.Weight = 0.97150772998414547D;
             // 
             // lbFEV1Predic
             // 
@@ -2994,7 +2892,7 @@
             this.lbFEV1Predic.StylePriority.UseFont = false;
             this.lbFEV1Predic.StylePriority.UseTextAlignment = false;
             this.lbFEV1Predic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEV1Predic.Weight = 0.94016844976493752D;
+            this.lbFEV1Predic.Weight = 0.99031034167582332D;
             // 
             // lbFEV1Per
             // 
@@ -3003,7 +2901,7 @@
             this.lbFEV1Per.StylePriority.UseFont = false;
             this.lbFEV1Per.StylePriority.UseTextAlignment = false;
             this.lbFEV1Per.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEV1Per.Weight = 0.94016833091142149D;
+            this.lbFEV1Per.Weight = 0.990310796655537D;
             // 
             // xrTableRow21
             // 
@@ -3025,7 +2923,7 @@
             this.xrTableCell121.StylePriority.UseTextAlignment = false;
             this.xrTableCell121.Text = "FFV1/FVC";
             this.xrTableCell121.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell121.Weight = 0.844095907124549D;
+            this.xrTableCell121.Weight = 0.71247227884618369D;
             // 
             // lbFEVMeasure
             // 
@@ -3034,7 +2932,7 @@
             this.lbFEVMeasure.StylePriority.UseFont = false;
             this.lbFEVMeasure.StylePriority.UseTextAlignment = false;
             this.lbFEVMeasure.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEVMeasure.Weight = 0.94016845936078131D;
+            this.lbFEVMeasure.Weight = 0.97150772998414547D;
             // 
             // lbFEVPredic
             // 
@@ -3043,7 +2941,7 @@
             this.lbFEVPredic.StylePriority.UseFont = false;
             this.lbFEVPredic.StylePriority.UseTextAlignment = false;
             this.lbFEVPredic.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEVPredic.Weight = 0.94016844976493752D;
+            this.lbFEVPredic.Weight = 0.99031034167582332D;
             // 
             // lbFEVPer
             // 
@@ -3052,7 +2950,7 @@
             this.lbFEVPer.StylePriority.UseFont = false;
             this.lbFEVPer.StylePriority.UseTextAlignment = false;
             this.lbFEVPer.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbFEVPer.Weight = 0.94016833091142149D;
+            this.lbFEVPer.Weight = 0.990310796655537D;
             // 
             // xrTableRow47
             // 
@@ -3072,7 +2970,7 @@
             this.TitlePulmonaryResult.StylePriority.UseTextAlignment = false;
             this.TitlePulmonaryResult.Text = "สรุปผล (Result)";
             this.TitlePulmonaryResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitlePulmonaryResult.Weight = 0.844095907124549D;
+            this.TitlePulmonaryResult.Weight = 0.71247227884618369D;
             // 
             // lbLungResult
             // 
@@ -3081,7 +2979,7 @@
             this.lbLungResult.StylePriority.UseFont = false;
             this.lbLungResult.StylePriority.UseTextAlignment = false;
             this.lbLungResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbLungResult.Weight = 2.82050524003714D;
+            this.lbLungResult.Weight = 2.9521288683155054D;
             // 
             // xrTableRow27
             // 
@@ -3089,7 +2987,7 @@
             this.TitlePulmonaryRecommend,
             this.lbLungRecommend});
             this.xrTableRow27.Name = "xrTableRow27";
-            this.xrTableRow27.Weight = 2.1834895948631488D;
+            this.xrTableRow27.Weight = 2.0404607802220807D;
             // 
             // TitlePulmonaryRecommend
             // 
@@ -3105,7 +3003,7 @@
             this.TitlePulmonaryRecommend.StylePriority.UseTextAlignment = false;
             this.TitlePulmonaryRecommend.Text = "คำแนะนำแพทย์";
             this.TitlePulmonaryRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.TitlePulmonaryRecommend.Weight = 0.844095907124549D;
+            this.TitlePulmonaryRecommend.Weight = 0.71247227884618369D;
             // 
             // lbLungRecommend
             // 
@@ -3121,7 +3019,7 @@
             this.lbLungRecommend.StylePriority.UsePadding = false;
             this.lbLungRecommend.StylePriority.UseTextAlignment = false;
             this.lbLungRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbLungRecommend.Weight = 2.82050524003714D;
+            this.lbLungRecommend.Weight = 2.9521288683155054D;
             // 
             // xrLabel7
             // 
@@ -3153,7 +3051,7 @@
             this.xrTableRow13,
             this.xrTableRow16,
             this.xrTableRow14});
-            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(487.2266F, 165.155F);
+            this.tbVisionOccmed.SizeF = new System.Drawing.SizeF(487.2266F, 159.3216F);
             this.tbVisionOccmed.StylePriority.UseBorderColor = false;
             this.tbVisionOccmed.StylePriority.UseBorders = false;
             // 
@@ -3350,7 +3248,7 @@
             this.TitleVisionOccmedRecommend,
             this.lbVisionOccmedRecommend});
             this.xrTableRow14.Name = "xrTableRow14";
-            this.xrTableRow14.Weight = 2.0695627871468933D;
+            this.xrTableRow14.Weight = 1.8670899181254719D;
             // 
             // TitleVisionOccmedRecommend
             // 

@@ -1368,7 +1368,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page6.StoolCultureYear2.Text = "ปี" + " " + year2.ToString();
                 page6.StoolCultureYear3.Text = "ปี" + " " + year3.ToString();
 
-                page6.cellStColorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189")?.ReferenceRange;
+                //page6.cellStColorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189")?.ReferenceRange;
                 page6.cellStoolCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
                 page6.cellStoolCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
                 page6.cellStoolCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
