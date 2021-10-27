@@ -366,8 +366,6 @@ namespace MediTechWebApi.Controllers
                 DataTable dtDupicate = SqlDirectStore.pGetOrderDuplicate(patientUID);
                 if (dtDupicate != null && dtDupicate.Rows.Count > 0)
                 {
-
-
                     DataRow[] rowDuplicate = dtDupicate.Select("BillableItemUID = " + billItemModel.BillableItemUID);
                     if (rowDuplicate != null)
                     {

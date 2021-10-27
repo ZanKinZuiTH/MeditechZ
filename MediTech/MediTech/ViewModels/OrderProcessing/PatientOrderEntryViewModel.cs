@@ -539,7 +539,9 @@ namespace MediTech.ViewModels
                             if (orderAlready != null)
                             {
                                 WarningDialog("รายการ " + billItem.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
-                                continue;
+                                if (billItem.BillingServiceMetaData == "Lab Test" || billItem.BillingServiceMetaData == "Radiology"
+                                    || billItem.BillingServiceMetaData == "Mobile Checkup")
+                                    continue;
                             }
 
                             List<PatientOrderAlertModel> listOrderAlert = DataService.OrderProcessing.CriteriaOrderAlert(PatientVisit.PatientUID, billItem);
@@ -670,13 +672,16 @@ namespace MediTech.ViewModels
         {
             try
             {
+                BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
                 var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billableItemUID);
                 if (orderAlready != null)
                 {
                     WarningDialog("รายการ " + orderAlready.ItemName + " นี้มีอยู่แล้ว โปรดตรวจสอบ");
-                    return;
+                    if (billItem.BillingServiceMetaData == "Lab Test" || billItem.BillingServiceMetaData == "Radiology"
+                        || billItem.BillingServiceMetaData == "Mobile Checkup")
+                        return;
                 }
-                BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
+
 
                 int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
 
