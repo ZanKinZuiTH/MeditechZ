@@ -317,30 +317,31 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "พบแพทย์", DisplayOrder = 2 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 3, Display = "เจาะเลือด", DisplayOrder = 3 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ", DisplayOrder = 4 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อุจจาระ", DisplayOrder = 5 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป", DisplayOrder = 6 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ", DisplayOrder = 7 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน", DisplayOrder = 8 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด", DisplayOrder = 9 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray", DisplayOrder = 10 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "EKG", DisplayOrder = 11 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Whole)", DisplayOrder = 12 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Upper)", DisplayOrder = 13 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Lower)", DisplayOrder = 14 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "แมมโมแกรม(MMG)", DisplayOrder = 15 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง", DisplayOrder = 16 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อมือ", DisplayOrder = 17 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อขา", DisplayOrder = 18 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง+ขา", DisplayOrder = 19 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "PAP Smear", DisplayOrder = 20 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 21 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 22 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 23 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ปัสสาวะ(Toxi)", DisplayOrder = 5 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อุจจาระ", DisplayOrder = 6 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาทั่วไป", DisplayOrder = 7 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "สายตาอาชีวะ", DisplayOrder = 8 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจการได้ยิน", DisplayOrder = 9 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรววจเป่าปอด", DisplayOrder = 10 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "X-ray", DisplayOrder = 11 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "EKG", DisplayOrder = 12 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Whole)", DisplayOrder = 13 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Upper)", DisplayOrder = 14 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "อัลตราซาวด์ช่องท้อง(Lower)", DisplayOrder = 15 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "แมมโมแกรม(MMG)", DisplayOrder = 16 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง", DisplayOrder = 17 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อมือ", DisplayOrder = 18 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อขา", DisplayOrder = 19 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง+ขา", DisplayOrder = 20 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "PAP Smear", DisplayOrder = 21 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 22 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 23 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 24 });
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]
                 , MobileStickerSource[10],MobileStickerSource[11],MobileStickerSource[12],MobileStickerSource[13],MobileStickerSource[14],MobileStickerSource[15]
-                ,MobileStickerSource[16],MobileStickerSource[17],MobileStickerSource[18],MobileStickerSource[19],MobileStickerSource[20],MobileStickerSource[21],MobileStickerSource[22]};
+                ,MobileStickerSource[16],MobileStickerSource[17],MobileStickerSource[18],MobileStickerSource[19],MobileStickerSource[20],MobileStickerSource[21],MobileStickerSource[22],MobileStickerSource[23]};
         }
         private void ChooseFile()
         {
