@@ -584,8 +584,7 @@ namespace MediTech.ViewModels
                                     }
 
                                 }
-
-                                view.gcTestParameter.SetCellValue(newRowHandle, columnName, item[columnName].ToString());
+                                view.gcTestParameter.SetCellValue(newRowHandle, columnName.Replace("#","."), item[columnName].ToString());
 
                             }
                             pgBarCounter = pgBarCounter + 1;
