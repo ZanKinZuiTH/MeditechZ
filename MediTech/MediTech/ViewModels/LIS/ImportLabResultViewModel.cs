@@ -674,7 +674,8 @@ namespace MediTech.ViewModels
             {
                 if (columnParameter.Tag != null)
                 {
-                    string resultValue = rowData[columnParameter.FieldName.Replace(".", "#")].ToString()?.Trim();
+                    //string resultValue = rowData[columnParameter.FieldName.Replace(".", "#")].ToString()?.Trim();
+                    string resultValue = rowData[columnParameter.FieldName].ToString()?.Trim();
                     if (!string.IsNullOrEmpty(resultValue))
                     {
                         RequestResultLinkModel resultItem = (RequestResultLinkModel)columnParameter.Tag;
