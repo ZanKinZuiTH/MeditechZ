@@ -138,27 +138,28 @@
         <EntityTypeShape EntityType="MediTechModel.SEQConfiguration" Width="1.5" PointX="38.75" PointY="11.75" />
         <EntityTypeShape EntityType="MediTechModel.SEQDISPOSEID" Width="1.5" PointX="38.75" PointY="16.75" />
         <EntityTypeShape EntityType="MediTechModel.SEQGRNID" Width="1.5" PointX="38.75" PointY="19.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQITCODE" Width="1.5" PointX="38.75" PointY="22.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemIssue" Width="1.5" PointX="38.75" PointY="25.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemReceive" Width="1.5" PointX="38.75" PointY="28.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQItemRequest" Width="1.5" PointX="38.75" PointY="31.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQLISRequest" Width="1.5" PointX="38.75" PointY="34.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientBill" Width="1.5" PointX="38.75" PointY="37.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientID" Width="1.5" PointX="10.75" PointY="39.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientINVBill" Width="1.5" PointX="24.75" PointY="39.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPatientOrder" Width="1.5" PointX="26.75" PointY="39.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPrescription" Width="1.5" PointX="40.75" PointY="0.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQPROID" Width="1.5" PointX="40.75" PointY="3.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQResult" Width="1.5" PointX="40.75" PointY="6.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQRISRequest" Width="1.5" PointX="40.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQSTAID" Width="1.5" PointX="40.75" PointY="12.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQTestCodeID" Width="1.5" PointX="40.75" PointY="15.75" />
-        <EntityTypeShape EntityType="MediTechModel.SEQVisitID" Width="1.5" PointX="16.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.SessionDefinition" Width="1.5" PointX="40.75" PointY="18.75" />
-        <EntityTypeShape EntityType="MediTechModel.SessionWithdrawnDetail" Width="1.5" PointX="40.75" PointY="24.75" />
-        <EntityTypeShape EntityType="MediTechModel.Specimen" Width="1.5" PointX="40.75" PointY="29.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQGroupReceipt" Width="1.5" PointX="38.75" PointY="22.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQITCODE" Width="1.5" PointX="38.75" PointY="25.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemIssue" Width="1.5" PointX="38.75" PointY="28.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemReceive" Width="1.5" PointX="38.75" PointY="31.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQItemRequest" Width="1.5" PointX="38.75" PointY="34.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQLISRequest" Width="1.5" PointX="38.75" PointY="37.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientBill" Width="1.5" PointX="10.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientID" Width="1.5" PointX="24.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientINVBill" Width="1.5" PointX="26.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPatientOrder" Width="1.5" PointX="40.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPrescription" Width="1.5" PointX="40.75" PointY="3.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQPROID" Width="1.5" PointX="40.75" PointY="6.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQResult" Width="1.5" PointX="40.75" PointY="9.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQRISRequest" Width="1.5" PointX="40.75" PointY="12.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQSTAID" Width="1.5" PointX="40.75" PointY="15.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQTestCodeID" Width="1.5" PointX="16.75" PointY="40.75" />
+        <EntityTypeShape EntityType="MediTechModel.SEQVisitID" Width="1.5" PointX="40.75" PointY="18.75" />
+        <EntityTypeShape EntityType="MediTechModel.SessionDefinition" Width="1.5" PointX="40.75" PointY="21.75" />
+        <EntityTypeShape EntityType="MediTechModel.SessionWithdrawnDetail" Width="1.5" PointX="40.75" PointY="27.75" />
+        <EntityTypeShape EntityType="MediTechModel.Specimen" Width="1.5" PointX="40.75" PointY="32.75" />
         <EntityTypeShape EntityType="MediTechModel.Stock" Width="1.5" PointX="32.75" PointY="40.75" />
-        <EntityTypeShape EntityType="MediTechModel.StockAdjustment" Width="1.5" PointX="40.75" PointY="35.75" />
+        <EntityTypeShape EntityType="MediTechModel.StockAdjustment" Width="1.5" PointX="40.75" PointY="38.75" />
         <EntityTypeShape EntityType="MediTechModel.StockBalance" Width="1.5" PointX="4.75" PointY="41.75" />
         <EntityTypeShape EntityType="MediTechModel.StockMovement" Width="1.5" PointX="6.75" PointY="41.75" />
         <EntityTypeShape EntityType="MediTechModel.Store" Width="1.5" PointX="12.75" PointY="41.75" />
@@ -167,8 +168,8 @@
         <EntityTypeShape EntityType="MediTechModel.VIPPatient" Width="1.5" PointX="28.75" PointY="41.75" />
         <EntityTypeShape EntityType="MediTechModel.WellnessData" Width="1.5" PointX="34.75" PointY="41.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="36.75" PointY="41.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="38.75" PointY="41.75" />
-        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="40.75" PointY="41.75" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="42.75" PointY="0.75" />
+        <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="42.75" PointY="4.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

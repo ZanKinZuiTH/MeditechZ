@@ -191,6 +191,12 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _SendToBLIFECommand;
+        public RelayCommand SendToBLIFECommand
+        {
+            get { return _SendToBLIFECommand ?? (_SendToBLIFECommand = new RelayCommand(SendToBLIFE)); }
+        }
+
         private RelayCommand _PreviewCommand;
         public RelayCommand PreviewCommand
         {
@@ -346,7 +352,45 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+        void SendToBLIFE()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    //try
+                    //{
+                    //    if (SelectPatientVisit == null)
+                    //    {
+                    //        WarningDialog("กรุณาเลือกคนไข้");
+                    //        return;
+                    //    }
+                    //    if (string.IsNullOrEmpty(WellnessResult))
+                    //    {
+                    //        WarningDialog("กรุณากรอกข้อมูลในช่องสรุปเล่มรายบุุคล");
+                    //        return;
+                    //    }
 
+                    //    if (WellnessData == null)
+                    //    {
+                    //        WellnessData = new WellnessDataModel();
+                    //        WellnessData.PatientUID = SelectPatientVisit.PatientUID;
+                    //        WellnessData.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+                    //    }
+                    //    WellnessData.WellnessResult = WellnessResult;
+                    //    DataService.PatientHistory.ManageWellnessData(WellnessData, AppUtil.Current.UserID);
+                    //    SelectPatientVisit.IsWellnessResult = true;
+                    //    SaveSuccessDialog();
+                    //}
+                    //catch (Exception er)
+                    //{
+
+                    //    ErrorDialog(er.Message);
+                    //}
+                }
+            }
+        }
         void Preview()
         {
             if (SelectPatientCheckupResult != null)

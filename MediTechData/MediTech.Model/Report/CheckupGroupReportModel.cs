@@ -195,7 +195,7 @@ namespace MediTech.Model.Report
 
         public string PAR130 { get; set; } //Isopropyl in Urine
 
-        //public string PAR130 { get; set; } //Isopropyl in Urine
+        public string PAR1261 { get; set; } //Fluoride in Urine
 
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }

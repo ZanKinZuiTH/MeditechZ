@@ -790,6 +790,31 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        //[Route("SendWellnessToBLIFE")]
+        //[HttpPost]
+        //public HttpResponseMessage SendWellnessToBLIFE(WellnessDataModel model, int userID)
+        //{
+        //    try
+        //    {
+        //        DateTime now = DateTime.Now;
+
+
+        //        WellnessData wellNess = db.WellnessData.Find(model.WellnessDataUID);
+        //        wellNess.MUser = userID;
+        //        wellNess.MWhen = now;
+        //        //wellNess.OnBlife = "Y";
+        //        db.WellnessData.AddOrUpdate(wellNess);
+        //        db.SaveChanges();
+
+        //        return Request.CreateResponse(HttpStatusCode.OK);
+        //    }
+        //    catch (Exception ex)
+        //    {
+
+        //        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+        //    }
+        //}
+
         [Route("DeleteWellnessData")]
         [HttpDelete]
         public HttpResponseMessage DeleteWellnessData(int wellNessUID, int userID)

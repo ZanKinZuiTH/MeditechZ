@@ -218,6 +218,12 @@
             this.cellMercuryUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellMercuryUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellMercuryUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowMercuryBlood = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell107 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMercuryBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMercuryBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMercuryBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellMercuryBloodRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.RowBenzenettUrine = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell117 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellBenzenettUrine1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -561,12 +567,18 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.RowMercuryBlood = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell107 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMercuryBlood1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMercuryBlood2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMercuryBlood3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.cellMercuryBloodRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Rowfluoride = new DevExpress.XtraReports.UI.XRTableRow();
+            this.fluoride = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowFormadehyde = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell129 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeRange = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
@@ -1101,8 +1113,10 @@
             this.RowEthylbenzeneUrine,
             this.RowMercuryUrine,
             this.RowMercuryBlood,
-            this.RowBenzenettUrine});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(370.3334F, 551.208F);
+            this.RowBenzenettUrine,
+            this.Rowfluoride,
+            this.RowFormadehyde});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(370.3334F, 590.7919F);
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
             this.tbToxicology.StylePriority.UseFont = false;
@@ -3515,6 +3529,102 @@
             this.cellMercuryUrineRange.StylePriority.UseTextAlignment = false;
             this.cellMercuryUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellMercuryUrineRange.Weight = 1.02262920318444D;
+            // 
+            // RowMercuryBlood
+            // 
+            this.RowMercuryBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell107,
+            this.cellMercuryBlood1,
+            this.cellMercuryBlood2,
+            this.cellMercuryBlood3,
+            this.cellMercuryBloodRange});
+            this.RowMercuryBlood.Name = "RowMercuryBlood";
+            this.RowMercuryBlood.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell107
+            // 
+            this.xrTableCell107.BackColor = System.Drawing.Color.Transparent;
+            this.xrTableCell107.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell107.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell107.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell107.Multiline = true;
+            this.xrTableCell107.Name = "xrTableCell107";
+            this.xrTableCell107.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell107.StylePriority.UseBackColor = false;
+            this.xrTableCell107.StylePriority.UseBorderColor = false;
+            this.xrTableCell107.StylePriority.UseBorders = false;
+            this.xrTableCell107.StylePriority.UseFont = false;
+            this.xrTableCell107.StylePriority.UsePadding = false;
+            this.xrTableCell107.StylePriority.UseTextAlignment = false;
+            this.xrTableCell107.Text = "Mercury  in Blood";
+            this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell107.Weight = 1.1174292350188477D;
+            // 
+            // cellMercuryBlood1
+            // 
+            this.cellMercuryBlood1.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellMercuryBlood1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellMercuryBlood1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellMercuryBlood1.Multiline = true;
+            this.cellMercuryBlood1.Name = "cellMercuryBlood1";
+            this.cellMercuryBlood1.StylePriority.UseBorderColor = false;
+            this.cellMercuryBlood1.StylePriority.UseBorders = false;
+            this.cellMercuryBlood1.StylePriority.UseFont = false;
+            this.cellMercuryBlood1.StylePriority.UseTextAlignment = false;
+            this.cellMercuryBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMercuryBlood1.Weight = 0.45385613117503626D;
+            // 
+            // cellMercuryBlood2
+            // 
+            this.cellMercuryBlood2.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellMercuryBlood2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellMercuryBlood2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellMercuryBlood2.Multiline = true;
+            this.cellMercuryBlood2.Name = "cellMercuryBlood2";
+            this.cellMercuryBlood2.StylePriority.UseBorderColor = false;
+            this.cellMercuryBlood2.StylePriority.UseBorders = false;
+            this.cellMercuryBlood2.StylePriority.UseFont = false;
+            this.cellMercuryBlood2.StylePriority.UseTextAlignment = false;
+            this.cellMercuryBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMercuryBlood2.Weight = 0.45385615540204716D;
+            // 
+            // cellMercuryBlood3
+            // 
+            this.cellMercuryBlood3.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellMercuryBlood3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellMercuryBlood3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.cellMercuryBlood3.Multiline = true;
+            this.cellMercuryBlood3.Name = "cellMercuryBlood3";
+            this.cellMercuryBlood3.StylePriority.UseBorderColor = false;
+            this.cellMercuryBlood3.StylePriority.UseBorders = false;
+            this.cellMercuryBlood3.StylePriority.UseFont = false;
+            this.cellMercuryBlood3.StylePriority.UseTextAlignment = false;
+            this.cellMercuryBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMercuryBlood3.Weight = 0.45385614770547417D;
+            // 
+            // cellMercuryBloodRange
+            // 
+            this.cellMercuryBloodRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.cellMercuryBloodRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.cellMercuryBloodRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.cellMercuryBloodRange.Multiline = true;
+            this.cellMercuryBloodRange.Name = "cellMercuryBloodRange";
+            this.cellMercuryBloodRange.StylePriority.UseBorderColor = false;
+            this.cellMercuryBloodRange.StylePriority.UseBorders = false;
+            this.cellMercuryBloodRange.StylePriority.UseFont = false;
+            this.cellMercuryBloodRange.StylePriority.UseTextAlignment = false;
+            this.cellMercuryBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellMercuryBloodRange.Weight = 1.02262920318444D;
             // 
             // RowBenzenettUrine
             // 
@@ -8197,101 +8307,197 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // RowMercuryBlood
+            // Rowfluoride
             // 
-            this.RowMercuryBlood.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell107,
-            this.cellMercuryBlood1,
-            this.cellMercuryBlood2,
-            this.cellMercuryBlood3,
-            this.cellMercuryBloodRange});
-            this.RowMercuryBlood.Name = "RowMercuryBlood";
-            this.RowMercuryBlood.Weight = 0.92341768297675519D;
+            this.Rowfluoride.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.fluoride,
+            this.fluorideY1,
+            this.fluorideY2,
+            this.fluorideY3,
+            this.fluorideRange});
+            this.Rowfluoride.Name = "Rowfluoride";
+            this.Rowfluoride.Weight = 0.92341768297675519D;
             // 
-            // xrTableCell107
+            // fluoride
             // 
-            this.xrTableCell107.BackColor = System.Drawing.Color.Transparent;
-            this.xrTableCell107.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell107.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.fluoride.BackColor = System.Drawing.Color.Transparent;
+            this.fluoride.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluoride.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell107.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell107.Multiline = true;
-            this.xrTableCell107.Name = "xrTableCell107";
-            this.xrTableCell107.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell107.StylePriority.UseBackColor = false;
-            this.xrTableCell107.StylePriority.UseBorderColor = false;
-            this.xrTableCell107.StylePriority.UseBorders = false;
-            this.xrTableCell107.StylePriority.UseFont = false;
-            this.xrTableCell107.StylePriority.UsePadding = false;
-            this.xrTableCell107.StylePriority.UseTextAlignment = false;
-            this.xrTableCell107.Text = "Mercury  in Blood";
-            this.xrTableCell107.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell107.Weight = 1.1174292350188477D;
+            this.fluoride.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.fluoride.Multiline = true;
+            this.fluoride.Name = "fluoride";
+            this.fluoride.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.fluoride.StylePriority.UseBackColor = false;
+            this.fluoride.StylePriority.UseBorderColor = false;
+            this.fluoride.StylePriority.UseBorders = false;
+            this.fluoride.StylePriority.UseFont = false;
+            this.fluoride.StylePriority.UsePadding = false;
+            this.fluoride.StylePriority.UseTextAlignment = false;
+            this.fluoride.Text = "fluoride in urine";
+            this.fluoride.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.fluoride.Weight = 1.1174292350188477D;
             // 
-            // cellMercuryBlood1
+            // fluorideY1
             // 
-            this.cellMercuryBlood1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellMercuryBlood1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.fluorideY1.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellMercuryBlood1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellMercuryBlood1.Multiline = true;
-            this.cellMercuryBlood1.Name = "cellMercuryBlood1";
-            this.cellMercuryBlood1.StylePriority.UseBorderColor = false;
-            this.cellMercuryBlood1.StylePriority.UseBorders = false;
-            this.cellMercuryBlood1.StylePriority.UseFont = false;
-            this.cellMercuryBlood1.StylePriority.UseTextAlignment = false;
-            this.cellMercuryBlood1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryBlood1.Weight = 0.45385613117503626D;
+            this.fluorideY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY1.Multiline = true;
+            this.fluorideY1.Name = "fluorideY1";
+            this.fluorideY1.StylePriority.UseBorderColor = false;
+            this.fluorideY1.StylePriority.UseBorders = false;
+            this.fluorideY1.StylePriority.UseFont = false;
+            this.fluorideY1.StylePriority.UseTextAlignment = false;
+            this.fluorideY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY1.Weight = 0.45385613117503626D;
             // 
-            // cellMercuryBlood2
+            // fluorideY2
             // 
-            this.cellMercuryBlood2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellMercuryBlood2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.fluorideY2.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellMercuryBlood2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellMercuryBlood2.Multiline = true;
-            this.cellMercuryBlood2.Name = "cellMercuryBlood2";
-            this.cellMercuryBlood2.StylePriority.UseBorderColor = false;
-            this.cellMercuryBlood2.StylePriority.UseBorders = false;
-            this.cellMercuryBlood2.StylePriority.UseFont = false;
-            this.cellMercuryBlood2.StylePriority.UseTextAlignment = false;
-            this.cellMercuryBlood2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryBlood2.Weight = 0.45385615540204716D;
+            this.fluorideY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY2.Multiline = true;
+            this.fluorideY2.Name = "fluorideY2";
+            this.fluorideY2.StylePriority.UseBorderColor = false;
+            this.fluorideY2.StylePriority.UseBorders = false;
+            this.fluorideY2.StylePriority.UseFont = false;
+            this.fluorideY2.StylePriority.UseTextAlignment = false;
+            this.fluorideY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY2.Weight = 0.45385615540204716D;
             // 
-            // cellMercuryBlood3
+            // fluorideY3
             // 
-            this.cellMercuryBlood3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellMercuryBlood3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.fluorideY3.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellMercuryBlood3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.cellMercuryBlood3.Multiline = true;
-            this.cellMercuryBlood3.Name = "cellMercuryBlood3";
-            this.cellMercuryBlood3.StylePriority.UseBorderColor = false;
-            this.cellMercuryBlood3.StylePriority.UseBorders = false;
-            this.cellMercuryBlood3.StylePriority.UseFont = false;
-            this.cellMercuryBlood3.StylePriority.UseTextAlignment = false;
-            this.cellMercuryBlood3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryBlood3.Weight = 0.45385614770547417D;
+            this.fluorideY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY3.Multiline = true;
+            this.fluorideY3.Name = "fluorideY3";
+            this.fluorideY3.StylePriority.UseBorderColor = false;
+            this.fluorideY3.StylePriority.UseBorders = false;
+            this.fluorideY3.StylePriority.UseFont = false;
+            this.fluorideY3.StylePriority.UseTextAlignment = false;
+            this.fluorideY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY3.Weight = 0.45385614770547417D;
             // 
-            // cellMercuryBloodRange
+            // fluorideRange
             // 
-            this.cellMercuryBloodRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellMercuryBloodRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.fluorideRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.cellMercuryBloodRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.cellMercuryBloodRange.Multiline = true;
-            this.cellMercuryBloodRange.Name = "cellMercuryBloodRange";
-            this.cellMercuryBloodRange.StylePriority.UseBorderColor = false;
-            this.cellMercuryBloodRange.StylePriority.UseBorders = false;
-            this.cellMercuryBloodRange.StylePriority.UseFont = false;
-            this.cellMercuryBloodRange.StylePriority.UseTextAlignment = false;
-            this.cellMercuryBloodRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.cellMercuryBloodRange.Weight = 1.02262920318444D;
+            this.fluorideRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.fluorideRange.Multiline = true;
+            this.fluorideRange.Name = "fluorideRange";
+            this.fluorideRange.StylePriority.UseBorderColor = false;
+            this.fluorideRange.StylePriority.UseBorders = false;
+            this.fluorideRange.StylePriority.UseFont = false;
+            this.fluorideRange.StylePriority.UseTextAlignment = false;
+            this.fluorideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideRange.Weight = 1.02262920318444D;
+            // 
+            // RowFormadehyde
+            // 
+            this.RowFormadehyde.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell129,
+            this.FormadehydeY1,
+            this.FormadehydeY2,
+            this.FormadehydeY3,
+            this.FormadehydeRange});
+            this.RowFormadehyde.Name = "RowFormadehyde";
+            this.RowFormadehyde.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell129
+            // 
+            this.xrTableCell129.BackColor = System.Drawing.Color.Transparent;
+            this.xrTableCell129.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell129.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell129.Multiline = true;
+            this.xrTableCell129.Name = "xrTableCell129";
+            this.xrTableCell129.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell129.StylePriority.UseBackColor = false;
+            this.xrTableCell129.StylePriority.UseBorderColor = false;
+            this.xrTableCell129.StylePriority.UseBorders = false;
+            this.xrTableCell129.StylePriority.UseFont = false;
+            this.xrTableCell129.StylePriority.UsePadding = false;
+            this.xrTableCell129.StylePriority.UseTextAlignment = false;
+            this.xrTableCell129.Text = "Formadehyde in Urine";
+            this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell129.Weight = 1.1174292350188477D;
+            // 
+            // FormadehydeY1
+            // 
+            this.FormadehydeY1.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY1.Multiline = true;
+            this.FormadehydeY1.Name = "FormadehydeY1";
+            this.FormadehydeY1.StylePriority.UseBorderColor = false;
+            this.FormadehydeY1.StylePriority.UseBorders = false;
+            this.FormadehydeY1.StylePriority.UseFont = false;
+            this.FormadehydeY1.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY1.Weight = 0.45385613117503626D;
+            // 
+            // FormadehydeY2
+            // 
+            this.FormadehydeY2.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY2.Multiline = true;
+            this.FormadehydeY2.Name = "FormadehydeY2";
+            this.FormadehydeY2.StylePriority.UseBorderColor = false;
+            this.FormadehydeY2.StylePriority.UseBorders = false;
+            this.FormadehydeY2.StylePriority.UseFont = false;
+            this.FormadehydeY2.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY2.Weight = 0.45385615540204716D;
+            // 
+            // FormadehydeY3
+            // 
+            this.FormadehydeY3.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY3.Multiline = true;
+            this.FormadehydeY3.Name = "FormadehydeY3";
+            this.FormadehydeY3.StylePriority.UseBorderColor = false;
+            this.FormadehydeY3.StylePriority.UseBorders = false;
+            this.FormadehydeY3.StylePriority.UseFont = false;
+            this.FormadehydeY3.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY3.Weight = 0.45385614770547417D;
+            // 
+            // FormadehydeRange
+            // 
+            this.FormadehydeRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.FormadehydeRange.Multiline = true;
+            this.FormadehydeRange.Name = "FormadehydeRange";
+            this.FormadehydeRange.StylePriority.UseBorderColor = false;
+            this.FormadehydeRange.StylePriority.UseBorders = false;
+            this.FormadehydeRange.StylePriority.UseFont = false;
+            this.FormadehydeRange.StylePriority.UseTextAlignment = false;
+            this.FormadehydeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeRange.Weight = 1.02262920318444D;
             // 
             // RiskBook3
             // 
@@ -8857,5 +9063,17 @@
         public DevExpress.XtraReports.UI.XRTableCell cellMercuryBlood2;
         public DevExpress.XtraReports.UI.XRTableCell cellMercuryBlood3;
         public DevExpress.XtraReports.UI.XRTableCell cellMercuryBloodRange;
+        private DevExpress.XtraReports.UI.XRTableCell fluoride;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell129;
+        public DevExpress.XtraReports.UI.XRTableRow Rowfluoride;
+        public DevExpress.XtraReports.UI.XRTableCell fluorideY1;
+        public DevExpress.XtraReports.UI.XRTableCell fluorideY2;
+        public DevExpress.XtraReports.UI.XRTableCell fluorideY3;
+        public DevExpress.XtraReports.UI.XRTableCell fluorideRange;
+        public DevExpress.XtraReports.UI.XRTableRow RowFormadehyde;
+        public DevExpress.XtraReports.UI.XRTableCell FormadehydeY1;
+        public DevExpress.XtraReports.UI.XRTableCell FormadehydeY2;
+        public DevExpress.XtraReports.UI.XRTableCell FormadehydeY3;
+        public DevExpress.XtraReports.UI.XRTableCell FormadehydeRange;
     }
 }

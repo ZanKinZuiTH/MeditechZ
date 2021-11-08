@@ -108,7 +108,7 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             this.GroupHeader1.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.GroupHeader1.HeightF = 75.66666F;
+            this.GroupHeader1.HeightF = 74.16667F;
             this.GroupHeader1.KeepTogether = true;
             this.GroupHeader1.Name = "GroupHeader1";
             // 
@@ -358,6 +358,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell18.Multiline = true;
             this.xrTableCell18.Name = "xrTableCell18";
             this.xrTableCell18.StylePriority.UseFont = false;
+            this.xrTableCell18.Text = "<3 mg/L";
             this.xrTableCell18.Weight = 1.9442205034820008D;
             // 
             // xrTableCell31
@@ -467,11 +468,14 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             // xrTableCell5
             // 
+            this.xrTableCell5.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PAR1261")});
             this.xrTableCell5.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell5.FormattingRules.Add(this.FluH);
+            this.xrTableCell5.FormattingRules.Add(this.FluL);
             this.xrTableCell5.Multiline = true;
             this.xrTableCell5.Name = "xrTableCell5";
             this.xrTableCell5.StylePriority.UseFont = false;
-            this.xrTableCell5.Text = "xrTableCell5";
             this.xrTableCell5.Weight = 0.49170092876256877D;
             // 
             // xrTableCell3
@@ -524,10 +528,14 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             // FluH
             // 
+            this.FluH.Condition = "EndsWith(Trim([PAR1261]), \'H\')";
+            this.FluH.Formatting.ForeColor = System.Drawing.Color.Red;
             this.FluH.Name = "FluH";
             // 
             // FluL
             // 
+            this.FluL.Condition = "EndsWith(Trim([PAR1261]), \'L\')\n";
+            this.FluL.Formatting.ForeColor = System.Drawing.Color.Blue;
             this.FluL.Name = "FluL";
             // 
             // CheckupGroupFluorineUrine

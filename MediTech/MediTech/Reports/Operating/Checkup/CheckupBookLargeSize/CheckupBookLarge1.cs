@@ -565,7 +565,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                         || p.RequestItemCode.Contains("LAB489") //Mercury
                         || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
                         || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
-                        || p.RequestItemCode.Contains("LAB488")) //Mercury in blood
+                        || p.RequestItemCode.Contains("LAB488") //Mercury in blood
+                        || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
+                        || p.RequestItemCode.Contains("LAB513")) //formadehyde in Urine
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1411,6 +1413,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page6.RowBenzenettUrine.Visible = false;
                 page6.RowMercuryBlood.Visible = false;
 
+                page6.Rowfluoride.Visible = false;
+                page6.RowFormadehyde.Visible = false;
+
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
                     List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
@@ -1718,6 +1723,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                         page6.cellMercuryBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
+
+                    #region fluoride  in Urine
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261") != null)
+                    {
+                        page6.Rowfluoride.Visible = true;
+                        page6.fluorideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261")?.ReferenceRange;
+                        page6.fluorideY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year1)?.ResultValue;
+                        page6.fluorideY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year2)?.ResultValue;
+                        page6.fluorideY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region formadehyde in Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
+                    //{
+                    //    page6.RowFormadehyde.Visible = true;
+                    //    page6.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
+                    //    page6.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
+                    //    page6.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
+                    //    page6.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
+                    //}
+#endregion
                 }
                 else
                 {
