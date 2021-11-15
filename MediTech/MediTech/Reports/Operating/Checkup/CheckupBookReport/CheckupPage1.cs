@@ -1798,7 +1798,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookReport
                     }
                     #endregion
 
-                    #region Mercury Blood
+                    #region Fluorine Urine
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261") != null)
                     {

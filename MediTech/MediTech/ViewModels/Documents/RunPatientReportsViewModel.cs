@@ -165,7 +165,7 @@ namespace MediTech.ViewModels
                     report.ShowPrintMarginsWarning = false;
                     printTool.ShowPreviewDialog();
                 }
-                else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ")
+                else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ" || SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
                 {
                     report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                     report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
@@ -213,7 +213,7 @@ namespace MediTech.ViewModels
                         report.ShowPrintMarginsWarning = false;
                         printTool.Print();
                     }
-                    else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ")
+                    else if (SelectReport.Name == "ใบรับรองแพทย์กายภาพ" || SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
                     {
                         report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
                         report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;

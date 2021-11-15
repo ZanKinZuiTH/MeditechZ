@@ -197,6 +197,13 @@ namespace MediTech.Model.Report
 
         public string PAR1261 { get; set; } //Fluoride in Urine
 
+        public string PAR1256 { get; set; }
+        public string PAR1257 { get; set; }
+        public string PAR1258 { get; set; }
+        public string PAR1259 { get; set; }
+        public string PAR1260 { get; set; }
+
+
         public string Conclusion { get; set; }
         public string ResultStatus { get; set; }
         public string Radiologist { get; set; }

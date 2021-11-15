@@ -1366,20 +1366,39 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
                 int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
 
-                page6.StoolCultureYear1.Text = "ปี" + " " + year1.ToString();
-                page6.StoolCultureYear2.Text = "ปี" + " " + year2.ToString();
-                page6.StoolCultureYear3.Text = "ปี" + " " + year3.ToString();
+                page6.cellStoolCulterYear1.Text = "ปี" + " " + year1.ToString();
+                page6.cellStoolCulterYear2.Text = "ปี" + " " + year2.ToString();
+                page6.cellStoolCulterYear3.Text = "ปี" + " " + year3.ToString();
 
-                //page6.cellStColorRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189")?.ReferenceRange;
-                page6.cellStoolCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
-                page6.cellStoolCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
-                page6.cellStoolCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
+                page6.stCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
+                page6.stCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
+                page6.stCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
+
+                page6.Salmonella1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1256" && p.Year == year1)?.ResultValue;
+                page6.Salmonella2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1256" && p.Year == year2)?.ResultValue;
+                page6.Salmonella3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1256" && p.Year == year3)?.ResultValue;
+
+                page6.Shigella1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1257" && p.Year == year1)?.ResultValue;
+                page6.Shigella2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1257" && p.Year == year2)?.ResultValue;
+                page6.Shigella3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1257" && p.Year == year3)?.ResultValue;
+
+                page6.stChole1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1258" && p.Year == year1)?.ResultValue;
+                page6.stChole2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1258" && p.Year == year2)?.ResultValue;
+                page6.stChole3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1258" && p.Year == year3)?.ResultValue;
+
+                page6.stPara1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1259" && p.Year == year1)?.ResultValue;
+                page6.stPara2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1259" && p.Year == year2)?.ResultValue;
+                page6.stPara3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1259" && p.Year == year3)?.ResultValue;
+
+                page6.stCholerar1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1260" && p.Year == year1)?.ResultValue;
+                page6.stCholerar2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1260" && p.Year == year2)?.ResultValue;
+                page6.stCholerar3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1260" && p.Year == year3)?.ResultValue;
             }
             else
             {
-                page6.StoolCultureYear1.Text = "ปี" + " " + DateTime.Now.Year;
-                page6.StoolCultureYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
-                page6.StoolCultureYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                page6.cellStoolCulterYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                page6.cellStoolCulterYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                page6.cellStoolCulterYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
             }
         }
 
@@ -1990,7 +2009,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 var waterCheck = PhysicalExamResult.FirstOrDefault(p => p.ResultItemCode == "PEXAM15")?.ResultValue;
                 if (waterCheck != null)
                 {
-                    if (waterCheck == "ใช่" || waterCheck == "YES" || waterCheck == "Yes")
+                    if (waterCheck == "งด" || waterCheck == "ใช่" || waterCheck == "YES" || waterCheck == "Yes")
                     {
                         page2.waterY.Checked = true;
                     }

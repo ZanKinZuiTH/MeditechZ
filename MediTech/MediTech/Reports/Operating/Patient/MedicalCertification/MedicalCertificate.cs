@@ -44,6 +44,11 @@ namespace MediTech.Reports.Operating.Patient
             {
                 haederName.Text = "ใบรับรองกายภาพบำบัด";
                 fromDoctor.Text = "ความเห็นจากนักกายภาพบำบัด";
+                CareProvider.Text = "นักกายภาพบำบัด";
+                inputline1.Visible = false;
+                inputline2.Visible = false;
+                Rehabline1.Text = "ใบอนุญาตประกอบวิชาชีพกายภาพบำบัดเลขที่ ............................................................................................................................................................";
+                Rehabline2.Text = "สถานที่ประกอบวิชาชีพกายภาพบำบัด หรือสถานที่ปฏิบัติงานประจํา หรืออยู่ที่ .........................................................................................................";
             }
 
             if (logoType == 0)
@@ -63,9 +68,15 @@ namespace MediTech.Reports.Operating.Patient
 
                 infoOrganisation.Text = OrganisationDefault.Description?.ToString();
 
-                if (OrganisationDefault.LogoImage != null)
+                if (OrganisationDefault.LogoImage != null && OrganisationDefault.HealthOrganisationUID != 27)
                 {
                     MemoryStream ms = new MemoryStream(OrganisationDefault.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+                }
+                else if (OrganisationDefault.LogoImage != null && OrganisationDefault.HealthOrganisationUID == 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
                     logo.Image = Image.FromStream(ms);
                     logoFooter.Image = Image.FromStream(ms);
                 }
@@ -95,9 +106,15 @@ namespace MediTech.Reports.Operating.Patient
 
                     infoOrganisation.Text = SelectOrganisation.Description?.ToString();
                 }
-                if (SelectOrganisation.LogoImage != null)
+                if (SelectOrganisation.LogoImage != null && SelectOrganisation.HealthOrganisationUID != 27)
                 {
                     MemoryStream ms = new MemoryStream(SelectOrganisation.LogoImage);
+                    logo.Image = Image.FromStream(ms);
+                    logoFooter.Image = Image.FromStream(ms);
+                }
+                else if(SelectOrganisation.LogoImage != null && SelectOrganisation.HealthOrganisationUID == 27)
+                {
+                    MemoryStream ms = new MemoryStream(OrganisationBRXG.LogoImage);
                     logo.Image = Image.FromStream(ms);
                     logoFooter.Image = Image.FromStream(ms);
                 }
@@ -112,5 +129,7 @@ namespace MediTech.Reports.Operating.Patient
             this.DataSource = dataSource;
          
         }
+
+       
     }
 }

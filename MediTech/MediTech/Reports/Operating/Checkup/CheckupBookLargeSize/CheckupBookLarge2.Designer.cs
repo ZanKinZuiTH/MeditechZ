@@ -138,7 +138,7 @@
             this.WaterN.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.WaterN.SizeF = new System.Drawing.SizeF(69.04764F, 23F);
             this.WaterN.StylePriority.UseFont = false;
-            this.WaterN.Text = " ไม่ใช่";
+            this.WaterN.Text = " ไม่งด";
             // 
             // waterY
             // 
@@ -148,7 +148,7 @@
             this.waterY.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.waterY.SizeF = new System.Drawing.SizeF(55.35712F, 23F);
             this.waterY.StylePriority.UseFont = false;
-            this.waterY.Text = " ใช่";
+            this.waterY.Text = " งด";
             // 
             // xrLabel1
             // 

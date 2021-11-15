@@ -359,36 +359,22 @@ namespace MediTech.ViewModels
                 var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                 foreach (var item in patientResultLabList.ToList())
                 {
-                    //try
-                    //{
-                    //    if (SelectPatientVisit == null)
-                    //    {
-                    //        WarningDialog("กรุณาเลือกคนไข้");
-                    //        return;
-                    //    }
-                    //    if (string.IsNullOrEmpty(WellnessResult))
-                    //    {
-                    //        WarningDialog("กรุณากรอกข้อมูลในช่องสรุปเล่มรายบุุคล");
-                    //        return;
-                    //    }
+                    try
+                    {
+                        WellnessDataModel WellnessData = new WellnessDataModel();
+                        WellnessData.WellnessDataUID = item.WellnessResultUID;
+                        DataService.PatientHistory.SendWellnessToBLIFE(WellnessData, AppUtil.Current.UserID);
+                       
+                    }
+                    catch (Exception er)
+                    {
 
-                    //    if (WellnessData == null)
-                    //    {
-                    //        WellnessData = new WellnessDataModel();
-                    //        WellnessData.PatientUID = SelectPatientVisit.PatientUID;
-                    //        WellnessData.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
-                    //    }
-                    //    WellnessData.WellnessResult = WellnessResult;
-                    //    DataService.PatientHistory.ManageWellnessData(WellnessData, AppUtil.Current.UserID);
-                    //    SelectPatientVisit.IsWellnessResult = true;
-                    //    SaveSuccessDialog();
-                    //}
-                    //catch (Exception er)
-                    //{
-
-                    //    ErrorDialog(er.Message);
-                    //}
+                        ErrorDialog(er.Message);
+                    }
+                    SelectPatientCheckupResult.Remove(item);
                 }
+                SaveSuccessDialog();
+                Search();
             }
         }
         void Preview()

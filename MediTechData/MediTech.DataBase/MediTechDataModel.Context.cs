@@ -160,6 +160,7 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQConfiguration> SEQConfiguration { get; set; }
         public virtual DbSet<SEQDISPOSEID> SEQDISPOSEID { get; set; }
         public virtual DbSet<SEQGRNID> SEQGRNID { get; set; }
+        public virtual DbSet<SEQGroupReceipt> SEQGroupReceipt { get; set; }
         public virtual DbSet<SEQITCODE> SEQITCODE { get; set; }
         public virtual DbSet<SEQItemIssue> SEQItemIssue { get; set; }
         public virtual DbSet<SEQItemReceive> SEQItemReceive { get; set; }
@@ -3425,7 +3426,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetGroupResultCumulative_Result>("pGetGroupResultCumulative", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_GPRSTUIDParameter, p_PayorDetailUIDParameter);
         }
     
-        public virtual ObjectResult<pGetCheckupGroupResult_Result> pGetCheckupGroupResult(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID, string p_CompanyName, Nullable<int> p_StartRow, Nullable<int> p_EndROW)
+        public virtual ObjectResult<pGetCheckupGroupResult_Result> pGetCheckupGroupResult(Nullable<int> p_JobContactUID, Nullable<int> p_GPRSTUID, string p_CompanyName, Nullable<int> p_StartRow, Nullable<int> p_EndROW, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
         {
             var p_JobContactUIDParameter = p_JobContactUID.HasValue ?
                 new ObjectParameter("P_JobContactUID", p_JobContactUID) :
@@ -3447,7 +3448,15 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_EndROW", p_EndROW) :
                 new ObjectParameter("P_EndROW", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupGroupResult_Result>("pGetCheckupGroupResult", p_JobContactUIDParameter, p_GPRSTUIDParameter, p_CompanyNameParameter, p_StartRowParameter, p_EndROWParameter);
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetCheckupGroupResult_Result>("pGetCheckupGroupResult", p_JobContactUIDParameter, p_GPRSTUIDParameter, p_CompanyNameParameter, p_StartRowParameter, p_EndROWParameter, p_DateFromParameter, p_DateToParameter);
         }
     
         public virtual ObjectResult<pGetCheckupMobileResult_Result> pGetCheckupMobileResult(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
@@ -3501,7 +3510,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchPatientCheckup_Result>("pSearchPatientCheckup", p_PatientUIDParameter, p_DateFromParameter, p_DateToParameter, p_PayorDetailUIDParameter, p_CheckupJobUIDParameter);
         }
     
-        public virtual ObjectResult<pRPTCheckupSummary_Result> pRPTCheckupSummary(Nullable<int> p_CheckupJobUID, string p_GPRSTUIDs, string p_CompanyName)
+        public virtual ObjectResult<pRPTCheckupSummary_Result> pRPTCheckupSummary(Nullable<int> p_CheckupJobUID, string p_GPRSTUIDs, string p_CompanyName, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
         {
             var p_CheckupJobUIDParameter = p_CheckupJobUID.HasValue ?
                 new ObjectParameter("P_CheckupJobUID", p_CheckupJobUID) :
@@ -3515,7 +3524,15 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_CompanyName", p_CompanyName) :
                 new ObjectParameter("P_CompanyName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupSummary_Result>("pRPTCheckupSummary", p_CheckupJobUIDParameter, p_GPRSTUIDsParameter, p_CompanyNameParameter);
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupSummary_Result>("pRPTCheckupSummary", p_CheckupJobUIDParameter, p_GPRSTUIDsParameter, p_CompanyNameParameter, p_DateFromParameter, p_DateToParameter);
         }
     
         public virtual ObjectResult<pRPTCheckupJobOrderSummary_Result> pRPTCheckupJobOrderSummary(Nullable<int> p_CheckupJobUID, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)

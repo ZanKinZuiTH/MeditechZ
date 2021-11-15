@@ -143,7 +143,7 @@
                     <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
-                    <dxg:GridColumn FieldName="OnBlife" Header="ส่งขึ้น B-Life"/>
+                    <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
                     <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>
