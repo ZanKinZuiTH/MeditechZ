@@ -68,13 +68,13 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FluH = new DevExpress.XtraReports.UI.FormattingRule();
+            this.FluL = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.FluNormal = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.FluH = new DevExpress.XtraReports.UI.FormattingRule();
-            this.FluL = new DevExpress.XtraReports.UI.FormattingRule();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -111,6 +111,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.GroupHeader1.HeightF = 74.16667F;
             this.GroupHeader1.KeepTogether = true;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             // 
             // xrTable2
             // 
@@ -478,6 +479,18 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell5.StylePriority.UseFont = false;
             this.xrTableCell5.Weight = 0.49170092876256877D;
             // 
+            // FluH
+            // 
+            this.FluH.Condition = "EndsWith(Trim([PAR1261]), \'H\')";
+            this.FluH.Formatting.ForeColor = System.Drawing.Color.Red;
+            this.FluH.Name = "FluH";
+            // 
+            // FluL
+            // 
+            this.FluL.Condition = "EndsWith(Trim([PAR1261]), \'L\')\n";
+            this.FluL.Formatting.ForeColor = System.Drawing.Color.Blue;
+            this.FluL.Name = "FluL";
+            // 
             // xrTableCell3
             // 
             this.xrTableCell3.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -525,18 +538,6 @@ namespace MediTech.Reports.Statistic.Checkup
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.CheckupGroupReportModel);
             this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // FluH
-            // 
-            this.FluH.Condition = "EndsWith(Trim([PAR1261]), \'H\')";
-            this.FluH.Formatting.ForeColor = System.Drawing.Color.Red;
-            this.FluH.Name = "FluH";
-            // 
-            // FluL
-            // 
-            this.FluL.Condition = "EndsWith(Trim([PAR1261]), \'L\')\n";
-            this.FluL.Formatting.ForeColor = System.Drawing.Color.Blue;
-            this.FluL.Name = "FluL";
             // 
             // CheckupGroupFluorineUrine
             // 
