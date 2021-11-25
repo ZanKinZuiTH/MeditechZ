@@ -333,10 +333,12 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อมือ", DisplayOrder = 18 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อขา", DisplayOrder = 19 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อหลัง+ขา", DisplayOrder = 20 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "PAP Smear", DisplayOrder = 21 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 22 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 23 });
-            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 24 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "ตรวจกล้ามเนื้อ3ส่วน", DisplayOrder = 21 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "PAP Smear", DisplayOrder = 22 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 23 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 24 });
+            MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 25 });
+          
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]
