@@ -144,6 +144,39 @@ namespace MediTech.Reports.Operating.Radiology
                         this.logobutton.Image = System.Drawing.Image.FromStream(outStream2);
                     }
                 }
+                else if (LogoType.ToUpper() == "โรงพยาบาลบ้านแพ้ว")
+                {
+                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoBGH.png", UriKind.Absolute);
+                    BitmapImage imageSource = new BitmapImage(uri);
+                    using (MemoryStream outStream = new MemoryStream())
+                    {
+                        BitmapEncoder enc = new BmpBitmapEncoder();
+                        enc.Frames.Add(BitmapFrame.Create(imageSource));
+                        enc.Save(outStream);
+                        this.logo.Image = System.Drawing.Image.FromStream(outStream);
+                    }
+                    this.logo.LocationFloat = new DevExpress.Utils.PointFloat(65.54F, 33F);
+                    this.logo.SizeF = new System.Drawing.SizeF(140.83336F, 130.7084F);
+                    this.logo.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
+
+                    this.lblOrganisationAddress.Text = "198 หมู่ 1 ถ.บ้านแพ้ว-พระประโทน ต.บ้านแพ้ว อ.บ้านแพ้ว จ.สมุทรสาคร 74120 โทร.034-419555 โทรสาร.034-419567 Email:bghhosp @gmail.com";
+
+                    Uri uri2 = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/logoBRXG4.jpg", UriKind.Absolute);
+                    BitmapImage imageSource2 = new BitmapImage(uri2);
+                    using (MemoryStream outStream2 = new MemoryStream())
+                    {
+                        BitmapEncoder enc2 = new BmpBitmapEncoder();
+                        enc2.Frames.Add(BitmapFrame.Create(imageSource2));
+                        enc2.Save(outStream2);
+                        this.logobutton.Image = System.Drawing.Image.FromStream(outStream2);
+                    }
+                }
+
+
+
+
+
+
                 else
                 {
                     this.logo.Image = null;
