@@ -880,6 +880,9 @@
     <Compile Include="SEQGRNID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEQGroupReceipt.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEQITCODE.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
