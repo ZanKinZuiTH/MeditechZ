@@ -25,6 +25,7 @@ namespace MediTech.Reports.Operating.Patient
             // Image imageCheckbox = null;
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
+            long PatientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             var medicalData = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
             this.DataSource = medicalData;
 

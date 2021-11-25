@@ -47,6 +47,7 @@ namespace MediTech.Reports.Operating.Patient
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Alien));
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
+            this.xrLabel71 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel70 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel69 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel68 = new DevExpress.XtraReports.UI.XRLabel();
@@ -158,7 +159,6 @@ namespace MediTech.Reports.Operating.Patient
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.xrLabel71 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -271,6 +271,19 @@ namespace MediTech.Reports.Operating.Patient
             this.Detail.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             this.Detail.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.MedicalCertification_BeforePrint);
             // 
+            // xrLabel71
+            // 
+            this.xrLabel71.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
+            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoctorLicenseNo]")});
+            this.xrLabel71.Font = new System.Drawing.Font("Times New Roman", 9F);
+            this.xrLabel71.LocationFloat = new DevExpress.Utils.PointFloat(256.8333F, 300F);
+            this.xrLabel71.Multiline = true;
+            this.xrLabel71.Name = "xrLabel71";
+            this.xrLabel71.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel71.SizeF = new System.Drawing.SizeF(214.8333F, 23.00003F);
+            this.xrLabel71.StylePriority.UseFont = false;
+            this.xrLabel71.Text = "xrLabel71";
+            // 
             // xrLabel70
             // 
             this.xrLabel70.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
@@ -287,7 +300,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel69.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
             new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DateOfBirth]")});
             this.xrLabel69.Font = new System.Drawing.Font("Times New Roman", 8F, System.Drawing.FontStyle.Bold);
-            this.xrLabel69.LocationFloat = new DevExpress.Utils.PointFloat(106.6667F, 136F);
+            this.xrLabel69.LocationFloat = new DevExpress.Utils.PointFloat(109.6667F, 136F);
             this.xrLabel69.Multiline = true;
             this.xrLabel69.Name = "xrLabel69";
             this.xrLabel69.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1553,19 +1566,6 @@ namespace MediTech.Reports.Operating.Patient
             this.PatientUID.Name = "PatientUID";
             this.PatientUID.Type = typeof(long);
             this.PatientUID.ValueInfo = "0";
-            // 
-            // xrLabel71
-            // 
-            this.xrLabel71.ExpressionBindings.AddRange(new DevExpress.XtraReports.UI.ExpressionBinding[] {
-            new DevExpress.XtraReports.UI.ExpressionBinding("BeforePrint", "Text", "[DoctorLicenseNo]")});
-            this.xrLabel71.Font = new System.Drawing.Font("Times New Roman", 9F);
-            this.xrLabel71.LocationFloat = new DevExpress.Utils.PointFloat(256.8333F, 300F);
-            this.xrLabel71.Multiline = true;
-            this.xrLabel71.Name = "xrLabel71";
-            this.xrLabel71.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
-            this.xrLabel71.SizeF = new System.Drawing.SizeF(214.8333F, 23.00003F);
-            this.xrLabel71.StylePriority.UseFont = false;
-            this.xrLabel71.Text = "xrLabel71";
             // 
             // Alien
             // 
