@@ -273,6 +273,126 @@
     <Compile Include="Reports\Operating\Cashier\PatientBill\PatientBillDetail.Designer.cs">
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.Designer.cs">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.Designer.cs">
+      <DependentUpon>CheckupPage10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.Designer.cs">
+      <DependentUpon>CheckupPage11.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.Designer.cs">
+      <DependentUpon>CheckupPage12.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.Designer.cs">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.Designer.cs">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.Designer.cs">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.Designer.cs">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.Designer.cs">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.Designer.cs">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.Designer.cs">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.Designer.cs">
+      <DependentUpon>CheckupPage9.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabA.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabA.Designer.cs">
+      <DependentUpon>LabA.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabB.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabB.Designer.cs">
+      <DependentUpon>LabB.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabC.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabC.Designer.cs">
+      <DependentUpon>LabC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabD.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabD.Designer.cs">
+      <DependentUpon>LabD.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabE.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabE.Designer.cs">
+      <DependentUpon>LabE.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabF.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabF.Designer.cs">
+      <DependentUpon>LabF.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabG.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabG.Designer.cs">
+      <DependentUpon>LabG.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabH.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupBookA5\LabH.Designer.cs">
+      <DependentUpon>LabH.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -464,6 +584,12 @@
     </Compile>
     <Compile Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.Designer.cs">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\Alien.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\Alien.Designer.cs">
+      <DependentUpon>Alien.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .cs">
       <SubType>Component</SubType>
@@ -716,6 +842,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.Designer.cs">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.designer.cs">
+      <DependentUpon>CheckupGroup25Hexan.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheckupGroupAcetone.cs">
       <SubType>Component</SubType>
@@ -2590,6 +2722,66 @@
       <DependentUpon>PatientBillDetail.cs</DependentUpon>
       <SubType>Designer</SubType>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage1.resx">
+      <DependentUpon>CheckupPage1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage10.resx">
+      <DependentUpon>CheckupPage10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage11.resx">
+      <DependentUpon>CheckupPage11.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage12.resx">
+      <DependentUpon>CheckupPage12.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage2.resx">
+      <DependentUpon>CheckupPage2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage3.resx">
+      <DependentUpon>CheckupPage3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage4.resx">
+      <DependentUpon>CheckupPage4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage5.resx">
+      <DependentUpon>CheckupPage5.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage6.resx">
+      <DependentUpon>CheckupPage6.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage7.resx">
+      <DependentUpon>CheckupPage7.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage8.resx">
+      <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\CheckupPage9.resx">
+      <DependentUpon>CheckupPage9.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabA.resx">
+      <DependentUpon>LabA.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabB.resx">
+      <DependentUpon>LabB.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabC.resx">
+      <DependentUpon>LabC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabD.resx">
+      <DependentUpon>LabD.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabE.resx">
+      <DependentUpon>LabE.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabF.resx">
+      <DependentUpon>LabF.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabG.resx">
+      <DependentUpon>LabG.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookA5\LabH.resx">
+      <DependentUpon>LabH.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\CheckupBookLarge1.resx">
       <DependentUpon>CheckupBookLarge1.cs</DependentUpon>
     </EmbeddedResource>
@@ -2689,6 +2881,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBook\CheckupPage8.resx">
       <DependentUpon>CheckupPage8.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\Alien.resx">
+      <DependentUpon>Alien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\ConfinedSpaceCertificate1 .resx">
       <DependentUpon>ConfinedSpaceCertificate1 .cs</DependentUpon>
@@ -2823,6 +3018,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGrouopAudiogram.resx">
       <DependentUpon>CheckupGrouopAudiogram.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroup25Hexan.resx">
+      <DependentUpon>CheckupGroup25Hexan.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheckupGroupAcetone.resx">
       <DependentUpon>CheckupGroupAcetone.cs</DependentUpon>
@@ -3079,9 +3277,6 @@
       <DependentUpon>PatientSummaryPerMonth.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
-    <None Include="PacsViewer\run.bat" />
-    <None Include="PacsViewer\Win32\mDicom.chm" />
-    <None Include="PacsViewer\x64\mDicom.chm" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -3416,22 +3611,6 @@
     <Resource Include="Resources\Images\Menu\BulkRegister.png" />
     <Resource Include="Resources\Images\Menu\AssignForRDU.png" />
     <Resource Include="Untitled-1.ico" />
-    <Resource Include="PacsViewer\autorun.inf" />
-    <Resource Include="PacsViewer\licenses\EULA.txt" />
-    <Resource Include="PacsViewer\licenses\license.txt" />
-    <Resource Include="PacsViewer\readme.txt" />
-    <Resource Include="PacsViewer\settings\animations.xml" />
-    <Resource Include="PacsViewer\settings\annotation.xml" />
-    <Resource Include="PacsViewer\settings\application.xml" />
-    <Resource Include="PacsViewer\settings\exportDicom.xml" />
-    <Resource Include="PacsViewer\settings\exportImage.xml" />
-    <Resource Include="PacsViewer\settings\exportVideo.xml" />
-    <Resource Include="PacsViewer\settings\overlay.xml" />
-    <Resource Include="PacsViewer\settings\overlay_st.xml" />
-    <Resource Include="PacsViewer\settings\print.xml" />
-    <Resource Include="PacsViewer\settings\windowlevels.xml" />
-    <Content Include="PacsViewer\Win32\mDicom.exe" />
-    <Content Include="PacsViewer\x64\mDicom.exe" />
     <Content Include="RDNIDlibD.dll">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

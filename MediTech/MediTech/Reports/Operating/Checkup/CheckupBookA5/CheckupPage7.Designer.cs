@@ -270,6 +270,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.Row25Hexan = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cell25Hexan1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cell25Hexan2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cell25Hexan3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cell25HexanRange = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
@@ -347,7 +353,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbToxicology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbToxicology.LocationFloat = new DevExpress.Utils.PointFloat(19.73053F, 60.42118F);
+            this.tbToxicology.LocationFloat = new DevExpress.Utils.PointFloat(19.73053F, 48.42118F);
             this.tbToxicology.Name = "tbToxicology";
             this.tbToxicology.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow22,
@@ -380,8 +386,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowMethyreneUrine,
             this.RowBenzenettUrine,
             this.Rowfluoride,
-            this.RowFormadehyde});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(490.5672F, 727.0886F);
+            this.RowFormadehyde,
+            this.Row25Hexan});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(490.5672F, 447.5586F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -2317,7 +2324,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(149.2004F, 30.75451F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(149.2004F, 18.75451F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(246.8423F, 28F);
@@ -2944,6 +2951,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // Row25Hexan
+            // 
+            this.Row25Hexan.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell1,
+            this.cell25HexanRange,
+            this.cell25Hexan1,
+            this.cell25Hexan2,
+            this.cell25Hexan3});
+            this.Row25Hexan.Name = "Row25Hexan";
+            this.Row25Hexan.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell1.Multiline = true;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell1.StylePriority.UseFont = false;
+            this.xrTableCell1.StylePriority.UsePadding = false;
+            this.xrTableCell1.StylePriority.UseTextAlignment = false;
+            this.xrTableCell1.Text = "2,5 Hexanedion in urine";
+            this.xrTableCell1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell1.Weight = 1.2913566084432759D;
+            // 
+            // cell25Hexan1
+            // 
+            this.cell25Hexan1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cell25Hexan1.Multiline = true;
+            this.cell25Hexan1.Name = "cell25Hexan1";
+            this.cell25Hexan1.StylePriority.UseFont = false;
+            this.cell25Hexan1.StylePriority.UseTextAlignment = false;
+            this.cell25Hexan1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cell25Hexan1.Weight = 0.443296332132815D;
+            // 
+            // cell25Hexan2
+            // 
+            this.cell25Hexan2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cell25Hexan2.Multiline = true;
+            this.cell25Hexan2.Name = "cell25Hexan2";
+            this.cell25Hexan2.StylePriority.UseFont = false;
+            this.cell25Hexan2.StylePriority.UseTextAlignment = false;
+            this.cell25Hexan2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cell25Hexan2.Weight = 0.44329633245297495D;
+            // 
+            // cell25Hexan3
+            // 
+            this.cell25Hexan3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cell25Hexan3.Multiline = true;
+            this.cell25Hexan3.Name = "cell25Hexan3";
+            this.cell25Hexan3.StylePriority.UseFont = false;
+            this.cell25Hexan3.StylePriority.UseTextAlignment = false;
+            this.cell25Hexan3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cell25Hexan3.Weight = 0.44329635320818539D;
+            // 
+            // cell25HexanRange
+            // 
+            this.cell25HexanRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cell25HexanRange.Multiline = true;
+            this.cell25HexanRange.Name = "cell25HexanRange";
+            this.cell25HexanRange.StylePriority.UseFont = false;
+            this.cell25HexanRange.StylePriority.UseTextAlignment = false;
+            this.cell25HexanRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cell25HexanRange.Weight = 0.93906236153056333D;
+            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -3206,5 +3277,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell63;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell66;
         private DevExpress.XtraReports.UI.XRLabel xrLabel4;
+        public DevExpress.XtraReports.UI.XRTableRow Row25Hexan;
+        public DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+        public DevExpress.XtraReports.UI.XRTableCell cell25HexanRange;
+        public DevExpress.XtraReports.UI.XRTableCell cell25Hexan1;
+        public DevExpress.XtraReports.UI.XRTableCell cell25Hexan2;
+        public DevExpress.XtraReports.UI.XRTableCell cell25Hexan3;
     }
 }

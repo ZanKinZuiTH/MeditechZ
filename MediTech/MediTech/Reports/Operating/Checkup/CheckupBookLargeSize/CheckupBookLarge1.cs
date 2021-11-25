@@ -567,7 +567,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                         || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
                         || p.RequestItemCode.Contains("LAB488") //Mercury in blood
                         || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
-                        || p.RequestItemCode.Contains("LAB513")) //formadehyde in Urine
+                        || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
+                        || p.RequestItemCode.Contains("LAB276")) //25hex
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1763,7 +1764,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                     //    page6.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
                     //    page6.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
                     //}
-#endregion
+                    #endregion
+
+                    #region 2,5 Hexanedion in urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
+                    {
+                        page6.Row25Hexan.Visible = true;
+                        page6.cell25HexanRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242")?.ReferenceRange;
+                        page6.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
+                        page6.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
+                        page6.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
                 }
                 else
                 {

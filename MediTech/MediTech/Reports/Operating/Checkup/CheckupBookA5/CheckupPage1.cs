@@ -577,7 +577,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB573") //Methyrene chloride in Urine
                         || p.RequestItemCode.Contains("LAB568") //Benzene (t,t-Muconic acid) in Urine
                         || p.RequestItemCode.Contains("LAB488") //Mercury in blood
-                        || p.RequestItemCode.Contains("LAB276"))
+                        || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
+                        || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
+                        || p.RequestItemCode.Contains("LAB276")) //25hex
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1441,6 +1443,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowMethyreneUrine.Visible = false;
                 page7.RowBenzenettUrine.Visible = false;
                 page7.RowMercuryBlood.Visible = false;
+                page7.Rowfluoride.Visible = false;
+                page7.RowFormadehyde.Visible = false;
+                page7.Row25Hexan.Visible = false;
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1750,27 +1755,46 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     }
                     #endregion
 
-                    #region 2,5 Hexanedion in urine
-
-                   if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
+                    #region fluoride  in Urine
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261") != null)
                     {
-
-
-                        //page7.Row25Hexan.Visible = true;
-                        //page7.cell25HexanRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242")?.ReferenceRange;
-                        //page7.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
-                        //page7.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
-                        //page7.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
+                        page7.Rowfluoride.Visible = true;
+                        page7.fluorideRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261")?.ReferenceRange;
+                        page7.fluorideY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year1)?.ResultValue;
+                        page7.fluorideY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year2)?.ResultValue;
+                        page7.fluorideY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1261" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
 
+                    #region formadehyde in Urine
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
+                    //{
+                    //    page6.RowFormadehyde.Visible = true;
+                    //    page6.formadehydeRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237")?.ReferenceRange;
+                    //    page6.formadehydeY1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year1)?.ResultValue;
+                    //    page6.formadehydeY2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year2)?.ResultValue;
+                    //    page6.formadehydeY3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237" && p.Year == year3)?.ResultValue;
+                    //}
+                    #endregion
+
+                    #region 2,5 Hexanedion in urine
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242") != null)
+                    {
+                        page7.Row25Hexan.Visible = true;
+                        page7.cell25HexanRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242")?.ReferenceRange;
+                        page7.cell25Hexan1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year1)?.ResultValue;
+                        page7.cell25Hexan2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year2)?.ResultValue;
+                        page7.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
 
                 }
                 else
                 {
-                    //page7.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
-                    //page7.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
-                    //page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
+                    page7.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
+                    page7.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
+                    page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
                 }
             }
         }
