@@ -27,7 +27,13 @@ namespace MediTech.Reports.Operating.Checkup
         {
             long PatientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
-            var dataAudio = (new ReportsService()).AudiogramResult(PatientUID, PatientVisitUID); 
+            var dataAudio = (new ReportsService()).AudiogramResult(PatientUID, PatientVisitUID);
+           var GroupResult = (new ReportsService()).CheckupGroupResult(PatientUID,PatientVisitUID);
+
+            //var GroupResult = (new CheckupController()).GetCheckupGroupResultListByVisit(patientUID, patientVisitUID);
+            // PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+
+
             if (dataAudio != null && dataAudio.Count > 0)
             {
                 lbHN.Text = dataAudio.FirstOrDefault().PatientID;
@@ -59,13 +65,56 @@ namespace MediTech.Reports.Operating.Checkup
                         }
                     }
                 }
-            //    DevExpress.XtraCharts.SeriesPoint seriesPoint1 = new DevExpress.XtraCharts.SeriesPoint(0D, new object[] {
-            //((object)(50D))});
-                
-            //    series1.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
-            //seriesPoint1});
+                //    DevExpress.XtraCharts.SeriesPoint seriesPoint1 = new DevExpress.XtraCharts.SeriesPoint(0D, new object[] {
+                //((object)(50D))});
+
+                //    series1.Points.AddRange(new DevExpress.XtraCharts.SeriesPoint[] {
+                //seriesPoint1});
+
+
+                TitleAudiogram.Text = "Audiogram";
+                TitleAudioListResult.Text = "Result";
+                TitleAudioRight.Text = "Right ear";
+                TitleAudioLeft.Text = "Left ear";
+                TitleAudioResult.Text = "Summary";
+                TitleAudioRecommend.Text = "Suggestion";
+
+                if (lbAudioLeft.Text == "ไม่พบความผิดปกติ")
+                {
+                    lbAudioLeft.Text = "Normal";
+                }
+                if (lbAudioRight.Text == "ไม่พบความผิดปกติ")
+                {
+                    lbAudioRight.Text = "Normal";
+                }
+                if (lbAudioResult.Text == "ปกติ")
+                {
+                   lbAudioResult.Text = "Normal";
+                    lbAudioRecommend.Text = "Annualy check up";
+                }
+                if (lbAudioResult.Text == "เฝ้าระวัง")
+                {
+                    lbAudioResult.Text = "Mild abnormality";
+                }
+                if (lbAudioResult.Text == "ผิดปกตื")
+                {
+                   lbAudioResult.Text = "Abnormal";
+                }
+
+                lbAudioRight.Text = dataAudio.FirstOrDefault(p => p.ResultItemCode == "AUDIO8")?.ResultValue;
+                lbAudioLeft.Text = dataAudio.FirstOrDefault(p => p.ResultItemCode == "AUDIO16")?.ResultValue;
+          
+
+                 lbAudioResult.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.ResultStatus.ToString();
+                lbAudioRecommend.Text = GroupResult.FirstOrDefault(p => p.GroupCode == "GPRST25")?.Conclusion.ToString();
+
+
+
+
 
             }
         }
     }
 }
+
+

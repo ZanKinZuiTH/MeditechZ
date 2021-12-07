@@ -655,6 +655,23 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+
+        [Route("CheckupGroupResult")]
+        [HttpGet]
+        public List<CheckupGroupResultModel> CheckupGroupResult(long patientUID, long patientVisitUID)
+        {
+            List<CheckupGroupResultModel> data = new List<CheckupGroupResultModel>();
+            data = (new CheckupController()).GetCheckupGroupResultListByVisit(patientUID, patientVisitUID);
+
+            return data;
+        }
+
+
+
+
+
+
+
         [Route("PrintRiskBook")]
         [HttpGet]
         public PatientRiskBookModel PrintRiskBook(long patientUID, long patientVisitUID, int payorDetailUID)
@@ -773,6 +790,8 @@ namespace MediTechWebApi.Controllers
                                                           Weight = vts.Weight,
                                                           Height = vts.Height,
                                                           StartDttm = pv.StartDttm
+                                                          
+                                                         
                                                       }).ToList();
             return data;
         }

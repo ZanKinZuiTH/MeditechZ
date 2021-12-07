@@ -75,7 +75,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbResultWellness2.ForeColor = System.Drawing.Color.Black;
-            this.lbResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(17F, 43.33333F);
+            this.lbResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(31F, 43.33333F);
             this.lbResultWellness2.Multiline = true;
             this.lbResultWellness2.Name = "lbResultWellness2";
             this.lbResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
@@ -90,7 +90,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleResultWellness2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TitleResultWellness2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.TitleResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(114.3334F, 17.00004F);
+            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(128.3334F, 17.00004F);
             this.TitleResultWellness2.Name = "TitleResultWellness2";
             this.TitleResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.TitleResultWellness2.SizeF = new System.Drawing.SizeF(299.1667F, 25F);
@@ -108,7 +108,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 20, 20);
+            this.Margins = new System.Drawing.Printing.Margins(5, 5, 20, 20);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;

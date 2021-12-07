@@ -1382,9 +1382,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.cellStoolCulterYear2.Text = "ปี" + " " + year2.ToString();
                 page7.cellStoolCulterYear3.Text = "ปี" + " " + year3.ToString();
 
-                page7.stCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
-                page7.stCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
-                page7.stCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
+                //page7.stCulter1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year1)?.ResultValue;
+                //page7.stCulter2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year2)?.ResultValue;
+                //page7.stCulter3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR189" && p.Year == year3)?.ResultValue;
 
                 page7.Salmonella1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1256" && p.Year == year1)?.ResultValue;
                 page7.Salmonella2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1256" && p.Year == year2)?.ResultValue;
@@ -1460,15 +1460,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page7.cellToxicoYear3.Text = "ปี" + " " + year3.ToString();
 
 
-                    #region Aluminium 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR195") != null)
-                    {
-                        page7.RowAluminiumBlood.Visible = true;
+                    #region Aluminium in Urin
+                  
+                        
                         page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
                         page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
                         page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
                         page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
-                    }
+                    
                     #endregion
 
                     #region Toluene
@@ -1626,12 +1625,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     #endregion
 
                     #region Aluminium in bloob
-
-                    page7.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
-                    page7.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
-                    page7.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
-                    page7.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
-
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194") != null)
+                    {
+                        page7.RowAluminiumBlood.Visible = true;
+                        page7.AluminiumBloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194")?.ReferenceRange;
+                        page7.AluminiumBlood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year1)?.ResultValue;
+                        page7.AluminiumBlood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year2)?.ResultValue;
+                        page7.AluminiumBlood3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR194" && p.Year == year3)?.ResultValue;
+                    }
                     #endregion
 
                     #region Arsenic

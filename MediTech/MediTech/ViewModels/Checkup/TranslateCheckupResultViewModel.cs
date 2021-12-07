@@ -737,6 +737,16 @@ namespace MediTech.ViewModels
                                                     string value = resultItemValue.ResultValue.Replace("<", "").Replace(">", "").Replace("R", "");
                                                     if (double.TryParse(value.Trim(), out resultValueNumber))
                                                     {
+
+                                                        if (resultItemValue.ResultValue.Contains("<"))
+                                                        {
+                                                            resultValueNumber = resultValueNumber - 0.01;
+                                                        }
+                                                        else if (resultItemValue.ResultValue.Contains(">"))
+                                                        {
+                                                            resultValueNumber = resultValueNumber + 0.01;
+                                                        }
+
                                                         if ((resultValueNumber >= ruleItem.Low && resultValueNumber <= ruleItem.Hight)
                                                             || (resultValueNumber >= ruleItem.Low && ruleItem.Hight == null)
                                                             || (ruleItem.Low == null && resultValueNumber <= ruleItem.Hight))
@@ -757,6 +767,7 @@ namespace MediTech.ViewModels
                                                         }
                                                     }
                                                 }
+
                                             }
                                             #endregion
 
