@@ -362,7 +362,7 @@ namespace MediTech.ViewModels
                     if (lefteye_far != null && lefteye_far.ResultValue != null)
                         far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_far.ResultValue) == true && Convert.ToInt16(lefteye_far.ResultValue) > 7 ? true : false;
                     if (stereo_depth != null && stereo_depth.ResultValue != null)
-                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) > 5 ? true : false;
+                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) > 4 ? true : false;
                     if (color != null && color.CheckDataList != null)
                         color_discrimination_normal = (color.CheckDataList.Any(p => p.ToString() == "ไม่ได้ตรวจ")) ? (bool?)null : color.CheckDataList.Any(p => p.ToString() == "มองไม่เห็น") ? false : color.CheckDataList.Any(p => p.ToString() == "X") ? true : false;
                     if (vertical != null && vertical.ResultValue != null)
