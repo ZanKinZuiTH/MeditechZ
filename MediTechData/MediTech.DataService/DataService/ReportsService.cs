@@ -207,6 +207,15 @@ namespace MediTech.DataService
             return data;
         }
 
+
+        public List<CheckupGroupResultModel> CheckupGroupResult(long patientUID, long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Report/CheckupGroupResult?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            List<CheckupGroupResultModel> data = MeditechApiHelper.Get<List<CheckupGroupResultModel>>(requestApi);
+
+            return data;
+        }
+
         public List<PatientResultComponentModel> AudiogramResult(long patientUID, long patientVisitUID)
         {
             string requestApi = string.Format("Api/Report/AudiogramResult?patientUID={0}&patientVisitUID={1}", patientUID,patientVisitUID);
@@ -214,6 +223,9 @@ namespace MediTech.DataService
 
             return data;
         }
+
+ 
+
 
         public MedicalCertificateModel PrintMedicalCertificate(long patientVisitUID)
         {

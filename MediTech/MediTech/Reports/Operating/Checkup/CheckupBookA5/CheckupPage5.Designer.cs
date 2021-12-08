@@ -199,13 +199,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable1});
-            this.BottomMargin.HeightF = 20F;
+            this.BottomMargin.HeightF = 40F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(39.55859F, 0F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(41.55859F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow21});
@@ -260,7 +260,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrRichText1
             // 
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(517.5F, 1F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(519.5F, 1F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(17.5F, 23F);
@@ -271,7 +271,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbLiver.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbLiver.LocationFloat = new DevExpress.Utils.PointFloat(39.55859F, 215.8374F);
+            this.tbLiver.LocationFloat = new DevExpress.Utils.PointFloat(41.55859F, 215.8374F);
             this.tbLiver.Name = "tbLiver";
             this.tbLiver.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
@@ -1003,7 +1003,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(102.0494F, 189.504F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(104.0494F, 189.504F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel3.SizeF = new System.Drawing.SizeF(332.9198F, 25F);
@@ -1017,7 +1017,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(102.0494F, 29.36362F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(104.0494F, 29.36362F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(332.9197F, 25F);
@@ -1034,7 +1034,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbRenal.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.tbRenal.LocationFloat = new DevExpress.Utils.PointFloat(39.55859F, 55.72012F);
+            this.tbRenal.LocationFloat = new DevExpress.Utils.PointFloat(41.55859F, 55.72012F);
             this.tbRenal.Name = "tbRenal";
             this.tbRenal.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow65,
@@ -1382,7 +1382,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel8.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(96.216F, 490.1251F);
+            this.xrLabel8.LocationFloat = new DevExpress.Utils.PointFloat(98.216F, 484.1251F);
             this.xrLabel8.Name = "xrLabel8";
             this.xrLabel8.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel8.SizeF = new System.Drawing.SizeF(374.9404F, 28.83331F);
@@ -1398,7 +1398,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbImmunology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbImmunology.LocationFloat = new DevExpress.Utils.PointFloat(39.55859F, 520.6251F);
+            this.tbImmunology.LocationFloat = new DevExpress.Utils.PointFloat(41.55859F, 514.6251F);
             this.tbImmunology.Name = "tbImmunology";
             this.tbImmunology.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3,
@@ -1938,7 +1938,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 20, 20);
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 20, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;

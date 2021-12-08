@@ -32,6 +32,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage4));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
+            this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbHN4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.lbName4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.tbUric = new DevExpress.XtraReports.UI.XRTable();
@@ -196,16 +201,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHbA1c2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHbA1c3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbFBS = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbHN4 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbName4 = new DevExpress.XtraReports.UI.XRTableCell();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
@@ -217,8 +217,50 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.BottomMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable4});
-            this.BottomMargin.HeightF = 20F;
+            this.BottomMargin.HeightF = 40F;
             this.BottomMargin.Name = "BottomMargin";
+            // 
+            // xrTable4
+            // 
+            this.xrTable4.Font = new System.Drawing.Font("EucrosiaUPC", 8F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(41.79412F, 0F);
+            this.xrTable4.Name = "xrTable4";
+            this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow17});
+            this.xrTable4.SizeF = new System.Drawing.SizeF(249.9999F, 15F);
+            this.xrTable4.StylePriority.UseBorderWidth = false;
+            this.xrTable4.StylePriority.UseFont = false;
+            // 
+            // xrTableRow17
+            // 
+            this.xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell8,
+            this.lbHN4,
+            this.lbName4});
+            this.xrTableRow17.Name = "xrTableRow17";
+            this.xrTableRow17.Weight = 1D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.StylePriority.UseFont = false;
+            this.xrTableCell8.Text = "HN";
+            this.xrTableCell8.Weight = 0.15833343505859376D;
+            // 
+            // lbHN4
+            // 
+            this.lbHN4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.lbHN4.Name = "lbHN4";
+            this.lbHN4.StylePriority.UseFont = false;
+            this.lbHN4.Weight = 0.56666679874543757D;
+            // 
+            // lbName4
+            // 
+            this.lbName4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
+            this.lbName4.Name = "lbName4";
+            this.lbName4.StylePriority.UseFont = false;
+            this.lbName4.Weight = 1.7749992198328681D;
             // 
             // Detail
             // 
@@ -2381,48 +2423,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbFBS.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.tbFBS.WordWrap = false;
             // 
-            // xrTable4
-            // 
-            this.xrTable4.Font = new System.Drawing.Font("EucrosiaUPC", 8F);
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(41.79412F, 0F);
-            this.xrTable4.Name = "xrTable4";
-            this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow17});
-            this.xrTable4.SizeF = new System.Drawing.SizeF(249.9999F, 15F);
-            this.xrTable4.StylePriority.UseBorderWidth = false;
-            this.xrTable4.StylePriority.UseFont = false;
-            // 
-            // xrTableRow17
-            // 
-            this.xrTableRow17.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell8,
-            this.lbHN4,
-            this.lbName4});
-            this.xrTableRow17.Name = "xrTableRow17";
-            this.xrTableRow17.Weight = 1D;
-            // 
-            // xrTableCell8
-            // 
-            this.xrTableCell8.Font = new System.Drawing.Font("Angsana New", 9F);
-            this.xrTableCell8.Name = "xrTableCell8";
-            this.xrTableCell8.StylePriority.UseFont = false;
-            this.xrTableCell8.Text = "HN";
-            this.xrTableCell8.Weight = 0.15833343505859376D;
-            // 
-            // lbHN4
-            // 
-            this.lbHN4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
-            this.lbHN4.Name = "lbHN4";
-            this.lbHN4.StylePriority.UseFont = false;
-            this.lbHN4.Weight = 0.56666679874543757D;
-            // 
-            // lbName4
-            // 
-            this.lbName4.Font = new System.Drawing.Font("EucrosiaUPC", 9F);
-            this.lbName4.Name = "lbName4";
-            this.lbName4.StylePriority.UseFont = false;
-            this.lbName4.Weight = 1.7749992198328681D;
-            // 
             // CheckupPage4
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2430,16 +2430,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(20, 20, 20, 20);
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 20, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "20.2";
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }

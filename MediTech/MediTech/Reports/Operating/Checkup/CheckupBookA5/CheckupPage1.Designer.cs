@@ -33,9 +33,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbCompany = new DevExpress.XtraReports.UI.XRLabel();
+            this.lbDateCheckup = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbVatalSign = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow9 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -100,12 +103,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbDateCheckup = new DevExpress.XtraReports.UI.XRLabel();
-            this.lbCompany = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
+            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.tbVatalSign)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbPatientDetail)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
@@ -142,26 +142,81 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Detail.Padding = new DevExpress.XtraPrinting.PaddingInfo(15, 15, 15, 15, 100F);
             this.Detail.StylePriority.UsePadding = false;
             // 
-            // PatientUID
+            // xrLabel6
             // 
-            this.PatientUID.Description = "Parameter1";
-            this.PatientUID.Name = "PatientUID";
-            this.PatientUID.Type = typeof(int);
-            this.PatientUID.ValueInfo = "0";
+            this.xrLabel6.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(386.6541F, 660.6125F);
+            this.xrLabel6.Multiline = true;
+            this.xrLabel6.Name = "xrLabel6";
+            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel6.SizeF = new System.Drawing.SizeF(145.995F, 20.41626F);
+            this.xrLabel6.StylePriority.UseFont = false;
+            this.xrLabel6.StylePriority.UseTextAlignment = false;
+            this.xrLabel6.Text = ".....................................................";
+            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // PatientVisitUID
+            // xrLabel5
             // 
-            this.PatientVisitUID.Description = "patient visit number identity";
-            this.PatientVisitUID.Name = "PatientVisitUID";
-            this.PatientVisitUID.Type = typeof(int);
-            this.PatientVisitUID.ValueInfo = "0";
+            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(314F, 660.6125F);
+            this.xrLabel5.Multiline = true;
+            this.xrLabel5.Name = "xrLabel5";
+            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(72.65411F, 20.41626F);
+            this.xrLabel5.StylePriority.UseFont = false;
+            this.xrLabel5.StylePriority.UseTextAlignment = false;
+            this.xrLabel5.Text = "ลายเซ็นแพทย์";
+            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // PayorDetailUID
+            // lbCompany
             // 
-            this.PayorDetailUID.Description = "Payor";
-            this.PayorDetailUID.Name = "PayorDetailUID";
-            this.PayorDetailUID.Type = typeof(int);
-            this.PayorDetailUID.ValueInfo = "0";
+            this.lbCompany.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbCompany.LocationFloat = new DevExpress.Utils.PointFloat(179.0049F, 200.2701F);
+            this.lbCompany.Multiline = true;
+            this.lbCompany.Name = "lbCompany";
+            this.lbCompany.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbCompany.SizeF = new System.Drawing.SizeF(324.0132F, 20.41626F);
+            this.lbCompany.StylePriority.UseFont = false;
+            this.lbCompany.StylePriority.UseTextAlignment = false;
+            this.lbCompany.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // lbDateCheckup
+            // 
+            this.lbDateCheckup.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Bold);
+            this.lbDateCheckup.LocationFloat = new DevExpress.Utils.PointFloat(197.8384F, 164.1035F);
+            this.lbDateCheckup.Multiline = true;
+            this.lbDateCheckup.Name = "lbDateCheckup";
+            this.lbDateCheckup.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.lbDateCheckup.SizeF = new System.Drawing.SizeF(222.3353F, 20.41626F);
+            this.lbDateCheckup.StylePriority.UseFont = false;
+            this.lbDateCheckup.StylePriority.UseTextAlignment = false;
+            this.lbDateCheckup.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel2
+            // 
+            this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Bold);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(32.08911F, 164.1035F);
+            this.xrLabel2.Multiline = true;
+            this.xrLabel2.Name = "xrLabel2";
+            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel2.SizeF = new System.Drawing.SizeF(165.7493F, 20.41626F);
+            this.xrLabel2.StylePriority.UseFont = false;
+            this.xrLabel2.StylePriority.UseTextAlignment = false;
+            this.xrLabel2.Text = "วันที่ตรวจ : Check up date";
+            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            // 
+            // xrLabel1
+            // 
+            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(79.68414F, 200.2701F);
+            this.xrLabel1.Multiline = true;
+            this.xrLabel1.Name = "xrLabel1";
+            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(99.32079F, 20.41626F);
+            this.xrLabel1.StylePriority.UseFont = false;
+            this.xrLabel1.StylePriority.UseTextAlignment = false;
+            this.xrLabel1.Text = "บริษัท /Company :";
+            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
             // tbVatalSign
             // 
@@ -169,7 +224,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbVatalSign.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.tbVatalSign.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(22.35065F, 349.8336F);
+            this.tbVatalSign.LocationFloat = new DevExpress.Utils.PointFloat(24.35065F, 349.8336F);
             this.tbVatalSign.Name = "tbVatalSign";
             this.tbVatalSign.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow9,
@@ -627,7 +682,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrLabel3
             // 
             this.xrLabel3.Font = new System.Drawing.Font("EucrosiaUPC", 18F, System.Drawing.FontStyle.Bold);
-            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(136.3618F, 96.10343F);
+            this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(138.3618F, 96.10343F);
             this.xrLabel3.Multiline = true;
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -640,7 +695,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // tbPatientDetail
             // 
             this.tbPatientDetail.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(80.68414F, 220.6864F);
+            this.tbPatientDetail.LocationFloat = new DevExpress.Utils.PointFloat(82.68414F, 220.6864F);
             this.tbPatientDetail.Name = "tbPatientDetail";
             this.tbPatientDetail.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow3,
@@ -978,7 +1033,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrTable5
             // 
             this.xrTable5.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(323F, 660.6125F);
+            this.xrTable5.LocationFloat = new DevExpress.Utils.PointFloat(325F, 660.6125F);
             this.xrTable5.Name = "xrTable5";
             this.xrTable5.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow32});
@@ -1010,7 +1065,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel4.CanGrow = false;
             this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 10F, System.Drawing.FontStyle.Italic);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(92.47406F, 551.7655F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(94.47406F, 551.7655F);
             this.xrLabel4.Multiline = true;
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
@@ -1023,7 +1078,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrPictureBox1
             // 
             this.xrPictureBox1.ImageSource = new DevExpress.XtraPrinting.Drawing.ImageSource("img", resources.GetString("xrPictureBox1.ImageSource"));
-            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(356.7702F, 594.2655F);
+            this.xrPictureBox1.LocationFloat = new DevExpress.Utils.PointFloat(358.7702F, 594.2655F);
             this.xrPictureBox1.Name = "xrPictureBox1";
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(169.7298F, 104.5138F);
             this.xrPictureBox1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
@@ -1038,81 +1093,26 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.xrPictureBox3.StylePriority.UseBorders = false;
             // 
-            // xrLabel2
+            // PatientUID
             // 
-            this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(30.08911F, 164.1035F);
-            this.xrLabel2.Multiline = true;
-            this.xrLabel2.Name = "xrLabel2";
-            this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel2.SizeF = new System.Drawing.SizeF(165.7493F, 20.41626F);
-            this.xrLabel2.StylePriority.UseFont = false;
-            this.xrLabel2.StylePriority.UseTextAlignment = false;
-            this.xrLabel2.Text = "วันที่ตรวจ : Check up date";
-            this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.PatientUID.Description = "Parameter1";
+            this.PatientUID.Name = "PatientUID";
+            this.PatientUID.Type = typeof(int);
+            this.PatientUID.ValueInfo = "0";
             // 
-            // lbDateCheckup
+            // PatientVisitUID
             // 
-            this.lbDateCheckup.Font = new System.Drawing.Font("EucrosiaUPC", 14F, System.Drawing.FontStyle.Bold);
-            this.lbDateCheckup.LocationFloat = new DevExpress.Utils.PointFloat(195.8384F, 164.1035F);
-            this.lbDateCheckup.Multiline = true;
-            this.lbDateCheckup.Name = "lbDateCheckup";
-            this.lbDateCheckup.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbDateCheckup.SizeF = new System.Drawing.SizeF(222.3353F, 20.41626F);
-            this.lbDateCheckup.StylePriority.UseFont = false;
-            this.lbDateCheckup.StylePriority.UseTextAlignment = false;
-            this.lbDateCheckup.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.PatientVisitUID.Description = "patient visit number identity";
+            this.PatientVisitUID.Name = "PatientVisitUID";
+            this.PatientVisitUID.Type = typeof(int);
+            this.PatientVisitUID.ValueInfo = "0";
             // 
-            // lbCompany
+            // PayorDetailUID
             // 
-            this.lbCompany.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.lbCompany.LocationFloat = new DevExpress.Utils.PointFloat(177.0049F, 200.2701F);
-            this.lbCompany.Multiline = true;
-            this.lbCompany.Name = "lbCompany";
-            this.lbCompany.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbCompany.SizeF = new System.Drawing.SizeF(324.0132F, 20.41626F);
-            this.lbCompany.StylePriority.UseFont = false;
-            this.lbCompany.StylePriority.UseTextAlignment = false;
-            this.lbCompany.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel1
-            // 
-            this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(77.68414F, 200.2701F);
-            this.xrLabel1.Multiline = true;
-            this.xrLabel1.Name = "xrLabel1";
-            this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(99.32079F, 20.41626F);
-            this.xrLabel1.StylePriority.UseFont = false;
-            this.xrLabel1.StylePriority.UseTextAlignment = false;
-            this.xrLabel1.Text = "บริษัท /Company :";
-            this.xrLabel1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel5
-            // 
-            this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(312F, 660.6125F);
-            this.xrLabel5.Multiline = true;
-            this.xrLabel5.Name = "xrLabel5";
-            this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(72.65411F, 20.41626F);
-            this.xrLabel5.StylePriority.UseFont = false;
-            this.xrLabel5.StylePriority.UseTextAlignment = false;
-            this.xrLabel5.Text = "ลายเซ็นแพทย์";
-            this.xrLabel5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // xrLabel6
-            // 
-            this.xrLabel6.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(384.6541F, 660.6125F);
-            this.xrLabel6.Multiline = true;
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(145.995F, 20.41626F);
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = ".....................................................";
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.PayorDetailUID.Description = "Payor";
+            this.PayorDetailUID.Name = "PayorDetailUID";
+            this.PayorDetailUID.Type = typeof(int);
+            this.PayorDetailUID.ValueInfo = "0";
             // 
             // CheckupPage1
             // 

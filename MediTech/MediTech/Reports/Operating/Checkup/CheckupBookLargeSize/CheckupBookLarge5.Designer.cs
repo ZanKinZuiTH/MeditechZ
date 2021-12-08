@@ -476,8 +476,8 @@
             this.xrTableCell114.StylePriority.UseFont = false;
             this.xrTableCell114.StylePriority.UsePadding = false;
             this.xrTableCell114.StylePriority.UseTextAlignment = false;
-            this.xrTableCell114.Text = "Value Back Strength";
-            this.xrTableCell114.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell114.Text = "Value Strength";
+            this.xrTableCell114.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell114.Weight = 1.0937023691956183D;
             // 
             // lbBackValue
@@ -537,8 +537,8 @@
             this.xrTableCell118.StylePriority.UseFont = false;
             this.xrTableCell118.StylePriority.UsePadding = false;
             this.xrTableCell118.StylePriority.UseTextAlignment = false;
-            this.xrTableCell118.Text = "Back Strength";
-            this.xrTableCell118.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell118.Text = " Strength";
+            this.xrTableCell118.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.xrTableCell118.Weight = 1.0937023691956183D;
             // 
             // lbBackStrenght

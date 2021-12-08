@@ -329,7 +329,7 @@ namespace MediTech.ViewModels
                 {
 
                     List<string> listNoMapResult = new List<string>();
-                    string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName, " ", dtResultMapping, ref listNoMapResult);
+                    string thairesult = TranslateResult.TranslateResultXray(item.ResultValue, item.ResultStatus,item.RequestItemName, ",", dtResultMapping, ref listNoMapResult);
 
                     item.ThaiResult = thairesult;
                     if (item.ThaiResult == string.Empty)
