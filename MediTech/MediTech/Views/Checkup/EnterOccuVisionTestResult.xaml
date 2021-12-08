@@ -17,7 +17,6 @@
         <DataTemplate x:Key="ListBoxRadioButtonEdit">
             <dxe:ListBoxEdit Name="PART_Editor" ShowCustomItems="False"
                              ItemsSource="{Binding RowData.Row.AutoValueList}"
-                             EditValue="{Binding RowData.Row.ResultValue,Mode=TwoWay}"
                              FontWeight="Bold" FontSize="16">
                 <dxe:ListBoxEdit.Resources>
                     <Style TargetType="dxe:ListBoxRadioButton">
