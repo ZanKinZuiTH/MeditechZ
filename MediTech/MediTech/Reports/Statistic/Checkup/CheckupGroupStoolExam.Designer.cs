@@ -322,7 +322,9 @@
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Fullname")});
             this.xrTableCell10.Font = new System.Drawing.Font("Angsana New", 10F);
             this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
             this.xrTableCell10.StylePriority.UseFont = false;
+            this.xrTableCell10.StylePriority.UsePadding = false;
             this.xrTableCell10.StylePriority.UseTextAlignment = false;
             this.xrTableCell10.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell10.Weight = 2.1531424656119182D;

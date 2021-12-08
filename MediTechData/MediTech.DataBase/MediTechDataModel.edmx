@@ -2755,6 +2755,13 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SEQGroupReceipt">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="SEQITCODE">
           <Key>
             <PropertyRef Name="UID" />
@@ -3119,6 +3126,7 @@
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
           <Property Name="WellnessResult" Type="nvarchar(max)" />
+          <Property Name="OnBLIFE" Type="nvarchar" MaxLength="1" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -3386,6 +3394,8 @@
           <Parameter Name="P_CompanyName" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_StartRow" Type="int" Mode="In" />
           <Parameter Name="P_EndROW" Type="int" Mode="In" />
+          <Parameter Name="P_DateFrom" Type="date" Mode="In" />
+          <Parameter Name="P_DateTo" Type="date" Mode="In" />
         </Function>
         <Function Name="pGetCheckupMobileResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -3662,6 +3672,8 @@
           <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
           <Parameter Name="P_GPRSTUIDs" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="P_CompanyName" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="P_DateFrom" Type="date" Mode="In" />
+          <Parameter Name="P_DateTo" Type="date" Mode="In" />
         </Function>
         <Function Name="pRPTDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -4143,6 +4155,7 @@
           <EntitySet Name="SEQConfiguration" EntityType="Self.SEQConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQDISPOSEID" EntityType="Self.SEQDISPOSEID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQGRNID" EntityType="Self.SEQGRNID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEQGroupReceipt" EntityType="Self.SEQGroupReceipt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQITCODE" EntityType="Self.SEQITCODE" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQItemIssue" EntityType="Self.SEQItemIssue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQItemReceive" EntityType="Self.SEQItemReceive" Schema="dbo" store:Type="Tables" />
@@ -5126,6 +5139,8 @@
             <Parameter Name="P_CompanyName" Mode="In" Type="String" />
             <Parameter Name="P_StartRow" Mode="In" Type="Int32" />
             <Parameter Name="P_EndROW" Mode="In" Type="Int32" />
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="pGetCheckupMobileResult" ReturnType="Collection(MediTechModel.pGetCheckupMobileResult_Result)">
             <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
@@ -5146,6 +5161,8 @@
             <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
             <Parameter Name="P_GPRSTUIDs" Mode="In" Type="String" />
             <Parameter Name="P_CompanyName" Mode="In" Type="String" />
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="pRPTCheckupJobOrderSummary" ReturnType="Collection(MediTechModel.pRPTCheckupJobOrderSummary_Result)">
             <Parameter Name="P_CheckupJobUID" Mode="In" Type="Int32" />
@@ -5289,6 +5306,7 @@
           <EntitySet Name="SEQConfiguration" EntityType="MediTechModel.SEQConfiguration" />
           <EntitySet Name="SEQDISPOSEID" EntityType="MediTechModel.SEQDISPOSEID" />
           <EntitySet Name="SEQGRNID" EntityType="MediTechModel.SEQGRNID" />
+          <EntitySet Name="SEQGroupReceipt" EntityType="MediTechModel.SEQGroupReceipt" />
           <EntitySet Name="SEQITCODE" EntityType="MediTechModel.SEQITCODE" />
           <EntitySet Name="SEQItemIssue" EntityType="MediTechModel.SEQItemIssue" />
           <EntitySet Name="SEQItemReceive" EntityType="MediTechModel.SEQItemReceive" />
@@ -10548,6 +10566,13 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SEQGroupReceipt">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="SEQITCODE">
           <Key>
             <PropertyRef Name="UID" />
@@ -10912,6 +10937,7 @@
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
           <Property Name="WellnessResult" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="OnBLIFE" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -15785,6 +15811,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SEQGroupReceipt">
+            <EntityTypeMapping TypeName="MediTechModel.SEQGroupReceipt">
+              <MappingFragment StoreEntitySet="SEQGroupReceipt">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SEQITCODE">
             <EntityTypeMapping TypeName="MediTechModel.SEQITCODE">
               <MappingFragment StoreEntitySet="SEQITCODE">
@@ -16177,6 +16211,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="OnBLIFE" ColumnName="OnBLIFE" />
                 <ScalarProperty Name="WellnessResult" ColumnName="WellnessResult" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />

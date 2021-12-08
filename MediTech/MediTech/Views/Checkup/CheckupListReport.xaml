@@ -143,6 +143,7 @@
                     <dxg:GridColumn FieldName="LastName" Header="นามสกุล"/>
                     <dxg:GridColumn FieldName="Gender" Header="เพศ"/>
                     <dxg:GridColumn FieldName="Age" Header="อายุ"/>
+                    <dxg:GridColumn FieldName="OnBLIFE" Header="ส่งขึ้น B-Life"/>
                     <dxg:GridColumn FieldName="CompanyName" Header="บริษัท"/>
                     <dxg:GridColumn FieldName="EmployeeID" Header="รหัสพนักงาน"/>
                     <dxg:GridColumn FieldName="Department" Header="แผนก"/>
@@ -166,6 +167,14 @@
 
 
                 <dxlc:LayoutGroup Orientation="Horizontal">
+                    <dxlc:LayoutItem HorizontalAlignment="Left">
+                        <dx:SimpleButton Width="100" Height="30"  Command="{Binding SendToBLIFECommand}">
+                            <StackPanel Orientation="Horizontal">
+                                <!--<Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>-->
+                                <TextBlock Text="ส่งขึ้น BLIFE" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Printer" HorizontalAlignment="Left">
                         <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"

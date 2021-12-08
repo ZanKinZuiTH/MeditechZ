@@ -1153,6 +1153,16 @@ namespace MediTech.ViewModels
                                 report.ShowPrintMarginsWarning = false;
                                 printTool.Print(SelectPrinter.Display);
                             }
+                            else if (SelectReport.Name == "ใบรับรองแพทย์ 5 โรค (Mobile)")
+                            {
+                                report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;
+                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                                report.Parameters["ReportName"].Value = SelectReport.Name;
+                                report.RequestParameters = false;
+                                report.ShowPrintMarginsWarning = false;
+                                printTool.Print(SelectPrinter.Display);
+                            }
                             else
                             {
                                 report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;

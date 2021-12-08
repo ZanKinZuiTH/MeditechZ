@@ -356,6 +356,21 @@ namespace MediTech.DataService
 
         }
 
+        public void SendWellnessToBLIFE(WellnessDataModel model, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientHistory/SendWellnessToBLIFE?userID={0}", userID);
+                MeditechApiHelper.Post<WellnessDataModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
         public void DeleteWellnessData(int wellNessUID, int userID)
         {
             try

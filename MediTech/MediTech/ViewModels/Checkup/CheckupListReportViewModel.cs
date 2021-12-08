@@ -191,6 +191,12 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _SendToBLIFECommand;
+        public RelayCommand SendToBLIFECommand
+        {
+            get { return _SendToBLIFECommand ?? (_SendToBLIFECommand = new RelayCommand(SendToBLIFE)); }
+        }
+
         private RelayCommand _PreviewCommand;
         public RelayCommand PreviewCommand
         {
@@ -236,7 +242,8 @@ namespace MediTech.ViewModels
             }
 
             ReportsList = new List<ReportsModel>();
-            ReportsList.Add(new ReportsModel { Name = "สมุดตรวจสุขภาพรายบุคคล", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupBookReport.CheckupPage1" });
+           //ReportsList.Add(new ReportsModel { Name = "สมุดตรวจสุขภาพรายบุคคล", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupBookReport.CheckupPage1" });
+            ReportsList.Add(new ReportsModel { Name = "สมุดตรวจสุขภาพรายบุคคลA5", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupBookA5.CheckupPage1" });
             ReportsList.Add(new ReportsModel { Name = "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupBookLargeSize.CheckupBookLarge1" });
             ReportsList.Add(new ReportsModel { Name = "เล่มความเสี่ยง", NamespaceName = "MediTech.Reports.Operating.Checkup.RiskBook.RiskBook1" });
             ReportsList.Add(new ReportsModel { Name = "ผลตรวจสมรรถภาพการได้ยินเบื้องต้น", NamespaceName = "MediTech.Reports.Operating.Checkup.AudiogramGraph" });
@@ -328,7 +335,7 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -346,7 +353,31 @@ namespace MediTech.ViewModels
                 ErrorDialog(er.Message);
             }
         }
+        void SendToBLIFE()
+        {
+            if (SelectPatientCheckupResult != null)
+            {
+                var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                foreach (var item in patientResultLabList.ToList())
+                {
+                    try
+                    {
+                        WellnessDataModel WellnessData = new WellnessDataModel();
+                        WellnessData.WellnessDataUID = item.WellnessResultUID;
+                        DataService.PatientHistory.SendWellnessToBLIFE(WellnessData, AppUtil.Current.UserID);
+                       
+                    }
+                    catch (Exception er)
+                    {
 
+                        ErrorDialog(er.Message);
+                    }
+                    SelectPatientCheckupResult.Remove(item);
+                }
+                SaveSuccessDialog();
+                Search();
+            }
+        }
         void Preview()
         {
             if (SelectPatientCheckupResult != null)
@@ -360,7 +391,7 @@ namespace MediTech.ViewModels
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
-                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่")
+                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -393,7 +424,7 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -427,7 +458,7 @@ namespace MediTech.ViewModels
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
 
-                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่")
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
 
                         XlsxExportOptions xlsxExportOptions = new XlsxExportOptions()
