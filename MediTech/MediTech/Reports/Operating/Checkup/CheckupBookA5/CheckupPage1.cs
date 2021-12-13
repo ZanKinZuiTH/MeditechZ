@@ -1659,7 +1659,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     #endregion
 
                     #region Phenol
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "") != null)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204") != null)
                     {
                         page7.RowPhenol.Visible = true;
                         page7.PhenolRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR204")?.ReferenceRange;
@@ -1856,19 +1856,42 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page6.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year2)?.ResultValue;
                         page6.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year3)?.ResultValue;
                     }
-                    else
+                    //else
+                    //{
+                    //    page6.cellPsaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187")?.ReferenceRange;
+                    //    page6.cellPsa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.ResultValue;
+                    //    page6.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.ResultValue;
+                    //    page6.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year3)?.ResultValue;
+                    //}
+
+                }
+
+
+                if (CheckGender.SEXXXUID == 1)
+                {
+                    //PSA In โชว์ตัวเลขก่อนตัวอักษร
+                    //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4") != null)
+                    //{
+                    //    page6.cellPsaInRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4")?.ReferenceRange;
+                    //    page6.cellPsaIn1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year1)?.ResultValue;
+                    //    page6.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year2)?.ResultValue;
+                    //    page6.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR4" && p.Year == year3)?.ResultValue;
+                    //}
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187") != null)
                     {
-                        page6.cellPsaRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187")?.ReferenceRange;
-                        page6.cellPsa1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.ResultValue;
-                        page6.cellPsa2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.ResultValue;
-                        page6.cellPsa3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year3)?.ResultValue;
+                        page6.cellPsaInRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187")?.ReferenceRange;
+                        page6.cellPsaIn1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year1)?.ResultValue;
+                        page6.cellPsaIn2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year2)?.ResultValue;
+                        page6.cellPsaIn3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR187" && p.Year == year3)?.ResultValue;
                     }
 
                 }
 
+
                 if (CheckGender.SEXXXUID == 2)
                 {
                     page6.RowPSA.Visible = false;
+                    page6.RowPasIn.Visible = false;
                     page6.cellCa125Range.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41")?.ReferenceRange;
                     page6.cellCa125_1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year1)?.ResultValue;
                     page6.cellCa125_2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR41" && p.Year == year2)?.ResultValue;

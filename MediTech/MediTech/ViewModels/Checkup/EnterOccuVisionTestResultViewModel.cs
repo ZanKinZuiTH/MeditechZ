@@ -306,13 +306,13 @@ namespace MediTech.ViewModels
                     if (demonstration_slide != null && demonstration_slide.ResultValue != null)
                         binocular_normal = demonstration_slide.ResultValue.ToUpper() == "PASS" ? true : demonstration_slide.ResultValue.ToUpper() == "FAIL" ? false : true;
                     if (botheyes_far != null && botheyes_far.ResultValue != null)
-                        far_vision_both_normal = (botheyes_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_far.ResultValue) == true && Convert.ToInt16(botheyes_far.ResultValue) > 9 ? true : false;
+                        far_vision_both_normal = (botheyes_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_far.ResultValue) == true && Convert.ToInt16(botheyes_far.ResultValue) >= 9 ? true : false;
                     if (righteye_far != null && righteye_far.ResultValue != null)
-                        far_vision_right_normal = (righteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_far.ResultValue) == true && Convert.ToInt16(righteye_far.ResultValue) > 8 ? true : false;
+                        far_vision_right_normal = (righteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_far.ResultValue) == true && Convert.ToInt16(righteye_far.ResultValue) >= 8 ? true : false;
                     if (lefteye_far != null && lefteye_far.ResultValue != null)
-                        far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_far.ResultValue) == true && Convert.ToInt16(lefteye_far.ResultValue) > 8 ? true : false;
+                        far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_far.ResultValue) == true && Convert.ToInt16(lefteye_far.ResultValue) >= 8 ? true : false;
                     if (stereo_depth != null && stereo_depth.ResultValue != null)
-                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) > 6 ? true : false;
+                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) >= 6 ? true : false;
                     if (color != null && color.CheckDataList != null)
                         color_discrimination_normal = (color.CheckDataList.Any(p => p.ToString() == "ไม่ได้ตรวจ")) ? (bool?)null : color.CheckDataList.Any(p => p.ToString() == "มองไม่เห็น") ? false : color.CheckDataList.Any(p => p.ToString() == "X") ? true : false;
                     if (vertical != null && vertical.ResultValue != null)
@@ -320,9 +320,9 @@ namespace MediTech.ViewModels
                     if (lateral_far != null && lateral_far.ResultValue != null)
                         far_lateral_phoria_normal = (lateral_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lateral_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lateral_far.ResultValue) == true && Convert.ToInt16(lateral_far.ResultValue) >= 4 && Convert.ToInt16(lateral_far.ResultValue) <= 13 ? true : false;
                     if (botheyes_near != null && botheyes_near.ResultValue != null)
-                        near_vision_both_normal = (botheyes_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_near.ResultValue) == true && Convert.ToInt16(botheyes_near.ResultValue) > 7 ? true : false;
+                        near_vision_both_normal = (botheyes_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_near.ResultValue) == true && Convert.ToInt16(botheyes_near.ResultValue) >= 7 ? true : false;
                     if (righteye_near != null && righteye_near.ResultValue != null)
-                        near_vision_right_normal = (righteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_near.ResultValue) == true && Convert.ToInt16(righteye_near.ResultValue) > 6 ? true : false;
+                        near_vision_right_normal = (righteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_near.ResultValue) == true && Convert.ToInt16(righteye_near.ResultValue) >= 6 ? true : false;
                     if (lefteye_near != null && lefteye_near.ResultValue != null)
                         near_vision_left_normal = (lefteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_near.ResultValue) == true && Convert.ToInt16(lefteye_near.ResultValue) > 6 ? true : false;
                     if (lateral_near != null && lateral_near.ResultValue != null)
@@ -356,13 +356,13 @@ namespace MediTech.ViewModels
                     if (demonstration_slide != null && demonstration_slide.ResultValue != null)
                         binocular_normal = demonstration_slide.ResultValue.ToUpper() == "PASS" ? true : demonstration_slide.ResultValue.ToUpper() == "FAIL" ? false : true;
                     if (botheyes_far != null && botheyes_far.ResultValue != null)
-                        far_vision_both_normal = (botheyes_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_far.ResultValue) == true && Convert.ToInt16(botheyes_far.ResultValue) > 8 ? true : false;
+                        far_vision_both_normal = (botheyes_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_far.ResultValue) == true && Convert.ToInt16(botheyes_far.ResultValue) >= 8 ? true : false;
                     if (righteye_far != null && righteye_far.ResultValue != null)
-                        far_vision_right_normal = (righteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_far.ResultValue) == true && Convert.ToInt16(righteye_far.ResultValue) > 7 ? true : false;
+                        far_vision_right_normal = (righteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_far.ResultValue) == true && Convert.ToInt16(righteye_far.ResultValue) >= 7 ? true : false;
                     if (lefteye_far != null && lefteye_far.ResultValue != null)
-                        far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_far.ResultValue) == true && Convert.ToInt16(lefteye_far.ResultValue) > 7 ? true : false;
+                        far_vision_left_normal = (lefteye_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_far.ResultValue) == true && Convert.ToInt16(lefteye_far.ResultValue) >= 7 ? true : false;
                     if (stereo_depth != null && stereo_depth.ResultValue != null)
-                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) > 4 ? true : false;
+                        stereo_depth_normal = (stereo_depth.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : stereo_depth.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(stereo_depth.ResultValue) == true && Convert.ToInt16(stereo_depth.ResultValue) >= 5 ? true : false;
                     if (color != null && color.CheckDataList != null)
                         color_discrimination_normal = (color.CheckDataList.Any(p => p.ToString() == "ไม่ได้ตรวจ")) ? (bool?)null : color.CheckDataList.Any(p => p.ToString() == "มองไม่เห็น") ? false : color.CheckDataList.Any(p => p.ToString() == "X") ? true : false;
                     if (vertical != null && vertical.ResultValue != null)
@@ -370,11 +370,11 @@ namespace MediTech.ViewModels
                     if (lateral_far != null && lateral_far.ResultValue != null)
                         far_lateral_phoria_normal = (lateral_far.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lateral_far.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lateral_far.ResultValue) == true && Convert.ToInt16(lateral_far.ResultValue) >= 4 && Convert.ToInt16(lateral_far.ResultValue) <= 13 ? true : false;
                     if (botheyes_near != null && botheyes_near.ResultValue != null)
-                        near_vision_both_normal = (botheyes_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_near.ResultValue) == true && Convert.ToInt16(botheyes_near.ResultValue) > 8 ? true : false;
+                        near_vision_both_normal = (botheyes_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : botheyes_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(botheyes_near.ResultValue) == true && Convert.ToInt16(botheyes_near.ResultValue) >= 8 ? true : false;
                     if (righteye_near != null && righteye_near.ResultValue != null)
-                        near_vision_right_normal = (righteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_near.ResultValue) == true && Convert.ToInt16(righteye_near.ResultValue) > 7 ? true : false;
+                        near_vision_right_normal = (righteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : righteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(righteye_near.ResultValue) == true && Convert.ToInt16(righteye_near.ResultValue) >= 7 ? true : false;
                     if (lefteye_near != null && lefteye_near.ResultValue != null)
-                        near_vision_left_normal = (lefteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_near.ResultValue) == true && Convert.ToInt16(lefteye_near.ResultValue) > 7 ? true : false;
+                        near_vision_left_normal = (lefteye_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lefteye_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lefteye_near.ResultValue) == true && Convert.ToInt16(lefteye_near.ResultValue) >= 7 ? true : false;
                     if (lateral_near != null && lateral_near.ResultValue != null)
                         near_lateral_photia_normal = (lateral_near.ResultValue.Trim() == "ไม่ได้ตรวจ") ? (bool?)null : lateral_near.ResultValue == "มองไม่เห็น" ? false : ShareLibrary.CheckValidate.IsNumber(lateral_near.ResultValue) == true && Convert.ToInt16(lateral_near.ResultValue) >= 4 && Convert.ToInt16(lateral_near.ResultValue) <= 13 ? true : false;
 
