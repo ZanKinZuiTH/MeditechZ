@@ -105,7 +105,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText2,
             this.TitleResultWellness,
             this.lbResultWellness});
-            this.Detail.HeightF = 738.0378F;
+            this.Detail.HeightF = 718.4152F;
             this.Detail.Name = "Detail";
             // 
             // xrRichText2
@@ -121,7 +121,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleResultWellness.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TitleResultWellness.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.TitleResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.TitleResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(144.9772F, 22.83203F);
+            this.TitleResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(144.9772F, 10F);
             this.TitleResultWellness.Name = "TitleResultWellness";
             this.TitleResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.TitleResultWellness.SizeF = new System.Drawing.SizeF(299.1666F, 25F);
@@ -141,11 +141,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
-            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(23.99986F, 49.34715F);
+            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(23.99986F, 36.51512F);
             this.lbResultWellness.Multiline = true;
             this.lbResultWellness.Name = "lbResultWellness";
             this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.lbResultWellness.SizeF = new System.Drawing.SizeF(518.0001F, 681.6907F);
+            this.lbResultWellness.SizeF = new System.Drawing.SizeF(518.17F, 681.69F);
             this.lbResultWellness.StylePriority.UseBorderColor = false;
             this.lbResultWellness.StylePriority.UseFont = false;
             this.lbResultWellness.StylePriority.UseForeColor = false;

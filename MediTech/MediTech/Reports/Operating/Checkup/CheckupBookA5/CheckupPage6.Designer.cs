@@ -201,6 +201,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellBloodGroup1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellBloodGroup2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellBloodGroup3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowPasIn = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellPsaInRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellPsaIn1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellPsaIn2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cellPsaIn3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
@@ -301,7 +307,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(156.3342F, 23.50132F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(137.6271F, 0F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(276.3788F, 28F);
@@ -317,7 +323,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTable6.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(44.69352F, 53.16799F);
+            this.xrTable6.LocationFloat = new DevExpress.Utils.PointFloat(44.69352F, 26.35875F);
             this.xrTable6.Name = "xrTable6";
             this.xrTable6.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow39,
@@ -327,10 +333,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow47,
             this.xrTableRow27,
             this.RowPSA,
+            this.RowPasIn,
             this.RowCa125,
             this.xrTableRow50,
             this.RowCA153});
-            this.xrTable6.SizeF = new System.Drawing.SizeF(478.3124F, 246.7749F);
+            this.xrTable6.SizeF = new System.Drawing.SizeF(478.3124F, 272.8373F);
             this.xrTable6.StylePriority.UseBorderColor = false;
             this.xrTable6.StylePriority.UseBorders = false;
             this.xrTable6.StylePriority.UseBorderWidth = false;
@@ -2391,6 +2398,80 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellBloodGroup3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellBloodGroup3.Weight = 0.548793689844215D;
             // 
+            // RowPasIn
+            // 
+            this.RowPasIn.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell9,
+            this.cellPsaInRange,
+            this.cellPsaIn1,
+            this.cellPsaIn2,
+            this.cellPsaIn3});
+            this.RowPasIn.Name = "RowPasIn";
+            this.RowPasIn.Weight = 0.78073085564169431D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Font = new System.Drawing.Font("EucrosiaUPC", 9F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell9.Multiline = true;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell9.StylePriority.UseBorders = false;
+            this.xrTableCell9.StylePriority.UseBorderWidth = false;
+            this.xrTableCell9.StylePriority.UseFont = false;
+            this.xrTableCell9.StylePriority.UsePadding = false;
+            this.xrTableCell9.StylePriority.UseTextAlignment = false;
+            this.xrTableCell9.Text = "PSA(Interpertation):สารบ่งชี้เซลล์มะเร็งต่อมลูกหมาก ";
+            this.xrTableCell9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell9.Weight = 1.5524661471529357D;
+            // 
+            // cellPsaInRange
+            // 
+            this.cellPsaInRange.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellPsaInRange.Multiline = true;
+            this.cellPsaInRange.Name = "cellPsaInRange";
+            this.cellPsaInRange.StylePriority.UseBorders = false;
+            this.cellPsaInRange.StylePriority.UseBorderWidth = false;
+            this.cellPsaInRange.StylePriority.UseFont = false;
+            this.cellPsaInRange.StylePriority.UseTextAlignment = false;
+            this.cellPsaInRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellPsaInRange.Weight = 0.80162052214910229D;
+            // 
+            // cellPsaIn1
+            // 
+            this.cellPsaIn1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellPsaIn1.Multiline = true;
+            this.cellPsaIn1.Name = "cellPsaIn1";
+            this.cellPsaIn1.StylePriority.UseBorders = false;
+            this.cellPsaIn1.StylePriority.UseBorderWidth = false;
+            this.cellPsaIn1.StylePriority.UseFont = false;
+            this.cellPsaIn1.StylePriority.UseTextAlignment = false;
+            this.cellPsaIn1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellPsaIn1.Weight = 0.41324495823866525D;
+            // 
+            // cellPsaIn2
+            // 
+            this.cellPsaIn2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellPsaIn2.Multiline = true;
+            this.cellPsaIn2.Name = "cellPsaIn2";
+            this.cellPsaIn2.StylePriority.UseBorders = false;
+            this.cellPsaIn2.StylePriority.UseBorderWidth = false;
+            this.cellPsaIn2.StylePriority.UseFont = false;
+            this.cellPsaIn2.StylePriority.UseTextAlignment = false;
+            this.cellPsaIn2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellPsaIn2.Weight = 0.41324496880600481D;
+            // 
+            // cellPsaIn3
+            // 
+            this.cellPsaIn3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.cellPsaIn3.Multiline = true;
+            this.cellPsaIn3.Name = "cellPsaIn3";
+            this.cellPsaIn3.StylePriority.UseBorders = false;
+            this.cellPsaIn3.StylePriority.UseBorderWidth = false;
+            this.cellPsaIn3.StylePriority.UseFont = false;
+            this.cellPsaIn3.StylePriority.UseTextAlignment = false;
+            this.cellPsaIn3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.cellPsaIn3.Weight = 0.41324494516696636D;
+            // 
             // CheckupPage6
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -2585,5 +2666,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellBloodGroup1;
         public DevExpress.XtraReports.UI.XRTableCell cellBloodGroup2;
         public DevExpress.XtraReports.UI.XRTableCell cellBloodGroup3;
+        public DevExpress.XtraReports.UI.XRTableRow RowPasIn;
+        public DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        public DevExpress.XtraReports.UI.XRTableCell cellPsaInRange;
+        public DevExpress.XtraReports.UI.XRTableCell cellPsaIn1;
+        public DevExpress.XtraReports.UI.XRTableCell cellPsaIn2;
+        public DevExpress.XtraReports.UI.XRTableCell cellPsaIn3;
     }
 }
