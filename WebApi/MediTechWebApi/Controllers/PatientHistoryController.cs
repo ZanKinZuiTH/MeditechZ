@@ -715,7 +715,7 @@ namespace MediTechWebApi.Controllers
         {
             var wellNessData = (from well in db.WellnessData
                                 join pvp in db.PatientVisitPayor on well.PatientVisitUID equals pvp.PatientVisitUID
-                                where well.StatusFlag == "A" 
+                                where well.StatusFlag == "A"
                                 && pvp.StatusFlag == "A"
                                 && well.PatientVisitUID == patientVisitUID
                                 select new WellnessDataModel
@@ -765,7 +765,7 @@ namespace MediTechWebApi.Controllers
                 DateTime now = DateTime.Now;
 
 
-                WellnessData wellNess = db.WellnessData.Find(model.WellnessDataUID);
+                WellnessData wellNess = db.WellnessData.FirstOrDefault(p => p.PatientUID == model.PatientUID && p.PatientVisitUID == model.PatientVisitUID);
                 if (wellNess == null)
                 {
                     wellNess = new WellnessData();
