@@ -107,25 +107,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbAudioRecommend = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel2 = new DevExpress.XtraReports.UI.XRLabel();
-            this.tbEKG = new DevExpress.XtraReports.UI.XRTable();
-            this.xrTableRow33 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell150 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell149 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow36 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.lbEKGResult = new DevExpress.XtraReports.UI.XRTableCell();
-            this.lbEKGRecommend = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEKG)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 20F;
+            this.TopMargin.HeightF = 0F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -186,16 +177,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7,
             this.tbLung,
             this.tbAudio,
-            this.xrLabel2,
-            this.tbEKG,
-            this.xrLabel6});
+            this.xrLabel2});
             this.Detail.HeightF = 756.697F;
             this.Detail.Name = "Detail";
             // 
             // xrRichText1
             // 
             this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(512.5F, 7F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(515.5F, 7F);
             this.xrRichText1.Name = "xrRichText1";
             this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
             this.xrRichText1.SizeF = new System.Drawing.SizeF(17.5F, 23F);
@@ -205,7 +194,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel4.CanGrow = false;
             this.xrLabel4.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(81.96118F, 570.4166F);
+            this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(87.63132F, 437.2499F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel4.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -222,7 +211,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbVisionOccmed.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(21.29791F, 597.3754F);
+            this.tbVisionOccmed.LocationFloat = new DevExpress.Utils.PointFloat(26.96805F, 464.2088F);
             this.tbVisionOccmed.Name = "tbVisionOccmed";
             this.tbVisionOccmed.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow11,
@@ -457,7 +446,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel7.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(81.96118F, 363.3376F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(87.63132F, 230.1709F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel7.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -473,7 +462,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbLung.BorderColor = System.Drawing.Color.DarkGray;
             this.tbLung.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(21.29791F, 389.0952F);
+            this.tbLung.LocationFloat = new DevExpress.Utils.PointFloat(26.96805F, 255.9285F);
             this.tbLung.Name = "tbLung";
             this.tbLung.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow41,
@@ -758,7 +747,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbAudio.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbAudio.LocationFloat = new DevExpress.Utils.PointFloat(20.46442F, 190.4631F);
+            this.tbAudio.LocationFloat = new DevExpress.Utils.PointFloat(26.13456F, 57.29644F);
             this.tbAudio.Name = "tbAudio";
             this.tbAudio.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow29,
@@ -922,7 +911,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.xrLabel2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(81.96118F, 164.3775F);
+            this.xrLabel2.LocationFloat = new DevExpress.Utils.PointFloat(87.63132F, 31.21082F);
             this.xrLabel2.Name = "xrLabel2";
             this.xrLabel2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel2.SizeF = new System.Drawing.SizeF(384.7646F, 25F);
@@ -933,101 +922,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel2.Text = "  ผลการตรวจสมรรถภาพการได้ยิน  (Screening Audiogram)";
             this.xrLabel2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
-            // tbEKG
-            // 
-            this.tbEKG.BorderColor = System.Drawing.Color.DarkGray;
-            this.tbEKG.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbEKG.LocationFloat = new DevExpress.Utils.PointFloat(20.46442F, 54.22253F);
-            this.tbEKG.Name = "tbEKG";
-            this.tbEKG.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
-            this.xrTableRow33,
-            this.xrTableRow36});
-            this.tbEKG.SizeF = new System.Drawing.SizeF(488.06F, 90.8668F);
-            this.tbEKG.StylePriority.UseBorderColor = false;
-            this.tbEKG.StylePriority.UseBorderDashStyle = false;
-            this.tbEKG.StylePriority.UseBorders = false;
-            this.tbEKG.StylePriority.UseBorderWidth = false;
-            this.tbEKG.StylePriority.UseFont = false;
-            this.tbEKG.StylePriority.UsePadding = false;
-            // 
-            // xrTableRow33
-            // 
-            this.xrTableRow33.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell150,
-            this.xrTableCell149});
-            this.xrTableRow33.Name = "xrTableRow33";
-            this.xrTableRow33.StylePriority.UseTextAlignment = false;
-            this.xrTableRow33.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableRow33.Weight = 0.27937268278655591D;
-            // 
-            // xrTableCell150
-            // 
-            this.xrTableCell150.CanGrow = false;
-            this.xrTableCell150.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell150.Name = "xrTableCell150";
-            this.xrTableCell150.StylePriority.UseFont = false;
-            this.xrTableCell150.StylePriority.UseTextAlignment = false;
-            this.xrTableCell150.Text = "Test";
-            this.xrTableCell150.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell150.Weight = 0.46427509718544646D;
-            // 
-            // xrTableCell149
-            // 
-            this.xrTableCell149.CanGrow = false;
-            this.xrTableCell149.Font = new System.Drawing.Font("EucrosiaUPC", 12F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell149.Name = "xrTableCell149";
-            this.xrTableCell149.StylePriority.UseFont = false;
-            this.xrTableCell149.StylePriority.UseTextAlignment = false;
-            this.xrTableCell149.Text = "Result";
-            this.xrTableCell149.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
-            this.xrTableCell149.Weight = 1.9278064855484867D;
-            // 
-            // xrTableRow36
-            // 
-            this.xrTableRow36.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.lbEKGResult,
-            this.lbEKGRecommend});
-            this.xrTableRow36.Name = "xrTableRow36";
-            this.xrTableRow36.Weight = 0.862628712535356D;
-            // 
-            // lbEKGResult
-            // 
-            this.lbEKGResult.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.lbEKGResult.Name = "lbEKGResult";
-            this.lbEKGResult.StylePriority.UseFont = false;
-            this.lbEKGResult.StylePriority.UseTextAlignment = false;
-            this.lbEKGResult.Text = "สรุปผล / คำแนะนำ";
-            this.lbEKGResult.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEKGResult.Weight = 0.46427509718544646D;
-            // 
-            // lbEKGRecommend
-            // 
-            this.lbEKGRecommend.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.lbEKGRecommend.Multiline = true;
-            this.lbEKGRecommend.Name = "lbEKGRecommend";
-            this.lbEKGRecommend.StylePriority.UseFont = false;
-            this.lbEKGRecommend.StylePriority.UseTextAlignment = false;
-            this.lbEKGRecommend.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.lbEKGRecommend.Weight = 1.9278064855484867D;
-            // 
-            // xrLabel6
-            // 
-            this.xrLabel6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.xrLabel6.CanGrow = false;
-            this.xrLabel6.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel6.LocationFloat = new DevExpress.Utils.PointFloat(126.4811F, 28.1273F);
-            this.xrLabel6.Name = "xrLabel6";
-            this.xrLabel6.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel6.SizeF = new System.Drawing.SizeF(282.9138F, 25F);
-            this.xrLabel6.StylePriority.UseBackColor = false;
-            this.xrLabel6.StylePriority.UseFont = false;
-            this.xrLabel6.StylePriority.UseTextAlignment = false;
-            this.xrLabel6.Text = " ผลการตรวจคลื่นไฟฟ้าหัวใจ (EKG) ";
-            this.xrLabel6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrLabel6.WordWrap = false;
-            // 
             // CheckupPage9
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -1035,7 +929,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(5, 5, 20, 40);
+            this.Margins = new System.Drawing.Printing.Margins(5, 5, 0, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
@@ -1045,7 +939,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             ((System.ComponentModel.ISupportInitialize)(this.tbVisionOccmed)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLung)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tbEKG)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
         }
@@ -1124,14 +1017,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell TitleAudioRecommend;
         public DevExpress.XtraReports.UI.XRTableCell lbAudioRecommend;
         private DevExpress.XtraReports.UI.XRLabel xrLabel2;
-        private DevExpress.XtraReports.UI.XRTable tbEKG;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow33;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell150;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell149;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow36;
-        public DevExpress.XtraReports.UI.XRTableCell lbEKGResult;
-        public DevExpress.XtraReports.UI.XRTableCell lbEKGRecommend;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel6;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow37;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;

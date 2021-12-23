@@ -1424,7 +1424,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page6.RowMethyrene.Visible = false;
                 page6.RowHexane.Visible = false;
                 page6.RowNickelUrine.Visible = false;
-
                 page6.RowMibkUrine.Visible = false;
                 page6.RowCadmiumUrine.Visible = false;
                 page6.RowEthylbenzeneUrine.Visible = false;
@@ -1432,7 +1431,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookLargeSize
                 page6.RowMethyreneUrine.Visible = false;
                 page6.RowBenzenettUrine.Visible = false;
                 page6.RowMercuryBlood.Visible = false;
-
                 page6.Rowfluoride.Visible = false;
                 page6.RowFormadehyde.Visible = false;
 

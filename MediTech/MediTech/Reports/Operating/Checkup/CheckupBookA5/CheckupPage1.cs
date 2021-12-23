@@ -119,6 +119,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             long patientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int payorDetailUID = int.Parse(this.Parameters["PayorDetailUID"].Value.ToString());
             PatientWellnessModel data = DataService.Reports.PrintWellnessBook(patientUID, patientVisitUID, payorDetailUID);
+         
 
             if (data.PatientInfomation != null)
             {
@@ -438,7 +439,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                 #endregion
 
-                page9.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
+                page8.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
 
                 var labCompare = data.LabCompare;
                 if (labCompare != null)
@@ -579,7 +580,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB488") //Mercury in blood
                         || p.RequestItemCode.Contains("LAB584") //fluoride  in Urine
                         || p.RequestItemCode.Contains("LAB513") //formadehyde in Urine
-                        || p.RequestItemCode.Contains("LAB276")) //25hex
+                        || p.RequestItemCode.Contains("LAB276") //25hex
+                        || p.RequestItemCode.Contains("LAB588") //Manganes in blood
+                        || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
+                        || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
+                        || p.RequestItemCode.Contains("LAB463") // Iron zerum
+                          || p.RequestItemCode.Contains("LAB463")) // Iron zerum
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1416,6 +1422,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
         private void GenerateToxicology(IEnumerable<PatientResultComponentModel> labTestSet)
         {
+
             if (labTestSet != null)
             {
                 page7.RowIsopropanol.Visible = false;
@@ -1435,9 +1442,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowMethyrene.Visible = false;
                 page7.RowHexane.Visible = false;
                 page7.RowNickelUrine.Visible = false;
-
                 page7.RowMibkUrine.Visible = false;
-                page7.RowCadmiumUrine.Visible = false;
                 page7.RowEthylbenzeneUrine.Visible = false;
                 page7.RowMercuryUrine.Visible = false;
                 page7.RowMethyreneUrine.Visible = false;
@@ -1446,6 +1451,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.Rowfluoride.Visible = false;
                 page7.RowFormadehyde.Visible = false;
                 page7.Row25Hexan.Visible = false;
+                page7.RowManganese.Visible = false;
+                page7.RowZinc.Visible = false;
+                page7.RowIron.Visible = false;
+                page7.RowCadInb.Visible = false;
+                page7.RowChroinB.Visible = false;
+                
+            
+              
+
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1596,12 +1610,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #endregion
 
-                    #region Nickel 
-                    page7.cellNickelRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131")?.ReferenceRange;
-                    page7.cellNickel1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year1)?.ResultValue;
-                    page7.cellNickel2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.ResultValue;
-                    page7.cellNickel3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.ResultValue;
-
+                    #region Nickel  in blood
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131") != null)
+                    {
+                        page7.RowNicinblood.Visible = true;
+                        page7.cellNickelRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131")?.ReferenceRange;
+                        page7.cellNickel1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year1)?.ResultValue;
+                        page7.cellNickel2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year2)?.ResultValue;
+                        page7.cellNickel3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR131" && p.Year == year3)?.ResultValue;
+                    }
                     #endregion
 
                     #region Nickel In Urine
@@ -1744,7 +1761,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     }
                     #endregion
 
-                    #region Mercury Blood
+                    #region Mercury Blood (EDTA)
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1237") != null)
                     {
@@ -1789,6 +1806,80 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.cell25Hexan3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1242" && p.Year == year3)?.ResultValue;
                     }
                     #endregion
+
+                    #region Manganese in Blood 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
+                    {
+                        page7.RowManganese.Visible = true;
+                        page7.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
+                        page7.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
+                        page7.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
+                        page7.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Manganese in Blood 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270") != null)
+                    {
+                        page7.RowManganese.Visible = true;
+                        page7.ManganeseRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270")?.ReferenceRange;
+                        page7.Manganes1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year1)?.ResultValue;
+                        page7.Manganes2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year2)?.ResultValue;
+                        page7.Manganes3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1270" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Zinc zerum
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141") != null)
+                    {
+                        page7.RowZinc.Visible = true;
+                        page7.ZincRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141")?.ReferenceRange;
+                        page7.Zinc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year1)?.ResultValue;
+                        page7.Zinc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR141" && p.Year == year2)?.ResultValue;
+                        page7.Zinc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR141" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+                    #region iron zerum 
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142") != null)
+                    {
+                        page7.RowIron.Visible = true;
+                        page7.IronRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142")?.ReferenceRange;
+                        page7.Iron1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year1)?.ResultValue;
+                        page7.Iron2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PPAR142" && p.Year == year2)?.ResultValue;
+                        page7.Iron3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR142" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region cadmiun in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269") != null)
+                    {
+                        page7.RowCadInb.Visible = true;
+                        page7.CadinbRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269")?.ReferenceRange;
+                        page7.cadinb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year1)?.ResultValue;
+                        page7.cadinb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year2)?.ResultValue;
+                        page7.cadinb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1269" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+                    #region Chromiun in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null)
+                    {
+                        page7.RowChroinB.Visible = true;
+                        page7.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268")?.ReferenceRange;
+                        page7.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year1)?.ResultValue;
+                        page7.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year2)?.ResultValue;
+                        page7.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year3)?.ResultValue;
+                    }
+                    #endregion
+
+
+
 
                 }
                 else
@@ -2161,8 +2252,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             page8.CreateDocument();
             page9.CreateDocument();
             page10.CreateDocument();
-            page11.CreateDocument();
             page12.CreateDocument();
+            page11.CreateDocument();
             this.Pages.AddRange(page2.Pages);
             this.Pages.AddRange(page3.Pages);
             this.Pages.AddRange(page4.Pages);
