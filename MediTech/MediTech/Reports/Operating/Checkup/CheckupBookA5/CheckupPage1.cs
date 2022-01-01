@@ -585,7 +585,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
                         || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
                         || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                          || p.RequestItemCode.Contains("LAB463")) // Iron zerum
+                         || p.RequestItemCode.Contains("LAB542")) // chro zerum
                         .OrderBy(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1456,9 +1456,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowIron.Visible = false;
                 page7.RowCadInb.Visible = false;
                 page7.RowChroinB.Visible = false;
-                
-            
-              
+
+
+
 
 
                 if (labTestSet != null && labTestSet.Count() > 0)
@@ -1475,13 +1475,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
 
                     #region Aluminium in Urin
-                  
-                        
-                        page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
-                        page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
-                        page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
-                        page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
-                    
+
+
+                    page7.cellAluminiumRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122")?.ReferenceRange;
+                    page7.cellAluminium1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year1)?.ResultValue;
+                    page7.cellAluminium2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year2)?.ResultValue;
+                    page7.cellAluminium3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR122" && p.Year == year3)?.ResultValue;
+
                     #endregion
 
                     #region Toluene
@@ -1868,7 +1868,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #region Chromiun in blood
 
-                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null)
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268") != null )
                     {
                         page7.RowChroinB.Visible = true;
                         page7.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268")?.ReferenceRange;
@@ -1876,10 +1876,22 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year2)?.ResultValue;
                         page7.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1268" && p.Year == year3)?.ResultValue;
                     }
+
                     #endregion
 
 
+                    #region Chromiun in blood
 
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171") != null)
+                    {
+                        page7.RowChroinB.Visible = true;
+                        page7.ChroinBRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171")?.ReferenceRange;
+                        page7.ChroinB1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year1)?.ResultValue;
+                        page7.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
+                        page7.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
 
                 }
                 else

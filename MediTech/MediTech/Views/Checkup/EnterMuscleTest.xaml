@@ -36,8 +36,6 @@
                                 <dxe:ComboBoxEdit IsTextEditable="True" 
                                                   ItemsSource="{Binding RowData.Row.AutoValueList}"
                                                   ValidateOnTextInput="False"
-                                                  Mask="\d{0,9}(\R.\d{0,2})?"
-                                                  MaskType="RegEx"
                                                   ValidateOnEnterKeyPressed="True"
                                                   AutoComplete="True"
                                                   Name="PART_Editor"  FontSize="17" FontWeight="Bold"

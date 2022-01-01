@@ -290,7 +290,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUric.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(41.79409F, 570.4166F);
+            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(41.79409F, 552.4166F);
             this.tbUric.Name = "tbUric";
             this.tbUric.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow48,
@@ -513,7 +513,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.CanGrow = false;
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 545F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 527F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel5.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
@@ -528,7 +528,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.tbUA.BorderColor = System.Drawing.Color.DarkGray;
             this.tbUA.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(41.79411F, 54.22253F);
+            this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(41.79411F, 36.22253F);
             this.tbUA.Name = "tbUA";
             this.tbUA.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4,
@@ -2029,7 +2029,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 28.1273F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 10.1273F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel1.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
@@ -2045,7 +2045,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(40.96076F, 662.5816F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(40.96076F, 644.5816F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
@@ -2412,7 +2412,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbFBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tbFBS.CanGrow = false;
             this.tbFBS.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(113.4608F, 636.0959F);
+            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(113.4608F, 618.0959F);
             this.tbFBS.Name = "tbFBS";
             this.tbFBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.tbFBS.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
