@@ -165,6 +165,27 @@ namespace MediTech.ViewModels
             get { return _SelectReport; }
             set { Set(ref _SelectReport, value); }
         }
+
+        private LookupItemModel _SelectLogo;
+
+        public LookupItemModel SelectLogo
+        {
+            get { return _SelectLogo; }
+            set { Set(ref _SelectLogo, value); }
+        }
+
+
+        private List<LookupItemModel> _Logos;
+
+        public List<LookupItemModel> Logos
+        {
+            get { return _Logos; }
+            set { Set(ref _Logos, value); }
+        }
+
+
+
+
         #endregion
 
         #region command
@@ -251,6 +272,15 @@ namespace MediTech.ViewModels
             ReportsList.Add(new ReportsModel { Name = "รายงานตรวจสุขภาพCSR", NamespaceName = "MediTech.Reports.Operating.Checkup.CheckupCSR" });
 
             SelectReport = ReportsList[0];
+
+
+
+            Logos = new List<LookupItemModel>();
+            Logos.Add(new LookupItemModel { Key = 1, Display = "BRXG" });
+            Logos.Add(new LookupItemModel { Key = 2, Display = "ธนบุรี" });
+            SelectLogo = Logos.FirstOrDefault();
+
+
         }
         public void PatientSearch()
         {
@@ -338,6 +368,11 @@ namespace MediTech.ViewModels
 
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "รายงานตรวจสุขภาพCSR")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        {
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+
+                        }
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
@@ -387,13 +422,21 @@ namespace MediTech.ViewModels
                 var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
                 foreach (var item in patientResultLabList.ToList())
                 {
+
                     var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
                     XtraReport rpt = (XtraReport)myReport;
                     rpt.Parameters["PatientUID"].Value = item.PatientUID;
                     rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
+                  
 
                     if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "รายงานตรวจสุขภาพCSR")
                         rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+
+                    if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                    {
+                        rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+
+                    }
 
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
                     rpt.RequestParameters = false;
@@ -424,9 +467,16 @@ namespace MediTech.ViewModels
                         XtraReport rpt = (XtraReport)myReport;
                         rpt.Parameters["PatientUID"].Value = item.PatientUID;
                         rpt.Parameters["PatientVisitUID"].Value = item.PatientVisitUID;
-
+                       
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5" || SelectReport.Name == "รายงานตรวจสุขภาพCSR")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        {
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+
+                        }
+
+
 
                         ReportPrintTool printTool = new ReportPrintTool(rpt);
                         rpt.RequestParameters = false;
@@ -461,6 +511,11 @@ namespace MediTech.ViewModels
 
                         if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคล" || SelectReport.Name == "เล่มความเสี่ยง" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลเล่มใหญ่" || SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
                             rpt.Parameters["PayorDetailUID"].Value = item.PayorDetailUID;
+                        if (SelectReport.Name == "สมุดตรวจสุขภาพรายบุคคลA5")
+                        {
+                            rpt.Parameters["LogoType"].Value = SelectLogo != null ? SelectLogo.Key : 1;
+
+                        }
 
                         XlsxExportOptions xlsxExportOptions = new XlsxExportOptions()
                         {

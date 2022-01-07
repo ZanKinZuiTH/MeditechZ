@@ -173,11 +173,6 @@ namespace MediTech.Reports.Operating.Radiology
                     }
                 }
 
-
-
-
-
-
                 else
                 {
                     this.logo.Image = null;

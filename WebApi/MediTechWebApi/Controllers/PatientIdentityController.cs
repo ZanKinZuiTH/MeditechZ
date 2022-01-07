@@ -263,6 +263,7 @@ namespace MediTechWebApi.Controllers
                     patient.OCCUPUID = patientInfo.OCCUPUID;
                     patient.PatientID = patientInfo.PatientID;
                     patient.EmployeeID = patientInfo.EmployeeID;
+                    patient.PatientOtherID = patientInfo.PatientOtherID;
                     patient.Department = patientInfo.Department;
                     patient.Position = patientInfo.Position;
 

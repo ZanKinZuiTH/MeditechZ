@@ -434,7 +434,6 @@ namespace MediTech.ViewModels
 
         #endregion
 
-
         #region NIDCard
 
         enum NID_FIELD

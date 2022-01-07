@@ -51,5 +51,6 @@ namespace MediTech.DataBase
         public string StatusFlag { get; set; }
         public Nullable<int> OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public string PatientOtherID { get; set; }
     }
 }

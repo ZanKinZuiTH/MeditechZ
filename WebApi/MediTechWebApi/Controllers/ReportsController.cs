@@ -60,7 +60,23 @@ namespace MediTechWebApi.Controllers
         #endregion
 
         #region Cashier
-        [Route("GetPatientNetProfit")]
+        //[Route("GetStockToEcount")]
+        //[HttpGet]
+        //public List<PatientRevenueModel> GetStockToEcount(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        //{
+        //    List<PatientRevenueModel> data = null;
+        //    DataTable dt = SqlDirectStore.pRPTStockToEcount(dateFrom, dateTo, vistyuid, organisationList);
+        //    if (dt != null && dt.Rows.Count > 0)
+        //    {
+        //        data = new List<PatientRevenueModel>();
+        //        data = dt.ToList<PatientRevenueModel>();
+        //    }
+
+        //    return data;
+        //}
+
+
+        [Route("GetStocktoEcount")]
         [HttpGet]
         public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
@@ -74,6 +90,9 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+
+
 
         [Route("GetRevenuePerDay")]
         [HttpGet]

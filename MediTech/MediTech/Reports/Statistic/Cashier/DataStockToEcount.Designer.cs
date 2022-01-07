@@ -29,11 +29,16 @@ namespace MediTech.Reports.Statistic.Cashier
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // DataStockToEcount
+            // 
+            this.Version = "20.2";
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+
         }
 
+
         #endregion
-
-
     }
 }

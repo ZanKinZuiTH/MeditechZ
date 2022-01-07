@@ -3564,5 +3564,43 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTRevenuePerDay_Result>("pRPTRevenuePerDay", p_BillGeneratedDttmParameter, p_OrganisationListParameter);
         }
+    
+        public virtual ObjectResult<pRPTCheckupLabCompareByGroup_Result> pRPTCheckupLabCompareByGroup(Nullable<long> p_PatientUID, Nullable<int> p_PayorDetailUID, Nullable<int> p_GPRSTUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PayorDetailUIDParameter = p_PayorDetailUID.HasValue ?
+                new ObjectParameter("P_PayorDetailUID", p_PayorDetailUID) :
+                new ObjectParameter("P_PayorDetailUID", typeof(int));
+    
+            var p_GPRSTUIDParameter = p_GPRSTUID.HasValue ?
+                new ObjectParameter("P_GPRSTUID", p_GPRSTUID) :
+                new ObjectParameter("P_GPRSTUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTCheckupLabCompareByGroup_Result>("pRPTCheckupLabCompareByGroup", p_PatientUIDParameter, p_PayorDetailUIDParameter, p_GPRSTUIDParameter);
+        }
+    
+        public virtual ObjectResult<pRPTStockToEcount_Result> pRPTStockToEcount(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, string p_OrganisationList, Nullable<int> p_VisitTypeUID)
+        {
+            var p_DateFromParameter = p_DateFrom.HasValue ?
+                new ObjectParameter("P_DateFrom", p_DateFrom) :
+                new ObjectParameter("P_DateFrom", typeof(System.DateTime));
+    
+            var p_DateToParameter = p_DateTo.HasValue ?
+                new ObjectParameter("P_DateTo", p_DateTo) :
+                new ObjectParameter("P_DateTo", typeof(System.DateTime));
+    
+            var p_OrganisationListParameter = p_OrganisationList != null ?
+                new ObjectParameter("P_OrganisationList", p_OrganisationList) :
+                new ObjectParameter("P_OrganisationList", typeof(string));
+    
+            var p_VisitTypeUIDParameter = p_VisitTypeUID.HasValue ?
+                new ObjectParameter("P_VisitTypeUID", p_VisitTypeUID) :
+                new ObjectParameter("P_VisitTypeUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockToEcount_Result>("pRPTStockToEcount", p_DateFromParameter, p_DateToParameter, p_OrganisationListParameter, p_VisitTypeUIDParameter);
+        }
     }
 }

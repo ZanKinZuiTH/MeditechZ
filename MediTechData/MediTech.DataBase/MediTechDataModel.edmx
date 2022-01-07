@@ -1152,6 +1152,7 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="OwnerOrganisationUID" Type="int" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="PatientOtherID" Type="nvarchar" MaxLength="20" />
         </EntityType>
         <EntityType Name="PatientAddress">
           <Key>
@@ -3668,6 +3669,11 @@
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pRPTCheckupLabCompareByGroup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="P_GPRSTUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pRPTCheckupSummary" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
           <Parameter Name="P_GPRSTUIDs" Type="nvarchar(max)" Mode="In" />
@@ -3794,6 +3800,12 @@
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
+        </Function>
+        <Function Name="pRPTStockToEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTStockTransferredIn" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -5338,6 +5350,17 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pRPTCheckupLabCompareByGroup" ReturnType="Collection(MediTechModel.pRPTCheckupLabCompareByGroup_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GPRSTUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTStockToEcount" ReturnType="Collection(MediTechModel.pRPTStockToEcount_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
+            <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8963,6 +8986,7 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="OwnerOrganisationUID" Type="Int32" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PatientOtherID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="PatientAddress">
           <Key>
@@ -10987,6 +11011,44 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <ComplexType Name="pRPTCheckupLabCompareByGroup_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Catagory" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
+          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Description" Nullable="true" MaxLength="160" />
+          <Property Type="String" Name="ReferenceRange" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IsAbnormal" Nullable="true" MaxLength="5" />
+          <Property Type="String" Name="ResultValue" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="ResultUnit" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="GPRSTUID" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="pRPTStockToEcount_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PatientOtherID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="20" />
+          <Property Type="DateTime" Name="VisitDttm" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="Qty" Nullable="false" />
+          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Store" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="255" />
+          <Property Type="Double" Name="UnitCost" Nullable="true" />
+          <Property Type="Double" Name="UnitPrice" Nullable="true" />
+          <Property Type="Double" Name="NetCost" Nullable="true" />
+          <Property Type="Double" Name="NetPrice" Nullable="true" />
+          <Property Type="Double" Name="Discount" Nullable="true" />
+          <Property Type="Double" Name="Profit" Nullable="false" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14091,6 +14153,7 @@
           <EntitySetMapping Name="Patient">
             <EntityTypeMapping TypeName="MediTechModel.Patient">
               <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="PatientOtherID" ColumnName="PatientOtherID" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
@@ -16264,6 +16327,52 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pRPTCheckupLabCompareByGroup" FunctionName="MediTechModel.Store.pRPTCheckupLabCompareByGroup">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTCheckupLabCompareByGroup_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReferenceRange" ColumnName="ReferenceRange" />
+                <ScalarProperty Name="IsAbnormal" ColumnName="IsAbnormal" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+                <ScalarProperty Name="ResultUnit" ColumnName="ResultUnit" />
+                <ScalarProperty Name="GPRSTUID" ColumnName="GPRSTUID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTStockToEcount" FunctionName="MediTechModel.Store.pRPTStockToEcount">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTStockToEcount_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientOtherID" ColumnName="PatientOtherID" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="UnitCost" ColumnName="UnitCost" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="NetCost" ColumnName="NetCost" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="Profit" ColumnName="Profit" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

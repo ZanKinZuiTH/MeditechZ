@@ -109,7 +109,7 @@ namespace MediTech.ViewModels
                 }
                 else if (SelectReport.ViewCode == "PARAM112")
                 {
-                    ChangeView(new CheckupJobSummeryReport(), SelectReport.Name, this.View);
+                    ChangeView(new ReportParameter1(SelectReport), SelectReport.Name, this.View);
                 }
             }
         }
