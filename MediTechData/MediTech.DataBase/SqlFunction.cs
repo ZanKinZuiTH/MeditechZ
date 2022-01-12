@@ -1643,10 +1643,12 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pRPTStcktoEcount(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+
+
+        public static DataTable pRPTStockToEcount(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
-            SqlDataAdapter adp = new SqlDataAdapter("pRPTPatientNetProfit", entities.Database.Connection.ConnectionString);
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTStockToEcount", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);

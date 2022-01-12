@@ -162,6 +162,7 @@
     <Compile Include="Report\CheckupSummaryModel.cs" />
     <Compile Include="Report\DoctorFeeReportModel.cs" />
     <Compile Include="Report\DrugStickerModel.cs" />
+    <Compile Include="Report\EcountExportModel.cs" />
     <Compile Include="Report\GoodReceiveReportModel.cs" />
     <Compile Include="Purchaseing\GroupReceiptDetailModel.cs" />
     <Compile Include="Purchaseing\GroupReceiptModel.cs" />
