@@ -33,7 +33,7 @@ namespace MediTech.Reports.Statistic.Cashier
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
             int? vistyuid = this.Parameters["VISTYUID"].Value.ToString() != "0" ? Convert.ToInt32(this.Parameters["VISTYUID"].Value) : (int?)null;
-            xrPivotGrid1.DataSource = (new ReportsService()).GetPatientNetProfit(dateFrom, dateTo, vistyuid, organisationList);
+            xrPivotGrid1.DataSource = (new ReportsService()).GetStockToEcount(dateFrom, dateTo, vistyuid, organisationList);
         }
     }
 }

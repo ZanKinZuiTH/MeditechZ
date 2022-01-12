@@ -38,6 +38,15 @@ namespace MediTech.DataService
             return data;
         }
 
+
+        public List<EcountExportModel>GetStockToEcount(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        {
+            string requestApi = string.Format("Api/Report/GetStockToEcount?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&vistyuid={2}&organisationList={3}", dateFrom, dateTo, vistyuid, organisationList);
+            List<EcountExportModel> data = MeditechApiHelper.Get<List<EcountExportModel>>(requestApi);
+
+            return data;
+        }
+
         public List<RevenuePerDayModel> GetRevenuePerDay(DateTime billGeneratedDttm, string organisationList)
         {
             string requestApi = string.Format("Api/Report/GetRevenuePerDay?billGeneratedDttm={0:MM/dd/yyyy}&organisationList={1}", billGeneratedDttm, organisationList);

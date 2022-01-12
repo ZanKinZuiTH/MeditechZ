@@ -813,6 +813,12 @@
     <Compile Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.Designer.cs">
       <DependentUpon>RevenuePerDay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Cashier\StockToEcount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\StockToEcount.Designer.cs">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Cashier\UsedReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3004,6 +3010,9 @@
     <EmbeddedResource Include="Reports\Statistic\Cashier\RevenuePerDay\RevenuePerDay.resx">
       <DependentUpon>RevenuePerDay.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\StockToEcount.resx">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\UsedReport.resx">
       <DependentUpon>UsedReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -3564,6 +3573,8 @@
     <Folder Include="Reports\Statistic\Pharmacy\" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="Resources\Images\logoBGH.png" />
+    <Resource Include="Resources\Images\logoThonburi.jpg" />
     <Resource Include="Resources\Images\logoMFU.jpg" />
     <Resource Include="Resources\Images\Document\xls.png" />
     <Resource Include="Resources\Images\Action\Manage.png" />

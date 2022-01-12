@@ -566,7 +566,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB475")
                         || p.RequestItemCode.Contains("LAB503")
                         || p.RequestItemCode.Contains("LAB225")
-                        || p.RequestItemCode.Contains("LAB226"))
+                        || p.RequestItemCode.Contains("LAB226")
+                         || p.RequestItemCode.Contains("LAB227"))
+
                         .OrderBy(p => p.Year);
                     GenerateLiverFunction(LiverTestSet);
                     #endregion
@@ -1323,6 +1325,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page5.cellGlobulin1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year1)?.ResultValue;
                 page5.cellGlobulin2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year2)?.ResultValue;
                 page5.cellGlobulin3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR46" && p.Year == year3)?.ResultValue;
+
+                page5.cellGgtRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR26")?.ReferenceRange;
+                page5.cellggt1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR26" && p.Year == year1)?.ResultValue;
+                page5.cellggt2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR26" && p.Year == year2)?.ResultValue;
+                page5.cellggt3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR26" && p.Year == year3)?.ResultValue;
 
             }
             else

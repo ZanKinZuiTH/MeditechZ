@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.21005.1
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31515.178
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediTech", "MediTech\MediTech.csproj", "{CDE24A24-2098-4844-9D55-083AF27A62FC}"
 EndProject
@@ -20,6 +20,7 @@ Global
 		{CDE24A24-2098-4844-9D55-083AF27A62FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{CDE24A24-2098-4844-9D55-083AF27A62FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CDE24A24-2098-4844-9D55-083AF27A62FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CDE24A24-2098-4844-9D55-083AF27A62FC}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6AB3CFF9-9372-4147-ABAD-08D83A0F0F1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6AB3CFF9-9372-4147-ABAD-08D83A0F0F1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AB3CFF9-9372-4147-ABAD-08D83A0F0F1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -35,5 +36,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {A3214609-8688-4E08-B821-F80DABB04B34}
 	EndGlobalSection
 EndGlobal
