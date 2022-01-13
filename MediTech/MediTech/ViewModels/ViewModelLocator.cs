@@ -1111,6 +1111,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EcountImportFileViewModel EcountImportFileViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EcountImportFileViewModel>())
+                    SimpleIoc.Default.Register<EcountImportFileViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EcountImportFileViewModel>();
+            }
+        }
+
         #endregion
 
         #region Checkup

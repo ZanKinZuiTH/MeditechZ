@@ -1416,6 +1416,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
     <Compile Include="ViewModels\MRD\BulkAlertDialogViewModel.cs" />
+    <Compile Include="ViewModels\MRD\EcountImportFileViewModel.cs" />
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
@@ -1676,6 +1677,9 @@
     </Compile>
     <Compile Include="Views\MRD\BulkAlertDialog.xaml.cs">
       <DependentUpon>BulkAlertDialog.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MRD\EcountImportFile.xaml.cs">
+      <DependentUpon>EcountImportFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MRD\LabResultMass.xaml.cs">
       <DependentUpon>LabResultMass.xaml</DependentUpon>
@@ -2250,6 +2254,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\MRD\BulkAlertDialog.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\MRD\EcountImportFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
