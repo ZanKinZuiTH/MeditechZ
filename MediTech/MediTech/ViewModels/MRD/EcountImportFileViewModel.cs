@@ -22,6 +22,61 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+
+        private List<HealthOrganisationModel> _HealthOrganisations;
+
+        public List<HealthOrganisationModel> HealthOrganisations
+        {
+            get { return _HealthOrganisations; }
+            set { Set(ref _HealthOrganisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectHealthOrganisation;
+
+        public HealthOrganisationModel SelectHealthOrganisation
+        {
+            get { return _SelectHealthOrganisation; }
+            set
+            {
+                //Set(ref _SelectHealthOrganisation, value);
+                //if (SelectHealthOrganisation == null)
+                //{
+                //    EnableSearchItem = false;
+                //}
+                //else
+                //{
+                //    EnableSearchItem = true;
+                //}
+            }
+        }
+
+
+
+
+
+
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+
+
+        }
+
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set { Set(ref _SelectOrganisation, value); }
+        }
+
+
+
+
         #region PatientSearch
 
         #endregion
@@ -42,7 +97,24 @@ namespace MediTech.ViewModels
             set { Set(ref _TotalRecord, value); }
         }
 
-    
+        #region CurrentImportedData
+        private EcountImportModel _currentImportedData;
+        public EcountImportModel CurrentImportedData
+        {
+            get
+            {
+                return _currentImportedData;
+            }
+            set
+            {
+                if (_currentImportedData != value)
+                {
+                    _currentImportedData = value;
+                    Set(ref _currentImportedData, value);
+                }
+            }
+        }
+        #endregion
 
         private ObservableCollection<EcountImportModel> _EcountDataList;
         public ObservableCollection<EcountImportModel> EcountDataList
@@ -99,16 +171,50 @@ namespace MediTech.ViewModels
         }
 
 
- 
+        private RelayCommand _SavedataCommand;
+
+        public RelayCommand SavedataCommand
+        {
+            get
+            {
+                return _SavedataCommand
+                    ?? (_SavedataCommand = new RelayCommand(SaveData));
+            }
+        }
+
+
+
 
         #endregion
 
         #region Method
 
+        public EcountImportFileViewModel()
+        {
+            Organisations = GetHealthOrganisationRoleMedical();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
- 
+           // PayorDetails = DataService.MasterData.GetPayorDetail();
+            //Careproviders = DataService.UserManage.GetCareproviderAll();
+           // SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
 
-     
+            HealthOrganisations = Organisations;
+            SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+
+        }
+
+
+
+
+
+
+        private void SaveData()
+        {
+        
+        
+        }
+
+
         private void ChooseFile()
         {
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -185,9 +291,28 @@ namespace MediTech.ViewModels
                     view.SetProgressBarLimits(0, upperlimit);
                     view.SetProgressBarValue(upperlimit);
                     OnUpdateEvent();
-                }
+                    EcountDataList = new ObservableCollection<EcountImportModel>();
+                    foreach (DataRow drow in ImportData.Rows)
+                    {
+                        CurrentImportedData = new EcountImportModel();
+                        CurrentImportedData.ActiveDate = drow["ActiveDate"].ToString().Trim();
+                        CurrentImportedData.NO = int.Parse(drow["NO"].ToString().Trim());
+                        CurrentImportedData.PIC = drow["PIC"].ToString().Trim();
+                        CurrentImportedData.DepartmentGoodsStock = drow["DepartmentGoodsStock"].ToString().Trim();
+                        CurrentImportedData.DepartmentPickStock = drow["DepartmentPickStock"].ToString().Trim();
+                        CurrentImportedData.ItemCode = drow["ItemCode"].ToString().Trim();
+                        CurrentImportedData.ItemName = drow["ItemName"].ToString().Trim();
 
-                }
+                        EcountDataList.Add(CurrentImportedData);
+
+                        pgBarCounter = pgBarCounter + 1;
+                        TotalRecord = pgBarCounter;
+                        view.SetProgressBarValue(pgBarCounter);
+                    }
+
+                               }
+            }
+
             catch (Exception er)
             {
 
@@ -195,6 +320,7 @@ namespace MediTech.ViewModels
             }
 
         }
+
 
         #endregion
 

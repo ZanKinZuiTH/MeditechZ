@@ -12,6 +12,7 @@ namespace MediTech.Model.Report
         public Int64 RowNumber { get; set; }
         public string PatientName { get; set; }
         public string ItemCode { get; set; }
+        public string VisitType { get; set; }
         public string ItemName { get; set; }
         public string VisitID { get; set; }
         public string PatientID { get; set; }

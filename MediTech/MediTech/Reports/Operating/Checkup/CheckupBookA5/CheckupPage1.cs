@@ -913,6 +913,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         #region Lab Result
         private void GenerateCompleteBloodCount(IEnumerable<PatientResultComponentModel> labTestSet)
         {
+            page3.rowCBC_RBCMor.Visible = false;
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
@@ -929,6 +930,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page3.cellHbRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001")?.ReferenceRange;
                 page3.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year1)?.ResultValue;
                 page3.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue;
+                //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue)
+                //{
+
+                //}
+             
+              
+
                 page3.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.ResultValue;
 
                 page3.cellHctRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0020")?.ReferenceRange;
@@ -1985,10 +1993,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.cellTumorYear2.Text = "ปี" + " " + year2.ToString();
                 page6.cellTumorYear3.Text = "ปี" + " " + year3.ToString();
 
-                page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38")?.ReferenceRange;
-                page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year1)?.ResultValue;
-                page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year2)?.ResultValue;
-                page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year3)?.ResultValue;
+                page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
+                page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
+                page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
+                page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
 
                 //AFP โชว์ตัวเลขก่อนตัวอักษร
 
@@ -2288,13 +2296,18 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     string recommand = "";
                     foreach (var item in results)
                     {
-                        if (item.Contains("ควร"))
+                        if (item.Contains("ควร") || item.Contains("Should"))
                         {
                             int index = item.IndexOf("ควร");
                             description += string.IsNullOrEmpty(description) ? item.Substring(0, index).Trim() : " " + item.Substring(0, index).Trim();
                             recommand = item.Substring(index).Trim();
 
                         }
+                        else if(item != null)
+                        {
+                            recommand = item.ToString();
+                        }
+
 
                     }
 

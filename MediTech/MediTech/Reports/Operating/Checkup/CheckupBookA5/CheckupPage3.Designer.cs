@@ -92,7 +92,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellRbc1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellRbc2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellRbc3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow9 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.rowCBC_RBCMor = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellRbcMorRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellRbcMor1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -286,7 +286,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow6,
             this.xrTableRow7,
             this.xrTableRow8,
-            this.xrTableRow9,
+            this.rowCBC_RBCMor,
             this.xrTableRow10,
             this.xrTableRow11,
             this.xrTableRow12,
@@ -961,16 +961,16 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellRbc3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellRbc3.Weight = 0.30451841986401079D;
             // 
-            // xrTableRow9
+            // rowCBC_RBCMor
             // 
-            this.xrTableRow9.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.rowCBC_RBCMor.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell44,
             this.cellRbcMorRange,
             this.cellRbcMor1,
             this.cellRbcMor2,
             this.cellRbcMor3});
-            this.xrTableRow9.Name = "xrTableRow9";
-            this.xrTableRow9.Weight = 1D;
+            this.rowCBC_RBCMor.Name = "rowCBC_RBCMor";
+            this.rowCBC_RBCMor.Weight = 1D;
             // 
             // xrTableCell44
             // 
@@ -2211,7 +2211,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell cellRbc1;
         public DevExpress.XtraReports.UI.XRTableCell cellRbc2;
         public DevExpress.XtraReports.UI.XRTableCell cellRbc3;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow9;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
         public DevExpress.XtraReports.UI.XRTableCell cellRbcMorRange;
         public DevExpress.XtraReports.UI.XRTableCell cellRbcMor1;
@@ -2313,5 +2312,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
         public DevExpress.XtraReports.UI.XRTableCell lbHN3;
         public DevExpress.XtraReports.UI.XRTableCell lbName3;
+        public DevExpress.XtraReports.UI.XRTableRow rowCBC_RBCMor;
     }
 }

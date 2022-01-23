@@ -40,14 +40,24 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="ถึงวันที่">
                     <dxe:DateEdit EditValue="{Binding DateTo}"/>
-                </dxlc:LayoutItem>-->
-                <!--<dxlc:LayoutItem Label="รายการ Item">
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="รายการ Item">
                     <dxe:ComboBoxEdit ItemsSource="{Binding OrderItems}"
                                       SelectedItem="{Binding SelectOrderItem}"
                                       NullValueButtonPlacement="EditBox"
                                       DisplayMember="Display"
                                       ValueMember="Key"/>
                 </dxlc:LayoutItem>-->
+                <dxlc:LayoutItem Label="สถานประกอบการ">
+                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <!--<dxlc:LayoutGroup>
                 <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
@@ -128,9 +138,20 @@
                         </DataTemplate>
                     </dxg:GridColumn.CellTemplate>
                 </dxg:GridColumn>
-                <dxg:GridColumn FieldName="No"  Width="30" Fixed="Left"/>
-                <dxg:GridColumn x:Name="Name" Fixed="Left" AllowPrinting="False"   Width="70" AllowEditing="True" FieldName="Name"/>
+                <dxg:GridColumn FieldName="NO"  Width="30" Fixed="Left"/>
+                <dxg:GridColumn Header="ActiveDate" FieldName="ActiveDate"/>
+                <dxg:GridColumn Header="PIC" FieldName="PIC"/>
                 <dxg:GridColumn Header="ItemCode" FieldName="ItemCode"/>
+                <dxg:GridColumn Header="DepartmentGoodsStock" FieldName="DepartmentGoodsStock"/>
+                <dxg:GridColumn Header="DepartmentPickStock" FieldName="DepartmentPickStock"/>
+                <dxg:GridColumn Header="Project" FieldName="Project"/>
+                <dxg:GridColumn Header="IDMoveStock" FieldName="IDMoveStock"/>
+                <dxg:GridColumn Header="ItemCode" FieldName="ItemCode"/>
+                <dxg:GridColumn Fixed="Left" AllowPrinting="False"   Width="70" AllowEditing="True" FieldName="ItemName"/>
+                <dxg:GridColumn Header="SerialLotItem" FieldName="SerialLotItem"/>
+                <dxg:GridColumn Header="QTY" FieldName="QTY"/>
+                <dxg:GridColumn Header="Note" FieldName="Note"/>
+
                 <dxg:GridControl.View>
                     <dxg:TableView x:Name="gvEcountData"
                                    ShowCheckBoxSelectorColumn="True" 
@@ -139,7 +160,8 @@
             </dxg:GridControl>
             <dxlc:LayoutGroup>
                 <dx:SimpleButton  Name="btnShowColumn" HorizontalAlignment="Left" Width="100" Command="{Binding ShowFieldCommand}"
-                                     Height="25" Content="Show Column"/>
+                                     Height="25" Content="นำข้อมูลเข้า"/>
+                <ProgressBar Height="15"   Name="progressBar2"/>
                 <!--<dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding ExportDataCommand}"
                                      Height="25" Content="ExportData"/>
                 <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding TranslateCommand}"

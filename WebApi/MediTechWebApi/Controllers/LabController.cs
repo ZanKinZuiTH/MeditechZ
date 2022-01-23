@@ -159,7 +159,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRequesDetailLabForImport")]
         [HttpGet]
-        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int payorDetailUID
+        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int? payorDetailUID
             , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
             DataTable dataTable = SqlDirectStore.pGetRequesDetailLabForImport(patientID, ownerOrganisationUID, payorDetailUID
