@@ -22,9 +22,113 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
-        #region PatientSearch
 
-        #endregion
+        private List<HealthOrganisationModel> _HealthOrganisations;
+
+        public List<HealthOrganisationModel> HealthOrganisations
+        {
+            get { return _HealthOrganisations; }
+            set { Set(ref _HealthOrganisations, value); }
+        }
+
+        private HealthOrganisationModel _SelectHealthOrganisation;
+
+        public HealthOrganisationModel SelectHealthOrganisation
+        {
+            get { return _SelectHealthOrganisation; }
+            set
+            {
+                Set(ref _SelectHealthOrganisation, value);
+                if (SelectHealthOrganisation == null)
+                {
+                    //EnableSearchItem = false;
+                }
+                else
+                {
+                    //EnableSearchItem = true;
+                }
+            }
+        }
+
+
+
+        private ObservableCollection<StockAdjustmentModel> _AdjustStock;
+
+        public ObservableCollection<StockAdjustmentModel> AdjustStock
+        {
+            get { return _AdjustStock; }
+            set { Set(ref _AdjustStock, value); }
+        }
+
+        private StockAdjustmentModel _SelectAdjustStock;
+
+        public StockAdjustmentModel SelectAdjustStock
+        {
+            get { return _SelectAdjustStock; }
+            set { Set(ref _SelectAdjustStock, value); }
+        }
+
+
+        private StoreModel _SelectStore;
+
+        public StoreModel SelectStore
+        {
+            get { return _SelectStore; }
+            set { Set(ref _SelectStore, value); }
+        }
+
+
+
+        private StockModel _SelectCurrentStock;
+
+        public StockModel SelectCurrentStock
+        {
+            get { return _SelectCurrentStock; }
+            set
+            {
+                Set(ref _SelectCurrentStock, value);
+                if (SelectCurrentStock != null)
+                {
+                   
+                }
+            }
+        }
+
+
+        private List<HealthOrganisationModel> _Organisations;
+
+        public List<HealthOrganisationModel> Organisations
+        {
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
+
+
+        }
+
+        private List<StoreModel> _Stores;
+
+        public List<StoreModel> Stores
+        {
+            get { return _Stores; }
+            set { Set(ref _Stores, value); }
+        }
+
+
+        private HealthOrganisationModel _SelectOrganisation;
+
+        public HealthOrganisationModel SelectOrganisation
+        {
+            get { return _SelectOrganisation; }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                if (_SelectOrganisation != null)
+                {
+                    Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                }
+            }
+        }
+
 
         private string _FileLocation;
 
@@ -42,10 +146,17 @@ namespace MediTech.ViewModels
             set { Set(ref _TotalRecord, value); }
         }
 
-    
+        private List<StockModel> _CurrentStock;
 
-        private ObservableCollection<EcountImportModel> _EcountDataList;
-        public ObservableCollection<EcountImportModel> EcountDataList
+        public List<StockModel> CurrentStock
+        {
+            get { return _CurrentStock; }
+            set { Set(ref _CurrentStock, value); }
+        }
+
+
+        private ObservableCollection<StockAdjustmentModel> _EcountDataList;
+        public ObservableCollection<StockAdjustmentModel> EcountDataList
         {
             get
             {
@@ -99,16 +210,40 @@ namespace MediTech.ViewModels
         }
 
 
- 
+        private RelayCommand _SavedataCommand;
+
+        public RelayCommand SavedataCommand
+        {
+            get
+            {
+                return _SavedataCommand
+                    ?? (_SavedataCommand = new RelayCommand(Save));
+            }
+        }
+
+
+
 
         #endregion
 
         #region Method
 
+        public EcountImportFileViewModel()
+        {
+            Organisations = GetHealthOrganisationRoleMedical();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
- 
+            HealthOrganisations = Organisations;
+            SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
-     
+        }
+
+
+      
+
+
+
+
         private void ChooseFile()
         {
             OpenFileDialog openDialog = new OpenFileDialog();
@@ -130,6 +265,13 @@ namespace MediTech.ViewModels
 
         private void ImportFile()
         {
+            if (SelectStore == null)
+            {
+                WarningDialog("กรุณาเลือก STOCK");
+                return;
+            }
+     
+
             OleDbConnection conn;
             DataSet objDataset1;
             OleDbCommand cmd;
@@ -168,7 +310,7 @@ namespace MediTech.ViewModels
                             {
                                 string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
                                 cmd = conn.CreateCommand();
-                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([NO] <> '' OR [NO] IS NOT NULL)", conn);
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([ItemCode] <> '' OR [NO] IS NOT NULL)", conn);
                                 OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
                                 objAdapter1.SelectCommand = objCmdSelect;
                                 objAdapter1.Fill(objDataset1);
@@ -180,14 +322,49 @@ namespace MediTech.ViewModels
                         }
                     }
 
-
                     int upperlimit = ImportData.Rows.Count;
                     view.SetProgressBarLimits(0, upperlimit);
                     view.SetProgressBarValue(upperlimit);
                     OnUpdateEvent();
-                }
+                    AdjustStock = new ObservableCollection<StockAdjustmentModel>();
+                    foreach (DataRow drow in ImportData.Rows)
+                    {
+                        // List<StockModel> CurrentStock = DataService.Inventory.GetStockRemainByItemMasterUID(int.Parse(drow["ItemMasterUID"].ToString().Trim()),SelectStore.StoreUID);
 
-                }
+                        List<StockModel> CurrentStock = DataService.Inventory.GetStoreEcounByItemMaster(int.Parse(drow["ItemMasterUID"].ToString().Trim()), SelectStore.StoreUID);
+
+                        StockAdjustmentModel adjustStock = new StockAdjustmentModel();
+                        adjustStock.ItemMasterUID = int.Parse(drow["ItemMasterUID"].ToString().Trim());
+                        adjustStock.ItemCode = drow["ItemCode"].ToString().Trim();
+                        adjustStock.ItemName = drow["ItemName"].ToString().Trim();
+                        adjustStock.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                        adjustStock.StoreUID = SelectStore.StoreUID;
+                        //adjustStock.StockUID = CurrentStock.StockUID;
+                        //adjustStock.ItemCost = CurrentStock.ItemCost;
+                        //adjustStock.OwnerOrganisationUID = CurrentStock.OrganisationUID;
+                        //adjustStock.StoreUID = CurrentStock.StoreUID;
+                        //adjustStock.StoreName = CurrentStock.StoreName;
+                        adjustStock.ActualQuantity = GetSumQTY(CurrentStock);
+                        adjustStock.QuantityAdjusted = int.Parse(drow["QuantityAdjusted"].ToString().Trim());
+                        adjustStock.AdjustedQuantity = adjustStock.ActualQuantity + int.Parse(drow["QuantityAdjusted"].ToString().Trim());
+                        //adjustStock.ActualUOM = CurrentStock.IMUOMUID;
+                        //adjustStock.AdjustedUOM = CurrentStock.IMUOMUID;
+                        //adjustStock.AdjustedUnit = CurrentStock.Unit;
+                         adjustStock.ExpiryDate = DateTime.Parse(drow["ExpiryDate"].ToString().Trim());
+                        //adjustStock.BatchID = CurrentStock.Where .BatchID;
+                        //adjustStock.ItemCost = ItemCost;
+                        //adjustStock.NewBatchID = CurrentStock.Where(p=>p.)
+                     //  adjustStock.Comments = Comments;
+
+                        AdjustStock.Add(adjustStock);
+                        pgBarCounter = pgBarCounter + 1;
+                        TotalRecord = pgBarCounter;
+                        view.SetProgressBarValue(pgBarCounter);
+                    }
+
+                               }
+            }
+
             catch (Exception er)
             {
 
@@ -195,6 +372,54 @@ namespace MediTech.ViewModels
             }
 
         }
+
+
+        private double GetSumQTY(List<StockModel> curryQTY)
+        {
+            try
+            {
+                double sumQTY = 0;
+                foreach (var item in curryQTY)
+                {
+                    sumQTY = sumQTY + item.Quantity; 
+                }
+
+                return sumQTY;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+        
+        
+        }
+
+        private void Save()
+        {
+            try
+            {
+                if (AdjustStock == null)
+                {
+                    WarningDialog("กรุณาทำรายการอย่างน้อย 1 รายการ");
+                    return;
+                }
+
+                foreach (var item in AdjustStock)
+                {
+                    DataService.Inventory.AdjustStock(item, AppUtil.Current.UserID);
+                }
+
+                SaveSuccessDialog();
+               // AdjustStock = null;
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
+
+        }
+
 
         #endregion
 

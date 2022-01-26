@@ -48,28 +48,30 @@
                                       DisplayMember="Display"
                                       ValueMember="Key"/>
                 </dxlc:LayoutItem>-->
+                <dxlc:LayoutItem Label="สถานประกอบการ">
+                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Store">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Stores}" 
+                                      SelectedItem="{Binding SelectStore}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+
+
+
             </dxlc:LayoutGroup>
             <!--<dxlc:LayoutGroup>
-                <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
-                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
-                                                    OnTextChangedEvent="False"
-                                                    Binding="{Binding PatientName}"
-                                                    MaxCompletions="30"
-                                                    ItemsSource="{Binding PatientsSearchSource}"
-                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}">
-                        <cc:AutoCompleteTextBox.InputBindings>
-                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
-                        </cc:AutoCompleteTextBox.InputBindings>
-                    </cc:AutoCompleteTextBox>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานะ">
-                    <dxe:ComboBoxEdit ItemsSource="{Binding ResultStatus}"
-                                      SelectedItem="{Binding SelectResultStatus}"
-                                      DisplayMember="Display"
-                                      NullValueButtonPlacement="EditBox"
-                                      ValueMember="Key"/>
-                </dxlc:LayoutItem>
+               
                 <dxlc:LayoutItem Label="Payor">
                     <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectedPayorDetail}"
@@ -116,34 +118,39 @@
             <dxlc:LayoutItem>
                 <ProgressBar Height="15"   Name="progressBar1"/>
             </dxlc:LayoutItem>
-            <dxg:GridControl x:Name="gcEcountData" ItemsSource="{Binding EcountDataList}"
-                             SelectionMode="MultipleRow"
-                             SelectedItems="{Binding SelectEcountData}">
-                <dxg:GridColumn FieldName="No" Width="30" >
-                    <dxg:GridColumn.CellTemplate>
-                        <DataTemplate>
-                            <TextBlock Text="{Binding RowData.RowHandle.Value
-                                ,Converter={StaticResource AddValueConverter}
-                                ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                        </DataTemplate>
-                    </dxg:GridColumn.CellTemplate>
-                </dxg:GridColumn>
-                <dxg:GridColumn FieldName="No"  Width="30" Fixed="Left"/>
-                <dxg:GridColumn x:Name="Name" Fixed="Left" AllowPrinting="False"   Width="70" AllowEditing="True" FieldName="Name"/>
-                <dxg:GridColumn Header="ItemCode" FieldName="ItemCode"/>
+            <dxg:GridControl ItemsSource="{Binding AdjustStock}"
+                             SelectedItem="{Binding SelectAdjustStock}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="รายการของ" FieldName="ItemName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="จำนวนก่อนปรับ" FieldName="ActualQuantity" ReadOnly="True"/>
+                    <dxg:GridColumn Header="จำนวนที่ปรับ" FieldName="QuantityAdjusted" ReadOnly="True"/>
+                    <dxg:GridColumn Header="จำนวนหลังปรับ" FieldName="AdjustedQuantity" ReadOnly="True"/>
+                    <dxg:GridColumn Header="หน่วย" FieldName="AdjustedUnit" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ราคา" FieldName="ItemCost" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันหมดอายุ" FieldName="ExpiryDate" ReadOnly="True"/>
+                    <dxg:GridColumn Header="New BatchID" FieldName="NewBatchID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Store" FieldName="OwnerOrganisationUID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Store" FieldName="StoreUID" ReadOnly="True"/>
+
+                </dxg:GridControl.Columns>
                 <dxg:GridControl.View>
-                    <dxg:TableView x:Name="gvEcountData"
-                                   ShowCheckBoxSelectorColumn="True" 
-                                   ShowGroupPanel="False" />
+                    <dxg:TableView ShowGroupPanel="False"/>
                 </dxg:GridControl.View>
             </dxg:GridControl>
+
+
+
+
+
+
             <dxlc:LayoutGroup>
-                <dx:SimpleButton  Name="btnShowColumn" HorizontalAlignment="Left" Width="100" Command="{Binding ShowFieldCommand}"
-                                     Height="25" Content="Show Column"/>
-                <!--<dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding ExportDataCommand}"
-                                     Height="25" Content="ExportData"/>
-                <dx:SimpleButton HorizontalAlignment="Right" Width="80" Command="{Binding TranslateCommand}"
-                                     Height="25" Content="Translate"/>-->
+                <dx:SimpleButton  Name="btnShowColumn" HorizontalAlignment="Left" Width="100" Command="{Binding SavedataCommand}"
+                                     Height="25" Content="บันทึกข้อมูล"/>
+                <ProgressBar Height="15"   Name="progressBar2"/>
+             
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
 

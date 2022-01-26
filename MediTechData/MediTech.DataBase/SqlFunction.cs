@@ -823,6 +823,19 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+
+        public static DataTable pGetStoreEcounByItemMaster(int itemMasterUID, int OrganisationUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetStoreEcounByItemMaster", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_ItemMasterUID", itemMasterUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", OrganisationUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pGetRequestByRequestDetailUID(long requestDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();

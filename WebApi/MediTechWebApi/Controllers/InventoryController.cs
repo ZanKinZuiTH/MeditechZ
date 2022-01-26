@@ -1073,7 +1073,6 @@ namespace MediTechWebApi.Controllers
         {
             DataTable dt = SqlDirectStore.pSearchStockBalance(ownerOrganisationUID, storeUID, itemCode, itemName, dateFrom, dateTo);
             List<StockBalanceModel> data = dt.ToList<StockBalanceModel>();
-
             return data;
         }
 
@@ -1118,6 +1117,18 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+        [Route("GetStoreEcounByItemMaster")]
+        [HttpGet]
+        public List<StockModel> GetStoreEcounByItemMaster(int itemMasterUID, int organisation)
+        {
+            DataTable dt = SqlDirectStore.pGetStoreEcounByItemMaster(itemMasterUID, organisation);
+            List<StockModel> data = dt.ToList<StockModel>();
+
+            return data;
+        }
+
+
 
         [Route("SearchStockBatch")]
         [HttpGet]
