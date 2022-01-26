@@ -1993,11 +1993,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.cellTumorYear2.Text = "ปี" + " " + year2.ToString();
                 page6.cellTumorYear3.Text = "ปี" + " " + year3.ToString();
 
-                page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
-                page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
-                page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
-                page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
-
+                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186") != null)
+                {
+                    page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
+                    page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
+                    page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
+                    page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
+                }
                 //AFP โชว์ตัวเลขก่อนตัวอักษร
 
                 if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39") != null)

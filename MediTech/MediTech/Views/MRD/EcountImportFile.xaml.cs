@@ -41,7 +41,7 @@ namespace MediTech.Views
 
         void GridControl_UpdateEvent(object sender, EventArgs e)
         {
-            gcEcountData.RefreshData();
+           
         }
 
         public void SetProgressBarValue(double value)

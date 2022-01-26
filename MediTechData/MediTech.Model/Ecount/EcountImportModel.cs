@@ -19,9 +19,21 @@ namespace MediTech.Model
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
        
+       
         public double QTY { get; set; }
         public string Note { get; set; }
         //public string สร้างสลิปผลิต { get; set;}
+
+        public int ItemMasterUID { get; set; }
+        public string BatchID { get; set; }
+        public string NewBatchID { get; set; }
+
+        public double OriginalQTY { get; set; }
+
+        public double QuantityAdjusted { get; set; }
+        public double AdjustedQuantity { get; set; }
+        public int AdjustedUOM { get; set; }
+
 
 
 
