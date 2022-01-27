@@ -1358,7 +1358,7 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
-                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.ResultEnteredDttm ?? patientInfo.RequestedDttm
+                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm
                             , modlity, IsSINE);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
