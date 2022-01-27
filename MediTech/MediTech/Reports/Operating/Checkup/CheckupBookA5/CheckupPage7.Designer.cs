@@ -253,6 +253,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cadinb1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cadinb2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cadinb3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowChroinB = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinBRang = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinB1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinB2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.ChroinB3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
@@ -295,12 +301,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.RowChroinB = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ChroinBRang = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ChroinB1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ChroinB2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.ChroinB3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
@@ -2662,6 +2662,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cadinb3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cadinb3.Weight = 0.44329635320818539D;
             // 
+            // RowChroinB
+            // 
+            this.RowChroinB.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell6,
+            this.ChroinBRang,
+            this.ChroinB1,
+            this.ChroinB2,
+            this.ChroinB3});
+            this.RowChroinB.Name = "RowChroinB";
+            this.RowChroinB.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell6
+            // 
+            this.xrTableCell6.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell6.Multiline = true;
+            this.xrTableCell6.Name = "xrTableCell6";
+            this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell6.StylePriority.UseFont = false;
+            this.xrTableCell6.StylePriority.UsePadding = false;
+            this.xrTableCell6.StylePriority.UseTextAlignment = false;
+            this.xrTableCell6.Text = "Chromium in Blood";
+            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell6.Weight = 1.2913566084432759D;
+            // 
+            // ChroinBRang
+            // 
+            this.ChroinBRang.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinBRang.Multiline = true;
+            this.ChroinBRang.Name = "ChroinBRang";
+            this.ChroinBRang.StylePriority.UseFont = false;
+            this.ChroinBRang.StylePriority.UseTextAlignment = false;
+            this.ChroinBRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinBRang.Weight = 0.93906236153056333D;
+            // 
+            // ChroinB1
+            // 
+            this.ChroinB1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinB1.Multiline = true;
+            this.ChroinB1.Name = "ChroinB1";
+            this.ChroinB1.StylePriority.UseFont = false;
+            this.ChroinB1.StylePriority.UseTextAlignment = false;
+            this.ChroinB1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinB1.Weight = 0.443296332132815D;
+            // 
+            // ChroinB2
+            // 
+            this.ChroinB2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinB2.Multiline = true;
+            this.ChroinB2.Name = "ChroinB2";
+            this.ChroinB2.StylePriority.UseFont = false;
+            this.ChroinB2.StylePriority.UseTextAlignment = false;
+            this.ChroinB2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinB2.Weight = 0.44329633245297495D;
+            // 
+            // ChroinB3
+            // 
+            this.ChroinB3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.ChroinB3.Multiline = true;
+            this.ChroinB3.Name = "ChroinB3";
+            this.ChroinB3.StylePriority.UseFont = false;
+            this.ChroinB3.StylePriority.UseTextAlignment = false;
+            this.ChroinB3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.ChroinB3.Weight = 0.44329635320818539D;
+            // 
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
@@ -3231,70 +3295,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // RowChroinB
-            // 
-            this.RowChroinB.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell6,
-            this.ChroinBRang,
-            this.ChroinB1,
-            this.ChroinB2,
-            this.ChroinB3});
-            this.RowChroinB.Name = "RowChroinB";
-            this.RowChroinB.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell6
-            // 
-            this.xrTableCell6.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell6.Multiline = true;
-            this.xrTableCell6.Name = "xrTableCell6";
-            this.xrTableCell6.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell6.StylePriority.UseFont = false;
-            this.xrTableCell6.StylePriority.UsePadding = false;
-            this.xrTableCell6.StylePriority.UseTextAlignment = false;
-            this.xrTableCell6.Text = "Chromium in Blood";
-            this.xrTableCell6.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell6.Weight = 1.2913566084432759D;
-            // 
-            // ChroinBRang
-            // 
-            this.ChroinBRang.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ChroinBRang.Multiline = true;
-            this.ChroinBRang.Name = "ChroinBRang";
-            this.ChroinBRang.StylePriority.UseFont = false;
-            this.ChroinBRang.StylePriority.UseTextAlignment = false;
-            this.ChroinBRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ChroinBRang.Weight = 0.93906236153056333D;
-            // 
-            // ChroinB1
-            // 
-            this.ChroinB1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ChroinB1.Multiline = true;
-            this.ChroinB1.Name = "ChroinB1";
-            this.ChroinB1.StylePriority.UseFont = false;
-            this.ChroinB1.StylePriority.UseTextAlignment = false;
-            this.ChroinB1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ChroinB1.Weight = 0.443296332132815D;
-            // 
-            // ChroinB2
-            // 
-            this.ChroinB2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ChroinB2.Multiline = true;
-            this.ChroinB2.Name = "ChroinB2";
-            this.ChroinB2.StylePriority.UseFont = false;
-            this.ChroinB2.StylePriority.UseTextAlignment = false;
-            this.ChroinB2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ChroinB2.Weight = 0.44329633245297495D;
-            // 
-            // ChroinB3
-            // 
-            this.ChroinB3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.ChroinB3.Multiline = true;
-            this.ChroinB3.Name = "ChroinB3";
-            this.ChroinB3.StylePriority.UseFont = false;
-            this.ChroinB3.StylePriority.UseTextAlignment = false;
-            this.ChroinB3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.ChroinB3.Weight = 0.44329635320818539D;
             // 
             // CheckupPage7
             // 

@@ -135,8 +135,27 @@
                     <dxe:DateEdit EditValue="{Binding ReceiveDate}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem />
-                <dxlc:LayoutItem />
+               
+                    <dxlc:LayoutItem />
             </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
+                    <TextBox Text="{Binding FileLocation}" IsReadOnly="True" Background="Gainsboro"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                    <dx:SimpleButton Width="80" Command="{Binding ChooseCommand}"
+                                     Height="25" Content="เลือกไฟล์"/>
+                    <dx:SimpleButton Width="80" Command="{Binding ImportCommand}"
+                                     Height="25" Content="นำเข้าข้อมูล"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
+                    <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <ProgressBar Height="15"   Name="progressBar1"/>
+            </dxlc:LayoutItem>
+
             <dxg:GridControl x:Name="grdPurchaseItemList" ItemsSource="{Binding GRNItems}"
                                      SelectedItem="{Binding SelectGRNItem}">
                 <dxg:GridControl.Columns>

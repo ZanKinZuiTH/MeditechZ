@@ -1124,10 +1124,8 @@ namespace MediTechWebApi.Controllers
         {
             DataTable dt = SqlDirectStore.pGetStoreEcounByItemMaster(itemMasterUID, organisation);
             List<StockModel> data = dt.ToList<StockModel>();
-
             return data;
         }
-
 
 
         [Route("SearchStockBatch")]

@@ -11,6 +11,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Data;
+using System.Data.OleDb;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -18,6 +21,16 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+
+
+        private string _FileLocation;
+
+        public string FileLocation
+        {
+            get { return _FileLocation; }
+            set { Set(ref _FileLocation, value); }
+        }
+
 
         private bool _IsEnableGRNItemList = true;
 
@@ -222,6 +235,32 @@ namespace MediTech.ViewModels
 
         #region Command
 
+        private RelayCommand _ImportCommand;
+
+        public RelayCommand ImportCommand
+        {
+            get
+            {
+                return _ImportCommand
+                    ?? (_ImportCommand = new RelayCommand(ImportFile));
+            }
+        }
+
+
+
+
+        private RelayCommand _ChooseCommand;
+
+        public RelayCommand ChooseCommand
+        {
+            get
+            {
+                return _ChooseCommand
+                    ?? (_ChooseCommand = new RelayCommand(ChooseFile));
+            }
+        }
+
+
         private RelayCommand _SaveCommand;
         public RelayCommand SaveCommand
         {
@@ -247,6 +286,126 @@ namespace MediTech.ViewModels
         #region Method
 
         GRNDetailModel model;
+
+        private void ImportFile()
+        {
+            if (SelectStore == null)
+            {
+                WarningDialog("กรุณาเลือก STOCK");
+                return;
+            }
+
+
+            OleDbConnection conn;
+            DataSet objDataset1;
+            OleDbCommand cmd;
+            DataTable dt;
+            DataTable ImportData = new DataTable();
+            string connectionString = string.Empty;
+            int pgBarCounter = 0;
+            // TotalRecord = 0;
+            //DateTime birthdttm;
+            ManageGRN view = (ManageGRN)this.View;
+            try
+            {
+                if (FileLocation.Trim() != string.Empty)
+                {
+                    if (FileLocation.Trim().EndsWith(".xls"))
+                    {
+                        connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + FileLocation.Trim() +
+                            "; Extended Properties=\"Excel 8.0; HDR=Yes; IMEX=1\"";
+                    }
+                    else
+                    {
+                        connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + FileLocation.Trim() +
+                            "; Extended Properties=\"Excel 12.0 Xml; HDR=YES; IMEX=1\"";
+                    }
+                    using (conn = new OleDbConnection(connectionString))
+                    {
+                        conn.Open();
+                        objDataset1 = new DataSet();
+                        dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            for (int row = 0; row < dt.Rows.Count;)
+                            {
+                                string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
+                                cmd = conn.CreateCommand();
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([ItemCode] <> '' OR [NO] IS NOT NULL)", conn);
+                                OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
+                                objAdapter1.SelectCommand = objCmdSelect;
+                                objAdapter1.Fill(objDataset1);
+                                //Break after reading the first sheet
+                                break;
+                            }
+                            ImportData = objDataset1.Tables[0];
+                            conn.Close();
+                        }
+                    }
+
+                    int upperlimit = ImportData.Rows.Count;
+                    //view.SetProgressBarLimits(0, upperlimit);
+                    //view.SetProgressBarValue(upperlimit);
+                    OnUpdateEvent();
+                    GRNItems = new ObservableCollection<ItemMasterList>();
+                    foreach (DataRow drow in ImportData.Rows)
+                    {
+                        //List<StockModel> CurrentStock = DataService.Inventory.GetStoreEcounByItemMaster(int.Parse(drow["ItemMasterUID"].ToString().Trim()), SelectStore.StoreUID);
+                        ItemMasterList newRow = new ItemMasterList();
+                            //newRow.GRNItemListUID = item.ItemListUID;
+                            newRow.ItemMasterUID = int.Parse(drow["ItemMasterUID"].ToString().Trim());
+                            newRow.ItemName = drow["ItemName"].ToString().Trim();
+                        newRow.ItemCode =  drow["ItemCode"].ToString().Trim();
+                        newRow.Quantity =  double.Parse(drow["Quantity"].ToString().Trim());
+                        //newRow.IMUOMUID = item.IMUOMUID;
+                        //newRow.ExpiryDttm = item.ExpiryDttm;
+                        newRow.BatchID = drow["BatchID"].ToString().Trim();
+                        //newRow.ManufacturerUID = item.ManufacturerUID;
+                        //newRow.PurchaseCost = item.UnitPrice ?? 0;
+                        newRow.FreeQuantity =  double.Parse(drow["FreeQuantity"].ToString().Trim());
+                        newRow.Discount = double.Parse(drow["Discount"].ToString().Trim());
+                        newRow.TaxPercentage = double.Parse(drow["TaxPercentage"].ToString().Trim());
+                        newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
+                        GRNItems.Add(newRow);
+                      
+                       // view.SetProgressBarValue(pgBarCounter);
+                    }
+
+                }
+            }
+
+            catch (Exception er)
+            {
+
+                System.Windows.Forms.MessageBox.Show(er.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+       
+
+        private void ChooseFile()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "Excel 2007 (*.xlsx)|*.xlsx|Excel 1997 - 2003 (*.xls)|*.xls"; ;
+            openDialog.InitialDirectory = @"c:\";
+            openDialog.ShowDialog();
+            if (openDialog.FileName.Trim() != "")
+            {
+                try
+                {
+                    FileLocation = openDialog.FileName.Trim();
+                }
+                catch (Exception ex)
+                {
+                    ErrorDialog(ex.Message);
+                }
+            }
+        }
+
+
+
 
         public ManageGRNViewModel()
         {
