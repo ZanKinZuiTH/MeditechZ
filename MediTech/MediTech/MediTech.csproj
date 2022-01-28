@@ -783,6 +783,12 @@
     <Compile Include="Reports\Operating\Radiology\ImagingReportV2.Designer.cs">
       <DependentUpon>ImagingReportV2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Cashier\DataStockToEcount.Designer.cs">
+      <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Statistic\Cashier\DoctorFeeReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1208,6 +1214,12 @@
     </Compile>
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\StockToEcount.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Statistic\Ecount\StockToEcount.Designer.cs">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -3003,6 +3015,9 @@
     <EmbeddedResource Include="Reports\Operating\Radiology\ImagingReportV2.resx">
       <DependentUpon>ImagingReportV2.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Cashier\DataStockToEcount.resx">
+      <DependentUpon>DataStockToEcount.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Cashier\DoctorFeeReport.resx">
       <DependentUpon>DoctorFeeReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -3215,6 +3230,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Statistic\Ecount\StockToEcount.resx">
+      <DependentUpon>StockToEcount.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>

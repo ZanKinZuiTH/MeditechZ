@@ -34,20 +34,32 @@ namespace MediTech.Reports.Statistic.Cashier
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
             this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.fieldDateOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldHealthOrganisationName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldNoBusiness = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField2 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldVisitType = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField15 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldCodeItem = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField27 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField16 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField19 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField20 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.fieldDoctorFee = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField25 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.xrPivotGridField28 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
@@ -55,18 +67,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField15 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField16 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField19 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField20 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -84,7 +84,6 @@ namespace MediTech.Reports.Statistic.Cashier
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPivotGrid1});
-            this.Detail.HeightF = 100F;
             this.Detail.Name = "Detail";
             // 
             // xrPivotGrid1
@@ -111,6 +110,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrPivotGridField21,
             this.pivotGridField2,
             this.fieldVisitType,
+            this.pivotGridField6,
             this.pivotGridField15,
             this.fieldCodeItem,
             this.xrPivotGridField27,
@@ -124,7 +124,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.fieldDoctorFee,
             this.pivotGridField24,
             this.pivotGridField23,
-            this.pivotGridField6,
             this.pivotGridField7,
             this.xrPivotGridField25,
             this.xrPivotGridField28});
@@ -140,6 +139,11 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrPivotGrid1.OptionsView.ShowRowGrandTotals = false;
             this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
             this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(2623.33F, 90.00001F);
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // fieldDateOrder
             // 
@@ -158,6 +162,33 @@ namespace MediTech.Reports.Statistic.Cashier
             this.pivotGridField4.FieldName = "RowNumber";
             this.pivotGridField4.Name = "pivotGridField4";
             this.pivotGridField4.Width = 25;
+            // 
+            // pivotGridField10
+            // 
+            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField10.AreaIndex = 2;
+            this.pivotGridField10.Caption = "รหัสลูกค้า/ผู้ขาย";
+            this.pivotGridField10.FieldName = "PayorCode";
+            this.pivotGridField10.Name = "pivotGridField10";
+            this.pivotGridField10.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField11
+            // 
+            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField11.AreaIndex = 3;
+            this.pivotGridField11.Caption = "ชื่อลูกค้า/ผู้ขาย";
+            this.pivotGridField11.FieldName = "PayorName";
+            this.pivotGridField11.Name = "pivotGridField11";
+            this.pivotGridField11.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField12
+            // 
+            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField12.AreaIndex = 4;
+            this.pivotGridField12.Caption = "PIC";
+            this.pivotGridField12.FieldName = "OrderBy";
+            this.pivotGridField12.Name = "pivotGridField12";
+            this.pivotGridField12.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
             // 
             // fieldHealthOrganisationName
             // 
@@ -187,7 +218,7 @@ namespace MediTech.Reports.Statistic.Cashier
             // xrPivotGridField21
             // 
             this.xrPivotGridField21.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField21.AreaIndex = 12;
+            this.xrPivotGridField21.AreaIndex = 11;
             this.xrPivotGridField21.Caption = "ชื่อคนไข้/ลูกค้า";
             this.xrPivotGridField21.FieldName = "PatientName";
             this.xrPivotGridField21.Name = "xrPivotGridField21";
@@ -205,9 +236,26 @@ namespace MediTech.Reports.Statistic.Cashier
             // fieldVisitType
             // 
             this.fieldVisitType.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldVisitType.AreaIndex = 23;
+            this.fieldVisitType.AreaIndex = 22;
             this.fieldVisitType.FieldName = "VisitType";
             this.fieldVisitType.Name = "fieldVisitType";
+            // 
+            // pivotGridField6
+            // 
+            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField6.AreaIndex = 13;
+            this.pivotGridField6.Caption = "Organisation";
+            this.pivotGridField6.FieldName = "HealthOrganisationName";
+            this.pivotGridField6.Name = "pivotGridField6";
+            this.pivotGridField6.Width = 140;
+            // 
+            // pivotGridField15
+            // 
+            this.pivotGridField15.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField15.AreaIndex = 12;
+            this.pivotGridField15.Caption = "ผู้แนะนำ/เซลล์";
+            this.pivotGridField15.Name = "pivotGridField15";
+            this.pivotGridField15.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
             // 
             // fieldCodeItem
             // 
@@ -228,6 +276,13 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrPivotGridField27.Name = "xrPivotGridField27";
             this.xrPivotGridField27.RowValueLineCount = 2;
             this.xrPivotGridField27.Width = 175;
+            // 
+            // pivotGridField16
+            // 
+            this.pivotGridField16.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField16.AreaIndex = 15;
+            this.pivotGridField16.Caption = "หมายเลข Serial/Lot";
+            this.pivotGridField16.Name = "pivotGridField16";
             // 
             // xrPivotGridField24
             // 
@@ -250,26 +305,61 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrPivotGridField26.Name = "xrPivotGridField26";
             this.xrPivotGridField26.Width = 60;
             // 
+            // pivotGridField19
+            // 
+            this.pivotGridField19.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField19.AreaIndex = 16;
+            this.pivotGridField19.Caption = "จำนวนเงิน";
+            this.pivotGridField19.Name = "pivotGridField19";
+            this.pivotGridField19.Visible = false;
+            // 
+            // pivotGridField20
+            // 
+            this.pivotGridField20.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField20.AreaIndex = 16;
+            this.pivotGridField20.Caption = "ค่า com";
+            this.pivotGridField20.Name = "pivotGridField20";
+            // 
+            // pivotGridField21
+            // 
+            this.pivotGridField21.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField21.AreaIndex = 17;
+            this.pivotGridField21.Caption = "ภาษี";
+            this.pivotGridField21.Name = "pivotGridField21";
+            // 
+            // pivotGridField22
+            // 
+            this.pivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField22.AreaIndex = 18;
+            this.pivotGridField22.Caption = "Doctor";
+            this.pivotGridField22.FieldName = "Doctor";
+            this.pivotGridField22.Name = "pivotGridField22";
+            // 
             // fieldDoctorFee
             // 
             this.fieldDoctorFee.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldDoctorFee.AreaIndex = 20;
+            this.fieldDoctorFee.AreaIndex = 19;
             this.fieldDoctorFee.FieldName = "DoctorFee";
             this.fieldDoctorFee.Name = "fieldDoctorFee";
             // 
-            // pivotGridField6
+            // pivotGridField24
             // 
-            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField6.AreaIndex = 10;
-            this.pivotGridField6.Caption = "Organisation";
-            this.pivotGridField6.FieldName = "HealthOrganisationName";
-            this.pivotGridField6.Name = "pivotGridField6";
-            this.pivotGridField6.Width = 140;
+            this.pivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField24.AreaIndex = 20;
+            this.pivotGridField24.Caption = "OrderSetCode";
+            this.pivotGridField24.Name = "pivotGridField24";
+            // 
+            // pivotGridField23
+            // 
+            this.pivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField23.AreaIndex = 21;
+            this.pivotGridField23.Caption = "OrderSetName";
+            this.pivotGridField23.Name = "pivotGridField23";
             // 
             // pivotGridField7
             // 
             this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField7.AreaIndex = 11;
+            this.pivotGridField7.AreaIndex = 10;
             this.pivotGridField7.Caption = "Store";
             this.pivotGridField7.FieldName = "Store";
             this.pivotGridField7.Name = "pivotGridField7";
@@ -321,92 +411,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.VISTYUID.Type = typeof(int);
             this.VISTYUID.ValueInfo = "0";
             this.VISTYUID.Visible = false;
-            // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
-            // pivotGridField10
-            // 
-            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField10.AreaIndex = 2;
-            this.pivotGridField10.Caption = "รหัสลูกค้า/ผู้ขาย";
-            this.pivotGridField10.Name = "pivotGridField10";
-            this.pivotGridField10.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField11
-            // 
-            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField11.AreaIndex = 3;
-            this.pivotGridField11.Caption = "ชื่อลูกค้า/ผู้ขาย";
-            this.pivotGridField11.Name = "pivotGridField11";
-            this.pivotGridField11.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField12
-            // 
-            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField12.AreaIndex = 4;
-            this.pivotGridField12.Caption = "PIC";
-            this.pivotGridField12.Name = "pivotGridField12";
-            this.pivotGridField12.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField15
-            // 
-            this.pivotGridField15.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField15.AreaIndex = 13;
-            this.pivotGridField15.Caption = "ผู้แนะนำ/เซลล์";
-            this.pivotGridField15.Name = "pivotGridField15";
-            this.pivotGridField15.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField16
-            // 
-            this.pivotGridField16.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField16.AreaIndex = 15;
-            this.pivotGridField16.Caption = "หมายเลข Serial/Lot";
-            this.pivotGridField16.Name = "pivotGridField16";
-            // 
-            // pivotGridField19
-            // 
-            this.pivotGridField19.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField19.AreaIndex = 16;
-            this.pivotGridField19.Caption = "จำนวนเงิน";
-            this.pivotGridField19.Name = "pivotGridField19";
-            // 
-            // pivotGridField20
-            // 
-            this.pivotGridField20.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField20.AreaIndex = 17;
-            this.pivotGridField20.Caption = "ค่า com";
-            this.pivotGridField20.Name = "pivotGridField20";
-            // 
-            // pivotGridField21
-            // 
-            this.pivotGridField21.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField21.AreaIndex = 18;
-            this.pivotGridField21.Caption = "ภาษี";
-            this.pivotGridField21.Name = "pivotGridField21";
-            // 
-            // pivotGridField22
-            // 
-            this.pivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField22.AreaIndex = 19;
-            this.pivotGridField22.Caption = "Doctor";
-            this.pivotGridField22.Name = "pivotGridField22";
-            // 
-            // pivotGridField24
-            // 
-            this.pivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField24.AreaIndex = 21;
-            this.pivotGridField24.Caption = "OrderSetCode";
-            this.pivotGridField24.Name = "pivotGridField24";
-            // 
-            // pivotGridField23
-            // 
-            this.pivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField23.AreaIndex = 22;
-            this.pivotGridField23.Caption = "OrderSetName";
-            this.pivotGridField23.Name = "pivotGridField23";
             // 
             // StockToEcount
             // 

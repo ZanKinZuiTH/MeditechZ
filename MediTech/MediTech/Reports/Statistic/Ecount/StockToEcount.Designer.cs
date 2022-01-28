@@ -29,7 +29,13 @@ namespace MediTech.Reports.Statistic.Ecount
         /// </summary>
         private void InitializeComponent()
         {
-            components = new System.ComponentModel.Container();
+            ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
+            // 
+            // StockToEcount
+            // 
+            this.Version = "20.2";
+            ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
+
         }
 
         #endregion
