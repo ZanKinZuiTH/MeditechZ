@@ -1152,7 +1152,7 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="OwnerOrganisationUID" Type="int" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
-          <Property Name="PatientOtherID" Type="nvarchar" MaxLength="20" />
+          <Property Name="PatientOtherID" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <EntityType Name="PatientAddress">
           <Key>
@@ -5239,7 +5239,6 @@
           <EntitySet Name="PageViewModule" EntityType="MediTechModel.PageViewModule" />
           <EntitySet Name="PageViewPermission" EntityType="MediTechModel.PageViewPermission" />
           <EntitySet Name="PastMedicalHistory" EntityType="MediTechModel.PastMedicalHistory" />
-          <EntitySet Name="Patient" EntityType="MediTechModel.Patient" />
           <EntitySet Name="PatientAddress" EntityType="MediTechModel.PatientAddress" />
           <EntitySet Name="PatientAddressMerge" EntityType="MediTechModel.PatientAddressMerge" />
           <EntitySet Name="PatientAllergy" EntityType="MediTechModel.PatientAllergy" />
@@ -5361,6 +5360,7 @@
             <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="Patient" EntityType="MediTechModel.Patient" />
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8945,49 +8945,6 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
-        <EntityType Name="Patient">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="MiddleName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
-          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="SEXXXUID" Type="Int32" />
-          <Property Name="TITLEUID" Type="Int32" />
-          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="DOBDttm" Type="DateTime" Precision="3" />
-          <Property Name="DOBComputed" Type="Boolean" Nullable="false" />
-          <Property Name="BLOODUID" Type="Int32" />
-          <Property Name="IsVIP" Type="Boolean" />
-          <Property Name="IDCard" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
-          <Property Name="RELGNUID" Type="Int32" />
-          <Property Name="IDLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="MobilePhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="SPOKLUID" Type="Int32" />
-          <Property Name="NATNLUID" Type="Int32" />
-          <Property Name="IDPassport" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="MARRYUID" Type="Int32" />
-          <Property Name="OCCUPUID" Type="Int32" />
-          <Property Name="SecondPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="LastVisitDttm" Type="DateTime" Precision="3" />
-          <Property Name="DeathStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="DeathDttm" Type="DateTime" Precision="3" />
-          <Property Name="EmployeeID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
-          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="CUser" Type="Int32" Nullable="false" />
-          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MUser" Type="Int32" Nullable="false" />
-          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" />
-          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <Property Name="PatientOtherID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-        </EntityType>
         <EntityType Name="PatientAddress">
           <Key>
             <PropertyRef Name="UID" />
@@ -11049,6 +11006,49 @@
           <Property Type="Double" Name="Discount" Nullable="true" />
           <Property Type="Double" Name="Profit" Nullable="false" />
         </ComplexType>
+        <EntityType Name="Patient">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="MiddleName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="NickName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="SEXXXUID" Type="Int32" />
+          <Property Name="TITLEUID" Type="Int32" />
+          <Property Name="PatientID" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="DOBDttm" Type="DateTime" Precision="3" />
+          <Property Name="DOBComputed" Type="Boolean" Nullable="false" />
+          <Property Name="BLOODUID" Type="Int32" />
+          <Property Name="IsVIP" Type="Boolean" />
+          <Property Name="IDCard" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
+          <Property Name="RELGNUID" Type="Int32" />
+          <Property Name="IDLine" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobilePhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="SPOKLUID" Type="Int32" />
+          <Property Name="NATNLUID" Type="Int32" />
+          <Property Name="IDPassport" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MARRYUID" Type="Int32" />
+          <Property Name="OCCUPUID" Type="Int32" />
+          <Property Name="SecondPhone" Type="String" MaxLength="12" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="LastVisitDttm" Type="DateTime" Precision="3" />
+          <Property Name="DeathStatus" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DeathDttm" Type="DateTime" Precision="3" />
+          <Property Name="EmployeeID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Department" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Position" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="PatientOtherID" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14150,50 +14150,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Patient">
-            <EntityTypeMapping TypeName="MediTechModel.Patient">
-              <MappingFragment StoreEntitySet="Patient">
-                <ScalarProperty Name="PatientOtherID" ColumnName="PatientOtherID" />
-                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
-                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
-                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
-                <ScalarProperty Name="MUser" ColumnName="MUser" />
-                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
-                <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="Position" ColumnName="Position" />
-                <ScalarProperty Name="Department" ColumnName="Department" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="DeathDttm" ColumnName="DeathDttm" />
-                <ScalarProperty Name="DeathStatus" ColumnName="DeathStatus" />
-                <ScalarProperty Name="LastVisitDttm" ColumnName="LastVisitDttm" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
-                <ScalarProperty Name="OCCUPUID" ColumnName="OCCUPUID" />
-                <ScalarProperty Name="MARRYUID" ColumnName="MARRYUID" />
-                <ScalarProperty Name="IDPassport" ColumnName="IDPassport" />
-                <ScalarProperty Name="NATNLUID" ColumnName="NATNLUID" />
-                <ScalarProperty Name="SPOKLUID" ColumnName="SPOKLUID" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="IDLine" ColumnName="IDLine" />
-                <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
-                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-                <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
-                <ScalarProperty Name="BLOODUID" ColumnName="BLOODUID" />
-                <ScalarProperty Name="DOBComputed" ColumnName="DOBComputed" />
-                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="TITLEUID" ColumnName="TITLEUID" />
-                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="PatientAddress">
             <EntityTypeMapping TypeName="MediTechModel.PatientAddress">
               <MappingFragment StoreEntitySet="PatientAddress">
@@ -16373,6 +16329,50 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="Patient">
+            <EntityTypeMapping TypeName="MediTechModel.Patient">
+              <MappingFragment StoreEntitySet="Patient">
+                <ScalarProperty Name="PatientOtherID" ColumnName="PatientOtherID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="DeathDttm" ColumnName="DeathDttm" />
+                <ScalarProperty Name="DeathStatus" ColumnName="DeathStatus" />
+                <ScalarProperty Name="LastVisitDttm" ColumnName="LastVisitDttm" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="OCCUPUID" ColumnName="OCCUPUID" />
+                <ScalarProperty Name="MARRYUID" ColumnName="MARRYUID" />
+                <ScalarProperty Name="IDPassport" ColumnName="IDPassport" />
+                <ScalarProperty Name="NATNLUID" ColumnName="NATNLUID" />
+                <ScalarProperty Name="SPOKLUID" ColumnName="SPOKLUID" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="IDLine" ColumnName="IDLine" />
+                <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
+                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
+                <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
+                <ScalarProperty Name="BLOODUID" ColumnName="BLOODUID" />
+                <ScalarProperty Name="DOBComputed" ColumnName="DOBComputed" />
+                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="TITLEUID" ColumnName="TITLEUID" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="MiddleName" ColumnName="MiddleName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

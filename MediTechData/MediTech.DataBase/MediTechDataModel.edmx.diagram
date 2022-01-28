@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a91b143706e5454fa6fe8f5a3bf5cb3f" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="a91b143706e5454fa6fe8f5a3bf5cb3f" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="MediTechModel.Amphur" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.BillableItem" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.BillableItemDetail" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -59,7 +59,6 @@
         <EntityTypeShape EntityType="MediTechModel.PageViewModule" Width="1.5" PointX="24.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.PageViewPermission" Width="1.5" PointX="24.75" PointY="5.75" />
         <EntityTypeShape EntityType="MediTechModel.PastMedicalHistory" Width="1.5" PointX="24.75" PointY="9.75" />
-        <EntityTypeShape EntityType="MediTechModel.Patient" Width="1.5" PointX="12.75" PointY="24.75" />
         <EntityTypeShape EntityType="MediTechModel.PatientAddress" Width="1.5" PointX="24.75" PointY="13.75" />
         <EntityTypeShape EntityType="MediTechModel.PatientAddressMerge" Width="1.5" PointX="14.75" PointY="24.75" />
         <EntityTypeShape EntityType="MediTechModel.PatientAllergy" Width="1.5" PointX="16.75" PointY="24.75" />
@@ -170,6 +169,7 @@
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="40.75" PointY="41.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="42.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="42.75" PointY="4.75" />
+        <EntityTypeShape EntityType="MediTechModel.Patient" Width="1.5" PointX="23.375" PointY="42.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
