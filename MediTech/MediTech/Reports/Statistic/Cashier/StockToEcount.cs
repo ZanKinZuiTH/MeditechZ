@@ -18,13 +18,13 @@ namespace MediTech.Reports.Statistic.Cashier
 
         private void XrPivotGrid1_CustomCellValue(object sender, DevExpress.XtraReports.UI.PivotGrid.PivotCellValueEventArgs e)
         {
-            if (e.RowValueType == DevExpress.XtraPivotGrid.PivotGridValueType.Total || e.RowValueType == DevExpress.XtraPivotGrid.PivotGridValueType.GrandTotal)
-            {
-                if (e.DataField.FieldName == "Qty" || e.DataField.FieldName == "UnitCost" || e.DataField.FieldName == "UnitPrice")
-                {
-                    e.Value = "";
-                }
-            }
+            //if (e.RowValueType == DevExpress.XtraPivotGrid.PivotGridValueType.Total || e.RowValueType == DevExpress.XtraPivotGrid.PivotGridValueType.GrandTotal)
+            //{
+            //    if (e.DataField.FieldName == "Qty" || e.DataField.FieldName == "UnitCost" || e.DataField.FieldName == "UnitPrice")
+            //    {
+            //        e.Value = "";
+            //    }
+            //}
         }
 
         private void StockToEcount_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)

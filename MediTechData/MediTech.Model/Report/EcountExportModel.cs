@@ -26,19 +26,18 @@ namespace MediTech.Model.Report
         public string Unit { get; set; }
         public double UnitCost { get; set; }
         public double UnitPrice { get; set; }
-        public double NetCost { get; set; }
-        public double Discount { get; set; }
         public double NetPrice { get; set; }
-        public double Profit { get; set; }
         public string Status { get; set; }
         public string BillNumber { get; set; }
         public string HealthOrganisationName { get; set; }
         public string Comments { get; set; }
-        public string CancelReason { get; set; }
         public double DoctorFee { get; set; }
         public string NoBusiness { get; set; }
         public string CodeItem { get; set; }
-
+        public string EmpID { get; set; }
+        public string Doctor { get; set; }
+        public string OrderSetCode { get; set; }
+        public string OrderSetName { get; set; }
 
     }
 }

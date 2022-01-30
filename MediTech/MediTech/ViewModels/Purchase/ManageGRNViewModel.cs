@@ -304,7 +304,6 @@ namespace MediTech.ViewModels
             string connectionString = string.Empty;
             int pgBarCounter = 0;
             // TotalRecord = 0;
-            //DateTime birthdttm;
             ManageGRN view = (ManageGRN)this.View;
             try
             {
@@ -359,14 +358,17 @@ namespace MediTech.ViewModels
                         newRow.ItemCode =  drow["ItemCode"].ToString().Trim();
                         newRow.Quantity =  double.Parse(drow["Quantity"].ToString().Trim());
                         //newRow.IMUOMUID = item.IMUOMUID;
-                        //newRow.ExpiryDttm = item.ExpiryDttm;
+                        DateTime checkupDttm;
+                        if (DateTime.TryParse(drow["ExpiryDate"].ToString().Trim(), out checkupDttm))
+                            newRow.ExpiryDttm = checkupDttm;
+                       // newRow.ExpiryDttm = DateTime.TryParse(drow["ExpiryDate"].ToString().Trim(),out newRow);
                         newRow.BatchID = drow["BatchID"].ToString().Trim();
-                        //newRow.ManufacturerUID = item.ManufacturerUID;
-                        //newRow.PurchaseCost = item.UnitPrice ?? 0;
-                        newRow.FreeQuantity =  double.Parse(drow["FreeQuantity"].ToString().Trim());
-                        newRow.Discount = double.Parse(drow["Discount"].ToString().Trim());
-                        newRow.TaxPercentage = double.Parse(drow["TaxPercentage"].ToString().Trim());
-                        newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
+                        //newRow.ManufacturerUID = drow["Manufacturer"].ToString().Trim();
+                        newRow.UnitPrice = double.Parse(drow["UnitPrice"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["UnitPrice"].ToString().Trim());
+                        newRow.FreeQuantity = double.Parse(drow["FreeQuantity"].ToString().Trim())== 0 ? 0 : double.Parse(drow["FreeQuantity"].ToString().Trim());
+                        newRow.Discount = double.Parse(drow["Discount"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["Discount"].ToString().Trim());
+                        //newRow.TaxPercentage = double.Parse(drow["TaxPercentage"].ToString().Trim());
+                        //newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
                         GRNItems.Add(newRow);
                       
                        // view.SetProgressBarValue(pgBarCounter);
