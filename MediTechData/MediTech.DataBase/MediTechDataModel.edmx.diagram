@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="a91b143706e5454fa6fe8f5a3bf5cb3f" Name="Diagram1" ZoomLevel="93">
+      <Diagram DiagramId="a91b143706e5454fa6fe8f5a3bf5cb3f" Name="Diagram1" ZoomLevel="60">
         <EntityTypeShape EntityType="MediTechModel.Amphur" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.BillableItem" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.BillableItemDetail" Width="1.5" PointX="4.75" PointY="0.75" />

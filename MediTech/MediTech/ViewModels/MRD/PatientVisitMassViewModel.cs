@@ -1163,6 +1163,17 @@ namespace MediTech.ViewModels
                                 report.ShowPrintMarginsWarning = false;
                                 printTool.Print(SelectPrinter.Display);
                             }
+
+                            else if (SelectReport.Name == "รายงานตรวจPapSmear")
+                            {
+                                report.Parameters["PayorDetailUID"].Value = patientVisit.PayorDetailUID;
+                                report.Parameters["PatientUID"].Value = patientVisit.PatientUID;
+                                report.Parameters["PatientVisitUID"].Value = patientVisit.PatientVisitUID;
+                                report.RequestParameters = false;
+                                report.ShowPrintMarginsWarning = false;
+                                printTool.Print(SelectPrinter.Display);
+                            }
+
                             else
                             {
                                 report.Parameters["OrganisationUID"].Value = patientVisit.OwnerOrganisationUID;

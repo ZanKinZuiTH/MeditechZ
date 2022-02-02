@@ -31,5 +31,6 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public string SerialNumber { get; set; }
     }
 }

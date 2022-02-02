@@ -32,5 +32,6 @@ namespace MediTech.Model
         public int OrganisationUID { get; set; }
         public int StoreUID { get; set; }
         public string StatusFlag { get; set; }
+        public string SerialNumber { get; set; }
     }
 }

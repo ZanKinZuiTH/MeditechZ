@@ -291,5 +291,7 @@ namespace MediTech.Models
             NetCost = (((Quantity ?? 0) * (ItemCost ?? 0)));
             return NetCost;
         }
+
+        public string SerialNumber { get; set; }
     }
 }

@@ -1367,6 +1367,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page5.cellHbsAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year2)?.ResultValue;
                 page5.cellHbsAg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year3)?.ResultValue;
 
+
+
                 page5.cellCoiAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34")?.ReferenceRange;
                 page5.cellCoiAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.ResultValue;
                 page5.cellCoiAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year2)?.ResultValue;
@@ -1993,13 +1995,24 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page6.cellTumorYear2.Text = "ปี" + " " + year2.ToString();
                 page6.cellTumorYear3.Text = "ปี" + " " + year3.ToString();
 
-                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186") != null)
+                //cellAfpSIRange
+
+                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38") != null)
                 {
-                    page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
-                    page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
-                    page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
-                    page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
+                    page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38")?.ReferenceRange;
+                    page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year1)?.ResultValue;
+                    page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year2)?.ResultValue;
+                    page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR38" && p.Year == year3)?.ResultValue;
                 }
+
+                //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186") != null)
+                //{
+                //    page6.cellAfpSIRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186")?.ReferenceRange;
+                //    page6.cellAfpSI1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year1)?.ResultValue;
+                //    page6.cellAfpSI2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year2)?.ResultValue;
+                //    page6.cellAfpSI3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR186" && p.Year == year3)?.ResultValue;
+                //}
+
                 //AFP โชว์ตัวเลขก่อนตัวอักษร
 
                 if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR39") != null)
@@ -2082,8 +2095,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page6.ca153_3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR203" && p.Year == year3)?.ResultValue;
                 }
 
-
                 //CEA โชว์ตัวเลขก่อนตัวอักษร
+
                 if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR40") != null)
                 {
                     page6.cellCEARange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR40")?.ReferenceRange;
@@ -2092,12 +2105,15 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     page6.cellCEA3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR40" && p.Year == year3)?.ResultValue;
                 }
 
-                if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185") != null)
+                else
                 {
-                    page6.cellCEAinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185")?.ReferenceRange;
-                    page6.cellCEAinYear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.ResultValue;
-                    page6.cellCEAinYear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.ResultValue;
-                    page6.cellCEAinYear3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.ResultValue;
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185") != null)
+                    {
+                        page6.cellCEAinRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185")?.ReferenceRange;
+                        page6.cellCEAinYear1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year1)?.ResultValue;
+                        page6.cellCEAinYear2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year2)?.ResultValue;
+                        page6.cellCEAinYear3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR185" && p.Year == year3)?.ResultValue;
+                    }
                 }
 
             }
