@@ -26,6 +26,7 @@ namespace MediTech.Model
         public virtual System.Nullable<int> ResultedByUID { get; set; }
         public virtual string ResultStatus { get; set; }
         public virtual System.Nullable<int> RABSTSUID { get; set; }
+        public virtual string OrderStatus { get; set; }
         public virtual System.Nullable<int> ORDSTUID { get; set; }
         public virtual string HasHistory { get; set; }
         public virtual System.Nullable<int> Version { get; set; }
