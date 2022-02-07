@@ -175,6 +175,17 @@ namespace MediTech.ViewModels
                     report.ShowPrintMarginsWarning = false;
                     printTool.ShowPreviewDialog(); ;
                 }
+
+                else if (SelectReport.Name == "รายงานตรวจPapSmear")
+                {
+                    report.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;
+                    report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
+                    report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
+                    report.RequestParameters = false;
+                    report.ShowPrintMarginsWarning = false;
+                    printTool.ShowPreviewDialog(); ;
+                }
+
                 else
                 {
                     report.Parameters["OrganisationUID"].Value = SelectPatientVisit.OwnerOrganisationUID;
@@ -222,6 +233,16 @@ namespace MediTech.ViewModels
                         report.RequestParameters = false;
                         report.ShowPrintMarginsWarning = false;
                         printTool.Print();
+                    }
+                    else if (SelectReport.Name == "รายงานตรวจPapSmear")
+                    {
+                        report.Parameters["PayorDetailUID"].Value = SelectPatientVisit.PayorDetailUID;
+                        report.Parameters["PatientUID"].Value = SelectPatientVisit.PatientUID;
+                        report.Parameters["PatientVisitUID"].Value = SelectPatientVisit.PatientVisitUID;
+                        report.Parameters["ReportName"].Value = SelectReport.Name;
+                        report.RequestParameters = false;
+                        report.ShowPrintMarginsWarning = false;
+                        printTool.ShowPreviewDialog(); ;
                     }
                     else
                     {

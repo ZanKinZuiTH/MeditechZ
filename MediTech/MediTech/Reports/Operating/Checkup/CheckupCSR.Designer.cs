@@ -33,6 +33,8 @@ namespace MediTech.Reports.Operating.Checkup
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.detailBand1 = new DevExpress.XtraReports.UI.DetailBand();
+            this.lbResultWellness = new DevExpress.XtraReports.UI.XRLabel();
+            this.TitleResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
             this.tbVatalSign = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow9 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -108,8 +110,6 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.xrPictureBox3 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.lbResultWellness = new DevExpress.XtraReports.UI.XRLabel();
-            this.TitleResultWellness2 = new DevExpress.XtraReports.UI.XRLabel();
             this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.PayorDetailUID = new DevExpress.XtraReports.Parameters.Parameter();
@@ -150,6 +150,41 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrPictureBox3});
             this.detailBand1.HeightF = 937.72F;
             this.detailBand1.Name = "detailBand1";
+            // 
+            // lbResultWellness
+            // 
+            this.lbResultWellness.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left;
+            this.lbResultWellness.BorderColor = System.Drawing.Color.DarkGray;
+            this.lbResultWellness.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.lbResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
+            this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
+            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(96.83157F, 529.0914F);
+            this.lbResultWellness.Multiline = true;
+            this.lbResultWellness.Name = "lbResultWellness";
+            this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
+            this.lbResultWellness.SizeF = new System.Drawing.SizeF(601.1554F, 265.6877F);
+            this.lbResultWellness.StylePriority.UseBorderColor = false;
+            this.lbResultWellness.StylePriority.UseFont = false;
+            this.lbResultWellness.StylePriority.UseForeColor = false;
+            this.lbResultWellness.StylePriority.UsePadding = false;
+            // 
+            // TitleResultWellness2
+            // 
+            this.TitleResultWellness2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.TitleResultWellness2.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.TitleResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
+            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(232.3372F, 504.0914F);
+            this.TitleResultWellness2.Name = "TitleResultWellness2";
+            this.TitleResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.TitleResultWellness2.SizeF = new System.Drawing.SizeF(299.1667F, 25F);
+            this.TitleResultWellness2.StylePriority.UseBackColor = false;
+            this.TitleResultWellness2.StylePriority.UseBorders = false;
+            this.TitleResultWellness2.StylePriority.UseFont = false;
+            this.TitleResultWellness2.StylePriority.UseTextAlignment = false;
+            this.TitleResultWellness2.Text = "สรุปผลการตรวจสุขภาพและคำแนะนำ";
+            this.TitleResultWellness2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // tbVatalSign
             // 
@@ -1133,41 +1168,6 @@ namespace MediTech.Reports.Operating.Checkup
             this.xrPictureBox3.SizeF = new System.Drawing.SizeF(174.1667F, 51.49998F);
             this.xrPictureBox3.Sizing = DevExpress.XtraPrinting.ImageSizeMode.StretchImage;
             this.xrPictureBox3.StylePriority.UseBorders = false;
-            // 
-            // lbResultWellness
-            // 
-            this.lbResultWellness.AnchorHorizontal = DevExpress.XtraReports.UI.HorizontalAnchorStyles.Left;
-            this.lbResultWellness.BorderColor = System.Drawing.Color.DarkGray;
-            this.lbResultWellness.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.lbResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
-            this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
-            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(96.83157F, 529.0914F);
-            this.lbResultWellness.Multiline = true;
-            this.lbResultWellness.Name = "lbResultWellness";
-            this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.lbResultWellness.SizeF = new System.Drawing.SizeF(601.1554F, 265.6877F);
-            this.lbResultWellness.StylePriority.UseBorderColor = false;
-            this.lbResultWellness.StylePriority.UseFont = false;
-            this.lbResultWellness.StylePriority.UseForeColor = false;
-            this.lbResultWellness.StylePriority.UsePadding = false;
-            // 
-            // TitleResultWellness2
-            // 
-            this.TitleResultWellness2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.TitleResultWellness2.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.TitleResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(232.3372F, 504.0914F);
-            this.TitleResultWellness2.Name = "TitleResultWellness2";
-            this.TitleResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.TitleResultWellness2.SizeF = new System.Drawing.SizeF(299.1667F, 25F);
-            this.TitleResultWellness2.StylePriority.UseBackColor = false;
-            this.TitleResultWellness2.StylePriority.UseBorders = false;
-            this.TitleResultWellness2.StylePriority.UseFont = false;
-            this.TitleResultWellness2.StylePriority.UseTextAlignment = false;
-            this.TitleResultWellness2.Text = "สรุปผลการตรวจสุขภาพและคำแนะนำ";
-            this.TitleResultWellness2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
             // PatientUID
             // 

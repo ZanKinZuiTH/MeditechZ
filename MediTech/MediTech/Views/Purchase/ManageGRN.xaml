@@ -226,6 +226,13 @@
                                                       DisplayMember="CompanyName"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
+                    <dxg:GridColumn Header="SerialNumber" FieldName="SerialNumber" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+
+
                     <dxg:GridColumn Header="จำนวนฟรี" FieldName="FreeQuantity" Width="70">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>

@@ -81,6 +81,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PageViewModule> PageViewModule { get; set; }
         public virtual DbSet<PageViewPermission> PageViewPermission { get; set; }
         public virtual DbSet<PastMedicalHistory> PastMedicalHistory { get; set; }
+        public virtual DbSet<Patient> Patient { get; set; }
         public virtual DbSet<PatientAddress> PatientAddress { get; set; }
         public virtual DbSet<PatientAddressMerge> PatientAddressMerge { get; set; }
         public virtual DbSet<PatientAllergy> PatientAllergy { get; set; }
@@ -191,7 +192,6 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateCondition> XrayTranslateCondition { get; set; }
         public virtual DbSet<XrayTranslateConditionDetail> XrayTranslateConditionDetail { get; set; }
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
-        public virtual DbSet<Patient> Patient { get; set; }
     
         [DbFunction("MediTechEntities", "splitstring")]
         public virtual IQueryable<splitstring_Result> splitstring(string stringToSplit)

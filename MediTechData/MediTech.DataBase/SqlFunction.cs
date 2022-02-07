@@ -208,6 +208,27 @@ namespace MediTech.DataBase
 
     public static class SqlDirectStore
     {
+        public static DataTable pStockMassFile(int storeUID, int itemMasterUID,string serialNumber,DateTime? expiryDate)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pStockMassFile", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_ItemMasterUID", itemMasterUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_SerialNumber", itemMasterUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_ExpiryDate", expiryDate ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            if (ds.Tables.Count <= 0)
+            {
+                return null;
+            }
+            return ds.Tables[0];
+        }
+
+
+
         public static bool pCancelDispensed(long PatientOrderDetailUID, int userUID)
         {
             bool flag = false;

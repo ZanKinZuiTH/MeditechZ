@@ -221,6 +221,7 @@
                                 <dxlc:LayoutItem Label="รหัสผู้ป่วย" >
                                     <dxe:TextEdit x:Name="txtHN" Text="{Binding LN}"/>
                                 </dxlc:LayoutItem>
+                               
                                 <dxlc:LayoutItem Label="ชื่อ">
                                     <dxe:TextEdit x:Name="txtFirstName" Text="{Binding FirstName}"/>
                                 </dxlc:LayoutItem>
@@ -352,6 +353,7 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขบัตรประชาชน" FieldName="NationalID" ReadOnly="True"/>
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>

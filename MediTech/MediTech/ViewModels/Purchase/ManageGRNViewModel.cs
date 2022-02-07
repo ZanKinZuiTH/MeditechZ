@@ -304,7 +304,6 @@ namespace MediTech.ViewModels
             string connectionString = string.Empty;
             int pgBarCounter = 0;
             // TotalRecord = 0;
-            //DateTime birthdttm;
             ManageGRN view = (ManageGRN)this.View;
             try
             {
@@ -332,7 +331,7 @@ namespace MediTech.ViewModels
                             {
                                 string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
                                 cmd = conn.CreateCommand();
-                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([ItemCode] <> '' OR [NO] IS NOT NULL)", conn);
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([รหัสสินค้า] <> '' OR [ลำดับ] IS NOT NULL)", conn);
                                 OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
                                 objAdapter1.SelectCommand = objCmdSelect;
                                 objAdapter1.Fill(objDataset1);
@@ -352,23 +351,29 @@ namespace MediTech.ViewModels
                     foreach (DataRow drow in ImportData.Rows)
                     {
                         //List<StockModel> CurrentStock = DataService.Inventory.GetStoreEcounByItemMaster(int.Parse(drow["ItemMasterUID"].ToString().Trim()), SelectStore.StoreUID);
+                        int itemUIDMaster = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
                         ItemMasterList newRow = new ItemMasterList();
-                            //newRow.GRNItemListUID = item.ItemListUID;
-                            newRow.ItemMasterUID = int.Parse(drow["ItemMasterUID"].ToString().Trim());
-                            newRow.ItemName = drow["ItemName"].ToString().Trim();
-                        newRow.ItemCode =  drow["ItemCode"].ToString().Trim();
-                        newRow.Quantity =  double.Parse(drow["Quantity"].ToString().Trim());
-                        //newRow.IMUOMUID = item.IMUOMUID;
-                        //newRow.ExpiryDttm = item.ExpiryDttm;
+                    
+                        newRow.ItemMasterUID = itemUIDMaster;
+                        newRow.ItemName = drow["รายการ"].ToString().Trim();
+                        newRow.ItemCode =  drow["รหัสสินค้า"].ToString().Trim();
+                        newRow.Quantity =  double.Parse(drow["จำนวน"].ToString().Trim());
+                        DateTime checkupDttm;
+                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
+                            newRow.ExpiryDttm = checkupDttm;
+                        newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
+                        newRow.TaxPercentage = double.Parse(drow["ภาษี"].ToString().Trim());
+                        newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
                         newRow.BatchID = drow["BatchID"].ToString().Trim();
-                        //newRow.ManufacturerUID = item.ManufacturerUID;
-                        //newRow.PurchaseCost = item.UnitPrice ?? 0;
-                        newRow.FreeQuantity =  double.Parse(drow["FreeQuantity"].ToString().Trim());
-                        newRow.Discount = double.Parse(drow["Discount"].ToString().Trim());
-                        newRow.TaxPercentage = double.Parse(drow["TaxPercentage"].ToString().Trim());
-                        newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
+                        //newRow.GRNItemListUID = item.ItemListUID;
+                        // newRow.ItemMasterUID = int.Parse(drow["ItemMasterUID"].ToString().Trim());
+                        //newRow.IMUOMUID = item.IMUOMUID;
+                        // newRow.ExpiryDttm = DateTime.TryParse(drow["ExpiryDate"].ToString().Trim(),out newRow);
+                        //newRow.ManufacturerUID = drow["Manufacturer"].ToString().Trim();
+                        //newRow.FreeQuantity = double.Parse(drow["FreeQuantity"].ToString().Trim())== 0 ? 0 : double.Parse(drow["FreeQuantity"].ToString().Trim());
+                        //newRow.Discount = double.Parse(drow["Discount"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["Discount"].ToString().Trim());
+                        //newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
                         GRNItems.Add(newRow);
-                      
                        // view.SetProgressBarValue(pgBarCounter);
                     }
 
@@ -383,7 +388,12 @@ namespace MediTech.ViewModels
 
         }
 
-       
+        private int GetItemByCode(string code)
+        {
+            int itemID = DataService.Inventory.GetItemMasterByCode(code).ItemMasterUID;
+            return itemID; 
+            //throw new NotImplementedException();
+        }
 
         private void ChooseFile()
         {
@@ -561,6 +571,7 @@ namespace MediTech.ViewModels
                 newItems.Discount = item.Discount;
                 newItems.TaxPercentage = item.TaxPercentage;
                 newItems.NetAmount = item.NetAmount ?? 0;
+                newItems.SerialNumber = item.SerialNumber;
                 GRNItems.Add(newItems);
             }
 

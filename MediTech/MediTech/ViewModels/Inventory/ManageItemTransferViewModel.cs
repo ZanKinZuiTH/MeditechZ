@@ -11,6 +11,8 @@ using MediTech.Views;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using MediTech.Models;
+using System.Data.OleDb;
+using System.Data;
 
 namespace MediTech.ViewModels
 {
@@ -19,6 +21,17 @@ namespace MediTech.ViewModels
 
 
         #region Properties
+
+
+        private string _FileLocation;
+
+        public string FileLocation
+        {
+            get { return _FileLocation; }
+            set { Set(ref _FileLocation, value); }
+        }
+
+
 
         private DateTime? _IssueDate;
 
@@ -171,9 +184,48 @@ namespace MediTech.ViewModels
             get { return _OtherChages; }
             set { Set(ref _OtherChages, value); }
         }
+
+
+
+        private ObservableCollection<ItemIssueModel> _IssuMapItems;
+
+        public ObservableCollection<ItemIssueModel> IssuMapItems
+        {
+            get { return _IssuMapItems; }
+            set
+            {
+                Set(ref _IssuMapItems, value);
+            }
+        }
+
+
+
+
         #endregion
 
         #region Command
+
+        private RelayCommand _ImportCommand;
+
+        public RelayCommand ImportCommand
+        {
+            get
+            {
+                return _ImportCommand
+                    ?? (_ImportCommand = new RelayCommand(ImportFile));
+            }
+        }
+
+        private RelayCommand _ChooseCommand;
+
+        public RelayCommand ChooseCommand
+        {
+            get
+            {
+                return _ChooseCommand
+                    ?? (_ChooseCommand = new RelayCommand(ChooseFile));
+            }
+        }
 
 
         private RelayCommand _SearchRequestCommand;
@@ -226,6 +278,136 @@ namespace MediTech.ViewModels
                 SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             }
         }
+
+        private void ImportFile()
+        {
+            
+            OleDbConnection conn;
+            DataSet objDataset1;
+            OleDbCommand cmd;
+            DataTable dt;
+            DataTable ImportData = new DataTable();
+            string connectionString = string.Empty;
+            int pgBarCounter = 0;
+            // TotalRecord = 0;
+            ManageItemTransfer view = (ManageItemTransfer)this.View;
+            try
+            {
+                if (FileLocation.Trim() != string.Empty)
+                {
+                    if (FileLocation.Trim().EndsWith(".xls"))
+                    {
+                        connectionString = @"Provider=Microsoft.Jet.OLEDB.4.0; Data Source=" + FileLocation.Trim() +
+                            "; Extended Properties=\"Excel 8.0; HDR=Yes; IMEX=1\"";
+                    }
+                    else
+                    {
+                        connectionString = @"Provider=Microsoft.ACE.OLEDB.12.0; Data Source=" + FileLocation.Trim() +
+                            "; Extended Properties=\"Excel 12.0 Xml; HDR=YES; IMEX=1\"";
+                    }
+                    using (conn = new OleDbConnection(connectionString))
+                    {
+                        conn.Open();
+                        objDataset1 = new DataSet();
+                        dt = conn.GetOleDbSchemaTable(OleDbSchemaGuid.Tables, null);
+
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            for (int row = 0; row < dt.Rows.Count;)
+                            {
+                                string FileName = Convert.ToString(dt.Rows[row]["Table_Name"]);
+                                cmd = conn.CreateCommand();
+                                OleDbCommand objCmdSelect = new OleDbCommand("SELECT * FROM [" + FileName + "] Where ([รหัสสินค้า] <> '' OR [ลำดับ] IS NOT NULL)", conn);
+                                OleDbDataAdapter objAdapter1 = new OleDbDataAdapter();
+                                objAdapter1.SelectCommand = objCmdSelect;
+                                objAdapter1.Fill(objDataset1);
+                                //Break after reading the first sheet
+                                break;
+                            }
+                            ImportData = objDataset1.Tables[0];
+                            conn.Close();
+                        }
+                    }
+
+
+                    foreach (DataRow drow in ImportData.Rows)
+                    {
+                        ItemMasterModel itemModel = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
+                       List<EcountMassFileModel> mapItem = new List<EcountMassFileModel>();
+                        // DateTime testto = Convert.ToDateTime("16/05/2021");
+                        // mapItem = DataService.Inventory.GetEcountMassFile(9, 14, "03012019-ATB01", testto);
+                        string test = drow["หมายเลข Serial/Lot"].ToString().Trim();
+                        DateTime checkupDttm;
+                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
+                           // newRow.ExpiryDttm = checkupDttm;
+                        mapItem = DataService.Inventory.GetEcountMassFile(SelectStoreFrom.StoreUID,itemModel.ItemMasterUID,drow["หมายเลข Serial/Lot"].ToString().Trim(), null);
+                        EcountMassFileModel modelmap = mapItem.FirstOrDefault();
+                        ItemMasterList newRow = new ItemMasterList();
+                        //newRow.ItemCode = drow["รหัสสินค้า"].ToString().Trim();
+                        //newRow.ItemName = drow["ชื่อสินค้า"].ToString().Trim();
+                        //newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
+
+                        newRow.SelectItemMaster = ItemMasters
+                           .Where(p => p.ItemMasterUID == modelmap.ItemMasterUID )
+                           .OrderBy(p => p.ExpiryDttm).FirstOrDefault();
+                        if (newRow.SelectItemMaster == null)
+                        {
+                            WarningDialog("ไม่มี " + modelmap.ItemName + " ในคลัง");
+                            continue;
+                        }
+                        newRow.BatchQuantity = modelmap.BatchQTY;
+                        newRow.ItemCode = modelmap.ItemCode;
+                        newRow.ItemName = modelmap.ItemName;
+                        newRow.BatchID = modelmap.BatchID;
+                        newRow.ItemCost = modelmap.ItemCost;
+                        newRow.IMUOMUID = itemModel.IMUOMUID;
+                        newRow.Quantity = double.Parse(drow["จำนวน"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["จำนวน"].ToString().Trim());
+                        newRow.IMUOMUID = modelmap.IMUOMUID;
+                        newRow.ExpiryDttm = modelmap.ExpiryDttm;
+                        newRow.StockUID = modelmap.StockUID;
+                        newRow.SerialNumber = modelmap.SerialNumber;
+                        newRow.ShowBatchQuantity = newRow.BatchQuantity - newRow.Quantity;
+                        newRow.NetAmount = modelmap.NetAmount;
+                        ItemIssueDetail.Add(newRow);
+                    }
+                   // model.NetAmount = model.ItemIssueDetail.Sum(p => p.NetAmount);
+
+                }
+            }
+
+            catch (Exception er)
+            {
+
+                System.Windows.Forms.MessageBox.Show(er.Message, "", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+        }
+
+        private ItemMasterModel GetItemByCode(string code)
+        {
+            ItemMasterModel itemModel = DataService.Inventory.GetItemMasterByCode(code);
+            return itemModel;
+        }
+
+        private void ChooseFile()
+        {
+            OpenFileDialog openDialog = new OpenFileDialog();
+            openDialog.Filter = "Excel 2007 (*.xlsx)|*.xlsx|Excel 1997 - 2003 (*.xls)|*.xls"; ;
+            openDialog.InitialDirectory = @"c:\";
+            openDialog.ShowDialog();
+            if (openDialog.FileName.Trim() != "")
+            {
+                try
+                {
+                    FileLocation = openDialog.FileName.Trim();
+                }
+                catch (Exception ex)
+                {
+                    ErrorDialog(ex.Message);
+                }
+            }
+        }
+
 
         private void Save()
         {
@@ -374,6 +556,7 @@ namespace MediTech.ViewModels
             model.ItemRequestUID = ItemRequestUID;
             model.ItemRequestID = RequestNo;
             model.OtherCharges = OtherChages;
+            
             foreach (var item in ItemIssueDetail)
             {
                 ItemIssueDetailModel newRow = new ItemIssueDetailModel();
@@ -384,13 +567,13 @@ namespace MediTech.ViewModels
                 newRow.BatchID = item.BatchID;
                 newRow.ItemCost = item.ItemCost ?? 0;
                 item.UnitPrice = item.ItemCost ?? 0;
-
                 newRow.UnitPrice = item.UnitPrice ?? 0;
                 newRow.NetAmount = item.NetAmount;
                 newRow.Quantity = item.Quantity ?? 0;
                 newRow.IMUOMUID = item.IMUOMUID;
                 newRow.ExpiryDttm = item.ExpiryDttm;
                 newRow.StockUID = item.StockUID;
+                newRow.SerialNumber = item.SerialNumber;
                 model.ItemIssueDetail.Add(newRow);
             }
 
@@ -423,6 +606,7 @@ namespace MediTech.ViewModels
                 newRow.IMUOMUID = item.IMUOMUID;
                 newRow.ExpiryDttm = item.ExpiryDttm;
                 newRow.StockUID = item.StockUID;
+                newRow.SerialNumber = item.SerialNumber;
                 newRow.ShowBatchQuantity = newRow.BatchQuantity - newRow.Quantity;
                 ItemIssueDetail.Add(newRow);
             }

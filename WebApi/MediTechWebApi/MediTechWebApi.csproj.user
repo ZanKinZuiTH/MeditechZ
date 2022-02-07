@@ -8,7 +8,7 @@
     <WebStackScaffolding_LayoutPageFile />
     <WebStackScaffolding_DbContextTypeFullName>MediTech.DataBase.MediTechEntities</WebStackScaffolding_DbContextTypeFullName>
     <WebStackScaffolding_IsAsyncSelected>False</WebStackScaffolding_IsAsyncSelected>
-    <NameOfLastUsedPublishProfile>C:\Users\asus\Documents\Visual Studio 2017\Project P2\Meditech\WebApi\MediTechWebApi\Properties\PublishProfiles\MediTechApi.pubxml</NameOfLastUsedPublishProfile>
+    <NameOfLastUsedPublishProfile>C:\Users\ADMIN\Desktop\MEditech-EDit\WebApi\MediTechWebApi\Properties\PublishProfiles\MediTechApi.pubxml</NameOfLastUsedPublishProfile>
     <UseIISExpress>true</UseIISExpress>
     <Use64BitIISExpress />
     <IISExpressSSLPort />

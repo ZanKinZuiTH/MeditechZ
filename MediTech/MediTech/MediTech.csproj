@@ -453,6 +453,18 @@
     <Compile Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.Designer.cs">
       <DependentUpon>LabDefinition4.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupCSR.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\CheckupCSR.Designer.cs">
+      <DependentUpon>CheckupCSR.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Papsmear.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\Papsmear.Designer.cs">
+      <DependentUpon>Papsmear.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -2837,6 +2849,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\CheckupBookLargeSize\LabDefinition4.resx">
       <DependentUpon>LabDefinition4.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\CheckupCSR.resx">
+      <DependentUpon>CheckupCSR.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\Papsmear.resx">
+      <DependentUpon>Papsmear.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>

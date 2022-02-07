@@ -142,6 +142,10 @@
                     </dxlc:LayoutItem.Label>
                     <dxe:DateEdit EditValue="{Binding IssueDate,Mode=TwoWay}"/>
                 </dxlc:LayoutItem>
+                
+                
+                
+                
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="อ้างอิงใบ Request เลขที่" HorizontalAlignment="Left">
@@ -164,6 +168,26 @@
                 </dxlc:LayoutItem>
 
             </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
+                    <TextBox Text="{Binding FileLocation}" IsReadOnly="True" Background="Gainsboro"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                    <dx:SimpleButton Width="80" Command="{Binding ChooseCommand}"
+                                     Height="25" Content="เลือกไฟล์"/>
+                    <dx:SimpleButton Width="80" Command="{Binding ImportCommand}"
+                                     Height="25" Content="นำเข้าข้อมูล"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Total Record" Width="180" HorizontalAlignment="Right">
+                    <TextBox Width="80" IsReadOnly="True" Background="Gainsboro" Text="{Binding TotalRecord}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+
+
+
+
             <dxg:GridControl x:Name="grdIssueItemList" ItemsSource="{Binding ItemIssueDetail}"
                                      SelectedItem="{Binding SelectItemIssueDetail}">
                 <dxg:GridControl.Columns>
@@ -175,6 +199,11 @@
                                 ,ConverterParameter=1}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="SerialNumber" FieldName="SerialNumber">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings />
+                        </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
                     <dxg:GridColumn Name="colItemName" Header="รายการสินค้า" FieldName="StockUID" Width="220">
                         <dxg:GridColumn.CellTemplate>
@@ -200,6 +229,7 @@
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="รหัสของ" FieldName="ItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="=ชื่อนำเข้าจากไฟล์" FieldName="ItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="จำนวนที่ย้าย" FieldName="Quantity">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>

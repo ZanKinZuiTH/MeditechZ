@@ -20,6 +20,25 @@ namespace MediTechWebApi.Controllers
 
         #region Purchaseint
 
+        [Route("GetItemMasterByCode")]
+        [HttpGet]
+        public ItemMasterModel GetItemMasterbyCode(string Code)
+        {
+            ItemMasterModel data = (from im in db.ItemMaster
+                                    where im.Code == Code
+                                    select new ItemMasterModel
+                                    {
+                                        ItemMasterUID = im.UID,
+                                        Code = im.Code,
+                                        Name = im.Name
+                                        
+                                    }).FirstOrDefault();
+
+            return data;
+        }
+
+
+
         [Route("SearchPurchaseOrder")]
         [HttpGet]
         public List<PurchaseOrderModel> SearchPurchaseOrder(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? storeUID, int? venderoDetailUID, int? poStatus, string PONo)

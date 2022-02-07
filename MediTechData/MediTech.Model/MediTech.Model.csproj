@@ -55,6 +55,7 @@
     <Compile Include="Checkup\CheckupTextMasterModel.cs" />
     <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Ecount\EcountImportModel.cs" />
+    <Compile Include="Ecount\EcountMassFileModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />

@@ -33,40 +33,95 @@ namespace MediTech.Reports.Statistic.Cashier
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrPivotGrid1 = new DevExpress.XtraReports.UI.XRPivotGrid();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.fieldDateOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldHealthOrganisationName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldNoBusiness = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField2 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldVisitType = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField6 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField15 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldCodeItem = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField27 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField16 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField19 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField20 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldDoctorFee = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField7 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField25 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField28 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrTable2 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow2 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell29 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell30 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell31 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell58 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell32 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell33 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell36 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell60 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell42 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell43 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell45 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell46 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell47 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell48 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell49 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell50 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell51 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell52 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell53 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell56 = new DevExpress.XtraReports.UI.XRTableCell();
             this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
+            this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell57 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell6 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell9 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell10 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell11 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell12 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell20 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell21 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell22 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell23 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell24 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell25 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
+            this.fieldVisitType = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldCodeItem = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrPivotGridField27 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldNetPrice = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldHealthOrganisationName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.fieldDoctorFee = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField13 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.pivotGridField14 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -77,310 +132,302 @@ namespace MediTech.Reports.Statistic.Cashier
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 41.57303F;
+            this.BottomMargin.HeightF = 0F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrPivotGrid1});
+            this.xrTable2});
+            this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             // 
-            // xrPivotGrid1
+            // xrTable2
             // 
-            this.xrPivotGrid1.Appearance.Cell.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.CustomTotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.FieldHeader.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.FieldValue.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.FieldValueGrandTotal.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.FieldValueTotal.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.GrandTotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.Lines.Font = new System.Drawing.Font("Tahoma", 8.25F);
-            this.xrPivotGrid1.Appearance.TotalCell.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Bold);
-            this.xrPivotGrid1.DataSource = this.objectDataSource1;
-            this.xrPivotGrid1.Fields.AddRange(new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField[] {
-            this.fieldDateOrder,
-            this.pivotGridField4,
-            this.pivotGridField10,
-            this.pivotGridField11,
-            this.pivotGridField12,
-            this.fieldHealthOrganisationName,
-            this.fieldNoBusiness,
-            this.xrPivotGridField22,
-            this.xrPivotGridField21,
-            this.pivotGridField2,
-            this.fieldVisitType,
-            this.pivotGridField6,
-            this.pivotGridField15,
-            this.fieldCodeItem,
-            this.xrPivotGridField27,
-            this.pivotGridField16,
-            this.xrPivotGridField24,
-            this.xrPivotGridField26,
-            this.pivotGridField19,
-            this.pivotGridField20,
-            this.pivotGridField21,
-            this.pivotGridField22,
-            this.fieldDoctorFee,
-            this.pivotGridField24,
-            this.pivotGridField23,
-            this.pivotGridField7,
-            this.xrPivotGridField25,
-            this.xrPivotGridField28});
-            this.xrPivotGrid1.LocationFloat = new DevExpress.Utils.PointFloat(10F, 10F);
-            this.xrPivotGrid1.Name = "xrPivotGrid1";
-            this.xrPivotGrid1.OLAPConnectionString = "";
-            this.xrPivotGrid1.OptionsPrint.FilterSeparatorBarPadding = 3;
-            this.xrPivotGrid1.OptionsPrint.PrintColumnAreaOnEveryPage = true;
-            this.xrPivotGrid1.OptionsView.ShowColumnGrandTotalHeader = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnGrandTotals = false;
-            this.xrPivotGrid1.OptionsView.ShowColumnTotals = false;
-            this.xrPivotGrid1.OptionsView.ShowDataHeaders = false;
-            this.xrPivotGrid1.OptionsView.ShowRowGrandTotals = false;
-            this.xrPivotGrid1.OptionsView.ShowRowTotals = false;
-            this.xrPivotGrid1.SizeF = new System.Drawing.SizeF(2623.33F, 90.00001F);
+            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrTable2.Name = "xrTable2";
+            this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow2});
+            this.xrTable2.SizeF = new System.Drawing.SizeF(2981.579F, 25F);
+            this.xrTable2.StylePriority.UseBorders = false;
             // 
-            // objectDataSource1
+            // xrTableRow2
             // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
+            this.xrTableRow2.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell29,
+            this.xrTableCell30,
+            this.xrTableCell31,
+            this.xrTableCell58,
+            this.xrTableCell32,
+            this.xrTableCell33,
+            this.xrTableCell34,
+            this.xrTableCell35,
+            this.xrTableCell36,
+            this.xrTableCell37,
+            this.xrTableCell38,
+            this.xrTableCell39,
+            this.xrTableCell40,
+            this.xrTableCell60,
+            this.xrTableCell41,
+            this.xrTableCell42,
+            this.xrTableCell43,
+            this.xrTableCell44,
+            this.xrTableCell45,
+            this.xrTableCell46,
+            this.xrTableCell47,
+            this.xrTableCell48,
+            this.xrTableCell49,
+            this.xrTableCell50,
+            this.xrTableCell51,
+            this.xrTableCell52,
+            this.xrTableCell53,
+            this.xrTableCell54,
+            this.xrTableCell55,
+            this.xrTableCell56});
+            this.xrTableRow2.Name = "xrTableRow2";
+            this.xrTableRow2.Weight = 1D;
             // 
-            // fieldDateOrder
+            // xrTableCell29
             // 
-            this.fieldDateOrder.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldDateOrder.AreaIndex = 0;
-            this.fieldDateOrder.Caption = "วันที่";
-            this.fieldDateOrder.FieldName = "DateOrder";
-            this.fieldDateOrder.Name = "fieldDateOrder";
-            this.fieldDateOrder.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrTableCell29.Multiline = true;
+            this.xrTableCell29.Name = "xrTableCell29";
+            this.xrTableCell29.Weight = 1.2916667175292969D;
             // 
-            // pivotGridField4
+            // xrTableCell30
             // 
-            this.pivotGridField4.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField4.AreaIndex = 1;
-            this.pivotGridField4.Caption = "ลำดับ";
-            this.pivotGridField4.FieldName = "RowNumber";
-            this.pivotGridField4.Name = "pivotGridField4";
-            this.pivotGridField4.Width = 25;
+            this.xrTableCell30.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "RowNumber")});
+            this.xrTableCell30.Multiline = true;
+            this.xrTableCell30.Name = "xrTableCell30";
+            this.xrTableCell30.Text = "ลำดับ\r\n";
+            this.xrTableCell30.Weight = 0.45394729614257812D;
             // 
-            // pivotGridField10
+            // xrTableCell31
             // 
-            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField10.AreaIndex = 2;
-            this.pivotGridField10.Caption = "รหัสลูกค้า/ผู้ขาย";
-            this.pivotGridField10.FieldName = "PayorCode";
-            this.pivotGridField10.Name = "pivotGridField10";
-            this.pivotGridField10.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrTableCell31.Multiline = true;
+            this.xrTableCell31.Name = "xrTableCell31";
+            this.xrTableCell31.Weight = 1.254385986328125D;
             // 
-            // pivotGridField11
+            // xrTableCell58
             // 
-            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField11.AreaIndex = 3;
-            this.pivotGridField11.Caption = "ชื่อลูกค้า/ผู้ขาย";
-            this.pivotGridField11.FieldName = "PayorName";
-            this.pivotGridField11.Name = "pivotGridField11";
-            this.pivotGridField11.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrTableCell58.Multiline = true;
+            this.xrTableCell58.Name = "xrTableCell58";
+            this.xrTableCell58.Weight = 1D;
             // 
-            // pivotGridField12
+            // xrTableCell32
             // 
-            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField12.AreaIndex = 4;
-            this.pivotGridField12.Caption = "PIC";
-            this.pivotGridField12.FieldName = "OrderBy";
-            this.pivotGridField12.Name = "pivotGridField12";
-            this.pivotGridField12.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrTableCell32.Multiline = true;
+            this.xrTableCell32.Name = "xrTableCell32";
+            this.xrTableCell32.Weight = 1D;
             // 
-            // fieldHealthOrganisationName
+            // xrTableCell33
             // 
-            this.fieldHealthOrganisationName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldHealthOrganisationName.AreaIndex = 5;
-            this.fieldHealthOrganisationName.Caption = "จากสถานที่";
-            this.fieldHealthOrganisationName.FieldName = "HealthOrganisationName";
-            this.fieldHealthOrganisationName.Name = "fieldHealthOrganisationName";
+            this.xrTableCell33.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "BillNumber")});
+            this.xrTableCell33.Multiline = true;
+            this.xrTableCell33.Name = "xrTableCell33";
+            this.xrTableCell33.Text = "เลขที่ใบขาย";
+            this.xrTableCell33.Weight = 1D;
             // 
-            // fieldNoBusiness
+            // xrTableCell34
             // 
-            this.fieldNoBusiness.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldNoBusiness.AreaIndex = 8;
-            this.fieldNoBusiness.Caption = "ประเภทธุรกรรม";
-            this.fieldNoBusiness.FieldName = "NoBusiness";
-            this.fieldNoBusiness.Name = "fieldNoBusiness";
+            this.xrTableCell34.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientID")});
+            this.xrTableCell34.Multiline = true;
+            this.xrTableCell34.Name = "xrTableCell34";
+            this.xrTableCell34.Text = "HN คนไข้";
+            this.xrTableCell34.Weight = 1D;
             // 
-            // xrPivotGridField22
+            // xrTableCell35
             // 
-            this.xrPivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField22.AreaIndex = 6;
-            this.xrPivotGridField22.Caption = "เลขที่ใบขาย";
-            this.xrPivotGridField22.FieldName = "BillNumber";
-            this.xrPivotGridField22.Name = "xrPivotGridField22";
-            this.xrPivotGridField22.Width = 80;
+            this.xrTableCell35.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "NoBusiness")});
+            this.xrTableCell35.Multiline = true;
+            this.xrTableCell35.Name = "xrTableCell35";
+            this.xrTableCell35.Text = "ประเภทธุรกรรม";
+            this.xrTableCell35.Weight = 1D;
             // 
-            // xrPivotGridField21
+            // xrTableCell36
             // 
-            this.xrPivotGridField21.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField21.AreaIndex = 11;
-            this.xrPivotGridField21.Caption = "ชื่อคนไข้/ลูกค้า";
-            this.xrPivotGridField21.FieldName = "PatientName";
-            this.xrPivotGridField21.Name = "xrPivotGridField21";
-            this.xrPivotGridField21.Width = 125;
+            this.xrTableCell36.Multiline = true;
+            this.xrTableCell36.Name = "xrTableCell36";
+            this.xrTableCell36.Weight = 1D;
             // 
-            // pivotGridField2
+            // xrTableCell37
             // 
-            this.pivotGridField2.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField2.AreaIndex = 7;
-            this.pivotGridField2.Caption = "HN คนไข้";
-            this.pivotGridField2.FieldName = "PatientID";
-            this.pivotGridField2.Name = "pivotGridField2";
-            this.pivotGridField2.Width = 65;
+            this.xrTableCell37.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Store")});
+            this.xrTableCell37.Multiline = true;
+            this.xrTableCell37.Name = "xrTableCell37";
+            this.xrTableCell37.Text = "Store";
+            this.xrTableCell37.Weight = 1.333333740234375D;
             // 
-            // fieldVisitType
+            // xrTableCell38
             // 
-            this.fieldVisitType.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldVisitType.AreaIndex = 22;
-            this.fieldVisitType.FieldName = "VisitType";
-            this.fieldVisitType.Name = "fieldVisitType";
+            this.xrTableCell38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "HealthOrganisationName")});
+            this.xrTableCell38.Multiline = true;
+            this.xrTableCell38.Name = "xrTableCell38";
+            this.xrTableCell38.Text = "Organisation";
+            this.xrTableCell38.Weight = 1.2017541503906251D;
             // 
-            // pivotGridField6
+            // xrTableCell39
             // 
-            this.pivotGridField6.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField6.AreaIndex = 13;
-            this.pivotGridField6.Caption = "Organisation";
-            this.pivotGridField6.FieldName = "HealthOrganisationName";
-            this.pivotGridField6.Name = "pivotGridField6";
-            this.pivotGridField6.Width = 140;
+            this.xrTableCell39.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PatientName")});
+            this.xrTableCell39.Multiline = true;
+            this.xrTableCell39.Name = "xrTableCell39";
+            this.xrTableCell39.Text = "ชื่อคนไข้/ลูกค้า";
+            this.xrTableCell39.Weight = 1.1578942871093751D;
             // 
-            // pivotGridField15
+            // xrTableCell40
             // 
-            this.pivotGridField15.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField15.AreaIndex = 12;
-            this.pivotGridField15.Caption = "ผู้แนะนำ/เซลล์";
-            this.pivotGridField15.Name = "pivotGridField15";
-            this.pivotGridField15.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrTableCell40.Multiline = true;
+            this.xrTableCell40.Name = "xrTableCell40";
+            this.xrTableCell40.Weight = 0.815789794921875D;
             // 
-            // fieldCodeItem
+            // xrTableCell60
             // 
-            this.fieldCodeItem.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldCodeItem.AreaIndex = 14;
-            this.fieldCodeItem.Caption = "รหัสสินค้า";
-            this.fieldCodeItem.FieldName = "CodeItem";
-            this.fieldCodeItem.Name = "fieldCodeItem";
+            this.xrTableCell60.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Payby")});
+            this.xrTableCell60.Multiline = true;
+            this.xrTableCell60.Name = "xrTableCell60";
+            this.xrTableCell60.Text = "xrTableCell60";
+            this.xrTableCell60.Weight = 0.815789794921875D;
             // 
-            // xrPivotGridField27
+            // xrTableCell41
             // 
-            this.xrPivotGridField27.Appearance.Cell.WordWrap = true;
-            this.xrPivotGridField27.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField27.AreaIndex = 9;
-            this.xrPivotGridField27.Caption = "ชื่อสินค้า";
-            this.xrPivotGridField27.ColumnValueLineCount = 2;
-            this.xrPivotGridField27.FieldName = "ItemName";
-            this.xrPivotGridField27.Name = "xrPivotGridField27";
-            this.xrPivotGridField27.RowValueLineCount = 2;
-            this.xrPivotGridField27.Width = 175;
+            this.xrTableCell41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ItemCode")});
+            this.xrTableCell41.Multiline = true;
+            this.xrTableCell41.Name = "xrTableCell41";
+            this.xrTableCell41.Text = "รหัสสินค้า";
+            this.xrTableCell41.Weight = 0.894736328125D;
             // 
-            // pivotGridField16
+            // xrTableCell42
             // 
-            this.pivotGridField16.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField16.AreaIndex = 15;
-            this.pivotGridField16.Caption = "หมายเลข Serial/Lot";
-            this.pivotGridField16.Name = "pivotGridField16";
+            this.xrTableCell42.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "ItemName")});
+            this.xrTableCell42.Multiline = true;
+            this.xrTableCell42.Name = "xrTableCell42";
+            this.xrTableCell42.Text = "หมายเลข Serial/Lot";
+            this.xrTableCell42.Weight = 1.7438599872100862D;
             // 
-            // xrPivotGridField24
+            // xrTableCell43
             // 
-            this.xrPivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.xrPivotGridField24.AreaIndex = 0;
-            this.xrPivotGridField24.Caption = "จำนวน";
-            this.xrPivotGridField24.FieldName = "Qty";
-            this.xrPivotGridField24.Name = "xrPivotGridField24";
-            this.xrPivotGridField24.Options.ShowCustomTotals = false;
-            this.xrPivotGridField24.Options.ShowTotals = false;
-            this.xrPivotGridField24.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.xrPivotGridField24.Width = 30;
+            this.xrTableCell43.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "SerialNumber")});
+            this.xrTableCell43.Multiline = true;
+            this.xrTableCell43.Name = "xrTableCell43";
+            this.xrTableCell43.Text = "ชื่อสินค้า";
+            this.xrTableCell43.Weight = 1.3964915752899136D;
             // 
-            // xrPivotGridField26
+            // xrTableCell44
             // 
-            this.xrPivotGridField26.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.xrPivotGridField26.AreaIndex = 2;
-            this.xrPivotGridField26.Caption = "ราคาต่อหน่วย";
-            this.xrPivotGridField26.FieldName = "UnitPrice";
-            this.xrPivotGridField26.Name = "xrPivotGridField26";
-            this.xrPivotGridField26.Width = 60;
+            this.xrTableCell44.Multiline = true;
+            this.xrTableCell44.Name = "xrTableCell44";
+            this.xrTableCell44.Weight = 0.66666625976562521D;
             // 
-            // pivotGridField19
+            // xrTableCell45
             // 
-            this.pivotGridField19.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField19.AreaIndex = 16;
-            this.pivotGridField19.Caption = "จำนวนเงิน";
-            this.pivotGridField19.Name = "pivotGridField19";
-            this.pivotGridField19.Visible = false;
+            this.xrTableCell45.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Qty")});
+            this.xrTableCell45.Multiline = true;
+            this.xrTableCell45.Name = "xrTableCell45";
+            this.xrTableCell45.Text = "จำนวน";
+            this.xrTableCell45.Weight = 0.42982421874999988D;
             // 
-            // pivotGridField20
+            // xrTableCell46
             // 
-            this.pivotGridField20.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField20.AreaIndex = 16;
-            this.pivotGridField20.Caption = "ค่า com";
-            this.pivotGridField20.Name = "pivotGridField20";
+            this.xrTableCell46.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "UnitPrice")});
+            this.xrTableCell46.Multiline = true;
+            this.xrTableCell46.Name = "xrTableCell46";
+            this.xrTableCell46.Text = "ราคาต่อหน่วย";
+            this.xrTableCell46.Weight = 0.359649658203125D;
             // 
-            // pivotGridField21
+            // xrTableCell47
             // 
-            this.pivotGridField21.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField21.AreaIndex = 17;
-            this.pivotGridField21.Caption = "ภาษี";
-            this.pivotGridField21.Name = "pivotGridField21";
+            this.xrTableCell47.Multiline = true;
+            this.xrTableCell47.Name = "xrTableCell47";
+            this.xrTableCell47.Weight = 1D;
             // 
-            // pivotGridField22
+            // xrTableCell48
             // 
-            this.pivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField22.AreaIndex = 18;
-            this.pivotGridField22.Caption = "Doctor";
-            this.pivotGridField22.FieldName = "Doctor";
-            this.pivotGridField22.Name = "pivotGridField22";
+            this.xrTableCell48.Multiline = true;
+            this.xrTableCell48.Name = "xrTableCell48";
+            this.xrTableCell48.Text = "[NetPrice]";
+            this.xrTableCell48.Weight = 1.36842041015625D;
             // 
-            // fieldDoctorFee
+            // xrTableCell49
             // 
-            this.fieldDoctorFee.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldDoctorFee.AreaIndex = 19;
-            this.fieldDoctorFee.FieldName = "DoctorFee";
-            this.fieldDoctorFee.Name = "fieldDoctorFee";
+            this.xrTableCell49.Multiline = true;
+            this.xrTableCell49.Name = "xrTableCell49";
+            this.xrTableCell49.Weight = 0.63157958984375D;
             // 
-            // pivotGridField24
+            // xrTableCell50
             // 
-            this.pivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField24.AreaIndex = 20;
-            this.pivotGridField24.Caption = "OrderSetCode";
-            this.pivotGridField24.Name = "pivotGridField24";
+            this.xrTableCell50.Multiline = true;
+            this.xrTableCell50.Name = "xrTableCell50";
+            this.xrTableCell50.Weight = 0.57017578125D;
             // 
-            // pivotGridField23
+            // xrTableCell51
             // 
-            this.pivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField23.AreaIndex = 21;
-            this.pivotGridField23.Caption = "OrderSetName";
-            this.pivotGridField23.Name = "pivotGridField23";
+            this.xrTableCell51.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Doctor")});
+            this.xrTableCell51.Multiline = true;
+            this.xrTableCell51.Name = "xrTableCell51";
+            this.xrTableCell51.Text = "Doctor";
+            this.xrTableCell51.Weight = 1.4298242187499999D;
             // 
-            // pivotGridField7
+            // xrTableCell52
             // 
-            this.pivotGridField7.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField7.AreaIndex = 10;
-            this.pivotGridField7.Caption = "Store";
-            this.pivotGridField7.FieldName = "Store";
-            this.pivotGridField7.Name = "pivotGridField7";
-            this.pivotGridField7.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            this.pivotGridField7.Width = 140;
+            this.xrTableCell52.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "DoctorFee")});
+            this.xrTableCell52.Multiline = true;
+            this.xrTableCell52.Name = "xrTableCell52";
+            this.xrTableCell52.Text = "Doctor Fee";
+            this.xrTableCell52.Weight = 1D;
             // 
-            // xrPivotGridField25
+            // xrTableCell53
             // 
-            this.xrPivotGridField25.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.xrPivotGridField25.AreaIndex = 1;
-            this.xrPivotGridField25.FieldName = "UnitCost";
-            this.xrPivotGridField25.Name = "xrPivotGridField25";
-            this.xrPivotGridField25.Width = 60;
+            this.xrTableCell53.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "OrderSetCode")});
+            this.xrTableCell53.Multiline = true;
+            this.xrTableCell53.Name = "xrTableCell53";
+            this.xrTableCell53.Text = "OrderSetCode";
+            this.xrTableCell53.Weight = 1D;
             // 
-            // xrPivotGridField28
+            // xrTableCell54
             // 
-            this.xrPivotGridField28.Area = DevExpress.XtraPivotGrid.PivotArea.DataArea;
-            this.xrPivotGridField28.AreaIndex = 3;
-            this.xrPivotGridField28.FieldName = "NetCost";
-            this.xrPivotGridField28.Name = "xrPivotGridField28";
-            this.xrPivotGridField28.Width = 85;
+            this.xrTableCell54.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "OrderSetName")});
+            this.xrTableCell54.Multiline = true;
+            this.xrTableCell54.Name = "xrTableCell54";
+            this.xrTableCell54.Text = "OrderSetName";
+            this.xrTableCell54.Weight = 1D;
+            // 
+            // xrTableCell55
+            // 
+            this.xrTableCell55.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "VisitType")});
+            this.xrTableCell55.Multiline = true;
+            this.xrTableCell55.Name = "xrTableCell55";
+            this.xrTableCell55.Text = "Visit Type";
+            this.xrTableCell55.Weight = 1D;
+            // 
+            // xrTableCell56
+            // 
+            this.xrTableCell56.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "BatchID")});
+            this.xrTableCell56.Multiline = true;
+            this.xrTableCell56.Name = "xrTableCell56";
+            this.xrTableCell56.Text = "xrTableCell56";
+            this.xrTableCell56.Weight = 1D;
             // 
             // DateFrom
             // 
@@ -412,19 +459,436 @@ namespace MediTech.Reports.Statistic.Cashier
             this.VISTYUID.ValueInfo = "0";
             this.VISTYUID.Visible = false;
             // 
+            // ReportHeader
+            // 
+            this.ReportHeader.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrTable1});
+            this.ReportHeader.HeightF = 25F;
+            this.ReportHeader.Name = "ReportHeader";
+            // 
+            // xrTable1
+            // 
+            this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
+            this.xrTable1.Name = "xrTable1";
+            this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
+            this.xrTableRow1});
+            this.xrTable1.SizeF = new System.Drawing.SizeF(2981.579F, 25F);
+            this.xrTable1.StylePriority.UseBorders = false;
+            // 
+            // xrTableRow1
+            // 
+            this.xrTableRow1.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell1,
+            this.xrTableCell2,
+            this.xrTableCell4,
+            this.xrTableCell57,
+            this.xrTableCell3,
+            this.xrTableCell5,
+            this.xrTableCell6,
+            this.xrTableCell7,
+            this.xrTableCell8,
+            this.xrTableCell9,
+            this.xrTableCell10,
+            this.xrTableCell11,
+            this.xrTableCell12,
+            this.xrTableCell59,
+            this.xrTableCell13,
+            this.xrTableCell14,
+            this.xrTableCell15,
+            this.xrTableCell16,
+            this.xrTableCell17,
+            this.xrTableCell18,
+            this.xrTableCell19,
+            this.xrTableCell20,
+            this.xrTableCell21,
+            this.xrTableCell22,
+            this.xrTableCell23,
+            this.xrTableCell24,
+            this.xrTableCell25,
+            this.xrTableCell26,
+            this.xrTableCell27,
+            this.xrTableCell28});
+            this.xrTableRow1.Name = "xrTableRow1";
+            this.xrTableRow1.Weight = 1D;
+            // 
+            // xrTableCell1
+            // 
+            this.xrTableCell1.Multiline = true;
+            this.xrTableCell1.Name = "xrTableCell1";
+            this.xrTableCell1.Text = "วันที่";
+            this.xrTableCell1.Weight = 1.2916667175292969D;
+            // 
+            // xrTableCell2
+            // 
+            this.xrTableCell2.Multiline = true;
+            this.xrTableCell2.Name = "xrTableCell2";
+            this.xrTableCell2.Text = "ลำดับ\r\n";
+            this.xrTableCell2.Weight = 0.45394729614257812D;
+            // 
+            // xrTableCell4
+            // 
+            this.xrTableCell4.Multiline = true;
+            this.xrTableCell4.Name = "xrTableCell4";
+            this.xrTableCell4.Text = "รหัสลูกค้า/ผู้ขาย";
+            this.xrTableCell4.Weight = 1.254385986328125D;
+            // 
+            // xrTableCell57
+            // 
+            this.xrTableCell57.Multiline = true;
+            this.xrTableCell57.Name = "xrTableCell57";
+            this.xrTableCell57.Text = "ชื่อลูกค้า/ผู้ขาย";
+            this.xrTableCell57.Weight = 1D;
+            // 
+            // xrTableCell3
+            // 
+            this.xrTableCell3.Multiline = true;
+            this.xrTableCell3.Name = "xrTableCell3";
+            this.xrTableCell3.Text = "PIC";
+            this.xrTableCell3.Weight = 1D;
+            // 
+            // xrTableCell5
+            // 
+            this.xrTableCell5.Multiline = true;
+            this.xrTableCell5.Name = "xrTableCell5";
+            this.xrTableCell5.Text = "เลขที่ใบขาย";
+            this.xrTableCell5.Weight = 1D;
+            // 
+            // xrTableCell6
+            // 
+            this.xrTableCell6.Multiline = true;
+            this.xrTableCell6.Name = "xrTableCell6";
+            this.xrTableCell6.Text = "HN คนไข้";
+            this.xrTableCell6.Weight = 1D;
+            // 
+            // xrTableCell7
+            // 
+            this.xrTableCell7.Multiline = true;
+            this.xrTableCell7.Name = "xrTableCell7";
+            this.xrTableCell7.Text = "ประเภทธุรกรรม";
+            this.xrTableCell7.Weight = 1D;
+            // 
+            // xrTableCell8
+            // 
+            this.xrTableCell8.Multiline = true;
+            this.xrTableCell8.Name = "xrTableCell8";
+            this.xrTableCell8.Text = "โครงการ";
+            this.xrTableCell8.Weight = 1D;
+            // 
+            // xrTableCell9
+            // 
+            this.xrTableCell9.Multiline = true;
+            this.xrTableCell9.Name = "xrTableCell9";
+            this.xrTableCell9.Text = "Store";
+            this.xrTableCell9.Weight = 1.333333740234375D;
+            // 
+            // xrTableCell10
+            // 
+            this.xrTableCell10.Multiline = true;
+            this.xrTableCell10.Name = "xrTableCell10";
+            this.xrTableCell10.Text = "Organisation";
+            this.xrTableCell10.Weight = 1.2017541503906251D;
+            // 
+            // xrTableCell11
+            // 
+            this.xrTableCell11.Multiline = true;
+            this.xrTableCell11.Name = "xrTableCell11";
+            this.xrTableCell11.Text = "ชื่อคนไข้/ลูกค้า";
+            this.xrTableCell11.Weight = 1.1578942871093751D;
+            // 
+            // xrTableCell12
+            // 
+            this.xrTableCell12.Multiline = true;
+            this.xrTableCell12.Name = "xrTableCell12";
+            this.xrTableCell12.Text = "ผู้แนะนำ/เซลล์";
+            this.xrTableCell12.Weight = 0.815789794921875D;
+            // 
+            // xrTableCell59
+            // 
+            this.xrTableCell59.Multiline = true;
+            this.xrTableCell59.Name = "xrTableCell59";
+            this.xrTableCell59.Text = "Payby";
+            this.xrTableCell59.Weight = 0.815789794921875D;
+            // 
+            // xrTableCell13
+            // 
+            this.xrTableCell13.Multiline = true;
+            this.xrTableCell13.Name = "xrTableCell13";
+            this.xrTableCell13.Text = "รหัสสินค้า";
+            this.xrTableCell13.Weight = 0.894736328125D;
+            // 
+            // xrTableCell14
+            // 
+            this.xrTableCell14.Multiline = true;
+            this.xrTableCell14.Name = "xrTableCell14";
+            this.xrTableCell14.Text = "ชื่อสินค้า";
+            this.xrTableCell14.Weight = 1.7438599872100862D;
+            // 
+            // xrTableCell15
+            // 
+            this.xrTableCell15.Multiline = true;
+            this.xrTableCell15.Name = "xrTableCell15";
+            this.xrTableCell15.Text = "หมายเลข Serial/Lot";
+            this.xrTableCell15.Weight = 1.3964915752899136D;
+            // 
+            // xrTableCell16
+            // 
+            this.xrTableCell16.Multiline = true;
+            this.xrTableCell16.Name = "xrTableCell16";
+            this.xrTableCell16.Text = "ข้อมูลเฉพาะ";
+            this.xrTableCell16.Weight = 0.66666625976562521D;
+            // 
+            // xrTableCell17
+            // 
+            this.xrTableCell17.Multiline = true;
+            this.xrTableCell17.Name = "xrTableCell17";
+            this.xrTableCell17.Text = "จำนวน";
+            this.xrTableCell17.Weight = 0.42982421874999988D;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.Multiline = true;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Text = "ราคาต่อหน่วย";
+            this.xrTableCell18.Weight = 0.35964965820312506D;
+            // 
+            // xrTableCell19
+            // 
+            this.xrTableCell19.Multiline = true;
+            this.xrTableCell19.Name = "xrTableCell19";
+            this.xrTableCell19.Text = "จำนวนเงินตราต่างประเทศ";
+            this.xrTableCell19.Weight = 1D;
+            // 
+            // xrTableCell20
+            // 
+            this.xrTableCell20.Multiline = true;
+            this.xrTableCell20.Name = "xrTableCell20";
+            this.xrTableCell20.Text = "จำนวนเงินรวม";
+            this.xrTableCell20.Weight = 1.36842041015625D;
+            // 
+            // xrTableCell21
+            // 
+            this.xrTableCell21.Multiline = true;
+            this.xrTableCell21.Name = "xrTableCell21";
+            this.xrTableCell21.Text = "ค่า com";
+            this.xrTableCell21.Weight = 0.63157958984375D;
+            // 
+            // xrTableCell22
+            // 
+            this.xrTableCell22.Multiline = true;
+            this.xrTableCell22.Name = "xrTableCell22";
+            this.xrTableCell22.Text = "ภาษี";
+            this.xrTableCell22.Weight = 0.57017578125D;
+            // 
+            // xrTableCell23
+            // 
+            this.xrTableCell23.Multiline = true;
+            this.xrTableCell23.Name = "xrTableCell23";
+            this.xrTableCell23.Text = "Doctor";
+            this.xrTableCell23.Weight = 1.4298242187499999D;
+            // 
+            // xrTableCell24
+            // 
+            this.xrTableCell24.Multiline = true;
+            this.xrTableCell24.Name = "xrTableCell24";
+            this.xrTableCell24.Text = "Doctor Fee";
+            this.xrTableCell24.Weight = 1D;
+            // 
+            // xrTableCell25
+            // 
+            this.xrTableCell25.Multiline = true;
+            this.xrTableCell25.Name = "xrTableCell25";
+            this.xrTableCell25.Text = "OrderSetCode";
+            this.xrTableCell25.Weight = 1D;
+            // 
+            // xrTableCell26
+            // 
+            this.xrTableCell26.Multiline = true;
+            this.xrTableCell26.Name = "xrTableCell26";
+            this.xrTableCell26.Text = "OrderSetName";
+            this.xrTableCell26.Weight = 1D;
+            // 
+            // xrTableCell27
+            // 
+            this.xrTableCell27.Multiline = true;
+            this.xrTableCell27.Name = "xrTableCell27";
+            this.xrTableCell27.Text = "Visit Type";
+            this.xrTableCell27.Weight = 1D;
+            // 
+            // xrTableCell28
+            // 
+            this.xrTableCell28.Multiline = true;
+            this.xrTableCell28.Name = "xrTableCell28";
+            this.xrTableCell28.Text = "BatchID";
+            this.xrTableCell28.Weight = 1D;
+            // 
+            // formattingRule1
+            // 
+            this.formattingRule1.Condition = "[Payby]==0";
+            this.formattingRule1.Name = "formattingRule1";
+            // 
+            // objectDataSource1
+            // 
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
+            // 
+            // fieldVisitType
+            // 
+            this.fieldVisitType.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldVisitType.AreaIndex = 29;
+            this.fieldVisitType.FieldName = "VisitType";
+            this.fieldVisitType.Name = "fieldVisitType";
+            // 
+            // fieldCodeItem
+            // 
+            this.fieldCodeItem.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldCodeItem.AreaIndex = 13;
+            this.fieldCodeItem.Caption = "รหัสสินค้า";
+            this.fieldCodeItem.FieldName = "CodeItem";
+            this.fieldCodeItem.Name = "fieldCodeItem";
+            // 
+            // xrPivotGridField27
+            // 
+            this.xrPivotGridField27.Appearance.Cell.WordWrap = true;
+            this.xrPivotGridField27.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.xrPivotGridField27.AreaIndex = 14;
+            this.xrPivotGridField27.Caption = "ชื่อสินค้า";
+            this.xrPivotGridField27.FieldName = "ItemName";
+            this.xrPivotGridField27.Name = "xrPivotGridField27";
+            this.xrPivotGridField27.Width = 175;
+            // 
+            // xrPivotGridField26
+            // 
+            this.xrPivotGridField26.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.xrPivotGridField26.AreaIndex = 18;
+            this.xrPivotGridField26.Caption = "ราคาต่อหน่วย";
+            this.xrPivotGridField26.FieldName = "UnitPrice";
+            this.xrPivotGridField26.Name = "xrPivotGridField26";
+            this.xrPivotGridField26.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.xrPivotGridField26.Width = 60;
+            // 
+            // xrPivotGridField24
+            // 
+            this.xrPivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.xrPivotGridField24.AreaIndex = 17;
+            this.xrPivotGridField24.Caption = "จำนวน";
+            this.xrPivotGridField24.FieldName = "Qty";
+            this.xrPivotGridField24.Name = "xrPivotGridField24";
+            this.xrPivotGridField24.Options.ShowCustomTotals = false;
+            this.xrPivotGridField24.Options.ShowTotals = false;
+            this.xrPivotGridField24.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
+            this.xrPivotGridField24.Width = 57;
+            // 
+            // fieldNetPrice
+            // 
+            this.fieldNetPrice.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldNetPrice.AreaIndex = 21;
+            this.fieldNetPrice.Caption = "ราคาขายรวม";
+            this.fieldNetPrice.FieldName = "NetPrice";
+            this.fieldNetPrice.Name = "fieldNetPrice";
+            // 
+            // fieldHealthOrganisationName
+            // 
+            this.fieldHealthOrganisationName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldHealthOrganisationName.AreaIndex = 22;
+            this.fieldHealthOrganisationName.Caption = "สภานประกอบการ";
+            this.fieldHealthOrganisationName.FieldName = "HealthOrganisationName";
+            this.fieldHealthOrganisationName.Name = "fieldHealthOrganisationName";
+            this.fieldHealthOrganisationName.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField22
+            // 
+            this.pivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField22.AreaIndex = 25;
+            this.pivotGridField22.Caption = "Doctor";
+            this.pivotGridField22.FieldName = "Doctor";
+            this.pivotGridField22.Name = "pivotGridField22";
+            // 
+            // fieldDoctorFee
+            // 
+            this.fieldDoctorFee.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.fieldDoctorFee.AreaIndex = 26;
+            this.fieldDoctorFee.FieldName = "DoctorFee";
+            this.fieldDoctorFee.Name = "fieldDoctorFee";
+            this.fieldDoctorFee.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField24
+            // 
+            this.pivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField24.AreaIndex = 27;
+            this.pivotGridField24.Caption = "OrderSetCode";
+            this.pivotGridField24.FieldName = "OrderSetCode";
+            this.pivotGridField24.Name = "pivotGridField24";
+            // 
+            // pivotGridField23
+            // 
+            this.pivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField23.AreaIndex = 28;
+            this.pivotGridField23.Caption = "OrderSetName";
+            this.pivotGridField23.FieldName = "OrderSetName";
+            this.pivotGridField23.MinWidth = 50;
+            this.pivotGridField23.Name = "pivotGridField23";
+            this.pivotGridField23.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            this.pivotGridField23.Width = 120;
+            // 
+            // pivotGridField10
+            // 
+            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField10.AreaIndex = 15;
+            this.pivotGridField10.Caption = "หมายเลข Serial/Lot";
+            this.pivotGridField10.Name = "pivotGridField10";
+            // 
+            // pivotGridField11
+            // 
+            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField11.AreaIndex = 16;
+            this.pivotGridField11.Caption = "ข้อมูลเฉพาะ";
+            this.pivotGridField11.Name = "pivotGridField11";
+            this.pivotGridField11.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField12
+            // 
+            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField12.AreaIndex = 19;
+            this.pivotGridField12.Caption = "จำนวนเงินตราต่างประเทศ";
+            this.pivotGridField12.Name = "pivotGridField12";
+            this.pivotGridField12.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField13
+            // 
+            this.pivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField13.AreaIndex = 20;
+            this.pivotGridField13.Caption = "จำนวนเงิน";
+            this.pivotGridField13.Name = "pivotGridField13";
+            this.pivotGridField13.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
+            // pivotGridField14
+            // 
+            this.pivotGridField14.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
+            this.pivotGridField14.AreaIndex = 23;
+            this.pivotGridField14.Caption = "ค่า com";
+            this.pivotGridField14.Name = "pivotGridField14";
+            this.pivotGridField14.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
+            // 
             // StockToEcount
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
             this.BottomMargin,
-            this.Detail});
+            this.Detail,
+            this.ReportHeader});
             this.ComponentStorage.AddRange(new System.ComponentModel.IComponent[] {
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 42);
+            this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
+            this.formattingRule1});
+            this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.PageHeight = 2000;
-            this.PageWidth = 2700;
+            this.PageWidth = 3000;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
             this.DateFrom,
@@ -432,6 +896,8 @@ namespace MediTech.Reports.Statistic.Cashier
             this.OrganisationList,
             this.VISTYUID});
             this.Version = "20.2";
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
@@ -446,35 +912,88 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
         private DevExpress.XtraReports.Parameters.Parameter VISTYUID;
-        private DevExpress.XtraReports.UI.XRPivotGrid xrPivotGrid1;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldDateOrder;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField4;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField11;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField12;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldHealthOrganisationName;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldNoBusiness;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField22;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField2;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField21;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField27;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField6;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField7;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField24;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField25;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField26;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField28;
-        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField15;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldCodeItem;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField16;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField19;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField20;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField21;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField22;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldDoctorFee;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField24;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField23;
         private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldVisitType;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldNetPrice;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldHealthOrganisationName;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField11;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField12;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField13;
+        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField14;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
+        private DevExpress.XtraReports.UI.XRTable xrTable2;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell58;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell42;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell45;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell46;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell47;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell48;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell49;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell50;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell51;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell52;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell53;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell54;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell55;
+        private DevExpress.XtraReports.UI.XRTable xrTable1;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell2;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell4;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell57;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell3;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell5;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell6;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell7;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell8;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell9;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell19;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell20;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell21;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell22;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell23;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell24;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell60;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell59;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell56;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
+        private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
     }
 }

@@ -19,7 +19,6 @@ namespace MediTech.Model
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
        
-       
         public double QTY { get; set; }
         public string Note { get; set; }
         //public string สร้างสลิปผลิต { get; set;}

@@ -22,7 +22,6 @@ namespace MediTech.Model
         public string ItemIssueID { get; set; }
         public int? ItemRequestUID { get; set; }
         public string ItemRequestID { get; set; }
-
         public int? ItemReceiveUID { get; set; }
         public string ItemReceiveID { get; set; }
         public Nullable<int> ISUSTUID { get; set; }
@@ -40,6 +39,7 @@ namespace MediTech.Model
         public string CancelReason { get; set; }
         public double OtherCharges { get; set; }
         public double NetAmount { get; set; }
+        public string SerialNumber { get; set; }
         public List<ItemIssueDetailModel> ItemIssueDetail { get; set; }
     }
 }
