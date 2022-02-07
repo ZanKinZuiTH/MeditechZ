@@ -646,6 +646,7 @@ namespace MediTechWebApi.Controllers
                                              Comments = rs.Comments,
                                              HasHistory = rsr.HasHistory,
                                              ORDSTUID = rs.ORDSTUID,
+                                             OrderStatus = SqlFunction.fGetRfValDescription(rs.ORDSTUID),
                                              PatientUID = rs.PatientUID,
                                              RABSTSUID = rs.RABSTSUID,
                                              ResultStatus = SqlFunction.fGetRfValDescription(rs.RABSTSUID ?? 0),
@@ -2121,6 +2122,7 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
 
         [Route("GetRadiologistReport")]
         [HttpGet]

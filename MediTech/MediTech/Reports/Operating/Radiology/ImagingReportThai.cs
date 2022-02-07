@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using DevExpress.XtraRichEdit;
 using DevExpress.XtraRichEdit.API.Native;
+using DevExpress.Xpf.Core;
+using System.Windows;
 
 namespace MediTech.Reports.Operating.Radiology
 {
@@ -38,6 +40,11 @@ namespace MediTech.Reports.Operating.Radiology
             PatientResultRadiology dataReport = (new ReportsService()).GetPatientResultRadiology(Convert.ToInt64(this.Parameters["ResultUID"].Value));
             if (dataReport != null)
             {
+                if (dataReport.OrderStatus?.ToLower() == "completed")
+                {
+                    DXMessageBox.Show("ผล " + dataReport.PatientName + " ยังมีสถานะเป็น Completed ไม่สามารถพิมพ์ได้", "Warining", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    e.Cancel = true;
+                }
                 this.lblOrderName.Text = dataReport.RequestItemName;
                 this.lblPatientName.Text = dataReport.PatientName;
                 this.lblAge.Text = dataReport.Age != "" ? dataReport.Age + " Y" : "";

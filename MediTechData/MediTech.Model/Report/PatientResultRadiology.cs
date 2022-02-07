@@ -44,6 +44,7 @@ namespace MediTech.Model.Report
         public string Position { get; set; }
         public string Department { get; set; }
         public DateTime? CheckupDttm { get; set; }
+        public string OrderStatus { get; set; }
 
     }
 }

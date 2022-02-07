@@ -861,6 +861,7 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetRequestByRequestDetailUID", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_RequestDetailUID", requestDetailUID);
             DataSet ds = new DataSet();

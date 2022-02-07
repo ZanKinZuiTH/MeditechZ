@@ -1209,6 +1209,7 @@ namespace MediTechWebApi.Controllers
                                                OtherID = pa.EmployeeID,
                                                ResultHtml = rsr.Value,
                                                ResultValue = rsr.PlainText,
+                                               OrderStatus = SqlFunction.fGetRfValDescription(rs.ORDSTUID),
                                                ResultStatus = SqlFunction.fGetRfValDescription(rs.RABSTSUID ?? 0),
                                                OgranastionAddress = SqlFunction.fGetAddressOrganisation(pv.OwnerOrganisationUID ?? 0)
                                            }).FirstOrDefault();
