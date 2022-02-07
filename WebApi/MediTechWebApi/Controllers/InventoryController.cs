@@ -87,6 +87,7 @@ namespace MediTechWebApi.Controllers
         }
 
 
+
         [Route("GetItemMaster")]
         [HttpGet]
         public List<ItemMasterModel> GetItemMaster()
@@ -1137,6 +1138,19 @@ namespace MediTechWebApi.Controllers
 
             return returnData;
         }
+
+
+
+        [Route("GetEcountMassFile")]
+        [HttpGet]
+        public List<EcountMassFileModel>GetEcountMassFile(int storeUID, int itemMasterUID,string serialNumber,DateTime? expiryDate)
+        {
+            DataTable data = SqlDirectStore.pStockMassFile(storeUID,itemMasterUID,serialNumber,expiryDate);
+            List<EcountMassFileModel> returnData = data.ToList<EcountMassFileModel>();
+            return returnData;
+        }
+
+
 
         [Route("AdjustStock")]
         [HttpPost]

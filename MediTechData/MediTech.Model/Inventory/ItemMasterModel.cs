@@ -52,6 +52,8 @@ namespace MediTech.Model
         public double StockQty { get; set; }
         public int StockUID { get; set; }
         public DateTime? ExpiryDttm { get; set; }
+        public int IMUOMUID { get; set; }
+        public string SerialNumber { get; set; }
 
         public double? UnitPrice { get; set; }
         public List<ItemUOMConversionModel> ItemUOMConversions { get; set; }

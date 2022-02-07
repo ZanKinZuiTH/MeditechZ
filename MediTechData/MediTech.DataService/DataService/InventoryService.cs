@@ -44,6 +44,14 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+
+        public List<EcountMassFileModel>GetEcountMassFile(int storeUID,int itemMasterUID,string serialNumber,DateTime? expiryDate)
+        {
+            string requestApi = string.Format("Api/Inventory/GetEcountMassFile?storeUID={0}&itemMasterUID={1}&serialNumber={2}&expiryDate={3}", storeUID,itemMasterUID,serialNumber,expiryDate);
+            List<EcountMassFileModel> dataRequest = MeditechApiHelper.Get<List<EcountMassFileModel>>(requestApi);
+            return dataRequest;
+        }
+
         public List<ItemMasterModel> GetItemMaster()
         {
             string requestApi = string.Format("Api/Inventory/GetItemMaster");

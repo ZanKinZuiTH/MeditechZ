@@ -229,6 +229,7 @@
                         </dxg:GridColumn.CellTemplate>
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="รหัสของ" FieldName="ItemCode" ReadOnly="True"/>
+                    <dxg:GridColumn Header="=ชื่อนำเข้าจากไฟล์" FieldName="ItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="จำนวนที่ย้าย" FieldName="Quantity">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings  Mask="\d{0,9}(\R.\d{0,2})?"  MaskType="RegEx"/>
