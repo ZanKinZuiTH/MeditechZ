@@ -26,7 +26,11 @@ namespace MediTech.Reports.Operating.Patient
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             long PatientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
-            var medicalData = (new ReportsService()).PrintMedicalCertificate(PatientVisitUID);
+            var medicalData = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
+           // var VatalSignData = (new PatientHistoryService()).GetPatientVitalSignByVisitUID(PatientVisitUID);
+            
+
+
             this.DataSource = medicalData;
 
             //Uri uri = new Uri(@"pack://application:,,,/AlienRegister;component/Resources/Icon/Checkbox.png", UriKind.Absolute);

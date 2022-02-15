@@ -769,6 +769,9 @@
     <Compile Include="pSearchStockWorkList_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pStockMassFile_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pStockRemainByItemMasterUID_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

@@ -2145,6 +2145,7 @@ namespace MediTechWebApi.Controllers
                         itemIssueDetail.MUser = userUID;
                         itemIssueDetail.MWhen = now;
                         itemIssueDetail.StatusFlag = "A";
+                        itemIssueDetail.SerialNumber = item.SerialNumber;
                         db.ItemIssueDetail.AddOrUpdate(itemIssueDetail);
 
                         db.SaveChanges();

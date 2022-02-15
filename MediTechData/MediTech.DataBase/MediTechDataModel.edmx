@@ -545,6 +545,7 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="GroupReceipt">
           <Key>
@@ -744,6 +745,7 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="ItemMaster">
           <Key>
@@ -3044,6 +3046,7 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="SerialNumber" Type="nvarchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -4016,6 +4019,12 @@
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pStockMassFile" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_StoreUID" Type="int" Mode="In" />
+          <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
+          <Parameter Name="P_SerialNumber" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_ExpiryDate" Type="datetime" Mode="In" />
         </Function>
         <Function Name="pStoreConvertUOM" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="ItemMasterUID" Type="int" Mode="In" />
@@ -5196,6 +5205,12 @@
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
             <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pStockMassFile" ReturnType="Collection(MediTechModel.pStockMassFile_Result)">
+            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
+            <Parameter Name="P_ExpiryDate" Mode="In" Type="DateTime" />
           </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
@@ -7878,6 +7893,26 @@
           <Property Type="Double" Name="Discount" Nullable="true" />
           <Property Type="Double" Name="Profit" Nullable="false" />
         </ComplexType>
+        <ComplexType Name="pStockMassFile_Result">
+          <Property Type="Int32" Name="StockUID" Nullable="false" />
+          <Property Type="Int32" Name="ItemMasterUID" Nullable="false" />
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="500" />
+          <Property Type="String" Name="StoreName" Nullable="false" MaxLength="200" />
+          <Property Type="Int32" Name="StoreUID" Nullable="false" />
+          <Property Type="String" Name="BatchID" Nullable="true" MaxLength="50" />
+          <Property Type="Double" Name="BatchQTY" Nullable="false" />
+          <Property Type="Int32" Name="IMUOMUID" Nullable="false" />
+          <Property Type="String" Name="Unit" Nullable="true" MaxLength="255" />
+          <Property Type="Double" Name="ItemCost" Nullable="true" />
+          <Property Type="Int32" Name="OrganisationUID" Nullable="false" />
+          <Property Type="String" Name="OrganisationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="ManufacturerName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="IsExpired" Nullable="true" MaxLength="1" />
+          <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="SerialNumber" Nullable="true" MaxLength="50" />
+        </ComplexType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -8418,6 +8453,7 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="GroupReceipt">
           <Key>
@@ -8617,6 +8653,7 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="ItemMaster">
           <Key>
@@ -10917,6 +10954,7 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="SerialNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="Store">
           <Key>
@@ -13038,6 +13076,30 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pStockMassFile" FunctionName="MediTechModel.Store.pStockMassFile">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pStockMassFile_Result">
+                <ScalarProperty Name="StockUID" ColumnName="StockUID" />
+                <ScalarProperty Name="ItemMasterUID" ColumnName="ItemMasterUID" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="StoreName" ColumnName="StoreName" />
+                <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
+                <ScalarProperty Name="BatchID" ColumnName="BatchID" />
+                <ScalarProperty Name="BatchQTY" ColumnName="BatchQTY" />
+                <ScalarProperty Name="IMUOMUID" ColumnName="IMUOMUID" />
+                <ScalarProperty Name="Unit" ColumnName="Unit" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
+                <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
+                <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ManufacturerName" ColumnName="ManufacturerName" />
+                <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
+                <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -13582,6 +13644,7 @@
           <EntitySetMapping Name="GRNItemList">
             <EntityTypeMapping TypeName="MediTechModel.GRNItemList">
               <MappingFragment StoreEntitySet="GRNItemList">
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
@@ -13791,6 +13854,7 @@
           <EntitySetMapping Name="ItemIssueDetail">
             <EntityTypeMapping TypeName="MediTechModel.ItemIssueDetail">
               <MappingFragment StoreEntitySet="ItemIssueDetail">
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
@@ -16206,6 +16270,7 @@
           <EntitySetMapping Name="StockMovement">
             <EntityTypeMapping TypeName="MediTechModel.StockMovement">
               <MappingFragment StoreEntitySet="StockMovement">
+                <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />

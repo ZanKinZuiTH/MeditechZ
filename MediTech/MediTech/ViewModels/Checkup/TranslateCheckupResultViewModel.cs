@@ -991,6 +991,7 @@ namespace MediTech.ViewModels
                                 conclusion = "กลุ่มอาชีพ : " + timus1?.ResultValue + ", ตรวจขณะ : " + far + " " + near + ", " + Environment.NewLine + conclusion;
                             }
 
+
                             if (!string.IsNullOrEmpty(conclusion))
                             {
                                 CheckupGroupResultModel checkupResult = new CheckupGroupResultModel();

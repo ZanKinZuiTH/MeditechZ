@@ -301,6 +301,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            this.RowAmmo = new DevExpress.XtraReports.UI.XRTableRow();
+            this.AmmoText = new DevExpress.XtraReports.UI.XRTableCell();
+            this.AmmoRang = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Ammo1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Ammo2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Ammo3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
@@ -417,8 +423,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowZinc,
             this.RowIron,
             this.RowCadInb,
-            this.RowChroinB});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(490.5672F, 758.4814F);
+            this.RowChroinB,
+            this.RowAmmo});
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(490.5672F, 746.1763F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -3296,6 +3303,70 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             // 
+            // RowAmmo
+            // 
+            this.RowAmmo.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.AmmoText,
+            this.AmmoRang,
+            this.Ammo1,
+            this.Ammo2,
+            this.Ammo3});
+            this.RowAmmo.Name = "RowAmmo";
+            this.RowAmmo.Weight = 0.92341768297675519D;
+            // 
+            // AmmoText
+            // 
+            this.AmmoText.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.AmmoText.Multiline = true;
+            this.AmmoText.Name = "AmmoText";
+            this.AmmoText.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.AmmoText.StylePriority.UseFont = false;
+            this.AmmoText.StylePriority.UsePadding = false;
+            this.AmmoText.StylePriority.UseTextAlignment = false;
+            this.AmmoText.Text = "Ammonia in Blood";
+            this.AmmoText.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.AmmoText.Weight = 1.2913566084432759D;
+            // 
+            // AmmoRang
+            // 
+            this.AmmoRang.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.AmmoRang.Multiline = true;
+            this.AmmoRang.Name = "AmmoRang";
+            this.AmmoRang.StylePriority.UseFont = false;
+            this.AmmoRang.StylePriority.UseTextAlignment = false;
+            this.AmmoRang.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.AmmoRang.Weight = 0.93906236153056333D;
+            // 
+            // Ammo1
+            // 
+            this.Ammo1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Ammo1.Multiline = true;
+            this.Ammo1.Name = "Ammo1";
+            this.Ammo1.StylePriority.UseFont = false;
+            this.Ammo1.StylePriority.UseTextAlignment = false;
+            this.Ammo1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Ammo1.Weight = 0.443296332132815D;
+            // 
+            // Ammo2
+            // 
+            this.Ammo2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Ammo2.Multiline = true;
+            this.Ammo2.Name = "Ammo2";
+            this.Ammo2.StylePriority.UseFont = false;
+            this.Ammo2.StylePriority.UseTextAlignment = false;
+            this.Ammo2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Ammo2.Weight = 0.44329633245297495D;
+            // 
+            // Ammo3
+            // 
+            this.Ammo3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.Ammo3.Multiline = true;
+            this.Ammo3.Name = "Ammo3";
+            this.Ammo3.StylePriority.UseFont = false;
+            this.Ammo3.StylePriority.UseTextAlignment = false;
+            this.Ammo3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.Ammo3.Weight = 0.44329635320818539D;
+            // 
             // CheckupPage7
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -3589,5 +3660,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         public DevExpress.XtraReports.UI.XRTableCell ChroinB1;
         public DevExpress.XtraReports.UI.XRTableCell ChroinB2;
         public DevExpress.XtraReports.UI.XRTableCell ChroinB3;
+        public DevExpress.XtraReports.UI.XRTableRow RowAmmo;
+        public DevExpress.XtraReports.UI.XRTableCell AmmoText;
+        public DevExpress.XtraReports.UI.XRTableCell AmmoRang;
+        public DevExpress.XtraReports.UI.XRTableCell Ammo1;
+        public DevExpress.XtraReports.UI.XRTableCell Ammo2;
+        public DevExpress.XtraReports.UI.XRTableCell Ammo3;
     }
 }

@@ -17,9 +17,8 @@ using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
-    public class ManageGRNViewModel : MediTechViewModelBase
+ public class EcountImportFileViewModel : MediTechViewModelBase
     {
-
         #region Properties
 
 
@@ -304,7 +303,7 @@ namespace MediTech.ViewModels
             string connectionString = string.Empty;
             int pgBarCounter = 0;
             // TotalRecord = 0;
-            ManageGRN view = (ManageGRN)this.View;
+            EcountImportFile view = (EcountImportFile)this.View;
             try
             {
                 if (FileLocation.Trim() != string.Empty)
@@ -350,34 +349,24 @@ namespace MediTech.ViewModels
                     GRNItems = new ObservableCollection<ItemMasterList>();
                     foreach (DataRow drow in ImportData.Rows)
                     {
-                        //List<StockModel> CurrentStock = DataService.Inventory.GetStoreEcounByItemMaster(int.Parse(drow["ItemMasterUID"].ToString().Trim()), SelectStore.StoreUID);
+                       
                         int itemUIDMaster = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
                         ItemMasterList newRow = new ItemMasterList();
-                    
                         newRow.ItemMasterUID = itemUIDMaster;
                         newRow.ItemName = drow["รายการ"].ToString().Trim();
-                        newRow.ItemCode =  drow["รหัสสินค้า"].ToString().Trim();
-                        newRow.Quantity =  double.Parse(drow["จำนวน"].ToString().Trim());
+                        newRow.ItemCode = drow["รหัสสินค้า"].ToString().Trim();
+                        newRow.Quantity = double.Parse(drow["จำนวน"].ToString().Trim());
                         DateTime checkupDttm;
                         if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
                             newRow.ExpiryDttm = checkupDttm;
                         newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
-                        newRow.TaxPercentage =drow["ภาษี"].ToString().Trim() == "" ? 0 : double.Parse(drow["ภาษี"].ToString().Trim());
+                        newRow.TaxPercentage = drow["ภาษี"].ToString().Trim() == "" ? 0 : double.Parse(drow["ภาษี"].ToString().Trim());
                         newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
                         newRow.BatchID = drow["BatchID"].ToString().Trim();
-                        //newRow.GRNItemListUID = item.ItemListUID;
-                        // newRow.ItemMasterUID = int.Parse(drow["ItemMasterUID"].ToString().Trim());
-                        //newRow.IMUOMUID = item.IMUOMUID;
-                        // newRow.ExpiryDttm = DateTime.TryParse(drow["ExpiryDate"].ToString().Trim(),out newRow);
-                        //newRow.ManufacturerUID = drow["Manufacturer"].ToString().Trim();
-                        //newRow.FreeQuantity = double.Parse(drow["FreeQuantity"].ToString().Trim())== 0 ? 0 : double.Parse(drow["FreeQuantity"].ToString().Trim());
-                        //newRow.Discount = double.Parse(drow["Discount"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["Discount"].ToString().Trim());
-                        //newRow.NetAmount = double.Parse(drow["NetAmount"].ToString().Trim());
                         GRNItems.Add(newRow);
-                       // view.SetProgressBarValue(pgBarCounter);
                     }
 
-                }   
+                }
             }
 
             catch (Exception er)
@@ -391,7 +380,7 @@ namespace MediTech.ViewModels
         private int GetItemByCode(string code)
         {
             int itemID = DataService.Inventory.GetItemMasterByCode(code).ItemMasterUID;
-            return itemID; 
+            return itemID;
             //throw new NotImplementedException();
         }
 
@@ -417,7 +406,7 @@ namespace MediTech.ViewModels
 
 
 
-        public ManageGRNViewModel()
+        public EcountImportFileViewModel()
         {
             ReceiveDate = DateTime.Now.Date;
             GRNTypes = DataService.Technical.GetReferenceValueMany("GRNTYP");
@@ -466,7 +455,7 @@ namespace MediTech.ViewModels
             {
                 if ((item.TaxPercentage ?? 0) != 0)
                 {
-                    VATPercentage +=  ((item.NetAmount * item.TaxPercentage) / (100 + item.TaxPercentage));
+                    VATPercentage += ((item.NetAmount * item.TaxPercentage) / (100 + item.TaxPercentage));
                 }
 
             }
@@ -504,7 +493,7 @@ namespace MediTech.ViewModels
                     return;
                 }
                 AssingPropertiesToModel();
-                DataService.Purchaseing.CreateGoodReceive(model, AppUtil.Current.UserID);
+                DataService.Purchaseing.CreateGoodReceiveFromEcount(model, AppUtil.Current.UserID);
                 SaveSuccessDialog();
 
                 ListGRN listPage = new ListGRN();
@@ -593,8 +582,8 @@ namespace MediTech.ViewModels
             model.NetAmount = NetAmount;
             model.OtherCharges = OtherChages;
             model.Discount = Discount;
-           
-            
+
+
 
             model.GRNItemLists = new List<GRNItemListModel>();
             foreach (var item in GRNItems)

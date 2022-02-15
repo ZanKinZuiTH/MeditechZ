@@ -212,6 +212,24 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public bool CreateGoodReceiveFromEcount(GRNDetailModel model, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Purchaseing/CreateGoodReceiveFromEcount?userID={0}", userID);
+                MeditechApiHelper.Post<GRNDetailModel>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+
         public bool CancelGoodReceive(int grnDetailUID, string cancelReason, int userID)
         {
             bool flag = false;
