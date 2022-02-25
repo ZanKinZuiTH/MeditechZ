@@ -255,7 +255,8 @@ namespace MediTech.ViewModels
 		</style>
 	</head>
 	<body>
-		<p class=""cs95E872D0""><span class=""cs28999509"">A case of check up.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;No active pulmonary lesion.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;No pleural effusion.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;Normal heart size.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;Intact bony thorax.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">IMPRESSION:</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;Negative study</span></p></body>
+		<p class=""cs95E872D0""><span class=""cs28999509"">History of ATK positive.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- Normal heart size.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- No lung infiltration or mass.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- No pleural effusion.</span></p>
+    </body>
 </html>";
                     resultModel.PlainText = @"History of ATK positive.
    - Normal heart size.

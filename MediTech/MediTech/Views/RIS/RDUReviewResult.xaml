@@ -109,7 +109,7 @@
             </dxlc:LayoutGroup>
             
             <dxlc:LayoutGroup HorizontalAlignment="Right">
-                    <dx:SimpleButton Content="ATK Negative" Command="{Binding ATKNegativeCommand}" Width="90" Height="25"/>
+                    <dx:SimpleButton Content="ATK Negative" Command="{Binding ATKNegativeCommand}" Width="95" Height="25"/>
                     <dx:SimpleButton Content="Negative" Command="{Binding NegativeCommand}" Width="80" Height="25"/>
                     <dx:SimpleButton Content="Positive" Command="{Binding PositiveCommand}" Width="80" Height="25"/>
                     <dx:SimpleButton Content="Stop" Command="{Binding StopCommand}" Width="80" Height="25"/>
