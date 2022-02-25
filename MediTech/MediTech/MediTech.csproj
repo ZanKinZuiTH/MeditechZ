@@ -465,6 +465,18 @@
     <Compile Include="Reports\Operating\Checkup\Papsmear.Designer.cs">
       <DependentUpon>Papsmear.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup.Designer.cs">
+      <DependentUpon>RiskMobileCheckup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Checkup\RiskMobileCheckup2.Designer.cs">
+      <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Inventory\GoodReceiveReport.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1412,8 +1424,8 @@
     <Compile Include="ViewModels\Documents\ReportParameter3ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter2ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
+    <Compile Include="ViewModels\Ecount\EcountItemIssueViewModel.cs" />
     <Compile Include="ViewModels\Ecount\EcountTranferViewModel.cs" />
-    <Compile Include="ViewModels\Ecount\ImportFileEcountViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
     <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
@@ -1631,6 +1643,9 @@
     </Compile>
     <Compile Include="Views\Documents\ReportParameter2.xaml.cs">
       <DependentUpon>ReportParameter2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Ecount\EcountItemIssue.xaml.cs">
+      <DependentUpon>EcountItemIssue.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ecount\EcountTranfer.xaml.cs">
       <DependentUpon>EcountTranfer.xaml</DependentUpon>
@@ -2189,6 +2204,10 @@
     <Page Include="Views\Documents\ReportParameter2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Ecount\EcountItemIssue.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ecount\EcountTranfer.xaml">
       <SubType>Designer</SubType>
@@ -2864,6 +2883,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Checkup\Papsmear.resx">
       <DependentUpon>Papsmear.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskMobileCheckup.resx">
+      <DependentUpon>RiskMobileCheckup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Checkup\RiskMobileCheckup2.resx">
+      <DependentUpon>RiskMobileCheckup2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Inventory\GoodReceiveReport.resx">
       <DependentUpon>GoodReceiveReport.cs</DependentUpon>

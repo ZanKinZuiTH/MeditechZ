@@ -686,10 +686,6 @@ namespace MediTechWebApi.Controllers
 
 
 
-
-
-
-
         [Route("PrintRiskBook")]
         [HttpGet]
         public PatientRiskBookModel PrintRiskBook(long patientUID, long patientVisitUID, int payorDetailUID)
@@ -792,7 +788,7 @@ namespace MediTechWebApi.Controllers
                                                       && pv.StatusFlag == "A"
                                                       && rs.RequestItemCode == "AUDIO"
                                                       && rs.PatientVisitUID == patientVisitUID
-
+                                                    
                                                       select new PatientResultComponentModel
                                                       {
                                                           PatientName = SqlFunction.fGetPatientName(pt.UID),
@@ -808,8 +804,7 @@ namespace MediTechWebApi.Controllers
                                                           Weight = vts.Weight,
                                                           Height = vts.Height,
                                                           StartDttm = pv.StartDttm
-                                                          
-                                                         
+
                                                       }).ToList();
             return data;
         }

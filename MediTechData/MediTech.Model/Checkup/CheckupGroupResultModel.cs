@@ -11,6 +11,7 @@ namespace MediTech.Model
         public int CheckupGroupResultUID { get; set; }
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
+        public string ItemNameResult { get; set; }
         public long GPRSTUID { get; set; }
         public int RABSTSUID { get; set; }
         public string Conclusion { get; set; }
