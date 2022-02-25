@@ -451,7 +451,6 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-
         [Route("PrintMedicalCertificate")]
         [HttpGet]
         public MedicalCertificateModel PrintMedicalCertificate(long patientVisitUID)

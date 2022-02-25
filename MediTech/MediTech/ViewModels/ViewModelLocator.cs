@@ -1122,6 +1122,19 @@ namespace MediTech.ViewModels
             }
         }
 
+
+
+        public EcountTranferViewModel EcountTranferViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EcountTranferViewModel>())
+                    SimpleIoc.Default.Register<EcountTranferViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EcountTranferViewModel>();
+            }
+        }
+
         #endregion
 
         #region Checkup
@@ -1860,6 +1873,21 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<ManageUserOrganisationViewModel>();
 
                 return ServiceLocator.Current.GetInstance<ManageUserOrganisationViewModel>();
+            }
+        }
+
+        #endregion
+
+
+        #region Ecount
+        public ImportFileEcountViewModel ImportFileEcountViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ImportFileEcountViewModel>())
+                    SimpleIoc.Default.Register<ImportFileEcountViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ImportFileEcountViewModel>();
             }
         }
 

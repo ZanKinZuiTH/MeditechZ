@@ -1569,7 +1569,7 @@ namespace MediTechWebApi.Controllers
             try
             {
                 CheckupGroupResult checkupTran = db.CheckupGroupResult.FirstOrDefault(p => p.PatientVisitUID == groupResult.PatientVisitUID
-                && p.GPRSTUID == groupResult.GPRSTUID);
+                && p.GPRSTUID == groupResult.GPRSTUID && p.StatusFlag == "A" );
                 if (checkupTran == null)
                 {
                     checkupTran = new CheckupGroupResult();

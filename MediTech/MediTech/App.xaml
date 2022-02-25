@@ -7,7 +7,7 @@
              xmlns:d1p1="http://schemas.openxmlformats.org/markup-compatibility/2006">
     <Application.Resources>
         <ResourceDictionary>
-            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MediTech.ViewModels" />
+            <vm:ViewModelLocator x:Key="Locator" d:IsDataSource="True" xmlns:vm="clr-namespace:MediTech.ViewModels"/>
             <ControlTemplate  x:Key="ReferencevalueTemplate" x:Name="ReferencevalueTemplate">
                 <dxg:GridControl x:Name="PART_GridControl"  >
                     <dxg:GridControl.Columns>

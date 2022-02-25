@@ -500,21 +500,21 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                 page8.lbEKGRecommend.Text = groupResult.FirstOrDefault(p => p.GroupCode == "GPRST23")?.Conclusion;
 
-                var labCompare = data.LabCompare;
+                var labCompare = data.LabCompare.OrderByDescending(p=> p.Year);
                 if (labCompare != null)
                 {
                     #region Complete Blood Count
 
                     IEnumerable<PatientResultComponentModel> cbcTestSet = labCompare
                     .Where(p => p.RequestItemName.Contains("CBC"))
-                    .OrderBy(p => p.Year);
+                    .OrderByDescending(p => p.Year);
                     GenerateCompleteBloodCount(cbcTestSet);
                     #endregion
 
                     #region Urinalysis
                     IEnumerable<PatientResultComponentModel> uaTestSet = labCompare
                         .Where(p => p.RequestItemName.Contains("UA"))
-                        .OrderBy(p => p.Year);
+                        .OrderByDescending(p => p.Year);
                     GenerateUrinalysis(uaTestSet);
 
                     #endregion
@@ -524,7 +524,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         .Where(p => p.RequestItemCode.Contains("LAB212")
                         || p.RequestItemCode.Contains("LAB211")
                         || p.RequestItemCode.Contains("LAB213"))
-                        .OrderBy(p => p.Year);
+                        .OrderByDescending(p => p.Year);
                     GenerateRenalFunction(RenalTestSet);
 
                     #endregion
@@ -533,7 +533,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     IEnumerable<PatientResultComponentModel> FbsTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB231")
                         || p.RequestItemCode.Contains("LAB232"))
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateFastingBloodSugar(FbsTestSet);
 
                     #endregion
@@ -541,7 +541,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                     #region Uric acid
                     IEnumerable<PatientResultComponentModel> UricTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB261"))
-                        .OrderBy(p => p.Year);
+                        .OrderByDescending(p => p.Year);
                     GenerateUricAcid(UricTestSet);
 
                     #endregion
@@ -552,7 +552,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB242")
                         || p.RequestItemCode.Contains("LAB243")
                         || p.RequestItemCode.Contains("LAB244"))
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateLipidProfiles(LipidTestSet);
 
                     #endregion
@@ -569,7 +569,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB226")
                          || p.RequestItemCode.Contains("LAB227"))
 
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateLiverFunction(LiverTestSet);
                     #endregion
 
@@ -579,21 +579,21 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB441")
                         || p.RequestItemCode.Contains("LAB512")
                         || p.RequestItemCode.Contains("LAB554"))
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateImmunology(ImmunologyTestSet);
                     #endregion
 
                     #region Stool Exam
                     IEnumerable<PatientResultComponentModel> StoolTestSet = labCompare
                         .Where(p => p.RequestItemName.Contains("Stool Examination"))
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateStool(StoolTestSet);
                     #endregion
 
                     #region Stool Culture
                     IEnumerable<PatientResultComponentModel> StoolCultureTestSet = labCompare
                         .Where(p => p.RequestItemCode.Contains("LAB322"))
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateStoolCulture(StoolCultureTestSet);
                     #endregion
 
@@ -605,7 +605,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB284") //psa
                         || p.RequestItemCode.Contains("LAB285") //ca125
                         || p.RequestItemCode.Contains("LAB286")) //ca153
-                        .OrderBy(p => p.Year);
+                     .OrderByDescending(p => p.Year);
                     GenerateTumorMarker(TumorMarker);
                     #endregion
 
@@ -646,8 +646,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
                         || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
                         || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                         || p.RequestItemCode.Contains("LAB542")) // chro zerum
-                        .OrderBy(p => p.Year);
+                         || p.RequestItemCode.Contains("LAB542") // chro zerum
+                          || p.RequestItemCode.Contains("LAB575")) // Ammo
+                         .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
 
@@ -660,7 +661,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB273") //T4
                         || p.RequestItemCode.Contains("LAB274") //FreeT3
                         || p.RequestItemCode.Contains("LAB275")) //FreeT4
-                        .OrderBy(p => p.Year);
+                         .OrderByDescending(p => p.Year);
                     GenerateOther(OtherTestSet);
                     #endregion
 
@@ -917,12 +918,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
             
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null ;
                 page3.cellCBCYear1.Text = "ปี" + " " + year1.ToString();
                 page3.cellCBCYear2.Text = "ปี" + " " + year2.ToString();
                 page3.cellCBCYear3.Text = "ปี" + " " + year3.ToString();
@@ -930,12 +931,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page3.cellHbRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001")?.ReferenceRange;
                 page3.cellHb1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year1)?.ResultValue;
                 page3.cellHb2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue;
-                //if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year2)?.ResultValue)
-                //{
-
-                //}
-             
-              
 
                 page3.cellHb3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "A0001" && p.Year == year3)?.ResultValue;
 
@@ -1018,6 +1013,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page3.cellCBCYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page3.cellCBCYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page3.cellCBCYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1030,11 +1028,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page4.cellUAYear1.Text = "ปี" + " " + year1.ToString();
                 page4.cellUAYear2.Text = "ปี" + " " + year2.ToString();
                 page4.cellUAYear3.Text = "ปี" + " " + year3.ToString();
@@ -1132,6 +1130,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page4.cellUAYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page4.cellUAYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page4.cellUAYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1143,11 +1144,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page5.cellRenalYear1.Text = "ปี" + " " + year1.ToString();
                 page5.cellRenalYear2.Text = "ปี" + " " + year2.ToString();
                 page5.cellRenalYear3.Text = "ปี" + " " + year3.ToString();
@@ -1170,6 +1171,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page5.cellRenalYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page5.cellRenalYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page5.cellRenalYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1181,11 +1185,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page4.cellFbsYear1.Text = "ปี" + " " + year1.ToString();
                 page4.cellFbsYear2.Text = "ปี" + " " + year2.ToString();
                 page4.cellFbsYear3.Text = "ปี" + " " + year3.ToString();
@@ -1203,6 +1207,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page4.cellFbsYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page4.cellFbsYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page4.cellFbsYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1214,11 +1221,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page4.cellUricYear1.Text = "ปี" + " " + year1.ToString();
                 page4.cellUricYear2.Text = "ปี" + " " + year2.ToString();
                 page4.cellUricYear3.Text = "ปี" + " " + year3.ToString();
@@ -1231,6 +1238,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page4.cellUricYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page4.cellUricYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page4.cellUricYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1242,11 +1252,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page3.cellLipidYear1.Text = "ปี" + " " + year1.ToString();
                 page3.cellLipidYear2.Text = "ปี" + " " + year2.ToString();
                 page3.cellLipidYear3.Text = "ปี" + " " + year3.ToString();
@@ -1274,6 +1284,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page3.cellLipidYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page3.cellLipidYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page3.cellLipidYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1285,11 +1298,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page5.cellLiverYear1.Text = "ปี" + " " + year1.ToString();
                 page5.cellLiverYear2.Text = "ปี" + " " + year2.ToString();
                 page5.cellLiverYear3.Text = "ปี" + " " + year3.ToString();
@@ -1342,6 +1355,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page5.cellLiverYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page5.cellLiverYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page5.cellLiverYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1353,11 +1369,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page5.cellImmunlogyYear1.Text = "ปี" + " " + year1.ToString();
                 page5.cellImmunlogyYear2.Text = "ปี" + " " + year2.ToString();
                 page5.cellImmunlogyYear3.Text = "ปี" + " " + year3.ToString();
@@ -1396,6 +1412,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page5.cellImmunlogyYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page5.cellImmunlogyYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page5.cellImmunlogyYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1407,11 +1426,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page6.cellStoolYear1.Text = "ปี" + " " + year1.ToString();
                 page6.cellStoolYear2.Text = "ปี" + " " + year2.ToString();
                 page6.cellStoolYear3.Text = "ปี" + " " + year3.ToString();
@@ -1443,6 +1462,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page6.cellStoolYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page6.cellStoolYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page6.cellStoolYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1454,11 +1476,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             if (labTestSet != null && labTestSet.Count() > 0)
             {
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
 
                 page7.cellStoolCulterYear1.Text = "ปี" + " " + year1.ToString();
                 page7.cellStoolCulterYear2.Text = "ปี" + " " + year2.ToString();
@@ -1490,6 +1512,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page7.cellStoolCulterYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page7.cellStoolCulterYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page7.cellStoolCulterYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1532,6 +1557,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowIron.Visible = false;
                 page7.RowCadInb.Visible = false;
                 page7.RowChroinB.Visible = false;
+                page7.RowAmmo.Visible = false;
 
 
 
@@ -1540,11 +1566,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
                     List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                    Years.Sort();
+                    Years.OrderByDescending(p => ((uint?)p));
                     int countYear = Years.Count();
                     int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                    int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                    int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                    int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                    int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                     page7.cellToxicoYear1.Text = "ปี" + " " + year1.ToString();
                     page7.cellToxicoYear2.Text = "ปี" + " " + year2.ToString();
                     page7.cellToxicoYear3.Text = "ปี" + " " + year3.ToString();
@@ -1969,9 +1995,28 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #endregion
 
+
+
+                    #region Ammo in blood
+
+                    if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245") != null)
+                    {
+                        page7.RowAmmo.Visible = true;
+                        page7.AmmoRang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245")?.ReferenceRange;
+                        page7.Ammo1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year1)?.ResultValue;
+                        page7.Ammo2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year2)?.ResultValue;
+                        page7.Ammo3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1245" && p.Year == year3)?.ResultValue;
+                    }
+
+                    #endregion
+
+
                 }
                 else
                 {
+                    List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                    Years.OrderByDescending(p => ((uint?)p));
+                    int countYear = Years.Count();
                     page7.cellToxicoYear1.Text = "ปี" + " " + DateTime.Now.Year;
                     page7.cellToxicoYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                     page7.cellToxicoYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -1986,11 +2031,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             {
                 PatientResultComponentModel CheckGender = labTestSet.FirstOrDefault();
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page6.cellTumorYear1.Text = "ปี" + " " + year1.ToString();
                 page6.cellTumorYear2.Text = "ปี" + " " + year2.ToString();
                 page6.cellTumorYear3.Text = "ปี" + " " + year3.ToString();
@@ -2119,6 +2164,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page6.cellTumorYear1.Text = "ปี" + " " + DateTime.Now.Year;
                 page6.cellTumorYear2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page6.cellTumorYear3.Text = "ปี" + " " + (DateTime.Now.Year + 2);
@@ -2131,11 +2179,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             {
                 PatientResultComponentModel CheckGender = labTestSet.FirstOrDefault();
                 List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
-                Years.Sort();
+                Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
+                int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
                 page6.cellOther2Year1.Text = "ปี" + " " + year1.ToString();
                 page6.cellOther2Year2.Text = "ปี" + " " + year2.ToString();
                 page6.cellOther2Year3.Text = "ปี" + " " + year3.ToString();
@@ -2185,6 +2233,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             }
             else
             {
+                List<int?> Years = labTestSet.Select(p => p.Year).Distinct().ToList();
+                Years.OrderByDescending(p => ((uint?)p));
+                int countYear = Years.Count();
                 page6.cellOther2Year1.Text = "ปี" + " " + DateTime.Now.Year;
                 page6.cellOther2Year2.Text = "ปี" + " " + (DateTime.Now.Year + 1);
                 page6.cellOther2Year3.Text = "ปี" + " " + (DateTime.Now.Year + 2);

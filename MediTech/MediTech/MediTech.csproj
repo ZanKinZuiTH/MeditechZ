@@ -1412,6 +1412,8 @@
     <Compile Include="ViewModels\Documents\ReportParameter3ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter2ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
+    <Compile Include="ViewModels\Ecount\EcountTranferViewModel.cs" />
+    <Compile Include="ViewModels\Ecount\ImportFileEcountViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
     <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
@@ -1440,7 +1442,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ListOrderSetViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageOrderSetViewModel.cs" />
     <Compile Include="ViewModels\MRD\BulkAlertDialogViewModel.cs" />
-    <Compile Include="ViewModels\MRD\EcountImportFileViewModel.cs" />
+    <Compile Include="ViewModels\Ecount\EcountImportFileViewModel.cs" />
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
@@ -1630,6 +1632,9 @@
     <Compile Include="Views\Documents\ReportParameter2.xaml.cs">
       <DependentUpon>ReportParameter2.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Ecount\EcountTranfer.xaml.cs">
+      <DependentUpon>EcountTranfer.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\EMRView\CCHPI.xaml.cs">
       <DependentUpon>CCHPI.xaml</DependentUpon>
     </Compile>
@@ -1702,7 +1707,7 @@
     <Compile Include="Views\MRD\BulkAlertDialog.xaml.cs">
       <DependentUpon>BulkAlertDialog.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\MRD\EcountImportFile.xaml.cs">
+    <Compile Include="Views\Ecount\EcountImportFile.xaml.cs">
       <DependentUpon>EcountImportFile.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MRD\LabResultMass.xaml.cs">
@@ -2185,6 +2190,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Ecount\EcountTranfer.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\EMRView\CCHPI.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2281,7 +2290,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\MRD\EcountImportFile.xaml">
+    <Page Include="Views\Ecount\EcountImportFile.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

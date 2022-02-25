@@ -3602,5 +3602,26 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTStockToEcount_Result>("pRPTStockToEcount", p_DateFromParameter, p_DateToParameter, p_OrganisationListParameter, p_VisitTypeUIDParameter);
         }
+    
+        public virtual ObjectResult<pStockMassFile_Result> pStockMassFile(Nullable<int> p_StoreUID, Nullable<int> p_ItemMasterUID, string p_SerialNumber, Nullable<System.DateTime> p_ExpiryDate)
+        {
+            var p_StoreUIDParameter = p_StoreUID.HasValue ?
+                new ObjectParameter("P_StoreUID", p_StoreUID) :
+                new ObjectParameter("P_StoreUID", typeof(int));
+    
+            var p_ItemMasterUIDParameter = p_ItemMasterUID.HasValue ?
+                new ObjectParameter("P_ItemMasterUID", p_ItemMasterUID) :
+                new ObjectParameter("P_ItemMasterUID", typeof(int));
+    
+            var p_SerialNumberParameter = p_SerialNumber != null ?
+                new ObjectParameter("P_SerialNumber", p_SerialNumber) :
+                new ObjectParameter("P_SerialNumber", typeof(string));
+    
+            var p_ExpiryDateParameter = p_ExpiryDate.HasValue ?
+                new ObjectParameter("P_ExpiryDate", p_ExpiryDate) :
+                new ObjectParameter("P_ExpiryDate", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pStockMassFile_Result>("pStockMassFile", p_StoreUIDParameter, p_ItemMasterUIDParameter, p_SerialNumberParameter, p_ExpiryDateParameter);
+        }
     }
 }

@@ -220,7 +220,7 @@ namespace MediTech.ViewModels
             }
             else
             {
-                MessageBox.Show("ไม่สามารถสร้างเมนูได้ โปรดติดต่อ admin");
+                MessageBox.Show("๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝรถ๏ฟฝ๏ฟฝ๏ฟฝาง๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ๏ฟฝ ๏ฟฝรด๏ฟฝิด๏ฟฝ๏ฟฝ๏ฟฝ admin");
             }
         }
 

@@ -371,6 +371,57 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_RefTable", refTable ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_RefUID", refUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_NoteMovement", noteMovement ?? (object)DBNull.Value);
+      
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+            return flag;
+        }
+
+
+        public static bool pInvenGoodReceiveFromEcount(int itemMasterUID, int storeUID, int? toStoreUID, int userUID, int organisationUID, string comments, int IMUOMUID, DateTime? expiryDate, string batchID, double quantity, double itemCost, int? VendorDetailUID, int? ManufacturerUID, int? GRNDeailUID, DateTime? GRNDttm, string refNo, string refTable, int? refUID, string noteMovement, string serialNumber)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pInvenGoodReceiveFromEcount";
+                cmd.Parameters.AddWithValue("@P_ItemMasterUID", itemMasterUID);
+                cmd.Parameters.AddWithValue("@P_StoreUID", storeUID);
+                cmd.Parameters.AddWithValue("@P_ToStoreUID", toStoreUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_UserUID", userUID);
+                cmd.Parameters.AddWithValue("@P_Organisation", organisationUID);
+                cmd.Parameters.AddWithValue("@P_Comments", comments ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_IMUOMUID", IMUOMUID);
+                cmd.Parameters.AddWithValue("@P_ExpiryDate", expiryDate ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_BatchID", batchID ?? "");
+                cmd.Parameters.AddWithValue("@P_Quantity", quantity);
+                cmd.Parameters.AddWithValue("@P_ItemCost", itemCost);
+                cmd.Parameters.AddWithValue("@P_VendorDetailUID", VendorDetailUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_ManufacturerUID", ManufacturerUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_GRNDetailUID", GRNDeailUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_GRNDttm", GRNDttm ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_RefNo", refNo ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_RefTable", refTable ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_RefUID", refUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_NoteMovement", noteMovement ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SerialNumber ", serialNumber ?? (object)DBNull.Value);
 
                 cmd.ExecuteNonQuery();
                 flag = true;

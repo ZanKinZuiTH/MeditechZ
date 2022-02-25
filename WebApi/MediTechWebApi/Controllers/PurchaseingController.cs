@@ -1016,6 +1016,119 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("CreateGoodReceiveFromEcount")]
+        [HttpPost]
+        public HttpResponseMessage CreateGoodReceiveFromEcount(GRNDetailModel model, int userID)
+        {
+
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                using (var tran = new TransactionScope())
+                {
+                    GRNDetail GR = new GRNDetail();
+                    GR.CUser = userID;
+                    GR.CWhen = now;
+
+                    int seqID;
+                    string GRID = SEQHelper.GetSEQIDFormat("SEQGRNID", out seqID);
+
+
+                    if (string.IsNullOrEmpty(GRID))
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQGRNID in SEQCONFIGURATION");
+                    }
+
+                    if (seqID == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQGRNID is Fail");
+                    }
+
+                    GR.GRNNumber = GRID;
+
+                    GR.MUser = userID;
+                    GR.MWhen = now;
+                    GR.StatusFlag = "A";
+                    GR.VendorDetailUID = model.VendorDetailUID;
+                    GR.RecievedStoreUID = model.RecievedStoreUID;
+                    GR.RecievedOrganisationUID = model.RecievedOrganisationUID;
+                    GR.RecievedDttm = now;
+                    GR.Comments = model.Comments;
+                    GR.OtherCharges = model.OtherCharges;
+                    GR.NetAmount = model.NetAmount;
+                    GR.Discount = model.Discount;
+                    GR.InvoiceNo = model.InvoiceNo;
+                    GR.GRNSTSUID = 2910;
+                    GR.InvoiceDate = model.InvoiceDate;
+                    //GR.GRNStatusUID = model.GRNStatusUID;
+                    GR.CancelReason = model.CancelReason;
+                    GR.PurchaseOrderID = model.PurchaseOrderID;
+                    GR.GRNTYPUID = model.GRNTYPUID;
+                    db.GRNDetail.AddOrUpdate(GR);
+
+                    db.SaveChanges();
+
+
+                    if (!string.IsNullOrEmpty(model.PurchaseOrderID))
+                    {
+                        PurchaseOrder purchaseOrder = db.PurchaseOrder.FirstOrDefault(p => p.PurchaseOrderID == model.PurchaseOrderID);
+                        if (purchaseOrder != null)
+                        {
+                            db.PurchaseOrder.Attach(purchaseOrder);
+                            purchaseOrder.MUser = userID;
+                            purchaseOrder.MWhen = now;
+                            purchaseOrder.GRNNumber = GR.GRNNumber;
+                            purchaseOrder.POSTSUID = 2905;
+                            db.SaveChanges();
+                        }
+                    }
+
+                    foreach (var item in model.GRNItemLists)
+                    {
+                        GRNItemList poItemList = new GRNItemList();
+                        poItemList.CUser = userID;
+                        poItemList.CWhen = now;
+                        poItemList.GRNDetailUID = GR.UID;
+                        poItemList.MUser = userID;
+                        poItemList.MWhen = now;
+                        poItemList.StatusFlag = "A";
+                        poItemList.ItemMasterUID = item.ItemMasterUID;
+                        poItemList.ItemName = item.ItemName;
+                        poItemList.ItemCode = item.ItemCode;
+                        poItemList.Quantity = item.Quantity;
+                        poItemList.FreeQuantity = item.FreeQuantity;
+                        poItemList.Discount = item.Discount;
+                        poItemList.PTaxPercentage = item.TaxPercentage;
+                        poItemList.ManufacturerUID = item.ManufacturerUID;
+                        poItemList.IMUOMUID = item.IMUOMUID;
+                        poItemList.ExpiryDttm = item.ExpiryDttm;
+                        poItemList.PurchaseCost = item.PurchaseCost;
+                        poItemList.NetAmount = item.NetAmount ?? 0;
+                        poItemList.BatchID = item.BatchID;
+                        poItemList.ITCATUID = item.ITCATUID;
+                        poItemList.SerialNumber = item.SerialNumber;
+                        db.GRNItemList.Add(poItemList);
+
+                        db.SaveChanges();
+
+                        double totalQuantity = poItemList.Quantity + (item.FreeQuantity ?? 0);
+                        SqlDirectStore.pInvenGoodReceiveFromEcount(poItemList.ItemMasterUID, model.RecievedStoreUID, null, userID, GR.RecievedOrganisationUID, model.Comments, poItemList.IMUOMUID, poItemList.ExpiryDttm, poItemList.BatchID, totalQuantity, poItemList.PurchaseCost, GR.VendorDetailUID, poItemList.ManufacturerUID, GR.UID, GR.RecievedDttm, GR.GRNNumber, "GRNItemList", poItemList.UID, null, poItemList.SerialNumber);
+
+                    }
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
         [Route("CreateGoodReceive")]
         [HttpPost]
         public HttpResponseMessage CreateGoodReceive(GRNDetailModel model, int userID)
@@ -1107,6 +1220,7 @@ namespace MediTechWebApi.Controllers
                         poItemList.NetAmount = item.NetAmount ?? 0;
                         poItemList.BatchID = item.BatchID;
                         poItemList.ITCATUID = item.ITCATUID;
+                        poItemList.SerialNumber = item.SerialNumber;
                         db.GRNItemList.Add(poItemList);
 
                         db.SaveChanges();

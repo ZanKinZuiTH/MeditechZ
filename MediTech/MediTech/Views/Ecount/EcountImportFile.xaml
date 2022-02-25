@@ -1,4 +1,4 @@
-﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ManageGRN"
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.EcountImportFile"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -8,7 +8,7 @@
              mc:Ignorable="d"
              xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:cv="clr-namespace:MediTech.Converter"
-             DataContext="{Binding Path=ManageGRNViewModel,Source={StaticResource Locator}}"
+             DataContext="{Binding Path=EcountImportFileViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
         <cv:AddValueConverter x:Key="AddValueConverter" />
@@ -135,8 +135,8 @@
                     <dxe:DateEdit EditValue="{Binding ReceiveDate}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem />
-               
-                    <dxlc:LayoutItem />
+
+                <dxlc:LayoutItem />
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="ตำแหน่งไฟล์">
@@ -159,8 +159,6 @@
             <dxg:GridControl x:Name="grdPurchaseItemList" ItemsSource="{Binding GRNItems}"
                                      SelectedItem="{Binding SelectGRNItem}">
                 <dxg:GridControl.Columns>
-                    
-                    
                     <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
@@ -174,7 +172,7 @@
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxg:LookUpEdit Name="PART_Editor" 
-                                                        ItemsSource="{Binding Path=DataContext.ItemMasters,RelativeSource={RelativeSource AncestorType={x:Type vm:ManageGRN}}}" 
+                                                        ItemsSource="{Binding Path=DataContext.ItemMasters,RelativeSource={RelativeSource AncestorType={x:Type vm:EcountImportFile}}}" 
                                                         SelectedItem="{Binding RowData.Row.SelectItemMaster}"
                                                         PopupHeight="400" PopupWidth="600"
                                                         ValueMember="ItemMasterUID"                                                        
@@ -254,6 +252,9 @@
                             <dxe:TextEditSettings />
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
+    
+                    
+                    
                     
                     
                     
