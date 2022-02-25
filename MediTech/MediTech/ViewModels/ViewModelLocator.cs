@@ -1135,6 +1135,19 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EcountItemIssueViewModel EcountItemIssueViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EcountItemIssueViewModel>())
+                    SimpleIoc.Default.Register<EcountItemIssueViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EcountItemIssueViewModel>();
+            }
+        }
+
+
+
         #endregion
 
         #region Checkup
@@ -1878,21 +1891,6 @@ namespace MediTech.ViewModels
 
         #endregion
 
-
-        #region Ecount
-        public ImportFileEcountViewModel ImportFileEcountViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<ImportFileEcountViewModel>())
-                    SimpleIoc.Default.Register<ImportFileEcountViewModel>();
-
-                return ServiceLocator.Current.GetInstance<ImportFileEcountViewModel>();
-            }
-        }
-
-
-        #endregion
 
 
         public static void Cleanup()

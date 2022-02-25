@@ -1964,8 +1964,12 @@ namespace MediTechWebApi.Controllers
                                                       Conclusion = ck.Conclusion,
                                                       GroupResult = rf.Description,
                                                       ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง":  "ปกติ",
-                                                      GroupCode = rf.ValueCode
+                                                      GroupCode = rf.ValueCode,
+                                                      ItemNameResult = SqlFunction.fGetRfValDescription(((int)ck.GPRSTUID)),  
+
                                                   }).ToList();
+
+            
 
             return data;
         }

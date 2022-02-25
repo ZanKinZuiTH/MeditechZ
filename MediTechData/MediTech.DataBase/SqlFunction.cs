@@ -470,6 +470,37 @@ namespace MediTech.DataBase
 
             return flag;
         }
+        public static bool pInvenIssueItemEcount(int itemIssueUID, int userUID)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pInvenIssueItemEcount";
+                cmd.Parameters.AddWithValue("@P_ItemIssueUID", itemIssueUID);
+                cmd.Parameters.AddWithValue("@P_UserUID", userUID);
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
+        }
 
         public static bool pInvenTransferItem(int itemIssueUID, int userUID)
         {

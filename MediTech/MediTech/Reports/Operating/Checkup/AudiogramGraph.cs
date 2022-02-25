@@ -46,6 +46,7 @@ namespace MediTech.Reports.Operating.Checkup
                 lbWeight.Text = dataAudio.FirstOrDefault().Weight != null ? dataAudio.FirstOrDefault().Weight + " กก." : "";
                 lbHeight.Text = dataAudio.FirstOrDefault().Height != null ? dataAudio.FirstOrDefault().Height + " ซม." : "";
                 lbStartDttm.Text = dataAudio.FirstOrDefault().StartDttm.Value.ToString("dd/MM/yyyy");
+
                 foreach (Series series in audioChartLine.Series)
                 {
                     if (series.Name == "ขวา")

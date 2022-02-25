@@ -309,6 +309,16 @@ namespace MediTech.ViewModels
         }
 
 
+        public RelayCommand testCommand
+        {
+            get
+            {
+                return _RejectSpecimenCommand
+                    ?? (_RejectSpecimenCommand = new RelayCommand(testicheck));
+            }
+        }
+
+
         private RelayCommand<int> _SelectedSpecimenCommand;
 
         /// <summary>
@@ -466,6 +476,7 @@ namespace MediTech.ViewModels
 
 
                         DataService.Lab.UpdateRequestDetailSpecimens(acceptDetailSpecimens, AppUtil.Current.UserID);
+                        DataService.Icheckup.ichecktest();
                         WriteASTMOrderMessage(SelectRequestLab, acceptDetailSpecimens);
                         if (acceptDetailSpecimens != null && acceptDetailSpecimens.Count > 0)
                         {
@@ -744,6 +755,15 @@ namespace MediTech.ViewModels
             SelectRequestStatusList.Add(RequestStatus.FirstOrDefault(p => p.ValueCode == "RAISED").Key);
             (this.View as SpecimenAccept).cmbStatus.RefreshData();
             SelectRequestItem = null;
+        }
+
+
+
+        void testicheck()
+        {
+            var test = DataService.Icheckup.ichecktest();
+            
+            WarningDialog("ไม่มี " +  " ในคลัง");
         }
 
         #endregion

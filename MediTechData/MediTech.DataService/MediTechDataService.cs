@@ -14,6 +14,15 @@ namespace MediTech.DataService
             get { return _Billing ?? (_Billing = new BillingService()); }
         }
 
+
+        private IcheckupService _Icheckup;
+        public IcheckupService Icheckup
+        {
+            get { return _Icheckup ?? (_Icheckup = new IcheckupService()); }
+        }
+
+
+
         private InventoryService _Inventory;
         public InventoryService Inventory
         {

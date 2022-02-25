@@ -230,6 +230,18 @@
             this.cellBenzenettUrine2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellBenzenettUrine3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellBenzenettUrineRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Rowfluoride = new DevExpress.XtraReports.UI.XRTableRow();
+            this.fluoride = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideY3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.fluorideRange = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowFormadehyde = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell129 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeY3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.FormadehydeRange = new DevExpress.XtraReports.UI.XRTableCell();
             this.CheckAlcohol2Week = new DevExpress.XtraReports.UI.XRCheckBox();
             this.CheckAlcoholLess1Week = new DevExpress.XtraReports.UI.XRCheckBox();
             this.xrTable12 = new DevExpress.XtraReports.UI.XRTable();
@@ -567,18 +579,6 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.Rowfluoride = new DevExpress.XtraReports.UI.XRTableRow();
-            this.fluoride = new DevExpress.XtraReports.UI.XRTableCell();
-            this.fluorideY1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.fluorideY2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.fluorideY3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.fluorideRange = new DevExpress.XtraReports.UI.XRTableCell();
-            this.RowFormadehyde = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell129 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.FormadehydeY1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.FormadehydeY2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.FormadehydeY3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.FormadehydeRange = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
@@ -3721,6 +3721,198 @@
             this.cellBenzenettUrineRange.StylePriority.UseTextAlignment = false;
             this.cellBenzenettUrineRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.cellBenzenettUrineRange.Weight = 1.02262920318444D;
+            // 
+            // Rowfluoride
+            // 
+            this.Rowfluoride.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.fluoride,
+            this.fluorideY1,
+            this.fluorideY2,
+            this.fluorideY3,
+            this.fluorideRange});
+            this.Rowfluoride.Name = "Rowfluoride";
+            this.Rowfluoride.Weight = 0.92341768297675519D;
+            // 
+            // fluoride
+            // 
+            this.fluoride.BackColor = System.Drawing.Color.Transparent;
+            this.fluoride.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluoride.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.fluoride.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.fluoride.Multiline = true;
+            this.fluoride.Name = "fluoride";
+            this.fluoride.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.fluoride.StylePriority.UseBackColor = false;
+            this.fluoride.StylePriority.UseBorderColor = false;
+            this.fluoride.StylePriority.UseBorders = false;
+            this.fluoride.StylePriority.UseFont = false;
+            this.fluoride.StylePriority.UsePadding = false;
+            this.fluoride.StylePriority.UseTextAlignment = false;
+            this.fluoride.Text = "fluoride in urine";
+            this.fluoride.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.fluoride.Weight = 1.1174292350188477D;
+            // 
+            // fluorideY1
+            // 
+            this.fluorideY1.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.fluorideY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY1.Multiline = true;
+            this.fluorideY1.Name = "fluorideY1";
+            this.fluorideY1.StylePriority.UseBorderColor = false;
+            this.fluorideY1.StylePriority.UseBorders = false;
+            this.fluorideY1.StylePriority.UseFont = false;
+            this.fluorideY1.StylePriority.UseTextAlignment = false;
+            this.fluorideY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY1.Weight = 0.45385613117503626D;
+            // 
+            // fluorideY2
+            // 
+            this.fluorideY2.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.fluorideY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY2.Multiline = true;
+            this.fluorideY2.Name = "fluorideY2";
+            this.fluorideY2.StylePriority.UseBorderColor = false;
+            this.fluorideY2.StylePriority.UseBorders = false;
+            this.fluorideY2.StylePriority.UseFont = false;
+            this.fluorideY2.StylePriority.UseTextAlignment = false;
+            this.fluorideY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY2.Weight = 0.45385615540204716D;
+            // 
+            // fluorideY3
+            // 
+            this.fluorideY3.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.fluorideY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.fluorideY3.Multiline = true;
+            this.fluorideY3.Name = "fluorideY3";
+            this.fluorideY3.StylePriority.UseBorderColor = false;
+            this.fluorideY3.StylePriority.UseBorders = false;
+            this.fluorideY3.StylePriority.UseFont = false;
+            this.fluorideY3.StylePriority.UseTextAlignment = false;
+            this.fluorideY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideY3.Weight = 0.45385614770547417D;
+            // 
+            // fluorideRange
+            // 
+            this.fluorideRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.fluorideRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.fluorideRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.fluorideRange.Multiline = true;
+            this.fluorideRange.Name = "fluorideRange";
+            this.fluorideRange.StylePriority.UseBorderColor = false;
+            this.fluorideRange.StylePriority.UseBorders = false;
+            this.fluorideRange.StylePriority.UseFont = false;
+            this.fluorideRange.StylePriority.UseTextAlignment = false;
+            this.fluorideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.fluorideRange.Weight = 1.02262920318444D;
+            // 
+            // RowFormadehyde
+            // 
+            this.RowFormadehyde.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell129,
+            this.FormadehydeY1,
+            this.FormadehydeY2,
+            this.FormadehydeY3,
+            this.FormadehydeRange});
+            this.RowFormadehyde.Name = "RowFormadehyde";
+            this.RowFormadehyde.Weight = 0.92341768297675519D;
+            // 
+            // xrTableCell129
+            // 
+            this.xrTableCell129.BackColor = System.Drawing.Color.Transparent;
+            this.xrTableCell129.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.xrTableCell129.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrTableCell129.Multiline = true;
+            this.xrTableCell129.Name = "xrTableCell129";
+            this.xrTableCell129.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.xrTableCell129.StylePriority.UseBackColor = false;
+            this.xrTableCell129.StylePriority.UseBorderColor = false;
+            this.xrTableCell129.StylePriority.UseBorders = false;
+            this.xrTableCell129.StylePriority.UseFont = false;
+            this.xrTableCell129.StylePriority.UsePadding = false;
+            this.xrTableCell129.StylePriority.UseTextAlignment = false;
+            this.xrTableCell129.Text = "Formadehyde in Urine";
+            this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell129.Weight = 1.1174292350188477D;
+            // 
+            // FormadehydeY1
+            // 
+            this.FormadehydeY1.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY1.Multiline = true;
+            this.FormadehydeY1.Name = "FormadehydeY1";
+            this.FormadehydeY1.StylePriority.UseBorderColor = false;
+            this.FormadehydeY1.StylePriority.UseBorders = false;
+            this.FormadehydeY1.StylePriority.UseFont = false;
+            this.FormadehydeY1.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY1.Weight = 0.45385613117503626D;
+            // 
+            // FormadehydeY2
+            // 
+            this.FormadehydeY2.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY2.Multiline = true;
+            this.FormadehydeY2.Name = "FormadehydeY2";
+            this.FormadehydeY2.StylePriority.UseBorderColor = false;
+            this.FormadehydeY2.StylePriority.UseBorders = false;
+            this.FormadehydeY2.StylePriority.UseFont = false;
+            this.FormadehydeY2.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY2.Weight = 0.45385615540204716D;
+            // 
+            // FormadehydeY3
+            // 
+            this.FormadehydeY3.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.FormadehydeY3.Multiline = true;
+            this.FormadehydeY3.Name = "FormadehydeY3";
+            this.FormadehydeY3.StylePriority.UseBorderColor = false;
+            this.FormadehydeY3.StylePriority.UseBorders = false;
+            this.FormadehydeY3.StylePriority.UseFont = false;
+            this.FormadehydeY3.StylePriority.UseTextAlignment = false;
+            this.FormadehydeY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeY3.Weight = 0.45385614770547417D;
+            // 
+            // FormadehydeRange
+            // 
+            this.FormadehydeRange.BorderColor = System.Drawing.Color.DarkGray;
+            this.FormadehydeRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
+            this.FormadehydeRange.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.FormadehydeRange.Multiline = true;
+            this.FormadehydeRange.Name = "FormadehydeRange";
+            this.FormadehydeRange.StylePriority.UseBorderColor = false;
+            this.FormadehydeRange.StylePriority.UseBorders = false;
+            this.FormadehydeRange.StylePriority.UseFont = false;
+            this.FormadehydeRange.StylePriority.UseTextAlignment = false;
+            this.FormadehydeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.FormadehydeRange.Weight = 1.02262920318444D;
             // 
             // CheckAlcohol2Week
             // 
@@ -8306,198 +8498,6 @@
             this.BottomMargin.Name = "BottomMargin";
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            // 
-            // Rowfluoride
-            // 
-            this.Rowfluoride.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.fluoride,
-            this.fluorideY1,
-            this.fluorideY2,
-            this.fluorideY3,
-            this.fluorideRange});
-            this.Rowfluoride.Name = "Rowfluoride";
-            this.Rowfluoride.Weight = 0.92341768297675519D;
-            // 
-            // fluoride
-            // 
-            this.fluoride.BackColor = System.Drawing.Color.Transparent;
-            this.fluoride.BorderColor = System.Drawing.Color.DarkGray;
-            this.fluoride.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.fluoride.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.fluoride.Multiline = true;
-            this.fluoride.Name = "fluoride";
-            this.fluoride.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.fluoride.StylePriority.UseBackColor = false;
-            this.fluoride.StylePriority.UseBorderColor = false;
-            this.fluoride.StylePriority.UseBorders = false;
-            this.fluoride.StylePriority.UseFont = false;
-            this.fluoride.StylePriority.UsePadding = false;
-            this.fluoride.StylePriority.UseTextAlignment = false;
-            this.fluoride.Text = "fluoride in urine";
-            this.fluoride.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.fluoride.Weight = 1.1174292350188477D;
-            // 
-            // fluorideY1
-            // 
-            this.fluorideY1.BorderColor = System.Drawing.Color.DarkGray;
-            this.fluorideY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.fluorideY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.fluorideY1.Multiline = true;
-            this.fluorideY1.Name = "fluorideY1";
-            this.fluorideY1.StylePriority.UseBorderColor = false;
-            this.fluorideY1.StylePriority.UseBorders = false;
-            this.fluorideY1.StylePriority.UseFont = false;
-            this.fluorideY1.StylePriority.UseTextAlignment = false;
-            this.fluorideY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.fluorideY1.Weight = 0.45385613117503626D;
-            // 
-            // fluorideY2
-            // 
-            this.fluorideY2.BorderColor = System.Drawing.Color.DarkGray;
-            this.fluorideY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.fluorideY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.fluorideY2.Multiline = true;
-            this.fluorideY2.Name = "fluorideY2";
-            this.fluorideY2.StylePriority.UseBorderColor = false;
-            this.fluorideY2.StylePriority.UseBorders = false;
-            this.fluorideY2.StylePriority.UseFont = false;
-            this.fluorideY2.StylePriority.UseTextAlignment = false;
-            this.fluorideY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.fluorideY2.Weight = 0.45385615540204716D;
-            // 
-            // fluorideY3
-            // 
-            this.fluorideY3.BorderColor = System.Drawing.Color.DarkGray;
-            this.fluorideY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.fluorideY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.fluorideY3.Multiline = true;
-            this.fluorideY3.Name = "fluorideY3";
-            this.fluorideY3.StylePriority.UseBorderColor = false;
-            this.fluorideY3.StylePriority.UseBorders = false;
-            this.fluorideY3.StylePriority.UseFont = false;
-            this.fluorideY3.StylePriority.UseTextAlignment = false;
-            this.fluorideY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.fluorideY3.Weight = 0.45385614770547417D;
-            // 
-            // fluorideRange
-            // 
-            this.fluorideRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.fluorideRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.fluorideRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.fluorideRange.Multiline = true;
-            this.fluorideRange.Name = "fluorideRange";
-            this.fluorideRange.StylePriority.UseBorderColor = false;
-            this.fluorideRange.StylePriority.UseBorders = false;
-            this.fluorideRange.StylePriority.UseFont = false;
-            this.fluorideRange.StylePriority.UseTextAlignment = false;
-            this.fluorideRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.fluorideRange.Weight = 1.02262920318444D;
-            // 
-            // RowFormadehyde
-            // 
-            this.RowFormadehyde.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell129,
-            this.FormadehydeY1,
-            this.FormadehydeY2,
-            this.FormadehydeY3,
-            this.FormadehydeRange});
-            this.RowFormadehyde.Name = "RowFormadehyde";
-            this.RowFormadehyde.Weight = 0.92341768297675519D;
-            // 
-            // xrTableCell129
-            // 
-            this.xrTableCell129.BackColor = System.Drawing.Color.Transparent;
-            this.xrTableCell129.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell129.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrTableCell129.Multiline = true;
-            this.xrTableCell129.Name = "xrTableCell129";
-            this.xrTableCell129.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.xrTableCell129.StylePriority.UseBackColor = false;
-            this.xrTableCell129.StylePriority.UseBorderColor = false;
-            this.xrTableCell129.StylePriority.UseBorders = false;
-            this.xrTableCell129.StylePriority.UseFont = false;
-            this.xrTableCell129.StylePriority.UsePadding = false;
-            this.xrTableCell129.StylePriority.UseTextAlignment = false;
-            this.xrTableCell129.Text = "Formadehyde in Urine";
-            this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell129.Weight = 1.1174292350188477D;
-            // 
-            // FormadehydeY1
-            // 
-            this.FormadehydeY1.BorderColor = System.Drawing.Color.DarkGray;
-            this.FormadehydeY1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.FormadehydeY1.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.FormadehydeY1.Multiline = true;
-            this.FormadehydeY1.Name = "FormadehydeY1";
-            this.FormadehydeY1.StylePriority.UseBorderColor = false;
-            this.FormadehydeY1.StylePriority.UseBorders = false;
-            this.FormadehydeY1.StylePriority.UseFont = false;
-            this.FormadehydeY1.StylePriority.UseTextAlignment = false;
-            this.FormadehydeY1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.FormadehydeY1.Weight = 0.45385613117503626D;
-            // 
-            // FormadehydeY2
-            // 
-            this.FormadehydeY2.BorderColor = System.Drawing.Color.DarkGray;
-            this.FormadehydeY2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.FormadehydeY2.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.FormadehydeY2.Multiline = true;
-            this.FormadehydeY2.Name = "FormadehydeY2";
-            this.FormadehydeY2.StylePriority.UseBorderColor = false;
-            this.FormadehydeY2.StylePriority.UseBorders = false;
-            this.FormadehydeY2.StylePriority.UseFont = false;
-            this.FormadehydeY2.StylePriority.UseTextAlignment = false;
-            this.FormadehydeY2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.FormadehydeY2.Weight = 0.45385615540204716D;
-            // 
-            // FormadehydeY3
-            // 
-            this.FormadehydeY3.BorderColor = System.Drawing.Color.DarkGray;
-            this.FormadehydeY3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.FormadehydeY3.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.FormadehydeY3.Multiline = true;
-            this.FormadehydeY3.Name = "FormadehydeY3";
-            this.FormadehydeY3.StylePriority.UseBorderColor = false;
-            this.FormadehydeY3.StylePriority.UseBorders = false;
-            this.FormadehydeY3.StylePriority.UseFont = false;
-            this.FormadehydeY3.StylePriority.UseTextAlignment = false;
-            this.FormadehydeY3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.FormadehydeY3.Weight = 0.45385614770547417D;
-            // 
-            // FormadehydeRange
-            // 
-            this.FormadehydeRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.FormadehydeRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
-            | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.FormadehydeRange.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.FormadehydeRange.Multiline = true;
-            this.FormadehydeRange.Name = "FormadehydeRange";
-            this.FormadehydeRange.StylePriority.UseBorderColor = false;
-            this.FormadehydeRange.StylePriority.UseBorders = false;
-            this.FormadehydeRange.StylePriority.UseFont = false;
-            this.FormadehydeRange.StylePriority.UseTextAlignment = false;
-            this.FormadehydeRange.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.FormadehydeRange.Weight = 1.02262920318444D;
             // 
             // RiskBook3
             // 

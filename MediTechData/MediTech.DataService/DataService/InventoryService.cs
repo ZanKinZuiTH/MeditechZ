@@ -601,6 +601,26 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public bool ManageItemIssueEount(ItemIssueModel model, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Inventory/ManageItemIssueEount?userUID={0}", userUID);
+                MeditechApiHelper.Post<ItemIssueModel>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+
+
+
         public bool ConsumptionItem(IEnumerable<ItemIssueDetailModel> itemIssueDetailsModel,string comments, int userUID)
         {
             bool flag = false;

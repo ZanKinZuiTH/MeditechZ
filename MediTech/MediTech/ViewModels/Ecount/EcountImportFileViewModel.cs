@@ -362,7 +362,7 @@ namespace MediTech.ViewModels
                         newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
                         newRow.TaxPercentage = drow["ภาษี"].ToString().Trim() == "" ? 0 : double.Parse(drow["ภาษี"].ToString().Trim());
                         newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
-                        newRow.BatchID = drow["BatchID"].ToString().Trim();
+                        newRow.BatchID = drow["Batch ID"].ToString().Trim();
                         GRNItems.Add(newRow);
                     }
 
