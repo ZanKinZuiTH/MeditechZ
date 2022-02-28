@@ -22,6 +22,8 @@ namespace MediTech.Model
         public double? Price { get; set; }
         public double NetPrice { get; set; }
         public double? DoctorFee { get; set; }
+        public int? CareproviderUID { get; set; }
+        public String CareproviderName { get; set; }
         public DateTime? ActiveFrom { get; set; }
         public DateTime? ActiveTo { get; set; }
         public int CUser { get; set; }

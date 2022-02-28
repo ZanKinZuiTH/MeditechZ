@@ -768,6 +768,8 @@ namespace MediTech.ViewModels
                                         NetAmount = p.NetAmount,
                                         ItemMutiplier = p.Quantity ?? 1,
                                         BSMDDUID = p.BSMDDUID,
+                                        DoctorFee = p.DoctorFee,
+                                        CareproviderUID = p.CareproviderUID,
                                         IdentifyingUID = p.IdentifyingUID,
                                         BillingService = p.BillingService
                                     }));
@@ -992,7 +994,6 @@ namespace MediTech.ViewModels
                             newOrder.ItemUID = billItem.ItemUID;
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
-                            newOrder.DoctorFee = item.DoctorFee;
                             newOrder.UnitPrice = item.Price;
                             newOrder.DisplayPrice = item.Price;
 
@@ -1004,6 +1005,9 @@ namespace MediTech.ViewModels
                             newOrder.StartDttm = DateTime.Now;
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
+                            newOrder.DoctorFeePer = item.DoctorFee;
+                            newOrder.DoctorFee = (item.DoctorFee / 100) * newOrder.NetAmount;
+                            newOrder.CareproviderUID = item.CareproviderUID;
                             newOrder.OwnerOrganisationUID = ownerUID;
 
 

@@ -3623,5 +3623,192 @@ namespace MediTech.DataBase
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pStockMassFile_Result>("pStockMassFile", p_StoreUIDParameter, p_ItemMasterUIDParameter, p_SerialNumberParameter, p_ExpiryDateParameter);
         }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> pInvenGoodReceiveFromEcount(Nullable<int> p_ItemMasterUID, Nullable<int> p_StoreUID, Nullable<int> p_ToStoreUID, Nullable<int> p_UserUID, Nullable<int> p_Organisation, string p_Comments, Nullable<int> p_IMUOMUID, Nullable<System.DateTime> p_ExpiryDate, string p_BatchID, Nullable<double> p_Quantity, Nullable<double> p_ItemCost, Nullable<int> p_VendorDetailUID, Nullable<int> p_ManufacturerUID, Nullable<int> p_GRNDetailUID, Nullable<System.DateTime> p_GRNDttm, string p_RefNo, string p_RefTable, Nullable<int> p_RefUID, string p_NoteMovement, string p_SerialNumber)
+        {
+            var p_ItemMasterUIDParameter = p_ItemMasterUID.HasValue ?
+                new ObjectParameter("P_ItemMasterUID", p_ItemMasterUID) :
+                new ObjectParameter("P_ItemMasterUID", typeof(int));
+    
+            var p_StoreUIDParameter = p_StoreUID.HasValue ?
+                new ObjectParameter("P_StoreUID", p_StoreUID) :
+                new ObjectParameter("P_StoreUID", typeof(int));
+    
+            var p_ToStoreUIDParameter = p_ToStoreUID.HasValue ?
+                new ObjectParameter("P_ToStoreUID", p_ToStoreUID) :
+                new ObjectParameter("P_ToStoreUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            var p_OrganisationParameter = p_Organisation.HasValue ?
+                new ObjectParameter("P_Organisation", p_Organisation) :
+                new ObjectParameter("P_Organisation", typeof(int));
+    
+            var p_CommentsParameter = p_Comments != null ?
+                new ObjectParameter("P_Comments", p_Comments) :
+                new ObjectParameter("P_Comments", typeof(string));
+    
+            var p_IMUOMUIDParameter = p_IMUOMUID.HasValue ?
+                new ObjectParameter("P_IMUOMUID", p_IMUOMUID) :
+                new ObjectParameter("P_IMUOMUID", typeof(int));
+    
+            var p_ExpiryDateParameter = p_ExpiryDate.HasValue ?
+                new ObjectParameter("P_ExpiryDate", p_ExpiryDate) :
+                new ObjectParameter("P_ExpiryDate", typeof(System.DateTime));
+    
+            var p_BatchIDParameter = p_BatchID != null ?
+                new ObjectParameter("P_BatchID", p_BatchID) :
+                new ObjectParameter("P_BatchID", typeof(string));
+    
+            var p_QuantityParameter = p_Quantity.HasValue ?
+                new ObjectParameter("P_Quantity", p_Quantity) :
+                new ObjectParameter("P_Quantity", typeof(double));
+    
+            var p_ItemCostParameter = p_ItemCost.HasValue ?
+                new ObjectParameter("P_ItemCost", p_ItemCost) :
+                new ObjectParameter("P_ItemCost", typeof(double));
+    
+            var p_VendorDetailUIDParameter = p_VendorDetailUID.HasValue ?
+                new ObjectParameter("P_VendorDetailUID", p_VendorDetailUID) :
+                new ObjectParameter("P_VendorDetailUID", typeof(int));
+    
+            var p_ManufacturerUIDParameter = p_ManufacturerUID.HasValue ?
+                new ObjectParameter("P_ManufacturerUID", p_ManufacturerUID) :
+                new ObjectParameter("P_ManufacturerUID", typeof(int));
+    
+            var p_GRNDetailUIDParameter = p_GRNDetailUID.HasValue ?
+                new ObjectParameter("P_GRNDetailUID", p_GRNDetailUID) :
+                new ObjectParameter("P_GRNDetailUID", typeof(int));
+    
+            var p_GRNDttmParameter = p_GRNDttm.HasValue ?
+                new ObjectParameter("P_GRNDttm", p_GRNDttm) :
+                new ObjectParameter("P_GRNDttm", typeof(System.DateTime));
+    
+            var p_RefNoParameter = p_RefNo != null ?
+                new ObjectParameter("P_RefNo", p_RefNo) :
+                new ObjectParameter("P_RefNo", typeof(string));
+    
+            var p_RefTableParameter = p_RefTable != null ?
+                new ObjectParameter("P_RefTable", p_RefTable) :
+                new ObjectParameter("P_RefTable", typeof(string));
+    
+            var p_RefUIDParameter = p_RefUID.HasValue ?
+                new ObjectParameter("P_RefUID", p_RefUID) :
+                new ObjectParameter("P_RefUID", typeof(int));
+    
+            var p_NoteMovementParameter = p_NoteMovement != null ?
+                new ObjectParameter("P_NoteMovement", p_NoteMovement) :
+                new ObjectParameter("P_NoteMovement", typeof(string));
+    
+            var p_SerialNumberParameter = p_SerialNumber != null ?
+                new ObjectParameter("P_SerialNumber", p_SerialNumber) :
+                new ObjectParameter("P_SerialNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("pInvenGoodReceiveFromEcount", p_ItemMasterUIDParameter, p_StoreUIDParameter, p_ToStoreUIDParameter, p_UserUIDParameter, p_OrganisationParameter, p_CommentsParameter, p_IMUOMUIDParameter, p_ExpiryDateParameter, p_BatchIDParameter, p_QuantityParameter, p_ItemCostParameter, p_VendorDetailUIDParameter, p_ManufacturerUIDParameter, p_GRNDetailUIDParameter, p_GRNDttmParameter, p_RefNoParameter, p_RefTableParameter, p_RefUIDParameter, p_NoteMovementParameter, p_SerialNumberParameter);
+        }
+    
+        public virtual int pInvenInsertStockMovementFromEcount(Nullable<int> p_StockUID, Nullable<int> p_StoreUID, Nullable<int> p_ToStoreUID, Nullable<int> p_ItemMasterUID, string p_BatchID, Nullable<System.DateTime> p_StokDttm, Nullable<double> p_TotalBFQty, Nullable<double> p_BFQty, Nullable<double> p_INQty, Nullable<double> p_OUTQty, Nullable<double> p_BalQty, Nullable<double> p_TotalBalQty, Nullable<int> p_IMUOMUID, Nullable<double> p_UnitCost, string p_RefNo, string p_RefTable, Nullable<int> p_RefUID, Nullable<long> p_RefPatientUID, string p_Note, Nullable<int> p_UserUID, string p_SerialNumber)
+        {
+            var p_StockUIDParameter = p_StockUID.HasValue ?
+                new ObjectParameter("P_StockUID", p_StockUID) :
+                new ObjectParameter("P_StockUID", typeof(int));
+    
+            var p_StoreUIDParameter = p_StoreUID.HasValue ?
+                new ObjectParameter("P_StoreUID", p_StoreUID) :
+                new ObjectParameter("P_StoreUID", typeof(int));
+    
+            var p_ToStoreUIDParameter = p_ToStoreUID.HasValue ?
+                new ObjectParameter("P_ToStoreUID", p_ToStoreUID) :
+                new ObjectParameter("P_ToStoreUID", typeof(int));
+    
+            var p_ItemMasterUIDParameter = p_ItemMasterUID.HasValue ?
+                new ObjectParameter("P_ItemMasterUID", p_ItemMasterUID) :
+                new ObjectParameter("P_ItemMasterUID", typeof(int));
+    
+            var p_BatchIDParameter = p_BatchID != null ?
+                new ObjectParameter("P_BatchID", p_BatchID) :
+                new ObjectParameter("P_BatchID", typeof(string));
+    
+            var p_StokDttmParameter = p_StokDttm.HasValue ?
+                new ObjectParameter("P_StokDttm", p_StokDttm) :
+                new ObjectParameter("P_StokDttm", typeof(System.DateTime));
+    
+            var p_TotalBFQtyParameter = p_TotalBFQty.HasValue ?
+                new ObjectParameter("p_TotalBFQty", p_TotalBFQty) :
+                new ObjectParameter("p_TotalBFQty", typeof(double));
+    
+            var p_BFQtyParameter = p_BFQty.HasValue ?
+                new ObjectParameter("P_BFQty", p_BFQty) :
+                new ObjectParameter("P_BFQty", typeof(double));
+    
+            var p_INQtyParameter = p_INQty.HasValue ?
+                new ObjectParameter("P_INQty", p_INQty) :
+                new ObjectParameter("P_INQty", typeof(double));
+    
+            var p_OUTQtyParameter = p_OUTQty.HasValue ?
+                new ObjectParameter("P_OUTQty", p_OUTQty) :
+                new ObjectParameter("P_OUTQty", typeof(double));
+    
+            var p_BalQtyParameter = p_BalQty.HasValue ?
+                new ObjectParameter("P_BalQty", p_BalQty) :
+                new ObjectParameter("P_BalQty", typeof(double));
+    
+            var p_TotalBalQtyParameter = p_TotalBalQty.HasValue ?
+                new ObjectParameter("P_TotalBalQty", p_TotalBalQty) :
+                new ObjectParameter("P_TotalBalQty", typeof(double));
+    
+            var p_IMUOMUIDParameter = p_IMUOMUID.HasValue ?
+                new ObjectParameter("P_IMUOMUID", p_IMUOMUID) :
+                new ObjectParameter("P_IMUOMUID", typeof(int));
+    
+            var p_UnitCostParameter = p_UnitCost.HasValue ?
+                new ObjectParameter("P_UnitCost", p_UnitCost) :
+                new ObjectParameter("P_UnitCost", typeof(double));
+    
+            var p_RefNoParameter = p_RefNo != null ?
+                new ObjectParameter("P_RefNo", p_RefNo) :
+                new ObjectParameter("P_RefNo", typeof(string));
+    
+            var p_RefTableParameter = p_RefTable != null ?
+                new ObjectParameter("P_RefTable", p_RefTable) :
+                new ObjectParameter("P_RefTable", typeof(string));
+    
+            var p_RefUIDParameter = p_RefUID.HasValue ?
+                new ObjectParameter("P_RefUID", p_RefUID) :
+                new ObjectParameter("P_RefUID", typeof(int));
+    
+            var p_RefPatientUIDParameter = p_RefPatientUID.HasValue ?
+                new ObjectParameter("P_RefPatientUID", p_RefPatientUID) :
+                new ObjectParameter("P_RefPatientUID", typeof(long));
+    
+            var p_NoteParameter = p_Note != null ?
+                new ObjectParameter("P_Note", p_Note) :
+                new ObjectParameter("P_Note", typeof(string));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            var p_SerialNumberParameter = p_SerialNumber != null ?
+                new ObjectParameter("P_SerialNumber", p_SerialNumber) :
+                new ObjectParameter("P_SerialNumber", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("pInvenInsertStockMovementFromEcount", p_StockUIDParameter, p_StoreUIDParameter, p_ToStoreUIDParameter, p_ItemMasterUIDParameter, p_BatchIDParameter, p_StokDttmParameter, p_TotalBFQtyParameter, p_BFQtyParameter, p_INQtyParameter, p_OUTQtyParameter, p_BalQtyParameter, p_TotalBalQtyParameter, p_IMUOMUIDParameter, p_UnitCostParameter, p_RefNoParameter, p_RefTableParameter, p_RefUIDParameter, p_RefPatientUIDParameter, p_NoteParameter, p_UserUIDParameter, p_SerialNumberParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.DateTime>> pInvenIssueItemEcount(Nullable<int> p_ItemIssueUID, Nullable<int> p_UserUID)
+        {
+            var p_ItemIssueUIDParameter = p_ItemIssueUID.HasValue ?
+                new ObjectParameter("P_ItemIssueUID", p_ItemIssueUID) :
+                new ObjectParameter("P_ItemIssueUID", typeof(int));
+    
+            var p_UserUIDParameter = p_UserUID.HasValue ?
+                new ObjectParameter("P_UserUID", p_UserUID) :
+                new ObjectParameter("P_UserUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("pInvenIssueItemEcount", p_ItemIssueUIDParameter, p_UserUIDParameter);
+        }
     }
 }

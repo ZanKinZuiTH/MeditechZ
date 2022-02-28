@@ -24,6 +24,7 @@ namespace MediTech.DataBase
         public string ProcessingNotes { get; set; }
         public Nullable<double> Price { get; set; }
         public Nullable<double> DoctorFee { get; set; }
+        public Nullable<int> CareproviderUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }

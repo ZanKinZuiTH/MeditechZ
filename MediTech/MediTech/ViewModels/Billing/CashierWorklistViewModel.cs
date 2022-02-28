@@ -736,6 +736,8 @@ namespace MediTech.ViewModels
                 Amount = p.NetAmount,
                 Discount = p.Discount ?? 0,
                 NetAmount = p.NetAmount,
+                DoctorFee = p.DoctorFee,
+                CareproviderUID = p.CareproviderUID,
                 ItemMutiplier = p.Quantity ?? 1,
                 BSMDDUID = p.BSMDDUID,
                 IdentifyingUID = p.IdentifyingUID,

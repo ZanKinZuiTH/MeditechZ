@@ -26,6 +26,7 @@ namespace MediTech.Model
         public string Comments { get; set; }
         public Nullable<double> UnitPrice { get; set; }
         public Nullable<double> DoctorFee { get; set; }
+        public Nullable<double> DoctorFeePer { get; set; }
         public Nullable<double> NetAmount { get; set; }
         public Nullable<double> DisplayPrice { get; set; }
         public string IsPriceOverwrite { get; set; }
@@ -55,6 +56,7 @@ namespace MediTech.Model
         public Nullable<int> BillPackageUID { get; set; }
 
         public Nullable<int> CareproviderUID { get; set; }
+        public String CareproviderName { get; set; }
         public Nullable<int> CancelledByUserUID { get; set; }
         public Nullable<System.DateTime> CancelledDttm { get; set; }
         public Nullable<long> PatientPackageUID { get; set; }
