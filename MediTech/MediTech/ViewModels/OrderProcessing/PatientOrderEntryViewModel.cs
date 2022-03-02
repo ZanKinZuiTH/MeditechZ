@@ -648,8 +648,20 @@ namespace MediTech.ViewModels
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
                             newOrder.DoctorFeePer = item.DoctorFee;
                             newOrder.DoctorFee = (item.DoctorFee / 100) * newOrder.NetAmount;
-                            newOrder.CareproviderUID = item.CareproviderUID;
-                            newOrder.CareproviderName = item.CareproviderName;
+
+                            if (item.DoctorFee != null && item.DoctorFee != 0)
+                            {
+                                if (item.CareproviderUID != null)
+                                {
+                                    newOrder.CareproviderUID = item.CareproviderUID;
+                                    newOrder.CareproviderName = item.CareproviderName;
+                                }
+                                else
+                                {
+                                    newOrder.CareproviderUID = PatientVisit.CareProviderUID;
+                                    newOrder.CareproviderName = PatientVisit.CareProviderName;
+                                }
+                            }
                             newOrder.OwnerOrganisationUID = ownerUID;
 
                             if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)

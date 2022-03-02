@@ -167,6 +167,10 @@ namespace MediTech.ViewModels
         public OrderWithOutStockItemViewModel()
         {
             Careproviders = DataService.UserManage.GetCareproviderDoctor();
+            if (AppUtil.Current.IsDoctor == true)
+            {
+                SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
+            }
         }
         public void BindingFromBillableItem()
         {
@@ -220,6 +224,15 @@ namespace MediTech.ViewModels
                 {
                     WarningDialog("ไม่อนุญาติให้คีย์ จำนวน < 0");
                     return;
+                }
+                
+                if(CareproviderVisibility == Visibility.Visible)
+                {
+                    if (SelectCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือก แพทย์");
+                        return;
+                    }
                 }
 
                 if (PatientOrderDetail == null)
