@@ -36,6 +36,7 @@ namespace MediTech.Views
         private void PatientVisitMass_UpdateEvent(object sender, EventArgs e)
         {
             PatientGrid.RefreshData();
+            grdOrderDetail.RefreshData();
         }
 
         private void PatientVisitMass_Loaded(object sender, RoutedEventArgs e)
