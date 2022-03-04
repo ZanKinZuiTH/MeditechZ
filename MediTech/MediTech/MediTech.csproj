@@ -1423,6 +1423,7 @@
     <Compile Include="ViewModels\Documents\ReportParameter4ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter3ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportParameter2ViewModel.cs" />
+    <Compile Include="ViewModels\Documents\ReportParameter8ViewModel.cs" />
     <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
     <Compile Include="ViewModels\Ecount\EcountItemIssueViewModel.cs" />
     <Compile Include="ViewModels\Ecount\EcountTranferViewModel.cs" />
@@ -1643,6 +1644,9 @@
     </Compile>
     <Compile Include="Views\Documents\ReportParameter2.xaml.cs">
       <DependentUpon>ReportParameter2.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Documents\ReportParameter8.xaml.cs">
+      <DependentUpon>ReportParameter8.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Ecount\EcountItemIssue.xaml.cs">
       <DependentUpon>EcountItemIssue.xaml</DependentUpon>
@@ -2204,6 +2208,10 @@
     <Page Include="Views\Documents\ReportParameter2.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Documents\ReportParameter8.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Ecount\EcountItemIssue.xaml">
       <SubType>Designer</SubType>

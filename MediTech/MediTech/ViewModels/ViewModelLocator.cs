@@ -311,6 +311,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ReportParameter8ViewModel ReportParameter8ViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ReportParameter8ViewModel>())
+                    SimpleIoc.Default.Register<ReportParameter8ViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ReportParameter8ViewModel>();
+            }
+        }
+
 
         public PatientSummeryReportViewModel PatientSummeryReportViewModel
         {

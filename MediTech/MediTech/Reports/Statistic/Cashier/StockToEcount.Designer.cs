@@ -44,7 +44,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell34 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell35 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell36 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell37 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.cStore = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell39 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -120,6 +120,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField13 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
             this.pivotGridField14 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.StoreFrom = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -154,6 +155,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableRow2});
             this.xrTable2.SizeF = new System.Drawing.SizeF(2981.579F, 25F);
             this.xrTable2.StylePriority.UseBorders = false;
+            this.xrTable2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTable2_BeforePrint);
             // 
             // xrTableRow2
             // 
@@ -167,7 +169,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell34,
             this.xrTableCell35,
             this.xrTableCell36,
-            this.xrTableCell37,
+            this.cStore,
             this.xrTableCell38,
             this.xrTableCell39,
             this.xrTableCell40,
@@ -190,6 +192,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell56});
             this.xrTableRow2.Name = "xrTableRow2";
             this.xrTableRow2.Weight = 1D;
+            this.xrTableRow2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableRow2_BeforePrint);
             // 
             // xrTableCell29
             // 
@@ -257,14 +260,15 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell36.Name = "xrTableCell36";
             this.xrTableCell36.Weight = 1D;
             // 
-            // xrTableCell37
+            // cStore
             // 
-            this.xrTableCell37.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            this.cStore.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "Store")});
-            this.xrTableCell37.Multiline = true;
-            this.xrTableCell37.Name = "xrTableCell37";
-            this.xrTableCell37.Text = "Store";
-            this.xrTableCell37.Weight = 1.333333740234375D;
+            this.cStore.Multiline = true;
+            this.cStore.Name = "cStore";
+            this.cStore.Text = "Store";
+            this.cStore.Weight = 1.333333740234375D;
+            this.cStore.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.cStore_BeforePrint);
             // 
             // xrTableCell38
             // 
@@ -873,6 +877,12 @@ namespace MediTech.Reports.Statistic.Cashier
             this.pivotGridField14.Name = "pivotGridField14";
             this.pivotGridField14.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
             // 
+            // StoreFrom
+            // 
+            this.StoreFrom.Description = "sf";
+            this.StoreFrom.Name = "StoreFrom";
+            this.StoreFrom.Visible = false;
+            // 
             // StockToEcount
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -894,7 +904,8 @@ namespace MediTech.Reports.Statistic.Cashier
             this.DateFrom,
             this.DateTo,
             this.OrganisationList,
-            this.VISTYUID});
+            this.VISTYUID,
+            this.StoreFrom});
             this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -940,7 +951,7 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell37;
+        private DevExpress.XtraReports.UI.XRTableCell cStore;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
@@ -995,5 +1006,6 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell56;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
         private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
+        private DevExpress.XtraReports.Parameters.Parameter StoreFrom;
     }
 }

@@ -17,8 +17,8 @@ namespace MediTech.DataService
             string requestApi = string.Format("/WeatherForecast/ichecktest");
             string data = IcheckupHelper.Get<string>(requestApi);
             return data;
+           // fileName = fileName.Replace("[ddMMyyyyhhmmss]", DateTime.Now.ToString("ddMMyyyyhhmmss"));
         }
-
 
 
     }

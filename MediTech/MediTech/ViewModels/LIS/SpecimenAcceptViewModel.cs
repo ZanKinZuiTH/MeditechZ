@@ -761,8 +761,8 @@ namespace MediTech.ViewModels
 
         void testicheck()
         {
+            //var test = DataService.Icheckup.ichecktest();
             var test = DataService.Icheckup.ichecktest();
-            
             WarningDialog("ไม่มี " +  " ในคลัง");
         }
 

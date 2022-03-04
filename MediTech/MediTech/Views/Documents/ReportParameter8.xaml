@@ -1,0 +1,90 @@
+﻿<UserControl xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.ReportParameter8"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=ReportParameter8ViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical" 
+                            VerticalAlignment="Top"
+                            Width="700">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="DateFrom">
+                    <dxe:DateEdit DateTime="{Binding DateFrom}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="DateTo">
+                    <dxe:DateEdit DateTime="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="ประเภท Visit">
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding VisitTypeSource}"
+                                      NullValueButtonPlacement="EditBox"
+                                      SelectedItem="{Binding SelectedVisitType}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="สถานประกอบการ"/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="จาก สถานประกอบการ" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxg:LookUpEdit Name="lkeOrganisationFrom" ItemsSource="{Binding OrganisationsFrom}" 
+                                      SelectedItem="{Binding SelectOrganisationFrom}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      AutoPopulateColumns="False">
+                        <dxg:LookUpEdit.StyleSettings>
+                            <dxg:SearchLookUpEditStyleSettings/>
+                        </dxg:LookUpEdit.StyleSettings>
+                    </dxg:LookUpEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="จาก Store" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit Name="cmbStore" 
+                                      ItemsSource="{Binding StoresFrom}" 
+                                      SelectedItem="{Binding SelectStoreFrom}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+
+
+
+
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <dx:SimpleButton Width="80" Command="{Binding PrintCommand}" HorizontalAlignment="Right" 
+                                     Height="25" Content="พิมพ์"/>
+                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}" HorizontalAlignment="Right"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>
