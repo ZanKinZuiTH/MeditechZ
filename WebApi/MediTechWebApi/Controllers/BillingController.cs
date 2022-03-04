@@ -528,6 +528,7 @@ namespace MediTechWebApi.Controllers
                     //    }
 
                     //}
+
                     List<long> prescriptonUIDs = new List<long>();
                     foreach (var item in model.PatientBilledItems)
                     {
@@ -646,11 +647,12 @@ namespace MediTechWebApi.Controllers
                             patBilled.Amount = item.Amount;
                             patBilled.Discount = item.Discount;
                             patBilled.NetAmount = item.NetAmount;
-
-                            if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
-                            {
-                                patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;
-                            }
+                            patBilled.DoctorFee = item.DoctorFee;
+                            patBilled.CareproviderUID = item.CareproviderUID;
+                            //if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
+                            //{
+                            //    patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;
+                            //}
 
 
                             db.PatientBilledItem.AddOrUpdate(patBilled);

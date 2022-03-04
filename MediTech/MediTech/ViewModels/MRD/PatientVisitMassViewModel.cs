@@ -284,7 +284,7 @@ namespace MediTech.ViewModels
         public PatientOrderDetailModel SelectPatientOrder
         {
             get { return _SelectPatientOrder; }
-            set { _SelectPatientOrder = value; }
+            set { Set(ref _SelectPatientOrder, value); }
         }
 
 
@@ -468,6 +468,17 @@ namespace MediTech.ViewModels
             get
             {
                 return _SaveVisitStatusCommand ?? (_SaveVisitStatusCommand = new RelayCommand(SaveVisitStatus));
+            }
+        }
+
+        private RelayCommand _EditCommand;
+
+        public RelayCommand EditCommand
+        {
+            get
+            {
+                return _EditCommand
+                    ?? (_EditCommand = new RelayCommand(EditOrder));
             }
         }
 
@@ -768,6 +779,8 @@ namespace MediTech.ViewModels
                                         NetAmount = p.NetAmount,
                                         ItemMutiplier = p.Quantity ?? 1,
                                         BSMDDUID = p.BSMDDUID,
+                                        DoctorFee = p.DoctorFee,
+                                        CareproviderUID = p.CareproviderUID,
                                         IdentifyingUID = p.IdentifyingUID,
                                         BillingService = p.BillingService
                                     }));
@@ -843,6 +856,14 @@ namespace MediTech.ViewModels
             {
 
                 ErrorDialog(er.Message);
+            }
+        }
+
+        private void EditOrder()
+        {
+            if (SelectPatientOrder != null)
+            {
+                PopUpOrderEdit(SelectPatientOrder);
             }
         }
 
@@ -992,7 +1013,6 @@ namespace MediTech.ViewModels
                             newOrder.ItemUID = billItem.ItemUID;
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
-                            newOrder.DoctorFee = item.DoctorFee;
                             newOrder.UnitPrice = item.Price;
                             newOrder.DisplayPrice = item.Price;
 
@@ -1004,6 +1024,9 @@ namespace MediTech.ViewModels
                             newOrder.StartDttm = DateTime.Now;
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
+                            newOrder.DoctorFeePer = item.DoctorFee;
+                            newOrder.DoctorFee = (item.DoctorFee / 100) * newOrder.NetAmount;
+                            newOrder.CareproviderUID = item.CareproviderUID;
                             newOrder.OwnerOrganisationUID = ownerUID;
 
 
@@ -1086,7 +1109,45 @@ namespace MediTech.ViewModels
             }
 
         }
-
+        void PopUpOrderEdit(PatientOrderDetailModel selectPatientOrder)
+        {
+            switch (selectPatientOrder.BillingService)
+            {
+                case "Lab Test":
+                case "Radiology":
+                case "Order Item":
+                    {
+                        OrderWithOutStockItem ordRe = new OrderWithOutStockItem(selectPatientOrder);
+                        OrderWithOutStockItemViewModel resultRe = (OrderWithOutStockItemViewModel)LaunchViewDialog(ordRe, "ORDLAB", true);
+                        if (resultRe != null && resultRe.ResultDialog == ActionDialog.Save)
+                        {
+                            selectPatientOrder = resultRe.PatientOrderDetail;
+                            OnUpdateEvent();
+                        }
+                        break;
+                    }
+                case "Medical Supplies":
+                case "Supply":
+                    OrderMedicalItem ordMed = new OrderMedicalItem(selectPatientOrder);
+                    OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
+                    if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
+                    {
+                        selectPatientOrder = resultMed.PatientOrderDetail;
+                        OnUpdateEvent();
+                    }
+                    break;
+                case "Drug":
+                    OrderDrugItem ordDrug = new OrderDrugItem(selectPatientOrder);
+                    OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
+                    if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
+                    {
+                        selectPatientOrder = resultDrug.PatientOrderDetail;
+                        OnUpdateEvent();
+                    }
+                    break;
+            }
+            OnUpdateEvent();
+        }
         public BillableItemDetailModel GetBillableItemPrice(List<BillableItemDetailModel> billItmDetail, int ownerOrganisationUID)
         {
             BillableItemDetailModel selectBillItemDetail = null;

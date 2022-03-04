@@ -635,7 +635,7 @@ namespace MediTech.ViewModels
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
                             newOrder.UnitPrice = item.Price;
-                            newOrder.DoctorFee = (item.DoctorFee / 100) * item.Price;
+
                             newOrder.DisplayPrice = item.Price;
 
                             newOrder.FRQNCUID = item.FRQNCUID;
@@ -646,7 +646,22 @@ namespace MediTech.ViewModels
                             newOrder.StartDttm = DateTime.Now;
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
+                            newOrder.DoctorFeePer = item.DoctorFee;
+                            newOrder.DoctorFee = (item.DoctorFee / 100) * newOrder.NetAmount;
 
+                            if (item.DoctorFee != null && item.DoctorFee != 0)
+                            {
+                                if (item.CareproviderUID != null)
+                                {
+                                    newOrder.CareproviderUID = item.CareproviderUID;
+                                    newOrder.CareproviderName = item.CareproviderName;
+                                }
+                                else
+                                {
+                                    newOrder.CareproviderUID = PatientVisit.CareProviderUID;
+                                    newOrder.CareproviderName = PatientVisit.CareProviderName;
+                                }
+                            }
                             newOrder.OwnerOrganisationUID = ownerUID;
 
                             if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)

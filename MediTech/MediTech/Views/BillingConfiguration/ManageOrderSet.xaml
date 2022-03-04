@@ -54,7 +54,7 @@
                                           SelectedItem="{Binding SelectOrganisation}"/>
                 </dxlc:LayoutItem>-->
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup Header="Order Item" View="GroupBox" Orientation="Vertical">
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="Order Name">
@@ -186,22 +186,30 @@
                             <TextBlock Text="เปอร์เซ็น (%)"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-
+                    <dxlc:LayoutItem Label="แพทย์">
+                        <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                          ItemsSource="{Binding Careproviders}"
+                                          SelectedItem="{Binding SelectCareprovider}"
+                                          NullValueButtonPlacement="EditBox"
+                                          IsTextEditable="False" 
+                                          DisplayMember="FullName"
+                                          ValueMember="CareproviderUID"
+                                              />
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="เปิดใช้งาน">
                         <dxe:DateEdit EditValue="{Binding ActiveFrom2}"/>
                     </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem Label="ปิดการใช้งาน" >
                         <dxe:DateEdit EditValue="{Binding ActiveTo2}"/>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem Label="Note Processing" LabelVerticalAlignment="Top">
                         <dxe:TextEdit Text="{Binding NoteProcessing,Mode=TwoWay}"
                 TextWrapping="Wrap" Height="50"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem/>
                     <dxlc:LayoutItem/>
                     <dxlc:LayoutItem/>
                 </dxlc:LayoutGroup>
@@ -261,6 +269,7 @@
                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
+                    <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"/>
                     <dxg:GridColumn Header="ค่าแพทย์ (%)" FieldName="DoctorFee" ReadOnly="True">
                         <dxg:GridColumn.EditSettings>
                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
@@ -272,7 +281,7 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup HorizontalAlignment="Right"
                               
                               Orientation="Horizontal">
@@ -281,6 +290,6 @@
                 <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
                                      Height="25" Content="ยกเลิก"/>
             </dxlc:LayoutGroup>
-        </dxlc:LayoutControl>  
+        </dxlc:LayoutControl>
     </Grid>
 </UserControl>

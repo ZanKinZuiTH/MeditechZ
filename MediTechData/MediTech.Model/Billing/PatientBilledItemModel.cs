@@ -37,6 +37,8 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public long? IdentifyingUID { get; set; }
+        public double? DoctorFee { get; set; }
+        public int? CareproviderUID { get; set; }
 
     }
 }

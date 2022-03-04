@@ -41,6 +41,30 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<CareproviderModel> _Careproviders;
+
+        public List<CareproviderModel> Careproviders
+        {
+            get { return _Careproviders; }
+            set { Set(ref _Careproviders, value); }
+        }
+
+        private CareproviderModel _SelectCareprovider;
+
+        public CareproviderModel SelectCareprovider
+        {
+            get { return _SelectCareprovider; }
+            set { Set(ref _SelectCareprovider, value); }
+        }
+
+        private Visibility _CareproviderVisibility = Visibility.Hidden;
+
+        public Visibility CareproviderVisibility
+        {
+            get { return _CareproviderVisibility; }
+            set { Set(ref _CareproviderVisibility, value); }
+        }
+
 
         private string _TypeOrder;
 
@@ -140,7 +164,14 @@ namespace MediTech.ViewModels
 
         #region Method
 
-
+        public OrderWithOutStockItemViewModel()
+        {
+            Careproviders = DataService.UserManage.GetCareproviderDoctor();
+            if (AppUtil.Current.IsDoctor == true)
+            {
+                SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
+            }
+        }
         public void BindingFromBillableItem()
         {
             DateTime now = DateTime.Now;
@@ -152,11 +183,18 @@ namespace MediTech.ViewModels
             Quantity = 1;
             StartDate = now.Date;
             StartTime = now;
+            if (BillableItem.DoctorFee != null && BillableItem.DoctorFee != 0 && BillableItem.BSMDDUID != 2841)
+            {
+                CareproviderVisibility = Visibility.Visible;
+            }
+            else
+            {
+                CareproviderVisibility = Visibility.Hidden;
+            }
         }
 
         public void BindingFromPatientOrderDetail()
         {
-
             TypeOrder = PatientOrderDetail.BillingService;
             OrderName = PatientOrderDetail.ItemName;
             OrderCode = "Code : " + PatientOrderDetail.ItemCode;
@@ -167,6 +205,15 @@ namespace MediTech.ViewModels
             StartTime = PatientOrderDetail.StartDttm.Value;
             Notes = PatientOrderDetail.Comments;
             OverwritePrice = PatientOrderDetail.OverwritePrice;
+            SelectCareprovider = Careproviders != null ? Careproviders.FirstOrDefault(p => p.CareproviderUID == PatientOrderDetail.CareproviderUID) : null;
+            if (PatientOrderDetail.DoctorFee != null && PatientOrderDetail.DoctorFee != 0 && PatientOrderDetail.BSMDDUID != 2841)
+            {
+                CareproviderVisibility = Visibility.Visible;
+            }
+            else
+            {
+                CareproviderVisibility = Visibility.Hidden;
+            }
         }
 
         public void Add()
@@ -177,6 +224,15 @@ namespace MediTech.ViewModels
                 {
                     WarningDialog("ไม่อนุญาติให้คีย์ จำนวน < 0");
                     return;
+                }
+                
+                if(CareproviderVisibility == Visibility.Visible)
+                {
+                    if (SelectCareprovider == null)
+                    {
+                        WarningDialog("กรุณาเลือก แพทย์");
+                        return;
+                    }
                 }
 
                 if (PatientOrderDetail == null)
@@ -189,9 +245,14 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.ItemName = BillableItem.ItemName;
                     PatientOrderDetail.BillingService = BillableItem.BillingServiceMetaData;
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
-                    PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * BillableItem.Price;
+                    PatientOrderDetail.DoctorFeePer = BillableItem.DoctorFee;
                 }
 
+                if (CareproviderVisibility == Visibility.Visible)
+                {
+                    PatientOrderDetail.CareproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : (int?)null;
+                    PatientOrderDetail.CareproviderName = SelectCareprovider != null ? SelectCareprovider.FullName : null;
+                }
                 PatientOrderDetail.Comments = Notes;
 
                 PatientOrderDetail.Quantity = Quantity;
@@ -214,6 +275,8 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.NetAmount = ((PatientOrderDetail.UnitPrice ?? 0) * PatientOrderDetail.Quantity);
                     PatientOrderDetail.DisplayPrice = PatientOrderDetail.UnitPrice;
                 }
+
+                PatientOrderDetail.DoctorFee = (PatientOrderDetail.DoctorFeePer / 100) * PatientOrderDetail.NetAmount;
 
                 if (PatientOrderDetail.OwnerOrganisationUID == 0)
                 {

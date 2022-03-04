@@ -1030,6 +1030,7 @@
           <Property Name="ProcessingNotes" Type="nvarchar" MaxLength="500" />
           <Property Name="Price" Type="float" />
           <Property Name="DoctorFee" Type="float" />
+          <Property Name="CareproviderUID" Type="int" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -1314,6 +1315,7 @@
           <Property Name="DoctorFee" Type="float" />
           <Property Name="ItemCost" Type="float" />
           <Property Name="ExtendCost" Type="float" />
+          <Property Name="CareproviderUID" Type="int" />
           <Property Name="PatientOrderDetailUID" Type="bigint" Nullable="false" />
           <Property Name="StoreUID" Type="int" />
           <Property Name="StockUID" Type="int" />
@@ -3584,6 +3586,28 @@
           <Parameter Name="P_RefUID" Type="int" Mode="In" />
           <Parameter Name="P_NoteMovement" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="pInvenGoodReceiveFromEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
+          <Parameter Name="P_StoreUID" Type="int" Mode="In" />
+          <Parameter Name="P_ToStoreUID" Type="int" Mode="In" />
+          <Parameter Name="P_UserUID" Type="int" Mode="In" />
+          <Parameter Name="P_Organisation" Type="int" Mode="In" />
+          <Parameter Name="P_Comments" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_IMUOMUID" Type="int" Mode="In" />
+          <Parameter Name="P_ExpiryDate" Type="datetime" Mode="In" />
+          <Parameter Name="P_BatchID" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_Quantity" Type="float" Mode="In" />
+          <Parameter Name="P_ItemCost" Type="float" Mode="In" />
+          <Parameter Name="P_VendorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="P_ManufacturerUID" Type="int" Mode="In" />
+          <Parameter Name="P_GRNDetailUID" Type="int" Mode="In" />
+          <Parameter Name="P_GRNDttm" Type="datetime" Mode="In" />
+          <Parameter Name="P_RefNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_RefTable" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_RefUID" Type="int" Mode="In" />
+          <Parameter Name="P_NoteMovement" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_SerialNumber" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="pInvenInsertItemAverageCost" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
           <Parameter Name="P_InQty" Type="float" Mode="In" />
@@ -3625,7 +3649,34 @@
           <Parameter Name="P_Note" Type="nvarchar" Mode="In" />
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pInvenInsertStockMovementFromEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_StockUID" Type="int" Mode="In" />
+          <Parameter Name="P_StoreUID" Type="int" Mode="In" />
+          <Parameter Name="P_ToStoreUID" Type="int" Mode="In" />
+          <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
+          <Parameter Name="P_BatchID" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_StokDttm" Type="datetime" Mode="In" />
+          <Parameter Name="p_TotalBFQty" Type="float" Mode="In" />
+          <Parameter Name="P_BFQty" Type="float" Mode="In" />
+          <Parameter Name="P_INQty" Type="float" Mode="In" />
+          <Parameter Name="P_OUTQty" Type="float" Mode="In" />
+          <Parameter Name="P_BalQty" Type="float" Mode="In" />
+          <Parameter Name="P_TotalBalQty" Type="float" Mode="In" />
+          <Parameter Name="P_IMUOMUID" Type="int" Mode="In" />
+          <Parameter Name="P_UnitCost" Type="float" Mode="In" />
+          <Parameter Name="P_RefNo" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_RefTable" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_RefUID" Type="int" Mode="In" />
+          <Parameter Name="P_RefPatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_Note" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_UserUID" Type="int" Mode="In" />
+          <Parameter Name="P_SerialNumber" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="pInvenIssueItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
+          <Parameter Name="P_UserUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pInvenIssueItemEcount" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_ItemIssueUID" Type="int" Mode="In" />
           <Parameter Name="P_UserUID" Type="int" Mode="In" />
         </Function>
@@ -5377,6 +5428,55 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <FunctionImport Name="pInvenGoodReceiveFromEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_Organisation" Mode="In" Type="Int32" />
+            <Parameter Name="P_Comments" Mode="In" Type="String" />
+            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ExpiryDate" Mode="In" Type="DateTime" />
+            <Parameter Name="P_BatchID" Mode="In" Type="String" />
+            <Parameter Name="P_Quantity" Mode="In" Type="Double" />
+            <Parameter Name="P_ItemCost" Mode="In" Type="Double" />
+            <Parameter Name="P_VendorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ManufacturerUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GRNDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GRNDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="P_RefNo" Mode="In" Type="String" />
+            <Parameter Name="P_RefTable" Mode="In" Type="String" />
+            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_NoteMovement" Mode="In" Type="String" />
+            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pInvenInsertStockMovementFromEcount">
+            <Parameter Name="P_StockUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_BatchID" Mode="In" Type="String" />
+            <Parameter Name="P_StokDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="p_TotalBFQty" Mode="In" Type="Double" />
+            <Parameter Name="P_BFQty" Mode="In" Type="Double" />
+            <Parameter Name="P_INQty" Mode="In" Type="Double" />
+            <Parameter Name="P_OUTQty" Mode="In" Type="Double" />
+            <Parameter Name="P_BalQty" Mode="In" Type="Double" />
+            <Parameter Name="P_TotalBalQty" Mode="In" Type="Double" />
+            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UnitCost" Mode="In" Type="Double" />
+            <Parameter Name="P_RefNo" Mode="In" Type="String" />
+            <Parameter Name="P_RefTable" Mode="In" Type="String" />
+            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_RefPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_Note" Mode="In" Type="String" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pInvenIssueItemEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemIssueUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -8938,6 +9038,7 @@
           <Property Name="ProcessingNotes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Double" />
           <Property Name="DoctorFee" Type="Double" />
+          <Property Name="CareproviderUID" Type="Int32" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -9222,6 +9323,7 @@
           <Property Name="DoctorFee" Type="Double" />
           <Property Name="ItemCost" Type="Double" />
           <Property Name="ExtendCost" Type="Double" />
+          <Property Name="CareproviderUID" Type="Int32" />
           <Property Name="PatientOrderDetailUID" Type="Int64" Nullable="false" />
           <Property Name="StoreUID" Type="Int32" />
           <Property Name="StockUID" Type="Int32" />
@@ -14171,6 +14273,7 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
                 <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProcessingNotes" ColumnName="ProcessingNotes" />
@@ -14468,6 +14571,7 @@
                 <ScalarProperty Name="StockUID" ColumnName="StockUID" />
                 <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
                 <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
                 <ScalarProperty Name="ExtendCost" ColumnName="ExtendCost" />
                 <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
                 <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
@@ -16441,6 +16545,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pInvenGoodReceiveFromEcount" FunctionName="MediTechModel.Store.pInvenGoodReceiveFromEcount" />
+          <FunctionImportMapping FunctionImportName="pInvenInsertStockMovementFromEcount" FunctionName="MediTechModel.Store.pInvenInsertStockMovementFromEcount" />
+          <FunctionImportMapping FunctionImportName="pInvenIssueItemEcount" FunctionName="MediTechModel.Store.pInvenIssueItemEcount" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

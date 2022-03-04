@@ -203,6 +203,15 @@ namespace MediTech.ViewModels
             set { Set(ref _DoctorFee, value); }
         }
 
+        public List<CareproviderModel> Careproviders { get; set; }
+        private CareproviderModel _SelectCareprovider;
+
+        public CareproviderModel SelectCareprovider
+        {
+            get { return _SelectCareprovider; }
+            set { Set(ref _SelectCareprovider, value); }
+        }
+
         private string _NoteProcessing;
 
         public string NoteProcessing
@@ -244,6 +253,7 @@ namespace MediTech.ViewModels
                     NoteProcessing = SelectOrderSetBillableItem.ProcessingNotes;
                     Price = SelectOrderSetBillableItem.Price;
                     DoctorFee = SelectOrderSetBillableItem.DoctorFee;
+                    SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == SelectOrderSetBillableItem.CareproviderUID);
                 }
                 else
                 {
@@ -394,6 +404,7 @@ namespace MediTech.ViewModels
         {
             Frequency = DataService.Pharmacy.GetDrugFrequency();
             BillableItems = DataService.MasterData.GetBillableItemAll();
+            Careproviders = DataService.UserManage.GetCareproviderDoctor();
             //Organisations = GetHealthOrganisationMedical();
             //Organisations.Add(new HealthOrganisationModel { HealthOrganisationUID = 0, Name = "ราคามาตรฐานส่วนกลาง" });
             //Organisations = Organisations.OrderBy(p => p.HealthOrganisationUID).ToList();
@@ -453,6 +464,12 @@ namespace MediTech.ViewModels
                     return;
                 }
 
+                if (DoctorFee != 0 && SelectCareprovider == null)
+                {
+                    WarningDialog("กรุณาเลือกแพทย์");
+                    return;
+                }
+
                 //if ((Price ?? 0) == 0)
                 //{
                 //    WarningDialog("กรุณาระบุราคาขายต่อหน่วย");
@@ -467,6 +484,8 @@ namespace MediTech.ViewModels
                 newBillItem.DoseQty = DoseQuantity;
                 newBillItem.Price = Price ?? 0;
                 newBillItem.DoctorFee = DoctorFee ?? 0;
+                newBillItem.CareproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : (int?)null;
+                newBillItem.CareproviderName = SelectCareprovider != null ? SelectCareprovider.FullName : null;
                 newBillItem.ProcessingNotes = NoteProcessing;
                 newBillItem.ActiveFrom = ActiveFrom2;
                 newBillItem.ActiveTo = ActiveTo2;
@@ -526,6 +545,8 @@ namespace MediTech.ViewModels
                 SelectOrderSetBillableItem.Price = Price;
                 SelectOrderSetBillableItem.NetPrice = (Price ?? 0) * Quantity;
                 SelectOrderSetBillableItem.DoctorFee = DoctorFee;
+                SelectOrderSetBillableItem.CareproviderUID = SelectCareprovider != null ? SelectCareprovider.CareproviderUID : (int?)null;
+                SelectOrderSetBillableItem.CareproviderName = SelectCareprovider != null ? SelectCareprovider.FullName : null;
                 SelectOrderSetBillableItem.ProcessingNotes = NoteProcessing;
                 SelectOrderSetBillableItem.ActiveFrom = ActiveFrom2;
                 SelectOrderSetBillableItem.ActiveTo = ActiveTo2;

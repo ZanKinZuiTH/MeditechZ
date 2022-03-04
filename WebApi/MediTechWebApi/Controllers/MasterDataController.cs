@@ -1485,6 +1485,8 @@ namespace MediTechWebApi.Controllers
                                                   Price = ord.Price ?? 0,
                                                   NetPrice = (ord.Price ?? 0) * ord.Quantity,
                                                   DoctorFee = ord.DoctorFee ?? 0,
+                                                  CareproviderUID = ord.CareproviderUID,
+                                                  CareproviderName = ord.CareproviderUID != null ? SqlFunction.fGetCareProviderName(ord.CareproviderUID.Value) : "",
                                                   Quantity = ord.Quantity,
                                                   ProcessingNotes = ord.ProcessingNotes,
                                                   StatusFlag = ord.StatusFlag
@@ -1591,6 +1593,7 @@ namespace MediTechWebApi.Controllers
                                 orderSetBill.DoseQty = item.DoseQty;
                                 orderSetBill.Price = item.Price;
                                 orderSetBill.DoctorFee = item.DoctorFee;
+                                orderSetBill.CareproviderUID = item.CareproviderUID;
                                 orderSetBill.ProcessingNotes = item.ProcessingNotes;
                             }
                             else
@@ -1611,6 +1614,7 @@ namespace MediTechWebApi.Controllers
                                         orderSetBill.DoseQty = item.DoseQty;
                                         orderSetBill.Price = item.Price;
                                         orderSetBill.DoctorFee = item.DoctorFee;
+                                        orderSetBill.CareproviderUID = item.CareproviderUID;
                                         orderSetBill.ProcessingNotes = item.ProcessingNotes;
                                     }
                                 }

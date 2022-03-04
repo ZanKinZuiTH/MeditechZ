@@ -49,9 +49,18 @@
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="Note" LabelVerticalAlignment="Top">
                         <dxe:TextEdit Text="{Binding Notes}"
-                TextWrapping="Wrap" Height="50"
+                TextWrapping="Wrap" Height="60"
                 AcceptsReturn="True"
                 VerticalScrollBarVisibility="Auto"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="แพทย์" Visibility="{Binding CareproviderVisibility}">
+                        <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                          ItemsSource="{Binding Careproviders}"
+                                          SelectedItem="{Binding SelectCareprovider}"
+                                          IsTextEditable="False" 
+                                          DisplayMember="FullName"
+                                          ValueMember="CareproviderUID"
+                                              />
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="15">

@@ -93,6 +93,20 @@ namespace MediTech.ViewModels
             }
         }
 
+        private RelayCommand _ATKNegativeCommand;
+
+        /// <summary>
+        /// Gets the NegativeCommand.
+        /// </summary>
+        public RelayCommand ATKNegativeCommand
+        {
+            get
+            {
+                return _ATKNegativeCommand
+                    ?? (_ATKNegativeCommand = new RelayCommand(ExecuteATKNegative));
+            }
+        }
+
         private RelayCommand _NegativeCommand;
 
         /// <summary>
@@ -190,6 +204,76 @@ namespace MediTech.ViewModels
                 pacsViewModel.IsOpenFromExam = true;
                 System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
                 LaunchViewShow(pacs, owner, "PACS", false, true);
+            }
+
+        }
+
+        private void ExecuteATKNegative()
+        {
+            try
+            {
+                if (PatientRequest != null)
+                {
+                    int userUID = AppUtil.Current.UserID;
+                    DateTime now = DateTime.Now;
+                    ResultRadiologyModel resultModel = new ResultRadiologyModel();
+                    resultModel.ResultUID = PatientRequest.ResultUID;
+
+                    resultModel.RequestDetailUID = PatientRequest.RequestDetailUID;
+                    resultModel.ResultEnteredDttm = now;
+                    resultModel.RABSTSUID = normalStatus;
+
+                    if (AppUtil.Current.IsRadiologist ?? false)
+                    {
+                        resultModel.RadiologistUID = userUID;
+                        resultModel.ORDSTUID = reviewStatus;
+                        OrderStatus = "Reviewed";
+                        ResultedStatus = "Normal";
+                        DoctorName = AppUtil.Current.UserName;
+                    }
+                    else
+                    {
+                        resultModel.Comments = "RDU Review";
+                        resultModel.ResultedByUID = userUID;
+                        resultModel.RadiologistUID = PatientRequest.RadiologistUID;
+                        resultModel.ORDSTUID = completedStatus;
+                        OrderStatus = "Completed";
+                    }
+
+
+                    resultModel.PatientUID = PatientRequest.PatientUID;
+                    resultModel.PatientVisitUID = PatientRequest.PatientVisitUID;
+                    #region ResultValue
+                    resultModel.Value = @"<!DOCTYPE html PUBLIC ""-//W3C//DTD XHTML 1.0 Transitional//EN"" ""http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"">
+<html xmlns=""http://www.w3.org/1999/xhtml"">
+	<head>
+		<meta http-equiv=""Content-Type"" content=""text/html; charset=utf-8"" /><title>
+		</title>
+		<style type=""text/css"">
+			.cs95E872D0{text-align:left;text-indent:0pt;margin:0pt 0pt 0pt 0pt}
+			.cs28999509{color:#000000;background-color:transparent;font-family:'Cordia New';font-size:18pt;font-weight:bold;font-style:normal;}
+		</style>
+	</head>
+	<body>
+		<p class=""cs95E872D0""><span class=""cs28999509"">History of ATK positive.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- Normal heart size.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- No lung infiltration or mass.</span></p><p class=""cs95E872D0""><span class=""cs28999509"">&nbsp; &nbsp;- No pleural effusion.</span></p>
+    </body>
+</html>";
+                    resultModel.PlainText = @"History of ATK positive.
+   - Normal heart size.
+   - No lung infiltration or mass.
+   - No pleural effusion.";
+                    #endregion
+                    DataService.Radiology.SaveReviewResult(resultModel, userUID);
+
+                    //AutoClosingMessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Sucess", 1000);
+
+                    CloseViewDialog(ActionDialog.Save);
+                }
+            }
+            catch (Exception ex)
+            {
+
+                ErrorDialog(ex.Message);
             }
 
         }
