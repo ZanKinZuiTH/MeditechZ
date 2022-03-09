@@ -1239,11 +1239,11 @@
     <Compile Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.Designer.cs">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
     </Compile>
-    <Compile Include="Reports\Statistic\Ecount\StockToEcount.cs">
+    <Compile Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="Reports\Statistic\Ecount\StockToEcount.Designer.cs">
-      <DependentUpon>StockToEcount.cs</DependentUpon>
+    <Compile Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.Designer.cs">
+      <DependentUpon>EcountSummaryGroupReceipt.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Statistic\Inventory\StockAdjustmentIn.cs">
       <SubType>Component</SubType>
@@ -3291,8 +3291,8 @@
     <EmbeddedResource Include="Reports\Statistic\Checkup\CheuckupGroupBackStrength.resx">
       <DependentUpon>CheuckupGroupBackStrength.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Statistic\Ecount\StockToEcount.resx">
-      <DependentUpon>StockToEcount.cs</DependentUpon>
+    <EmbeddedResource Include="Reports\Statistic\Ecount\EcountSummaryGroupReceipt.resx">
+      <DependentUpon>EcountSummaryGroupReceipt.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Statistic\Inventory\StockAdjustmentIn.resx">
       <DependentUpon>StockAdjustmentIn.cs</DependentUpon>

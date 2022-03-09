@@ -1,7 +1,7 @@
 ﻿
-namespace MediTech.Reports.Statistic.Cashier
+namespace MediTech.Reports.Statistic.Ecount
 {
-    partial class StockToEcount
+    partial class EcountSummaryGroupReceipt
     {
         /// <summary>
         /// Required designer variable.
@@ -65,10 +65,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell54 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell56 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
-            this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
-            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
-            this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -102,25 +98,12 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.formattingRule1 = new DevExpress.XtraReports.UI.FormattingRule();
-            this.StoreFrom = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.fieldVisitType = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldCodeItem = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField27 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField26 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.xrPivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldNetPrice = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldHealthOrganisationName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.fieldDoctorFee = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField24 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField23 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField10 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField11 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField12 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField13 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-            this.pivotGridField14 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
+            this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
+            this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
+            this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.StoreFrom = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -140,7 +123,7 @@ namespace MediTech.Reports.Statistic.Cashier
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.Detail.HeightF = 25F;
+            this.Detail.HeightF = 31.66667F;
             this.Detail.Name = "Detail";
             // 
             // xrTable2
@@ -155,7 +138,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableRow2});
             this.xrTable2.SizeF = new System.Drawing.SizeF(2981.579F, 25F);
             this.xrTable2.StylePriority.UseBorders = false;
-            this.xrTable2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTable2_BeforePrint);
             // 
             // xrTableRow2
             // 
@@ -192,7 +174,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell56});
             this.xrTableRow2.Name = "xrTableRow2";
             this.xrTableRow2.Weight = 1D;
-            this.xrTableRow2.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableRow2_BeforePrint);
             // 
             // xrTableCell29
             // 
@@ -255,7 +236,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell35.Name = "xrTableCell35";
             this.xrTableCell35.Text = "ประเภทธุรกรรม";
             this.xrTableCell35.Weight = 1D;
-            this.xrTableCell35.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell35_BeforePrint);
             // 
             // xrTableCell36
             // 
@@ -271,7 +251,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.cStore.Name = "cStore";
             this.cStore.Text = "Store";
             this.cStore.Weight = 1.333333740234375D;
-            this.cStore.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.cStore_BeforePrint);
             // 
             // xrTableCell38
             // 
@@ -435,36 +414,6 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell56.Name = "xrTableCell56";
             this.xrTableCell56.Text = "xrTableCell56";
             this.xrTableCell56.Weight = 1D;
-            // 
-            // DateFrom
-            // 
-            this.DateFrom.Description = "DateFrom";
-            this.DateFrom.Name = "DateFrom";
-            this.DateFrom.Type = typeof(System.DateTime);
-            this.DateFrom.ValueInfo = "2022-01-01";
-            this.DateFrom.Visible = false;
-            // 
-            // DateTo
-            // 
-            this.DateTo.Description = "DateTo";
-            this.DateTo.Name = "DateTo";
-            this.DateTo.Type = typeof(System.DateTime);
-            this.DateTo.ValueInfo = "2022-01-04";
-            this.DateTo.Visible = false;
-            // 
-            // OrganisationList
-            // 
-            this.OrganisationList.Description = "OrganisationList";
-            this.OrganisationList.Name = "OrganisationList";
-            this.OrganisationList.Visible = false;
-            // 
-            // VISTYUID
-            // 
-            this.VISTYUID.Description = "VISTYUID";
-            this.VISTYUID.Name = "VISTYUID";
-            this.VISTYUID.Type = typeof(int);
-            this.VISTYUID.ValueInfo = "0";
-            this.VISTYUID.Visible = false;
             // 
             // ReportHeader
             // 
@@ -732,161 +681,43 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell28.Text = "BatchID";
             this.xrTableCell28.Weight = 1D;
             // 
-            // formattingRule1
-            // 
-            this.formattingRule1.Condition = "[Payby]==0";
-            this.formattingRule1.Name = "formattingRule1";
-            // 
-            // StoreFrom
-            // 
-            this.StoreFrom.Description = "sf";
-            this.StoreFrom.Name = "StoreFrom";
-            this.StoreFrom.Visible = false;
-            // 
             // objectDataSource1
             // 
             this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
             this.objectDataSource1.Name = "objectDataSource1";
             // 
-            // fieldVisitType
+            // OrganisationList
             // 
-            this.fieldVisitType.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldVisitType.AreaIndex = 29;
-            this.fieldVisitType.FieldName = "VisitType";
-            this.fieldVisitType.Name = "fieldVisitType";
+            this.OrganisationList.Description = "OrganisationList";
+            this.OrganisationList.Name = "OrganisationList";
             // 
-            // fieldCodeItem
+            // DateFrom
             // 
-            this.fieldCodeItem.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldCodeItem.AreaIndex = 13;
-            this.fieldCodeItem.Caption = "รหัสสินค้า";
-            this.fieldCodeItem.FieldName = "CodeItem";
-            this.fieldCodeItem.Name = "fieldCodeItem";
+            this.DateFrom.Description = "DateFrom";
+            this.DateFrom.Name = "DateFrom";
+            this.DateFrom.Type = typeof(System.DateTime);
+            this.DateFrom.ValueInfo = "2022-03-09";
             // 
-            // xrPivotGridField27
+            // DateTo
             // 
-            this.xrPivotGridField27.Appearance.Cell.WordWrap = true;
-            this.xrPivotGridField27.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField27.AreaIndex = 14;
-            this.xrPivotGridField27.Caption = "ชื่อสินค้า";
-            this.xrPivotGridField27.FieldName = "ItemName";
-            this.xrPivotGridField27.Name = "xrPivotGridField27";
-            this.xrPivotGridField27.Width = 175;
+            this.DateTo.Description = "DateTo";
+            this.DateTo.Name = "DateTo";
+            this.DateTo.Type = typeof(System.DateTime);
+            this.DateTo.ValueInfo = "2022-03-09";
             // 
-            // xrPivotGridField26
+            // VISTYUID
             // 
-            this.xrPivotGridField26.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField26.AreaIndex = 18;
-            this.xrPivotGridField26.Caption = "ราคาต่อหน่วย";
-            this.xrPivotGridField26.FieldName = "UnitPrice";
-            this.xrPivotGridField26.Name = "xrPivotGridField26";
-            this.xrPivotGridField26.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            this.xrPivotGridField26.Width = 60;
+            this.VISTYUID.Description = "VISTYUID";
+            this.VISTYUID.Name = "VISTYUID";
+            this.VISTYUID.Type = typeof(int);
+            this.VISTYUID.ValueInfo = "0";
             // 
-            // xrPivotGridField24
+            // StoreFrom
             // 
-            this.xrPivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.xrPivotGridField24.AreaIndex = 17;
-            this.xrPivotGridField24.Caption = "จำนวน";
-            this.xrPivotGridField24.FieldName = "Qty";
-            this.xrPivotGridField24.Name = "xrPivotGridField24";
-            this.xrPivotGridField24.Options.ShowCustomTotals = false;
-            this.xrPivotGridField24.Options.ShowTotals = false;
-            this.xrPivotGridField24.TotalsVisibility = DevExpress.XtraPivotGrid.PivotTotalsVisibility.None;
-            this.xrPivotGridField24.Width = 57;
+            this.StoreFrom.Description = "StoreFrom";
+            this.StoreFrom.Name = "StoreFrom";
             // 
-            // fieldNetPrice
-            // 
-            this.fieldNetPrice.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldNetPrice.AreaIndex = 21;
-            this.fieldNetPrice.Caption = "ราคาขายรวม";
-            this.fieldNetPrice.FieldName = "NetPrice";
-            this.fieldNetPrice.Name = "fieldNetPrice";
-            // 
-            // fieldHealthOrganisationName
-            // 
-            this.fieldHealthOrganisationName.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldHealthOrganisationName.AreaIndex = 22;
-            this.fieldHealthOrganisationName.Caption = "สภานประกอบการ";
-            this.fieldHealthOrganisationName.FieldName = "HealthOrganisationName";
-            this.fieldHealthOrganisationName.Name = "fieldHealthOrganisationName";
-            this.fieldHealthOrganisationName.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField22
-            // 
-            this.pivotGridField22.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField22.AreaIndex = 25;
-            this.pivotGridField22.Caption = "Doctor";
-            this.pivotGridField22.FieldName = "Doctor";
-            this.pivotGridField22.Name = "pivotGridField22";
-            // 
-            // fieldDoctorFee
-            // 
-            this.fieldDoctorFee.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.fieldDoctorFee.AreaIndex = 26;
-            this.fieldDoctorFee.FieldName = "DoctorFee";
-            this.fieldDoctorFee.Name = "fieldDoctorFee";
-            this.fieldDoctorFee.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField24
-            // 
-            this.pivotGridField24.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField24.AreaIndex = 27;
-            this.pivotGridField24.Caption = "OrderSetCode";
-            this.pivotGridField24.FieldName = "OrderSetCode";
-            this.pivotGridField24.Name = "pivotGridField24";
-            // 
-            // pivotGridField23
-            // 
-            this.pivotGridField23.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField23.AreaIndex = 28;
-            this.pivotGridField23.Caption = "OrderSetName";
-            this.pivotGridField23.FieldName = "OrderSetName";
-            this.pivotGridField23.MinWidth = 50;
-            this.pivotGridField23.Name = "pivotGridField23";
-            this.pivotGridField23.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            this.pivotGridField23.Width = 120;
-            // 
-            // pivotGridField10
-            // 
-            this.pivotGridField10.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField10.AreaIndex = 15;
-            this.pivotGridField10.Caption = "หมายเลข Serial/Lot";
-            this.pivotGridField10.Name = "pivotGridField10";
-            // 
-            // pivotGridField11
-            // 
-            this.pivotGridField11.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField11.AreaIndex = 16;
-            this.pivotGridField11.Caption = "ข้อมูลเฉพาะ";
-            this.pivotGridField11.Name = "pivotGridField11";
-            this.pivotGridField11.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField12
-            // 
-            this.pivotGridField12.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField12.AreaIndex = 19;
-            this.pivotGridField12.Caption = "จำนวนเงินตราต่างประเทศ";
-            this.pivotGridField12.Name = "pivotGridField12";
-            this.pivotGridField12.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField13
-            // 
-            this.pivotGridField13.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField13.AreaIndex = 20;
-            this.pivotGridField13.Caption = "จำนวนเงิน";
-            this.pivotGridField13.Name = "pivotGridField13";
-            this.pivotGridField13.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // pivotGridField14
-            // 
-            this.pivotGridField14.Area = DevExpress.XtraPivotGrid.PivotArea.RowArea;
-            this.pivotGridField14.AreaIndex = 23;
-            this.pivotGridField14.Caption = "ค่า com";
-            this.pivotGridField14.Name = "pivotGridField14";
-            this.pivotGridField14.SortOrder = DevExpress.XtraPivotGrid.PivotSortOrder.Descending;
-            // 
-            // StockToEcount
+            // EcountSummaryGroupReceipt
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
             this.TopMargin,
@@ -897,16 +728,14 @@ namespace MediTech.Reports.Statistic.Cashier
             this.objectDataSource1});
             this.DataSource = this.objectDataSource1;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.FormattingRuleSheet.AddRange(new DevExpress.XtraReports.UI.FormattingRule[] {
-            this.formattingRule1});
             this.Margins = new System.Drawing.Printing.Margins(0, 0, 0, 0);
             this.PageHeight = 2000;
             this.PageWidth = 3000;
             this.PaperKind = System.Drawing.Printing.PaperKind.Custom;
             this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.OrganisationList,
             this.DateFrom,
             this.DateTo,
-            this.OrganisationList,
             this.VISTYUID,
             this.StoreFrom});
             this.Version = "20.2";
@@ -922,56 +751,7 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.TopMarginBand TopMargin;
         private DevExpress.XtraReports.UI.BottomMarginBand BottomMargin;
         private DevExpress.XtraReports.UI.DetailBand Detail;
-        private DevExpress.XtraReports.Parameters.Parameter DateFrom;
-        private DevExpress.XtraReports.Parameters.Parameter DateTo;
-        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
-        private DevExpress.XtraReports.Parameters.Parameter VISTYUID;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField27;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField24;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField xrPivotGridField26;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldCodeItem;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField22;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldDoctorFee;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField24;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField23;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldVisitType;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldNetPrice;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField fieldHealthOrganisationName;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField10;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField11;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField12;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField13;
-        private DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField pivotGridField14;
-        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
         private DevExpress.XtraReports.UI.ReportHeaderBand ReportHeader;
-        private DevExpress.XtraReports.UI.XRTable xrTable2;
-        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell58;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
-        private DevExpress.XtraReports.UI.XRTableCell cStore;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell42;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell45;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell46;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell47;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell48;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell49;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell50;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell51;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell52;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell53;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell54;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell55;
         private DevExpress.XtraReports.UI.XRTable xrTable1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow1;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
@@ -987,6 +767,7 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell10;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell11;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell12;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell59;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell13;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell14;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
@@ -1002,13 +783,44 @@ namespace MediTech.Reports.Statistic.Cashier
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell25;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell26;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell27;
-        private DevExpress.XtraReports.UI.XRTableCell payBy;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell59;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell56;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell28;
-        private DevExpress.XtraReports.UI.FormattingRule formattingRule1;
-        private DevExpress.XtraReports.Parameters.Parameter StoreFrom;
+        private DevExpress.XtraReports.UI.XRTable xrTable2;
+        private DevExpress.XtraReports.UI.XRTableRow xrTableRow2;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell29;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell30;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell31;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell58;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell32;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell33;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell34;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell35;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell36;
+        private DevExpress.XtraReports.UI.XRTableCell cStore;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell38;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell39;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell40;
+        private DevExpress.XtraReports.UI.XRTableCell payBy;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell41;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell42;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell43;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell44;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell45;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell46;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell47;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell48;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell49;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell50;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell51;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell52;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell53;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell54;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell55;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell56;
+        private DevExpress.DataAccess.ObjectBinding.ObjectDataSource objectDataSource1;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationList;
+        private DevExpress.XtraReports.Parameters.Parameter DateFrom;
+        private DevExpress.XtraReports.Parameters.Parameter DateTo;
+        private DevExpress.XtraReports.Parameters.Parameter VISTYUID;
+        private DevExpress.XtraReports.Parameters.Parameter StoreFrom;
     }
 }

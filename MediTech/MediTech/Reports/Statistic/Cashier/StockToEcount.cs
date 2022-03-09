@@ -41,7 +41,6 @@ namespace MediTech.Reports.Statistic.Cashier
                 string value = (string)cell.Report.GetCurrentColumnValue(cell.DataBindings[0].DataMember);
                 if (string.IsNullOrEmpty(value))
                 {
-                    // cell.BackColor = Color.Gainsboro;
                     cell.Text = this.Parameters["StoreFrom"].Value.ToString();
                 }
   
@@ -61,15 +60,50 @@ namespace MediTech.Reports.Statistic.Cashier
             //{
             //    foreach (XRTableCell cellData in row.Cells)
             //    {
-            //        if (cellData.Name == "cStore")
+            //        if (cellData.Name == "payBy")
             //        {
             //            if (string.IsNullOrEmpty(cellData.Value.ToString()))
             //            {
-            //                cellData.Text = "kjfgksfjdgk";
+            //                
             //            }
             //        }
             //    }
             //}
+        }
+
+        private void xrTableCell35_BeforePrint(object sender, System.Drawing.Printing.PrintEventArgs e)
+        {
+            XRTableCell cell = sender as XRTableCell;
+            if (cell.DataBindings.Count > 0)
+            {
+
+                int? value = (int)cell.Report.GetCurrentColumnValue(cell.DataBindings[0].DataMember);
+                if (!string.IsNullOrEmpty(value.ToString()))
+                {
+                    switch (value.ToString())
+                    {
+                        case "2933":
+                            cell.Text = "13";
+                            break;
+                        case "2934":
+                            cell.Text = "15";
+                            break;
+                        case "2935":
+                            cell.Text = "17";
+                            break;
+                        case "2936":
+                            cell.Text = "19";
+                            break;
+                        case "4280":
+                            cell.Text = "1B";
+                            break;
+                        case "4305":
+                            cell.Text = "1D";
+                            break;
+                    }
+                }
+
+                }
         }
     }
 }

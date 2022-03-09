@@ -228,6 +228,22 @@ namespace MediTech.DataBase
         }
 
 
+             public static DataTable pRPTEcoutSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pRPTEcoutSumGroupReceipt", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom);
+            adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo);
+            adp.SelectCommand.Parameters.AddWithValue("@P_VisitTypeUID", vistyuid ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationList", organisationList);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+
 
         public static bool pCancelDispensed(long PatientOrderDetailUID, int userUID)
         {

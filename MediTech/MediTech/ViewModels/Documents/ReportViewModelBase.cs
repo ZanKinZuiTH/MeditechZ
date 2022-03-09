@@ -111,6 +111,10 @@ namespace MediTech.ViewModels
                 {
                     ChangeView(new ReportParameter8(SelectReport), SelectReport.Name, this.View);
                 }
+                else if (SelectReport.ViewCode == "PARAM113")
+                {
+                    ChangeView(new ReportParameter8(SelectReport), SelectReport.Name, this.View);
+                }
             }
         }
 

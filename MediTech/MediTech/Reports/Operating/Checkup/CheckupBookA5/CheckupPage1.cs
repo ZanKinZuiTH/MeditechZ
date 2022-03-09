@@ -744,7 +744,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         }
                     }
 
-
                     if (page2.lbEye.Text.Trim().Contains("ไม่พบความผิดปกติ"))
                     {
                         page2.lbEye.Text = "Normal";

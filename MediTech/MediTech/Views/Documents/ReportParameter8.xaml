@@ -26,7 +26,7 @@
                                       NullValueButtonPlacement="EditBox"
                                       SelectedItem="{Binding SelectedVisitType}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานประกอบการ"/>
+                <dxlc:LayoutItem Label=""/>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem >

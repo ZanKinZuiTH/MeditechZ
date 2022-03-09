@@ -164,10 +164,14 @@ namespace MediTech.ViewModels
 
         void Print()
         {
+            if (SelectStoreFrom == null)
+            {
+                WarningDialog("กรุณาระบุ Store");
+                return;
+            }
             var myReport = Activator.CreateInstance(Type.GetType(ReportTemplate.NamespaceName));
             XtraReport report = (XtraReport)myReport;
-           // string healthOrganisationList = "";
-        
+
             foreach (var item in report.Parameters)
             {
                 switch (item.Name)

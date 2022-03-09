@@ -76,6 +76,22 @@ namespace MediTechWebApi.Controllers
         }
 
 
+        [Route("GetEcountSumGroupReceipt")]
+        [HttpGet]
+        public List<EcountExportModel>GetEcountSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        {
+            List<EcountExportModel> data = null;
+            DataTable dt = SqlDirectStore.pRPTEcoutSumGroupReceipt(dateFrom, dateTo, vistyuid, organisationList);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<EcountExportModel>();
+                data = dt.ToList<EcountExportModel>();
+            }
+
+            return data;
+        }
+
+
         [Route("GetPatientNetProfit")]
         [HttpGet]
         public List<PatientRevenueModel> GetPatientNetProfit(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
