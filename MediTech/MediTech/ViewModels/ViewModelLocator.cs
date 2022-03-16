@@ -211,6 +211,18 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EcountReportViewModel EcountReportViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EcountReportViewModel>())
+                    SimpleIoc.Default.Register<EcountReportViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EcountReportViewModel>();
+            }
+        }
+
+
         public CheckupJobSummeryReportViewModel CheckupJobSummeryReportViewModel
         {
             get

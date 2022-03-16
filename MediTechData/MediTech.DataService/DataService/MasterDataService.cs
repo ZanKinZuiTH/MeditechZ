@@ -264,7 +264,7 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
-
+        
 
         public List<BillableItemModel> GetBillableItemByBSMDD(string billingService)
         {
@@ -509,6 +509,15 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+
+        public PayorDetailModel GetPayorDetailByCode(string payorCode)
+        {
+            string requestApi = string.Format("Api/MasterData/GetPayorDetailByCode?payorCode={0}",payorCode);
+            PayorDetailModel dataRequest = MeditechApiHelper.Get<PayorDetailModel>(requestApi);
+            return dataRequest;
+        }
+
+
 
         public bool ManagePayorDetail(PayorDetailModel payorDetailModel, int userID)
         {

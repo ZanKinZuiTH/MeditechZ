@@ -13,12 +13,12 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediTech.Views.Documents
+namespace MediTech.Views
 {
     /// <summary>
     /// Interaction logic for EcountReport.xaml
     /// </summary>
-    public partial class EcountReport : Page
+    public partial class EcountReport : UserControl
     {
         public EcountReport()
         {

@@ -23,7 +23,7 @@ namespace MediTech.Reports.Statistic.Ecount
             DateTime dateFrom = Convert.ToDateTime(this.Parameters["DateFrom"].Value);
             DateTime dateTo = Convert.ToDateTime(this.Parameters["DateTo"].Value);
             int? vistyuid = this.Parameters["VISTYUID"].Value.ToString() != "0" ? Convert.ToInt32(this.Parameters["VISTYUID"].Value) : (int?)null;
-            string storefromInRow = this.Parameters["StoreFrom"].Value.ToString();
+          //  string storefromInRow = this.Parameters["StoreFrom"].Value.ToString();
             List<EcountExportModel> data = (new ReportsService()).GetEcountSumGroupReceipt(dateFrom, dateTo, vistyuid, organisationList);
             this.DataSource = data;
         }

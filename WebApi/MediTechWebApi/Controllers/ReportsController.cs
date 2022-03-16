@@ -78,7 +78,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetEcountSumGroupReceipt")]
         [HttpGet]
-        public List<EcountExportModel>GetEcountSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        public List<EcountExportModel> GetEcountSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             List<EcountExportModel> data = null;
             DataTable dt = SqlDirectStore.pRPTEcoutSumGroupReceipt(dateFrom, dateTo, vistyuid, organisationList);
@@ -124,6 +124,35 @@ namespace MediTechWebApi.Controllers
 
             return data;
         }
+
+
+
+        [Route("GetPayorDetailByDate")]
+        [HttpGet]
+        public List<PayorDetailModel> GetPayorDetailByDate(DateTime dateFrom, DateTime dateTo)
+        {
+            List<PayorDetailModel> data = db.PayorDetail.Where(p => p.StatusFlag == "A"&& ( DbFunctions.TruncateTime(p.CWhen) >= DbFunctions.TruncateTime(dateFrom))
+                                             && ( DbFunctions.TruncateTime(p.CWhen) <= DbFunctions.TruncateTime(dateTo)))
+                .Select(p => new PayorDetailModel
+                {
+                    Code = p.Code,
+                    PayorName = p.PayorName,
+                    TINNo = p.TINNo,
+                    Address1 = p.Address1,
+                    Address2 = p.Address2,
+                    MobileNumber = p.MobileNumber
+                    ,PhoneNumber = p.PhoneNumber
+                    ,Email = p.Email 
+                    ,StatusFlag = p.StatusFlag
+
+                }).ToList();
+
+            return data;
+        }
+
+
+
+
 
         [Route("GetPayorSummeryCount")]
         [HttpGet]

@@ -228,7 +228,7 @@ namespace MediTech.DataBase
         }
 
 
-             public static DataTable pRPTEcoutSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
+        public static DataTable pRPTEcoutSumGroupReceipt(DateTime dateFrom, DateTime dateTo, int? vistyuid, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTEcoutSumGroupReceipt", entities.Database.Connection.ConnectionString);

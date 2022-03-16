@@ -569,12 +569,25 @@ namespace MediTech.ViewModels
                     }
                 }
 
+
+                if (payorDetailModel == null)
+                {
+                var checkpayorNewadd = DataService.MasterData.GetPayorDetailByCode(Code);
+                if (checkpayorNewadd != null)
+                {
+                    WarningDialog("Code ซ้ำ โปรดตรวจสอบ");
+                    return;
+                }
+
+                }
+
+
                 AssingPropertiesToModel();
                 DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
                 SaveSuccessDialog();
-                
-                
-                if(PageDialog)
+
+
+                if (PageDialog)
                 {
                     CloseViewDialog(ActionDialog.Cancel);
                 }
@@ -583,6 +596,54 @@ namespace MediTech.ViewModels
                     ListPayorDetail listView = new ListPayorDetail();
                     ChangeViewPermission(listView);
                 }
+
+
+                //var checkpayor = DataService.MasterData.GetPayorDetailByCode(Code);
+
+                //if (payorDetailModel.PayorDetailUID == checkpayor.PayorDetailUID)
+                //{
+                //    AssingPropertiesToModel();
+                //    DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
+                //    SaveSuccessDialog();
+
+
+                //    if (PageDialog)
+                //    {
+                //        CloseViewDialog(ActionDialog.Cancel);
+                //    }
+                //    else
+                //    {
+                //        ListPayorDetail listView = new ListPayorDetail();
+                //        ChangeViewPermission(listView);
+                //    }
+
+                //}
+                //else if ( payorDetailModel != null && checkpayor == null)
+                //{
+                //    AssingPropertiesToModel();
+                //    DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
+                //    SaveSuccessDialog();
+
+
+                //    if (PageDialog)
+                //    {
+                //        CloseViewDialog(ActionDialog.Cancel);
+                //    }
+                //    else
+                //    {
+                //        ListPayorDetail listView = new ListPayorDetail();
+                //        ChangeViewPermission(listView);
+                //    }
+                //}
+
+                //else
+                //{
+                //    WarningDialog("Code ซ้ำ โปรดตรวจสอบ");
+                //    return;
+
+                //}
+
+
 
             }
             catch (Exception ex)

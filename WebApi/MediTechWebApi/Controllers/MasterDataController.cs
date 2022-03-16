@@ -2240,6 +2240,81 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+
+        [Route("GetPayorDetailByCode")]
+        [HttpGet]
+        public PayorDetailModel GetPayorDetailByCode(string payorCode)
+        {
+            var PayorDetail = db.PayorDetail.Where(w => w.Code == payorCode).FirstOrDefault();
+            PayorDetailModel data = null;
+            if (PayorDetail != null)
+            {
+                data = new PayorDetailModel();
+                data.PayorDetailUID = PayorDetail.UID;
+                data.Code = PayorDetail.Code;
+                data.Description = PayorDetail.Description;
+                data.PayorName = PayorDetail.PayorName;
+                data.Address1 = PayorDetail.Address1;
+                data.Address2 = PayorDetail.Address2;
+                data.TINNo = PayorDetail.TINNo;
+                data.DistrictUID = PayorDetail.DistrictUID;
+                data.ProvinceUID = PayorDetail.ProvinceUID;
+                data.AmphurUID = PayorDetail.AmphurUID;
+                data.ContactPersonName = PayorDetail.ContactPersonName;
+                data.ZipCode = PayorDetail.ZipCode;
+                data.PhoneNumber = PayorDetail.PhoneNumber;
+                data.MobileNumber = PayorDetail.MobileNumber;
+                data.FaxNumber = PayorDetail.FaxNumber;
+                data.Email = PayorDetail.Email;
+                data.PAYTRMUID = PayorDetail.PAYTRMUID;
+                data.PYRACATUID = PayorDetail.PYRACATUID;
+                data.ActiveFrom = PayorDetail.ActiveFrom;
+                data.ActiveTo = PayorDetail.ActiveTo;
+                data.Comment = PayorDetail.Comment;
+                data.CUser = PayorDetail.CUser;
+                data.CWhen = PayorDetail.CWhen;
+                data.MUser = PayorDetail.MUser;
+                data.MWhen = PayorDetail.MWhen;
+                data.StatusFlag = PayorDetail.StatusFlag;
+                data.IDFormat = PayorDetail.IDFormat;
+                data.IsGenerateBillNumber = PayorDetail.IsGenerateBillNumber;
+                data.IDLength = PayorDetail.IDLength;
+                data.NumberValue = PayorDetail.NumberValue;
+                data.PayorAgrrements = db.PayorAgreement.Where(p => p.PayorDetailUID == data.PayorDetailUID && p.StatusFlag == "A").Select(p => new PayorAgreementModel
+                {
+                    PayorDetailUID = p.PayorDetailUID,
+                    Name = p.Name,
+                    PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+                    PBTYPUID = p.PBTYPUID,
+                    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
+                    PAYTRMUID = p.PAYTRMUID,
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    PayorAgreementUID = p.UID
+                }).ToList();
+            }
+
+
+            return data;
+        }
+
+
+        //[Route("CheckPayorDetailByCode")]
+        //[HttpGet]
+        //public bool CheckPayorDetailByCode(string codePayor)
+        //{
+        //    bool result = false;
+        //    int PayorDetail = db.PayorDetail.Where(w=> w.Code == codePayor).Count();
+        //    result = PayorDetail > 0 ? true : false;
+        //    return result;
+        //}
+
+
+
+
+
+
+
         [Route("ManagePayorDetail")]
         [HttpPost]
         public HttpResponseMessage ManagePayorDetail(PayorDetailModel payorDetailModel, int userID)

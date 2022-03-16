@@ -27,6 +27,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PayorDetailModel>GetPayordetailByDate(DateTime dateFrom,DateTime dateTo)
+        {
+            string requestApi = string.Format("Api/Report/GetPayordetailByDate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}", dateFrom,dateTo);
+            List<PayorDetailModel> data = MeditechApiHelper.Get<List<PayorDetailModel>>(requestApi);
+
+            return data;
+        }
+
         #endregion
 
         #region Cashier

@@ -256,6 +256,7 @@ namespace MediTech.Reports.Statistic.Cashier
             this.xrTableCell35.Text = "ประเภทธุรกรรม";
             this.xrTableCell35.Weight = 1D;
             this.xrTableCell35.BeforePrint += new System.Drawing.Printing.PrintEventHandler(this.xrTableCell35_BeforePrint);
+            this.xrTableCell35.AfterPrint += new System.EventHandler(this.xrTableCell35_AfterPrint);
             // 
             // xrTableCell36
             // 

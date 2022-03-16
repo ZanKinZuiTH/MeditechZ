@@ -98,12 +98,11 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell26 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell27 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell28 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.OrganisationList = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateFrom = new DevExpress.XtraReports.Parameters.Parameter();
             this.DateTo = new DevExpress.XtraReports.Parameters.Parameter();
             this.VISTYUID = new DevExpress.XtraReports.Parameters.Parameter();
-            this.StoreFrom = new DevExpress.XtraReports.Parameters.Parameter();
+            this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
@@ -123,7 +122,7 @@ namespace MediTech.Reports.Statistic.Ecount
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrTable2});
-            this.Detail.HeightF = 31.66667F;
+            this.Detail.HeightF = 25F;
             this.Detail.Name = "Detail";
             // 
             // xrTable2
@@ -681,15 +680,11 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell28.Text = "BatchID";
             this.xrTableCell28.Weight = 1D;
             // 
-            // objectDataSource1
-            // 
-            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
-            this.objectDataSource1.Name = "objectDataSource1";
-            // 
             // OrganisationList
             // 
             this.OrganisationList.Description = "OrganisationList";
             this.OrganisationList.Name = "OrganisationList";
+            this.OrganisationList.Visible = false;
             // 
             // DateFrom
             // 
@@ -697,6 +692,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.DateFrom.Name = "DateFrom";
             this.DateFrom.Type = typeof(System.DateTime);
             this.DateFrom.ValueInfo = "2022-03-09";
+            this.DateFrom.Visible = false;
             // 
             // DateTo
             // 
@@ -704,6 +700,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.DateTo.Name = "DateTo";
             this.DateTo.Type = typeof(System.DateTime);
             this.DateTo.ValueInfo = "2022-03-09";
+            this.DateTo.Visible = false;
             // 
             // VISTYUID
             // 
@@ -711,11 +708,12 @@ namespace MediTech.Reports.Statistic.Ecount
             this.VISTYUID.Name = "VISTYUID";
             this.VISTYUID.Type = typeof(int);
             this.VISTYUID.ValueInfo = "0";
+            this.VISTYUID.Visible = false;
             // 
-            // StoreFrom
+            // objectDataSource1
             // 
-            this.StoreFrom.Description = "StoreFrom";
-            this.StoreFrom.Name = "StoreFrom";
+            this.objectDataSource1.DataSource = typeof(MediTech.Model.Report.EcountExportModel);
+            this.objectDataSource1.Name = "objectDataSource1";
             // 
             // EcountSummaryGroupReceipt
             // 
@@ -736,8 +734,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.OrganisationList,
             this.DateFrom,
             this.DateTo,
-            this.VISTYUID,
-            this.StoreFrom});
+            this.VISTYUID});
             this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
@@ -821,6 +818,5 @@ namespace MediTech.Reports.Statistic.Ecount
         private DevExpress.XtraReports.Parameters.Parameter DateFrom;
         private DevExpress.XtraReports.Parameters.Parameter DateTo;
         private DevExpress.XtraReports.Parameters.Parameter VISTYUID;
-        private DevExpress.XtraReports.Parameters.Parameter StoreFrom;
     }
 }
