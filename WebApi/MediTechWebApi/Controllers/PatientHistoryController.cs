@@ -800,13 +800,19 @@ namespace MediTechWebApi.Controllers
 
 
                 WellnessData wellNess = db.WellnessData.Find(model.WellnessDataUID);
-                wellNess.MUser = userID;
-                wellNess.MWhen = now;
-                wellNess.OnBLIFE = "Y";
-                db.WellnessData.AddOrUpdate(wellNess);
-                db.SaveChanges();
+                if (wellNess != null)
+                {
+                    wellNess.MUser = userID;
+                    wellNess.MWhen = now;
+                    wellNess.OnBLIFE = "Y";
+                    db.WellnessData.AddOrUpdate(wellNess);
+                    db.SaveChanges();
 
-                return Request.CreateResponse(HttpStatusCode.OK);
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                Patient patient = db.Patient.Find(model.PatientUID);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, patient.FirstName + " " + patient.LastName + " ยังไม่ได้ผ่านการยืนยันข้อมูล โปรดตรวจสอบ");
+
             }
             catch (Exception ex)
             {

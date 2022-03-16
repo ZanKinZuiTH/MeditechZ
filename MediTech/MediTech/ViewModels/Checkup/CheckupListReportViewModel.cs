@@ -390,6 +390,7 @@ namespace MediTech.ViewModels
             if (SelectPatientCheckupResult != null)
             {
                 var patientResultLabList = SelectPatientCheckupResult.OrderBy(p => p.RowHandle);
+                bool saveSucess = true;
                 foreach (var item in patientResultLabList.ToList())
                 {
                     try
@@ -403,10 +404,14 @@ namespace MediTech.ViewModels
                     {
 
                         ErrorDialog(er.Message);
+                        saveSucess = false;
                     }
                     SelectPatientCheckupResult.Remove(item);
                 }
-                SaveSuccessDialog();
+                if (saveSucess)
+                {
+                    SaveSuccessDialog();
+                }
                 Search();
             }
         }
