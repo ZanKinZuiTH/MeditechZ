@@ -141,7 +141,7 @@
                                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                         </dxg:GridColumn.EditSettings>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee"  ReadOnly="True"/>
+                                    <!--<dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee"  ReadOnly="True"/>-->
                                     <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"  ReadOnly="True"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.View>
@@ -219,11 +219,11 @@
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
                                 <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True"/>
-                                <dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee" ReadOnly="True">
+                                <!--<dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee" ReadOnly="True">
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                     </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
+                                </dxg:GridColumn>-->
                                 <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName" ReadOnly="True"/>
                                 <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
                                     <dxg:GridColumn.EditSettings>

@@ -614,11 +614,6 @@ namespace MediTech.ViewModels
             if (SelectRequestLab != null)
             {
                 int FINDIS = 421;
-                if (SelectRequestLab.VISTSUID == FINDIS)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    return;
-                }
                 PatientOrderEntry pageview = new PatientOrderEntry();
                 PatientVisitModel visitModel = new PatientVisitModel();
                 visitModel.PatientUID = SelectRequestLab.PatientUID;

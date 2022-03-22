@@ -698,6 +698,7 @@
                                     <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
                                     <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
                                     <dxg:GridColumn FieldName="OrderNumber"/>
+                                    <dxg:GridColumn FieldName="CareproviderName" Header="แพทย์" ReadOnly="True"/>
                                     <dxg:GridColumn FieldName="NetAmount" Header="ราคา"/>
                                     <dxg:GridColumn FieldName="OrderSetName" Header="OrderSet"/>
                                     <dxg:GridColumn FieldName="OwnerOrganisationName" Header="Order จาก"/>

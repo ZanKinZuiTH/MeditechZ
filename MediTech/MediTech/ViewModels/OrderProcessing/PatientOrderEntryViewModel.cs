@@ -15,6 +15,8 @@ namespace MediTech.ViewModels
 {
     public class PatientOrderEntryViewModel : MediTechViewModelBase
     {
+        int FINDIS = 421;
+        int CANCEL = 410;
 
         #region Properites
 
@@ -116,7 +118,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectHealthOrganisation, value);
-                if (SelectHealthOrganisation == null)
+                if (SelectHealthOrganisation == null || (PatientVisit.VISTSUID == FINDIS || PatientVisit.VISTSUID == CANCEL))
                 {
                     EnableSearchItem = false;
                 }
@@ -351,6 +353,7 @@ namespace MediTech.ViewModels
 
         #region Method
 
+
         public override void OnLoaded()
         {
             Careproviders = DataService.UserManage.GetCareproviderAll();
@@ -362,6 +365,12 @@ namespace MediTech.ViewModels
             if (SelectHealthOrganisation == null)
             {
                 SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            }
+            var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(PatientVisit.PatientVisitUID);
+
+            if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+            {
+                EnableSearchItem = false;
             }
 
             (this.View as PatientOrderEntry).txtOrder.Focus();

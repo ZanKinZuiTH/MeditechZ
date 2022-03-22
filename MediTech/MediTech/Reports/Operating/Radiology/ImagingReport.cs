@@ -19,7 +19,7 @@ namespace MediTech.Reports.Operating.Radiology
 {
     public partial class ImagingReport : DevExpress.XtraReports.UI.XtraReport
     {
-        private string _LogoType = "DRC";
+        private string _LogoType = "BRXG";
 
         public string LogoType
         {
@@ -179,7 +179,6 @@ namespace MediTech.Reports.Operating.Radiology
                         this.logobutton.Image = System.Drawing.Image.FromStream(outStream2);
                     }
                 }
-
                 else
                 {
                     this.logo.Image = null;

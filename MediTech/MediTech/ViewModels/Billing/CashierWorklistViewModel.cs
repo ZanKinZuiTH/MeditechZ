@@ -704,12 +704,6 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientCloseMed != null)
             {
-                var currentPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientCloseMed.PatientVisitUID);
-                if (currentPatientVisit.VISTSUID == FINDIS)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน โปรดตรวจสอบ หรือ Refersh ข้อมูล");
-                    return;
-                }
                 PatientOrderEntry pageview = new PatientOrderEntry();
                 (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientCloseMed);
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
