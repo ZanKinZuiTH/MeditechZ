@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -31,6 +32,11 @@ namespace MediTech.Converter
                      , out date))
                 {
                     dateTime = date;
+                }
+                else if (DateTime.TryParseExact(value.ToString(), "dd/MM/yyyy", new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None
+              , out date))
+                {
+                    dateTime = date.AddYears(543);
                 }
             }
 
