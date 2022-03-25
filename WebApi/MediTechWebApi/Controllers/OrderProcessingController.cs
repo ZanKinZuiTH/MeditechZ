@@ -68,6 +68,8 @@ namespace MediTechWebApi.Controllers
                     //addItem.GenericName = item["GenericName"].ToString();
                     addItem.UnitPrice = item["UnitPrice"].ToString() != "" ? double.Parse(item["UnitPrice"].ToString()) : (double?)null;
                     addItem.DoctorFee = item["DoctorFee"].ToString() != "" ? double.Parse(item["DoctorFee"].ToString()) : (double?)null;
+                    addItem.CareproviderUID = item["CareproviderUID"].ToString() != "" ? int.Parse(item["CareproviderUID"].ToString()) : (int?)null;
+                    addItem.CareproviderName = item["CareproviderName"].ToString();
                     addItem.NetAmount = item["NetAmount"].ToString() != "" ? double.Parse(item["NetAmount"].ToString()) : (double?)null;
                     addItem.ROUTEUID = item["ROUTEUID"].ToString() != "" ? int.Parse(item["ROUTEUID"].ToString()) : (int?)null;
                     addItem.DFORMUID = item["DFORMUID"].ToString() != "" ? int.Parse(item["DFORMUID"].ToString()) : (int?)null;

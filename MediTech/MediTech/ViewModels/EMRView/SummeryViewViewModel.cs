@@ -876,12 +876,6 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
-
-            if (SelectPatientVisit.VISTSUID == FINDIS)
-            {
-                WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                return;
-            }
             PatientOrderEntry pageview = new PatientOrderEntry();
             (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
             PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);

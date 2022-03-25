@@ -848,7 +848,6 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
-
         #region RiskBookData
 
         [Route("GetPatientMedicalHistoryByPatientUID")]

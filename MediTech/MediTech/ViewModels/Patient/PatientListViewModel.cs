@@ -335,15 +335,6 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
-                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
-                    OnUpdateEvent();
-                    return;
-                }
                 PatientOrderEntry pageview = new PatientOrderEntry();
                 (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);

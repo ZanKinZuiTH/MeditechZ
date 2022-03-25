@@ -10,6 +10,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Data;
 using System.Data.OleDb;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -338,7 +339,7 @@ namespace MediTech.ViewModels
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antigen)", DisplayOrder = 23 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (Rapid test Antibody)", DisplayOrder = 24 });
             MobileStickerSource.Add(new LookupReferenceValueModel { Key = 1, Display = "Covid (RT-PCR)", DisplayOrder = 25 });
-          
+
 
             SelectMobileStickers = new List<object>() { MobileStickerSource[0],MobileStickerSource[1], MobileStickerSource[2], MobileStickerSource[3]
                 , MobileStickerSource[4], MobileStickerSource[5], MobileStickerSource[6],MobileStickerSource[7],MobileStickerSource[8],MobileStickerSource[9]
@@ -530,7 +531,14 @@ namespace MediTech.ViewModels
                                 break;
                         }
 
-                        DateTime.TryParse(CurrentImportedData.DateOfBirth, out birthdttm);
+                        bool valid = DateTime.TryParseExact(CurrentImportedData.DateOfBirth, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture
+                            , System.Globalization.DateTimeStyles.None, out birthdttm);
+
+                        if (!valid)
+                        {
+                            DateTime.TryParseExact(CurrentImportedData.DateOfBirth, "dd/MM/yyyy", new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None, out birthdttm);
+                        }
+
                         if (!string.IsNullOrEmpty(CurrentImportedData.DateOfBirth))
                         {
 
@@ -596,7 +604,7 @@ namespace MediTech.ViewModels
                                         }
                                         patientHNDupicate.Add(CurrentImportedData);
                                     }
-                                        //((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
+                                    //((RegistrationBulkImport)View).ShowMessageBox("HN: " + drow["HN"].ToString().Trim() + " ซ้ำกับในระบบ โปรดตรวจสอบ", "", System.Windows.MessageBoxButton.OK, System.Windows.MessageBoxImage.Warning);
                                 }
                             }
                         }
@@ -727,7 +735,7 @@ namespace MediTech.ViewModels
 
                     if (patientHNDupicate != null && patientHNDupicate.Count > 0)
                     {
-                        ShowModalDialogUsingViewModel(new BulkAlertDialog(),new BulkAlertDialogViewModel(patientHNDupicate),false);
+                        ShowModalDialogUsingViewModel(new BulkAlertDialog(), new BulkAlertDialogViewModel(patientHNDupicate), false);
                     }
 
                     PatientDataList = new ObservableCollection<PatientRegistrationBulkData>(ImportedDataList);
