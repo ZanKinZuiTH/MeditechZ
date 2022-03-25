@@ -699,6 +699,12 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.Designer.cs">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.Designer.cs">
+      <DependentUpon>MedicalFitnessCertificate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MobileSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3031,6 +3037,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.resx">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.resx">
+      <DependentUpon>MedicalFitnessCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MobileSticker.resx">
       <DependentUpon>MobileSticker.cs</DependentUpon>
