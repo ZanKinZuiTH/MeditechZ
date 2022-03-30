@@ -17,5 +17,7 @@ namespace MediTech.Model.Report
         public string ItemName { get; set; }
         public double ItemPrice { get; set; }
         public double DoctorFee { get; set; }
+        public string IsICD10 { get; set; }
+        public DateTime StartDttm { set; get; }
     }
 }
