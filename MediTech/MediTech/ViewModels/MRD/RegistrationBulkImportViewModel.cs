@@ -531,13 +531,14 @@ namespace MediTech.ViewModels
                                 break;
                         }
 
-                        bool valid = DateTime.TryParseExact(CurrentImportedData.DateOfBirth, "dd/MM/yyyy", System.Globalization.CultureInfo.InvariantCulture
+                        bool valid = DateTime.TryParse(CurrentImportedData.DateOfBirth, System.Globalization.CultureInfo.InvariantCulture
                             , System.Globalization.DateTimeStyles.None, out birthdttm);
 
                         if (!valid)
                         {
-                            DateTime.TryParseExact(CurrentImportedData.DateOfBirth, "dd/MM/yyyy", new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None, out birthdttm);
+                            DateTime.TryParse(CurrentImportedData.DateOfBirth, new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None, out birthdttm);
                         }
+
 
                         if (!string.IsNullOrEmpty(CurrentImportedData.DateOfBirth))
                         {
