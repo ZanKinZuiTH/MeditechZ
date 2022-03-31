@@ -531,8 +531,7 @@ namespace MediTech.ViewModels
                                 break;
                         }
 
-                        bool valid = DateTime.TryParse(CurrentImportedData.DateOfBirth, System.Globalization.CultureInfo.InvariantCulture
-                            , System.Globalization.DateTimeStyles.None, out birthdttm);
+                        bool valid = DateTime.TryParse(CurrentImportedData.DateOfBirth, out birthdttm);
 
                         if (!valid)
                         {
