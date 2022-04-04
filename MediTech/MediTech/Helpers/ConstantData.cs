@@ -29,11 +29,13 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์กายภาพ", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ สณ.11", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil10" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ Fittnes", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalFitness" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker", NamespaceName = "MediTech.Reports.Operating.Patient.PatientSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ปริ้น Sticker Large", NamespaceName = "MediTech.Reports.Operating.Patient.PatientLargSticker" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบ Wellness", NamespaceName = "MediTech.Reports.Operating.Patient.WellnessBook.WellnessMainBook" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ต่างด้าว", NamespaceName = "MediTech.Reports.Operating.Patient.Alien" });
             ListPatientReports.Add(new ReportsModel { Name = "รายงานตรวจPapSmear", NamespaceName = "MediTech.Reports.Operating.Checkup.Papsmear" });
+           
 
             return ListPatientReports;
         }
