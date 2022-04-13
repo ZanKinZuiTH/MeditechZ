@@ -57,6 +57,7 @@ namespace MediTechWebApi.Controllers
                                                 MobilePhone = pa.MobilePhone,
                                                 NationalID = pa.IDCard,
                                                 NATNLUID = pa.NATNLUID,
+                                                IDPassport = pa.IDPassport,
                                                 PatientID = pa.PatientID,
                                                 EmployeeID = pa.EmployeeID,
                                                 Department = pa.Department,
@@ -117,6 +118,69 @@ namespace MediTechWebApi.Controllers
                                                 LastName = pa.LastName,
                                                 MobilePhone = pa.MobilePhone,
                                                 NationalID = pa.IDCard,
+                                                IDPassport = pa.IDPassport,
+                                                NATNLUID = pa.NATNLUID,
+                                                PatientID = pa.PatientID,
+                                                EmployeeID = pa.EmployeeID,
+                                                Department = pa.Department,
+                                                Position = pa.Position,
+                                                BLOODUID = pa.BLOODUID,
+                                                RELGNUID = pa.RELGNUID,
+                                                SecondPhone = pa.SecondPhone,
+                                                SEXXXUID = pa.SEXXXUID,
+                                                TITLEUID = pa.TITLEUID,
+                                                LastVisitDttm = pa.LastVisitDttm,
+                                                RegisterDate = pa.CWhen,
+                                                PatientAddressUID = j.UID,
+                                                Line1 = j.Line1,
+                                                Line2 = j.Line2,
+                                                Line3 = j.Line3,
+                                                AmphurUID = j.AmphurUID,
+                                                DistrictUID = j.DistrictUID,
+                                                ProvinceUID = j.ProvinceUID,
+                                                ZipCode = j.ZipCode,
+                                                UserUID = pa.CUser,
+                                                IsVIP = pa.IsVIP ?? false,
+                                                OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
+                                            }).FirstOrDefault();
+            return data;
+        }
+
+        [Route("GetPatientByPassportNo")]
+        [HttpGet]
+        public PatientInformationModel GetPatientByPassportNo(string passportNo)
+        {
+            PatientInformationModel data = (from pa in db.Patient
+                                            join pdd in db.PatientAddress on
+                                            new
+                                            {
+                                                key1 = pa.UID,
+                                                key2 = 401, //DefaultAddress
+                                                key3 = "A"
+                                            }
+                                            equals
+                                            new
+                                            {
+                                                key1 = pdd.PatientUID,
+                                                key2 = pdd.ADTYPUID ?? 0,
+                                                key3 = pdd.StatusFlag
+                                            }
+                                            into joined
+                                            from j in joined.DefaultIfEmpty()
+                                            where pa.StatusFlag == "A"
+                                            && pa.IDPassport == passportNo
+                                            select new PatientInformationModel
+                                            {
+                                                PatientUID = pa.UID,
+                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                                BirthDttm = pa.DOBDttm.Value,
+                                                DOBComputed = pa.DOBComputed,
+                                                Email = pa.Email,
+                                                FirstName = pa.FirstName,
+                                                LastName = pa.LastName,
+                                                MobilePhone = pa.MobilePhone,
+                                                NationalID = pa.IDCard,
+                                                IDPassport = pa.IDPassport,
                                                 NATNLUID = pa.NATNLUID,
                                                 PatientID = pa.PatientID,
                                                 EmployeeID = pa.EmployeeID,
@@ -252,6 +316,7 @@ namespace MediTechWebApi.Controllers
                     patient.BLOODUID = patientInfo.BLOODUID;
                     patient.IsVIP = patientInfo.IsVIP;
                     patient.IDCard = patientInfo.NationalID;
+                    patient.IDPassport = patientInfo.IDPassport;
                     patient.MobilePhone = patientInfo.MobilePhone;
                     patient.SecondPhone = patientInfo.SecondPhone;
                     patient.Email = patientInfo.Email;

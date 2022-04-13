@@ -348,6 +348,10 @@
                                        Mask="\d{0,13}"
                                        Text="{Binding NatinonalID,Mode=TwoWay}"/>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="เลขพาสปอร์ต" >
+                            <dxe:TextEdit  Name="txtPassortNo"
+                                       Text="{Binding PassportNo,Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>
 
                         <dxlc:LayoutGroup Orientation="Vertical" Header="VIP Member"
                                           View="GroupBox">

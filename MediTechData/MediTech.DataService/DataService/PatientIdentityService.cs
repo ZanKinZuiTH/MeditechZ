@@ -58,6 +58,14 @@ namespace MediTech.DataService
             return result;
         }
 
+        public PatientInformationModel GetPatientByPassportNo(string passportNo)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientByPassportNo?passportNo={0}", passportNo);
+            PatientInformationModel data = MeditechApiHelper.Get<PatientInformationModel>(requestApi);
+
+            return data;
+        }
+
         public PatientInformationModel CheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/CheckDupicatePatient?firstName={0}&lastName={1}&birthDate={2:MM/dd/yyyy}&SEXXXUID={3}", firstName, lastName, birthDate, SEXXXUID);
