@@ -657,6 +657,18 @@
     <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.Designer.cs">
       <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.Designer.cs">
+      <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.Designer.cs">
+      <DependentUpon>MedicalFitness.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -698,12 +710,6 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.Designer.cs">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.Designer.cs">
-      <DependentUpon>MedicalFitnessCertificate.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\MobileSticker.cs">
       <SubType>Component</SubType>
@@ -3015,6 +3021,12 @@
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCertificateEng2Parts.resx">
       <DependentUpon>MedicalCertificateEng2Parts.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalCouncil10.resx">
+      <DependentUpon>MedicalCouncil10.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalFitness.resx">
+      <DependentUpon>MedicalFitness.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\RadilogyCertificate.resx">
       <DependentUpon>RadilogyCertificate.cs</DependentUpon>
     </EmbeddedResource>
@@ -3037,9 +3049,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\WorkingHeightCertificateEng2.resx">
       <DependentUpon>WorkingHeightCertificateEng2.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\MedicalCertification\MedicalFitnessCertificate.resx">
-      <DependentUpon>MedicalFitnessCertificate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\MobileSticker.resx">
       <DependentUpon>MobileSticker.cs</DependentUpon>
@@ -3680,10 +3689,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\Menu\PayorDetail.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Reports\Operating\Registration\" />
-    <Folder Include="Reports\Statistic\Pharmacy\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Resource Include="Resources\Images\logoBGH.png" />
     <Resource Include="Resources\Images\logoThonburi.jpg" />
