@@ -47,7 +47,12 @@ namespace MediTech.ViewModels
             set { _UseReadCard = value; }
         }
 
-
+        private string _PassportNo;
+        public string PassportNo
+        {
+            get { return _PassportNo; }
+            set { Set(ref _PassportNo, value); }
+        }
 
         private bool _CheckBuddhist = true;
 
@@ -1207,6 +1212,7 @@ namespace MediTech.ViewModels
             OtherID = string.Empty;
             CalculateBrithDate = false;
             NatinonalID = string.Empty;
+            PassportNo = string.Empty;
             SelectedBloodGroup = null;
             SelectedNational = null;
             SelectedPreferredLanguage = null;
@@ -1272,6 +1278,7 @@ namespace MediTech.ViewModels
             NatinonalID = patientModel.NationalID;
             SelectedBloodGroup = BloodGroupSource.FirstOrDefault(p => p.Key == patientModel.BLOODUID);
             SelectedNational = NationalSource.FirstOrDefault(p => p.Key == patientModel.NATNLUID);
+            PassportNo = patientModel.IDPassport;
             SelectedPreferredLanguage = PreferredLanguageSource.FirstOrDefault(p => p.Key == patientModel.SPOKLUID);
             SelectedMarryStatus = MarryStatusSource.FirstOrDefault(p => p.Key == patientModel.MARRYUID);
             SelectedRegion = RegionSource.FirstOrDefault(p => p.Key == patientModel.RELGNUID);
@@ -1373,6 +1380,7 @@ namespace MediTech.ViewModels
 
             patientModel.NationalID = NatinonalID;
             patientModel.EmployeeID = OtherID;
+            patientModel.IDPassport = PassportNo;
 
             if (SelectedBloodGroup != null)
                 patientModel.BLOODUID = SelectedBloodGroup.Key;
@@ -1473,6 +1481,7 @@ namespace MediTech.ViewModels
             NatinonalID = patientData.NationalID;
             SelectedGender = GenderSource.FirstOrDefault(p => p.Key == patientData.SEXXXUID);
             MobilePhone = patientData.MobilePhone;
+            PassportNo = patientData.IDPassport;
         }
 
         #endregion

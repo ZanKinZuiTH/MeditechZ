@@ -650,9 +650,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB587") //Cadmium in Blood
                         || p.RequestItemCode.Contains("LAB547") // Zinc in zerum
                         || p.RequestItemCode.Contains("LAB463") // Iron zerum
-                        || p.RequestItemCode.Contains("LAB542") // chro zerum
-                        || p.RequestItemCode.Contains("LAB575") // Ammo
-                         || p.RequestItemCode.Contains("LAB487")) // Lead in Urin 
+                         || p.RequestItemCode.Contains("LAB542") // chro zerum
+                          || p.RequestItemCode.Contains("LAB575") // Ammo
+                        || p.RequestItemCode.Contains("LAB487")) // lead in urin
+
                          .OrderByDescending(p => p.Year);
                     GenerateToxicology(ToxicoTestSet);
                     #endregion
@@ -1562,7 +1563,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page7.RowCadInb.Visible = false;
                 page7.RowChroinB.Visible = false;
                 page7.RowAmmo.Visible = false;
-                page7.RowLeadinU.Visible = false;
+                page7.rowLeadinU.Visible = false;
+
+
+
+
 
                 if (labTestSet != null && labTestSet.Count() > 0)
                 {
@@ -1982,7 +1987,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #endregion
 
+
                     #region Chromiun in blood
+
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171") != null)
                     {
                         page7.RowChroinB.Visible = true;
@@ -1991,6 +1998,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         page7.ChroinB2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year2)?.ResultValue;
                         page7.ChroinB3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR171" && p.Year == year3)?.ResultValue;
                     }
+
                     #endregion
 
                     #region Ammo in blood
@@ -2006,18 +2014,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     #endregion
 
-                    #region lead in urin
+                    #region Lead in Urin
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278") != null)
                     {
-                        page7.RowLeadinU.Visible = true;
-                        page7.LeadinURang.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278")?.ReferenceRange;
-                        page7.LeadinU1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year1)?.ResultValue;
-                        page7.LeadinU2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year2)?.ResultValue;
-                        page7.LeadinU3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year3)?.ResultValue;
+                        page7.rowLeadinU.Visible = true;
+                        page7.RangLeadU.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278")?.ReferenceRange;
+                        page7.LeadU1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year1)?.ResultValue;
+                        page7.LeadU2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year2)?.ResultValue;
+                        page7.LeadU3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1278" && p.Year == year3)?.ResultValue;
                     }
 
                     #endregion
+
 
 
 
