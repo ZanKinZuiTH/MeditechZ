@@ -502,6 +502,7 @@
             this.xrTableCell90 = new DevExpress.XtraReports.UI.XRTableCell();
             this.VisionYear1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.VisionYear2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.VisionYear3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow8 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell40 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbFarVision1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -626,7 +627,6 @@
             this.xrLabel5 = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.VisionYear3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable12)).BeginInit();
@@ -750,7 +750,7 @@
             this.RowChroinB,
             this.RowAmmo,
             this.RowLeadinU});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(374.2608F, 593.2585F);
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(369.5942F, 593.2586F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -6544,7 +6544,6 @@
             this.VisionYear1.StylePriority.UseBorders = false;
             this.VisionYear1.StylePriority.UseFont = false;
             this.VisionYear1.StylePriority.UseTextAlignment = false;
-            this.VisionYear1.Text = "ปี2564";
             this.VisionYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.VisionYear1.Weight = 1.0496157325070128D;
             // 
@@ -6560,6 +6559,19 @@
             this.VisionYear2.StylePriority.UseTextAlignment = false;
             this.VisionYear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.VisionYear2.Weight = 1.0496157423827255D;
+            // 
+            // VisionYear3
+            // 
+            this.VisionYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right)));
+            this.VisionYear3.CanGrow = false;
+            this.VisionYear3.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
+            this.VisionYear3.Name = "VisionYear3";
+            this.VisionYear3.StylePriority.UseBorders = false;
+            this.VisionYear3.StylePriority.UseFont = false;
+            this.VisionYear3.StylePriority.UseTextAlignment = false;
+            this.VisionYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.VisionYear3.Weight = 1.0496154754516407D;
             // 
             // xrTableRow8
             // 
@@ -8122,19 +8134,6 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // VisionYear3
-            // 
-            this.VisionYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right)));
-            this.VisionYear3.CanGrow = false;
-            this.VisionYear3.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
-            this.VisionYear3.Name = "VisionYear3";
-            this.VisionYear3.StylePriority.UseBorders = false;
-            this.VisionYear3.StylePriority.UseFont = false;
-            this.VisionYear3.StylePriority.UseTextAlignment = false;
-            this.VisionYear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.VisionYear3.Weight = 1.0496154754516407D;
-            // 
             // RiskBook3
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -8450,18 +8449,6 @@
         public DevExpress.XtraReports.UI.DetailBand Detail;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow20;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell90;
-        private DevExpress.XtraReports.UI.XRTableCell lbFarVision2;
-        private DevExpress.XtraReports.UI.XRTableCell lbFarVision3;
-        private DevExpress.XtraReports.UI.XRTableCell lbNearVision2;
-        private DevExpress.XtraReports.UI.XRTableCell lbNearVision3;
-        private DevExpress.XtraReports.UI.XRTableCell lb3DVision2;
-        private DevExpress.XtraReports.UI.XRTableCell lb3DVision3;
-        private DevExpress.XtraReports.UI.XRTableCell lbVisionColor2;
-        private DevExpress.XtraReports.UI.XRTableCell lbVisionColor3;
-        private DevExpress.XtraReports.UI.XRTableCell lbBalanceEye2;
-        private DevExpress.XtraReports.UI.XRTableCell lbBalanceEye3;
-        private DevExpress.XtraReports.UI.XRTableCell lbFieldVision2;
-        private DevExpress.XtraReports.UI.XRTableCell lbFieldVision3;
         private DevExpress.XtraReports.UI.XRRichText xrRichText5;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow23;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell93;
@@ -8759,5 +8746,17 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell1;
         public DevExpress.XtraReports.UI.XRTableRow RowAlu;
         public DevExpress.XtraReports.UI.XRTableCell VisionYear3;
+        public DevExpress.XtraReports.UI.XRTableCell lbFarVision2;
+        public DevExpress.XtraReports.UI.XRTableCell lbFarVision3;
+        public DevExpress.XtraReports.UI.XRTableCell lbNearVision2;
+        public DevExpress.XtraReports.UI.XRTableCell lbNearVision3;
+        public DevExpress.XtraReports.UI.XRTableCell lb3DVision2;
+        public DevExpress.XtraReports.UI.XRTableCell lb3DVision3;
+        public DevExpress.XtraReports.UI.XRTableCell lbVisionColor2;
+        public DevExpress.XtraReports.UI.XRTableCell lbVisionColor3;
+        public DevExpress.XtraReports.UI.XRTableCell lbBalanceEye2;
+        public DevExpress.XtraReports.UI.XRTableCell lbBalanceEye3;
+        public DevExpress.XtraReports.UI.XRTableCell lbFieldVision2;
+        public DevExpress.XtraReports.UI.XRTableCell lbFieldVision3;
     }
 }
