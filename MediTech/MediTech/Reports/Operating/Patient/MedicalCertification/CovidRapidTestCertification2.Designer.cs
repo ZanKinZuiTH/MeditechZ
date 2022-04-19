@@ -1,5 +1,5 @@
 ﻿
-namespace MediTech.Reports.Operating.Patient.MedicalCertification
+namespace MediTech.Reports.Operating.Patient
 {
     partial class CovidRapidTestCertification2
     {
@@ -117,6 +117,9 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel6 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrPictureBox1 = new DevExpress.XtraReports.UI.XRPictureBox();
+            this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PatientUID = new DevExpress.XtraReports.Parameters.Parameter();
+            this.PatientVisitUID = new DevExpress.XtraReports.Parameters.Parameter();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -927,6 +930,24 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.xrPictureBox1.SizeF = new System.Drawing.SizeF(220.8333F, 68.99998F);
             this.xrPictureBox1.StylePriority.UseBorders = false;
             // 
+            // OrganisationUID
+            // 
+            this.OrganisationUID.AllowNull = true;
+            this.OrganisationUID.Name = "OrganisationUID";
+            this.OrganisationUID.Type = typeof(int);
+            // 
+            // PatientUID
+            // 
+            this.PatientUID.AllowNull = true;
+            this.PatientUID.Name = "PatientUID";
+            this.PatientUID.Type = typeof(long);
+            // 
+            // PatientVisitUID
+            // 
+            this.PatientVisitUID.AllowNull = true;
+            this.PatientVisitUID.Name = "PatientVisitUID";
+            this.PatientVisitUID.Type = typeof(long);
+            // 
             // CovidRapidTestCertification2
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -939,6 +960,10 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
+            this.Parameters.AddRange(new DevExpress.XtraReports.Parameters.Parameter[] {
+            this.OrganisationUID,
+            this.PatientUID,
+            this.PatientVisitUID});
             this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable5)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
@@ -1034,5 +1059,8 @@ namespace MediTech.Reports.Operating.Patient.MedicalCertification
         public DevExpress.XtraReports.UI.XRLabel xrLabel17;
         public DevExpress.XtraReports.UI.XRLabel xrLabel10;
         public DevExpress.XtraReports.UI.XRLabel xrLabel14;
+        private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
+        private DevExpress.XtraReports.Parameters.Parameter PatientUID;
+        private DevExpress.XtraReports.Parameters.Parameter PatientVisitUID;
     }
 }

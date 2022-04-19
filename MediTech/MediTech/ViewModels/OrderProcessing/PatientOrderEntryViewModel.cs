@@ -511,8 +511,6 @@ namespace MediTech.ViewModels
                     PatientOrders = null;
                 }
             }
-
-
         }
 
         void ApplyOrderItem(SearchOrderItem orderItem)
@@ -796,6 +794,7 @@ namespace MediTech.ViewModels
             {
                 case "Lab Test":
                 case "Radiology":
+                case "Mobile Checkup":
                 case "Order Item":
                     {
                         OrderWithOutStockItem ordRe = new OrderWithOutStockItem(selectPatientOrder);
