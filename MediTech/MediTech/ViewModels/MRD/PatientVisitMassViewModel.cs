@@ -1198,9 +1198,7 @@ namespace MediTech.ViewModels
 
                             var myReport = Activator.CreateInstance(Type.GetType(SelectReport.NamespaceName));
                             XtraReport report = (XtraReport)myReport;
-                            ReportPrintTool printTool = new ReportPrintTool(report);
-                            if (SelectReport.Name == "ใบรับรองแพทย์โควิดนอกสถานที่")
-                                printTool.PrintingSystem.StartPrint += PrintingSystem_StartPrint;
+                            ReportPrintTool printTool = new ReportPrintTool(report);          
 
                             if (SelectReport.Name == "ปริ้น Sticker" || SelectReport.Name == "ปริ้น Sticker Large")
                             {

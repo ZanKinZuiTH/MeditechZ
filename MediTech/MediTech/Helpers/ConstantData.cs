@@ -25,7 +25,7 @@ namespace MediTech.Helpers
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificate1" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ทำงานบนที่สูง (ภาษาอังกฤษ)", NamespaceName = "MediTech.Reports.Operating.Patient.WorkingHeightCertificateEng1" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์โควิด", NamespaceName = "MediTech.Reports.Operating.Patient.CovidRapidTestCertification" });
-            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์โควิดนอกสถานที่", NamespaceName = "MediTech.Reports.Operating.Patient.CovidRapidTestCertification" });
+            ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์โควิดนอกสถานที่", NamespaceName = "MediTech.Reports.Operating.Patient.CovidRapidTestCertification2" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์กายภาพ", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ สณ.11", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil10" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค (Mobile)", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });
