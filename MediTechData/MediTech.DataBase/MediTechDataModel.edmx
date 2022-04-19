@@ -3408,6 +3408,10 @@
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="pGetCheckupRiskAudioTimus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
+          <Parameter Name="P_PayorDetailUID" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="pGetDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
@@ -3745,6 +3749,12 @@
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pRPTEcoutSumGroupReceipt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
+          <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pRPTOrderRequestCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -4422,17 +4432,6 @@
             <Parameter Name="P_OrderName" Mode="In" Type="String" />
             <Parameter Name="P_RadiologistUID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pGetRequestList1">
-            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="P_ORDSTUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_PatientName_1" Mode="In" Type="String" />
-            <Parameter Name="P_PatientName_2" Mode="In" Type="String" />
-            <Parameter Name="P_RadiologistUID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pGetSEQID1" ReturnType="Collection(Int64)">
-          <Parameter Name="P_SEQTableName" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="pSearchRequestListByRequestDetailUID" ReturnType="Collection(MediTechModel.pSearchRequestListByRequestDetailUID_Result)">
           <Parameter Name="P_RequestDetailUID" Mode="In" Type="Int64" />
           </FunctionImport>
@@ -4443,36 +4442,11 @@
             <Parameter Name="P_PatientName_2" Mode="In" Type="String" />
             <Parameter Name="P_PatientID" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pSearchPatient1" ReturnType="Collection(MediTechModel.pSearchPatient1_Result)">
-            <Parameter Name="P_PatientID" Mode="In" Type="String" />
-            <Parameter Name="P_FirstName" Mode="In" Type="String" />
-            <Parameter Name="P_MiddleName" Mode="In" Type="String" />
-            <Parameter Name="P_LastName" Mode="In" Type="String" />
-            <Parameter Name="P_NickName" Mode="In" Type="String" />
-            <Parameter Name="P_BirthDate" Mode="In" Type="DateTime" />
-            <Parameter Name="P_SEXXXUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_IDCard" Mode="In" Type="String" />
-            <Parameter Name="P_LastVisitDate" Mode="In" Type="DateTime" />
-            <Parameter Name="P_MobilePhone" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="pStoreConvertUOM" ReturnType="Collection(MediTechModel.pStoreConvertUOM_Result)">
           <Parameter Name="ItemMasterUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pGetConvertUOM">
           <Parameter Name="ItemMasterUID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pSearchPatientVisit1" ReturnType="Collection(MediTechModel.pSearchPatientVisit1_Result)">
-            <Parameter Name="HN" Mode="In" Type="String" />
-            <Parameter Name="FirstName" Mode="In" Type="String" />
-            <Parameter Name="LastName" Mode="In" Type="String" />
-            <Parameter Name="CareproViderUID" Mode="In" Type="Int32" />
-            <Parameter Name="StatusList" Mode="In" Type="String" />
-            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
-            <Parameter Name="ArrivedDttm" Mode="In" Type="DateTime" />
-            <Parameter Name="OwnerOrganisation" Mode="In" Type="Int32" />
-            <Parameter Name="PayorDetailUID" Mode="In" Type="Int32" />
-            <Parameter Name="CheckupJobUID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="pGetBillableItemDrug" ReturnType="Collection(MediTechModel.pGetBillableItemDrug_Result)" />
           <FunctionImport Name="pItemConvertUOM" ReturnType="Collection(MediTechModel.pItemConvertUOM_Result)">
@@ -4701,14 +4675,8 @@
             <Parameter Name="P_UserName" Mode="In" Type="String" />
             <Parameter Name="P_Password" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="pGetOrderMedicalByVisitUID1" ReturnType="Collection(MediTechModel.pGetOrderMedicalByVisitUID1_Result)">
-          <Parameter Name="P_VisitUID" Mode="In" Type="Int64" />
-          </FunctionImport>
           <FunctionImport Name="pGetPatientByUID" ReturnType="Collection(MediTechModel.pGetPatientByUID_Result)">
           <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
-          </FunctionImport>
-          <FunctionImport Name="pSearchBillableItemMedical1" ReturnType="Collection(MediTechModel.pSearchBillableItemMedical1_Result)">
-          <Parameter Name="P_Text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pGetOrderAllByVisitUID" ReturnType="Collection(MediTechModel.pGetOrderAllByVisitUID_Result)">
           <Parameter Name="P_VisitUID" Mode="In" Type="Int64" />
@@ -4725,11 +4693,6 @@
           <FunctionImport Name="pDispensePrescriptionItem" ReturnType="Collection(DateTime)">
             <Parameter Name="P_PrescriptionItemUID" Mode="In" Type="Int64" />
             <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pGetOrderALLByVisitUID1" ReturnType="Collection(MediTechModel.pGetOrderALLByVisitUID1_Result)">
-            <Parameter Name="P_VisitUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
-            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
           <FunctionImport Name="pGetOrderRequestByVisitUID" ReturnType="Collection(MediTechModel.pGetOrderRequestByVisitUID_Result)">
           <Parameter Name="P_VisitUID" Mode="In" Type="Int64" />
@@ -4754,15 +4717,9 @@
             <Parameter Name="P_PatientOrderDetailUID" Mode="In" Type="Int64" />
             <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="pGetPatientBillByVisitUID1" ReturnType="Collection(MediTechModel.pGetPatientBillByVisitUID1_Result)">
-          <Parameter Name="P_VisitUID" Mode="In" Type="Int64" />
-          </FunctionImport>
           <FunctionImport Name="pSearchOrderItem" ReturnType="Collection(MediTechModel.pSearchOrderItem_Result)">
             <Parameter Name="P_Text" Mode="In" Type="String" />
             <Parameter Name="P_OwnerOrganisation" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pGetPatientBillByUID1" ReturnType="Collection(MediTechModel.pGetPatientBillByUID1_Result)">
-          <Parameter Name="P_PatientBillUID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="pInvenInsertItemAverageCost">
             <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
@@ -4823,9 +4780,6 @@
             <Parameter Name="P_BatchID" Mode="In" Type="String" />
             <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
             <Parameter Name="P_ItemName" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pPrintStrickerDrug1" ReturnType="Collection(MediTechModel.pPrintStrickerDrug1_Result)">
-          <Parameter Name="PrescriptionItemUID" Mode="In" Type="Int64" />
           </FunctionImport>
           <FunctionImport Name="pPrintOPDCard" ReturnType="Collection(MediTechModel.pPrintOPDCard_Result)">
             <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
@@ -4904,13 +4858,6 @@
             <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
             <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pInvenClearItemReceiveDetail1">
-            <Parameter Name="P_ItemReceiveUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="pSearchItemMasterCriteria1">
-          <Parameter Name="P_Text" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="pRPTPatientProblemStatistic" ReturnType="Collection(MediTechModel.pRPTPatientProblemStatistic_Result)">
             <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
@@ -5263,6 +5210,65 @@
             <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
             <Parameter Name="P_ExpiryDate" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pInvenGoodReceiveFromEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_Organisation" Mode="In" Type="Int32" />
+            <Parameter Name="P_Comments" Mode="In" Type="String" />
+            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ExpiryDate" Mode="In" Type="DateTime" />
+            <Parameter Name="P_BatchID" Mode="In" Type="String" />
+            <Parameter Name="P_Quantity" Mode="In" Type="Double" />
+            <Parameter Name="P_ItemCost" Mode="In" Type="Double" />
+            <Parameter Name="P_VendorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ManufacturerUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GRNDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_GRNDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="P_RefNo" Mode="In" Type="String" />
+            <Parameter Name="P_RefTable" Mode="In" Type="String" />
+            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_NoteMovement" Mode="In" Type="String" />
+            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pInvenInsertStockMovementFromEcount">
+            <Parameter Name="P_StockUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_BatchID" Mode="In" Type="String" />
+            <Parameter Name="P_StokDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="p_TotalBFQty" Mode="In" Type="Double" />
+            <Parameter Name="P_BFQty" Mode="In" Type="Double" />
+            <Parameter Name="P_INQty" Mode="In" Type="Double" />
+            <Parameter Name="P_OUTQty" Mode="In" Type="Double" />
+            <Parameter Name="P_BalQty" Mode="In" Type="Double" />
+            <Parameter Name="P_TotalBalQty" Mode="In" Type="Double" />
+            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UnitCost" Mode="In" Type="Double" />
+            <Parameter Name="P_RefNo" Mode="In" Type="String" />
+            <Parameter Name="P_RefTable" Mode="In" Type="String" />
+            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_RefPatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_Note" Mode="In" Type="String" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="pInvenIssueItemEcount" ReturnType="Collection(DateTime)">
+            <Parameter Name="P_ItemIssueUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pGetCheckupRiskAudioTimus" ReturnType="Collection(MediTechModel.pGetCheckupRiskAudioTimus_Result)">
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int64" />
+            <Parameter Name="P_PayorDetailUID" Mode="In" Type="Int64" />
+          </FunctionImport>
+          <FunctionImport Name="pRPTEcoutSumGroupReceipt" ReturnType="Collection(MediTechModel.pRPTEcoutSumGroupReceipt_Result)">
+            <Parameter Name="P_DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="P_DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
+            <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -5428,55 +5434,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <FunctionImport Name="pInvenGoodReceiveFromEcount" ReturnType="Collection(DateTime)">
-            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_Organisation" Mode="In" Type="Int32" />
-            <Parameter Name="P_Comments" Mode="In" Type="String" />
-            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_ExpiryDate" Mode="In" Type="DateTime" />
-            <Parameter Name="P_BatchID" Mode="In" Type="String" />
-            <Parameter Name="P_Quantity" Mode="In" Type="Double" />
-            <Parameter Name="P_ItemCost" Mode="In" Type="Double" />
-            <Parameter Name="P_VendorDetailUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_ManufacturerUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_GRNDetailUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_GRNDttm" Mode="In" Type="DateTime" />
-            <Parameter Name="P_RefNo" Mode="In" Type="String" />
-            <Parameter Name="P_RefTable" Mode="In" Type="String" />
-            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_NoteMovement" Mode="In" Type="String" />
-            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pInvenInsertStockMovementFromEcount">
-            <Parameter Name="P_StockUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_ToStoreUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_ItemMasterUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_BatchID" Mode="In" Type="String" />
-            <Parameter Name="P_StokDttm" Mode="In" Type="DateTime" />
-            <Parameter Name="p_TotalBFQty" Mode="In" Type="Double" />
-            <Parameter Name="P_BFQty" Mode="In" Type="Double" />
-            <Parameter Name="P_INQty" Mode="In" Type="Double" />
-            <Parameter Name="P_OUTQty" Mode="In" Type="Double" />
-            <Parameter Name="P_BalQty" Mode="In" Type="Double" />
-            <Parameter Name="P_TotalBalQty" Mode="In" Type="Double" />
-            <Parameter Name="P_IMUOMUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_UnitCost" Mode="In" Type="Double" />
-            <Parameter Name="P_RefNo" Mode="In" Type="String" />
-            <Parameter Name="P_RefTable" Mode="In" Type="String" />
-            <Parameter Name="P_RefUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_RefPatientUID" Mode="In" Type="Int64" />
-            <Parameter Name="P_Note" Mode="In" Type="String" />
-            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_SerialNumber" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="pInvenIssueItemEcount" ReturnType="Collection(DateTime)">
-            <Parameter Name="P_ItemIssueUID" Mode="In" Type="Int32" />
-            <Parameter Name="P_UserUID" Mode="In" Type="Int32" />
-          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -5850,53 +5807,10 @@
           <Property Type="String" Name="RequestUserName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="DoctorName" Nullable="true" MaxLength="100" />
         </ComplexType>
-        <ComplexType Name="pSearchPatient1_Result">
-          <Property Type="Int64" Name="UID" Nullable="false" />
-          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="NickName" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
-          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="TITLEUID" Nullable="true" />
-          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="15" />
-          <Property Type="DateTime" Name="DOBDttm" Nullable="true" Precision="23" />
-          <Property Type="Boolean" Name="DOBComputed" Nullable="false" />
-          <Property Type="Int32" Name="BLOODUID" Nullable="true" />
-          <Property Type="String" Name="IsVIP" Nullable="true" MaxLength="1" />
-          <Property Type="String" Name="IDCard" Nullable="true" MaxLength="13" />
-          <Property Type="Int32" Name="RELGNUID" Nullable="true" />
-          <Property Type="String" Name="MobilePhon" Nullable="true" MaxLength="12" />
-          <Property Type="Int32" Name="NATNLUID" Nullable="true" />
-          <Property Type="Int32" Name="MARRYUID" Nullable="true" />
-          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
-          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Comment" Nullable="true" MaxLength="500" />
-        </ComplexType>
         <ComplexType Name="pStoreConvertUOM_Result">
           <Property Type="Int32" Name="ConversionUOMUID" Nullable="true" />
           <Property Type="String" Name="ConversionUnit" Nullable="true" MaxLength="200" />
           <Property Type="Double" Name="ConversionValue" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="pSearchPatientVisit1_Result">
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="15" />
-          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="20" />
-          <Property Type="Int32" Name="VisitID1" Nullable="true" />
-          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
-          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AgeString" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="23" />
-          <Property Type="String" Name="VisitStatus" Nullable="true" MaxLength="255" />
-          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CareproviderName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
         </ComplexType>
         <ComplexType Name="pGetBillableItemDrug_Result">
           <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
@@ -6255,42 +6169,6 @@
           <Property Type="String" Name="OwnerOrganisationName" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="IsAdmin" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="pGetOrderMedicalByVisitUID1_Result">
-          <Property Type="Int64" Name="PatientOrderUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="OrderNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ORDSTUID" Nullable="false" />
-          <Property Type="String" Name="OrderStatus" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="OrderRaisedBy" Nullable="false" />
-          <Property Type="Int64" Name="IdentifyingUID" Nullable="true" />
-          <Property Type="String" Name="IdentifyingType" Nullable="true" MaxLength="30" />
-          <Property Type="Int64" Name="PatientOrderDetailUID" Nullable="false" />
-          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
-          <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
-          <Property Type="Int32" Name="BSMDDUID" Nullable="false" />
-          <Property Type="String" Name="BillingService" Nullable="true" MaxLength="255" />
-          <Property Type="Int64" Name="IdentifyingUID2" Nullable="true" />
-          <Property Type="String" Name="IdentifyingType2" Nullable="true" MaxLength="30" />
-          <Property Type="DateTime" Name="StartDttm2" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="ORDSTUID2" Nullable="false" />
-          <Property Type="String" Name="OrderDetailStatus" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="Quantity" Nullable="true" />
-          <Property Type="Int32" Name="QNUOMUID" Nullable="true" />
-          <Property Type="String" Name="QuantityUnit" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="UnitPrice" Nullable="true" />
-          <Property Type="Double" Name="DoctorFee" Nullable="true" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-          <Property Type="String" Name="IsPriceOverwrite" Nullable="true" MaxLength="1" />
-          <Property Type="Double" Name="OverwritePrice" Nullable="true" />
-          <Property Type="String" Name="InstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="LocalInstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="IsStock" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="StoreUID" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="pGetPatientByUID_Result">
           <Property Type="Int64" Name="PatientUID" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
@@ -6326,19 +6204,6 @@
           <Property Type="Int32" Name="DistrictUID" Nullable="true" />
           <Property Type="String" Name="ZipCode" Nullable="true" MaxLength="50" />
           <Property Type="Binary" Name="PatientImage" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="pSearchBillableItemMedical1_Result">
-          <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
-          <Property Type="Int32" Name="ItemUID" Nullable="false" />
-          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="400" />
-          <Property Type="Int32" Name="BSMDDUID" Nullable="false" />
-          <Property Type="Int32" Name="BSMDDUID1" Nullable="false" />
-          <Property Type="String" Name="BillingService" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="QNUOMUID" Nullable="true" />
-          <Property Type="String" Name="QuantityUnit" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="IsStock" Nullable="true" MaxLength="1" />
-          <Property Type="Double" Name="UnitPrice" Nullable="false" />
         </ComplexType>
         <ComplexType Name="pGetOrderAllByVisitUID_Result">
           <Property Type="Int64" Name="PatientOrderUID" Nullable="false" />
@@ -6376,49 +6241,6 @@
           <Property Type="String" Name="TypeDrug" Nullable="true" MaxLength="255" />
           <Property Type="Int32" Name="PDSTSUID" Nullable="true" />
           <Property Type="String" Name="InstructionRoute" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="InstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="DrugDuration" Nullable="true" />
-          <Property Type="String" Name="LocalInstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="IsStock" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="StoreUID" Nullable="true" />
-          <Property Type="String" Name="IsPriceOverwrite" Nullable="true" MaxLength="1" />
-          <Property Type="Double" Name="OverwritePrice" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="pGetOrderALLByVisitUID1_Result">
-          <Property Type="Int64" Name="PatientOrderUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="OrderNumber" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ORDSTUID" Nullable="false" />
-          <Property Type="String" Name="OrderStatus" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="OrderRaisedBy" Nullable="false" />
-          <Property Type="Int64" Name="IdentifyingUID" Nullable="true" />
-          <Property Type="String" Name="IdentifyingType" Nullable="true" MaxLength="30" />
-          <Property Type="Int64" Name="PatientOrderDetailUID" Nullable="false" />
-          <Property Type="String" Name="ItemCode" Nullable="false" MaxLength="200" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="800" />
-          <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
-          <Property Type="Int32" Name="BSMDDUID" Nullable="false" />
-          <Property Type="String" Name="BillingService" Nullable="true" MaxLength="255" />
-          <Property Type="Int64" Name="IdentifyingUID2" Nullable="true" />
-          <Property Type="String" Name="IdentifyingType2" Nullable="true" MaxLength="30" />
-          <Property Type="DateTime" Name="StartDttm2" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="ORDSTUID2" Nullable="false" />
-          <Property Type="String" Name="OrderDetailStatus" Nullable="true" MaxLength="255" />
-          <Property Type="Double" Name="Quantity" Nullable="true" />
-          <Property Type="Int32" Name="QNUOMUID" Nullable="true" />
-          <Property Type="String" Name="QuantityUnit" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="DrugFrequencyUID" Nullable="true" />
-          <Property Type="String" Name="DrugFrequency" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="UnitPrice" Nullable="true" />
-          <Property Type="Double" Name="DoctorFee" Nullable="true" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-          <Property Type="Int32" Name="ROUTEUID" Nullable="true" />
-          <Property Type="Int32" Name="DFORMUID" Nullable="true" />
-          <Property Type="String" Name="TypeDrug" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="PDSTSUID" Nullable="true" />
           <Property Type="String" Name="InstructionText" Nullable="true" MaxLength="500" />
           <Property Type="Int32" Name="DrugDuration" Nullable="true" />
           <Property Type="String" Name="LocalInstructionText" Nullable="true" MaxLength="500" />
@@ -6582,55 +6404,6 @@
           <Property Type="Double" Name="TotalAmount" Nullable="true" />
           <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
         </ComplexType>
-        <ComplexType Name="pGetPatientBillByVisitUID1_Result">
-          <Property Type="Int64" Name="PatientBillUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitPayorUID" Nullable="true" />
-          <Property Type="Int32" Name="PayorDetailUID" Nullable="true" />
-          <Property Type="Int32" Name="PayorAgreementUID" Nullable="true" />
-          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" Precision="23" />
-          <Property Type="Double" Name="TotalAmount" Nullable="true" />
-          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
-          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="IsRefund" Nullable="true" MaxLength="2" />
-          <Property Type="Double" Name="PaidAmount" Nullable="false" />
-          <Property Type="Double" Name="ChangeAmount" Nullable="true" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
-          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="PatientBilledItemUID" Nullable="false" />
-          <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="255" />
-          <Property Type="Double" Name="ItemMutiplier" Nullable="false" />
-          <Property Type="Double" Name="Amount" Nullable="true" />
-          <Property Type="Double" Name="Discount" Nullable="true" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-          <Property Type="String" Name="Comments1" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="ItemUID" Nullable="true" />
-          <Property Type="Int32" Name="BSMDDUID" Nullable="false" />
-          <Property Type="String" Name="BillingService" Nullable="true" MaxLength="255" />
-          <Property Type="Int64" Name="PatientOrderDetailUID" Nullable="false" />
-          <Property Type="Double" Name="Quantity" Nullable="true" />
-          <Property Type="Int32" Name="QNUOMUID" Nullable="true" />
-          <Property Type="String" Name="QuantityUnit" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="DrugFrequencyUID" Nullable="true" />
-          <Property Type="String" Name="DrugFrequency" Nullable="true" MaxLength="100" />
-          <Property Type="Double" Name="UnitPrice" Nullable="true" />
-          <Property Type="Double" Name="DoctorFee" Nullable="true" />
-          <Property Type="Int32" Name="ROUTEUID" Nullable="true" />
-          <Property Type="Int32" Name="DFORMUID" Nullable="true" />
-          <Property Type="String" Name="TypeDrug" Nullable="true" MaxLength="255" />
-          <Property Type="Int32" Name="PDSTSUID" Nullable="true" />
-          <Property Type="String" Name="InstructionRoute" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="InstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="Int32" Name="DrugDuration" Nullable="true" />
-          <Property Type="String" Name="LocalInstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="String" Name="IsStock" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="StoreUID" Nullable="true" />
-          <Property Type="String" Name="IsPriceOverwrite" Nullable="true" MaxLength="1" />
-          <Property Type="Double" Name="OverwritePrice" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="pSearchOrderItem_Result">
           <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
           <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="100" />
@@ -6642,35 +6415,6 @@
           <Property Type="Double" Name="UnitPrice" Nullable="false" />
           <Property Type="DateTime" Name="ActiveFrom" Nullable="true" Precision="23" />
           <Property Type="DateTime" Name="ActiveTo" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="pGetPatientBillByUID1_Result">
-          <Property Type="Int64" Name="PatientBillUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
-          <Property Type="Int64" Name="PatientVisitPayorUID" Nullable="true" />
-          <Property Type="Int32" Name="PayorDetailUID" Nullable="true" />
-          <Property Type="Int32" Name="PayorAgreementUID" Nullable="true" />
-          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" Precision="23" />
-          <Property Type="Double" Name="TotalAmount" Nullable="true" />
-          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
-          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="IsRefund" Nullable="true" MaxLength="2" />
-          <Property Type="Double" Name="PaidAmount" Nullable="false" />
-          <Property Type="Double" Name="ChangeAmount" Nullable="true" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
-          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="100" />
-          <Property Type="Int64" Name="PatientBilledItemUID" Nullable="false" />
-          <Property Type="Int32" Name="BillableItemUID" Nullable="false" />
-          <Property Type="String" Name="ItemName" Nullable="false" MaxLength="255" />
-          <Property Type="Double" Name="ItemMutiplier" Nullable="false" />
-          <Property Type="Double" Name="Amount" Nullable="true" />
-          <Property Type="Double" Name="Discount" Nullable="true" />
-          <Property Type="Double" Name="NetAmount" Nullable="true" />
-          <Property Type="String" Name="Comments1" Nullable="true" MaxLength="100" />
-          <Property Type="Int32" Name="ItemUID" Nullable="true" />
-          <Property Type="Int32" Name="BSMDDUID" Nullable="false" />
-          <Property Type="String" Name="BillingService" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="pGetUserByLogins_Result">
           <Property Type="DateTime" Name="ActiveFrom" Nullable="true" Precision="23" />
@@ -6721,20 +6465,6 @@
           <Property Type="String" Name="OrganisationName" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="VendorName" Nullable="true" MaxLength="200" />
           <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
-        </ComplexType>
-        <ComplexType Name="pPrintStrickerDrug1_Result">
-          <Property Type="String" Name="PrescriptionNumber" Nullable="true" MaxLength="20" />
-          <Property Type="DateTime" Name="PrescribedDttm" Nullable="false" Precision="23" />
-          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="DateofBirth" Nullable="true" Precision="23" />
-          <Property Type="String" Name="DrugName" Nullable="false" MaxLength="800" />
-          <Property Type="String" Name="DrugLable" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="FrequencyDefinition" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="DoctorName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="InstructionText" Nullable="true" MaxLength="500" />
-          <Property Type="Double" Name="Dosage" Nullable="true" />
-          <Property Type="String" Name="PatientInstruction" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="ItemUnit" Nullable="true" MaxLength="255" />
         </ComplexType>
         <ComplexType Name="pPrintOPDCard_Result">
           <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
@@ -8012,6 +7742,37 @@
           <Property Type="String" Name="IsExpired" Nullable="true" MaxLength="1" />
           <Property Type="DateTime" Name="ExpiryDttm" Nullable="true" Precision="23" />
           <Property Type="String" Name="SerialNumber" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="pGetCheckupRiskAudioTimus_Result">
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="RequestItemCode" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="RequestItemName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="Catagory" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="ResultItemCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="ResultItemName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ResultValue" Nullable="true" MaxLength="4000" />
+          <Property Type="Int32" Name="Year" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="pRPTEcoutSumGroupReceipt_Result">
+          <Property Type="Int64" Name="RowNumber" Nullable="true" />
+          <Property Type="DateTime" Name="DateOrder" Nullable="true" Precision="23" />
+          <Property Type="String" Name="HealthOrganisationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemCode" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="ItemName" Nullable="true" MaxLength="200" />
+          <Property Type="Double" Name="Qty" Nullable="true" />
+          <Property Type="Double" Name="UnitPrice" Nullable="true" />
+          <Property Type="Double" Name="NetPrice" Nullable="true" />
+          <Property Type="String" Name="BillNumber" Nullable="false" MaxLength="12" />
+          <Property Type="String" Name="Store" Nullable="false" MaxLength="200" />
+          <Property Type="DateTime" Name="VisitDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrderSetCode" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="OrderSetName" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PayorCode" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="OrderBy" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NoBusiness" Nullable="true" MaxLength="10" />
         </ComplexType>
         <EntityType Name="Amphur">
           <Key>
@@ -11232,7 +10993,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pSearchRequestList" FunctionName="MediTechModel.Store.pSearchRequestList" />
-          <FunctionImportMapping FunctionImportName="pGetSEQID1" FunctionName="MediTechModel.Store.pGetSEQID" />
           <FunctionImportMapping FunctionImportName="pSearchRequestListByRequestDetailUID" FunctionName="MediTechModel.Store.pSearchRequestListByRequestDetailUID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pSearchRequestListByRequestDetailUID_Result">
@@ -11257,63 +11017,12 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pSearchPatientVisitForRISBilling" FunctionName="MediTechModel.Store.pSearchPatientVisitForRISBilling" />
-          <FunctionImportMapping FunctionImportName="pSearchPatient1" FunctionName="MediTechModel.Store.pSearchPatient">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pSearchPatient1_Result">
-                <ScalarProperty Name="UID" ColumnName="UID" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="TITLEUID" ColumnName="TITLEUID" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
-                <ScalarProperty Name="DOBComputed" ColumnName="DOBComputed" />
-                <ScalarProperty Name="BLOODUID" ColumnName="BLOODUID" />
-                <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
-                <ScalarProperty Name="IDCard" ColumnName="IDCard" />
-                <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
-                <ScalarProperty Name="MobilePhon" ColumnName="MobilePhon" />
-                <ScalarProperty Name="NATNLUID" ColumnName="NATNLUID" />
-                <ScalarProperty Name="MARRYUID" ColumnName="MARRYUID" />
-                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pStoreConvertUOM" FunctionName="MediTechModel.Store.pStoreConvertUOM">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pStoreConvertUOM_Result">
                 <ScalarProperty Name="ConversionUOMUID" ColumnName="ConversionUOMUID" />
                 <ScalarProperty Name="ConversionUnit" ColumnName="ConversionUnit" />
                 <ScalarProperty Name="ConversionValue" ColumnName="ConversionValue" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pSearchPatientVisit1" FunctionName="MediTechModel.Store.pSearchPatientVisit">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pSearchPatientVisit1_Result">
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
-                <ScalarProperty Name="VisitID1" ColumnName="VisitID1" />
-                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
-                <ScalarProperty Name="Title" ColumnName="Title" />
-                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
-                <ScalarProperty Name="LastName" ColumnName="LastName" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="AgeString" ColumnName="AgeString" />
-                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
-                <ScalarProperty Name="VisitStatus" ColumnName="VisitStatus" />
-                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
-                <ScalarProperty Name="CareproviderName" ColumnName="CareproviderName" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11498,46 +11207,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pGetOrderItemByVisitUID" FunctionName="MediTechModel.Store.pGetOrderItemByVisitUID" />
-          <FunctionImportMapping FunctionImportName="pGetOrderMedicalByVisitUID1" FunctionName="MediTechModel.Store.pGetOrderMedicalByVisitUID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetOrderMedicalByVisitUID1_Result">
-                <ScalarProperty Name="PatientOrderUID" ColumnName="PatientOrderUID" />
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-                <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
-                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
-                <ScalarProperty Name="OrderRaisedBy" ColumnName="OrderRaisedBy" />
-                <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
-                <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
-                <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
-                <ScalarProperty Name="BillingService" ColumnName="BillingService" />
-                <ScalarProperty Name="IdentifyingUID2" ColumnName="IdentifyingUID2" />
-                <ScalarProperty Name="IdentifyingType2" ColumnName="IdentifyingType2" />
-                <ScalarProperty Name="StartDttm2" ColumnName="StartDttm2" />
-                <ScalarProperty Name="ORDSTUID2" ColumnName="ORDSTUID2" />
-                <ScalarProperty Name="OrderDetailStatus" ColumnName="OrderDetailStatus" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QNUOMUID" ColumnName="QNUOMUID" />
-                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="IsPriceOverwrite" ColumnName="IsPriceOverwrite" />
-                <ScalarProperty Name="OverwritePrice" ColumnName="OverwritePrice" />
-                <ScalarProperty Name="InstructionText" ColumnName="InstructionText" />
-                <ScalarProperty Name="LocalInstructionText" ColumnName="LocalInstructionText" />
-                <ScalarProperty Name="IsStock" ColumnName="IsStock" />
-                <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pGetPatientByUID" FunctionName="MediTechModel.Store.pGetPatientByUID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pGetPatientByUID_Result">
@@ -11579,53 +11248,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pDispensePrescriptionItem" FunctionName="MediTechModel.Store.pDispensePrescriptionItem" />
-          <FunctionImportMapping FunctionImportName="pGetOrderALLByVisitUID1" FunctionName="MediTechModel.Store.pGetOrderALLByVisitUID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetOrderALLByVisitUID1_Result">
-                <ScalarProperty Name="PatientOrderUID" ColumnName="PatientOrderUID" />
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="OrderNumber" ColumnName="OrderNumber" />
-                <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
-                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
-                <ScalarProperty Name="OrderRaisedBy" ColumnName="OrderRaisedBy" />
-                <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
-                <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
-                <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
-                <ScalarProperty Name="BillingService" ColumnName="BillingService" />
-                <ScalarProperty Name="IdentifyingUID2" ColumnName="IdentifyingUID2" />
-                <ScalarProperty Name="IdentifyingType2" ColumnName="IdentifyingType2" />
-                <ScalarProperty Name="StartDttm2" ColumnName="StartDttm2" />
-                <ScalarProperty Name="ORDSTUID2" ColumnName="ORDSTUID2" />
-                <ScalarProperty Name="OrderDetailStatus" ColumnName="OrderDetailStatus" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QNUOMUID" ColumnName="QNUOMUID" />
-                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-                <ScalarProperty Name="DrugFrequencyUID" ColumnName="DrugFrequencyUID" />
-                <ScalarProperty Name="DrugFrequency" ColumnName="DrugFrequency" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="ROUTEUID" ColumnName="ROUTEUID" />
-                <ScalarProperty Name="DFORMUID" ColumnName="DFORMUID" />
-                <ScalarProperty Name="TypeDrug" ColumnName="TypeDrug" />
-                <ScalarProperty Name="PDSTSUID" ColumnName="PDSTSUID" />
-                <ScalarProperty Name="InstructionText" ColumnName="InstructionText" />
-                <ScalarProperty Name="DrugDuration" ColumnName="DrugDuration" />
-                <ScalarProperty Name="LocalInstructionText" ColumnName="LocalInstructionText" />
-                <ScalarProperty Name="IsStock" ColumnName="IsStock" />
-                <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
-                <ScalarProperty Name="IsPriceOverwrite" ColumnName="IsPriceOverwrite" />
-                <ScalarProperty Name="OverwritePrice" ColumnName="OverwritePrice" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pGetOrderRequestByVisitUID" FunctionName="MediTechModel.Store.pGetOrderRequestByVisitUID">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pGetOrderRequestByVisitUID_Result">
@@ -11678,59 +11300,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pCancelDispensed" FunctionName="MediTechModel.Store.pCancelDispensed" />
-          <FunctionImportMapping FunctionImportName="pGetPatientBillByVisitUID1" FunctionName="MediTechModel.Store.pGetPatientBillByVisitUID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetPatientBillByVisitUID1_Result">
-                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="PatientVisitPayorUID" ColumnName="PatientVisitPayorUID" />
-                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
-                <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
-                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
-                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
-                <ScalarProperty Name="IsRefund" ColumnName="IsRefund" />
-                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
-                <ScalarProperty Name="ChangeAmount" ColumnName="ChangeAmount" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
-                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
-                <ScalarProperty Name="PatientBilledItemUID" ColumnName="PatientBilledItemUID" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemMutiplier" ColumnName="ItemMutiplier" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="Comments1" ColumnName="Comments1" />
-                <ScalarProperty Name="ItemUID" ColumnName="ItemUID" />
-                <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
-                <ScalarProperty Name="BillingService" ColumnName="BillingService" />
-                <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
-                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
-                <ScalarProperty Name="QNUOMUID" ColumnName="QNUOMUID" />
-                <ScalarProperty Name="QuantityUnit" ColumnName="QuantityUnit" />
-                <ScalarProperty Name="DrugFrequencyUID" ColumnName="DrugFrequencyUID" />
-                <ScalarProperty Name="DrugFrequency" ColumnName="DrugFrequency" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
-                <ScalarProperty Name="ROUTEUID" ColumnName="ROUTEUID" />
-                <ScalarProperty Name="DFORMUID" ColumnName="DFORMUID" />
-                <ScalarProperty Name="TypeDrug" ColumnName="TypeDrug" />
-                <ScalarProperty Name="PDSTSUID" ColumnName="PDSTSUID" />
-                <ScalarProperty Name="InstructionRoute" ColumnName="InstructionRoute" />
-                <ScalarProperty Name="InstructionText" ColumnName="InstructionText" />
-                <ScalarProperty Name="DrugDuration" ColumnName="DrugDuration" />
-                <ScalarProperty Name="LocalInstructionText" ColumnName="LocalInstructionText" />
-                <ScalarProperty Name="IsStock" ColumnName="IsStock" />
-                <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
-                <ScalarProperty Name="IsPriceOverwrite" ColumnName="IsPriceOverwrite" />
-                <ScalarProperty Name="OverwritePrice" ColumnName="OverwritePrice" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pSearchOrderItem" FunctionName="MediTechModel.Store.pSearchOrderItem">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pSearchOrderItem_Result">
@@ -11744,39 +11313,6 @@
                 <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pGetPatientBillByUID1" FunctionName="MediTechModel.Store.pGetPatientBillByUID">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetPatientBillByUID1_Result">
-                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
-                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
-                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
-                <ScalarProperty Name="PatientVisitPayorUID" ColumnName="PatientVisitPayorUID" />
-                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
-                <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
-                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
-                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
-                <ScalarProperty Name="IsRefund" ColumnName="IsRefund" />
-                <ScalarProperty Name="PaidAmount" ColumnName="PaidAmount" />
-                <ScalarProperty Name="ChangeAmount" ColumnName="ChangeAmount" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
-                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
-                <ScalarProperty Name="PatientBilledItemUID" ColumnName="PatientBilledItemUID" />
-                <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="ItemMutiplier" ColumnName="ItemMutiplier" />
-                <ScalarProperty Name="Amount" ColumnName="Amount" />
-                <ScalarProperty Name="Discount" ColumnName="Discount" />
-                <ScalarProperty Name="NetAmount" ColumnName="NetAmount" />
-                <ScalarProperty Name="Comments1" ColumnName="Comments1" />
-                <ScalarProperty Name="ItemUID" ColumnName="ItemUID" />
-                <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
-                <ScalarProperty Name="BillingService" ColumnName="BillingService" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -11847,24 +11383,6 @@
                 <ScalarProperty Name="OrganisationName" ColumnName="OrganisationName" />
                 <ScalarProperty Name="VendorName" ColumnName="VendorName" />
                 <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pPrintStrickerDrug1" FunctionName="MediTechModel.Store.pPrintStrickerDrug">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pPrintStrickerDrug1_Result">
-                <ScalarProperty Name="PrescriptionNumber" ColumnName="PrescriptionNumber" />
-                <ScalarProperty Name="PrescribedDttm" ColumnName="PrescribedDttm" />
-                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
-                <ScalarProperty Name="DateofBirth" ColumnName="DateofBirth" />
-                <ScalarProperty Name="DrugName" ColumnName="DrugName" />
-                <ScalarProperty Name="DrugLable" ColumnName="DrugLable" />
-                <ScalarProperty Name="FrequencyDefinition" ColumnName="FrequencyDefinition" />
-                <ScalarProperty Name="DoctorName" ColumnName="DoctorName" />
-                <ScalarProperty Name="InstructionText" ColumnName="InstructionText" />
-                <ScalarProperty Name="Dosage" ColumnName="Dosage" />
-                <ScalarProperty Name="PatientInstruction" ColumnName="PatientInstruction" />
-                <ScalarProperty Name="ItemUnit" ColumnName="ItemUnit" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -12089,8 +11607,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pInvenClearItemReceiveDetail1" FunctionName="MediTechModel.Store.pInvenClearItemReceiveDetail" />
-          <FunctionImportMapping FunctionImportName="pSearchItemMasterCriteria1" FunctionName="MediTechModel.Store.pSearchItemMasterCriteria" />
           <FunctionImportMapping FunctionImportName="pRPTPatientProblemStatistic" FunctionName="MediTechModel.Store.pRPTPatientProblemStatistic">
             <ResultMapping>
               <ComplexTypeMapping TypeName="MediTechModel.pRPTPatientProblemStatistic_Result">
@@ -13199,6 +12715,48 @@
                 <ScalarProperty Name="IsExpired" ColumnName="IsExpired" />
                 <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
                 <ScalarProperty Name="SerialNumber" ColumnName="SerialNumber" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pInvenGoodReceiveFromEcount" FunctionName="MediTechModel.Store.pInvenGoodReceiveFromEcount" />
+          <FunctionImportMapping FunctionImportName="pInvenInsertStockMovementFromEcount" FunctionName="MediTechModel.Store.pInvenInsertStockMovementFromEcount" />
+          <FunctionImportMapping FunctionImportName="pInvenIssueItemEcount" FunctionName="MediTechModel.Store.pInvenIssueItemEcount" />
+          <FunctionImportMapping FunctionImportName="pGetCheckupRiskAudioTimus" FunctionName="MediTechModel.Store.pGetCheckupRiskAudioTimus">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pGetCheckupRiskAudioTimus_Result">
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
+                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
+                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
+                <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
+                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
+                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
+                <ScalarProperty Name="Year" ColumnName="Year" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pRPTEcoutSumGroupReceipt" FunctionName="MediTechModel.Store.pRPTEcoutSumGroupReceipt">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pRPTEcoutSumGroupReceipt_Result">
+                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
+                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
+                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
+                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
+                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="Store" ColumnName="Store" />
+                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
+                <ScalarProperty Name="OrderSetCode" ColumnName="OrderSetCode" />
+                <ScalarProperty Name="OrderSetName" ColumnName="OrderSetName" />
+                <ScalarProperty Name="PayorCode" ColumnName="PayorCode" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
+                <ScalarProperty Name="NoBusiness" ColumnName="NoBusiness" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -16545,9 +16103,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pInvenGoodReceiveFromEcount" FunctionName="MediTechModel.Store.pInvenGoodReceiveFromEcount" />
-          <FunctionImportMapping FunctionImportName="pInvenInsertStockMovementFromEcount" FunctionName="MediTechModel.Store.pInvenInsertStockMovementFromEcount" />
-          <FunctionImportMapping FunctionImportName="pInvenIssueItemEcount" FunctionName="MediTechModel.Store.pInvenIssueItemEcount" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
