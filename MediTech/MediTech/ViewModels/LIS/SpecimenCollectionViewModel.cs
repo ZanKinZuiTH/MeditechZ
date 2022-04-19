@@ -436,7 +436,8 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                if (requestDetailSpecimens != null && requestDetailSpecimens.Count() > 0 && SelectRequestLab != null)
+                if (requestDetailSpecimens != null && requestDetailSpecimens.Count() > 0 && SelectRequestLab != null
+                    && RequestDetailSpecimens.Count(p => p.Selected) > 0)
                 {
                     var specimenSticker = requestDetailSpecimens.GroupBy(p => new { p.SpecimenName, p.CollectionDttm,p.Suffix })
                         .Select(g => new
@@ -445,7 +446,7 @@ namespace MediTech.ViewModels
                             CollectionDttm = g.FirstOrDefault().CollectionDttm,
                             Suffix = g.FirstOrDefault().Suffix
                         }).ToList();
-
+                    specimenSticker = specimenSticker.Where( p => RequestDetailSpecimens.FirstOrDefault(s => s.Selected && s.SpecimenName == p.SpecimenName) != null).ToList();
                     if (specimenSticker != null)
                     {
                         string patientName = SelectRequestLab.PatientName;
