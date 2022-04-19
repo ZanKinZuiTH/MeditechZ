@@ -33,6 +33,8 @@
             this.xrTableRow45 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell38 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbAudio = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow70 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow35 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell52 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell55 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -69,43 +71,45 @@
             this.xrTableCell141 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Ryear2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.R5002 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell93 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell94 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell95 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell98 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell105 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell106 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R10002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R20002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R30002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R40002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R60002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R80002 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow56 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell142 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Lyear2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.L5002 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell109 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell110 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell111 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell112 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell113 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell114 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L10002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L20002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L30002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L40002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L60002 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L80002 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow57 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell143 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Ryear3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell116 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell117 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell118 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell119 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell120 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell121 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell122 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R5003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R10003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R20003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R30003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R40003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R60003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.R80003 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow58 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell144 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Lyear3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell124 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell125 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell126 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell127 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell128 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell129 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell134 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L5003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L10003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L20003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L30003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L40003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L60003 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.L80003 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable9 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow72 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow47 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell96 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow51 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -115,6 +119,8 @@
             this.xrTableRow53 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lbMam = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable5 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow73 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow46 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell74 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow49 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -124,6 +130,8 @@
             this.xrTableRow50 = new DevExpress.XtraReports.UI.XRTableRow();
             this.lbChest = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow71 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow38 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell61 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell68 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -148,6 +156,8 @@
             this.lbFEVPer2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbFEVPer3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable18 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow66 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell75 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow28 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellTumorYear1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -185,6 +195,8 @@
             this.cellCA193 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellCA19Range = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTable7 = new DevExpress.XtraReports.UI.XRTable();
+            this.xrTableRow61 = new DevExpress.XtraReports.UI.XRTableRow();
+            this.xrTableCell72 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableRow59 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.LiverYear1 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -384,18 +396,6 @@
             this.lbResult = new DevExpress.XtraReports.UI.XRLabel();
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
-            this.xrTableRow61 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell72 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow66 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell75 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow70 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell44 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow71 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell59 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow72 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell62 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableRow73 = new DevExpress.XtraReports.UI.XRTableRow();
-            this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).BeginInit();
@@ -462,8 +462,8 @@
             // 
             // tbAudio
             // 
-            this.tbAudio.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.tbAudio.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbAudio.LocationFloat = new DevExpress.Utils.PointFloat(403.8221F, 569.152F);
             this.tbAudio.Name = "tbAudio";
@@ -480,6 +480,25 @@
             this.tbAudio.SizeF = new System.Drawing.SizeF(405.3446F, 140.8992F);
             this.tbAudio.StylePriority.UseBorders = false;
             // 
+            // xrTableRow70
+            // 
+            this.xrTableRow70.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell44});
+            this.xrTableRow70.Name = "xrTableRow70";
+            this.xrTableRow70.Weight = 0.75316734985842537D;
+            // 
+            // xrTableCell44
+            // 
+            this.xrTableCell44.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
+            this.xrTableCell44.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell44.Name = "xrTableCell44";
+            this.xrTableCell44.StylePriority.UseBorders = false;
+            this.xrTableCell44.StylePriority.UseFont = false;
+            this.xrTableCell44.StylePriority.UseTextAlignment = false;
+            this.xrTableCell44.Text = "การทดสอบสมรรถภาพการได้ยิน";
+            this.xrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell44.Weight = 3.9338222892576775D;
+            // 
             // xrTableRow35
             // 
             this.xrTableRow35.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -490,8 +509,8 @@
             // 
             // xrTableCell52
             // 
-            this.xrTableCell52.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell52.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell52.CanGrow = false;
             this.xrTableCell52.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -505,8 +524,8 @@
             // 
             // xrTableCell55
             // 
-            this.xrTableCell55.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell55.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell55.CanGrow = false;
             this.xrTableCell55.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -534,8 +553,8 @@
             // 
             // xrTableCell58
             // 
-            this.xrTableCell58.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell58.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell58.CanGrow = false;
             this.xrTableCell58.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -551,8 +570,8 @@
             // 
             // xrTableCell41
             // 
-            this.xrTableCell41.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell41.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell41.CanGrow = false;
             this.xrTableCell41.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -566,8 +585,8 @@
             // 
             // xrTableCell47
             // 
-            this.xrTableCell47.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell47.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell47.CanGrow = false;
             this.xrTableCell47.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -581,8 +600,8 @@
             // 
             // xrTableCell50
             // 
-            this.xrTableCell50.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell50.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell50.CanGrow = false;
             this.xrTableCell50.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -596,8 +615,8 @@
             // 
             // xrTableCell53
             // 
-            this.xrTableCell53.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell53.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell53.CanGrow = false;
             this.xrTableCell53.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -611,8 +630,8 @@
             // 
             // xrTableCell56
             // 
-            this.xrTableCell56.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell56.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell56.CanGrow = false;
             this.xrTableCell56.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -626,8 +645,8 @@
             // 
             // xrTableCell57
             // 
-            this.xrTableCell57.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell57.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell57.CanGrow = false;
             this.xrTableCell57.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -641,8 +660,8 @@
             // 
             // text8000
             // 
-            this.text8000.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.text8000.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.text8000.CanGrow = false;
             this.text8000.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -671,8 +690,8 @@
             // 
             // xrTableCell139
             // 
-            this.xrTableCell139.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell139.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell139.CanGrow = false;
             this.xrTableCell139.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -688,8 +707,8 @@
             // 
             // Ryear1
             // 
-            this.Ryear1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Ryear1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Ryear1.CanGrow = false;
             this.Ryear1.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -700,14 +719,13 @@
             this.Ryear1.StylePriority.UseFont = false;
             this.Ryear1.StylePriority.UsePadding = false;
             this.Ryear1.StylePriority.UseTextAlignment = false;
-            this.Ryear1.Text = "ปี 2563";
             this.Ryear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Ryear1.Weight = 0.50456970514442379D;
             // 
             // R5001
             // 
-            this.R5001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R5001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R5001.CanGrow = false;
             this.R5001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -720,8 +738,8 @@
             // 
             // R10001
             // 
-            this.R10001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R10001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R10001.CanGrow = false;
             this.R10001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -734,8 +752,8 @@
             // 
             // R20001
             // 
-            this.R20001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R20001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R20001.CanGrow = false;
             this.R20001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -748,8 +766,8 @@
             // 
             // R30001
             // 
-            this.R30001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R30001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R30001.CanGrow = false;
             this.R30001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -762,8 +780,8 @@
             // 
             // R40001
             // 
-            this.R40001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R40001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R40001.CanGrow = false;
             this.R40001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -776,8 +794,8 @@
             // 
             // R60001
             // 
-            this.R60001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R60001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R60001.CanGrow = false;
             this.R60001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -790,8 +808,8 @@
             // 
             // R80001
             // 
-            this.R80001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R80001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R80001.CanGrow = false;
             this.R80001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -819,8 +837,8 @@
             // 
             // xrTableCell140
             // 
-            this.xrTableCell140.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell140.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell140.CanGrow = false;
             this.xrTableCell140.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -836,8 +854,8 @@
             // 
             // Lyear1
             // 
-            this.Lyear1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Lyear1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Lyear1.CanGrow = false;
             this.Lyear1.Font = new System.Drawing.Font("Angsana New", 11F);
@@ -852,8 +870,8 @@
             // 
             // L5001
             // 
-            this.L5001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L5001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L5001.CanGrow = false;
             this.L5001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -866,8 +884,8 @@
             // 
             // L10001
             // 
-            this.L10001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L10001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L10001.CanGrow = false;
             this.L10001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -880,8 +898,8 @@
             // 
             // L20001
             // 
-            this.L20001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L20001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L20001.CanGrow = false;
             this.L20001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -894,8 +912,8 @@
             // 
             // L30001
             // 
-            this.L30001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L30001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L30001.CanGrow = false;
             this.L30001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -908,8 +926,8 @@
             // 
             // L40001
             // 
-            this.L40001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L40001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L40001.CanGrow = false;
             this.L40001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -922,8 +940,8 @@
             // 
             // L60001
             // 
-            this.L60001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L60001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L60001.CanGrow = false;
             this.L60001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -936,8 +954,8 @@
             // 
             // L80001
             // 
-            this.L80001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L80001.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L80001.CanGrow = false;
             this.L80001.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -954,19 +972,19 @@
             this.xrTableCell141,
             this.Ryear2,
             this.R5002,
-            this.xrTableCell93,
-            this.xrTableCell94,
-            this.xrTableCell95,
-            this.xrTableCell98,
-            this.xrTableCell105,
-            this.xrTableCell106});
+            this.R10002,
+            this.R20002,
+            this.R30002,
+            this.R40002,
+            this.R60002,
+            this.R80002});
             this.xrTableRow55.Name = "xrTableRow55";
             this.xrTableRow55.Weight = 0.8345011410454477D;
             // 
             // xrTableCell141
             // 
-            this.xrTableCell141.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell141.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell141.CanGrow = false;
             this.xrTableCell141.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -982,8 +1000,8 @@
             // 
             // Ryear2
             // 
-            this.Ryear2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Ryear2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Ryear2.CanGrow = false;
             this.Ryear2.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -994,14 +1012,13 @@
             this.Ryear2.StylePriority.UseFont = false;
             this.Ryear2.StylePriority.UsePadding = false;
             this.Ryear2.StylePriority.UseTextAlignment = false;
-            this.Ryear2.Text = "ปี 2564";
             this.Ryear2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Ryear2.Weight = 0.50456970514442379D;
             // 
             // R5002
             // 
-            this.R5002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R5002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.R5002.CanGrow = false;
             this.R5002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1012,89 +1029,89 @@
             this.R5002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.R5002.Weight = 0.43870238438056647D;
             // 
-            // xrTableCell93
+            // R10002
             // 
-            this.xrTableCell93.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R10002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell93.CanGrow = false;
-            this.xrTableCell93.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell93.Name = "xrTableCell93";
-            this.xrTableCell93.StylePriority.UseBorders = false;
-            this.xrTableCell93.StylePriority.UseFont = false;
-            this.xrTableCell93.StylePriority.UseTextAlignment = false;
-            this.xrTableCell93.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell93.Weight = 0.43870239437658121D;
+            this.R10002.CanGrow = false;
+            this.R10002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R10002.Name = "R10002";
+            this.R10002.StylePriority.UseBorders = false;
+            this.R10002.StylePriority.UseFont = false;
+            this.R10002.StylePriority.UseTextAlignment = false;
+            this.R10002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R10002.Weight = 0.43870239437658121D;
             // 
-            // xrTableCell94
+            // R20002
             // 
-            this.xrTableCell94.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R20002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell94.CanGrow = false;
-            this.xrTableCell94.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell94.Name = "xrTableCell94";
-            this.xrTableCell94.StylePriority.UseBorders = false;
-            this.xrTableCell94.StylePriority.UseFont = false;
-            this.xrTableCell94.StylePriority.UseTextAlignment = false;
-            this.xrTableCell94.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell94.Weight = 0.43870244121251023D;
+            this.R20002.CanGrow = false;
+            this.R20002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R20002.Name = "R20002";
+            this.R20002.StylePriority.UseBorders = false;
+            this.R20002.StylePriority.UseFont = false;
+            this.R20002.StylePriority.UseTextAlignment = false;
+            this.R20002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R20002.Weight = 0.43870244121251023D;
             // 
-            // xrTableCell95
+            // R30002
             // 
-            this.xrTableCell95.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R30002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell95.CanGrow = false;
-            this.xrTableCell95.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell95.Name = "xrTableCell95";
-            this.xrTableCell95.StylePriority.UseBorders = false;
-            this.xrTableCell95.StylePriority.UseFont = false;
-            this.xrTableCell95.StylePriority.UseTextAlignment = false;
-            this.xrTableCell95.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell95.Weight = 0.43870238095463154D;
+            this.R30002.CanGrow = false;
+            this.R30002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R30002.Name = "R30002";
+            this.R30002.StylePriority.UseBorders = false;
+            this.R30002.StylePriority.UseFont = false;
+            this.R30002.StylePriority.UseTextAlignment = false;
+            this.R30002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R30002.Weight = 0.43870238095463154D;
             // 
-            // xrTableCell98
+            // R40002
             // 
-            this.xrTableCell98.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R40002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell98.CanGrow = false;
-            this.xrTableCell98.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell98.Name = "xrTableCell98";
-            this.xrTableCell98.StylePriority.UseBorders = false;
-            this.xrTableCell98.StylePriority.UseFont = false;
-            this.xrTableCell98.StylePriority.UseTextAlignment = false;
-            this.xrTableCell98.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell98.Weight = 0.43870239266361405D;
+            this.R40002.CanGrow = false;
+            this.R40002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R40002.Name = "R40002";
+            this.R40002.StylePriority.UseBorders = false;
+            this.R40002.StylePriority.UseFont = false;
+            this.R40002.StylePriority.UseTextAlignment = false;
+            this.R40002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R40002.Weight = 0.43870239266361405D;
             // 
-            // xrTableCell105
+            // R60002
             // 
-            this.xrTableCell105.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R60002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell105.CanGrow = false;
-            this.xrTableCell105.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell105.Name = "xrTableCell105";
-            this.xrTableCell105.StylePriority.UseBorders = false;
-            this.xrTableCell105.StylePriority.UseFont = false;
-            this.xrTableCell105.StylePriority.UseTextAlignment = false;
-            this.xrTableCell105.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell105.Weight = 0.43870239851810511D;
+            this.R60002.CanGrow = false;
+            this.R60002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R60002.Name = "R60002";
+            this.R60002.StylePriority.UseBorders = false;
+            this.R60002.StylePriority.UseFont = false;
+            this.R60002.StylePriority.UseTextAlignment = false;
+            this.R60002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R60002.Weight = 0.43870239851810511D;
             // 
-            // xrTableCell106
+            // R80002
             // 
-            this.xrTableCell106.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R80002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell106.CanGrow = false;
-            this.xrTableCell106.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell106.Name = "xrTableCell106";
-            this.xrTableCell106.StylePriority.UseBorders = false;
-            this.xrTableCell106.StylePriority.UseFont = false;
-            this.xrTableCell106.StylePriority.UseTextAlignment = false;
-            this.xrTableCell106.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell106.Weight = 0.43870239851810516D;
+            this.R80002.CanGrow = false;
+            this.R80002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R80002.Name = "R80002";
+            this.R80002.StylePriority.UseBorders = false;
+            this.R80002.StylePriority.UseFont = false;
+            this.R80002.StylePriority.UseTextAlignment = false;
+            this.R80002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R80002.Weight = 0.43870239851810516D;
             // 
             // xrTableRow56
             // 
@@ -1102,19 +1119,19 @@
             this.xrTableCell142,
             this.Lyear2,
             this.L5002,
-            this.xrTableCell109,
-            this.xrTableCell110,
-            this.xrTableCell111,
-            this.xrTableCell112,
-            this.xrTableCell113,
-            this.xrTableCell114});
+            this.L10002,
+            this.L20002,
+            this.L30002,
+            this.L40002,
+            this.L60002,
+            this.L80002});
             this.xrTableRow56.Name = "xrTableRow56";
             this.xrTableRow56.Weight = 0.8345011410454477D;
             // 
             // xrTableCell142
             // 
-            this.xrTableCell142.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell142.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell142.CanGrow = false;
             this.xrTableCell142.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1130,8 +1147,8 @@
             // 
             // Lyear2
             // 
-            this.Lyear2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Lyear2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Lyear2.CanGrow = false;
             this.Lyear2.Font = new System.Drawing.Font("Angsana New", 11F);
@@ -1146,8 +1163,8 @@
             // 
             // L5002
             // 
-            this.L5002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L5002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.L5002.CanGrow = false;
             this.L5002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1158,109 +1175,109 @@
             this.L5002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.L5002.Weight = 0.43870238438056647D;
             // 
-            // xrTableCell109
+            // L10002
             // 
-            this.xrTableCell109.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L10002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell109.CanGrow = false;
-            this.xrTableCell109.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell109.Name = "xrTableCell109";
-            this.xrTableCell109.StylePriority.UseBorders = false;
-            this.xrTableCell109.StylePriority.UseFont = false;
-            this.xrTableCell109.StylePriority.UseTextAlignment = false;
-            this.xrTableCell109.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell109.Weight = 0.43870239437658121D;
+            this.L10002.CanGrow = false;
+            this.L10002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L10002.Name = "L10002";
+            this.L10002.StylePriority.UseBorders = false;
+            this.L10002.StylePriority.UseFont = false;
+            this.L10002.StylePriority.UseTextAlignment = false;
+            this.L10002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L10002.Weight = 0.43870239437658121D;
             // 
-            // xrTableCell110
+            // L20002
             // 
-            this.xrTableCell110.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L20002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell110.CanGrow = false;
-            this.xrTableCell110.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell110.Name = "xrTableCell110";
-            this.xrTableCell110.StylePriority.UseBorders = false;
-            this.xrTableCell110.StylePriority.UseFont = false;
-            this.xrTableCell110.StylePriority.UseTextAlignment = false;
-            this.xrTableCell110.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell110.Weight = 0.43870244121251023D;
+            this.L20002.CanGrow = false;
+            this.L20002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L20002.Name = "L20002";
+            this.L20002.StylePriority.UseBorders = false;
+            this.L20002.StylePriority.UseFont = false;
+            this.L20002.StylePriority.UseTextAlignment = false;
+            this.L20002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L20002.Weight = 0.43870244121251023D;
             // 
-            // xrTableCell111
+            // L30002
             // 
-            this.xrTableCell111.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L30002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell111.CanGrow = false;
-            this.xrTableCell111.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell111.Name = "xrTableCell111";
-            this.xrTableCell111.StylePriority.UseBorders = false;
-            this.xrTableCell111.StylePriority.UseFont = false;
-            this.xrTableCell111.StylePriority.UseTextAlignment = false;
-            this.xrTableCell111.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell111.Weight = 0.43870238095463154D;
+            this.L30002.CanGrow = false;
+            this.L30002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L30002.Name = "L30002";
+            this.L30002.StylePriority.UseBorders = false;
+            this.L30002.StylePriority.UseFont = false;
+            this.L30002.StylePriority.UseTextAlignment = false;
+            this.L30002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L30002.Weight = 0.43870238095463154D;
             // 
-            // xrTableCell112
+            // L40002
             // 
-            this.xrTableCell112.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L40002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell112.CanGrow = false;
-            this.xrTableCell112.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell112.Name = "xrTableCell112";
-            this.xrTableCell112.StylePriority.UseBorders = false;
-            this.xrTableCell112.StylePriority.UseFont = false;
-            this.xrTableCell112.StylePriority.UseTextAlignment = false;
-            this.xrTableCell112.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell112.Weight = 0.43870239266361405D;
+            this.L40002.CanGrow = false;
+            this.L40002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L40002.Name = "L40002";
+            this.L40002.StylePriority.UseBorders = false;
+            this.L40002.StylePriority.UseFont = false;
+            this.L40002.StylePriority.UseTextAlignment = false;
+            this.L40002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L40002.Weight = 0.43870239266361405D;
             // 
-            // xrTableCell113
+            // L60002
             // 
-            this.xrTableCell113.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L60002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell113.CanGrow = false;
-            this.xrTableCell113.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell113.Name = "xrTableCell113";
-            this.xrTableCell113.StylePriority.UseBorders = false;
-            this.xrTableCell113.StylePriority.UseFont = false;
-            this.xrTableCell113.StylePriority.UseTextAlignment = false;
-            this.xrTableCell113.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell113.Weight = 0.43870239851810511D;
+            this.L60002.CanGrow = false;
+            this.L60002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L60002.Name = "L60002";
+            this.L60002.StylePriority.UseBorders = false;
+            this.L60002.StylePriority.UseFont = false;
+            this.L60002.StylePriority.UseTextAlignment = false;
+            this.L60002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L60002.Weight = 0.43870239851810511D;
             // 
-            // xrTableCell114
+            // L80002
             // 
-            this.xrTableCell114.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L80002.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell114.CanGrow = false;
-            this.xrTableCell114.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell114.Name = "xrTableCell114";
-            this.xrTableCell114.StylePriority.UseBorders = false;
-            this.xrTableCell114.StylePriority.UseFont = false;
-            this.xrTableCell114.StylePriority.UseTextAlignment = false;
-            this.xrTableCell114.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell114.Weight = 0.43870239851810516D;
+            this.L80002.CanGrow = false;
+            this.L80002.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L80002.Name = "L80002";
+            this.L80002.StylePriority.UseBorders = false;
+            this.L80002.StylePriority.UseFont = false;
+            this.L80002.StylePriority.UseTextAlignment = false;
+            this.L80002.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L80002.Weight = 0.43870239851810516D;
             // 
             // xrTableRow57
             // 
             this.xrTableRow57.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell143,
             this.Ryear3,
-            this.xrTableCell116,
-            this.xrTableCell117,
-            this.xrTableCell118,
-            this.xrTableCell119,
-            this.xrTableCell120,
-            this.xrTableCell121,
-            this.xrTableCell122});
+            this.R5003,
+            this.R10003,
+            this.R20003,
+            this.R30003,
+            this.R40003,
+            this.R60003,
+            this.R80003});
             this.xrTableRow57.Name = "xrTableRow57";
             this.xrTableRow57.Weight = 0.8345011410454477D;
             // 
             // xrTableCell143
             // 
-            this.xrTableCell143.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell143.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell143.CanGrow = false;
             this.xrTableCell143.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1276,8 +1293,8 @@
             // 
             // Ryear3
             // 
-            this.Ryear3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Ryear3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Ryear3.CanGrow = false;
             this.Ryear3.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1288,127 +1305,126 @@
             this.Ryear3.StylePriority.UseFont = false;
             this.Ryear3.StylePriority.UsePadding = false;
             this.Ryear3.StylePriority.UseTextAlignment = false;
-            this.Ryear3.Text = "ปี 2565";
             this.Ryear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Ryear3.Weight = 0.50456970514442379D;
             // 
-            // xrTableCell116
+            // R5003
             // 
-            this.xrTableCell116.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R5003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell116.CanGrow = false;
-            this.xrTableCell116.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell116.Name = "xrTableCell116";
-            this.xrTableCell116.StylePriority.UseBorders = false;
-            this.xrTableCell116.StylePriority.UseFont = false;
-            this.xrTableCell116.StylePriority.UseTextAlignment = false;
-            this.xrTableCell116.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell116.Weight = 0.43870238438056647D;
+            this.R5003.CanGrow = false;
+            this.R5003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R5003.Name = "R5003";
+            this.R5003.StylePriority.UseBorders = false;
+            this.R5003.StylePriority.UseFont = false;
+            this.R5003.StylePriority.UseTextAlignment = false;
+            this.R5003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R5003.Weight = 0.43870238438056647D;
             // 
-            // xrTableCell117
+            // R10003
             // 
-            this.xrTableCell117.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R10003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell117.CanGrow = false;
-            this.xrTableCell117.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell117.Name = "xrTableCell117";
-            this.xrTableCell117.StylePriority.UseBorders = false;
-            this.xrTableCell117.StylePriority.UseFont = false;
-            this.xrTableCell117.StylePriority.UseTextAlignment = false;
-            this.xrTableCell117.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell117.Weight = 0.43870239437658121D;
+            this.R10003.CanGrow = false;
+            this.R10003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R10003.Name = "R10003";
+            this.R10003.StylePriority.UseBorders = false;
+            this.R10003.StylePriority.UseFont = false;
+            this.R10003.StylePriority.UseTextAlignment = false;
+            this.R10003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R10003.Weight = 0.43870239437658121D;
             // 
-            // xrTableCell118
+            // R20003
             // 
-            this.xrTableCell118.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R20003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell118.CanGrow = false;
-            this.xrTableCell118.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell118.Name = "xrTableCell118";
-            this.xrTableCell118.StylePriority.UseBorders = false;
-            this.xrTableCell118.StylePriority.UseFont = false;
-            this.xrTableCell118.StylePriority.UseTextAlignment = false;
-            this.xrTableCell118.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell118.Weight = 0.43870244121251023D;
+            this.R20003.CanGrow = false;
+            this.R20003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R20003.Name = "R20003";
+            this.R20003.StylePriority.UseBorders = false;
+            this.R20003.StylePriority.UseFont = false;
+            this.R20003.StylePriority.UseTextAlignment = false;
+            this.R20003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R20003.Weight = 0.43870244121251023D;
             // 
-            // xrTableCell119
+            // R30003
             // 
-            this.xrTableCell119.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R30003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell119.CanGrow = false;
-            this.xrTableCell119.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell119.Name = "xrTableCell119";
-            this.xrTableCell119.StylePriority.UseBorders = false;
-            this.xrTableCell119.StylePriority.UseFont = false;
-            this.xrTableCell119.StylePriority.UseTextAlignment = false;
-            this.xrTableCell119.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell119.Weight = 0.43870238095463154D;
+            this.R30003.CanGrow = false;
+            this.R30003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R30003.Name = "R30003";
+            this.R30003.StylePriority.UseBorders = false;
+            this.R30003.StylePriority.UseFont = false;
+            this.R30003.StylePriority.UseTextAlignment = false;
+            this.R30003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R30003.Weight = 0.43870238095463154D;
             // 
-            // xrTableCell120
+            // R40003
             // 
-            this.xrTableCell120.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R40003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell120.CanGrow = false;
-            this.xrTableCell120.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell120.Name = "xrTableCell120";
-            this.xrTableCell120.StylePriority.UseBorders = false;
-            this.xrTableCell120.StylePriority.UseFont = false;
-            this.xrTableCell120.StylePriority.UseTextAlignment = false;
-            this.xrTableCell120.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell120.Weight = 0.43870239266361405D;
+            this.R40003.CanGrow = false;
+            this.R40003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R40003.Name = "R40003";
+            this.R40003.StylePriority.UseBorders = false;
+            this.R40003.StylePriority.UseFont = false;
+            this.R40003.StylePriority.UseTextAlignment = false;
+            this.R40003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R40003.Weight = 0.43870239266361405D;
             // 
-            // xrTableCell121
+            // R60003
             // 
-            this.xrTableCell121.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R60003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell121.CanGrow = false;
-            this.xrTableCell121.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell121.Name = "xrTableCell121";
-            this.xrTableCell121.StylePriority.UseBorders = false;
-            this.xrTableCell121.StylePriority.UseFont = false;
-            this.xrTableCell121.StylePriority.UseTextAlignment = false;
-            this.xrTableCell121.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell121.Weight = 0.43870239851810511D;
+            this.R60003.CanGrow = false;
+            this.R60003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R60003.Name = "R60003";
+            this.R60003.StylePriority.UseBorders = false;
+            this.R60003.StylePriority.UseFont = false;
+            this.R60003.StylePriority.UseTextAlignment = false;
+            this.R60003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R60003.Weight = 0.43870239851810511D;
             // 
-            // xrTableCell122
+            // R80003
             // 
-            this.xrTableCell122.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.R80003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell122.CanGrow = false;
-            this.xrTableCell122.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell122.Name = "xrTableCell122";
-            this.xrTableCell122.StylePriority.UseBorders = false;
-            this.xrTableCell122.StylePriority.UseFont = false;
-            this.xrTableCell122.StylePriority.UseTextAlignment = false;
-            this.xrTableCell122.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell122.Weight = 0.43870239851810516D;
+            this.R80003.CanGrow = false;
+            this.R80003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.R80003.Name = "R80003";
+            this.R80003.StylePriority.UseBorders = false;
+            this.R80003.StylePriority.UseFont = false;
+            this.R80003.StylePriority.UseTextAlignment = false;
+            this.R80003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.R80003.Weight = 0.43870239851810516D;
             // 
             // xrTableRow58
             // 
             this.xrTableRow58.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
             this.xrTableCell144,
             this.Lyear3,
-            this.xrTableCell124,
-            this.xrTableCell125,
-            this.xrTableCell126,
-            this.xrTableCell127,
-            this.xrTableCell128,
-            this.xrTableCell129,
-            this.xrTableCell134});
+            this.L5003,
+            this.L10003,
+            this.L20003,
+            this.L30003,
+            this.L40003,
+            this.L60003,
+            this.L80003});
             this.xrTableRow58.Name = "xrTableRow58";
             this.xrTableRow58.Weight = 0.83450095272974423D;
             // 
             // xrTableCell144
             // 
-            this.xrTableCell144.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell144.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell144.CanGrow = false;
             this.xrTableCell144.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1424,8 +1440,8 @@
             // 
             // Lyear3
             // 
-            this.Lyear3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.Lyear3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.Lyear3.CanGrow = false;
             this.Lyear3.Font = new System.Drawing.Font("Angsana New", 11F);
@@ -1438,103 +1454,103 @@
             this.Lyear3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.Lyear3.Weight = 0.50456970514442379D;
             // 
-            // xrTableCell124
+            // L5003
             // 
-            this.xrTableCell124.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L5003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell124.CanGrow = false;
-            this.xrTableCell124.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell124.Name = "xrTableCell124";
-            this.xrTableCell124.StylePriority.UseBorders = false;
-            this.xrTableCell124.StylePriority.UseFont = false;
-            this.xrTableCell124.StylePriority.UseTextAlignment = false;
-            this.xrTableCell124.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell124.Weight = 0.43870238438056647D;
+            this.L5003.CanGrow = false;
+            this.L5003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L5003.Name = "L5003";
+            this.L5003.StylePriority.UseBorders = false;
+            this.L5003.StylePriority.UseFont = false;
+            this.L5003.StylePriority.UseTextAlignment = false;
+            this.L5003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L5003.Weight = 0.43870238438056647D;
             // 
-            // xrTableCell125
+            // L10003
             // 
-            this.xrTableCell125.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L10003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell125.CanGrow = false;
-            this.xrTableCell125.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell125.Name = "xrTableCell125";
-            this.xrTableCell125.StylePriority.UseBorders = false;
-            this.xrTableCell125.StylePriority.UseFont = false;
-            this.xrTableCell125.StylePriority.UseTextAlignment = false;
-            this.xrTableCell125.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell125.Weight = 0.43870239437658121D;
+            this.L10003.CanGrow = false;
+            this.L10003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L10003.Name = "L10003";
+            this.L10003.StylePriority.UseBorders = false;
+            this.L10003.StylePriority.UseFont = false;
+            this.L10003.StylePriority.UseTextAlignment = false;
+            this.L10003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L10003.Weight = 0.43870239437658121D;
             // 
-            // xrTableCell126
+            // L20003
             // 
-            this.xrTableCell126.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L20003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell126.CanGrow = false;
-            this.xrTableCell126.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell126.Name = "xrTableCell126";
-            this.xrTableCell126.StylePriority.UseBorders = false;
-            this.xrTableCell126.StylePriority.UseFont = false;
-            this.xrTableCell126.StylePriority.UseTextAlignment = false;
-            this.xrTableCell126.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell126.Weight = 0.43870244121251023D;
+            this.L20003.CanGrow = false;
+            this.L20003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L20003.Name = "L20003";
+            this.L20003.StylePriority.UseBorders = false;
+            this.L20003.StylePriority.UseFont = false;
+            this.L20003.StylePriority.UseTextAlignment = false;
+            this.L20003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L20003.Weight = 0.43870244121251023D;
             // 
-            // xrTableCell127
+            // L30003
             // 
-            this.xrTableCell127.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L30003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell127.CanGrow = false;
-            this.xrTableCell127.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell127.Name = "xrTableCell127";
-            this.xrTableCell127.StylePriority.UseBorders = false;
-            this.xrTableCell127.StylePriority.UseFont = false;
-            this.xrTableCell127.StylePriority.UseTextAlignment = false;
-            this.xrTableCell127.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell127.Weight = 0.43870238095463154D;
+            this.L30003.CanGrow = false;
+            this.L30003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L30003.Name = "L30003";
+            this.L30003.StylePriority.UseBorders = false;
+            this.L30003.StylePriority.UseFont = false;
+            this.L30003.StylePriority.UseTextAlignment = false;
+            this.L30003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L30003.Weight = 0.43870238095463154D;
             // 
-            // xrTableCell128
+            // L40003
             // 
-            this.xrTableCell128.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L40003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell128.CanGrow = false;
-            this.xrTableCell128.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell128.Name = "xrTableCell128";
-            this.xrTableCell128.StylePriority.UseBorders = false;
-            this.xrTableCell128.StylePriority.UseFont = false;
-            this.xrTableCell128.StylePriority.UseTextAlignment = false;
-            this.xrTableCell128.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell128.Weight = 0.43870239266361405D;
+            this.L40003.CanGrow = false;
+            this.L40003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L40003.Name = "L40003";
+            this.L40003.StylePriority.UseBorders = false;
+            this.L40003.StylePriority.UseFont = false;
+            this.L40003.StylePriority.UseTextAlignment = false;
+            this.L40003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L40003.Weight = 0.43870239266361405D;
             // 
-            // xrTableCell129
+            // L60003
             // 
-            this.xrTableCell129.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L60003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell129.CanGrow = false;
-            this.xrTableCell129.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell129.Name = "xrTableCell129";
-            this.xrTableCell129.StylePriority.UseBorders = false;
-            this.xrTableCell129.StylePriority.UseFont = false;
-            this.xrTableCell129.StylePriority.UseTextAlignment = false;
-            this.xrTableCell129.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell129.Weight = 0.43870239851810511D;
+            this.L60003.CanGrow = false;
+            this.L60003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L60003.Name = "L60003";
+            this.L60003.StylePriority.UseBorders = false;
+            this.L60003.StylePriority.UseFont = false;
+            this.L60003.StylePriority.UseTextAlignment = false;
+            this.L60003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L60003.Weight = 0.43870239851810511D;
             // 
-            // xrTableCell134
+            // L80003
             // 
-            this.xrTableCell134.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.L80003.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTableCell134.CanGrow = false;
-            this.xrTableCell134.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell134.Name = "xrTableCell134";
-            this.xrTableCell134.StylePriority.UseBorders = false;
-            this.xrTableCell134.StylePriority.UseFont = false;
-            this.xrTableCell134.StylePriority.UseTextAlignment = false;
-            this.xrTableCell134.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.xrTableCell134.Weight = 0.43870239851810516D;
+            this.L80003.CanGrow = false;
+            this.L80003.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
+            this.L80003.Name = "L80003";
+            this.L80003.StylePriority.UseBorders = false;
+            this.L80003.StylePriority.UseFont = false;
+            this.L80003.StylePriority.UseTextAlignment = false;
+            this.L80003.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.L80003.Weight = 0.43870239851810516D;
             // 
             // xrTable9
             // 
@@ -1549,6 +1565,21 @@
             this.xrTable9.SizeF = new System.Drawing.SizeF(406.1779F, 67.56732F);
             this.xrTable9.StylePriority.UseTextAlignment = false;
             this.xrTable9.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            // 
+            // xrTableRow72
+            // 
+            this.xrTableRow72.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell62});
+            this.xrTableRow72.Name = "xrTableRow72";
+            this.xrTableRow72.Weight = 0.90370824138668993D;
+            // 
+            // xrTableCell62
+            // 
+            this.xrTableCell62.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell62.Name = "xrTableCell62";
+            this.xrTableCell62.StylePriority.UseFont = false;
+            this.xrTableCell62.Text = "ผลการตรวจเฉพาะสตรี (Female Test)";
+            this.xrTableCell62.Weight = 3D;
             // 
             // xrTableRow47
             // 
@@ -1634,6 +1665,21 @@
             this.xrTable5.StylePriority.UseTextAlignment = false;
             this.xrTable5.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
+            // xrTableRow73
+            // 
+            this.xrTableRow73.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell66});
+            this.xrTableRow73.Name = "xrTableRow73";
+            this.xrTableRow73.Weight = 1D;
+            // 
+            // xrTableCell66
+            // 
+            this.xrTableCell66.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell66.Name = "xrTableCell66";
+            this.xrTableCell66.StylePriority.UseFont = false;
+            this.xrTableCell66.Text = "ผลการตรวจหัวใจด้วยเครื่องมือพิเศษ (Cardiac Evaluation)";
+            this.xrTableCell66.Weight = 1.425D;
+            // 
             // xrTableRow46
             // 
             this.xrTableRow46.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -1717,6 +1763,25 @@
             this.xrTableRow41});
             this.xrTable4.SizeF = new System.Drawing.SizeF(405.3446F, 88.61554F);
             // 
+            // xrTableRow71
+            // 
+            this.xrTableRow71.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell59});
+            this.xrTableRow71.Name = "xrTableRow71";
+            this.xrTableRow71.Weight = 0.77986255496481238D;
+            // 
+            // xrTableCell59
+            // 
+            this.xrTableCell59.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableCell59.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell59.Name = "xrTableCell59";
+            this.xrTableCell59.StylePriority.UseBorders = false;
+            this.xrTableCell59.StylePriority.UseFont = false;
+            this.xrTableCell59.StylePriority.UseTextAlignment = false;
+            this.xrTableCell59.Text = "ตรวจสมรรถภาพปอด (LUNG FUNCTION TEST)";
+            this.xrTableCell59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell59.Weight = 2.7792387089612935D;
+            // 
             // xrTableRow38
             // 
             this.xrTableRow38.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
@@ -1727,7 +1792,7 @@
             // 
             // xrTableCell61
             // 
-            this.xrTableCell61.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell61.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell61.CanGrow = false;
             this.xrTableCell61.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1742,7 +1807,7 @@
             // 
             // xrTableCell68
             // 
-            this.xrTableCell68.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell68.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell68.CanGrow = false;
             this.xrTableCell68.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1780,7 +1845,7 @@
             // 
             // LungYear1
             // 
-            this.LungYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LungYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LungYear1.CanGrow = false;
             this.LungYear1.Font = new System.Drawing.Font("Angsana New", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1788,13 +1853,13 @@
             this.LungYear1.StylePriority.UseBorders = false;
             this.LungYear1.StylePriority.UseFont = false;
             this.LungYear1.StylePriority.UseTextAlignment = false;
-            this.LungYear1.Text = "ปี 2563";
+            this.LungYear1.Text = "ปีที่..";
             this.LungYear1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.LungYear1.Weight = 0.59307956965376452D;
             // 
             // LungYear2
             // 
-            this.LungYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LungYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LungYear2.CanGrow = false;
             this.LungYear2.Font = new System.Drawing.Font("Angsana New", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1808,7 +1873,7 @@
             // 
             // LungYear3
             // 
-            this.LungYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LungYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LungYear3.CanGrow = false;
             this.LungYear3.Font = new System.Drawing.Font("Angsana New", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1832,7 +1897,7 @@
             // 
             // xrTableCell71
             // 
-            this.xrTableCell71.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell71.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell71.CanGrow = false;
             this.xrTableCell71.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1849,7 +1914,7 @@
             // 
             // lbFVCPer1
             // 
-            this.lbFVCPer1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFVCPer1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFVCPer1.CanGrow = false;
             this.lbFVCPer1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1862,7 +1927,7 @@
             // 
             // lbFVCPer2
             // 
-            this.lbFVCPer2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFVCPer2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFVCPer2.CanGrow = false;
             this.lbFVCPer2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1875,7 +1940,7 @@
             // 
             // lbFVCPer3
             // 
-            this.lbFVCPer3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFVCPer3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFVCPer3.CanGrow = false;
             this.lbFVCPer3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1898,7 +1963,7 @@
             // 
             // xrTableCell77
             // 
-            this.xrTableCell77.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell77.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell77.CanGrow = false;
             this.xrTableCell77.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1915,7 +1980,7 @@
             // 
             // lbFEV1Per1
             // 
-            this.lbFEV1Per1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFEV1Per1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFEV1Per1.CanGrow = false;
             this.lbFEV1Per1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1928,7 +1993,7 @@
             // 
             // lbFEV1Per2
             // 
-            this.lbFEV1Per2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFEV1Per2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFEV1Per2.CanGrow = false;
             this.lbFEV1Per2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1941,7 +2006,7 @@
             // 
             // lbFEV1Per3
             // 
-            this.lbFEV1Per3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.lbFEV1Per3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.lbFEV1Per3.CanGrow = false;
             this.lbFEV1Per3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1964,8 +2029,8 @@
             // 
             // xrTableCell83
             // 
-            this.xrTableCell83.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell83.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell83.CanGrow = false;
             this.xrTableCell83.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -1982,8 +2047,8 @@
             // 
             // lbFEVPer1
             // 
-            this.lbFEVPer1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.lbFEVPer1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbFEVPer1.CanGrow = false;
             this.lbFEVPer1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -1996,8 +2061,8 @@
             // 
             // lbFEVPer2
             // 
-            this.lbFEVPer2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.lbFEVPer2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbFEVPer2.CanGrow = false;
             this.lbFEVPer2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2010,8 +2075,8 @@
             // 
             // lbFEVPer3
             // 
-            this.lbFEVPer3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.lbFEVPer3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbFEVPer3.CanGrow = false;
             this.lbFEVPer3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2035,6 +2100,27 @@
             this.xrTableRow130,
             this.xrTableRow131});
             this.xrTable18.SizeF = new System.Drawing.SizeF(365.7067F, 127.0558F);
+            // 
+            // xrTableRow66
+            // 
+            this.xrTableRow66.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell75});
+            this.xrTableRow66.Name = "xrTableRow66";
+            this.xrTableRow66.Weight = 0.94460112784854944D;
+            // 
+            // xrTableCell75
+            // 
+            this.xrTableCell75.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell75.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableCell75.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell75.Name = "xrTableCell75";
+            this.xrTableCell75.StylePriority.UseBorderColor = false;
+            this.xrTableCell75.StylePriority.UseBorders = false;
+            this.xrTableCell75.StylePriority.UseFont = false;
+            this.xrTableCell75.StylePriority.UseTextAlignment = false;
+            this.xrTableCell75.Text = "ผลการตรวจคัดกรองมะเร็งเบื้องต้น (Tumor Marker)";
+            this.xrTableCell75.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
+            this.xrTableCell75.Weight = 2.6952682325274973D;
             // 
             // xrTableRow28
             // 
@@ -2064,7 +2150,7 @@
             // cellTumorYear1
             // 
             this.cellTumorYear1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTumorYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTumorYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTumorYear1.CanGrow = false;
             this.cellTumorYear1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2080,7 +2166,7 @@
             // cellTumorYear2
             // 
             this.cellTumorYear2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTumorYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTumorYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTumorYear2.CanGrow = false;
             this.cellTumorYear2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2096,7 +2182,7 @@
             // cellTumorYear3
             // 
             this.cellTumorYear3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTumorYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTumorYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTumorYear3.CanGrow = false;
             this.cellTumorYear3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2112,7 +2198,7 @@
             // xrTableCell43
             // 
             this.xrTableCell43.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell43.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell43.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell43.CanGrow = false;
             this.xrTableCell43.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2139,7 +2225,7 @@
             // xrTableCell246
             // 
             this.xrTableCell246.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell246.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell246.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell246.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell246.Name = "xrTableCell246";
@@ -2156,7 +2242,7 @@
             // cellAFP1
             // 
             this.cellAFP1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAFP1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAFP1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAFP1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAFP1.Name = "cellAFP1";
@@ -2170,7 +2256,7 @@
             // cellAFP2
             // 
             this.cellAFP2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAFP2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAFP2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAFP2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAFP2.Name = "cellAFP2";
@@ -2184,7 +2270,7 @@
             // cellAFP3
             // 
             this.cellAFP3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAFP3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAFP3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAFP3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAFP3.Name = "cellAFP3";
@@ -2198,7 +2284,7 @@
             // cellAFPRange
             // 
             this.cellAFPRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAFPRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAFPRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAFPRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellAFPRange.Name = "cellAFPRange";
@@ -2223,7 +2309,7 @@
             // xrTableCell247
             // 
             this.xrTableCell247.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell247.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell247.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell247.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell247.Name = "xrTableCell247";
@@ -2240,7 +2326,7 @@
             // cellCEA1
             // 
             this.cellCEA1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCEA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCEA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCEA1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCEA1.Name = "cellCEA1";
@@ -2254,7 +2340,7 @@
             // cellCEA2
             // 
             this.cellCEA2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCEA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCEA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCEA2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCEA2.Name = "cellCEA2";
@@ -2268,7 +2354,7 @@
             // cellCEA3
             // 
             this.cellCEA3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCEA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCEA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCEA3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCEA3.Name = "cellCEA3";
@@ -2282,7 +2368,7 @@
             // cellCEARange
             // 
             this.cellCEARange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCEARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCEARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCEARange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellCEARange.Name = "cellCEARange";
@@ -2307,7 +2393,7 @@
             // xrTableCell248
             // 
             this.xrTableCell248.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell248.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell248.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell248.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell248.Name = "xrTableCell248";
@@ -2324,7 +2410,7 @@
             // cellPSA1
             // 
             this.cellPSA1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellPSA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellPSA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellPSA1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellPSA1.Name = "cellPSA1";
@@ -2338,7 +2424,7 @@
             // cellPSA2
             // 
             this.cellPSA2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellPSA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellPSA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellPSA2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellPSA2.Name = "cellPSA2";
@@ -2352,7 +2438,7 @@
             // cellPSA3
             // 
             this.cellPSA3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellPSA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellPSA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellPSA3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellPSA3.Name = "cellPSA3";
@@ -2366,7 +2452,7 @@
             // cellPSARange
             // 
             this.cellPSARange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellPSARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellPSARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellPSARange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellPSARange.Name = "cellPSARange";
@@ -2391,7 +2477,7 @@
             // xrTableCell249
             // 
             this.xrTableCell249.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell249.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell249.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell249.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell249.Name = "xrTableCell249";
@@ -2408,7 +2494,7 @@
             // cellCA1
             // 
             this.cellCA1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCA1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCA1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA1.Name = "cellCA1";
@@ -2422,7 +2508,7 @@
             // cellCA2
             // 
             this.cellCA2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCA2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCA2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA2.Name = "cellCA2";
@@ -2436,7 +2522,7 @@
             // cellCA3
             // 
             this.cellCA3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCA3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCA3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA3.Name = "cellCA3";
@@ -2450,7 +2536,7 @@
             // cellCARange
             // 
             this.cellCARange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCARange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCARange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellCARange.Name = "cellCARange";
@@ -2475,8 +2561,8 @@
             // xrTableCell250
             // 
             this.xrTableCell250.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell250.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell250.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell250.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell250.Multiline = true;
@@ -2494,8 +2580,8 @@
             // cellCA191
             // 
             this.cellCA191.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA191.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellCA191.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellCA191.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA191.Name = "cellCA191";
@@ -2509,8 +2595,8 @@
             // cellCA192
             // 
             this.cellCA192.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA192.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellCA192.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellCA192.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA192.Name = "cellCA192";
@@ -2524,8 +2610,8 @@
             // cellCA193
             // 
             this.cellCA193.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA193.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellCA193.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellCA193.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellCA193.Name = "cellCA193";
@@ -2539,8 +2625,8 @@
             // cellCA19Range
             // 
             this.cellCA19Range.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCA19Range.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellCA19Range.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellCA19Range.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellCA19Range.Name = "cellCA19Range";
@@ -2567,6 +2653,27 @@
             this.xrTableRow68,
             this.xrTableRow69});
             this.xrTable7.SizeF = new System.Drawing.SizeF(365.7066F, 181.0162F);
+            // 
+            // xrTableRow61
+            // 
+            this.xrTableRow61.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.xrTableCell72});
+            this.xrTableRow61.Name = "xrTableRow61";
+            this.xrTableRow61.Weight = 1.0039734860466794D;
+            // 
+            // xrTableCell72
+            // 
+            this.xrTableCell72.BorderColor = System.Drawing.Color.DarkGray;
+            this.xrTableCell72.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrTableCell72.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrTableCell72.Name = "xrTableCell72";
+            this.xrTableCell72.StylePriority.UseBorderColor = false;
+            this.xrTableCell72.StylePriority.UseBorders = false;
+            this.xrTableCell72.StylePriority.UseFont = false;
+            this.xrTableCell72.StylePriority.UseTextAlignment = false;
+            this.xrTableCell72.Text = "การทํางานของตับ (Liver Function Test)";
+            this.xrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.xrTableCell72.Weight = 2.6017191746255555D;
             // 
             // xrTableRow59
             // 
@@ -2597,7 +2704,7 @@
             // LiverYear1
             // 
             this.LiverYear1.BorderColor = System.Drawing.Color.DarkGray;
-            this.LiverYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LiverYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LiverYear1.CanGrow = false;
             this.LiverYear1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2613,7 +2720,7 @@
             // LiverYear2
             // 
             this.LiverYear2.BorderColor = System.Drawing.Color.DarkGray;
-            this.LiverYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LiverYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LiverYear2.CanGrow = false;
             this.LiverYear2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2629,7 +2736,7 @@
             // LiverYear3
             // 
             this.LiverYear3.BorderColor = System.Drawing.Color.DarkGray;
-            this.LiverYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.LiverYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.LiverYear3.CanGrow = false;
             this.LiverYear3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -2645,7 +2752,7 @@
             // xrTableCell63
             // 
             this.xrTableCell63.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell63.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell63.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell63.CanGrow = false;
             this.xrTableCell63.Font = new System.Drawing.Font("Angsana New", 9F);
@@ -2673,7 +2780,7 @@
             // 
             this.xrTableCell100.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell100.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell100.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell100.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell100.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell100.Name = "xrTableCell100";
@@ -2690,7 +2797,7 @@
             // cellBilirubin1
             // 
             this.cellBilirubin1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellBilirubin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellBilirubin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBilirubin1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellBilirubin1.Name = "cellBilirubin1";
@@ -2704,7 +2811,7 @@
             // cellBilirubin2
             // 
             this.cellBilirubin2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellBilirubin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellBilirubin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBilirubin2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellBilirubin2.Name = "cellBilirubin2";
@@ -2718,7 +2825,7 @@
             // cellBilirubin3
             // 
             this.cellBilirubin3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellBilirubin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellBilirubin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBilirubin3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellBilirubin3.Name = "cellBilirubin3";
@@ -2732,7 +2839,7 @@
             // cellBilirubinRange
             // 
             this.cellBilirubinRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellBilirubinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellBilirubinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellBilirubinRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellBilirubinRange.Name = "cellBilirubinRange";
@@ -2758,7 +2865,7 @@
             // 
             this.xrTableCell101.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell101.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell101.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell101.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell101.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell101.Name = "xrTableCell101";
@@ -2775,7 +2882,7 @@
             // cellDirect1
             // 
             this.cellDirect1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellDirect1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellDirect1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellDirect1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellDirect1.Name = "cellDirect1";
@@ -2789,7 +2896,7 @@
             // cellDirect2
             // 
             this.cellDirect2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellDirect2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellDirect2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellDirect2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellDirect2.Name = "cellDirect2";
@@ -2803,7 +2910,7 @@
             // cellDirect3
             // 
             this.cellDirect3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellDirect3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellDirect3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellDirect3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellDirect3.Name = "cellDirect3";
@@ -2817,7 +2924,7 @@
             // cellDirectRange
             // 
             this.cellDirectRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellDirectRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellDirectRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellDirectRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellDirectRange.Name = "cellDirectRange";
@@ -2843,7 +2950,7 @@
             // 
             this.xrTableCell102.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell102.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell102.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell102.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell102.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell102.Name = "xrTableCell102";
@@ -2860,7 +2967,7 @@
             // cellAlk1
             // 
             this.cellAlk1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlk1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlk1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlk1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlk1.Name = "cellAlk1";
@@ -2874,7 +2981,7 @@
             // cellAlk2
             // 
             this.cellAlk2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlk2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlk2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlk2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlk2.Name = "cellAlk2";
@@ -2888,7 +2995,7 @@
             // cellAlk3
             // 
             this.cellAlk3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlk3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlk3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlk3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlk3.Name = "cellAlk3";
@@ -2902,7 +3009,7 @@
             // cellAlkRange
             // 
             this.cellAlkRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlkRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlkRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlkRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellAlkRange.Name = "cellAlkRange";
@@ -2928,7 +3035,7 @@
             // 
             this.xrTableCell103.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell103.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell103.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell103.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell103.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell103.Name = "xrTableCell103";
@@ -2945,7 +3052,7 @@
             // cellSgot1
             // 
             this.cellSgot1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgot1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgot1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgot1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgot1.Name = "cellSgot1";
@@ -2959,7 +3066,7 @@
             // cellSgot2
             // 
             this.cellSgot2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgot2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgot2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgot2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgot2.Name = "cellSgot2";
@@ -2973,7 +3080,7 @@
             // cellSgot3
             // 
             this.cellSgot3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgot3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgot3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgot3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgot3.Name = "cellSgot3";
@@ -2987,7 +3094,7 @@
             // cellSgotRange
             // 
             this.cellSgotRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgotRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgotRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgotRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellSgotRange.Name = "cellSgotRange";
@@ -3013,7 +3120,7 @@
             // 
             this.xrTableCell104.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell104.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell104.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell104.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell104.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell104.Name = "xrTableCell104";
@@ -3030,7 +3137,7 @@
             // cellSgpt1
             // 
             this.cellSgpt1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgpt1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgpt1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgpt1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgpt1.Name = "cellSgpt1";
@@ -3044,7 +3151,7 @@
             // cellSgpt2
             // 
             this.cellSgpt2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgpt2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgpt2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgpt2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgpt2.Name = "cellSgpt2";
@@ -3058,7 +3165,7 @@
             // cellSgpt3
             // 
             this.cellSgpt3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgpt3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgpt3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgpt3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellSgpt3.Name = "cellSgpt3";
@@ -3072,7 +3179,7 @@
             // cellSgptRange
             // 
             this.cellSgptRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSgptRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSgptRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSgptRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellSgptRange.Name = "cellSgptRange";
@@ -3098,7 +3205,7 @@
             // 
             this.xrTableCell135.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell135.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell135.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell135.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell135.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell135.Name = "xrTableCell135";
@@ -3115,7 +3222,7 @@
             // cellAlbumin1
             // 
             this.cellAlbumin1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlbumin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlbumin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlbumin1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlbumin1.Name = "cellAlbumin1";
@@ -3129,7 +3236,7 @@
             // cellAlbumin2
             // 
             this.cellAlbumin2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlbumin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlbumin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlbumin2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlbumin2.Name = "cellAlbumin2";
@@ -3143,7 +3250,7 @@
             // cellAlbumin3
             // 
             this.cellAlbumin3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlbumin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlbumin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlbumin3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellAlbumin3.Name = "cellAlbumin3";
@@ -3157,7 +3264,7 @@
             // cellAlbuminRange
             // 
             this.cellAlbuminRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellAlbuminRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellAlbuminRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellAlbuminRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellAlbuminRange.Name = "cellAlbuminRange";
@@ -3183,7 +3290,7 @@
             // 
             this.xrTableCell136.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell136.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell136.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell136.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell136.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell136.Name = "xrTableCell136";
@@ -3200,7 +3307,7 @@
             // cellGlobulin1
             // 
             this.cellGlobulin1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellGlobulin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellGlobulin1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellGlobulin1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellGlobulin1.Name = "cellGlobulin1";
@@ -3214,7 +3321,7 @@
             // cellGlobulin2
             // 
             this.cellGlobulin2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellGlobulin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellGlobulin2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellGlobulin2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellGlobulin2.Name = "cellGlobulin2";
@@ -3228,7 +3335,7 @@
             // cellGlobulin3
             // 
             this.cellGlobulin3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellGlobulin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellGlobulin3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellGlobulin3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellGlobulin3.Name = "cellGlobulin3";
@@ -3242,7 +3349,7 @@
             // cellGlobulinRange
             // 
             this.cellGlobulinRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellGlobulinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellGlobulinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellGlobulinRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellGlobulinRange.Name = "cellGlobulinRange";
@@ -3268,8 +3375,8 @@
             // 
             this.xrTableCell137.BorderColor = System.Drawing.Color.DarkGray;
             this.xrTableCell137.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
-            this.xrTableCell137.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell137.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell137.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell137.Name = "xrTableCell137";
@@ -3286,8 +3393,8 @@
             // cellProtein1
             // 
             this.cellProtein1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellProtein1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellProtein1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellProtein1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellProtein1.Name = "cellProtein1";
@@ -3301,8 +3408,8 @@
             // cellProtein2
             // 
             this.cellProtein2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellProtein2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellProtein2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellProtein2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellProtein2.Name = "cellProtein2";
@@ -3316,8 +3423,8 @@
             // cellProtein3
             // 
             this.cellProtein3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellProtein3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellProtein3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellProtein3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellProtein3.Name = "cellProtein3";
@@ -3331,8 +3438,8 @@
             // cellProteinRange
             // 
             this.cellProteinRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellProteinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellProteinRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellProteinRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellProteinRange.Name = "cellProteinRange";
@@ -3405,7 +3512,7 @@
             // cellSugarYear1
             // 
             this.cellSugarYear1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSugarYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSugarYear1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSugarYear1.CanGrow = false;
             this.cellSugarYear1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -3421,7 +3528,7 @@
             // cellSugarYear2
             // 
             this.cellSugarYear2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSugarYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSugarYear2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSugarYear2.CanGrow = false;
             this.cellSugarYear2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -3437,7 +3544,7 @@
             // cellSugarYear3
             // 
             this.cellSugarYear3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellSugarYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellSugarYear3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellSugarYear3.CanGrow = false;
             this.cellSugarYear3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -3453,7 +3560,7 @@
             // xrTableCell46
             // 
             this.xrTableCell46.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell46.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell46.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell46.CanGrow = false;
             this.xrTableCell46.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
@@ -3480,7 +3587,7 @@
             // xrTableCell130
             // 
             this.xrTableCell130.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell130.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell130.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell130.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell130.Name = "xrTableCell130";
@@ -3497,7 +3604,7 @@
             // cellFBS1
             // 
             this.cellFBS1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellFBS1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellFBS1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellFBS1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellFBS1.Name = "cellFBS1";
@@ -3511,7 +3618,7 @@
             // cellFBS2
             // 
             this.cellFBS2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellFBS2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellFBS2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellFBS2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellFBS2.Name = "cellFBS2";
@@ -3525,7 +3632,7 @@
             // cellFBS3
             // 
             this.cellFBS3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellFBS3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellFBS3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellFBS3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellFBS3.Name = "cellFBS3";
@@ -3539,7 +3646,7 @@
             // cellFBSRange
             // 
             this.cellFBSRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellFBSRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellFBSRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellFBSRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellFBSRange.Name = "cellFBSRange";
@@ -3564,7 +3671,7 @@
             // xrTableCell131
             // 
             this.xrTableCell131.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell131.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell131.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell131.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell131.Name = "xrTableCell131";
@@ -3581,7 +3688,7 @@
             // cellChol1
             // 
             this.cellChol1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellChol1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellChol1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellChol1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellChol1.Name = "cellChol1";
@@ -3595,7 +3702,7 @@
             // cellChol2
             // 
             this.cellChol2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellChol2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellChol2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellChol2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellChol2.Name = "cellChol2";
@@ -3609,7 +3716,7 @@
             // cellChol3
             // 
             this.cellChol3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellChol3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellChol3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellChol3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellChol3.Name = "cellChol3";
@@ -3623,7 +3730,7 @@
             // cellCholRange
             // 
             this.cellCholRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellCholRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellCholRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellCholRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellCholRange.Name = "cellCholRange";
@@ -3648,7 +3755,7 @@
             // xrTableCell132
             // 
             this.xrTableCell132.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell132.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell132.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell132.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell132.Name = "xrTableCell132";
@@ -3665,7 +3772,7 @@
             // cellTG1
             // 
             this.cellTG1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTG1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTG1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTG1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellTG1.Name = "cellTG1";
@@ -3679,7 +3786,7 @@
             // cellTG2
             // 
             this.cellTG2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTG2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTG2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTG2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellTG2.Name = "cellTG2";
@@ -3693,7 +3800,7 @@
             // cellTG3
             // 
             this.cellTG3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTG3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTG3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTG3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellTG3.Name = "cellTG3";
@@ -3707,7 +3814,7 @@
             // cellTGRange
             // 
             this.cellTGRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellTGRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellTGRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellTGRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellTGRange.Name = "cellTGRange";
@@ -3732,7 +3839,7 @@
             // xrTableCell49
             // 
             this.xrTableCell49.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell49.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell49.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell49.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell49.Name = "xrTableCell49";
@@ -3749,7 +3856,7 @@
             // cellHDL1
             // 
             this.cellHDL1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellHDL1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellHDL1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellHDL1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellHDL1.Name = "cellHDL1";
@@ -3763,7 +3870,7 @@
             // cellHDL2
             // 
             this.cellHDL2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellHDL2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellHDL2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellHDL2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellHDL2.Name = "cellHDL2";
@@ -3777,7 +3884,7 @@
             // cellHDL3
             // 
             this.cellHDL3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellHDL3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellHDL3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellHDL3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellHDL3.Name = "cellHDL3";
@@ -3791,7 +3898,7 @@
             // cellHDLRange
             // 
             this.cellHDLRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellHDLRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellHDLRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellHDLRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellHDLRange.Name = "cellHDLRange";
@@ -3816,7 +3923,7 @@
             // xrTableCell65
             // 
             this.xrTableCell65.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell65.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.xrTableCell65.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.xrTableCell65.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell65.Name = "xrTableCell65";
@@ -3833,7 +3940,7 @@
             // cellLDL1
             // 
             this.cellLDL1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellLDL1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellLDL1.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellLDL1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellLDL1.Name = "cellLDL1";
@@ -3847,7 +3954,7 @@
             // cellLDL2
             // 
             this.cellLDL2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellLDL2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellLDL2.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellLDL2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellLDL2.Name = "cellLDL2";
@@ -3861,7 +3968,7 @@
             // cellLDL3
             // 
             this.cellLDL3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellLDL3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellLDL3.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellLDL3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellLDL3.Name = "cellLDL3";
@@ -3875,7 +3982,7 @@
             // cellLDLRange
             // 
             this.cellLDLRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellLDLRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            this.cellLDLRange.Borders = ((DevExpress.XtraPrinting.BorderSide)(((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
             | DevExpress.XtraPrinting.BorderSide.Right)));
             this.cellLDLRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellLDLRange.Name = "cellLDLRange";
@@ -3900,8 +4007,8 @@
             // xrTableCell133
             // 
             this.xrTableCell133.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell133.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell133.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell133.Font = new System.Drawing.Font("Angsana New", 9F);
             this.xrTableCell133.Name = "xrTableCell133";
@@ -3918,8 +4025,8 @@
             // cellUric1
             // 
             this.cellUric1.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellUric1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellUric1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellUric1.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellUric1.Name = "cellUric1";
@@ -3933,8 +4040,8 @@
             // cellUric2
             // 
             this.cellUric2.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellUric2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellUric2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellUric2.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellUric2.Name = "cellUric2";
@@ -3948,8 +4055,8 @@
             // cellUric3
             // 
             this.cellUric3.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellUric3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellUric3.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellUric3.Font = new System.Drawing.Font("Angsana New", 9F, System.Drawing.FontStyle.Bold);
             this.cellUric3.Name = "cellUric3";
@@ -3963,8 +4070,8 @@
             // cellUricRange
             // 
             this.cellUricRange.BorderColor = System.Drawing.Color.DarkGray;
-            this.cellUricRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.cellUricRange.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.cellUricRange.Font = new System.Drawing.Font("Angsana New", 9F);
             this.cellUricRange.Name = "cellUricRange";
@@ -4014,8 +4121,8 @@
             // 
             // xrTableCell33
             // 
-            this.xrTableCell33.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.xrTableCell33.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTableCell33.CanGrow = false;
             this.xrTableCell33.Font = new System.Drawing.Font("Angsana New", 11F, System.Drawing.FontStyle.Bold);
@@ -5045,8 +5152,8 @@
             // lbResult
             // 
             this.lbResult.BorderColor = System.Drawing.Color.DarkGray;
-            this.lbResult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
-            | DevExpress.XtraPrinting.BorderSide.Right) 
+            this.lbResult.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top)
+            | DevExpress.XtraPrinting.BorderSide.Right)
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResult.Font = new System.Drawing.Font("Angsana New", 11F);
             this.lbResult.LocationFloat = new DevExpress.Utils.PointFloat(401.6667F, 54.77781F);
@@ -5072,116 +5179,6 @@
             this.BottomMargin.Padding = new DevExpress.XtraPrinting.PaddingInfo(0, 0, 0, 0, 100F);
             this.BottomMargin.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
             // 
-            // xrTableRow61
-            // 
-            this.xrTableRow61.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell72});
-            this.xrTableRow61.Name = "xrTableRow61";
-            this.xrTableRow61.Weight = 1.0039734860466794D;
-            // 
-            // xrTableCell72
-            // 
-            this.xrTableCell72.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell72.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTableCell72.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell72.Name = "xrTableCell72";
-            this.xrTableCell72.StylePriority.UseBorderColor = false;
-            this.xrTableCell72.StylePriority.UseBorders = false;
-            this.xrTableCell72.StylePriority.UseFont = false;
-            this.xrTableCell72.StylePriority.UseTextAlignment = false;
-            this.xrTableCell72.Text = "การทํางานของตับ (Liver Function Test)";
-            this.xrTableCell72.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell72.Weight = 2.6017191746255555D;
-            // 
-            // xrTableRow66
-            // 
-            this.xrTableRow66.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell75});
-            this.xrTableRow66.Name = "xrTableRow66";
-            this.xrTableRow66.Weight = 0.94460112784854944D;
-            // 
-            // xrTableCell75
-            // 
-            this.xrTableCell75.BorderColor = System.Drawing.Color.DarkGray;
-            this.xrTableCell75.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTableCell75.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell75.Name = "xrTableCell75";
-            this.xrTableCell75.StylePriority.UseBorderColor = false;
-            this.xrTableCell75.StylePriority.UseBorders = false;
-            this.xrTableCell75.StylePriority.UseFont = false;
-            this.xrTableCell75.StylePriority.UseTextAlignment = false;
-            this.xrTableCell75.Text = "ผลการตรวจคัดกรองมะเร็งเบื้องต้น (Tumor Marker)";
-            this.xrTableCell75.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopLeft;
-            this.xrTableCell75.Weight = 2.6952682325274973D;
-            // 
-            // xrTableRow70
-            // 
-            this.xrTableRow70.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell44});
-            this.xrTableRow70.Name = "xrTableRow70";
-            this.xrTableRow70.Weight = 0.75316734985842537D;
-            // 
-            // xrTableCell44
-            // 
-            this.xrTableCell44.Borders = DevExpress.XtraPrinting.BorderSide.Bottom;
-            this.xrTableCell44.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell44.Name = "xrTableCell44";
-            this.xrTableCell44.StylePriority.UseBorders = false;
-            this.xrTableCell44.StylePriority.UseFont = false;
-            this.xrTableCell44.StylePriority.UseTextAlignment = false;
-            this.xrTableCell44.Text = "การทดสอบสมรรถภาพการได้ยิน";
-            this.xrTableCell44.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell44.Weight = 3.9338222892576775D;
-            // 
-            // xrTableRow71
-            // 
-            this.xrTableRow71.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell59});
-            this.xrTableRow71.Name = "xrTableRow71";
-            this.xrTableRow71.Weight = 0.77986255496481238D;
-            // 
-            // xrTableCell59
-            // 
-            this.xrTableCell59.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrTableCell59.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell59.Name = "xrTableCell59";
-            this.xrTableCell59.StylePriority.UseBorders = false;
-            this.xrTableCell59.StylePriority.UseFont = false;
-            this.xrTableCell59.StylePriority.UseTextAlignment = false;
-            this.xrTableCell59.Text = "ตรวจสมรรถภาพปอด (LUNG FUNCTION TEST)";
-            this.xrTableCell59.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.xrTableCell59.Weight = 2.7792387089612935D;
-            // 
-            // xrTableRow72
-            // 
-            this.xrTableRow72.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell62});
-            this.xrTableRow72.Name = "xrTableRow72";
-            this.xrTableRow72.Weight = 0.90370824138668993D;
-            // 
-            // xrTableCell62
-            // 
-            this.xrTableCell62.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell62.Name = "xrTableCell62";
-            this.xrTableCell62.StylePriority.UseFont = false;
-            this.xrTableCell62.Text = "ผลการตรวจเฉพาะสตรี (Female Test)";
-            this.xrTableCell62.Weight = 3D;
-            // 
-            // xrTableRow73
-            // 
-            this.xrTableRow73.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.xrTableCell66});
-            this.xrTableRow73.Name = "xrTableRow73";
-            this.xrTableRow73.Weight = 1D;
-            // 
-            // xrTableCell66
-            // 
-            this.xrTableCell66.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
-            this.xrTableCell66.Name = "xrTableCell66";
-            this.xrTableCell66.StylePriority.UseFont = false;
-            this.xrTableCell66.Text = "ผลการตรวจหัวใจด้วยเครื่องมือพิเศษ (Cardiac Evaluation)";
-            this.xrTableCell66.Weight = 1.425D;
-            // 
             // RiskBook4
             // 
             this.Bands.AddRange(new DevExpress.XtraReports.UI.Band[] {
@@ -5192,7 +5189,7 @@
             this.PageHeight = 1169;
             this.PageWidth = 827;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
-            this.Version = "17.1";
+            this.Version = "20.2";
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbAudio)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable9)).EndInit();
@@ -5492,50 +5489,18 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell57;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow42;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell139;
-        private DevExpress.XtraReports.UI.XRTableCell Ryear1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow43;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell140;
         private DevExpress.XtraReports.UI.XRTableCell Lyear1;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow55;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell141;
-        private DevExpress.XtraReports.UI.XRTableCell Ryear2;
-        private DevExpress.XtraReports.UI.XRTableCell R5002;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell93;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell94;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell95;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell98;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell105;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell106;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow56;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell142;
-        private DevExpress.XtraReports.UI.XRTableCell Lyear2;
-        private DevExpress.XtraReports.UI.XRTableCell L5002;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell109;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell110;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell111;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell112;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell113;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell114;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow57;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell143;
-        private DevExpress.XtraReports.UI.XRTableCell Ryear3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell116;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell117;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell118;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell119;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell120;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell121;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell122;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow58;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell144;
         private DevExpress.XtraReports.UI.XRTableCell Lyear3;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell124;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell125;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell126;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell127;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell128;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell129;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell134;
         public DevExpress.XtraReports.UI.XRTableCell lbFVCPer2;
         public DevExpress.XtraReports.UI.XRTableCell lbFVCPer3;
         public DevExpress.XtraReports.UI.XRTableCell lbFEV1Per2;
@@ -5577,5 +5542,37 @@
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell75;
         private DevExpress.XtraReports.UI.XRTableRow xrTableRow61;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell72;
+        public DevExpress.XtraReports.UI.XRTableCell Ryear1;
+        public DevExpress.XtraReports.UI.XRTableCell Ryear3;
+        public DevExpress.XtraReports.UI.XRTableCell Ryear2;
+        private DevExpress.XtraReports.UI.XRTableCell Lyear2;
+        public DevExpress.XtraReports.UI.XRTableCell R5002;
+        public DevExpress.XtraReports.UI.XRTableCell R10002;
+        public DevExpress.XtraReports.UI.XRTableCell R20002;
+        public DevExpress.XtraReports.UI.XRTableCell R30002;
+        public DevExpress.XtraReports.UI.XRTableCell R40002;
+        public DevExpress.XtraReports.UI.XRTableCell R60002;
+        public DevExpress.XtraReports.UI.XRTableCell R80002;
+        public DevExpress.XtraReports.UI.XRTableCell L5002;
+        public DevExpress.XtraReports.UI.XRTableCell L10002;
+        public DevExpress.XtraReports.UI.XRTableCell L20002;
+        public DevExpress.XtraReports.UI.XRTableCell L30002;
+        public DevExpress.XtraReports.UI.XRTableCell L40002;
+        public DevExpress.XtraReports.UI.XRTableCell L60002;
+        public DevExpress.XtraReports.UI.XRTableCell L80002;
+        public DevExpress.XtraReports.UI.XRTableCell R5003;
+        public DevExpress.XtraReports.UI.XRTableCell R10003;
+        public DevExpress.XtraReports.UI.XRTableCell R20003;
+        public DevExpress.XtraReports.UI.XRTableCell R30003;
+        public DevExpress.XtraReports.UI.XRTableCell R40003;
+        public DevExpress.XtraReports.UI.XRTableCell R60003;
+        public DevExpress.XtraReports.UI.XRTableCell R80003;
+        public DevExpress.XtraReports.UI.XRTableCell L5003;
+        public DevExpress.XtraReports.UI.XRTableCell L10003;
+        public DevExpress.XtraReports.UI.XRTableCell L20003;
+        public DevExpress.XtraReports.UI.XRTableCell L30003;
+        public DevExpress.XtraReports.UI.XRTableCell L40003;
+        public DevExpress.XtraReports.UI.XRTableCell L60003;
+        public DevExpress.XtraReports.UI.XRTableCell L80003;
     }
 }
