@@ -249,7 +249,16 @@ namespace MediTech.DataService
             return data;
         }
 
- 
+
+        public List<PatientResultComponentModel> GetCheckupRiskAudioTimus(long patientUID, int payorDetailUID)
+        {
+            string requestApi = string.Format("Api/Report/GetCheckupRiskAudioTimus?patientUID={0}&payorDetailUID={1}", patientUID, payorDetailUID);
+            List<PatientResultComponentModel> data = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
+
+            return data;
+        }
+
+
 
 
         public MedicalCertificateModel PrintMedicalCertificate(long patientVisitUID)
