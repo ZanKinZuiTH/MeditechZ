@@ -68,6 +68,7 @@
     <Compile Include="Lab\ResultImageModel.cs" />
     <Compile Include="Lab\ResultModel.cs" />
     <Compile Include="MasterData\HealthOrganisationIDModel.cs" />
+    <Compile Include="MasterData\LocationModel.cs" />
     <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
     <Compile Include="MasterData\ResultItemModel.cs" />

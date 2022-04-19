@@ -357,6 +357,9 @@
     <Compile Include="pGetCheckupResultGroup_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pGetCheckupRiskAudioTimus_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pGetCompany_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -393,9 +396,6 @@
     <Compile Include="pGetOrderALLByPatientUID_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="pGetOrderALLByVisitUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
     <Compile Include="pGetOrderAllByVisitUID_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -406,9 +406,6 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderDuplicate_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pGetOrderMedicalByVisitUID1_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetOrderMedicalByVisitUID_Result.cs">
@@ -423,13 +420,7 @@
     <Compile Include="pGetPageView_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="pGetPatientBillByUID1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
     <Compile Include="pGetPatientBillByUID_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pGetPatientBillByVisitUID1_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pGetPatientBillByVisitUID_Result.cs">
@@ -534,9 +525,6 @@
     <Compile Include="pPrintStatementBill_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="pPrintStrickerDrug1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
     <Compile Include="pPrintStrickerDrug_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -578,6 +566,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTDrugStoreNetProfit_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pRPTEcoutSumGroupReceipt_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pRPTOrderRequestCard_Result.cs">
@@ -685,9 +676,6 @@
     <Compile Include="pSearchBillableItemDrug_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="pSearchBillableItemMedical1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
     <Compile Include="pSearchBillableItemMedical_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -709,9 +697,6 @@
     <Compile Include="pSearchOrderItem_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
-    <Compile Include="pSearchPatient1_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
     <Compile Include="pSearchPatientBill_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -722,9 +707,6 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientSticker_Result.cs">
-      <DependentUpon>MediTechEntites.tt</DependentUpon>
-    </Compile>
-    <Compile Include="pSearchPatientVisit1_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientVisit_Result.cs">
