@@ -567,7 +567,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB503")
                         || p.RequestItemCode.Contains("LAB225")
                         || p.RequestItemCode.Contains("LAB226")
-                         || p.RequestItemCode.Contains("LAB227"))
+                        || p.RequestItemCode.Contains("LAB227")
+                        )
 
                          .OrderByDescending(p => p.Year);
                     GenerateLiverFunction(LiverTestSet);
@@ -578,7 +579,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         .Where(p => p.RequestItemCode.Contains("LAB451")
                         || p.RequestItemCode.Contains("LAB441")
                         || p.RequestItemCode.Contains("LAB512")
-                        || p.RequestItemCode.Contains("LAB554"))
+                        || p.RequestItemCode.Contains("LAB554")
+                        || p.RequestItemCode.Contains("LAB595")
+                        || p.RequestItemCode.Contains("LAB596")
+                        )
                          .OrderByDescending(p => p.Year);
                     GenerateImmunology(ImmunologyTestSet);
                     #endregion

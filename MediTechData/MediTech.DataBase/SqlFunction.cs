@@ -208,6 +208,19 @@ namespace MediTech.DataBase
 
     public static class SqlDirectStore
     {
+        public static DataTable pGetCheckupRiskAudioTimus(long patientUID,int payorDetailUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupRiskAudioTimus", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 5000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID);
+            adp.SelectCommand.Parameters.AddWithValue("@P_PayorDetailUID", payorDetailUID);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pStockMassFile(int storeUID, int itemMasterUID,string serialNumber,DateTime? expiryDate)
         {
             MediTechEntities entities = new MediTechEntities();

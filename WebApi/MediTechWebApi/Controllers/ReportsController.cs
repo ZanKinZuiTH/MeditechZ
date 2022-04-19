@@ -751,6 +751,22 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+
+        [Route("GetCheckupRiskAudioTimus")]
+        [HttpGet]
+        public List<PatientResultComponentModel> GetCheckupRiskAudioTimus(long patientUID,int payorDetailUID)
+        {
+            List<PatientResultComponentModel> data = null;
+            DataTable dt = SqlDirectStore.pGetCheckupRiskAudioTimus(patientUID,payorDetailUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<PatientResultComponentModel>();
+                data = dt.ToList<PatientResultComponentModel>();
+            }
+            return data;
+        }
+
+
         [Route("CheckupSummary")]
         [HttpPost]
         public List<CheckupSummaryModel> CheckupSummary(CheckupCompanyModel branchModel)
