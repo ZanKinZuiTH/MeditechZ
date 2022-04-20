@@ -87,8 +87,9 @@
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="Dosage" Width="280" LabelHorizontalAlignment="Right">
-                            <dxe:TextEdit Name="txtDosage" EditValue="{Binding DosageQuantity}"                                  
-                                          MaskType="Numeric" >
+                            <dxe:TextEdit Name="txtDosage" EditValue="{Binding DosageQuantity}"
+                                          AllowNullInput="True"
+                                          MaskType="RegEx" Mask="\d{0,9}(\R.\d{0,2})?" >
                             </dxe:TextEdit>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>

@@ -264,17 +264,22 @@ namespace MediTech.ViewModels
 
             foreach (var item in SelectPrescriptionItems)
             {
-                DrugSticker rpt = new DrugSticker();
-                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                if (item.PrestionItemStatus != "Cancelled")
+                {
+                    DrugSticker rpt = new DrugSticker();
+                    ReportPrintTool printTool = new ReportPrintTool(rpt);
 
-                rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
-                rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
-                rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
-                rpt.RequestParameters = false;
-                rpt.ShowPrintMarginsWarning = false;
-                printTool.Print(SelectPrinter);
+                    rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
+                    rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
+                    rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
+                    rpt.RequestParameters = false;
+                    rpt.ShowPrintMarginsWarning = false;
+                    printTool.Print(SelectPrinter);
+                }
+
             }
         }
+
         void DefaultControl()
         {
             DateFrom = DateTime.Now;
