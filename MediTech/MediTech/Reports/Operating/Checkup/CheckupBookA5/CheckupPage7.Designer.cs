@@ -265,6 +265,12 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Ammo1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Ammo2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Ammo3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RowLeadInu = new DevExpress.XtraReports.UI.XRTableRow();
+            this.LeadUtext = new DevExpress.XtraReports.UI.XRTableCell();
+            this.RangLeadU = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LeadinU1 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LeadinU2 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.LeadinU3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
@@ -307,12 +313,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
-            this.RowLeadInu = new DevExpress.XtraReports.UI.XRTableRow();
-            this.LeadUtext = new DevExpress.XtraReports.UI.XRTableCell();
-            this.RangLeadU = new DevExpress.XtraReports.UI.XRTableCell();
-            this.LeadinU1 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.LeadinU2 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.LeadinU3 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
@@ -2804,6 +2804,71 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.Ammo3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.Ammo3.Weight = 0.44329635320818539D;
             // 
+            // RowLeadInu
+            // 
+            this.RowLeadInu.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
+            this.LeadUtext,
+            this.RangLeadU,
+            this.LeadinU1,
+            this.LeadinU2,
+            this.LeadinU3});
+            this.RowLeadInu.Name = "RowLeadInu";
+            this.RowLeadInu.Weight = 0.92341768297675519D;
+            // 
+            // LeadUtext
+            // 
+            this.LeadUtext.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
+            this.LeadUtext.Multiline = true;
+            this.LeadUtext.Name = "LeadUtext";
+            this.LeadUtext.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
+            this.LeadUtext.StylePriority.UseFont = false;
+            this.LeadUtext.StylePriority.UsePadding = false;
+            this.LeadUtext.StylePriority.UseTextAlignment = false;
+            this.LeadUtext.Text = "Lead In Urine";
+            this.LeadUtext.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
+            this.LeadUtext.Weight = 1.2913566084432759D;
+            // 
+            // RangLeadU
+            // 
+            this.RangLeadU.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.RangLeadU.Multiline = true;
+            this.RangLeadU.Name = "RangLeadU";
+            this.RangLeadU.StylePriority.UseFont = false;
+            this.RangLeadU.StylePriority.UseTextAlignment = false;
+            this.RangLeadU.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.RangLeadU.Weight = 0.93906236153056333D;
+            // 
+            // LeadinU1
+            // 
+            this.LeadinU1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.LeadinU1.Multiline = true;
+            this.LeadinU1.Name = "LeadinU1";
+            this.LeadinU1.StylePriority.UseFont = false;
+            this.LeadinU1.StylePriority.UseTextAlignment = false;
+            this.LeadinU1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LeadinU1.Weight = 0.443296332132815D;
+            // 
+            // LeadinU2
+            // 
+            this.LeadinU2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.LeadinU2.Multiline = true;
+            this.LeadinU2.Name = "LeadinU2";
+            this.LeadinU2.StylePriority.UseFont = false;
+            this.LeadinU2.StylePriority.UseTextAlignment = false;
+            this.LeadinU2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LeadinU2.Weight = 0.44329633245297495D;
+            // 
+            // LeadinU3
+            // 
+            this.LeadinU3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
+            this.LeadinU3.KeepTogether = true;
+            this.LeadinU3.Multiline = true;
+            this.LeadinU3.Name = "LeadinU3";
+            this.LeadinU3.StylePriority.UseFont = false;
+            this.LeadinU3.StylePriority.UseTextAlignment = false;
+            this.LeadinU3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
+            this.LeadinU3.Weight = 0.44329635320818539D;
+            // 
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
@@ -3373,71 +3438,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.StylePriority.UseTextAlignment = false;
             this.xrLabel4.Text = "การเพาะเชื้อจากอุจจาระ (Stool Culture) ";
             this.xrLabel4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            // 
-            // RowLeadInu
-            // 
-            this.RowLeadInu.Cells.AddRange(new DevExpress.XtraReports.UI.XRTableCell[] {
-            this.LeadUtext,
-            this.RangLeadU,
-            this.LeadinU1,
-            this.LeadinU2,
-            this.LeadinU3});
-            this.RowLeadInu.Name = "RowLeadInu";
-            this.RowLeadInu.Weight = 0.92341768297675519D;
-            // 
-            // LeadUtext
-            // 
-            this.LeadUtext.Font = new System.Drawing.Font("EucrosiaUPC", 11F, System.Drawing.FontStyle.Bold);
-            this.LeadUtext.Multiline = true;
-            this.LeadUtext.Name = "LeadUtext";
-            this.LeadUtext.Padding = new DevExpress.XtraPrinting.PaddingInfo(3, 0, 0, 0, 100F);
-            this.LeadUtext.StylePriority.UseFont = false;
-            this.LeadUtext.StylePriority.UsePadding = false;
-            this.LeadUtext.StylePriority.UseTextAlignment = false;
-            this.LeadUtext.Text = "Lead In Urin";
-            this.LeadUtext.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
-            this.LeadUtext.Weight = 1.2913566084432759D;
-            // 
-            // RangLeadU
-            // 
-            this.RangLeadU.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.RangLeadU.Multiline = true;
-            this.RangLeadU.Name = "RangLeadU";
-            this.RangLeadU.StylePriority.UseFont = false;
-            this.RangLeadU.StylePriority.UseTextAlignment = false;
-            this.RangLeadU.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.RangLeadU.Weight = 0.93906236153056333D;
-            // 
-            // LeadinU1
-            // 
-            this.LeadinU1.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.LeadinU1.Multiline = true;
-            this.LeadinU1.Name = "LeadinU1";
-            this.LeadinU1.StylePriority.UseFont = false;
-            this.LeadinU1.StylePriority.UseTextAlignment = false;
-            this.LeadinU1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.LeadinU1.Weight = 0.443296332132815D;
-            // 
-            // LeadinU2
-            // 
-            this.LeadinU2.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.LeadinU2.Multiline = true;
-            this.LeadinU2.Name = "LeadinU2";
-            this.LeadinU2.StylePriority.UseFont = false;
-            this.LeadinU2.StylePriority.UseTextAlignment = false;
-            this.LeadinU2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.LeadinU2.Weight = 0.44329633245297495D;
-            // 
-            // LeadinU3
-            // 
-            this.LeadinU3.Font = new System.Drawing.Font("EucrosiaUPC", 11F);
-            this.LeadinU3.KeepTogether = true;
-            this.LeadinU3.Multiline = true;
-            this.LeadinU3.Name = "LeadinU3";
-            this.LeadinU3.StylePriority.UseFont = false;
-            this.LeadinU3.StylePriority.UseTextAlignment = false;
-            this.LeadinU3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
-            this.LeadinU3.Weight = 0.44329635320818539D;
             // 
             // CheckupPage7
             // 

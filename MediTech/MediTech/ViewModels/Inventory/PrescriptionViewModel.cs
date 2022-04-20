@@ -264,7 +264,7 @@ namespace MediTech.ViewModels
 
             foreach (var item in SelectPrescriptionItems)
             {
-                if (item.PrestionItemStatus != "Cancelled")
+                if (item.PrestionItemStatus.ToLower() != "cancelled")
                 {
                     DrugSticker rpt = new DrugSticker();
                     ReportPrintTool printTool = new ReportPrintTool(rpt);
@@ -276,7 +276,6 @@ namespace MediTech.ViewModels
                     rpt.ShowPrintMarginsWarning = false;
                     printTool.Print(SelectPrinter);
                 }
-
             }
         }
 
