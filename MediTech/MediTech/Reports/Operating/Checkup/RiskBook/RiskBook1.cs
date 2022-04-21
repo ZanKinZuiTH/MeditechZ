@@ -572,8 +572,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1  -1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.cellYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.cellYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page3.cellYear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -643,8 +643,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.UAyear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.UAyear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page3.UAyear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -714,8 +714,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.HbYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.HbYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page3.HbYear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -756,8 +756,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
 
                 page4.cellSugarYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.cellSugarYear2.Text = "ปี" + " " + (year2 + 543).ToString();
@@ -823,8 +823,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.KidneyYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.KidneyYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page3.KidneyYear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -853,8 +853,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page4.LiverYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.LiverYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                 page4.LiverYear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -914,8 +914,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
 
                 page4.cellTumorYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.cellTumorYear2.Text = "ปี" + " " + (year2 + 543).ToString();
@@ -1000,8 +1000,8 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                     Years.OrderByDescending(p => ((uint?)p));
                     int countYear = Years.Count();
                     int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                    int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1) : null;
-                    int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1) : null;
+                    int? year2 = countYear >= 2 ? (Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1) : null;
+                    int? year3 = countYear >= 3 ? (Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1) : null;
                     page3.cellToxicoYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                     page3.cellToxicoYear2.Text = "ปี" + " " + (year2 + 543).ToString();
                     page3.cellToxicoYear3.Text = "ปี" + " " + (year3 + 543).ToString();
@@ -1489,11 +1489,11 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                //int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page3.VisionYear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page3.VisionYear2.Text = "ปี" + " " + (year2 + 543).ToString();
-                //page3.VisionYear3.Text = "ปี" + " " + (year3 + 543).ToString();
+                page3.VisionYear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page3.lbFarVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19" && p.Year == year1)?.ResultValue;
                 page3.lbNearVision1.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20" && p.Year == year1)?.ResultValue;
@@ -1509,12 +1509,12 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.lbVisionColor2.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22" && p.Year == year2)?.ResultValue;
                 page3.lbFieldVision2.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS24" && p.Year == year2)?.ResultValue;
 
-                //page3.lbFarVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19" && p.Year == year3)?.ResultValue;
-                //page3.lbNearVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20" && p.Year == year3)?.ResultValue;
-                //page3.lb3DVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS21" && p.Year == year3)?.ResultValue;
-                //page3.lbBalanceEye3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS23" && p.Year == year3)?.ResultValue;
-                //page3.lbVisionColor3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22" && p.Year == year3)?.ResultValue;
-                //page3.lbFieldVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS24" && p.Year == year3)?.ResultValue;
+                page3.lbFarVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS19" && p.Year == year3)?.ResultValue;
+                page3.lbNearVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS20" && p.Year == year3)?.ResultValue;
+                page3.lb3DVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS21" && p.Year == year3)?.ResultValue;
+                page3.lbBalanceEye3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS23" && p.Year == year3)?.ResultValue;
+                page3.lbVisionColor3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS22" && p.Year == year3)?.ResultValue;
+                page3.lbFieldVision3.Text = TimusResult.FirstOrDefault(p => p.ResultItemCode == "TIMUS24" && p.Year == year3)?.ResultValue;
 
 
 
@@ -1529,11 +1529,11 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 Years.OrderByDescending(p => ((uint?)p));
                 int countYear = Years.Count();
                 int? year1 = Years.ElementAtOrDefault(0) != null ? Years[0] : DateTime.Now.Year;
-                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 + 1;
-                //int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 + 1;
+                int? year2 = Years.ElementAtOrDefault(1) != null ? Years[1] : year1 - 1;
+                int? year3 = Years.ElementAtOrDefault(2) != null ? Years[2] : year2 - 1;
                 page4.Ryear1.Text = "ปี" + " " + (year1 + 543).ToString();
                 page4.Ryear2.Text = "ปี" + " " + (year2 + 543).ToString();
-                //page4.Ryear3.Text = "ปี" + " " + (year3 + 543).ToString();
+                page4.Ryear3.Text = "ปี" + " " + (year3 + 543).ToString();
 
                 page4.R5001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO1" && p.Year == year1)?.ResultValue;
                 page4.R10001.Text = AudioResult.FirstOrDefault(p => p.ResultItemCode == "AUDIO2" && p.Year == year1)?.ResultValue;
