@@ -1914,7 +1914,52 @@ namespace MediTech.ViewModels
 
         #endregion
 
+        #region Emergency
+        public EmergencyRegisterViewModel EmergencyRegisterViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EmergencyRegisterViewModel>())
+                    SimpleIoc.Default.Register<EmergencyRegisterViewModel>();
 
+                return ServiceLocator.Current.GetInstance<EmergencyRegisterViewModel>();
+            }
+        }
+
+        public EmergencyBedStatusViewModel EmergencyBedStatusViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EmergencyBedStatusViewModel>())
+                    SimpleIoc.Default.Register<EmergencyBedStatusViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EmergencyBedStatusViewModel>();
+            }
+        }
+
+        public EmergencyMangePatientViewModel EmergencyMangePatientViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EmergencyMangePatientViewModel>())
+                    SimpleIoc.Default.Register<EmergencyMangePatientViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EmergencyMangePatientViewModel>();
+            }
+        }
+        public SearchEmergencyPatientViewModel SearchEmergencyPatientViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<SearchEmergencyPatientViewModel>())
+                    SimpleIoc.Default.Register<SearchEmergencyPatientViewModel>();
+
+                return ServiceLocator.Current.GetInstance<SearchEmergencyPatientViewModel>();
+            }
+        }
+
+
+        #endregion
 
         public static void Cleanup()
         {
