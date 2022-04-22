@@ -43,7 +43,6 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell15 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell16 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell17 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             this.ReportHeader = new DevExpress.XtraReports.UI.ReportHeaderBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
@@ -58,6 +57,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell7 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell8 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Date = new DevExpress.XtraReports.Parameters.Parameter();
+            this.xrTableCell18 = new DevExpress.XtraReports.UI.XRTableCell();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -82,13 +82,17 @@ namespace MediTech.Reports.Statistic.Ecount
             // 
             // xrTable2
             // 
+            this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable2.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(7.629395E-06F, 0F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow2});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(1149F, 25.00001F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(1169F, 25.00001F);
+            this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseFont = false;
             this.xrTable2.StylePriority.UseTextAlignment = false;
             this.xrTable2.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -115,7 +119,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell10.Multiline = true;
             this.xrTableCell10.Name = "xrTableCell10";
             this.xrTableCell10.Text = "รหัสลูกค้า/ผู้ขาย";
-            this.xrTableCell10.Weight = 0.92234685073339084D;
+            this.xrTableCell10.Weight = 1.0690249355403385D;
             // 
             // xrTableCell11
             // 
@@ -124,7 +128,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell11.Multiline = true;
             this.xrTableCell11.Name = "xrTableCell11";
             this.xrTableCell11.Text = "บริษัทเอส.ซีไลอ้อน จำกัด   (สำนักงานใหญ่ )";
-            this.xrTableCell11.Weight = 1.0603968412121172D;
+            this.xrTableCell11.Weight = 0.99137184642712761D;
             // 
             // xrTableCell12
             // 
@@ -174,16 +178,7 @@ namespace MediTech.Reports.Statistic.Ecount
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PhoneNumber")});
             this.xrTableCell17.Multiline = true;
             this.xrTableCell17.Name = "xrTableCell17";
-            this.xrTableCell17.Weight = 0.71527162803669642D;
-            // 
-            // xrTableCell18
-            // 
-            this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Email")});
-            this.xrTableCell18.Multiline = true;
-            this.xrTableCell18.Name = "xrTableCell18";
-            this.xrTableCell18.Text = "อีเมล\r\n";
-            this.xrTableCell18.Weight = 1D;
+            this.xrTableCell17.Weight = 0.72389954547580537D;
             // 
             // objectDataSource1
             // 
@@ -199,13 +194,19 @@ namespace MediTech.Reports.Statistic.Ecount
             // 
             // xrTable1
             // 
+            this.xrTable1.BorderDashStyle = DevExpress.XtraPrinting.BorderDashStyle.Solid;
+            this.xrTable1.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
+            | DevExpress.XtraPrinting.BorderSide.Right) 
+            | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.xrTable1.Font = new System.Drawing.Font("Arial", 9.75F, System.Drawing.FontStyle.Bold);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(7.629395E-06F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1});
-            this.xrTable1.SizeF = new System.Drawing.SizeF(1149F, 25.00001F);
+            this.xrTable1.SizeF = new System.Drawing.SizeF(1169F, 25.00001F);
+            this.xrTable1.StylePriority.UseBorderDashStyle = false;
+            this.xrTable1.StylePriority.UseBorders = false;
             this.xrTable1.StylePriority.UseFont = false;
             this.xrTable1.StylePriority.UseTextAlignment = false;
             this.xrTable1.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -230,7 +231,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell1.Multiline = true;
             this.xrTableCell1.Name = "xrTableCell1";
             this.xrTableCell1.Text = "รหัสลูกค้า/ผู้ขาย";
-            this.xrTableCell1.Weight = 1D;
+            this.xrTableCell1.Weight = 1.078328921962967D;
             // 
             // xrTableCell2
             // 
@@ -286,7 +287,7 @@ namespace MediTech.Reports.Statistic.Ecount
             this.xrTableCell8.Multiline = true;
             this.xrTableCell8.Name = "xrTableCell8";
             this.xrTableCell8.Text = "อีเมล\r\n";
-            this.xrTableCell8.Weight = 1D;
+            this.xrTableCell8.Weight = 1.0783289812076184D;
             // 
             // Date
             // 
@@ -295,6 +296,14 @@ namespace MediTech.Reports.Statistic.Ecount
             this.Date.Type = typeof(System.DateTime);
             this.Date.ValueInfo = "2022-03-12";
             this.Date.Visible = false;
+            // 
+            // xrTableCell18
+            // 
+            this.xrTableCell18.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "Email")});
+            this.xrTableCell18.Multiline = true;
+            this.xrTableCell18.Name = "xrTableCell18";
+            this.xrTableCell18.Weight = 1.069025722986743D;
             // 
             // EcountGetPayorDetail
             // 
@@ -350,7 +359,7 @@ namespace MediTech.Reports.Statistic.Ecount
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell15;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell16;
         private DevExpress.XtraReports.UI.XRTableCell xrTableCell17;
-        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
         private DevExpress.XtraReports.Parameters.Parameter Date;
+        private DevExpress.XtraReports.UI.XRTableCell xrTableCell18;
     }
 }

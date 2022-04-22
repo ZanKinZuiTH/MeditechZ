@@ -464,11 +464,11 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                if (DoctorFee != 0 && SelectCareprovider == null)
-                {
-                    WarningDialog("กรุณาเลือกแพทย์");
-                    return;
-                }
+                //if (DoctorFee != 0 && SelectCareprovider == null)
+                //{
+                //    WarningDialog("กรุณาเลือกแพทย์");
+                //    return;
+                //}
 
                 //if ((Price ?? 0) == 0)
                 //{

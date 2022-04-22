@@ -357,6 +357,7 @@
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
                     <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขพาสปอร์ต" FieldName="IDPassport" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
                     <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType" ReadOnly="True"/>
                     <dxg:GridColumn Header="เข้ารับบริการ" FieldName="StartDttm"  ReadOnly="True">
