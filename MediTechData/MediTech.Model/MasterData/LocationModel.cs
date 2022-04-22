@@ -8,14 +8,17 @@ namespace MediTech.Model
 {
     public class LocationModel
     {
-        public int UID { get; set; }
+        public int LocationUID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int LOTYPUID { get; set; }
+        public string LocationType { get; set; }
         public Nullable<int> ParentLocationUID { get; set; }
         public string IsRegistrationAllowed { get; set; }
         public Nullable<int> LCTSTUID { get; set; }
+        public string LocationStatus { get; set; }
         public Nullable<int> EMRZONUID { get; set; }
+        public string EmergencyZone { get; set; }
         public string IsCanOrder { get; set; }
         public string IsTemporaryBed { get; set; }
         public string PhoneNumber { get; set; }

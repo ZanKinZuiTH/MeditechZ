@@ -360,6 +360,7 @@ namespace MediTech.ViewModels
                     {
                         SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
                     }
+                    Locations = DataService.MasterData.GetLocationIsRegister((SelectOrganisation.HealthOrganisationUID));
                     //else
                     //{
                     //    SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "DCPAT");
@@ -368,6 +369,21 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectedLocation;
+
+        public LocationModel SelectedLocation
+        {
+            get { return _SelectedLocation; }
+            set { Set(ref _SelectedLocation, value); }
+        }
 
         #endregion
 

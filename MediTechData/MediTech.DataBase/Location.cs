@@ -19,14 +19,21 @@ namespace MediTech.DataBase
         public string Description { get; set; }
         public int LOTYPUID { get; set; }
         public Nullable<int> ParentLocationUID { get; set; }
+        public string IsRegistrationAllowed { get; set; }
+        public Nullable<int> LCTSTUID { get; set; }
+        public Nullable<int> EMRZONUID { get; set; }
+        public string IsCanOrder { get; set; }
+        public string IsTemporaryBed { get; set; }
         public string PhoneNumber { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public int OwnerOrganisationUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public byte[] TIMESTAMP { get; set; }
     }
 }

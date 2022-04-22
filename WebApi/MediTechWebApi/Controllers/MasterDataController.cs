@@ -1943,7 +1943,7 @@ namespace MediTechWebApi.Controllers
                     healthOrganisation.Address2 = healthOrganisationModel.Address2;
                     healthOrganisation.LogoImage = healthOrganisationModel.LogoImage;
                     healthOrganisation.Comment = healthOrganisationModel.Comment;
-                    
+
 
                     db.HealthOrganisation.AddOrUpdate(healthOrganisation);
                     db.SaveChanges();
@@ -2078,17 +2078,58 @@ namespace MediTechWebApi.Controllers
         #region Location
         [Route("GetLocationAll")]
         [HttpGet]
-        public List<LookupReferenceValueModel> GetLocationAll()
+        public List<LocationModel> GetLocationAll(int ownerOrganisationUID)
         {
-            var data = db.Location.Where(p => p.StatusFlag == "A").Select(p => new LookupReferenceValueModel()
+            var data = db.Location.Where(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID).Select(p => new LocationModel()
             {
-                Key = p.UID,
-                Display = p.Name,
-                DisplayOrder = p.DisplayOrder ?? 1
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LocationType = SqlFunction.fGetRfValDescription(p.LOTYPUID),
+                DisplayOrder = p.DisplayOrder ?? 1,
+                ParentLocationUID = p.ParentLocationUID,
+                PhoneNumber = p.PhoneNumber,
+                IsRegistrationAllowed = p.IsRegistrationAllowed,
+                IsCanOrder = p.IsCanOrder,
+                IsTemporaryBed = p.IsTemporaryBed,
+                LCTSTUID = p.LCTSTUID,
+                EMRZONUID = p.EMRZONUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
             }).ToList();
 
             return data;
         }
+
+        [Route("GetLocationIsRegister")]
+        [HttpGet]
+        public List<LocationModel> GetLocationIsRegister(int ownerOrganisationUID)
+        {
+            DateTime now = DateTime.Now;
+            var data = db.Location.Where(p => p.StatusFlag == "A" && p.IsRegistrationAllowed == "Y"
+            && p.OwnerOrganisationUID == ownerOrganisationUID
+            && (p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))).Select(p => new LocationModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LocationType = SqlFunction.fGetRfValDescription(p.LOTYPUID),
+                DisplayOrder = p.DisplayOrder ?? 1,
+                ParentLocationUID = p.ParentLocationUID,
+                PhoneNumber = p.PhoneNumber,
+                IsRegistrationAllowed = p.IsRegistrationAllowed,
+                IsCanOrder = p.IsCanOrder,
+                IsTemporaryBed = p.IsTemporaryBed,
+                LCTSTUID = p.LCTSTUID,
+                EMRZONUID = p.EMRZONUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+            }).ToList();
+
+            return data;
+        }
+
+
         #endregion
 
         #region PayorDetail

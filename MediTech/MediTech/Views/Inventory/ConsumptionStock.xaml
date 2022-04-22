@@ -123,8 +123,8 @@
                 <dxlc:LayoutItem Label="สถานที่ใช้">
                     <dxe:ComboBoxEdit ItemsSource="{Binding Location}" 
                                       SelectedItem="{Binding SelectLocation}"
-                                      ValueMember="Key"
-                                      DisplayMember="Display"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>

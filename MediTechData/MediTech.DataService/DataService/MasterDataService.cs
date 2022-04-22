@@ -573,10 +573,22 @@ namespace MediTech.DataService
         }
         #endregion
 
-        public List<LookupReferenceValueModel> GetLocationAll()
+
+        #region Location
+        public List<LocationModel> GetLocationAll(int ownerOrganisationUID)
         {
-            List<LookupReferenceValueModel> data = MeditechApiHelper.Get<List<LookupReferenceValueModel>>("Api/MasterData/GetLocationAll");
+            string requestApi = string.Format("Api/MasterData/GetLocationAll?ownerOrganisationUID={0}", ownerOrganisationUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
         }
+
+        public List<LocationModel> GetLocationIsRegister(int ownerOrganisationUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetLocationIsRegister?ownerOrganisationUID={0}", ownerOrganisationUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
+
+        #endregion
     }
 }

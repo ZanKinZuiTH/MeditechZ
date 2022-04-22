@@ -32,6 +32,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
+                    Locations = DataService.MasterData.GetLocationAll(SelectOrganisation.HealthOrganisationUID);
                     Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
                 }
             }
@@ -111,17 +112,17 @@ namespace MediTech.ViewModels
             set { Set(ref _BatchQty, value); }
         }
 
-        private List<LookupReferenceValueModel> _Location;
+        private List<LocationModel> _Locations;
 
-        public List<LookupReferenceValueModel> Location
+        public List<LocationModel> Locations
         {
-            get { return _Location; }
-            set { Set(ref _Location, value); }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
-        private LookupReferenceValueModel _SelectLocation;
+        private LocationModel _SelectLocation;
 
-        public LookupReferenceValueModel SelectLocation
+        public LocationModel SelectLocation
         {
             get { return _SelectLocation; }
             set { Set(ref _SelectLocation, value); }
@@ -274,7 +275,7 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsRoleStock();
             ItemTypes = DataService.Technical.GetReferenceValueMany("ITMTYP");
-            Location = DataService.MasterData.GetLocationAll();
+            //Location = DataService.MasterData.GetLocationAll(AppUtil.Current.OwnerOrganisationUID);
 
             
 
@@ -349,7 +350,7 @@ namespace MediTech.ViewModels
             if (IssueStocks != null)
             {
                 if ((IssueStocks.FirstOrDefault(p => p.StockUID == SelectCurrentStock.StockUID) != null ) 
-                    && (IssueStocks.FirstOrDefault(p => p.Location == SelectLocation.Display) != null))
+                    && (IssueStocks.FirstOrDefault(p => p.Location == SelectLocation.Name) != null))
                 {
                     WarningDialog("มีรายการที่เลือกแล้ว");
                     return;
@@ -384,8 +385,8 @@ namespace MediTech.ViewModels
             adjustStock.AdjustedUnit = SelectCurrentStock.Unit;
             adjustStock.ExpiryDate = ExpiryDate;
             adjustStock.BatchID = SelectCurrentStock.BatchID;
-            adjustStock.Location = SelectLocation.Display;
-            adjustStock.LocationUID = SelectLocation.Key;
+            adjustStock.Location = SelectLocation.Name;
+            adjustStock.LocationUID = SelectLocation.LocationUID;
             IssueStocks.Add(adjustStock);
 
             ClearInput();
