@@ -1991,14 +1991,11 @@ namespace MediTechWebApi.Controllers
                                         join rqd in db.RequestDetail on rs.RequestDetailUID equals rqd.UID
                                         join rq in db.Request on rqd.RequestUID equals rq.UID
                                         join pvp in db.PatientVisitPayor on rq.PatientVisitUID equals pvp.PatientVisitUID
-                                        join pv in db.PatientVisit on pvp.PatientVisitUID equals pv.UID
                                         where rsc.StatusFlag == "A"
                                         && rs.StatusFlag == "A"
                                         && rqd.StatusFlag == "A"
                                         && rq.StatusFlag == "A"
                                         && pvp.StatusFlag == "A"
-                                        && pv.StatusFlag == "A"
-                                        && pv.VISTYUID == 2897
                                         && rsc.Comments == "Migrate Lab Result"
                                         && rs.PatientUID == patientUID
                                         && rs.RequestItemCode == codeLab
