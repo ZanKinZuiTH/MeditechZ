@@ -482,5 +482,20 @@ namespace MediTech.DataService
                 throw;
             }
         }
+
+        public void SaveOldLabResult(RequestDetailItemModel resultItemRange, long patientUID, int payorDetailUID, DateTime enterDate, string codeLab, int userID, int organisationUID, int payorAgreementsUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Checkup/SaveOldLabResult?patientUID={0}&payorDetailUID={1}&enterDate={2}&codeLab={3}&userID={4}&organisationUID={5}&payorAgreementsUID={6}", patientUID, payorDetailUID, enterDate, codeLab, userID, organisationUID, payorAgreementsUID);
+                MeditechApiHelper.Post<RequestDetailItemModel>(requestApi, resultItemRange);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
     }
 }
