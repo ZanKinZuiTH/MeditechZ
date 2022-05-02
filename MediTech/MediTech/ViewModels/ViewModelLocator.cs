@@ -1958,7 +1958,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        public EmergencyListViewModel EmergencyListViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EmergencyListViewModel>())
+                    SimpleIoc.Default.Register<EmergencyListViewModel>();
 
+                return ServiceLocator.Current.GetInstance<EmergencyListViewModel>();
+            }
+        }
         #endregion
 
         public static void Cleanup()
