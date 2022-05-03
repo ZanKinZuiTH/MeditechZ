@@ -1,0 +1,206 @@
+﻿<UserControl x:Class="MediTech.Views.EmergencyBedStatus"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Path="EmergencyBedStatusViewModel" Source="{StaticResource Locator}"/>
+    </UserControl.DataContext>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <!--<dxlc:LayoutGroup Orientation="Horizontal">
+            <dxg:GridControl Name="grid" ItemsSource="{Binding BedData}" ShowBorder="False" SelectedItem="{Binding SelectBedData}" >
+                <dxg:GridControl.View>
+                    <dxg:CardView ShowColumnHeaders ="false"  ShowCardExpandButton ="False">
+                        <dxg:CardView.Resources>
+                            <BooleanToVisibilityConverter x:Key="<TextBlock Grid.Row="1" Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Status}" TextWrapping="Wrap"/>" />
+                        </dxg:CardView.Resources>
+                        <dxg:CardView.CardTemplate>
+                            <DataTemplate>
+                                <Grid HorizontalAlignment="Left" VerticalAlignment="Top">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.ContextMenu>
+                                        <ContextMenu>
+                                            <MenuItem Header="Menu item 1" />
+                                            <MenuItem Header="Menu item 2" />
+                                        </ContextMenu>
+                                    </Grid.ContextMenu>
+                                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" Margin="12,0,12,0">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                            <TextBlock FontWeight="Bold" Text="เตียง "/>
+                                            <TextBlock Text="{Binding Path=Row.No}" FontWeight="Bold"/>
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                            <Image Width="100" Height="50">
+                                                <Image.Style>
+                                                    <Style TargetType="{x:Type Image}">
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding Path=Row.IsLevel0}" Value="True">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bed.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=Row.IsLevel1}" Value="True">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel1.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=Row.IsLevel2}" Value="True">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel2.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Binding="{Binding Path=Row.IsLevel3}" Value="True">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel3.png"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </Image.Style>
+                                            </Image>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Path=Row.IsUsed, Converter={StaticResource visibilityConverter}}">
+                                            <StackPanel Orientation="Horizontal" >
+
+                                                <TextBlock FontWeight="Bold" Text="ความรุนแรง: "/>
+                                                <TextBlock Text="{Binding Path=Row.Severe}"/>
+                                            </StackPanel>
+
+                                            <StackPanel Orientation="Horizontal" >
+
+                                                <TextBlock FontWeight="Bold" Text="status: "/>
+                                                <TextBlock Text="{Binding Path=Row.Status}"/>
+
+                                            </StackPanel>
+                                        </StackPanel>
+                                    </StackPanel>
+                                </Grid>
+                            </DataTemplate>
+                        </dxg:CardView.CardTemplate>
+                    </dxg:CardView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:LayoutGroup>-->
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <ListBox ItemsSource="{Binding BedData}" SelectedItem="{Binding SelectBedData}" Margin="32,0,-32,-0.4" Name="ListBed">
+                <!--<ListBox.ContextMenu>
+                    <ContextMenu>
+                        <MenuItem Header="New Patient" Name="addPatient"/>
+                        --><!--MenuItem Header="Remove"
+            Command="{Binding RemoveItem}"
+            CommandParameter="{Binding RelativeSource={RelativeSource AncestorType=ContextMenu}, Path=PlacementTarget.SelectedItem}" />--><!--
+                    </ContextMenu>
+                </ListBox.ContextMenu>-->
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel/>
+                        <!--<WrapPanel Orientation="Horizontal" Width="{Binding ElementName=ListBed, Path=ActualWidth}"></WrapPanel>-->
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Width="400" Background="WhiteSmoke">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="160*"/>
+                                <ColumnDefinition Width="200*"/>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition/>
+                                <RowDefinition Height="40"/>
+                                <RowDefinition/>
+                            </Grid.RowDefinitions>
+                            <Grid.Resources>
+                                <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+                            </Grid.Resources>
+                            <Grid Grid.RowSpan="3" Margin="0,0,12,0" Background="#ECF2F1" Width="150" Height="150" HorizontalAlignment="Left">
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,0,12,0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,0,0,4">
+                                        <Image Width="120" Height="100">
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding IsLevel0}" Value="True">
+                                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bed.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsLevel1}" Value="True">
+                                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel1.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsLevel2}" Value="True">
+                                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel2.png"/>
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding IsLevel3}" Value="True">
+                                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/Bedlevel3.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </StackPanel>
+                                <!--<TextBlock Text="{Binding Status}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Foreground="White"/>-->
+                            </Grid>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,10,0,0">
+
+                                <TextBlock FontWeight="Bold" Text="เตียง "/>
+                                <TextBlock Text="{Binding No}" FontWeight="Bold"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Orientation="Horizontal" Margin="0,25,0,0">
+                                <TextBlock Grid.Column="1" Grid.ColumnSpan="3" Text="{Binding Status}" VerticalAlignment="Center"/>
+                            </StackPanel>
+                            <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding IsUsed, Converter={StaticResource VisibilityConverter}}">
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock FontWeight="Bold" Text="ความรุนแรง: "/>
+                                    <TextBlock Text="{Binding Severe}"/>
+                                </StackPanel>
+
+                                <StackPanel Orientation="Horizontal" >
+
+                                    <TextBlock FontWeight="Bold" Text="status: "/>
+                                    <TextBlock Text="{Binding Status}"/>
+
+                                </StackPanel>
+                            </StackPanel>
+                        </Grid>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+                <ListBox.Resources>
+                    <!-- Context Menu when right click on selected List Item -->
+                    <ContextMenu x:Key="ItemContextMenu">
+                        <MenuItem Header="คียออเดอร์"></MenuItem>
+                        <MenuItem Header="เปลี่ยนสถานะ" Command="{Binding DataContext.ChangeStatusCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyBedStatus}}}"  >
+                        </MenuItem>
+                        <MenuItem Header="refer department" Command="{Binding DataContext.SendToCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyBedStatus}}}"  ></MenuItem>
+                        <MenuItem Header="refer hospital"></MenuItem>
+                        <Separator></Separator>
+                        <MenuItem Header="จบการรักษา"></MenuItem>
+                    </ContextMenu>
+                    <!-- Context Menu when right click on listbox space -->
+                    <ContextMenu x:Key="ListContextMenu">
+                        <MenuItem Header="ผู้ป่วยใหม่" Command="{Binding DataContext.NewPatientCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyBedStatus}}}"></MenuItem>
+                    </ContextMenu>
+                    <!-- Applying Context Menu to ListBoxItem with Style -->
+                    <Style TargetType="{x:Type ListBoxItem}">
+                        <Style.Triggers>
+                            <DataTrigger Binding="{Binding IsUsed}" Value="True">
+                                <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}"/>
+                            </DataTrigger>
+                            <!--<Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}">
+                        </Setter>-->
+                        </Style.Triggers>
+                        <Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}"/>
+                    </Style>
+                </ListBox.Resources>
+            </ListBox>
+        </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+ 
+</UserControl>
