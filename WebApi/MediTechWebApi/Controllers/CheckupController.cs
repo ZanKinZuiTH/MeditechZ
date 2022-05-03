@@ -2016,40 +2016,38 @@ namespace MediTechWebApi.Controllers
                            p.ResultUID == resultData.ResultUID
                            && p.StatusFlag == "A").ToList();
 
-                           ResultComponent newItem = new ResultComponent();
-
                             foreach (var item in delResultcomponents)
                             {
                                 ResultComponent resultc = db.ResultComponent.Find(item.UID);
-                                newItem = resultc;
                                 resultc.StatusFlag = "D";
                                 resultc.MWhen = now;
 
                                 db.ResultComponent.AddOrUpdate(resultc);
                                 db.SaveChanges();
+                            }
 
-                                foreach (var resultitem in resultItemRange.ResultComponents)
-                                {
-                                    
-                                    //var labvalue = resultItemRange.ResultComponents.Where(p => p.ResultItemCode == newItem.ResultItemCode).FirstOrDefault();
-                                    if (resultitem.ResultItemCode == newItem.ResultItemCode)
-                                    {
-                                        newItem.ResultValue = resultitem.ResultValue;
-                                        newItem.StatusFlag = "A";
-                                        db.ResultComponent.Add(newItem);
-                                        db.SaveChanges();
-                                    }
-                                    else
-                                    {
-                                        newItem.ResultItemCode = resultitem.ResultItemCode;
-                                        newItem.ResultItemName = resultitem.ResultItemName;
-                                        newItem.ResultValue = resultitem.ResultValue;
-                                        newItem.StatusFlag = "A";
-                                        db.ResultComponent.Add(newItem);
-                                        db.SaveChanges();
-                                    }
-                                } 
-                            }     
+                            foreach (var resultitem in resultItemRange.ResultComponents)
+                            {
+                                    ResultComponent resultComponent = new ResultComponent();
+                                    resultComponent.CUser = userID;
+                                    resultComponent.CWhen = now;
+                                    resultComponent.MUser = userID;
+                                    resultComponent.MWhen = now;
+                                    resultComponent.StatusFlag = "A";
+                                    resultComponent.ResultUID = resultData.ResultUID;
+                                    resultComponent.ReferenceRange = resultitem.ReferenceRange;
+                                    resultComponent.ResultItemUID = resultitem.ResultItemUID;
+                                    resultComponent.RVTYPUID = resultitem.RVTYPUID;
+                                    resultComponent.ResultItemName = resultitem.ResultItemName;
+                                    resultComponent.ResultItemCode = resultitem.ResultItemCode;
+                                    resultComponent.ResultValue = resultitem.ResultValue;
+                                    resultComponent.Comments = "Migrate Lab Result";
+                                    resultComponent.RSUOMUID = resultitem.RSUOMUID;
+                                    resultComponent.ResultDTTM = enterDate;
+
+                                    db.ResultComponent.Add(resultComponent);
+                                    db.SaveChanges();
+                            }
                     }
                     else
                     {
@@ -2188,7 +2186,6 @@ namespace MediTechWebApi.Controllers
                             db.SaveChanges();
 
 
-
                             foreach (var components in resultItemRange.ResultComponents)
                             {
                                 ResultComponent resultComponent = new ResultComponent();
@@ -2198,12 +2195,14 @@ namespace MediTechWebApi.Controllers
                                 resultComponent.MWhen = now;
                                 resultComponent.StatusFlag = "A";
                                 resultComponent.ResultUID = result.UID;
+                                resultComponent.ReferenceRange = components.ReferenceRange;
                                 resultComponent.ResultItemUID = components.ResultItemUID;
                                 resultComponent.RVTYPUID = components.RVTYPUID;
                                 resultComponent.ResultItemName = components.ResultItemName;
                                 resultComponent.ResultItemCode = components.ResultItemCode;
                                 resultComponent.ResultValue = components.ResultValue;
                                 resultComponent.Comments = "Migrate Lab Result";
+                                resultComponent.RSUOMUID = components.RSUOMUID;
                                 resultComponent.ResultDTTM = enterDate;
                                 db.ResultComponent.Add(resultComponent);
                                 db.SaveChanges();
