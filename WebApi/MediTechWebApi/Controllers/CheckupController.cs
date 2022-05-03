@@ -1975,5 +1975,252 @@ namespace MediTechWebApi.Controllers
         }
 
         #endregion
+
+        #region OldLabResult
+        [Route("SaveOldLabResult")]
+        [HttpPost]
+        public HttpResponseMessage SaveOldLabResult(RequestDetailItemModel resultItemRange, long patientUID, int payorDetailUID, DateTime enterDate, string codeLab, int userID, int organisationUID, int payorAgreementsUID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    var now = DateTime.Now;
+                    var resultData = (from rsc in db.ResultComponent
+                                        join rs in db.Result on rsc.ResultUID equals rs.UID
+                                        join rqd in db.RequestDetail on rs.RequestDetailUID equals rqd.UID
+                                        join rq in db.Request on rqd.RequestUID equals rq.UID
+                                        join pvp in db.PatientVisitPayor on rq.PatientVisitUID equals pvp.PatientVisitUID
+                                        where rsc.StatusFlag == "A"
+                                        && rs.StatusFlag == "A"
+                                        && rqd.StatusFlag == "A"
+                                        && rq.StatusFlag == "A"
+                                        && pvp.StatusFlag == "A"
+                                        && rsc.Comments == "Migrate Lab Result"
+                                        && rs.PatientUID == patientUID
+                                        && rs.RequestItemCode == codeLab
+                                        && rq.RequestedDttm == enterDate
+                                        && pvp.PayorDetailUID == payorDetailUID
+                                        select new 
+                                        {
+                                            UID = rsc.UID,
+                                            ResultUID = rs.UID,
+                                            ResultValue = rsc.ResultValue,
+                                            ResultItemName = rsc.ResultItemName,
+                                            ResultItemCode = rsc.ResultItemCode
+                                        }).FirstOrDefault();
+
+                    if(resultData != null)
+                    {
+                           List<ResultComponent> delResultcomponents = db.ResultComponent.Where(p =>
+                           p.ResultUID == resultData.ResultUID
+                           && p.StatusFlag == "A").ToList();
+
+                            foreach (var item in delResultcomponents)
+                            {
+                                ResultComponent resultc = db.ResultComponent.Find(item.UID);
+                                resultc.StatusFlag = "D";
+                                resultc.MWhen = now;
+
+                                db.ResultComponent.AddOrUpdate(resultc);
+                                db.SaveChanges();
+                            }
+
+                            foreach (var resultitem in resultItemRange.ResultComponents)
+                            {
+                                    ResultComponent resultComponent = new ResultComponent();
+                                    resultComponent.CUser = userID;
+                                    resultComponent.CWhen = now;
+                                    resultComponent.MUser = userID;
+                                    resultComponent.MWhen = now;
+                                    resultComponent.StatusFlag = "A";
+                                    resultComponent.ResultUID = resultData.ResultUID;
+                                    resultComponent.ReferenceRange = resultitem.ReferenceRange;
+                                    resultComponent.ResultItemUID = resultitem.ResultItemUID;
+                                    resultComponent.RVTYPUID = resultitem.RVTYPUID;
+                                    resultComponent.ResultItemName = resultitem.ResultItemName;
+                                    resultComponent.ResultItemCode = resultitem.ResultItemCode;
+                                    resultComponent.ResultValue = resultitem.ResultValue;
+                                    resultComponent.Comments = "Migrate Lab Result";
+                                    resultComponent.RSUOMUID = resultitem.RSUOMUID;
+                                    resultComponent.ResultDTTM = enterDate;
+
+                                    db.ResultComponent.Add(resultComponent);
+                                    db.SaveChanges();
+                            }
+                    }
+                    else
+                    {
+                        PatientVisit patientVisit = new PatientVisit();
+                        if (resultItemRange != null)
+                        {
+                            patientVisit.PatientUID = resultItemRange.PatientUID;
+                            patientVisit.VISTYUID = 430;
+                            patientVisit.VISTSUID = 418;
+                            patientVisit.PRITYUID = 440;
+                            patientVisit.StartDttm = enterDate;
+                            patientVisit.ArrivedDttm = enterDate;
+                            patientVisit.EndDttm = enterDate;
+                            patientVisit.CUser = userID;
+                            patientVisit.CWhen = now;
+                            patientVisit.MUser = userID;
+                            patientVisit.MWhen = now;
+                            patientVisit.StatusFlag = "A";
+                            patientVisit.Comments = "Migrate Lab Result";
+                            patientVisit.OwnerOrganisationUID = organisationUID;
+
+                            db.PatientVisit.Add(patientVisit);
+                            db.SaveChanges();
+                        }
+
+                        PatientVisitPayor visitPayor = new PatientVisitPayor();
+                        if (patientVisit != null)
+                        {
+                            visitPayor.PatientUID = resultItemRange.PatientUID;
+                            visitPayor.PatientVisitUID = patientVisit.UID;
+                            visitPayor.PayorDetailUID = payorDetailUID;
+                            visitPayor.PayorAgreementUID = payorAgreementsUID;
+                            visitPayor.Comment = "Migrate Lab Result";
+                            visitPayor.CUser = userID;
+                            visitPayor.CWhen = now;
+                            visitPayor.MUser = userID;
+                            visitPayor.MWhen = now;
+                            visitPayor.StatusFlag = "A";
+
+                            db.PatientVisitPayor.Add(visitPayor);
+                            db.SaveChanges();
+                        }
+
+                        int outrequestUID;
+                        string seqRequestID = seqRequestID = SEQHelper.GetSEQIDFormat("SEQRISRequest", out outrequestUID);
+
+                        if (string.IsNullOrEmpty(seqRequestID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQRequest in SEQCONFIGURATION");
+                        }
+
+                        if (outrequestUID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQRequest is Fail");
+                        }
+                        
+
+                        Request request = new Request();
+                        if (visitPayor != null)
+                        {
+                            request.CUser = userID;
+                            request.CWhen = now;
+                            request.StatusFlag = "A";
+                            request.RequestNumber = seqRequestID;
+                            request.RequestedDttm = now;
+                            request.RequestedUserUID = userID;
+                            request.RequestedDttm = enterDate;
+                            request.BSMDDUID = 2813;
+                            request.ORDSTUID = 2863;
+                            request.RQPRTUID = 440;
+                            request.PatientUID = patientUID;
+                            request.PatientVisitUID = patientVisit.UID;
+                            request.MUser = userID;
+                            request.Comments = "Migrate Lab Result";
+                            request.MWhen = now;
+                            request.OwnerOrganisationUID = organisationUID;
+
+
+                            db.Request.Add(request);
+                            db.SaveChanges();
+                        }
+
+                        RequestDetail requestDetail = new RequestDetail();
+                        if (request != null)
+                        {
+                            requestDetail.CUser = userID;
+                            requestDetail.CWhen = now;
+                            requestDetail.StatusFlag = "A";
+
+                            requestDetail.RequestUID = request.UID;
+                            requestDetail.RequestitemUID = resultItemRange.RequestItemUID;
+                            requestDetail.RequestedDttm = enterDate;
+                            requestDetail.ResultRequiredDttm = enterDate;
+                            requestDetail.ORDSTUID = 2863;
+                            requestDetail.RQPRTUID = 440;
+                            requestDetail.Comments = "Migrate Lab Result";
+                            requestDetail.RequestedUserUID = userID;
+                            requestDetail.RequestItemCode = resultItemRange.RequestItemCode;
+                            requestDetail.RequestItemName = resultItemRange.RequestItemName;
+                            requestDetail.MUser = userID;
+                            requestDetail.MWhen = now;
+
+                            requestDetail.OwnerOrganisationUID = organisationUID;
+
+                            db.RequestDetail.Add(requestDetail);
+                            db.SaveChanges();
+                        }
+
+
+                        SEQResult seqResultID = new SEQResult();
+                        seqResultID.StatusFlag = "A";
+
+                        db.SEQResult.Add(seqResultID);
+                        db.SaveChanges();
+
+                        Result result = new Result();
+                        if (requestDetail != null)
+                        {
+                            result.CUser = userID;
+                            result.CWhen = now;
+                            result.StatusFlag = "A";
+                            result.ResultNumber = seqResultID.UID.ToString();
+                            result.Comments = "Migrate Lab Result";
+                            result.RequestDetailUID = requestDetail.UID;
+                            result.MUser = userID;
+                            result.MWhen = now;
+                            result.ResultEnteredDttm = enterDate;
+                            result.ResultEnteredUserUID = userID;
+                            result.ORDSTUID = 2863;
+                            result.PatientUID = patientUID;
+                            result.PatientVisitUID = patientVisit.UID;
+                            result.ResultedByUID = userID;
+                            result.RequestItemCode = requestDetail.RequestItemCode;
+                            result.RequestItemName = requestDetail.RequestItemName;
+                            db.Result.Add(result);
+                            db.SaveChanges();
+
+
+                            foreach (var components in resultItemRange.ResultComponents)
+                            {
+                                ResultComponent resultComponent = new ResultComponent();
+                                resultComponent.CUser = userID;
+                                resultComponent.CWhen = now;
+                                resultComponent.MUser = userID;
+                                resultComponent.MWhen = now;
+                                resultComponent.StatusFlag = "A";
+                                resultComponent.ResultUID = result.UID;
+                                resultComponent.ReferenceRange = components.ReferenceRange;
+                                resultComponent.ResultItemUID = components.ResultItemUID;
+                                resultComponent.RVTYPUID = components.RVTYPUID;
+                                resultComponent.ResultItemName = components.ResultItemName;
+                                resultComponent.ResultItemCode = components.ResultItemCode;
+                                resultComponent.ResultValue = components.ResultValue;
+                                resultComponent.Comments = "Migrate Lab Result";
+                                resultComponent.RSUOMUID = components.RSUOMUID;
+                                resultComponent.ResultDTTM = enterDate;
+                                db.ResultComponent.Add(resultComponent);
+                                db.SaveChanges();
+                            }
+                        }
+
+                    }
+
+                    tran.Complete();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+        #endregion
     }
 }

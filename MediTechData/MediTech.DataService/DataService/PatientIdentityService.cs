@@ -20,6 +20,22 @@ namespace MediTech.DataService
             return data;
         }
 
+        public PatientInformationModel GetPatientByEmployeeID(string EmployeeID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientByEmployeeId?EmployeeID={0}", EmployeeID);
+            PatientInformationModel data = MeditechApiHelper.Get<PatientInformationModel>(requestApi);
+
+            return data;
+        }
+
+        public List<PatientInformationModel> GetPatientByName(string firstName, string lastName)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientByName?firstName={0}&lastName={1}", firstName, lastName);
+            List<PatientInformationModel> data = MeditechApiHelper.Get<List<PatientInformationModel>>(requestApi);
+
+            return data;
+        }
+
         public PatientInformationModel GetPatientByIDCard(string idCard)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetPatientByIDCard?idCard={0}", idCard);
