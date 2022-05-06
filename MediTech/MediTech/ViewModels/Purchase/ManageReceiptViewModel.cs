@@ -433,7 +433,7 @@ namespace MediTech.ViewModels
                 }
                 else if (item.PTaxPercentage == 7)
                 {
-                    double amountTax = (item.PriceUnit * item.Quantity) ?? 0;
+                    double amountTax = ((item.PriceUnit * item.Quantity) ?? 0) - (item.Discount ?? 0);
                     BfTaxAmount += amountTax - (amountTax * 7 / 107);
                     TaxAmount += (amountTax * 7 / 107);
                 }
