@@ -113,6 +113,14 @@ namespace MediTech
             set { _OwnerOrganisationUID = value; }
         }
 
+        private int _LocationUID;
+
+        public int LocationUID
+        {
+            get { return _LocationUID; }
+            set { _LocationUID = value; }
+        }
+
         private List<CareproviderOrganisationModel> _CareproviderOrganisations;
 
         public List<CareproviderOrganisationModel> CareproviderOrganisations
