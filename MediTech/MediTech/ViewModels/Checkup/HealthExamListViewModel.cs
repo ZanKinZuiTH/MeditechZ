@@ -328,7 +328,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             var refValues = DataService.Technical.GetReferenceValueList("PRTGP");
             if (refValues != null)
                 RequestItemTypes = refValues.Where(p => p.NumericValue == 1).ToList();

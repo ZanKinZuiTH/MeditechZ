@@ -17,9 +17,12 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public Nullable<int> STRTPUID { get; set; }
         public Nullable<int> STDTPUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public Nullable<int> LocationUID { get; set; }
+        public Nullable<int> HealthOrganisationUID { get; set; }
         public string IsDoctorOnly { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public int CUser { get; set; }

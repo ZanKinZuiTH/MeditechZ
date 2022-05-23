@@ -11,7 +11,6 @@ namespace MediTech.Model
         public long PatientVisitUID { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public string CareProviderName { get; set; }
-        public string NationalID { get; set;}
         public Nullable<int> VISTSUID { get; set; }
         public Nullable<int> CheckupJobUID { get; set; }
         public string CompanyName { get; set; }
@@ -23,7 +22,12 @@ namespace MediTech.Model
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> ArrivedDttm { get; set; }
         public Nullable<System.DateTime> DischargeDttm { get; set; }
+        public Nullable<System.DateTime> AdmisstionDttm { get; set; }
 
+        public String LocationName { get; set; }
+        public String EncounterType { get; set; }
+
+        public String PrimaryDiagnosis { get; set; }
         public string VisitID { get; set; }
         public string IsBillFinalized { get; set; }
         public string Comments { get; set; }

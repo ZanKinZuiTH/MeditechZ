@@ -28,7 +28,7 @@ namespace MediTechWebApi.Controllers
             {
                 selectBillItemDetail = billItmDetail
                     .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && DbFunctions.TruncateTime(p.ActiveFrom) >= DbFunctions.TruncateTime(DateTime.Now)))
+                    && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) >= DbFunctions.TruncateTime(DateTime.Now)))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) <= DbFunctions.TruncateTime(DateTime.Now)))
                     );
             }
@@ -356,122 +356,95 @@ namespace MediTechWebApi.Controllers
                     var agreement = db.PayorAgreement.FirstOrDefault(p => p.UID == visitPayor.PayorAgreementUID);
                     string billType = "";
 
-                    if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
-                    {
-                        db.PayorDetail.Attach(payorDetail);
 
-                        if (payorDetail.LastRenumberDttm == null)
+                    HealthOrganisationID healthIDBillType = null;
+                    if (agreement.PBTYPUID == BLTYP_Receive)
+                    {
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
                         {
-                            payorDetail.LastRenumberDttm = now;
+                            billType = "Cash";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                            if (healthIDBillType == null)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
+                            }
+                            else
+                            {
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                    healthIDBillType.NumberValue = 1;
+                                }
+                            }
+
+                            patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
                         }
                         else
                         {
-                            double dateDiff = ((now.Year - payorDetail.LastRenumberDttm.Value.Year) * 12) + now.Month - payorDetail.LastRenumberDttm.Value.Month;
-                            if (dateDiff >= 1)
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                            if (string.IsNullOrEmpty(patientBillID))
                             {
-                                payorDetail.LastRenumberDttm = now;
-                                payorDetail.NumberValue = 1;
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
                             }
-
                         }
 
-                        patientBillID = SEQHelper.GetSEQBillNumber(payorDetail.IDFormat, payorDetail.IDLength.Value, payorDetail.NumberValue.Value);
-                        seqBillID = payorDetail.NumberValue.Value;
 
-                        payorDetail.NumberValue = ++payorDetail.NumberValue;
-
-                        db.SaveChanges();
                     }
-                    else
+                    else if (agreement.PBTYPUID == BLTYP_Invoice)
                     {
-                        HealthOrganisationID healthIDBillType = null;
-                        if (agreement.PBTYPUID == BLTYP_Receive)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
                         {
-                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
+                            billType = "Credit";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
+                            if (healthIDBillType == null)
                             {
-                                billType = "Cash";
-                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
-                                if (healthIDBillType == null)
-                                {
-                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
-                                }
-                                db.HealthOrganisationID.Attach(healthIDBillType);
-                                if (healthIDBillType.LastRenumberDttm == null)
-                                {
-                                    healthIDBillType.LastRenumberDttm = now;
-                                }
-                                else
-                                {
-                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
-                                    if (dateDiff >= 1)
-                                    {
-                                        healthIDBillType.LastRenumberDttm = now;
-                                        healthIDBillType.NumberValue = 1;
-                                    }
-                                }
-
-                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
-                                seqBillID = healthIDBillType.NumberValue.Value;
-
-                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
-
-                                db.SaveChanges();
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
                             }
                             else
                             {
-                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
-                                if (string.IsNullOrEmpty(patientBillID))
-                                {
-                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
-                                }
-                            }
-
-
-                        }
-                        else if (agreement.PBTYPUID == BLTYP_Invoice)
-                        {
-                            if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
-                            {
-                                billType = "Credit";
-                                healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
-                                if (healthIDBillType == null)
-                                {
-                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
-                                }
-                                db.HealthOrganisationID.Attach(healthIDBillType);
-                                if (healthIDBillType.LastRenumberDttm == null)
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
                                 {
                                     healthIDBillType.LastRenumberDttm = now;
-                                }
-                                else
-                                {
-                                    double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
-                                    if (dateDiff >= 1)
-                                    {
-                                        healthIDBillType.LastRenumberDttm = now;
-                                        healthIDBillType.NumberValue = 1;
-                                    }
-                                }
-
-                                patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
-                                seqBillID = healthIDBillType.NumberValue.Value;
-
-                                healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
-
-                                db.SaveChanges();
-                            }
-                            else
-                            {
-                                patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
-                                if (string.IsNullOrEmpty(patientBillID))
-                                {
-                                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                                    healthIDBillType.NumberValue = 1;
                                 }
                             }
 
+                            patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
                         }
+                        else
+                        {
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                            if (string.IsNullOrEmpty(patientBillID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                            }
+                        }
+
                     }
-            
+
+
 
 
                     if (seqBillID == 0)
@@ -623,7 +596,7 @@ namespace MediTechWebApi.Controllers
                             BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
                             && p.OwnerOrganisationUID == model.OwnerOrganisationUID
                             && p.BillableItemUID == item.BillableItemUID
-                            && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                            && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
                             && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
 
                             PatientBilledItem patBilled = new PatientBilledItem();
@@ -1060,7 +1033,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("UpdatePaymentMethod")]
         [HttpPut]
-        public HttpResponseMessage UpdatePaymentMethod(long patientBillUID,int PAYMDUID,int userUID)
+        public HttpResponseMessage UpdatePaymentMethod(long patientBillUID, int PAYMDUID, int userUID)
         {
             try
             {
@@ -1096,5 +1069,368 @@ namespace MediTechWebApi.Controllers
             }
             return data;
         }
+
+        #region BillingGroup
+        [Route("GetBillingGroup")]
+        [HttpGet]
+        public List<BillingGroupModel> GetBillingGroup()
+        {
+            List<BillingGroupModel> billGroup = db.BillingGroup.Where(p => p.StatusFlag == "A")
+                .Select(p => new BillingGroupModel
+                {
+                    BillingGroupUID = p.UID,
+                    Name = p.Name,
+                    Description = p.Description,
+                    DisplayOrder = p.DisplayOrder,
+                    CUser = p.CUser,
+                    MUser = p.MUser,
+                    CWhen = p.CWhen,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return billGroup;
+        }
+
+        #endregion
+
+        #region BillingSubGroup
+
+        [Route("GetBillingSubGroup")]
+        [HttpGet]
+        public List<BillingSubGroupModel> GetBillingSubGroup()
+        {
+            List<BillingSubGroupModel> billGroup = db.BillingSubGroup.Where(p => p.StatusFlag == "A")
+                .Select(p => new BillingSubGroupModel
+                {
+                    BillingSubGroupUID = p.UID,
+                    Name = p.Name,
+                    Description = p.Description,
+                    DisplayOrder = p.DisplayOrder,
+                    BillingGroupUID = p.BillingGroupUID,
+                    CUser = p.CUser,
+                    MUser = p.MUser,
+                    CWhen = p.CWhen,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return billGroup;
+        }
+
+        [Route("GetBillingSubGroupByGroup")]
+        [HttpGet]
+        public List<BillingSubGroupModel> GetBillingSubGroupByGroup(int billingGroupUID)
+        {
+            List<BillingSubGroupModel> billGroup = db.BillingSubGroup.Where(p => p.StatusFlag == "A" && p.BillingGroupUID == billingGroupUID)
+                .Select(p => new BillingSubGroupModel
+                {
+                    BillingSubGroupUID = p.UID,
+                    Name = p.Name,
+                    Description = p.Description,
+                    DisplayOrder = p.DisplayOrder,
+                    BillingGroupUID = p.BillingGroupUID,
+                    CUser = p.CUser,
+                    MUser = p.MUser,
+                    CWhen = p.CWhen,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return billGroup;
+        }
+        #endregion
+
+
+        #region Insurance
+        [Route("GetInsuranceCompanies")]
+        [HttpGet]
+        public List<InsuranceCompanyModel> GetInsuranceCompanies()
+        {
+            DateTime now = DateTime.Now;
+            var data = db.InsuranceCompany
+                .Where(p => p.StatusFlag == "A"
+                && p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now)
+                && p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
+                .Select(p => new InsuranceCompanyModel
+                {
+                    InsuranceCompanyUID = p.UID,
+                    CompanyName = p.CompanyName,
+                    Code = p.Code,
+                    CMPTPUID = p.CMPTPUID
+                }).ToList();
+
+
+            return data;
+        }
+        [Route("GetInsurancePlans")]
+        [HttpGet]
+        public List<InsurancePlanModel> GetInsurancePlans(int insuranceCompanyUID)
+        {
+            DateTime now = DateTime.Now;
+            var data = (from i in db.InsurancePlan
+                        join j in db.PayorAgreement on i.PayorAgreementUID equals j.UID
+                        where i.InsuranceCompanyUID == insuranceCompanyUID
+                        && i.StatusFlag == "A"
+                        && i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(now)
+                        && i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(now)
+                        select new InsurancePlanModel
+                        {
+                            InsurancePlanUID = i.UID,
+                            InsuranceCompanyUID = i.InsuranceCompanyUID,
+                            PayorAgreementUID = i.PayorAgreementUID,
+                            PayorAgreement = j.Name,
+                            PayorDetailUID = i.PayorDetailUID,
+                            PayorName = SqlFunction.fGetPayorName(i.PayorDetailUID),
+                            ClaimPercentage = j.ClaimPercentage,
+                            FixedCopayAmount = j.FixedCopayAmount,
+                            OPDCoverPerDay = j.OPDCoverPerDay,
+                        }).ToList();
+            return data;
+        }
+
+        #endregion
+
+        #region PayorDetail
+
+        [Route("SearchPayorDetail")]
+        [HttpGet]
+        public List<PayorDetailModel> SearchPayorDetail(string code, string name)
+        {
+            List<PayorDetailModel> data = db.PayorDetail
+                .Where(p => p.StatusFlag == "A"
+                && (String.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+                && (String.IsNullOrEmpty(name) || p.PayorName.ToLower().Contains(name.ToLower()))
+                ).Select(p => new PayorDetailModel()
+                {
+                    PayorDetailUID = p.UID,
+                    Code = p.Code,
+                    PayorName = p.PayorName,
+                    AmphurUID = p.AmphurUID,
+                    AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                    ProvinceUID = p.AmphurUID,
+                    ContactPersonName = p.ContactPersonName,
+                    PYRACATUID = p.PYRACATUID,
+                    PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
+                    PhoneNumber = p.PhoneNumber,
+                    MobileNumber = p.MobileNumber,
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    CUser = p.CUser,
+                    CWhen = p.CWhen,
+                    MUser = p.MUser,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return data;
+        }
+
+        [Route("GetPayorDetail")]
+        [HttpGet]
+        public List<PayorDetailModel> GetPayorDetail()
+        {
+            List<PayorDetailModel> data = db.PayorDetail.Where(p => p.StatusFlag == "A").Select(p => new PayorDetailModel()
+            {
+                PayorDetailUID = p.UID,
+                Code = p.Code,
+                PayorName = p.PayorName,
+                AmphurUID = p.AmphurUID,
+                AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                ProvinceUID = p.AmphurUID,
+                ContactPersonName = p.ContactPersonName,
+                PYRACATUID = p.PYRACATUID,
+                PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
+                PhoneNumber = p.PhoneNumber,
+                MobileNumber = p.MobileNumber,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetPayorDetailByUID")]
+        [HttpGet]
+        public PayorDetailModel GetPayorDetailByUID(int payorDetailUID)
+        {
+            var PayorDetail = db.PayorDetail.Find(payorDetailUID);
+            PayorDetailModel data = null;
+            if (PayorDetail != null)
+            {
+                data = new PayorDetailModel();
+                data.PayorDetailUID = PayorDetail.UID;
+                data.Code = PayorDetail.Code;
+                data.PayorName = PayorDetail.PayorName;
+                data.ProvinceUID = PayorDetail.ProvinceUID;
+                data.AmphurUID = PayorDetail.AmphurUID;
+                data.ContactPersonName = PayorDetail.ContactPersonName;
+                data.PhoneNumber = PayorDetail.PhoneNumber;
+                data.MobileNumber = PayorDetail.MobileNumber;
+                data.FaxNumber = PayorDetail.FaxNumber;
+                data.PYRACATUID = PayorDetail.PYRACATUID;
+                data.ActiveFrom = PayorDetail.ActiveFrom;
+                data.ActiveTo = PayorDetail.ActiveTo;
+                data.CUser = PayorDetail.CUser;
+                data.CWhen = PayorDetail.CWhen;
+                data.MUser = PayorDetail.MUser;
+                data.MWhen = PayorDetail.MWhen;
+                data.StatusFlag = PayorDetail.StatusFlag;
+            }
+
+
+            return data;
+        }
+
+
+        [Route("GetPayorDetailByCode")]
+        [HttpGet]
+        public PayorDetailModel GetPayorDetailByCode(string payorCode)
+        {
+            var PayorDetail = db.PayorDetail.Where(w => w.Code == payorCode).FirstOrDefault();
+            PayorDetailModel data = null;
+            if (PayorDetail != null)
+            {
+                data = new PayorDetailModel();
+                data.PayorDetailUID = PayorDetail.UID;
+                data.Code = PayorDetail.Code;
+                data.PayorName = PayorDetail.PayorName;
+                data.ProvinceUID = PayorDetail.ProvinceUID;
+                data.AmphurUID = PayorDetail.AmphurUID;
+                data.ContactPersonName = PayorDetail.ContactPersonName;
+                data.PhoneNumber = PayorDetail.PhoneNumber;
+                data.MobileNumber = PayorDetail.MobileNumber;
+                data.FaxNumber = PayorDetail.FaxNumber;
+                data.PYRACATUID = PayorDetail.PYRACATUID;
+                data.ActiveFrom = PayorDetail.ActiveFrom;
+                data.ActiveTo = PayorDetail.ActiveTo;
+                data.CUser = PayorDetail.CUser;
+                data.CWhen = PayorDetail.CWhen;
+                data.MUser = PayorDetail.MUser;
+                data.MWhen = PayorDetail.MWhen;
+                data.StatusFlag = PayorDetail.StatusFlag;
+            }
+
+
+            return data;
+        }
+
+
+        //[Route("CheckPayorDetailByCode")]
+        //[HttpGet]
+        //public bool CheckPayorDetailByCode(string codePayor)
+        //{
+        //    bool result = false;
+        //    int PayorDetail = db.PayorDetail.Where(w=> w.Code == codePayor).Count();
+        //    result = PayorDetail > 0 ? true : false;
+        //    return result;
+        //}
+
+
+
+
+
+        [Route("ManagePayorDetail")]
+        [HttpPost]
+        public HttpResponseMessage ManagePayorDetail(PayorDetailModel payorDetailModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                MediTech.DataBase.PayorDetail payorDetail = db.PayorDetail.Find(payorDetailModel.PayorDetailUID);
+
+                if (payorDetail == null)
+                {
+                    payorDetail = new MediTech.DataBase.PayorDetail();
+                    payorDetail.CUser = userID;
+                    payorDetail.CWhen = now;
+                    payorDetail.MUser = userID;
+                    payorDetail.MWhen = now;
+                    payorDetail.StatusFlag = "A";
+                }
+                payorDetail.Code = payorDetailModel.Code;
+                payorDetail.PayorName = payorDetailModel.PayorName;
+                payorDetail.ContactPersonName = payorDetailModel.ContactPersonName;
+                payorDetail.ProvinceUID = payorDetailModel.ProvinceUID;
+                payorDetail.AmphurUID = payorDetailModel.AmphurUID;
+                payorDetail.PhoneNumber = payorDetailModel.PhoneNumber;
+                payorDetail.MobileNumber = payorDetailModel.MobileNumber;
+                payorDetail.FaxNumber = payorDetailModel.FaxNumber;
+                payorDetail.ActiveFrom = payorDetailModel.ActiveFrom;
+                payorDetail.ActiveTo = payorDetailModel.ActiveTo;
+                payorDetail.MUser = userID;
+                payorDetail.MWhen = now;
+
+
+                db.PayorDetail.AddOrUpdate(payorDetail);
+                db.SaveChanges();
+
+
+
+
+
+
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeletePayorDetail")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePayorDetail(int payorDetailUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                MediTech.DataBase.PayorDetail payorDetail = db.PayorDetail.Find(payorDetailUID);
+                if (payorDetail != null)
+                {
+                    db.PayorDetail.Attach(payorDetail);
+                    payorDetail.MUser = userID;
+                    payorDetail.MWhen = now;
+                    payorDetail.StatusFlag = "D";
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        #endregion
+
+        #region PayorAgreeemnt
+        [Route("GetAgreementByInsuranceUID")]
+        [HttpGet]
+        public List<PayorAgreementModel> GetAgreementByInsuranceUID(int insuranceUID)
+        {
+            List<PayorAgreementModel> data = db.PayorAgreement.Where(p => p.StatusFlag == "A" && p.InsuranceCompanyUID == insuranceUID).Select(p => new PayorAgreementModel()
+            {
+                Name = p.Name,
+                PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+                PBTYPUID = p.PBTYPUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                PayorAgreementUID = p.UID
+            }).ToList();
+
+            return data;
+        }
+
+        #endregion
     }
 }

@@ -127,7 +127,7 @@ namespace MediTech
                     if (navPanelView.IsPopupOpen)
                         navPanelView.IsPopupOpen = false;
 
-                    if (pageView.ViewCode == "DCTOR")
+                    if (pageView.ViewCode == "DCTOR" || pageView.ViewCode == "REGTS")
                         txtViewName.Visibility = System.Windows.Visibility.Collapsed;
                     else
                         txtViewName.Visibility = System.Windows.Visibility.Visible;
@@ -276,7 +276,12 @@ namespace MediTech
 
         private void LoadTheme()
         {
-            DevExpress.Xpf.Core.ApplicationThemeHelper.ApplicationThemeName = Properties.Settings.Default.ThemeName;
+            string defaultTheme = Properties.Settings.Default.ThemeName;
+            if (string.IsNullOrEmpty(defaultTheme))
+            {
+                defaultTheme = Theme.DXStyleName;
+            }
+            DevExpress.Xpf.Core.ApplicationThemeHelper.ApplicationThemeName = defaultTheme;
         }
 
         private void SaveTheme()

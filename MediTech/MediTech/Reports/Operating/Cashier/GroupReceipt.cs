@@ -35,7 +35,7 @@ namespace MediTech.Reports.Operating.Cashier
                 lbCompany.Text = data.PayorName;
                 lbCompany2.Text = data.PayorName;
                 lbAddress.Text = data.PayerAddress;
-                var tax = (new MasterDataService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
+                var tax = (new BillingService()).GetPayorDetailByUID(data.PayorDetailUID).TINNo?.ToString();
                 lbTexNo.Text = tax != null ? "เลขประจำตัวผู้เสียภาษี " + tax : "";
 
                 if (ReceiptCopy == 0)

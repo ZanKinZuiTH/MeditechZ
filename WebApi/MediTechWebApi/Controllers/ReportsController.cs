@@ -137,12 +137,8 @@ namespace MediTechWebApi.Controllers
                 {
                     Code = p.Code,
                     PayorName = p.PayorName,
-                    TINNo = p.TINNo,
-                    Address1 = p.Address1,
-                    Address2 = p.Address2,
                     MobileNumber = p.MobileNumber
                     ,PhoneNumber = p.PhoneNumber
-                    ,Email = p.Email 
                     ,StatusFlag = p.StatusFlag
 
                 }).ToList();

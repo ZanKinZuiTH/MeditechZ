@@ -357,7 +357,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectBillingGroup, value);
                 if (_SelectBillingGroup != null)
                 {
-                    BillingSubGroup = DataService.MasterData.GetBillingSubGroupByGroup(SelectBillingGroup.BillingGroupUID);
+                    BillingSubGroup = DataService.Billing.GetBillingSubGroupByGroup(SelectBillingGroup.BillingGroupUID);
                 }
             }
         }
@@ -388,9 +388,9 @@ namespace MediTech.ViewModels
         }
 
 
-        private DateTime? _ActiveFrom2;
+        private DateTime _ActiveFrom2;
 
-        public DateTime? ActiveFrom2
+        public DateTime ActiveFrom2
         {
             get { return _ActiveFrom2; }
             set { Set(ref _ActiveFrom2, value); }
@@ -542,7 +542,7 @@ namespace MediTech.ViewModels
         public ManageBillableItemViewModel()
         {
             ServiceTypes = DataService.Technical.GetReferenceValueMany("BSMDD");
-            BillingGroup = DataService.MasterData.GetBillingGroup();
+            BillingGroup = DataService.Billing.GetBillingGroup();
             Organisations = GetHealthOrganisationRole();
             //Organisations.Add(new HealthOrganisationModel { HealthOrganisationUID = 0, Name = "ราคามาตรฐานส่วนกลาง" });
             Organisations = Organisations.OrderBy(p => p.HealthOrganisationUID).ToList();
@@ -550,7 +550,7 @@ namespace MediTech.ViewModels
             SelectOrganisation = Organisations.FirstOrDefault();
             SelectUnit = Units.FirstOrDefault();
             ActiveFrom = DateTime.Now;
-            ActiveFrom2 = ActiveFrom;
+            ActiveFrom2 = ActiveFrom ?? DateTime.Now;
         }
 
         public override void OnLoaded()

@@ -143,6 +143,7 @@ namespace MediTech.ViewModels
                     DateTime now = DateTime.Now;
                     BookingSource = DataService.PatientIdentity.SearchBookingNotExistsVisit(now, null, null, SelectedPatient.PatientUID, 2944,null,AppUtil.Current.OwnerOrganisationUID);
                     SelectBooking = BookingSource.FirstOrDefault();
+                    PastVisits = DataService.PatientIdentity.GetPatientVisitByPatientUID(SelectedPatient.PatientUID);
                 }
             }
         }
@@ -166,6 +167,15 @@ namespace MediTech.ViewModels
                 OnSelectedBookingChanged();
             }
         }
+
+        private List<PatientVisitModel> _PastVisits;
+
+        public List<PatientVisitModel> PastVisits
+        {
+            get { return _PastVisits; }
+            set { Set(ref _PastVisits, value); }
+        }
+
 
         #endregion
 

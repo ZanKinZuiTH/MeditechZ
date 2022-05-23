@@ -1170,7 +1170,7 @@ namespace MediTech.ViewModels
             {
                 selectBillItemDetail = billItmDetail
                     .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+                    && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
             }
@@ -1178,7 +1178,7 @@ namespace MediTech.ViewModels
             {
                 selectBillItemDetail = billItmDetail
     .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+    && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
     );
             }

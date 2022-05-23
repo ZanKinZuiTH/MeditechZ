@@ -27,11 +27,14 @@ namespace MediTech.DataBase
         public Nullable<int> BillingSubGroupUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public string IsEditable { get; set; }
         public string IsPackageItem { get; set; }
         public string IsShareDoctor { get; set; }
         public string ItemNameSearch { get; set; }
         public string Comments { get; set; }
         public string IsDoctorOnly { get; set; }
+        public Nullable<int> OrderCategeoryUID { get; set; }
+        public Nullable<int> OrderSubCategeoryUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

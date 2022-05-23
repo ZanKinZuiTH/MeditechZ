@@ -354,7 +354,7 @@ namespace MediTech.ViewModels
         {
             SelectRequestExams.CollectionChanged += SelectRequestExams_CollectionChanged;
             DateFrom = DateTime.Now;
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             Careproviders = DataService.UserManage.GetCareproviderAll();
             var refValue = DataService.Technical.GetReferenceValueList("ORDST,RIMTYP");
             Modality = refValue.Where(p => p.DomainCode == "RIMTYP").ToList();

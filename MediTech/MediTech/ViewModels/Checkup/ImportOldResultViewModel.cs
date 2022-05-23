@@ -356,7 +356,7 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             //DateTypes = new List<LookupItemModel>();
             //DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
             //DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
@@ -619,7 +619,7 @@ namespace MediTech.ViewModels
                 int year = Convert.ToInt32(SelectYearSource);
                 int payorDetailUID = SelectPayorDetail.PayorDetailUID;
                 DateTime resultDate = new DateTime(year,01, 01);
-                var payorAgreements = DataService.MasterData.GetAgreementByPayorDetailUID(payorDetailUID);
+                var payorAgreements = DataService.Billing.GetAgreementByPayorDetailUID(payorDetailUID);
                 int payorAgreementsUID = payorAgreements.Where(p => p.Name.Contains("เงินสด")).Select(p => p.PayorAgreementUID).FirstOrDefault();
                 
                 if(payorAgreementsUID == 0)

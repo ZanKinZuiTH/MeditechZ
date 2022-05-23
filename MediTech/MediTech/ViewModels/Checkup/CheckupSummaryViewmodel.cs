@@ -289,7 +289,7 @@ namespace MediTech.ViewModels
 
         public CheckupSummaryViewModel()
         {
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
 
 //#if DEBUG
 //            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);

@@ -13,12 +13,55 @@
     <UserControl.Resources>
         <vm:ManagePatient x:Key="ManagePatient" x:Name="ManagePatient" 
                                       IsRegisterPatient="True"/>
+        <vm:CreateVisit x:Key="CreateVisit" x:Name="CreateVisit" />
         <vm:SearchPatient x:Key="SearchPatient" x:Name="SearchPatient"
                                       SelectBooking="{Binding Path=DataContext.SelectedBooking,Mode=OneWayToSource,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}"
                                       SelectedPatientData="{Binding Path=DataContext.SelectedPatient,Mode=OneWayToSource,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}"/>
     </UserControl.Resources>
     <Grid>
         <dxco:Wizard x:Name="wizardRegister" SelectedIndex="{Binding SelectPageIndex}">
+            <dxco:Wizard.ItemHeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel.Resources>
+                            <Style TargetType="{x:Type TextBlock}">
+                                <Setter Property="Margin" Value="5,0,5,0"/>
+                            </Style>
+                        </StackPanel.Resources>
+                        <TextBlock Text="ค้นหาผู้ป่วย" FontWeight="SemiBold" FontSize="15" Foreground="Blue" />
+                        <TextBlock Text=">>" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                        <TextBlock Text="ลงทะเบียนผู้ป่วย" FontWeight="SemiBold" FontSize="15" >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter  Property="Foreground" Value="Gray"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="1">
+                                            <Setter Property="Foreground" Value="Blue"/>
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="2">
+                                            <Setter Property="Foreground" Value="Blue"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                        <TextBlock Text=">>" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                        <TextBlock Text="สร้าง Visit" FontWeight="SemiBold" FontSize="15" >
+                            <TextBlock.Style>
+                                <Style TargetType="{x:Type TextBlock}">
+                                    <Setter  Property="Foreground" Value="Gray"/>
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="2">
+                                            <Setter Property="Foreground" Value="Blue"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </TextBlock.Style>
+                        </TextBlock>
+                    </StackPanel>
+
+                </DataTemplate>
+            </dxco:Wizard.ItemHeaderTemplate>
             <dxco:Wizard.FooterTemplate>
                 <DataTemplate>
                     <dxco:WizardDialogFooter>
@@ -34,30 +77,43 @@
                             <StackPanel Grid.Column="1" HorizontalAlignment="Right" Orientation="Horizontal" >
                                 <dxco:WizardButton Name="btnSkip" Width="80"
                                      Height="25" Content="ข้าม" Command="{Binding SkipCommand}" />
-                                <dxco:WizardButton Name="btnNext" Width="80"
-                                     Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
+
                                 <dxco:WizardButton Name="btnBack" Width="80"
                                      Height="25" Content="&lt; ย้อนกลับ" Command="{Binding BackCommand}"/>
+                                <dxco:WizardButton Name="btnNext" Width="80"
+                                     Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
                                 <dxco:WizardButton Name="btnSave" Width="80"
                                      Height="25" Content="ลงทะเบียน" Command="{Binding Path=DataContext.RegisterCommand,Source={StaticResource ManagePatient}}"/>
-                                <dxco:WizardButton Name="btnSend" Width="80"
-                                     Height="25" Content="ส่งตรวจ" Command="{Binding Path=DataContext.RegisterToDoctorCommand,Source={StaticResource ManagePatient}}"/>
+                                <dxco:WizardButton Name="btnVisit" Width="80"
+                                     Height="25" Content="สร้าง Visit" Command="{Binding VisitCommand}"/>
                             </StackPanel>
                         </Grid>
                     </dxco:WizardDialogFooter>
                     <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=DataContext.IsManageRegister,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="True">
-                            <Setter Property="Visibility" TargetName="btnSkip" Value="Collapsed"/>
-                            <Setter Property="Visibility" TargetName="btnNext" Value="Collapsed"/>
-                            <!--<Setter Property="Visibility" TargetName="btnSend" Value="Visible"/>-->
-                            <Setter Property="Visibility" TargetName="btnBack" Value="Visible"/>
-                        </DataTrigger>
-                        <DataTrigger Binding="{Binding Path=DataContext.IsManageRegister,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="False">
+                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="0">
+                            <Setter Property="Visibility" TargetName="btnReadCard" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnSkip" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnNext" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnSave" Value="Collapsed"/>
-                            <Setter Property="Visibility" TargetName="btnSend" Value="Collapsed"/>
                             <Setter Property="Visibility" TargetName="btnBack" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnVisit" Value="Collapsed"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="1">
+                            <Setter Property="Visibility" TargetName="btnReadCard" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnSkip" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnNext" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnSave" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnBack" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnVisit" Value="Collapsed"/>
+                        </DataTrigger>
+
+                        <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="2">
+                            <Setter Property="Visibility" TargetName="btnReadCard" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnSkip" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnNext" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnSave" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnBack" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnVisit" Value="Visible"/>
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>
@@ -70,6 +126,7 @@
             <dxco:WizardPage Name="SearchPage" Content="{StaticResource SearchPatient}"
                              ShowBack="False"/>
             <dxco:WizardPage Name="ManagePage" Content="{StaticResource ManagePatient}"/>
+            <dxco:WizardPage Name="CreateVisitPage" Content="{StaticResource CreateVisit}"/>
         </dxco:Wizard>
     </Grid>
 </UserControl>

@@ -24,11 +24,15 @@ namespace MediTech.DataBase
         public Nullable<double> Amount { get; set; }
         public Nullable<double> Discount { get; set; }
         public Nullable<double> NetAmount { get; set; }
+        public Nullable<int> CareproviderUID { get; set; }
         public Nullable<double> DoctorFee { get; set; }
         public Nullable<double> ItemCost { get; set; }
         public Nullable<double> ExtendCost { get; set; }
-        public Nullable<int> CareproviderUID { get; set; }
+        public Nullable<long> PatientBillableItemUID { get; set; }
         public long PatientOrderDetailUID { get; set; }
+        public Nullable<long> PatientPackageItemUID { get; set; }
+        public Nullable<int> BillPackageUID { get; set; }
+        public Nullable<double> PackageItemAmount { get; set; }
         public Nullable<int> StoreUID { get; set; }
         public Nullable<int> StockUID { get; set; }
         public string BatchID { get; set; }

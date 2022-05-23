@@ -18,10 +18,14 @@ namespace MediTech.DataBase
         public Nullable<long> PatientUID { get; set; }
         public Nullable<long> PatientVisitUID { get; set; }
         public Nullable<System.DateTime> BillGeneratedDttm { get; set; }
+        public Nullable<double> AdvanceAmount { get; set; }
         public Nullable<double> TotalAmount { get; set; }
         public Nullable<double> DiscountAmount { get; set; }
         public Nullable<double> NetAmount { get; set; }
         public string BillNumber { get; set; }
+        public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<int> BLTYPUID { get; set; }
+        public string IsPaymentComplete { get; set; }
         public string IsRefund { get; set; }
         public double PaidAmount { get; set; }
         public Nullable<double> ChangeAmount { get; set; }

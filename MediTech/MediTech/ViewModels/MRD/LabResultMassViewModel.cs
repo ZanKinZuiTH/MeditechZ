@@ -170,7 +170,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
         }
 
 

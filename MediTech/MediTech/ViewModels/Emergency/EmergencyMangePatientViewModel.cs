@@ -299,7 +299,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPayorDetail, value);
                 if (_SelectedPayorDetail != null)
                 {
-                    PayorAgreementSource = DataService.MasterData.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    PayorAgreementSource = DataService.Billing.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {
@@ -841,7 +841,7 @@ namespace MediTech.ViewModels
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
             VIPTypeSources = dataLookupSource.Where(P => P.DomainCode == "VIPTP").OrderBy(p => p.DisplayOrder).ToList();
-            PayorDetailSource = DataService.MasterData.GetPayorDetail();
+            PayorDetailSource = DataService.Billing.GetPayorDetail();
             referenceRealationShipTitle = DataService.Technical.GetReferenceRealationShip("TITLE", "SEXXX");
             Organisations = GetHealthOrganisationRoleMedical();
 

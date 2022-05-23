@@ -572,7 +572,7 @@ namespace MediTech.ViewModels
 
                 if (payorDetailModel == null)
                 {
-                var checkpayorNewadd = DataService.MasterData.GetPayorDetailByCode(Code);
+                var checkpayorNewadd = DataService.Billing.GetPayorDetailByCode(Code);
                 if (checkpayorNewadd != null)
                 {
                     WarningDialog("Code ซ้ำ โปรดตรวจสอบ");
@@ -583,7 +583,7 @@ namespace MediTech.ViewModels
 
 
                 AssingPropertiesToModel();
-                DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
+                DataService.Billing.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
                 SaveSuccessDialog();
 
 
@@ -735,7 +735,7 @@ namespace MediTech.ViewModels
 
         public void AssingModel(int payorDetailUID)
         {
-            payorDetailModel = DataService.MasterData.GetPayorDetailByUID(payorDetailUID);
+            payorDetailModel = DataService.Billing.GetPayorDetailByUID(payorDetailUID);
             AssingModelToProperties(payorDetailModel);
         }
         public void AssingPropertiesToModel()

@@ -417,33 +417,32 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRoleProfileByLoginUID")]
         [HttpGet]
-        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID)
+        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID,int organisationUID)
         {
             DateTime now = DateTime.Now;
             List<RoleProfileModel> roleProFileData = (from j in db.RoleProfile
                                                       join i in db.Role on j.RoleUID equals i.UID
                                                       join l in db.Login on j.LoginUID equals l.UID
                                                       join c in db.Careprovider on l.CareproviderUID equals c.UID
-                                                      join h in db.CareproviderOrganisation on c.UID equals h.CareproviderUID
-                                                      join o in db.HealthOrganisation on h.HealthOrganisationUID equals o.UID
+                                                      join h in db.CareproviderLocation on c.UID equals h.CareproviderUID
                                                       where j.StatusFlag == "A"
                                                       && i.StatusFlag == "A"
                                                       && c.StatusFlag == "A"
                                                       && h.StatusFlag == "A"
-                                                      && o.StatusFlag == "A"
-                                                      && (o.ActiveFrom == null || DbFunctions.TruncateTime(o.ActiveFrom) <= DbFunctions.TruncateTime(now))
-                                                      && (o.ActiveTo == null || DbFunctions.TruncateTime(o.ActiveTo) >= DbFunctions.TruncateTime(now))
                                                       && j.LoginUID == loginUID
+                                                      && h.HealthOrganisationUID == organisationUID
                                                       select new RoleProfileModel
                                                       {
                                                           RoleProfileUID = j.UID,
                                                           RoleUID = j.RoleUID,
                                                           RoleName = i.Name,
                                                           LoginUID = j.LoginUID,
+                                                          LocationUID = h.LocationUID,
+                                                          LocationName = SqlFunction.fGetLocationName(h.LocationUID),
                                                           HealthOrganisationUID = h.HealthOrganisationUID,
                                                           HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(h.HealthOrganisationUID),
                                                           StatusFlag = j.StatusFlag
-                                                      }).ToList();
+                                                      }).OrderBy(p => p.LocationName).ToList();
             return roleProFileData;
         }
 
@@ -767,6 +766,28 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetCareProviderOrganisationByUser")]
+        [HttpGet]
+        public List<CareproviderOrganisationModel> GetCareProviderOrganisationByUser(int careproviderUID)
+        {
+            DateTime dateNow = DateTime.Now.Date;
+            List<CareproviderOrganisationModel> data = (from j in db.CareproviderOrganisation
+                                                        where j.StatusFlag == "A"
+                                                        && j.CareproviderUID == careproviderUID
+                                                        select new CareproviderOrganisationModel
+                                                        {
+                                                            CareproviderOrganisationUID = j.UID,
+                                                            HealthOrganisationUID = j.HealthOrganisationUID,
+                                                            HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
+                                                            CareproviderUID = careproviderUID,
+                                                            CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
+                                                            ActiveFrom = j.ActiveFrom,
+                                                            ActiveTo = j.ActiveTo
+                                                        }).ToList();
+
+            return data;
+        }
+
         [Route("ManageCareProviderOrganisation")]
         [HttpPost]
         public HttpResponseMessage ManageCareProviderOrganisation(CareproviderOrganisationModel careOrgnModel, int userID)
@@ -823,6 +844,90 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+        [Route("GetCareProviderLocation")]
+        [HttpGet]
+        public List<CareproviderLocationModel> GetCareProviderLocation(int locationUID)
+        {
+            DateTime dateNow = DateTime.Now.Date;
+            List<CareproviderLocationModel> data = (from j in db.CareproviderLocation
+                                                        join i in db.Careprovider on j.CareproviderUID equals i.UID
+                                                        where j.StatusFlag == "A"
+                                                        && i.StatusFlag == "A"
+                                                        && j.LocationUID == locationUID
+                                                        && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
+                                                        select new CareproviderLocationModel
+                                                        {
+                                                            CareproviderLocationUID = j.UID,
+                                                            LocationUID = j.LocationUID,
+                                                            LocationName = SqlFunction.fGetLocationName(j.LocationUID),
+                                                            HealthOrganisationUID = j.HealthOrganisationUID,
+                                                            HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
+                                                            CareproviderUID = j.CareproviderUID,
+                                                            CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
+                                                            ActiveFrom = j.ActiveFrom,
+                                                            ActiveTo = j.ActiveTo
+                                                        }).ToList();
+
+            return data;
+        }
+
+        [Route("ManageCareProviderLocation")]
+        [HttpPost]
+        public HttpResponseMessage ManageCareProviderLocation(CareproviderLocationModel careLocationModel, int userID)
+        {
+            try
+            {
+
+                DateTime now = DateTime.Now;
+
+                CareproviderLocation careLocation = new CareproviderLocation();
+
+                careLocation.CareproviderUID = careLocationModel.CareproviderUID;
+                careLocation.LocationUID = careLocationModel.LocationUID;
+                careLocation.HealthOrganisationUID = careLocationModel.HealthOrganisationUID;
+                careLocation.ActiveFrom = careLocationModel.ActiveFrom;
+                careLocation.ActiveTo = careLocationModel.ActiveTo;
+                careLocation.CUser = userID;
+                careLocation.CWhen = now;
+                careLocation.MUser = userID;
+                careLocation.MWhen = now;
+                careLocation.StatusFlag = "A";
+
+                db.CareproviderLocation.Add(careLocation);
+                db.SaveChanges();
+
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteCareproviderLocation")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteCareproviderLocation(int uid, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                CareproviderLocation careLoc = db.CareproviderLocation.Find(uid);
+                if (careLoc != null)
+                {
+                    db.CareproviderLocation.Remove(careLoc);
+                }
+                db.SaveChanges();
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
 
         protected override void Dispose(bool disposing)
         {

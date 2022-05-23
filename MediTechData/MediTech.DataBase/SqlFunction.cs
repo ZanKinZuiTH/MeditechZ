@@ -204,6 +204,12 @@ namespace MediTech.DataBase
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
+
+        [DbFunction("MediTechModel.Store", "fGetLocationName")]
+        public static string fGetLocationName(int locationUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
     }
 
     public static class SqlDirectStore

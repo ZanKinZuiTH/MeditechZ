@@ -385,38 +385,6 @@ namespace MediTech.DataService
 
         #endregion
 
-        #region BillgingGroup
-
-        public List<BillingGroupModel> GetBillingGroup()
-        {
-            string requestApi = string.Format("Api/MasterData/GetBillingGroup");
-            List<BillingGroupModel> dataRequest = MeditechApiHelper.Get<List<BillingGroupModel>>(requestApi);
-
-            return dataRequest;
-        }
-
-        #endregion
-
-        #region BillgingSubGroup
-        public List<BillingSubGroupModel> GetBillingSubGroup()
-        {
-            string requestApi = string.Format("Api/MasterData/GetBillingSubGroup");
-            List<BillingSubGroupModel> dataRequest = MeditechApiHelper.Get<List<BillingSubGroupModel>>(requestApi);
-
-            return dataRequest;
-        }
-
-        public List<BillingSubGroupModel> GetBillingSubGroupByGroup(int billingGroupUID)
-        {
-            string requestApi = string.Format("Api/MasterData/GetBillingSubGroupByGroup?billingGroupUID={0}", billingGroupUID);
-            List<BillingSubGroupModel> dataRequest = MeditechApiHelper.Get<List<BillingSubGroupModel>>(requestApi);
-
-            return dataRequest;
-        }
-
-
-        #endregion
-
         #region HealthOrganisation
         public List<HealthOrganisationModel> GetHealthOrganisation()
         {
@@ -484,95 +452,6 @@ namespace MediTech.DataService
 
         }
         #endregion
-
-        #region PayorDetail
-
-        public List<PayorDetailModel> SearchPayorDetail(string code, string name)
-        {
-            string requestApi = string.Format("Api/MasterData/SearchPayorDetail?code={0}&name={1}", code, name);
-            List<PayorDetailModel> dataRequest = MeditechApiHelper.Get<List<PayorDetailModel>>(requestApi);
-
-            return dataRequest;
-        }
-        public List<PayorDetailModel> GetPayorDetail()
-        {
-            string requestApi = string.Format("Api/MasterData/GetPayorDetail");
-            List<PayorDetailModel> dataRequest = MeditechApiHelper.Get<List<PayorDetailModel>>(requestApi);
-
-            return dataRequest;
-        }
-
-        public PayorDetailModel GetPayorDetailByUID(int payorDetailUID)
-        {
-            string requestApi = string.Format("Api/MasterData/GetPayorDetailByUID?payorDetailUID={0}", payorDetailUID);
-            PayorDetailModel dataRequest = MeditechApiHelper.Get<PayorDetailModel>(requestApi);
-
-            return dataRequest;
-        }
-
-        public PayorDetailModel GetPayorDetailByCode(string payorCode)
-        {
-            string requestApi = string.Format("Api/MasterData/GetPayorDetailByCode?payorCode={0}",payorCode);
-            PayorDetailModel dataRequest = MeditechApiHelper.Get<PayorDetailModel>(requestApi);
-            return dataRequest;
-        }
-
-
-
-        public bool ManagePayorDetail(PayorDetailModel payorDetailModel, int userID)
-        {
-            bool flag = false;
-
-            try
-            {
-                string requestApi = string.Format("Api/MasterData/ManagePayorDetail?userID={0}", userID);
-                MeditechApiHelper.Post<PayorDetailModel>(requestApi, payorDetailModel);
-                flag = true;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-            return flag;
-
-        }
-
-        public bool DeletePayorDetail(int payorDetailUID, int userID)
-        {
-            bool flag = false;
-
-            try
-            {
-                string requestApi = string.Format("Api/MasterData/DeletePayorDetail?payorDetailUID={0}&userID={1}", payorDetailUID, userID);
-                MeditechApiHelper.Delete(requestApi);
-                flag = true;
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-
-
-            return flag;
-
-        }
-
-        #endregion
-
-        #region PayorAgreement
-        public List<PayorAgreementModel> GetAgreementByPayorDetailUID(int payorDetailUID)
-        {
-            string requestApi = string.Format("Api/MasterData/GetAgreementByPayorDetailUID?payorDetailUID={0}", payorDetailUID);
-            List<PayorAgreementModel> dataRequest = MeditechApiHelper.Get<List<PayorAgreementModel>>(requestApi);
-
-            return dataRequest;
-        }
-        #endregion
-
 
         #region Location
         public List<LocationModel> GetLocationAll(int ownerOrganisationUID)

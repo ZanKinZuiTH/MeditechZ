@@ -601,7 +601,7 @@ namespace MediTech.ViewModels
             Radiologist = careprovider.Where(p => p.IsRadiologist).ToList();
             RDUStaffList = careprovider.Where(p => p.IsRDUStaff).ToList();
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
 
             CareproviderModel newCareprovider = new CareproviderModel();
             newCareprovider.CareproviderUID = 0;

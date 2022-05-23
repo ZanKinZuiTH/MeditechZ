@@ -29,21 +29,39 @@ namespace MediTech
         private UserManageService userManageService;
 
         #endregion
-        public RoleScreen(List<RoleProfileModel> roleProfile)
+        public RoleScreen()
         {
             InitializeComponent();
             this.Loaded += RoleScreen_Loaded;
             btnContinue.Click += btnContinue_Click;
             btnCancel.Click += btnCancel_Click;
-            grdRole.ItemsSource = roleProfile;
+            lkeOrganisation.EditValueChanged += LkeOrganisation_EditValueChanged;
             userManageService = new UserManageService();
         }
 
+ 
         void RoleScreen_Loaded(object sender, RoutedEventArgs e)
         {
-#if DEBUG
-            btnContinue_Click(null, null);
-#endif
+            var organisations = userManageService.GetCareProviderOrganisationByUser(AppUtil.Current.UserID);
+            if (organisations != null)
+            {
+                lkeOrganisation.ItemsSource = organisations;
+                lkeOrganisation.SelectedIndex = 0;
+                AppUtil.Current.CareproviderOrganisations = organisations;
+            }
+            //grdRole.ItemsSource = roleProfile;
+            //#if DEBUG
+            //            btnContinue_Click(null, null);
+            //#endif
+        }
+
+        private void LkeOrganisation_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
+        {
+           if(lkeOrganisation.EditValue != null)
+            {
+                List<RoleProfileModel> roleProfile = userManageService.GetRoleProfileByLoginUID(AppUtil.Current.LoginID, (int)lkeOrganisation.EditValue);
+                grdRole.ItemsSource = roleProfile;
+            }
         }
 
         void btnContinue_Click(object sender, RoutedEventArgs e)
@@ -57,6 +75,7 @@ namespace MediTech
                 }
 
                 AppUtil.Current.RoleUID = ((RoleProfileModel)grdRole.SelectedItem).RoleUID;
+                AppUtil.Current.LocationUID = ((RoleProfileModel)grdRole.SelectedItem).LocationUID;
                 AppUtil.Current.OwnerOrganisationUID = ((RoleProfileModel)grdRole.SelectedItem).HealthOrganisationUID;
                 userManageService.StampAppLastAccess(AppUtil.Current.LoginID);
                 this.Hide();

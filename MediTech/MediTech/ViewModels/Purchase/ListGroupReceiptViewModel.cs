@@ -156,7 +156,7 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
             Organisations = GetHealthOrganisationIsRoleStock();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             //GroupReceipt = DataService.Purchaseing.GetGroupReceipt();
             Search();

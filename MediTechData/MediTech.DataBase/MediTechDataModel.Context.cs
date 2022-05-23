@@ -27,14 +27,21 @@ namespace MediTech.DataBase
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
+        public virtual DbSet<AEDischargeEvent> AEDischargeEvent { get; set; }
         public virtual DbSet<Amphur> Amphur { get; set; }
         public virtual DbSet<BillableItem> BillableItem { get; set; }
         public virtual DbSet<BillableItemDetail> BillableItemDetail { get; set; }
+        public virtual DbSet<BillConfiguration> BillConfiguration { get; set; }
         public virtual DbSet<BillingGroup> BillingGroup { get; set; }
         public virtual DbSet<BillingSubGroup> BillingSubGroup { get; set; }
+        public virtual DbSet<BillPackage> BillPackage { get; set; }
+        public virtual DbSet<BillPackageItem> BillPackageItem { get; set; }
         public virtual DbSet<Booking> Booking { get; set; }
         public virtual DbSet<Careprovider> Careprovider { get; set; }
+        public virtual DbSet<CareproviderLocation> CareproviderLocation { get; set; }
         public virtual DbSet<CareproviderOrganisation> CareproviderOrganisation { get; set; }
+        public virtual DbSet<CareproviderTransfer> CareproviderTransfer { get; set; }
         public virtual DbSet<CCHPI> CCHPI { get; set; }
         public virtual DbSet<CCHPIMaster> CCHPIMaster { get; set; }
         public virtual DbSet<CheckupGroupResult> CheckupGroupResult { get; set; }
@@ -45,6 +52,7 @@ namespace MediTech.DataBase
         public virtual DbSet<CheckupRuleItem> CheckupRuleItem { get; set; }
         public virtual DbSet<CheckupRuleRecommend> CheckupRuleRecommend { get; set; }
         public virtual DbSet<CheckupTextMaster> CheckupTextMaster { get; set; }
+        public virtual DbSet<DischargeEvent> DischargeEvent { get; set; }
         public virtual DbSet<DispensedItem> DispensedItem { get; set; }
         public virtual DbSet<DisposeItemList> DisposeItemList { get; set; }
         public virtual DbSet<DisposeStock> DisposeStock { get; set; }
@@ -60,6 +68,9 @@ namespace MediTech.DataBase
         public virtual DbSet<GroupReceiptPatientBill> GroupReceiptPatientBill { get; set; }
         public virtual DbSet<HealthOrganisation> HealthOrganisation { get; set; }
         public virtual DbSet<HealthOrganisationID> HealthOrganisationID { get; set; }
+        public virtual DbSet<InsuranceCompany> InsuranceCompany { get; set; }
+        public virtual DbSet<InsurancePlan> InsurancePlan { get; set; }
+        public virtual DbSet<IPBooking> IPBooking { get; set; }
         public virtual DbSet<ItemAverageCost> ItemAverageCost { get; set; }
         public virtual DbSet<ItemIssue> ItemIssue { get; set; }
         public virtual DbSet<ItemIssueDetail> ItemIssueDetail { get; set; }
@@ -71,6 +82,7 @@ namespace MediTech.DataBase
         public virtual DbSet<ItemUOMConversion> ItemUOMConversion { get; set; }
         public virtual DbSet<ItemVendorDetail> ItemVendorDetail { get; set; }
         public virtual DbSet<Location> Location { get; set; }
+        public virtual DbSet<LocationTransfer> LocationTransfer { get; set; }
         public virtual DbSet<Login> Login { get; set; }
         public virtual DbSet<MediTechInterface> MediTechInterface { get; set; }
         public virtual DbSet<MediTechInterfaceDetail> MediTechInterfaceDetail { get; set; }
@@ -84,15 +96,21 @@ namespace MediTech.DataBase
         public virtual DbSet<Patient> Patient { get; set; }
         public virtual DbSet<PatientAddress> PatientAddress { get; set; }
         public virtual DbSet<PatientAddressMerge> PatientAddressMerge { get; set; }
+        public virtual DbSet<PatientADTEvent> PatientADTEvent { get; set; }
+        public virtual DbSet<PatientAEAdmission> PatientAEAdmission { get; set; }
         public virtual DbSet<PatientAllergy> PatientAllergy { get; set; }
         public virtual DbSet<PatientAudiogram> PatientAudiogram { get; set; }
         public virtual DbSet<PatientBill> PatientBill { get; set; }
+        public virtual DbSet<PatientBillableItem> PatientBillableItem { get; set; }
         public virtual DbSet<PatientBilledItem> PatientBilledItem { get; set; }
+        public virtual DbSet<PatientBillEditHistory> PatientBillEditHistory { get; set; }
+        public virtual DbSet<PatientDeceasedDetail> PatientDeceasedDetail { get; set; }
         public virtual DbSet<PatientDemographicLog> PatientDemographicLog { get; set; }
         public virtual DbSet<PatientEKG> PatientEKG { get; set; }
         public virtual DbSet<PatientExamination> PatientExamination { get; set; }
         public virtual DbSet<PatientImage> PatientImage { get; set; }
         public virtual DbSet<PatientInjury> PatientInjury { get; set; }
+        public virtual DbSet<PatientInsuranceDetail> PatientInsuranceDetail { get; set; }
         public virtual DbSet<PatientMedicalHistory> PatientMedicalHistory { get; set; }
         public virtual DbSet<PatientMerge> PatientMerge { get; set; }
         public virtual DbSet<PatientMergeDetail> PatientMergeDetail { get; set; }
@@ -102,21 +120,29 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientOrderAlert> PatientOrderAlert { get; set; }
         public virtual DbSet<PatientOrderDetail> PatientOrderDetail { get; set; }
         public virtual DbSet<PatientOrderDetailHistory> PatientOrderDetailHistory { get; set; }
+        public virtual DbSet<PatientPackage> PatientPackage { get; set; }
+        public virtual DbSet<PatientPackageItem> PatientPackageItem { get; set; }
+        public virtual DbSet<PatientPaymentDetail> PatientPaymentDetail { get; set; }
         public virtual DbSet<PatientProblem> PatientProblem { get; set; }
         public virtual DbSet<PatientScannedDocument> PatientScannedDocument { get; set; }
         public virtual DbSet<PatientServiceEvent> PatientServiceEvent { get; set; }
         public virtual DbSet<PatientSpirometry> PatientSpirometry { get; set; }
         public virtual DbSet<PatientTitmus> PatientTitmus { get; set; }
         public virtual DbSet<PatientVisit> PatientVisit { get; set; }
+        public virtual DbSet<PatientVisitCareProvider> PatientVisitCareProvider { get; set; }
+        public virtual DbSet<PatientVisitID> PatientVisitID { get; set; }
         public virtual DbSet<PatientVisitPayor> PatientVisitPayor { get; set; }
         public virtual DbSet<PatientVisualAcuity> PatientVisualAcuity { get; set; }
         public virtual DbSet<PatientVitalSign> PatientVitalSign { get; set; }
         public virtual DbSet<PatientWorkHistory> PatientWorkHistory { get; set; }
         public virtual DbSet<PayorAgreement> PayorAgreement { get; set; }
+        public virtual DbSet<PayorAgreement_2> PayorAgreement_2 { get; set; }
         public virtual DbSet<PayorDetail> PayorDetail { get; set; }
+        public virtual DbSet<PayorDetail_2> PayorDetail_2 { get; set; }
         public virtual DbSet<Permission> Permission { get; set; }
         public virtual DbSet<PhysicalExam> PhysicalExam { get; set; }
         public virtual DbSet<PhysicalExamTemplate> PhysicalExamTemplate { get; set; }
+        public virtual DbSet<PolicyMaster> PolicyMaster { get; set; }
         public virtual DbSet<PostalCode> PostalCode { get; set; }
         public virtual DbSet<Prescription> Prescription { get; set; }
         public virtual DbSet<PrescriptionItem> PrescriptionItem { get; set; }

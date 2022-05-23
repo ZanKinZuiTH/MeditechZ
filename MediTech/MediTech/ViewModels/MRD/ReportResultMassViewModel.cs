@@ -477,7 +477,7 @@ namespace MediTech.ViewModels
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
             //SelectResultStatus = ResultStatus.FirstOrDefault();
 
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
         }
 
         private void Search()

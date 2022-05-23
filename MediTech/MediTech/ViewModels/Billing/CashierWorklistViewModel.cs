@@ -380,7 +380,7 @@ namespace MediTech.ViewModels
             IsPrint = false;
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             PrinterLists = new List<string>();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
             {

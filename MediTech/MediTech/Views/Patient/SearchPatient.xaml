@@ -73,51 +73,80 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            
+
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl Name="grdPatient" ItemsSource="{Binding PatientSource}"
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width=".6*"/>
+                    </Grid.ColumnDefinitions>
+                    <dxg:GridControl Grid.Column="0" Name="grdPatient" ItemsSource="{Binding PatientSource}"
                                  AutoGenerateColumns="None"
                                  EnableSmartColumnsGeneration="False"
                                  SelectedItem="{Binding SelectedPatient}">
-                    <dxg:GridControl.View>
-                        <dxg:TableView ShowGroupPanel="False" />
-                    </dxg:GridControl.View>
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="คำนำหน้า" FieldName="Title" ReadOnly="True"/>
-                        <dxg:GridColumn Header="ชื่อ" FieldName="FirstName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="นามสกุล" FieldName="LastName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="เพศ" FieldName="Gender"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="วัน เดือน ปี เกิด" FieldName="BirthDttmString"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="อายุ" FieldName="AgeString"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="วันที่มาตรวจล่าสุด" FieldName="LastVisitDttm" ReadOnly="True"/>
-                    </dxg:GridControl.Columns>
-                </dxg:GridControl>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" />
+                        </dxg:GridControl.View>
+                        <dxg:GridControl.Columns>
+                            <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                            <dxg:GridColumn Header="คำนำหน้า" FieldName="Title" ReadOnly="True"/>
+                            <dxg:GridColumn Header="ชื่อ" FieldName="FirstName" ReadOnly="True"/>
+                            <dxg:GridColumn Header="นามสกุล" FieldName="LastName" ReadOnly="True"/>
+                            <dxg:GridColumn Header="เพศ" FieldName="Gender"  ReadOnly="True"/>
+                            <dxg:GridColumn Header="วัน เดือน ปี เกิด" FieldName="BirthDttmString"  ReadOnly="True"/>
+                            <dxg:GridColumn Header="อายุ" FieldName="AgeString"  ReadOnly="True"/>
+                            <dxg:GridColumn Header="วันที่มาตรวจล่าสุด" FieldName="LastVisitDttm" ReadOnly="True"/>
+                        </dxg:GridControl.Columns>
+                    </dxg:GridControl>
 
-                <dxlc:LayoutGroup View="GroupBox" Header="คิวนัด" 
-                                  VerticalAlignment="Top"
-                                  Width="300" Height="300">
-                    <dxg:GridControl Name="grdBooking"
+                    <dxlc:LayoutGroup View="Tabs" Grid.Column="1">
+                        <dxlc:LayoutGroup Header="รายการนัดหมาย">
+                            <dxg:GridControl Name="grdBooking"
                              ItemsSource="{Binding BookingSource}"
                              SelectedItem="{Binding SelectBooking}">
-                        <dxg:GridControl.Columns>
-                            <dxg:GridColumn Header="วันที่นัด" FieldName="AppointmentDttm" />
-                            <dxg:GridColumn Header="เวลาที่นัด" FieldName="AppointmentDttm">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:DateEditSettings  DisplayFormat="HH:mm" />
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
-                            <dxg:GridColumn Header="มาเพื่อ" FieldName="PatientReminderMessage"/>
-                            <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>
-                        </dxg:GridControl.Columns>
-                        <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>
-                </dxlc:LayoutGroup>
-
-
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="วันที่นัด" FieldName="AppointmentDttm" />
+                                    <dxg:GridColumn Header="เวลาที่นัด" FieldName="AppointmentDttm">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:DateEditSettings  DisplayFormat="HH:mm" />
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                    <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
+                                    <dxg:GridColumn Header="นัดมา" FieldName="PatientReminderMessage"/>
+                                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Header="Past Visits">
+                            <dxg:GridControl Name="grdPastVisit"
+                             ItemsSource="{Binding PastVisits}">
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="วันที่" FieldName="StartDttm">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:DateEditSettings  DisplayFormat="dd/MM/yyy" />
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                    <dxg:GridColumn Header="ประเภท" FieldName="EncounterType" />
+                                    <dxg:GridColumn Header="VisitID" FieldName="VisitID" />
+                                    <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
+                                    <dxg:GridColumn Header="แผนก" FieldName="LocationName"/>
+                                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation"/>
+                                    <dxg:GridColumn FieldName="AdmisstionDttm"/>
+                                    <dxg:GridColumn FieldName="DischargeDttm"/>
+                                    <dxg:GridColumn FieldName="PrimaryDiagnosis"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                </Grid>
+               
+                
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

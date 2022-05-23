@@ -866,7 +866,7 @@ namespace MediTech.ViewModels
                                     visitInfo.CheckupJobUID = result.SelectedCheckupJob != null ? result.SelectedCheckupJob.CheckupJobContactUID : (int?)null;
                                     visitInfo.CompanyName = currentData.Company;
                                     visitInfo.PRITYUID = result.SelectedPriority.Key;
-                                    visitInfo.PayorDetailUID = result.SelectedPayorDetail.PayorDetailUID;
+                                    visitInfo.PayorDetailUID = 0;
                                     visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
                                     visitInfo.Comments = result.CommentDoctor;
                                     visitInfo.RefNo = currentData.No;

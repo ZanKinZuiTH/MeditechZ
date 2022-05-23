@@ -317,7 +317,7 @@ namespace MediTech.ViewModels
                 RegisterPatient registerPage = new RegisterPatient();
                 RegisterPatientViewModel viewModel = (registerPage.DataContext as RegisterPatientViewModel);
                 
-                viewModel.IsManageRegister = true;
+                viewModel.SelectPageIndex = 1;
                 ChangeViewPermission(registerPage, this.View);
                 viewModel.OpenPage(PageRegister.Manage, patient, SelectBooking);
 

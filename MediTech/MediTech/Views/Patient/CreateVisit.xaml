@@ -9,133 +9,98 @@
              xmlns:local="clr-namespace:MediTech.Views"
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
              mc:Ignorable="d"
+             xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              DataContext="{Binding Path=CreateVisitViewModel,Source={StaticResource Locator}}"
-             Height="341.074" Width="389.512">
-    <Grid>
+              d:DesignHeight="600" d:DesignWidth="1000">
+    <Grid >
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                <uc:PatientBanner x:Name="banner" PatientVisit="{Binding SelectPatientVisit}"/>
+            </dxlc:LayoutItem>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width=".5*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <dxlc:LayoutControl Orientation="Vertical" Grid.Column="0">
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                        <TextBlock Text="สถานประกอบการ" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxe:ComboBoxEdit DisplayMember="Name" 
+                                <TextBlock Text="สถานประกอบการ" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Name" 
                                       ValueMember="HealthOrganisationUID"
                                       ItemsSource="{Binding Organisations}"
                                       SelectedItem="{Binding SelectOrganisation}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem >
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                        <TextBlock Text="ประเภท Visit" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                <TextBlock Text="แผนก" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Name"
+                                      ValueMember="LocationUID"
+                                      ItemsSource="{Binding Locations}"
+                                      SelectedItem="{Binding SelectLocation}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                <TextBlock Text="ประเภท Visit" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       ItemsSource="{Binding VisitTypeSource}"
                                       SelectedItem="{Binding SelectedVisitType}"/>
-            </dxlc:LayoutItem>
-
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutItem >
-                    <dxlc:LayoutItem.Label>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="วันที่มา" />
-                        </StackPanel>
-                    </dxlc:LayoutItem.Label>
-                    <dxe:DateEdit EditValue="{Binding StartDate}"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem Width="100">
-                    <dxlc:LayoutItem.Label>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                    <TextBlock Text="วันที่มา" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding StartDate}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="100">
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="เวลา" />
-                        </StackPanel>
-                    </dxlc:LayoutItem.Label>
-                    <dxe:DateEdit x:Name="timeEditor"
+                                    <TextBlock Text="เวลา" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit x:Name="timeEditor"
                                       EditValue="{Binding StartTime}"
                                       DisplayFormatString="HH:mm"
                                       Mask="HH:mm">
-                        <dxe:DateEdit.StyleSettings>
-                            <dxe:DateEditPickerStyleSettings/>
-                        </dxe:DateEdit.StyleSettings>
-                    </dxe:DateEdit>
-                </dxlc:LayoutItem>
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
 
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutItem >
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                        <TextBlock Text="Payor" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetailSource}" 
-                                      SelectedItem="{Binding SelectedPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
-                                      AllowNullInput="True"
-                                      AutoComplete="True" 
-                                      ImmediatePopup="True"
-                                      FindButtonPlacement = "Popup"
-                                      FindMode = "Always"
-                                      PopupMinHeight="100"
-                                      PopupMinWidth="100"
-                                      PopupHeight="300" 
-                                      IsPopupAutoWidth="True"
-                                      AutoPopulateColumns="False">
-                    <dxg:LookUpEdit.PopupContentTemplate>
-                        <ControlTemplate>
-                            <dxg:GridControl x:Name="PART_GridControl"  >
-                                <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
-                                </dxg:GridControl.Columns>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView
-                        Name="View"  ShowColumnHeaders="False"
-                        AutoWidth="True"
-                        ShowGroupedColumns="False" >
-                                    </dxg:TableView>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </ControlTemplate>
-                    </dxg:LookUpEdit.PopupContentTemplate>
-                    <dxg:LookUpEdit.StyleSettings>
-                        <dxg:SearchLookUpEditStyleSettings/>
-                    </dxg:LookUpEdit.StyleSettings>
-                </dxg:LookUpEdit>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem >
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
-                                           Foreground="Red"/>
-                        <TextBlock Text="Agreement" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxe:ComboBoxEdit DisplayMember="Name" 
-                                      ValueMember="PayorAgreementUID"
-                                      ItemsSource="{Binding PayorAgreementSource}"
-                                      SelectedItem="{Binding SelectedPayorAgreement}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
-                                           Foreground="Red"/>
-                        <TextBlock Text="บริษัท" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxg:LookUpEdit Name="lkeCompanyName" ItemsSource="{Binding CheckupJobSource}" 
+                                <TextBlock Text="Checkup Job" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxg:LookUpEdit Name="lkeCompanyName" ItemsSource="{Binding CheckupJobSource}" 
                                       SelectedItem="{Binding SelectedCheckupJob}"
                                       ValueMember="CheckupJobContactUID"
                                       DisplayMember="CompanyName"
@@ -149,67 +114,160 @@
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">
-                    <dxg:LookUpEdit.PopupContentTemplate>
-                        <ControlTemplate>
-                            <dxg:GridControl x:Name="PART_GridControl"  >
-                                <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
-                                    <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
-                                    <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
-                                    <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
-                                </dxg:GridControl.Columns>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView
+                            <dxg:LookUpEdit.PopupContentTemplate>
+                                <ControlTemplate>
+                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                        <dxg:GridControl.Columns>
+                                            <dxg:GridColumn Header="JobNumber" FieldName="JobNumber"/>
+                                            <dxg:GridColumn Header="บริษัท" FieldName="CompanyName"/>
+                                            <dxg:GridColumn Header="การให้บริการ" FieldName="ServiceName"/>
+                                            <dxg:GridColumn Header="วันที่ตรวจ" FieldName="StartDttm"/>
+                                        </dxg:GridControl.Columns>
+                                        <dxg:GridControl.View>
+                                            <dxg:TableView
                         Name="View"
                         AutoWidth="True"
                         ShowGroupedColumns="False" >
-                                    </dxg:TableView>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </ControlTemplate>
-                    </dxg:LookUpEdit.PopupContentTemplate>
-                    <dxg:LookUpEdit.StyleSettings>
-                        <dxg:SearchLookUpEditStyleSettings/>
-                    </dxg:LookUpEdit.StyleSettings>
-                </dxg:LookUpEdit>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem >
-                <dxlc:LayoutItem.Label>
-                    <StackPanel Orientation="Horizontal">
-                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                            </dxg:TableView>
+                                        </dxg:GridControl.View>
+                                    </dxg:GridControl>
+                                </ControlTemplate>
+                            </dxg:LookUpEdit.PopupContentTemplate>
+                            <dxg:LookUpEdit.StyleSettings>
+                                <dxg:SearchLookUpEditStyleSettings/>
+                            </dxg:LookUpEdit.StyleSettings>
+                        </dxg:LookUpEdit>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem >
+                        <dxlc:LayoutItem.Label>
+                            <StackPanel Orientation="Horizontal">
+                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                        <TextBlock Text="ความสำคัญ" />
-                    </StackPanel>
-                </dxlc:LayoutItem.Label>
-                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                <TextBlock Text="ความสำคัญ" />
+                            </StackPanel>
+                        </dxlc:LayoutItem.Label>
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       ItemsSource="{Binding PrioritySource}"
                                       SelectedItem="{Binding SelectedPriority}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="แพทย์">
-                <dxe:ComboBoxEdit DisplayMember="FullName"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="แพทย์">
+                        <dxe:ComboBoxEdit DisplayMember="FullName"
                                       NullValueButtonPlacement="EditBox"
                                       ValueMember="CareproviderUID"
                                       ItemsSource="{Binding CareproviderSource}"
                                       SelectedItem="{Binding SelectedCareprovider}"/>
-            </dxlc:LayoutItem>
-            <dxlc:LayoutItem Label="หมายเหตุถึงแพทย์" LabelVerticalAlignment="Top">
-                <TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="หมายเหตุ" LabelVerticalAlignment="Top">
+                        <TextBox Name="txtDetail"   Text="{Binding CommentDoctor,Mode=TwoWay}"
                                                      Height="50"
                                                      AcceptsReturn="True"             
                                                      TextWrapping="Wrap" />
-            </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutControl>
+                <dxlc:LayoutControl Orientation="Vertical" Grid.Column="1">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="Type">
+                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding PayorTypes}"
+                                      SelectedItem="{Binding SelectPayorType}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Payor">
+                                <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompanys}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                                      ValueMember="InsuranceComapanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                </dxg:GridControl.View>
+                                                <dxg:GridColumn x:Name="colCompanyName" FieldName="CompanyName"/>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Agreement">
+                                <dxe:ComboBoxEdit DisplayMember="PayorAgreement" 
+                                      ValueMember="PayorAgreementUID"
+                                      ItemsSource="{Binding InsurancePlans}"
+                                      SelectedItem="{Binding SelectInsurancePlan}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Payor Office">
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PayorName}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="หมายเหตุ">
+                                <dxe:TextEdit Text="{Binding Comments}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="Policy">
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PolicyName}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="OPD Cover Per Day">
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.OPDCoverPerDay}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="Claim Percentage">
+                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.ClaimPercentage}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Fixed Copay Amount">
+                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.FixedCopayAmount}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="Active From">
+                                <dxe:DateEdit DateTime="{Binding ActiveFrom}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Active To">
+                                <dxe:DateEdit DateTime="{Binding ActiveTo}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                <dx:SimpleButton Height="25" Width="80" Content="เพิ่ม"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="แก้ไข"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="ลบ"/>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxg:GridControl ItemsSource="{Binding Path=PatientVisitPayorList,UpdateSourceTrigger=PropertyChanged}" 
+                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"
+                                     
+                                     >
+                        <dxg:GridColumn Header="Payor"/>
+                        <dxg:GridColumn Header="Agreement" />
+                        <dxg:GridColumn Header="Payor Office" />
+                        <dxg:GridColumn Header="Policy"/>
+                        <dxg:GridColumn Header="Type"/>
+                        <dxg:GridColumn Header="Claim Perc."/>
+                        <dxg:GridColumn Header="Comments"/>
+                        <dxg:GridColumn Header="Fixed Copay"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutControl>
 
-            <dxlc:LayoutGroup VerticalAlignment="Bottom">
-                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
-                             VerticalAlignment="Bottom"
-                             HorizontalAlignment="Right"
-                                     Height="25" Content="บันทึก"/>
-                <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
-                             VerticalAlignment="Bottom"
-                             HorizontalAlignment="Right"
-                                     Height="25" Content="ยกเลิก"/>
-            </dxlc:LayoutGroup>
+            </Grid>
 
         </dxlc:LayoutControl>
     </Grid>

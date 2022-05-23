@@ -250,7 +250,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             PrinterLists = new List<string>();
             PrintDocument printDoc = new PrintDocument();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)

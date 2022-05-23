@@ -17,29 +17,27 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public string Code { get; set; }
         public string PayorName { get; set; }
-        public string Description { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-        public Nullable<int> DistrictUID { get; set; }
+        public string DistrictUID { get; set; }
         public Nullable<int> AmphurUID { get; set; }
         public Nullable<int> ProvinceUID { get; set; }
-        public string ZipCode { get; set; }
-        public string ContactPersonName { get; set; }
-        public string TINNo { get; set; }
+        public Nullable<int> ZipCode { get; set; }
         public string MobileNumber { get; set; }
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }
-        public string Email { get; set; }
-        public string Comment { get; set; }
-        public Nullable<int> PAYTRMUID { get; set; }
+        public string EmailAddress { get; set; }
         public Nullable<int> PYRACATUID { get; set; }
-        public Nullable<bool> IsGenerateBillNumber { get; set; }
-        public string IDFormat { get; set; }
-        public Nullable<int> IDLength { get; set; }
-        public Nullable<int> NumberValue { get; set; }
-        public Nullable<System.DateTime> LastRenumberDttm { get; set; }
+        public string ContactPersonName { get; set; }
+        public string AgentName { get; set; }
+        public Nullable<int> CRDTRMUID { get; set; }
+        public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<int> InsuranceCompanyUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public string Note { get; set; }
+        public string GovernmentNo { get; set; }
+        public Nullable<int> OldPayorDetailUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

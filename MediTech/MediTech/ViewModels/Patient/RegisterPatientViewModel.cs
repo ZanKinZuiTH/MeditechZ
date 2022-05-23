@@ -35,14 +35,6 @@ namespace MediTech.ViewModels
             set { _SelectedBooking = value; RaisePropertyChanged("SelectedBooking"); }
         }
 
-        private bool _IsManageRegister;
-
-        public bool IsManageRegister
-        {
-            get { return _IsManageRegister; }
-            set { _IsManageRegister = value; RaisePropertyChanged("IsManageRegister"); }
-        }
-
         private int _SelectPageIndex;
 
         public int SelectPageIndex
@@ -76,7 +68,6 @@ namespace MediTech.ViewModels
         {
             get { return _NextCommand ?? (_NextCommand = new RelayCommand(NextPage)); }
         }
-
 
         private RelayCommand _BackCommand;
 
@@ -279,16 +270,7 @@ namespace MediTech.ViewModels
 
                 if (SelectPageIndex == 0)
                 {
-                    OpenPage(PageRegister.Manage, patientData,userCardRead: true);
-                    IsManageRegister = true;
-                    //SearchPatientViewModel searchPatViewModel = (searchPatient.DataContext as SearchPatientViewModel);
-                    //searchPatViewModel.SearchPatient("", firstName, lastName, middleName, "", birthDttm, "", null, gender, "");
-
-                    //if (searchPatViewModel.PatientSource == null || searchPatViewModel.PatientSource.Count <= 0)
-                    //{
-                    //    OpenPage(PageRegister.Manage, patientData);
-                    //    IsManageRegister = true;
-                    //}
+                    OpenPage(PageRegister.Manage, patientData, userCardRead: true);
                 }
                 else if (SelectPageIndex == 1)
                 {
@@ -338,36 +320,54 @@ namespace MediTech.ViewModels
         public void SkipPage()
         {
             OpenPage(PageRegister.Manage, null);
-            IsManageRegister = true;
         }
 
         public void NextPage()
         {
             try
             {
-                if (SelectedPatient == null)
+                if (SelectPageIndex == 0)
                 {
-                    WarningDialog("กรุณาเลือกผู้ป่วย");
-                    return;
-                }
-                if (SelectedBooking != null && SelectedBooking.AppointmentDttm.Date == DateTime.Now.Date)
-                {
-                    MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัดวันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
-                    if (result == MessageBoxResult.Yes)
+                    if (SelectedPatient == null)
                     {
-                        OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
+                        WarningDialog("กรุณาเลือกผู้ป่วย");
+                        return;
+                    }
+                    if (SelectedBooking != null && SelectedBooking.AppointmentDttm.Date == DateTime.Now.Date)
+                    {
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัดวันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            OpenPage(PageRegister.Manage, SelectedPatient, SelectedBooking);
+                        }
+                        else
+                        {
+                            OpenPage(PageRegister.Manage, SelectedPatient);
+                        }
                     }
                     else
                     {
                         OpenPage(PageRegister.Manage, SelectedPatient);
                     }
+
                 }
-                else
+                else if (SelectPageIndex == 1)
                 {
-                    OpenPage(PageRegister.Manage, SelectedPatient);
+                    RegisterPatient registerPage = (this.View as RegisterPatient);
+                    ManagePatient managePatient = (registerPage.ManagePage.Content as ManagePatient);
+                    if (managePatient.DataContext is ManagePatientViewModel)
+                    {
+                        ManagePatientViewModel managePatViewModel = (managePatient.DataContext as ManagePatientViewModel);
+                        PatientInformationModel patientInfo = managePatViewModel.GeneratePatientID();
+                        if (patientInfo != null)
+                        {
+                            OpenPage(PageRegister.CreateVisit, patientInfo);
+                        }
+
+                    }
+
                 }
 
-                IsManageRegister = true;
             }
             catch (Exception ex)
             {
@@ -380,8 +380,24 @@ namespace MediTech.ViewModels
         {
             if (BackwardView == null)
             {
-                OpenPage(PageRegister.Search, null);
-                IsManageRegister = false;
+                if (SelectPageIndex == 1)
+                {
+                    OpenPage(PageRegister.Search, null);
+                }
+                else if (SelectPageIndex == 2)
+                {
+                    RegisterPatient registerPage = (this.View as RegisterPatient);
+                    CreateVisit createVisit = (registerPage.CreateVisitPage.Content as CreateVisit);
+                    if (createVisit.DataContext is CreateVisitViewModel)
+                    {
+                        CreateVisitViewModel createVisitViewModel = (createVisit.DataContext as CreateVisitViewModel);
+                        PatientInformationModel patientInfo = createVisitViewModel.Patient;
+                        if (patientInfo != null)
+                        {
+                            OpenPage(PageRegister.Manage, patientInfo);
+                        }
+                    }
+                }
             }
             else
             {
@@ -390,7 +406,9 @@ namespace MediTech.ViewModels
 
         }
 
-        public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null,bool userCardRead = false)
+
+
+        public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null, bool userCardRead = false)
         {
             if (page == PageRegister.Search)
             {
@@ -429,6 +447,19 @@ namespace MediTech.ViewModels
 
                 }
                 SelectPageIndex = 1;
+            }
+            else if (page == PageRegister.CreateVisit)
+            {
+                RegisterPatient registerPage = (this.View as RegisterPatient);
+                CreateVisit createVisit = (registerPage.CreateVisitPage.Content as CreateVisit);
+                if (createVisit.DataContext is CreateVisitViewModel)
+                {
+                    CreateVisitViewModel createVisitViewModel = (createVisit.DataContext as CreateVisitViewModel);
+                    createVisitViewModel.View = createVisit;
+                    createVisitViewModel.Patient = patientData;
+                    createVisitViewModel.OnLoaded();
+                }
+                SelectPageIndex = 2;
             }
         }
 

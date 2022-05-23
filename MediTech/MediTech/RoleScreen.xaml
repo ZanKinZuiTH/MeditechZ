@@ -3,24 +3,58 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         WindowStyle="None" ResizeMode="NoResize"
         WindowStartupLocation="CenterScreen"
-        Title="RoleScreen" Height="420" Width="450">
+        Title="RoleScreen" Height="480" Width="480">
     <Grid>
         <Border Background="Black" CornerRadius="3" Opacity="0.15"/>
         <Border CornerRadius="2" Margin="1" Background="White"/>
         <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutItem Label="สถานประกอบการ" LabelPosition="Top">
+                <dxg:LookUpEdit Name="lkeOrganisation"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="HealthOrganisationName"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="400" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                    <dxg:LookUpEdit.PopupContentTemplate>
+                        <ControlTemplate>
+                            <dxg:GridControl  Name="PART_GridControl" >
+                                <dxg:GridColumn Header="ชื่อ" FieldName="HealthOrganisationName" Width="*" 
+                                                    AllowSearchPanel="True" 
+                                                    AllowIncrementalSearch="True" 
+                                                    AllowAutoFilter="True"
+                                                    ReadOnly="True"/>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView Name="view"
+                                                       ShowGroupPanel="False"/>
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </ControlTemplate>
+                    </dxg:LookUpEdit.PopupContentTemplate>
+                    <dxg:LookUpEdit.StyleSettings>
+                        <dxg:SearchLookUpEditStyleSettings/>
+                    </dxg:LookUpEdit.StyleSettings>
+                </dxg:LookUpEdit>
+            </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutGroup.Background>
                     <ImageBrush ImageSource="SplashScreen/Background.jpg"/>
                 </dxlc:LayoutGroup.Background>
-                <dxg:GridControl x:Name="grdRole" Height="250" Margin="20,0,20,0" Opacity="0.95">
+                <dxg:GridControl x:Name="grdRole" Height="250" Margin="10,20,10,0" Opacity="0.95">
                     <dxg:GridControl.OpacityMask>
                         <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                             <GradientStop Color="Black" Offset="0"/>
                             <GradientStop Color="White" Offset="1"/>
                         </LinearGradientBrush>
                     </dxg:GridControl.OpacityMask>
+                    <dxg:GridColumn Header="สถานที่/แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridColumn Header="สิทธิ์" FieldName="RoleName" ReadOnly="True"/>
-                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="HealthOrganisationName" ReadOnly="True"/>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row" AutoWidth="True"/>
                     </dxg:GridControl.View>
@@ -35,11 +69,10 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
-
-            <DockPanel x:Name="Footer" Grid.Row="3" Margin="12,10,12,4">
+            <DockPanel x:Name="Footer" Grid.Row="3" Margin="12,0,12,0">
                 <TextBlock x:Name="Footer_Text" Text="Program DRC Clinic" TextWrapping="Wrap" Width="150" Visibility="Hidden"
                            Opacity="0.5" Foreground="#FF2D2D2D" HorizontalAlignment="Left" VerticalAlignment="Center"/>
-                <Image x:Name="Logotype" DockPanel.Dock="Right" Source="SplashScreen/Logo GQOM.jpg" Height="70"  
+                <Image x:Name="Logotype" DockPanel.Dock="Right" Source="SplashScreen/Logo GQOM.jpg" 
                        HorizontalAlignment="Right"  />
             </DockPanel>
         </dxlc:LayoutControl>

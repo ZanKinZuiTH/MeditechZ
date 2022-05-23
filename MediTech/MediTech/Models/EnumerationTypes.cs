@@ -22,7 +22,8 @@ namespace MediTech
     public enum PageRegister
     {
         Search,
-        Manage
+        Manage,
+        CreateVisit,
     }
 
     public enum RegionName

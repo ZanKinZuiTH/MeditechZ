@@ -61,9 +61,9 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID)
+        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID, int organisationUID)
         {
-            string requestApi = string.Format("Api/UserManage/GetRoleProfileByLoginUID?loginUID={0}", loginUID);
+            string requestApi = string.Format("Api/UserManage/GetRoleProfileByLoginUID?loginUID={0}&organisationUID={1}", loginUID, organisationUID);
             List<RoleProfileModel> data = MeditechApiHelper.Get<List<RoleProfileModel>>(requestApi);
 
             return data;
@@ -146,6 +146,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CareproviderOrganisationModel> GetCareProviderOrganisationByUser(int careproviderUID)
+        {
+            string requestApi = string.Format("Api/UserManage/GetCareProviderOrganisationByUser?careproviderUID={0}", careproviderUID);
+            List<CareproviderOrganisationModel> data = MeditechApiHelper.Get<List<CareproviderOrganisationModel>>(requestApi);
+            return data;
+        }
+
         public bool ManageCareProviderOrganisation(CareproviderOrganisationModel careOrgnModel, int userID)
         {
             bool flag = false;
@@ -171,6 +178,51 @@ namespace MediTech.DataService
             try
             {
                 string requestApi = string.Format("Api/UserManage/DeleteCareproviderOrganisation?uid={0}&userID={1}", uid, userID);
+                MeditechApiHelper.Delete(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+
+        }
+
+        public List<CareproviderLocationModel> GetCareProviderLocation(int locationUID)
+        {
+            string requestApi = string.Format("Api/UserManage/GetCareProviderLocation?locationUID={0}", locationUID);
+            List<CareproviderLocationModel> data = MeditechApiHelper.Get<List<CareproviderLocationModel>>(requestApi);
+            return data;
+        }
+
+        public bool ManageCareProviderLocation(CareproviderLocationModel careLocModel, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/UserManage/ManageCareProviderLocation?userID={0}", userID);
+                MeditechApiHelper.Post<CareproviderLocationModel>(requestApi, careLocModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+            return flag;
+        }
+
+        public bool DeleteCareproviderLocation(int uid, int userID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/UserManage/DeleteCareproviderLocation?uid={0}&userID={1}", uid, userID);
                 MeditechApiHelper.Delete(requestApi);
                 flag = true;
             }

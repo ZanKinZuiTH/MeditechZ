@@ -432,7 +432,7 @@ namespace MediTech.ViewModels
 
         public VerifyChekupResultViewModel()
         {
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
             DateFrom = DateTime.Now;
             DateTo = null;

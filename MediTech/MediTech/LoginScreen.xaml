@@ -5,8 +5,8 @@
         ResizeMode="NoResize" WindowStartupLocation="CenterScreen" 
         x:Name="frmLogin"
         Icon="Untitled-1.ico">
-    <Grid>
-        <Canvas Name="ControlsCanvas" Width="242" Height="102" Canvas.Left="160" Canvas.Top="194">
+    <Grid  Background="White" Opacity="0.7">
+        <Canvas  Name="ControlsCanvas" Width="242" Height="102" Canvas.Left="160" Canvas.Top="194">
             <!--Login UserName-->
             <Label Height="24"  x:Name="UserNameLabel" Width="105" Content="ผู้ใช้งาน"/>
             <TextBox Height="23" x:Name="txtUserName" Width="135" Canvas.Left="108" Text="{Binding UserName,Mode=OneWayToSource}" />

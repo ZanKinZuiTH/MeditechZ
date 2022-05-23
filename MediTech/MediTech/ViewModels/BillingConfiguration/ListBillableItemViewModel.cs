@@ -133,8 +133,8 @@ namespace MediTech.ViewModels
                 BillItemTypes = BillItemTypes.OrderBy(p => p.Key).ToList();
             }
             Organisations = GetHealthOrganisationRole();
-            BillingGroup = DataService.MasterData.GetBillingGroup();
-            AllSubGroup = DataService.MasterData.GetBillingSubGroup();
+            BillingGroup = DataService.Billing.GetBillingGroup();
+            AllSubGroup = DataService.Billing.GetBillingSubGroup();
             BillingSubGroup = AllSubGroup;
 
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);

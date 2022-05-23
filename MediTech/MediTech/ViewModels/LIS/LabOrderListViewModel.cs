@@ -484,7 +484,7 @@ namespace MediTech.ViewModels
             var refValue = DataService.Technical.GetReferenceValueMany("ORDST");
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
 
             RequestStatus = refValue.Where(p => p.ValueCode == "RAISED"
                 || p.ValueCode == "REVIW"

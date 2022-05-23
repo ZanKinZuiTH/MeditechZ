@@ -345,7 +345,7 @@ namespace MediTech.ViewModels
         public TranslateCheckupResultViewModel()
         {
             DateTime now = DateTime.Now;
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             DateFrom = now;
             DateTo = now;
             JobDateFrom = now;

@@ -52,6 +52,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AdmissionEvent.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AEDischargeEvent.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="Amphur.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -61,10 +67,19 @@
     <Compile Include="BillableItemDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="BillConfiguration.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="BillingGroup.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="BillingSubGroup.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillPackage.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="BillPackageItem.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="Booking.cs">
@@ -73,7 +88,13 @@
     <Compile Include="Careprovider.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="CareproviderLocation.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="CareproviderOrganisation.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="CareproviderTransfer.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="CCHPI.cs">
@@ -104,6 +125,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="CheckupTextMaster.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DischargeEvent.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="DispensedItem.cs">
@@ -151,6 +175,15 @@
     <Compile Include="HealthOrganisationID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="InsuranceCompany.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InsurancePlan.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPBooking.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="ItemAverageCost.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -182,6 +215,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="Location.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="LocationTransfer.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="Login.cs">
@@ -243,6 +279,12 @@
     <Compile Include="PatientAddressMerge.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientADTEvent.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientAEAdmission.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientAllergy.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -252,7 +294,16 @@
     <Compile Include="PatientBill.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientBillableItem.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientBilledItem.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientBillEditHistory.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientDeceasedDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientDemographicLog.cs">
@@ -268,6 +319,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientInjury.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientInsuranceDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PatientMedicalHistory.cs">
@@ -297,6 +351,15 @@
     <Compile Include="PatientOrderDetailHistory.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientPackage.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPackageItem.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientPaymentDetail.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientProblem.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -315,6 +378,12 @@
     <Compile Include="PatientVisit.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PatientVisitCareProvider.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PatientVisitID.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PatientVisitPayor.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -330,7 +399,13 @@
     <Compile Include="PayorAgreement.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="PayorAgreement_2.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="PayorDetail.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PayorDetail_2.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pCheckDupicatePatient_Result.cs">
@@ -514,6 +589,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pItemConvertUOM_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="PolicyMaster.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PostalCode.cs">

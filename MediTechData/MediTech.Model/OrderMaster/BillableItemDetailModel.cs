@@ -14,7 +14,7 @@ namespace MediTech.Model
 
         public string OwnerOrganisationName { get; set; }
 
-        public Nullable<DateTime> ActiveFrom { get; set; }
+        public DateTime ActiveFrom { get; set; }
         public Nullable<DateTime> ActiveTo { get; set; }
         public double Price { get; set; }
         public double Cost { get; set; }

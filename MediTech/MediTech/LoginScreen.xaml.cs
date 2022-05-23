@@ -138,24 +138,26 @@ namespace MediTech
                         AppUtil.Current.ApplicationId = System.Configuration.ConfigurationManager.AppSettings["ApplicationId"];
                         AppUtil.Current.ApplicationStaus = "online";
 
-                        List<RoleProfileModel> roleProfile = userManageService.GetRoleProfileByLoginUID(AppUtil.Current.LoginID);
+                        //List<RoleProfileModel> roleProfile = userManageService.GetRoleProfileByLoginUID(AppUtil.Current.LoginID);
 
-                        if (roleProfile != null)
-                        {
-                            roleProfile = roleProfile.OrderBy(p => p.RoleUID).ToList();
-                            List<CareproviderOrganisationModel> listCareOrgan = new List<CareproviderOrganisationModel>();
-                            var healthOrganisationIDs = roleProfile.Select(p => p.HealthOrganisationUID).Distinct();
-                            foreach (var healthOrganisationID in healthOrganisationIDs)
-                            {
-                                CareproviderOrganisationModel newObject = new CareproviderOrganisationModel();
-                                newObject.CareproviderUID = user.CareproviderUID;
-                                newObject.HealthOrganisationUID = healthOrganisationID;
-                                listCareOrgan.Add(newObject);
-                            }
-                            AppUtil.Current.CareproviderOrganisations = listCareOrgan;
-                        }
 
-                        RoleScreen roleScreen = new RoleScreen(roleProfile);
+
+                        //if (roleProfile != null)
+                        //{
+                        //    roleProfile = roleProfile.OrderBy(p => p.RoleUID).ToList();
+                        //    List<CareproviderOrganisationModel> listCareOrgan = new List<CareproviderOrganisationModel>();
+                        //    var healthOrganisationIDs = roleProfile.Select(p => p.HealthOrganisationUID).Distinct();
+                        //    foreach (var healthOrganisationID in healthOrganisationIDs)
+                        //    {
+                        //        CareproviderOrganisationModel newObject = new CareproviderOrganisationModel();
+                        //        newObject.CareproviderUID = user.CareproviderUID;
+                        //        newObject.HealthOrganisationUID = healthOrganisationID;
+                        //        listCareOrgan.Add(newObject);
+                        //    }
+                        //    AppUtil.Current.CareproviderOrganisations = listCareOrgan;
+                        //}
+
+                        RoleScreen roleScreen = new RoleScreen();
                         roleScreen.Show();
                         this.Close();
                         // AppUtil.Current.OwnerOrganisationUID = int.Parse(System.Configuration.ConfigurationManager.AppSettings["OwnerOrganisationUID"].ToString());

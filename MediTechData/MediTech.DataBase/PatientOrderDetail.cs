@@ -21,6 +21,7 @@ namespace MediTech.DataBase
         public Nullable<long> IdentifyingUID { get; set; }
         public string IdentifyingType { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
+        public Nullable<System.DateTime> EndDttm { get; set; }
         public int ORDSTUID { get; set; }
         public Nullable<double> Quantity { get; set; }
         public Nullable<int> QNUOMUID { get; set; }
@@ -47,6 +48,9 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> CancelledDttm { get; set; }
         public Nullable<long> PatientPackageUID { get; set; }
         public string IsStockItem { get; set; }
+        public Nullable<int> PatientVisitPayorUID { get; set; }
+        public Nullable<int> PayorDetailUID { get; set; }
+        public Nullable<int> PatientPackageItemUID { get; set; }
         public Nullable<int> OrderSetUID { get; set; }
         public Nullable<int> OrderSetBillableItemUID { get; set; }
         public int CUser { get; set; }

@@ -390,7 +390,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
             Organisations = GetHealthOrganisationIsRoleStock();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             BillDate = now.Date;
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
@@ -567,7 +567,7 @@ namespace MediTech.ViewModels
             ManagePayorDetail order = new ManagePayorDetail(pageWindow);
             ManagePayorDetailViewModel result = (ManagePayorDetailViewModel)LaunchViewDialog(order, "PAYMN", false);
 
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
 
         }
 
@@ -779,7 +779,7 @@ namespace MediTech.ViewModels
             {
                 selectBillItemDetail = billItmDetail
                     .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID
-                    && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+                    && (p.ActiveFrom == null || (p.ActiveFrom.Date <= DateTime.Now.Date))
                     && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                     );
             }
@@ -787,7 +787,7 @@ namespace MediTech.ViewModels
             {
                 selectBillItemDetail = billItmDetail
                 .FirstOrDefault(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == 0
-                && (p.ActiveFrom == null || (p.ActiveFrom.HasValue && p.ActiveFrom.Value.Date <= DateTime.Now.Date))
+                && (p.ActiveFrom == null || ( p.ActiveFrom.Date <= DateTime.Now.Date))
                 && (p.ActiveTo == null || (p.ActiveTo.HasValue && p.ActiveTo.Value.Date >= DateTime.Now.Date))
                 );
             }

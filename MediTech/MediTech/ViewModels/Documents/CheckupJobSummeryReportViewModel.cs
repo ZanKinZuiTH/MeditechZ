@@ -123,7 +123,7 @@ namespace MediTech.ViewModels
         #region Method
         public CheckupJobSummeryReportViewModel()
         {
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             DateFrom = DateTime.Now;
             DateTo = null;
         }

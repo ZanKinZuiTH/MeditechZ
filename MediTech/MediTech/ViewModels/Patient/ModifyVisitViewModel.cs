@@ -32,7 +32,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPayorDetail, value);
                 if (_SelectedPayorDetail != null)
                 {
-                    PayorAgreementSource = DataService.MasterData.GetAgreementByPayorDetailUID(SelectedPayorDetail.PayorDetailUID);
+                    PayorAgreementSource = DataService.Billing.GetAgreementByPayorDetailUID(SelectedPayorDetail.PayorDetailUID);
                     CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {
@@ -230,7 +230,7 @@ namespace MediTech.ViewModels
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
             Organisations = GetHealthOrganisationMedical();
-            PayorDetailSource = DataService.MasterData.GetPayorDetail();
+            PayorDetailSource = DataService.Billing.GetPayorDetail();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
         }
         private void Save()

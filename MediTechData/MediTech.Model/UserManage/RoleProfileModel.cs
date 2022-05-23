@@ -12,6 +12,8 @@ namespace MediTech.Model
         public int RoleUID { get; set; }
         public string RoleName { get; set; }
         public int LoginUID { get; set; }
+        public int LocationUID { get; set; }
+        public string LocationName { get; set; }
         public int HealthOrganisationUID { get; set; }
         public string HealthOrganisationName { get; set; }
         public int CUser { get; set; }

@@ -19,6 +19,10 @@ namespace MediTech.DataBase
         public long PatientVisitUID { get; set; }
         public int PayorDetailUID { get; set; }
         public int PayorAgreementUID { get; set; }
+        public Nullable<int> PlanUID { get; set; }
+        public string PlanName { get; set; }
+        public Nullable<int> InsuranceCompanyUID { get; set; }
+        public Nullable<int> PAYRTPUID { get; set; }
         public string Comment { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

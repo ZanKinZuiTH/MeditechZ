@@ -18,6 +18,7 @@ namespace MediTech.DataBase
         public long PatientVisitUID { get; set; }
         public int VISTSUID { get; set; }
         public System.DateTime EventStartDttm { get; set; }
+        public Nullable<int> LocationUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

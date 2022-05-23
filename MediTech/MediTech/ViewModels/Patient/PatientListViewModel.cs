@@ -282,7 +282,7 @@ namespace MediTech.ViewModels
 
             Organisations = GetHealthOrganisationMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
 
         }
 

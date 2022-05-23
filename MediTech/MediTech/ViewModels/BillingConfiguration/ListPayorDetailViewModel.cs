@@ -101,7 +101,7 @@ namespace MediTech.ViewModels
 
         private void SearchPayorDetail()
         {
-            PayorDetails = DataService.MasterData.SearchPayorDetail(Code, PayorName);
+            PayorDetails = DataService.Billing.SearchPayorDetail(Code, PayorName);
         }
 
         private void AddPayorDetail()
@@ -129,7 +129,7 @@ namespace MediTech.ViewModels
                     MessageBoxResult result = DeleteDialog();
                     if (result == MessageBoxResult.Yes)
                     {
-                        DataService.MasterData.DeletePayorDetail(SelectPayorDetail.PayorDetailUID, AppUtil.Current.UserID);
+                        DataService.Billing.DeletePayorDetail(SelectPayorDetail.PayorDetailUID, AppUtil.Current.UserID);
                         DeleteSuccessDialog();
                         PayorDetails.Remove(SelectPayorDetail);
                         OnUpdateEvent();

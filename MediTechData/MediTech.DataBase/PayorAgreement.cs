@@ -15,17 +15,34 @@ namespace MediTech.DataBase
     public partial class PayorAgreement
     {
         public int UID { get; set; }
-        public int PayorDetailUID { get; set; }
+        public string Code { get; set; }
         public string Name { get; set; }
-        public Nullable<int> PAYTRMUID { get; set; }
-        public Nullable<int> PBTYPUID { get; set; }
-        public Nullable<System.DateTime> ActiveFrom { get; set; }
+        public string Description { get; set; }
+        public System.DateTime ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
+        public string AgentName { get; set; }
+        public Nullable<int> CRDTRMUID { get; set; }
+        public string IsForeign { get; set; }
+        public Nullable<int> BLTYPUID { get; set; }
+        public Nullable<int> AGTYPUID { get; set; }
+        public Nullable<int> PrimaryPBLCTUID { get; set; }
+        public Nullable<int> SecondaryPBLCTUID { get; set; }
+        public Nullable<int> TertiaryPBLCTUID { get; set; }
+        public Nullable<double> OPDCoverPerDay { get; set; }
+        public Nullable<double> ClaimPercentage { get; set; }
+        public Nullable<double> FixedCopayAmount { get; set; }
+        public Nullable<int> PBTYPUID { get; set; }
+        public string IsPackageDiscountAllowed { get; set; }
+        public string IsLimitAfterDiscount { get; set; }
+        public Nullable<int> DisplayOrder { get; set; }
+        public Nullable<int> InsuranceCompanyUID { get; set; }
+        public Nullable<int> PolicyMasterUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public Nullable<int> OldAgreemntUID { get; set; }
     }
 }

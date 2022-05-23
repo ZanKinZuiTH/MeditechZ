@@ -233,7 +233,7 @@ namespace MediTech.ViewModels
 
         public ManageCheckupJobViewModel()
         {
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             GroupResults = DataService.Technical.GetReferenceValueMany("GPRST");
             GroupResults = GroupResults?.OrderBy(p => p.DisplayOrder).ToList();
             CheckupService = new List<LookupItemModel>();

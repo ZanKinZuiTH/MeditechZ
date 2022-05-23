@@ -155,7 +155,7 @@
                 <dxdo:LayoutPanel AllowClose="False" AllowFloat="False" AllowHide="False" ShowCaption="False" ShowBorder="False" ShowCloseButton="False">
                     <dxlc:LayoutGroup Orientation="Vertical">
                         <dxlc:LayoutItem>
-                            <TextBlock x:Name="txtViewName" Margin="10,0,0,0" Visibility="Collapsed"
+                            <TextBlock x:Name="txtViewName" Margin="20,25,0,0" Visibility="Collapsed"
                                        FontSize="16" FontWeight="Bold"/>
                         </dxlc:LayoutItem>
 

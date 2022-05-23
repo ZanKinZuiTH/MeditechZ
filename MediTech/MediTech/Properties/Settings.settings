@@ -3,9 +3,6 @@
   <Profiles />
   <Settings>
     <Setting Name="ThemeName" Type="System.String" Scope="User">
-      <Value Profile="(Default)">[IsICD10] == 'Y'</Value>
-    </Setting>
-    <Setting Name="Y" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
   </Settings>

@@ -276,7 +276,7 @@ namespace MediTech.ViewModels
 
             SelectOrderItem = OrderItems.FirstOrDefault();
 
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
         }
 
         public override void OnLoaded()

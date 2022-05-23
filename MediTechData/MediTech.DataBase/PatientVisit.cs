@@ -16,6 +16,7 @@ namespace MediTech.DataBase
     {
         public long UID { get; set; }
         public long PatientUID { get; set; }
+        public Nullable<int> ENTYPUID { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public Nullable<int> VISTSUID { get; set; }
         public Nullable<int> VISTYUID { get; set; }
@@ -23,10 +24,17 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> ArrivedDttm { get; set; }
+        public Nullable<int> LocationUID { get; set; }
         public string VisitID { get; set; }
         public string IsBillFinalized { get; set; }
+        public Nullable<int> ENSTAUID { get; set; }
+        public Nullable<int> VisitLocationUID { get; set; }
+        public Nullable<int> CurrentCareProviderUID { get; set; }
+        public Nullable<int> IPBookingUID { get; set; }
         public Nullable<int> BookingUID { get; set; }
         public Nullable<int> CheckupJobUID { get; set; }
+        public Nullable<int> BedUID { get; set; }
+        public string IsReAdmisstion { get; set; }
         public string CompanyName { get; set; }
         public string Comments { get; set; }
         public Nullable<int> RefNo { get; set; }

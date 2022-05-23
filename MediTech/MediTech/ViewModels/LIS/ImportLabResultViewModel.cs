@@ -405,7 +405,7 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.MasterData.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetPayorDetail();
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
             DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });

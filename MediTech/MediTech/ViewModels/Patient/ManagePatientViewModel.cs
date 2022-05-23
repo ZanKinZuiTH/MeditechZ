@@ -34,7 +34,7 @@ namespace MediTech.ViewModels
                 _Booking = value;
                 if (_Booking != null)
                 {
-                    SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == Booking.CareProviderUID);
+                    //SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == Booking.CareProviderUID);
                 }
             }
         }
@@ -233,156 +233,6 @@ namespace MediTech.ViewModels
         {
             get { return _Line3; }
             set { Set(ref _Line3, value); }
-        }
-
-        #endregion
-
-        #region PatientVisit
-
-        public List<CareproviderModel> CareproviderSource { get; set; }
-        private CareproviderModel _SelectedCareprovider;
-
-        public CareproviderModel SelectedCareprovider
-        {
-            get { return _SelectedCareprovider; }
-            set { Set(ref _SelectedCareprovider, value); }
-        }
-
-
-        public List<LookupReferenceValueModel> VisitTypeSource { get; set; }
-        private LookupReferenceValueModel _SelectedVisitType;
-
-        public LookupReferenceValueModel SelectedVisitType
-        {
-            get { return _SelectedVisitType; }
-            set
-            {
-                Set(ref _SelectedVisitType, value);
-                if (_SelectedVisitType != null)
-                {
-                    VisibiltyCheckupCompany = Visibility.Collapsed;
-                    if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
-                    {
-                        VisibiltyCheckupCompany = Visibility.Visible;
-                    }
-                    else
-                    {
-                        CheckupJobSource = null;
-                    }
-                }
-            }
-        }
-
-        public List<LookupReferenceValueModel> PrioritySource { get; set; }
-        private LookupReferenceValueModel _SelectedPriority;
-
-        public LookupReferenceValueModel SelectedPriority
-        {
-            get { return _SelectedPriority; }
-            set { _SelectedPriority = value; }
-        }
-
-        public List<PayorDetailModel> PayorDetailSource { get; set; }
-        private PayorDetailModel _SelectedPayorDetail;
-
-        public PayorDetailModel SelectedPayorDetail
-        {
-            get { return _SelectedPayorDetail; }
-            set
-            {
-                Set(ref _SelectedPayorDetail, value);
-                if (_SelectedPayorDetail != null)
-                {
-                    PayorAgreementSource = DataService.MasterData.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    if (PayorAgreementSource != null)
-                    {
-                        SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
-                    }
-                    if (CheckupJobSource != null)
-                    {
-                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private List<PayorAgreementModel> _PayorAgreementSource;
-
-        public List<PayorAgreementModel> PayorAgreementSource
-        {
-            get { return _PayorAgreementSource; }
-            set { Set(ref _PayorAgreementSource, value); }
-        }
-
-        private PayorAgreementModel _SelectedPayorAgreement;
-
-        public PayorAgreementModel SelectedPayorAgreement
-        {
-            get { return _SelectedPayorAgreement; }
-            set { Set(ref _SelectedPayorAgreement, value); }
-        }
-
-        private DateTime _StartDate;
-
-        public DateTime StartDate
-        {
-            get { return _StartDate; }
-            set { Set(ref _StartDate, value); }
-        }
-
-        private DateTime _StartTime;
-        public DateTime StartTime
-        {
-            get { return _StartTime; }
-            set { Set(ref _StartTime, value); }
-        }
-
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
-
-        private HealthOrganisationModel _SelectOrganisation;
-
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set
-            {
-                Set(ref _SelectOrganisation, value);
-                if (SelectOrganisation != null)
-                {
-                    if (SelectOrganisation.HealthOrganisationUID == 5)
-                    {
-                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
-                    }
-                    Locations = DataService.MasterData.GetLocationIsRegister((SelectOrganisation.HealthOrganisationUID));
-                    //else
-                    //{
-                    //    SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "DCPAT");
-                    //}
-                }
-            }
-        }
-
-        private List<LocationModel> _Locations;
-
-        public List<LocationModel> Locations
-        {
-            get { return _Locations; }
-            set { Set(ref _Locations, value); }
-        }
-
-        private LocationModel _SelectedLocation;
-
-        public LocationModel SelectedLocation
-        {
-            get { return _SelectedLocation; }
-            set { Set(ref _SelectedLocation, value); }
         }
 
         #endregion
@@ -790,11 +640,11 @@ namespace MediTech.ViewModels
             get { return _RegisterCommand ?? (_RegisterCommand = new RelayCommand(RegisterPatient)); }
         }
 
-        private RelayCommand _RegisterToDoctorCommand;
+        private RelayCommand _CreateVisitCommand;
 
-        public RelayCommand RegisterToDoctorCommand
+        public RelayCommand CreateVisitCommand
         {
-            get { return _RegisterToDoctorCommand ?? (_RegisterToDoctorCommand = new RelayCommand(RegisterToDoctor)); }
+            get { return _CreateVisitCommand ?? (_CreateVisitCommand = new RelayCommand(CreateVisit)); }
         }
 
 
@@ -815,7 +665,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
 
-            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,VISTY,RQPRT,OCCUP,SPOKL,VIPTP");
+            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("SEXXX,TITLE,BLOOD,MARRY,RELGN,NATNL,RQPRT,OCCUP,SPOKL,VIPTP");
             GenderSource = dataLookupSource.Where(p => p.DomainCode == "SEXXX").ToList();
             TitleSource = dataLookupSource.Where(p => p.DomainCode == "TITLE").ToList();
             BloodGroupSource = dataLookupSource.Where(p => p.DomainCode == "BLOOD").ToList();
@@ -824,26 +674,12 @@ namespace MediTech.ViewModels
             RegionSource = dataLookupSource.Where(p => p.DomainCode == "RELGN").OrderBy(p => p.DisplayOrder).ToList();
             NationalSource = dataLookupSource.Where(p => p.DomainCode == "NATNL").OrderBy(p => p.DisplayOrder).ToList();
             PreferredLanguageSource = dataLookupSource.Where(p => p.DomainCode == "SPOKL").OrderBy(p => p.DisplayOrder).ToList();
-            VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
-            PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
             VIPTypeSources = dataLookupSource.Where(P => P.DomainCode == "VIPTP").OrderBy(p => p.DisplayOrder).ToList();
-            PayorDetailSource = DataService.MasterData.GetPayorDetail();
+            //PayorDetailSource = DataService.MasterData.GetPayorDetail();
             referenceRealationShipTitle = DataService.Technical.GetReferenceRealationShip("TITLE", "SEXXX");
-            Organisations = GetHealthOrganisationRoleMedical();
 
             ProvinceSource = DataService.Technical.GetProvince();
 
-            CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
-            //SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Key == 430);
-
-            if (Organisations != null)
-                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-
-            SelectedPayorDetail = PayorDetailSource.FirstOrDefault(p => p.PayorDetailUID == 1);
-            SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
-
-            StartDate = now.Date;
-            StartTime = now;
 
         }
 
@@ -931,25 +767,25 @@ namespace MediTech.ViewModels
         {
             try
             {
-                CreateVisit("register");
-
-            }
-            catch (Exception er)
-            {
-                ErrorDialog(er.Message);
-            }
-        }
-
-        private void RegisterToDoctor()
-        {
-            try
-            {
-                if (SelectedCareprovider == null)
+                PatientInformationModel patientInfo = GeneratePatientID();
+                if(patientInfo != null)
                 {
-                    WarningDialog("กรุณาเลือก แพทย์");
-                    return;
+                    RegisterPatient register = new RegisterPatient();
+                    ChangeViewPermission(register);
                 }
-                CreateVisit("sendtodoctor");
+
+            }
+            catch (Exception er)
+            {
+                ErrorDialog(er.Message);
+            }
+        }
+
+        private void CreateVisit()
+        {
+            try
+            {
+               //var patientInfo = GeneratePatientID();
 
             }
             catch (Exception er)
@@ -960,44 +796,15 @@ namespace MediTech.ViewModels
 
         }
 
-        private void CreateVisit(string visitStatus)
+        public PatientInformationModel GeneratePatientID()
         {
             try
             {
+                PatientInformationModel resultPatient;
                 if (ValidatePatientData())
                 {
-                    return;
+                    return null;
                 }
-
-                if (ValidateVisitData())
-                {
-                    return;
-                }
-
-
-                #region CheckVisitDuplicate
-                if (patientModel != null)
-                {
-                    if (patientModel.PatientUID != 0)
-                    {
-                        List<PatientVisitModel> visitData = DataService.PatientIdentity.GetPatientVisitByPatientUID(patientModel.PatientUID);
-                        if (visitData != null && visitData.Count > 0)
-                        {
-                            var notCloseVisit = visitData.FirstOrDefault(p => p.VisitType != "Mobile X-ray" && p.EndDttm == null);
-                            if (notCloseVisit != null)
-                            {
-                                MessageBoxResult dialogResult = System.Windows.MessageBox.Show("ผู้ป่วยมีการลงทะเบียนที่ยังไม่ปิดไว้วันที่ " + notCloseVisit.StartDttm.Value.ToString("dd/MM/yyyy") + "\r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
-                                if (dialogResult == MessageBoxResult.No)
-                                {
-                                    return;
-                                }
-                            }
-                        }
-                    }
-                }
-
-                #endregion
-
                 #region CheckPatientDuplicate
 
                 if (patientModel == null)
@@ -1015,104 +822,36 @@ namespace MediTech.ViewModels
                         MessageBoxResult dialogResult = System.Windows.MessageBox.Show("มีผู้ป่วยนี้ มี ชื่อ นามสกุล เพศ วันเดือนปีเกิด ซ้ำในะระบบ" + " \r\n คุณต้องการลงทะเบียนต่อหรือไม่ ? ", "", MessageBoxButton.YesNo, MessageBoxImage.Question);
                         if (dialogResult == MessageBoxResult.No)
                         {
-                            return;
+                            return null;
                         }
                     }
                 }
-
-                #endregion
-
                 PatientInformationModel patientInfo = AssingPropertiesToModel();
-                PatientInformationModel resultPatient = DataService.PatientIdentity.RegisterPatient(patientInfo, AppUtil.Current.UserID, AppUtil.Current.OwnerOrganisationUID);
+                resultPatient = DataService.PatientIdentity.RegisterPatient(patientInfo, AppUtil.Current.UserID, AppUtil.Current.OwnerOrganisationUID);
 
                 if (resultPatient == null)
                 {
                     ErrorDialog("ไม่สามารถบันทึกข้อมูลคนไข้ได้ ติดต่อ Admin");
-                    return;
+                    return null;
                 }
+                #endregion
 
-                PatientVisitModel visitInfo = new PatientVisitModel();
-                visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-                visitInfo.PatientUID = resultPatient.PatientUID;
-                visitInfo.VISTYUID = SelectedVisitType.Key;
-
-                if (visitStatus == "register")
+                if(String.IsNullOrEmpty(patientInfo.PatientID))
                 {
-                    visitInfo.VISTSUID = 417;   //Registered Status
-                }
-                else
-                {
-                    visitInfo.VISTSUID = 419;   //Registered Status
+                    SaveSuccessDialog("HN : " + resultPatient.PatientID);
                 }
 
-                if (UseReadCard && patientInfo.PatientUID != 0)
-                {
-                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, patientInfo.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
-                    if (Bookings != null && Bookings.Count > 0)
-                    {
-                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
-                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด "+ reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
-                        if (result == MessageBoxResult.Yes)
-                        {
-                            Booking = Bookings.FirstOrDefault();
-                        }
-                    }
-                }
-
-                if (Booking != null)
-                    visitInfo.BookingUID = Booking.BookingUID; //Appointment
-
-                visitInfo.PRITYUID = SelectedPriority.Key;
-                visitInfo.PayorDetailUID = SelectedPayorDetail.PayorDetailUID;
-                visitInfo.PayorAgreementUID = SelectedPayorAgreement.PayorAgreementUID;
-                visitInfo.Comments = CommentDoctor;
-                visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
-                visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
-                if (SelectedCareprovider != null)
-                    visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
-
-                PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
-                if (string.IsNullOrEmpty(returnData.VisitID))
-                {
-                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
-                    return;
-                }
-                else
-                {
-                    if (Booking != null)
-                    {
-                        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
-                    }
-                }
-
-                SaveSuccessDialog("BN : " + resultPatient.PatientID);
-
-                if (visitStatus == "register")
-                {
-                    PatientList patientList = new PatientList();
-                    ChangeViewPermission(patientList);   //Registered Status
-                }
-                else
-                {
-                    if (AppUtil.Current.IsDoctor ?? false)
-                    {
-                        DoctorRoom doctorRoom = new DoctorRoom();
-                        ChangeViewPermission(doctorRoom);   //Registered Status
-                    }
-                    else
-                    {
-                        PatientList patientList = new PatientList();
-                        ChangeViewPermission(patientList);   //Registered Status
-                    }
-
-                }
+                return resultPatient;
             }
-            catch (Exception)
+            catch (Exception er)
             {
 
-                throw;
+                ErrorDialog(er.Message);
+                return null;
             }
         }
+
+
         public bool ValidatePatientData()
         {
 
@@ -1171,48 +910,6 @@ namespace MediTech.ViewModels
             return false;
         }
 
-        public bool ValidateVisitData()
-        {
-            if (SelectOrganisation == null)
-            {
-                WarningDialog("กรุณาเลือก สถานประกอบการ");
-                return true;
-            }
-            if (SelectedVisitType == null)
-            {
-                WarningDialog("กรุณาเลือก ประเภท Visit");
-                return true;
-            }
-
-            if (SelectedPayorDetail == null)
-            {
-                WarningDialog("กรุณาเลือก Payor");
-                return true;
-            }
-
-            if (SelectedPayorAgreement == null)
-            {
-                WarningDialog("กรุณาเลือก Agreemnet");
-                return true;
-            }
-
-            if (VisibiltyCheckupCompany == Visibility.Visible)
-            {
-                if (SelectedCheckupJob == null)
-                {
-                    WarningDialog("กรุณาเลือก Checkup Job");
-                    return true;
-                }
-            }
-
-            if (SelectedPriority == null)
-            {
-                WarningDialog("กรุณาเลือก ความสำคัญ");
-                return true;
-            }
-
-            return false;
-        }
         public void ClearPropertiesControl()
         {
             patientModel = null;
@@ -1255,7 +952,6 @@ namespace MediTech.ViewModels
             //SelectedPayorDetail = PayorDetailSource.FirstOrDefault(p => p.PayorDetailUID == 1);
             //SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Key == 430);
             //SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
-            SelectedCareprovider = null;
             SelectedOccupation = null;
             CommentDoctor = string.Empty;
             IsVIP = false;
