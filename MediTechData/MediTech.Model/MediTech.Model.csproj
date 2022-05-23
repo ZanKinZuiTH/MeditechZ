@@ -44,6 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\BillConfigurationModel.cs" />
     <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
     <Compile Include="Checkup\CheckupJobTaskModel.cs" />
@@ -56,6 +57,8 @@
     <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Ecount\EcountImportModel.cs" />
     <Compile Include="Ecount\EcountMassFileModel.cs" />
+    <Compile Include="Emergency\BedStatusModel.cs" />
+    <Compile Include="Emergency\PatientEmergencyModel.cs" />
     <Compile Include="Icheckup\IcehckUpdataModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
@@ -68,6 +71,8 @@
     <Compile Include="Lab\ResultImageModel.cs" />
     <Compile Include="Lab\ResultModel.cs" />
     <Compile Include="MasterData\HealthOrganisationIDModel.cs" />
+    <Compile Include="Billing\InsuranceCompanyModel.cs" />
+    <Compile Include="Billing\InsurancePlanModel.cs" />
     <Compile Include="MasterData\LocationModel.cs" />
     <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
@@ -75,8 +80,8 @@
     <Compile Include="MasterData\ResultItemRangeModel.cs" />
     <Compile Include="MasterData\SpecimenModel.cs" />
     <Compile Include="OrderMaster\BillableItemDetailModel.cs" />
-    <Compile Include="MasterData\BillingGroupModel.cs" />
-    <Compile Include="MasterData\BillingSubGroupModel.cs" />
+    <Compile Include="Billing\BillingGroupModel.cs" />
+    <Compile Include="Billing\BillingSubGroupModel.cs" />
     <Compile Include="Billing\PatientBillModel.cs" />
     <Compile Include="Billing\PatientBilledItemModel.cs" />
     <Compile Include="Inventory\ItemVendorDetailModel.cs" />
@@ -127,6 +132,7 @@
     <Compile Include="Patient\PatientAddressModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
+    <Compile Include="Patient\PatientInsuranceDetailModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />
     <Compile Include="Patient\PatientMergeEcounterModel.cs" />
     <Compile Include="Patient\PatientMergeModel.cs" />
@@ -139,9 +145,9 @@
     <Compile Include="Main\PageViewModel.cs" />
     <Compile Include="Main\PageViewModuleModel.cs" />
     <Compile Include="OrderMaster\BillableItemModel.cs" />
-    <Compile Include="MasterData\PayorDetailModel.cs" />
+    <Compile Include="Billing\PayorDetailModel.cs" />
     <Compile Include="MasterData\HealthOrganisationModel.cs" />
-    <Compile Include="MasterData\PayorAgreementModel.cs" />
+    <Compile Include="Billing\PayorAgreementModel.cs" />
     <Compile Include="Patient\PatientVisitModel.cs" />
     <Compile Include="Inventory\PrescriptionModel.cs" />
     <Compile Include="Inventory\PrescriptionItemModel.cs" />
@@ -201,6 +207,7 @@
     <Compile Include="Report\WellNessBookModel.cs" />
     <Compile Include="Technical\MediTechInterfechModel.cs" />
     <Compile Include="UserManage\CareproviderModel.cs" />
+    <Compile Include="UserManage\CareproviderLocationModel.cs" />
     <Compile Include="UserManage\CareproviderOrganisationModel.cs" />
     <Compile Include="UserManage\LoginModel.cs" />
     <Compile Include="Patient\PatientInformationModel.cs" />
