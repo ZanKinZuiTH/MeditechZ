@@ -1420,6 +1420,7 @@
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterMuscleTestViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ImportOldResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
@@ -1596,6 +1597,9 @@
     </Compile>
     <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
       <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ImportOldResult.xaml.cs">
+      <DependentUpon>ImportOldResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
       <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
@@ -2142,6 +2146,10 @@
     <Page Include="Views\Checkup\ImportOccMedResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ImportOldResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\TranslateCheckupResult.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3691,6 +3699,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Import.png" />
     <Resource Include="Resources\Images\logoBGH.png" />
     <Resource Include="Resources\Images\logoThonburi.jpg" />
     <Resource Include="Resources\Images\logoMFU.jpg" />
