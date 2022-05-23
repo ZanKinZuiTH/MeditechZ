@@ -1420,6 +1420,7 @@
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\EnterMuscleTestViewModel.cs" />
     <Compile Include="ViewModels\Checkup\ImportOccMedResultViewModel.cs" />
+    <Compile Include="ViewModels\Checkup\ImportOldResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\VerifyChekupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\TranslateCheckupResultViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupRuleViewModel.cs" />
@@ -1446,6 +1447,10 @@
     <Compile Include="ViewModels\Documents\ReportViewModelBase.cs" />
     <Compile Include="ViewModels\Ecount\EcountItemIssueViewModel.cs" />
     <Compile Include="ViewModels\Ecount\EcountTranferViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyBedStatusViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyMangePatientViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\EmergencyRegisterViewModel.cs" />
+    <Compile Include="ViewModels\Emergency\SearchEmergencyPatientViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
     <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
@@ -1574,6 +1579,7 @@
     <Compile Include="ViewModels\Setting\ManageRoleViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListRolesViewModel.cs" />
     <Compile Include="ViewModels\Patient\SearchPatientViewModel.cs" />
+    <Compile Include="ViewModels\Setting\ManageUserLocationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageUserOrganisationViewModel.cs" />
     <Compile Include="ViewModels\Setting\ManageUserViewModel.cs" />
     <Compile Include="ViewModels\Setting\ListUsersViewModel.cs" />
@@ -1596,6 +1602,9 @@
     </Compile>
     <Compile Include="Views\Checkup\ImportOccMedResult.xaml.cs">
       <DependentUpon>ImportOccMedResult.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Checkup\ImportOldResult.xaml.cs">
+      <DependentUpon>ImportOldResult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\TranslateCheckupResult.xaml.cs">
       <DependentUpon>TranslateCheckupResult.xaml</DependentUpon>
@@ -1675,6 +1684,24 @@
     </Compile>
     <Compile Include="Views\Ecount\EcountTranfer.xaml.cs">
       <DependentUpon>EcountTranfer.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\ChangeStatus.xaml.cs">
+      <DependentUpon>ChangeStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyBedStatus.xaml.cs">
+      <DependentUpon>EmergencyBedStatus.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyMangePatient.xaml.cs">
+      <DependentUpon>EmergencyMangePatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\EmergencyRegister.xaml.cs">
+      <DependentUpon>EmergencyRegister.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\SearchEmergencyPatient.xaml.cs">
+      <DependentUpon>SearchEmergencyPatient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Emergency\SendToDepartment.xaml.cs">
+      <DependentUpon>SendToDepartment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EMRView\CCHPI.xaml.cs">
       <DependentUpon>CCHPI.xaml</DependentUpon>
@@ -2073,6 +2100,9 @@
     <Compile Include="Views\MRD\TranslateXrayPopup.xaml.cs">
       <DependentUpon>TranslateXrayPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Setting\ManageUserLocation.xaml.cs">
+      <DependentUpon>ManageUserLocation.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Setting\ManageUserOrganisation.xaml.cs">
       <DependentUpon>ManageUserOrganisation.xaml</DependentUpon>
     </Compile>
@@ -2142,6 +2172,10 @@
     <Page Include="Views\Checkup\ImportOccMedResult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Checkup\ImportOldResult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\TranslateCheckupResult.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -2246,6 +2280,30 @@
     <Page Include="Views\Ecount\EcountTranfer.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Emergency\ChangeStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyBedStatus.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyMangePatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\EmergencyRegister.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\SearchEmergencyPatient.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Emergency\SendToDepartment.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\EMRView\CCHPI.xaml">
       <SubType>Designer</SubType>
@@ -2774,6 +2832,10 @@
     <Page Include="Views\MRD\TranslateXrayPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Setting\ManageUserLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Setting\ManageUserOrganisation.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3691,6 +3753,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Rest.png" />
+    <Resource Include="Resources\Images\Menu\UsersLocation.png" />
+    <Resource Include="Resources\Images\Menu\Emergency.png" />
+    <Resource Include="Resources\Images\Other\Reheb.png" />
+    <Resource Include="Resources\Images\Menu\Import.png" />
     <Resource Include="Resources\Images\logoBGH.png" />
     <Resource Include="Resources\Images\logoThonburi.jpg" />
     <Resource Include="Resources\Images\logoMFU.jpg" />
