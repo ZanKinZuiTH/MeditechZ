@@ -280,6 +280,21 @@ namespace MediTech.ViewModels
         }
 
 
+        private RelayCommand _SendDataBlabCommand;
+
+        /// <summary>
+        /// Gets the PrintBarcodeCommand.
+        /// </summary>
+        public RelayCommand SendDataBlabCommand
+        {
+            get
+            {
+                return _SendDataBlabCommand
+                    ?? (_SendDataBlabCommand = new RelayCommand(sendBlab));
+            }
+        }
+
+
         private RelayCommand _CollectAndPrintCommand;
 
         /// <summary>
@@ -416,7 +431,20 @@ namespace MediTech.ViewModels
             Collect();
             GenareateBarcode(RequestDetailSpecimens);
         }
-        
+
+        void sendBlab()
+        {
+            if (SelectRequestLab != null)
+            {
+               // WarningDialog("sending data to blab");
+                List<RequestDetailSpecimenModel> modeltoicheck = RequestDetailSpecimens.ToList();
+                SendDataToIcheck(modeltoicheck, SelectRequestLab.PatientVisitUID, AppUtil.Current.UserID);
+            }
+
+        }
+
+
+
         void PrintBarcode()
         {
             if (SelectRequestLab != null)
@@ -630,6 +658,139 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
+        void SendDataToIcheck(List<RequestDetailSpecimenModel> models, long patientvisitUID, long userUID)
+        {
+
+            IcheckupModel sendmodel = new IcheckupModel();
+
+            PatientVisitModel visitdata = DataService.PatientIdentity.GetPatientVisitByUID(patientvisitUID);
+            sendmodel.PatientData = visitdata;
+            sendmodel.PatientData.PatientName = SelectRequestLab.PatientName;
+            sendmodel.PatientData.PatientID = visitdata.PatientID;
+            sendmodel.PatientData.BirthDttm = SelectRequestLab.BirthDate;
+            sendmodel.PatientData.SEXXXUID = SelectRequestLab.SEXXXUID;
+            sendmodel.PatientData.OwnerOrganisation = SelectRequestLab.OrganisationName;
+            sendmodel.LabData = models;
+            // DataService.Icheckup.outbrouondcollrection(sendmodel, AppUtil.Current.UserID);
+           Gendatatoblab(sendmodel,AppUtil.Current.UserID);
+
+        }
+
+        void Gendatatoblab(IcheckupModel models, long userUID)
+        {
+
+            foreach (var item in models.LabData)
+            {
+                //InsertOrderHC(item, models.PatientData, userUID);
+                InsertVisitHC(item, models.PatientData, userUID);
+
+            }
+
+
+        }
+
+        private void InsertOrderHC(RequestDetailSpecimenModel labData, PatientVisitModel patientData, long userUID)
+        {
+            try
+            {
+
+                ORDER_HC model = new ORDER_HC();
+                model.TRIGGER_DTTM = DateTime.Now;
+                model.REPLICA_DTTM = "A";
+                model.SCHEDULED_DTTM = labData.CollectionDttm.ToString();
+                //model.PROJECT_CODE = "siteClinic";
+                //model.PACKAGE_CODE = "siteClinic";
+                //model.PACKAGE_NAME = "siteClinic";
+                model.SUB_COMPANY_CODE = null;
+                model.ORDER_TYPE = null;
+                model.ADD_ITEM_ID = labData.RequestItemCode;
+                model.ADD_ITEM_NAME = labData.RequestItemName;
+                model.ADD_ITEM_PRICE = null;
+                model.ORDER_STATUS = "120";
+                model.VISIT_NUMBER = patientData.VisitID;
+                model.VISIT_TYPE = patientData.VisitType;
+                model.PATIENT_NAME = patientData.PatientName;
+                model.PATIENT_ID = patientData.PatientID;
+                model.OTHER_PATIENT_NAME = null;
+                model.OTHER_PATIENT_ID = "";
+                //model.PATIENT_BIRTH_DATE = patientData.BirthDttm.ToString();
+                model.PATIENT_SEX = patientData.SEXXXUID.ToString();
+                //model.PATIENT_DEPARTMENT = patientData.OwnerOrganisation.ToString(); ;
+                //model.EMPLOYEE_ID = userUID.ToString();
+                //model.POSITION = null;
+
+            
+              
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private void InsertVisitHC(RequestDetailSpecimenModel labData, PatientVisitModel patientData, long userUID)
+        {
+            try
+            {
+                VISIT_HC model = new VISIT_HC();
+                model.TRIGGER_DTTM = DateTime.Now;
+                model.REPLICA_DTTM = "A";
+                model.PATIENT_ID = patientData.PatientID;
+                model.PATIENT_NAME = patientData.PatientName;
+                model.OTHER_PATIENT_ID = patientData.NationalID;
+                model.PATIENT_BIRTH_DATE = patientData.DOBComputed.ToString();
+                model.PATIENT_SEX = patientData.SEXXXUID.ToString();
+                model.VISIT_TYPE = "HC";
+                model.VISIT_NUMBER = patientData.VisitID.ToString();
+                //model.VISIT_DTTM = patientData.ArrivedDttm.ToString(); //stdttm YYYYMMDDHHMMSS
+                model.ORDER_TYPE = "AT";
+                model.ADD_ITEM_ID = labData.RequestItemCode;
+                model.ADD_ITEM_NAME = labData.RequestItemName;
+                // model.ADD_ITEM_PRICE = 
+                //model.ICHECKUP_NO =;
+                //model.PROJECT_CODE =;
+                //model.PACKAGE_CODE =;
+                //model.PACKAGE_NAME =;
+                //model.SUB_COMPANY_CODE =;
+                // model.EMPLOYEE_ID = userUID.ToString();
+                //model.POSITION ="F2";
+                //model.DEPARTMENT = patientData.OwnerOrganisation ;
+                // model.VISIT_STATUS = "120";
+
+                DataService.Icheckup.InsertVisitHC(model, userUID);
+
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+        }
+
+        private string GetSexx(int? sexxuid)
+        {
+            string result = "O";
+            if (sexxuid == 1)
+            {
+                result = "M";
+            }
+            else if (sexxuid == 2)
+            {
+                result = "M";
+            }
+            else
+            {
+                result = "O";
+            }
+            return result;
+        }
+
+
+
 
         #endregion
     }
