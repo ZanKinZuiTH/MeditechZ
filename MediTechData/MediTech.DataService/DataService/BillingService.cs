@@ -166,11 +166,31 @@ namespace MediTech.DataService
 
         #endregion
 
+        #region Billconfiguration
+
+        public BillConfigurationModel GetBillConFiguration(int ownerOrganisationUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetBillConFiguration?ownerOrganisationUID={0}", ownerOrganisationUID);
+            BillConfigurationModel dataRequest = MeditechApiHelper.Get<BillConfigurationModel>(requestApi);
+
+            return dataRequest;
+        }
+
+        #endregion
+
         #region Insurance
         public List<InsuranceCompanyModel> GetInsuranceCompanies()
         {
             string requestApi = string.Format("Api/Billing/GetInsuranceCompanies");
             List<InsuranceCompanyModel> dataRequest = MeditechApiHelper.Get<List<InsuranceCompanyModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public InsuranceCompanyModel GetInsuranceCompanyByUID(int insuranceCompanyUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetInsuranceCompanyByUID?insuranceCompanyUID={0}", insuranceCompanyUID);
+            InsuranceCompanyModel dataRequest = MeditechApiHelper.Get<InsuranceCompanyModel>(requestApi);
 
             return dataRequest;
         }
@@ -263,13 +283,32 @@ namespace MediTech.DataService
         #endregion
 
         #region PayorAgreement
-        public List<PayorAgreementModel> GetAgreementByPayorDetailUID(int payorDetailUID)
+        public List<PayorAgreementModel> GetPayorAgreementByPayorDetailUID(int payorDetailUID)
         {
             string requestApi = string.Format("Api/Billing/GetAgreementByPayorDetailUID?payorDetailUID={0}", payorDetailUID);
             List<PayorAgreementModel> dataRequest = MeditechApiHelper.Get<List<PayorAgreementModel>>(requestApi);
 
             return dataRequest;
         }
+
+        public PayorAgreementModel GetPayorAgreementByUID(int agreementUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPayorAgreementByUID?agreementUID={0}", agreementUID);
+            PayorAgreementModel dataRequest = MeditechApiHelper.Get<PayorAgreementModel>(requestApi);
+
+            return dataRequest;
+        }
+        #endregion
+
+        #region PolicyMaster
+        public PolicyMasterModel GetPolicyMaster(int policyMasterUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPolicyMaster?policyMasterUID={0}", policyMasterUID);
+            PolicyMasterModel dataRequest = MeditechApiHelper.Get<PolicyMasterModel>(requestApi);
+
+            return dataRequest;
+        }
+
         #endregion
 
     }

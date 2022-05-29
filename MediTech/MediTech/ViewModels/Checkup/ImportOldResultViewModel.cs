@@ -619,7 +619,7 @@ namespace MediTech.ViewModels
                 int year = Convert.ToInt32(SelectYearSource);
                 int payorDetailUID = SelectPayorDetail.PayorDetailUID;
                 DateTime resultDate = new DateTime(year,01, 01);
-                var payorAgreements = DataService.Billing.GetAgreementByPayorDetailUID(payorDetailUID);
+                var payorAgreements = DataService.Billing.GetPayorAgreementByPayorDetailUID(payorDetailUID);
                 int payorAgreementsUID = payorAgreements.Where(p => p.Name.Contains("เงินสด")).Select(p => p.PayorAgreementUID).FirstOrDefault();
                 
                 if(payorAgreementsUID == 0)

@@ -1141,6 +1141,31 @@ namespace MediTechWebApi.Controllers
         }
         #endregion
 
+        #region Billconfiguration
+
+
+        [Route("GetBillConFiguration")]
+        [HttpGet]
+        public BillConfigurationModel GetBillConFiguration(int ownerOrganisationUID)
+        {
+            BillConfigurationModel billConData = null;
+            var data =
+                db.BillConfiguration
+                .Where(p => p.StatusFlag == "A"
+                && p.OwnerOrganisationUID == ownerOrganisationUID).FirstOrDefault();
+            if (data != null)
+            {
+                DateTime now = DateTime.Now;
+                billConData = new BillConfigurationModel();
+                billConData.InsuranceCompanyUID = data.InsuranceCompanyUID;
+                billConData.PayorUID = data.PayorUID;
+                billConData.PayorAgreementUID = data.PayorAgreementUID;
+                billConData.IsDisAuthorizationReqd = data.IsDisAuthorizationReqd;
+            }
+            return billConData;
+        }
+
+        #endregion
 
         #region Insurance
         [Route("GetInsuranceCompanies")]
@@ -1159,10 +1184,28 @@ namespace MediTechWebApi.Controllers
                     Code = p.Code,
                     CMPTPUID = p.CMPTPUID
                 }).ToList();
+            return data;
+        }
 
+        [Route("GetInsuranceCompanyByUID")]
+        [HttpGet]
+        public InsuranceCompanyModel GetInsuranceCompanyByUID(int insuranceCompanyUID)
+        {
+            DateTime now = DateTime.Now;
+            InsuranceCompanyModel data = null;
+            var insuranceCompany = db.InsuranceCompany.Find(insuranceCompanyUID);
+            if (insuranceCompany != null)
+            {
+                data = new InsuranceCompanyModel();
+                data.InsuranceCompanyUID = insuranceCompany.UID;
+                data.CompanyName = insuranceCompany.CompanyName;
+                data.Code = insuranceCompany.Code;
+                data.CMPTPUID = insuranceCompany.CMPTPUID;
+            }
 
             return data;
         }
+
         [Route("GetInsurancePlans")]
         [HttpGet]
         public List<InsurancePlanModel> GetInsurancePlans(int insuranceCompanyUID)
@@ -1179,7 +1222,7 @@ namespace MediTechWebApi.Controllers
                             InsurancePlanUID = i.UID,
                             InsuranceCompanyUID = i.InsuranceCompanyUID,
                             PayorAgreementUID = i.PayorAgreementUID,
-                            PayorAgreement = j.Name,
+                            PayorAgreementName = j.Name,
                             PayorDetailUID = i.PayorDetailUID,
                             PayorName = SqlFunction.fGetPayorName(i.PayorDetailUID),
                             ClaimPercentage = j.ClaimPercentage,
@@ -1190,6 +1233,8 @@ namespace MediTechWebApi.Controllers
         }
 
         #endregion
+
+
 
         #region PayorDetail
 
@@ -1333,8 +1378,6 @@ namespace MediTechWebApi.Controllers
 
 
 
-
-
         [Route("ManagePayorDetail")]
         [HttpPost]
         public HttpResponseMessage ManagePayorDetail(PayorDetailModel payorDetailModel, int userID)
@@ -1427,6 +1470,54 @@ namespace MediTechWebApi.Controllers
                 ActiveTo = p.ActiveTo,
                 PayorAgreementUID = p.UID
             }).ToList();
+
+            return data;
+        }
+
+        [Route("GetPayorAgreementByUID")]
+        [HttpGet]
+        public PayorAgreementModel GetPayorAgreementByUID(int agreementUID)
+        {
+            DateTime now = DateTime.Now;
+            PayorAgreementModel data = null;
+            var agreementData = db.PayorAgreement.Find(agreementUID);
+            if (agreementData != null)
+            {
+                data = new PayorAgreementModel();
+                data.Name = agreementData.Name;
+                data.PBTYPUID = agreementData.PBTYPUID;
+                data.ActiveFrom = agreementData.ActiveFrom;
+                data.ActiveTo = agreementData.ActiveTo;
+                data.PayorAgreementUID = agreementData.UID;
+
+                var policyMaster = db.PolicyMaster.Find(agreementData.PolicyMasterUID);
+                if(policyMaster != null)
+                {
+                    data.PolicyMasterUID = policyMaster.UID;
+                    data.PolicyName = policyMaster.PolicyName;
+                }
+            }
+
+            return data;
+        }
+
+        #endregion
+
+        #region PolicyMaster
+        [Route("GetPolicyMaster")]
+        [HttpGet]
+        public PolicyMasterModel GetPolicyMaster(int policyMasterUID)
+        {
+            PolicyMasterModel data = null;
+            var policyMaster = db.PolicyMaster.Find(policyMasterUID);
+            if (policyMaster != null)
+            {
+                data = new PolicyMasterModel();
+                data.PolicyMasterUID = policyMaster.UID;
+                data.Code = policyMaster.Code;
+                data.PolicyName = policyMaster.PolicyName;
+                data.Description = policyMaster.Description;
+            }
 
             return data;
         }

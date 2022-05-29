@@ -1992,18 +1992,22 @@
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
           <Property Name="PatientVisitUID" Type="bigint" />
           <Property Name="InsuranceCompanyUID" Type="int" Nullable="false" />
+          <Property Name="InsuranceCompanyName" Type="nvarchar" MaxLength="100" />
           <Property Name="PolicyNumber" Type="nvarchar" MaxLength="100" />
           <Property Name="CardNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="EndDttm" Type="datetime" />
           <Property Name="EligibleAmount" Type="float" />
-          <Property Name="InsuranceCompanyName" Type="nvarchar" MaxLength="100" />
-          <Property Name="PolicyName" Type="nvarchar" MaxLength="255" />
           <Property Name="PayorDetailUID" Type="int" />
+          <Property Name="PayorName" Type="nvarchar" MaxLength="255" />
           <Property Name="CCNNumber" Type="nvarchar" MaxLength="30" />
           <Property Name="PolicyMasterUID" Type="int" />
+          <Property Name="PolicyName" Type="nvarchar" MaxLength="255" />
           <Property Name="PayorAgreementUID" Type="int" />
+          <Property Name="PayorAgreementName" Type="nvarchar" MaxLength="255" />
           <Property Name="PAYRTPUID" Type="int" />
+          <Property Name="ClaimPercentage" Type="float" />
+          <Property Name="FixedCopayAmount" Type="float" />
           <Property Name="Comments" Type="nvarchar" MaxLength="255" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2511,10 +2515,17 @@
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
           <Property Name="PayorDetailUID" Type="int" Nullable="false" />
           <Property Name="PayorAgreementUID" Type="int" Nullable="false" />
-          <Property Name="PlanUID" Type="int" />
-          <Property Name="PlanName" Type="nvarchar" MaxLength="200" />
+          <Property Name="PolicyMasterUID" Type="int" />
+          <Property Name="PolicyName" Type="nvarchar" MaxLength="200" />
           <Property Name="InsuranceCompanyUID" Type="int" />
+          <Property Name="EligibileAmount" Type="float" />
           <Property Name="PAYRTPUID" Type="int" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="ClaimPercentage" Type="float" />
+          <Property Name="FixedCopayAmount" Type="float" />
+          <Property Name="CoveredAmount" Type="float" />
+          <Property Name="ClaimAmount" Type="float" />
           <Property Name="Comment" Type="nvarchar" MaxLength="500" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2781,7 +2792,6 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="AGTYPUID" Type="int" />
         </EntityType>
@@ -10637,18 +10647,22 @@
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" />
           <Property Name="InsuranceCompanyUID" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PolicyNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CardNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="EndDttm" Type="DateTime" Precision="3" />
           <Property Name="EligibleAmount" Type="Double" />
-          <Property Name="InsuranceCompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="PolicyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PayorDetailUID" Type="Int32" />
+          <Property Name="PayorName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CCNNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="PolicyMasterUID" Type="Int32" />
+          <Property Name="PolicyName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PayorAgreementUID" Type="Int32" />
+          <Property Name="PayorAgreementName" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="PAYRTPUID" Type="Int32" />
+          <Property Name="ClaimPercentage" Type="Double" />
+          <Property Name="FixedCopayAmount" Type="Double" />
           <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -11156,10 +11170,17 @@
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
           <Property Name="PayorDetailUID" Type="Int32" Nullable="false" />
           <Property Name="PayorAgreementUID" Type="Int32" Nullable="false" />
-          <Property Name="PlanUID" Type="Int32" />
-          <Property Name="PlanName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyMasterUID" Type="Int32" />
+          <Property Name="PolicyName" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="InsuranceCompanyUID" Type="Int32" />
+          <Property Name="EligibileAmount" Type="Double" />
           <Property Name="PAYRTPUID" Type="Int32" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="ClaimPercentage" Type="Double" />
+          <Property Name="FixedCopayAmount" Type="Double" />
+          <Property Name="CoveredAmount" Type="Double" />
+          <Property Name="ClaimAmount" Type="Double" />
           <Property Name="Comment" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -11426,7 +11447,6 @@
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="AGTYPUID" Type="Int32" />
         </EntityType>
@@ -16501,18 +16521,22 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="FixedCopayAmount" ColumnName="FixedCopayAmount" />
+                <ScalarProperty Name="ClaimPercentage" ColumnName="ClaimPercentage" />
                 <ScalarProperty Name="PAYRTPUID" ColumnName="PAYRTPUID" />
+                <ScalarProperty Name="PayorAgreementName" ColumnName="PayorAgreementName" />
                 <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
                 <ScalarProperty Name="PolicyMasterUID" ColumnName="PolicyMasterUID" />
                 <ScalarProperty Name="CCNNumber" ColumnName="CCNNumber" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
                 <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
-                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
-                <ScalarProperty Name="InsuranceCompanyName" ColumnName="InsuranceCompanyName" />
                 <ScalarProperty Name="EligibleAmount" ColumnName="EligibleAmount" />
                 <ScalarProperty Name="EndDttm" ColumnName="EndDttm" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
                 <ScalarProperty Name="CardNumber" ColumnName="CardNumber" />
                 <ScalarProperty Name="PolicyNumber" ColumnName="PolicyNumber" />
+                <ScalarProperty Name="InsuranceCompanyName" ColumnName="InsuranceCompanyName" />
                 <ScalarProperty Name="InsuranceCompanyUID" ColumnName="InsuranceCompanyUID" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
@@ -17039,10 +17063,17 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="ClaimAmount" ColumnName="ClaimAmount" />
+                <ScalarProperty Name="CoveredAmount" ColumnName="CoveredAmount" />
+                <ScalarProperty Name="FixedCopayAmount" ColumnName="FixedCopayAmount" />
+                <ScalarProperty Name="ClaimPercentage" ColumnName="ClaimPercentage" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="PAYRTPUID" ColumnName="PAYRTPUID" />
+                <ScalarProperty Name="EligibileAmount" ColumnName="EligibileAmount" />
                 <ScalarProperty Name="InsuranceCompanyUID" ColumnName="InsuranceCompanyUID" />
-                <ScalarProperty Name="PlanName" ColumnName="PlanName" />
-                <ScalarProperty Name="PlanUID" ColumnName="PlanUID" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+                <ScalarProperty Name="PolicyMasterUID" ColumnName="PolicyMasterUID" />
                 <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
                 <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
@@ -17311,7 +17342,6 @@
               <MappingFragment StoreEntitySet="PolicyMaster">
                 <ScalarProperty Name="AGTYPUID" ColumnName="AGTYPUID" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />

@@ -867,7 +867,7 @@ namespace MediTech.ViewModels
                                     visitInfo.CompanyName = currentData.Company;
                                     visitInfo.PRITYUID = result.SelectedPriority.Key;
                                     visitInfo.PayorDetailUID = 0;
-                                    visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
+                                    //visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
                                     visitInfo.Comments = result.CommentDoctor;
                                     visitInfo.RefNo = currentData.No;
                                     visitInfo.OwnerOrganisationUID = result.SelectOrganisation.HealthOrganisationUID;

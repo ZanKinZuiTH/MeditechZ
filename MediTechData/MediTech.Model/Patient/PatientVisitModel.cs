@@ -49,5 +49,7 @@ namespace MediTech.Model
         public int RowHandle { get; set; }
         public long RowNumber { get; set; }
         public bool Select { get; set; }
+
+        public List<PatientVisitPayorModel> PatientVisitPayors { get; set; }
     }
 }

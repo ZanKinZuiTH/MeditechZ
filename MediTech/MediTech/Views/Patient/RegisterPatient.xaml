@@ -80,10 +80,10 @@
 
                                 <dxco:WizardButton Name="btnBack" Width="80"
                                      Height="25" Content="&lt; ย้อนกลับ" Command="{Binding BackCommand}"/>
-                                <dxco:WizardButton Name="btnNext" Width="80"
-                                     Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
                                 <dxco:WizardButton Name="btnSave" Width="80"
                                      Height="25" Content="ลงทะเบียน" Command="{Binding Path=DataContext.RegisterCommand,Source={StaticResource ManagePatient}}"/>
+                                <dxco:WizardButton Name="btnNext" Width="80"
+                                     Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
                                 <dxco:WizardButton Name="btnVisit" Width="80"
                                      Height="25" Content="สร้าง Visit" Command="{Binding VisitCommand}"/>
                             </StackPanel>

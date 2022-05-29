@@ -299,7 +299,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPayorDetail, value);
                 if (_SelectedPayorDetail != null)
                 {
-                    PayorAgreementSource = DataService.Billing.GetAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    PayorAgreementSource = DataService.Billing.GetPayorAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {

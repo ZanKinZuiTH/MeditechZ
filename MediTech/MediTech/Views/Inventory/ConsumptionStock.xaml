@@ -121,7 +121,7 @@
                                 AllowNullInput="True"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานที่ใช้">
-                    <dxe:ComboBoxEdit ItemsSource="{Binding Location}" 
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Locations}" 
                                       SelectedItem="{Binding SelectLocation}"
                                       ValueMember="LocationUID"
                                       DisplayMember="Name"

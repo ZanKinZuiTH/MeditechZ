@@ -12,6 +12,15 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              DataContext="{Binding Path=CreateVisitViewModel,Source={StaticResource Locator}}"
               d:DesignHeight="600" d:DesignWidth="1000">
+    <UserControl.Resources>
+        <Style x:Key="BackgroundExpireStyle" TargetType="{x:Type dxg:GridRowContent}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Row.IsExpired}" Value="True">
+                    <Setter Property="Background" Value="#FFA5A5A5"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid >
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
@@ -71,7 +80,7 @@
                                     <TextBlock Text="วันที่มา" />
                                 </StackPanel>
                             </dxlc:LayoutItem.Label>
-                            <dxe:DateEdit EditValue="{Binding StartDate}"/>
+                            <dxe:DateEdit DateTime="{Binding StartDate}"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Width="100">
                             <dxlc:LayoutItem.Label>
@@ -172,12 +181,12 @@
                                 <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       ItemsSource="{Binding PayorTypes}"
-                                      SelectedItem="{Binding SelectPayorType}"/>
+                                      SelectedItem="{Binding SelectedPayorType}"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Payor">
-                                <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompanys}" 
-                                      SelectedItem="{Binding SelectInsuranceCompany}"
-                                      ValueMember="InsuranceComapanyUID"
+                                <dxg:LookUpEdit x:Name="lkeInsuranceCompany" ItemsSource="{Binding InsuranceCompanys}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany,UpdateSourceTrigger=PropertyChanged}"
+                                      ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
@@ -192,14 +201,15 @@
                                       AutoPopulateColumns="False">
                                     <dxg:LookUpEdit.PopupContentTemplate>
                                         <ControlTemplate>
-                                            <dxg:GridControl x:Name="PART_GridControl"  >
+                                            <dxg:GridControl x:Name="PART_GridControl">
                                                 <dxg:GridControl.View>
                                                     <dxg:TableView
                         x:Name="View"  ShowColumnHeaders="False"
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                                 </dxg:GridControl.View>
-                                                <dxg:GridColumn x:Name="colCompanyName" FieldName="CompanyName"/>
+                                                <dxg:GridColumn x:Name="colCompanyName"
+                                                                FieldName="CompanyName"/>
                                             </dxg:GridControl>
                                         </ControlTemplate>
                                     </dxg:LookUpEdit.PopupContentTemplate>
@@ -209,13 +219,13 @@
                                 </dxg:LookUpEdit>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Agreement">
-                                <dxe:ComboBoxEdit DisplayMember="PayorAgreement" 
+                                <dxe:ComboBoxEdit DisplayMember="PayorAgreementName" 
                                       ValueMember="PayorAgreementUID"
                                       ItemsSource="{Binding InsurancePlans}"
                                       SelectedItem="{Binding SelectInsurancePlan}"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Payor Office">
-                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PayorName}"/>
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PayorName}" IsReadOnly="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="หมายเหตุ">
                                 <dxe:TextEdit Text="{Binding Comments}"/>
@@ -223,46 +233,46 @@
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
                             <dxlc:LayoutItem Label="Policy">
-                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PolicyName}"/>
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PolicyName}" IsReadOnly="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="OPD Cover Per Day">
-                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.OPDCoverPerDay}"/>
+                                <dxe:TextEdit EditValue="{Binding OPDCoverPerDay}" AllowNullInput="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="Claim Percentage">
-                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.ClaimPercentage}"/>
+                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Fixed Copay Amount">
-                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.FixedCopayAmount}"/>
+                                    <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutItem Label="Active From">
-                                <dxe:DateEdit DateTime="{Binding ActiveFrom}"/>
+                                <dxe:DateEdit DateTime="{Binding ActiveFrom}" AllowNullInput="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Active To">
-                                <dxe:DateEdit DateTime="{Binding ActiveTo}"/>
+                                <dxe:DateEdit DateTime="{Binding ActiveTo}" AllowNullInput="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                                <dx:SimpleButton Height="25" Width="80" Content="เพิ่ม"/>
-                                <dx:SimpleButton Height="25" Width="80" Content="แก้ไข"/>
-                                <dx:SimpleButton Height="25" Width="80" Content="ลบ"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="เพิ่ม" Command="{Binding AddVisitPayorCommand}"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="แก้ไข" Command="{Binding UpdateVisitPayorCommand}"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="ลบ" Command="{Binding DeleteVisitPayorCommand}"/>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
-                    <dxg:GridControl ItemsSource="{Binding Path=PatientVisitPayorList,UpdateSourceTrigger=PropertyChanged}" 
-                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"
-                                     
-                                     >
-                        <dxg:GridColumn Header="Payor"/>
-                        <dxg:GridColumn Header="Agreement" />
-                        <dxg:GridColumn Header="Payor Office" />
-                        <dxg:GridColumn Header="Policy"/>
-                        <dxg:GridColumn Header="Type"/>
-                        <dxg:GridColumn Header="Claim Perc."/>
-                        <dxg:GridColumn Header="Comments"/>
-                        <dxg:GridColumn Header="Fixed Copay"/>
+                    <dxg:GridControl ItemsSource="{Binding Path=PatientVisitPayorList,UpdateSourceTrigger=PropertyChanged}"                                    
+                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}">
+                        <dxg:GridColumn Header="Payor" FieldName="InsuranceName"/>
+                        <dxg:GridColumn Header="Agreement" FieldName="AgreementName"/>
+                        <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
+                        <dxg:GridColumn Header="Policy" FieldName="PolicyName"/>
+                        <dxg:GridColumn Header="Type" FieldName="PayorType"/>
+                        <dxg:GridColumn Header="Claim Perc." FieldName="ClaimPercentage"/>
+                        <dxg:GridColumn Header="Comments" FieldName="Comments"/>
+                        <dxg:GridColumn Header="Fixed Copay" FieldName="FixedCopayAmount"/>
                         <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False"/>
+                            <dxg:TableView ShowGroupPanel="False"
+                                           RowStyle="{Binding BackgroundExpireStyle}"
+                                           />
                         </dxg:GridControl.View>
                     </dxg:GridControl>
                 </dxlc:LayoutControl>

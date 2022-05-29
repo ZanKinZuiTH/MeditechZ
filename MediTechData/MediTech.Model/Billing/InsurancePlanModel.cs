@@ -9,7 +9,7 @@ namespace MediTech.Model
     public class InsurancePlanModel
     {
         public int InsurancePlanUID { get; set; }
-        public string PayorAgreement { get; set; }
+        public string PayorAgreementName { get; set; }
         public int PayorAgreementUID { get; set; }
         public Nullable<int> InsuranceCompanyUID { get; set; }
         public string PolicyName { get; set; }

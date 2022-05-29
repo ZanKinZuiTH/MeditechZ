@@ -90,6 +90,29 @@ namespace MediTech.DataService
             return result;
         }
 
+        public List<PatientInsuranceDetailModel> GetPatientInsuranceDetail(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientInsuranceDetail?patientUID={0}", patientUID);
+            List<PatientInsuranceDetailModel> result = MeditechApiHelper.Get<List<PatientInsuranceDetailModel>>(requestApi);
+
+            return result;
+        }
+
+        public bool ManagePatientInsuranceDetail(List<PatientVisitPayorModel> visitPayorList)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsuranceDetail");
+                MeditechApiHelper.Post<List<PatientVisitPayorModel>>(requestApi, visitPayorList);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
 
         #endregion
 

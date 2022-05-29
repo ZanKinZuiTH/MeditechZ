@@ -17,6 +17,8 @@ namespace MediTech.Model
         public int PayorDetailUID { get; set; }
         public DateTime? ActiveFrom { get; set; }
         public DateTime? ActiveTo { get; set; }
+        public int? PolicyMasterUID { get; set; }
+        public string PolicyName { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
