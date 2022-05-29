@@ -26,6 +26,7 @@ namespace MediTech.Model.Report
         public double ActualQuantity { get; set; }
         public double AdjustedQuantity { get; set; }
         public string BatchID { get; set; }
+        public string SerialNumber { get; set; }
         public string IsExpired { get; set; }
         public DateTime? ExpiryDttm { get; set; }
         public DateTime? StockDttm { get; set; }

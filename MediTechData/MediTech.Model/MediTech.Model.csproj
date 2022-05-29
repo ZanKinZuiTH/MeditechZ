@@ -61,8 +61,11 @@
     <Compile Include="Emergency\BedStatusModel.cs" />
     <Compile Include="Emergency\PatientEmergencyModel.cs" />
     <Compile Include="Icheckup\IcehckUpdataModel.cs" />
+    <Compile Include="Icheckup\ORDER_HC.cs" />
+    <Compile Include="Icheckup\VISIT_HC.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
+    <Compile Include="Lab\IcheckupModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
     <Compile Include="Lab\RequestDetailItemModel.cs" />
     <Compile Include="Lab\RequestDetailSpecimenModel.cs" />
