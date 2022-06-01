@@ -32,7 +32,7 @@ namespace MediTech.Views
 
         void ManagePayorDetail_UpdateEvent(object sender, EventArgs e)
         {
-            grdPayorAgreement.RefreshData();
+            //grdPayorAgreement.RefreshData();
         }
 
         public ManagePayorDetail(bool PageDetail)

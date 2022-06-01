@@ -24,18 +24,18 @@ namespace MediTech.Views
 
         public ActionDialog ResultDialog = ActionDialog.Cancel;
 
-        BedStatusModel model;
+        
         string type;
-        public ChangeStatus(BedStatusModel modelData, string type)
-        {
-            InitializeComponent();
-            this.Loaded += PatientStatus_Loaded;
-            btnSave.Click += btnSave_Click;
-            btnCancel.Click += btnCancel_Click;
-            cmbStatus.EditValueChanged += cmbStatus_EditValueChanged;
-            this.model = modelData;
-            this.type = type;
-        }
+        //public ChangeStatus(BedStatusModel modelData, string type)
+        //{
+        //    InitializeComponent();
+        //    this.Loaded += PatientStatus_Loaded;
+        //    btnSave.Click += btnSave_Click;
+        //    btnCancel.Click += btnCancel_Click;
+        //    cmbStatus.EditValueChanged += cmbStatus_EditValueChanged;
+        //    this.model = modelData;
+        //    this.type = type;
+        //}
 
         void cmbStatus_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
         {
@@ -56,14 +56,14 @@ namespace MediTech.Views
         void PatientStatus_Loaded(object sender, RoutedEventArgs e)
         {
 
-            string SevereType = model.SevereCode;
-                cmbStatus.ItemsSource = (new List<LookupReferenceValueModel> {
-                new LookupReferenceValueModel { Key = 1, DomainCode = "TRIAGE", ValueCode = "TRIAGE1", Display = "สีแดง(emergency/immediate)" },
-                new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" },
-                new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" },
-                new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" },
-                new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" }
-            });
+            //string SevereType = model.SevereCode;
+            //    cmbStatus.ItemsSource = (new List<LookupReferenceValueModel> {
+            //    new LookupReferenceValueModel { Key = 1, DomainCode = "TRIAGE", ValueCode = "TRIAGE1", Display = "สีแดง(emergency/immediate)" },
+            //    new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" },
+            //    new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" },
+            //    new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" },
+            //    new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" }
+            //});
 
             if (cmbStatus.ItemsSource != null)
             {
@@ -79,33 +79,33 @@ namespace MediTech.Views
                 //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "CHKOUT");
                 //}
 
-                if (SevereType == "TRIAGE1")
-                {
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE1");
-                    //cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
-                }
-                else if (SevereType == "TRIAGE2")
-                {
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE2");
-                }
-                else if (SevereType == "TRIAGE3")
-                {
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE3");
-                }
-                else if (SevereType == "TRIAGE4")
-                {
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE4");
-                }
-                else if (SevereType == "TRIAGE5")
-                {
+                //if (SevereType == "TRIAGE1")
+                //{
+                //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE1");
+                //    //cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
+                //}
+                //else if (SevereType == "TRIAGE2")
+                //{
+                //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE2");
+                //}
+                //else if (SevereType == "TRIAGE3")
+                //{
+                //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE3");
+                //}
+                //else if (SevereType == "TRIAGE4")
+                //{
+                //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE4");
+                //}
+                //else if (SevereType == "TRIAGE5")
+                //{
 
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE5");
-                }
+                //    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "TRIAGE5");
+                //}
 
             }
 
             timeEditor.EditValue = DateTime.Now;
-            txtPatientName.Text = model.PatientName;
+            //txtPatientName.Text = model.PatientName;
             //cmbDoctor.EditValue = model.CareProviderUID;
         }
 

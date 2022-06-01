@@ -1485,8 +1485,8 @@ namespace MediTechWebApi.Controllers
                                                   Price = ord.Price ?? 0,
                                                   NetPrice = (ord.Price ?? 0) * ord.Quantity,
                                                   DoctorFee = ord.DoctorFee ?? 0,
-                                                  CareproviderUID = ord.CareproviderUID,
-                                                  CareproviderName = ord.CareproviderUID != null ? SqlFunction.fGetCareProviderName(ord.CareproviderUID.Value) : "",
+                                                  //CareproviderUID = ord.CareproviderUID,
+                                                  //CareproviderName = ord.CareproviderUID != null ? SqlFunction.fGetCareProviderName(ord.CareproviderUID.Value) : "",
                                                   Quantity = ord.Quantity,
                                                   ProcessingNotes = ord.ProcessingNotes,
                                                   StatusFlag = ord.StatusFlag
@@ -1593,7 +1593,7 @@ namespace MediTechWebApi.Controllers
                                 orderSetBill.DoseQty = item.DoseQty;
                                 orderSetBill.Price = item.Price;
                                 orderSetBill.DoctorFee = item.DoctorFee;
-                                orderSetBill.CareproviderUID = item.CareproviderUID;
+                                //orderSetBill.CareproviderUID = item.CareproviderUID;
                                 orderSetBill.ProcessingNotes = item.ProcessingNotes;
                             }
                             else
@@ -1614,7 +1614,7 @@ namespace MediTechWebApi.Controllers
                                         orderSetBill.DoseQty = item.DoseQty;
                                         orderSetBill.Price = item.Price;
                                         orderSetBill.DoctorFee = item.DoctorFee;
-                                        orderSetBill.CareproviderUID = item.CareproviderUID;
+                                        //orderSetBill.CareproviderUID = item.CareproviderUID;
                                         orderSetBill.ProcessingNotes = item.ProcessingNotes;
                                     }
                                 }
@@ -2091,6 +2091,24 @@ namespace MediTechWebApi.Controllers
         }
         #endregion
 
+        #region Speciality
+        [Route("GetSpecialityAll")]
+        [HttpGet]
+        public List<SpecialityModel> GetSpecialityAll()
+        {
+            var data = db.Speciality.Where(p => p.StatusFlag == "A").Select(p => new SpecialityModel()
+            {
+                SpecialityUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                HealthOrganisationUID = p.HealthOrganisationUID
+            }).ToList();
+
+            return data;
+        }
+        #endregion
+
         #region PayorDetail
 
         [Route("SearchPayorDetail")]
@@ -2106,34 +2124,28 @@ namespace MediTechWebApi.Controllers
                     PayorDetailUID = p.UID,
                     Code = p.Code,
                     PayorName = p.PayorName,
-                    Description = p.Description,
                     Address1 = p.Address1,
                     Address2 = p.Address2,
                     DistrictUID = p.DistrictUID,
                     AmphurUID = p.AmphurUID,
                     AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
                     ProvinceUID = p.AmphurUID,
-                    TINNo = p.TINNo,
                     ZipCode = p.ZipCode,
                     ContactPersonName = p.ContactPersonName,
                     PYRACATUID = p.PYRACATUID,
                     PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
-                    PAYTRMUID = p.PAYTRMUID,
-                    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
+                    CRDTRMUID = p.CRDTRMUID,
+                    PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
                     PhoneNumber = p.PhoneNumber,
                     MobileNumber = p.MobileNumber,
                     ActiveFrom = p.ActiveFrom,
                     ActiveTo = p.ActiveTo,
-                    Email = p.Email,
-                    Comment = p.Comment,
+                    Email = p.EmailAddress,
+                    Note = p.Note,
                     CUser = p.CUser,
                     CWhen = p.CWhen,
                     MUser = p.MUser,
                     MWhen = p.MWhen,
-                    IDFormat = p.IDFormat,
-                    IsGenerateBillNumber = p.IsGenerateBillNumber,
-                    IDLength = p.IDLength,
-                    NumberValue = p.NumberValue,
                     StatusFlag = p.StatusFlag
                 }).ToList();
 
@@ -2149,10 +2161,8 @@ namespace MediTechWebApi.Controllers
                 PayorDetailUID = p.UID,
                 Code = p.Code,
                 PayorName = p.PayorName,
-                Description = p.Description,
                 Address1 = p.Address1,
                 Address2 = p.Address2,
-                TINNo = p.TINNo,
                 DistrictUID = p.DistrictUID,
                 AmphurUID = p.AmphurUID,
                 AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
@@ -2161,22 +2171,18 @@ namespace MediTechWebApi.Controllers
                 ContactPersonName = p.ContactPersonName,
                 PYRACATUID = p.PYRACATUID,
                 PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
-                PAYTRMUID = p.PAYTRMUID,
-                PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
+                CRDTRMUID = p.CRDTRMUID,
+                PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
                 PhoneNumber = p.PhoneNumber,
                 MobileNumber = p.MobileNumber,
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
-                Email = p.Email,
-                Comment = p.Comment,
+                Email = p.EmailAddress,
+                Note = p.Note,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
                 MWhen = p.MWhen,
-                IDFormat = p.IDFormat,
-                IsGenerateBillNumber = p.IsGenerateBillNumber,
-                IDLength = p.IDLength,
-                NumberValue = p.NumberValue,
                 StatusFlag = p.StatusFlag
             }).ToList();
 
@@ -2194,11 +2200,9 @@ namespace MediTechWebApi.Controllers
                 data = new PayorDetailModel();
                 data.PayorDetailUID = PayorDetail.UID;
                 data.Code = PayorDetail.Code;
-                data.Description = PayorDetail.Description;
                 data.PayorName = PayorDetail.PayorName;
                 data.Address1 = PayorDetail.Address1;
                 data.Address2 = PayorDetail.Address2;
-                data.TINNo = PayorDetail.TINNo;
                 data.DistrictUID = PayorDetail.DistrictUID;
                 data.ProvinceUID = PayorDetail.ProvinceUID;
                 data.AmphurUID = PayorDetail.AmphurUID;
@@ -2207,33 +2211,29 @@ namespace MediTechWebApi.Controllers
                 data.PhoneNumber = PayorDetail.PhoneNumber;
                 data.MobileNumber = PayorDetail.MobileNumber;
                 data.FaxNumber = PayorDetail.FaxNumber;
-                data.Email = PayorDetail.Email;
-                data.PAYTRMUID = PayorDetail.PAYTRMUID;
+                data.Email = PayorDetail.EmailAddress;
+                data.CRDTRMUID = PayorDetail.CRDTRMUID;
                 data.PYRACATUID = PayorDetail.PYRACATUID;
                 data.ActiveFrom = PayorDetail.ActiveFrom;
                 data.ActiveTo = PayorDetail.ActiveTo;
-                data.Comment = PayorDetail.Comment;
+                data.Note = PayorDetail.Note;
                 data.CUser = PayorDetail.CUser;
                 data.CWhen = PayorDetail.CWhen;
                 data.MUser = PayorDetail.MUser;
                 data.MWhen = PayorDetail.MWhen;
                 data.StatusFlag = PayorDetail.StatusFlag;
-                data.IDFormat = PayorDetail.IDFormat;
-                data.IsGenerateBillNumber = PayorDetail.IsGenerateBillNumber;
-                data.IDLength = PayorDetail.IDLength;
-                data.NumberValue = PayorDetail.NumberValue;
-                data.PayorAgrrements = db.PayorAgreement.Where(p => p.PayorDetailUID == data.PayorDetailUID && p.StatusFlag == "A").Select(p => new PayorAgreementModel
-                {
-                    PayorDetailUID = p.PayorDetailUID,
-                    Name = p.Name,
-                    PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
-                    PBTYPUID = p.PBTYPUID,
-                    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
-                    PAYTRMUID = p.PAYTRMUID,
-                    ActiveFrom = p.ActiveFrom,
-                    ActiveTo = p.ActiveTo,
-                    PayorAgreementUID = p.UID
-                }).ToList();
+                //data.PayorAgrrements = db.PayorAgreement.Where(p => p.PayorDetailUID == data.PayorDetailUID && p.StatusFlag == "A").Select(p => new PayorAgreementModel
+                //{
+                //    PayorDetailUID = p.PayorDetailUID,
+                //    Name = p.Name,
+                //    PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+                //    PBTYPUID = p.PBTYPUID,
+                //    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
+                //    PAYTRMUID = p.PAYTRMUID,
+                //    ActiveFrom = p.ActiveFrom,
+                //    ActiveTo = p.ActiveTo,
+                //    PayorAgreementUID = p.UID
+                //}).ToList();
             }
 
 
@@ -2252,11 +2252,9 @@ namespace MediTechWebApi.Controllers
                 data = new PayorDetailModel();
                 data.PayorDetailUID = PayorDetail.UID;
                 data.Code = PayorDetail.Code;
-                data.Description = PayorDetail.Description;
                 data.PayorName = PayorDetail.PayorName;
                 data.Address1 = PayorDetail.Address1;
                 data.Address2 = PayorDetail.Address2;
-                data.TINNo = PayorDetail.TINNo;
                 data.DistrictUID = PayorDetail.DistrictUID;
                 data.ProvinceUID = PayorDetail.ProvinceUID;
                 data.AmphurUID = PayorDetail.AmphurUID;
@@ -2265,33 +2263,29 @@ namespace MediTechWebApi.Controllers
                 data.PhoneNumber = PayorDetail.PhoneNumber;
                 data.MobileNumber = PayorDetail.MobileNumber;
                 data.FaxNumber = PayorDetail.FaxNumber;
-                data.Email = PayorDetail.Email;
-                data.PAYTRMUID = PayorDetail.PAYTRMUID;
+                data.Email = PayorDetail.EmailAddress;
+                data.CRDTRMUID = PayorDetail.CRDTRMUID;
                 data.PYRACATUID = PayorDetail.PYRACATUID;
                 data.ActiveFrom = PayorDetail.ActiveFrom;
                 data.ActiveTo = PayorDetail.ActiveTo;
-                data.Comment = PayorDetail.Comment;
+                data.Note = PayorDetail.Note;
                 data.CUser = PayorDetail.CUser;
                 data.CWhen = PayorDetail.CWhen;
                 data.MUser = PayorDetail.MUser;
                 data.MWhen = PayorDetail.MWhen;
                 data.StatusFlag = PayorDetail.StatusFlag;
-                data.IDFormat = PayorDetail.IDFormat;
-                data.IsGenerateBillNumber = PayorDetail.IsGenerateBillNumber;
-                data.IDLength = PayorDetail.IDLength;
-                data.NumberValue = PayorDetail.NumberValue;
-                data.PayorAgrrements = db.PayorAgreement.Where(p => p.PayorDetailUID == data.PayorDetailUID && p.StatusFlag == "A").Select(p => new PayorAgreementModel
-                {
-                    PayorDetailUID = p.PayorDetailUID,
-                    Name = p.Name,
-                    PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
-                    PBTYPUID = p.PBTYPUID,
-                    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
-                    PAYTRMUID = p.PAYTRMUID,
-                    ActiveFrom = p.ActiveFrom,
-                    ActiveTo = p.ActiveTo,
-                    PayorAgreementUID = p.UID
-                }).ToList();
+                //data.PayorAgrrements = db.PayorAgreement.Where(p => p.PayorDetailUID == data.PayorDetailUID && p.StatusFlag == "A").Select(p => new PayorAgreementModel
+                //{
+                //    PayorDetailUID = p.PayorDetailUID,
+                //    Name = p.Name,
+                //    PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+                //    PBTYPUID = p.PBTYPUID,
+                //    PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
+                //    PAYTRMUID = p.PAYTRMUID,
+                //    ActiveFrom = p.ActiveFrom,
+                //    ActiveTo = p.ActiveTo,
+                //    PayorAgreementUID = p.UID
+                //}).ToList();
             }
 
 
@@ -2337,10 +2331,8 @@ namespace MediTechWebApi.Controllers
                     }
                     payorDetail.Code = payorDetailModel.Code;
                     payorDetail.PayorName = payorDetailModel.PayorName;
-                    payorDetail.Description = payorDetailModel.Description;
                     payorDetail.Address1 = payorDetailModel.Address1;
                     payorDetail.Address2 = payorDetailModel.Address2;
-                    payorDetail.TINNo = payorDetailModel.TINNo;
                     payorDetail.DistrictUID = payorDetailModel.DistrictUID;
                     payorDetail.ContactPersonName = payorDetailModel.ContactPersonName;
                     payorDetail.ProvinceUID = payorDetailModel.ProvinceUID;
@@ -2349,16 +2341,12 @@ namespace MediTechWebApi.Controllers
                     payorDetail.PhoneNumber = payorDetailModel.PhoneNumber;
                     payorDetail.MobileNumber = payorDetailModel.MobileNumber;
                     payorDetail.FaxNumber = payorDetailModel.FaxNumber;
-                    payorDetail.Email = payorDetailModel.Email;
-                    payorDetail.Comment = payorDetailModel.Comment;
+                    payorDetail.EmailAddress = payorDetailModel.Email;
+                    payorDetail.Note = payorDetailModel.Note;
                     payorDetail.ActiveFrom = payorDetailModel.ActiveFrom;
                     payorDetail.ActiveTo = payorDetailModel.ActiveTo;
-                    payorDetail.PAYTRMUID = payorDetailModel.PAYTRMUID;
+                    payorDetail.CRDTRMUID = payorDetailModel.CRDTRMUID;
                     payorDetail.PYRACATUID = payorDetailModel.PYRACATUID;
-                    payorDetail.IDFormat = payorDetailModel.IDFormat;
-                    payorDetail.IDLength = payorDetailModel.IDLength;
-                    payorDetail.IsGenerateBillNumber = payorDetailModel.IsGenerateBillNumber;
-                    payorDetail.NumberValue = payorDetailModel.NumberValue;
                     payorDetail.MUser = userID;
                     payorDetail.MWhen = now;
 
@@ -2367,35 +2355,35 @@ namespace MediTechWebApi.Controllers
                     db.SaveChanges();
 
                     #region DeletePayorAgreement
-                    List<PayorAgreement> agreements = db.PayorAgreement.Where(p => p.PayorDetailUID == payorDetailModel.PayorDetailUID && p.StatusFlag == "A").ToList();
-                    if (payorDetailModel.PayorAgrrements == null)
-                    {
-                        foreach (var item in agreements)
-                        {
-                            db.PayorAgreement.Attach(item);
-                            item.MUser = userID;
-                            item.MWhen = now;
-                            item.StatusFlag = "D";
-                        }
-                    }
-                    else
-                    {
-                        foreach (var item in agreements)
-                        {
-                            var data = payorDetailModel.PayorAgrrements.FirstOrDefault(p => p.PayorAgreementUID == item.UID);
-                            if (data == null)
-                            {
-                                db.PayorAgreement.Attach(item);
-                                item.MUser = userID;
-                                item.MWhen = now;
-                                item.StatusFlag = "D";
-                            }
+                    //List<PayorAgreement> agreements = db.PayorAgreement.Where(p => p.PayorDetailUID == payorDetailModel.PayorDetailUID && p.StatusFlag == "A").ToList();
+                    //if (payorDetailModel.PayorAgrrements == null)
+                    //{
+                    //    foreach (var item in agreements)
+                    //    {
+                    //        db.PayorAgreement.Attach(item);
+                    //        item.MUser = userID;
+                    //        item.MWhen = now;
+                    //        item.StatusFlag = "D";
+                    //    }
+                    //}
+                    //else
+                    //{
+                    //    foreach (var item in agreements)
+                    //    {
+                    //        var data = payorDetailModel.PayorAgrrements.FirstOrDefault(p => p.PayorAgreementUID == item.UID);
+                    //        if (data == null)
+                    //        {
+                    //            db.PayorAgreement.Attach(item);
+                    //            item.MUser = userID;
+                    //            item.MWhen = now;
+                    //            item.StatusFlag = "D";
+                    //        }
 
-                        }
-                    }
+                    //    }
+                    //}
 
 
-                    db.SaveChanges();
+                    //db.SaveChanges();
 
                     #endregion
 
@@ -2424,12 +2412,12 @@ namespace MediTechWebApi.Controllers
                                 }
                             }
 
-                            payorAgreement.Name = item.Name;
-                            payorAgreement.PayorDetailUID = payorDetail.UID;
-                            payorAgreement.PBTYPUID = item.PBTYPUID;
-                            payorAgreement.PAYTRMUID = item.PAYTRMUID;
-                            payorAgreement.ActiveFrom = item.ActiveFrom;
-                            payorAgreement.ActiveTo = item.ActiveTo;
+                            //payorAgreement.Name = item.Name;
+                            //payorAgreement.PayorDetailUID = payorDetail.UID;
+                            //payorAgreement.PBTYPUID = item.PBTYPUID;
+                            //payorAgreement.PAYTRMUID = item.PAYTRMUID;
+                            //payorAgreement.ActiveFrom = item.ActiveFrom;
+                            //payorAgreement.ActiveTo = item.ActiveTo;
                             db.PayorAgreement.AddOrUpdate(payorAgreement);
 
                             db.SaveChanges();
@@ -2470,7 +2458,7 @@ namespace MediTechWebApi.Controllers
                         db.SaveChanges();
                     }
 
-                    var agreements = db.PayorAgreement.Where(p => p.PayorDetailUID == payorDetailUID);
+                    var agreements = db.PayorAgreement.Where(p => p.OldAgreemntUID == payorDetailUID);
                     if (agreements != null)
                     {
                         foreach (var item in agreements)
@@ -2503,14 +2491,14 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PayorAgreementModel> GetAgreementByPayorDetailUID(int payorDetailUID)
         {
-            List<PayorAgreementModel> data = db.PayorAgreement.Where(p => p.StatusFlag == "A" && p.PayorDetailUID == payorDetailUID).Select(p => new PayorAgreementModel()
+            List<PayorAgreementModel> data = db.PayorAgreement.Where(p => p.StatusFlag == "A" && p.OldAgreemntUID == payorDetailUID).Select(p => new PayorAgreementModel()
             {
-                PayorDetailUID = p.PayorDetailUID,
+                PayorDetailUID = p.OldAgreemntUID ?? 0,
                 Name = p.Name,
                 PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
                 PBTYPUID = p.PBTYPUID,
-                PaymentTerms = SqlFunction.fGetRfValDescription(p.PAYTRMUID ?? 0),
-                PAYTRMUID = p.PAYTRMUID,
+                PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
+                PAYTRMUID = p.CRDTRMUID,
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
                 PayorAgreementUID = p.UID
@@ -2521,7 +2509,726 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region Insurance Company
 
+        //[Route("SearchPayorAgreementByINCO")]
+        //[HttpGet]
+        //public List<PayorAgreementModel> SearchPayorAgreementByINCO(int? insuranceCompanyUID)
+        //{
+        //    List<PayorAgreementModel> data = db.PayorAgreement.Where(p => p.StatusFlag == "A" 
+        //    && (insuranceCompanyUID  == null|| p.InsuranceCompanyUID == insuranceCompanyUID))
+        //        .Select(p => new PayorAgreementModel()
+        //    {
+        //        PayorDetailUID = p.OldAgreemntUID ?? 0,
+        //        Name = p.Name,
+        //        PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+        //        PBTYPUID = p.PBTYPUID,
+        //        PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
+        //        PAYTRMUID = p.CRDTRMUID,
+        //        ActiveFrom = p.ActiveFrom,
+        //        ActiveTo = p.ActiveTo,
+        //        PayorAgreementUID = p.UID
+        //    }).ToList();
+
+        //    return data;
+        //}
+
+        [Route("GetPolicyMasterAll")]
+        [HttpGet]
+        public List<PolicyMasterModel> GetPolicyMasterAll()
+        {
+            var data = db.PolicyMaster.Where(p => p.StatusFlag == "A").Select(p => new PolicyMasterModel()
+            {
+                PolicyMasterUID = p.UID,
+                Code = p.Code,
+                PolicyName = p.PolicyName,
+                Description = p.Description,
+                AGTYPUID = p.AGTYPUID,
+                AgreementType = SqlFunction.fGetRfValDescription(p.AGTYPUID ?? 0)
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetPolicyMasterByUID")]
+        [HttpGet]
+        public PolicyMasterModel GetPolicyMasterByUID(int policyUID)
+        {
+            var data = db.PolicyMaster.Where(p => p.StatusFlag == "A" && p.UID == policyUID).Select(p => new PolicyMasterModel()
+            {
+                PolicyMasterUID = p.UID,
+                Code = p.Code,
+                PolicyName = p.PolicyName,
+                Description = p.Description,
+                AGTYPUID = p.AGTYPUID,
+                AgreementType = SqlFunction.fGetRfValDescription(p.AGTYPUID ?? 0)
+            }).FirstOrDefault();
+
+            return data;
+        }
+
+        [Route("GetInsuranceCompanyAll")]
+        [HttpGet]
+        public List<InsuranceCompanyModel> GetInsuranceCompanyAll()
+        {
+            var data = db.InsuranceCompany.Where(p => p.StatusFlag == "A").Select(p => new InsuranceCompanyModel()
+            {
+                InsuranceCompanyUID = p.UID,
+                Code = p.Code,
+                CompanyName = p.CompanyName,
+                Description = p.Description,
+                CMPTPUID = p.CMPTPUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                OldPayorDetailUID = p.OldPayorDetailUID
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetInsurancePlanAll")]
+        [HttpGet]
+        public List<InsurancePlanModel> GetInsurancePlanAll()
+        {
+            var data = db.InsurancePlan.Where(p => p.StatusFlag == "A").Select(p => new InsurancePlanModel()
+            {
+                InsurancePlaneUID = p.UID,
+                InsuranceCompanyUID = p.InsuranceCompanyUID,
+                PayorAgreementUID = p.PayorAgreementUID,
+                PayorDetailUID = p.PayorDetailUID,
+                PolicyMasterUID = p.PolicyMasterUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                OwnerOrganisationUID = p.OwnerOrganisationUID
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetInsuranceCompanyByUID")]
+        [HttpGet]
+        public InsuranceCompanyModel GetInsuranceCompanyByUID(int insuranceCompanyUID)
+        {
+            var data = db.InsuranceCompany.Where(p => p.StatusFlag == "A" && p.UID == insuranceCompanyUID).Select(p => new InsuranceCompanyModel()
+            {
+                InsuranceCompanyUID = p.UID,
+                Code = p.Code,
+                CompanyName = p.CompanyName,
+                Description = p.Description,
+                CMPTPUID = p.CMPTPUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                OldPayorDetailUID = p.OldPayorDetailUID
+            }).FirstOrDefault();
+
+            return data;
+        }
+
+        [Route("SearchInsuranceCompany")]
+        [HttpGet]
+        public List<InsuranceCompanyModel> SearchInsuranceCompany(string code, string name)
+        {
+            var data = db.InsuranceCompany.Where(p => p.StatusFlag == "A"
+                && (String.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+                && (String.IsNullOrEmpty(name) || p.CompanyName.ToLower().Contains(name.ToLower()))).Select(p => new InsuranceCompanyModel()
+            {
+                InsuranceCompanyUID = p.UID,
+                Code = p.Code,
+                CompanyName = p.CompanyName,
+                Description = p.Description,
+                CMPTPUID = p.CMPTPUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                OldPayorDetailUID = p.OldPayorDetailUID
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("ManageInsuranceCompany")]
+        [HttpPost]
+        public HttpResponseMessage ManageInsuranceCompany(InsuranceCompanyModel insuranceCompanyModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                   var insuranceCompany = db.InsuranceCompany.Find(insuranceCompanyModel.InsuranceCompanyUID);
+
+                    if (insuranceCompany == null)
+                    {
+                        insuranceCompany = new InsuranceCompany();
+                        insuranceCompany.CUser = userID;
+                        insuranceCompany.CWhen = now;
+                        insuranceCompany.StatusFlag = "A";
+                    }
+                    insuranceCompany.Code = insuranceCompanyModel.Code;
+                    insuranceCompany.CompanyName = insuranceCompanyModel.CompanyName;
+                    insuranceCompany.Description = insuranceCompanyModel.Description;
+                    insuranceCompany.ActiveFrom = insuranceCompanyModel.ActiveFrom;
+                    insuranceCompany.ActiveTo = insuranceCompanyModel.ActiveTo;
+                    insuranceCompany.CMPTPUID = insuranceCompanyModel.CMPTPUID;
+                    insuranceCompany.MUser = userID;
+                    insuranceCompany.MWhen = now;
+                    insuranceCompany.StatusFlag = "A";
+
+                    db.InsuranceCompany.AddOrUpdate(insuranceCompany);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteInsuranceCompany")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteInsuranceCompany(int insuranceCompanyUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var insuranceCompany = db.InsuranceCompany.Find(insuranceCompanyUID);
+                    if (insuranceCompany != null)
+                    {
+                        db.InsuranceCompany.Attach(insuranceCompany);
+                        insuranceCompany.MUser = userID;
+                        insuranceCompany.MWhen = now;
+                        insuranceCompany.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+
+                    var payorOffice = db.PayorDetail.Where(p => p.InsuranceCompanyUID == insuranceCompanyUID);
+                    if (payorOffice != null)
+                    {
+                        foreach (var item in payorOffice)
+                        {
+                            db.PayorDetail.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                            db.SaveChanges();
+                        }
+                    }
+
+                    var agreements = db.PayorAgreement.Where(p => p.InsuranceCompanyUID == insuranceCompanyUID);
+                    if (agreements != null)
+                    {
+                        foreach (var item in agreements)
+                        {
+                            db.PayorAgreement.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                            db.SaveChanges();
+                        }
+                    }
+
+                    var insurancePlans  = db.InsurancePlan.Where(p => p.InsuranceCompanyUID == insuranceCompanyUID);
+                    if (insurancePlans != null)
+                    {
+                        foreach (var item in insurancePlans)
+                        {
+                            db.InsurancePlan.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
+                };
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ManageInsurancePlan")]
+        [HttpPost]
+        public HttpResponseMessage ManageInsurancePlan(InsurancePlanModel insurancePlanModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var plan = db.InsurancePlan.Find(insurancePlanModel.InsurancePlaneUID);
+
+                    if (plan == null)
+                    {
+                        plan = new InsurancePlan();
+                        plan.CUser = userID;
+                        plan.CWhen = now;
+                        plan.StatusFlag = "A";
+                    }
+                    plan.InsuranceCompanyUID = insurancePlanModel.InsuranceCompanyUID;
+                    plan.OwnerOrganisationUID = insurancePlanModel.OwnerOrganisationUID;
+                    plan.PayorAgreementUID = insurancePlanModel.PayorAgreementUID;
+                    plan.PayorDetailUID = insurancePlanModel.PayorDetailUID;
+                    plan.PolicyMasterUID = insurancePlanModel.PolicyMasterUID;
+                    plan.ActiveFrom = insurancePlanModel.ActiveFrom ?? now;
+                    plan.ActiveTo = insurancePlanModel.ActiveTo;
+                    plan.MUser = userID;
+                    plan.MWhen = now;
+                    plan.StatusFlag = "A";
+
+                    db.InsurancePlan.AddOrUpdate(plan);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteInsurancePlan")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteInsurancePlan(int insurancePlanUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var insurancePlans = db.InsurancePlan.Where(p => p.UID == insurancePlanUID).FirstOrDefault();
+                    if (insurancePlans != null)
+                    {
+                        
+                        db.InsurancePlan.Attach(insurancePlans);
+                        insurancePlans.MUser = userID;
+                        insurancePlans.MWhen = now;
+                        insurancePlans.StatusFlag = "D";
+                        db.SaveChanges();
+                        
+                    }
+                    tran.Complete();
+                };
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ManagePayorOfficeDetail")]
+        [HttpPost]
+        public HttpResponseMessage ManagePayorOfficeDetail(PayorDetailModel payorDetailModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var payorDetail = db.PayorDetail.Find(payorDetailModel.PayorDetailUID);
+
+                    if (payorDetail == null)
+                    {
+                        payorDetail = new PayorDetail();
+                        payorDetail.CUser = userID;
+                        payorDetail.CWhen = now;
+                        payorDetail.StatusFlag = "A";
+                    }
+                    payorDetail.InsuranceCompanyUID = payorDetailModel.InsuranceCompanyUID;
+                    payorDetail.Code = payorDetailModel.Code;
+                    payorDetail.PayorName = payorDetailModel.PayorName;
+                    payorDetail.Address1 = payorDetailModel.Address1;
+                    payorDetail.Address2 = payorDetailModel.Address2;
+                    payorDetail.DistrictUID = payorDetailModel.DistrictUID;
+                    payorDetail.ContactPersonName = payorDetailModel.ContactPersonName;
+                    payorDetail.ProvinceUID = payorDetailModel.ProvinceUID;
+                    payorDetail.AmphurUID = payorDetailModel.AmphurUID;
+                    payorDetail.ZipCode = payorDetailModel.ZipCode;
+                    payorDetail.PhoneNumber = payorDetailModel.PhoneNumber;
+                    payorDetail.MobileNumber = payorDetailModel.MobileNumber;
+                    payorDetail.FaxNumber = payorDetailModel.FaxNumber;
+                    payorDetail.EmailAddress = payorDetailModel.Email;
+                    payorDetail.Note = payorDetailModel.Note;
+                    payorDetail.ActiveFrom = payorDetailModel.ActiveFrom;
+                    payorDetail.ActiveTo = payorDetailModel.ActiveTo;
+                    payorDetail.CRDTRMUID = payorDetailModel.CRDTRMUID;
+                    payorDetail.PYRACATUID = payorDetailModel.PYRACATUID;
+                    payorDetail.ActiveFrom = payorDetailModel.ActiveFrom ?? now;
+                    payorDetail.ActiveTo = payorDetailModel.ActiveTo;
+                    payorDetail.MUser = userID;
+                    payorDetail.MWhen = now;
+                    payorDetail.StatusFlag = "A";
+
+                    db.PayorDetail.AddOrUpdate(payorDetail);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeletePayorOfficeDetail")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePayorOfficeDetail(int payorDetailUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    MediTech.DataBase.PayorDetail payorDetail = db.PayorDetail.Find(payorDetailUID);
+                    if (payorDetail != null)
+                    {
+                        db.PayorDetail.Attach(payorDetail);
+                        payorDetail.MUser = userID;
+                        payorDetail.MWhen = now;
+                        payorDetail.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+
+                    tran.Complete();
+                };
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ManagePayorAgreement")]
+        [HttpPost]
+        public HttpResponseMessage ManagePayorAgreement(PayorAgreementModel payorAgreementModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var payorAgreement  = db.PayorAgreement.Find(payorAgreementModel.PayorAgreementUID);
+
+                    if (payorAgreement == null)
+                    {
+                        payorAgreement = new PayorAgreement();
+                        payorAgreement.CUser = userID;
+                        payorAgreement.CWhen = now;
+                        payorAgreement.StatusFlag = "A";
+                    }
+                    payorAgreement.Code = payorAgreementModel.Code;
+                    payorAgreement.Name = payorAgreementModel.Name;
+                    payorAgreement.Description = payorAgreementModel.Description;
+                    payorAgreement.PBTYPUID = payorAgreementModel.PBTYPUID;
+                    payorAgreement.ActiveFrom = payorAgreementModel.ActiveFrom ?? now;
+                    payorAgreement.ActiveTo = payorAgreementModel.ActiveTo;
+                    payorAgreement.InsuranceCompanyUID = payorAgreementModel.InsuranceCompanyUID;
+                    payorAgreement.PolicyMasterUID = payorAgreementModel.PolicyMasterUID;
+                    payorAgreement.AgentName = payorAgreementModel.AgentName;
+                    payorAgreement.BLTYPUID = payorAgreementModel.BLTYPUID;
+                    payorAgreement.ClaimPercentage = payorAgreementModel.ClaimPercentage;
+                    payorAgreement.CRDTRMUID = payorAgreementModel.CRDTRMUID;
+                    payorAgreement.FixedCopayAmount = payorAgreementModel.FixedCopayAmount;
+                    payorAgreement.IsForeign = payorAgreementModel.IsForeign;
+                    payorAgreement.IsPackageDiscountAllowed = payorAgreementModel.IsPackageDiscountAllowed;
+                    payorAgreement.OldAgreemntUID = payorAgreementModel.OldAgreemntUID;
+                    payorAgreement.OPDCoverPerDay = payorAgreementModel.OPDCoverPerDay;
+                    payorAgreement.PrimaryPBLCTUID = payorAgreementModel.PrimaryPBLCTUID;
+                    payorAgreement.SecondaryPBLCTUID = payorAgreementModel.SecondaryPBLCTUID;
+                    payorAgreement.TertiaryPBLCTUID = payorAgreementModel.TertiaryPBLCTUID;
+                    payorAgreement.AGTYPUID = payorAgreementModel.AGTYPUID;
+                    payorAgreement.MUser = userID;
+                    payorAgreement.MWhen = now;
+                    payorAgreement.StatusFlag = "A";
+
+                    db.PayorAgreement.AddOrUpdate(payorAgreement);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeletePayorAgreement")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePayorAgreement(int payorAgreementUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var agreements = db.PayorAgreement.Where(p => p.UID == payorAgreementUID).FirstOrDefault();
+                    if (agreements != null)
+                    {
+                        db.PayorAgreement.Attach(agreements);
+                        agreements.MUser = userID;
+                        agreements.MWhen = now;
+                        agreements.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+
+                    tran.Complete();
+                };
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+        [Route("SearchPayorDetailByINCO")] //สร้างใหม่
+        [HttpGet]
+        public List<PayorDetailModel> SearchPayorDetailByINCO(string code, int? insuranceCompany)
+        {
+            List<PayorDetailModel> data = db.PayorDetail
+                .Where(p => p.StatusFlag == "A"
+                && (String.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+                && (insuranceCompany == null || p.InsuranceCompanyUID == insuranceCompany)
+                ).Select(p => new PayorDetailModel()
+                {
+                    PayorDetailUID = p.UID,
+                    Code = p.Code,
+                    PayorName = p.PayorName,
+                    Address1 = p.Address1,
+                    Address2 = p.Address2,
+                    DistrictUID = p.DistrictUID,
+                    AmphurUID = p.AmphurUID,
+                    AddressFull = SqlFunction.fGetAddressPayorDetail(p.UID),
+                    ProvinceUID = p.AmphurUID,
+                    ZipCode = p.ZipCode,
+                    ContactPersonName = p.ContactPersonName,
+                    PYRACATUID = p.PYRACATUID,
+                    PayorCategory = SqlFunction.fGetRfValDescription(p.PYRACATUID ?? 0),
+                    CRDTRMUID = p.CRDTRMUID,
+                    PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
+                    PhoneNumber = p.PhoneNumber,
+                    MobileNumber = p.MobileNumber,
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    Email = p.EmailAddress,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
+                    Note = p.Note,
+                    CUser = p.CUser,
+                    CWhen = p.CWhen,
+                    MUser = p.MUser,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return data;
+        }
+
+        [Route("SearchInsurancePlaneByINCO")]
+        [HttpGet]
+        public List<InsurancePlanModel> SearchInsurancePlaneByINCO(int? insuranceCompanyUID)
+        {
+            List<InsurancePlanModel> data = db.InsurancePlan.Where(p => p.StatusFlag == "A"
+                   && (insuranceCompanyUID == null || p.InsuranceCompanyUID == insuranceCompanyUID)
+                   ).Select(p => new InsurancePlanModel()
+                   {
+                       PayorDetailUID = p.PayorDetailUID,
+                       PayorAgreementUID = p.PayorAgreementUID,
+                       InsurancePlaneUID = p.UID,
+                       InsuranceCompanyUID = p.InsuranceCompanyUID,
+                       PolicyMasterUID = p.PolicyMasterUID,
+                       OwnerOrganisationUID = p.OwnerOrganisationUID,
+                       ActiveFrom = p.ActiveFrom,
+                       ActiveTo = p.ActiveTo,
+                       PayorOfficeName = SqlFunction.fGetPayorName(p.PayorDetailUID),
+                       PayorAgreementName = SqlFunction.fGetPayorAgreementName(p.PayorAgreementUID),
+                       InsuranceCompanyName = SqlFunction.fGetInsuranceCompanyName(p.InsuranceCompanyUID ?? 0),
+                       PolicyName = SqlFunction.fGetPolicyName(p.PolicyMasterUID)
+                   }).ToList();
+
+            return data;
+        }
+        
+
+        [Route("SearchPayorAgreementByINCO")] //สร้างใหม่
+        [HttpGet]
+        public List<PayorAgreementModel> SearchPayorAgreementByINCO(string code, int? insuranceCompany)
+        {
+            List<PayorAgreementModel> data = db.PayorAgreement
+                   .Where(p => p.StatusFlag == "A"
+                   && (String.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+                   && (insuranceCompany == null || p.InsuranceCompanyUID == insuranceCompany)
+                   ).Select(p => new PayorAgreementModel()
+                   {
+                       PayorAgreementUID = p.UID,
+                       Name = p.Name,
+                       Code = p.Code,
+                       PayorBillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
+                       PBTYPUID = p.PBTYPUID,
+                       PaymentTerms = SqlFunction.fGetRfValDescription(p.CRDTRMUID ?? 0),
+                       CRDTRMUID = p.CRDTRMUID,
+                       ActiveFrom = p.ActiveFrom,
+                       ActiveTo = p.ActiveTo,
+                       Description = p.Description,
+                       AgentName = p.AgentName,
+                       IsForeign = p.IsForeign,
+                       BLTYPUID = p.BLTYPUID,
+                       AGTYPUID = p.AGTYPUID,
+                       PrimaryPBLCTUID = p.PrimaryPBLCTUID,
+                       SecondaryPBLCTUID = p.SecondaryPBLCTUID,
+                       TertiaryPBLCTUID = p.TertiaryPBLCTUID,
+                       OPDCoverPerDay = p.OPDCoverPerDay,
+                       ClaimPercentage = p.ClaimPercentage,
+                       FixedCopayAmount = p.FixedCopayAmount,
+                       IsPackageDiscountAllowed = p.IsPackageDiscountAllowed,
+                       IsLimitAfterDiscount = p.IsLimitAfterDiscount,
+                       DisplayOrder = p.DisplayOrder,
+                       InsuranceCompanyUID = p.InsuranceCompanyUID,
+                       PolicyMasterUID = p.PolicyMasterUID,
+                       OldAgreemntUID = p.OldAgreemntUID
+                   }).ToList();
+
+            return data;
+        }
+
+        [Route("SearchPolicyMaster")]
+        [HttpGet]
+        public List<PolicyMasterModel> SearchPolicyMaster(string code, string name)
+        {
+            List<PolicyMasterModel> data = db.PolicyMaster
+                    .Where(p => p.StatusFlag == "A" 
+                    && (String.IsNullOrEmpty(p.Code) || p.Code.ToLower().Contains(code.ToLower()))
+                    && (String.IsNullOrEmpty(p.PolicyName) || p.PolicyName.ToLower().Contains(code.ToLower()))
+                    ).Select(p => new PolicyMasterModel()
+                    {
+                        PolicyMasterUID = p.UID,
+                        Code = p.Code,
+                        PolicyName = p.PolicyName,
+                        Description = p.Description,
+                        AGTYPUID = p.AGTYPUID
+                    }).ToList();
+            return data;
+        }
+
+        [Route("ManagePolicyMaster")]
+        [HttpPost]
+        public HttpResponseMessage ManagePolicyMaster(PolicyMasterModel policyMaster, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var policy = db.PolicyMaster.Find(policyMaster.PolicyMasterUID);
+
+                    if (policy == null)
+                    {
+                        policy = new PolicyMaster();
+                        policy.CUser = userID;
+                        policy.CWhen = now;
+                    }
+                    policy.PolicyName = policyMaster.PolicyName;
+                    policy.Code = policyMaster.Code;
+                    policy.AGTYPUID = policyMaster.AGTYPUID;
+                    policy.Description = policyMaster.Description;
+                    policy.MUser = userID;
+                    policy.MWhen = now;
+                    policy.StatusFlag = "A";
+
+                    db.PolicyMaster.AddOrUpdate(policy);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeletePolicyMaster")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePolicyMaster(int policyUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var policy = db.PolicyMaster.Where(p => p.UID == policyUID).FirstOrDefault();
+                    if (policy != null)
+                    {
+                        db.PolicyMaster.Attach(policy);
+                        policy.MUser = userID;
+                        policy.MWhen = now;
+                        policy.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+                    tran.Complete();
+                };
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("CheckInsurancePlan")]
+        [HttpGet]
+        public InsurancePlanModel CheckInsurancePlan(int? payorDetailUID, int? payorAgreementUID)
+        {
+            InsurancePlanModel data = db.InsurancePlan.Where(p => p.StatusFlag == "A"
+            && (payorDetailUID == null || p.PayorDetailUID == payorDetailUID)
+            && (payorAgreementUID == null || p.PayorAgreementUID == payorAgreementUID))
+                .Select(p => new InsurancePlanModel()
+                {
+                    InsurancePlaneUID = p.UID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
+                    PayorAgreementUID = p.PayorAgreementUID,
+                    PayorDetailUID = p.PayorDetailUID,
+                    PolicyMasterUID = p.PolicyMasterUID,
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    OwnerOrganisationUID = p.OwnerOrganisationUID
+                }).FirstOrDefault();
+            return data;
+        }
+
+
+        #endregion
 
         public string SetItemNameSearch(string itemName)
         {

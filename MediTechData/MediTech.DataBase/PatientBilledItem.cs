@@ -27,7 +27,6 @@ namespace MediTech.DataBase
         public Nullable<double> DoctorFee { get; set; }
         public Nullable<double> ItemCost { get; set; }
         public Nullable<double> ExtendCost { get; set; }
-        public Nullable<int> CareproviderUID { get; set; }
         public long PatientOrderDetailUID { get; set; }
         public Nullable<int> StoreUID { get; set; }
         public Nullable<int> StockUID { get; set; }

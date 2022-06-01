@@ -56,9 +56,13 @@
     <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Ecount\EcountImportModel.cs" />
     <Compile Include="Ecount\EcountMassFileModel.cs" />
+    <Compile Include="Emergency\AEDischargeEventModel.cs" />
+    <Compile Include="Emergency\IPBookingModel.cs" />
+    <Compile Include="Emergency\PatientDeceasedDetailModel.cs" />
     <Compile Include="Icheckup\IcehckUpdataModel.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
+    <Compile Include="IPD\AdmissionEventModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
     <Compile Include="Lab\RequestDetailItemModel.cs" />
     <Compile Include="Lab\RequestDetailSpecimenModel.cs" />
@@ -68,11 +72,15 @@
     <Compile Include="Lab\ResultImageModel.cs" />
     <Compile Include="Lab\ResultModel.cs" />
     <Compile Include="MasterData\HealthOrganisationIDModel.cs" />
+    <Compile Include="MasterData\InsuranceCompanyModel.cs" />
+    <Compile Include="MasterData\InsurancePlanModel.cs" />
     <Compile Include="MasterData\LocationModel.cs" />
+    <Compile Include="MasterData\PolicyMasterModel.cs" />
     <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
     <Compile Include="MasterData\ResultItemModel.cs" />
     <Compile Include="MasterData\ResultItemRangeModel.cs" />
+    <Compile Include="MasterData\SpecialityModel.cs" />
     <Compile Include="MasterData\SpecimenModel.cs" />
     <Compile Include="OrderMaster\BillableItemDetailModel.cs" />
     <Compile Include="MasterData\BillingGroupModel.cs" />
@@ -125,12 +133,14 @@
     <Compile Include="PatientHistory\WellnessDataModel.cs" />
     <Compile Include="Patient\BookingModel.cs" />
     <Compile Include="Patient\PatientAddressModel.cs" />
+    <Compile Include="Patient\PatientAEAdmissionModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />
     <Compile Include="Patient\PatientMergeEcounterModel.cs" />
     <Compile Include="Patient\PatientMergeModel.cs" />
     <Compile Include="Patient\PatientScannedDocumentModel.cs" />
+    <Compile Include="Patient\PatientVisitIDModel.cs" />
     <Compile Include="Patient\VIPPatientModel.cs" />
     <Compile Include="Pharmacy\FrequencyDefinitionModel.cs" />
     <Compile Include="Pharmacy\DrugGenericModel.cs" />
@@ -215,6 +225,7 @@
     <Compile Include="UserManage\RoleProfileModel.cs" />
     <Compile Include="UserManage\RoleReportPermissionModel.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

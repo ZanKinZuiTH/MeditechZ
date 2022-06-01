@@ -22,6 +22,20 @@ namespace MediTech.ViewModels
 
         public bool IsEditDate { get; set; }
 
+        private List<LookupReferenceValueModel> _EncounterType;
+        public List<LookupReferenceValueModel> EncounterType
+        {
+            get { return _EncounterType; }
+            set { Set(ref _EncounterType, value); }
+        }
+
+        private LookupReferenceValueModel _SelectEncounterType;
+        public LookupReferenceValueModel SelectEncounterType
+        {
+            get { return _SelectEncounterType; }
+            set { Set(ref _SelectEncounterType, value); }
+        }
+
         private List<PayorDetailModel> _PayorDetails;
 
         public List<PayorDetailModel> PayorDetails
@@ -253,7 +267,12 @@ namespace MediTech.ViewModels
             get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
         }
 
-        
+        private RelayCommand _AdmissionRequestCommand;
+        public RelayCommand AdmissionRequestCommand
+        {
+            get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
+        }
+
         #endregion
 
         #region Method
@@ -270,6 +289,8 @@ namespace MediTech.ViewModels
 
         public PatientListViewModel()
         {
+            EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
+            SelectEncounterType = EncounterType.Find(p => p.ValueCode == "OUPAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
             SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
@@ -469,6 +490,23 @@ namespace MediTech.ViewModels
                     SearchPatientVisit();
                 }
             }
+        }
+        private void AdmissionRequest()
+        {
+            if(SelectPatientVisit != null)
+            {
+                
+
+                AdmissionRequest pageview = new AdmissionRequest();
+                (pageview.DataContext as AdmissionRequestViewModel).AssingModel(SelectPatientVisit);
+                AdmissionRequestViewModel result = (AdmissionRequestViewModel)LaunchViewDialog(pageview, "ADRQST", false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
+            
         }
 
         private void ExportToExcel()

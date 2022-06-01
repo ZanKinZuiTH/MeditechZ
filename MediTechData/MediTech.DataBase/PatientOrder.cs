@@ -23,6 +23,9 @@ namespace MediTech.DataBase
         public Nullable<long> IdentifyingUID { get; set; }
         public string IdentifyingType { get; set; }
         public int OrderRaisedBy { get; set; }
+        public Nullable<int> OrderLocationUID { get; set; }
+        public Nullable<int> OrderToLocationUID { get; set; }
+        public string IsContinuous { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

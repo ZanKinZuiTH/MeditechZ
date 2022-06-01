@@ -6,9 +6,9 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class LocationModel
+    public class LocationModel: PatientVisitModel
     {
-        public int UID { get; set; }
+        public int LocationUID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int LOTYPUID { get; set; }
@@ -18,16 +18,28 @@ namespace MediTech.Model
         public Nullable<int> EMRZONUID { get; set; }
         public string IsCanOrder { get; set; }
         public string IsTemporaryBed { get; set; }
+        public string IsEmergency { get; set; }
         public string PhoneNumber { get; set; }
         public Nullable<int> DisplayOrder { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
-        public int OwnerOrganisationUID { get; set; }
+        public Nullable<int> OwnerOrganisationUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public string ParentLocationName { get; set; }
+        public string BedIsUse { get; set; }
+        public bool Isused { get; set; }
+        public string EMGTPUID { get; set; }
+        public string EMGCDUID { get; set; }
+        public string Level { get; set; }
+        public string LocationType { get; set; }
+        public DateTime? EmergencyVisitDate { get; set; }
+        public DateTime? AdmissionDate { get; set; }
+        public DateTime? ExpDischargeDate { get; set; }
     }
+
 }

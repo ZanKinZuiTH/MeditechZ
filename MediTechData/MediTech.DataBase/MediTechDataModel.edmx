@@ -5,6 +5,55 @@
     <!-- SSDL content -->
     <edmx:StorageModels>
     <Schema Namespace="MediTechModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AdmissionEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="CareproviderUID" Type="int" Nullable="false" />
+          <Property Name="ExpectedLengthOfStay" Type="int" />
+          <Property Name="AdmissionDttm" Type="datetime" Nullable="false" />
+          <Property Name="ExpectedDischargeDttm" Type="datetime" />
+          <Property Name="IPBookingUID" Type="int" />
+          <Property Name="PreviousEventUID" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="ValidFromDttm" Type="datetime" />
+          <Property Name="ValidToDttm" Type="datetime" />
+          <Property Name="IsNoVisitorAllowed" Type="nvarchar" MaxLength="1" />
+          <Property Name="RequestingLocationUID" Type="int" />
+        </EntityType>
+        <EntityType Name="AEDischargeEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientAEAdmissionUID" Type="bigint" Nullable="false" />
+          <Property Name="CheckOutDttm" Type="datetime" Nullable="false" />
+          <Property Name="DSCCNDUID" Type="int" />
+          <Property Name="DSCTYPUID" Type="int" />
+          <Property Name="DESTINUID" Type="int" />
+          <Property Name="DeceasedDttm" Type="datetime" />
+          <Property Name="ATSTYPUID" Type="int" />
+          <Property Name="DischargeEvents" Type="nvarchar" MaxLength="100" />
+          <Property Name="RecordedBy" Type="int" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -150,6 +199,23 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="CareproviderLocation">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CareproviderUID" Type="int" Nullable="false" />
+          <Property Name="LocationUID" Type="int" Nullable="false" />
+          <Property Name="ActiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="CareproviderOrganisation">
           <Key>
             <PropertyRef Name="UID" />
@@ -165,6 +231,23 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CareproviderTransfer">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="CareproviderUID" Type="int" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
         </EntityType>
         <EntityType Name="CCHPI">
           <Key>
@@ -339,6 +422,36 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DischargeEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AdmissionEventUID" Type="bigint" Nullable="false" />
+          <Property Name="DSCSTUID" Type="int" Nullable="false" />
+          <Property Name="MedicalDischargeDttm" Type="datetime" />
+          <Property Name="ActualDischargeDttm" Type="datetime" Nullable="false" />
+          <Property Name="RecordedBy" Type="int" Nullable="false" />
+          <Property Name="DischargeComments" Type="nvarchar" MaxLength="255" />
+          <Property Name="MDTRNUID" Type="int" Nullable="false" />
+          <Property Name="DSGDSUID" Type="int" />
+          <Property Name="DSCTYUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="INFCTUID" Type="int" />
+          <Property Name="AdvicedBy" Type="int" />
+          <Property Name="DischargeAdviceDttm" Type="datetime" />
+          <Property Name="DSHTYPUID" Type="int" />
+          <Property Name="DSOCMUID" Type="int" />
+          <Property Name="CARNSUID" Type="int" />
+          <Property Name="CancelledBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="CancelledDttm" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="DispensedItem">
           <Key>
@@ -666,6 +779,80 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="CMPTPUID" Type="int" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OldPayorDetailUID" Type="int" />
+        </EntityType>
+        <EntityType Name="InsurancePlan">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PayorAgreementUID" Type="int" Nullable="false" />
+          <Property Name="InsuranceCompanyUID" Type="int" />
+          <Property Name="PolicyMasterUID" Type="int" Nullable="false" />
+          <Property Name="PayorDetailUID" Type="int" Nullable="false" />
+          <Property Name="ActiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="IPBooking">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" />
+          <Property Name="LocationUID" Type="int" />
+          <Property Name="SpecialityUID" Type="int" />
+          <Property Name="CareproviderUID" Type="int" Nullable="false" />
+          <Property Name="BedUID" Type="int" />
+          <Property Name="AdmissionDttm" Type="datetime" Nullable="false" />
+          <Property Name="ExpectedDischargeDttm" Type="datetime" Nullable="false" />
+          <Property Name="ExpectedLengthofStay" Type="int" Nullable="false" />
+          <Property Name="BookedDttm" Type="datetime" Nullable="false" />
+          <Property Name="BKSTSUID" Type="int" Nullable="false" />
+          <Property Name="VISTYUID" Type="int" Nullable="false" />
+          <Property Name="BKTYPUID" Type="int" Nullable="false" />
+          <Property Name="BDCATUID" Type="int" />
+          <Property Name="ReferredBy" Type="nvarchar" MaxLength="100" />
+          <Property Name="ReferredByUID" Type="int" />
+          <Property Name="RequestedByLocationUID" Type="int" />
+          <Property Name="RequestedByUID" Type="int" />
+          <Property Name="CANRSUID" Type="int" />
+          <Property Name="CancelledBy" Type="int" />
+          <Property Name="CancelledDttm" Type="datetime" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="ItemAverageCost">
           <Key>
             <PropertyRef Name="UID" />
@@ -922,8 +1109,15 @@
           <Property Name="Description" Type="nvarchar" MaxLength="500" />
           <Property Name="LOTYPUID" Type="int" Nullable="false" />
           <Property Name="ParentLocationUID" Type="int" />
+          <Property Name="LCTSTUID" Type="int" />
           <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
           <Property Name="DisplayOrder" Type="int" />
+          <Property Name="OwnerOrganisationUID" Type="int" />
+          <Property Name="IsRegistrationAllowed" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsCanOrder" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsEmergency" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsTemporaryBed" Type="nvarchar" MaxLength="1" />
+          <Property Name="EMZONEUID" Type="int" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -931,6 +1125,31 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="LocationTransfer">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="LocationUID" Type="int" Nullable="false" />
+          <Property Name="BedUID" Type="int" />
+          <Property Name="BDCATUID" Type="int" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="EffectiveDttm" Type="datetime" />
+          <Property Name="TRNSTUID" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="PrimaryBedUID" Type="int" />
+          <Property Name="CANRSUID" Type="int" />
+          <Property Name="CancelComments" Type="nvarchar" MaxLength="500" />
+          <Property Name="CancelDate" Type="datetime" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -1030,7 +1249,6 @@
           <Property Name="ProcessingNotes" Type="nvarchar" MaxLength="500" />
           <Property Name="Price" Type="float" />
           <Property Name="DoctorFee" Type="float" />
-          <Property Name="CareproviderUID" Type="int" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -1209,6 +1427,65 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="PatientADTEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="EVNTYUID" Type="int" Nullable="false" />
+          <Property Name="EventOccuredDttm" Type="datetime" Nullable="false" />
+          <Property Name="IdentifyingUID" Type="bigint" Nullable="false" />
+          <Property Name="IdentifyingType" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientAEAdmission">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="ARRMDUID" Type="int" Nullable="false" />
+          <Property Name="ESCTPUID" Type="int" />
+          <Property Name="EscortName" Type="nvarchar" MaxLength="60" />
+          <Property Name="RELTNUID" Type="int" />
+          <Property Name="ContactNumber" Type="nvarchar" MaxLength="30" />
+          <Property Name="VehicleNumber" Type="nvarchar" MaxLength="30" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="MLCREAUID" Type="int" />
+          <Property Name="EmergencyOcurredDttm" Type="datetime" />
+          <Property Name="EMGTPUID" Type="int" />
+          <Property Name="EMGCDUID" Type="int" />
+          <Property Name="ProblemUID" Type="int" />
+          <Property Name="InjuryReason" Type="nvarchar" MaxLength="255" />
+          <Property Name="EmergencyExamDetail" Type="nvarchar" MaxLength="255" />
+          <Property Name="IsDead" Type="char" MaxLength="1" />
+          <Property Name="Line1" Type="nvarchar" MaxLength="50" />
+          <Property Name="Line2" Type="nvarchar" MaxLength="50" />
+          <Property Name="Line3" Type="nvarchar" MaxLength="50" />
+          <Property Name="Line4" Type="nvarchar" MaxLength="50" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="30" />
+          <Property Name="AmphurUID" Type="int" />
+          <Property Name="ProvinceUID" Type="int" />
+          <Property Name="DistrictUID" Type="int" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
+        </EntityType>
         <EntityType Name="PatientAllergy">
           <Key>
             <PropertyRef Name="UID" />
@@ -1315,7 +1592,6 @@
           <Property Name="DoctorFee" Type="float" />
           <Property Name="ItemCost" Type="float" />
           <Property Name="ExtendCost" Type="float" />
-          <Property Name="CareproviderUID" Type="int" />
           <Property Name="PatientOrderDetailUID" Type="bigint" Nullable="false" />
           <Property Name="StoreUID" Type="int" />
           <Property Name="StockUID" Type="int" />
@@ -1329,6 +1605,29 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="OwnerOrganisationUID" Type="int" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientDeceasedDetail">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" />
+          <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="DeathDttm" Type="datetime" Nullable="false" />
+          <Property Name="DeathTime" Type="datetime" />
+          <Property Name="ConfirmedBy" Type="int" />
+          <Property Name="DCSRNUID" Type="int" />
+          <Property Name="Comments" Type="nvarchar" MaxLength="255" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="IsConfirmed" Type="nvarchar" MaxLength="1" />
+          <Property Name="PatientMessage" Type="nvarchar" MaxLength="255" />
+          <Property Name="ATPSTYUID" Type="int" />
         </EntityType>
         <EntityType Name="PatientDemographicLog">
           <Key>
@@ -1535,6 +1834,9 @@
           <Property Name="IdentifyingUID" Type="bigint" />
           <Property Name="IdentifyingType" Type="nvarchar" MaxLength="30" />
           <Property Name="OrderRaisedBy" Type="int" Nullable="false" />
+          <Property Name="OrderLocationUID" Type="int" />
+          <Property Name="OrderToLocationUID" Type="int" />
+          <Property Name="IsContinuous" Type="nvarchar" MaxLength="1" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1682,6 +1984,7 @@
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
           <Property Name="VISTSUID" Type="int" Nullable="false" />
           <Property Name="EventStartDttm" Type="datetime" Nullable="false" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1747,6 +2050,7 @@
           </Key>
           <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
+          <Property Name="ENTYPUID" Type="int" />
           <Property Name="CareProviderUID" Type="int" />
           <Property Name="VISTSUID" Type="int" />
           <Property Name="VISTYUID" Type="int" />
@@ -1754,10 +2058,17 @@
           <Property Name="StartDttm" Type="datetime" />
           <Property Name="EndDttm" Type="datetime" />
           <Property Name="ArrivedDttm" Type="datetime" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="VisitID" Type="nvarchar" MaxLength="20" />
           <Property Name="IsBillFinalized" Type="nvarchar" MaxLength="1" />
+          <Property Name="ENSTAUID" Type="int" />
+          <Property Name="VisitLocationUID" Type="int" />
+          <Property Name="CurrentCareProviderUID" Type="int" />
+          <Property Name="IPBookingUID" Type="int" />
           <Property Name="BookingUID" Type="int" />
           <Property Name="CheckupJobUID" Type="int" />
+          <Property Name="BedUID" Type="int" />
+          <Property Name="IsReAdmisstion" Type="nvarchar" MaxLength="1" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="100" />
           <Property Name="Comments" Type="nvarchar" MaxLength="200" />
           <Property Name="RefNo" Type="int" />
@@ -1767,6 +2078,47 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="OwnerOrganisationUID" Type="int" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientVisitCareProvider">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="CareproviderUID" Type="int" />
+          <Property Name="StartDttm" Type="datetime" />
+          <Property Name="SeenDttm" Type="datetime" />
+          <Property Name="CareProviderName" Type="nvarchar" MaxLength="100" />
+          <Property Name="LocationUID" Type="int" />
+          <Property Name="ReferralUID" Type="int" />
+          <Property Name="PACLSUID" Type="int" />
+          <Property Name="BookingUID" Type="int" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="PatientVisitID">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Identifier" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="VISIDUID" Type="int" Nullable="false" />
+          <Property Name="MainIdentifier" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="ActiveFrom" Type="datetime" Nullable="false" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="PatientVisitPayor">
@@ -1868,49 +2220,64 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="PayorDetailUID" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" MaxLength="200" />
-          <Property Name="PAYTRMUID" Type="int" />
-          <Property Name="PBTYPUID" Type="int" />
-          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="Code" Type="nvarchar" MaxLength="60" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" />
+          <Property Name="ActiveFrom" Type="datetime" Nullable="false" />
           <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="400" />
+          <Property Name="CRDTRMUID" Type="int" />
+          <Property Name="IsForeign" Type="nvarchar" MaxLength="1" />
+          <Property Name="BLTYPUID" Type="int" />
+          <Property Name="AGTYPUID" Type="int" />
+          <Property Name="PrimaryPBLCTUID" Type="int" />
+          <Property Name="SecondaryPBLCTUID" Type="int" />
+          <Property Name="TertiaryPBLCTUID" Type="int" />
+          <Property Name="OPDCoverPerDay" Type="float" />
+          <Property Name="ClaimPercentage" Type="float" />
+          <Property Name="FixedCopayAmount" Type="float" />
+          <Property Name="PBTYPUID" Type="int" />
+          <Property Name="IsPackageDiscountAllowed" Type="nvarchar" MaxLength="1" />
+          <Property Name="IsLimitAfterDiscount" Type="nvarchar" MaxLength="1" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="InsuranceCompanyUID" Type="int" />
+          <Property Name="PolicyMasterUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="OldAgreemntUID" Type="int" />
         </EntityType>
         <EntityType Name="PayorDetail">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Code" Type="nvarchar" MaxLength="20" />
-          <Property Name="PayorName" Type="nvarchar" MaxLength="200" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="200" />
-          <Property Name="Address1" Type="nvarchar" MaxLength="500" />
-          <Property Name="Address2" Type="nvarchar" MaxLength="500" />
+          <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="PayorName" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Address1" Type="nvarchar" MaxLength="255" />
+          <Property Name="Address2" Type="nvarchar" MaxLength="255" />
           <Property Name="DistrictUID" Type="int" />
           <Property Name="AmphurUID" Type="int" />
           <Property Name="ProvinceUID" Type="int" />
-          <Property Name="ZipCode" Type="nvarchar" MaxLength="50" />
-          <Property Name="ContactPersonName" Type="nvarchar" MaxLength="100" />
-          <Property Name="TINNo" Type="nvarchar" MaxLength="20" />
-          <Property Name="MobileNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="FaxNumber" Type="nvarchar" MaxLength="50" />
-          <Property Name="Email" Type="nvarchar" MaxLength="100" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="200" />
-          <Property Name="PAYTRMUID" Type="int" />
+          <Property Name="ZipCode" Type="nvarchar" MaxLength="20" />
+          <Property Name="MobileNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="PhoneNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="FaxNumber" Type="nvarchar" MaxLength="100" />
+          <Property Name="EmailAddress" Type="nvarchar" MaxLength="100" />
           <Property Name="PYRACATUID" Type="int" />
-          <Property Name="IsGenerateBillNumber" Type="bit" />
-          <Property Name="IDFormat" Type="nvarchar" MaxLength="50" />
-          <Property Name="IDLength" Type="int" />
-          <Property Name="NumberValue" Type="int" />
-          <Property Name="LastRenumberDttm" Type="datetime" />
+          <Property Name="ContactPersonName" Type="nvarchar" MaxLength="100" />
+          <Property Name="AgentName" Type="nvarchar" MaxLength="400" />
+          <Property Name="CRDTRMUID" Type="int" />
+          <Property Name="PBLCTUID" Type="int" />
+          <Property Name="InsuranceCompanyUID" Type="int" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="Note" Type="nvarchar" MaxLength="500" />
+          <Property Name="GovernmentNo" Type="nvarchar" MaxLength="1000" />
+          <Property Name="OldPayorDetailUID" Type="int" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -1961,6 +2328,22 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="PolicyMaster">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="PolicyName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="AGTYPUID" Type="int" />
+        </EntityType>
         <EntityType Name="PostalCode">
           <Key>
             <PropertyRef Name="UID" />
@@ -1991,6 +2374,8 @@
           <Property Name="ORDSTUID" Type="int" />
           <Property Name="BSMDDUID" Type="int" />
           <Property Name="DispensedDttm" Type="datetime" />
+          <Property Name="OrderLocationUID" Type="int" />
+          <Property Name="OrderToLocationUID" Type="int" />
           <Property Name="PatientOrderUID" Type="bigint" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2255,6 +2640,8 @@
           <Property Name="RQPRTUID" Type="int" />
           <Property Name="BSMDDUID" Type="int" />
           <Property Name="ORDSTUID" Type="int" />
+          <Property Name="OrderLocationUID" Type="int" />
+          <Property Name="OrderToLocationUID" Type="int" />
           <Property Name="PatientOrderUID" Type="bigint" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -2753,6 +3140,13 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
         </EntityType>
+        <EntityType Name="SEQERVisitID">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+        </EntityType>
         <EntityType Name="SEQGRNID">
           <Key>
             <PropertyRef Name="UID" />
@@ -2920,6 +3314,26 @@
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Description" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="255" />
+          <Property Name="SPTYPUID" Type="int" />
+          <Property Name="HealthOrganisationUID" Type="int" />
+          <Property Name="ActiveFrom" Type="datetime" />
+          <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="ParentUID" Type="int" />
+          <Property Name="OwnerOrganisationUID" Type="int" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="Specimen">
           <Key>
             <PropertyRef Name="UID" />
@@ -3057,9 +3471,12 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Name" Type="nvarchar" MaxLength="200" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="200" />
+          <Property Name="STRTPUID" Type="int" />
           <Property Name="STDTPUID" Type="int" />
           <Property Name="ActiveFrom" Type="datetime" />
           <Property Name="ActiveTo" Type="datetime" />
+          <Property Name="LocationUID" Type="int" />
+          <Property Name="HealthOrganisationUID" Type="int" />
           <Property Name="IsDoctorOnly" Type="nvarchar" MaxLength="1" />
           <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
@@ -3083,6 +3500,16 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <EntityType Name="VendorDetail">
           <Key>
@@ -3272,6 +3699,9 @@
         <Function Name="fGetHealthOrganisationName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fGetInsuranceCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_InsuranceCompanyUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetInvestigationString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
@@ -3289,6 +3719,9 @@
           <Parameter Name="P_ItemMasterUID" Type="int" Mode="In" />
           <Parameter Name="P_StoreUID" Type="int" Mode="In" />
           <Parameter Name="P_OwnerOrganisation" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fGetLocationName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_LocationUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetOwnerOrganisationHeader" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_OwnerOrganisationID" Type="int" Mode="In" />
@@ -3320,8 +3753,14 @@
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_LastVisitUID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="fGetPayorAgreementName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_PayorAgreementUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetPayorName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fGetPolicyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_PolicyUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetProvinceName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_ProvinceUID" Type="int" Mode="In" />
@@ -3356,6 +3795,9 @@
           <Parameter Name="IDLength" Type="int" Mode="In" />
           <Parameter Name="NumberValue" Type="int" Mode="In" />
         </Function>
+        <Function Name="fGetSpecialityName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_SpecialityUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetStoreName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_StoreUID" Type="int" Mode="In" />
         </Function>
@@ -3369,6 +3811,7 @@
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
           <Parameter Name="P_ColumnName" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
         <Function Name="fSetItemNameSearch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_Code" Type="nvarchar" Mode="In" />
         </Function>
@@ -3407,10 +3850,6 @@
         <Function Name="pGetCheckupMobileResult" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
-        </Function>
-        <Function Name="pGetCheckupRiskAudioTimus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
-          <Parameter Name="P_PayorDetailUID" Type="bigint" Mode="In" />
         </Function>
         <Function Name="pGetDoctorFee" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -3750,12 +4189,6 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_OrganisationUID" Type="int" Mode="In" />
         </Function>
-        <Function Name="pRPTEcoutSumGroupReceipt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
-          <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
-          <Parameter Name="P_OrganisationList" Type="nvarchar(max)" Mode="In" />
-          <Parameter Name="P_VisitTypeUID" Type="int" Mode="In" />
-        </Function>
         <Function Name="pRPTOrderRequestCard" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
@@ -3911,6 +4344,26 @@
           <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
           <Parameter Name="P_PRTGPUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="pSearchEmergencyVisit" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HN" Type="nvarchar" Mode="In" />
+          <Parameter Name="FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="CareproViderUID" Type="int" Mode="In" />
+          <Parameter Name="StatusList" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="ArrivedDttm" Type="datetime" Mode="In" />
+          <Parameter Name="OwnerOrganisation" Type="int" Mode="In" />
+          <Parameter Name="PayorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="CheckupJobUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pSearchIPBooking" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="HN" Type="nvarchar" Mode="In" />
+          <Parameter Name="DateFrom" Type="datetime" Mode="In" />
+          <Parameter Name="DateTo" Type="datetime" Mode="In" />
+          <Parameter Name="BKTYPUID" Type="int" Mode="In" />
+          <Parameter Name="WardUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="pSearchItemMasterCriteria" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_Text" Type="nvarchar" Mode="In" />
         </Function>
@@ -3943,6 +4396,18 @@
           <Parameter Name="P_DateTo" Type="datetime" Mode="In" />
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
           <Parameter Name="P_CheckupJobUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pSearchPatientEmergency" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientID" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_FirstName" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_MiddleName" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_LastName" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_NickName" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_BirthDate" Type="date" Mode="In" />
+          <Parameter Name="P_SEXXXUID" Type="int" Mode="In" />
+          <Parameter Name="P_IDCard" Type="nvarchar" Mode="In" />
+          <Parameter Name="P_LastVisitDate" Type="date" Mode="In" />
+          <Parameter Name="P_MobilePhone" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="pSearchPatientMedicalDischarge" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="HN" Type="nvarchar" Mode="In" />
@@ -4094,6 +4559,36 @@
           <Parameter Name="P_PatientMergeUID" Type="int" Mode="In" />
           <Parameter Name="P_UserID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="version" Type="int" Mode="In" />
+          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
+        </Function>
+        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
+          <Parameter Name="owner_id" Type="int" Mode="In" />
+          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="splitstring" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="stringToSplit" Type="varchar(max)" Mode="In" />
           <ReturnType>
@@ -4105,6 +4600,8 @@
           </ReturnType>
         </Function>
         <EntityContainer Name="MediTechModelStoreContainer">
+          <EntitySet Name="AdmissionEvent" EntityType="Self.AdmissionEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="AEDischargeEvent" EntityType="Self.AEDischargeEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Amphur" EntityType="Self.Amphur" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItem" EntityType="Self.BillableItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="BillableItemDetail" EntityType="Self.BillableItemDetail" Schema="dbo" store:Type="Tables" />
@@ -4112,7 +4609,9 @@
           <EntitySet Name="BillingSubGroup" EntityType="Self.BillingSubGroup" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Careprovider" EntityType="Self.Careprovider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CareproviderLocation" EntityType="Self.CareproviderLocation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CareproviderOrganisation" EntityType="Self.CareproviderOrganisation" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CareproviderTransfer" EntityType="Self.CareproviderTransfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CCHPI" EntityType="Self.CCHPI" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CCHPIMaster" EntityType="Self.CCHPIMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupGroupResult" EntityType="Self.CheckupGroupResult" Schema="dbo" store:Type="Tables" />
@@ -4123,6 +4622,7 @@
           <EntitySet Name="CheckupRuleItem" EntityType="Self.CheckupRuleItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupRuleRecommend" EntityType="Self.CheckupRuleRecommend" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="CheckupTextMaster" EntityType="Self.CheckupTextMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DischargeEvent" EntityType="Self.DischargeEvent" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DispensedItem" EntityType="Self.DispensedItem" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeItemList" EntityType="Self.DisposeItemList" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="DisposeStock" EntityType="Self.DisposeStock" Schema="dbo" store:Type="Tables" />
@@ -4138,6 +4638,9 @@
           <EntitySet Name="GroupReceiptPatientBill" EntityType="Self.GroupReceiptPatientBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthOrganisation" EntityType="Self.HealthOrganisation" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="HealthOrganisationID" EntityType="Self.HealthOrganisationID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsuranceCompany" EntityType="Self.InsuranceCompany" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="InsurancePlan" EntityType="Self.InsurancePlan" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="IPBooking" EntityType="Self.IPBooking" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemAverageCost" EntityType="Self.ItemAverageCost" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemIssue" EntityType="Self.ItemIssue" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemIssueDetail" EntityType="Self.ItemIssueDetail" Schema="dbo" store:Type="Tables" />
@@ -4149,6 +4652,7 @@
           <EntitySet Name="ItemUOMConversion" EntityType="Self.ItemUOMConversion" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="ItemVendorDetail" EntityType="Self.ItemVendorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Location" EntityType="Self.Location" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="LocationTransfer" EntityType="Self.LocationTransfer" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediTechInterface" EntityType="Self.MediTechInterface" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="Self.MediTechInterfaceDetail" Schema="dbo" store:Type="Tables" />
@@ -4162,10 +4666,13 @@
           <EntitySet Name="Patient" EntityType="Self.Patient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAddress" EntityType="Self.PatientAddress" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAddressMerge" EntityType="Self.PatientAddressMerge" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientADTEvent" EntityType="Self.PatientADTEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientAEAdmission" EntityType="Self.PatientAEAdmission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAllergy" EntityType="Self.PatientAllergy" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientAudiogram" EntityType="Self.PatientAudiogram" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientBill" EntityType="Self.PatientBill" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientBilledItem" EntityType="Self.PatientBilledItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientDeceasedDetail" EntityType="Self.PatientDeceasedDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientDemographicLog" EntityType="Self.PatientDemographicLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientEKG" EntityType="Self.PatientEKG" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientExamination" EntityType="Self.PatientExamination" Schema="dbo" store:Type="Tables" />
@@ -4186,6 +4693,8 @@
           <EntitySet Name="PatientSpirometry" EntityType="Self.PatientSpirometry" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientTitmus" EntityType="Self.PatientTitmus" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVisit" EntityType="Self.PatientVisit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientVisitCareProvider" EntityType="Self.PatientVisitCareProvider" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PatientVisitID" EntityType="Self.PatientVisitID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVisitPayor" EntityType="Self.PatientVisitPayor" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVisualAcuity" EntityType="Self.PatientVisualAcuity" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PatientVitalSign" EntityType="Self.PatientVitalSign" Schema="dbo" store:Type="Tables" />
@@ -4195,6 +4704,7 @@
           <EntitySet Name="Permission" EntityType="Self.Permission" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhysicalExam" EntityType="Self.PhysicalExam" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PhysicalExamTemplate" EntityType="Self.PhysicalExamTemplate" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="PolicyMaster" EntityType="Self.PolicyMaster" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PostalCode" EntityType="Self.PostalCode" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Prescription" EntityType="Self.Prescription" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PrescriptionItem" EntityType="Self.PrescriptionItem" Schema="dbo" store:Type="Tables" />
@@ -4237,6 +4747,7 @@
           <EntitySet Name="SEQCheckupJobNumber" EntityType="Self.SEQCheckupJobNumber" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQConfiguration" EntityType="Self.SEQConfiguration" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQDISPOSEID" EntityType="Self.SEQDISPOSEID" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEQERVisitID" EntityType="Self.SEQERVisitID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQGRNID" EntityType="Self.SEQGRNID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQGroupReceipt" EntityType="Self.SEQGroupReceipt" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQITCODE" EntityType="Self.SEQITCODE" Schema="dbo" store:Type="Tables" />
@@ -4257,6 +4768,7 @@
           <EntitySet Name="SEQVisitID" EntityType="Self.SEQVisitID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SessionDefinition" EntityType="Self.SessionDefinition" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SessionWithdrawnDetail" EntityType="Self.SessionWithdrawnDetail" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Speciality" EntityType="Self.Speciality" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Specimen" EntityType="Self.Specimen" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Stock" EntityType="Self.Stock" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StockAdjustment" EntityType="Self.StockAdjustment" Schema="dbo" store:Type="Tables" />
@@ -4264,6 +4776,7 @@
           <EntitySet Name="StockMovement" EntityType="Self.StockMovement" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Store" EntityType="Self.Store" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="StoreUOMConversion" EntityType="Self.StoreUOMConversion" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendorDetail" EntityType="Self.VendorDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VIPPatient" EntityType="Self.VIPPatient" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="WellnessData" EntityType="Self.WellnessData" Schema="dbo" store:Type="Tables" />
@@ -5269,6 +5782,70 @@
             <Parameter Name="P_OrganisationList" Mode="In" Type="String" />
             <Parameter Name="P_VisitTypeUID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="pSearchEmergencyVisit" ReturnType="Collection(MediTechModel.pSearchEmergencyVisit_Result)">
+            <Parameter Name="HN" Mode="In" Type="String" />
+            <Parameter Name="FirstName" Mode="In" Type="String" />
+            <Parameter Name="LastName" Mode="In" Type="String" />
+            <Parameter Name="CareproViderUID" Mode="In" Type="Int32" />
+            <Parameter Name="StatusList" Mode="In" Type="String" />
+            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="ArrivedDttm" Mode="In" Type="DateTime" />
+            <Parameter Name="OwnerOrganisation" Mode="In" Type="Int32" />
+            <Parameter Name="PayorDetailUID" Mode="In" Type="Int32" />
+            <Parameter Name="CheckupJobUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pSearchIPBooking" ReturnType="Collection(MediTechModel.pSearchIPBooking_Result)">
+            <Parameter Name="HN" Mode="In" Type="String" />
+            <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
+            <Parameter Name="DateTo" Mode="In" Type="DateTime" />
+            <Parameter Name="BKTYPUID" Mode="In" Type="Int32" />
+            <Parameter Name="WardUID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="pSearchPatientEmergency" ReturnType="Collection(MediTechModel.pSearchPatientEmergency_Result)">
+            <Parameter Name="P_PatientID" Mode="In" Type="String" />
+            <Parameter Name="P_FirstName" Mode="In" Type="String" />
+            <Parameter Name="P_MiddleName" Mode="In" Type="String" />
+            <Parameter Name="P_LastName" Mode="In" Type="String" />
+            <Parameter Name="P_NickName" Mode="In" Type="String" />
+            <Parameter Name="P_BirthDate" Mode="In" Type="DateTime" />
+            <Parameter Name="P_SEXXXUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_IDCard" Mode="In" Type="String" />
+            <Parameter Name="P_LastVisitDate" Mode="In" Type="DateTime" />
+            <Parameter Name="P_MobilePhone" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_alterdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_creatediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="version" Mode="In" Type="Int32" />
+            <Parameter Name="definition" Mode="In" Type="Binary" />
+          </FunctionImport>
+          <FunctionImport Name="sp_dropdiagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(MediTechModel.sp_helpdiagramdefinition_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(MediTechModel.sp_helpdiagrams_Result)">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_renamediagram">
+            <Parameter Name="diagramname" Mode="In" Type="String" />
+            <Parameter Name="owner_id" Mode="In" Type="Int32" />
+            <Parameter Name="new_diagramname" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_upgraddiagrams" />
+          <EntitySet Name="AdmissionEvent" EntityType="MediTechModel.AdmissionEvent" />
+          <EntitySet Name="AEDischargeEvent" EntityType="MediTechModel.AEDischargeEvent" />
           <EntitySet Name="Amphur" EntityType="MediTechModel.Amphur" />
           <EntitySet Name="BillableItem" EntityType="MediTechModel.BillableItem" />
           <EntitySet Name="BillableItemDetail" EntityType="MediTechModel.BillableItemDetail" />
@@ -5276,7 +5853,9 @@
           <EntitySet Name="BillingSubGroup" EntityType="MediTechModel.BillingSubGroup" />
           <EntitySet Name="Booking" EntityType="MediTechModel.Booking" />
           <EntitySet Name="Careprovider" EntityType="MediTechModel.Careprovider" />
+          <EntitySet Name="CareproviderLocation" EntityType="MediTechModel.CareproviderLocation" />
           <EntitySet Name="CareproviderOrganisation" EntityType="MediTechModel.CareproviderOrganisation" />
+          <EntitySet Name="CareproviderTransfer" EntityType="MediTechModel.CareproviderTransfer" />
           <EntitySet Name="CCHPI" EntityType="MediTechModel.CCHPI" />
           <EntitySet Name="CCHPIMaster" EntityType="MediTechModel.CCHPIMaster" />
           <EntitySet Name="CheckupGroupResult" EntityType="MediTechModel.CheckupGroupResult" />
@@ -5287,6 +5866,7 @@
           <EntitySet Name="CheckupRuleItem" EntityType="MediTechModel.CheckupRuleItem" />
           <EntitySet Name="CheckupRuleRecommend" EntityType="MediTechModel.CheckupRuleRecommend" />
           <EntitySet Name="CheckupTextMaster" EntityType="MediTechModel.CheckupTextMaster" />
+          <EntitySet Name="DischargeEvent" EntityType="MediTechModel.DischargeEvent" />
           <EntitySet Name="DispensedItem" EntityType="MediTechModel.DispensedItem" />
           <EntitySet Name="DisposeItemList" EntityType="MediTechModel.DisposeItemList" />
           <EntitySet Name="DisposeStock" EntityType="MediTechModel.DisposeStock" />
@@ -5302,6 +5882,9 @@
           <EntitySet Name="GroupReceiptPatientBill" EntityType="MediTechModel.GroupReceiptPatientBill" />
           <EntitySet Name="HealthOrganisation" EntityType="MediTechModel.HealthOrganisation" />
           <EntitySet Name="HealthOrganisationID" EntityType="MediTechModel.HealthOrganisationID" />
+          <EntitySet Name="InsuranceCompany" EntityType="MediTechModel.InsuranceCompany" />
+          <EntitySet Name="InsurancePlan" EntityType="MediTechModel.InsurancePlan" />
+          <EntitySet Name="IPBooking" EntityType="MediTechModel.IPBooking" />
           <EntitySet Name="ItemAverageCost" EntityType="MediTechModel.ItemAverageCost" />
           <EntitySet Name="ItemIssue" EntityType="MediTechModel.ItemIssue" />
           <EntitySet Name="ItemIssueDetail" EntityType="MediTechModel.ItemIssueDetail" />
@@ -5313,6 +5896,7 @@
           <EntitySet Name="ItemUOMConversion" EntityType="MediTechModel.ItemUOMConversion" />
           <EntitySet Name="ItemVendorDetail" EntityType="MediTechModel.ItemVendorDetail" />
           <EntitySet Name="Location" EntityType="MediTechModel.Location" />
+          <EntitySet Name="LocationTransfer" EntityType="MediTechModel.LocationTransfer" />
           <EntitySet Name="Login" EntityType="MediTechModel.Login" />
           <EntitySet Name="MediTechInterface" EntityType="MediTechModel.MediTechInterface" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="MediTechModel.MediTechInterfaceDetail" />
@@ -5326,10 +5910,13 @@
           <EntitySet Name="Patient" EntityType="MediTechModel.Patient" />
           <EntitySet Name="PatientAddress" EntityType="MediTechModel.PatientAddress" />
           <EntitySet Name="PatientAddressMerge" EntityType="MediTechModel.PatientAddressMerge" />
+          <EntitySet Name="PatientADTEvent" EntityType="MediTechModel.PatientADTEvent" />
+          <EntitySet Name="PatientAEAdmission" EntityType="MediTechModel.PatientAEAdmission" />
           <EntitySet Name="PatientAllergy" EntityType="MediTechModel.PatientAllergy" />
           <EntitySet Name="PatientAudiogram" EntityType="MediTechModel.PatientAudiogram" />
           <EntitySet Name="PatientBill" EntityType="MediTechModel.PatientBill" />
           <EntitySet Name="PatientBilledItem" EntityType="MediTechModel.PatientBilledItem" />
+          <EntitySet Name="PatientDeceasedDetail" EntityType="MediTechModel.PatientDeceasedDetail" />
           <EntitySet Name="PatientDemographicLog" EntityType="MediTechModel.PatientDemographicLog" />
           <EntitySet Name="PatientEKG" EntityType="MediTechModel.PatientEKG" />
           <EntitySet Name="PatientExamination" EntityType="MediTechModel.PatientExamination" />
@@ -5350,6 +5937,8 @@
           <EntitySet Name="PatientSpirometry" EntityType="MediTechModel.PatientSpirometry" />
           <EntitySet Name="PatientTitmus" EntityType="MediTechModel.PatientTitmus" />
           <EntitySet Name="PatientVisit" EntityType="MediTechModel.PatientVisit" />
+          <EntitySet Name="PatientVisitCareProvider" EntityType="MediTechModel.PatientVisitCareProvider" />
+          <EntitySet Name="PatientVisitID" EntityType="MediTechModel.PatientVisitID" />
           <EntitySet Name="PatientVisitPayor" EntityType="MediTechModel.PatientVisitPayor" />
           <EntitySet Name="PatientVisualAcuity" EntityType="MediTechModel.PatientVisualAcuity" />
           <EntitySet Name="PatientVitalSign" EntityType="MediTechModel.PatientVitalSign" />
@@ -5359,6 +5948,7 @@
           <EntitySet Name="Permission" EntityType="MediTechModel.Permission" />
           <EntitySet Name="PhysicalExam" EntityType="MediTechModel.PhysicalExam" />
           <EntitySet Name="PhysicalExamTemplate" EntityType="MediTechModel.PhysicalExamTemplate" />
+          <EntitySet Name="PolicyMaster" EntityType="MediTechModel.PolicyMaster" />
           <EntitySet Name="PostalCode" EntityType="MediTechModel.PostalCode" />
           <EntitySet Name="Prescription" EntityType="MediTechModel.Prescription" />
           <EntitySet Name="PrescriptionItem" EntityType="MediTechModel.PrescriptionItem" />
@@ -5401,6 +5991,7 @@
           <EntitySet Name="SEQCheckupJobNumber" EntityType="MediTechModel.SEQCheckupJobNumber" />
           <EntitySet Name="SEQConfiguration" EntityType="MediTechModel.SEQConfiguration" />
           <EntitySet Name="SEQDISPOSEID" EntityType="MediTechModel.SEQDISPOSEID" />
+          <EntitySet Name="SEQERVisitID" EntityType="MediTechModel.SEQERVisitID" />
           <EntitySet Name="SEQGRNID" EntityType="MediTechModel.SEQGRNID" />
           <EntitySet Name="SEQGroupReceipt" EntityType="MediTechModel.SEQGroupReceipt" />
           <EntitySet Name="SEQITCODE" EntityType="MediTechModel.SEQITCODE" />
@@ -5421,6 +6012,7 @@
           <EntitySet Name="SEQVisitID" EntityType="MediTechModel.SEQVisitID" />
           <EntitySet Name="SessionDefinition" EntityType="MediTechModel.SessionDefinition" />
           <EntitySet Name="SessionWithdrawnDetail" EntityType="MediTechModel.SessionWithdrawnDetail" />
+          <EntitySet Name="Speciality" EntityType="MediTechModel.Speciality" />
           <EntitySet Name="Specimen" EntityType="MediTechModel.Specimen" />
           <EntitySet Name="Stock" EntityType="MediTechModel.Stock" />
           <EntitySet Name="StockAdjustment" EntityType="MediTechModel.StockAdjustment" />
@@ -5428,6 +6020,7 @@
           <EntitySet Name="StockMovement" EntityType="MediTechModel.StockMovement" />
           <EntitySet Name="Store" EntityType="MediTechModel.Store" />
           <EntitySet Name="StoreUOMConversion" EntityType="MediTechModel.StoreUOMConversion" />
+          <EntitySet Name="sysdiagrams" EntityType="MediTechModel.sysdiagrams" />
           <EntitySet Name="VendorDetail" EntityType="MediTechModel.VendorDetail" />
           <EntitySet Name="VIPPatient" EntityType="MediTechModel.VIPPatient" />
           <EntitySet Name="WellnessData" EntityType="MediTechModel.WellnessData" />
@@ -7774,6 +8367,194 @@
           <Property Type="String" Name="OrderBy" Nullable="true" MaxLength="100" />
           <Property Type="String" Name="NoBusiness" Nullable="true" MaxLength="10" />
         </ComplexType>
+        <ComplexType Name="pSearchEmergencyVisit_Result">
+          <Property Type="Int64" Name="PatientUID" Nullable="false" />
+          <Property Type="Int64" Name="PatientVisitUID" Nullable="false" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AgeString" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BloodGroup" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="DateTime" Name="BirthDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="VisitStatus" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="VisitType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CareProviderName" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="StartDttm" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CareProviderUID" Nullable="true" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="VISTSUID" Nullable="true" />
+          <Property Type="Int32" Name="VISTYUID" Nullable="true" />
+          <Property Type="Int32" Name="PRITYUID" Nullable="true" />
+          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="OwnerOrganisationUID" Nullable="true" />
+          <Property Type="String" Name="OwnerOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="Double" Name="Weight" Nullable="true" />
+          <Property Type="Double" Name="Height" Nullable="true" />
+          <Property Type="Double" Name="BMI" Nullable="true" />
+          <Property Type="Int32" Name="PayorDetailUID" Nullable="false" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="PayorAgreementUID" Nullable="false" />
+          <Property Type="Int32" Name="RefNo" Nullable="true" />
+          <Property Type="Int32" Name="CheckupJobUID" Nullable="true" />
+          <Property Type="Boolean" Name="IsVIP" Nullable="true" />
+          <Property Type="Int32" Name="VIPTPUID" Nullable="true" />
+          <Property Type="String" Name="VIPType" Nullable="true" MaxLength="255" />
+          <Property Type="DateTime" Name="VIPActiveFrom" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="VIPActiveTo" Nullable="true" Precision="23" />
+          <Property Type="Binary" Name="PatientImage" Nullable="true" />
+          <Property Type="Int32" Name="BedUID" Nullable="true" />
+          <Property Type="String" Name="BedName" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pSearchIPBooking_Result">
+          <Property Type="Int64" Name="PatientUID" Nullable="false" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AgeString" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BloodGroup" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="DateTime" Name="BirthDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="23" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="VisitType" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="CareProviderName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="IPBookingUID" Nullable="false" />
+          <Property Type="DateTime" Name="AdmissionDttm" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="ExpectedDischargeDttm" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="BookedDttm" Nullable="false" Precision="23" />
+          <Property Type="String" Name="ReferredBy" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="ExpectedLengthofStay" Nullable="false" />
+          <Property Type="Int32" Name="CancelledBy" Nullable="true" />
+          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="CareProviderUID" Nullable="false" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="VISTYUID" Nullable="false" />
+          <Property Type="Int32" Name="BKTYPUID" Nullable="false" />
+          <Property Type="Int32" Name="SpecialityUID" Nullable="true" />
+          <Property Type="String" Name="SpecialityName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="LocationUID" Nullable="true" />
+          <Property Type="String" Name="LocationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BedBookingRequest" Nullable="true" MaxLength="255" />
+          <Property Type="Int32" Name="BKSTSUID" Nullable="false" />
+          <Property Type="Int32" Name="BedUID" Nullable="true" />
+          <Property Type="String" Name="BedName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="RequestedByLocationUID" Nullable="true" />
+          <Property Type="String" Name="RequestedLocationName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="BookingStatus" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="Int32" Name="OwnerOrganisationUID" Nullable="false" />
+          <Property Type="String" Name="OwnerOrganisation" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Ward" Nullable="true" MaxLength="100" />
+        </ComplexType>
+        <ComplexType Name="pSearchPatientEmergency_Result">
+          <Property Type="Int64" Name="PatientUID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="LastName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="NickName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="SEXXXUID" Nullable="true" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="Int32" Name="TITLEUID" Nullable="true" />
+          <Property Type="String" Name="Title" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="PatientID" Nullable="false" MaxLength="30" />
+          <Property Type="String" Name="EmployeeID" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="Department" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Position" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="BirthDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="AgeString" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="DOBComputed" Nullable="false" />
+          <Property Type="Int32" Name="BLOODUID" Nullable="true" />
+          <Property Type="String" Name="BloodGroup" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="NationalID" Nullable="true" MaxLength="13" />
+          <Property Type="Int32" Name="RELGNUID" Nullable="true" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
+          <Property Type="Int32" Name="NATNLUID" Nullable="true" />
+          <Property Type="Int32" Name="SPOKLUID" Nullable="true" />
+          <Property Type="Int32" Name="MARRYUID" Nullable="true" />
+          <Property Type="Int32" Name="OCCUPUID" Nullable="true" />
+          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="Email" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="Comment" Nullable="true" MaxLength="500" />
+          <Property Type="String" Name="IDLine" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="RegisterDate" Nullable="false" Precision="23" />
+          <Property Type="DateTime" Name="LastVisitDttm" Nullable="true" Precision="23" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagramdefinition_Result">
+          <Property Type="Int32" Name="version" Nullable="true" />
+          <Property Type="Binary" Name="definition" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_helpdiagrams_Result">
+          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
+          <Property Type="Int32" Name="ID" Nullable="false" />
+          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="OwnerID" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="AdmissionEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="CareproviderUID" Type="Int32" Nullable="false" />
+          <Property Name="ExpectedLengthOfStay" Type="Int32" />
+          <Property Name="AdmissionDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpectedDischargeDttm" Type="DateTime" Precision="3" />
+          <Property Name="IPBookingUID" Type="Int32" />
+          <Property Name="PreviousEventUID" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="ValidFromDttm" Type="DateTime" Precision="3" />
+          <Property Name="ValidToDttm" Type="DateTime" Precision="3" />
+          <Property Name="IsNoVisitorAllowed" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="RequestingLocationUID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="AEDischargeEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientAEAdmissionUID" Type="Int64" Nullable="false" />
+          <Property Name="CheckOutDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DSCCNDUID" Type="Int32" />
+          <Property Name="DSCTYPUID" Type="Int32" />
+          <Property Name="DESTINUID" Type="Int32" />
+          <Property Name="DeceasedDttm" Type="DateTime" Precision="3" />
+          <Property Name="ATSTYPUID" Type="Int32" />
+          <Property Name="DischargeEvents" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RecordedBy" Type="Int32" Nullable="false" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="Amphur">
           <Key>
             <PropertyRef Name="UID" />
@@ -7919,6 +8700,23 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="CareproviderLocation">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CareproviderUID" Type="Int32" Nullable="false" />
+          <Property Name="LocationUID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="CareproviderOrganisation">
           <Key>
             <PropertyRef Name="UID" />
@@ -7934,6 +8732,23 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="CareproviderTransfer">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="CareproviderUID" Type="Int32" Nullable="false" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="CCHPI">
           <Key>
@@ -8108,6 +8923,36 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="DischargeEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AdmissionEventUID" Type="Int64" Nullable="false" />
+          <Property Name="DSCSTUID" Type="Int32" Nullable="false" />
+          <Property Name="MedicalDischargeDttm" Type="DateTime" Precision="3" />
+          <Property Name="ActualDischargeDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RecordedBy" Type="Int32" Nullable="false" />
+          <Property Name="DischargeComments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="MDTRNUID" Type="Int32" Nullable="false" />
+          <Property Name="DSGDSUID" Type="Int32" />
+          <Property Name="DSCTYUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="INFCTUID" Type="Int32" />
+          <Property Name="AdvicedBy" Type="Int32" />
+          <Property Name="DischargeAdviceDttm" Type="DateTime" Precision="3" />
+          <Property Name="DSHTYPUID" Type="Int32" />
+          <Property Name="DSOCMUID" Type="Int32" />
+          <Property Name="CARNSUID" Type="Int32" />
+          <Property Name="CancelledBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CancelledDttm" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
         </EntityType>
         <EntityType Name="DispensedItem">
           <Key>
@@ -8435,6 +9280,80 @@
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="InsuranceCompany">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CMPTPUID" Type="Int32" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OldPayorDetailUID" Type="Int32" />
+        </EntityType>
+        <EntityType Name="InsurancePlan">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PayorAgreementUID" Type="Int32" Nullable="false" />
+          <Property Name="InsuranceCompanyUID" Type="Int32" />
+          <Property Name="PolicyMasterUID" Type="Int32" Nullable="false" />
+          <Property Name="PayorDetailUID" Type="Int32" Nullable="false" />
+          <Property Name="ActiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="IPBooking">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="Int64" />
+          <Property Name="LocationUID" Type="Int32" />
+          <Property Name="SpecialityUID" Type="Int32" />
+          <Property Name="CareproviderUID" Type="Int32" Nullable="false" />
+          <Property Name="BedUID" Type="Int32" />
+          <Property Name="AdmissionDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpectedDischargeDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ExpectedLengthofStay" Type="Int32" Nullable="false" />
+          <Property Name="BookedDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="BKSTSUID" Type="Int32" Nullable="false" />
+          <Property Name="VISTYUID" Type="Int32" Nullable="false" />
+          <Property Name="BKTYPUID" Type="Int32" Nullable="false" />
+          <Property Name="BDCATUID" Type="Int32" />
+          <Property Name="ReferredBy" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="ReferredByUID" Type="Int32" />
+          <Property Name="RequestedByLocationUID" Type="Int32" />
+          <Property Name="RequestedByUID" Type="Int32" />
+          <Property Name="CANRSUID" Type="Int32" />
+          <Property Name="CancelledBy" Type="Int32" />
+          <Property Name="CancelledDttm" Type="DateTime" Precision="3" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="ItemAverageCost">
           <Key>
             <PropertyRef Name="UID" />
@@ -8691,8 +9610,15 @@
           <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="LOTYPUID" Type="Int32" Nullable="false" />
           <Property Name="ParentLocationUID" Type="Int32" />
+          <Property Name="LCTSTUID" Type="Int32" />
           <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" />
+          <Property Name="IsRegistrationAllowed" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsCanOrder" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsEmergency" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsTemporaryBed" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="EMZONEUID" Type="Int32" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -8700,6 +9626,31 @@
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="LocationTransfer">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="LocationUID" Type="Int32" Nullable="false" />
+          <Property Name="BedUID" Type="Int32" />
+          <Property Name="BDCATUID" Type="Int32" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="EffectiveDttm" Type="DateTime" Precision="3" />
+          <Property Name="TRNSTUID" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="PrimaryBedUID" Type="Int32" />
+          <Property Name="CANRSUID" Type="Int32" />
+          <Property Name="CancelComments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CancelDate" Type="DateTime" Precision="3" />
         </EntityType>
         <EntityType Name="Login">
           <Key>
@@ -8799,7 +9750,6 @@
           <Property Name="ProcessingNotes" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="Price" Type="Double" />
           <Property Name="DoctorFee" Type="Double" />
-          <Property Name="CareproviderUID" Type="Int32" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -8978,6 +9928,65 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="PatientADTEvent">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="EVNTYUID" Type="Int32" Nullable="false" />
+          <Property Name="EventOccuredDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="IdentifyingUID" Type="Int64" Nullable="false" />
+          <Property Name="IdentifyingType" Type="String" Nullable="false" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientAEAdmission">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="ARRMDUID" Type="Int32" Nullable="false" />
+          <Property Name="ESCTPUID" Type="Int32" />
+          <Property Name="EscortName" Type="String" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="RELTNUID" Type="Int32" />
+          <Property Name="ContactNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="VehicleNumber" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="MLCREAUID" Type="Int32" />
+          <Property Name="EmergencyOcurredDttm" Type="DateTime" Precision="3" />
+          <Property Name="EMGTPUID" Type="Int32" />
+          <Property Name="EMGCDUID" Type="Int32" />
+          <Property Name="ProblemUID" Type="Int32" />
+          <Property Name="InjuryReason" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="EmergencyExamDetail" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="IsDead" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Line1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Line2" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Line3" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Line4" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ZipCode" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="AmphurUID" Type="Int32" />
+          <Property Name="ProvinceUID" Type="Int32" />
+          <Property Name="DistrictUID" Type="Int32" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="PatientAllergy">
           <Key>
             <PropertyRef Name="UID" />
@@ -9084,7 +10093,6 @@
           <Property Name="DoctorFee" Type="Double" />
           <Property Name="ItemCost" Type="Double" />
           <Property Name="ExtendCost" Type="Double" />
-          <Property Name="CareproviderUID" Type="Int32" />
           <Property Name="PatientOrderDetailUID" Type="Int64" Nullable="false" />
           <Property Name="StoreUID" Type="Int32" />
           <Property Name="StockUID" Type="Int32" />
@@ -9098,6 +10106,29 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="OwnerOrganisationUID" Type="Int32" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientDeceasedDetail">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientVisitUID" Type="Int64" />
+          <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="DeathDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="DeathTime" Type="DateTime" Precision="3" />
+          <Property Name="ConfirmedBy" Type="Int32" />
+          <Property Name="DCSRNUID" Type="Int32" />
+          <Property Name="Comments" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="IsConfirmed" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="PatientMessage" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ATPSTYUID" Type="Int32" />
         </EntityType>
         <EntityType Name="PatientDemographicLog">
           <Key>
@@ -9304,6 +10335,9 @@
           <Property Name="IdentifyingUID" Type="Int64" />
           <Property Name="IdentifyingType" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
           <Property Name="OrderRaisedBy" Type="Int32" Nullable="false" />
+          <Property Name="OrderLocationUID" Type="Int32" />
+          <Property Name="OrderToLocationUID" Type="Int32" />
+          <Property Name="IsContinuous" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9451,6 +10485,7 @@
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
           <Property Name="VISTSUID" Type="Int32" Nullable="false" />
           <Property Name="EventStartDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9516,6 +10551,7 @@
           </Key>
           <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
+          <Property Name="ENTYPUID" Type="Int32" />
           <Property Name="CareProviderUID" Type="Int32" />
           <Property Name="VISTSUID" Type="Int32" />
           <Property Name="VISTYUID" Type="Int32" />
@@ -9523,10 +10559,17 @@
           <Property Name="StartDttm" Type="DateTime" Precision="3" />
           <Property Name="EndDttm" Type="DateTime" Precision="3" />
           <Property Name="ArrivedDttm" Type="DateTime" Precision="3" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="VisitID" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
           <Property Name="IsBillFinalized" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ENSTAUID" Type="Int32" />
+          <Property Name="VisitLocationUID" Type="Int32" />
+          <Property Name="CurrentCareProviderUID" Type="Int32" />
+          <Property Name="IPBookingUID" Type="Int32" />
           <Property Name="BookingUID" Type="Int32" />
           <Property Name="CheckupJobUID" Type="Int32" />
+          <Property Name="BedUID" Type="Int32" />
+          <Property Name="IsReAdmisstion" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="CompanyName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="Comments" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="RefNo" Type="Int32" />
@@ -9536,6 +10579,47 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="OwnerOrganisationUID" Type="Int32" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientVisitCareProvider">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="CareproviderUID" Type="Int32" />
+          <Property Name="StartDttm" Type="DateTime" Precision="3" />
+          <Property Name="SeenDttm" Type="DateTime" Precision="3" />
+          <Property Name="CareProviderName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="LocationUID" Type="Int32" />
+          <Property Name="ReferralUID" Type="Int32" />
+          <Property Name="PACLSUID" Type="Int32" />
+          <Property Name="BookingUID" Type="Int32" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="PatientVisitID">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Identifier" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="VISIDUID" Type="Int32" Nullable="false" />
+          <Property Name="MainIdentifier" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFrom" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="PatientVisitPayor">
@@ -9637,49 +10721,64 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="PayorDetailUID" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PAYTRMUID" Type="Int32" />
-          <Property Name="PBTYPUID" Type="Int32" />
-          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="60" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="ActiveFrom" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="AgentName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="CRDTRMUID" Type="Int32" />
+          <Property Name="IsForeign" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="BLTYPUID" Type="Int32" />
+          <Property Name="AGTYPUID" Type="Int32" />
+          <Property Name="PrimaryPBLCTUID" Type="Int32" />
+          <Property Name="SecondaryPBLCTUID" Type="Int32" />
+          <Property Name="TertiaryPBLCTUID" Type="Int32" />
+          <Property Name="OPDCoverPerDay" Type="Double" />
+          <Property Name="ClaimPercentage" Type="Double" />
+          <Property Name="FixedCopayAmount" Type="Double" />
+          <Property Name="PBTYPUID" Type="Int32" />
+          <Property Name="IsPackageDiscountAllowed" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="IsLimitAfterDiscount" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="InsuranceCompanyUID" Type="Int32" />
+          <Property Name="PolicyMasterUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="OldAgreemntUID" Type="Int32" />
         </EntityType>
         <EntityType Name="PayorDetail">
           <Key>
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="PayorName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Address1" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Address2" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PayorName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address1" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Address2" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="DistrictUID" Type="Int32" />
           <Property Name="AmphurUID" Type="Int32" />
           <Property Name="ProvinceUID" Type="Int32" />
-          <Property Name="ZipCode" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="ContactPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="TINNo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
-          <Property Name="MobileNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="PhoneNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="FaxNumber" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Email" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
-          <Property Name="Comment" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="PAYTRMUID" Type="Int32" />
+          <Property Name="ZipCode" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="MobileNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="PhoneNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FaxNumber" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="PYRACATUID" Type="Int32" />
-          <Property Name="IsGenerateBillNumber" Type="Boolean" />
-          <Property Name="IDFormat" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="IDLength" Type="Int32" />
-          <Property Name="NumberValue" Type="Int32" />
-          <Property Name="LastRenumberDttm" Type="DateTime" Precision="3" />
+          <Property Name="ContactPersonName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="AgentName" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
+          <Property Name="CRDTRMUID" Type="Int32" />
+          <Property Name="PBLCTUID" Type="Int32" />
+          <Property Name="InsuranceCompanyUID" Type="Int32" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="Note" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="GovernmentNo" Type="String" MaxLength="1000" FixedLength="false" Unicode="true" />
+          <Property Name="OldPayorDetailUID" Type="Int32" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -9730,6 +10829,22 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="PolicyMaster">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="PolicyName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+          <Property Name="AGTYPUID" Type="Int32" />
+        </EntityType>
         <EntityType Name="PostalCode">
           <Key>
             <PropertyRef Name="UID" />
@@ -9760,6 +10875,8 @@
           <Property Name="ORDSTUID" Type="Int32" />
           <Property Name="BSMDDUID" Type="Int32" />
           <Property Name="DispensedDttm" Type="DateTime" Precision="3" />
+          <Property Name="OrderLocationUID" Type="Int32" />
+          <Property Name="OrderToLocationUID" Type="Int32" />
           <Property Name="PatientOrderUID" Type="Int64" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -10024,6 +11141,8 @@
           <Property Name="RQPRTUID" Type="Int32" />
           <Property Name="BSMDDUID" Type="Int32" />
           <Property Name="ORDSTUID" Type="Int32" />
+          <Property Name="OrderLocationUID" Type="Int32" />
+          <Property Name="OrderToLocationUID" Type="Int32" />
           <Property Name="PatientOrderUID" Type="Int64" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -10522,6 +11641,13 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="SEQERVisitID">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
         <EntityType Name="SEQGRNID">
           <Key>
             <PropertyRef Name="UID" />
@@ -10689,6 +11815,26 @@
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
+        <EntityType Name="Speciality">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
+          <Property Name="SPTYPUID" Type="Int32" />
+          <Property Name="HealthOrganisationUID" Type="Int32" />
+          <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
+          <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="ParentUID" Type="Int32" />
+          <Property Name="OwnerOrganisationUID" Type="Int32" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="Specimen">
           <Key>
             <PropertyRef Name="UID" />
@@ -10826,9 +11972,12 @@
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Name" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="STRTPUID" Type="Int32" />
           <Property Name="STDTPUID" Type="Int32" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
           <Property Name="ActiveTo" Type="DateTime" Precision="3" />
+          <Property Name="LocationUID" Type="Int32" />
+          <Property Name="HealthOrganisationUID" Type="Int32" />
           <Property Name="IsDoctorOnly" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
@@ -10852,6 +12001,16 @@
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
         </EntityType>
         <EntityType Name="VendorDetail">
           <Key>
@@ -12721,45 +13880,221 @@
           <FunctionImportMapping FunctionImportName="pInvenGoodReceiveFromEcount" FunctionName="MediTechModel.Store.pInvenGoodReceiveFromEcount" />
           <FunctionImportMapping FunctionImportName="pInvenInsertStockMovementFromEcount" FunctionName="MediTechModel.Store.pInvenInsertStockMovementFromEcount" />
           <FunctionImportMapping FunctionImportName="pInvenIssueItemEcount" FunctionName="MediTechModel.Store.pInvenIssueItemEcount" />
-          <FunctionImportMapping FunctionImportName="pGetCheckupRiskAudioTimus" FunctionName="MediTechModel.Store.pGetCheckupRiskAudioTimus">
+          <FunctionImportMapping FunctionImportName="pSearchEmergencyVisit" FunctionName="MediTechModel.Store.pSearchEmergencyVisit">
             <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pGetCheckupRiskAudioTimus_Result">
+              <ComplexTypeMapping TypeName="MediTechModel.pSearchEmergencyVisit_Result">
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientID" ColumnName="PatientID" />
                 <ScalarProperty Name="VisitID" ColumnName="VisitID" />
                 <ScalarProperty Name="PatientName" ColumnName="PatientName" />
-                <ScalarProperty Name="RequestItemCode" ColumnName="RequestItemCode" />
-                <ScalarProperty Name="RequestItemName" ColumnName="RequestItemName" />
-                <ScalarProperty Name="Catagory" ColumnName="Catagory" />
-                <ScalarProperty Name="ResultItemCode" ColumnName="ResultItemCode" />
-                <ScalarProperty Name="ResultItemName" ColumnName="ResultItemName" />
-                <ScalarProperty Name="ResultValue" ColumnName="ResultValue" />
-                <ScalarProperty Name="Year" ColumnName="Year" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="pRPTEcoutSumGroupReceipt" FunctionName="MediTechModel.Store.pRPTEcoutSumGroupReceipt">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pRPTEcoutSumGroupReceipt_Result">
-                <ScalarProperty Name="RowNumber" ColumnName="RowNumber" />
-                <ScalarProperty Name="DateOrder" ColumnName="DateOrder" />
-                <ScalarProperty Name="HealthOrganisationName" ColumnName="HealthOrganisationName" />
-                <ScalarProperty Name="ItemCode" ColumnName="ItemCode" />
-                <ScalarProperty Name="ItemName" ColumnName="ItemName" />
-                <ScalarProperty Name="Qty" ColumnName="Qty" />
-                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
-                <ScalarProperty Name="NetPrice" ColumnName="NetPrice" />
-                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
-                <ScalarProperty Name="Store" ColumnName="Store" />
-                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
-                <ScalarProperty Name="OrderSetCode" ColumnName="OrderSetCode" />
-                <ScalarProperty Name="OrderSetName" ColumnName="OrderSetName" />
-                <ScalarProperty Name="PayorCode" ColumnName="PayorCode" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AgeString" ColumnName="AgeString" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="BirthDttm" ColumnName="BirthDttm" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="VisitStatus" ColumnName="VisitStatus" />
+                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
+                <ScalarProperty Name="CareProviderName" ColumnName="CareProviderName" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="CareProviderUID" ColumnName="CareProviderUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="VISTSUID" ColumnName="VISTSUID" />
+                <ScalarProperty Name="VISTYUID" ColumnName="VISTYUID" />
+                <ScalarProperty Name="PRITYUID" ColumnName="PRITYUID" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="OwnerOrganisation" ColumnName="OwnerOrganisation" />
+                <ScalarProperty Name="Weight" ColumnName="Weight" />
+                <ScalarProperty Name="Height" ColumnName="Height" />
+                <ScalarProperty Name="BMI" ColumnName="BMI" />
+                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
                 <ScalarProperty Name="PayorName" ColumnName="PayorName" />
-                <ScalarProperty Name="OrderBy" ColumnName="OrderBy" />
-                <ScalarProperty Name="NoBusiness" ColumnName="NoBusiness" />
+                <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
+                <ScalarProperty Name="RefNo" ColumnName="RefNo" />
+                <ScalarProperty Name="CheckupJobUID" ColumnName="CheckupJobUID" />
+                <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
+                <ScalarProperty Name="VIPTPUID" ColumnName="VIPTPUID" />
+                <ScalarProperty Name="VIPType" ColumnName="VIPType" />
+                <ScalarProperty Name="VIPActiveFrom" ColumnName="VIPActiveFrom" />
+                <ScalarProperty Name="VIPActiveTo" ColumnName="VIPActiveTo" />
+                <ScalarProperty Name="PatientImage" ColumnName="PatientImage" />
+                <ScalarProperty Name="BedUID" ColumnName="BedUID" />
+                <ScalarProperty Name="BedName" ColumnName="BedName" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pSearchIPBooking" FunctionName="MediTechModel.Store.pSearchIPBooking">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pSearchIPBooking_Result">
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="AgeString" ColumnName="AgeString" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="BirthDttm" ColumnName="BirthDttm" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="VisitType" ColumnName="VisitType" />
+                <ScalarProperty Name="CareProviderName" ColumnName="CareProviderName" />
+                <ScalarProperty Name="IPBookingUID" ColumnName="IPBookingUID" />
+                <ScalarProperty Name="AdmissionDttm" ColumnName="AdmissionDttm" />
+                <ScalarProperty Name="ExpectedDischargeDttm" ColumnName="ExpectedDischargeDttm" />
+                <ScalarProperty Name="BookedDttm" ColumnName="BookedDttm" />
+                <ScalarProperty Name="ReferredBy" ColumnName="ReferredBy" />
+                <ScalarProperty Name="ExpectedLengthofStay" ColumnName="ExpectedLengthofStay" />
+                <ScalarProperty Name="CancelledBy" ColumnName="CancelledBy" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="CareProviderUID" ColumnName="CareProviderUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="VISTYUID" ColumnName="VISTYUID" />
+                <ScalarProperty Name="BKTYPUID" ColumnName="BKTYPUID" />
+                <ScalarProperty Name="SpecialityUID" ColumnName="SpecialityUID" />
+                <ScalarProperty Name="SpecialityName" ColumnName="SpecialityName" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
+                <ScalarProperty Name="LocationName" ColumnName="LocationName" />
+                <ScalarProperty Name="BedBookingRequest" ColumnName="BedBookingRequest" />
+                <ScalarProperty Name="BKSTSUID" ColumnName="BKSTSUID" />
+                <ScalarProperty Name="BedUID" ColumnName="BedUID" />
+                <ScalarProperty Name="BedName" ColumnName="BedName" />
+                <ScalarProperty Name="RequestedByLocationUID" ColumnName="RequestedByLocationUID" />
+                <ScalarProperty Name="RequestedLocationName" ColumnName="RequestedLocationName" />
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="OwnerOrganisation" ColumnName="OwnerOrganisation" />
+                <ScalarProperty Name="Ward" ColumnName="Ward" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pSearchPatientEmergency" FunctionName="MediTechModel.Store.pSearchPatientEmergency">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pSearchPatientEmergency_Result">
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="SEXXXUID" ColumnName="SEXXXUID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="TITLEUID" ColumnName="TITLEUID" />
+                <ScalarProperty Name="Title" ColumnName="Title" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+                <ScalarProperty Name="Department" ColumnName="Department" />
+                <ScalarProperty Name="Position" ColumnName="Position" />
+                <ScalarProperty Name="BirthDttm" ColumnName="BirthDttm" />
+                <ScalarProperty Name="AgeString" ColumnName="AgeString" />
+                <ScalarProperty Name="DOBComputed" ColumnName="DOBComputed" />
+                <ScalarProperty Name="BLOODUID" ColumnName="BLOODUID" />
+                <ScalarProperty Name="BloodGroup" ColumnName="BloodGroup" />
+                <ScalarProperty Name="NationalID" ColumnName="NationalID" />
+                <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="NATNLUID" ColumnName="NATNLUID" />
+                <ScalarProperty Name="SPOKLUID" ColumnName="SPOKLUID" />
+                <ScalarProperty Name="MARRYUID" ColumnName="MARRYUID" />
+                <ScalarProperty Name="OCCUPUID" ColumnName="OCCUPUID" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Comment" ColumnName="Comment" />
+                <ScalarProperty Name="IDLine" ColumnName="IDLine" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="LastVisitDttm" ColumnName="LastVisitDttm" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="MediTechModel.Store.sp_alterdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="MediTechModel.Store.sp_creatediagram" />
+          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="MediTechModel.Store.sp_dropdiagram" />
+          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="MediTechModel.Store.sp_helpdiagramdefinition">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.sp_helpdiagramdefinition_Result">
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="MediTechModel.Store.sp_helpdiagrams">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.sp_helpdiagrams_Result">
+                <ScalarProperty Name="Database" ColumnName="Database" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Owner" ColumnName="Owner" />
+                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="MediTechModel.Store.sp_renamediagram" />
+          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="MediTechModel.Store.sp_upgraddiagrams" />
+          <EntitySetMapping Name="AdmissionEvent">
+            <EntityTypeMapping TypeName="MediTechModel.AdmissionEvent">
+              <MappingFragment StoreEntitySet="AdmissionEvent">
+                <ScalarProperty Name="RequestingLocationUID" ColumnName="RequestingLocationUID" />
+                <ScalarProperty Name="IsNoVisitorAllowed" ColumnName="IsNoVisitorAllowed" />
+                <ScalarProperty Name="ValidToDttm" ColumnName="ValidToDttm" />
+                <ScalarProperty Name="ValidFromDttm" ColumnName="ValidFromDttm" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="PreviousEventUID" ColumnName="PreviousEventUID" />
+                <ScalarProperty Name="IPBookingUID" ColumnName="IPBookingUID" />
+                <ScalarProperty Name="ExpectedDischargeDttm" ColumnName="ExpectedDischargeDttm" />
+                <ScalarProperty Name="AdmissionDttm" ColumnName="AdmissionDttm" />
+                <ScalarProperty Name="ExpectedLengthOfStay" ColumnName="ExpectedLengthOfStay" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AEDischargeEvent">
+            <EntityTypeMapping TypeName="MediTechModel.AEDischargeEvent">
+              <MappingFragment StoreEntitySet="AEDischargeEvent">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="RecordedBy" ColumnName="RecordedBy" />
+                <ScalarProperty Name="DischargeEvents" ColumnName="DischargeEvents" />
+                <ScalarProperty Name="ATSTYPUID" ColumnName="ATSTYPUID" />
+                <ScalarProperty Name="DeceasedDttm" ColumnName="DeceasedDttm" />
+                <ScalarProperty Name="DESTINUID" ColumnName="DESTINUID" />
+                <ScalarProperty Name="DSCTYPUID" ColumnName="DSCTYPUID" />
+                <ScalarProperty Name="DSCCNDUID" ColumnName="DSCCNDUID" />
+                <ScalarProperty Name="CheckOutDttm" ColumnName="CheckOutDttm" />
+                <ScalarProperty Name="PatientAEAdmissionUID" ColumnName="PatientAEAdmissionUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Amphur">
             <EntityTypeMapping TypeName="MediTechModel.Amphur">
               <MappingFragment StoreEntitySet="Amphur">
@@ -12912,6 +14247,24 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="CareproviderLocation">
+            <EntityTypeMapping TypeName="MediTechModel.CareproviderLocation">
+              <MappingFragment StoreEntitySet="CareproviderLocation">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="CareproviderOrganisation">
             <EntityTypeMapping TypeName="MediTechModel.CareproviderOrganisation">
               <MappingFragment StoreEntitySet="CareproviderOrganisation">
@@ -12925,6 +14278,24 @@
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="HealthOrganisationUID" ColumnName="HealthOrganisationUID" />
                 <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CareproviderTransfer">
+            <EntityTypeMapping TypeName="MediTechModel.CareproviderTransfer">
+              <MappingFragment StoreEntitySet="CareproviderTransfer">
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13109,6 +14480,37 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="EngWord" ColumnName="EngWord" />
                 <ScalarProperty Name="ThaiWord" ColumnName="ThaiWord" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DischargeEvent">
+            <EntityTypeMapping TypeName="MediTechModel.DischargeEvent">
+              <MappingFragment StoreEntitySet="DischargeEvent">
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="CancelledBy" ColumnName="CancelledBy" />
+                <ScalarProperty Name="CARNSUID" ColumnName="CARNSUID" />
+                <ScalarProperty Name="DSOCMUID" ColumnName="DSOCMUID" />
+                <ScalarProperty Name="DSHTYPUID" ColumnName="DSHTYPUID" />
+                <ScalarProperty Name="DischargeAdviceDttm" ColumnName="DischargeAdviceDttm" />
+                <ScalarProperty Name="AdvicedBy" ColumnName="AdvicedBy" />
+                <ScalarProperty Name="INFCTUID" ColumnName="INFCTUID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="DSCTYUID" ColumnName="DSCTYUID" />
+                <ScalarProperty Name="DSGDSUID" ColumnName="DSGDSUID" />
+                <ScalarProperty Name="MDTRNUID" ColumnName="MDTRNUID" />
+                <ScalarProperty Name="DischargeComments" ColumnName="DischargeComments" />
+                <ScalarProperty Name="RecordedBy" ColumnName="RecordedBy" />
+                <ScalarProperty Name="ActualDischargeDttm" ColumnName="ActualDischargeDttm" />
+                <ScalarProperty Name="MedicalDischargeDttm" ColumnName="MedicalDischargeDttm" />
+                <ScalarProperty Name="DSCSTUID" ColumnName="DSCSTUID" />
+                <ScalarProperty Name="AdmissionEventUID" ColumnName="AdmissionEventUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13454,6 +14856,83 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="InsuranceCompany">
+            <EntityTypeMapping TypeName="MediTechModel.InsuranceCompany">
+              <MappingFragment StoreEntitySet="InsuranceCompany">
+                <ScalarProperty Name="OldPayorDetailUID" ColumnName="OldPayorDetailUID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="CMPTPUID" ColumnName="CMPTPUID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="InsurancePlan">
+            <EntityTypeMapping TypeName="MediTechModel.InsurancePlan">
+              <MappingFragment StoreEntitySet="InsurancePlan">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
+                <ScalarProperty Name="PolicyMasterUID" ColumnName="PolicyMasterUID" />
+                <ScalarProperty Name="InsuranceCompanyUID" ColumnName="InsuranceCompanyUID" />
+                <ScalarProperty Name="PayorAgreementUID" ColumnName="PayorAgreementUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="IPBooking">
+            <EntityTypeMapping TypeName="MediTechModel.IPBooking">
+              <MappingFragment StoreEntitySet="IPBooking">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="CancelledBy" ColumnName="CancelledBy" />
+                <ScalarProperty Name="CANRSUID" ColumnName="CANRSUID" />
+                <ScalarProperty Name="RequestedByUID" ColumnName="RequestedByUID" />
+                <ScalarProperty Name="RequestedByLocationUID" ColumnName="RequestedByLocationUID" />
+                <ScalarProperty Name="ReferredByUID" ColumnName="ReferredByUID" />
+                <ScalarProperty Name="ReferredBy" ColumnName="ReferredBy" />
+                <ScalarProperty Name="BDCATUID" ColumnName="BDCATUID" />
+                <ScalarProperty Name="BKTYPUID" ColumnName="BKTYPUID" />
+                <ScalarProperty Name="VISTYUID" ColumnName="VISTYUID" />
+                <ScalarProperty Name="BKSTSUID" ColumnName="BKSTSUID" />
+                <ScalarProperty Name="BookedDttm" ColumnName="BookedDttm" />
+                <ScalarProperty Name="ExpectedLengthofStay" ColumnName="ExpectedLengthofStay" />
+                <ScalarProperty Name="ExpectedDischargeDttm" ColumnName="ExpectedDischargeDttm" />
+                <ScalarProperty Name="AdmissionDttm" ColumnName="AdmissionDttm" />
+                <ScalarProperty Name="BedUID" ColumnName="BedUID" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="SpecialityUID" ColumnName="SpecialityUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="ItemAverageCost">
             <EntityTypeMapping TypeName="MediTechModel.ItemAverageCost">
               <MappingFragment StoreEntitySet="ItemAverageCost">
@@ -13721,12 +15200,45 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="EMZONEUID" ColumnName="EMZONEUID" />
+                <ScalarProperty Name="IsTemporaryBed" ColumnName="IsTemporaryBed" />
+                <ScalarProperty Name="IsEmergency" ColumnName="IsEmergency" />
+                <ScalarProperty Name="IsCanOrder" ColumnName="IsCanOrder" />
+                <ScalarProperty Name="IsRegistrationAllowed" ColumnName="IsRegistrationAllowed" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="LCTSTUID" ColumnName="LCTSTUID" />
                 <ScalarProperty Name="ParentLocationUID" ColumnName="ParentLocationUID" />
                 <ScalarProperty Name="LOTYPUID" ColumnName="LOTYPUID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="LocationTransfer">
+            <EntityTypeMapping TypeName="MediTechModel.LocationTransfer">
+              <MappingFragment StoreEntitySet="LocationTransfer">
+                <ScalarProperty Name="CancelDate" ColumnName="CancelDate" />
+                <ScalarProperty Name="CancelComments" ColumnName="CancelComments" />
+                <ScalarProperty Name="CANRSUID" ColumnName="CANRSUID" />
+                <ScalarProperty Name="PrimaryBedUID" ColumnName="PrimaryBedUID" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="TRNSTUID" ColumnName="TRNSTUID" />
+                <ScalarProperty Name="EffectiveDttm" ColumnName="EffectiveDttm" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="BDCATUID" ColumnName="BDCATUID" />
+                <ScalarProperty Name="BedUID" ColumnName="BedUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -13831,7 +15343,6 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
                 <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="ProcessingNotes" ColumnName="ProcessingNotes" />
@@ -14021,6 +15532,67 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PatientADTEvent">
+            <EntityTypeMapping TypeName="MediTechModel.PatientADTEvent">
+              <MappingFragment StoreEntitySet="PatientADTEvent">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
+                <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
+                <ScalarProperty Name="EventOccuredDttm" ColumnName="EventOccuredDttm" />
+                <ScalarProperty Name="EVNTYUID" ColumnName="EVNTYUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientAEAdmission">
+            <EntityTypeMapping TypeName="MediTechModel.PatientAEAdmission">
+              <MappingFragment StoreEntitySet="PatientAEAdmission">
+                <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+                <ScalarProperty Name="DistrictUID" ColumnName="DistrictUID" />
+                <ScalarProperty Name="ProvinceUID" ColumnName="ProvinceUID" />
+                <ScalarProperty Name="AmphurUID" ColumnName="AmphurUID" />
+                <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
+                <ScalarProperty Name="Line4" ColumnName="Line4" />
+                <ScalarProperty Name="Line3" ColumnName="Line3" />
+                <ScalarProperty Name="Line2" ColumnName="Line2" />
+                <ScalarProperty Name="Line1" ColumnName="Line1" />
+                <ScalarProperty Name="IsDead" ColumnName="IsDead" />
+                <ScalarProperty Name="EmergencyExamDetail" ColumnName="EmergencyExamDetail" />
+                <ScalarProperty Name="InjuryReason" ColumnName="InjuryReason" />
+                <ScalarProperty Name="ProblemUID" ColumnName="ProblemUID" />
+                <ScalarProperty Name="EMGCDUID" ColumnName="EMGCDUID" />
+                <ScalarProperty Name="EMGTPUID" ColumnName="EMGTPUID" />
+                <ScalarProperty Name="EmergencyOcurredDttm" ColumnName="EmergencyOcurredDttm" />
+                <ScalarProperty Name="MLCREAUID" ColumnName="MLCREAUID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="VehicleNumber" ColumnName="VehicleNumber" />
+                <ScalarProperty Name="ContactNumber" ColumnName="ContactNumber" />
+                <ScalarProperty Name="RELTNUID" ColumnName="RELTNUID" />
+                <ScalarProperty Name="EscortName" ColumnName="EscortName" />
+                <ScalarProperty Name="ESCTPUID" ColumnName="ESCTPUID" />
+                <ScalarProperty Name="ARRMDUID" ColumnName="ARRMDUID" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PatientAllergy">
             <EntityTypeMapping TypeName="MediTechModel.PatientAllergy">
               <MappingFragment StoreEntitySet="PatientAllergy">
@@ -14129,7 +15701,6 @@
                 <ScalarProperty Name="StockUID" ColumnName="StockUID" />
                 <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
                 <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
-                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
                 <ScalarProperty Name="ExtendCost" ColumnName="ExtendCost" />
                 <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
                 <ScalarProperty Name="DoctorFee" ColumnName="DoctorFee" />
@@ -14142,6 +15713,30 @@
                 <ScalarProperty Name="ItemName" ColumnName="ItemName" />
                 <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
                 <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientDeceasedDetail">
+            <EntityTypeMapping TypeName="MediTechModel.PatientDeceasedDetail">
+              <MappingFragment StoreEntitySet="PatientDeceasedDetail">
+                <ScalarProperty Name="ATPSTYUID" ColumnName="ATPSTYUID" />
+                <ScalarProperty Name="PatientMessage" ColumnName="PatientMessage" />
+                <ScalarProperty Name="IsConfirmed" ColumnName="IsConfirmed" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="DCSRNUID" ColumnName="DCSRNUID" />
+                <ScalarProperty Name="ConfirmedBy" ColumnName="ConfirmedBy" />
+                <ScalarProperty Name="DeathTime" ColumnName="DeathTime" />
+                <ScalarProperty Name="DeathDttm" ColumnName="DeathDttm" />
+                <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14358,6 +15953,9 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="IsContinuous" ColumnName="IsContinuous" />
+                <ScalarProperty Name="OrderToLocationUID" ColumnName="OrderToLocationUID" />
+                <ScalarProperty Name="OrderLocationUID" ColumnName="OrderLocationUID" />
                 <ScalarProperty Name="OrderRaisedBy" ColumnName="OrderRaisedBy" />
                 <ScalarProperty Name="IdentifyingType" ColumnName="IdentifyingType" />
                 <ScalarProperty Name="IdentifyingUID" ColumnName="IdentifyingUID" />
@@ -14514,6 +16112,7 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="EventStartDttm" ColumnName="EventStartDttm" />
                 <ScalarProperty Name="VISTSUID" ColumnName="VISTSUID" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
@@ -14589,10 +16188,17 @@
                 <ScalarProperty Name="RefNo" ColumnName="RefNo" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="IsReAdmisstion" ColumnName="IsReAdmisstion" />
+                <ScalarProperty Name="BedUID" ColumnName="BedUID" />
                 <ScalarProperty Name="CheckupJobUID" ColumnName="CheckupJobUID" />
                 <ScalarProperty Name="BookingUID" ColumnName="BookingUID" />
+                <ScalarProperty Name="IPBookingUID" ColumnName="IPBookingUID" />
+                <ScalarProperty Name="CurrentCareProviderUID" ColumnName="CurrentCareProviderUID" />
+                <ScalarProperty Name="VisitLocationUID" ColumnName="VisitLocationUID" />
+                <ScalarProperty Name="ENSTAUID" ColumnName="ENSTAUID" />
                 <ScalarProperty Name="IsBillFinalized" ColumnName="IsBillFinalized" />
                 <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="ArrivedDttm" ColumnName="ArrivedDttm" />
                 <ScalarProperty Name="EndDttm" ColumnName="EndDttm" />
                 <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
@@ -14600,7 +16206,51 @@
                 <ScalarProperty Name="VISTYUID" ColumnName="VISTYUID" />
                 <ScalarProperty Name="VISTSUID" ColumnName="VISTSUID" />
                 <ScalarProperty Name="CareProviderUID" ColumnName="CareProviderUID" />
+                <ScalarProperty Name="ENTYPUID" ColumnName="ENTYPUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientVisitCareProvider">
+            <EntityTypeMapping TypeName="MediTechModel.PatientVisitCareProvider">
+              <MappingFragment StoreEntitySet="PatientVisitCareProvider">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="BookingUID" ColumnName="BookingUID" />
+                <ScalarProperty Name="PACLSUID" ColumnName="PACLSUID" />
+                <ScalarProperty Name="ReferralUID" ColumnName="ReferralUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
+                <ScalarProperty Name="CareProviderName" ColumnName="CareProviderName" />
+                <ScalarProperty Name="SeenDttm" ColumnName="SeenDttm" />
+                <ScalarProperty Name="StartDttm" ColumnName="StartDttm" />
+                <ScalarProperty Name="CareproviderUID" ColumnName="CareproviderUID" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PatientVisitID">
+            <EntityTypeMapping TypeName="MediTechModel.PatientVisitID">
+              <MappingFragment StoreEntitySet="PatientVisitID">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="MainIdentifier" ColumnName="MainIdentifier" />
+                <ScalarProperty Name="VISIDUID" ColumnName="VISIDUID" />
+                <ScalarProperty Name="Identifier" ColumnName="Identifier" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14706,18 +16356,35 @@
           <EntitySetMapping Name="PayorAgreement">
             <EntityTypeMapping TypeName="MediTechModel.PayorAgreement">
               <MappingFragment StoreEntitySet="PayorAgreement">
+                <ScalarProperty Name="OldAgreemntUID" ColumnName="OldAgreemntUID" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="PolicyMasterUID" ColumnName="PolicyMasterUID" />
+                <ScalarProperty Name="InsuranceCompanyUID" ColumnName="InsuranceCompanyUID" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="IsLimitAfterDiscount" ColumnName="IsLimitAfterDiscount" />
+                <ScalarProperty Name="IsPackageDiscountAllowed" ColumnName="IsPackageDiscountAllowed" />
+                <ScalarProperty Name="PBTYPUID" ColumnName="PBTYPUID" />
+                <ScalarProperty Name="FixedCopayAmount" ColumnName="FixedCopayAmount" />
+                <ScalarProperty Name="ClaimPercentage" ColumnName="ClaimPercentage" />
+                <ScalarProperty Name="OPDCoverPerDay" ColumnName="OPDCoverPerDay" />
+                <ScalarProperty Name="TertiaryPBLCTUID" ColumnName="TertiaryPBLCTUID" />
+                <ScalarProperty Name="SecondaryPBLCTUID" ColumnName="SecondaryPBLCTUID" />
+                <ScalarProperty Name="PrimaryPBLCTUID" ColumnName="PrimaryPBLCTUID" />
+                <ScalarProperty Name="AGTYPUID" ColumnName="AGTYPUID" />
+                <ScalarProperty Name="BLTYPUID" ColumnName="BLTYPUID" />
+                <ScalarProperty Name="IsForeign" ColumnName="IsForeign" />
+                <ScalarProperty Name="CRDTRMUID" ColumnName="CRDTRMUID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="PBTYPUID" ColumnName="PBTYPUID" />
-                <ScalarProperty Name="PAYTRMUID" ColumnName="PAYTRMUID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="PayorDetailUID" ColumnName="PayorDetailUID" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -14731,29 +16398,27 @@
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="OldPayorDetailUID" ColumnName="OldPayorDetailUID" />
+                <ScalarProperty Name="GovernmentNo" ColumnName="GovernmentNo" />
+                <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
-                <ScalarProperty Name="LastRenumberDttm" ColumnName="LastRenumberDttm" />
-                <ScalarProperty Name="NumberValue" ColumnName="NumberValue" />
-                <ScalarProperty Name="IDLength" ColumnName="IDLength" />
-                <ScalarProperty Name="IDFormat" ColumnName="IDFormat" />
-                <ScalarProperty Name="IsGenerateBillNumber" ColumnName="IsGenerateBillNumber" />
+                <ScalarProperty Name="InsuranceCompanyUID" ColumnName="InsuranceCompanyUID" />
+                <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
+                <ScalarProperty Name="CRDTRMUID" ColumnName="CRDTRMUID" />
+                <ScalarProperty Name="AgentName" ColumnName="AgentName" />
+                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
                 <ScalarProperty Name="PYRACATUID" ColumnName="PYRACATUID" />
-                <ScalarProperty Name="PAYTRMUID" ColumnName="PAYTRMUID" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
                 <ScalarProperty Name="FaxNumber" ColumnName="FaxNumber" />
                 <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="MobileNumber" ColumnName="MobileNumber" />
-                <ScalarProperty Name="TINNo" ColumnName="TINNo" />
-                <ScalarProperty Name="ContactPersonName" ColumnName="ContactPersonName" />
                 <ScalarProperty Name="ZipCode" ColumnName="ZipCode" />
                 <ScalarProperty Name="ProvinceUID" ColumnName="ProvinceUID" />
                 <ScalarProperty Name="AmphurUID" ColumnName="AmphurUID" />
                 <ScalarProperty Name="DistrictUID" ColumnName="DistrictUID" />
                 <ScalarProperty Name="Address2" ColumnName="Address2" />
                 <ScalarProperty Name="Address1" ColumnName="Address1" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="PayorName" ColumnName="PayorName" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
@@ -14806,6 +16471,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="PolicyMaster">
+            <EntityTypeMapping TypeName="MediTechModel.PolicyMaster">
+              <MappingFragment StoreEntitySet="PolicyMaster">
+                <ScalarProperty Name="AGTYPUID" ColumnName="AGTYPUID" />
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="PolicyName" ColumnName="PolicyName" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="PostalCode">
             <EntityTypeMapping TypeName="MediTechModel.PostalCode">
               <MappingFragment StoreEntitySet="PostalCode">
@@ -14834,6 +16516,8 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="PatientOrderUID" ColumnName="PatientOrderUID" />
+                <ScalarProperty Name="OrderToLocationUID" ColumnName="OrderToLocationUID" />
+                <ScalarProperty Name="OrderLocationUID" ColumnName="OrderLocationUID" />
                 <ScalarProperty Name="DispensedDttm" ColumnName="DispensedDttm" />
                 <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
                 <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
@@ -15111,6 +16795,8 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="PatientOrderUID" ColumnName="PatientOrderUID" />
+                <ScalarProperty Name="OrderToLocationUID" ColumnName="OrderToLocationUID" />
+                <ScalarProperty Name="OrderLocationUID" ColumnName="OrderLocationUID" />
                 <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
                 <ScalarProperty Name="BSMDDUID" ColumnName="BSMDDUID" />
                 <ScalarProperty Name="RQPRTUID" ColumnName="RQPRTUID" />
@@ -15640,6 +17326,14 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="SEQERVisitID">
+            <EntityTypeMapping TypeName="MediTechModel.SEQERVisitID">
+              <MappingFragment StoreEntitySet="SEQERVisitID">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="SEQGRNID">
             <EntityTypeMapping TypeName="MediTechModel.SEQGRNID">
               <MappingFragment StoreEntitySet="SEQGRNID">
@@ -15827,6 +17521,27 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="Speciality">
+            <EntityTypeMapping TypeName="MediTechModel.Speciality">
+              <MappingFragment StoreEntitySet="Speciality">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
+                <ScalarProperty Name="ParentUID" ColumnName="ParentUID" />
+                <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
+                <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
+                <ScalarProperty Name="HealthOrganisationUID" ColumnName="HealthOrganisationUID" />
+                <ScalarProperty Name="SPTYPUID" ColumnName="SPTYPUID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="Specimen">
             <EntityTypeMapping TypeName="MediTechModel.Specimen">
               <MappingFragment StoreEntitySet="Specimen">
@@ -15973,9 +17688,12 @@
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="IsDoctorOnly" ColumnName="IsDoctorOnly" />
+                <ScalarProperty Name="HealthOrganisationUID" ColumnName="HealthOrganisationUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="ActiveTo" ColumnName="ActiveTo" />
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="STDTPUID" ColumnName="STDTPUID" />
+                <ScalarProperty Name="STRTPUID" ColumnName="STRTPUID" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
@@ -15995,6 +17713,17 @@
                 <ScalarProperty Name="ConversionUOMUID" ColumnName="ConversionUOMUID" />
                 <ScalarProperty Name="BaseUOMUID" ColumnName="BaseUOMUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="MediTechModel.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="definition" ColumnName="definition" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="name" ColumnName="name" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

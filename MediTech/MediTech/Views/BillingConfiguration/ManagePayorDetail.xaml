@@ -8,18 +8,241 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d"
              DataContext="{Binding Path=ManagePayorDetailViewModel,Source={StaticResource Locator}}"
+             Width="900" Height="500"
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
         <cc:ZipCodeSearchPopUp x:Key="ZipCodeColumn" d:IsDataSource="True"  />
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
+            <dxlc:LayoutControl Orientation="Vertical">
+                <dxlc:LayoutGroup Orientation="Horizontal">
+
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem>
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="Insurance Company" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+
+                            <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsranceCompany}" 
+                                      SelectedItem="{Binding SelectInsranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsEnabled="False"
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl x:Name="PART_GridControl"  >
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                            </dxg:GridControl.View>
+                                            <dxg:GridColumn x:Name="CompanyName" FieldName="CompanyName"/>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                                <dxg:LookUpEdit.StyleSettings>
+                                    <dxg:SearchLookUpEditStyleSettings/>
+                                </dxg:LookUpEdit.StyleSettings>
+                            </dxg:LookUpEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="Code" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:TextEdit Text="{Binding Code}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem >
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                    <TextBlock Text="ชื่อ" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:TextEdit Text="{Binding PayorName}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="ชื่อผู้ติดต่อ">
+                            <dxe:TextEdit Text="{Binding ContactPersonName}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="เลขประจำตัวผู้เสียภาษี">
+                            <dxe:TextEdit EditValue="{Binding TINNo}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="Credit Term">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding CreditTerm}"
+                                                      SelectedItem="{Binding SelectPayorCredit}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="ที่อยู่ 1">
+                            <dxe:TextEdit Text="{Binding Address1}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="ที่อยู่ 2">
+                            <dxe:TextEdit Text="{Binding Address2}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="เปิดใช้งาน">
+                            <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="ปิดใช้งาน">
+                            <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                        </dxlc:LayoutItem>
+                        <!--<dxlc:LayoutItem Label="สร้างหมายเลขบิล">
+                            <dxe:CheckEdit EditValue="{Binding IsGenerateBill}"/>
+                        </dxlc:LayoutItem>-->
+                        <!--<dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsEnableIDFormat}">
+
+                            <dxlc:LayoutItem Label="IDFormat" >
+                                <dxe:TextEdit Text="{Binding IDFormat}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Length" Width="80">
+                                <dxe:TextEdit EditValue="{Binding IDLength}" Mask="d" MaskType="Numeric"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="NumberValue" >
+                                <dxe:TextEdit EditValue="{Binding IDNumberValue}" Mask="d" MaskType="Numeric"/>
+                            </dxlc:LayoutItem>
+
+                        </dxlc:LayoutGroup >-->
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                        <dxlc:LayoutItem Label="จังหวัด">
+                            <dxe:ComboBoxEdit DisplayMember="Display"                                    
+                                      ValueMember="Key"
+                                      AutoComplete="True"
+                                      IsTextEditable="True"
+                                      ItemsSource="{Binding ProvinceSource}"
+                                      SelectedItem="{Binding SelectedProvince}">
+                                <dxe:ComboBoxEdit.StyleSettings>
+                                    <dxe:ComboBoxStyleSettings />
+                                </dxe:ComboBoxEdit.StyleSettings>
+                            </dxe:ComboBoxEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="อำเภอ">
+                            <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      AutoComplete="True"
+                                      IsTextEditable="True"
+                                      ItemsSource="{Binding AmphurSource}"
+                                      SelectedItem="{Binding SelectedAmphur}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ตำบล">
+                            <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      AutoComplete="True"
+                                      IsTextEditable="True"
+                                      ItemsSource="{Binding DistrictSource}"
+                                      SelectedItem="{Binding SelectedDistrict}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="รหัสไปษณีย์" >
+                            <cc:AutoCompleteTextBox Text="{Binding ZipCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource ZipCodeColumn}}"
+                                                    Binding="{Binding ZipCode}"
+                                                    SuppressEvent="{Binding SuppressZipCodeEvent,Mode=OneWayToSource}"
+                                                    OnTextChangedEvent="True"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding ZipCodeSource}"
+                                                    SelectedItem="{Binding SelectedZipCode,Mode=OneWayToSource}"
+                                                    />
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="Fax">
+                            <dxe:TextEdit Text="{Binding FaxNumber}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="เบอร์โทรศัพท์">
+                            <dxe:TextEdit Text="{Binding PhoneNumber}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="เบอร์มือถือ">
+                            <dxe:TextEdit Text="{Binding MobileNumber}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="Email">
+                            <dxe:TextEdit Text="{Binding Email}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="หมวดหมู่">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding PayorCategory}"
+                                                      SelectedItem="{Binding SelectPayorCategory}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem  Label="Note" LabelVerticalAlignment="Top">
+                            <TextBox TextWrapping="Wrap"
+                                 VerticalContentAlignment="Top"
+                                 HorizontalContentAlignment="Left"
+                                 Height="80"
+                                 Text="{Binding Note}"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+            </dxlc:LayoutControl>
+            <!--<dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
                 <dx:DXTabItem Header="รายละเอียดผู้จ่ายเงิน">
                     <dxlc:LayoutControl Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
 
                             <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Insurance Company" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+
+                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsranceCompany}" 
+                                      SelectedItem="{Binding SelectInsranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                    </dxg:GridControl.View>
+                                                    <dxg:GridColumn x:Name="CompanyName" FieldName="CompanyName"/>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                    </dxg:LookUpEdit>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem >
                                     <dxlc:LayoutItem.Label>
                                         <StackPanel Orientation="Horizontal">
@@ -39,9 +262,6 @@
                                         </StackPanel>
                                     </dxlc:LayoutItem.Label>
                                     <dxe:TextEdit Text="{Binding PayorName}"/>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem  Label="รายละเอียด">
-                                    <dxe:TextEdit Text="{Binding Description}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem  Label="ชื่อผู้ติดต่อ">
                                     <dxe:TextEdit Text="{Binding ContactPersonName}"/>
@@ -250,7 +470,7 @@
                         </dxg:GridControl>
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
-            </dx:DXTabControl>
+            </dx:DXTabControl>-->
             <dxlc:LayoutGroup HorizontalAlignment="Right"
                               VerticalAlignment="Bottom"
                               Orientation="Horizontal">

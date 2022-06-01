@@ -16,6 +16,20 @@ namespace MediTech.ViewModels
     public class ManagePayorDetailViewModel : MediTechViewModelBase
     {
         #region Properties
+        private List<InsuranceCompanyModel> _InsranceCompany;
+        public List<InsuranceCompanyModel> InsranceCompany
+        {
+            get { return _InsranceCompany; }
+            set { Set(ref _InsranceCompany, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsranceCompany;
+        public InsuranceCompanyModel SelectInsranceCompany
+        {
+            get { return _SelectInsranceCompany; }
+            set { Set(ref _SelectInsranceCompany, value); 
+            }
+        }
 
         private bool _PageDialog;
         public bool PageDialog
@@ -40,13 +54,13 @@ namespace MediTech.ViewModels
             set { Set(ref _PayorName, value); }
         }
 
-        private string _Description;
+        //private string _Description;
 
-        public string Description
-        {
-            get { return _Description; }
-            set { Set(ref _Description, value); }
-        }
+        //public string Description
+        //{
+        //    get { return _Description; }
+        //    set { Set(ref _Description, value); }
+        //}
 
         private string _ContactPersonName;
 
@@ -99,12 +113,12 @@ namespace MediTech.ViewModels
         }
 
 
-        private string _Comment;
+        private string _Note;
 
-        public string Comment
+        public string Note
         {
-            get { return _Comment; }
-            set { Set(ref _Comment, value); }
+            get { return _Note; }
+            set { Set(ref _Note, value); }
         }
 
         public bool SuppressZipCodeEvent { get; set; }
@@ -340,17 +354,17 @@ namespace MediTech.ViewModels
             set { Set(ref _ActiveTo2, value); }
         }
 
-        private List<PayorAgreementModel> _PayorAgreements;
+        //private List<PayorAgreementModel> _PayorAgreements;
 
-        public List<PayorAgreementModel> PayorAgreements
-        {
-            get
-            {
-                return _PayorAgreements
-                    ?? (_PayorAgreements = new List<PayorAgreementModel>());
-            }
-            set { Set(ref _PayorAgreements, value); }
-        }
+        //public List<PayorAgreementModel> PayorAgreements
+        //{
+        //    get
+        //    {
+        //        return _PayorAgreements
+        //            ?? (_PayorAgreements = new List<PayorAgreementModel>());
+        //    }
+        //    set { Set(ref _PayorAgreements, value); }
+        //}
 
 
         private PayorAgreementModel _SelectPayorAgreement;
@@ -381,55 +395,67 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectTabIndex, value); }
         }
 
-        private bool? _IsGenerateBill;
+        //private bool? _IsGenerateBill;
 
-        public bool? IsGenerateBill
+        //public bool? IsGenerateBill
+        //{
+        //    get { return _IsGenerateBill; }
+        //    set
+        //    {
+        //        Set(ref _IsGenerateBill, value);
+        //        if (IsGenerateBill ?? false)
+        //        {
+        //            IsEnableIDFormat = Visibility.Visible;
+        //        }
+        //        else
+        //        {
+        //            IsEnableIDFormat = Visibility.Collapsed;
+        //        }
+        //    }
+        //}
+
+        //private Visibility _IsEnableIDFormat;
+
+        //public Visibility IsEnableIDFormat
+        //{
+        //    get { return _IsEnableIDFormat; }
+        //    set { Set(ref _IsEnableIDFormat, value); }
+        //}
+
+        //private string _IDFormat;
+
+        //public string IDFormat
+        //{
+        //    get { return _IDFormat; }
+        //    set { Set(ref _IDFormat, value); }
+        //}
+
+        //private int? _IDLength;
+
+        //public int? IDLength
+        //{
+        //    get { return _IDLength; }
+        //    set { Set(ref _IDLength, value); }
+        //}
+
+        //private int? _IDNumberValue;
+
+        //public int? IDNumberValue
+        //{
+        //    get { return _IDNumberValue; }
+        //    set { Set(ref _IDNumberValue, value); }
+        //}
+        private int _InsuranceCompanyID;
+
+        public int InsuranceCompanyID
         {
-            get { return _IsGenerateBill; }
-            set
-            {
-                Set(ref _IsGenerateBill, value);
-                if (IsGenerateBill ?? false)
+            get { return _InsuranceCompanyID; }
+            set { Set(ref _InsuranceCompanyID, value);
+                if(InsuranceCompanyID != 0)
                 {
-                    IsEnableIDFormat = Visibility.Visible;
-                }
-                else
-                {
-                    IsEnableIDFormat = Visibility.Collapsed;
-                }
+                    SelectInsranceCompany = InsranceCompany.FirstOrDefault(p => p.InsuranceCompanyUID == InsuranceCompanyID);
+                } 
             }
-        }
-
-        private Visibility _IsEnableIDFormat;
-
-        public Visibility IsEnableIDFormat
-        {
-            get { return _IsEnableIDFormat; }
-            set { Set(ref _IsEnableIDFormat, value); }
-        }
-
-        private string _IDFormat;
-
-        public string IDFormat
-        {
-            get { return _IDFormat; }
-            set { Set(ref _IDFormat, value); }
-        }
-
-        private int? _IDLength;
-
-        public int? IDLength
-        {
-            get { return _IDLength; }
-            set { Set(ref _IDLength, value); }
-        }
-
-        private int? _IDNumberValue;
-
-        public int? IDNumberValue
-        {
-            get { return _IDNumberValue; }
-            set { Set(ref _IDNumberValue, value); }
         }
         #endregion
 
@@ -515,20 +541,26 @@ namespace MediTech.ViewModels
             CreditTerm = refValue.Where(p => p.DomainCode == "PAYTRM").ToList();
             PayorCategory = refValue.Where(p => p.DomainCode == "PYRACAT").ToList();
             BillType = refValue.Where(p => p.DomainCode == "PBTYP").ToList();
+            InsranceCompany = DataService.MasterData.GetInsuranceCompanyAll();
 
             DateTime now = DateTime.Now;
             ActiveFrom = now;
             ActiveFrom2 = now;
 
-            IsGenerateBill = false;
-            IDLength = 4;
-            IDFormat = "BL[YYYY][MM][Number]";
-            IDNumberValue = 1;
+            //IsGenerateBill = false;
+            //IDLength = 4;
+            //IDFormat = "BL[YYYY][MM][Number]";
+            //IDNumberValue = 1;
         }
         private void SavePayor()
         {
             try
             {
+                if(SelectInsranceCompany == null)
+                {
+                    WarningDialog("กรุณาเลือก Insrance Company");
+                    return;
+                }
                 if (string.IsNullOrEmpty(Code))
                 {
                     WarningDialog("กรุณาระบุ Code");
@@ -541,33 +573,33 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                if (PayorAgreements == null || PayorAgreements.Count() <= 0)
-                {
-                    WarningDialog("กรุณาใส่ข้อตกลง");
-                    SelectTabIndex = 1;
-                    return;
-                }
+                //if (PayorAgreements == null || PayorAgreements.Count() <= 0)
+                //{
+                //    WarningDialog("กรุณาใส่ข้อตกลง");
+                //    SelectTabIndex = 1;
+                //    return;
+                //}
 
-                if (IsGenerateBill ?? false)
-                {
-                    if (string.IsNullOrEmpty(IDFormat))
-                    {
-                        WarningDialog("กรุณาใส่ IDFormat");
-                        return;
-                    }
+                //if (IsGenerateBill ?? false)
+                //{
+                //    if (string.IsNullOrEmpty(IDFormat))
+                //    {
+                //        WarningDialog("กรุณาใส่ IDFormat");
+                //        return;
+                //    }
 
-                    if (IDLength == null || IDLength == 0)
-                    {
-                        WarningDialog("กรุณาใส่ IDLength");
-                        return;
-                    }
+                //    if (IDLength == null || IDLength == 0)
+                //    {
+                //        WarningDialog("กรุณาใส่ IDLength");
+                //        return;
+                //    }
 
-                    if (IDNumberValue == null || IDNumberValue == 0)
-                    {
-                        WarningDialog("กรุณาใส่ NumberValue");
-                        return;
-                    }
-                }
+                //    if (IDNumberValue == null || IDNumberValue == 0)
+                //    {
+                //        WarningDialog("กรุณาใส่ NumberValue");
+                //        return;
+                //    }
+                //}
 
 
                 if (payorDetailModel == null)
@@ -583,19 +615,21 @@ namespace MediTech.ViewModels
 
 
                 AssingPropertiesToModel();
-                DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
-                SaveSuccessDialog();
+                //DataService.MasterData.ManagePayorDetail(payorDetailModel, AppUtil.Current.UserID);
+                DataService.MasterData.ManagePayorOfficeDetail(payorDetailModel, AppUtil.Current.UserID);
+                CloseViewDialog(ActionDialog.Save);
+                //SaveSuccessDialog();
 
 
-                if (PageDialog)
-                {
-                    CloseViewDialog(ActionDialog.Cancel);
-                }
-                else
-                {
-                    ListPayorDetail listView = new ListPayorDetail();
-                    ChangeViewPermission(listView);
-                }
+                //if (PageDialog)
+                //{
+                //    CloseViewDialog(ActionDialog.Cancel);
+                //}
+                //else
+                //{
+                //    ListPayorDetail listView = new ListPayorDetail();
+                //    ChangeViewPermission(listView);
+                //}
 
 
                 //var checkpayor = DataService.MasterData.GetPayorDetailByCode(Code);
@@ -643,8 +677,6 @@ namespace MediTech.ViewModels
 
                 //}
 
-
-
             }
             catch (Exception ex)
             {
@@ -656,15 +688,16 @@ namespace MediTech.ViewModels
 
         private void Cancel()
         {
-            if (PageDialog)
-            {
-                CloseViewDialog(ActionDialog.Cancel);
-            }
-            else
-            {
-                ListPayorDetail listView = new ListPayorDetail();
-                ChangeViewPermission(listView);
-            }
+            CloseViewDialog(ActionDialog.Cancel);
+            //if (PageDialog)
+            //{
+            //    CloseViewDialog(ActionDialog.Cancel);
+            //}
+            //else
+            //{
+            //    ListPayorDetail listView = new ListPayorDetail();
+            //    ChangeViewPermission(listView);
+            //}
         }
 
         private void AddAgreement()
@@ -691,7 +724,7 @@ namespace MediTech.ViewModels
             payAgree.ActiveFrom = ActiveFrom2;
             payAgree.ActiveTo = ActiveTo2;
 
-            PayorAgreements.Add(payAgree);
+            //PayorAgreements.Add(payAgree);
             OnUpdateEvent();
             ClearAgreement();
         }
@@ -717,7 +750,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPayorAgreement != null)
             {
-                PayorAgreements.Remove(SelectPayorAgreement);
+                //PayorAgreements.Remove(SelectPayorAgreement);
                 OnUpdateEvent();
                 ClearAgreement();
             }
@@ -733,10 +766,15 @@ namespace MediTech.ViewModels
             SelectPayorAgreement = null;
         }
 
-        public void AssingModel(int payorDetailUID)
+        public void AssingModel(int? insuranceCompanyUID, PayorDetailModel model)
         {
-            payorDetailModel = DataService.MasterData.GetPayorDetailByUID(payorDetailUID);
-            AssingModelToProperties(payorDetailModel);
+            InsuranceCompanyID = insuranceCompanyUID ?? 0;
+            //payorDetailModel = DataService.MasterData.GetPayorDetailByUID(payorDetailUID);
+            if(model != null)
+            {
+                payorDetailModel = model;
+                AssingModelToProperties(model);
+            }
         }
         public void AssingPropertiesToModel()
         {
@@ -744,37 +782,38 @@ namespace MediTech.ViewModels
             {
                 payorDetailModel = new PayorDetailModel();
             }
-
+            payorDetailModel.InsuranceCompanyUID = InsuranceCompanyID;
             payorDetailModel.Code = Code;
             payorDetailModel.PayorName = PayorName;
-            payorDetailModel.Description = Description;
+            //payorDetailModel.Description = Description;
             payorDetailModel.ContactPersonName = ContactPersonName;
             payorDetailModel.Address1 = Address1;
             payorDetailModel.Address2 = Address2;
             payorDetailModel.TINNo = TINNo;
             payorDetailModel.ActiveFrom = ActiveFrom;
             payorDetailModel.ActiveTo = ActiveTo;
-            payorDetailModel.PAYTRMUID = SelectPayorCredit != null ? SelectPayorCredit.Key : (int?)null;
+            payorDetailModel.CRDTRMUID = SelectPayorCredit != null ? SelectPayorCredit.Key : (int?)null;
             payorDetailModel.MobileNumber = MobileNumber;
             payorDetailModel.PhoneNumber = PhoneNumber;
             payorDetailModel.FaxNumber = FaxNumber;
             payorDetailModel.Email = Email;
-            payorDetailModel.Comment = Comment;
+            payorDetailModel.Note = Note;
             payorDetailModel.PYRACATUID = SelectPayorCategory != null ? SelectPayorCategory.Key : (int?)null;
             payorDetailModel.ActiveFrom = ActiveFrom;
             payorDetailModel.ActiveTo = ActiveTo;
 
+            payorDetailModel.InsuranceCompanyUID = SelectInsranceCompany != null ? SelectInsranceCompany.InsuranceCompanyUID : (int?)null;
             payorDetailModel.ProvinceUID = SelectedProvince != null ? SelectedProvince.Key : (int?)null;
             payorDetailModel.AmphurUID = SelectedAmphur != null ? SelectedAmphur.Key : (int?)null;
             payorDetailModel.DistrictUID = SelectedDistrict != null ? SelectedDistrict.Key : (int?)null;
             payorDetailModel.ZipCode = ZipCode;
 
-            payorDetailModel.PayorAgrrements = PayorAgreements;
+            //payorDetailModel.PayorAgrrements = PayorAgreements;
 
-            payorDetailModel.IsGenerateBillNumber = IsGenerateBill;
-            payorDetailModel.IDFormat = IDFormat;
-            payorDetailModel.IDLength = IDLength;
-            payorDetailModel.NumberValue = IDNumberValue;
+            //payorDetailModel.IsGenerateBillNumber = IsGenerateBill;
+            //payorDetailModel.IDFormat = IDFormat;
+            //payorDetailModel.IDLength = IDLength;
+            //payorDetailModel.NumberValue = IDNumberValue;
 
         }
 
@@ -783,41 +822,43 @@ namespace MediTech.ViewModels
 
             Code = model.Code;
             PayorName = model.PayorName;
-            Description = model.Description;
+            //Description = model.Description;
             ContactPersonName = model.ContactPersonName;
             Address1 = model.Address1;
             Address2 = model.Address2;
             TINNo = model.TINNo;
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
-            SelectPayorCredit = CreditTerm.FirstOrDefault(p => p.Key == model.PAYTRMUID);
+            SelectPayorCredit = CreditTerm.FirstOrDefault(p => p.Key == model.CRDTRMUID);
             MobileNumber = model.MobileNumber;
             PhoneNumber = model.PhoneNumber;
             FaxNumber = model.FaxNumber;
             Email = model.Email;
-            Comment = model.Comment;
+            Note = model.Note;
             SelectPayorCategory = PayorCategory.FirstOrDefault(p => p.Key == model.PYRACATUID);
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
 
+            if (SelectInsranceCompany != null)
+                SelectInsranceCompany = InsranceCompany.FirstOrDefault(p => p.InsuranceCompanyUID == SelectInsranceCompany.InsuranceCompanyUID);
 
             SuppressZipCodeEvent = true;
-            if (ProvinceSource != null)
-                SelectedProvince = ProvinceSource.FirstOrDefault(p => p.Key == payorDetailModel.ProvinceUID);
+            if (model.ProvinceUID != null)
+                SelectedProvince = ProvinceSource.FirstOrDefault(p => p.Key == model.ProvinceUID);
 
-            if (AmphurSource != null)
-                SelectedAmphur = AmphurSource.FirstOrDefault(p => p.Key == payorDetailModel.AmphurUID);
+            if (model.AmphurUID != null)
+                SelectedAmphur = AmphurSource.FirstOrDefault(p => p.Key == model.AmphurUID);
 
-            if (DistrictSource != null)
-                SelectedDistrict = DistrictSource.FirstOrDefault(p => p.Key == payorDetailModel.DistrictUID);
-            ZipCode = payorDetailModel.ZipCode;
+            if (model.DistrictUID != null)
+                SelectedDistrict = DistrictSource.FirstOrDefault(p => p.Key == model.DistrictUID);
+            ZipCode = model.ZipCode;
 
-            PayorAgreements = model.PayorAgrrements;
+            //PayorAgreements = model.PayorAgrrements;
 
-            IsGenerateBill = model.IsGenerateBillNumber;
-            IDFormat = model.IDFormat;
-            IDLength = model.IDLength;
-            IDNumberValue = model.NumberValue;
+            //IsGenerateBill = model.IsGenerateBillNumber;
+            //IDFormat = model.IDFormat;
+            //IDLength = model.IDLength;
+            //IDNumberValue = model.NumberValue;
 
         }
 

@@ -19,6 +19,173 @@ namespace MediTechWebApi.Controllers
     {
         protected MediTechEntities db = new MediTechEntities();
 
+        #region Location
+
+        [Route("GetLocationByUID")]
+        [HttpGet]
+        public LocationModel GetLocationByUID(int locationUID)
+        {
+            var data = db.Location.Where(p => p.StatusFlag == "A" && p.UID == locationUID).Select(p => new LocationModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                IsTemporaryBed = p.IsTemporaryBed,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).FirstOrDefault();
+            return data;
+        }
+
+        [Route("GetLocationByTypeUID")]
+        [HttpGet]
+        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID)
+        {
+            var data = db.Location.Where(p => p.StatusFlag == "A" && p.LOTYPUID == locationTypeUID).Select(p => new LocationModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+            return data;
+        }
+
+        [Route("GetLocation")]
+        [HttpGet]
+        public List<LocationModel> GetLocation()
+        {
+            var data = db.Location.Where(p => p.StatusFlag == "A").Select(p => new LocationModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                IsCanOrder = p.IsCanOrder,
+                IsEmergency = p.IsEmergency,
+                PhoneNumber = p.PhoneNumber,
+                DisplayOrder = p.DisplayOrder,
+                IsRegistrationAllowed = p.IsRegistrationAllowed,
+                OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
+                OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag,
+                LocationType = SqlFunction.fGetRfValDescription(p.LOTYPUID)
+            }).ToList();
+            return data;
+        }
+
+        [Route("ManageLocation")]
+        [HttpPost]
+        public HttpResponseMessage ManageLocation(LocationModel locationModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    Location location = db.Location.Find(locationModel.LocationUID);
+
+                    if (location == null)
+                    {
+                        location = new Location();
+                        location.CUser = userID;
+                        location.CWhen = now;
+                    }
+                    location.Name = locationModel.Name;
+                    location.Description = locationModel.Description;
+                    location.LOTYPUID = locationModel.LOTYPUID;
+                    location.ParentLocationUID = locationModel.ParentLocationUID;
+                    location.LCTSTUID = locationModel.LCTSTUID;
+                    location.ActiveFrom = locationModel.ActiveFrom;
+                    location.ActiveTo = locationModel.ActiveTo;
+                    location.IsCanOrder = locationModel.IsCanOrder;
+                    location.IsEmergency = locationModel.IsEmergency;
+                    location.IsTemporaryBed = locationModel.IsTemporaryBed;
+                    location.IsRegistrationAllowed = locationModel.IsRegistrationAllowed;
+                    location.EMZONEUID = locationModel.EMRZONUID;
+                    location.PhoneNumber = locationModel.PhoneNumber;
+                    location.DisplayOrder = locationModel.DisplayOrder;
+                    location.OwnerOrganisationUID = locationModel.OwnerOrganisationUID;
+                    location.MUser = userID;
+                    location.MWhen = now;
+                    location.StatusFlag = "A";
+
+                    db.Location.AddOrUpdate(location);
+                    db.SaveChanges();
+
+                    tran.Complete();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeleteLocation")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteLocation(int LocationUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    MediTech.DataBase.Location locaion = db.Location.Find(LocationUID);
+                    if (locaion != null)
+                    {
+                        db.Location.Attach(locaion);
+                        locaion.MUser = userID;
+                        locaion.MWhen = now;
+                        locaion.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        #endregion
+
         [Route("SearchReferenceDomain")]
         [HttpGet]
         public List<ReferenceDomainModel> SearchReferenceDomain(string domainCode, string description, string valueDescription)

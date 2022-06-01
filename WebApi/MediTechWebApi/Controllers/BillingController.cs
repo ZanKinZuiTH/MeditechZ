@@ -356,34 +356,34 @@ namespace MediTechWebApi.Controllers
                     var agreement = db.PayorAgreement.FirstOrDefault(p => p.UID == visitPayor.PayorAgreementUID);
                     string billType = "";
 
-                    if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
-                    {
-                        db.PayorDetail.Attach(payorDetail);
+                    //if (payorDetail != null && (payorDetail.IsGenerateBillNumber ?? false))
+                    //{
+                    //    db.PayorDetail.Attach(payorDetail);
 
-                        if (payorDetail.LastRenumberDttm == null)
-                        {
-                            payorDetail.LastRenumberDttm = now;
-                        }
-                        else
-                        {
-                            double dateDiff = ((now.Year - payorDetail.LastRenumberDttm.Value.Year) * 12) + now.Month - payorDetail.LastRenumberDttm.Value.Month;
-                            if (dateDiff >= 1)
-                            {
-                                payorDetail.LastRenumberDttm = now;
-                                payorDetail.NumberValue = 1;
-                            }
+                    //    if (payorDetail.LastRenumberDttm == null)
+                    //    {
+                    //        payorDetail.LastRenumberDttm = now;
+                    //    }
+                    //    else
+                    //    {
+                    //        double dateDiff = ((now.Year - payorDetail.LastRenumberDttm.Value.Year) * 12) + now.Month - payorDetail.LastRenumberDttm.Value.Month;
+                    //        if (dateDiff >= 1)
+                    //        {
+                    //            payorDetail.LastRenumberDttm = now;
+                    //            payorDetail.NumberValue = 1;
+                    //        }
 
-                        }
+                    //    }
 
-                        patientBillID = SEQHelper.GetSEQBillNumber(payorDetail.IDFormat, payorDetail.IDLength.Value, payorDetail.NumberValue.Value);
-                        seqBillID = payorDetail.NumberValue.Value;
+                    //    patientBillID = SEQHelper.GetSEQBillNumber(payorDetail.IDFormat, payorDetail.IDLength.Value, payorDetail.NumberValue.Value);
+                    //    seqBillID = payorDetail.NumberValue.Value;
 
-                        payorDetail.NumberValue = ++payorDetail.NumberValue;
+                    //    payorDetail.NumberValue = ++payorDetail.NumberValue;
 
-                        db.SaveChanges();
-                    }
-                    else
-                    {
+                    //    db.SaveChanges();
+                    //}
+                    //else
+                    //{
                         HealthOrganisationID healthIDBillType = null;
                         if (agreement.PBTYPUID == BLTYP_Receive)
                         {
@@ -470,7 +470,7 @@ namespace MediTechWebApi.Controllers
                             }
 
                         }
-                    }
+                    //}
             
 
 
@@ -648,7 +648,8 @@ namespace MediTechWebApi.Controllers
                             patBilled.Discount = item.Discount;
                             patBilled.NetAmount = item.NetAmount;
                             patBilled.DoctorFee = item.DoctorFee;
-                            patBilled.CareproviderUID = item.CareproviderUID;
+                            //patBilled.CareproviderUID = item.CareproviderUID;
+
                             //if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
                             //{
                             //    patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;

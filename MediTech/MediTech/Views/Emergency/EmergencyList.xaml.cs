@@ -16,11 +16,11 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for EmergencyPatientList.xaml
+    /// Interaction logic for EmergencyList.xaml
     /// </summary>
-    public partial class EmergencyPatientList : UserControl
+    public partial class EmergencyList : UserControl
     {
-        public EmergencyPatientList()
+        public EmergencyList()
         {
             InitializeComponent();
         }

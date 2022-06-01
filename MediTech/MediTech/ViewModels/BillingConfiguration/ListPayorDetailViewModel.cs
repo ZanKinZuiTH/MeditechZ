@@ -115,7 +115,7 @@ namespace MediTech.ViewModels
             if (SelectPayorDetail != null)
             {
                 ManagePayorDetail pageManage = new ManagePayorDetail();
-                (pageManage.DataContext as ManagePayorDetailViewModel).AssingModel(SelectPayorDetail.PayorDetailUID);
+                (pageManage.DataContext as ManagePayorDetailViewModel).AssingModel(null,SelectPayorDetail);
                 ChangeViewPermission(pageManage);
             }
         }

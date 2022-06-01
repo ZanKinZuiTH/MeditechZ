@@ -21,14 +21,14 @@ namespace MediTech.Views
     public partial class SendToDepartment : Window
     {
         public ActionDialog ResultDialog = ActionDialog.Cancel;
-        BedStatusModel model;
-        public SendToDepartment(BedStatusModel modelData)
-        {
-            InitializeComponent();
-            this.Loaded += SendToDepartments_Loaded;
-            btnCancel.Click += btnCancel_Click;
-            this.model = modelData;
-        }
+        //BedStatusModel model;
+        //public SendToDepartment(BedStatusModel modelData)
+        //{
+        //    InitializeComponent();
+        //    this.Loaded += SendToDepartments_Loaded;
+        //    btnCancel.Click += btnCancel_Click;
+        //    this.model = modelData;
+        //}
 
         void SendToDepartments_Loaded(object sender, RoutedEventArgs e)
         {
@@ -38,7 +38,7 @@ namespace MediTech.Views
             EncounterType.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "ENCTTY", ValueCode = "IPDDPM", Display = "IPD" });
             cmbDepartment.ItemsSource = EncounterType;
             timeEditor.EditValue = DateTime.Now;
-            txtPatientName.Text = model.PatientName;
+            //txtPatientName.Text = model.PatientName;
         }
 
         void btnSave_Click(object sender, RoutedEventArgs e)
