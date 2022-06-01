@@ -317,6 +317,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<StoreModel> GetStoreByLocationUID(int locationUID)
+        {
+            string requestApi = string.Format("Api/Inventory/GetStoreByLocationUID?locationUID={0}", locationUID);
+            List<StoreModel> dataRequest = MeditechApiHelper.Get<List<StoreModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public bool ManageStore(StoreModel storeModel, int userID)
         {
             bool flag = false;
@@ -357,25 +365,25 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
-            string requestApi = string.Format("Api/Inventory/SearchStockOnHand?ownerOrganisationUID={0}&storeUID={1}&itemType={2}&itemCode={3}&itemName={4}", ownerOrganisationUID, storeUID, itemType, itemCode, itemName);
+            string requestApi = string.Format("Api/Inventory/SearchStockOnHand?ownerOrganisationUID={0}&locationUID={1}&storeUID={2}&itemType={3}&itemCode={4}&itemName={5}", ownerOrganisationUID, locationUID, storeUID, itemType, itemCode, itemName);
             List<StockOnHandModel> dataRequest = MeditechApiHelper.Get<List<StockOnHandModel>>(requestApi);
 
             return dataRequest;
         }
 
-        public List<StockMovementModel> SearchStockMovement(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, string transactionType, DateTime? dateFrom, DateTime? dateTo)
+        public List<StockMovementModel> SearchStockMovement(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName, string transactionType, DateTime? dateFrom, DateTime? dateTo)
         {
-            string requestApi = string.Format("Api/Inventory/SearchStockMovement?ownerOrganisationUID={0}&storeUID={1}&itemCode={2}&itemName={3}&transactionType={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}", ownerOrganisationUID, storeUID, itemCode, itemName, transactionType, dateFrom, dateTo);
+            string requestApi = string.Format("Api/Inventory/SearchStockMovement?ownerOrganisationUID={0}&locationUID={1}&storeUID={2}&itemCode={3}&itemName={4}&transactionType={5}&dateFrom={6:MM/dd/yyyy}&dateTo={7:MM/dd/yyyy}", ownerOrganisationUID, locationUID, storeUID, itemCode, itemName, transactionType, dateFrom, dateTo);
             List<StockMovementModel> dataRequest = MeditechApiHelper.Get<List<StockMovementModel>>(requestApi);
 
             return dataRequest;
         }
 
-        public List<StockBalanceModel> SearchStockBalance(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
+        public List<StockBalanceModel> SearchStockBalance(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
         {
-            string requestApi = string.Format("Api/Inventory/SearchStockBalance?ownerOrganisationUID={0}&storeUID={1}&itemCode={2}&itemName={3}&dateFrom={4:MM/dd/yyyy}&dateTo={5:MM/dd/yyyy}", ownerOrganisationUID, storeUID, itemCode, itemName, dateFrom, dateTo);
+            string requestApi = string.Format("Api/Inventory/SearchStockBalance?ownerOrganisationUID={0}&locationUID={1}&storeUID={2}&itemCode={3}&itemName={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}", ownerOrganisationUID, locationUID, storeUID, itemCode, itemName, dateFrom, dateTo);
             List<StockBalanceModel> dataRequest = MeditechApiHelper.Get<List<StockBalanceModel>>(requestApi);
 
             return dataRequest;

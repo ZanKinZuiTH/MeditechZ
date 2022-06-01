@@ -80,6 +80,8 @@ namespace MediTech.ViewModels
             set { Set(ref _Organisations, value); }
         }
 
+
+
         #region StockOnHand
 
         private HealthOrganisationModel _SelectOrganisationOnHand;
@@ -92,10 +94,33 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationOnHand, value);
                 if (_SelectOrganisationOnHand != null)
                 {
-                    StoresOnHand = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationOnHand.HealthOrganisationUID);
+                    LocationOnHands = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisationOnHand.HealthOrganisationUID);
+                   
                 }
             }
         }
+
+        private List<LocationModel> _LocationOnHands;
+
+        public List<LocationModel> LocationOnHands
+        {
+            get { return _LocationOnHands; }
+            set { Set(ref _LocationOnHands, value); }
+        }
+
+        private LocationModel _SelectLocationOnHand;
+
+        public LocationModel SelectLocationOnHand
+        {
+            get { return _SelectLocationOnHand; }
+            set { Set(ref _SelectLocationOnHand, value);
+                if (_SelectLocationOnHand != null)
+                {
+                    StoresOnHand = DataService.Inventory.GetStoreByLocationUID(_SelectLocationOnHand.LocationUID);
+                }
+            }
+        }
+
 
         private List<StoreModel> _StoresOnHand;
 
@@ -201,7 +226,30 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationMovement, value);
                 if (_SelectOrganisationMovement != null)
                 {
-                    StoresMovement = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationMovement != null ? SelectOrganisationMovement.HealthOrganisationUID : 0);
+                    LocationMovements = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisationMovement != null ? SelectOrganisationMovement.HealthOrganisationUID : 0);
+                }
+            }
+        }
+
+        private List<LocationModel> _LocationMovements;
+
+        public List<LocationModel> LocationMovements
+        {
+            get { return _LocationMovements; }
+            set { Set(ref _LocationMovements, value); }
+        }
+
+        private LocationModel _SelectLocationMovement;
+
+        public LocationModel SelectLocationMovement
+        {
+            get { return _SelectLocationMovement; }
+            set
+            {
+                Set(ref _SelectLocationMovement, value);
+                if (_SelectLocationMovement != null)
+                {
+                    StoresMovement = DataService.Inventory.GetStoreByLocationUID(_SelectLocationMovement.LocationUID);
                 }
             }
         }
@@ -302,7 +350,30 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationBalance, value);
                 if (_SelectOrganisationOnHand != null)
                 {
-                    StoresBalance = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationBalance !=null ? SelectOrganisationBalance.HealthOrganisationUID : 0);
+                    LocationBalances = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisationBalance !=null ? SelectOrganisationBalance.HealthOrganisationUID : 0);
+                }
+            }
+        }
+
+        private List<LocationModel> _LocationBalances;
+
+        public List<LocationModel> LocationBalances
+        {
+            get { return _LocationBalances; }
+            set { Set(ref _LocationBalances, value); }
+        }
+
+        private LocationModel _SelectLocationBalance;
+
+        public LocationModel SelectLocationBalance
+        {
+            get { return _SelectLocationBalance; }
+            set
+            {
+                Set(ref _SelectLocationBalance, value);
+                if (_SelectLocationBalance != null)
+                {
+                    StoresBalance = DataService.Inventory.GetStoreByLocationUID(_SelectLocationBalance.LocationUID);
                 }
             }
         }
@@ -494,9 +565,10 @@ namespace MediTech.ViewModels
         private void SearchStockOnHand()
         {
             int? ownerUID = SelectOrganisationOnHand != null ? SelectOrganisationOnHand.HealthOrganisationUID : (int?)null;
+            int? locationUID = SelectLocationOnHand != null ? SelectLocationOnHand.LocationUID : (int?)null;
             int? storeUID = SelectStoreOnHand != null ? SelectStoreOnHand.StoreUID : (int?)null;
             int? itemType = SelectItemTypeOnHand != null ? SelectItemTypeOnHand.Key : (int?)null;
-            StockOnHand = DataService.Inventory.SearchStockOnHand(ownerUID, storeUID, itemType, ItemCodeOnHand, ItemNameOnHand);
+            StockOnHand = DataService.Inventory.SearchStockOnHand(ownerUID, locationUID, storeUID, itemType, ItemCodeOnHand, ItemNameOnHand);
             StockOnHandBatch = null;
         }
 
@@ -517,12 +589,13 @@ namespace MediTech.ViewModels
         private void SearchMovement()
         {
             int? ownerUID = SelectOrganisationMovement != null ? SelectOrganisationMovement.HealthOrganisationUID : (int?)null;
+            int? locationUID = SelectLocationMovement != null ? SelectLocationMovement.LocationUID : (int?)null;
             int? storeUID = SelectStoreMovement != null ? SelectStoreMovement.StoreUID : (int?)null;
             int? itemType = SelectItemTypeMovement != null ? SelectItemTypeMovement.Key : (int?)null;
             string tranType = SelectTransactionType != null ? SelectTransactionType.Display : null;
             //int itemMasterUID = SelectStockOnHand != null ? SelectStockOnHand.ItemMasterUID : 0;
 
-            StockMovements = DataService.Inventory.SearchStockMovement(ownerUID, storeUID, ItemCodeMovement,ItemNameMovement, tranType, DateFromMovement, DateToMovement);
+            StockMovements = DataService.Inventory.SearchStockMovement(ownerUID, locationUID, storeUID, ItemCodeMovement,ItemNameMovement, tranType, DateFromMovement, DateToMovement);
             if (StockMovements != null)
             {
                 StockMovements = StockMovements.OrderBy(p => p.StockDttm).ToList();
@@ -548,10 +621,11 @@ namespace MediTech.ViewModels
         private void SearchBalance()
         {
             int? ownerUID = SelectOrganisationBalance != null ? SelectOrganisationBalance.HealthOrganisationUID : (int?)null;
+            int? locationUID = SelectLocationBalance != null ? SelectLocationBalance.LocationUID : (int?)null;
             int? storeUID = SelectStoreBalance != null ? SelectStoreBalance.StoreUID : (int?)null;
             int? itemType = SelectItemTypeBalance != null ? SelectItemTypeBalance.Key : (int?)null;
             //int itemMasterUID = SelectStockOnHand != null ? SelectStockOnHand.ItemMasterUID : 0;
-            StockBalances = DataService.Inventory.SearchStockBalance(ownerUID, storeUID, ItemCodeBalance,ItemNameBalance, DateFromBalance, DateToBalance);
+            StockBalances = DataService.Inventory.SearchStockBalance(ownerUID, locationUID, storeUID, ItemCodeBalance,ItemNameBalance, DateFromBalance, DateToBalance);
         }
 
         private void ClearBalance()

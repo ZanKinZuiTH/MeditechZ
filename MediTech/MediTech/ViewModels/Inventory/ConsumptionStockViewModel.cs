@@ -32,8 +32,31 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
-                    Locations = DataService.MasterData.GetLocationAll(SelectOrganisation.HealthOrganisationUID);
-                    Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Locations = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    LocationUseds = Locations;
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
+                if (_SelectLocation != null)
+                {
+                    Stores = DataService.Inventory.GetStoreByLocationUID(_SelectLocation.LocationUID);
                 }
             }
         }
@@ -112,20 +135,20 @@ namespace MediTech.ViewModels
             set { Set(ref _BatchQty, value); }
         }
 
-        private List<LocationModel> _Locations;
+        private List<LocationModel> _LocationUseds;
 
-        public List<LocationModel> Locations
+        public List<LocationModel> LocationUseds
         {
-            get { return _Locations; }
-            set { Set(ref _Locations, value); }
+            get { return _LocationUseds; }
+            set { Set(ref _LocationUseds, value); }
         }
 
-        private LocationModel _SelectLocation;
+        private LocationModel _SelectLocationUsed;
 
-        public LocationModel SelectLocation
+        public LocationModel SelectLocationUsed
         {
-            get { return _SelectLocation; }
-            set { Set(ref _SelectLocation, value); }
+            get { return _SelectLocationUsed; }
+            set { Set(ref _SelectLocationUsed, value); }
         }
 
         private string _BatchID;
@@ -277,7 +300,7 @@ namespace MediTech.ViewModels
             ItemTypes = DataService.Technical.GetReferenceValueMany("ITMTYP");
             //Location = DataService.MasterData.GetLocationAll(AppUtil.Current.OwnerOrganisationUID);
 
-            
+
 
             if (Organisations != null)
             {
@@ -349,7 +372,7 @@ namespace MediTech.ViewModels
 
             if (IssueStocks != null)
             {
-                if ((IssueStocks.FirstOrDefault(p => p.StockUID == SelectCurrentStock.StockUID) != null ) 
+                if ((IssueStocks.FirstOrDefault(p => p.StockUID == SelectCurrentStock.StockUID) != null)
                     && (IssueStocks.FirstOrDefault(p => p.Location == SelectLocation.Name) != null))
                 {
                     WarningDialog("มีรายการที่เลือกแล้ว");

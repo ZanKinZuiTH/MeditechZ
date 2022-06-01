@@ -454,9 +454,9 @@ namespace MediTech.DataService
         #endregion
 
         #region Location
-        public List<LocationModel> GetLocationAll(int ownerOrganisationUID)
+        public List<LocationModel> GetLocationByOrganisationUID(int ownerOrganisationUID)
         {
-            string requestApi = string.Format("Api/MasterData/GetLocationAll?ownerOrganisationUID={0}", ownerOrganisationUID);
+            string requestApi = string.Format("Api/MasterData/GetLocationByOrganisationUID?ownerOrganisationUID={0}", ownerOrganisationUID);
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
         }

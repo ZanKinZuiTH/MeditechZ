@@ -923,6 +923,8 @@ namespace MediTechWebApi.Controllers
                 StorePolicyType = SqlFunction.fGetRfValDescription(p.STDTPUID ?? 0),
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
                 OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                LocationUID = p.LocationUID ?? 0,
+                LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
                 CUser = p.CUser,
@@ -948,6 +950,8 @@ namespace MediTechWebApi.Controllers
                 StorePolicyType = SqlFunction.fGetRfValDescription(p.STDTPUID ?? 0),
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
                 OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                LocationUID = p.LocationUID ?? 0,
+                LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
                 CUser = p.CUser,
@@ -973,6 +977,35 @@ namespace MediTechWebApi.Controllers
                 StorePolicyType = SqlFunction.fGetRfValDescription(p.STDTPUID ?? 0),
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
                 OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                LocationUID = p.LocationUID ?? 0,
+                LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetStoreByLocationUID")]
+        [HttpGet]
+        public List<StoreModel> GetStoreByLocationUID(int locationUID)
+        {
+            List<StoreModel> data = db.Store.Where(p => p.StatusFlag == "A" && p.LocationUID == locationUID).Select(p => new StoreModel()
+            {
+                StoreUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                STDTPUID = p.STDTPUID,
+                StorePolicyType = SqlFunction.fGetRfValDescription(p.STDTPUID ?? 0),
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                LocationUID = p.LocationUID ?? 0,
+                LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
                 CUser = p.CUser,
@@ -1005,6 +1038,7 @@ namespace MediTechWebApi.Controllers
                 store.Description = storeModel.Description;
                 store.STDTPUID = storeModel.STDTPUID;
                 store.OwnerOrganisationUID = storeModel.OwnerOrganisationUID;
+                store.LocationUID = storeModel.LocationUID;
                 store.ActiveFrom = storeModel.ActiveFrom;
                 store.ActiveTo = storeModel.ActiveTo;
                 store.MUser = storeModel.MUser;
@@ -1050,9 +1084,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockOnHand")]
         [HttpGet]
-        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
-            DataTable dt = SqlDirectStore.pSearchStockOnHand(ownerOrganisationUID, storeUID, itemType, itemCode, itemName);
+            DataTable dt = SqlDirectStore.pSearchStockOnHand(ownerOrganisationUID, locationUID, storeUID, itemType, itemCode, itemName);
             List<StockOnHandModel> data = dt.ToList<StockOnHandModel>();
 
             return data;
@@ -1060,9 +1094,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockMovement")]
         [HttpGet]
-        public List<StockMovementModel> SearchStockMovement(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, string transactionType, DateTime? dateFrom, DateTime? dateTo)
+        public List<StockMovementModel> SearchStockMovement(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName, string transactionType, DateTime? dateFrom, DateTime? dateTo)
         {
-            DataTable dt = SqlDirectStore.pSearchStockMovement(ownerOrganisationUID, storeUID, itemCode, itemName, transactionType, dateFrom, dateTo);
+            DataTable dt = SqlDirectStore.pSearchStockMovement(ownerOrganisationUID, locationUID, storeUID, itemCode, itemName, transactionType, dateFrom, dateTo);
             List<StockMovementModel> data = dt.ToList<StockMovementModel>();
 
             return data;
@@ -1070,9 +1104,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockBalance")]
         [HttpGet]
-        public List<StockBalanceModel> SearchStockBalance(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
+        public List<StockBalanceModel> SearchStockBalance(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
         {
-            DataTable dt = SqlDirectStore.pSearchStockBalance(ownerOrganisationUID, storeUID, itemCode, itemName, dateFrom, dateTo);
+            DataTable dt = SqlDirectStore.pSearchStockBalance(ownerOrganisationUID, locationUID, storeUID, itemCode, itemName, dateFrom, dateTo);
             List<StockBalanceModel> data = dt.ToList<StockBalanceModel>();
             return data;
         }

@@ -27,7 +27,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (SelectOrganisation != null)
                 {
-                    Locations = DataService.MasterData.GetLocationAll(SelectOrganisation.HealthOrganisationUID);
+                    Locations = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
                     var careOrgan = DataService.UserManage.GetCareProviderOrganisation(SelectOrganisation.HealthOrganisationUID);
                     if (careOrgan != null)
                     {

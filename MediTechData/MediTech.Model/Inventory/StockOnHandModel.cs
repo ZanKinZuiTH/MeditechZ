@@ -10,6 +10,8 @@ namespace MediTech.Model
     {
         public int OrganisationUID { get; set; }
         public string OrganisationName { get; set; }
+        public int LocationUID { get; set; }
+        public string LocationName { get; set; }
         public int StockUID { get; set; }
         public int StoreUID { get; set; }
         public string StoreName { get; set; }

@@ -2005,9 +2005,9 @@ namespace MediTechWebApi.Controllers
         #endregion
 
         #region Location
-        [Route("GetLocationAll")]
+        [Route("GetLocationByOrganisationUID")]
         [HttpGet]
-        public List<LocationModel> GetLocationAll(int ownerOrganisationUID)
+        public List<LocationModel> GetLocationByOrganisationUID(int ownerOrganisationUID)
         {
             var data = db.Location.Where(p => p.StatusFlag == "A" && p.OwnerOrganisationUID == ownerOrganisationUID).Select(p => new LocationModel()
             {

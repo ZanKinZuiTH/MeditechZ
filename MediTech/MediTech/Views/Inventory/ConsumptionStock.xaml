@@ -32,6 +32,14 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="Store">
                     <dxe:ComboBoxEdit ItemsSource="{Binding Stores}" 
                                       SelectedItem="{Binding SelectStore}"
@@ -40,6 +48,9 @@
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="ประเภทของ">
                     <dxe:ComboBoxEdit ItemsSource="{Binding ItemTypes}" 
                                       SelectedItem="{Binding SelectItemType}"
@@ -48,23 +59,22 @@
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="รหัสรายการ">
                     <dxe:TextEdit Text="{Binding ItemCode}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="รายการของ">
                     <dxe:TextEdit Text="{Binding ItemName}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
-                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
-                                     Height="25" Content="ค้นหา"/>
-                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutItem>
+
             </dxlc:LayoutGroup>
+            <dxlc:LayoutItem >
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                    <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คื่นค่า"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem>
                     <TextBlock Text="Stock ปัจจุบัน" FontWeight="Bold"/>
@@ -121,8 +131,8 @@
                                 AllowNullInput="True"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานที่ใช้">
-                    <dxe:ComboBoxEdit ItemsSource="{Binding Locations}" 
-                                      SelectedItem="{Binding SelectLocation}"
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationsUseds}" 
+                                      SelectedItem="{Binding SelectLocationUsed}"
                                       ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True" 

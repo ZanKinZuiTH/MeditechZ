@@ -34,6 +34,14 @@
                                         </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationOnHands}" 
+                                      SelectedItem="{Binding SelectLocationOnHand}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Store">
                                     <dxe:ComboBoxEdit Name="cmbStoreOnHand" 
                                       ItemsSource="{Binding StoresOnHand}" 
@@ -44,6 +52,8 @@
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="ประเภทรายการ">
                                     <dxe:ComboBoxEdit x:Name="cmbItemType" ItemsSource="{Binding ItemTypes}"
                                           DisplayMember="Display"
@@ -51,29 +61,28 @@
                                           AllowNullInput="True"
                                           SelectedItem="{Binding SelectItemTypeOnHand}"/>
                                 </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="รหัสรายการ">
                                     <dxe:TextEdit Text="{Binding ItemCodeOnHand}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
                                     <dxe:TextEdit Text="{Binding ItemNameOnHand}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem>
-                                    <dxlc:LayoutGroup Orientation="Horizontal">
-                                        <dx:SimpleButton Width="80" Command="{Binding SearchStockOnHandCommand}" HorizontalAlignment="Right"
-                                     Height="25" Content="ค้นหา"/>
-                                        <dx:SimpleButton Width="80" Command="{Binding ClearStockOnHandCommand}" HorizontalAlignment="Right"
-                                     Height="25" Content="คื่นค่า"/>
-                                    </dxlc:LayoutGroup>
 
-                                </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dx:SimpleButton Width="80" Command="{Binding SearchStockOnHandCommand}" HorizontalAlignment="Right"
+                                     Height="25" Content="ค้นหา"/>
+                                    <dx:SimpleButton Width="80" Command="{Binding ClearStockOnHandCommand}" HorizontalAlignment="Right"
+                                     Height="25" Content="คื่นค่า"/>
+                                </dxlc:LayoutGroup>
 
+                            </dxlc:LayoutItem>
                             <dxg:GridControl ItemsSource="{Binding StockOnHand}"
                                      SelectedItem="{Binding SelectStockOnHand}">
                                 <dxg:GridControl.Columns>
                                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="แผนก/สถานที่" FieldName="LocationName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อรายการ" FieldName="ItemName" ReadOnly="True"/>
@@ -134,6 +143,14 @@
                                         </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationMovements}" 
+                                      SelectedItem="{Binding SelectLocationMovement}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Store">
                                     <dxe:ComboBoxEdit Name="cmbStoreMovement" 
                                       ItemsSource="{Binding StoresMovement}" 
@@ -144,6 +161,9 @@
                                      AllowNullInput="True"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="Transaction Type">
                                     <dxe:ComboBoxEdit x:Name="cmbTranType" ItemsSource="{Binding TransactionTypes}"
                                           DisplayMember="Display"
@@ -152,25 +172,21 @@
                                           SelectedItem="{Binding SelectTransactionType}"/>
 
                                 </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="รหัสรายการ">
                                     <dxe:TextEdit Text="{Binding ItemCodeMovement}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
                                     <dxe:TextEdit Text="{Binding ItemNameMovement}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="จาก วันที่">
-                                    <dxe:DateEdit EditValue="{Binding DateFromMovement}"/>
-                                </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
-
+                                <dxlc:LayoutItem Label="จาก วันที่">
+                                    <dxe:DateEdit EditValue="{Binding DateFromMovement}"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ถึง วันที่">
                                     <dxe:DateEdit EditValue="{Binding DateToMovement}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem/>
                                 <dxlc:LayoutItem>
                                     <dxlc:LayoutGroup Orientation="Horizontal">
                                         <dx:SimpleButton Width="80" Command="{Binding SearchMovementCommand}" HorizontalAlignment="Right"
@@ -186,6 +202,7 @@
                                     <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อรายการ" FieldName="ItemName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="แผนก/สถานที่" FieldName="LocationName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True" />
                                     <dxg:GridColumn Header="เวลา" FieldName="StockDttm" ReadOnly="True"/>
@@ -232,6 +249,14 @@
                                         </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationBalances}" 
+                                      SelectedItem="{Binding SelectLocationBalance}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Store">
                                     <dxe:ComboBoxEdit Name="cmbStoreBalance" 
                                               ItemsSource="{Binding StoresBalance}" 
@@ -242,23 +267,24 @@
                                       AllowNullInput="True"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
+   
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="รหัสรายการ">
                                     <dxe:TextEdit Text="{Binding ItemCodeBalance}" />
                                 </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-
                                 <dxlc:LayoutItem Label="ชื่อรายการ">
                                     <dxe:TextEdit Text="{Binding ItemNameBalance}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="จาก วันที่">
                                     <dxe:DateEdit EditValue="{Binding DateFromBalance}"/>
                                 </dxlc:LayoutItem>
+       
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup>
                                 <dxlc:LayoutItem Label="ถึง วันที่">
                                     <dxe:DateEdit EditValue="{Binding DateToBalance}"/>
                                 </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup>
                                 <dxlc:LayoutItem/>
                                 <dxlc:LayoutItem>
                                     <dxlc:LayoutGroup Orientation="Horizontal">
@@ -275,6 +301,7 @@
                                     <dxg:GridColumn Header="รหัสรายการ" FieldName="ItemCode" ReadOnly="True"/>
                                     <dxg:GridColumn Header="ชื่อรายการ" FieldName="ItemName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="แผนก/สถานที่" FieldName="LocationName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="Store" FieldName="StoreName" ReadOnly="True"/>
                                     <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True" GroupIndex="1" />
                                     <dxg:GridColumn Header="เวลา" FieldName="StockDttm" ReadOnly="True"/>

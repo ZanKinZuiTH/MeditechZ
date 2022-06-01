@@ -15,6 +15,7 @@
                     <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
                     <dxg:GridColumn Header="ประเภท" FieldName="StorePolicyType"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisationName"/>
+                    <dxg:GridColumn Header="แผนก/สถานที่" FieldName="LocationName"/>
                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
                     <dxg:GridColumn Header="ปิดการใช้งาน" FieldName="ActiveTo"/>
                 </dxg:GridControl.Columns>

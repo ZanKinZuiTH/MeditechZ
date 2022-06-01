@@ -1495,13 +1495,14 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockOnHand(int? ownerOrganisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public static DataTable pSearchStockOnHand(int? ownerOrganisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockOnHand", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_ItemType", itemType ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_ItemCode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);
@@ -1511,7 +1512,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockMovement(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName,
+        public static DataTable pSearchStockMovement(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName,
              string transactionType, DateTime? dateFrom, DateTime? dateTo)
         {
             MediTechEntities entities = new MediTechEntities();
@@ -1519,6 +1520,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_Itemcode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);
             adp.SelectCommand.Parameters.AddWithValue("@p_ItemName", string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);
@@ -1530,13 +1532,14 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockBalance(int? ownerOrganisationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
+        public static DataTable pSearchStockBalance(int? ownerOrganisationUID, int? locationUID, int? storeUID, string itemCode, string itemName, DateTime? dateFrom, DateTime? dateTo)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockBalance", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_Itemcode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);
             adp.SelectCommand.Parameters.AddWithValue("@p_ItemName", string.IsNullOrEmpty(itemName) ? (object)DBNull.Value : itemName);

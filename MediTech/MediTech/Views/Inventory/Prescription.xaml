@@ -104,22 +104,32 @@
                     <dxg:TableView ShowGroupPanel="False" ShowCheckBoxSelectorColumn="True"/>
                 </dxg:GridControl.View>
             </dxg:GridControl>
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dxlc:LayoutItem>
-                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+            <dxlc:LayoutGroup>
+                <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                                     Height="25" >
+                    <StackPanel  Orientation="Horizontal">
+                        <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                </dx:SimpleButton>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
                         Width="180" Height="25"/>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem>
-                    <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
                                      Height="25" >
-                        <StackPanel  Orientation="Horizontal">
-                            <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
-                        </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="จ่ายยา" VerticalAlignment="Center"/>
+                            </StackPanel>
 
-                    </dx:SimpleButton>
-                </dxlc:LayoutItem>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
+        
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

@@ -15,6 +15,8 @@ namespace MediTech.Model
         public string StorePolicyType { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public string OwnerOrganisationName { get; set; }
+        public int LocationUID { get; set; }
+        public string LocationName { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }

@@ -63,7 +63,7 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectStoreType
         {
             get { return _SelectStoreType; }
-            set { Set(ref _SelectStoreType , value); }
+            set { Set(ref _SelectStoreType, value); }
         }
 
 
@@ -73,7 +73,31 @@ namespace MediTech.ViewModels
         public HealthOrganisationModel SelectOrganisation
         {
             get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation,value); }
+            set
+            {
+                Set(ref _SelectOrganisation, value);
+                if (_SelectOrganisation != null)
+                {
+                    Locations = DataService.MasterData.GetLocationByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                }
+
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
 
@@ -132,6 +156,11 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาระบุ สถานประกอบการ");
                     return;
                 }
+                if (SelectLocation == null)
+                {
+                    WarningDialog("กรุณาระบุ แผนก/สถานที่");
+                    return;
+                }
 
                 AssingPropertiesToModel();
                 DataService.Inventory.ManageStore(model, AppUtil.Current.UserID);
@@ -164,6 +193,7 @@ namespace MediTech.ViewModels
             ActiveFrom = model.ActiveFrom;
             ActiveTo = model.ActiveTo;
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
         }
 
         void AssingPropertiesToModel()
@@ -178,6 +208,7 @@ namespace MediTech.ViewModels
             model.ActiveTo = ActiveTo;
             model.STDTPUID = SelectStoreType != null ? SelectStoreType.Key : (int?)null;
             model.OwnerOrganisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : 0;
+            model.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : 0;
         }
 
         #endregion
