@@ -205,6 +205,7 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQVisitID> SEQVisitID { get; set; }
         public virtual DbSet<SessionDefinition> SessionDefinition { get; set; }
         public virtual DbSet<SessionWithdrawnDetail> SessionWithdrawnDetail { get; set; }
+        public virtual DbSet<Speciality> Speciality { get; set; }
         public virtual DbSet<Specimen> Specimen { get; set; }
         public virtual DbSet<Stock> Stock { get; set; }
         public virtual DbSet<StockAdjustment> StockAdjustment { get; set; }
@@ -1381,11 +1382,15 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetItemMasterForRequest_Result>("pGetItemMasterForRequest", p_StoreUIDParameter);
         }
     
-        public virtual ObjectResult<pSearchStockBalance_Result> pSearchStockBalance(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_StoreUID, string p_ItemCode, string p_ItemName, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
+        public virtual ObjectResult<pSearchStockBalance_Result> pSearchStockBalance(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_LocationUID, Nullable<int> p_StoreUID, string p_ItemCode, string p_ItemName, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
         {
             var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
                 new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
                 new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
     
             var p_StoreUIDParameter = p_StoreUID.HasValue ?
                 new ObjectParameter("P_StoreUID", p_StoreUID) :
@@ -1407,14 +1412,18 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_DateTo", p_DateTo) :
                 new ObjectParameter("P_DateTo", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockBalance_Result>("pSearchStockBalance", p_OwnerOrganisationUIDParameter, p_StoreUIDParameter, p_ItemCodeParameter, p_ItemNameParameter, p_DateFromParameter, p_DateToParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockBalance_Result>("pSearchStockBalance", p_OwnerOrganisationUIDParameter, p_LocationUIDParameter, p_StoreUIDParameter, p_ItemCodeParameter, p_ItemNameParameter, p_DateFromParameter, p_DateToParameter);
         }
     
-        public virtual ObjectResult<pSearchStockMovement_Result> pSearchStockMovement(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_StoreUID, string p_ItemCode, string p_ItemName, string p_TransactionType, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
+        public virtual ObjectResult<pSearchStockMovement_Result> pSearchStockMovement(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_LocationUID, Nullable<int> p_StoreUID, string p_ItemCode, string p_ItemName, string p_TransactionType, Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo)
         {
             var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
                 new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
                 new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
     
             var p_StoreUIDParameter = p_StoreUID.HasValue ?
                 new ObjectParameter("P_StoreUID", p_StoreUID) :
@@ -1440,7 +1449,7 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_DateTo", p_DateTo) :
                 new ObjectParameter("P_DateTo", typeof(System.DateTime));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockMovement_Result>("pSearchStockMovement", p_OwnerOrganisationUIDParameter, p_StoreUIDParameter, p_ItemCodeParameter, p_ItemNameParameter, p_TransactionTypeParameter, p_DateFromParameter, p_DateToParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockMovement_Result>("pSearchStockMovement", p_OwnerOrganisationUIDParameter, p_LocationUIDParameter, p_StoreUIDParameter, p_ItemCodeParameter, p_ItemNameParameter, p_TransactionTypeParameter, p_DateFromParameter, p_DateToParameter);
         }
     
         public virtual ObjectResult<pGetItemMasterQtyByStore_Result> pGetItemMasterQtyByStore(Nullable<int> p_StoreUID)
@@ -1452,11 +1461,15 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetItemMasterQtyByStore_Result>("pGetItemMasterQtyByStore", p_StoreUIDParameter);
         }
     
-        public virtual ObjectResult<pSearchStockOnHand_Result> pSearchStockOnHand(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_StoreUID, Nullable<int> p_ItemType, string p_ItemCode, string p_itemName)
+        public virtual ObjectResult<pSearchStockOnHand_Result> pSearchStockOnHand(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_LocationUID, Nullable<int> p_StoreUID, Nullable<int> p_ItemType, string p_ItemCode, string p_itemName)
         {
             var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
                 new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
                 new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
     
             var p_StoreUIDParameter = p_StoreUID.HasValue ?
                 new ObjectParameter("P_StoreUID", p_StoreUID) :
@@ -1474,7 +1487,7 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_itemName", p_itemName) :
                 new ObjectParameter("P_itemName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockOnHand_Result>("pSearchStockOnHand", p_OwnerOrganisationUIDParameter, p_StoreUIDParameter, p_ItemTypeParameter, p_ItemCodeParameter, p_itemNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockOnHand_Result>("pSearchStockOnHand", p_OwnerOrganisationUIDParameter, p_LocationUIDParameter, p_StoreUIDParameter, p_ItemTypeParameter, p_ItemCodeParameter, p_itemNameParameter);
         }
     
         public virtual ObjectResult<pGetStoreQtyByItemMasterUID_Result> pGetStoreQtyByItemMasterUID(Nullable<int> p_ItemMasterUID, Nullable<int> p_OrganisationUID)

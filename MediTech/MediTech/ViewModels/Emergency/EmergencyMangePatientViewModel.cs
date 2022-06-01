@@ -28,8 +28,7 @@ namespace MediTech.ViewModels
 
         #region Properites
         public bool SuppressZipCodeEvent { get; set; }
-
-
+        public bool FromWardView { get; set; }
         private BookingModel _Booking;
 
         public BookingModel Booking
@@ -672,6 +671,19 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedTriage, value); }
         }
 
+        private List<LookupReferenceValueModel> _EmergencyTypr;
+        public List<LookupReferenceValueModel> EmergencyTypr
+        {
+            get { return _EmergencyTypr; }
+            set { Set(ref _EmergencyTypr, value); }
+        }
+        private LookupReferenceValueModel _SelectedEmergencyTypr;
+        public LookupReferenceValueModel SelectedEmergencyTypr
+        {
+            get { return _SelectedEmergencyTypr; }
+            set { Set(ref _SelectedEmergencyTypr, value); }
+        }
+
         private List<LookupReferenceValueModel> _Bed;
         public List<LookupReferenceValueModel> Bed
         {
@@ -859,17 +871,17 @@ namespace MediTech.ViewModels
             StartDate = now.Date;
             StartTime = now;
 
-            Triage = new List<LookupReferenceValueModel>();
-            Triage.Add(new LookupReferenceValueModel { Key = 1, DomainCode = "TRIAGE", ValueCode = "TRIAGE1", Display = "สีแดง(emergency/immediate)" });
-            Triage.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" });
-            Triage.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" });
-            Triage.Add(new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" });
-            Triage.Add(new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" });
+            //Triage = new List<LookupReferenceValueModel>();
+            //Triage.Add(new LookupReferenceValueModel { Key = 1, DomainCode = "TRIAGE", ValueCode = "TRIAGE1", Display = "สีแดง(emergency/immediate)" });
+            //Triage.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" });
+            //Triage.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" });
+            //Triage.Add(new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" });
+            //Triage.Add(new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" });
 
-            Bed = new List<LookupReferenceValueModel>();
-            Bed.Add(new LookupReferenceValueModel { Key = 1, DomainCode = "BED", ValueCode = "BED1", Display = "เตียง1" });
-            Bed.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "BED", ValueCode = "BED2", Display = "เตียง2" });
-            Bed.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "BED", ValueCode = "BED3", Display = "เตียง3" });
+            //Bed = new List<LookupReferenceValueModel>();
+            //Bed.Add(new LookupReferenceValueModel { Key = 1, DomainCode = "BED", ValueCode = "BED1", Display = "เตียง1" });
+            //Bed.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "BED", ValueCode = "BED2", Display = "เตียง2" });
+            //Bed.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "BED", ValueCode = "BED3", Display = "เตียง3" });
         }
 
         public void PatientSearch()
@@ -1119,10 +1131,10 @@ namespace MediTech.ViewModels
                 }
                 else
                 {
-                    if (AppUtil.Current.IsDoctor ?? false)
+                    if (FromWardView == true)
                     {
-                        DoctorRoom doctorRoom = new DoctorRoom();
-                        ChangeViewPermission(doctorRoom);   //Registered Status
+                        EmergencyBedStatus wardView = new EmergencyBedStatus();
+                        ChangeViewPermission(wardView);   //Registered Status
                     }
                     else
                     {
@@ -1348,6 +1360,7 @@ namespace MediTech.ViewModels
             if (bedCode != 0)
             {
                 SelectedBed = Bed.FirstOrDefault(p => p.Key == bedCode);
+                FromWardView = true;
             }
 
             Email = patientModel.Email;

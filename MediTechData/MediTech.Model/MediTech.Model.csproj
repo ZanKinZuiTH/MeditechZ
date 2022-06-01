@@ -58,13 +58,16 @@
     <Compile Include="Checkup\PatientResultCheckupModel.cs" />
     <Compile Include="Ecount\EcountImportModel.cs" />
     <Compile Include="Ecount\EcountMassFileModel.cs" />
-    <Compile Include="Emergency\BedStatusModel.cs" />
-    <Compile Include="Emergency\PatientEmergencyModel.cs" />
+    <Compile Include="Emergency\AEDischargeEventModel.cs" />
+    <Compile Include="Emergency\IPBookingModel.cs" />
+    <Compile Include="Emergency\PatientDeceasedDetailModel.cs" />
     <Compile Include="Icheckup\IcehckUpdataModel.cs" />
     <Compile Include="Icheckup\ORDER_HC.cs" />
     <Compile Include="Icheckup\VISIT_HC.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
+    <Compile Include="IPD\AdmissionEventModel.cs" />
+    <Compile Include="IPD\BedStatusModel.cs" />
     <Compile Include="Lab\IcheckupModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
     <Compile Include="Lab\RequestDetailItemModel.cs" />
@@ -82,6 +85,7 @@
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
     <Compile Include="MasterData\ResultItemModel.cs" />
     <Compile Include="MasterData\ResultItemRangeModel.cs" />
+    <Compile Include="MasterData\SpecialityModel.cs" />
     <Compile Include="MasterData\SpecimenModel.cs" />
     <Compile Include="OrderMaster\BillableItemDetailModel.cs" />
     <Compile Include="Billing\BillingGroupModel.cs" />
@@ -134,6 +138,7 @@
     <Compile Include="PatientHistory\WellnessDataModel.cs" />
     <Compile Include="Patient\BookingModel.cs" />
     <Compile Include="Patient\PatientAddressModel.cs" />
+    <Compile Include="Patient\PatientAEAdmissionModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
     <Compile Include="Patient\PatientInsuranceDetailModel.cs" />
@@ -141,6 +146,7 @@
     <Compile Include="Patient\PatientMergeEcounterModel.cs" />
     <Compile Include="Patient\PatientMergeModel.cs" />
     <Compile Include="Patient\PatientScannedDocumentModel.cs" />
+    <Compile Include="Patient\PatientVisitIDModel.cs" />
     <Compile Include="Patient\PatientVisitPayorModel.cs" />
     <Compile Include="Patient\VIPPatientModel.cs" />
     <Compile Include="Pharmacy\FrequencyDefinitionModel.cs" />

@@ -14,5 +14,7 @@ namespace MediTech.Model
         public int DisplayOrder { get; set; }
         public double? NumericValue { get; set; }
         public string AlternateName { get; set; }
+        public bool IsSelected { get; set; }
+
     }
 }

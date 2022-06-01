@@ -66,9 +66,31 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientInformationModel> SearchPatientEmergency(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate, int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+        {
+            if (patientID == string.Empty && firstName == string.Empty && middleName == string.Empty && lastName == string.Empty &&
+                nickName == string.Empty && birthDate == null && SEXXXUID == null && idCard == string.Empty && lastVisitDate == null && mobilePhone == string.Empty)
+            {
+                return null;
+
+            }
+            string requestApi = string.Format("Api/PatientIdentity/SearchPatientEmergency?patientID={0}&firstName={1}&middleName={2}&lastName={3}&nickName={4}&birthDate={5:MM/dd/yyyy}&SEXXXUID={6}&idCard={7}&lastVisitDate={8:MM/dd/yyyy}&mobilePhone={9}", patientID, firstName, middleName, lastName, nickName, birthDate, SEXXXUID, idCard, lastVisitDate, mobilePhone);
+            List<PatientInformationModel> data = MeditechApiHelper.Get<List<PatientInformationModel>>(requestApi);
+
+            return data;
+        }
+
         public PatientInformationModel RegisterPatient(PatientInformationModel patientInfo, int userID, int OwernID)
         {
             string requestApi = string.Format("Api/PatientIdentity/RegisterPatient?userID={0}&OwnerOrganisationUID={1}", userID, OwernID);
+            PatientInformationModel result = MeditechApiHelper.Post<PatientInformationModel, PatientInformationModel>(requestApi, patientInfo);
+
+            return result;
+        }
+
+        public PatientInformationModel RegisterPatientEmergency(PatientInformationModel patientInfo, int userID, int OwernID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/RegisterPatientEmergency?userID={0}&OwnerOrganisationUID={1}", userID, OwernID);
             PatientInformationModel result = MeditechApiHelper.Post<PatientInformationModel, PatientInformationModel>(requestApi, patientInfo);
 
             return result;
@@ -128,6 +150,61 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<PatientVisitModel> SearchERPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
+                  , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
+            , int? payorDetailUID, int? checkupJobUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/SearchERPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&payorDetailUID={9}&checkupJobUID={10}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+
+            return data;
+        }
+
+        public PatientAEAdmissionModel ManageEmergencyAE(PatientAEAdmissionModel model, int userUID)
+        {
+            PatientAEAdmissionModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManageEmergencyAE?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<PatientAEAdmissionModel, PatientAEAdmissionModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        public AEDischargeEventModel SaveAEDischargeEvent(AEDischargeEventModel model, int userUID)
+        {
+            AEDischargeEventModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/SaveAEDischargeEvent?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<AEDischargeEventModel, AEDischargeEventModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        public IPBookingModel SaveIPBooking(IPBookingModel model, int userUID)
+        {
+            IPBookingModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/SaveIPBooking?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<IPBookingModel, IPBookingModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
         public List<PatientVisitModel> SearchPatientMedicalDischarge(string hn, string firstName, string lastName, int? careproviderUID,
             DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID, int? payorDetailUID)
         {
@@ -143,6 +220,21 @@ namespace MediTech.DataService
             try
             {
                 string requestApi = string.Format("Api/PatientIdentity/SavePatientVisit?userID={0}", userID);
+                returnData = MeditechApiHelper.Post<PatientVisitModel, PatientVisitModel>(requestApi, patientVisitInfo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        public PatientVisitModel SaveERPatientVisit(PatientVisitModel patientVisitInfo, int userID)
+        {
+            PatientVisitModel returnData;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/SaveERPatientVisit?userID={0}", userID);
                 returnData = MeditechApiHelper.Post<PatientVisitModel, PatientVisitModel>(requestApi, patientVisitInfo);
             }
             catch (Exception)
@@ -186,6 +278,15 @@ namespace MediTech.DataService
 
             return data;
         }
+
+        public PatientAEAdmissionModel GetPatientAEAdmissionByUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientAEAdmissionByUID?patientVisitUID={0}", patientVisitUID);
+            PatientAEAdmissionModel data = MeditechApiHelper.Get<PatientAEAdmissionModel>(requestApi);
+
+            return data;
+        }
+
         public List<PatientVisitModel> GetPatientVisitByPatientUID(long patientUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitByPatientUID?patientUID={0}", patientUID);
@@ -227,6 +328,26 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public List<LocationModel> GetBedByPatientVisit(int parentLocationUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetBedByPatientVisit?parentLocationUID={0}", parentLocationUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
+
+        public List<LocationModel> GetBedWardView(int parentLocationUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetBedWardView?parentLocationUID={0}", parentLocationUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
+
+        public List<LocationModel> GetBedLocation(int parentLocationUID, int? entypUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetBedLocation?parentLocationUID={0}&entypUID={1}", parentLocationUID, entypUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
 
         #endregion
 
@@ -464,5 +585,54 @@ namespace MediTech.DataService
             }
         }
         #endregion
+
+        #region IPD
+
+        public List<IPBookingModel> SearchIPBooking(string patientID, DateTime? dateFrom, DateTime? dateTo, int? bktypUID, int? wardUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/SearchIPBooking?patientID={0}&dateFrom={1:MM/dd/yyyy}&dateTo={2:MM/dd/yyyy}&bktypUID={3}&wardUID={4}", patientID, dateFrom, dateTo, bktypUID, wardUID);
+            List<IPBookingModel> data = MeditechApiHelper.Get<List<IPBookingModel>>(requestApi);
+
+            return data;
+        }
+
+        public IPBookingModel GetIPBookingByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetIPBookingByVisitUID?patientVisitUID={0}", patientVisitUID);
+            IPBookingModel data = MeditechApiHelper.Get<IPBookingModel>(requestApi);
+            return data;
+        }
+
+        public void DropIPBooking(long ipBookingUID, int userUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/DropIPBooking?ipBookingUID={0}&userUID={1}"
+                    , ipBookingUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        public AdmissionEventModel ManageAdmissionEvent(AdmissionEventModel model, int userUID)
+        {
+            AdmissionEventModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManageAdmissionEvent?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<AdmissionEventModel, AdmissionEventModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        #endregion
+
     }
 }

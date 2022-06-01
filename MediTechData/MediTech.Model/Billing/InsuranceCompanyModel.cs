@@ -14,7 +14,7 @@ namespace MediTech.Model
         public string Description { get; set; }
         public Nullable<int> CMPTPUID { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
-        public Nullable<System.DateTime> Activeto { get; set; }
+        public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

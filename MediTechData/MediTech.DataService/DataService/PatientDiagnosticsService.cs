@@ -28,6 +28,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public ProblemModel GetProblemByUID(int problemUID)
+        {
+            string requestApi = string.Format("Api/PatientDiagnosis/GetProblemByUID?problemUID={0}", problemUID);
+            ProblemModel dataRequest = MeditechApiHelper.Get<ProblemModel>(requestApi);
+
+            return dataRequest;
+        }
+
         public List<FavouriteItemModel> GetFavouriteItemByUser(int userUID)
         {
             string requestApi = string.Format("Api/PatientDiagnosis/GetFavouriteItemByUser?userUID={0}", userUID);

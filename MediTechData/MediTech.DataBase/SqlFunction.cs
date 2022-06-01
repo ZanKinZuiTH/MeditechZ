@@ -96,6 +96,19 @@ namespace MediTech.DataBase
             throw new NotSupportedException("Direct calls are not supported.");
         }
 
+        [DbFunction("MediTechModel.Store", "fGetLocationName")]
+        public static string fGetLocationName(int locationUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+        [DbFunction("MediTechModel.Store", "fGetSpecialityName")]
+        public static string fGetSpecialityName(int specialityUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+
         [DbFunction("MediTechModel.Store", "fGetVendorName")]
         public static string fGetVendorName(int vendorDetailUID)
         {
@@ -156,6 +169,25 @@ namespace MediTech.DataBase
             throw new NotSupportedException("Direct calls are not supported.");
         }
 
+        [DbFunction("MediTechModel.Store", "fGetPayorAgreementName")]
+        public static string fGetPayorAgreementName(int payorAgreementUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+        [DbFunction("MediTechModel.Store", "fGetPolicyName")]
+        public static string fGetPolicyName(int policyUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
+
+        [DbFunction("MediTechModel.Store", "fGetInsuranceCompanyName")]
+        public static string fGetInsuranceCompanyName(int insuranceCompanyUID)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
+
         [DbFunction("MediTechModel.Store", "fGetStockQuantity")]
         public static string fGetStockQuantity(int itemMasterUID, int storeUID)
         {
@@ -201,12 +233,6 @@ namespace MediTech.DataBase
 
         [DbFunction("MediTechModel.Store", "fSetItemNameSearch")]
         public static string fSetItemNameSearch(string itemName)
-        {
-            throw new NotSupportedException("Direct calls are not supported.");
-        }
-
-        [DbFunction("MediTechModel.Store", "fGetLocationName")]
-        public static string fGetLocationName(int locationUID)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -1032,6 +1058,44 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
+        public static DataTable SearchPatientEmergency(string patientID, string firstName, string middleName, string lastName, string nickName, DateTime? birthDate
+           , int? SEXXXUID, string idCard, DateTime? lastVisitDate, string mobilePhone)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientEmergency", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientID", patientID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_FirstName", firstName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_MiddleName ", middleName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LastName", lastName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_NickName", nickName ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BirthDate", birthDate ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_SEXXXUID", SEXXXUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_IDCard", idCard ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LastVisitDate", lastVisitDate ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_MobilePhone", mobilePhone ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable SearchIPBooking(string patientID,  DateTime? dateFrom , DateTime? dateTo, int? bktypUID, int? wardUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchIPBooking", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@HN", patientID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@DateFrom", dateFrom ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@DateTo", dateTo ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@BKTYPUID", bktypUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@WardUID", wardUID ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
 
         public static DataTable pCheckDupicatePatient(string firstName, string lastName, DateTime? birthDate, int SEXXXUID)
         {
@@ -1366,6 +1430,30 @@ namespace MediTech.DataBase
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientVisit", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@HN", hn ?? "");
+            adp.SelectCommand.Parameters.AddWithValue("@FirstName", firstName ?? "");
+            adp.SelectCommand.Parameters.AddWithValue("@LastName", lastName ?? "");
+            adp.SelectCommand.Parameters.AddWithValue("@CareproViderUID", careproviderUID != null ? careproviderUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@StatusList", statusList ?? "");
+            adp.SelectCommand.Parameters.AddWithValue("@DateFrom", dateFrom != DateTime.MinValue && dateFrom != null ? dateFrom : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@DateTo", dateTo != DateTime.MinValue && dateTo != null ? dateTo : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@ArrivedDttm", arrivedDttm != DateTime.MinValue && arrivedDttm != null ? arrivedDttm : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@OwnerOrganisation", ownerOrganisationUID != null ? ownerOrganisationUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@PayorDetailUID", PayorDetailUID != null ? PayorDetailUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
+        public static DataTable pSearchEmergencyVisit(string hn, string firstName, string lastName, int? careproviderUID
+   , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
+          , int? PayorDetailUID, int? checkupJobUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchEmergencyVisit", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@HN", hn ?? "");

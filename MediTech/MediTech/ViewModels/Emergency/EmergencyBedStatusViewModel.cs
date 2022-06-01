@@ -12,36 +12,30 @@ namespace MediTech.ViewModels
     public class EmergencyBedStatusViewModel : MediTechViewModelBase
     {
         #region Properties
-        private List<BedStatusModel> _BedData;
-
-        public List<BedStatusModel> BedData
-        {
-            get { return _BedData; }
-            set { Set(ref _BedData, value); }
-        }
-
-        private List<PatientEmergencyModel> _ListPatientEmergency;
-
-        public List<PatientEmergencyModel> ListPatientEmergency
-        {
-            get { return _ListPatientEmergency; }
-            set { Set(ref _ListPatientEmergency, value); }
-        }
-
-        private PatientEmergencyModel _SelectListPatientEmergency;
-        public PatientEmergencyModel SelectListPatientEmergency
-        {
-            get { return _SelectListPatientEmergency; }
-            set { Set(ref _SelectListPatientEmergency, value); }
-        }
+        public LocationModel SelectedLocation { get; set; }
 
         private BedStatusModel _SelectBedData;
 
         public BedStatusModel SelectBedData
         {
             get { return _SelectBedData; }
-            set { Set(ref _SelectBedData, value); }
+            set
+            {
+                Set(ref _SelectBedData, value);
+            }
         }
+        
+
+        private List<LocationModel> _Bed;
+
+        public List<LocationModel> Bed
+        {
+            get { return _Bed; }
+            set { Set(ref _Bed, value); }
+        }
+
+        public string PatientName { get; set; }
+        public string PatientID { get; set; }
 
         #endregion
 
@@ -53,18 +47,46 @@ namespace MediTech.ViewModels
             get { return _NewPatientCommand ?? (_NewPatientCommand = new RelayCommand(NewPatient)); }
         }
 
-        private RelayCommand _ChangeStatusCommand;
+        private RelayCommand _PatientRecordsCommand;
 
-        public RelayCommand ChangeStatusCommand
+        public RelayCommand PatientRecordsCommand
         {
-            get { return _ChangeStatusCommand ?? (_ChangeStatusCommand = new RelayCommand(ChangeStatus)); }
+            get { return _PatientRecordsCommand ?? (_PatientRecordsCommand = new RelayCommand(PatientRecords)); }
         }
 
-        private RelayCommand _SendToCommand;
+        private RelayCommand _CheckoutCommand;
 
-        public RelayCommand SendToCommand
+        public RelayCommand CheckoutCommand
         {
-            get { return _SendToCommand ?? (_SendToCommand = new RelayCommand(SendDeparmentt)); }
+            get { return _CheckoutCommand ?? (_CheckoutCommand = new RelayCommand(Checkout)); }
+        }
+
+        private RelayCommand _CreateOrderCommand;
+
+        public RelayCommand CreateOrderCommand
+        {
+            get { return _CreateOrderCommand ?? (_CreateOrderCommand = new RelayCommand(CreateOrder)); }
+        }
+        
+        private RelayCommand _PrintDocumentCommand;
+
+        public RelayCommand PrintDocumentCommand
+        {
+            get { return _PrintDocumentCommand ?? (_PrintDocumentCommand = new RelayCommand(PrintDocument)); }
+        }
+        
+        private RelayCommand _VitalSignCommand;
+
+        public RelayCommand VitalSignCommand
+        {
+            get { return _VitalSignCommand ?? (_VitalSignCommand = new RelayCommand(VitalSign)); }
+        }
+
+        private RelayCommand _ManageAEAdmissionCommand;
+
+        public RelayCommand ManageAEAdmissionCommand
+        {
+            get { return _ManageAEAdmissionCommand ?? (_ManageAEAdmissionCommand = new RelayCommand(ManageAEAdmission)); }
         }
 
         #endregion
@@ -76,86 +98,137 @@ namespace MediTech.ViewModels
             //Triage.Add(new LookupReferenceValueModel { Key = 2, DomainCode = "TRIAGE", ValueCode = "TRIAGE2", Display = "สีเหลือง(urgent)" });
             //Triage.Add(new LookupReferenceValueModel { Key = 3, DomainCode = "TRIAGE", ValueCode = "TRIAGE3", Display = "สีเขียว(delayed)" });
             //Triage.Add(new LookupReferenceValueModel { Key = 4, DomainCode = "TRIAGE", ValueCode = "TRIAGE4", Display = "สีฟ้า(expectant)" });
-            //Triage.Add(new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" });
+            //Triage.Add(new LookupReferenceValueModel { Key = 5, DomainCode = "TRIAGE", ValueCode = "TRIAGE5", Display = "สีดำ(dead)" });  
+            SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
 
-            ListPatientEmergency = new List<PatientEmergencyModel> { 
-                new PatientEmergencyModel { No = 1, FirstName = "Test1", LastName = "LastName1" },
-                new PatientEmergencyModel { No = 2, FirstName = "Test2", LastName = "LastName2" },
-            };
-            BedData = new List<BedStatusModel> {
-                new BedStatusModel { No = 1, SevereID = 4, Severe = "สีฟ้า(expectant)", SevereCode = "TRIAGE4" , Status = "ว่าง", IsUsed = false, IsLevel0 = true, IsLevel1 = false, IsLevel2 = false, IsLevel3 = false, },
-                new BedStatusModel { No = 2, SevereID = 3,Severe = "สีเขียว(delayed)",SevereCode = "TRIAGE3" , Status = "ไม่ว่าง", IsUsed = true, IsLevel0 = false, IsLevel1 = true, IsLevel2 = false, IsLevel3 = false, FirstName = "Test1", LastName = "LastName1" , PatientName = "Kim numjoon"},
-                new BedStatusModel { No = 3, SevereID = 1,Severe = "สีแดง(emergency/immediate)",SevereCode = "TRIAGE1" , Status = "ไม่ว่าง", IsUsed = true, IsLevel0 = false, IsLevel1 = false, IsLevel2 = false, IsLevel3 = true, FirstName = "Test2", LastName = "LastName2" , PatientName = "Min yoongi"}
-            };
-            List<BedStatusModel> DataItem = new List<BedStatusModel>();
-            foreach (var item in BedData)
+            Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
+
+        }
+
+        private void PatientRecords()
+        {
+            if (SelectBedData != null)
             {
-                BedStatusModel dd = new BedStatusModel();
-                if (item.Status == "ไม่ว่าง")
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectBedData.PatientID;
+                visitModel.PatientUID = SelectBedData.PatientUID;
+                visitModel.PatientVisitUID = SelectBedData.PatientVisitUID ?? 0;
+                EMRView pageview = new EMRView();
+                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(visitModel);
+                EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
+            }
+        }
+
+        private void PrintDocument()
+        {
+            if (SelectBedData != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectBedData.PatientID;
+                visitModel.PatientUID = SelectBedData.PatientUID;
+                visitModel.PatientVisitUID = SelectBedData.PatientVisitUID ?? 0;
+                visitModel.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                ShowModalDialogUsingViewModel(new RunPatientReports(), new RunPatientReportsViewModel() { SelectPatientVisit = visitModel}, true);
+            }
+        }
+
+        private void ManageAEAdmission()
+        {
+
+            if (SelectBedData != null)
+            {
+                PatientAEAdmissionModel erVisit = DataService.PatientIdentity.GetPatientAEAdmissionByUID(SelectBedData.PatientVisitUID ?? 0);
+
+                EmergencyRegister pageview = new EmergencyRegister();
+                (pageview.DataContext as EmergencyRegisterViewModel).AssingModel(new PatientInformationModel(), erVisit);
+                EmergencyRegisterViewModel result = (EmergencyRegisterViewModel)LaunchViewDialog(pageview, "ERREG", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
-                    dd.Status = item.Status;
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
+            }
+        }
+
+        private void VitalSign()
+        {
+            if (SelectBedData != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectBedData.PatientID;
+                visitModel.PatientUID = SelectBedData.PatientUID;
+                visitModel.PatientVisitUID = SelectBedData.PatientVisitUID ?? 0;
+                PatientVitalSign pageview = new PatientVitalSign();
+                (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(visitModel);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
                 }
             }
+
         }
 
-        private void ChangeStatus()
+        private void CreateOrder()
         {
-            //if (SelectPatientVisit != null)
-            //{
-            //    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-            //    if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-            //    {
-            //        WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-            //        SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
-            //        SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
-            //        OnUpdateEvent();
-            //        return;
-            //    }
-            //    PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor);
-            //    sendToDoctor.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            //    sendToDoctor.Owner = MainWindow;
-            //    sendToDoctor.ShowDialog();
-            //    ActionDialog result = sendToDoctor.ResultDialog;
-            //    if (result == ActionDialog.Save)
-            //    {
-            //        SaveSuccessDialog();
-            //        SearchPatientVisit();
-            //    }
-            //}
-            string type = "Change Status";
-            ChangeStatus sendToDoctor = new ChangeStatus(SelectBedData, type);
-            sendToDoctor.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            sendToDoctor.Owner = MainWindow;
-            sendToDoctor.ShowDialog();
-            ActionDialog result = sendToDoctor.ResultDialog;
-            if (result == ActionDialog.Save)
+            if (SelectBedData != null)
             {
-                SaveSuccessDialog();
-                //SearchPatientVisit();
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectBedData.PatientID;
+                visitModel.PatientUID = SelectBedData.PatientUID;
+                visitModel.PatientVisitUID = SelectBedData.PatientVisitUID ?? 0;
+                PatientOrderEntry pageview = new PatientOrderEntry();
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(visitModel);
+                PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
             }
         }
-        private void SendDeparmentt()
+
+
+        private void Checkout()
         {
-            SendToDepartment toDoepartment = new SendToDepartment(SelectBedData);
-            toDoepartment.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-            toDoepartment.Owner = MainWindow;
-            toDoepartment.ShowDialog();
-            ActionDialog result = toDoepartment.ResultDialog;
-            if (result == ActionDialog.Save)
+            if(SelectBedData != null)
             {
-                SaveSuccessDialog();
-                //SearchPatientVisit();
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectBedData.PatientID;
+                visitModel.PatientUID = SelectBedData.PatientUID;
+                visitModel.PatientVisitUID = SelectBedData.PatientVisitUID ?? 0;
+                visitModel.AEAdmissionUID = SelectBedData.AEAdmissionUID ?? 0;
+                visitModel.LocationUID = SelectBedData.LocationUID;
+                visitModel.BedUID = SelectBedData.BedUID;
+
+                AECheckout pageview = new AECheckout();
+                (pageview.DataContext as AECheckoutViewModel).AssingAEAdmission(visitModel);
+                AECheckoutViewModel result = (AECheckoutViewModel)LaunchViewDialog(pageview, "AECEKOT", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+
+                Bed = DataService.PatientIdentity.GetBedByPatientVisit(SelectedLocation.LocationUID).ToList();
             }
         }
 
         public void NewPatient()
         {
+
             EmergencyRegister register = new EmergencyRegister();
-            (register.DataContext as EmergencyRegisterViewModel).OpenPage(PageRegister.Manage, new PatientInformationModel(),null,false,SelectBedData.SevereID);
+            (register.DataContext as EmergencyRegisterViewModel).AssingModel(null, null,SelectBedData.Name);
             ChangeViewPermission(register);
 
+            //(register.DataContext as EmergencyRegisterViewModel).OpenPage(PageRegister.Manage, new PatientInformationModel(),null,false,SelectBedData.SevereID);
+            //ChangeViewPermission(register);
+
             //ChangeView_CloseViewDialog(SelectBedData, ActionDialog.Cancel);
-        }
+
+            //ManageReceipt receipt = new ManageReceipt();
+            //var data = DataService.Purchaseing.GetGroupReceiptByUID(SelectGroupReceipt.GroupReceiptUID);
+            //(receipt.DataContext as ManageReceiptViewModel).AssignModel(data);
+            //ChangeViewPermission(receipt);
+
             #endregion
+        }
     }
 }

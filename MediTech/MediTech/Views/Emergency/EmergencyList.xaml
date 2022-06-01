@@ -1,0 +1,395 @@
+﻿<UserControl x:Class="MediTech.Views.EmergencyList"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
+             xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
+             xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+                         DataContext="{Binding EmergencyListViewModel ,Source={StaticResource Locator}}"
+            d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <cv:ImageConverter x:Key="imgconvert" />
+        <cv:VisibilityConverter x:Key="visibleconvert" />
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+        <DataTemplate x:Key="DetailCoreTemplate">
+            <dx:MeasurePixelSnapper>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+
+                    <dxe:ImageEdit Width="110" Height="70"
+                                   IsReadOnly="True"
+                                   Stretch="Fill"
+                                   Source="{Binding Row.PatientImage, Converter={StaticResource imgconvert}}"/>
+
+                    <Grid Margin="20,0,0,0" Grid.Column="1">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <TextBlock Text="{Binding Row.PatientName}" FontSize="16"  />
+                                <TextBlock Text="(" FontSize="16"/>
+                                <TextBlock Text="{Binding Row.PatientID}" FontSize="16"/>
+                                <TextBlock Text=")" FontSize="16" />
+                                <TextBlock Text="อายุ" Margin="10,0,0,0" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Row.AgeString}"  Margin="5,0,0,0" />
+                                <TextBlock Text="วัน เดือน ปี เกิด" Margin="5,0,0,0" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Row.BirthDttm, StringFormat=dd/MM/yyyy}" Margin="5,0,0,0" />
+                                <Image Source="/MediTech;component/Resources/Images/Other/VIP.png" 
+                                   Margin="10,0,0,0"
+                                   VerticalAlignment="Top"
+                                   Visibility="{Binding Row.IsVIP, Converter={StaticResource visibleconvert}}"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="VIP"/>
+                            </StackPanel>
+
+                            <StackPanel   Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock  Text="เพศ" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.Gender}" Margin="5,0,0,0" />
+                                <TextBlock Text="กรุ๊ปเลือด" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.BloodGroup}" Margin="5,0,0,0" />
+                                <TextBlock Text="น้ำหนัก" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.Weight}"  Margin="5,0,0,0"/>
+                                <TextBlock Text="ส่วนสูง" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.Height}" Margin="5,0,0,0"/>
+                                <TextBlock Text="BMI" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.BMI}"  Margin="5,0,0,0"/>
+                                <TextBlock Text="แพทย์" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.CareProviderName}"
+                                   Margin="5,0,0,0" HorizontalAlignment="Center" 
+                                   Grid.Column="1" Grid.Row="1" />
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                                <TextBlock Text="ที่อยู่" FontWeight="Bold" />
+                                <TextBlock Text="{Binding Row.PatientAddress}"  Margin="5,0,0,0" />
+                                <TextBlock Text="เบอร์โทร" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.SecondPhone}"  Margin="5,0,0,0" />
+                                <TextBlock Text="มือถือ" Margin="5,0,0,0" FontWeight="Bold"/>
+                                <TextBlock Text="{Binding Row.MobilePhone}"  Margin="5,0,0,0" />
+                            </StackPanel>
+                        </StackPanel>
+
+                    </Grid>
+
+
+                    <Grid Grid.Column="2" HorizontalAlignment="Right">
+                        <StackPanel Orientation="Vertical">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="ส่งตรวจ">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Vital Sign">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Medical/Allergy2.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="แพ้ยา">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Medical/Medical Supply.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="คีย์ Order">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Action/PatientCheckout.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="จบการรักษา">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Print/PrintVisitSlip.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="พิมพ์ เอกสาร">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Document/EditProperty.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="แก้ไข Visit">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Menu/ReportResultMass.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="Scanned Document">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Other/PatientRecords.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="ER Patient Record">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <!--<Image Source="/MediTech;component/Resources/Images/Menu/ViewSales.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="ขายสินค้า">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding Path=DataContext.SalesItemCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>-->
+                            </StackPanel>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </dx:MeasurePixelSnapper>
+        </DataTemplate>
+        <ControlTemplate x:Key="detailContainerTemplate" TargetType="{x:Type ContentControl}">
+            <Border BorderThickness="0,1,0,0" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="12,12,12,12" Background="{TemplateBinding Background}">
+                <ContentPresenter />
+            </Border>
+        </ControlTemplate>
+        <DataTemplate x:Key="expandableRowDetailTemplate">
+            <StackPanel Orientation="Vertical">
+                <dx:MeasurePixelSnapper>
+                    <ContentPresenter x:Name="defaultRowPresenter" Content="{Binding}" ContentTemplate="{Binding View.DefaultDataRowTemplate}" />
+                </dx:MeasurePixelSnapper>
+                <dx:DXExpander IsExpanded="{Binding IsSelected}" HorizontalExpand="None" VerticalExpand="FromTopToBottom">
+                    <dxg:RowDetailContainerControl Template="{StaticResource detailContainerTemplate}" Content="{Binding}" ContentTemplate="{DynamicResource DetailCoreTemplate}" />
+                </dx:DXExpander>
+            </StackPanel>
+        </DataTemplate>
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup VerticalAlignment="Top">
+                <dxa:AccordionControl SelectionMode="None">
+                    <dxa:AccordionItem Header="ค้นหาผู้ป่วย"  Glyph="/MediTech;component/Resources/Images/Action/search.png" IsExpanded="True">
+                        <dxlc:LayoutControl Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="รหัสผู้ป่วย" >
+                                    <dxe:TextEdit x:Name="txtHN" Text="{Binding LN}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ชื่อ">
+                                    <dxe:TextEdit x:Name="txtFirstName" Text="{Binding FirstName}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="นามสกุล">
+                                    <dxe:TextEdit x:Name="txtLastName" Text="{Binding LastName}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="แพทย์">
+                                    <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                              ItemsSource="{Binding Doctors}"
+                                              SelectedItem="{Binding SelectDoctor}"
+                                              IsTextEditable="False" 
+                                              DisplayMember="FullName"
+                                              NullValueButtonPlacement="EditBox"
+                                              ValueMember="CareproviderUID"
+                                              />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="สถานะ">
+                                    <dxe:ComboBoxEdit x:Name="cmbStatus"
+                                              ItemsSource="{Binding VisitStatus}"
+                                              IsTextEditable="False" 
+                                              DisplayMember="Display"
+                                              ValueMember="Key"
+                                              EditValue="{Binding SelectVisitStatusList, UpdateSourceTrigger=PropertyChanged}">
+                                        <dxe:ComboBoxEdit.StyleSettings>
+                                            <dxe:CheckedComboBoxStyleSettings />
+                                        </dxe:ComboBoxEdit.StyleSettings>
+                                    </dxe:ComboBoxEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="จากวัน">
+                                    <dxe:DateEdit x:Name="dteFrom" EditValue="{Binding DateFrom}" />
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ถึงวัน">
+                                    <dxe:DateEdit x:Name="dteTo" EditValue="{Binding DateTo}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ช่วงเวลา">
+                                    <dxe:ComboBoxEdit x:Name="cmbDateType"
+                                                  AllowNullInput="True"
+                                                  DisplayMember="Display"
+                                                  ValueMember="Key"
+                                                  ItemsSource="{Binding DateTypes}"
+                                                  SelectedItem="{Binding SelectDateType}"
+                                                  IsTextEditable="False" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                            <dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Label="สถานประกอบการ">
+                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Payor">
+                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                    </dxg:GridControl.View>
+                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
+                                    </dxg:LookUpEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Encounter">
+                                    <dxe:ComboBoxEdit x:Name="cmbEncounterType"
+                                                  DisplayMember="Display"
+                                                  ValueMember="Key"
+                                                  ItemsSource="{Binding EncounterType}"
+                                                  SelectedItem="{Binding SelectEncounterType}"
+                                                  IsEnabled ="False">
+                                        <Style TargetType="dxg:GridSearchControl">
+                                            <Style.Resources>
+                                                <Style TargetType="dxe:ComboBoxEdit"/>
+                                            </Style.Resources>
+                                        </Style>
+                                    </dxe:ComboBoxEdit>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
+                                     Command="{Binding SearchCommand}"
+                                     HorizontalAlignment="Right"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutControl>
+                    </dxa:AccordionItem>
+                </dxa:AccordionControl>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup>
+                <dxg:GridControl x:Name="grdVisitList"
+                         ItemsSource="{Binding PatientVisits}"
+                         SelectedItem="{Binding SelectPatientVisit}">
+                    <dxg:GridControl.View>
+                        <dxg:TableView x:Name="tableViewVisitList" AllowScrollAnimation="True" 
+                                       UseLightweightTemplates="None"
+                                       NavigationStyle="Row"
+                                       DataRowTemplate="{StaticResource expandableRowDetailTemplate}">
+                            <dxg:TableView.ColumnMenuCustomizations>
+                                <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}"
+                                                   Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
+                                                   dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
+                                <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />
+                            </dxg:TableView.ColumnMenuCustomizations>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                    <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขบัตรประชาชน" FieldName="NationalID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
+                    <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เตียง" FieldName="BedName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เข้ารับบริการ" FieldName="StartDttm"  ReadOnly="True">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="แพทย์เจ้าของคนไข้" FieldName="CareProviderName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
+                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
+
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

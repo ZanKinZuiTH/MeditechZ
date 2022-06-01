@@ -2005,6 +2005,20 @@ namespace MediTechWebApi.Controllers
         #endregion
 
         #region Location
+        [Route("GetLocationAll")]
+        [HttpGet]
+        public List<LookupReferenceValueModel> GetLocationAll()
+        {
+            var data = db.Location.Where(p => p.StatusFlag == "A").Select(p => new LookupReferenceValueModel()
+            {
+                Key = p.UID,
+                Display = p.Name,
+                DisplayOrder = p.DisplayOrder ?? 1
+            }).ToList();
+
+            return data;
+        }
+
         [Route("GetLocationByOrganisationUID")]
         [HttpGet]
         public List<LocationModel> GetLocationByOrganisationUID(int ownerOrganisationUID)
@@ -2058,6 +2072,23 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        #region Speciality
+        [Route("GetSpecialityAll")]
+        [HttpGet]
+        public List<SpecialityModel> GetSpecialityAll()
+        {
+            var data = db.Speciality.Where(p => p.StatusFlag == "A").Select(p => new SpecialityModel()
+            {
+                SpecialityUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                HealthOrganisationUID = p.HealthOrganisationUID
+            }).ToList();
+
+            return data;
+        }
+        #endregion
 
         #endregion
 

@@ -1006,6 +1006,9 @@
     <Compile Include="SessionWithdrawnDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="Speciality.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="Specimen.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>

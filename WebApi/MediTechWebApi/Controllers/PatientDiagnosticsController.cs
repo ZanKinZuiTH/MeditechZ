@@ -41,6 +41,20 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetProblemByUID")]
+        [HttpGet]
+        public ProblemModel GetProblemByUID(int problemUID)
+        {
+            ProblemModel data = db.Problem.Where(p => p.UID == problemUID && p.StatusFlag == "A")
+                .Select( p => new ProblemModel {
+                    ProblemUID = p.UID,
+                    Code = p.Code,
+                    Name = p.Name,
+                    Description = p.Description
+                }).FirstOrDefault();
+
+            return data;
+        }
 
         [Route("SearchProblem")]
         [HttpGet]

@@ -46,7 +46,7 @@ namespace MediTech.DataBase
         public string ZipCode { get; set; }
         public Nullable<int> AmphurUID { get; set; }
         public Nullable<int> ProvinceUID { get; set; }
-        public string DistrictUID { get; set; }
+        public Nullable<int> DistrictUID { get; set; }
         public string PhoneNumber { get; set; }
         public string MobileNumber { get; set; }
     }

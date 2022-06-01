@@ -469,5 +469,14 @@ namespace MediTech.DataService
         }
 
         #endregion
+
+        #region Speciality
+        public List<SpecialityModel> GetSpecialityAll()
+        {
+            List<SpecialityModel> data = MeditechApiHelper.Get<List<SpecialityModel>>("Api/MasterData/GetSpecialityAll");
+            return data;
+        }
+
+        #endregion
     }
 }

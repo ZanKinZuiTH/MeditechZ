@@ -1,0 +1,185 @@
+﻿<UserControl x:Class="MediTech.Views.WardView"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"  
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:vm="clr-namespace:MediTech.Views"
+             mc:Ignorable="d"
+             d:DesignHeight="600" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <Binding Path="WardViewModel" Source="{StaticResource Locator}"/>
+    </UserControl.DataContext>
+    <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutGroup Orientation="Vertical" Width="150">
+                <ListBox x:Name="listBox" ItemsSource="{Binding WardSource}" SelectedItem="{Binding SelectedWard}">
+                    <ListBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Name}" />
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                </ListBox>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Background="White" Orientation="Vertical">
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem  HorizontalAlignment="Center" Margin="10,20,10,20">
+                    <TextBlock FontWeight="SemiBold" FontSize="20" Text="{Binding WardName}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Margin="10,20,10,10" Orientation="Vertical" HorizontalAlignment="Right" Padding="10">
+                        <dxlc:LayoutItem Label="ไม่ว่าง" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="LawnGreen" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ว่าง" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="Gray" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutGroup>
+                <ListBox BorderThickness="0" ItemsSource="{Binding BedWardView}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch"  SelectedItem="{Binding SelectedBedWardView}" Name="ListBed">
+                    <ListBox.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel/>
+                            <!--<WrapPanel  Width="{Binding ElementName=ListBed, Path=ActualWidth}"></WrapPanel>-->
+                        </ItemsPanelTemplate>
+                    </ListBox.ItemsPanel>
+                    <ListBox.ItemTemplate>
+                        
+                        <DataTemplate>
+                            <Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
+                                <Grid Grid.RowSpan="3" Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                                <Grid.Resources>
+                                    <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
+                                </Grid.Resources>
+                                <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
+                                    <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
+                                        <Image Width="120" Height="100">
+                                            <Image.Style>
+                                                <Style TargetType="{x:Type Image}">
+                                                    <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png" />
+                                                    <Style.Triggers>
+                                                        <DataTrigger Value="true" Binding="{Binding Isused}">
+                                                            <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png"/>
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </Image.Style>
+                                        </Image>
+                                    </StackPanel>
+                                </StackPanel>
+                                <!--<TextBlock Text="{Binding Status}" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="48" Foreground="White"/>-->
+                                <StackPanel Grid.Column="0" VerticalAlignment="Top" Orientation="Vertical" Margin="10,10,10,10">
+                                    <StackPanel>
+                                        <TextBlock Text="{Binding Name}" FontWeight="Bold" Margin="5,5,5,5" TextAlignment="Center" />
+                                    </StackPanel>
+                                    <StackPanel Grid.Column="1" Grid.Row="1" Orientation="Vertical" Margin="0,0,0,4" Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}">
+                                        <StackPanel Orientation="Horizontal" Margin="0,0,0,4" >
+
+                                            <TextBlock FontWeight="SemiBold" Text="HN: "/>
+                                            <TextBlock Text="{Binding EMGCDUID}"/>
+                                        </StackPanel>
+
+                                        <StackPanel Orientation="Horizontal" >
+
+                                            <TextBlock FontWeight="SemiBold" Text="ชื่อ: "/>
+                                            <TextBlock Text="{Binding EMGTPUID}"/>
+
+                                        </StackPanel>
+                                    </StackPanel>
+                                    <!--<TextBlock Grid.Column="1" Grid.ColumnSpan="3" Text="2201254" TextAlignment="Center" VerticalAlignment="Center"/>
+                        <TextBlock Grid.Column="1" Grid.ColumnSpan="3" Text="11111" TextAlignment="Center" VerticalAlignment="Center"/>-->
+                                </StackPanel>
+                                    <Grid.ToolTip>
+                                        <ToolTip  Visibility="{Binding Isused, Converter={StaticResource VisibilityConverter}}" OverridesDefaultStyle="True" HasDropShadow="True">
+                                            <ToolTip.Template>
+                                                <ControlTemplate TargetType="ToolTip">
+                                                    <Border BorderBrush="Blue" Margin="15" BorderThickness="1" Background="AliceBlue" CornerRadius="5">
+                                                        <StackPanel Orientation="Vertical" Width="250" Margin="5">
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60" FontWeight="Bold" Text="Name: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding PatientName}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60"  FontWeight="Bold" Text="HN: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding PatientID}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60"  FontWeight="Bold" Text="อายุ: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding AgeString}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60"  FontWeight="Bold" Text="เพศ: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding Gender}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60"  FontWeight="Bold" Text="Admission Date: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding AdmissionDate}"/>
+                                                            </StackPanel>
+                                                            <StackPanel Orientation="Horizontal" Margin="10">
+                                                                <TextBlock Width="60"  FontWeight="Bold" Text="ExpDischarge Date: "/>
+                                                                <TextBlock/>
+                                                                <TextBlock Text="{Binding ExpDischargeDate}"/>
+                                                            </StackPanel>
+                                                          </StackPanel>
+                                                    </Border>
+                                                </ControlTemplate>
+                                            </ToolTip.Template>
+                                        </ToolTip>
+                                    </Grid.ToolTip>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </ListBox.ItemTemplate>
+                    <ListBox.Resources>
+                        <!-- Context Menu when right click on selected List Item -->
+                        <ContextMenu x:Key="ItemContextMenu">
+                            <MenuItem Header="Transfer">
+                                <MenuItem Header="New Request" Command="{Binding DataContext.NewRequestrCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>
+                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
+                            </MenuItem>
+                            <MenuItem Header="medical discharge" Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
+                            </MenuItem>
+                        </ContextMenu>
+                        <!-- Context Menu when right click on listbox space -->
+                        <ContextMenu x:Key="ListContextMenu">
+                            <MenuItem Header="Direct Admit" Command="{Binding DataContext.DirectAdmitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
+                            </MenuItem>
+                            <MenuItem Header="Event log" Command="{Binding DataContext.EventlogCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
+                            </MenuItem>
+                        </ContextMenu>
+                        <!-- Applying Context Menu to ListBoxItem with Style -->
+                        <Style TargetType="{x:Type ListBoxItem}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Isused}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}"/>
+                                    <Setter Property="Padding" Value="0"/>
+                                    <Setter Property="Margin" Value="5"/>
+                                </DataTrigger>
+                                <!--<Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}">
+                        </Setter>-->
+                            </Style.Triggers>
+                            <Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}"/>
+                            <Setter Property="Padding" Value="0"/>
+                            <Setter Property="Margin" Value="5"/>
+                        </Style>
+                    </ListBox.Resources>
+                </ListBox>
+            
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutGroup>
+    </dxlc:LayoutControl>
+  
+</UserControl>

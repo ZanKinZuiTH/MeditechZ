@@ -5,6 +5,9 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="a91b143706e5454fa6fe8f5a3bf5cb3f" Name="Diagram1" ZoomLevel="60">
+        <EntityTypeShape EntityType="MediTechModel.SEQERVisitID" Width="1.5" PointX="10.75" PointY="41.75" />
+        <EntityTypeShape EntityType="MediTechModel.Speciality" Width="1.5" PointX="12.75" PointY="43.75" />
+        <EntityTypeShape EntityType="MediTechModel.sysdiagrams" Width="1.5" PointX="44.75" PointY="20.75" />
         <EntityTypeShape EntityType="MediTechModel.AdmissionEvent" Width="1.5" PointX="0.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.AEDischargeEvent" Width="1.5" PointX="2.75" PointY="0.75" />
         <EntityTypeShape EntityType="MediTechModel.Amphur" Width="1.5" PointX="4.75" PointY="0.75" />
@@ -196,7 +199,7 @@
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="4.75" PointY="47.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="6.75" PointY="47.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="8.75" PointY="47.75" />
-      </Diagram>
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

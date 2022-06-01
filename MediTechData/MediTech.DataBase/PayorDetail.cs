@@ -19,10 +19,10 @@ namespace MediTech.DataBase
         public string PayorName { get; set; }
         public string Address1 { get; set; }
         public string Address2 { get; set; }
-        public string DistrictUID { get; set; }
+        public Nullable<int> DistrictUID { get; set; }
         public Nullable<int> AmphurUID { get; set; }
         public Nullable<int> ProvinceUID { get; set; }
-        public Nullable<int> ZipCode { get; set; }
+        public string ZipCode { get; set; }
         public string MobileNumber { get; set; }
         public string PhoneNumber { get; set; }
         public string FaxNumber { get; set; }

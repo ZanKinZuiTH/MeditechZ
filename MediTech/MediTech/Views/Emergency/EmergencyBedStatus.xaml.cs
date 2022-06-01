@@ -24,5 +24,10 @@ namespace MediTech.Views
         {
             InitializeComponent();
         }
+
+        private void ListBed_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

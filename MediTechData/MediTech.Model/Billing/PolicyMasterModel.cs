@@ -18,5 +18,6 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public Nullable<int> AGTYPUID { get; set; }
+        public string AgreementType { get; set; }
     }
 }

@@ -226,7 +226,6 @@ namespace MediTech.ViewModels
                         SaveSuccessDialog();
                         Search();
                     }
-
                 }
                 catch (Exception er)
                 {

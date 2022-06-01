@@ -16,7 +16,8 @@ namespace MediTech.DataBase
     {
         public int UID { get; set; }
         public long PatientUID { get; set; }
-        public int LocationUID { get; set; }
+        public Nullable<long> PatientVisitUID { get; set; }
+        public Nullable<int> LocationUID { get; set; }
         public Nullable<int> SpecialityUID { get; set; }
         public int CareproviderUID { get; set; }
         public Nullable<int> BedUID { get; set; }
@@ -30,7 +31,7 @@ namespace MediTech.DataBase
         public Nullable<int> BDCATUID { get; set; }
         public string ReferredBy { get; set; }
         public Nullable<int> ReferredByUID { get; set; }
-        public Nullable<int> RequestedLocationUID { get; set; }
+        public Nullable<int> RequestedByLocationUID { get; set; }
         public Nullable<int> RequestedByUID { get; set; }
         public Nullable<int> CANRSUID { get; set; }
         public Nullable<int> CancelledBy { get; set; }

@@ -8,10 +8,11 @@ namespace MediTech.Model
 {
     public class InsurancePlanModel
     {
-        public int InsurancePlanUID { get; set; }
+        public int InsurancePlanUID { get; set; } 
         public string PayorAgreementName { get; set; }
         public int PayorAgreementUID { get; set; }
         public Nullable<int> InsuranceCompanyUID { get; set; }
+        public string InsuranceCompanyName { get; set; }
         public string PolicyName { get; set; }
         public int PolicyMasterUID { get; set; }
         public string PayorName { get; set; }
@@ -19,7 +20,7 @@ namespace MediTech.Model
         public double? ClaimPercentage { get; set; }
         public double? FixedCopayAmount { get; set; }
         public double? OPDCoverPerDay { get; set; }
-        public System.DateTime ActiveFrom { get; set; }
+        public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

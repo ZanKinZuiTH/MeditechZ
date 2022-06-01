@@ -444,7 +444,6 @@ namespace MediTech.ViewModels
                         });
                     }
 
-
                 }
                 SelectPageIndex = 1;
             }

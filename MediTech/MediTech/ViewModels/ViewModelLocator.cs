@@ -174,6 +174,72 @@ namespace MediTech.ViewModels
             }
         }
 
+        public InsuranceCompanyViewModel InsuranceCompanyViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<InsuranceCompanyViewModel>())
+                    SimpleIoc.Default.Register<InsuranceCompanyViewModel>();
+
+                return ServiceLocator.Current.GetInstance<InsuranceCompanyViewModel>();
+            }
+        }
+
+        public ManageInsuranceCompanyViewModel ManageInsuranceCompanyViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManageInsuranceCompanyViewModel>())
+                    SimpleIoc.Default.Register<ManageInsuranceCompanyViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManageInsuranceCompanyViewModel>();
+            }
+        }
+
+        public ManagePayorAgreementViewModel ManagePayorAgreementViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManagePayorAgreementViewModel>())
+                    SimpleIoc.Default.Register<ManagePayorAgreementViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManagePayorAgreementViewModel>();
+            }
+        }
+
+        public ManageInsurancePlanViewModel ManageInsurancePlanViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManageInsurancePlanViewModel>())
+                    SimpleIoc.Default.Register<ManageInsurancePlanViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManageInsurancePlanViewModel>();
+            }
+        }
+
+        public ListPolicyMasterViewModel ListPolicyMasterViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListPolicyMasterViewModel>())
+                    SimpleIoc.Default.Register<ListPolicyMasterViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListPolicyMasterViewModel>();
+            }
+        }
+
+        public ManagePolicyMasterViewModel ManagePolicyMasterViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManagePolicyMasterViewModel>())
+                    SimpleIoc.Default.Register<ManagePolicyMasterViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManagePolicyMasterViewModel>();
+            }
+        }
+
         #endregion
 
         #region Documents
@@ -1923,6 +1989,29 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ListLocationViewModel ListLocationViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListLocationViewModel>())
+                    SimpleIoc.Default.Register<ListLocationViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListLocationViewModel>();
+            }
+        }
+
+
+        public ManageLocationViewModel ManageLocationViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManageLocationViewModel>())
+                    SimpleIoc.Default.Register<ManageLocationViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManageLocationViewModel>();
+            }
+        }
+
         public ManageUserLocationViewModel ManageUserLocationViewModel
         {
             get
@@ -1977,6 +2066,64 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<SearchEmergencyPatientViewModel>();
 
                 return ServiceLocator.Current.GetInstance<SearchEmergencyPatientViewModel>();
+            }
+        }
+
+        public EmergencyListViewModel EmergencyListViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EmergencyListViewModel>())
+                    SimpleIoc.Default.Register<EmergencyListViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EmergencyListViewModel>();
+            }
+        }
+
+        public AECheckoutViewModel AECheckoutViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AECheckoutViewModel>())
+                    SimpleIoc.Default.Register<AECheckoutViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AECheckoutViewModel>();
+            }
+        }
+        #endregion
+
+        #region IPD
+
+        public AdmissionRequestListViewModel AdmissionRequestListViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AdmissionRequestListViewModel>())
+                    SimpleIoc.Default.Register<AdmissionRequestListViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AdmissionRequestListViewModel>();
+            }
+        }
+
+        public WardViewModel WardViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<WardViewModel>())
+                    SimpleIoc.Default.Register<WardViewModel>();
+
+                return ServiceLocator.Current.GetInstance<WardViewModel>();
+            }
+        }
+
+        public AdmissionRequestViewModel AdmissionRequestViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AdmissionRequestViewModel>())
+                    SimpleIoc.Default.Register<AdmissionRequestViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AdmissionRequestViewModel>();
             }
         }
 

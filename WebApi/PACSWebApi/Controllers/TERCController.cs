@@ -92,7 +92,7 @@ namespace PACSWebApi.Controllers
                     && (p.DomainCode == "RQPRT" || p.DomainCode == "VISTY" || p.DomainCode == "VISTS"));
 
                     var payorDeail = (from i in dbMediTech.PayorDetail
-                                      join j in dbMediTech.PayorAgreement on i.UID equals j.PayorDetailUID
+                                      join j in dbMediTech.PayorAgreement on i.UID equals j.OldAgreemntUID
                                       where i.Code == inboundData.HealthOrganisationCode
                                       && i.StatusFlag == "A"
                                       select new

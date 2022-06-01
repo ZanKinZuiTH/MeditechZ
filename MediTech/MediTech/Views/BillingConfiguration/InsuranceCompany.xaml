@@ -1,0 +1,228 @@
+﻿<UserControl x:Class="MediTech.Views.InsuranceCompany"
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=InsuranceCompanyViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="850" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <!--<dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="รหัส">
+                    <dxe:TextEdit Text="{Binding InsranceCompanyCode}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ชื่อ">
+                    <dxe:TextEdit Text="{Binding InsranceCompanyName}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding SearchInsranceCompanyCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>-->
+
+            <dxlc:LayoutGroup Orientation="Vertical">
+                <dxg:GridControl x:Name="grdInsuranceCompany" ItemsSource="{Binding InsranceCompanySource}"
+                             SelectedItem="{Binding SelectInsranceCompany}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="Code" FieldName="Code"/>
+                        <dxg:GridColumn Header="Name" FieldName="CompanyName" Width="300"/>
+                        <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
+                        <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView Name="gvOrderSet" ShowGroupPanel="True"  AllowEditing="False" />
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+                <dxlc:LayoutGroup>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding AddINCOCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding ModifyINCOCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding DeleteINCOCommand}"
+                                     Height="25" Content="ลบ"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="{Binding SelectedName}" FontSize="20" FontWeight="Bold"/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutControl Orientation="Vertical">
+                <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
+                    <dx:DXTabItem Header="Payor Detail">
+
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <!--<dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="รหัส">
+                                        <dxe:TextEdit Text="{Binding PayorDetailCode}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="ชื่อ">
+                                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorNameByINCO}" 
+                                      SelectedItem="{Binding SelectPayorNameByINCO}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                            <dxg:LookUpEdit.PopupContentTemplate>
+                                                <ControlTemplate>
+                                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                                        <dxg:GridControl.View>
+                                                            <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                        </dxg:GridControl.View>
+                                                        <dxg:GridColumn x:Name="CompanyName" FieldName="CompanyName"/>
+                                                    </dxg:GridControl>
+                                                </ControlTemplate>
+                                            </dxg:LookUpEdit.PopupContentTemplate>
+                                            <dxg:LookUpEdit.StyleSettings>
+                                                <dxg:SearchLookUpEditStyleSettings/>
+                                            </dxg:LookUpEdit.StyleSettings>
+                                        </dxg:LookUpEdit>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem>
+                                        <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding SearchPayorDetailCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>-->
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxg:GridControl x:Name="grdPayorDetail" ItemsSource="{Binding PayorDetails}"
+                             SelectedItem="{Binding SelectPayorDetail}">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Code" FieldName="Code"/>
+                                        <dxg:GridColumn Header="Payor Name" FieldName="PayorName"/>
+                                        <dxg:GridColumn Header="Office Category" FieldName="PayorCategory"/>
+                                        <dxg:GridColumn Header="Address" FieldName="Address1"/>
+                                        <dxg:GridColumn Header="Phone Number" FieldName="PhoneNumber"/>
+                                        <dxg:GridColumn Header="Credit Type" FieldName="PaymentTerms"/>
+                                        <dxg:GridColumn Header="Contact Person Name" FieldName="ContactPersonName"/>
+                                        <dxg:GridColumn Header="Note" FieldName="Comment"/>
+                                        <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
+                                        <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="gvPayorDetail" ShowGroupPanel="True"  AllowEditing="False" />
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dx:DXTabItem>
+                    
+                    <dx:DXTabItem Header="Payor Agreement">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxg:GridControl x:Name="grdPayorAgreement" ItemsSource="{Binding PayorAgreement}"
+                             SelectedItem="{Binding SelectPayorAgreement}">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Code" FieldName="Code" Width="100"/>
+                                        <dxg:GridColumn Header="Name" FieldName="Name" Width="250"/>
+                                        <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
+                                        <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="gvPayoAgreement" ShowGroupPanel="True"  AllowEditing="False" />
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dx:DXTabItem>
+
+                    <dx:DXTabItem Header="Insurance Plan">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxg:GridControl x:Name="grdInsurancePlen" ItemsSource="{Binding InsurancePlan}"
+                             SelectedItem="{Binding SelectInsurancePlan}">
+                                    <dxg:GridControl.Columns>
+                                        <dxg:GridColumn Header="Agreement Name" FieldName="PayorAgreementName" Width="200"/>
+                                        <dxg:GridColumn Header="Description" FieldName="InsuranceCompanyName" Width="100"/>
+                                        <dxg:GridColumn Header="Payor Office" FieldName="PayorOfficeName" Width="100"/>
+                                        <dxg:GridColumn Header="Policy" FieldName="PolicyName" Width="100"/>
+                                        <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
+                                        <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
+                                    </dxg:GridControl.Columns>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView Name="gvInsurancePlen" ShowGroupPanel="True"  AllowEditing="False" />
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dx:DXTabItem>
+
+                </dx:DXTabControl>
+                <dxlc:LayoutGroup>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม">
+                        <dx:SimpleButton.Style>
+                                <Style TargetType="dx:SimpleButton">
+                                    <Setter Property="IsEnabled" Value="True"/>
+                                    <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelectInsuranceCompany}" Value="false">
+                                            <Setter Property="IsEnabled" Value="false"/>
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </dx:SimpleButton.Style>
+                    </dx:SimpleButton>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding ModifyCommand}"
+                                     Height="25" Content="แก้ไข">
+                        <dx:SimpleButton.Style>
+                            <Style TargetType="dx:SimpleButton">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelectInsuranceCompany}" Value="false">
+                                        <Setter Property="IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dx:SimpleButton.Style>
+                    </dx:SimpleButton>
+                    <dx:SimpleButton Width="80" 
+                                     HorizontalAlignment="Right"
+                                     Command="{Binding DeleteCommand}"
+                                     Height="25" Content="ลบ">
+                        <dx:SimpleButton.Style>
+                            <Style TargetType="dx:SimpleButton">
+                                <Setter Property="IsEnabled" Value="True"/>
+                                <Style.Triggers>
+                                    <DataTrigger Binding="{Binding IsSelectInsuranceCompany}" Value="false">
+                                        <Setter Property="IsEnabled" Value="false"/>
+                                    </DataTrigger>
+                                </Style.Triggers>
+                            </Style>
+                        </dx:SimpleButton.Style>
+                    </dx:SimpleButton>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutControl>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

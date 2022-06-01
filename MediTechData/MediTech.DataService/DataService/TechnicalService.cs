@@ -11,6 +11,62 @@ namespace MediTech.DataService
 {
     public class TechnicalService
     {
+        #region Location
+        public LocationModel GetLocationByUID(int locationUID)
+        {
+            string requestApi = string.Format("Api/Technical/GetLocationByUID?locationUID={0}", locationUID);
+            LocationModel data = MeditechApiHelper.Get<LocationModel>(requestApi);
+            return data;
+        }
+
+        public List<LocationModel> GetLocationByTypeUID(int locationTypeUID)
+        {
+            string requestApi = string.Format("Api/Technical/GetLocationByTypeUID?locationTypeUID={0}", locationTypeUID);
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            return data;
+        }
+
+        public List<LocationModel> GetLocation()
+        {
+            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>("Api/Technical/GetLocation");
+            return data;
+        }
+
+        public bool DeleteLocation(int LocationUID, int userID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Technical/DeleteLocation?LocationUID={0}&userID={1}", LocationUID, userID);
+                MeditechApiHelper.Delete(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
+        public bool ManageLocation(LocationModel locationModel, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Technical/ManageLocation?userID={0}", userID);
+                MeditechApiHelper.Post<LocationModel>(requestApi, locationModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
+        #endregion
+
         public List<ReferenceDomainModel> SearchReferenceDomain(string domainCode, string description, string valueDescription)
         {
             string requestApi = string.Format("Api/Technical/SearchReferenceDomain?domainCode={0}&description={1}&valueDescription={2}", domainCode, description, valueDescription);
