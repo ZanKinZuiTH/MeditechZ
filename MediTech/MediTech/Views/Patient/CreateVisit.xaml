@@ -240,7 +240,7 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="Claim Percentage">
-                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True"/>
+                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True" Mask="\d+" MaskType="RegEx"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Fixed Copay Amount">
                                     <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
