@@ -595,6 +595,14 @@ namespace MediTech.ViewModels
                     OpenFromExam();
                 }
             }
+            else
+            {
+                if (StudiesList != null && StudiesList.Count == 1)
+                {
+                    OPENPACSViewFromStudy();
+                    this.CloseViewDialog(ActionDialog.Cancel);
+                }
+            }
 
         }
         private void Search()
