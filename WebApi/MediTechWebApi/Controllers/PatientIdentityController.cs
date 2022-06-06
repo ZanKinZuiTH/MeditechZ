@@ -2597,6 +2597,29 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region Patient DemographicLog
+
+        [Route("GetPatientDemographicLogByUID")]
+        [HttpGet]
+        public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(int patientUID)
+        {
+            List<PatientDemographicLogModel> data = db.PatientDemographicLog.Where(p => p.PatientUID == patientUID && p.StatusFlag == "A")
+                .Select(p => new PatientDemographicLogModel()
+                    {
+                        UID = p.UID,
+                        PatientUID = p.PatientUID ?? 0,
+                        FiledName = p.FiledName,
+                        TableName = p.TableName,
+                        OldValue = p.OldValue,
+                        Modifiedby = p.Modifiedby ?? 0,
+                        ModifiedDttm = p.ModifiedDttm,
+                        ModifiedbyName = SqlFunction.fGetCareProviderName(p.Modifiedby ?? 0)
+                    }).OrderByDescending(p => p.ModifiedDttm).ToList();
+
+            return data;
+        }
+
+        #endregion
 
         public static Dictionary<string, List<string>> GenerateAuditLogMessages(object originalObject, object changedObject)
         {

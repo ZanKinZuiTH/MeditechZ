@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Billing\BillConfigurationModel.cs" />
+    <Compile Include="Billing\BillPackageDetailModel.cs" />
+    <Compile Include="Billing\BillPackageModel.cs" />
     <Compile Include="Billing\PolicyMasterModel.cs" />
     <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
@@ -141,6 +143,7 @@
     <Compile Include="Patient\PatientAEAdmissionModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
+    <Compile Include="Patient\PatientDemographicLogModel.cs" />
     <Compile Include="Patient\PatientInsuranceDetailModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />
     <Compile Include="Patient\PatientMergeEcounterModel.cs" />

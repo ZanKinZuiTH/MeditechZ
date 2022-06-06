@@ -22,11 +22,14 @@
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical" >
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Header="ข้อมูลผู้ป่วย" View="GroupBox">
-                    <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="10">
-                        <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
-                            <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+            <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
+                <dx:DXTabItem Header="Patient Detail">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Header="ข้อมูลผู้ป่วย" View="GroupBox">
+                            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="10">
+                                <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
                                                     OnTextChangedEvent="False"
                                                     Binding="{Binding PatientName}"
@@ -34,26 +37,26 @@
                                                     ItemsSource="{Binding PatientsSearchSource}"
                                                     SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
                                                     >
-                                <cc:AutoCompleteTextBox.InputBindings>
-                                    <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+                                        <cc:AutoCompleteTextBox.InputBindings>
+                                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
 
-                                </cc:AutoCompleteTextBox.InputBindings>
-                            </cc:AutoCompleteTextBox>
-                        </dxlc:LayoutItem>
+                                        </cc:AutoCompleteTextBox.InputBindings>
+                                    </cc:AutoCompleteTextBox>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="HN">
-                            <dxe:TextEdit Text="{Binding PatientID,Mode=TwoWay}" IsReadOnly="True"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem>
-                                <dxlc:LayoutItem.Label>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                <dxlc:LayoutItem Label="HN">
+                                    <dxe:TextEdit Text="{Binding PatientID,Mode=TwoWay}" IsReadOnly="True"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem>
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                        <TextBlock Text="คำนำหน้า" />
-                                    </StackPanel>
-                                </dxlc:LayoutItem.Label>
-                                <dxg:LookUpEdit ItemsSource="{Binding TitleSource}" 
+                                                <TextBlock Text="คำนำหน้า" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxg:LookUpEdit ItemsSource="{Binding TitleSource}" 
                                       SelectedItem="{Binding SelectedTitle}"
                                       ValueMember="Key"
                                       DisplayMember="Display"
@@ -68,36 +71,36 @@
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">
-                                    <dxg:LookUpEdit.PopupContentTemplate>
-                                        <ControlTemplate>
-                                            <dxg:GridControl x:Name="PART_GridControl"  >
-                                                <dxg:GridControl.Columns>
-                                                    <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
-                                                </dxg:GridControl.Columns>
-                                                <dxg:GridControl.View>
-                                                    <dxg:TableView
+                                            <dxg:LookUpEdit.PopupContentTemplate>
+                                                <ControlTemplate>
+                                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                                        <dxg:GridControl.Columns>
+                                                            <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
+                                                        </dxg:GridControl.Columns>
+                                                        <dxg:GridControl.View>
+                                                            <dxg:TableView
                         Name="View"  ShowColumnHeaders="False"
                         AutoWidth="True"
                         ShowGroupedColumns="False" >
-                                                    </dxg:TableView>
-                                                </dxg:GridControl.View>
-                                            </dxg:GridControl>
-                                        </ControlTemplate>
-                                    </dxg:LookUpEdit.PopupContentTemplate>
-                                    <dxg:LookUpEdit.StyleSettings>
-                                        <dxg:SearchLookUpEditStyleSettings/>
-                                    </dxg:LookUpEdit.StyleSettings>
-                                </dxg:LookUpEdit>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem >
-                                <dxlc:LayoutItem.Label>
-                                    <StackPanel Orientation="Horizontal">
-                                        <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                                            </dxg:TableView>
+                                                        </dxg:GridControl.View>
+                                                    </dxg:GridControl>
+                                                </ControlTemplate>
+                                            </dxg:LookUpEdit.PopupContentTemplate>
+                                            <dxg:LookUpEdit.StyleSettings>
+                                                <dxg:SearchLookUpEditStyleSettings/>
+                                            </dxg:LookUpEdit.StyleSettings>
+                                        </dxg:LookUpEdit>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                        <TextBlock Text="เพศ" />
-                                    </StackPanel>
-                                </dxlc:LayoutItem.Label>
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                                <TextBlock Text="เพศ" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       AutoComplete="True"                                    
                                       IsTextEditable="True"
@@ -106,80 +109,80 @@
                                       ImmediatePopup="True"       
                                       ItemsSource="{Binding GenderSource}"
                                       SelectedItem="{Binding SelectedGender}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem >
-                            <dxlc:LayoutItem.Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                    <TextBlock Text="ชื่อ" />
-                                </StackPanel>
-                            </dxlc:LayoutItem.Label>
-                            <dxe:TextEdit  Text="{Binding FirstName,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem >
-                            <dxlc:LayoutItem.Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                            <TextBlock Text="ชื่อ" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:TextEdit  Text="{Binding FirstName,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                    <TextBlock Text="นามสกุล" />
-                                </StackPanel>
-                            </dxlc:LayoutItem.Label>
-                            <dxe:TextEdit  Text="{Binding LastName,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
+                                            <TextBlock Text="นามสกุล" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:TextEdit  Text="{Binding LastName,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="ชื่อเล่น">
-                                <dxe:TextEdit  Text="{Binding NickName,Mode=TwoWay}"/>
-                            </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="ชื่อเล่น">
+                                        <dxe:TextEdit  Text="{Binding NickName,Mode=TwoWay}"/>
+                                    </dxlc:LayoutItem>
 
-                            <dxlc:LayoutItem Label="OtherID">
-                                <dxe:TextEdit  Text="{Binding OtherID,Mode=TwoWay}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="OtherID">
+                                        <dxe:TextEdit  Text="{Binding OtherID,Mode=TwoWay}"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem >
-                            <dxlc:LayoutItem.Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Name="lytBithDate" Content="*" FontSize="15" Margin="0,-10,0,0"
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Name="lytBithDate" Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                    <TextBlock Text="วัน/เดือน/ปี เกิด" />
-                                </StackPanel>
-                            </dxlc:LayoutItem.Label>
-                            <dxlc:LayoutGroup>
-                                <!--<dxe:DateEdit Name="dteBirthDate" EditValue="{Binding BirthDate,Mode=TwoWay}"/>-->
-                                <dxe:TextEdit EditValue="{Binding BirthDate,Mode=TwoWay,Converter={StaticResource DateConvert},StringFormat=dd/MM/yyyy}"
+                                            <TextBlock Text="วัน/เดือน/ปี เกิด" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxlc:LayoutGroup>
+                                        <!--<dxe:DateEdit Name="dteBirthDate" EditValue="{Binding BirthDate,Mode=TwoWay}"/>-->
+                                        <dxe:TextEdit EditValue="{Binding BirthDate,Mode=TwoWay,Converter={StaticResource DateConvert},StringFormat=dd/MM/yyyy}"
                                           AllowNullInput="True"
                                           Mask="([012]?[1-9]|[123]0|31)/(0?[1-9]|1[012])/([123][0-9])?[0-9][0-9]"                          
                                           MaskType="RegEx"/>
-                                <dxe:CheckEdit Name="chkBuddhist" IsChecked="{Binding CheckBuddhist}" Content="พุทธศักราช"/>
-                            </dxlc:LayoutGroup>
+                                        <dxe:CheckEdit Name="chkBuddhist" IsChecked="{Binding CheckBuddhist}" Content="พุทธศักราช"/>
+                                    </dxlc:LayoutGroup>
 
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="อายุ" >
-                                <dxe:TextEdit Text="{Binding Age,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem >
-                                <dxe:CheckEdit Name="testda" 
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="อายุ" >
+                                        <dxe:TextEdit Text="{Binding Age,Mode=TwoWay,UpdateSourceTrigger=LostFocus}"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem >
+                                        <dxe:CheckEdit Name="testda" 
                                            EditValue="{Binding CalculateBrithDate,Mode=TwoWay}"
                                 Content="ไม่ทราบวันเกิด"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
 
 
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="กรุ๊ปเลือด">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="กรุ๊ปเลือด">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding BloodGroupSource}"
                                       SelectedItem="{Binding SelectedBloodGroup}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="เชื่้อชาติ">
-                                <dxg:LookUpEdit Name="lkeMarryStatus" ItemsSource="{Binding NationalSource}" 
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="เชื่้อชาติ">
+                                        <dxg:LookUpEdit Name="lkeMarryStatus" ItemsSource="{Binding NationalSource}" 
                                       SelectedItem="{Binding SelectedNational}"
                                       ValueMember="Key"
                                       DisplayMember="Display"
@@ -194,78 +197,78 @@
                                       PopupHeight="300" 
                                       IsPopupAutoWidth="True"
                                       AutoPopulateColumns="False">
-                                    <dxg:LookUpEdit.PopupContentTemplate>
-                                        <ControlTemplate>
-                                            <dxg:GridControl x:Name="PART_GridControl"  >
-                                                <dxg:GridControl.Columns>
-                                                    <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
-                                                </dxg:GridControl.Columns>
-                                                <dxg:GridControl.View>
-                                                    <dxg:TableView
+                                            <dxg:LookUpEdit.PopupContentTemplate>
+                                                <ControlTemplate>
+                                                    <dxg:GridControl x:Name="PART_GridControl"  >
+                                                        <dxg:GridControl.Columns>
+                                                            <dxg:GridColumn Name="colDisplay" FieldName="Display"/>
+                                                        </dxg:GridControl.Columns>
+                                                        <dxg:GridControl.View>
+                                                            <dxg:TableView
                         Name="View"  ShowColumnHeaders="False"
                         AutoWidth="True"
                         ShowGroupedColumns="False" >
-                                                    </dxg:TableView>
-                                                </dxg:GridControl.View>
-                                            </dxg:GridControl>
-                                        </ControlTemplate>
-                                    </dxg:LookUpEdit.PopupContentTemplate>
-                                    <dxg:LookUpEdit.StyleSettings>
-                                        <dxg:SearchLookUpEditStyleSettings/>
-                                    </dxg:LookUpEdit.StyleSettings>
-                                </dxg:LookUpEdit>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="สถานะ">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                                            </dxg:TableView>
+                                                        </dxg:GridControl.View>
+                                                    </dxg:GridControl>
+                                                </ControlTemplate>
+                                            </dxg:LookUpEdit.PopupContentTemplate>
+                                            <dxg:LookUpEdit.StyleSettings>
+                                                <dxg:SearchLookUpEditStyleSettings/>
+                                            </dxg:LookUpEdit.StyleSettings>
+                                        </dxg:LookUpEdit>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="สถานะ">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding MarryStatusSource}"
                                       SelectedItem="{Binding SelectedMarryStatus}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="ศาสนา">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="ศาสนา">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding RegionSource}"
                                       SelectedItem="{Binding SelectedRegion}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="อาชีพ">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="อาชีพ">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding OccupationSource}"
                                       SelectedItem="{Binding SelectedOccupation}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="ภาษาที่ต้องการ">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="ภาษาที่ต้องการ">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding PreferredLanguageSource}"
                                       SelectedItem="{Binding SelectedPreferredLanguage}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
 
-                    <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="10">
-                        <dxlc:LayoutItem Label="บ้านเลขที่" >
-                            <dxe:TextEdit  Name="txtLine1" Text="{Binding Line1,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="หมู่ที่" >
-                            <dxe:TextEdit  Name="txtLine2" Text="{Binding Line2,Mode=TwoWay}"
+                            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="10">
+                                <dxlc:LayoutItem Label="บ้านเลขที่" >
+                                    <dxe:TextEdit  Name="txtLine1" Text="{Binding Line1,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="หมู่ที่" >
+                                    <dxe:TextEdit  Name="txtLine2" Text="{Binding Line2,Mode=TwoWay}"
                                        AllowNullInput="True"
                                        Mask="\d{0,2}" MaskType="RegEx"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="ถนน" >
-                            <dxe:TextEdit  Name="txtLine3" Text="{Binding Line3,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ถนน" >
+                                    <dxe:TextEdit  Name="txtLine3" Text="{Binding Line3,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Label="จังหวัด">
-                                <dxe:ComboBoxEdit DisplayMember="Display"                                    
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="จังหวัด">
+                                        <dxe:ComboBoxEdit DisplayMember="Display"                                    
                                       ValueMember="Key"
                                       AutoComplete="True"                                    
                                       IsTextEditable="True"
@@ -275,13 +278,13 @@
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding ProvinceSource}"
                                       SelectedItem="{Binding SelectedProvince}">
-                                    <dxe:ComboBoxEdit.StyleSettings>
-                                        <dxe:ComboBoxStyleSettings />
-                                    </dxe:ComboBoxEdit.StyleSettings>
-                                </dxe:ComboBoxEdit>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="อำเภอ">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                            <dxe:ComboBoxEdit.StyleSettings>
+                                                <dxe:ComboBoxStyleSettings />
+                                            </dxe:ComboBoxEdit.StyleSettings>
+                                        </dxe:ComboBoxEdit>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="อำเภอ">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       AutoComplete="True"                                    
                                       IsTextEditable="True"
@@ -291,11 +294,11 @@
                                       NullValueButtonPlacement="EditBox"
                                       ItemsSource="{Binding AmphurSource}"
                                       SelectedItem="{Binding SelectedAmphur}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="ตำบล">
-                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="ตำบล">
+                                        <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       AutoComplete="True"                                    
                                       IsTextEditable="True"
@@ -305,9 +308,9 @@
                                       ImmediatePopup="True" 
                                       ItemsSource="{Binding DistrictSource}"
                                       SelectedItem="{Binding SelectedDistrict}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="รหัสไปษณีย์" >
-                                <cc:AutoCompleteTextBox Text="{Binding ZipCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="รหัสไปษณีย์" >
+                                        <cc:AutoCompleteTextBox Text="{Binding ZipCode,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource ZipCodeColumn}}"
                                                     Binding="{Binding ZipCode}"
                                                     SuppressEvent="{Binding SuppressZipCodeEvent,Mode=OneWayToSource}"
@@ -316,97 +319,256 @@
                                                     ItemsSource="{Binding ZipCodeSource}"
                                                     SelectedItem="{Binding SelectedZipCode,Mode=OneWayToSource}"
                                                     />
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutItem Label="E-mail">
-                            <dxe:TextEdit  Text="{Binding Email,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="E-mail">
+                                    <dxe:TextEdit  Text="{Binding Email,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem Label="Line ID">
-                            <dxe:TextEdit  Text="{Binding IDLine,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Line ID">
+                                    <dxe:TextEdit  Text="{Binding IDLine,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem Label="เบอร์โทรติดต่อ">
-                                <dxe:TextEdit  Name="txtSecondPhone"
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="เบอร์โทรติดต่อ">
+                                        <dxe:TextEdit  Name="txtSecondPhone"
                                            MaskType="RegEx"
                                            Mask="\d{0,12}"
                                            Text="{Binding SeconePhone,Mode=TwoWay}"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="เบอร์มือถือ">
-                                <dxe:TextEdit  Name="txtMobilePhone"
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="เบอร์มือถือ">
+                                        <dxe:TextEdit  Name="txtMobilePhone"
                                            MaskType="RegEx"
                                            Mask="\d{0,12}"
                                            Text="{Binding MobilePhone,Mode=TwoWay}"/>
-                            </dxlc:LayoutItem>
-                        </dxlc:LayoutGroup>
-                        <dxlc:LayoutItem Label="เลขบัตรประชาชน" >
-                            <dxe:TextEdit  Name="txtNationID"
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Label="เลขบัตรประชาชน" >
+                                    <dxe:TextEdit  Name="txtNationID"
                                        MaskType="RegEx"
                                        Mask="\d{0,13}"
                                        Text="{Binding NatinonalID,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="เลขพาสปอร์ต" >
-                            <dxe:TextEdit  Name="txtPassortNo"
-                                       Text="{Binding PassportNo,Mode=TwoWay}"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutGroup Orientation="Vertical" Header="VIP Member"
-                                          View="GroupBox">
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="Is VIP">
-                                    <dxe:CheckEdit IsChecked="{Binding IsVIP}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="VIP Type">
-                                    <dxe:ComboBoxEdit ItemsSource="{Binding VIPTypeSources}"
+                                <dxlc:LayoutItem Label="เลขพาสปอร์ต" >
+                                    <dxe:TextEdit  Name="txtPassortNo"
+                                       Text="{Binding PassportNo,Mode=TwoWay}"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutGroup Orientation="Vertical" Header="VIP Member"
+                                          View="GroupBox">
+                                    <dxlc:LayoutGroup Orientation="Horizontal">
+                                        <dxlc:LayoutItem Label="Is VIP">
+                                            <dxe:CheckEdit IsChecked="{Binding IsVIP}"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="VIP Type">
+                                            <dxe:ComboBoxEdit ItemsSource="{Binding VIPTypeSources}"
                                               SelectedItem="{Binding SelectVIPType}"
                                               AllowNullInput="True"
                                               DisplayMember="Display"
                                               ValueMember="Key"
                                               IsEnabled="{Binding IsEnableVIP}"
                                 />
-                                </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="วันเริ่มต้น">
-                                    <dxe:DateEdit EditValue="{Binding VIPActiveFrom}" IsEnabled="{Binding IsEnableVIP}"/>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="วันสิ้นสุด">
-                                    <dxe:DateEdit EditValue="{Binding VIPActiveTo}" IsEnabled="{Binding IsEnableVIP}"/>
-                                </dxlc:LayoutItem>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                    <dxlc:LayoutGroup Orientation="Horizontal">
+                                        <dxlc:LayoutItem Label="วันเริ่มต้น">
+                                            <dxe:DateEdit EditValue="{Binding VIPActiveFrom}" IsEnabled="{Binding IsEnableVIP}"/>
+                                        </dxlc:LayoutItem>
+                                        <dxlc:LayoutItem Label="วันสิ้นสุด">
+                                            <dxe:DateEdit EditValue="{Binding VIPActiveTo}" IsEnabled="{Binding IsEnableVIP}"/>
+                                        </dxlc:LayoutItem>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutGroup>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
 
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
-                    <dxlc:LayoutItem>
-                        <dxe:ImageEdit Height="150" HorizontalAlignment="Center"
+                        <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right">
+                            <dxlc:LayoutItem>
+                                <dxe:ImageEdit Height="150" HorizontalAlignment="Center"
                                    Source="{Binding PatientImage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                    Width="210" />
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem VerticalAlignment="Bottom">
-                        <dx:SimpleButton Name="btnSavePatient" Content="บันทึก"
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem VerticalAlignment="Bottom">
+                                <dx:SimpleButton Name="btnSavePatient" Content="บันทึก"
                                      Command="{Binding SaveCommand}"
                                      HorizontalAlignment="Right"
                                      Visibility="Visible"
                                      Width="80"
                                      Height="25"  >
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger  EventName="Next">
-                                    <mvvm:EventToCommand Command="{Binding NextCommand}" PassEventArgsToCommand="True" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="Next">
+                                            <mvvm:EventToCommand Command="{Binding NextCommand}" PassEventArgsToCommand="True" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dx:SimpleButton>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
 
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Name="visitGroup" 
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Name="visitGroup" 
                               Orientation="Horizontal">
-                <dxlc:LayoutItem Width="210"/>
-            </dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Width="210"/>
+                    </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="Payor Detail">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Payor Name" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxg:LookUpEdit ItemsSource="{Binding InsuranceNameSource}" 
+                                      SelectedItem="{Binding SelectInsuranceName}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupWidth="300"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                        <dxg:LookUpEdit.PopupContentTemplate>
+                                            <ControlTemplate>
+                                                <dxg:GridControl x:Name="PART_GridControl"  >
+                                                    <dxg:GridControl.Columns>
+                                                        <dxg:GridColumn Name="colDisplay" FieldName="CompanyName"/>
+                                                    </dxg:GridControl.Columns>
+                                                    <dxg:GridControl.View>
+                                                        <dxg:TableView
+                                                            Name="View"  ShowColumnHeaders="False"
+                                                            AutoWidth="True"
+                                                            ShowGroupedColumns="False" >
+                                                        </dxg:TableView>
+                                                    </dxg:GridControl.View>
+                                                </dxg:GridControl>
+                                            </ControlTemplate>
+                                        </dxg:LookUpEdit.PopupContentTemplate>
+                                    </dxg:LookUpEdit>
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Payor Office" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding PayorDetailSource}"
+                                                      SelectedItem="{Binding SelectPayorDetail}"
+                                                      DisplayMember="PayorName"
+                                                      ValueMember="PayorDetailUID"/>
+
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Eligible Amount" >
+                                    <dxe:TextEdit  Name="txtEligible" Text="{Binding EligibleAmount}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="เปิดใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding PayorDetailActiveFrom}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="ปิดใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding PayorDetailActiveTo}" />
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Agreement Name" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding AgreementSource}"
+                                                      SelectedItem="{Binding SelectAgreement}"
+                                                      DisplayMember="PayorAgreementName"
+                                                      ValueMember="PayorAgreementUID"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem  Label="Policy">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding PolicySource}"
+                                                      IsEnabled="True"
+                                                      SelectedItem="{Binding SelectPolicy}"
+                                                      DisplayMember="PolicyName"
+                                                      ValueMember="PolicyMasterUID"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem  Label="Type">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding PayorType}"
+                                                      IsEnabled="True"
+                                                      SelectedItem="{Binding SelectPayorType}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="key"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Comment" >
+                                    <dxe:TextEdit  Name="txtComment" Text="{Binding Comment}"/>
+                                </dxlc:LayoutItem>
+                                
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
+                            <dx:SimpleButton Width="80" Command="{Binding AddPayorDetailCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                            <dx:SimpleButton Width="80" Command="{Binding EditPayorDetailCommand}"
+                                     Height="25" Content="แก้ไข"/>
+                            <dx:SimpleButton Width="80" Margin="0,0,0,0" Command="{Binding DeletePayorDetailCommand}"
+                                     Height="25" Content="ลบ"/>
+                            <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding ClearPayorDetailCommand}"
+                                     Height="25" Content="clear"/>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxg:GridControl x:Name="grdUsers" ItemsSource="{Binding PatientInsuranceDetail}"
+                             SelectedItem="{Binding SelectPatientInsuranceDetail}">
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="Payor" FieldName="Name"/>
+                                    <dxg:GridColumn Header="Agreemant" FieldName="Description"/>
+                                    <dxg:GridColumn Header="Payor Office" FieldName="PhoneNumber"/>
+                                    <dxg:GridColumn Header="Policy Name" FieldName="LocationType"/>
+                                    <dxg:GridColumn Header="Type" FieldName="OwnerOrganisation"/>
+                                    <dxg:GridColumn Header="Comment" FieldName="ActiveFrom"/>
+                                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
+                                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"  ShowSearchPanelMode="Always" 
+                                   SearchPanelNullText="ค้นหา" AllowEditing="False" />
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                    
+                    
+                </dx:DXTabItem>
+                <dx:DXTabItem Header="Modification Log">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxg:GridControl x:Name="grdModification" ItemsSource="{Binding PatientModificateLog}">
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="Filed Name" FieldName="FiledName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Old Value" FieldName="OldValue" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="New Value" FieldName="NewValue" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Modified Date" FieldName="ModifiedDttm" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Modified by" FieldName="ModifiedbyName" ReadOnly="True"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView ShowGroupPanel="False"  ShowSearchPanelMode="Never" 
+                                   SearchPanelNullText="ค้นหา" AllowEditing="False" />
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
+            </dx:DXTabControl>
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

@@ -634,5 +634,14 @@ namespace MediTech.DataService
 
         #endregion
 
+        #region Patient DemographicLog
+        public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientDemographicLogByUID?patientUID={0}", patientUID);
+            List<PatientDemographicLogModel> data = MeditechApiHelper.Get<List<PatientDemographicLogModel>>(requestApi);
+            return data;
+        }
+
+        #endregion
     }
 }

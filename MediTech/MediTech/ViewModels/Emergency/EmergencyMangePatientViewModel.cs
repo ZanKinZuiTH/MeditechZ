@@ -298,16 +298,16 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPayorDetail, value);
                 if (_SelectedPayorDetail != null)
                 {
-                    PayorAgreementSource = DataService.Billing.GetPayorAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    if (PayorAgreementSource != null)
-                    {
-                        SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
-                    }
-                    if (CheckupJobSource != null)
-                    {
-                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
-                    }
+                    //PayorAgreementSource = DataService.Billing.GetPayorAgreementByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    //CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
+                    //if (PayorAgreementSource != null)
+                    //{
+                    //    SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
+                    //}
+                    //if (CheckupJobSource != null)
+                    //{
+                    //    SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
+                    //}
                 }
             }
         }

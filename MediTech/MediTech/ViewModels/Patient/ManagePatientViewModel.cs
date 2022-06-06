@@ -23,6 +23,40 @@ namespace MediTech.ViewModels
         #region Properites
         public bool SuppressZipCodeEvent { get; set; }
 
+        private int _SelectTabIndex;
+        public int SelectTabIndex
+        {
+            get { return _SelectTabIndex; }
+            set
+            {
+                Set(ref _SelectTabIndex, value);
+                if (SelectTabIndex == 1)
+                {
+                    var now = DateTime.Now;
+                    PayorDetailActiveFrom = now;
+                    PayorDetailActiveTo = now;
+                    var data = DataService.Billing.GetInsuranceCompanies();
+                    InsuranceNameSource = data;
+                    PayorType = DataService.Technical.GetReferenceValueMany("PAYRTP");
+                    //InsuranceNameSource = DataService.Billing.GetInsurancePlansGroupPayorCompany();
+
+                    //PayorDetailSource = DataService.Billing.GetPayorDetail();
+                    //PolicySource = DataService.Billing.GetPolicyMasterAll();
+
+                    if (patientUID != 0 || patientModel.PatientUID != 0)
+                    {
+                        PatientInsuranceDetail = DataService.PatientIdentity.GetPatientInsuranceDetail(patientUID);
+                    }
+                }
+                if (SelectTabIndex == 2)
+                {
+                    if (patientUID != 0 || patientModel.PatientUID != 0)
+                    {
+                        PatientModificateLog = DataService.PatientIdentity.GetPatientDemographicLogByUID(patientUID);
+                    }
+                }
+            }
+        }
 
         private BookingModel _Booking;
 
@@ -77,6 +111,161 @@ namespace MediTech.ViewModels
             }
         }
 
+        #region PayorDetail
+        private List<PatientInsuranceDetailModel> _PatientInsuranceDetail;
+        public List<PatientInsuranceDetailModel> PatientInsuranceDetail
+        {
+            get { return _PatientInsuranceDetail; }
+            set { Set(ref _PatientInsuranceDetail, value); }
+        }
+
+        private PatientInsuranceDetailModel _SelectPatientInsuranceDetail;
+        public PatientInsuranceDetailModel SelectPatientInsuranceDetail
+        {
+            get { return _SelectPatientInsuranceDetail; }
+            set { Set(ref _SelectPatientInsuranceDetail, value); 
+            if (SelectPatientInsuranceDetail != null)
+                {
+                    AssignSelectToPropotiesPayor();
+                }
+            }
+        }
+
+        private List<InsuranceCompanyModel> _InsuranceNameSource;
+        public List<InsuranceCompanyModel> InsuranceNameSource
+        {
+            get { return _InsuranceNameSource; }
+            set { Set(ref _InsuranceNameSource, value); }
+        }
+
+        private InsuranceCompanyModel _SelectInsuranceName;
+        public InsuranceCompanyModel SelectInsuranceName
+        {
+            get { return _SelectInsuranceName; }
+            set { Set(ref _SelectInsuranceName, value); 
+            if (SelectInsuranceName != null)
+                {
+                    InsuranceCompanySource = DataService.Billing.SearchInsurancePlaneByINCO(SelectInsuranceName.InsuranceCompanyUID);
+                    AgreementSource = InsuranceCompanySource.Where(p => p.InsuranceCompanyUID == SelectInsuranceName.InsuranceCompanyUID ).ToList();
+                    
+                    SelectAgreement = AgreementSource.First();
+                   
+                }
+            }
+        }
+        private List<InsurancePlanModel> _InsuranceCompanySource;
+        public List<InsurancePlanModel> InsuranceCompanySource
+        {
+            get { return _InsuranceCompanySource; }
+            set { Set(ref _InsuranceCompanySource, value); }
+        }
+
+        private List<InsurancePlanModel> _PayorDetailSource;
+        public List<InsurancePlanModel> PayorDetailSource
+        {
+            get { return _PayorDetailSource; }
+            set { Set(ref _PayorDetailSource, value); }
+        }
+
+        private InsurancePlanModel _SelectPayorDetail;
+        public InsurancePlanModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); 
+                if(SelectPayorDetail != null)
+                {
+                    PolicySource = InsuranceCompanySource.Where(p => p.PolicyMasterUID == SelectPayorDetail.PolicyMasterUID).ToList();
+                    SelectPolicy = PolicySource.First();
+                    //AgreementSource = DataService.Billing.GetAgreementByInsuranceUID(SelectPayorDetail.InsuranceCompanyUID ?? 0);
+                    //SelectAgreement = AgreementSource.FirstOrDefault();
+                }
+            }
+        }
+
+        private List<InsurancePlanModel> _AgreementSource;
+        public List<InsurancePlanModel> AgreementSource
+        {
+            get { return _AgreementSource; }
+            set { Set(ref _AgreementSource, value); }
+        }
+
+        private InsurancePlanModel _SelectAgreement;
+        public InsurancePlanModel SelectAgreement
+        {
+            get { return _SelectAgreement; }
+            set
+            {
+                Set(ref _SelectAgreement, value);
+                if (SelectAgreement != null)
+                {
+                    PayorDetailSource = InsuranceCompanySource.Where(p => p.PayorAgreementUID == SelectAgreement.PayorAgreementUID).ToList();
+                    SelectPayorDetail = PayorDetailSource.First();
+                    //if (SelectAgreement.PolicyMasterUID != null)
+                    //{
+                    //    SelectPolicy = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
+                    //}
+                    //SelectPolicy = null;
+                }
+            }
+        }
+
+        private List<InsurancePlanModel> _PolicySource;
+        public List<InsurancePlanModel> PolicySource
+        {
+            get { return _PolicySource; }
+            set { Set(ref _PolicySource, value); }
+        }
+
+        private InsurancePlanModel _SelectPolicy;
+        public InsurancePlanModel SelectPolicy
+        {
+            get { return _SelectPolicy; }
+            set { Set(ref _SelectPolicy, value); }
+        }
+
+        private DateTime _PayorDetailActiveFrom;
+        public DateTime PayorDetailActiveFrom
+        {
+            get { return _PayorDetailActiveFrom; }
+            set { Set(ref _PayorDetailActiveFrom, value); }
+        }
+
+        private DateTime _PayorDetailActiveTo;
+        public DateTime PayorDetailActiveTo
+        {
+            get { return _PayorDetailActiveTo; }
+            set { Set(ref _PayorDetailActiveTo, value); }
+        }
+
+        private List<LookupReferenceValueModel> _PayorType;
+        public List<LookupReferenceValueModel> PayorType
+        {
+            get { return _PayorType; }
+            set { Set(ref _PayorType, value); }
+        }
+
+        private LookupReferenceValueModel _SelectPayorType;
+        public LookupReferenceValueModel SelectPayorType
+        {
+            get { return _SelectPayorType; }
+            set { Set(ref _SelectPayorType, value); }
+        }
+
+        private string _Comment;
+        public string Comment
+        {
+            get { return _Comment; }
+            set { Set(ref _Comment, value); }
+        }
+
+        private string _EligibleAmount;
+        public string EligibleAmount
+        {
+            get { return _EligibleAmount; }
+            set { Set(ref _EligibleAmount, value); }
+        }
+
+        #endregion
 
         #region PatientAddress
         private List<PostalCode> _ZipCodeSource;
@@ -588,13 +777,24 @@ namespace MediTech.ViewModels
 
         #endregion
 
+        #region Patient Modificate log
+
+        private List<PatientDemographicLogModel> _PatientModificateLog;
+        public List<PatientDemographicLogModel> PatientModificateLog
+        {
+            get { return _PatientModificateLog; }
+            set { Set(ref _PatientModificateLog, value); }
+        }
+        
+        #endregion
+
         #endregion
 
         #region Varible
 
         List<ReferenceRelationShipModel> referenceRealationShipTitle;
         public PatientInformationModel patientModel;
-
+        public int patientUID;
         #endregion
 
         private Visibility _VisibiltyCheckupCompany = Visibility.Collapsed;
@@ -656,7 +856,32 @@ namespace MediTech.ViewModels
             get { return _PatientSearchCommand ?? (_PatientSearchCommand = new RelayCommand(PatientSearch)); }
         }
 
+        #region Payor Detail Command
+        private RelayCommand _AddPayorDetailCommand;
+        public RelayCommand AddPayorDetailCommand
+        {
+            get { return _AddPayorDetailCommand ?? (_AddPayorDetailCommand = new RelayCommand(AddPayorDetail)); }
+        }
+       
+        private RelayCommand _EditPayorDetailCommand;
+        public RelayCommand EditPayorDetailCommand
+        {
+            get { return _EditPayorDetailCommand ?? (_EditPayorDetailCommand = new RelayCommand(EditPayorDetail)); }
+        }
 
+        private RelayCommand _DeletePayorDetailCommand;
+        public RelayCommand DeletePayorDetailCommand
+        {
+            get { return _DeletePayorDetailCommand ?? (_DeletePayorDetailCommand = new RelayCommand(DeletePayorDetail)); }
+        }
+
+        private RelayCommand _ClearPayorDetailCommand;
+        public RelayCommand ClearPayorDetailCommand
+        {
+            get { return _ClearPayorDetailCommand ?? (_ClearPayorDetailCommand = new RelayCommand(ClearPayorDetail)); }
+        }
+
+        #endregion
 
         #endregion
 
@@ -679,7 +904,6 @@ namespace MediTech.ViewModels
             referenceRealationShipTitle = DataService.Technical.GetReferenceRealationShip("TITLE", "SEXXX");
 
             ProvinceSource = DataService.Technical.GetProvince();
-
 
         }
 
@@ -1187,6 +1411,7 @@ namespace MediTech.ViewModels
         }
         public void AssingDataFromSkip(PatientInformationModel patientData)
         {
+            patientUID = Convert.ToInt32(patientData.PatientUID);
             FirstName = patientData.FirstName;
             LastName = patientData.LastName;
             NickName = patientData.NickName;
@@ -1195,6 +1420,34 @@ namespace MediTech.ViewModels
             MobilePhone = patientData.MobilePhone;
             PassportNo = patientData.IDPassport;
         }
+
+        #region Payor Detail Method
+
+        private void AddPayorDetail()
+        {
+
+        }
+
+        private void EditPayorDetail()
+        {
+
+        }
+
+        private void DeletePayorDetail()
+        {
+
+        }
+
+        private void ClearPayorDetail()
+        {
+
+        }
+
+        private void AssignSelectToPropotiesPayor()
+        {
+
+        }
+        #endregion
 
         #endregion
 

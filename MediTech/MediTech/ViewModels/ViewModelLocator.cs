@@ -1,4 +1,4 @@
-/*
+ /*
   In App.xaml:
   <Application.Resources>
       <vm:ViewModelLocator xmlns:vm="clr-namespace:MediTech"
@@ -237,6 +237,28 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<ManagePolicyMasterViewModel>();
 
                 return ServiceLocator.Current.GetInstance<ManagePolicyMasterViewModel>();
+            }
+        }
+
+        public ListPackageViewModel ListPackageViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListPackageViewModel>())
+                    SimpleIoc.Default.Register<ListPackageViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListPackageViewModel>();
+            }
+        }
+
+        public ManagePackageViewModel ManagePackageViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManagePackageViewModel>())
+                    SimpleIoc.Default.Register<ManagePackageViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManagePackageViewModel>();
             }
         }
 

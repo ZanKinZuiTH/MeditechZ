@@ -1144,7 +1144,7 @@ namespace MediTechWebApi.Controllers
                     {
                         BillableItemDetailUID = p.UID,
                         BillableItemUID = p.BillableItemUID,
-                        ActiveFrom = p.ActiveFrom,
+                        ActiveFrom = p.ActiveFrom ,
                         ActiveTo = p.ActiveTo,
                         Price = p.Price,
                         Cost = p.Cost ?? 0,

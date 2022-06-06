@@ -621,7 +621,7 @@ namespace MediTechWebApi.Controllers
                             patBilled.Discount = item.Discount;
                             patBilled.NetAmount = item.NetAmount;
                             patBilled.DoctorFee = item.DoctorFee;
-                            patBilled.CareproviderUID = item.CareproviderUID;
+                            patBilled.CareproviderUID = item.CareproviderUID ?? 0;
                             //if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
                             //{
                             //    patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;
@@ -1167,6 +1167,81 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region BillPackage
+        [Route("SearchBillPackage")]
+        [HttpGet]
+        public List<BillPackageModel> SearchBillPackage(string code, string name)
+        {
+            List<BillPackageModel> data = db.BillPackage.Where(p => p.StatusFlag == "A"
+            && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+            && (string.IsNullOrEmpty(name) || p.PackageName.ToLower().Contains(name.ToLower()))
+            ).Select(p => new BillPackageModel
+            {
+                BillPackageUID = p.UID,
+                PackageName = p.PackageName,
+                Description = p.Description,
+                NoofDays = p.NoofDays,
+                TotalAmount = p.TotalAmount,
+                CURNCUID = p.CURNCUID,
+                PBLCTUID = p.PBLCTUID ?? 0,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                MaxValue = p.MaxValue,
+                MinValue = p.MinValue,
+                Code = p.Code,
+                OrderCategoryUID = p.OrderCategoryUID,
+                OrderSubCategoryUID = p.OrderSubCategoryUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+            }).ToList();
+            
+            return data;
+        }
+
+        [Route("DeleteBillPackage")]
+        [HttpDelete]
+        public HttpResponseMessage DeleteBillPackage(int billPackageUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var billPackage = db.BillPackage.Find(billPackageUID);
+                    if(billPackage != null)
+                    {
+                        db.BillPackage.Attach(billPackage);
+                        billPackage.MUser = userID;
+                        billPackage.MWhen = now;
+                        billPackage.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+
+                    var billPackageItems = db.BillPackageItem.Where(p => p.BillPackageUID == billPackageUID);
+                    if (billPackageItems != null)
+                    {
+                        foreach (var item in billPackageItems)
+                        {
+                            db.BillPackageItem.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
+                };
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        #endregion
+
         #region Insurance
         [Route("GetInsuranceCompanies")]
         [HttpGet]
@@ -1228,6 +1303,9 @@ namespace MediTechWebApi.Controllers
                             ClaimPercentage = j.ClaimPercentage,
                             FixedCopayAmount = j.FixedCopayAmount,
                             OPDCoverPerDay = j.OPDCoverPerDay,
+                            PolicyMasterUID = j.PolicyMasterUID ?? 0,
+                            PolicyName = SqlFunction.fGetPolicyName(j.PolicyMasterUID ?? 0),
+                            StatusFlag = i.StatusFlag
                         }).ToList();
             return data;
         }
@@ -1303,6 +1381,23 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetInsurancePlansGroupPayorCompany")]
+        [HttpGet]
+        public List<InsurancePlanModel> GetInsurancePlansGroupPayorCompany()
+        {
+           
+            var data = db.InsurancePlan.Where(p => p.StatusFlag == "A").GroupBy(g => new {g.InsuranceCompanyUID})
+                .Select(x => new InsurancePlanModel()
+                {
+                    InsuranceCompanyUID = x.Key.InsuranceCompanyUID,
+                    InsuranceCompanyName = SqlFunction.fGetInsuranceCompanyName(x.Key.InsuranceCompanyUID ?? 0),
+                    //ActiveFrom = p.ActiveFrom,
+                    //ActiveTo = p.ActiveTo,
+                    //OwnerOrganisationUID = p.OwnerOrganisationUID
+                }).ToList();
+
+            return data;
+        }
 
         [Route("SearchInsuranceCompany")]
         [HttpGet]
