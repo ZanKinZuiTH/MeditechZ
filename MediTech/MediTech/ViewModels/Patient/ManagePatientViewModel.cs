@@ -640,13 +640,6 @@ namespace MediTech.ViewModels
             get { return _RegisterCommand ?? (_RegisterCommand = new RelayCommand(RegisterPatient)); }
         }
 
-        private RelayCommand _CreateVisitCommand;
-
-        public RelayCommand CreateVisitCommand
-        {
-            get { return _CreateVisitCommand ?? (_CreateVisitCommand = new RelayCommand(CreateVisit)); }
-        }
-
 
 
         private RelayCommand _PatientSearchCommand;
@@ -779,21 +772,6 @@ namespace MediTech.ViewModels
             {
                 ErrorDialog(er.Message);
             }
-        }
-
-        private void CreateVisit()
-        {
-            try
-            {
-               //var patientInfo = GeneratePatientID();
-
-            }
-            catch (Exception er)
-            {
-
-                ErrorDialog(er.Message);
-            }
-
         }
 
         public PatientInformationModel GeneratePatientID()

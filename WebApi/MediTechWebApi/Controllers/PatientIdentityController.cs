@@ -402,6 +402,7 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
+                DateTime now = DateTime.Now;
                 foreach (var payor in patientVisitPayorList)
                 {
                     PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
@@ -422,7 +423,7 @@ namespace MediTechWebApi.Controllers
                     detail.StartDttm = payor.ActiveFrom;
                     detail.EndDttm = payor.ActiveTo;
                     detail.Comments = payor.Comment;
-                    detail.StatusFlag = payor.StatusFlag.ToString();
+
                     detail.PayorAgreementUID = payor.PayorAgreementUID;
                     detail.ClaimPercentage = payor.ClaimPercentage;
                     if (detail.ClaimPercentage == 0)
@@ -431,8 +432,15 @@ namespace MediTechWebApi.Controllers
                     if (detail.FixedCopayAmount == 0)
                         detail.FixedCopayAmount = null;
 
+                    detail.CUser = payor.CUser;
+                    detail.MUser = payor.MUser;
+                    detail.CWhen = now;
+                    detail.MWhen = now;
+                    detail.StatusFlag = payor.StatusFlag;
+                    detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
                     db.PatientInsuranceDetail.AddOrUpdate(detail);
                 }
+                db.SaveChanges();
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

@@ -1213,10 +1213,10 @@ namespace MediTechWebApi.Controllers
             DateTime now = DateTime.Now;
             var data = (from i in db.InsurancePlan
                         join j in db.PayorAgreement on i.PayorAgreementUID equals j.UID
-                        where i.InsuranceCompanyUID == insuranceCompanyUID
+                        where (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(now))
+                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(now))
                         && i.StatusFlag == "A"
-                        && i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(now)
-                        && i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(now)
+                        && i.InsuranceCompanyUID == insuranceCompanyUID
                         select new InsurancePlanModel
                         {
                             InsurancePlanUID = i.UID,

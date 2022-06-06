@@ -85,7 +85,7 @@
                                 <dxco:WizardButton Name="btnNext" Width="80"
                                      Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
                                 <dxco:WizardButton Name="btnVisit" Width="80"
-                                     Height="25" Content="สร้าง Visit" Command="{Binding VisitCommand}"/>
+                                     Height="25" Content="สร้าง Visit" Command="{Binding Path=DataContext.SaveCommand,Source={StaticResource CreateVisit}}"/>
                             </StackPanel>
                         </Grid>
                     </dxco:WizardDialogFooter>

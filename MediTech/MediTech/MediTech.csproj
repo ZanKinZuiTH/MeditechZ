@@ -1519,6 +1519,7 @@
     <Compile Include="ViewModels\ClinicalData\ManageBilledItemSaleViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageEncounterMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ModifyPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
@@ -1911,6 +1912,9 @@
     </Compile>
     <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
       <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ModifyPayor.xaml.cs">
+      <DependentUpon>ModifyPayor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
       <DependentUpon>ModifyVisit.xaml</DependentUpon>
@@ -2618,6 +2622,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Patient\ManagePatientMerge.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\ModifyPayor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -3865,6 +3873,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Document\File.png" />
+    <Resource Include="Resources\Images\Ward\bed.png" />
+    <Resource Include="Resources\Images\Ward\bedLevel0.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel1.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel2.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel3.png" />
     <Resource Include="Resources\Images\Menu\Rest.png" />
     <Resource Include="Resources\Images\Menu\UsersLocation.png" />
     <Resource Include="Resources\Images\Menu\Emergency.png" />

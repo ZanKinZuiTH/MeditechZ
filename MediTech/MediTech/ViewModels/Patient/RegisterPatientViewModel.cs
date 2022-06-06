@@ -406,8 +406,6 @@ namespace MediTech.ViewModels
 
         }
 
-
-
         public void OpenPage(PageRegister page, PatientInformationModel patientData, BookingModel booking = null, bool userCardRead = false)
         {
             if (page == PageRegister.Search)

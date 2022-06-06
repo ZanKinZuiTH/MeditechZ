@@ -1622,6 +1622,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ModifyPayorViewModel ModifyPayorViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ModifyPayorViewModel>())
+                    SimpleIoc.Default.Register<ModifyPayorViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ModifyPayorViewModel>();
+            }
+        }
+
         public ModifyVisitViewModel ModifyVisitViewModel
         {
             get

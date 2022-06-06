@@ -105,19 +105,32 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup>
-                <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
-                                     Height="25" >
-                    <StackPanel  Orientation="Horizontal">
-                        <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
-                    </StackPanel>
-
-                </dx:SimpleButton>
-                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                    <dxlc:LayoutItem>
-                        <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
+                <dxlc:LayoutItem HorizontalAlignment="Left" Label="ปริ้นเตอร์">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
                                       SelectedItem="{Binding SelectPrinter}"
                         Width="180" Height="25"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                                     Height="25" >
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="ยกเลิก จ่ายยา" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                        </dx:SimpleButton>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
+                                     Height="25" >
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
+                            </StackPanel>
+
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
+                    
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
                                      Height="25" >

@@ -112,6 +112,16 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Document/File.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="แก้ไข Payor">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
                                 <Image Source="/MediTech;component/Resources/Images/Medical/Medical Supply.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
