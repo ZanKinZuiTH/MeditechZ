@@ -578,6 +578,7 @@ namespace MediTech.ViewModels
                         }
 
                         CurrentImportedData.IDCard = drow["IDCard"].ToString().Replace("-", "");
+                        CurrentImportedData.IDPassport = drow["IDPassport"].ToString().Replace("-", "");
 
                         if (drow.Table.Columns.Contains("Company"))
                             CurrentImportedData.Company = drow["Company"].ToString();
@@ -785,6 +786,7 @@ namespace MediTech.ViewModels
                             patientModel.FirstName = currentData.FirstName;
                             patientModel.LastName = currentData.LastName;
                             patientModel.NationalID = currentData.IDCard.Replace("-", "");
+                            patientModel.IDPassport = currentData.IDPassport.Replace("-", "");
                             patientModel.MobilePhone = currentData.MobilePhone;
                             patientModel.Department = currentData.Department?.Trim();
                             patientModel.Position = currentData.Position?.Trim();

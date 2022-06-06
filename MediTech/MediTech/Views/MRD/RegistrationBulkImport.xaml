@@ -87,6 +87,7 @@
                 <dxg:GridColumn Header="Birth Date" FieldName="DateOfBirth"/>
                 <dxg:GridColumn Header="Age" FieldName="Age"/>
                 <dxg:GridColumn Header="IDCard" FieldName="IDCard"/>
+                <dxg:GridColumn Header="IDPassport" FieldName="IDCard"/>
                 <dxg:GridColumn Header="MobilePhone" FieldName="MobilePhone"/>
                 <dxg:GridColumn Header="EN" FieldName="VisitID"/>
                 <dxg:GridColumn Header="Company" FieldName="Company"/>
