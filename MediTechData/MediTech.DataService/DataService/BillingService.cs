@@ -186,6 +186,26 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<BillPackageDetailModel> GetBillPackageItemByUID(int billPackageUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetBillPackageItemByUID?billPackageUID={0}", billPackageUID);
+            List<BillPackageDetailModel> data = MeditechApiHelper.Get<List<BillPackageDetailModel>>(requestApi);
+            return data;
+        }
+
+        public void ManageBillPackage(BillPackageModel billPackageModel, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Billing/ManageBillPackage?userID={0}", userID);
+                MeditechApiHelper.Post(requestApi, billPackageModel);
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+        }
+
         public bool DeleteBillPackage(int billPackageUID, int userID)
         {
             bool flag = false;

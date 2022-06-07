@@ -107,9 +107,9 @@ namespace MediTech.ViewModels
         {
             if(SelectBillPackage != null)
             {
-                //ManageBillableItem pageManage = new ManageBillableItem();
-                //(pageManage.DataContext as ManageBillableItemViewModel).AssingModel(SelectBillableItem);
-                //ChangeViewPermission(pageManage);
+                ManagePackage pageManage = new ManagePackage();
+                (pageManage.DataContext as ManagePackageViewModel).AssignModel(SelectBillPackage);
+                ChangeViewPermission(pageManage);
             }
         }
 

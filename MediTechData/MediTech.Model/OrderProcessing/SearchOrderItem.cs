@@ -11,8 +11,11 @@ namespace MediTech.Model
         public long No { get; set; }
         public int BillableItemUID { get; set; }
         public string Code { get; set; }
+        public int ItemUID { get; set; }
         public string ItemName { get; set; }
         public string Generic { get; set; }
+        public int BillingServiceUID { get; set; }
         public string TypeOrder { get; set; }
+        
     }
 }

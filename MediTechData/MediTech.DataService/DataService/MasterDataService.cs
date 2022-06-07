@@ -478,5 +478,21 @@ namespace MediTech.DataService
         }
 
         #endregion
+
+        #region OrderCategory
+        public List<OrderCategoryModel> GetOrderCategory()
+        {
+            List<OrderCategoryModel> data = MeditechApiHelper.Get<List<OrderCategoryModel>>("Api/MasterData/GetOrderCategory");
+            return data;
+        }
+
+        public List<OrderSubCategoryModel> GetOrderSubCategoryByUID(int orderCateogoryUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetOrderSubCategoryByUID?orderCateogoryUID={0}", orderCateogoryUID);
+            List<OrderSubCategoryModel> data = MeditechApiHelper.Get<List<OrderSubCategoryModel>>(requestApi);
+            return data;
+        }
+        #endregion
+
     }
 }

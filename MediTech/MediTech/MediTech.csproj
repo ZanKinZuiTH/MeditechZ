@@ -1415,10 +1415,12 @@
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\InsuranceCompanyViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListPackageViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListPolicyMasterViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageInsuranceCompanyViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageInsurancePlanViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePackageViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
@@ -1602,6 +1604,9 @@
     <Compile Include="Views\BillingConfiguration\InsuranceCompany.xaml.cs">
       <DependentUpon>InsuranceCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BillingConfiguration\ListPackage.xaml.cs">
+      <DependentUpon>ListPackage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BillingConfiguration\ListPayorDetail.xaml.cs">
       <DependentUpon>ListPayorDetail.xaml</DependentUpon>
     </Compile>
@@ -1613,6 +1618,9 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManageInsurancePlan.xaml.cs">
       <DependentUpon>ManageInsurancePlan.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePackage.xaml.cs">
+      <DependentUpon>ManagePackage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorAgreement.xaml.cs">
       <DependentUpon>ManagePayorAgreement.xaml</DependentUpon>
@@ -2209,6 +2217,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\BillingConfiguration\ListPackage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BillingConfiguration\ListPayorDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2222,6 +2234,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\BillingConfiguration\ManageInsurancePlan.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\BillingConfiguration\ManagePackage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -3865,6 +3881,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Module\Emergency.png" />
+    <Resource Include="Resources\Images\Ward\bed.png" />
+    <Resource Include="Resources\Images\Ward\bedLevel0.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel1.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel2.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel3.png" />
     <Resource Include="Resources\Images\Menu\Rest.png" />
     <Resource Include="Resources\Images\Menu\UsersLocation.png" />
     <Resource Include="Resources\Images\Menu\Emergency.png" />

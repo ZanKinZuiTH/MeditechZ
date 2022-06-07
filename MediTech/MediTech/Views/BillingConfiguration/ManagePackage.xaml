@@ -12,6 +12,19 @@
              mc:Ignorable="d" 
              DataContext="{Binding ManagePackageViewModel ,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <cc:OrderItemSearchPopUp x:Key="OrderItemColumn"/>
+        <cv:AddValueConverter x:Key="AddValueConverter" />
+        <Style x:Key="BackgroundStyle"
+               TargetType="{x:Type dxg:GridRowContent}">
+            <Style.Triggers>
+                <DataTrigger Binding="{Binding Row.OrderDetailStatus}" Value="Cancelled">
+                    <Setter Property="Background" Value="Gainsboro"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </DataTrigger>
+            </Style.Triggers>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
 
@@ -23,81 +36,114 @@
                     <dxlc:LayoutItem Label="Name">
                         <dxe:TextEdit Text="{Binding PackageName}"/>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="Active From">
+                        <dxe:DateEdit Text="{Binding ActiveFrom}"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Active To">
+                        <dxe:DateEdit Text="{Binding ActiveTo}"/>
+                    </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutItem Label="Name">
+                    <!--<dxlc:LayoutItem Label="Name">
                         <dxe:TextEdit Text="{Binding Orgnisation}"/>
+                    </dxlc:LayoutItem>-->
+                    <dxlc:LayoutItem Label="Catagory">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding Catagory}"
+                                          SelectedItem="{Binding SelectCatagory}"
+                                          NullValueButtonPlacement="EditBox"
+                                          DisplayMember="Name"
+                                          ValueMember="OrderCategoryUID"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Amount">
-                        <dxe:TextEdit Text="{Binding PackageAmount}"/>
+                    <dxlc:LayoutItem Label="OrderSubCatagory">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding OrderSubCatagory}"
+                                          SelectedItem="{Binding SelectOrderSubCatagory}"
+                                          NullValueButtonPlacement="EditBox"
+                                          DisplayMember="Name"
+                                          ValueMember="OrderSubCategoryUID"/>
+                    </dxlc:LayoutItem>
+                    
+                    <dxlc:LayoutItem Label="Total Amount">
+                        <dxe:TextEdit Text="{Binding TotalAmount}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutControl>
-                    <dxlc:LayoutGroup Orientation="Vertical">
-                        <dxlc:LayoutGroup>
-                            <dxlc:LayoutItem Label="Search">
-                                <dxe:TextEdit Text="{Binding SearchOrder}"/>
-                            </dxlc:LayoutItem>
-                            <!--<dxlc:LayoutItem Label="ค้นหา Item :">
-                                <cc:AutoCompleteTextBox x:Name="txtOrder"   Text="{Binding SearchOrderCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+
+                <dxlc:LayoutGroup Header="Package Item" View="GroupBox" Margin="0,30,0,0">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem Label="ค้นหา Item :">
+                                        <cc:AutoCompleteTextBox x:Name="txtOrder"   Text="{Binding SearchOrderCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                                     ColumnsSource="{Binding Path=Columns,Source={StaticResource OrderItemColumn}}"
                                                     OnTextChangedEvent="True"
                                                     SuppressEvent="{Binding SuppressEvent,Mode=OneWayToSource}"
                                                     MaxCompletions="30"
-                                                    IsEnabled="{Binding EnableSearchItem}"
                                                     ItemsSource="{Binding OrderItems}"
                                                     SelectedItem="{Binding SelectOrderItem,Mode=OneWayToSource}">
-                                </cc:AutoCompleteTextBox>
-                            </dxlc:LayoutItem>-->
-                            <dxlc:LayoutItem  HorizontalAlignment="Right">
-                                <dx:SimpleButton Focusable ="False" Cursor="Hand"
-                                                            ToolTip="เพิ่ม Item"
-                                                            Command="{Binding AddItemCommand}">
-                                    <dx:DXImage Source="{dx:DXImage 'Images/Actions/Add_16x16.png'}"/>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
+                                        </cc:AutoCompleteTextBox>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
+                                <dxlc:LayoutItem Label="Item Name">
+                                    <dxe:TextEdit Text="{Binding ItemName,Mode=TwoWay}" IsReadOnly="True"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem Label="Active From">
+                                    <dxe:DateEdit DisplayFormatString="dd/MM/yyyy" Text="{Binding ItemActiveFrom}"/>
+                                </dxlc:LayoutItem>
+
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical">
+                                <dxlc:LayoutItem Label="quantity">
+                                    <dxe:TextEdit Text="{Binding ItemQuantity}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Amount">
+                                    <dxe:TextEdit Text="{Binding ItemAmount}"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
-                        <dxlc:LayoutItem Label="quantity">
-                            <dxe:TextEdit Text="{Binding Quantity}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="Amount">
-                            <dxe:TextEdit Text="{Binding ItemAmount}"/>
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
-                    <dxlc:LayoutGroup Orientation="Vertical">
-
-                        <dxg:GridControl x:Name="grdBillableItem" ItemsSource="{Binding BillPackage}"
-                             SelectedItem="{Binding SelectBillPackage}">
-                            <dxg:GridControl.Columns>
-                                <dxg:GridColumn Header="Code" FieldName="Code"/>
-                                <dxg:GridColumn Header="PackageName" FieldName="PackageName"/>
-                                <dxg:GridColumn Header="Total Amount" FieldName="TotalAmount"/>
-                                <dxg:GridColumn Header="Catagory" FieldName="Price"/>
-                                <dxg:GridColumn Header="SubCatagory" FieldName="Profit"/>
-                                <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
-                                <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
-                            </dxg:GridControl.Columns>
-                            <dxg:GridControl.View>
-                                <dxg:TableView x:Name="gvBillPackage" ShowGroupPanel="False"  AllowEditing="False" />
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutControl>
-            </dxlc:LayoutGroup>
-
-            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
-                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                        <dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Margin="0,20,0,0" Orientation="Horizontal" HorizontalAlignment="Right">
+                                <dx:SimpleButton Width="80" Command="{Binding AddBillPackageCommand}" HorizontalAlignment="Left"
                                      Height="25" Content="เพิ่ม"/>
-                <dx:SimpleButton Width="80" Command="{Binding EditCommand}"
+                                <dx:SimpleButton Width="80" Command="{Binding EditBillPackageCommand}"
                                      Height="25" Content="แก้ไข"/>
-                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                <dx:SimpleButton Width="80" Command="{Binding DeleteBillPackageCommand}"
                                      Height="25" Content="ลบ"/>
-            </dxlc:LayoutGroup>
+                                <dx:SimpleButton Width="80" Margin="80,0,0,0" Command="{Binding ClearCommand}"  HorizontalAlignment="Right"
+                                     Height="25" Content="clear"/>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+
+                            <dxg:GridControl x:Name="grdBilPackageItem" ItemsSource="{Binding BillPackageDetail,Mode=TwoWay}"
+                             SelectedItem="{Binding SelectBillPackageDetail}">
+                                <dxg:GridControl.Columns>
+                                    <dxg:GridColumn Header="ItemCode" FieldName="ItemCode"/>
+                                    <dxg:GridColumn Header="ItemName" FieldName="ItemName"/>
+                                    <dxg:GridColumn Header="Quantity" FieldName="Quantity"/>
+                                    <dxg:GridColumn Header="Amount" FieldName="Amount"/>
+                                    <dxg:GridColumn Header="Total Amount" FieldName="TotalAmount"/>
+                                </dxg:GridControl.Columns>
+                                <dxg:GridControl.View>
+                                    <dxg:TableView x:Name="gvBillPackage" ShowGroupPanel="False"  AllowEditing="False" />
+                                </dxg:GridControl.View>
+                            </dxg:GridControl>
+
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                    <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                    <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+                </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

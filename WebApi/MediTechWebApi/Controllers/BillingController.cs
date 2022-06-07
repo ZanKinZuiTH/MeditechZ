@@ -1197,6 +1197,157 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetBillPackageItemByUID")]
+        [HttpGet]
+        public List<BillPackageDetailModel> GetBillPackageItemByUID(int billPackageUID)
+        {
+            List<BillPackageDetailModel> data = (from p in db.BillPackageItem
+                                                 join b in db.ItemMaster on p.ItemUID equals b.UID
+                                                 where p.StatusFlag == "A"
+                                                 && p.BillPackageUID == billPackageUID
+                                                 && b.StatusFlag == "A"
+                                                 select new BillPackageDetailModel
+                                                    {
+                                                        BillPackageUID = p.UID,
+                                                        BillableItemUID = p.BillableItemUID,
+                                                        Amount = p.Amount,
+                                                        Quantity = p.Quantity,
+                                                        ItemUID = p.ItemUID,
+                                                        ItemCode = b.Code,
+                                                        ItemName = b.Name,
+                                                        CURNCUID = p.CURNCUID,
+                                                        ActiveFrom = p.ActiveFrom,
+                                                        ActiveTo = p.ActiveTo,
+                                                        OrderCategoryUID = p.OrderCategoryUID,
+                                                        OrderSubCategoryUID = p.OrderSubCategoryUID,
+                                                        OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                    }).ToList();
+
+            return data;
+        }
+
+        [Route("ManageBillPackage")]
+        [HttpPost]
+        public HttpResponseMessage ManageBillPackage(BillPackageModel billPackageModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    BillPackageModel patient = new BillPackageModel();
+                    var billPackage = db.BillPackage.Find(billPackageModel.BillPackageUID);
+
+                    if (billPackage == null)
+                    {
+                        billPackage = new BillPackage();
+                        billPackage.CUser = userID;
+                        billPackage.CWhen = now;
+                        billPackage.StatusFlag = "A";
+                    }
+                    billPackage.PackageName = billPackageModel.PackageName;
+                    billPackage.Description = billPackageModel.Description;
+                    billPackage.NoofDays = billPackageModel.NoofDays;
+                    billPackage.TotalAmount = billPackageModel.TotalAmount;
+                    billPackage.CURNCUID = billPackageModel.CURNCUID;
+                    billPackage.PBLCTUID = billPackageModel.PBLCTUID;
+                    billPackage.MaxValue = billPackageModel.MaxValue;
+                    billPackage.MinValue = billPackageModel.MinValue;
+                    billPackage.ActiveFrom = billPackageModel.ActiveFrom;
+                    billPackage.ActiveTo = billPackageModel.ActiveTo;
+                    billPackage.OrderCategoryUID = billPackageModel.OrderCategoryUID;
+                    billPackage.OrderSubCategoryUID = billPackageModel.OrderSubCategoryUID;
+                    billPackage.OwnerOrganisationUID = billPackageModel.OwnerOrganisationUID;
+                    billPackage.Code = billPackageModel.Code;
+                    billPackage.MUser = userID;
+                    billPackage.MWhen = now;
+                    billPackage.StatusFlag = "A";
+
+                    db.BillPackage.AddOrUpdate(billPackage);
+                    db.SaveChanges();
+
+                    IEnumerable<BillPackageItem> groupReceiptDetails = db.BillPackageItem.Where(p => p.StatusFlag == "A" && p.BillPackageUID == billPackageModel.BillPackageUID);
+
+                    if (billPackageModel.BillableItemDetails == null)
+                    {
+                        foreach (var item in groupReceiptDetails)
+                        {
+                            db.BillPackageItem.Attach(item);
+                            item.MUser = userID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                        }
+                    }
+                    else
+                    {
+                        foreach (var item in groupReceiptDetails)
+                        {
+                            var data = billPackageModel.BillableItemDetails.FirstOrDefault(p => p.BillPackageDetailUID == item.UID);
+                            if (data == null)
+                            {
+                                db.BillPackageItem.Attach(item);
+                                item.MUser = userID;
+                                item.MWhen = now;
+                                item.StatusFlag = "D";
+                            }
+
+                        }
+                    }
+
+                    if (billPackageModel.BillableItemDetails != null)
+                    {
+                        foreach (var item in billPackageModel.BillableItemDetails)
+                        {
+                            var billPackageItem = db.BillPackageItem.Find(item.BillPackageDetailUID);
+                            if (billPackageItem == null)
+                            {
+                                billPackageItem = new BillPackageItem();
+                                billPackageItem.CUser = userID;
+                                billPackageItem.CWhen = now;
+                                billPackageItem.MUser = userID;
+                                billPackageItem.MWhen = now;
+                                billPackageItem.StatusFlag = "A";
+                            }
+                            else
+                            {
+                                if (item.MWhen != DateTime.MinValue)
+                                {
+                                    item.MUser = userID;
+                                    item.MWhen = now;
+                                }
+                            }
+
+                            billPackageItem.BillPackageUID = billPackage.UID;
+                            billPackageItem.BillableItemUID = item.BillableItemUID;
+                            billPackageItem.BSMDDUID = item.BSMDDUID;
+                            billPackageItem.Comments = item.Comments;
+                            billPackageItem.CURNCUID = item.CURNCUID;
+                            billPackageItem.Amount = item.Amount;
+                            billPackageItem.Quantity = item.Quantity;
+                            billPackageItem.ItemUID = item.ItemUID;
+                            billPackageItem.OrderCategoryUID = item.OrderCategoryUID;
+                            billPackageItem.OrderSubCategoryUID = item.OrderSubCategoryUID;
+                            billPackageItem.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                            billPackageItem.ActiveFrom = null;
+                            billPackageItem.ActiveTo = null; 
+
+                            db.BillPackageItem.AddOrUpdate(billPackageItem);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
         [Route("DeleteBillPackage")]
         [HttpDelete]
         public HttpResponseMessage DeleteBillPackage(int billPackageUID, int userID)

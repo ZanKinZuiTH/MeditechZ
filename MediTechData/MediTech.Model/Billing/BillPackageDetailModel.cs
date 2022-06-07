@@ -20,13 +20,16 @@ namespace MediTech.Model
         public int? OrderCategoryUID { get; set; }
         public int? OrderSubCategoryUID { get; set; }
         public double? DoctorShare { get; set; }
-        public DateTime ActiveFrom { get; set; }
-        public DateTime ActiveTo { get; set; }
+        public DateTime? ActiveFrom { get; set; }
+        public DateTime? ActiveTo { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public string ItemName { get; set; }
+        public string ItemCode { get; set; }
+        public double TotalAmount { get; set; }
     }
 }
