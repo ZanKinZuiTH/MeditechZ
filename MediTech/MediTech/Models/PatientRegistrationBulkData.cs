@@ -58,6 +58,7 @@ namespace MediTech.Models
         public string EmployeeID { get; set; }
         public DateTime RegistrationDTTM { get; set; }
         public string IDCard { get; set; }
+        public string IDPassport { get; set; }
         public string Company { get; set; }
         public string MobilePhone { get; set; }
         public string Position { get; set; }

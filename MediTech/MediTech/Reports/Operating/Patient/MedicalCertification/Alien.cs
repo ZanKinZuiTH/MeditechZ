@@ -27,9 +27,9 @@ namespace MediTech.Reports.Operating.Patient
             long PatientVisitUID = long.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             long PatientUID = long.Parse(this.Parameters["PatientUID"].Value.ToString());
             var medicalData = (new ReportsService()).PrintConfinedSpaceCertificate(PatientVisitUID);
-           // var VatalSignData = (new PatientHistoryService()).GetPatientVitalSignByVisitUID(PatientVisitUID);
-            
+            // var VatalSignData = (new PatientHistoryService()).GetPatientVitalSignByVisitUID(PatientVisitUID);
 
+            xrLabel75.Text = medicalData.PassportID;
 
             this.DataSource = medicalData;
 
