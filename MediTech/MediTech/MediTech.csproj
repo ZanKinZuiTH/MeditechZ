@@ -1519,7 +1519,7 @@
     <Compile Include="ViewModels\ClinicalData\ManageBilledItemSaleViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageEncounterMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
-    <Compile Include="ViewModels\Patient\ModifyPayorViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ModifyVisitPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
@@ -1772,6 +1772,9 @@
     <Compile Include="Views\EMRView\WellnessData.xaml.cs">
       <DependentUpon>WellnessData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\ChangeStore.xaml.cs">
+      <DependentUpon>ChangeStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
       <DependentUpon>ConsumptionStock.xaml</DependentUpon>
     </Compile>
@@ -1913,8 +1916,8 @@
     <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
       <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Patient\ModifyPayor.xaml.cs">
-      <DependentUpon>ModifyPayor.xaml</DependentUpon>
+    <Compile Include="Views\Patient\ModifyVisitPayor.xaml.cs">
+      <DependentUpon>ModifyVisitPayor.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
       <DependentUpon>ModifyVisit.xaml</DependentUpon>
@@ -2437,6 +2440,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Inventory\ChangeStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Inventory\ConsumptionStock.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2625,7 +2632,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Patient\ModifyPayor.xaml">
+    <Page Include="Views\Patient\ModifyVisitPayor.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
