@@ -16,6 +16,7 @@ namespace MediTech.Model
         public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> FRQNCUID { get; set; }
         public Nullable<int> DFORMUID { get; set; }
+        public string DrugForm { get; set; }
         public string ClinicalComments { get; set; }
         public string Comments { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }

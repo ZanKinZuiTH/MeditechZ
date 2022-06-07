@@ -145,53 +145,53 @@ namespace MediTechWebApi.Controllers
             DateTime now = DateTime.Now;
             int ITMTYP = db.ReferenceValue.FirstOrDefault(p => p.DomainCode == "ITMTYP" && p.Description.ToLower() == itemType.ToLower() && p.StatusFlag == "A").UID;
             List<ItemMasterModel> data = db.ItemMaster
-                .Where(p => p.StatusFlag == "A" 
+                .Where(p => p.StatusFlag == "A"
                 && p.ITMTYPUID == ITMTYP
                 && (p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now))
                 && (p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
                 )
                 .Select(p => new ItemMasterModel()
-            {
-                ItemMasterUID = p.UID,
-                Code = p.Code,
-                Name = p.Name,
-                Description = p.Description,
-                ITMTYPUID = p.ITMTYPUID,
-                ItemType = SqlFunction.fGetRfValDescription(p.ITMTYPUID),
-                DrugGenaricUID = p.DrugGenaricUID,
-                GenaricName = p.GenaricName,
-                DispenseEnglish = p.DispenseEnglish,
-                DispenseLocal = p.DispenseLocal,
-                OrderInstruction = p.OrderInstruction,
-                MinSalesQty = p.MinSalesQty,
-                DoseQuantity = p.DoseQuantity,
-                CanDispenseWithOutStock = p.CanDispenseWithOutStock,
-                BaseUOM = p.BaseUOM,
-                BaseUnit = SqlFunction.fGetRfValDescription(p.BaseUOM ?? 0),
-                SalesUOM = p.SalesUOM,
-                SalesUnit = SqlFunction.fGetRfValDescription(p.SalesUOM ?? 0),
-                FRQNCUID = p.FRQNCUID,
-                PDSTSUID = p.PDSTSUID,
-                FORMMUID = p.FORMMUID,
-                VATPercentage = p.VATPercentage,
-                PrescriptionUOM = p.PrescriptionUOM,
-                PrescriptionUnit = SqlFunction.fGetRfValDescription(p.PrescriptionUOM ?? 0),
-                IsNarcotic = p.IsNarcotic,
-                Comments = p.Comments,
-                ItemCost = p.ItemCost,
-                IsBatchIDMandatory = p.IsBatchIDMandatory,
-                IsStock = p.IsStock,
-                ManufacturerByUID = p.ManufacturerByUID,
-                NRCTPUID = p.NRCTPUID,
-                NarcoticType = SqlFunction.fGetRfValDescription(p.NRCTPUID ?? 0),
-                ActiveFrom = p.ActiveFrom,
-                ActiveTo = p.ActiveTo,
-                CUser = p.CUser,
-                CWhen = p.CWhen,
-                MUser = p.MUser,
-                MWhen = p.MWhen,
-                StatusFlag = p.StatusFlag
-            }).ToList();
+                {
+                    ItemMasterUID = p.UID,
+                    Code = p.Code,
+                    Name = p.Name,
+                    Description = p.Description,
+                    ITMTYPUID = p.ITMTYPUID,
+                    ItemType = SqlFunction.fGetRfValDescription(p.ITMTYPUID),
+                    DrugGenaricUID = p.DrugGenaricUID,
+                    GenaricName = p.GenaricName,
+                    DispenseEnglish = p.DispenseEnglish,
+                    DispenseLocal = p.DispenseLocal,
+                    OrderInstruction = p.OrderInstruction,
+                    MinSalesQty = p.MinSalesQty,
+                    DoseQuantity = p.DoseQuantity,
+                    CanDispenseWithOutStock = p.CanDispenseWithOutStock,
+                    BaseUOM = p.BaseUOM,
+                    BaseUnit = SqlFunction.fGetRfValDescription(p.BaseUOM ?? 0),
+                    SalesUOM = p.SalesUOM,
+                    SalesUnit = SqlFunction.fGetRfValDescription(p.SalesUOM ?? 0),
+                    FRQNCUID = p.FRQNCUID,
+                    PDSTSUID = p.PDSTSUID,
+                    FORMMUID = p.FORMMUID,
+                    VATPercentage = p.VATPercentage,
+                    PrescriptionUOM = p.PrescriptionUOM,
+                    PrescriptionUnit = SqlFunction.fGetRfValDescription(p.PrescriptionUOM ?? 0),
+                    IsNarcotic = p.IsNarcotic,
+                    Comments = p.Comments,
+                    ItemCost = p.ItemCost,
+                    IsBatchIDMandatory = p.IsBatchIDMandatory,
+                    IsStock = p.IsStock,
+                    ManufacturerByUID = p.ManufacturerByUID,
+                    NRCTPUID = p.NRCTPUID,
+                    NarcoticType = SqlFunction.fGetRfValDescription(p.NRCTPUID ?? 0),
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    CUser = p.CUser,
+                    CWhen = p.CWhen,
+                    MUser = p.MUser,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
 
             return data;
         }
@@ -1084,7 +1084,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockOnHand")]
         [HttpGet]
-        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockOnHandModel> SearchStockOnHand(int? ownerOrganisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             DataTable dt = SqlDirectStore.pSearchStockOnHand(ownerOrganisationUID, locationUID, storeUID, itemType, itemCode, itemName);
             List<StockOnHandModel> data = dt.ToList<StockOnHandModel>();
@@ -1177,9 +1177,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetEcountMassFile")]
         [HttpGet]
-        public List<EcountMassFileModel>GetEcountMassFile(int storeUID, int itemMasterUID,string serialNumber,DateTime? expiryDate)
+        public List<EcountMassFileModel> GetEcountMassFile(int storeUID, int itemMasterUID, string serialNumber, DateTime? expiryDate)
         {
-            DataTable data = SqlDirectStore.pStockMassFile(storeUID,itemMasterUID,serialNumber,expiryDate);
+            DataTable data = SqlDirectStore.pStockMassFile(storeUID, itemMasterUID, serialNumber, expiryDate);
             List<EcountMassFileModel> returnData = data.ToList<EcountMassFileModel>();
             return returnData;
         }
@@ -2020,7 +2020,7 @@ namespace MediTechWebApi.Controllers
                     db.ItemIssue.AddOrUpdate(itemIssue);
                     db.SaveChanges();
 
-                   
+
 
                     #region SaveItemIssueDetail
                     foreach (var item in model.ItemIssueDetail)
@@ -2085,7 +2085,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ConsumptionItem")]
         [HttpPost]
-        public HttpResponseMessage ConsumptionItem(IEnumerable<ItemIssueDetailModel> itemIssueDetailsModel,string comments, int userUID)
+        public HttpResponseMessage ConsumptionItem(IEnumerable<ItemIssueDetailModel> itemIssueDetailsModel, string comments, int userUID)
         {
             try
             {
@@ -2763,25 +2763,28 @@ namespace MediTechWebApi.Controllers
         public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
             , string prescriptionNumber, int? organisationUID)
         {
-            List<PrescriptionModel> data = db.Prescription
-                .Where(p => p.StatusFlag == "A"
-                && (dateFrom == null || DbFunctions.TruncateTime(p.PrescribedDttm) >= DbFunctions.TruncateTime(dateFrom))
-                && (dateTo == null || DbFunctions.TruncateTime(p.PrescribedDttm) <= DbFunctions.TruncateTime(dateTo))
-                && (ORDSTUID == null || p.ORDSTUID == ORDSTUID)
-                && (patientUID == null || p.PatientUID == patientUID)
-                && (string.IsNullOrEmpty(prescriptionNumber) || p.PrescriptionNumber == prescriptionNumber)
-                && (organisationUID == null || p.OwnerOrganisationUID == organisationUID)
-                ).Select(p => new PrescriptionModel
-                {
-                    PrescriptionUID = p.UID,
-                    PrescriptionNumber = p.PrescriptionNumber,
-                    PrescriptionStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
-                    PatientID = SqlFunction.fGetPatientID(p.PatientUID),
-                    PatientName = SqlFunction.fGetPatientName(p.PatientUID),
-                    PrescribedDttm = p.PrescribedDttm,
-                    OrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
-                    OwnerOrganisationUID = p.OwnerOrganisationUID
-                }).ToList();
+            List<PrescriptionModel> data = (from ps in db.Prescription
+                                            join pa in db.Patient on ps.PatientUID equals pa.UID
+                                            where ps.StatusFlag == "A"
+                 && (dateFrom == null || DbFunctions.TruncateTime(ps.PrescribedDttm) >= DbFunctions.TruncateTime(dateFrom))
+                 && (dateTo == null || DbFunctions.TruncateTime(ps.PrescribedDttm) <= DbFunctions.TruncateTime(dateTo))
+                 && (ORDSTUID == null || ps.ORDSTUID == ORDSTUID)
+                 && (patientUID == null || ps.PatientUID == patientUID)
+                 && (string.IsNullOrEmpty(prescriptionNumber) || ps.PrescriptionNumber == prescriptionNumber)
+                 && (organisationUID == null || ps.OwnerOrganisationUID == organisationUID)
+                                            select new PrescriptionModel
+                                            {
+                                                PrescriptionUID = ps.UID,
+                                                PrescriptionNumber = ps.PrescriptionNumber,
+                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                                PatientID = pa.PatientID,
+                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
+                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                PrescribedDttm = ps.PrescribedDttm,
+                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                            }).ToList();
 
 
             return data;
@@ -2800,6 +2803,8 @@ namespace MediTechWebApi.Controllers
                     ItemMasterUID = p.ItemMasterUID,
                     Quantity = p.Quantity,
                     QuantityUnit = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
+                    DFORMUID = p.DFORMUID,
+                    DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
                     StoreUID = p.StoreUID,
                     StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
                     InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),

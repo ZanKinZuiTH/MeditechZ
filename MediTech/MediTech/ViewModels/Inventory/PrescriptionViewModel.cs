@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using MediTech.Model;
 using MediTech.Reports.Operating.Pharmacy;
 using DevExpress.XtraReports.UI;
+using System.Collections.ObjectModel;
 
 namespace MediTech.ViewModels
 {
@@ -84,7 +85,12 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPrescription, value);
                 if (_SelectPrescription != null)
                 {
-                    PrescriptionItems = DataService.Inventory.GetPrescriptionItemByPrescriptionUID(SelectPrescription.PrescriptionUID);
+                    if (_SelectPrescription.PrescriptionItems == null)
+                    {
+                        PrescriptionItems = DataService.Inventory.GetPrescriptionItemByPrescriptionUID(SelectPrescription.PrescriptionUID);
+                        _SelectPrescription.PrescriptionItems = new ObservableCollection<PrescriptionItemModel>(PrescriptionItems);
+                    }
+
                 }
             }
         }
@@ -172,6 +178,14 @@ namespace MediTech.ViewModels
             set { _PrescriptionNumber = value; }
         }
 
+        private bool _IsPrintSticker = true;
+
+        public bool IsPrintSticker
+        {
+            get { return _IsPrintSticker = true; }
+            set { Set(ref _IsPrintSticker, value); }
+        }
+
 
         #endregion
 
@@ -205,6 +219,26 @@ namespace MediTech.ViewModels
             get { return _PrintDrugStickerCommand ?? (_PrintDrugStickerCommand = new RelayCommand(PrintDrugSticker)); }
         }
 
+        private RelayCommand _ChangeStoreCommand;
+
+        public RelayCommand ChangeStoreCommand
+        {
+            get { return _ChangeStoreCommand ?? (_ChangeStoreCommand = new RelayCommand(ChangeStore)); }
+        }
+
+        private RelayCommand _CancelDispenseCommand;
+
+        public RelayCommand CancelDispenseCommand
+        {
+            get { return _CancelDispenseCommand ?? (_CancelDispenseCommand = new RelayCommand(ChangeStore)); }
+        }
+
+        private RelayCommand _DispenseCommand;
+
+        public RelayCommand DispenseCommand
+        {
+            get { return _DispenseCommand ?? (_DispenseCommand = new RelayCommand(Dispense)); }
+        }
         #endregion
 
         #region Method
@@ -333,6 +367,28 @@ namespace MediTech.ViewModels
             }
 
         }
+
+        public void ChangeStore()
+        {
+
+        }
+
+        public void Dispense()
+        {
+            if(IsPrintSticker == true)
+            {
+                if (SelectPrinter == null)
+                {
+                    WarningDialog("กรุณาเลือก Printer");
+                    return;
+                }
+            }
+            if (true)
+            {
+
+            }
+        }
+
         #endregion
     }
 }

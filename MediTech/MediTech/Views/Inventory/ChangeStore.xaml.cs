@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediTech.Views
+namespace MediTech.Views.Inventory
 {
     /// <summary>
-    /// Interaction logic for ModifyPayor.xaml
+    /// Interaction logic for ChangeStore.xaml
     /// </summary>
-    public partial class ModifyPayor : UserControl
+    public partial class ChangeStore : UserControl
     {
-        public ModifyPayor()
+        public ChangeStore()
         {
             InitializeComponent();
         }

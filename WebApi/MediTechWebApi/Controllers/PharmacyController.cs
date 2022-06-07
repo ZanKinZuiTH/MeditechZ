@@ -585,5 +585,31 @@ namespace MediTechWebApi.Controllers
             return sticker;
         }
 
+
+        [Route("DispensePrescriptionItem")]
+        [HttpGet]
+        public HttpResponseMessage DispensePrescription(long prescriptionUID, int userUID)
+        {
+            try
+            {
+                int RAISEDUID = 2847;
+                var prescriptionItems = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescriptionUID 
+                && p.StatusFlag == "A"
+                && p.ORDSTUID== RAISEDUID
+                );
+                DateTime now = DateTime.Now;
+                foreach (var item in prescriptionItems)
+                {
+                    DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(item.UID, userUID);
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
     }
 }

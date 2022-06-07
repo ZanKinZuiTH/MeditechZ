@@ -273,6 +273,14 @@ namespace MediTech.ViewModels
             get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
         }
 
+        private RelayCommand _ModifyVisitPayorCommand;
+        public RelayCommand ModifyVisitPayorCommand
+        {
+            get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
+        }
+
+        
+
         #endregion
 
         #region Method
@@ -370,6 +378,22 @@ namespace MediTech.ViewModels
                 ModifyVisit pageview = new ModifyVisit();
                 (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
                 ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
+        }
+
+        private void ModifyVisitPayor()
+        {
+            if (SelectPatientVisit != null)
+            {
+
+                ModifyVisitPayor pageview = new ModifyVisitPayor();
+                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();

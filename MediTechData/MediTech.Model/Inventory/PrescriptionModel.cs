@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class PrescriptionModel
+    public class PrescriptionModel : System.ComponentModel.INotifyPropertyChanged
     {
         public long PrescriptionUID { get; set; }
         public long PatientUID { get; set; }
@@ -29,5 +31,32 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public Nullable<int> OwnerOrganisationUID { get; set; }
+        public string Gender { get; set; }
+
+        public string AgeString { get; set; }
+
+
+        private ObservableCollection<PrescriptionItemModel> _PrescriptionItems;
+
+        public ObservableCollection<PrescriptionItemModel> PrescriptionItems
+        {
+            get { return _PrescriptionItems; }
+            set
+            {
+                _PrescriptionItems = value;
+                NotifyPropertyChanged("PrescriptionItems");
+
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }
