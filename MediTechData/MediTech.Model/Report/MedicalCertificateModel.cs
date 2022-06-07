@@ -12,6 +12,7 @@ namespace MediTech.Model.Report
         public string PatientID { get; set; }
         public string PatientName { get; set; }
         public string IDCard { get; set; }
+        public string PassportID { get; set; }
         public string Gender { get; set; }
         public double? Weight { get; set; }
         public double? Height { get; set; }

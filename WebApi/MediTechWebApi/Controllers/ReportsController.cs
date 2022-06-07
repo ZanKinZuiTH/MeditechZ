@@ -573,6 +573,7 @@ namespace MediTechWebApi.Controllers
                                                 VitalSignRecordDttm = j.RecordedDttm,
                                                 Weight = j.Weight,
                                                 Height = j.Height,
+                                                PassportID = pa.IDPassport,
                                                 BMI = j.BMIValue,
                                                 Pulse = j.Pulse,
                                                 BPSys = j.BPSys,
