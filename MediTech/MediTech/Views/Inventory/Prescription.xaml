@@ -38,18 +38,25 @@
                         <TextBlock  Text="เพศ" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                         <TextBlock Text="{Binding Row.Gender}" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
                     </StackPanel>
-                    <dxg:GridControl Grid.Row="1" ItemsSource="{Binding Row.PrescriptionItems}"
+                    <dxg:GridControl Grid.Row="1" 
+                                     ItemsSource="{Binding Row.PrescriptionItems}"
+                                     AutoGenerateColumns="None"
                                      MaxHeight="650"
                                      ShowBorder="False">
+                        <dxmvvm:Interaction.Behaviors>
+                            <helper:DeferredColumnFitBehavior/>
+                        </dxmvvm:Interaction.Behaviors>
+                        
                         <dxg:GridControl.Columns>
-                            <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
+                            <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" >
                                 <dxg:GridColumn.CellTemplate>
                                     <DataTemplate>
                                         <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
                                     </DataTemplate>
                                 </dxg:GridColumn.CellTemplate>
                             </dxg:GridColumn>
-                            <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ ยา-เวชภัณฑ์" AllowGrouping="True" FieldName="ItemName" ReadOnly="True"/>
+                            <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ ยา-เวชภัณฑ์" AllowGrouping="True" FieldName="ItemName" ReadOnly="True"
+                                            />
                             <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True">
                                 <dxg:GridColumn.EditSettings>
                                     <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
@@ -63,31 +70,40 @@
                                     <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
                                 </dxg:GridColumn.EditSettings>
                             </dxg:GridColumn>
-                            <dxg:GridColumn Header="Frequency" FieldName="Frequency" ReadOnly="True"/>
+                            <dxg:GridColumn Header="Frequency" FieldName="Frequency" ReadOnly="True" Width="*"/>
                         </dxg:GridControl.Columns>
+                        
                         <dxg:GridControl.View>
                             <dxg:TableView ShowGroupPanel="False" 
-                                           BestFitMode="VisibleRows"
-                                           BestFitArea="Rows"
-                                           AllowBestFit="True"
-                                           ShowCheckBoxSelectorColumn="True"
-                                           ShowFilterPanelMode="Never"
+                                           ShowCriteriaInAutoFilterRow="False"
+                                           ShowCheckBoxSelectorColumn="False"
+                                           ShowFilterPanelMode="Never"     
+                                           IsColumnMenuEnabled="false"  
+                                           IsRowCellMenuEnabled="false"  
+                                           IsGroupRowMenuEnabled="false"
+                                           IsTotalSummaryMenuEnabled="false"  
                                            ShowBandsPanel="False"
+                                           AllowFilterEditor="False"
+                                           AllowColumnFiltering="False"
                                            ShowGroupFooters="False"
                                            ShowAutoFilterRow="False"
+                                           AllowSorting="False"
                                    ShowIndicator="False"
                                    RowStyle="{StaticResource RowUnFocused}"
                                    HorizontalScrollbarVisibility="Hidden"
                                    VerticalScrollbarVisibility="Hidden"
                                    ShowVerticalLines="False" ShowHorizontalLines="False"
                                    >
+                                
                                 <dxg:TableView.ColumnHeaderStyle>
                                     <Style TargetType="dxg:BaseGridHeader">
-                                        <Setter Property="dxg:BaseGridColumnHeader.ShowFilterButtonOnHover" Value="False" />
+                                        <Setter Property="dxg:BaseGridColumnHeader.BorderThickness" Value="0" />
                                         <Setter Property="Background" Value="White" />
                                         <Setter Property="Foreground" Value="Black" />
                                         <Setter Property="FontWeight" Value="Bold" />
                                         <Setter Property="BorderBrush" Value="White" />
+                                        <Setter Property="BorderThickness" Value="0"/>
+                                        
                                     </Style>
                                 </dxg:TableView.ColumnHeaderStyle>
                             </dxg:TableView>
@@ -192,6 +208,7 @@
                                    AllowScrollAnimation="True" 
                                    UseLightweightTemplates="None"
                                    NavigationStyle="Row"
+                                   RowDetailsVisibilityMode="Visible"
                                    DataRowTemplate="{StaticResource expandableRowDetailTemplate}"
                                    />
                 </dxg:GridControl.View>
@@ -223,7 +240,7 @@
 
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
-                    
+
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding CancelDispenseCommand}"
                                      Height="25" >
@@ -249,10 +266,10 @@
                             </dx:SimpleButton>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    
+
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-        
+
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

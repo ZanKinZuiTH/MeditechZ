@@ -5,16 +5,41 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns:dxn="http://schemas.devexpress.com/winfx/2008/xaml/navbar"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ModifyVisitPayorViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Height="550" Width="1100"
+             d:DesignHeight="450" d:DesignWidth="1152">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical" View="Group">
-            <dxlc:LayoutGroup Orientation="Horizontal">
+            <TextBlock Text="Modify Payor" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="18"/>
+            <dxlc:LayoutGroup>
                 <dxn:NavBarControl Name="navBarControl"  HorizontalAlignment="Left">
                     <dxn:NavBarGroup IsExpanded="True" Header="Patient Payor History" DisplaySource="Content">
+                        <dxn:NavBarGroup.Content>
+                            <dxlc:LayoutControl Orientation="Vertical" Width="280" Height="Auto">
+                                <dx:DXTabControl>
+                                    <dx:DXTabItem Header="Payor in Demographics">
+                                        <dxg:GridControl MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}">
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dx:DXTabItem>
+                                    <dx:DXTabItem Header="Payor History">
+                                        <dxg:GridControl MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}">
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dx:DXTabItem>
+                                </dx:DXTabControl>
+                            </dxlc:LayoutControl>
+                        </dxn:NavBarGroup.Content>
                     </dxn:NavBarGroup>
                     <dxn:NavBarControl.View>
                         <dxn:ExplorerBarView
@@ -22,7 +47,114 @@
                         Orientation="Horizontal" />
                     </dxn:NavBarControl.View>
                 </dxn:NavBarControl>
+                <dxlc:LayoutControl>
+                    <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="Rank">
+                                <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding PayorTypes}"
+                                      SelectedItem="{Binding SelectedPayorType}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Payor">
+                                <dxg:LookUpEdit x:Name="lkeInsuranceCompany" ItemsSource="{Binding InsuranceCompanys}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany,UpdateSourceTrigger=PropertyChanged}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"
+                                      FindButtonPlacement = "Popup"
+                                      FindMode = "Always"
+                                      PopupMinHeight="100"
+                                      PopupMinWidth="100"
+                                      PopupHeight="300" 
+                                      IsPopupAutoWidth="True"
+                                      AutoPopulateColumns="False">
+                                    <dxg:LookUpEdit.PopupContentTemplate>
+                                        <ControlTemplate>
+                                            <dxg:GridControl x:Name="PART_GridControl">
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView
+                        x:Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" />
+                                                </dxg:GridControl.View>
+                                                <dxg:GridColumn x:Name="colCompanyName"
+                                                                FieldName="CompanyName"/>
+                                            </dxg:GridControl>
+                                        </ControlTemplate>
+                                    </dxg:LookUpEdit.PopupContentTemplate>
+                                    <dxg:LookUpEdit.StyleSettings>
+                                        <dxg:SearchLookUpEditStyleSettings/>
+                                    </dxg:LookUpEdit.StyleSettings>
+                                </dxg:LookUpEdit>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Agreement">
+                                <dxe:ComboBoxEdit DisplayMember="PayorAgreementName" 
+                                      ValueMember="PayorAgreementUID"
+                                      ItemsSource="{Binding InsurancePlans}"
+                                      SelectedItem="{Binding SelectInsurancePlan}"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Payor Office">
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PayorName}" IsReadOnly="True"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="หมายเหตุ">
+                                <dxe:TextEdit Text="{Binding Comments}"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            <dxlc:LayoutItem Label="Policy">
+                                <dxe:TextEdit Text="{Binding SelectInsurancePlan.PolicyName}" IsReadOnly="True"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="OPD Cover Per Day">
+                                <dxe:TextEdit EditValue="{Binding OPDCoverPerDay}" AllowNullInput="True"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="Claim Percentage">
+                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True" Mask="\d+" MaskType="RegEx"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Fixed Copay Amount">
+                                    <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem Label="Active From">
+                                <dxe:DateEdit EditValue="{Binding ActiveFrom}" AllowNullInput="True"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutItem Label="Active To">
+                                <dxe:DateEdit EditValue="{Binding ActiveTo}" AllowNullInput="True"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                <dx:SimpleButton Height="25" Width="80" Content="เพิ่ม" Command="{Binding AddVisitPayorCommand}"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="แก้ไข" Command="{Binding UpdateVisitPayorCommand}"/>
+                                <dx:SimpleButton Height="25" Width="80" Content="ลบ" Command="{Binding DeleteVisitPayorCommand}"/>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutGroup>
+                    <dxg:GridControl x:Name="grdVisitPayor" ItemsSource="{Binding Path=PatientVisitPayorList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                    
+                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
+                        <dxg:GridColumn Header="Payor" FieldName="InsuranceName"/>
+                        <dxg:GridColumn Header="Agreement" FieldName="AgreementName"/>
+                        <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
+                        <dxg:GridColumn Header="Policy" FieldName="PolicyName"/>
+                        <dxg:GridColumn Header="Rank" FieldName="PayorType"/>
+                        <dxg:GridColumn Header="Claim Perc." FieldName="ClaimPercentage"/>
+                        <dxg:GridColumn Header="Comments" FieldName="Comments"/>
+                        <dxg:GridColumn Header="Fixed Copay" FieldName="FixedCopayAmount"/>
+                        <dxg:GridColumn Header="Active From" FieldName="Active From"/>
+                        <dxg:GridColumn Header="Active To" FieldName="Active To"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"
+                                           RowStyle="{Binding BackgroundExpireStyle}"
+                                           />
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </dxlc:LayoutGroup>
+                </dxlc:LayoutControl>
             </dxlc:LayoutGroup>
+            
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>
