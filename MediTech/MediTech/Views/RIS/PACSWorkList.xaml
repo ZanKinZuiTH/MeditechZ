@@ -30,7 +30,7 @@
                         <dxn:NavBarGroup.Content>
                             <dxlc:LayoutControl Orientation="Vertical" Width="240">
                                 <dxlc:LayoutGroup Orientation="Vertical" ScrollBars="Auto">
-                                    <dxlc:LayoutItem Label="Study Date :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Study Date :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxlc:LayoutItem>
                                             <dxlc:LayoutGroup Orientation="Vertical">
                                                 <dxlc:LayoutGroup Orientation="Horizontal">
@@ -65,7 +65,7 @@
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutGroup Orientation="Horizontal">
-                                        <dxlc:LayoutItem Label="Modality :" LabelPosition="Top" MaxWidth="150">
+                                        <dxlc:LayoutItem Label="Modality :" LabelPosition="Top" LabelHorizontalAlignment="Left" MaxWidth="150">
                                             <dxe:ComboBoxEdit x:Name="cmbModality"
                                               ItemsSource="{Binding ModalityList}"
                                               IsTextEditable="True" 
@@ -77,7 +77,7 @@
                                                 </dxe:ComboBoxEdit.StyleSettings>
                                             </dxe:ComboBoxEdit>
                                         </dxlc:LayoutItem>
-                                        <dxlc:LayoutItem Label="Sex :" LabelPosition="Top">
+                                        <dxlc:LayoutItem Label="Sex :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                             <dxe:ComboBoxEdit EditValue="{Binding Gender}" ClearSelectionOnBackspace="True">
                                                 <dxe:ComboBoxEditItem Content="Male"/>
                                                 <dxe:ComboBoxEditItem Content="Female"/>
@@ -85,22 +85,22 @@
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>
 
-                                    <dxlc:LayoutItem Label="Patient ID :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Patient ID :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding PatientID}"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Patient Name :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Patient Name :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding PatientName}"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Accession Number :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Accession Number :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding AccessionNumber}"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Study ID :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Study ID :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding StudyID}"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Study Description :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Study Description :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding StudyDescription}"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Bodypart :" LabelPosition="Top">
+                                    <dxlc:LayoutItem Label="Bodypart :" LabelPosition="Top" LabelHorizontalAlignment="Left">
                                         <dxe:TextEdit Text="{Binding Bodypart}"/>
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>
