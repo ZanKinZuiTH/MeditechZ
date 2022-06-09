@@ -210,7 +210,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 20F;
+            this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrRichText2});
+            this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -223,7 +225,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrTable4
             // 
             this.xrTable4.Font = new System.Drawing.Font("EucrosiaUPC", 8F);
-            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(41.79412F, 0F);
+            this.xrTable4.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable4.Name = "xrTable4";
             this.xrTable4.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow17});
@@ -265,7 +267,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText2,
             this.tbUric,
             this.xrLabel5,
             this.tbUA,
@@ -278,10 +279,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(1.544128F, 0F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(17.5F, 23F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // tbUric
             // 
@@ -290,13 +291,13 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.tbUric.Font = new System.Drawing.Font("Times New Roman", 14F);
-            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(41.79409F, 552.4166F);
+            this.tbUric.LocationFloat = new DevExpress.Utils.PointFloat(0F, 542.2893F);
             this.tbUric.Name = "tbUric";
             this.tbUric.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow48,
             this.xrTableRow49,
             this.xrTableRow50});
-            this.tbUric.SizeF = new System.Drawing.SizeF(501.2059F, 55.67917F);
+            this.tbUric.SizeF = new System.Drawing.SizeF(498F, 55.6792F);
             this.tbUric.StylePriority.UseBorderColor = false;
             this.tbUric.StylePriority.UseBorders = false;
             this.tbUric.StylePriority.UseBorderWidth = false;
@@ -513,10 +514,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel5.CanGrow = false;
             this.xrLabel5.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 527F);
+            this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(72.5F, 516.8727F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(335.9281F, 25F);
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
@@ -528,7 +529,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.tbUA.BorderColor = System.Drawing.Color.DarkGray;
             this.tbUA.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(41.79411F, 36.22253F);
+            this.tbUA.LocationFloat = new DevExpress.Utils.PointFloat(0F, 26.0927F);
             this.tbUA.Name = "tbUA";
             this.tbUA.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow4,
@@ -551,7 +552,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableRow57,
             this.xrTableRow63,
             this.xrTableRow64});
-            this.tbUA.SizeF = new System.Drawing.SizeF(499.8725F, 482.5054F);
+            this.tbUA.SizeF = new System.Drawing.SizeF(498F, 482.5054F);
             this.tbUA.StylePriority.UseBorderColor = false;
             this.tbUA.StylePriority.UseBorders = false;
             this.tbUA.TextAlignment = DevExpress.XtraPrinting.TextAlignment.TopCenter;
@@ -2029,10 +2030,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             this.xrLabel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel1.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(114.2941F, 10.1273F);
+            this.xrLabel1.LocationFloat = new DevExpress.Utils.PointFloat(72.5F, 0F);
             this.xrLabel1.Name = "xrLabel1";
             this.xrLabel1.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel1.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
+            this.xrLabel1.SizeF = new System.Drawing.SizeF(335.9281F, 25F);
             this.xrLabel1.StylePriority.UseBackColor = false;
             this.xrLabel1.StylePriority.UseFont = false;
             this.xrLabel1.StylePriority.UseTextAlignment = false;
@@ -2045,14 +2046,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTable2.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(40.96076F, 644.5816F);
+            this.xrTable2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 634.4543F);
             this.xrTable2.Name = "xrTable2";
             this.xrTable2.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow1,
             this.xrTableRow38,
             this.xrTableRow39,
             this.xrTableRow40});
-            this.xrTable2.SizeF = new System.Drawing.SizeF(500.7059F, 77.30151F);
+            this.xrTable2.SizeF = new System.Drawing.SizeF(498F, 77.30145F);
             this.xrTable2.StylePriority.UseBorderColor = false;
             this.xrTable2.StylePriority.UseBorders = false;
             this.xrTable2.StylePriority.UseBorderWidth = false;
@@ -2412,10 +2413,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbFBS.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.tbFBS.CanGrow = false;
             this.tbFBS.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(113.4608F, 618.0959F);
+            this.tbFBS.LocationFloat = new DevExpress.Utils.PointFloat(72.50001F, 607.9686F);
             this.tbFBS.Name = "tbFBS";
             this.tbFBS.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.tbFBS.SizeF = new System.Drawing.SizeF(347.0392F, 25F);
+            this.tbFBS.SizeF = new System.Drawing.SizeF(335.9281F, 25F);
             this.tbFBS.StylePriority.UseBackColor = false;
             this.tbFBS.StylePriority.UseFont = false;
             this.tbFBS.StylePriority.UseTextAlignment = false;
@@ -2430,7 +2431,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(0, 0, 20, 40);
+            this.Margins = new System.Drawing.Printing.Margins(40, 45, 40, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;

@@ -37,7 +37,7 @@ namespace MediTech.Helpers
             if (_task != null && !_task.IsCompleted) return;
 
             _task = Task.Factory
-                .StartNew(() => Thread.Sleep(200))
+                .StartNew(() => Thread.Sleep(400))
                 .ContinueWith(t => ((TableView)AssociatedGrid.View).BestFitColumns(),
                     TaskScheduler.FromCurrentSynchronizationContext());
         }

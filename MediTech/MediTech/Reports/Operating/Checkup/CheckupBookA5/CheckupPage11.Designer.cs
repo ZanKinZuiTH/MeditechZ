@@ -47,7 +47,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 20F;
+            this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrRichText2});
+            this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
@@ -60,7 +62,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrTable1
             // 
             this.xrTable1.Font = new System.Drawing.Font("Angsana New", 8F);
-            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(22.87488F, 0F);
+            this.xrTable1.LocationFloat = new DevExpress.Utils.PointFloat(0F, 0F);
             this.xrTable1.Name = "xrTable1";
             this.xrTable1.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow19});
@@ -102,7 +104,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText2,
             this.TitleResultWellness,
             this.lbResultWellness});
             this.Detail.HeightF = 718.4152F;
@@ -111,17 +112,17 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(519.5F, 9.536743E-07F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(485F, 20F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(17.5F, 23F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(13F, 20F);
             // 
             // TitleResultWellness
             // 
             this.TitleResultWellness.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TitleResultWellness.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.TitleResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.TitleResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(144.9772F, 10F);
+            this.TitleResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(99.33321F, 0F);
             this.TitleResultWellness.Name = "TitleResultWellness";
             this.TitleResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.TitleResultWellness.SizeF = new System.Drawing.SizeF(299.1666F, 25F);
@@ -141,11 +142,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbResultWellness.ForeColor = System.Drawing.Color.Black;
-            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(23.99986F, 36.51512F);
+            this.lbResultWellness.LocationFloat = new DevExpress.Utils.PointFloat(0F, 26.51513F);
             this.lbResultWellness.Multiline = true;
             this.lbResultWellness.Name = "lbResultWellness";
             this.lbResultWellness.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.lbResultWellness.SizeF = new System.Drawing.SizeF(518.17F, 681.69F);
+            this.lbResultWellness.SizeF = new System.Drawing.SizeF(498F, 681.9001F);
             this.lbResultWellness.StylePriority.UseBorderColor = false;
             this.lbResultWellness.StylePriority.UseFont = false;
             this.lbResultWellness.StylePriority.UseForeColor = false;
@@ -158,7 +159,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(5, 5, 20, 40);
+            this.Margins = new System.Drawing.Printing.Margins(45, 40, 40, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
