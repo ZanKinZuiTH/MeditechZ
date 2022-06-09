@@ -83,6 +83,8 @@
     <Compile Include="Billing\InsuranceCompanyModel.cs" />
     <Compile Include="Billing\InsurancePlanModel.cs" />
     <Compile Include="MasterData\LocationModel.cs" />
+    <Compile Include="MasterData\OrderCategoryModel.cs" />
+    <Compile Include="MasterData\OrderSubCategoryModel.cs" />
     <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
     <Compile Include="MasterData\ResultItemModel.cs" />

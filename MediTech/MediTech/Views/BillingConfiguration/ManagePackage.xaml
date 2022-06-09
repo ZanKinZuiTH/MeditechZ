@@ -38,10 +38,10 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutGroup>
                         <dxlc:LayoutItem Label="Active From">
-                        <dxe:DateEdit Text="{Binding ActiveFrom}"/>
+                            <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Active To">
-                        <dxe:DateEdit Text="{Binding ActiveTo}"/>
+                            <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
                     </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
 
@@ -93,7 +93,7 @@
                                 </dxlc:LayoutItem>
 
                                 <dxlc:LayoutItem Label="Active From">
-                                    <dxe:DateEdit DisplayFormatString="dd/MM/yyyy" Text="{Binding ItemActiveFrom}"/>
+                                <dxe:DateEdit EditValue="{Binding ItemActiveFrom}"/>
                                 </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>

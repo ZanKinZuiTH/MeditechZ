@@ -35,5 +35,6 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public int OwnerOrganisationUID { get; set; }
+        public string Type { get; set; }
     }
 }

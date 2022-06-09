@@ -447,14 +447,17 @@
                                                     </dxg:GridControl.Columns>
                                                     <dxg:GridControl.View>
                                                         <dxg:TableView
-                                                            Name="View"  ShowColumnHeaders="False"
-                                                            AutoWidth="True"
-                                                            ShowGroupedColumns="False" >
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
                                                         </dxg:TableView>
                                                     </dxg:GridControl.View>
                                                 </dxg:GridControl>
                                             </ControlTemplate>
                                         </dxg:LookUpEdit.PopupContentTemplate>
+                                        <dxg:LookUpEdit.StyleSettings>
+                                            <dxg:SearchLookUpEditStyleSettings/>
+                                        </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
                                 
@@ -473,7 +476,7 @@
 
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Eligible Amount" >
-                                    <dxe:TextEdit  Name="txtEligible" Text="{Binding EligibleAmount}"/>
+                                    <dxe:TextEdit EditValue="{Binding EligibleAmount}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="เปิดใช้งาน">
                                     <dxe:DateEdit EditValue="{Binding PayorDetailActiveFrom}"/>
@@ -503,13 +506,20 @@
                                                       DisplayMember="PolicyName"
                                                       ValueMember="PolicyMasterUID"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem  Label="Type">
+                                <dxlc:LayoutItem Label="Credit Term">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding PayorType}"
-                                                      IsEnabled="True"
                                                       SelectedItem="{Binding SelectPayorType}"
                                                       DisplayMember="Display"
-                                                      ValueMember="key"/>
+                                                      ValueMember="Key"/>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="Claim Percentage">
+                                        <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True"/>
+                                    </dxlc:LayoutItem>
+                                    <dxlc:LayoutItem Label="Fixed Copay Amount">
+                                        <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
                                 <dxlc:LayoutItem Label="Comment" >
                                     <dxe:TextEdit  Name="txtComment" Text="{Binding Comment}"/>
                                 </dxlc:LayoutItem>
@@ -518,32 +528,38 @@
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
                             <dx:SimpleButton Width="80" Command="{Binding AddPayorDetailCommand}"
-                                     Height="25" Content="เพิ่ม"/>
+                                     Height="25" Content="Add"/>
                             <dx:SimpleButton Width="80" Command="{Binding EditPayorDetailCommand}"
-                                     Height="25" Content="แก้ไข"/>
+                                     Height="25" Content="Update"/>
                             <dx:SimpleButton Width="80" Margin="0,0,0,0" Command="{Binding DeletePayorDetailCommand}"
-                                     Height="25" Content="ลบ"/>
+                                     Height="25" Content="Delete"/>
                             <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding ClearPayorDetailCommand}"
                                      Height="25" Content="clear"/>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
-                            <dxg:GridControl x:Name="grdUsers" ItemsSource="{Binding PatientInsuranceDetail}"
-                             SelectedItem="{Binding SelectPatientInsuranceDetail}">
+                            <dxg:GridControl x:Name="grdUsers" ItemsSource="{Binding Path=PatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding Path=SelectPatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged}">
                                 <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Header="Payor" FieldName="Name"/>
-                                    <dxg:GridColumn Header="Agreemant" FieldName="Description"/>
-                                    <dxg:GridColumn Header="Payor Office" FieldName="PhoneNumber"/>
-                                    <dxg:GridColumn Header="Policy Name" FieldName="LocationType"/>
-                                    <dxg:GridColumn Header="Type" FieldName="OwnerOrganisation"/>
-                                    <dxg:GridColumn Header="Comment" FieldName="ActiveFrom"/>
-                                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
-                                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
+                                    <dxg:GridColumn Header="Payor" FieldName="InsuranceCompanyName"/>
+                                    <dxg:GridColumn Header="Agreemant" FieldName="PayorAgreementName"/>
+                                    <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
+                                    <dxg:GridColumn Header="Policy Name" FieldName="PolicyName"/>
+                                    <dxg:GridColumn Header="Type" FieldName="Type"/>
+                                    <dxg:GridColumn Header="Comment" FieldName="Comments"/>
+                                    <dxg:GridColumn Header="เปิดใช้งาน" FieldName="StartDttm"/>
+                                    <dxg:GridColumn Header="ปิดใช้งาน" FieldName="EndDttm"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.View>
                                     <dxg:TableView ShowGroupPanel="False"  ShowSearchPanelMode="Always" 
                                    SearchPanelNullText="ค้นหา" AllowEditing="False" />
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
+                            <dx:SimpleButton Width="80" Command="{Binding SavePayorDetailCommand}"
+                                     Height="25" Content="Save"/>
+                            <dx:SimpleButton Width="80" Command="{Binding CancelPayorDetailCommand}"
+                                     Height="25" Content="Cancel"/>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutControl>
                     

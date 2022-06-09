@@ -136,6 +136,22 @@ namespace MediTech.DataService
             return flag;
         }
 
+        public bool ManagePatientInsurance(List<PatientInsuranceDetailModel> patientInsuranceDetails, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsurance?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientInsuranceDetailModel>>(requestApi, patientInsuranceDetails);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
         #endregion
 
         #region PatientVisit

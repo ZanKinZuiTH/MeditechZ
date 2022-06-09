@@ -374,7 +374,7 @@ namespace MediTechWebApi.Controllers
         public List<PatientInsuranceDetailModel> GetPatientInsuranceDetail(long patientUID)
         {
             List<PatientInsuranceDetailModel> data = db.PatientInsuranceDetail
-                .Where(p => p.StatusFlag == "A")
+                .Where(p => p.StatusFlag == "A" && p.PatientUID == patientUID)
                 .Select(p => new PatientInsuranceDetailModel
                 {
                     PatientInsuranceDetailUID = p.UID,
@@ -389,9 +389,11 @@ namespace MediTechWebApi.Controllers
                     PolicyMasterUID = p.PolicyMasterUID,
                     PolicyName = p.PolicyName,
                     PAYRTPUID = p.PAYRTPUID,
+                    Type = SqlFunction.fGetRfValDescription(p.PAYRTPUID ?? 0),
                     StartDttm = p.StartDttm,
                     EndDttm = p.EndDttm,
-                    EligibleAmount = p.EligibleAmount
+                    EligibleAmount = p.EligibleAmount,
+                    Comments = p.Comments
                 }).ToList();
             return data;
         }
@@ -400,39 +402,104 @@ namespace MediTechWebApi.Controllers
         [HttpPost]
         public HttpResponseMessage ManagePatientInsuranceDetail(List<PatientVisitPayorModel> patientVisitPayorList)
         {
+                try
+                {
+                    DateTime now = DateTime.Now;
+                    foreach (var payor in patientVisitPayorList)
+                    {
+                        PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
+                        if (detail == null)
+                            detail = new PatientInsuranceDetail();
+
+                        detail.PatientUID = payor.PatientUID;
+                        detail.PatientVisitUID = payor.PatientVisitUID;
+                        detail.PayorDetailUID = payor.PayorDetailUID;
+                        detail.PolicyName = payor.PolicyName;
+                        detail.InsuranceCompanyUID = payor.InsuranceCompanyUID ?? 0;
+                        detail.InsuranceCompanyName = payor.InsuranceName;
+                        detail.PAYRTPUID = payor.PAYRTPUID;
+
+                        detail.PolicyMasterUID = payor.PolicyMasterUID;
+
+                        detail.EligibleAmount = payor.EligibileAmount;
+                        detail.StartDttm = payor.ActiveFrom;
+                        detail.EndDttm = payor.ActiveTo;
+                        detail.Comments = payor.Comment;
+
+                        detail.PayorAgreementUID = payor.PayorAgreementUID;
+                        detail.ClaimPercentage = payor.ClaimPercentage;
+                        if (detail.ClaimPercentage == 0)
+                            detail.ClaimPercentage = null;
+                        detail.FixedCopayAmount = payor.FixedCopayAmount;
+                        if (detail.FixedCopayAmount == 0)
+                            detail.FixedCopayAmount = null;
+
+                        detail.CUser = payor.CUser;
+                        detail.MUser = payor.MUser;
+                        detail.CWhen = now;
+                        detail.MWhen = now;
+                        detail.StatusFlag = payor.StatusFlag;
+                        detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
+                        db.PatientInsuranceDetail.AddOrUpdate(detail);
+                    }
+                    db.SaveChanges();
+                    return Request.CreateResponse(HttpStatusCode.OK);
+                }
+                catch (Exception ex)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+                }
+        }
+
+
+        [Route("ManagePatientInsurance")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientInsurance(List<PatientInsuranceDetailModel> patientInsuranceDetails, int userUID)
+        {
             try
             {
-                foreach (var payor in patientVisitPayorList)
+                DateTime now = DateTime.Now;
+                foreach (var patientInsurance in patientInsuranceDetails)
                 {
-                    PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
+                    PatientInsuranceDetail detail = db.PatientInsuranceDetail.Find(patientInsurance.PatientInsuranceDetailUID);
                     if (detail == null)
+                    {
                         detail = new PatientInsuranceDetail();
+                        detail.CUser = userUID;
+                        detail.CWhen = now;
+                    }
 
-                    detail.PatientUID = payor.PatientUID;
-                    detail.PatientVisitUID = payor.PatientVisitUID;
-                    detail.PayorDetailUID = payor.PayorDetailUID;
-                    detail.PolicyName = payor.PolicyName;
-                    detail.InsuranceCompanyUID = payor.InsuranceCompanyUID ?? 0;
-                    detail.InsuranceCompanyName = payor.InsuranceName;
-                    detail.PAYRTPUID = payor.PAYRTPUID;
-
-                    detail.PolicyMasterUID = payor.PolicyMasterUID;
-
-                    detail.EligibleAmount = payor.EligibileAmount;
-                    detail.StartDttm = payor.ActiveFrom;
-                    detail.EndDttm = payor.ActiveTo;
-                    detail.Comments = payor.Comment;
-                    detail.StatusFlag = payor.StatusFlag.ToString();
-                    detail.PayorAgreementUID = payor.PayorAgreementUID;
-                    detail.ClaimPercentage = payor.ClaimPercentage;
+                    detail.PatientUID = patientInsurance.PatientUID;
+                    detail.PatientVisitUID = patientInsurance.PatientVisitUID;
+                    detail.PayorDetailUID = patientInsurance.PayorDetailUID;
+                    detail.PolicyName = patientInsurance.PolicyName;
+                    detail.InsuranceCompanyUID = patientInsurance.InsuranceCompanyUID;
+                    detail.InsuranceCompanyName = patientInsurance.InsuranceCompanyName;
+                    detail.PAYRTPUID = patientInsurance.PAYRTPUID;
+                    detail.PolicyMasterUID = patientInsurance.PolicyMasterUID;
+                    detail.EligibleAmount = patientInsurance.EligibleAmount;
+                    detail.StartDttm = patientInsurance.StartDttm;
+                    detail.EndDttm = patientInsurance.EndDttm;
+                    detail.Comments = patientInsurance.Comments;
+                    detail.StatusFlag = patientInsurance.StatusFlag.ToString();
+                    detail.PayorAgreementUID = patientInsurance.PayorAgreementUID;
+                    detail.PayorName = patientInsurance.PayorName;
+                    detail.PayorAgreementName = patientInsurance.PayorAgreementName;
+                    detail.ClaimPercentage = patientInsurance.ClaimPercentage;
                     if (detail.ClaimPercentage == 0)
                         detail.ClaimPercentage = null;
-                    detail.FixedCopayAmount = payor.FixedCopayAmount;
+                    detail.FixedCopayAmount = patientInsurance.FixedCopayAmount;
                     if (detail.FixedCopayAmount == 0)
                         detail.FixedCopayAmount = null;
 
+                    detail.OwnerOrganisationUID = patientInsurance.OwnerOrganisationUID;
+                    detail.MUser = userUID;
+                    detail.MWhen = now;
+
                     db.PatientInsuranceDetail.AddOrUpdate(detail);
+                    db.SaveChanges();
                 }
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
@@ -440,6 +507,7 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
 
         [Route("SearchPatient")]
         [HttpGet]
