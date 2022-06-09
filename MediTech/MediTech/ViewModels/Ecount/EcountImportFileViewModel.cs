@@ -493,10 +493,22 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาสร้างรายการสินค้า");
                     return;
                 }
+
                 AssingPropertiesToModel();
+                foreach (var item in model.GRNItemLists)
+                {
+                    if ( item.PurchaseCost == 0 )
+                    {
+                        if (item.FreeQuantity != 0 || item.FreeQuantity != null)
+                        {
+                            WarningDialog("กรุณา check ราคาต้นทุน และจำนวนฟรี ที่รับเข้า");
+                            return;
+                        }
+                    } 
+                }
+
                 DataService.Purchaseing.CreateGoodReceiveFromEcount(model, AppUtil.Current.UserID);
                 SaveSuccessDialog();
-
                 ListGRN listPage = new ListGRN();
                 ChangeView_CloseViewDialog(listPage, ActionDialog.Save);
             }
