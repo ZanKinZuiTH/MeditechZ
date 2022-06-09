@@ -31,6 +31,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage4));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable4 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow17 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -38,7 +39,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHN4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName4 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.tbUric = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow48 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell13 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -201,8 +201,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHbA1c2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbHbA1c3 = new DevExpress.XtraReports.UI.XRTableCell();
             this.tbFBS = new DevExpress.XtraReports.UI.XRLabel();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
@@ -214,6 +214,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText2});
             this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrRichText2
+            // 
+            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
+            this.xrRichText2.Name = "xrRichText2";
+            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // BottomMargin
             // 
@@ -275,14 +283,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbFBS});
             this.Detail.HeightF = 739.8831F;
             this.Detail.Name = "Detail";
-            // 
-            // xrRichText2
-            // 
-            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
-            this.xrRichText2.Name = "xrRichText2";
-            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // tbUric
             // 
@@ -517,7 +517,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel5.LocationFloat = new DevExpress.Utils.PointFloat(72.5F, 516.8727F);
             this.xrLabel5.Name = "xrLabel5";
             this.xrLabel5.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel5.SizeF = new System.Drawing.SizeF(335.9281F, 25F);
+            this.xrLabel5.SizeF = new System.Drawing.SizeF(335.9281F, 24.24243F);
             this.xrLabel5.StylePriority.UseBackColor = false;
             this.xrLabel5.StylePriority.UseFont = false;
             this.xrLabel5.StylePriority.UseTextAlignment = false;
@@ -2436,8 +2436,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "20.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUric)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbUA)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).EndInit();

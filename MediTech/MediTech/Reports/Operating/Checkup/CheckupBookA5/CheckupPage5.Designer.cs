@@ -31,6 +31,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage5));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow21 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -38,7 +39,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.lbHN5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.lbName5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrRichText1 = new DevExpress.XtraReports.UI.XRRichText();
             this.tbLiver = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow1 = new DevExpress.XtraReports.UI.XRTableRow();
             this.xrTableCell14 = new DevExpress.XtraReports.UI.XRTableCell();
@@ -183,8 +183,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.cellHavIgg1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHavIgg2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.cellHavIgg3 = new DevExpress.XtraReports.UI.XRTableCell();
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLiver)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRenal)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbImmunology)).BeginInit();
@@ -196,6 +196,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText1});
             this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrRichText1
+            // 
+            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(486F, 20F);
+            this.xrRichText1.Name = "xrRichText1";
+            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
+            this.xrRichText1.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // BottomMargin
             // 
@@ -257,14 +265,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbImmunology});
             this.Detail.HeightF = 686.1621F;
             this.Detail.Name = "Detail";
-            // 
-            // xrRichText1
-            // 
-            this.xrRichText1.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText1.LocationFloat = new DevExpress.Utils.PointFloat(486F, 20F);
-            this.xrRichText1.Name = "xrRichText1";
-            this.xrRichText1.SerializableRtfString = resources.GetString("xrRichText1.SerializableRtfString");
-            this.xrRichText1.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // tbLiver
             // 
@@ -1007,7 +1007,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel3.LocationFloat = new DevExpress.Utils.PointFloat(90.65746F, 146.6059F);
             this.xrLabel3.Name = "xrLabel3";
             this.xrLabel3.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel3.SizeF = new System.Drawing.SizeF(332.9198F, 25F);
+            this.xrLabel3.SizeF = new System.Drawing.SizeF(332.9198F, 24.01961F);
             this.xrLabel3.StylePriority.UseBackColor = false;
             this.xrLabel3.StylePriority.UseFont = false;
             this.xrLabel3.StylePriority.UseTextAlignment = false;
@@ -1944,8 +1944,8 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "20.2";
-            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrRichText1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbLiver)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbRenal)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbImmunology)).EndInit();

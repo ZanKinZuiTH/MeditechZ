@@ -31,6 +31,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CheckupPage7));
             this.TopMargin = new DevExpress.XtraReports.UI.TopMarginBand();
+            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.xrTable1 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow12 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -271,7 +272,6 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.LeadinU1 = new DevExpress.XtraReports.UI.XRTableCell();
             this.LeadinU2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.LeadinU3 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.xrRichText2 = new DevExpress.XtraReports.UI.XRRichText();
             this.xrLabel7 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrTable3 = new DevExpress.XtraReports.UI.XRTable();
             this.xrTableRow10 = new DevExpress.XtraReports.UI.XRTableRow();
@@ -313,9 +313,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrTableCell63 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell66 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrLabel4 = new DevExpress.XtraReports.UI.XRLabel();
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this)).BeginInit();
             // 
@@ -325,6 +325,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrRichText2});
             this.TopMargin.HeightF = 40.00001F;
             this.TopMargin.Name = "TopMargin";
+            // 
+            // xrRichText2
+            // 
+            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(486F, 20.00001F);
+            this.xrRichText2.Name = "xrRichText2";
+            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
             // 
             // BottomMargin
             // 
@@ -382,7 +390,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel7,
             this.xrTable3,
             this.xrLabel4});
-            this.Detail.HeightF = 974.5953F;
+            this.Detail.HeightF = 1182.743F;
             this.Detail.Name = "Detail";
             // 
             // tbToxicology
@@ -391,7 +399,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.tbToxicology.Borders = ((DevExpress.XtraPrinting.BorderSide)((((DevExpress.XtraPrinting.BorderSide.Left | DevExpress.XtraPrinting.BorderSide.Top) 
             | DevExpress.XtraPrinting.BorderSide.Right) 
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
-            this.tbToxicology.LocationFloat = new DevExpress.Utils.PointFloat(0F, 277.82F);
+            this.tbToxicology.LocationFloat = new DevExpress.Utils.PointFloat(0F, 265.532F);
             this.tbToxicology.Name = "tbToxicology";
             this.tbToxicology.Rows.AddRange(new DevExpress.XtraReports.UI.XRTableRow[] {
             this.xrTableRow22,
@@ -433,7 +441,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.RowChroinB,
             this.RowAmmo,
             this.RowLeadInu});
-            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 696.7753F);
+            this.tbToxicology.SizeF = new System.Drawing.SizeF(498F, 894.9233F);
             this.tbToxicology.StylePriority.UseBorderColor = false;
             this.tbToxicology.StylePriority.UseBorders = false;
             this.tbToxicology.StylePriority.UseBorderWidth = false;
@@ -2870,22 +2878,14 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.LeadinU3.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleCenter;
             this.LeadinU3.Weight = 0.44329635320818539D;
             // 
-            // xrRichText2
-            // 
-            this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(486F, 20.00001F);
-            this.xrRichText2.Name = "xrRichText2";
-            this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(12F, 20F);
-            // 
             // xrLabel7
             // 
             this.xrLabel7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.xrLabel7.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(130.2816F, 249.1987F);
+            this.xrLabel7.LocationFloat = new DevExpress.Utils.PointFloat(131.1149F, 237.532F);
             this.xrLabel7.Name = "xrLabel7";
             this.xrLabel7.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel7.SizeF = new System.Drawing.SizeF(246.8423F, 27.99998F);
+            this.xrLabel7.SizeF = new System.Drawing.SizeF(246.8423F, 26.3709F);
             this.xrLabel7.StylePriority.UseBackColor = false;
             this.xrLabel7.StylePriority.UseFont = false;
             this.xrLabel7.StylePriority.UseTextAlignment = false;
@@ -3433,7 +3433,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.xrLabel4.LocationFloat = new DevExpress.Utils.PointFloat(130.2816F, 0F);
             this.xrLabel4.Name = "xrLabel4";
             this.xrLabel4.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel4.SizeF = new System.Drawing.SizeF(246.8423F, 25.22229F);
+            this.xrLabel4.SizeF = new System.Drawing.SizeF(246.8423F, 24.3451F);
             this.xrLabel4.StylePriority.UseBackColor = false;
             this.xrLabel4.StylePriority.UseFont = false;
             this.xrLabel4.StylePriority.UseTextAlignment = false;
@@ -3452,9 +3452,9 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;
             this.Version = "20.2";
+            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tbToxicology)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.xrRichText2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this)).EndInit();
 
