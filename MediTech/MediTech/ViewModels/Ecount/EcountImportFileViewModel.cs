@@ -302,7 +302,7 @@ namespace MediTech.ViewModels
             DataTable dt;
             DataTable ImportData = new DataTable();
             string connectionString = string.Empty;
-            int pgBarCounter = 0;
+            // int pgBarCounter = 0;
             // TotalRecord = 0;
             EcountImportFile view = (EcountImportFile)this.View;
             try
@@ -356,12 +356,12 @@ namespace MediTech.ViewModels
                         newRow.ItemName = drow["รายการ"].ToString().Trim();
                         newRow.ItemCode = drow["รหัสสินค้า"].ToString().Trim();
                         newRow.Quantity = double.Parse(drow["จำนวน"].ToString().Trim());
-                        //var test2 = drow["วันหมดอายุ"].ToString().Trim();
                         DateTime checkupDttm;
                         if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), new CultureInfo("th-TH"),System.Globalization.DateTimeStyles.None, out checkupDttm))
                         // if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
                         newRow.ExpiryDttm = checkupDttm;
-                        newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
+                        //newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
+                        newRow.UnitPrice = drow["ราคาต่อหน่วย"].ToString().Trim()== "" ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
                         newRow.TaxPercentage = drow["ภาษี"].ToString().Trim() == "" ? 0 : double.Parse(drow["ภาษี"].ToString().Trim());
                         newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
                         newRow.BatchID = drow["Batch ID"].ToString().Trim();
@@ -507,10 +507,10 @@ namespace MediTech.ViewModels
                     } 
                 }
 
-                DataService.Purchaseing.CreateGoodReceiveFromEcount(model, AppUtil.Current.UserID);
-                SaveSuccessDialog();
-                ListGRN listPage = new ListGRN();
-                ChangeView_CloseViewDialog(listPage, ActionDialog.Save);
+                //DataService.Purchaseing.CreateGoodReceiveFromEcount(model, AppUtil.Current.UserID);
+                //SaveSuccessDialog();
+                //ListGRN listPage = new ListGRN();
+                //ChangeView_CloseViewDialog(listPage, ActionDialog.Save);
             }
             catch (Exception er)
             {
