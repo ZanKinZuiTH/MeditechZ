@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for SendToBed.xaml
+    /// Interaction logic for PatientTracking.xaml
     /// </summary>
-    public partial class SendToBed : Window
+    public partial class PatientTracking : UserControl
     {
-        public ActionDialog ResultDialog = ActionDialog.Cancel;
-
-        public SendToBed()
+        public PatientTracking()
         {
             InitializeComponent();
         }
-        void PatientStatus_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

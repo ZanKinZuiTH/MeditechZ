@@ -93,17 +93,17 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -170,12 +170,9 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+
         }
-
-
-
-
 
         private void PrintingSystem_StartPrint(object sender, DevExpress.XtraPrinting.PrintDocumentEventArgs e)
         {
@@ -205,7 +202,7 @@ namespace MediTech.ViewModels
         void Search()
         {
             long? patientUID = null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)

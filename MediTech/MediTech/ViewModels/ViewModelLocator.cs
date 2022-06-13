@@ -1699,6 +1699,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public PatientTrackingViewModel PatientTrackingViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientTrackingViewModel>())
+                    SimpleIoc.Default.Register<PatientTrackingViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientTrackingViewModel>();
+            }
+        }
+
         #endregion
 
         #region Phamacy
@@ -2067,27 +2078,6 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<EmergencyBedStatusViewModel>();
 
                 return ServiceLocator.Current.GetInstance<EmergencyBedStatusViewModel>();
-            }
-        }
-
-        public EmergencyMangePatientViewModel EmergencyMangePatientViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<EmergencyMangePatientViewModel>())
-                    SimpleIoc.Default.Register<EmergencyMangePatientViewModel>();
-
-                return ServiceLocator.Current.GetInstance<EmergencyMangePatientViewModel>();
-            }
-        }
-        public SearchEmergencyPatientViewModel SearchEmergencyPatientViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<SearchEmergencyPatientViewModel>())
-                    SimpleIoc.Default.Register<SearchEmergencyPatientViewModel>();
-
-                return ServiceLocator.Current.GetInstance<SearchEmergencyPatientViewModel>();
             }
         }
 

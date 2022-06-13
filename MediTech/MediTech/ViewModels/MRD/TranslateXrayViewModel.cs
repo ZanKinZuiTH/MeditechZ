@@ -131,17 +131,17 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectResultStatus, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectedPayorDetail;
+        private InsuranceCompanyModel _SelectedPayorDetail;
 
-        public PayorDetailModel SelectedPayorDetail
+        public InsuranceCompanyModel SelectedPayorDetail
         {
             get { return _SelectedPayorDetail; }
             set { Set(ref _SelectedPayorDetail, value); }
@@ -276,7 +276,7 @@ namespace MediTech.ViewModels
 
             SelectOrderItem = OrderItems.FirstOrDefault();
 
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
         }
 
         public override void OnLoaded()
@@ -316,7 +316,7 @@ namespace MediTech.ViewModels
                 }
             }
             resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
-            payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.PayorDetailUID : (int?)null;
+            payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.InsuranceCompanyUID : (int?)null;
             var dataList = DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID);
             if (dataList != null)
                 PatientXrays = new ObservableCollection<PatientResultRadiology>(dataList);
@@ -572,7 +572,7 @@ namespace MediTech.ViewModels
                         itemName = "Chest";
                     }
                     resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
-                    payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.PayorDetailUID : (int?)null;
+                    payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.InsuranceCompanyUID : (int?)null;
                     List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                     foreach (DataRow item in ImportData.Rows)
                     {

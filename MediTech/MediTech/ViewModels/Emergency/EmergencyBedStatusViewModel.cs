@@ -26,9 +26,9 @@ namespace MediTech.ViewModels
         }
         
 
-        private List<LocationModel> _Bed;
+        private List<BedStatusModel> _Bed;
 
-        public List<LocationModel> Bed
+        public List<BedStatusModel> Bed
         {
             get { return _Bed; }
             set { Set(ref _Bed, value); }

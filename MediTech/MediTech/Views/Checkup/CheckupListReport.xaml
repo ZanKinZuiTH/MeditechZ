@@ -20,8 +20,8 @@
                 <dxlc:LayoutItem Label="Payor">
                     <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -42,7 +42,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                     </dxg:GridControl.View>
-                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                    <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                 </dxg:GridControl>
                             </ControlTemplate>
                         </dxg:LookUpEdit.PopupContentTemplate>
@@ -168,7 +168,7 @@
 
                 <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem HorizontalAlignment="Left">
-                        <dx:SimpleButton Width="100" Height="30"  Command="{Binding SendToBLIFECommand}">
+                        <dx:SimpleButton Width="80" Height="30"  Command="{Binding SendToBLIFECommand}">
                             <StackPanel Orientation="Horizontal">
                                 <!--<Image Source="/MediTech;component/Resources/Images/Document/Notes.png"/>-->
                                 <TextBlock Text="ส่งขึ้น BLIFE" VerticalAlignment="Center"/>

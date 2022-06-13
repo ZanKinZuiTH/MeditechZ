@@ -184,6 +184,16 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="Patient Tracking">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
                                 <!--<Image Source="/MediTech;component/Resources/Images/Menu/ViewSales.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -289,11 +299,21 @@
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Location">
+                                    <dxe:ComboBoxEdit x:Name="cmbLocation" 
+                                      ItemsSource="{Binding Location}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Payor">
                                     <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -310,11 +330,11 @@
                                                 <dxg:GridControl x:Name="PART_GridControl"  >
                                                     <dxg:GridControl.View>
                                                         <dxg:TableView
-                        x:Name="View"  ShowColumnHeaders="False"
-                        AutoWidth="True"
-                        ShowGroupedColumns="False" />
+                                                            x:Name="View"  ShowColumnHeaders="False"
+                                                            AutoWidth="True"
+                                                            ShowGroupedColumns="False" />   
                                                     </dxg:GridControl.View>
-                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                                 </dxg:GridControl>
                                             </ControlTemplate>
                                         </dxg:LookUpEdit.PopupContentTemplate>
@@ -324,7 +344,7 @@
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Encounter">
-                                    <dxe:ComboBoxEdit x:Name="cmbEncounterType"
+                                    <!--<dxe:ComboBoxEdit x:Name="cmbEncounterType"
                                                   DisplayMember="Display"
                                                   ValueMember="Key"
                                                   ItemsSource="{Binding EncounterType}"
@@ -334,15 +354,26 @@
                                                 <Style TargetType="dxe:ComboBoxEdit"/>
                                             </Style.Resources>
                                         </Style>
+                                    </dxe:ComboBoxEdit>-->
+                                    <dxe:ComboBoxEdit x:Name="cmbEncounterType"
+                                              ItemsSource="{Binding EncounterType}"
+                                              IsTextEditable="False" 
+                                              DisplayMember="Display"
+                                              ValueMember="Key"
+                                              EditValue="{Binding SelectEncounterType, UpdateSourceTrigger=PropertyChanged}">
+                                        <dxe:ComboBoxEdit.StyleSettings>
+                                            <dxe:CheckedComboBoxStyleSettings />
+                                        </dxe:ComboBoxEdit.StyleSettings>
                                     </dxe:ComboBoxEdit>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem>
-                                    <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
-                                     Command="{Binding SearchCommand}"
-                                     HorizontalAlignment="Right"/>
                                 </dxlc:LayoutItem>
 
                             </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup>
+                                <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
+                                     Command="{Binding SearchCommand}"
+                                     HorizontalAlignment="Right"/>
+                            </dxlc:LayoutGroup>
+
 
                         </dxlc:LayoutControl>
                     </dxa:AccordionItem>
