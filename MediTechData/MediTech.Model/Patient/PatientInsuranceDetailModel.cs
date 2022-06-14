@@ -26,6 +26,7 @@ namespace MediTech.Model
         public Nullable<int> PayorAgreementUID { get; set; }
         public string PayorAgreementName { get; set; }
         public Nullable<int> PAYRTPUID { get; set; }
+        public String PayorType { get; set; }
         public Nullable<double> ClaimPercentage { get; set; }
         public Nullable<double> FixedCopayAmount { get; set; }
         public string Comments { get; set; }

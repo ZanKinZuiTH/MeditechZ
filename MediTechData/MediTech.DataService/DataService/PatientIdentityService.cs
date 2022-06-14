@@ -120,12 +120,12 @@ namespace MediTech.DataService
             return result;
         }
 
-        public bool ManagePatientInsuranceDetail(List<PatientVisitPayorModel> visitPayorList)
+        public bool ManagePatientInsuranceDetail(List<PatientVisitPayorModel> visitPayorList, int userUID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsuranceDetail");
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsuranceDetail?userUID={0}", userUID);
                 MeditechApiHelper.Post<List<PatientVisitPayorModel>>(requestApi, visitPayorList);
                 flag = true;
             }
@@ -347,6 +347,32 @@ namespace MediTech.DataService
             string requestApi = string.Format("Api/PatientIdentity/GetBedLocation?parentLocationUID={0}&entypUID={1}", parentLocationUID, entypUID);
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
+        }
+
+   
+
+        #endregion
+
+        #region PatientVisitPayor
+
+        public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitPayorByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<PatientVisitPayorModel> data = MeditechApiHelper.Get<List<PatientVisitPayorModel>>(requestApi);
+            return data;
+        }
+
+        public void ManagePatientVisitPayor(List<PatientVisitPayorModel> patientVisitPayors, int userUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientVisitPayor?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientVisitPayorModel>>(requestApi, patientVisitPayors);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion

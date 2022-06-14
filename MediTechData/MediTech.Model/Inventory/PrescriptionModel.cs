@@ -34,6 +34,9 @@ namespace MediTech.Model
         public string Gender { get; set; }
 
         public string AgeString { get; set; }
+        public DateTime? DOBDttm { get; set; }
+
+        public string IsBilled { get; set; }
 
 
         private ObservableCollection<PrescriptionItemModel> _PrescriptionItems;

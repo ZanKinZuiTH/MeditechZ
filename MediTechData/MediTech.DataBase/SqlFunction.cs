@@ -236,6 +236,12 @@ namespace MediTech.DataBase
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
+
+        [DbFunction("MediTechModel.Store", "fGetFrequencyDescription")]
+        public static string fGetFrequencyDescription(int frequencyUID,string language)
+        {
+            throw new NotSupportedException("Direct calls are not supported.");
+        }
     }
 
     public static class SqlDirectStore
@@ -1551,13 +1557,14 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public static DataTable pSearchStockBatch(int? ownerOrganisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockBatch", entities.Database.Connection.ConnectionString);
             adp.SelectCommand.CommandTimeout = 3000;
             adp.SelectCommand.CommandType = CommandType.StoredProcedure;
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_StoreUID", storeUID ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_ItemType", itemType ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_itemCode", string.IsNullOrEmpty(itemCode) ? (object)DBNull.Value : itemCode);

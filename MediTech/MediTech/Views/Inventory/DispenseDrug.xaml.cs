@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for ModifyPayor.xaml
+    /// Interaction logic for DispenseDrug.xaml
     /// </summary>
-    public partial class ModifyVisitPayor : UserControl
+    public partial class DispenseDrug : UserControl
     {
-        public ModifyVisitPayor()
+        public DispenseDrug()
         {
             InitializeComponent();
         }
-
     }
 }

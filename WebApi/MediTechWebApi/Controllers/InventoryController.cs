@@ -1165,9 +1165,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockBatch")]
         [HttpGet]
-        public List<StockModel> SearchStockBatch(int? organisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockModel> SearchStockBatch(int? organisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
-            DataTable data = SqlDirectStore.pSearchStockBatch(organisationUID, storeUID, itemType, itemCode, itemName);
+            DataTable data = SqlDirectStore.pSearchStockBatch(organisationUID, locationUID, storeUID, itemType, itemCode, itemName);
             List<StockModel> returnData = data.ToList<StockModel>();
 
             return returnData;
@@ -2756,143 +2756,7 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
-        #region Prescription
 
-        [Route("Searchprescription")]
-        [HttpGet]
-        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
-            , string prescriptionNumber, int? organisationUID)
-        {
-            List<PrescriptionModel> data = (from ps in db.Prescription
-                                            join pa in db.Patient on ps.PatientUID equals pa.UID
-                                            where ps.StatusFlag == "A"
-                 && (dateFrom == null || DbFunctions.TruncateTime(ps.PrescribedDttm) >= DbFunctions.TruncateTime(dateFrom))
-                 && (dateTo == null || DbFunctions.TruncateTime(ps.PrescribedDttm) <= DbFunctions.TruncateTime(dateTo))
-                 && (ORDSTUID == null || ps.ORDSTUID == ORDSTUID)
-                 && (patientUID == null || ps.PatientUID == patientUID)
-                 && (string.IsNullOrEmpty(prescriptionNumber) || ps.PrescriptionNumber == prescriptionNumber)
-                 && (organisationUID == null || ps.OwnerOrganisationUID == organisationUID)
-                                            select new PrescriptionModel
-                                            {
-                                                PrescriptionUID = ps.UID,
-                                                PrescriptionNumber = ps.PrescriptionNumber,
-                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
-                                                PatientID = pa.PatientID,
-                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
-                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
-                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                PrescribedDttm = ps.PrescribedDttm,
-                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
-                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
-                                            }).ToList();
-
-
-            return data;
-        }
-
-        [Route("GetPrescriptionItemByPrescriptionUID")]
-        public List<PrescriptionItemModel> GetPrescriptionItemByPrescriptionUID(long? prescriptionUID)
-        {
-            List<PrescriptionItemModel> data = db.PrescriptionItem
-                .Where(p => p.PrescriptionUID == prescriptionUID && p.StatusFlag == "A")
-                .Select(p => new PrescriptionItemModel
-                {
-                    PrescriptionItemUID = p.UID,
-                    PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
-                    ItemName = p.ItemName,
-                    ItemMasterUID = p.ItemMasterUID,
-                    Quantity = p.Quantity,
-                    QuantityUnit = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
-                    DFORMUID = p.DFORMUID,
-                    DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
-                    StoreUID = p.StoreUID,
-                    StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
-                    InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),
-                    Dosage = p.Dosage,
-                    FRQNCUID = p.FRQNCUID,
-                    //Frequency = (p.FRQNCUID != null && p.FRQNCUID != 0) ? db.FrequencyDefinition.Find(p.FRQNCUID).Comments : "",
-                    InstructionText = p.InstructionText,
-                    LocalInstructionText = p.LocalInstructionText,
-                    ClinicalComments = p.ClinicalComments,
-                    DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0)
-                }).ToList();
-
-            foreach (var item in data)
-            {
-
-                IEnumerable<Stock> stockItem = db.Stock
-                .Where(p => p.StatusFlag == "A"
-                && p.ItemMasterUID == item.ItemMasterUID
-                && p.StoreUID == item.StoreUID && p.Quantity > 0);
-                if (stockItem != null && stockItem.Count() > 0)
-                {
-                    Store store = db.Store.Find(item.StoreUID);
-                    if (store.STDTPUID == 2901)
-                        stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
-                    else if (store.STDTPUID == 2902)
-                        stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
-
-                    item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
-
-                }
-
-                if (item.FRQNCUID != null && item.FRQNCUID != 0)
-                {
-                    item.Frequency = db.FrequencyDefinition.Find(item.FRQNCUID).Comments;
-                }
-
-            }
-
-
-            return data;
-        }
-
-        public int? CheckPrescriptionStatus(long prescriptionUID)
-        {
-            int? ORDSTUID = null;
-            List<PrescriptionItem> listPrescriptionItem = db.PrescriptionItem.Where(p => p.PrescriptionUID == prescriptionUID).ToList();
-            List<ReferenceValue> listOrderStatus = db.ReferenceValue.Where(p => p.DomainCode == "ORDST").ToList();
-            ReferenceValue dispensed = listOrderStatus.Where(p => p.ValueCode == "DISPE").FirstOrDefault();
-            ReferenceValue cancel = listOrderStatus.Where(p => p.ValueCode == "CANCLD").FirstOrDefault();
-            ReferenceValue cancelDispensed = listOrderStatus.Where(p => p.ValueCode == "DISPCANCL").FirstOrDefault();
-            ReferenceValue partiallyDispensed = listOrderStatus.Where(p => p.ValueCode == "OPDISP").FirstOrDefault();
-            ReferenceValue partiallyCancelDispensed = listOrderStatus.Where(p => p.ValueCode == "OPCANDISP").FirstOrDefault();
-            ReferenceValue partiallycancel = listOrderStatus.Where(p => p.ValueCode == "PRCAN").FirstOrDefault();
-            int dispensedCount = listPrescriptionItem.Where(p => p.ORDSTUID == dispensed.UID).Count();
-            int cancelCount = listPrescriptionItem.Where(p => p.ORDSTUID == cancel.UID).Count();
-            int cancelDispensedCount = listPrescriptionItem.Where(p => p.ORDSTUID == cancelDispensed.UID).Count();
-            int PrescriptionDetailCount = listPrescriptionItem.Count();
-            if (listPrescriptionItem != null)
-            {
-                if (dispensedCount == PrescriptionDetailCount)
-                {
-                    ORDSTUID = dispensed.UID;
-                }
-                else if (cancelCount == PrescriptionDetailCount)
-                {
-                    ORDSTUID = cancel.UID;
-                }
-                else if (cancelDispensedCount == PrescriptionDetailCount)
-                {
-                    ORDSTUID = cancelDispensed.UID;
-                }
-                else if (dispensedCount >= 1)
-                {
-                    ORDSTUID = partiallyDispensed.UID;
-                }
-                else if (cancelDispensedCount >= 1)
-                {
-                    ORDSTUID = partiallyCancelDispensed.UID;
-                }
-                else if (cancelCount >= 1)
-                {
-                    ORDSTUID = partiallycancel.UID;
-                }
-            }
-            return ORDSTUID;
-        }
-
-        #endregion
 
     }
 }

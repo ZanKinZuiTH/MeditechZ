@@ -140,7 +140,7 @@ namespace MediTech.DataService
 
         public List<ItemMasterModel> GetDrugCriteria(string text)
         {
-            string requestApi = string.Format("Api/Pharmacy/GetDrugCriteria?text={0}",text);
+            string requestApi = string.Format("Api/Pharmacy/GetDrugCriteria?text={0}", text);
             List<ItemMasterModel> dataRequest = MeditechApiHelper.Get<List<ItemMasterModel>>(requestApi);
 
             return dataRequest;
@@ -156,7 +156,7 @@ namespace MediTech.DataService
 
         public List<PatientOrderDetailModel> GetDrugStoreDispense(int itemMasterUID, double useQty, int IMUOMUID, int StoreUID)
         {
-            string requestApi = string.Format("Api/Pharmacy/GetDrugStoreDispense?itemMasterUID={0}&useQty={1}&IMUOMUID={2}&StoreUID={3}", itemMasterUID,useQty,IMUOMUID,StoreUID);
+            string requestApi = string.Format("Api/Pharmacy/GetDrugStoreDispense?itemMasterUID={0}&useQty={1}&IMUOMUID={2}&StoreUID={3}", itemMasterUID, useQty, IMUOMUID, StoreUID);
             List<PatientOrderDetailModel> dataRequest = MeditechApiHelper.Get<List<PatientOrderDetailModel>>(requestApi);
 
             return dataRequest;
@@ -169,5 +169,116 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+
+
+        #region Prescription
+
+        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
+    , string prescriptionNumber, int? organisationUID)
+        {
+            string requestApi = string.Format("Api/Pharmacy/Searchprescription?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&ORDSTUID={2}&patientUID={3}&prescriptionNumber={4}&organisationUID={5}", dateFrom, dateTo, ORDSTUID, patientUID, prescriptionNumber, organisationUID);
+            List<PrescriptionModel> returnData = MeditechApiHelper.Get<List<PrescriptionModel>>(requestApi);
+
+            return returnData;
+        }
+
+        public List<PrescriptionItemModel> GetPrescriptionItemByPrescriptionUID(long? prescriptionUID)
+        {
+            List<PrescriptionItemModel> result;
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/GetPrescriptionItemByPrescriptionUID?prescriptionUID={0}", prescriptionUID);
+                result = MeditechApiHelper.Get<List<PrescriptionItemModel>>(requestApi);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return result;
+        }
+
+        public bool UpdatePrescriptionLabelSticker(long prescriptionItemUID, String localInstructionText, int userUID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/UpdatePrescriptionLabelSticker?prescriptionItemUID={0}&localInstructionText={1}&userID={2}", prescriptionItemUID, localInstructionText, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+        }
+
+        public bool CancelDispensed(PrescriptionItemModel prescriptionItemModel, int userUID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/CancelDispensed?userUID={0}", userUID);
+                MeditechApiHelper.Post(requestApi, prescriptionItemModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+        }
+
+        public bool DispensePrescription(PrescriptionModel prescription, int userUID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/DispensePrescription?userUID={0}", userUID);
+                MeditechApiHelper.Post(requestApi, prescription);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+        }
+
+
+        public bool DispensePrescriptionItem(PrescriptionItemModel prescriptionItemModel, int userUID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Pharmacy/DispensePrescriptionItem?userUID={0}", userUID);
+                MeditechApiHelper.Post(requestApi, prescriptionItemModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+
+
+            return flag;
+        }
+        #endregion
+
     }
 }

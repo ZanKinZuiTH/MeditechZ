@@ -178,6 +178,7 @@
     </ApplicationDefinition>
     <Compile Include="AppUtil.cs" />
     <Compile Include="Converter\BitmapToBitmapImage.cs" />
+    <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DiscRecorderValueConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
@@ -1470,7 +1471,10 @@
     <Compile Include="ViewModels\Documents\InventoryReportViewModel.cs" />
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PrintDrugStickerViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispenseDrugViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockReasonViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
@@ -1772,11 +1776,20 @@
     <Compile Include="Views\EMRView\WellnessData.xaml.cs">
       <DependentUpon>WellnessData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\CancelDispense.xaml.cs">
+      <DependentUpon>CancelDispense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\PrintDrugSticker.xaml.cs">
+      <DependentUpon>PrintDrugSticker.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\ChangeStore.xaml.cs">
       <DependentUpon>ChangeStore.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
       <DependentUpon>ConsumptionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DispenseDrug.xaml.cs">
+      <DependentUpon>DispenseDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\DisposeStock.xaml.cs">
       <DependentUpon>DisposeStock.xaml</DependentUpon>
@@ -2440,11 +2453,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Inventory\CancelDispense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\PrintDrugSticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Inventory\ChangeStore.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Inventory\ConsumptionStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\DispenseDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -3880,6 +3905,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Phamacy\Allocate.png" />
+    <Resource Include="Resources\Images\Phamacy\Prescription2.png" />
+    <Resource Include="Resources\Images\Other\ResultsIcon.png" />
+    <Resource Include="Resources\Images\Module\Emergency.png" />
+    <Resource Include="Resources\Images\Action\ModifyDemographics.png" />
+    <Resource Include="Resources\Images\Document\ConsentForm.png" />
+    <Resource Include="Resources\Images\Document\open.png" />
     <Resource Include="Resources\Images\Document\File.png" />
     <Resource Include="Resources\Images\Ward\bed.png" />
     <Resource Include="Resources\Images\Ward\bedLevel0.png" />

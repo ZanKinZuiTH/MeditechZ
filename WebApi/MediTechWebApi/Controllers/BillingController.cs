@@ -653,7 +653,7 @@ namespace MediTechWebApi.Controllers
                                 prescription.MUser = model.MUser;
                                 prescription.MWhen = now;
                                 prescription.DispensedDttm = now;
-                                prescription.ORDSTUID = (new InventoryController()).CheckPrescriptionStatus(prescription.UID);
+                                prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
 
                                 db.SaveChanges();
                             }
@@ -899,7 +899,7 @@ namespace MediTechWebApi.Controllers
                                     db.Prescription.Attach(prescription);
                                     prescription.MUser = userUID;
                                     prescription.MWhen = now;
-                                    prescription.ORDSTUID = (new InventoryController()).CheckPrescriptionStatus(prescription.UID);
+                                    prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
 
 
 

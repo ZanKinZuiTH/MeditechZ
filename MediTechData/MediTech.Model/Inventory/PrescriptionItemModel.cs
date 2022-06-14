@@ -1,12 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class PrescriptionItemModel
+    public class PrescriptionItemModel : System.ComponentModel.INotifyPropertyChanged
     {
         public long PrescriptionItemUID { get; set; }
         public long PrescriptionUID { get; set; }
@@ -30,6 +32,7 @@ namespace MediTech.Model
         public string LocalInstructionText { get; set; }
         public Nullable<int> ORDSTUID { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
+        public Nullable<int> IMUOMUID { get; set; }
         public Nullable<int> StoreUID { get; set; }
         public DateTime? ExpiryDate { get; set; }
         public Nullable<int> ItemMasterUID { get; set; }
@@ -44,5 +47,33 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public string StoreName { get; set; }
         public Nullable<int> OwnerOrganisationUID { get; set; }
+        public int No { get; set; }
+        public int? StockUID { get; set; }
+        public bool IsWithoutStock { get; set; }
+        public ObservableCollection<PatientOrderDetailModel> StoreStockItem { get; set; }
+
+
+        private double? _BalQty;
+
+        public double? BalQty
+        {
+            get { return _BalQty; }
+            set
+            {
+                _BalQty = value;
+                NotifyPropertyChanged("BalQty");
+
+            }
+        }
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        private void NotifyPropertyChanged(String propertyName = "")
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+            }
+        }
     }
 }

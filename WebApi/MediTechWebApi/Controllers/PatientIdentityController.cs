@@ -88,62 +88,62 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientInformationModel> GetPatientByName(string firstName, string lastName)
         {
-            List < PatientInformationModel> data = (from pa in db.Patient
-                                            join pdd in db.PatientAddress on
-                                            new
-                                            {
-                                                key1 = pa.UID,
-                                                key2 = 401, //DefaultAddress
-                                                key3 = "A"
-                                            }
-                                            equals
-                                            new
-                                            {
-                                                key1 = pdd.PatientUID,
-                                                key2 = pdd.ADTYPUID ?? 0,
-                                                key3 = pdd.StatusFlag
-                                            }
-                                            into joined
-                                            from j in joined.DefaultIfEmpty()
-                                            where pa.StatusFlag == "A"
-                                            && pa.FirstName == firstName
-                                            && pa.LastName == lastName
-                                            select new PatientInformationModel
-                                            {
-                                                PatientUID = pa.UID,
-                                                AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
-                                                BirthDttm = pa.DOBDttm.Value,
-                                                DOBComputed = pa.DOBComputed,
-                                                Email = pa.Email,
-                                                FirstName = pa.FirstName,
-                                                LastName = pa.LastName,
-                                                MobilePhone = pa.MobilePhone,
-                                                NationalID = pa.IDCard,
-                                                NATNLUID = pa.NATNLUID,
-                                                IDPassport = pa.IDPassport,
-                                                PatientID = pa.PatientID,
-                                                EmployeeID = pa.EmployeeID,
-                                                Department = pa.Department,
-                                                Position = pa.Position,
-                                                BLOODUID = pa.BLOODUID,
-                                                RELGNUID = pa.RELGNUID,
-                                                SecondPhone = pa.SecondPhone,
-                                                SEXXXUID = pa.SEXXXUID,
-                                                TITLEUID = pa.TITLEUID,
-                                                LastVisitDttm = pa.LastVisitDttm,
-                                                RegisterDate = pa.CWhen,
-                                                PatientAddressUID = j.UID,
-                                                Line1 = j.Line1,
-                                                Line2 = j.Line2,
-                                                Line3 = j.Line3,
-                                                AmphurUID = j.AmphurUID,
-                                                DistrictUID = j.DistrictUID,
-                                                ProvinceUID = j.ProvinceUID,
-                                                ZipCode = j.ZipCode,
-                                                UserUID = pa.CUser,
-                                                IsVIP = pa.IsVIP ?? false,
-                                                OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
-                                            }).ToList();
+            List<PatientInformationModel> data = (from pa in db.Patient
+                                                  join pdd in db.PatientAddress on
+                                                  new
+                                                  {
+                                                      key1 = pa.UID,
+                                                      key2 = 401, //DefaultAddress
+                                                      key3 = "A"
+                                                  }
+                                                  equals
+                                                  new
+                                                  {
+                                                      key1 = pdd.PatientUID,
+                                                      key2 = pdd.ADTYPUID ?? 0,
+                                                      key3 = pdd.StatusFlag
+                                                  }
+                                                  into joined
+                                                  from j in joined.DefaultIfEmpty()
+                                                  where pa.StatusFlag == "A"
+                                                  && pa.FirstName == firstName
+                                                  && pa.LastName == lastName
+                                                  select new PatientInformationModel
+                                                  {
+                                                      PatientUID = pa.UID,
+                                                      AgeString = SqlFunction.fGetAgeString(pa.DOBDttm.Value),
+                                                      BirthDttm = pa.DOBDttm.Value,
+                                                      DOBComputed = pa.DOBComputed,
+                                                      Email = pa.Email,
+                                                      FirstName = pa.FirstName,
+                                                      LastName = pa.LastName,
+                                                      MobilePhone = pa.MobilePhone,
+                                                      NationalID = pa.IDCard,
+                                                      NATNLUID = pa.NATNLUID,
+                                                      IDPassport = pa.IDPassport,
+                                                      PatientID = pa.PatientID,
+                                                      EmployeeID = pa.EmployeeID,
+                                                      Department = pa.Department,
+                                                      Position = pa.Position,
+                                                      BLOODUID = pa.BLOODUID,
+                                                      RELGNUID = pa.RELGNUID,
+                                                      SecondPhone = pa.SecondPhone,
+                                                      SEXXXUID = pa.SEXXXUID,
+                                                      TITLEUID = pa.TITLEUID,
+                                                      LastVisitDttm = pa.LastVisitDttm,
+                                                      RegisterDate = pa.CWhen,
+                                                      PatientAddressUID = j.UID,
+                                                      Line1 = j.Line1,
+                                                      Line2 = j.Line2,
+                                                      Line3 = j.Line3,
+                                                      AmphurUID = j.AmphurUID,
+                                                      DistrictUID = j.DistrictUID,
+                                                      ProvinceUID = j.ProvinceUID,
+                                                      ZipCode = j.ZipCode,
+                                                      UserUID = pa.CUser,
+                                                      IsVIP = pa.IsVIP ?? false,
+                                                      OwnerOrganisationUID = pa.OwnerOrganisationUID ?? 0
+                                                  }).ToList();
             return data;
         }
 
@@ -389,62 +389,102 @@ namespace MediTechWebApi.Controllers
                     PolicyMasterUID = p.PolicyMasterUID,
                     PolicyName = p.PolicyName,
                     PAYRTPUID = p.PAYRTPUID,
+                    PayorType = SqlFunction.fGetRfValDescription(p.PAYRTPUID ?? 0),
+                    FixedCopayAmount = p.FixedCopayAmount,
+                    ClaimPercentage = p.ClaimPercentage,
                     StartDttm = p.StartDttm,
                     EndDttm = p.EndDttm,
                     EligibleAmount = p.EligibleAmount
-                }).ToList();
+                }).OrderBy(p => p.PAYRTPUID).ToList();
             return data;
         }
 
         [Route("ManagePatientInsuranceDetail")]
         [HttpPost]
-        public HttpResponseMessage ManagePatientInsuranceDetail(List<PatientVisitPayorModel> patientVisitPayorList)
+        public HttpResponseMessage ManagePatientInsuranceDetail(List<PatientVisitPayorModel> patientVisitPayorList, int userUID)
         {
             try
             {
                 DateTime now = DateTime.Now;
-                foreach (var payor in patientVisitPayorList)
+                using (var tran = new TransactionScope())
                 {
-                    PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
-                    if (detail == null)
-                        detail = new PatientInsuranceDetail();
 
-                    detail.PatientUID = payor.PatientUID;
-                    detail.PatientVisitUID = payor.PatientVisitUID;
-                    detail.PayorDetailUID = payor.PayorDetailUID;
-                    detail.PolicyName = payor.PolicyName;
-                    detail.InsuranceCompanyUID = payor.InsuranceCompanyUID ?? 0;
-                    detail.InsuranceCompanyName = payor.InsuranceName;
-                    detail.PAYRTPUID = payor.PAYRTPUID;
+                    if (patientVisitPayorList != null)
+                    {
+                        var deletedVisitPayors = patientVisitPayorList.Where(p => p.StatusFlag == "D");
+                        var activedVisitPayors = patientVisitPayorList.Where(p => p.StatusFlag == "A");
 
-                    detail.PolicyMasterUID = payor.PolicyMasterUID;
+                        foreach (var deletedPayor in deletedVisitPayors)
+                        {
+                            PatientInsuranceDetail deleteData = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == deletedPayor.InsuranceCompanyUID
+                && i.PayorDetailUID == deletedPayor.PayorDetailUID && i.PayorAgreementUID == deletedPayor.PayorAgreementUID).FirstOrDefault();
+                            if (deleteData != null)
+                            {
+                                db.PatientInsuranceDetail.Attach(deleteData);
+                                deleteData.StatusFlag = "D";
+                                deleteData.MUser = userUID;
+                                deleteData.MWhen = now;
 
-                    detail.EligibleAmount = payor.EligibileAmount;
-                    detail.StartDttm = payor.ActiveFrom;
-                    detail.EndDttm = payor.ActiveTo;
-                    detail.Comments = payor.Comment;
+                                db.SaveChanges();
+                            }
+                        }
 
-                    detail.PayorAgreementUID = payor.PayorAgreementUID;
-                    detail.ClaimPercentage = payor.ClaimPercentage;
-                    if (detail.ClaimPercentage == 0)
-                        detail.ClaimPercentage = null;
-                    detail.FixedCopayAmount = payor.FixedCopayAmount;
-                    if (detail.FixedCopayAmount == 0)
-                        detail.FixedCopayAmount = null;
+                        foreach (var payor in activedVisitPayors)
+                        {
+                            PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID
+&& i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
+                            if (detail == null)
+                            {
+                                detail = new PatientInsuranceDetail();
+                                detail.CUser = userUID;
+                                detail.CWhen = now;
+                            }
 
-                    detail.CUser = payor.CUser;
-                    detail.MUser = payor.MUser;
-                    detail.CWhen = now;
-                    detail.MWhen = now;
-                    detail.StatusFlag = payor.StatusFlag;
-                    detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
-                    db.PatientInsuranceDetail.AddOrUpdate(detail);
+                            detail.PatientUID = payor.PatientUID;
+                            detail.PatientVisitUID = payor.PatientVisitUID != 0 ? payor.PatientVisitUID : (long?)null;
+                            detail.PayorName = payor.PayorName;
+                            detail.PayorDetailUID = payor.PayorDetailUID;
+                            detail.PolicyName = payor.PolicyName;
+                            detail.InsuranceCompanyUID = payor.InsuranceCompanyUID ?? 0;
+                            detail.InsuranceCompanyName = payor.InsuranceName;
+                            detail.PAYRTPUID = payor.PAYRTPUID;
+
+                            detail.PolicyMasterUID = payor.PolicyMasterUID;
+
+                            detail.EligibleAmount = payor.EligibileAmount;
+                            detail.StartDttm = payor.ActiveFrom;
+                            detail.EndDttm = payor.ActiveTo;
+                            detail.Comments = payor.Comment;
+
+                            detail.PayorAgreementUID = payor.PayorAgreementUID;
+                            detail.PayorAgreementName = payor.AgreementName;
+                            detail.ClaimPercentage = payor.ClaimPercentage;
+                            if (detail.ClaimPercentage == 0)
+                                detail.ClaimPercentage = null;
+                            detail.FixedCopayAmount = payor.FixedCopayAmount;
+                            if (detail.FixedCopayAmount == 0)
+                                detail.FixedCopayAmount = null;
+
+                            detail.CUser = payor.CUser;
+                            detail.MUser = payor.MUser;
+                            detail.CWhen = now;
+                            detail.MWhen = now;
+                            detail.StatusFlag = payor.StatusFlag;
+                            detail.OwnerOrganisationUID = payor.OwnerOrganisationUID;
+                            db.PatientInsuranceDetail.AddOrUpdate(detail);
+
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
                 }
-                db.SaveChanges();
+
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)
             {
+
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
@@ -1134,7 +1174,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ManageEmergencyAE")]
         [HttpPost]
-        public HttpResponseMessage ManageEmergencyAE(PatientAEAdmissionModel model,int userUID)
+        public HttpResponseMessage ManageEmergencyAE(PatientAEAdmissionModel model, int userUID)
         {
             DateTime now = DateTime.Now;
             try
@@ -1209,7 +1249,7 @@ namespace MediTechWebApi.Controllers
                     DateTime now = DateTime.Now;
 
                     PatientVisit patientVisit = db.PatientVisit.Find(dischargemodel.PatientVisitUID);
-                    if(patientVisit != null)
+                    if (patientVisit != null)
                     {
                         db.PatientVisit.Attach(patientVisit);
                         patientVisit.VISTSUID = 418; // Medical Discharge
@@ -1218,7 +1258,7 @@ namespace MediTechWebApi.Controllers
                         db.SaveChanges();
                     }
 
-                    if(dischargemodel.DSCTYPUID == 4351 || dischargemodel.DSCTYPUID == 4352) //Dead Non autopsy, Dead Autopsy
+                    if (dischargemodel.DSCTYPUID == 4351 || dischargemodel.DSCTYPUID == 4352) //Dead Non autopsy, Dead Autopsy
                     {
                         PatientDeceasedDetail deceasedDetail = new PatientDeceasedDetail();
                         deceasedDetail.PatientUID = dischargemodel.PatientUID;
@@ -1344,8 +1384,8 @@ namespace MediTechWebApi.Controllers
 
                     tran.Complete();
                 }
-                    return Request.CreateResponse(HttpStatusCode.OK, iPBookingModel);
-                }
+                return Request.CreateResponse(HttpStatusCode.OK, iPBookingModel);
+            }
             catch (Exception ex)
             {
 
@@ -1688,7 +1728,7 @@ namespace MediTechWebApi.Controllers
                         && pt.StatusFlag == "A"
                         && pv.ENTYPUID == 4310
                         && pv.VISTSUID != 410
-                        && pv.VISTSUID != 418 
+                        && pv.VISTSUID != 418
                         && pv.VISTSUID != 421
                         select new BedStatusModel
                         {
@@ -1716,7 +1756,7 @@ namespace MediTechWebApi.Controllers
                             PatientUID = pt.UID,
                             AgeString = SqlFunction.fGetAgeString(pt.DOBDttm.Value),
                             EmergencyVisitDate = pae.EmergencyOcurredDttm,
-                            PatientVisitUID = pv.UID,                            
+                            PatientVisitUID = pv.UID,
                             AEAdmissionUID = pae.UID,
                             Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
                             CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
@@ -1838,27 +1878,27 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetBedLocation")]
         [HttpGet]
-        public List<LocationModel> GetBedLocation(int parentLocationUID,int? entypUID)
+        public List<LocationModel> GetBedLocation(int parentLocationUID, int? entypUID)
         {
             var bed = db.Location.Where(p => p.ParentLocationUID == parentLocationUID).Select(p => new LocationModel()
-                        {
-                            LocationUID = p.UID,
-                            Name = p.Name,
-                            Description = p.Description,
-                            LOTYPUID = p.LOTYPUID,
-                            LCTSTUID = p.LCTSTUID,
-                            ParentLocationUID = p.ParentLocationUID,
-                            ActiveFrom = p.ActiveFrom,
-                            ActiveTo = p.ActiveTo,
-                            CUser = p.CUser,
-                            CWhen = p.CWhen,
-                            MUser = p.MUser,
-                            EMRZONUID = p.EMZONEUID,
-                            OwnerOrganisationUID = p.OwnerOrganisationUID,
-                            IsTemporaryBed = p.IsTemporaryBed,
-                            MWhen = p.MWhen,
-                            StatusFlag = p.StatusFlag
-                        }).ToList();
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                IsTemporaryBed = p.IsTemporaryBed,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
 
             var data = (from pv in db.PatientVisit
                         join b in db.Location on pv.BedUID equals b.UID
@@ -1866,8 +1906,8 @@ namespace MediTechWebApi.Controllers
                         && b.StatusFlag == "A"
                         //&& (pv.ENTYPUID == 4310
                         && (entypUID == null || pv.ENTYPUID == entypUID)
-                        && pv.VISTSUID != 410 
-                        && pv.VISTSUID != 418 
+                        && pv.VISTSUID != 410
+                        && pv.VISTSUID != 418
                         && pv.VISTSUID != 421
                         select new LocationModel
                         {
@@ -1893,10 +1933,10 @@ namespace MediTechWebApi.Controllers
 
             if (data != null)
             {
-                for(int i = 0; i < bed.Count; i++)
+                for (int i = 0; i < bed.Count; i++)
                 {
                     var used = data.Where(p => p.LocationUID == bed[i].LocationUID).FirstOrDefault();
-                    if(used != null)
+                    if (used != null)
                     {
                         bed[i].BedIsUse = "Y";
                     }
@@ -1912,8 +1952,126 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region PatientVisitPayor
+
+        [Route("GetPatientVisitPayorByVisitUID")]
+        [HttpGet]
+        public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(int patientVisitUID)
+        {
+            List<PatientVisitPayorModel> data = (from pvp in db.PatientVisitPayor
+                                                 where pvp.PatientVisitUID == patientVisitUID
+                                                 && pvp.StatusFlag == "A"
+                                                 select new PatientVisitPayorModel
+                                                 {
+                                                     PatientVisitPayorUID = pvp.UID,
+                                                     PatientUID = pvp.PatientUID,
+                                                     PatientVisitUID = pvp.PatientVisitUID,
+                                                     InsuranceCompanyUID = pvp.InsuranceCompanyUID,
+                                                     PayorAgreementUID = pvp.PayorAgreementUID,
+                                                     PayorDetailUID = pvp.PayorDetailUID,
+                                                     PolicyMasterUID = pvp.PolicyMasterUID,
+                                                     EligibileAmount = pvp.EligibileAmount,
+                                                     FixedCopayAmount = pvp.FixedCopayAmount,
+                                                     ClaimPercentage = pvp.ClaimPercentage,
+                                                     ActiveFrom = pvp.ActiveFrom,
+                                                     ActiveTo = pvp.ActiveTo,
+                                                     ClaimAmount = pvp.ClaimAmount,
+                                                     PAYRTPUID = pvp.PAYRTPUID,
+                                                     Comment = pvp.Comment,
+                                                     InsuranceName = pvp.InsuranceCompanyUID.HasValue ? SqlFunction.fGetInsuranceCompanyName(pvp.InsuranceCompanyUID.Value) : "",
+                                                     AgreementName = SqlFunction.fGetPayorAgreementName(pvp.PayorAgreementUID),
+                                                     PayorName = SqlFunction.fGetPayorName(pvp.PayorDetailUID),
+                                                     PolicyName = pvp.PolicyName,
+                                                     PayorType = SqlFunction.fGetRfValDescription(pvp.PAYRTPUID ?? 0),
+                                                     CoveredAmount = pvp.CoveredAmount,
+                                                     StatusFlag = pvp.StatusFlag                                                     
+                                                 }).ToList();
+
+
+
+            return data;
+        }
+
+
+        [Route("ManagePatientVisitPayor")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientVisitPayor(List<PatientVisitPayorModel> patientVisitPayorList, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+
+                    if (patientVisitPayorList != null)
+                    {
+                        var deletedVisitPayors = patientVisitPayorList.Where(p => p.StatusFlag == "D");
+                        var activedVisitPayors = patientVisitPayorList.Where(p => p.StatusFlag == "A");
+
+                        foreach (var deletedItem in deletedVisitPayors)
+                        {
+                            PatientVisitPayor patientVisitPayor = db.PatientVisitPayor.Find(deletedItem.PatientVisitPayorUID);
+                            if (patientVisitPayor != null)
+                            {
+                                db.PatientVisitPayor.Attach(patientVisitPayor);
+                                patientVisitPayor.StatusFlag = "D";
+                                patientVisitPayor.MUser = userUID;
+                                patientVisitPayor.MWhen = now;
+
+                                db.SaveChanges();
+                            }
+                        }
+
+                        foreach (var inVisitPayor in activedVisitPayors)
+                        {
+                            PatientVisitPayor patientVisitPayor = db.PatientVisitPayor.Find(inVisitPayor.PatientVisitPayorUID);
+                            if (patientVisitPayor == null)
+                            {
+                                patientVisitPayor = new PatientVisitPayor();
+                                patientVisitPayor.CUser = userUID;
+                                patientVisitPayor.CWhen = now;
+                            }
+
+                            patientVisitPayor.MUser = userUID;
+                            patientVisitPayor.MWhen = now;
+                            patientVisitPayor.StatusFlag = "A";
+                            patientVisitPayor.PatientUID = inVisitPayor.PatientUID;
+                            patientVisitPayor.PatientVisitUID = inVisitPayor.PatientVisitUID;
+                            patientVisitPayor.PayorDetailUID = inVisitPayor.PayorDetailUID;
+                            patientVisitPayor.PayorAgreementUID = inVisitPayor.PayorAgreementUID;
+                            patientVisitPayor.InsuranceCompanyUID = inVisitPayor.InsuranceCompanyUID;
+                            patientVisitPayor.PolicyMasterUID = inVisitPayor.PolicyMasterUID;
+                            patientVisitPayor.PolicyName = inVisitPayor.PolicyName;
+                            patientVisitPayor.EligibileAmount = inVisitPayor.EligibileAmount;
+                            patientVisitPayor.PAYRTPUID = inVisitPayor.PAYRTPUID;
+                            patientVisitPayor.ActiveFrom = inVisitPayor.ActiveFrom;
+                            patientVisitPayor.ActiveTo = inVisitPayor.ActiveTo;
+                            patientVisitPayor.ClaimPercentage = inVisitPayor.ClaimPercentage;
+                            patientVisitPayor.FixedCopayAmount = inVisitPayor.FixedCopayAmount;
+                            patientVisitPayor.CoveredAmount = inVisitPayor.CoveredAmount;
+                            patientVisitPayor.ClaimAmount = inVisitPayor.ClaimAmount;
+                            patientVisitPayor.Comment = inVisitPayor.Comment;
+
+                            db.PatientVisitPayor.AddOrUpdate(patientVisitPayor);
+                            db.SaveChanges();
+                        }
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+        #endregion
+
         #region PatientBanner
-            [Route("GetPatientDataForBanner")]
+        [Route("GetPatientDataForBanner")]
         [HttpGet]
         public PatientBannerModel GetPatientDataForBanner(long patientUID, long patientVisitUID)
         {
@@ -2470,7 +2628,7 @@ namespace MediTechWebApi.Controllers
                     Comments = p.Comments,
                     OwnerOrganisationUID = p.OwnerOrganisationUID
                 }).FirstOrDefault();
-            
+
             return data;
         }
 

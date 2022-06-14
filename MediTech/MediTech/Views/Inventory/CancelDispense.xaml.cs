@@ -16,14 +16,13 @@ using System.Windows.Shapes;
 namespace MediTech.Views
 {
     /// <summary>
-    /// Interaction logic for ModifyPayor.xaml
+    /// Interaction logic for CancelDispense.xaml
     /// </summary>
-    public partial class ModifyVisitPayor : UserControl
+    public partial class CancelDispense : UserControl
     {
-        public ModifyVisitPayor()
+        public CancelDispense()
         {
             InitializeComponent();
         }
-
     }
 }

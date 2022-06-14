@@ -8,6 +8,7 @@ using MediTech.Model;
 using MediTech.Reports.Operating.Pharmacy;
 using DevExpress.XtraReports.UI;
 using System.Collections.ObjectModel;
+using MediTech.Views;
 
 namespace MediTech.ViewModels
 {
@@ -83,15 +84,6 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectPrescription, value);
-                if (_SelectPrescription != null)
-                {
-                    if (_SelectPrescription.PrescriptionItems == null)
-                    {
-                        PrescriptionItems = DataService.Inventory.GetPrescriptionItemByPrescriptionUID(SelectPrescription.PrescriptionUID);
-                        _SelectPrescription.PrescriptionItems = new ObservableCollection<PrescriptionItemModel>(PrescriptionItems);
-                    }
-
-                }
             }
         }
 
@@ -152,21 +144,6 @@ namespace MediTech.ViewModels
 
 
 
-        private List<string> _PrinterLists;
-
-        public List<string> PrinterLists
-        {
-            get { return _PrinterLists; }
-            set { Set(ref _PrinterLists, value); }
-        }
-
-        private string _SelectPrinter;
-
-        public string SelectPrinter
-        {
-            get { return _SelectPrinter; }
-            set { Set(ref _SelectPrinter, value); }
-        }
         #endregion
 
 
@@ -178,18 +155,25 @@ namespace MediTech.ViewModels
             set { _PrescriptionNumber = value; }
         }
 
-        private bool _IsPrintSticker = true;
-
-        public bool IsPrintSticker
-        {
-            get { return _IsPrintSticker = true; }
-            set { Set(ref _IsPrintSticker, value); }
-        }
 
 
         #endregion
 
         #region Command
+
+        private RelayCommand _CreateOrderCommand;
+
+        public RelayCommand CreateOrderCommand
+        {
+            get { return _CreateOrderCommand ?? (_CreateOrderCommand = new RelayCommand(CreateOrder)); }
+        }
+
+        private RelayCommand _PatientRecordsCommand;
+
+        public RelayCommand PatientRecordsCommand
+        {
+            get { return _PatientRecordsCommand ?? (_PatientRecordsCommand = new RelayCommand(PatientRecords)); }
+        }
 
         private RelayCommand _PatientSearchCommand;
 
@@ -212,33 +196,27 @@ namespace MediTech.ViewModels
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(DefaultControl)); }
         }
 
-        private RelayCommand _PrintDrugStickerCommand;
-
-        public RelayCommand PrintDrugStickerCommand
-        {
-            get { return _PrintDrugStickerCommand ?? (_PrintDrugStickerCommand = new RelayCommand(PrintDrugSticker)); }
-        }
-
-        private RelayCommand _ChangeStoreCommand;
-
-        public RelayCommand ChangeStoreCommand
-        {
-            get { return _ChangeStoreCommand ?? (_ChangeStoreCommand = new RelayCommand(ChangeStore)); }
-        }
-
-        private RelayCommand _CancelDispenseCommand;
-
-        public RelayCommand CancelDispenseCommand
-        {
-            get { return _CancelDispenseCommand ?? (_CancelDispenseCommand = new RelayCommand(ChangeStore)); }
-        }
-
         private RelayCommand _DispenseCommand;
 
         public RelayCommand DispenseCommand
         {
             get { return _DispenseCommand ?? (_DispenseCommand = new RelayCommand(Dispense)); }
         }
+
+        private RelayCommand _CancelDispenseCommand;
+
+        public RelayCommand CancelDispenseCommand
+        {
+            get { return _CancelDispenseCommand ?? (_CancelDispenseCommand = new RelayCommand(CancelDispense)); }
+        }
+
+        private RelayCommand _PrintStickerCommand;
+
+        public RelayCommand PrintStickerCommand
+        {
+            get { return _PrintStickerCommand ?? (_PrintStickerCommand = new RelayCommand(PrintSticker)); }
+        }
+
         #endregion
 
         #region Method
@@ -247,16 +225,11 @@ namespace MediTech.ViewModels
         {
             Organisations = GetHealthOrganisationIsStock();
             var refValues = DataService.Technical.GetReferenceValueMany("ORDST");
-            PrinterLists = new List<string>();
-            int i = 1;
-            foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
-            {
-                PrinterLists.Add(printer);
-            }
-            PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD" 
+            PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD"
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
             || p.ValueCode == "OPCANDISP" || p.ValueCode == "PRCAN").ToList();
             DefaultControl();
+            SearchPrescrition();
         }
 
 
@@ -284,34 +257,43 @@ namespace MediTech.ViewModels
                 organisationUID = SelectOrganisation.HealthOrganisationUID;
             }
 
-            Prescriptons = DataService.Inventory.Searchprescription(DateFrom,DateTo, ORDSTUID, patientUID, PrescriptionNumber, organisationUID);
+            Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, ORDSTUID, patientUID, PrescriptionNumber, organisationUID);
+            int te = Prescriptons.Count;
         }
 
-        void PrintDrugSticker()
+        private void PrintSticker()
         {
-            if (SelectPrinter == null)
+            if (SelectPrescription != null)
             {
-                WarningDialog("กรุณาเลือก Printer");
-                return;
-            }
-
-
-            foreach (var item in SelectPrescriptionItems)
-            {
-                if (item.PrestionItemStatus.ToLower() != "cancelled")
-                {
-                    DrugSticker rpt = new DrugSticker();
-                    ReportPrintTool printTool = new ReportPrintTool(rpt);
-
-                    rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
-                    rpt.Parameters["OrganisationUID"].Value = SelectPrescription.OwnerOrganisationUID;
-                    rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
-                    rpt.RequestParameters = false;
-                    rpt.ShowPrintMarginsWarning = false;
-                    printTool.Print(SelectPrinter);
-                }
+                PrintDrugSticker pageview = new PrintDrugSticker();
+                (pageview.DataContext as PrintDrugStickerViewModel).AssignModel(SelectPrescription);
+                LaunchViewDialogNonPermiss(pageview, false, false);
             }
         }
+
+        private void CreateOrder()
+        {
+            if (SelectPrescription != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                PatientOrderEntry pageview = new PatientOrderEntry();
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(patientVisit);
+                LaunchViewDialog(pageview, "ORDITM", false, true);
+            }
+        }
+
+        private void PatientRecords()
+        {
+            if (SelectPrescription != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                EMRView pageview = new EMRView();
+                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(patientVisit);
+                LaunchViewDialog(pageview, "EMRVE", false, true);
+            }
+        }
+
+
 
         void DefaultControl()
         {
@@ -368,24 +350,32 @@ namespace MediTech.ViewModels
 
         }
 
-        public void ChangeStore()
-        {
 
+        public void CancelDispense()
+        {
+            if (SelectPrescription != null && SelectPrescription.IsBilled == "N")
+            {
+                if (SelectPrescription.PrescriptionStatus == "Dispensed" || SelectPrescription.PrescriptionStatus == "Partially Dispensed")
+                {
+                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                    CancelDispense cancelDispense = new CancelDispense();
+                    (cancelDispense.DataContext as CancelDispenseViewModel).AssignModel(SelectPrescription.PrescriptionItems, patientVisit);
+                    ChangeViewPermission(cancelDispense);
+                }
+            }
         }
 
         public void Dispense()
         {
-            if(IsPrintSticker == true)
+            if (SelectPrescription != null)
             {
-                if (SelectPrinter == null)
+                if (SelectPrescription.PrescriptionStatus == "Raised")
                 {
-                    WarningDialog("กรุณาเลือก Printer");
-                    return;
+                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                    DispenseDrug dispense = new DispenseDrug();
+                    (dispense.DataContext as DispenseDrugViewModel).AssingModel(SelectPrescription,patientVisit);
+                    ChangeViewPermission(dispense);
                 }
-            }
-            if (true)
-            {
-
             }
         }
 

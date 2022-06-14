@@ -19,7 +19,7 @@ using Microsoft.Practices.ServiceLocation;
 namespace MediTech.ViewModels
 {
     /// <summary>
-    /// This class contains static references to all the view models in the
+    /// This class contains static references to all the view models in thec
     /// application and provides an entry point for the bindings.
     /// </summary>
     public class ViewModelLocator
@@ -817,6 +817,39 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<SearchIssueViewModel>();
 
                 return ServiceLocator.Current.GetInstance<SearchIssueViewModel>();
+            }
+        }
+
+        public DispenseDrugViewModel DispenseDrugViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<DispenseDrugViewModel>())
+                    SimpleIoc.Default.Register<DispenseDrugViewModel>();
+
+                return ServiceLocator.Current.GetInstance<DispenseDrugViewModel>();
+            }
+        }
+
+        public CancelDispenseViewModel CancelDispenseViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CancelDispenseViewModel>())
+                    SimpleIoc.Default.Register<CancelDispenseViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CancelDispenseViewModel>();
+            }
+        }
+
+        public PrintDrugStickerViewModel PrintDrugStickerViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PrintDrugStickerViewModel>())
+                    SimpleIoc.Default.Register<PrintDrugStickerViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PrintDrugStickerViewModel>();
             }
         }
 

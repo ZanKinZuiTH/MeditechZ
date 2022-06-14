@@ -61,9 +61,12 @@ namespace MediTech
             {
                 List<RoleProfileModel> roleProfile = userManageService.GetRoleProfileByLoginUID(AppUtil.Current.LoginID, (int)lkeOrganisation.EditValue);
                 grdRole.ItemsSource = roleProfile;
+
+                _careproviderLocations = userManageService.GetCareProviderLocationByUser(AppUtil.Current.LoginID, (int)lkeOrganisation.EditValue);
             }
         }
 
+        private List<CareproviderLocationModel> _careproviderLocations;
         void btnContinue_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -77,6 +80,8 @@ namespace MediTech
                 AppUtil.Current.RoleUID = ((RoleProfileModel)grdRole.SelectedItem).RoleUID;
                 AppUtil.Current.LocationUID = ((RoleProfileModel)grdRole.SelectedItem).LocationUID;
                 AppUtil.Current.OwnerOrganisationUID = ((RoleProfileModel)grdRole.SelectedItem).HealthOrganisationUID;
+
+                AppUtil.Current.CareproviderLocations = _careproviderLocations;
                 userManageService.StampAppLastAccess(AppUtil.Current.LoginID);
                 this.Hide();
                 MainWindow mainWindow = new MainWindow();

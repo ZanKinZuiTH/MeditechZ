@@ -632,8 +632,12 @@
           <Property Name="BatchID" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="StockUID" Type="int" Nullable="false" />
           <Property Name="ExpiryDttm" Type="datetime" />
+          <Property Name="ItemCost" Type="float" />
           <Property Name="ORDSTUID" Type="int" />
           <Property Name="DispensedDttm" Type="datetime" Nullable="false" />
+          <Property Name="TotalBFQty" Type="float" />
+          <Property Name="BFQty" Type="float" />
+          <Property Name="PatientOrderDetailUID" Type="bigint" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -4131,8 +4135,15 @@
           <Parameter Name="P_DrugCatalogItemUID" Type="int" Mode="In" />
           <Parameter Name="P_InTypeUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fGetFrequencyDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_FrequencyUID" Type="int" Mode="In" />
+          <Parameter Name="P_Language" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="fGetHealthOrganisationName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fGetInsuranceCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_InsuranceComapnyUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetInvestigationString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -4184,6 +4195,9 @@
         <Function Name="fGetPatientNewOrOldStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_LastVisitUID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="fGetPayorAgreementName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_PayorAgreementUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetPayorName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
@@ -9316,8 +9330,12 @@
           <Property Name="BatchID" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="StockUID" Type="Int32" Nullable="false" />
           <Property Name="ExpiryDttm" Type="DateTime" Precision="3" />
+          <Property Name="ItemCost" Type="Double" />
           <Property Name="ORDSTUID" Type="Int32" />
           <Property Name="DispensedDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalBFQty" Type="Double" />
+          <Property Name="BFQty" Type="Double" />
+          <Property Name="PatientOrderDetailUID" Type="Int64" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -15148,8 +15166,12 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
+                <ScalarProperty Name="BFQty" ColumnName="BFQty" />
+                <ScalarProperty Name="TotalBFQty" ColumnName="TotalBFQty" />
                 <ScalarProperty Name="DispensedDttm" ColumnName="DispensedDttm" />
                 <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
                 <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
                 <ScalarProperty Name="StockUID" ColumnName="StockUID" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />

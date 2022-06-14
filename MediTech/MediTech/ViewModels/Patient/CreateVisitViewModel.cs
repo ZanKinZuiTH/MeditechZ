@@ -228,6 +228,7 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedCheckupJob, value); }
         }
 
+        private List<PatientVisitPayorModel> _deletedVisitPayorList;
         private ObservableCollection<PatientVisitPayorModel> _PatientVisitPayorList;
 
         public ObservableCollection<PatientVisitPayorModel> PatientVisitPayorList
@@ -491,6 +492,7 @@ namespace MediTech.ViewModels
 
         void LoadPatientVisitPayors()
         {
+            _deletedVisitPayorList = new List<PatientVisitPayorModel>();
             PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
             var patientInsuranceDetail = DataService.PatientIdentity.GetPatientInsuranceDetail(Patient.PatientUID);
             if (patientInsuranceDetail != null && patientInsuranceDetail.Count > 0)
@@ -712,7 +714,8 @@ namespace MediTech.ViewModels
         {
             if (SelectedPatientVisitPayor != null)
             {
-
+                SelectedPatientVisitPayor.StatusFlag = "D";
+                _deletedVisitPayorList.Add(SelectedPatientVisitPayor);
                 PatientVisitPayorList.Remove(SelectedPatientVisitPayor);
                 ClearControl();
             }
@@ -773,6 +776,7 @@ namespace MediTech.ViewModels
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
             if (SelectedCareprovider != null)
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+            
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
             if (string.IsNullOrEmpty(returnData.VisitID))
@@ -782,7 +786,10 @@ namespace MediTech.ViewModels
             }
             else
             {
-                DataService.PatientIdentity.ManagePatientInsuranceDetail(PatientVisitPayorList.ToList());
+                var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                if (_deletedVisitPayorList != null)
+                    PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
                 if (Booking != null)
                 {
                     DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
@@ -896,7 +903,7 @@ namespace MediTech.ViewModels
 
             if (PatientVisitPayorList != null || PatientVisitPayorList.Count() >= 0)
             {
-                if (PatientVisitPayorList.Count() <= 0)
+                if (PatientVisitPayorList.Count(p => p.PayorType == "1") <= 0)
                 {
                     WarningDialog("กรุณาใส่ข้อมูล Payor Rank 1");
                     return true;

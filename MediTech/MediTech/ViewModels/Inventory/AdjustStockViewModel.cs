@@ -36,7 +36,30 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
-                    Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Locations = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisation.HealthOrganisationUID);
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
+                if (_SelectLocation != null)
+                {
+                    Stores = DataService.Inventory.GetStoreByLocationUID(_SelectLocation.LocationUID);
                 }
             }
         }

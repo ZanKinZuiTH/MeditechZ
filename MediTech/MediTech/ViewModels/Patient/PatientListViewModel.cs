@@ -390,14 +390,21 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
+                    return;
+                }
                 ModifyVisitPayor pageview = new ModifyVisitPayor();
                 (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
                 ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
-                    SearchPatientVisit();
                 }
             }
         }

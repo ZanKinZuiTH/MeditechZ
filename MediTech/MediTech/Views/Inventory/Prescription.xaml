@@ -5,17 +5,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:cc="clr-namespace:MediTech.CustomControl"
              xmlns:cv="clr-namespace:MediTech.Converter"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:dxmvvm="http://schemas.devexpress.com/winfx/2008/xaml/mvvm"
              xmlns:helper="clr-namespace:MediTech.Helpers"
              DataContext="{Binding Path=PrescriptionViewModel,Source={StaticResource Locator}}"
              mc:Ignorable="d" 
              d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
-        <cv:AddValueConverter x:Key="AddValueConverter" />
         <cv:VisibilityConverter x:Key="visibleconvert" />
+        <cv:IndexConverter x:Key="indexConverter" />
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
         <Style x:Key="RowUnFocused" TargetType="{x:Type dxg:RowControl}">
             <Setter Property="dxg:GridRowContent.Background" Value="{DynamicResource {dxgt:GridRowThemeKey ResourceKey=BorderNoneBrush}}" />
@@ -28,92 +30,202 @@
                         <RowDefinition Height="auto"/>
                         <RowDefinition Height="auto"/>
                     </Grid.RowDefinitions>
-                    <StackPanel Orientation="Horizontal" Margin="10">
+                    <StackPanel Orientation="Horizontal" Margin="5">
                         <TextBlock Text="{Binding Row.PatientName}" FontSize="16"  Foreground="Blue" Margin="0,0,5,0"/>
                         <TextBlock Text="(" FontSize="16" Foreground="Blue"/>
                         <TextBlock Text="{Binding Row.PatientID}" FontSize="16" Foreground="Blue"/>
                         <TextBlock Text=")" FontSize="16" Foreground="Blue"/>
-                        <TextBlock Text="อายุ" Margin="10,0,0,0" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                        <TextBlock Text="Age" Margin="10,0,0,0" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
                         <TextBlock Text="{Binding Row.AgeString}"  Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
-                        <TextBlock  Text="เพศ" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                        <TextBlock Text="DOB" Margin="10,0,0,0" FontWeight="Bold" VerticalAlignment="Center" Foreground="Black"/>
+                        <TextBlock Text="{Binding Path=Row.DOBDttm,StringFormat=dd-MM-yyyy}"  Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
                         <TextBlock Text="{Binding Row.Gender}" Margin="5,0,0,0" VerticalAlignment="Center" Foreground="Black"/>
                     </StackPanel>
-                    <dxg:GridControl Grid.Row="1" 
+                    <Grid Grid.Row="1">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="Auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="30"/>
+                                <ColumnDefinition Width="0.25*" MaxWidth="100"/>
+                                <ColumnDefinition Width="0.15*" MaxWidth="110"/>
+                                <ColumnDefinition Width="0.60*" MaxWidth="300"/>
+                                <ColumnDefinition Width="0.10*" MaxWidth="70"/>
+                                <ColumnDefinition Width="0.25*" MaxWidth="80"/>
+                                <ColumnDefinition Width="0.25*" MaxWidth="80"/>
+                                <ColumnDefinition Width="0.12*" MaxWidth="80"/>
+                                <ColumnDefinition Width="0.60*" MaxWidth="400"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Text="No" Grid.Column="0" FontWeight="Bold" FontSize="13"  Foreground="Black"/>
+                            <TextBlock Text="สถานะ" Grid.Column="1" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="Code" Grid.Column="2" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="ชื่อ ยา-เวชภัณฑ์" Grid.Column="3" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="จำนวน" Grid.Column="4" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="หน่วย" Grid.Column="5" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="Form" Grid.Column="6" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="Dosage" Grid.Column="7" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                            <TextBlock Text="Frequency" Grid.Column="8" FontWeight="Bold" FontSize="13" Foreground="Black"/>
+                        </Grid>
+                        <ItemsControl Grid.Row="1" Grid.Column="0" 
+                                      ItemsSource="{Binding Path=Row.PrescriptionItems}" 
+                                      AlternationCount="{Binding Path=Row.PrescriptionItems.Count,FallbackValue='100'}"
+                                      Foreground="DimGray" Margin="0,5,0,0">
+                            <ItemsControl.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid>
+                                        <Grid.RowDefinitions>
+                                            <RowDefinition Height="*"/>
+                                        </Grid.RowDefinitions>
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="30"/>
+                                            <ColumnDefinition Width="0.25*" MaxWidth="100"/>
+                                            <ColumnDefinition Width="0.15*" MaxWidth="110"/>
+                                            <ColumnDefinition Width="0.60*" MaxWidth="300"/>
+                                            <ColumnDefinition Width="0.10*" MaxWidth="70"/>
+                                            <ColumnDefinition Width="0.25*" MaxWidth="80"/>
+                                            <ColumnDefinition Width="0.25*" MaxWidth="80"/>
+                                            <ColumnDefinition Width="0.12*" MaxWidth="80"/>
+                                            <ColumnDefinition Width="0.60*" MaxWidth="400"/>
+                                        </Grid.ColumnDefinitions>
+
+                                        <TextBlock Grid.Column="0" FontSize="13" >
+                                            <TextBlock.Text>
+                                                <MultiBinding Converter="{StaticResource indexConverter}">
+                                                    <Binding />
+                                                    <Binding RelativeSource="{RelativeSource AncestorType={x:Type ItemsControl}}" Path="ItemsSource"></Binding>
+                                                </MultiBinding>
+                                            </TextBlock.Text>
+                                        </TextBlock>
+                                        <TextBlock Text="{Binding Path=PrestionItemStatus}" Grid.Column="1" TextWrapping="Wrap" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=ItemCode}" Grid.Column="2"  FontSize="13" TextWrapping="Wrap"/>
+                                        <TextBlock Text="{Binding Path=ItemName}" Grid.Column="3" TextWrapping="Wrap" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=Quantity}" Grid.Column="4" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=QuantityUnit}" Grid.Column="5" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=DrugForm}" Grid.Column="6" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=Dosage}" Grid.Column="7" FontSize="13"/>
+                                        <TextBlock Text="{Binding Path=Frequency}" Grid.Column="8" TextWrapping="Wrap" FontSize="13"/>
+                                    </Grid>
+                                </DataTemplate>
+                            </ItemsControl.ItemTemplate>
+                        </ItemsControl>
+                        <!--<dxg:GridControl Grid.Row="1" Grid.Column="0"
                                      ItemsSource="{Binding Row.PrescriptionItems}"
                                      AutoGenerateColumns="None"
+                                     BorderThickness="0"
                                      MaxHeight="650"
                                      ShowBorder="False">
-                        <dxmvvm:Interaction.Behaviors>
-                            <helper:DeferredColumnFitBehavior/>
-                        </dxmvvm:Interaction.Behaviors>
-                        
-                        <dxg:GridControl.Columns>
-                            <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" >
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ ยา-เวชภัณฑ์" AllowGrouping="True" FieldName="ItemName" ReadOnly="True"
-                                            />
-                            <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Header="หน่วย" FieldName="QuantityUnit" ReadOnly="True"/>
-                            <dxg:GridColumn Header="Form" FieldName="DrugForm" ReadOnly="True"/>
-                            <dxg:GridColumn Header="วิธีใช้" FieldName="InstructionRoute" ReadOnly="True"/>
-                            <dxg:GridColumn Header="ปริมาณยาที่กิน" FieldName="Dosage" ReadOnly="True" >
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Header="Frequency" FieldName="Frequency" ReadOnly="True" Width="*"/>
-                        </dxg:GridControl.Columns>
-                        
-                        <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False" 
-                                           ShowCriteriaInAutoFilterRow="False"
-                                           ShowCheckBoxSelectorColumn="False"
-                                           ShowFilterPanelMode="Never"     
-                                           IsColumnMenuEnabled="false"  
-                                           IsRowCellMenuEnabled="false"  
-                                           IsGroupRowMenuEnabled="false"
-                                           IsTotalSummaryMenuEnabled="false"  
-                                           ShowBandsPanel="False"
-                                           AllowFilterEditor="False"
-                                           AllowColumnFiltering="False"
-                                           ShowGroupFooters="False"
-                                           ShowAutoFilterRow="False"
-                                           AllowSorting="False"
+                            <dxg:GridControl.Columns>
+                                <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" >
+                                    <dxg:GridColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding RowData.RowHandle.Value, ConverterParameter=1, Converter={StaticResource AddValueConverter}}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                                        </DataTemplate>
+                                    </dxg:GridColumn.CellTemplate>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn x:Name="colItemCode" Header="Code" 
+                                            Width="0.15*" MaxWidth="110"
+                                        FieldName="ItemCode" ReadOnly="True">
+                                </dxg:GridColumn>
+                                <dxg:GridColumn x:Name="colDrugname" Header="ชื่อ ยา-เวชภัณฑ์"
+                                            Width="0.60*" MaxWidth="300"
+                                        FieldName="ItemName" ReadOnly="True"/>
+                                <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True" Width="0.10*" 
+                                                MaxWidth="70">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="หน่วย" FieldName="QuantityUnit" ReadOnly="True" Width="0.25*" MaxWidth="80"/>
+                                <dxg:GridColumn Header="Form" FieldName="DrugForm" ReadOnly="True" Width="0.25*" MaxWidth="80"/>
+                                <dxg:GridColumn Header="Dosage" FieldName="Dosage" ReadOnly="True" Width="0.12*" MaxWidth="80">
+                                    <dxg:GridColumn.EditSettings>
+                                        <dxe:TextEditSettings HorizontalContentAlignment="Center"/>
+                                    </dxg:GridColumn.EditSettings>
+                                </dxg:GridColumn>
+                                <dxg:GridColumn Header="Frequency" FieldName="Frequency" ReadOnly="True" Width="0.60*" MaxWidth="400"/>
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" 
+                                   AllowBestFit="True"
+                                   
+                                   ShowCriteriaInAutoFilterRow="False"
+                                   ShowCheckBoxSelectorColumn="False"
+                                   ShowFilterPanelMode="Never"  
+                                   IsColumnMenuEnabled="false"  
+                                   IsRowCellMenuEnabled="false"  
+                                   IsGroupRowMenuEnabled="false"
+                                   IsTotalSummaryMenuEnabled="false"  
+                                   ShowBandsPanel="False"
+                                   AllowFilterEditor="False"
+                                   AllowColumnFiltering="False"
+                                   ShowGroupFooters="False"
+                                   ShowAutoFilterRow="False"
+                                   AllowSorting="False"
                                    ShowIndicator="False"
-                                   RowStyle="{StaticResource RowUnFocused}"
                                    HorizontalScrollbarVisibility="Hidden"
                                    VerticalScrollbarVisibility="Hidden"
-                                   ShowVerticalLines="False" ShowHorizontalLines="False"
-                                   >
-                                
-                                <dxg:TableView.ColumnHeaderStyle>
-                                    <Style TargetType="dxg:BaseGridHeader">
-                                        <Setter Property="dxg:BaseGridColumnHeader.BorderThickness" Value="0" />
-                                        <Setter Property="Background" Value="White" />
-                                        <Setter Property="Foreground" Value="Black" />
-                                        <Setter Property="FontWeight" Value="Bold" />
-                                        <Setter Property="BorderBrush" Value="White" />
-                                        <Setter Property="BorderThickness" Value="0"/>
-                                        
-                                    </Style>
-                                </dxg:TableView.ColumnHeaderStyle>
-                            </dxg:TableView>
-                        </dxg:GridControl.View>
-                    </dxg:GridControl>
+                                   ShowColumnHeaders="False"
+                                   ShowVerticalLines="False" ShowHorizontalLines="False">
+                                    <dxg:TableView.ColumnHeaderStyle>
+                                        <Style TargetType="dxg:BaseGridHeader">
+                                            <Setter Property="Background" Value="White" />
+                                            <Setter Property="Foreground" Value="Black" />
+                                            <Setter Property="FontWeight" Value="Bold" />
+                                            <Setter Property="BorderBrush" Value="White" />
+                                        </Style>
+                                    </dxg:TableView.ColumnHeaderStyle>
+                                </dxg:TableView>
+
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>-->
+                        <Grid Grid.Column="2" Grid.RowSpan="2" HorizontalAlignment="Right" VerticalAlignment="Top" Margin="0,0,15,0">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Print/PrintSticker.png"
+                                   Margin="0,0,10,0"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Print Sticker">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PrintStickerCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Medical/Medical Supply.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="คีย์ Order">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Source="/MediTech;component/Resources/Images/Other/PatientRecords.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="ประวัติผู้ป่วย">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                            </StackPanel>
+                        </Grid>
+                    </Grid>
+
                 </Grid>
             </dx:MeasurePixelSnapper>
         </DataTemplate>
         <ControlTemplate x:Key="detailContainerTemplate" TargetType="{x:Type ContentControl}">
-            <Border BorderThickness="0,1,0,0" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="10,5,10,5" Background="{TemplateBinding Background}">
+            <Border BorderThickness="0,1,0,0" BorderBrush="{TemplateBinding BorderBrush}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Padding="12,8,12,12" Background="{TemplateBinding Background}">
                 <ContentPresenter />
             </Border>
         </ControlTemplate>
@@ -208,39 +320,13 @@
                                    AllowScrollAnimation="True" 
                                    UseLightweightTemplates="None"
                                    NavigationStyle="Row"
-                                   RowDetailsVisibilityMode="Visible"
                                    DataRowTemplate="{StaticResource expandableRowDetailTemplate}"
                                    />
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup>
-                <dxlc:LayoutItem HorizontalAlignment="Left" Label="ปริ้นเตอร์">
-                    <dxe:ComboBoxEdit ItemsSource="{Binding PrinterLists}"
-                                      SelectedItem="{Binding SelectPrinter}"
-                        Width="180" Height="25"/>
-                </dxlc:LayoutItem>
 
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                    <dxlc:LayoutItem>
-                        <dx:SimpleButton Width="85" Command="{Binding ChangeStoreCommand}"
-                                         IsEnabled="{Binding }"
-                                     Height="25" >
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock Text="เปลี่ยนคลัง" VerticalAlignment="Center"/>
-                            </StackPanel>
-
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <dx:SimpleButton Width="85" Command="{Binding PrintDrugStickerCommand}"
-                                     Height="25" >
-                            <StackPanel  Orientation="Horizontal">
-                                <TextBlock Text="พิมพ์ฉลากยา" VerticalAlignment="Center"/>
-                            </StackPanel>
-
-                        </dx:SimpleButton>
-                    </dxlc:LayoutItem>
-
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding CancelDispenseCommand}"
                                      Height="25" >
@@ -252,10 +338,7 @@
                     </dxlc:LayoutItem>
 
 
-                    <dxlc:LayoutGroup Margin="10,0,0,0">
-                        <dxlc:LayoutItem>
-                            <dxe:CheckEdit IsChecked="{Binding IsPrintSticker}" Content="ปริ้นสติกเกอร์"/>
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup >
                         <dxlc:LayoutItem>
                             <dx:SimpleButton Width="85" Command="{Binding DispenseCommand}"
                                      Height="25" >

@@ -10,6 +10,8 @@
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
              xmlns:dxdo="http://schemas.devexpress.com/winfx/2008/xaml/docking"
              xmlns:local="clr-namespace:MediTech.Views"
+             xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
+             xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ModifyVisitPayorViewModel,Source={StaticResource Locator}}"
              Height="550" Width="1100"
@@ -19,25 +21,33 @@
             <TextBlock Text="Modify Payor" VerticalAlignment="Top" FontWeight="SemiBold" FontSize="18"/>
             <dxlc:LayoutGroup>
                 <dxn:NavBarControl Name="navBarControl"  HorizontalAlignment="Left">
-                    <dxn:NavBarGroup IsExpanded="True" Header="Patient Payor History" DisplaySource="Content">
+                    <dxn:NavBarGroup IsExpanded="False"  DisplaySource="Content">
                         <dxn:NavBarGroup.Content>
-                            <dxlc:LayoutControl Orientation="Vertical" Width="280" Height="Auto">
-                                <dx:DXTabControl>
-                                    <dx:DXTabItem Header="Payor in Demographics">
-                                        <dxg:GridControl MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}">
-                                            <dxg:GridControl.View>
-                                                <dxg:TableView ShowGroupPanel="False"/>
-                                            </dxg:GridControl.View>
-                                        </dxg:GridControl>
-                                    </dx:DXTabItem>
-                                    <dx:DXTabItem Header="Payor History">
-                                        <dxg:GridControl MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}">
-                                            <dxg:GridControl.View>
-                                                <dxg:TableView ShowGroupPanel="False"/>
-                                            </dxg:GridControl.View>
-                                        </dxg:GridControl>
-                                    </dx:DXTabItem>
-                                </dx:DXTabControl>
+                            <dxlc:LayoutControl Orientation="Vertical" Width="420" Height="Auto">
+                                <dxlc:LayoutItem>
+                                    <TextBlock Text="Payor in Demographics" FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+                                <dxg:GridControl MaxHeight="{x:Static SystemParameters.PrimaryScreenHeight}"
+                                                         ItemsSource="{Binding PatientInsuranceDetails}"
+                                                         SelectedItem="{Binding SelectPatientInsuranceDetail}">
+                                    <dxg:GridColumn Header="Payor" FieldName="InsuranceCompanyName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Agreement" FieldName="PayorAgreementName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Payor Office" FieldName="PayorName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Policy Name" FieldName="PolicyName" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Rank" FieldName="PayorType" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Fixed Copay Amount" FieldName="FixedCopayAmount" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="Claim Percentage" FieldName="ClaimPercentage" ReadOnly="True"/>
+                                    <dxg:GridControl.View>
+                                        <dxg:TableView ShowGroupPanel="False">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="RowDoubleClick">
+                                                    <mvvm:EventToCommand Command="{Binding RowDoubleClickCommand}" 
+                                                     PassEventArgsToCommand="True"/>
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxg:TableView>
+                                    </dxg:GridControl.View>
+                                </dxg:GridControl>
                             </dxlc:LayoutControl>
                         </dxn:NavBarGroup.Content>
                     </dxn:NavBarGroup>
@@ -146,11 +156,15 @@
                         <dxg:GridColumn Header="Active From" FieldName="Active From"/>
                         <dxg:GridColumn Header="Active To" FieldName="Active To"/>
                         <dxg:GridControl.View>
-                            <dxg:TableView ShowGroupPanel="False"
+                                <dxg:TableView ShowGroupPanel="False"
                                            RowStyle="{Binding BackgroundExpireStyle}"
                                            />
-                        </dxg:GridControl.View>
+                            </dxg:GridControl.View>
                     </dxg:GridControl>
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                            <dx:SimpleButton Height="25" Width="80" Content="บันทึก" Command="{Binding SaveCommand}"/>
+                            <dx:SimpleButton Height="25" Width="80" Content="ยกเลิก" Command="{Binding CancelCommand}"/>
+                        </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 </dxlc:LayoutControl>
             </dxlc:LayoutGroup>
