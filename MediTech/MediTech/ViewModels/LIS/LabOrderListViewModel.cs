@@ -143,17 +143,17 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectOrganisation, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -484,7 +484,7 @@ namespace MediTech.ViewModels
             var refValue = DataService.Technical.GetReferenceValueMany("ORDST");
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
             RequestStatus = refValue.Where(p => p.ValueCode == "RAISED"
                 || p.ValueCode == "REVIW"
@@ -514,7 +514,7 @@ namespace MediTech.ViewModels
             long? patientUID = null;
             string statusOrder = SelectRequestStatus != null ? SelectRequestStatus.Key.ToString() : "";
             int? requestItemUID = SelectRequestItem != null ? SelectRequestItem.RequestItemUID : (int?)null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
             int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {

@@ -67,8 +67,8 @@
             <dxlc:LayoutItem Label="Payor">
                 <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -84,7 +84,7 @@
                         <ControlTemplate>
                             <dxg:GridControl x:Name="PART_GridControl"  >
                                 <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
+                                    <dxg:GridColumn Name="colPayorName" FieldName="CompanyName"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.View>
                                     <dxg:TableView

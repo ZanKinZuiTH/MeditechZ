@@ -122,17 +122,17 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectOrganisation, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -405,7 +405,7 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
             DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
@@ -506,7 +506,7 @@ namespace MediTech.ViewModels
                     if (upperlimit > 0)
                     {
                         int ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
-                        int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+                        int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
                         int requestItemUID = SelectedRequestItem.RequestItemUID;
                         if (!ColumnsResultItems.Any(p => p.Header == "PatientName"))
                         {

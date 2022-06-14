@@ -374,7 +374,7 @@ namespace MediTechWebApi.Controllers
         public List<PatientInsuranceDetailModel> GetPatientInsuranceDetail(long patientUID)
         {
             List<PatientInsuranceDetailModel> data = db.PatientInsuranceDetail
-                .Where(p => p.StatusFlag == "A")
+                .Where(p => p.StatusFlag == "A" && p.PatientUID == patientUID)
                 .Select(p => new PatientInsuranceDetailModel
                 {
                     PatientInsuranceDetailUID = p.UID,
@@ -394,8 +394,9 @@ namespace MediTechWebApi.Controllers
                     ClaimPercentage = p.ClaimPercentage,
                     StartDttm = p.StartDttm,
                     EndDttm = p.EndDttm,
-                    EligibleAmount = p.EligibleAmount
-                }).OrderBy(p => p.PAYRTPUID).ToList();
+                    EligibleAmount = p.EligibleAmount,
+                    Comments = p.Comments
+                }).ToList();
             return data;
         }
 
@@ -488,6 +489,64 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+
+        [Route("ManagePatientInsurance")]
+        [HttpPost]
+        public HttpResponseMessage ManagePatientInsurance(List<PatientInsuranceDetailModel> patientInsuranceDetails, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                foreach (var patientInsurance in patientInsuranceDetails)
+                {
+                    PatientInsuranceDetail detail = db.PatientInsuranceDetail.Find(patientInsurance.PatientInsuranceDetailUID);
+                    if (detail == null)
+                    {
+                        detail = new PatientInsuranceDetail();
+                        detail.CUser = userUID;
+                        detail.CWhen = now;
+                    }
+
+                    detail.PatientUID = patientInsurance.PatientUID;
+                    detail.PatientVisitUID = patientInsurance.PatientVisitUID;
+                    detail.PayorDetailUID = patientInsurance.PayorDetailUID;
+                    detail.PolicyName = patientInsurance.PolicyName;
+                    detail.InsuranceCompanyUID = patientInsurance.InsuranceCompanyUID;
+                    detail.InsuranceCompanyName = patientInsurance.InsuranceCompanyName;
+                    detail.PAYRTPUID = patientInsurance.PAYRTPUID;
+                    detail.PolicyMasterUID = patientInsurance.PolicyMasterUID;
+                    detail.EligibleAmount = patientInsurance.EligibleAmount;
+                    detail.StartDttm = patientInsurance.StartDttm;
+                    detail.EndDttm = patientInsurance.EndDttm;
+                    detail.Comments = patientInsurance.Comments;
+                    detail.StatusFlag = patientInsurance.StatusFlag.ToString();
+                    detail.PayorAgreementUID = patientInsurance.PayorAgreementUID;
+                    detail.PayorName = patientInsurance.PayorName;
+                    detail.PayorAgreementName = patientInsurance.PayorAgreementName;
+                    detail.ClaimPercentage = patientInsurance.ClaimPercentage;
+                    if (detail.ClaimPercentage == 0)
+                        detail.ClaimPercentage = null;
+                    detail.FixedCopayAmount = patientInsurance.FixedCopayAmount;
+                    if (detail.FixedCopayAmount == 0)
+                        detail.FixedCopayAmount = null;
+
+                    detail.OwnerOrganisationUID = patientInsurance.OwnerOrganisationUID;
+                    detail.MUser = userUID;
+                    detail.MWhen = now;
+
+                    db.PatientInsuranceDetail.AddOrUpdate(detail);
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
 
         [Route("SearchPatient")]
         [HttpGet]
@@ -879,10 +938,10 @@ namespace MediTechWebApi.Controllers
         [Route("SearchPatientVisit")]
         [HttpGet]
         public List<PatientVisitModel> SearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-            , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-            , int? payorDetailUID, int? checkupJobUID)
+            , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+            , int? payorDetailUID, int? checkupJobUID, string encounter)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, payorDetailUID, checkupJobUID, encounter);
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
@@ -1146,6 +1205,21 @@ namespace MediTechWebApi.Controllers
                         db.PatientAEAdmission.Add(aEAdmission);
                         db.SaveChanges();
                     }
+
+                    #region PatientServiceEvent
+                    PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                    serviceEvent.PatientVisitUID = patientVisit.UID;
+                    serviceEvent.EventStartDttm = now;
+                    serviceEvent.VISTSUID = patientVisit.VISTSUID ?? 0;
+                    serviceEvent.LocationUID = patientVisitInfo.LocationUID;
+                    serviceEvent.MUser = userID;
+                    serviceEvent.MWhen = now;
+                    serviceEvent.CUser = userID;
+                    serviceEvent.CWhen = now;
+                    serviceEvent.StatusFlag = "A";
+
+                    db.PatientServiceEvent.Add(serviceEvent);
+                    #endregion
 
                     #region Patient
                     Patient patient = db.Patient.Find(patientVisit.PatientUID);
@@ -2763,6 +2837,53 @@ namespace MediTechWebApi.Controllers
 
         #endregion
 
+        #region Patient DemographicLog
+
+        [Route("GetPatientDemographicLogByUID")]
+        [HttpGet]
+        public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(long patientUID)
+        {
+            List<PatientDemographicLogModel> data = db.PatientDemographicLog.Where(p => p.PatientUID == patientUID && p.StatusFlag == "A")
+                .Select(p => new PatientDemographicLogModel()
+                    {
+                        UID = p.UID,
+                        PatientUID = p.PatientUID ?? 0,
+                        FiledName = p.FiledName,
+                        TableName = p.TableName,
+                        OldValue = p.OldValue,
+                        Modifiedby = p.Modifiedby ?? 0,
+                        ModifiedDttm = p.ModifiedDttm,
+                        ModifiedbyName = SqlFunction.fGetCareProviderName(p.Modifiedby ?? 0)
+                    }).OrderByDescending(p => p.ModifiedDttm).ToList();
+
+            return data;
+        }
+
+        #endregion
+
+        #region Patient Tracking
+
+        [Route("GetPatientServiceEventByUID")]
+        [HttpGet]
+        public List<PatientServiceEventModel> GetPatientServiceEventByUID(long patientVisitUID)
+        {
+            List<PatientServiceEventModel> data = db.PatientServiceEvent.Where(p => p.PatientVisitUID== patientVisitUID && p.StatusFlag == "A")
+                .Select(p => new PatientServiceEventModel()
+                {
+                    PatientServiceEventUID = p.UID,
+                    PatientVistUID = p.PatientVisitUID,
+                    EventStartDttm = p.EventStartDttm,
+                    VISTSUID = p.VISTSUID,
+                    VisitStatus = SqlFunction.fGetRfValDescription(p.VISTSUID),
+                    LocationUID = p.LocationUID ?? 0,
+                    Location = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
+                    UserName = SqlFunction.fGetCareProviderName(p.CUser)
+                }).OrderByDescending(p => p.EventStartDttm).ToList();
+
+            return data;
+        }
+
+        #endregion
 
         public static Dictionary<string, List<string>> GenerateAuditLogMessages(object originalObject, object changedObject)
         {

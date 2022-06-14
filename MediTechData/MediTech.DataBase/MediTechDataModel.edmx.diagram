@@ -199,6 +199,8 @@
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateCondition" Width="1.5" PointX="46.75" PointY="31.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateConditionDetail" Width="1.5" PointX="46.75" PointY="35.75" />
         <EntityTypeShape EntityType="MediTechModel.XrayTranslateMapping" Width="1.5" PointX="46.75" PointY="39.75" />
+        <EntityTypeShape EntityType="MediTechModel.OrderCategory" Width="1.5" PointX="0.75" PointY="47.75" />
+        <EntityTypeShape EntityType="MediTechModel.OrderSubCategory" Width="1.5" PointX="2.75" PointY="47.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

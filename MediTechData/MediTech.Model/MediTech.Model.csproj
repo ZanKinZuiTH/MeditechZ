@@ -45,6 +45,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Billing\BillConfigurationModel.cs" />
+    <Compile Include="Billing\BillPackageDetailModel.cs" />
+    <Compile Include="Billing\BillPackageModel.cs" />
     <Compile Include="Billing\PolicyMasterModel.cs" />
     <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
@@ -81,6 +83,8 @@
     <Compile Include="Billing\InsuranceCompanyModel.cs" />
     <Compile Include="Billing\InsurancePlanModel.cs" />
     <Compile Include="MasterData\LocationModel.cs" />
+    <Compile Include="MasterData\OrderCategoryModel.cs" />
+    <Compile Include="MasterData\OrderSubCategoryModel.cs" />
     <Compile Include="MasterData\RequestItemSpecimenModel.cs" />
     <Compile Include="MasterData\RequestResultLinkModel.cs" />
     <Compile Include="MasterData\ResultItemModel.cs" />
@@ -141,11 +145,13 @@
     <Compile Include="Patient\PatientAEAdmissionModel.cs" />
     <Compile Include="Patient\PatientAllergyModel.cs" />
     <Compile Include="Patient\PatientBannerModel.cs" />
+    <Compile Include="Patient\PatientDemographicLogModel.cs" />
     <Compile Include="Patient\PatientInsuranceDetailModel.cs" />
     <Compile Include="Patient\PatientMergeDetailModel.cs" />
     <Compile Include="Patient\PatientMergeEcounterModel.cs" />
     <Compile Include="Patient\PatientMergeModel.cs" />
     <Compile Include="Patient\PatientScannedDocumentModel.cs" />
+    <Compile Include="Patient\PatientServiceEventModel.cs" />
     <Compile Include="Patient\PatientVisitIDModel.cs" />
     <Compile Include="Patient\PatientVisitPayorModel.cs" />
     <Compile Include="Patient\VIPPatientModel.cs" />
