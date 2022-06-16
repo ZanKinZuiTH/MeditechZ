@@ -632,8 +632,12 @@
           <Property Name="BatchID" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="StockUID" Type="int" Nullable="false" />
           <Property Name="ExpiryDttm" Type="datetime" />
+          <Property Name="ItemCost" Type="float" />
           <Property Name="ORDSTUID" Type="int" />
           <Property Name="DispensedDttm" Type="datetime" Nullable="false" />
+          <Property Name="TotalBFQty" Type="float" />
+          <Property Name="BFQty" Type="float" />
+          <Property Name="PatientOrderDetailUID" Type="bigint" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -1382,6 +1386,22 @@
           <Property Name="OwnerOrganisationCode" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Status" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Code" Type="nvarchar" MaxLength="50" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
         <EntityType Name="OrderSet">
           <Key>
             <PropertyRef Name="UID" />
@@ -1423,6 +1443,22 @@
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OrderSubCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="500" />
+          <Property Name="Description" Type="nvarchar" MaxLength="500" />
+          <Property Name="DisplayOrder" Type="int" />
+          <Property Name="OrderCategoryUID" Type="int" Nullable="false" />
+          <Property Name="CUser" Type="int" Nullable="false" />
+          <Property Name="CWhen" Type="datetime" Nullable="false" />
+          <Property Name="MUser" Type="int" Nullable="false" />
+          <Property Name="MWhen" Type="datetime" Nullable="false" />
+          <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
+          <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
         </EntityType>
         <EntityType Name="PageView">
           <Key>
@@ -4131,8 +4167,15 @@
           <Parameter Name="P_DrugCatalogItemUID" Type="int" Mode="In" />
           <Parameter Name="P_InTypeUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fGetFrequencyDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_FrequencyUID" Type="int" Mode="In" />
+          <Parameter Name="P_Language" Type="varchar" Mode="In" />
+        </Function>
         <Function Name="fGetHealthOrganisationName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="fGetInsuranceCompanyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_InsuranceComapnyUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetInvestigationString" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar(max)">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -4184,6 +4227,9 @@
         <Function Name="fGetPatientNewOrOldStatus" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_LastVisitUID" Type="bigint" Mode="In" />
+        </Function>
+        <Function Name="fGetPayorAgreementName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
+          <Parameter Name="P_PayorAgreementUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetPayorName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PayorDetailUID" Type="int" Mode="In" />
@@ -4904,6 +4950,7 @@
         </Function>
         <Function Name="pSearchStockBatch" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
+          <Parameter Name="P_LocationUID" Type="int" Mode="In" />
           <Parameter Name="P_StoreUID" Type="int" Mode="In" />
           <Parameter Name="P_ItemType" Type="int" Mode="In" />
           <Parameter Name="P_ItemCode" Type="nvarchar" Mode="In" />
@@ -5023,8 +5070,10 @@
           <EntitySet Name="MediTechInterface" EntityType="Self.MediTechInterface" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="Self.MediTechInterfaceDetail" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="NotificationTaskResult" EntityType="Self.NotificationTaskResult" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderCategory" EntityType="Self.OrderCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderSet" EntityType="Self.OrderSet" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="OrderSetBillableItem" EntityType="Self.OrderSetBillableItem" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderSubCategory" EntityType="Self.OrderSubCategory" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageView" EntityType="Self.PageView" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageViewModule" EntityType="Self.PageViewModule" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PageViewPermission" EntityType="Self.PageViewPermission" Schema="dbo" store:Type="Tables" />
@@ -5895,6 +5944,7 @@
           </FunctionImport>
           <FunctionImport Name="pSearchStockBatch" ReturnType="Collection(MediTechModel.pSearchStockBatch_Result)">
             <Parameter Name="P_OwnerOrganisationUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_LocationUID" Mode="In" Type="Int32" />
             <Parameter Name="P_StoreUID" Mode="In" Type="Int32" />
             <Parameter Name="P_ItemType" Mode="In" Type="Int32" />
             <Parameter Name="P_ItemCode" Mode="In" Type="String" />
@@ -6349,6 +6399,8 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
+          <EntitySet Name="OrderCategory" EntityType="MediTechModel.OrderCategory" />
+          <EntitySet Name="OrderSubCategory" EntityType="MediTechModel.OrderSubCategory" />
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -9316,8 +9368,12 @@
           <Property Name="BatchID" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="StockUID" Type="Int32" Nullable="false" />
           <Property Name="ExpiryDttm" Type="DateTime" Precision="3" />
+          <Property Name="ItemCost" Type="Double" />
           <Property Name="ORDSTUID" Type="Int32" />
           <Property Name="DispensedDttm" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="TotalBFQty" Type="Double" />
+          <Property Name="BFQty" Type="Double" />
+          <Property Name="PatientOrderDetailUID" Type="Int64" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -12729,6 +12785,38 @@
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
         </EntityType>
+        <EntityType Name="OrderCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OrderSubCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="OrderCategoryUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -15148,8 +15236,12 @@
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
+                <ScalarProperty Name="BFQty" ColumnName="BFQty" />
+                <ScalarProperty Name="TotalBFQty" ColumnName="TotalBFQty" />
                 <ScalarProperty Name="DispensedDttm" ColumnName="DispensedDttm" />
                 <ScalarProperty Name="ORDSTUID" ColumnName="ORDSTUID" />
+                <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
                 <ScalarProperty Name="ExpiryDttm" ColumnName="ExpiryDttm" />
                 <ScalarProperty Name="StockUID" ColumnName="StockUID" />
                 <ScalarProperty Name="BatchID" ColumnName="BatchID" />
@@ -18726,6 +18818,40 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="ThaiResult" ColumnName="ThaiResult" />
                 <ScalarProperty Name="EngResult" ColumnName="EngResult" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderCategory">
+            <EntityTypeMapping TypeName="MediTechModel.OrderCategory">
+              <MappingFragment StoreEntitySet="OrderCategory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSubCategory">
+            <EntityTypeMapping TypeName="MediTechModel.OrderSubCategory">
+              <MappingFragment StoreEntitySet="OrderSubCategory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>

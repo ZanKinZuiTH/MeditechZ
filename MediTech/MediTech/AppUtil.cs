@@ -129,6 +129,14 @@ namespace MediTech
             set { _CareproviderOrganisations = value; }
         }
 
+        private List<CareproviderLocationModel> _CareproviderLocations;
+
+        public List<CareproviderLocationModel> CareproviderLocations
+        {
+            get { return _CareproviderLocations; }
+            set { _CareproviderLocations = value; }
+        }
+
         private string _ApplicationVersion;
 
         public string ApplicationVersion

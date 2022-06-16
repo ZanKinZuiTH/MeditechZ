@@ -107,8 +107,8 @@
                     <dxlc:LayoutItem Label="Payor">
                         <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -129,7 +129,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                        <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                     </dxg:GridControl>
                                 </ControlTemplate>
                             </dxg:LookUpEdit.PopupContentTemplate>
@@ -144,7 +144,6 @@
                                 <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
                                 <dx:SimpleButton Command="{Binding ClearCommand}" Content="คื่นค่า" Height="25" Width="80"/>
                             </dxlc:LayoutGroup>
-
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>

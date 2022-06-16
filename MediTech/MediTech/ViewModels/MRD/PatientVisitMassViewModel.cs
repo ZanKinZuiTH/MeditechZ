@@ -156,17 +156,17 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -541,7 +541,7 @@ namespace MediTech.ViewModels
             Organisations = GetHealthOrganisationRoleMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
 
             Careproviders = DataService.UserManage.GetCareproviderAll();
@@ -598,8 +598,8 @@ namespace MediTech.ViewModels
 
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            int? payorDetailUID = (SelectPayorDetail != null && SelectPayorDetail.PayorDetailUID != 0) ? SelectPayorDetail.PayorDetailUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID, null));
+            int? payorDetailUID = (SelectPayorDetail != null && SelectPayorDetail.InsuranceCompanyUID != 0) ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,null, payorDetailUID, null, ""));
 
         }
 

@@ -85,6 +85,7 @@ namespace MediTech.ViewModels
 
             return Owngra;
         }
+
         public List<HealthOrganisationModel> GetHealthOrganisationMedical()
         {
             var Owngra = DataService.MasterData.GetHealthOrganisationActive();
@@ -108,6 +109,20 @@ namespace MediTech.ViewModels
             }
 
             return Owngra;
+        }
+
+
+        public List<LocationModel> GetLocatioinRole()
+        {
+            var locations = DataService.MasterData.GetLocationByOrganisationUID(AppUtil.Current.OwnerOrganisationUID);
+            if (locations != null)
+            {
+                locations = (from j in locations
+                             join i in AppUtil.Current.CareproviderLocations on j.LocationUID equals i.LocationUID
+                          select j).ToList();
+            }
+
+            return locations;
         }
 
         public List<HealthOrganisationModel> GetHealthOrganisationIsStock()

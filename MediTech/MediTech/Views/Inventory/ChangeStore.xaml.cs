@@ -10,25 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace MediTech.Views
+namespace MediTech.Views.Inventory
 {
     /// <summary>
-    /// Interaction logic for SendToBed.xaml
+    /// Interaction logic for ChangeStore.xaml
     /// </summary>
-    public partial class SendToBed : Window
+    public partial class ChangeStore : UserControl
     {
-        public ActionDialog ResultDialog = ActionDialog.Cancel;
-
-        public SendToBed()
+        public ChangeStore()
         {
             InitializeComponent();
         }
-        void PatientStatus_Loaded(object sender, RoutedEventArgs e)
-        {
-
-        }
-
     }
 }

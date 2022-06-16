@@ -68,8 +68,8 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
-        public PayorDetailModel SelectPayorDetail
+        private InsuranceCompanyModel _SelectPayorDetail;
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set
@@ -77,7 +77,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPayorDetail, value);
                 if (_SelectPayorDetail != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -100,8 +100,8 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PayorDetailModel> _PayorDetails;
-        public List<PayorDetailModel> PayorDetails
+        private List<InsuranceCompanyModel> _PayorDetails;
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
@@ -250,7 +250,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
             PrinterLists = new List<string>();
             PrintDocument printDoc = new PrintDocument();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
@@ -321,7 +321,7 @@ namespace MediTech.ViewModels
         void Search()
         {
             long? patientUID = null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)

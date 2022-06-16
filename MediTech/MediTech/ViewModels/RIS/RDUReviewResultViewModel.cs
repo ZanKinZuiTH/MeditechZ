@@ -194,16 +194,89 @@ namespace MediTech.ViewModels
         {
             if (PatientRequest != null)
             {
-                PACSWorkList pacs = new PACSWorkList();
-                PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
-                pacsViewModel.PatientID = PatientRequest.PatientID;
-                pacsViewModel.DateFrom = null;
-                pacsViewModel.DateTo = PatientRequest.PreparedDttm != null ? PatientRequest.PreparedDttm : PatientRequest.RequestedDttm;
-                pacsViewModel.IsCheckedPeriod = true;
-                pacsViewModel.Modality = PatientRequest.Modality;
-                pacsViewModel.IsOpenFromExam = true;
-                System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
-                LaunchViewShow(pacs, owner, "PACS", false, true);
+                string modlity;
+                if (PatientRequest.Modality == "MG")
+                {
+                    modlity = "'MG','US'";
+                }
+                else if (PatientRequest.Modality == "DX")
+                {
+                    modlity = "'DX','CR'";
+                }
+                else
+                {
+                    modlity = "'" + PatientRequest.Modality + "'";
+                }
+
+                DateTime? dateFrom = PatientRequest.PreparedDttm != null ? PatientRequest.PreparedDttm : PatientRequest.RequestedDttm;
+                DateTime? dateTo = PatientRequest.PreparedDttm != null ? PatientRequest.PreparedDttm : PatientRequest.RequestedDttm;
+
+                var StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+      modlity, null, PatientRequest.PatientID, null, null, null, null, null);
+
+                if (StudiesList != null && StudiesList.Count == 1)
+                {
+                    string url = PACSHelper.GetPACSViewerStudyUrl(StudiesList.FirstOrDefault().StudyInstanceUID);
+                    PACSHelper.OpenPACSViewer(url);
+                }
+                else if (StudiesList != null && StudiesList.Count > 1)
+                {
+                    PACSWorkList pacs = new PACSWorkList();
+                    PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
+                    pacsViewModel.PatientID = PatientRequest.PatientID;
+                    pacsViewModel.DateFrom = dateFrom;
+                    pacsViewModel.DateTo = dateTo;
+                    pacsViewModel.IsCheckedPeriod = true;
+                    pacsViewModel.Modality = PatientRequest.Modality;
+                    pacsViewModel.StudiesList = StudiesList;
+                    System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                    LaunchViewShow(pacs, owner, "PACS", false, true);
+                }
+                else
+                {
+
+                    dateFrom = dateTo?.AddDays(-15);
+
+                    StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+                        modlity, null, PatientRequest.PatientID, null, null, null, null, null);
+                    if (StudiesList != null && StudiesList.Count == 1)
+                    {
+                        string url = PACSHelper.GetPACSViewerStudyUrl(StudiesList.FirstOrDefault().StudyInstanceUID);
+                        PACSHelper.OpenPACSViewer(url);
+                    }
+                    else if (StudiesList != null && StudiesList.Count > 1)
+                    {
+                        PACSWorkList pacs = new PACSWorkList();
+                        PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
+                        pacsViewModel.PatientID = PatientRequest.PatientID;
+                        pacsViewModel.DateFrom = dateFrom;
+                        pacsViewModel.DateTo = dateTo;
+                        pacsViewModel.IsCheckedPeriod = true;
+                        pacsViewModel.Modality = PatientRequest.Modality;
+                        pacsViewModel.StudiesList = StudiesList;
+                        System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                        LaunchViewShow(pacs, owner, "PACS", false, true);
+                    }
+                    else
+                    {
+                        dateFrom = null;
+                        dateTo = null;
+                        StudiesList = DataService.PACS.SearchPACSWorkList(dateFrom, dateTo,
+                            modlity, null, PatientRequest.PatientID, null, null, null, null, null);
+
+                        PACSWorkList pacs = new PACSWorkList();
+                        PACSWorkListViewModel pacsViewModel = (pacs.DataContext as PACSWorkListViewModel);
+                        pacsViewModel.PatientID = PatientRequest.PatientID;
+                        pacsViewModel.DateFrom = dateFrom;
+                        pacsViewModel.DateTo = dateTo;
+                        pacsViewModel.IsCheckedPeriod = true;
+                        pacsViewModel.Modality = PatientRequest.Modality;
+                        pacsViewModel.StudiesList = StudiesList;
+                        pacsViewModel.IsOpenFromExam = true;
+                        System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                        LaunchViewShow(pacs, owner, "PACS", false, true);
+                    }
+                }
             }
 
         }

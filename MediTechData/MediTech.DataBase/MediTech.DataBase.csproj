@@ -252,10 +252,16 @@
     <Compile Include="NotificationTaskResult.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="OrderCategory.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="OrderSet.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="OrderSetBillableItem.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="OrderSubCategory.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="PageView.cs">

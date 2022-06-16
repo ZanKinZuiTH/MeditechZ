@@ -24,8 +24,12 @@ namespace MediTech.DataBase
         public string BatchID { get; set; }
         public int StockUID { get; set; }
         public Nullable<System.DateTime> ExpiryDttm { get; set; }
+        public Nullable<double> ItemCost { get; set; }
         public Nullable<int> ORDSTUID { get; set; }
         public System.DateTime DispensedDttm { get; set; }
+        public Nullable<double> TotalBFQty { get; set; }
+        public Nullable<double> BFQty { get; set; }
+        public Nullable<long> PatientOrderDetailUID { get; set; }
         public string Comments { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

@@ -25,17 +25,17 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set
@@ -43,7 +43,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectPayorDetail, value);
                 if (SelectPayorDetail != null)
                 {
-                    CompanyName = SelectPayorDetail.PayorName;
+                    CompanyName = SelectPayorDetail.CompanyName;
                 }
             }
         }
@@ -233,7 +233,7 @@ namespace MediTech.ViewModels
 
         public ManageCheckupJobViewModel()
         {
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
             GroupResults = DataService.Technical.GetReferenceValueMany("GPRST");
             GroupResults = GroupResults?.OrderBy(p => p.DisplayOrder).ToList();
             CheckupService = new List<LookupItemModel>();
@@ -314,7 +314,7 @@ namespace MediTech.ViewModels
             }
 
             modelCheckupJobContact.JobNumber = JobNumber;
-            modelCheckupJobContact.PayorDetailUID = SelectPayorDetail.PayorDetailUID;
+            modelCheckupJobContact.PayorDetailUID = SelectPayorDetail.InsuranceCompanyUID;
             modelCheckupJobContact.CompanyName = CompanyName;
             modelCheckupJobContact.Description = Description;
             modelCheckupJobContact.Location = Location;
@@ -334,7 +334,7 @@ namespace MediTech.ViewModels
         public void AssignModelToProperties()
         {
             JobNumber = modelCheckupJobContact.JobNumber;
-            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == modelCheckupJobContact.PayorDetailUID);
+            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.InsuranceCompanyUID == modelCheckupJobContact.PayorDetailUID);
             CompanyName = modelCheckupJobContact.CompanyName;
             Description = modelCheckupJobContact.Description;
             Location = modelCheckupJobContact.Location;

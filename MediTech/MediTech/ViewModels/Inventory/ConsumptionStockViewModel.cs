@@ -315,7 +315,7 @@ namespace MediTech.ViewModels
                 return;
             }
             int? itemType = SelectItemType != null ? SelectItemType.Key : (int?)null;
-            CurrentStock = DataService.Inventory.SearchStockBatch(SelectOrganisation.HealthOrganisationUID, SelectStore.StoreUID, itemType, ItemCode, ItemName);
+            CurrentStock = DataService.Inventory.SearchStockBatch(SelectOrganisation.HealthOrganisationUID, SelectLocation.LocationUID, SelectStore.StoreUID, itemType, ItemCode, ItemName);
         }
 
         private void Save()

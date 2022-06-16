@@ -36,7 +36,30 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
-                    Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
+                    Locations = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisation.HealthOrganisationUID);
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
+                if (_SelectLocation != null)
+                {
+                    Stores = DataService.Inventory.GetStoreByLocationUID(_SelectLocation.LocationUID);
                 }
             }
         }
@@ -277,7 +300,7 @@ namespace MediTech.ViewModels
                 return;
             }
             int? itemType = SelectItemType != null ? SelectItemType.Key : (int?)null;
-            CurrentStock = DataService.Inventory.SearchStockBatch(SelectOrganisation.HealthOrganisationUID, SelectStore.StoreUID, itemType,ItemCode,ItemName);
+            CurrentStock = DataService.Inventory.SearchStockBatch(SelectOrganisation.HealthOrganisationUID,SelectLocation.LocationUID, SelectStore.StoreUID, itemType,ItemCode,ItemName);
         }
 
         private void Clear()

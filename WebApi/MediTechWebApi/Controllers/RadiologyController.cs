@@ -349,7 +349,7 @@ namespace MediTechWebApi.Controllers
                                            && rsr.StatusFlag == "A"
                                            && pa.StatusFlag == "A"
                                            && pa.PatientID == patientID
-                                           && (payorDetailUID == null || pvp.PayorDetailUID == payorDetailUID)
+                                           && (payorDetailUID == null || pvp.InsuranceCompanyUID == payorDetailUID)
                                            && (string.IsNullOrEmpty(itemName) || rs.RequestItemName.ToLower().Contains(itemName.ToLower()))
                                            && (RABSTSUID == null || rs.RABSTSUID == RABSTSUID)
                                            && (dateFrom == null || DbFunctions.TruncateTime(rs.ResultEnteredDttm) >= DbFunctions.TruncateTime(dateFrom))

@@ -1144,7 +1144,7 @@ namespace MediTechWebApi.Controllers
                     {
                         BillableItemDetailUID = p.UID,
                         BillableItemUID = p.BillableItemUID,
-                        ActiveFrom = p.ActiveFrom,
+                        ActiveFrom = p.ActiveFrom ,
                         ActiveTo = p.ActiveTo,
                         Price = p.Price,
                         Cost = p.Cost ?? 0,
@@ -2089,6 +2089,42 @@ namespace MediTechWebApi.Controllers
             return data;
         }
         #endregion
+
+        #endregion
+
+        #region OrderCategory
+        [Route("GetOrderCategory")]
+        [HttpGet]
+        public List<OrderCategoryModel> GetOrderCategory()
+        {
+            var data = db.OrderCategory.Where(p => p.StatusFlag == "A").Select(p => new OrderCategoryModel()
+            {
+                OrderCategoryUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                Code = p.Code,
+                DisplayOrder = p.DisplayOrder ?? 1
+            }).ToList();
+
+            return data;
+        }
+
+        [Route("GetOrderSubCategoryByUID")]
+        [HttpGet]
+        public List<OrderSubCategoryModel> GetOrderSubCategoryByUID(int orderCateogoryUID)
+        {
+            var data = db.OrderSubCategory.Where(p => p.StatusFlag == "A" && p.OrderCategoryUID == orderCateogoryUID)
+            .Select(p => new OrderSubCategoryModel()
+            {
+                OrderSubCategoryUID = p.UID,
+                OrderCategoryUID = p.OrderCategoryUID,
+                Name = p.Name,
+                Description = p.Description,
+                DisplayOrder = p.DisplayOrder ?? 1
+            }).ToList();
+
+            return data;
+        }
 
         #endregion
 

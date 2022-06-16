@@ -219,6 +219,8 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateCondition> XrayTranslateCondition { get; set; }
         public virtual DbSet<XrayTranslateConditionDetail> XrayTranslateConditionDetail { get; set; }
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
+        public virtual DbSet<OrderCategory> OrderCategory { get; set; }
+        public virtual DbSet<OrderSubCategory> OrderSubCategory { get; set; }
     
         [DbFunction("MediTechEntities", "splitstring")]
         public virtual IQueryable<splitstring_Result> splitstring(string stringToSplit)
@@ -2737,11 +2739,15 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetOrderDrugByPatientUID_Result>("pGetOrderDrugByPatientUID", p_PatientUIDParameter, p_DateFromParameter, p_DateToParameter);
         }
     
-        public virtual ObjectResult<pSearchStockBatch_Result> pSearchStockBatch(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_StoreUID, Nullable<int> p_ItemType, string p_ItemCode, string p_ItemName)
+        public virtual ObjectResult<pSearchStockBatch_Result> pSearchStockBatch(Nullable<int> p_OwnerOrganisationUID, Nullable<int> p_LocationUID, Nullable<int> p_StoreUID, Nullable<int> p_ItemType, string p_ItemCode, string p_ItemName)
         {
             var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
                 new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
                 new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
     
             var p_StoreUIDParameter = p_StoreUID.HasValue ?
                 new ObjectParameter("P_StoreUID", p_StoreUID) :
@@ -2759,7 +2765,7 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_ItemName", p_ItemName) :
                 new ObjectParameter("P_ItemName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockBatch_Result>("pSearchStockBatch", p_OwnerOrganisationUIDParameter, p_StoreUIDParameter, p_ItemTypeParameter, p_ItemCodeParameter, p_ItemNameParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockBatch_Result>("pSearchStockBatch", p_OwnerOrganisationUIDParameter, p_LocationUIDParameter, p_StoreUIDParameter, p_ItemTypeParameter, p_ItemCodeParameter, p_ItemNameParameter);
         }
     
         public virtual ObjectResult<pRPTCheckupBook_Result> pRPTCheckupBook(Nullable<long> p_PatientUID, Nullable<long> p_PayorDetailUID)

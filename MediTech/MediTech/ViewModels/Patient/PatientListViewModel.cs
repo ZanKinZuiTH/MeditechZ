@@ -22,31 +22,26 @@ namespace MediTech.ViewModels
 
         public bool IsEditDate { get; set; }
 
-        private List<LookupReferenceValueModel> _EncounterType;
-        public List<LookupReferenceValueModel> EncounterType
-        {
-            get { return _EncounterType; }
-            set { Set(ref _EncounterType, value); }
-        }
+        public ObservableCollection<LookupReferenceValueModel> EncounterType { get; set; }
 
-        private LookupReferenceValueModel _SelectEncounterType;
-        public LookupReferenceValueModel SelectEncounterType
+        private List<object> _SelectEncounterType;
+        public List<object> SelectEncounterType
         {
-            get { return _SelectEncounterType; }
+            get { return _SelectEncounterType ?? (_SelectEncounterType = new List<object>()); }
             set { Set(ref _SelectEncounterType, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -171,9 +166,42 @@ namespace MediTech.ViewModels
         public HealthOrganisationModel SelectOrganisation
         {
             get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            set { Set(ref _SelectOrganisation, value); 
+                if(SelectOrganisation != null)
+                {
+                    Location = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
+                    
+                }
+                else
+                {
+                    Location = null;
+                    SelectLocation = null;
+                }
+            }
         }
 
+        private List<LocationModel> _Location;
+        public List<LocationModel> Location
+        {
+            get { return _Location; }
+            set { Set(ref _Location, value);
+            if(Location != null)
+                {
+                    var data = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+                    if(data != null)
+                    {
+                        SelectLocation = Location.FirstOrDefault(p => p.LocationUID == data.LocationUID);
+                    }
+                }
+            }
+        }
+
+        private LocationModel _SelectLocation;
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
+        }
 
         #endregion
 
@@ -272,6 +300,20 @@ namespace MediTech.ViewModels
         {
             get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
         }
+        
+        private RelayCommand _PatientTrackingCommand;
+        public RelayCommand PatientTrackingCommand
+        {
+            get { return _PatientTrackingCommand ?? (_PatientTrackingCommand = new RelayCommand(PatientTracking)); }
+        }
+
+        private RelayCommand _ModifyVisitPayorCommand;
+        public RelayCommand ModifyVisitPayorCommand
+        {
+            get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
+        }
+
+        
 
         #endregion
 
@@ -289,8 +331,8 @@ namespace MediTech.ViewModels
 
         public PatientListViewModel()
         {
-            EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
-            SelectEncounterType = EncounterType.Find(p => p.ValueCode == "OUPAT");
+            EncounterType = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("ENTYP"));
+            SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
             SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
@@ -300,10 +342,11 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
+            
 
             Organisations = GetHealthOrganisationMedical();
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
         }
 
@@ -330,10 +373,28 @@ namespace MediTech.ViewModels
                 }
             }
 
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+            string encounterList = string.Empty;
+            if (SelectEncounterType != null)
+            {
+                foreach (object item in SelectEncounterType)
+                {
+                    if (encounterList == "")
+                    {
+                        encounterList = item.ToString();
+                    }
+                    else
+                    {
+                        encounterList += "," + item.ToString();
+
+                    }
+                }
+            }
+
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID,null));
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, payorDetailUID,null, encounterList));
         }
 
         private void VitalSign()
@@ -374,6 +435,29 @@ namespace MediTech.ViewModels
                 {
                     SaveSuccessDialog();
                     SearchPatientVisit();
+                }
+            }
+        }
+
+        private void ModifyVisitPayor()
+        {
+            if (SelectPatientVisit != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
+                    return;
+                }
+                ModifyVisitPayor pageview = new ModifyVisitPayor();
+                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
                 }
             }
         }
@@ -495,8 +579,6 @@ namespace MediTech.ViewModels
         {
             if(SelectPatientVisit != null)
             {
-                
-
                 AdmissionRequest pageview = new AdmissionRequest();
                 (pageview.DataContext as AdmissionRequestViewModel).AssingModel(SelectPatientVisit);
                 AdmissionRequestViewModel result = (AdmissionRequestViewModel)LaunchViewDialog(pageview, "ADRQST", false);
@@ -507,6 +589,17 @@ namespace MediTech.ViewModels
                 }
             }
             
+        }
+
+        private void PatientTracking()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientTracking pageview = new PatientTracking();
+                (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectPatientVisit);
+                PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);  
+            }
+
         }
 
         private void ExportToExcel()

@@ -553,6 +553,8 @@ namespace MediTech.ViewModels
 
                                     if (columnName == "Platelets Count ( cells/mcl )")
                                     {
+                                        if(!String.IsNullOrEmpty(item[columnName].ToString()))
+                                        {
                                         double pla_cells_ul = double.Parse(item[columnName].ToString());
                                         if (pla_cells_ul < 100000)
                                         {
@@ -560,6 +562,7 @@ namespace MediTech.ViewModels
                                         }
                                         view.gcTestParameter.SetCellValue(newRowHandle, columnName, pla_cells_ul);
                                         continue;
+                                        }
                                     }
 
                                 }

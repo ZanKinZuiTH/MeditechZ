@@ -316,17 +316,17 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRDUStaff, value); }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _PayorDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> PayorDetails
         {
             get { return _PayorDetails; }
             set { Set(ref _PayorDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectPayorDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectPayorDetail
         {
             get { return _SelectPayorDetail; }
             set { Set(ref _SelectPayorDetail, value); }
@@ -601,7 +601,7 @@ namespace MediTech.ViewModels
             Radiologist = careprovider.Where(p => p.IsRadiologist).ToList();
             RDUStaffList = careprovider.Where(p => p.IsRDUStaff).ToList();
             Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
             CareproviderModel newCareprovider = new CareproviderModel();
             newCareprovider.CareproviderUID = 0;
@@ -1027,7 +1027,7 @@ namespace MediTech.ViewModels
 
             if (SelectPayorDetail != null)
             {
-                payorDetailUID = SelectPayorDetail.PayorDetailUID;
+                payorDetailUID = SelectPayorDetail.InsuranceCompanyUID;
             }
 
             var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, organisationUID);

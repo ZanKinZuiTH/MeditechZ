@@ -177,7 +177,7 @@
                 <dxlc:LayoutControl Orientation="Vertical" Grid.Column="1">
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutGroup Orientation="Vertical">
-                            <dxlc:LayoutItem Label="Type">
+                            <dxlc:LayoutItem Label="Rank">
                                 <dxe:ComboBoxEdit DisplayMember="Display" 
                                       ValueMember="Key"
                                       ItemsSource="{Binding PayorTypes}"
@@ -240,17 +240,17 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem Label="Claim Percentage">
-                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True"/>
+                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True" Mask="\d+" MaskType="RegEx"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Fixed Copay Amount">
                                     <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutItem Label="Active From">
-                                <dxe:DateEdit DateTime="{Binding ActiveFrom}" AllowNullInput="True"/>
+                                <dxe:DateEdit EditValue="{Binding ActiveFrom}" AllowNullInput="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem Label="Active To">
-                                <dxe:DateEdit DateTime="{Binding ActiveTo}" AllowNullInput="True"/>
+                                <dxe:DateEdit EditValue="{Binding ActiveTo}" AllowNullInput="True"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                                 <dx:SimpleButton Height="25" Width="80" Content="เพิ่ม" Command="{Binding AddVisitPayorCommand}"/>
@@ -259,16 +259,18 @@
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
-                    <dxg:GridControl ItemsSource="{Binding Path=PatientVisitPayorList,UpdateSourceTrigger=PropertyChanged}"                                    
-                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}">
+                    <dxg:GridControl x:Name="grdVisitPayor" ItemsSource="{Binding Path=PatientVisitPayorList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                    
+                                     SelectedItem="{Binding Path=SelectedPatientVisitPayor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
                         <dxg:GridColumn Header="Payor" FieldName="InsuranceName"/>
                         <dxg:GridColumn Header="Agreement" FieldName="AgreementName"/>
                         <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
                         <dxg:GridColumn Header="Policy" FieldName="PolicyName"/>
-                        <dxg:GridColumn Header="Type" FieldName="PayorType"/>
+                        <dxg:GridColumn Header="Rank" FieldName="PayorType"/>
                         <dxg:GridColumn Header="Claim Perc." FieldName="ClaimPercentage"/>
                         <dxg:GridColumn Header="Comments" FieldName="Comments"/>
                         <dxg:GridColumn Header="Fixed Copay" FieldName="FixedCopayAmount"/>
+                        <dxg:GridColumn Header="Active From" FieldName="Active From"/>
+                        <dxg:GridColumn Header="Active To" FieldName="Active To"/>
                         <dxg:GridControl.View>
                             <dxg:TableView ShowGroupPanel="False"
                                            RowStyle="{Binding BackgroundExpireStyle}"

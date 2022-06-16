@@ -18,7 +18,7 @@
              DataContext="{Binding Path=RadiologyExamListViewModel,Source={StaticResource Locator}}"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
-             d:DesignHeight="800" d:DesignWidth="900">
+             d:DesignHeight="800" d:DesignWidth="1200">
     <UserControl.Resources>
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
         <!--<Style x:Key="BackgroundStyle"
@@ -169,8 +169,8 @@
                                     <dxlc:LayoutItem Label="Payor">
                                         <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
                                       SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -186,7 +186,7 @@
                                                 <ControlTemplate>
                                                     <dxg:GridControl x:Name="PART_GridControl"  >
                                                         <dxg:GridControl.Columns>
-                                                            <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
+                                                            <dxg:GridColumn Name="colPayorName" FieldName="CompanyName"/>
                                                         </dxg:GridControl.Columns>
                                                         <dxg:GridControl.View>
                                                             <dxg:TableView 

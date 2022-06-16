@@ -71,7 +71,22 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="จาก Store" />
+                            <TextBlock Text="แผนก/สถานที่" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationFrom}" 
+                                      SelectedItem="{Binding SelectLocationFrom}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Store" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
 
@@ -119,7 +134,22 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="ถึง Stroe" />
+                            <TextBlock Text="แผนก/สถานที่" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationTo}" 
+                                      SelectedItem="{Binding SelectLocationTo}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Stroe" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
                     <dxe:ComboBoxEdit ItemsSource="{Binding StoresTo}" 
@@ -162,7 +192,7 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-
+                <dxlc:LayoutItem/>
             </dxlc:LayoutGroup>
             <dxg:GridControl x:Name="grdRequestItemList" ItemsSource="{Binding ItemRequestDetail,Mode=TwoWay}"
                                      SelectedItem="{Binding SelectItemRequestDetail}">

@@ -417,9 +417,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRoleProfileByLoginUID")]
         [HttpGet]
-        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID,int organisationUID)
+        public List<RoleProfileModel> GetRoleProfileByLoginUID(int loginUID, int organisationUID)
         {
-            DateTime now = DateTime.Now;
+            DateTime dateNow = DateTime.Now;
             List<RoleProfileModel> roleProFileData = (from j in db.RoleProfile
                                                       join i in db.Role on j.RoleUID equals i.UID
                                                       join l in db.Login on j.LoginUID equals l.UID
@@ -431,6 +431,8 @@ namespace MediTechWebApi.Controllers
                                                       && h.StatusFlag == "A"
                                                       && j.LoginUID == loginUID
                                                       && h.HealthOrganisationUID == organisationUID
+                                                      && (h.ActiveFrom == null || DbFunctions.TruncateTime(h.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                      && (h.ActiveTo == null || DbFunctions.TruncateTime(h.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
                                                       select new RoleProfileModel
                                                       {
                                                           RoleProfileUID = j.UID,
@@ -844,30 +846,60 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+
         [Route("GetCareProviderLocation")]
         [HttpGet]
         public List<CareproviderLocationModel> GetCareProviderLocation(int locationUID)
         {
             DateTime dateNow = DateTime.Now.Date;
             List<CareproviderLocationModel> data = (from j in db.CareproviderLocation
-                                                        join i in db.Careprovider on j.CareproviderUID equals i.UID
-                                                        where j.StatusFlag == "A"
-                                                        && i.StatusFlag == "A"
-                                                        && j.LocationUID == locationUID
-                                                        && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
-                                                        && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
-                                                        select new CareproviderLocationModel
-                                                        {
-                                                            CareproviderLocationUID = j.UID,
-                                                            LocationUID = j.LocationUID,
-                                                            LocationName = SqlFunction.fGetLocationName(j.LocationUID),
-                                                            HealthOrganisationUID = j.HealthOrganisationUID,
-                                                            HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
-                                                            CareproviderUID = j.CareproviderUID,
-                                                            CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
-                                                            ActiveFrom = j.ActiveFrom,
-                                                            ActiveTo = j.ActiveTo
-                                                        }).ToList();
+                                                    join i in db.Careprovider on j.CareproviderUID equals i.UID
+                                                    where j.StatusFlag == "A"
+                                                    && i.StatusFlag == "A"
+                                                    && j.LocationUID == locationUID
+                                                    && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                    && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
+                                                    select new CareproviderLocationModel
+                                                    {
+                                                        CareproviderLocationUID = j.UID,
+                                                        LocationUID = j.LocationUID,
+                                                        LocationName = SqlFunction.fGetLocationName(j.LocationUID),
+                                                        HealthOrganisationUID = j.HealthOrganisationUID,
+                                                        HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
+                                                        CareproviderUID = j.CareproviderUID,
+                                                        CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
+                                                        ActiveFrom = j.ActiveFrom,
+                                                        ActiveTo = j.ActiveTo
+                                                    }).ToList();
+
+            return data;
+        }
+
+        [Route("GetCareProviderLocationByUser")]
+        [HttpGet]
+        public List<CareproviderLocationModel> GetCareProviderLocationByUser(int careproviderUID, int organisationUID)
+        {
+            DateTime dateNow = DateTime.Now.Date;
+            List<CareproviderLocationModel> data = (from j in db.CareproviderLocation
+                                                    join i in db.Careprovider on j.CareproviderUID equals i.UID
+                                                    where j.StatusFlag == "A"
+                                                    && i.StatusFlag == "A"
+                                                    && i.UID == careproviderUID
+                                                    && j.HealthOrganisationUID == organisationUID
+                                                    && (i.ActiveFrom == null || DbFunctions.TruncateTime(i.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))
+                                                    && (i.ActiveTo == null || DbFunctions.TruncateTime(i.ActiveTo) >= DbFunctions.TruncateTime(dateNow))
+                                                    select new CareproviderLocationModel
+                                                    {
+                                                        CareproviderLocationUID = j.UID,
+                                                        LocationUID = j.LocationUID,
+                                                        LocationName = SqlFunction.fGetLocationName(j.LocationUID),
+                                                        HealthOrganisationUID = j.HealthOrganisationUID,
+                                                        HealthOrganisationName = SqlFunction.fGetHealthOrganisationName(j.HealthOrganisationUID),
+                                                        CareproviderUID = j.CareproviderUID,
+                                                        CareproviderName = SqlFunction.fGetCareProviderName(j.CareproviderUID),
+                                                        ActiveFrom = j.ActiveFrom,
+                                                        ActiveTo = j.ActiveTo
+                                                    }).ToList();
 
             return data;
         }

@@ -418,9 +418,9 @@ namespace MediTech.DataService
         }
 
 
-        public List<StockModel> SearchStockBatch(int? organisationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockModel> SearchStockBatch(int? organisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
-            string requestApi = string.Format("Api/Inventory/SearchStockBatch?OrganisationUID={0}&storeUID={1}&itemType={2}&itemCode={3}&itemName={4}", organisationUID, storeUID, itemType, itemCode, itemName);
+            string requestApi = string.Format("Api/Inventory/SearchStockBatch?OrganisationUID={0}&locationUID={1}&storeUID={2}&itemType={3}&itemCode={4}&itemName={5}", organisationUID,locationUID, storeUID, itemType, itemCode, itemName);
             List<StockModel> data = MeditechApiHelper.Get<List<StockModel>>(requestApi);
 
             return data;
@@ -778,33 +778,6 @@ namespace MediTech.DataService
 
         #endregion
 
-        #region Prescription
 
-        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
-    , string prescriptionNumber, int? organisationUID)
-        {
-            string requestApi = string.Format("Api/Inventory/Searchprescription?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&ORDSTUID={2}&patientUID={3}&prescriptionNumber={4}&organisationUID={5}", dateFrom, dateTo, ORDSTUID, patientUID, prescriptionNumber, organisationUID);
-            List<PrescriptionModel> returnData = MeditechApiHelper.Get<List<PrescriptionModel>>(requestApi);
-
-            return returnData;
-        }
-
-        public List<PrescriptionItemModel> GetPrescriptionItemByPrescriptionUID(long? prescriptionUID)
-        {
-            List<PrescriptionItemModel> result;
-            try
-            {
-                string requestApi = string.Format("Api/Inventory/GetPrescriptionItemByPrescriptionUID?prescriptionUID={0}", prescriptionUID);
-                result = MeditechApiHelper.Get<List<PrescriptionItemModel>>(requestApi);
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-            return result;
-        }
-
-        #endregion
     }
 }

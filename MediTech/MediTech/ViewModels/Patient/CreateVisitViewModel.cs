@@ -182,7 +182,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectInsuranceCompany, value);
                 if (_SelectInsuranceCompany != null)
                 {
-                    var insurancePlan = DataService.Billing.GetInsurancePlans(_SelectInsuranceCompany.InsuranceCompanyUID);
+                    InsurancePlans = DataService.Billing.GetInsurancePlans(_SelectInsuranceCompany.InsuranceCompanyUID);
                 }
             }
         }
@@ -228,6 +228,7 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedCheckupJob, value); }
         }
 
+        private List<PatientVisitPayorModel> _deletedVisitPayorList;
         private ObservableCollection<PatientVisitPayorModel> _PatientVisitPayorList;
 
         public ObservableCollection<PatientVisitPayorModel> PatientVisitPayorList
@@ -241,7 +242,22 @@ namespace MediTech.ViewModels
         public PatientVisitPayorModel SelectedPatientVisitPayor
         {
             get { return _SelectedPatientVisitPayor; }
-            set { _SelectedPatientVisitPayor = value; }
+            set
+            {
+                _SelectedPatientVisitPayor = value;
+                if (_SelectedPatientVisitPayor != null)
+                {
+                    SelectedPayorType = PayorTypes.FirstOrDefault(p => p.Key == _SelectedPatientVisitPayor.PAYRTPUID);
+                    SelectInsuranceCompany = InsuranceCompanys.FirstOrDefault(p => p.InsuranceCompanyUID == _SelectedPatientVisitPayor.InsuranceCompanyUID);
+                    SelectInsurancePlan = InsurancePlans.FirstOrDefault(p => p.PayorAgreementUID == _SelectedPatientVisitPayor.PayorAgreementUID);
+                    OPDCoverPerDay = _SelectedPatientVisitPayor.EligibileAmount;
+                    ClaimPercentage = _SelectedPatientVisitPayor.ClaimPercentage;
+                    FixedCopayAmount = _SelectedPatientVisitPayor.FixedCopayAmount;
+                    ActiveFrom = _SelectedPatientVisitPayor.ActiveFrom;
+                    ActiveTo = _SelectedPatientVisitPayor.ActiveTo;
+                }
+
+            }
         }
 
 
@@ -444,6 +460,11 @@ namespace MediTech.ViewModels
 
             LoadPatientVisitPayors();
 
+            if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0 && PayorTypes != null)
+                SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+            else
+                SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+
             if (IsUpdateVisit == false)
             {
                 #region CheckVisitDuplicate
@@ -471,6 +492,7 @@ namespace MediTech.ViewModels
 
         void LoadPatientVisitPayors()
         {
+            _deletedVisitPayorList = new List<PatientVisitPayorModel>();
             PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
             var patientInsuranceDetail = DataService.PatientIdentity.GetPatientInsuranceDetail(Patient.PatientUID);
             if (patientInsuranceDetail != null && patientInsuranceDetail.Count > 0)
@@ -494,6 +516,7 @@ namespace MediTech.ViewModels
                         aPayor.InsuranceCompanyUID = aIns.InsuranceCompanyUID;
                         aPayor.InsuranceName = GetInsuranceComapnyName(aIns.InsuranceCompanyUID);
                         aPayor.PAYRTPUID = aIns.PAYRTPUID;
+                        aPayor.PayorType = PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID).Display;
                         aPayor.EligibileAmount = aIns.EligibleAmount;
                         aPayor.ActiveFrom = aIns.StartDttm;
                         aPayor.ActiveTo = aIns.EndDttm;
@@ -504,6 +527,10 @@ namespace MediTech.ViewModels
                         if (aPayor.FixedCopayAmount == 0)
                             aPayor.FixedCopayAmount = null;
                         aPayor.PayorName = GetPayorDetailName(aIns.PayorDetailUID.Value);
+                        aPayor.StatusFlag = "A";
+                        aPayor.CUser = AppUtil.Current.UserID;
+                        aPayor.MUser = AppUtil.Current.UserID;
+                        aPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                         PatientVisitPayorList.Add(aPayor);
                     }
                 }
@@ -535,7 +562,10 @@ namespace MediTech.ViewModels
                         defaultPatientVisitPayor.FixedCopayAmount = 0;
                         defaultPatientVisitPayor.PayorDetailUID = (billconfiguration.PayorUID ?? 0);
                         defaultPatientVisitPayor.PayorName = GetPayorDetailName(billconfiguration.PayorUID ?? 0);
-
+                        defaultPatientVisitPayor.StatusFlag = "A";
+                        defaultPatientVisitPayor.CUser = AppUtil.Current.UserID;
+                        defaultPatientVisitPayor.MUser = AppUtil.Current.UserID;
+                        defaultPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                         PatientVisitPayorList.Add(defaultPatientVisitPayor);
                     }
                 }
@@ -547,22 +577,18 @@ namespace MediTech.ViewModels
             if (PatientVisitPayorList == null)
                 PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>();
 
-            if (SelectedPatientVisitPayor != null && (SelectedPatientVisitPayor.InsuranceCompanyUID ?? 0) == 0)
+            if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
             {
                 WarningDialog("กรุณาเลือก Payor");
                 return;
             }
-            if (SelectedPatientVisitPayor != null && SelectedPatientVisitPayor.PayorAgreementUID == 0)
+            if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
             {
                 WarningDialog("กรุณาเลือก Agreement");
                 return;
             }
-            if (CheckDataPresentInList(SelectedPatientVisitPayor))
-            {
-                WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
-                return;
-            }
-            if (SelectedPatientVisitPayor.ClaimPercentage != null && SelectedPatientVisitPayor.ClaimPercentage > 100)
+
+            if (ClaimPercentage != null && ClaimPercentage > 100)
             {
                 WarningDialog("ClaimPercentage ไม่ถูกต้อง");
                 return;
@@ -575,14 +601,23 @@ namespace MediTech.ViewModels
                     return;
                 }
             }
+
+            if (CheckDataPresentInList(new PatientVisitPayorModel { PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID, PayorDetailUID = SelectInsurancePlan.PayorDetailUID }))
+            {
+                WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
+                return;
+            }
+
             PatientVisitPayorModel newPatientVisitPayor = new PatientVisitPayorModel();
             newPatientVisitPayor.PatientUID = Patient.PatientUID;
             newPatientVisitPayor.PAYRTPUID = SelectedPayorType.Key;
+            newPatientVisitPayor.PayorType = SelectedPayorType.Display;
             newPatientVisitPayor.InsuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
             newPatientVisitPayor.InsuranceName = SelectInsuranceCompany.CompanyName;
             newPatientVisitPayor.PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID;
             newPatientVisitPayor.AgreementName = SelectInsurancePlan.PayorAgreementName;
-
+            newPatientVisitPayor.PayorDetailUID = SelectInsurancePlan.PayorDetailUID;
+            newPatientVisitPayor.PayorName = GetPayorDetailName(SelectInsurancePlan.PayorDetailUID);
             var agreement = GetAgreement(newPatientVisitPayor.PayorAgreementUID);
             if (agreement != null)
             {
@@ -593,6 +628,12 @@ namespace MediTech.ViewModels
             newPatientVisitPayor.ClaimPercentage = ClaimPercentage;
             newPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
             newPatientVisitPayor.EligibileAmount = OPDCoverPerDay;
+            newPatientVisitPayor.ActiveFrom = ActiveFrom;
+            newPatientVisitPayor.ActiveTo = ActiveTo;
+            newPatientVisitPayor.StatusFlag = "A";
+            newPatientVisitPayor.CUser = AppUtil.Current.UserID;
+            newPatientVisitPayor.MUser = AppUtil.Current.UserID;
+            newPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             PatientVisitPayorList.Add(newPatientVisitPayor);
             ClearControl();
         }
@@ -600,40 +641,55 @@ namespace MediTech.ViewModels
         {
             if (SelectedPatientVisitPayor != null)
             {
-                if (SelectedPatientVisitPayor != null && (SelectedPatientVisitPayor.InsuranceCompanyUID ?? 0) == 0)
+                if (SelectInsuranceCompany == null || SelectInsuranceCompany.InsuranceCompanyUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Payor");
                     return;
                 }
-                if (SelectedPatientVisitPayor != null && SelectedPatientVisitPayor.PayorAgreementUID == 0)
+                if (SelectInsurancePlan == null || SelectInsurancePlan.PayorAgreementUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Agreement");
                     return;
                 }
-                if (CheckDataPresentInList(SelectedPatientVisitPayor))
-                {
-                    WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
-                    return;
-                }
-                if (SelectedPatientVisitPayor.ClaimPercentage != null && SelectedPatientVisitPayor.ClaimPercentage > 100)
+
+                if (ClaimPercentage != null && ClaimPercentage > 100)
                 {
                     WarningDialog("ClaimPercentage ไม่ถูกต้อง");
                     return;
                 }
                 if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0)
                 {
-                    if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key) != null && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key).Count() > 0)
+                    if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)) != null
+                        && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)).Count() > 0)
                     {
                         WarningDialog("PayorType ซ้ำ กรุณาตรวจสอบ");
                         return;
                     }
                 }
+
+                if (PatientVisitPayorList != null && PatientVisitPayorList.Count > 0)
+                {
+                    foreach (PatientVisitPayorModel payor in PatientVisitPayorList)
+                    {
+                        if (payor.PayorDetailUID == SelectInsurancePlan.PayorDetailUID
+                            && payor.PayorAgreementUID == SelectInsurancePlan.PayorAgreementUID
+                            && !payor.Equals(SelectedPatientVisitPayor)
+                            )
+                        {
+                            WarningDialog("Payor ซ้ำ กรุณาตรวจสอบ");
+                            return;
+                        }
+                    }
+                }
+
                 SelectedPatientVisitPayor.PAYRTPUID = SelectedPayorType.Key;
+                SelectedPatientVisitPayor.PayorType = SelectedPayorType.Display;
                 SelectedPatientVisitPayor.InsuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
                 SelectedPatientVisitPayor.InsuranceName = SelectInsuranceCompany.CompanyName;
                 SelectedPatientVisitPayor.PayorAgreementUID = SelectInsurancePlan.PayorAgreementUID;
                 SelectedPatientVisitPayor.AgreementName = SelectInsurancePlan.PayorAgreementName;
-
+                SelectedPatientVisitPayor.PayorDetailUID = SelectInsurancePlan.PayorDetailUID;
+                SelectedPatientVisitPayor.PayorName = GetPayorDetailName(SelectInsurancePlan.PayorDetailUID);
                 var agreement = GetAgreement(SelectedPatientVisitPayor.PayorAgreementUID);
                 if (agreement != null)
                 {
@@ -644,6 +700,12 @@ namespace MediTech.ViewModels
                 SelectedPatientVisitPayor.ClaimPercentage = ClaimPercentage;
                 SelectedPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
                 SelectedPatientVisitPayor.EligibileAmount = OPDCoverPerDay;
+                SelectedPatientVisitPayor.ActiveFrom = ActiveFrom;
+                SelectedPatientVisitPayor.ActiveTo = ActiveTo;
+                SelectedPatientVisitPayor.StatusFlag = "A";
+                SelectedPatientVisitPayor.CUser = AppUtil.Current.UserID;
+                SelectedPatientVisitPayor.MUser = AppUtil.Current.UserID;
+                SelectedPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                 ClearControl();
             }
         }
@@ -652,7 +714,8 @@ namespace MediTech.ViewModels
         {
             if (SelectedPatientVisitPayor != null)
             {
-
+                SelectedPatientVisitPayor.StatusFlag = "D";
+                _deletedVisitPayorList.Add(SelectedPatientVisitPayor);
                 PatientVisitPayorList.Remove(SelectedPatientVisitPayor);
                 ClearControl();
             }
@@ -675,6 +738,7 @@ namespace MediTech.ViewModels
             ActiveTo = null;
             InsurancePlans = new List<InsurancePlanModel>();
             SelectedPatientVisitPayor = null;
+            (this.View as CreateVisit).grdVisitPayor.RefreshData();
         }
 
         void SavePatientVisit()
@@ -689,7 +753,7 @@ namespace MediTech.ViewModels
             visitInfo.VISTYUID = SelectedVisitType.Key;
             visitInfo.VISTSUID = 417;
 
-            if (UseReadCard && Booking==null && Patient.PatientUID != 0)
+            if (UseReadCard && Booking == null && Patient.PatientUID != 0)
             {
                 var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
                 if (Bookings != null && Bookings.Count > 0)
@@ -712,6 +776,7 @@ namespace MediTech.ViewModels
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
             if (SelectedCareprovider != null)
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+            
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
             PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
             if (string.IsNullOrEmpty(returnData.VisitID))
@@ -721,7 +786,10 @@ namespace MediTech.ViewModels
             }
             else
             {
-                DataService.PatientIdentity.ManagePatientInsuranceDetail(PatientVisitPayorList.ToList());
+                var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                if (_deletedVisitPayorList != null)
+                    PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
                 if (Booking != null)
                 {
                     DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
@@ -732,6 +800,11 @@ namespace MediTech.ViewModels
             if (parent != null && parent is System.Windows.Window)
             {
                 CloseViewDialog(ActionDialog.Save);
+            }
+            else
+            {
+                PatientList list = new PatientList();
+                ChangeViewPermission(list);
             }
         }
 
@@ -821,10 +894,20 @@ namespace MediTech.ViewModels
                 return true;
             }
 
-            if (SelectedPatientVisitPayor == null)
+            if (PatientVisitPayorList == null || PatientVisitPayorList.Count() <= 0)
             {
                 WarningDialog("กรุณาใส่ข้อมูล Payor");
                 return true;
+            }
+
+
+            if (PatientVisitPayorList != null || PatientVisitPayorList.Count() >= 0)
+            {
+                if (PatientVisitPayorList.Count(p => p.PayorType == "1") <= 0)
+                {
+                    WarningDialog("กรุณาใส่ข้อมูล Payor Rank 1");
+                    return true;
+                }
             }
 
             return false;

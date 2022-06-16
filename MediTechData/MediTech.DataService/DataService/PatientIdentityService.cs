@@ -120,13 +120,29 @@ namespace MediTech.DataService
             return result;
         }
 
-        public bool ManagePatientInsuranceDetail(List<PatientVisitPayorModel> visitPayorList)
+        public bool ManagePatientInsuranceDetail(List<PatientVisitPayorModel> visitPayorList, int userUID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsuranceDetail");
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsuranceDetail?userUID={0}", userUID);
                 MeditechApiHelper.Post<List<PatientVisitPayorModel>>(requestApi, visitPayorList);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
+        public bool ManagePatientInsurance(List<PatientInsuranceDetailModel> patientInsuranceDetails, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientInsurance?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientInsuranceDetailModel>>(requestApi, patientInsuranceDetails);
                 flag = true;
             }
             catch (Exception)
@@ -141,10 +157,10 @@ namespace MediTech.DataService
         #region PatientVisit
 
         public List<PatientVisitModel> SearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-                  , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-            , int? payorDetailUID,int? checkupJobUID)
+                  , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+            , int? payorDetailUID,int? checkupJobUID, string encounter)
         {
-            string requestApi = string.Format("Api/PatientIdentity/SearchPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&payorDetailUID={9}&checkupJobUID={10}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID,checkupJobUID);
+            string requestApi = string.Format("Api/PatientIdentity/SearchPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&locationUID={9}&payorDetailUID={10}&checkupJobUID={11}&encounter={12}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID,locationUID, payorDetailUID,checkupJobUID, encounter);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
 
             return data;
@@ -328,10 +344,10 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<LocationModel> GetBedByPatientVisit(int parentLocationUID)
+        public List<BedStatusModel> GetBedByPatientVisit(int parentLocationUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetBedByPatientVisit?parentLocationUID={0}", parentLocationUID);
-            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
+            List<BedStatusModel> data = MeditechApiHelper.Get<List<BedStatusModel>>(requestApi);
             return data;
         }
 
@@ -347,6 +363,32 @@ namespace MediTech.DataService
             string requestApi = string.Format("Api/PatientIdentity/GetBedLocation?parentLocationUID={0}&entypUID={1}", parentLocationUID, entypUID);
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
+        }
+
+   
+
+        #endregion
+
+        #region PatientVisitPayor
+
+        public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientVisitPayorByVisitUID?patientVisitUID={0}", patientVisitUID);
+            List<PatientVisitPayorModel> data = MeditechApiHelper.Get<List<PatientVisitPayorModel>>(requestApi);
+            return data;
+        }
+
+        public void ManagePatientVisitPayor(List<PatientVisitPayorModel> patientVisitPayors, int userUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManagePatientVisitPayor?userUID={0}", userUID);
+                MeditechApiHelper.Post<List<PatientVisitPayorModel>>(requestApi, patientVisitPayors);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
         }
 
         #endregion
@@ -634,5 +676,24 @@ namespace MediTech.DataService
 
         #endregion
 
+        #region Patient DemographicLog
+        public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientDemographicLogByUID?patientUID={0}", patientUID);
+            List<PatientDemographicLogModel> data = MeditechApiHelper.Get<List<PatientDemographicLogModel>>(requestApi);
+            return data;
+        }
+
+        #endregion
+
+        #region Patient Tracking
+        public List<PatientServiceEventModel> GetPatientServiceEventByUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientServiceEventByUID?patientVisitUID={0}", patientVisitUID);
+            List<PatientServiceEventModel> data = MeditechApiHelper.Get<List<PatientServiceEventModel>>(requestApi);
+            return data;
+        }
+
+        #endregion
     }
 }

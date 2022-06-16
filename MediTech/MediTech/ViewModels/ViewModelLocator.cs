@@ -1,4 +1,4 @@
-/*
+ /*
   In App.xaml:
   <Application.Resources>
       <vm:ViewModelLocator xmlns:vm="clr-namespace:MediTech"
@@ -19,7 +19,7 @@ using Microsoft.Practices.ServiceLocation;
 namespace MediTech.ViewModels
 {
     /// <summary>
-    /// This class contains static references to all the view models in the
+    /// This class contains static references to all the view models in thec
     /// application and provides an entry point for the bindings.
     /// </summary>
     public class ViewModelLocator
@@ -237,6 +237,28 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<ManagePolicyMasterViewModel>();
 
                 return ServiceLocator.Current.GetInstance<ManagePolicyMasterViewModel>();
+            }
+        }
+
+        public ListPackageViewModel ListPackageViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListPackageViewModel>())
+                    SimpleIoc.Default.Register<ListPackageViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListPackageViewModel>();
+            }
+        }
+
+        public ManagePackageViewModel ManagePackageViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ManagePackageViewModel>())
+                    SimpleIoc.Default.Register<ManagePackageViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ManagePackageViewModel>();
             }
         }
 
@@ -817,6 +839,39 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<SearchIssueViewModel>();
 
                 return ServiceLocator.Current.GetInstance<SearchIssueViewModel>();
+            }
+        }
+
+        public DispenseDrugViewModel DispenseDrugViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<DispenseDrugViewModel>())
+                    SimpleIoc.Default.Register<DispenseDrugViewModel>();
+
+                return ServiceLocator.Current.GetInstance<DispenseDrugViewModel>();
+            }
+        }
+
+        public CancelDispenseViewModel CancelDispenseViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CancelDispenseViewModel>())
+                    SimpleIoc.Default.Register<CancelDispenseViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CancelDispenseViewModel>();
+            }
+        }
+
+        public PrintDrugStickerViewModel PrintDrugStickerViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PrintDrugStickerViewModel>())
+                    SimpleIoc.Default.Register<PrintDrugStickerViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PrintDrugStickerViewModel>();
             }
         }
 
@@ -1622,6 +1677,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ModifyVisitPayorViewModel ModifyVisitPayorViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ModifyVisitPayorViewModel>())
+                    SimpleIoc.Default.Register<ModifyVisitPayorViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ModifyVisitPayorViewModel>();
+            }
+        }
+
         public ModifyVisitViewModel ModifyVisitViewModel
         {
             get
@@ -1674,6 +1740,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<ManagePatientMergeViewModel>();
 
                 return ServiceLocator.Current.GetInstance<ManagePatientMergeViewModel>();
+            }
+        }
+
+        public PatientTrackingViewModel PatientTrackingViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientTrackingViewModel>())
+                    SimpleIoc.Default.Register<PatientTrackingViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientTrackingViewModel>();
             }
         }
 
@@ -2045,27 +2122,6 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<EmergencyBedStatusViewModel>();
 
                 return ServiceLocator.Current.GetInstance<EmergencyBedStatusViewModel>();
-            }
-        }
-
-        public EmergencyMangePatientViewModel EmergencyMangePatientViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<EmergencyMangePatientViewModel>())
-                    SimpleIoc.Default.Register<EmergencyMangePatientViewModel>();
-
-                return ServiceLocator.Current.GetInstance<EmergencyMangePatientViewModel>();
-            }
-        }
-        public SearchEmergencyPatientViewModel SearchEmergencyPatientViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<SearchEmergencyPatientViewModel>())
-                    SimpleIoc.Default.Register<SearchEmergencyPatientViewModel>();
-
-                return ServiceLocator.Current.GetInstance<SearchEmergencyPatientViewModel>();
             }
         }
 
