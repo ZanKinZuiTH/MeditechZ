@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using MediTech.Models;
 using System.Data.OleDb;
 using System.Data;
+using System.Globalization;
 
 namespace MediTech.ViewModels
 {
@@ -281,7 +282,6 @@ namespace MediTech.ViewModels
 
         private void ImportFile()
         {
-
             OleDbConnection conn;
             DataSet objDataset1;
             OleDbCommand cmd;
@@ -332,15 +332,17 @@ namespace MediTech.ViewModels
 
                     foreach (DataRow drow in ImportData.Rows)
                     {
-                        ItemMasterModel itemModel = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
+                        //ItemMasterModel itemModel = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
+                        var itemcodefile = drow["รหัสสินค้า"].ToString().Trim();
+                        var serialcodefiel = drow["หมายเลข Serial/Lot"].ToString().Trim();
                         List<EcountMassFileModel> mapItem = new List<EcountMassFileModel>();
                         EcountMassFileModel modelmap = mapItem.FirstOrDefault();
                         ItemMasterList newRow = new ItemMasterList();
-                        ItemMasterModel curentItem = GetCuerryItemInStock(itemModel) != null ? GetCuerryItemInStock(itemModel) : null;
+                        ItemMasterModel curentItem = GetCuerryItemInStockWithSerial(itemcodefile,serialcodefiel) != null ? GetCuerryItemInStockWithSerial(itemcodefile, serialcodefiel) : null;
                         //mapItem = DataService.Inventory.GetEcountMassFile(SelectStoreFrom.StoreUID, itemModel.ItemMasterUID, drow["หมายเลข Serial/Lot"].ToString().Trim(), null);
                         //string test = drow["หมายเลข Serial/Lot"].ToString().Trim();
                         DateTime checkupDttm;
-                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
+                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None, out checkupDttm))
                             newRow.ExpiryDttm = checkupDttm;
                         if (curentItem == null)
                         {
@@ -348,16 +350,20 @@ namespace MediTech.ViewModels
                             continue;
                         }
                         newRow.ItemMasterUID = curentItem.ItemMasterUID;
+                        newRow.ItemName = curentItem.Name;
                         newRow.ItemCode = curentItem.Code;
                         newRow.ItemName = curentItem.Name;
-                        newRow.Quantity = double.Parse(drow["จำนวน"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["จำนวน"].ToString().Trim());
+                        newRow.Quantity = drow["จำนวน"].ToString().Trim() == "" ? 0 : double.Parse(drow["จำนวน"].ToString().Trim());
                         newRow.BatchQuantity = curentItem.BatchQty;
                         newRow.BatchID = curentItem.BatchID;
                         newRow.IMUOMUID = curentItem.IMUOMUID;
                         newRow.StockUID = curentItem.StockUID;
-                        newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
+                        //newRow.SerialNumber = drow["หมายเลข Serial/Lot"].ToString().Trim();
+                        newRow.SerialNumber = curentItem.SerialNumber;
                         newRow.ShowBatchQuantity = newRow.BatchQuantity - newRow.Quantity;
-                       // newRow.NetAmount = curentItem.NetAmount;
+                        newRow.ItemCost = curentItem.ItemCost;
+                      
+                        // newRow.NetAmount = curentItem.NetAmount;
                         ItemIssueDetail.Add(newRow);
                     }
                     // model.NetAmount = model.ItemIssueDetail.Sum(p => p.NetAmount);
@@ -381,6 +387,19 @@ namespace MediTech.ViewModels
                            .OrderBy(p => p.ExpiryDttm).FirstOrDefault();
 
            
+            return curentItem;
+        }
+
+
+        private ItemMasterModel GetCuerryItemInStockWithSerial(string itemcode , string serialcode)
+        {
+
+
+            ItemMasterModel curentItem = ItemMasters
+                           .Where(p => p.Code == itemcode && p.SerialNumber == serialcode)
+                           .OrderBy(p => p.ExpiryDttm).FirstOrDefault();
+
+
             return curentItem;
         }
 
@@ -450,7 +469,7 @@ namespace MediTech.ViewModels
                 }
 
                 AssignPropertiesToModel();
-                DataService.Inventory.ManageItemTransfer(model, AppUtil.Current.UserID);
+                DataService.Inventory.ManageItemTransferEcount(model, AppUtil.Current.UserID);
                 SaveSuccessDialog();
 
                 ListItemTransfer view = new ListItemTransfer();

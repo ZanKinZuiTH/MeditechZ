@@ -13,6 +13,7 @@ using System.Collections.ObjectModel;
 using MediTech.Models;
 using System.Data.OleDb;
 using System.Data;
+using System.Globalization;
 
 namespace MediTech.ViewModels
 {
@@ -595,9 +596,9 @@ namespace MediTech.ViewModels
                         newRow.ItemCode = drow["รหัสสินค้า"].ToString().Trim();
                         newRow.Quantity = double.Parse(drow["จำนวน"].ToString().Trim());
                         DateTime checkupDttm;
-                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), out checkupDttm))
+                        if (DateTime.TryParse(drow["วันหมดอายุ"].ToString().Trim(), new CultureInfo("th-TH"), System.Globalization.DateTimeStyles.None, out checkupDttm))
                             newRow.ExpiryDttm = checkupDttm;
-                        newRow.UnitPrice = double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim()) == 0 ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
+                        newRow.UnitPrice = drow["ราคาต่อหน่วย"].ToString().Trim() == "" ? 0 : double.Parse(drow["ราคาต่อหน่วย"].ToString().Trim());
                         newRow.TaxPercentage = drow["ภาษี"].ToString().Trim() == "" ? 0 : double.Parse(drow["ภาษี"].ToString().Trim());
                         newRow.BatchID = drow["Batch ID"].ToString().Trim();
                         newRow.ShowBatchQuantity = newRow.BatchQuantity - newRow.Quantity;

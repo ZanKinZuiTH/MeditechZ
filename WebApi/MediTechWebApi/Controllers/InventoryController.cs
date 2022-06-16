@@ -2298,6 +2298,154 @@ namespace MediTechWebApi.Controllers
             }
         }
 
+
+
+
+        [Route("ManageItemTransferEcount")]
+        [HttpPost]
+        public HttpResponseMessage ManageItemTransferEcount(ItemIssueModel model, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                using (var tran = new TransactionScope())
+                {
+                    ItemIssue itemIssue = db.ItemIssue.Find(model.ItemIssueUID);
+                    if (itemIssue == null)
+                    {
+                        itemIssue = new ItemIssue();
+                        itemIssue.CUser = userUID;
+                        itemIssue.CWhen = now;
+
+                        int itmISSID;
+                        string ISSID = SEQHelper.GetSEQIDFormat("SEQItemIssue", out itmISSID);
+
+
+                        if (string.IsNullOrEmpty(ISSID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQItemIssue in SEQCONFIGURATION");
+                        }
+
+                        if (itmISSID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQItemIssue is Fail");
+                        }
+
+                        itemIssue.ItemIssueID = ISSID;
+                    }
+                    itemIssue.MUser = userUID;
+                    itemIssue.MWhen = now;
+                    itemIssue.OrganisationUID = model.OrganisationUID;
+                    itemIssue.StoreUID = model.StoreUID;
+                    itemIssue.RequestedByOrganisationUID = model.RequestedByOrganisationUID;
+                    itemIssue.RequestedByStoreUID = model.RequestedByStoreUID;
+                    itemIssue.ItemIssueDttm = model.ItemIssueDttm;
+                    itemIssue.ISSTPUID = 2918;
+                    itemIssue.ISUSTUID = 2914;
+                    itemIssue.IssueBy = userUID;
+                    itemIssue.OtherCharges = model.OtherCharges;
+                    itemIssue.NetAmount = model.NetAmount;
+                    itemIssue.Comments = model.Comments;
+                    itemIssue.ItemRequestID = model.ItemRequestID;
+                    itemIssue.ItemReceiveID = model.ItemReceiveID;
+                    itemIssue.ItemRequestUID = model.ItemRequestUID;
+                    itemIssue.ItemReceiveUID = model.ItemReceiveUID;
+                    itemIssue.StatusFlag = "A";
+                    db.ItemIssue.AddOrUpdate(itemIssue);
+
+                    db.SaveChanges();
+
+                    //#region DeleteItemIssueDetail
+
+                    //List<ItemIssueDetail> itemISSDE = db.ItemIssueDetail.Where(p => p.ItemIssueUID == model.ItemIssueUID && p.StatusFlag == "A").ToList();
+
+                    //foreach (var item in itemISSDE)
+                    //{
+                    //    var data = model.ItemIssueDetail.FirstOrDefault(p => p.ItemIssueDetailUID == item.UID);
+                    //    if (data == null)
+                    //    {
+                    //        db.ItemIssueDetail.Attach(item);
+                    //        item.MUser = userUID;
+                    //        item.MWhen = now;
+                    //        item.StatusFlag = "D";
+
+                    //        db.SaveChanges();
+                    //    }
+
+                    //}
+
+                    //#endregion
+
+
+                    #region SaveItemIssueDetail
+                    foreach (var item in model.ItemIssueDetail)
+                    {
+                        //ItemIssueDetail itemIssueDetail = db.ItemIssueDetail.Find(item.ItemIssueDetailUID);
+                        //if (itemIssueDetail == null)
+                        //{
+                        //    itemIssueDetail = new ItemIssueDetail();
+                        //    itemIssueDetail.CUser = userUID;
+                        //    itemIssueDetail.CWhen = now;
+                        //}
+                        ItemIssueDetail itemIssueDetail = new ItemIssueDetail();
+                        itemIssueDetail.CUser = userUID;
+                        itemIssueDetail.CWhen = now;
+                        itemIssueDetail.ItemIssueUID = itemIssue.UID;
+                        itemIssueDetail.ItemMasterUID = item.ItemMasterUID;
+                        itemIssueDetail.ItemCode = item.ItemCode;
+                        itemIssueDetail.ItemName = item.ItemName;
+                        itemIssueDetail.UnitPrice = item.UnitPrice;
+                        itemIssueDetail.NetAmount = item.NetAmount;
+                        itemIssueDetail.ItemCost = item.ItemCost;
+                        itemIssueDetail.Quantity = item.Quantity;
+                        itemIssueDetail.IMUOMUID = item.IMUOMUID;
+                        itemIssueDetail.BatchID = item.BatchID;
+                        itemIssueDetail.StockUID = item.StockUID;
+                        itemIssueDetail.ExpiryDttm = item.ExpiryDttm;
+                        itemIssueDetail.MUser = userUID;
+                        itemIssueDetail.MWhen = now;
+                        itemIssueDetail.StatusFlag = "A";
+                        itemIssueDetail.SerialNumber = item.SerialNumber;
+                        db.ItemIssueDetail.AddOrUpdate(itemIssueDetail);
+
+                        db.SaveChanges();
+                    }
+
+
+                    ItemRequest itemRequest = db.ItemRequest.Find(itemIssue.ItemRequestUID);
+                    if (itemRequest != null)
+                    {
+                        db.ItemRequest.Attach(itemRequest);
+                        itemRequest.MWhen = now;
+                        itemRequest.MUser = userUID;
+                        itemRequest.ItemIssueID = itemIssue.ItemIssueID;
+                        itemRequest.RQSTSUID = 2928;
+                        db.SaveChanges();
+                    }
+
+                    //SqlDirectStore.pInvenTransferItem(itemIssue.UID, userUID);
+                    SqlDirectStore.pInvenTransferItemEcount(itemIssue.UID, userUID);
+                    #endregion
+
+                    tran.Complete();
+                }
+
+
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+
+
+
         [Route("CancelItemTransfer")]
         [HttpPut]
         public HttpResponseMessage CancelItemTransfer(int itemIssueUID, string cancelReason, int userUID)

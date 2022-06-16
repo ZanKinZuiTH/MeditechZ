@@ -640,6 +640,25 @@ namespace MediTech.DataService
         #endregion
 
         #region ItemTransfer
+
+        public bool ManageItemTransferEcount(ItemIssueModel model, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Inventory/ManageItemTransferEcount?userUID={0}", userUID);
+                MeditechApiHelper.Post<ItemIssueModel>(requestApi, model);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+
+
         public bool ManageItemTransfer(ItemIssueModel model, int userUID)
         {
             bool flag = false;
