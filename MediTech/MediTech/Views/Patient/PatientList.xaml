@@ -112,7 +112,7 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Document/File.png"
+                                <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
                                    ToolTip="แก้ไข Payor">

@@ -17,9 +17,12 @@ namespace MediTech.ViewModels
     {
 
         #region Properites
+        public List<LocationModel> LocationFormData { get; set; }
+        public List<LocationModel> LocationToData { get; set; }
 
         public List<HealthOrganisationModel> OrganisationsFrom { get; set; }
         private HealthOrganisationModel _SelectOrganisationFrom;
+
 
         public HealthOrganisationModel SelectOrganisationFrom
         {
@@ -29,12 +32,37 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationFrom, value);
                 if (_SelectOrganisationFrom != null)
                 {
-                    StoresFrom = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationFrom.HealthOrganisationUID);
-                    OrganisationsTo = HealthOrganisations.Where(p => p.HealthOrganisationUID != SelectOrganisationFrom.HealthOrganisationUID).ToList();
+                    LocationFormData = GetLocatioinRole(SelectOrganisationFrom.HealthOrganisationUID);
+
+                    LocationFrom = LocationFormData;
+
+                    if (SelectLocationTo != null)
+                        LocationFrom = LocationFormData.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
                 }
-                else
+            }
+        }
+
+        private List<LocationModel> _LocationFrom;
+
+        public List<LocationModel> LocationFrom
+        {
+            get { return _LocationFrom; }
+            set { Set(ref _LocationFrom, value); }
+        }
+
+        private LocationModel _SelectLocationFrom;
+
+        public LocationModel SelectLocationFrom
+        {
+            get { return _SelectLocationFrom; }
+            set
+            {
+                Set(ref _SelectLocationFrom, value);
+                StoresFrom = null;
+                if (_SelectLocationFrom != null)
                 {
-                    StoresFrom = null;
+                    StoresFrom = DataService.Inventory.GetStoreByLocationUID(_SelectLocationFrom.LocationUID);
+                    LocationTo = LocationToData.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
                 }
             }
         }
@@ -55,6 +83,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectStoreFrom, value);
+
             }
         }
 
@@ -75,11 +104,36 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationTo, value);
                 if (_SelectOrganisationTo != null)
                 {
-                    StoresTo = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationTo.HealthOrganisationUID);
+                    LocationToData = GetLocatioinRole(_SelectOrganisationTo.HealthOrganisationUID);
+                    LocationTo = LocationToData;
+                    if (SelectLocationFrom != null)
+                        LocationTo = LocationToData.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
                 }
-                else
+
+            }
+        }
+
+        private List<LocationModel> _LocationTo;
+
+        public List<LocationModel> LocationTo
+        {
+            get { return _LocationTo; }
+            set { Set(ref _LocationTo, value); }
+        }
+
+        private LocationModel _SelectLocationTo;
+
+        public LocationModel SelectLocationTo
+        {
+            get { return _SelectLocationTo; }
+            set
+            {
+                Set(ref _SelectLocationTo, value);
+                StoresTo = null;
+                if (_SelectLocationTo != null)
                 {
-                    StoresTo = null;
+                    StoresTo = DataService.Inventory.GetStoreByLocationUID(_SelectLocationTo.LocationUID);
+                    LocationFrom = LocationFormData.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
                 }
             }
         }
@@ -252,11 +306,25 @@ namespace MediTech.ViewModels
                     return;
                 }
 
+                if (SelectLocationFrom == null)
+                {
+                    WarningDialog("กรุณาระบุ แผนกที่ร้องขอ");
+                    return;
+                }
+
+                if (SelectLocationTo == null)
+                {
+                    WarningDialog("กรุณาระบุ แผนกที่ถูกร้องขอ");
+                    return;
+                }
+
                 if (SelectStoreFrom == null)
                 {
                     WarningDialog("กรุณาระบุ สถานประกอบการที่ถูกร้องขอ");
                     return;
                 }
+
+
 
                 if (SelectStoreTo == null)
                 {
@@ -266,6 +334,12 @@ namespace MediTech.ViewModels
                 if (RequestDate == null)
                 {
                     WarningDialog("กรุณาใส่วันที่ ร้องขอ");
+                    return;
+                }
+
+                if (ItemRequestDetail == null || ItemRequestDetail.Count <= 0)
+                {
+                    WarningDialog("กรุณาใส่รายการสินค้า");
                     return;
                 }
 
@@ -298,8 +372,10 @@ namespace MediTech.ViewModels
         public void AssingModelToProperties()
         {
             SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == model.OrganisationUID);
+            SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == model.LocationUID);
             SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == model.StoreUID);
             SelectOrganisationTo = OrganisationsTo.FirstOrDefault(p => p.HealthOrganisationUID == model.RequestOnOrganistaionUID);
+            SelectLocationTo = LocationTo.FirstOrDefault(p => p.LocationUID == model.RequestOnLocationUID);
             SelectStoreTo = StoresTo.FirstOrDefault(p => p.StoreUID == model.RequestOnStoreUID);
             RequestDate = model.RequestedDttm;
             SelectVendor = Vendors.FirstOrDefault(p => p.VendorDetailUID == (model.PreferredVendorUID ?? 0));
@@ -327,8 +403,10 @@ namespace MediTech.ViewModels
                 model = new ItemRequestModel();
             }
             model.OrganisationUID = SelectOrganisationFrom.HealthOrganisationUID;
+            model.LocationUID = SelectLocationFrom.LocationUID;
             model.StoreUID = SelectStoreFrom.StoreUID;
             model.RequestOnOrganistaionUID = SelectOrganisationTo.HealthOrganisationUID;
+            model.RequestOnLocationUID = SelectLocationTo.LocationUID;
             model.RequestOnStoreUID = SelectStoreTo.StoreUID;
             model.RequestedDttm = RequestDate;
             model.PreferredVendorUID = SelectVendor != null ? SelectVendor.VendorDetailUID : (int?)null;

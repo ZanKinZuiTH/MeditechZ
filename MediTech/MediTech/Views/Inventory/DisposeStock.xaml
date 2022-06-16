@@ -41,6 +41,14 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="Store">
                     <dxe:ComboBoxEdit ItemsSource="{Binding Stores}" 
                                       SelectedItem="{Binding SelectStore}"
@@ -49,16 +57,24 @@
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
+
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="รายการของ">
                     <dxe:TextEdit Text="{Binding ItemName}"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
-                <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
                                      Height="25" Content="คื่นค่า"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
+              
             </dxlc:LayoutGroup>
+            
             <dxg:GridControl x:Name="grid" ItemsSource="{Binding StockList}"
                              SelectedItems="{Binding SelectStockList}"
                              SelectionMode="MultipleRow">

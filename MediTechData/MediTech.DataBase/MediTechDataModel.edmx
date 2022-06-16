@@ -1054,8 +1054,10 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrganisationUID" Type="int" Nullable="false" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="RequestedByOrganisationUID" Type="int" Nullable="false" />
+          <Property Name="RequestedByLocationUID" Type="int" />
           <Property Name="RequestedByStoreUID" Type="int" Nullable="false" />
           <Property Name="ItemIssueDttm" Type="datetime" Nullable="false" />
           <Property Name="ItemIssueID" Type="nvarchar" MaxLength="50" Nullable="false" />
@@ -1150,8 +1152,10 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrganisationUID" Type="int" Nullable="false" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="IssuedByStoreUID" Type="int" Nullable="false" />
+          <Property Name="IssuedByLocationUID" Type="int" />
           <Property Name="IssuedByOrganisationUID" Type="int" Nullable="false" />
           <Property Name="ItemReceiveID" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="ReceivedDttm" Type="datetime" Nullable="false" />
@@ -1200,8 +1204,10 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="OrganisationUID" Type="int" Nullable="false" />
+          <Property Name="LocationUID" Type="int" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="RequestOnOrganistaionUID" Type="int" Nullable="false" />
+          <Property Name="RequestOnLocationUID" Type="int" />
           <Property Name="RequestOnStoreUID" Type="int" Nullable="false" />
           <Property Name="RQSTSUID" Type="int" />
           <Property Name="RequestedBy" Type="int" Nullable="false" />
@@ -4865,8 +4871,10 @@
           <Parameter Name="DateTo" Type="datetime" Mode="In" />
           <Parameter Name="ArrivedDttm" Type="datetime" Mode="In" />
           <Parameter Name="OwnerOrganisation" Type="int" Mode="In" />
-          <Parameter Name="PayorDetailUID" Type="int" Mode="In" />
+          <Parameter Name="LocationUID" Type="int" Mode="In" />
+          <Parameter Name="InsuranceCompanyUID" Type="int" Mode="In" />
           <Parameter Name="CheckupJobUID" Type="int" Mode="In" />
+          <Parameter Name="Encounter" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="pSearchPatientVisitForRISBilling" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_DateFrom" Type="datetime" Mode="In" />
@@ -6267,8 +6275,10 @@
           <EntitySet Name="MediTechInterface" EntityType="MediTechModel.MediTechInterface" />
           <EntitySet Name="MediTechInterfaceDetail" EntityType="MediTechModel.MediTechInterfaceDetail" />
           <EntitySet Name="NotificationTaskResult" EntityType="MediTechModel.NotificationTaskResult" />
+          <EntitySet Name="OrderCategory" EntityType="MediTechModel.OrderCategory" />
           <EntitySet Name="OrderSet" EntityType="MediTechModel.OrderSet" />
           <EntitySet Name="OrderSetBillableItem" EntityType="MediTechModel.OrderSetBillableItem" />
+          <EntitySet Name="OrderSubCategory" EntityType="MediTechModel.OrderSubCategory" />
           <EntitySet Name="PageView" EntityType="MediTechModel.PageView" />
           <EntitySet Name="PageViewModule" EntityType="MediTechModel.PageViewModule" />
           <EntitySet Name="PageViewPermission" EntityType="MediTechModel.PageViewPermission" />
@@ -6399,8 +6409,6 @@
           <EntitySet Name="XrayTranslateCondition" EntityType="MediTechModel.XrayTranslateCondition" />
           <EntitySet Name="XrayTranslateConditionDetail" EntityType="MediTechModel.XrayTranslateConditionDetail" />
           <EntitySet Name="XrayTranslateMapping" EntityType="MediTechModel.XrayTranslateMapping" />
-          <EntitySet Name="OrderCategory" EntityType="MediTechModel.OrderCategory" />
-          <EntitySet Name="OrderSubCategory" EntityType="MediTechModel.OrderSubCategory" />
           </EntityContainer>
         <ComplexType Name="pConvertUOM_Result">
           <Property Type="Int32" Name="UID" Nullable="true" />
@@ -9790,8 +9798,10 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="RequestedByOrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="RequestedByLocationUID" Type="Int32" />
           <Property Name="RequestedByStoreUID" Type="Int32" Nullable="false" />
           <Property Name="ItemIssueDttm" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="ItemIssueID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
@@ -9886,8 +9896,10 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="IssuedByStoreUID" Type="Int32" Nullable="false" />
+          <Property Name="IssuedByLocationUID" Type="Int32" />
           <Property Name="IssuedByOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="ItemReceiveID" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ReceivedDttm" Type="DateTime" Nullable="false" Precision="3" />
@@ -9936,8 +9948,10 @@
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="OrganisationUID" Type="Int32" Nullable="false" />
+          <Property Name="LocationUID" Type="Int32" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="RequestOnOrganistaionUID" Type="Int32" Nullable="false" />
+          <Property Name="RequestOnLocationUID" Type="Int32" />
           <Property Name="RequestOnStoreUID" Type="Int32" Nullable="false" />
           <Property Name="RQSTSUID" Type="Int32" />
           <Property Name="RequestedBy" Type="Int32" Nullable="false" />
@@ -10122,6 +10136,22 @@
           <Property Name="OwnerOrganisationCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="Status" Type="Int32" Nullable="false" />
         </EntityType>
+        <EntityType Name="OrderCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
         <EntityType Name="OrderSet">
           <Key>
             <PropertyRef Name="UID" />
@@ -10163,6 +10193,22 @@
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="TIMESTAMP" Type="Binary" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
+        </EntityType>
+        <EntityType Name="OrderSubCategory">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DisplayOrder" Type="Int32" />
+          <Property Name="OrderCategoryUID" Type="Int32" Nullable="false" />
+          <Property Name="CUser" Type="Int32" Nullable="false" />
+          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="MUser" Type="Int32" Nullable="false" />
+          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="PageView">
           <Key>
@@ -12784,38 +12830,6 @@
           <Property Name="MUser" Type="Int32" />
           <Property Name="MWhen" Type="DateTime" Precision="3" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="OrderCategory">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Code" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayOrder" Type="Int32" />
-          <Property Name="CUser" Type="Int32" Nullable="false" />
-          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MUser" Type="Int32" Nullable="false" />
-          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="OrderSubCategory">
-          <Key>
-            <PropertyRef Name="UID" />
-          </Key>
-          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Name" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="Description" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DisplayOrder" Type="Int32" />
-          <Property Name="OrderCategoryUID" Type="Int32" Nullable="false" />
-          <Property Name="CUser" Type="Int32" Nullable="false" />
-          <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="MUser" Type="Int32" Nullable="false" />
-          <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -15697,8 +15711,10 @@
                 <ScalarProperty Name="ItemIssueID" ColumnName="ItemIssueID" />
                 <ScalarProperty Name="ItemIssueDttm" ColumnName="ItemIssueDttm" />
                 <ScalarProperty Name="RequestedByStoreUID" ColumnName="RequestedByStoreUID" />
+                <ScalarProperty Name="RequestedByLocationUID" ColumnName="RequestedByLocationUID" />
                 <ScalarProperty Name="RequestedByOrganisationUID" ColumnName="RequestedByOrganisationUID" />
                 <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -15793,8 +15809,10 @@
                 <ScalarProperty Name="ReceivedDttm" ColumnName="ReceivedDttm" />
                 <ScalarProperty Name="ItemReceiveID" ColumnName="ItemReceiveID" />
                 <ScalarProperty Name="IssuedByOrganisationUID" ColumnName="IssuedByOrganisationUID" />
+                <ScalarProperty Name="IssuedByLocationUID" ColumnName="IssuedByLocationUID" />
                 <ScalarProperty Name="IssuedByStoreUID" ColumnName="IssuedByStoreUID" />
                 <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -15844,8 +15862,10 @@
                 <ScalarProperty Name="RequestedBy" ColumnName="RequestedBy" />
                 <ScalarProperty Name="RQSTSUID" ColumnName="RQSTSUID" />
                 <ScalarProperty Name="RequestOnStoreUID" ColumnName="RequestOnStoreUID" />
+                <ScalarProperty Name="RequestOnLocationUID" ColumnName="RequestOnLocationUID" />
                 <ScalarProperty Name="RequestOnOrganistaionUID" ColumnName="RequestOnOrganistaionUID" />
                 <ScalarProperty Name="StoreUID" ColumnName="StoreUID" />
+                <ScalarProperty Name="LocationUID" ColumnName="LocationUID" />
                 <ScalarProperty Name="OrganisationUID" ColumnName="OrganisationUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -16027,6 +16047,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="OrderCategory">
+            <EntityTypeMapping TypeName="MediTechModel.OrderCategory">
+              <MappingFragment StoreEntitySet="OrderCategory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="OrderSet">
             <EntityTypeMapping TypeName="MediTechModel.OrderSet">
               <MappingFragment StoreEntitySet="OrderSet">
@@ -16067,6 +16104,23 @@
                 <ScalarProperty Name="OrderCatalogName" ColumnName="OrderCatalogName" />
                 <ScalarProperty Name="OrderSetUID" ColumnName="OrderSetUID" />
                 <ScalarProperty Name="BillableItemUID" ColumnName="BillableItemUID" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderSubCategory">
+            <EntityTypeMapping TypeName="MediTechModel.OrderSubCategory">
+              <MappingFragment StoreEntitySet="OrderSubCategory">
+                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
+                <ScalarProperty Name="MUser" ColumnName="MUser" />
+                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
+                <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
+                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -18818,40 +18872,6 @@
                 <ScalarProperty Name="Type" ColumnName="Type" />
                 <ScalarProperty Name="ThaiResult" ColumnName="ThaiResult" />
                 <ScalarProperty Name="EngResult" ColumnName="EngResult" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderCategory">
-            <EntityTypeMapping TypeName="MediTechModel.OrderCategory">
-              <MappingFragment StoreEntitySet="OrderCategory">
-                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
-                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
-                <ScalarProperty Name="MUser" ColumnName="MUser" />
-                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
-                <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="Code" ColumnName="Code" />
-                <ScalarProperty Name="UID" ColumnName="UID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="OrderSubCategory">
-            <EntityTypeMapping TypeName="MediTechModel.OrderSubCategory">
-              <MappingFragment StoreEntitySet="OrderSubCategory">
-                <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
-                <ScalarProperty Name="MWhen" ColumnName="MWhen" />
-                <ScalarProperty Name="MUser" ColumnName="MUser" />
-                <ScalarProperty Name="CWhen" ColumnName="CWhen" />
-                <ScalarProperty Name="CUser" ColumnName="CUser" />
-                <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
-                <ScalarProperty Name="DisplayOrder" ColumnName="DisplayOrder" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>

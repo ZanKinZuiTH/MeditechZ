@@ -11,10 +11,15 @@ namespace MediTech.Model
         public int ItemRequestUID { get; set; }
         public int OrganisationUID { get; set; }
         public string Organisation { get; set; }
+
+        public string LocationName { get; set; }
+        public int LocationUID { get; set; }
         public int StoreUID { get; set; }
         public string Store { get; set; }
         public int RequestOnOrganistaionUID { get; set; }
         public string RequestOnOrganisation { get; set; }
+        public int RequestOnLocationUID { get; set; }
+        public string RequestOnLocationName { get; set; }
         public int RequestOnStoreUID { get; set; }
         public string RequestOnStore { get; set; }
         public Nullable<int> RQSTSUID { get; set; }

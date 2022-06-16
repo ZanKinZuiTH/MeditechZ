@@ -112,9 +112,9 @@ namespace MediTech.ViewModels
         }
 
 
-        public List<LocationModel> GetLocatioinRole()
+        public List<LocationModel> GetLocatioinRole(int organisationUID)
         {
-            var locations = DataService.MasterData.GetLocationByOrganisationUID(AppUtil.Current.OwnerOrganisationUID);
+            var locations = DataService.MasterData.GetLocationByOrganisationUID(organisationUID);
             if (locations != null)
             {
                 locations = (from j in locations

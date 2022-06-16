@@ -18,6 +18,9 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
+        public List<LocationModel> LocationData { get; set; }
+        public List<LocationModel> LocationIssueData { get; set; }
+
         private DateTime? _ReceiveDate;
 
         public DateTime? ReceiveDate
@@ -47,12 +50,36 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
-                    Stores = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisation.HealthOrganisationUID);
-                    OrganisationIssues = HealthOrganisations.Where(p => p.HealthOrganisationUID != SelectOrganisation.HealthOrganisationUID).ToList();
+                    LocationData = GetLocatioinRole(_SelectOrganisation.HealthOrganisationUID);
+                    Locations = LocationData;
+
+                    if (SelectLocationIssue != null)
+                        Locations = LocationData?.Where(p => p.LocationUID != SelectLocationIssue.LocationUID).ToList();
                 }
-                else
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
+                Stores = null;
+                if (_SelectLocation != null)
                 {
-                    Stores = null;
+                    Stores = DataService.Inventory.GetStoreByLocationUID(_SelectLocation.LocationUID);
+                    LocationIssue = LocationIssueData?.Where(p => p.LocationUID != _SelectLocation.LocationUID).ToList();
                 }
             }
         }
@@ -98,13 +125,40 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisationIssue, value);
-                if (_SelectOrganisation != null)
+                if (_SelectOrganisationIssue != null)
                 {
-                    StoresIssues = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationIssue.HealthOrganisationUID);
+                    LocationIssueData = GetLocatioinRole(_SelectOrganisationIssue.HealthOrganisationUID);
+                    LocationIssue = LocationIssueData;
+
+                    if (SelectLocation != null)
+                        LocationIssue = LocationIssueData?.Where(p => p.LocationUID != SelectLocation.LocationUID).ToList();
                 }
-                else
+            }
+        }
+
+
+
+        private List<LocationModel> _LocationIssue;
+
+        public List<LocationModel> LocationIssue
+        {
+            get { return _LocationIssue; }
+            set { Set(ref _LocationIssue, value); }
+        }
+
+        private LocationModel _SelectLocationIssue;
+
+        public LocationModel SelectLocationIssue
+        {
+            get { return _SelectLocationIssue; }
+            set
+            {
+                Set(ref _SelectLocationIssue, value);
+                StoresIssues = null;
+                if (_SelectLocationIssue != null)
                 {
-                    StoresIssues = null;
+                    StoresIssues = DataService.Inventory.GetStoreByLocationUID(_SelectLocationIssue.LocationUID);
+                    Locations = LocationData?.Where(p => p.LocationUID != SelectLocationIssue.LocationUID).ToList();
                 }
             }
         }
@@ -245,6 +299,12 @@ namespace MediTech.ViewModels
                     return;
                 }
 
+                if (SelectLocation == null)
+                {
+                    WarningDialog("กรุณาระบุ แผนก/สถานที่รับของ");
+                    return;
+                }
+
                 if (SelectStore == null)
                 {
                     WarningDialog("กรุณาระบุ Store รับ");
@@ -289,8 +349,10 @@ namespace MediTech.ViewModels
                 {
                     ItemReceiveDetail = new ObservableCollection<ItemMasterList>();
                     SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == result.SelectItemIssues.RequestedByOrganisationUID);
+                    SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == result.SelectItemIssues.RequestedByLocationUID);
                     SelectStore = Stores.FirstOrDefault(p => p.StoreUID == result.SelectItemIssues.RequestedByStoreUID);
                     SelectOrganisationIssue = OrganisationIssues.FirstOrDefault(p => p.HealthOrganisationUID == result.SelectItemIssues.OrganisationUID);
+                    SelectLocationIssue = LocationIssue.FirstOrDefault(p => p.LocationUID == result.SelectItemIssues.LocationUID);
                     SelectStoreIssue = StoresIssues.FirstOrDefault(p => p.StoreUID == result.SelectItemIssues.StoreUID);
                     NetAmount = result.SelectItemIssues.NetAmount;
                     OtherChages = result.SelectItemIssues.OtherCharges;
@@ -363,8 +425,10 @@ namespace MediTech.ViewModels
             model.ReceiveBy = AppUtil.Current.UserID;
             model.ReceivedDttm = ReceiveDate.Value;
             model.OrganisationUID = SelectOrganisation.HealthOrganisationUID;
+            model.LocationUID = SelectLocation.LocationUID;
             model.StoreUID = SelectStore.StoreUID;
             model.IssuedByOrganisationUID = SelectOrganisationIssue.HealthOrganisationUID;
+            model.IssuedByLocationUID = SelectLocationIssue.LocationUID;
             model.IssuedByStoreUID = SelectStoreIssue.StoreUID;
             model.RCSTSUID = 2930;
             model.ItemReceiveDetail = new List<ItemReceiveDetailModel>();
@@ -398,8 +462,10 @@ namespace MediTech.ViewModels
             ItemIssueUID = model.ItemIssueUID;
             IssueNo = model.ItemIssueID;
             SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
             SelectStore = Stores.FirstOrDefault(p => p.StoreUID == model.StoreUID);
             SelectOrganisationIssue = OrganisationIssues.FirstOrDefault(p => p.HealthOrganisationUID == model.IssuedByOrganisationUID);
+            SelectLocationIssue = LocationIssue.FirstOrDefault(p => p.LocationUID == model.IssuedByLocationUID);
             SelectStoreIssue = StoresIssues.FirstOrDefault(p => p.StoreUID == model.IssuedByStoreUID);
             NetAmount = model.NetAmount;
             OtherChages = model.OtherCharges;
@@ -430,8 +496,10 @@ namespace MediTech.ViewModels
             if (itemIssue != null)
             {
                 SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == itemIssue.RequestedByOrganisationUID);
+                SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == itemIssue.RequestedByLocationUID);
                 SelectStore = Stores.FirstOrDefault(p => p.StoreUID == itemIssue.RequestedByStoreUID);
                 SelectOrganisationIssue = OrganisationIssues.FirstOrDefault(p => p.HealthOrganisationUID == itemIssue.OrganisationUID);
+                SelectLocationIssue = LocationIssue.FirstOrDefault(p => p.LocationUID == itemIssue.LocationUID);
                 SelectStoreIssue = StoresIssues.FirstOrDefault(p => p.StoreUID == itemIssue.StoreUID);
                 NetAmount = itemIssue.NetAmount;
                 OtherChages = itemIssue.OtherCharges;
@@ -464,8 +532,7 @@ namespace MediTech.ViewModels
                     //}
 
 
-                    newRow.SelectItemMaster = ItemMasters
-       .Where(p => p.ItemMasterUID == item.ItemMasterUID).FirstOrDefault();
+                    newRow.SelectItemMaster = ItemMasters.Where(p => p.ItemMasterUID == item.ItemMasterUID).FirstOrDefault();
                     newRow.StockUID = item.StockUID;
                     newRow.ItemCost = item.ItemCost;
                     newRow.UnitPrice = item.UnitPrice;

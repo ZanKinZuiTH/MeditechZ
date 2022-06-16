@@ -519,7 +519,7 @@ namespace MediTech.DataBase
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "pInvenIssueItem";
-
+                cmd.CommandTimeout = 3000;
                 cmd.Parameters.AddWithValue("@P_ItemIssueUID", itemIssueUID);
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
                 cmd.ExecuteNonQuery();
@@ -583,7 +583,7 @@ namespace MediTech.DataBase
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "pInvenTransferItem";
-
+                cmd.CommandTimeout = 3000;
                 cmd.Parameters.AddWithValue("@P_ItemIssueUID", itemIssueUID);
                 cmd.Parameters.AddWithValue("@P_UserUID", userUID);
                 cmd.ExecuteNonQuery();
@@ -1431,8 +1431,8 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-     , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
-            , int? PayorDetailUID, int? checkupJobUID, string encounter)
+        , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+               , int? insuranceCompanyUID, int? checkupJobUID, string encounter)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientVisit", entities.Database.Connection.ConnectionString);
@@ -1448,11 +1448,11 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@ArrivedDttm", arrivedDttm != DateTime.MinValue && arrivedDttm != null ? arrivedDttm : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@OwnerOrganisation", ownerOrganisationUID != null ? ownerOrganisationUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@LocationUID", locationUID != null ? locationUID : (Object)(DBNull.Value));
-            adp.SelectCommand.Parameters.AddWithValue("@PayorDetailUID", PayorDetailUID != null ? PayorDetailUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@InsuranceCompanyUID", insuranceCompanyUID != null ? insuranceCompanyUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@Encounter", encounter ?? "");
             DataSet ds = new DataSet();
-             adp.Fill(ds);
+            adp.Fill(ds);
             return ds.Tables[0];
         }
 
@@ -1647,7 +1647,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID)
+        public static DataTable pSearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID,int? locationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockWorkList", entities.Database.Connection.ConnectionString);
@@ -1656,6 +1656,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateFrom", dateFrom ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo ?? (object)DBNull.Value);
             adp.SelectCommand.Parameters.AddWithValue("@P_OrganisationUID", organisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];

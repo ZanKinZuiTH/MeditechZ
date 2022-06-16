@@ -22,6 +22,9 @@ namespace MediTech.ViewModels
 
         #region Properties
 
+        public List<LocationModel> LocationFormData { get; set; }
+        public List<LocationModel> LocationToData { get; set; }
+
 
         private string _FileLocation;
 
@@ -62,12 +65,37 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationFrom, value);
                 if (_SelectOrganisationFrom != null)
                 {
-                    StoresFrom = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationFrom.HealthOrganisationUID);
-                    OrganisationsTo = HealthOrganisations.Where(p => p.HealthOrganisationUID != SelectOrganisationFrom.HealthOrganisationUID).ToList();
+                    LocationFormData = GetLocatioinRole(SelectOrganisationFrom.HealthOrganisationUID);
+
+                    LocationFrom = LocationFormData;
+
+                    if (SelectLocationTo != null)
+                        LocationFrom = LocationFormData?.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
                 }
-                else
+            }
+        }
+
+        private List<LocationModel> _LocationFrom;
+
+        public List<LocationModel> LocationFrom
+        {
+            get { return _LocationFrom; }
+            set { Set(ref _LocationFrom, value); }
+        }
+
+        private LocationModel _SelectLocationFrom;
+
+        public LocationModel SelectLocationFrom
+        {
+            get { return _SelectLocationFrom; }
+            set
+            {
+                Set(ref _SelectLocationFrom, value);
+                StoresFrom = null;
+                if (_SelectLocationFrom != null)
                 {
-                    StoresFrom = null;
+                    StoresFrom = DataService.Inventory.GetStoreByLocationUID(_SelectLocationFrom.LocationUID);
+                    LocationTo = LocationToData?.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
                 }
             }
         }
@@ -122,11 +150,35 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisationTo, value);
                 if (_SelectOrganisationTo != null)
                 {
-                    StoresTo = DataService.Inventory.GetStoreByOrganisationUID(SelectOrganisationTo.HealthOrganisationUID);
+                    LocationToData = GetLocatioinRole(_SelectOrganisationTo.HealthOrganisationUID);
+                    LocationTo = LocationToData;
+                    if (SelectLocationFrom != null)
+                        LocationTo = LocationToData?.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
                 }
-                else
+            }
+        }
+
+        private List<LocationModel> _LocationTo;
+
+        public List<LocationModel> LocationTo
+        {
+            get { return _LocationTo; }
+            set { Set(ref _LocationTo, value); }
+        }
+
+        private LocationModel _SelectLocationTo;
+
+        public LocationModel SelectLocationTo
+        {
+            get { return _SelectLocationTo; }
+            set
+            {
+                Set(ref _SelectLocationTo, value);
+                StoresTo = null;
+                if (_SelectLocationTo != null)
                 {
-                    StoresTo = null;
+                    StoresTo = DataService.Inventory.GetStoreByLocationUID(_SelectLocationTo.LocationUID);
+                    LocationFrom = LocationFormData?.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
                 }
             }
         }
@@ -420,11 +472,26 @@ namespace MediTech.ViewModels
                     return;
                 }
 
+
+
                 if (SelectOrganisationTo == null)
                 {
                     WarningDialog("กรุณาระบุ Store ที่ย้าย");
                     return;
                 }
+
+                if (LocationFrom == null)
+                {
+                    WarningDialog("กรุณาระบุ ผนก/สถานที่ ที่ย้าย");
+                    return;
+                }
+
+                if (LocationTo == null)
+                {
+                    WarningDialog("กรุณาระบุ ผนก/สถานที่ ที่รับ");
+                    return;
+                }
+
 
                 if (SelectStoreFrom == null)
                 {
@@ -486,8 +553,10 @@ namespace MediTech.ViewModels
                 {
                     ItemIssueDetail = new ObservableCollection<ItemMasterList>();
                     SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == result.SelectItemRequest.RequestOnOrganistaionUID);
+                    SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == result.SelectItemRequest.RequestOnLocationUID);
                     SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == result.SelectItemRequest.RequestOnStoreUID);
                     SelectOrganisationTo = OrganisationsTo.FirstOrDefault(p => p.HealthOrganisationUID == result.SelectItemRequest.OrganisationUID);
+                    SelectLocationTo = LocationTo.FirstOrDefault(p => p.LocationUID == result.SelectItemRequest.LocationUID);
                     SelectStoreTo = StoresTo.FirstOrDefault(p => p.StoreUID == result.SelectItemRequest.StoreUID);
 
                     foreach (var item in result.ItemRequestDetails)
@@ -549,8 +618,10 @@ namespace MediTech.ViewModels
             model.IssueBy = AppUtil.Current.UserID;
             model.ItemIssueDttm = IssueDate.Value;
             model.OrganisationUID = SelectOrganisationFrom.HealthOrganisationUID;
+            model.LocationUID = SelectLocationFrom.LocationUID;
             model.StoreUID = SelectStoreFrom.StoreUID;
             model.RequestedByOrganisationUID = SelectOrganisationTo.HealthOrganisationUID;
+            model.RequestedByLocationUID = SelectLocationTo.LocationUID;
             model.RequestedByStoreUID = SelectStoreTo.StoreUID;
             model.ISUSTUID = 2913;
             model.ItemIssueDetail = new List<ItemIssueDetailModel>();
@@ -598,8 +669,11 @@ namespace MediTech.ViewModels
             ItemRequestUID = model.ItemRequestUID;
             RequestNo = model.ItemRequestID;
             SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == model.OrganisationUID);
+            SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == model.LocationUID);
             SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == model.StoreUID);
+
             SelectOrganisationTo = OrganisationsTo.FirstOrDefault(p => p.HealthOrganisationUID == model.RequestedByOrganisationUID);
+            SelectLocationTo = LocationTo.FirstOrDefault(p => p.LocationUID == model.RequestedByLocationUID);
             SelectStoreTo = StoresTo.FirstOrDefault(p => p.StoreUID == model.RequestedByStoreUID);
             OtherChages = model.OtherCharges;
             foreach (var item in model.ItemIssueDetail)
@@ -631,8 +705,11 @@ namespace MediTech.ViewModels
             {
                 ItemIssueDetail = new ObservableCollection<ItemMasterList>();
                 SelectOrganisationFrom = OrganisationsFrom.FirstOrDefault(p => p.HealthOrganisationUID == ItemRequest.RequestOnOrganistaionUID);
+                SelectLocationFrom = LocationFrom.FirstOrDefault(p => p.LocationUID == ItemRequest.RequestOnLocationUID);
                 SelectStoreFrom = StoresFrom.FirstOrDefault(p => p.StoreUID == ItemRequest.RequestOnStoreUID);
+
                 SelectOrganisationTo = OrganisationsTo.FirstOrDefault(p => p.HealthOrganisationUID == ItemRequest.OrganisationUID);
+                SelectLocationTo = LocationTo.FirstOrDefault(p => p.LocationUID == ItemRequest.LocationUID);
                 SelectStoreTo = StoresTo.FirstOrDefault(p => p.StoreUID == ItemRequest.StoreUID);
 
                 foreach (var item in ItemRequest.ItemRequestDetail)

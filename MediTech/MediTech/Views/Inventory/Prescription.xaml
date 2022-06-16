@@ -275,26 +275,17 @@
                 <dxlc:LayoutItem Label="Prescription Number">
                     <dxe:TextEdit Text="{Binding PrescriptionNumber}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานประกอบการ">
-                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
-                                      DisplayMember="Name"
-                                      AutoComplete="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      ImmediatePopup="True"/>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup HorizontalAlignment="Right">
+                            <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
+                            <dx:SimpleButton Command="{Binding ClearCommand}" Content="คื่นค่า" Height="25" Width="80"/>
+                        </dxlc:LayoutGroup>
+
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutItem>
-                <dxlc:LayoutGroup Orientation="Horizontal">
-                    <dxlc:LayoutGroup HorizontalAlignment="Right">
-                        <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>
-                        <dx:SimpleButton Command="{Binding ClearCommand}" Content="คื่นค่า" Height="25" Width="80"/>
-                    </dxlc:LayoutGroup>
 
-                </dxlc:LayoutGroup>
-            </dxlc:LayoutItem>
             <dxg:GridControl ItemsSource="{Binding Prescriptons}"
                              SelectedItem="{Binding SelectPrescription}"
                              >
@@ -306,10 +297,11 @@
                 </dxg:GridColumn>
                 <dxg:GridColumn Header="HN" FieldName="PatientID"/>
                 <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName"/>
+                <dxg:GridColumn Header="แผนก" FieldName="LocationName"/>
                 <dxg:GridColumn Header="Encounter Type" FieldName="EncounterType"/>
                 <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName"/>
                 <dxg:GridColumn Header="สถานะ" FieldName="PrescriptionStatus"/>
-                <dxg:GridColumn Header="ชำระเงิน" FieldName="IsBilled"/>
+                <dxg:GridColumn Header="Is Billed" FieldName="IsBilled"/>
                 <dxg:GridColumn Header="วันเวลาที่จ่ายยา" FieldName="DispenseDttm">
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>

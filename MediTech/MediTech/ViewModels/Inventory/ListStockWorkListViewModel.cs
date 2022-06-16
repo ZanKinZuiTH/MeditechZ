@@ -46,6 +46,29 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisation, value);
+                if(SelectOrganisation != null)
+                {
+                    Locations = GetLocatioinRole(_SelectOrganisation.HealthOrganisationUID);
+                }
+            }
+        }
+
+        private List<LocationModel> _Locations;
+
+        public List<LocationModel> Locations
+        {
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
+            set
+            {
+                Set(ref _SelectLocation, value);
             }
         }
 
@@ -180,7 +203,9 @@ namespace MediTech.ViewModels
 
         private void Search()
         {
-            StockWorkLists = DataService.Inventory.SearchStockWorkList(DateFrom, DateTo, SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null);
+            StockWorkLists = DataService.Inventory.SearchStockWorkList(DateFrom, DateTo, SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null
+                ,SelectLocation != null ? SelectLocation.LocationUID  : (int?)null
+                );
         }
         private void Issue()
         {

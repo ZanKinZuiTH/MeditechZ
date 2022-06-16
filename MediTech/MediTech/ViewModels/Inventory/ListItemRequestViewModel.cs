@@ -57,21 +57,33 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisation, value);
+                if(_SelectOrganisation != null)
+                {
+                    Locations = GetLocatioinRole(_SelectOrganisation.HealthOrganisationUID);
+                }
             }
         }
 
 
-        public List<HealthOrganisationModel> OrganisationsTo { get; set; }
-        private HealthOrganisationModel _SelectOrganisationTo;
+        private List<LocationModel> _Locations;
 
-        public HealthOrganisationModel SelectOrganisationTo
+        public List<LocationModel> Locations
         {
-            get { return _SelectOrganisationTo; }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
+        }
+
+        private LocationModel _SelectLocation;
+
+        public LocationModel SelectLocation
+        {
+            get { return _SelectLocation; }
             set
             {
-                Set(ref _SelectOrganisationTo, value);
+                Set(ref _SelectLocation, value);
             }
         }
+
 
         public List<LookupReferenceValueModel> RequestStatus { get; set; }
         private LookupReferenceValueModel _SelectRequestStatus;
@@ -241,7 +253,6 @@ namespace MediTech.ViewModels
             Prioritys = refData.Where(p => p.DomainCode == "IRPRI").ToList();
             var organ = GetHealthOrganisationIsStock();
             Organisations = GetHealthOrganisationIsRoleStock();
-            OrganisationsTo = organ;
             //DateFrom = DateTime.Now;
 
             if (RequestStatus != null)
@@ -318,10 +329,10 @@ namespace MediTech.ViewModels
             ItemRequests = null;
             ItemRequestDetails = null;
             int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            int? organisationToUID = SelectOrganisationTo != null ? SelectOrganisationTo.HealthOrganisationUID : (int?)null;
             int? requestStatus = SelectRequestStatus != null ? SelectRequestStatus.Key : (int?)null;
             int? priority = SelectPriority != null ? SelectPriority.Key : (int?)null;
-            ItemRequests = inventoryData.SearchItemRequest(DateFrom, DateTo, RequestNo, organisationUID, organisationToUID, requestStatus, priority);
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            ItemRequests = inventoryData.SearchItemRequest(DateFrom, DateTo, RequestNo, organisationUID, locationUID,null,null, requestStatus, priority);
         }
 
 
@@ -333,7 +344,6 @@ namespace MediTech.ViewModels
             SelectOrganisation = null;
             SelectPriority = null;
             SelectRequestStatus = null;
-            SelectOrganisationTo = null;
         }
 
 

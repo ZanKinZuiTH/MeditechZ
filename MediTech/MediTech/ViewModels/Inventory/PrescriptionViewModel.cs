@@ -52,22 +52,6 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPrescritionStatus, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
-
-        private HealthOrganisationModel _SelectOrganisation;
-
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
-        }
-
         private List<PrescriptionModel> _Prescriptons;
 
         public List<PrescriptionModel> Prescriptons
@@ -223,7 +207,7 @@ namespace MediTech.ViewModels
 
         public PrescriptionViewModel()
         {
-            Organisations = GetHealthOrganisationIsStock();
+            
             var refValues = DataService.Technical.GetReferenceValueMany("ORDST");
             PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD"
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
@@ -252,12 +236,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            if (SelectOrganisation != null)
-            {
-                organisationUID = SelectOrganisation.HealthOrganisationUID;
-            }
-
-            Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, ORDSTUID, patientUID, PrescriptionNumber, organisationUID);
+            Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, ORDSTUID, patientUID, PrescriptionNumber, AppUtil.Current.OwnerOrganisationUID);
             int te = Prescriptons.Count;
         }
 
@@ -303,7 +282,6 @@ namespace MediTech.ViewModels
             SelectedPateintSearch = null;
             SearchPatientCriteria = "";
             PrescriptionNumber = "";
-            SelectOrganisation = null;
         }
 
         public void PatientSearch()

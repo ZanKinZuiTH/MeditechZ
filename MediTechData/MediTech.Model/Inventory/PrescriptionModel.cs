@@ -17,6 +17,8 @@ namespace MediTech.Model
         public string PrescriptionStatus { get; set; }
         public string PatientID { get; set; }
         public string PatientName { get; set; }
+        public string EncounterType { get; set; }
+        public string LocationName { get; set; }
         public string OrganisationName { get; set; }
         public int PrescribedBy { get; set; }
         public System.DateTime PrescribedDttm { get; set; }

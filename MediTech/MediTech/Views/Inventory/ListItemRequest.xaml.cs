@@ -27,7 +27,6 @@ namespace MediTech.Views
         {
             InitializeComponent();
             lkeOrganisation.PreviewKeyDown += LookUpEdit_PreviewKeyDown;
-            lkeOrganisationTo.PreviewKeyDown += LookUpEdit_PreviewKeyDown;
             cmbPriority.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
             cmbRequestStatus.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
             if (this.DataContext is ListItemRequestViewModel)

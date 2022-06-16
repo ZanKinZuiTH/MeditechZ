@@ -615,8 +615,10 @@ namespace MediTechWebApi.Controllers
                                                 AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
                                                 DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
                                                 Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
                                                 PrescribedDttm = ps.PrescribedDttm,
                                                 IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
                                                 OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
                                                 OwnerOrganisationUID = ps.OwnerOrganisationUID
                                             }).ToList();

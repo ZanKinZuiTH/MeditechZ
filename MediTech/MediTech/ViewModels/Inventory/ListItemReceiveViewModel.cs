@@ -18,6 +18,8 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+        public List<LocationModel> LocationFormData { get; set; }
+        public List<LocationModel> LocationToData { get; set; }
 
         private bool _IsEnableCancel = false;
 
@@ -43,6 +45,38 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisationFrom, value);
+                if (_SelectOrganisationFrom != null)
+                {
+                    LocationFormData = GetLocatioinRole(SelectOrganisationFrom.HealthOrganisationUID);
+
+                    LocationFrom = LocationFormData;
+
+                    if (SelectLocationTo != null)
+                        LocationFrom = LocationFormData.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _LocationFrom;
+
+        public List<LocationModel> LocationFrom
+        {
+            get { return _LocationFrom; }
+            set { Set(ref _LocationFrom, value); }
+        }
+
+        private LocationModel _SelectLocationFrom;
+
+        public LocationModel SelectLocationFrom
+        {
+            get { return _SelectLocationFrom; }
+            set
+            {
+                Set(ref _SelectLocationFrom, value);
+                if (_SelectLocationFrom != null)
+                {
+                    LocationTo = LocationToData.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
+                }
             }
         }
 
@@ -55,6 +89,36 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectOrganisationTo, value);
+                if (_SelectOrganisationTo != null)
+                {
+                    LocationToData = GetLocatioinRole(_SelectOrganisationTo.HealthOrganisationUID);
+                    LocationTo = LocationToData;
+                    if (SelectLocationFrom != null)
+                        LocationTo = LocationToData.Where(p => p.LocationUID != SelectLocationFrom.LocationUID).ToList();
+                }
+            }
+        }
+
+        private List<LocationModel> _LocationTo;
+
+        public List<LocationModel> LocationTo
+        {
+            get { return _LocationTo; }
+            set { Set(ref _LocationTo, value); }
+        }
+
+        private LocationModel _SelectLocationTo;
+
+        public LocationModel SelectLocationTo
+        {
+            get { return _SelectLocationTo; }
+            set
+            {
+                Set(ref _SelectLocationTo, value);
+                if (_SelectLocationTo != null)
+                {
+                    LocationFrom = LocationFormData.Where(p => p.LocationUID != SelectLocationTo.LocationUID).ToList();
+                }
             }
         }
 
@@ -257,9 +321,10 @@ namespace MediTech.ViewModels
             ItemReceives = null;
             ItemReceiveDetails = null;
             int? organisationUIDFrom = SelectOrganisationFrom != null ? SelectOrganisationFrom.HealthOrganisationUID : (int?)null;
+            int? locationUIDFrom = SelectLocationFrom != null ? SelectLocationFrom.LocationUID : (int?)null;
             int? organisationUIDTo = SelectOrganisationTo != null ? SelectOrganisationTo.HealthOrganisationUID : (int?)null;
-
-            ItemReceives = DataService.Inventory.SearchItemReceive(DateFrom, DateTo, ReceiveNo, organisationUIDFrom, organisationUIDTo);
+            int? locationUIDTo = SelectLocationTo != null ? SelectLocationTo.LocationUID : (int?)null;
+            ItemReceives = DataService.Inventory.SearchItemReceive(DateFrom, DateTo, ReceiveNo, organisationUIDFrom, locationUIDFrom, organisationUIDTo, locationUIDTo);
         }
 
 
