@@ -25,25 +25,25 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsurancCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsurancCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsurancCompany; }
+            set { Set(ref _InsurancCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsurancCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsurancCompany
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsurancCompany; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (SelectPayorDetail != null)
+                Set(ref _SelectInsurancCompany, value);
+                if (_SelectInsurancCompany != null)
                 {
-                    CompanyName = SelectPayorDetail.CompanyName;
+                    CompanyName = _SelectInsurancCompany.CompanyName;
                 }
             }
         }
@@ -233,7 +233,7 @@ namespace MediTech.ViewModels
 
         public ManageCheckupJobViewModel()
         {
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            InsurancCompany = DataService.Billing.GetInsuranceCompanyAll();
             GroupResults = DataService.Technical.GetReferenceValueMany("GPRST");
             GroupResults = GroupResults?.OrderBy(p => p.DisplayOrder).ToList();
             CheckupService = new List<LookupItemModel>();
@@ -255,7 +255,7 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectPayorDetail == null)
+                if (SelectInsurancCompany == null)
                 {
                     WarningDialog("กรุณาเลือก Payor");
                     return;
@@ -314,7 +314,7 @@ namespace MediTech.ViewModels
             }
 
             modelCheckupJobContact.JobNumber = JobNumber;
-            modelCheckupJobContact.PayorDetailUID = SelectPayorDetail.InsuranceCompanyUID;
+            modelCheckupJobContact.InsuranceCompanyUID = SelectInsurancCompany.InsuranceCompanyUID;
             modelCheckupJobContact.CompanyName = CompanyName;
             modelCheckupJobContact.Description = Description;
             modelCheckupJobContact.Location = Location;
@@ -334,7 +334,7 @@ namespace MediTech.ViewModels
         public void AssignModelToProperties()
         {
             JobNumber = modelCheckupJobContact.JobNumber;
-            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.InsuranceCompanyUID == modelCheckupJobContact.PayorDetailUID);
+            SelectInsurancCompany = InsurancCompany.FirstOrDefault(p => p.InsuranceCompanyUID == modelCheckupJobContact.InsuranceCompanyUID);
             CompanyName = modelCheckupJobContact.CompanyName;
             Description = modelCheckupJobContact.Description;
             Location = modelCheckupJobContact.Location;

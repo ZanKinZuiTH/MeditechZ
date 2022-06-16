@@ -34,7 +34,7 @@
             </dxlc:LayoutGroup>
 
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutItem >
+                <!--<dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
@@ -50,12 +50,12 @@
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 <dxlc:LayoutItem Label="Payor">
-                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -76,7 +76,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                     </dxg:GridControl.View>
-                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                    <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                 </dxg:GridControl>
                             </ControlTemplate>
                         </dxg:LookUpEdit.PopupContentTemplate>
@@ -91,8 +91,6 @@
                                                   SelectedItem="{Binding SelectYearSource}"
                                                   />
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutGroup HorizontalAlignment="Right">
@@ -101,6 +99,7 @@
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
+            
 
             <dxlc:LayoutItem>
                 <ProgressBar Height="15"  Name="progressBar1"/>

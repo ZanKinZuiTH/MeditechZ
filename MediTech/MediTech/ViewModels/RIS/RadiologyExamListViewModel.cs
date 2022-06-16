@@ -94,12 +94,12 @@ namespace MediTech.ViewModels
             set { Set(ref _RequestItemName, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Location;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Location
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Location; }
+            set { Set(ref _Location, value); }
         }
 
         private List<LookupReferenceValueModel> _Modality;
@@ -153,12 +153,12 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRequestStatusList, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocation;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocation
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
         private CareproviderModel _SelectRadiologist;
@@ -600,7 +600,9 @@ namespace MediTech.ViewModels
             var careprovider = DataService.UserManage.GetCareproviderAll();
             Radiologist = careprovider.Where(p => p.IsRadiologist).ToList();
             RDUStaffList = careprovider.Where(p => p.IsRDUStaff).ToList();
-            Organisations = GetHealthOrganisationRoleMedical();
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
 
             CareproviderModel newCareprovider = new CareproviderModel();
@@ -989,7 +991,6 @@ namespace MediTech.ViewModels
 
                 }
             }
-            int? organisationUID = null;
 
             if (SelectPriority != null)
             {
@@ -1020,16 +1021,12 @@ namespace MediTech.ViewModels
                 rduStaffUID = SelectRDUStaff.CareproviderUID;
             }
 
-            if (SelectOrganisation != null)
-            {
-                organisationUID = SelectOrganisation.HealthOrganisationUID;
-            }
-
             if (SelectPayorDetail != null)
             {
                 payorDetailUID = SelectPayorDetail.InsuranceCompanyUID;
             }
 
+            int? organisationUID = AppUtil.Current.OwnerOrganisationUID;
             var listResult = DataService.Radiology.SearchRequestExamList(DateFrom, DateTo, statusList, rqprtuid, patientUID, RequestItemName, rimtyp, radiologistUID, rduStaffUID, payorDetailUID, organisationUID);
 
             if (SelectRDUStaff != null && SelectRDUStaff.CareproviderUID == 0)
@@ -1057,7 +1054,7 @@ namespace MediTech.ViewModels
                 SelectRadiologist = Radiologist.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             }
 
-            SelectOrganisation = null;
+            SelectLocation = null;
             SelectPayorDetail = null;
             SelectModality = null;
             SelectPriority = null;

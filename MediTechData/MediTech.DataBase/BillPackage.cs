@@ -25,7 +25,6 @@ namespace MediTech.DataBase
         public Nullable<double> MinValue { get; set; }
         public System.DateTime ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
-        public int HealthOrganisationUID { get; set; }
         public Nullable<int> OrderCategoryUID { get; set; }
         public Nullable<int> OrderSubCategoryUID { get; set; }
         public string Code { get; set; }

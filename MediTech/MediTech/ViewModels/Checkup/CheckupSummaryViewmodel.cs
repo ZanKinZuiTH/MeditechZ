@@ -78,12 +78,12 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompanyDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompanyDetails
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompanyDetails; }
+            set { Set(ref _InsuranceCompanyDetails, value); }
         }
 
         private DateTime? _DateFrom;
@@ -102,17 +102,17 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompanyDetail;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompanyDetail
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsuranceCompanyDetail; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (_SelectPayorDetail != null)
+                Set(ref _SelectInsuranceCompanyDetail, value);
+                if (_SelectInsuranceCompanyDetail != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompanyDetail.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -289,12 +289,12 @@ namespace MediTech.ViewModels
 
         public CheckupSummaryViewModel()
         {
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            InsuranceCompanyDetails = DataService.Billing.GetInsuranceCompanyAll();
 
-//#if DEBUG
-//            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
-//            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
-//#endif
+            //#if DEBUG
+            //            SelectPayorDetail = PayorDetails.FirstOrDefault(p => p.PayorDetailUID == 1229);
+            //            SelectCheckupJobContact = CheckupJobContactList.FirstOrDefault(p => p.CheckupJobContactUID == 1);
+            //#endif
         }
 
 

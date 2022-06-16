@@ -30,7 +30,7 @@ namespace MediTechWebApi.Controllers
                 {
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
-                    PayorDetailUID = p.PayorDetailUID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
                     CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
@@ -57,7 +57,7 @@ namespace MediTechWebApi.Controllers
                 {
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
-                    PayorDetailUID = p.PayorDetailUID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
                     CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
@@ -94,12 +94,12 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CheckupJobContactModel> GetCheckupJobContactByPayorDetailUID(int payorDetailUID)
         {
-            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.PayorDetailUID == payorDetailUID)
+            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.InsuranceCompanyUID == payorDetailUID)
                 .Select(p => new CheckupJobContactModel
                 {
                     CheckupJobContactUID = p.UID,
                     JobContactID = p.JobContactID,
-                    PayorDetailUID = p.PayorDetailUID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
                     CompanyName = p.CompanyName,
                     Description = p.Description,
                     JobNumber = p.JobNumber,
@@ -134,8 +134,6 @@ namespace MediTechWebApi.Controllers
                                                       DisplayOrder = ck.DisplayOrder,
                                                       ReportTemplate = rf.AlternateName
                                                   }).ToList();
-
-
             return taskData;
         }
 
@@ -279,7 +277,7 @@ namespace MediTechWebApi.Controllers
                         checkupJob.JobNumber = jobNumber;
                     }
 
-                    checkupJob.PayorDetailUID = checkupJobContactModel.PayorDetailUID;
+                    checkupJob.InsuranceCompanyUID = checkupJobContactModel.InsuranceCompanyUID;
                     checkupJob.CompanyName = checkupJobContactModel.CompanyName;
                     checkupJob.Description = checkupJobContactModel.Description;
                     checkupJob.Location = checkupJobContactModel.Location;
@@ -377,9 +375,9 @@ namespace MediTechWebApi.Controllers
         #region HealthExamList
         [Route("SearchCheckupExamList")]
         [HttpGet]
-        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID, int? PRTGPUID)
+        public List<RequestListModel> SearchCheckupExamList(DateTime? requestDateFrom, DateTime? requestDateTo, long? patientUID, int? InsuranceCompanyUID, int? checkupJobUID, int? PRTGPUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, payorDetailUID, checkupJobUID, PRTGPUID);
+            DataTable dataTable = SqlDirectStore.pSearchCheckupExamList(requestDateFrom, requestDateTo, patientUID, InsuranceCompanyUID, checkupJobUID, PRTGPUID);
             List<RequestListModel> listData = dataTable.ToList<RequestListModel>();
 
             return listData;
@@ -1154,10 +1152,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientCheckup")]
         [HttpGet]
-        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID, int? checkupJobUID)
+        public List<PatientVisitModel> SearchPatientCheckup(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID, int? checkupJobUID)
         {
             List<PatientVisitModel> data = null;
-            DataTable dt = SqlDirectStore.pSearchPatientCheckup(dateFrom, dateTo, patientUID, payorDetailUID, checkupJobUID);
+            DataTable dt = SqlDirectStore.pSearchPatientCheckup(dateFrom, dateTo, patientUID, insuranceCompanyUID, checkupJobUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientVisitModel>();
@@ -1979,7 +1977,7 @@ namespace MediTechWebApi.Controllers
         #region OldLabResult
         [Route("SaveOldLabResult")]
         [HttpPost]
-        public HttpResponseMessage SaveOldLabResult(RequestDetailItemModel resultItemRange, long patientUID, int payorDetailUID, DateTime enterDate, string codeLab, int userID, int organisationUID, int payorAgreementsUID)
+        public HttpResponseMessage SaveOldLabResult(RequestDetailItemModel resultItemRange, long patientUID, int payorDetailUID, DateTime enterDate, string codeLab, int userID, int organisationUID, int payorAgreementsUID, int? locationUID)
         {
             try
             {
@@ -2068,6 +2066,7 @@ namespace MediTechWebApi.Controllers
                             patientVisit.StatusFlag = "A";
                             patientVisit.Comments = "Migrate Lab Result";
                             patientVisit.OwnerOrganisationUID = organisationUID;
+                            patientVisit.LocationUID = locationUID;
 
                             db.PatientVisit.Add(patientVisit);
                             db.SaveChanges();

@@ -68,16 +68,16 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
-        public InsuranceCompanyModel SelectPayorDetail
+        private InsuranceCompanyModel _SelectInsuranceCompanyDetail;
+        public InsuranceCompanyModel SelectInsuranceCompanyDetail
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsuranceCompanyDetail; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (_SelectPayorDetail != null)
+                Set(ref _SelectInsuranceCompanyDetail, value);
+                if (_SelectInsuranceCompanyDetail != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.InsuranceCompanyUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompanyDetail.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -100,11 +100,11 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<InsuranceCompanyModel> _PayorDetails;
-        public List<InsuranceCompanyModel> PayorDetails
+        private List<InsuranceCompanyModel> _InsuranceCompanyDetails;
+        public List<InsuranceCompanyModel> InsuranceCompanyDetails
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompanyDetails; }
+            set { Set(ref _InsuranceCompanyDetails, value); }
         }
 
         private List<CheckupJobContactModel> _CheckupJobContactList;
@@ -250,7 +250,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            InsuranceCompanyDetails = DataService.Billing.GetInsuranceCompanyAll();
             PrinterLists = new List<string>();
             PrintDocument printDoc = new PrintDocument();
             foreach (string printer in System.Drawing.Printing.PrinterSettings.InstalledPrinters)
@@ -321,7 +321,7 @@ namespace MediTech.ViewModels
         void Search()
         {
             long? patientUID = null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
+            int? payorDetailUID = SelectInsuranceCompanyDetail != null ? SelectInsuranceCompanyDetail.InsuranceCompanyUID : (int?)null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)

@@ -13,25 +13,25 @@ namespace MediTech.ViewModels
     public class VerifyChekupResultViewModel : MediTechViewModelBase
     {
         #region Properties
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsuranceCompany; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (_SelectPayorDetail != null)
+                Set(ref _SelectInsuranceCompany, value);
+                if (_SelectInsuranceCompany != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompany.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -432,7 +432,8 @@ namespace MediTech.ViewModels
 
         public VerifyChekupResultViewModel()
         {
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+
             ResultStatus = DataService.Technical.GetReferenceValueMany("RABSTS");
             DateFrom = DateTime.Now;
             DateTo = null;
@@ -440,7 +441,7 @@ namespace MediTech.ViewModels
 
         public void SearchPatientVisit()
         {
-            if (SelectPayorDetail == null)
+            if (SelectInsuranceCompany == null)
             {
                 WarningDialog("กรุณาเลือก Payor");
                 return;
@@ -452,9 +453,9 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
 
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
+            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
             int? chekcupJobContactUID = SelectCheckupJobContact != null ? SelectCheckupJobContact.CheckupJobContactUID : (int?)null;
-            PatientVisits = DataService.Checkup.SearchPatientCheckup(DateFrom, DateTo, patientUID, payorDetailUID, chekcupJobContactUID);
+            PatientVisits = DataService.Checkup.SearchPatientCheckup(DateFrom, DateTo, patientUID, insuranceCompanyUID, chekcupJobContactUID);
 
         }
 

@@ -92,25 +92,25 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsuranceCompany; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (_SelectPayorDetail != null)
+                Set(ref _SelectInsuranceCompany, value);
+                if (_SelectInsuranceCompany != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompany.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -345,7 +345,7 @@ namespace MediTech.ViewModels
         public TranslateCheckupResultViewModel()
         {
             DateTime now = DateTime.Now;
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
             DateFrom = now;
             DateTo = now;
             JobDateFrom = now;

@@ -90,25 +90,25 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PayorDetailModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompanyDetails;
 
-        public List<PayorDetailModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompanyDetails
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompanyDetails; }
+            set { Set(ref _InsuranceCompanyDetails, value); }
         }
 
-        private PayorDetailModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompanyDetails;
 
-        public PayorDetailModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompanyDetails
         {
-            get { return _SelectPayorDetail; }
+            get { return _SelectInsuranceCompanyDetails; }
             set
             {
-                Set(ref _SelectPayorDetail, value);
-                if (_SelectPayorDetail != null)
+                Set(ref _SelectInsuranceCompanyDetails, value);
+                if (_SelectInsuranceCompanyDetails != null)
                 {
-                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectPayorDetail.PayorDetailUID);
+                    CheckupJobContactList = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectInsuranceCompanyDetails.InsuranceCompanyUID);
                     SelectCheckupJobContact = CheckupJobContactList.OrderByDescending(p => p.StartDttm).FirstOrDefault();
                 }
             }
@@ -328,7 +328,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            InsuranceCompanyDetails = DataService.Billing.GetInsuranceCompanyAll();
             var refValues = DataService.Technical.GetReferenceValueList("PRTGP");
             if (refValues != null)
                 RequestItemTypes = refValues.Where(p => p.NumericValue == 1).ToList();
@@ -380,14 +380,14 @@ namespace MediTech.ViewModels
         }
         void Search()
         {
-            if (SelectPayorDetail == null)
+            if (SelectInsuranceCompanyDetails == null)
             {
                 WarningDialog("กรุณาเลือก Payor");
                 return;
             }
 
             long? patientUID = null;
-            int? payorDetailUID = null;
+            int? insuranceCompanyUID = null;
             int? checkupJobUID = null;
             int? PRTGPUID = null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
@@ -398,9 +398,9 @@ namespace MediTech.ViewModels
                 }
             }
 
-            if (SelectPayorDetail != null)
+            if (SelectInsuranceCompanyDetails != null)
             {
-                payorDetailUID = SelectPayorDetail.PayorDetailUID;
+                insuranceCompanyUID = SelectInsuranceCompanyDetails.InsuranceCompanyUID;
             }
 
             if (SelectCheckupJobContact != null)
@@ -413,7 +413,7 @@ namespace MediTech.ViewModels
                 PRTGPUID = SelectRequestItemType.Key;
             }
 
-            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo, patientUID, payorDetailUID, checkupJobUID, PRTGPUID);
+            var listResult = DataService.Checkup.SearchCheckupExamList(DateFrom, DateTo, patientUID, insuranceCompanyUID, checkupJobUID, PRTGPUID);
 
             CheckupExamList = new ObservableCollection<RequestListModel>(listResult);
             OnUpdateEvent();
