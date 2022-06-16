@@ -2094,6 +2094,53 @@ namespace MediTech.ViewModels
 
         #region IPD
 
+        public IPDSearchViewModel IPDSearchViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPDSearchViewModel>())
+                    SimpleIoc.Default.Register<IPDSearchViewModel>();
+
+                return ServiceLocator.Current.GetInstance<IPDSearchViewModel>();
+            }
+        }
+
+        public BedChangedStatusViewModel BedChangedStatusViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BedChangedStatusViewModel>())
+                    SimpleIoc.Default.Register<BedChangedStatusViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BedChangedStatusViewModel>();
+            }
+        }
+
+        public IPDMedicalDischargeViewModel IPDMedicalDischargeViewModel
+        {
+           
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPDMedicalDischargeViewModel>())
+                    SimpleIoc.Default.Register<IPDMedicalDischargeViewModel>();
+
+                return ServiceLocator.Current.GetInstance<IPDMedicalDischargeViewModel>();
+            }
+        }
+
+
+        public AdmissionDetailViewModel AdmissionDetailViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AdmissionDetailViewModel>())
+                    SimpleIoc.Default.Register<AdmissionDetailViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AdmissionDetailViewModel>();
+            }
+        }
+
+
         public AdmissionRequestListViewModel AdmissionRequestListViewModel
         {
             get
@@ -2127,6 +2174,27 @@ namespace MediTech.ViewModels
             }
         }
 
+        public PatientArrivedViewModel PatientArrivedViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientArrivedViewModel>())
+                    SimpleIoc.Default.Register<PatientArrivedViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientArrivedViewModel>();
+            }
+        }
+
+        public TranferBedViewModel TranferBedViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<TranferBedViewModel>())
+                    SimpleIoc.Default.Register<TranferBedViewModel>();
+
+                return ServiceLocator.Current.GetInstance<TranferBedViewModel>();
+            }
+        }
 
         #endregion
 

@@ -1475,8 +1475,14 @@
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\IPD\AdmissionDetailViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestListViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestViewModel.cs" />
+    <Compile Include="ViewModels\IPD\BedChangedStatusViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDMedicalDischargeViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDSearchViewModel.cs" />
+    <Compile Include="ViewModels\IPD\PatientArrivedViewModel.cs" />
+    <Compile Include="ViewModels\IPD\TranferBedViewModel.cs" />
     <Compile Include="ViewModels\IPD\WardViewModel.cs" />
     <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
     <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
@@ -1786,11 +1792,29 @@
     <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
       <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IPD\AdmissionDetail.xaml.cs">
+      <DependentUpon>AdmissionDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IPD\AdmissionRequest.xaml.cs">
       <DependentUpon>AdmissionRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\AdmissionRequestList.xaml.cs">
       <DependentUpon>AdmissionRequestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\BedStatusChanged.xaml.cs">
+      <DependentUpon>BedStatusChanged.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDMedicalDischarge.xaml.cs">
+      <DependentUpon>IPDMedicalDischarge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDSearch.xaml.cs">
+      <DependentUpon>IPDSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\PatientArrived.xaml.cs">
+      <DependentUpon>PatientArrived.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\TranferBed.xaml.cs">
+      <DependentUpon>TranferBed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\WardView.xaml.cs">
       <DependentUpon>WardView.xaml</DependentUpon>
@@ -2453,6 +2477,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\IPD\AdmissionDetail.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\IPD\AdmissionRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2460,6 +2488,26 @@
     <Page Include="Views\IPD\AdmissionRequestList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\BedStatusChanged.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IPD\IPDMedicalDischarge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\PatientArrived.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\IPD\TranferBed.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\IPD\WardView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3865,6 +3913,11 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Ward\bed.png" />
+    <Resource Include="Resources\Images\Ward\bedLevel0.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel1.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel2.png" />
+    <Resource Include="Resources\Images\Ward\BedLevel3.png" />
     <Resource Include="Resources\Images\Menu\Rest.png" />
     <Resource Include="Resources\Images\Menu\UsersLocation.png" />
     <Resource Include="Resources\Images\Menu\Emergency.png" />

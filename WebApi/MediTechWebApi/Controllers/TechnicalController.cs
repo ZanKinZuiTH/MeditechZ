@@ -32,6 +32,7 @@ namespace MediTechWebApi.Controllers
                 Description = p.Description,
                 LOTYPUID = p.LOTYPUID,
                 LCTSTUID = p.LCTSTUID,
+                StatusBedWord = SqlFunction.fGetRfValDescription(p.LCTSTUID ?? 0),
                 ParentLocationUID = p.ParentLocationUID,
                 IsTemporaryBed = p.IsTemporaryBed,
                 ActiveFrom = p.ActiveFrom,

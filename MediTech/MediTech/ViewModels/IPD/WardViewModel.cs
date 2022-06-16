@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.DataService;
 using MediTech.Model;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -48,11 +51,13 @@ namespace MediTech.ViewModels
         {
             get { return _SelectedBedWardView; }
             set { Set(ref _SelectedBedWardView, value); }
+           
         }
 
         #endregion
 
         #region Command
+   
         private RelayCommand _NewRequestrCommand;
 
         public RelayCommand NewRequestrCommand
@@ -74,6 +79,15 @@ namespace MediTech.ViewModels
             get { return _DischargeCommand ?? (_DischargeCommand = new RelayCommand(Discharge)); }
         }
 
+        private RelayCommand _TranferCommand;
+        
+        public RelayCommand TranferCommand
+        {
+            get { return _TranferCommand ?? (_TranferCommand = new RelayCommand(BedTranfer)); }
+        }
+
+
+
         private RelayCommand _DirectAdmitCommand;
 
         public RelayCommand DirectAdmitCommand
@@ -85,7 +99,7 @@ namespace MediTech.ViewModels
 
         public RelayCommand BedStatusChangeCommand
         {
-            get { return _BedStatusChangeCommand ?? (_BedStatusChangeCommand = new RelayCommand(BedStatusChange)); }
+            get { return _BedStatusChangeCommand ?? (_BedStatusChangeCommand = new RelayCommand(BedChangeStatus)); }
         }
 
         private RelayCommand _VitalSignCommand;
@@ -144,9 +158,26 @@ namespace MediTech.ViewModels
 
         }
 
-        public void BedStatusChange()
+        public void BedTranfer()
         {
+            if (SelectedBedWardView != null)
+            {
+                TranferBed pageview = new TranferBed();
+                (pageview.DataContext as TranferBedViewModel).SendingBed(SelectedBedWardView);
+                TranferBedViewModel result = (TranferBedViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
+        }
 
+
+        public void BedChangeStatus()
+        {
+            if (SelectedBedWardView != null)
+            {
+                BedStatusChanged pageview = new BedStatusChanged();
+                 (pageview.DataContext as BedChangedStatusViewModel).SendingBed(SelectedBedWardView);
+                BedChangedStatusViewModel result = (BedChangedStatusViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
+          
         }
 
         public void NewEMR()
