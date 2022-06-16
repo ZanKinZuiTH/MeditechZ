@@ -65,8 +65,8 @@
                                       ValueMember="Key"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutItem Label="Payor">
-                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
+                <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
                                       ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"

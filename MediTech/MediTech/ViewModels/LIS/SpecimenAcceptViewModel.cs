@@ -653,7 +653,7 @@ namespace MediTech.ViewModels
             }
             int? requestItemUID = SelectRequestItem != null ? SelectRequestItem.RequestItemUID : (int?)null;
 
-            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusList, patientUID, requestItemUID, LabNumber, null, null);
+            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusList, patientUID, requestItemUID, LabNumber, null, null,null);
             if (SelectRequestLab != null)
                 SelectRequestLab = null;
         }

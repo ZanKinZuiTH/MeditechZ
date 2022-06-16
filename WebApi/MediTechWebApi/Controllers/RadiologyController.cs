@@ -65,9 +65,9 @@ namespace MediTechWebApi.Controllers
         [Route("SearchRequestExamListForAssign")]
         [HttpGet]
         public List<RequestListModel> SearchRequestExamListForAssign(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, long? patientUID, string requestItemName
-            , int? RIMTYPUID, int? payorDetailUID, int? ORDSTUID)
+            , int? RIMTYPUID, int? locationUID, int? insuranceCompanyUID, int? ORDSTUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchRequestExamListForAssign(dateFrom, dateTo, organisationUID, patientUID, requestItemName, RIMTYPUID, payorDetailUID, ORDSTUID);
+            DataTable dataTable = SqlDirectStore.pSearchRequestExamListForAssign(dateFrom, dateTo, organisationUID, patientUID, requestItemName, RIMTYPUID, locationUID , insuranceCompanyUID, ORDSTUID);
             List<RequestListModel> listData = dataTable.ToList<RequestListModel>();
 
             return listData;
@@ -323,10 +323,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchResultRadiologyForTranslate")]
         [HttpGet]
-        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo,long? patientUID, string itemName, int? RABSTSUID, int? payorDetailUID)
+        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo,long? patientUID, string itemName, int? RABSTSUID, int? insuranceCompanyUID)
         {
             List<PatientResultRadiology> data = null;
-            DataTable dt = SqlDirectStore.pSearchResultRadiologyForTranslate(dateFrom, dateTo, patientUID, itemName, RABSTSUID, payorDetailUID);
+            DataTable dt = SqlDirectStore.pSearchResultRadiologyForTranslate(dateFrom, dateTo, patientUID, itemName, RABSTSUID, insuranceCompanyUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = dt.ToList<PatientResultRadiology>();
@@ -337,7 +337,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientResultRadiologyForTranslate")]
         [HttpGet]
-        public PatientResultRadiology SearchPatientResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, string patientID, string itemName, int? RABSTSUID, int? payorDetailUID)
+        public PatientResultRadiology SearchPatientResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, string patientID, string itemName, int? RABSTSUID, int? insuranceCompanyUID)
         {
             PatientResultRadiology data = (from pa in db.Patient
                                            join pv in db.PatientVisit on pa.UID equals pv.PatientUID
@@ -349,7 +349,7 @@ namespace MediTechWebApi.Controllers
                                            && rsr.StatusFlag == "A"
                                            && pa.StatusFlag == "A"
                                            && pa.PatientID == patientID
-                                           && (payorDetailUID == null || pvp.InsuranceCompanyUID == payorDetailUID)
+                                           && (insuranceCompanyUID == null || pvp.InsuranceCompanyUID == insuranceCompanyUID)
                                            && (string.IsNullOrEmpty(itemName) || rs.RequestItemName.ToLower().Contains(itemName.ToLower()))
                                            && (RABSTSUID == null || rs.RABSTSUID == RABSTSUID)
                                            && (dateFrom == null || DbFunctions.TruncateTime(rs.ResultEnteredDttm) >= DbFunctions.TruncateTime(dateFrom))

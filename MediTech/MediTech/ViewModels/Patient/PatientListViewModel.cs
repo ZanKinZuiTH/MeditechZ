@@ -31,20 +31,20 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectEncounterType, value); }
         }
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
         private ObservableCollection<PatientVisitModel> _PatientVisits;
@@ -153,46 +153,46 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        //private List<HealthOrganisationModel> _Organisations;
 
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
+        //public List<HealthOrganisationModel> Organisations
+        //{
+        //    get { return _Organisations; }
+        //    set { Set(ref _Organisations, value); }
+        //}
 
-        private HealthOrganisationModel _SelectOrganisation;
+        //private HealthOrganisationModel _SelectOrganisation;
 
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); 
-                if(SelectOrganisation != null)
-                {
-                    Location = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
-                    
-                }
-                else
-                {
-                    Location = null;
-                    SelectLocation = null;
-                }
-            }
-        }
+        //public HealthOrganisationModel SelectOrganisation
+        //{
+        //    get { return _SelectOrganisation; }
+        //    set { Set(ref _SelectOrganisation, value);
+        //        if (SelectOrganisation != null)
+        //        {
+        //            Location = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
+
+        //        }
+        //        else
+        //        {
+        //            Location = null;
+        //            SelectLocation = null;
+        //        }
+        //    }
+        //}
 
         private List<LocationModel> _Location;
         public List<LocationModel> Location
         {
             get { return _Location; }
             set { Set(ref _Location, value);
-            if(Location != null)
-                {
-                    var data = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-                    if(data != null)
-                    {
-                        SelectLocation = Location.FirstOrDefault(p => p.LocationUID == data.LocationUID);
-                    }
-                }
+            //if(Location != null)
+            //    {
+            //        var data = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            //        if(data != null)
+            //        {
+            //            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == data.LocationUID);
+            //        }
+            //    }
             }
         }
 
@@ -342,12 +342,13 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
-            
-
-            Organisations = GetHealthOrganisationMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
-
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+            //Organisations = GetHealthOrganisationMedical();
+            //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+            SelectInsuranceCompany = InsuranceCompany.FirstOrDefault(p => p.Code == "000001");
         }
 
         public override void OnLoaded()
@@ -390,11 +391,11 @@ namespace MediTech.ViewModels
                 }
             }
 
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
+            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
-            int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, payorDetailUID,null, encounterList));
+            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, encounterList));
         }
 
         private void VitalSign()

@@ -93,20 +93,20 @@ namespace MediTech.ViewModels
             set { Set(ref _DateTo, value); }
         }
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
 
@@ -170,7 +170,7 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
 
         }
 
@@ -202,7 +202,7 @@ namespace MediTech.ViewModels
         void Search()
         {
             long? patientUID = null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
+            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)
@@ -211,7 +211,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            var dataCheckupValue = DataService.Lab.SearchResultLabList(DateFrom, DateTo, patientUID, payorDetailUID);
+            var dataCheckupValue = DataService.Lab.SearchResultLabList(DateFrom, DateTo, patientUID, insuranceCompanyUID);
 
             if (dataCheckupValue != null)
             {

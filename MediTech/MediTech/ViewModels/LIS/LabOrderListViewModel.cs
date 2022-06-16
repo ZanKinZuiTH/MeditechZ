@@ -127,36 +127,36 @@ namespace MediTech.ViewModels
             set { Set(ref _LabNumber, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Location;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Location
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Location; }
+            set { Set(ref _Location, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocation;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocation
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
 
@@ -483,8 +483,12 @@ namespace MediTech.ViewModels
 
             var refValue = DataService.Technical.GetReferenceValueMany("ORDST");
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
-            Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
 
             RequestStatus = refValue.Where(p => p.ValueCode == "RAISED"
                 || p.ValueCode == "REVIW"
@@ -514,8 +518,9 @@ namespace MediTech.ViewModels
             long? patientUID = null;
             string statusOrder = SelectRequestStatus != null ? SelectRequestStatus.Key.ToString() : "";
             int? requestItemUID = SelectRequestItem != null ? SelectRequestItem.RequestItemUID : (int?)null;
-            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
-            int? organisationUID = SelectOrganisation != null ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int? organisationUID = AppUtil.Current.OwnerOrganisationUID;
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
             {
                 if (SelectedPateintSearch != null)
@@ -524,7 +529,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, payorDetailUID, organisationUID);
+            RequestLabs = DataService.Lab.SearchRequestLabList(DateFrom, DateTo, statusOrder, patientUID, requestItemUID, LabNumber, insuranceCompanyUID, organisationUID,locationUID);
 
             if (RequestLabs != null && RequestLabs.Count > 0)
             {
@@ -721,8 +726,8 @@ namespace MediTech.ViewModels
             SelectRequestItem = null;
             LabNumber = String.Empty;
             SelectRequestStatus = null;
-            SelectOrganisation = null;
-            SelectPayorDetail = null;
+            SelectLocation = null;
+            SelectInsuranceCompany = null;
         }
 
         private void ExportToExcel()

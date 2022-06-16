@@ -131,20 +131,20 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectResultStatus, value); }
         }
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectedPayorDetail;
+        private InsuranceCompanyModel _SelectedInsuranceCompany;
 
-        public InsuranceCompanyModel SelectedPayorDetail
+        public InsuranceCompanyModel SelectedInsuranceCompany
         {
-            get { return _SelectedPayorDetail; }
-            set { Set(ref _SelectedPayorDetail, value); }
+            get { return _SelectedInsuranceCompany; }
+            set { Set(ref _SelectedInsuranceCompany, value); }
         }
 
         private ObservableCollection<PatientResultRadiology> _PatientXrays;
@@ -276,7 +276,7 @@ namespace MediTech.ViewModels
 
             SelectOrderItem = OrderItems.FirstOrDefault();
 
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
         }
 
         public override void OnLoaded()
@@ -290,7 +290,7 @@ namespace MediTech.ViewModels
             PatientXrays = null;
             SelectPatientXrays = null;
             int? resultStatusUID;
-            int? payorDetailUID;
+            int? insuranceCompanyUID;
             long? patientUID = null;
             if (SelectOrderItem != null)
             {
@@ -316,8 +316,8 @@ namespace MediTech.ViewModels
                 }
             }
             resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
-            payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.InsuranceCompanyUID : (int?)null;
-            var dataList = DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, payorDetailUID);
+            insuranceCompanyUID = SelectedInsuranceCompany != null ? SelectedInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            var dataList = DataService.Radiology.SearchResultRadiologyForTranslate(DateFrom, DateTo, patientUID, itemName, resultStatusUID, insuranceCompanyUID);
             if (dataList != null)
                 PatientXrays = new ObservableCollection<PatientResultRadiology>(dataList);
             else
@@ -572,7 +572,7 @@ namespace MediTech.ViewModels
                         itemName = "Chest";
                     }
                     resultStatusUID = SelectResultStatus != null ? SelectResultStatus.Key : (int?)null;
-                    payorDetailUID = SelectedPayorDetail != null ? SelectedPayorDetail.InsuranceCompanyUID : (int?)null;
+                    payorDetailUID = SelectedInsuranceCompany != null ? SelectedInsuranceCompany.InsuranceCompanyUID : (int?)null;
                     List<XrayTranslateMappingModel> dtResultMapping = DataService.Radiology.GetXrayTranslateMapping();
                     foreach (DataRow item in ImportData.Rows)
                     {

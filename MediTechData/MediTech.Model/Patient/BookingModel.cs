@@ -30,7 +30,8 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public int OwnerOrganisationUID { get; set; }
-
+        public int LocationUID { get; set; }
+        public string Location { get; set; }
         public string OwnerOrganisationName { get; set; }
         public string StatusFlag { get; set; }
     }

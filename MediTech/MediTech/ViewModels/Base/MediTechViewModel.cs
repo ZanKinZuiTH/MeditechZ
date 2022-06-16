@@ -119,7 +119,7 @@ namespace MediTech.ViewModels
             {
                 locations = (from j in locations
                              join i in AppUtil.Current.CareproviderLocations on j.LocationUID equals i.LocationUID
-                          select j).ToList();
+                             select j).ToList();
             }
 
             return locations;

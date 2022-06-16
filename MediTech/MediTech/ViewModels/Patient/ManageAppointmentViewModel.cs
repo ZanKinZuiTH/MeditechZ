@@ -117,20 +117,18 @@ namespace MediTech.ViewModels
 
         }
 
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
+        private List<LocationModel> _Locations;
+        public List<LocationModel> Locations
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
-
-        public HealthOrganisationModel SelectOrganisation
+        private LocationModel _SelectLocations;
+        public LocationModel SelectLocations
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocations; }
+            set { Set(ref _SelectLocations, value); }
         }
 
         private List<CareproviderModel> _Doctors;
@@ -219,8 +217,9 @@ namespace MediTech.ViewModels
             AppointmentStatus = refDAta.Where(p => p.DomainCode == "BKSTS").ToList();
             AppointmentMassage = refDAta.Where(p => p.DomainCode == "PATMSG").ToList();
             SelectAppointmentStatus = AppointmentStatus.FirstOrDefault(p => p.Key == 2944);
-            Organisations = GetHealthOrganisationMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             AppointmentDate = DateTime.Now;
         }
 
@@ -233,15 +232,16 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาเลือกวันที่ทำนัด");
                     return;
                 }
+
                 if (AppointmentTime == null)
                 {
                     WarningDialog("กรุณาเลือกเวลาทำนัด");
                     return;
                 }
 
-                if (SelectOrganisation == null)
+                if (SelectLocations == null)
                 {
-                    WarningDialog("กรุณาเลือกสถานประกอบการ");
+                    WarningDialog("กรุณาเลือกแผนก");
                     return;
                 }
 
@@ -272,6 +272,11 @@ namespace MediTech.ViewModels
                     }
 
                     CloseViewDialog(ActionDialog.Save);
+                }
+                else
+                {
+                    WarningDialog("กรุณาเลือกคนไข้ทำนัด");
+                    return;
                 }
 
             }
@@ -342,7 +347,7 @@ namespace MediTech.ViewModels
             SelectPatientVisit = visitModel;
             VisibilityPatientSearch = Visibility.Collapsed;
 
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientVisit.OwnerOrganisationUID);
+            SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
         }
 
         public void AssignModel(BookingModel model)
@@ -371,8 +376,11 @@ namespace MediTech.ViewModels
                 {
                     SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
                 }
-
-                SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == model.OwnerOrganisationUID);
+                if(model.LocationUID != 0)
+                {
+                    SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
+                }
+               
             }
         }
         public void AssingPropertiesToModel(long patientUID)
@@ -389,7 +397,8 @@ namespace MediTech.ViewModels
             model.Comments = Comments;
             model.CUser = AppUtil.Current.UserID;
             model.MUser = AppUtil.Current.UserID;
-            model.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+            model.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            model.LocationUID = SelectLocations.LocationUID;
         }
 
         #endregion

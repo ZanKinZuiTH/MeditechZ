@@ -48,32 +48,18 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectYearSource, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
-        public List<HealthOrganisationModel> Organisations
+        private List<InsuranceCompanyModel> _InsuranceCompany;
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
-        public HealthOrganisationModel SelectOrganisation
+        private InsuranceCompanyModel _SelectInsuranceCompany;
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
-        }
-
-        private List<PayorDetailModel> _PayorDetails;
-        public List<PayorDetailModel> PayorDetails
-        {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
-        }
-
-        private PayorDetailModel _SelectPayorDetail;
-        public PayorDetailModel SelectPayorDetail
-        {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
         private List<RequestItemModel> _RequestItems;
@@ -355,8 +341,7 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
-            Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetPayorDetail();
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
             //DateTypes = new List<LookupItemModel>();
             //DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
             //DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
@@ -600,12 +585,8 @@ namespace MediTech.ViewModels
 
         private void SaveLabResult()
         {
-            if (SelectOrganisation == null)
-            {
-                WarningDialog("กรุณาเลือกรายการสถานประกอบการ");
-                return;
-            }
-            if (SelectPayorDetail == null)
+
+            if (SelectInsuranceCompany == null)
             {
                 WarningDialog("กรุณาเลือกรายการ Payor");
                 return;
@@ -617,12 +598,14 @@ namespace MediTech.ViewModels
             }
             try
             {
-                int OrganisationsUID = SelectOrganisation.HealthOrganisationUID;
+                int? LocationUID = AppUtil.Current.LocationUID;
+                int OrganisationsUID = AppUtil.Current.OwnerOrganisationUID;
                 string codeLab = SelectedRequestItem.Code;
                 int year = Convert.ToInt32(SelectYearSource);
-                int payorDetailUID = SelectPayorDetail.PayorDetailUID;
+                int insuranceCompanyUID = SelectInsuranceCompany.InsuranceCompanyUID;
                 DateTime resultDate = new DateTime(year,01, 01);
-                var payorAgreements = DataService.Billing.GetPayorAgreementByPayorDetailUID(payorDetailUID);
+
+                var payorAgreements = DataService.Billing.GetAgreementByInsuranceUID(insuranceCompanyUID);
                 int payorAgreementsUID = payorAgreements.Where(p => p.Name.Contains("เงินสด")).Select(p => p.PayorAgreementUID).FirstOrDefault();
                 
                 if(payorAgreementsUID == 0)
@@ -688,9 +671,8 @@ namespace MediTech.ViewModels
 
                         }
 
-                        DataService.Checkup.SaveOldLabResult(labResult, labResult.PatientUID, payorDetailUID, resultDate, codeLab, AppUtil.Current.UserID, OrganisationsUID, payorAgreementsUID);
+                        DataService.Checkup.SaveOldLabResult(labResult, labResult.PatientUID, insuranceCompanyUID, resultDate, codeLab, AppUtil.Current.UserID, OrganisationsUID, payorAgreementsUID, LocationUID);
                         rowView.Row["IsSave"] = "Success";
-
                     }
 
                     pgBarCounter = pgBarCounter + 1;

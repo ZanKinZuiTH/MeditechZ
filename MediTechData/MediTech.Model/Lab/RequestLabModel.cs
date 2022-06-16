@@ -40,6 +40,8 @@ namespace MediTech.Model
         public string PayorName { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public string OrganisationName { get; set; }
+        public int LocationUID { get; set; }
+        public string LocationName { get; set; }
         public string OrderStatus { get; set; }
         public string Comments { get; set; }
         public string ReviewedBy { get; set; }

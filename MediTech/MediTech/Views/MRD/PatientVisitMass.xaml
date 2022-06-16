@@ -74,19 +74,19 @@
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 <dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                    <dxlc:LayoutItem Label="แผนก">
                         <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
+                                      ItemsSource="{Binding Location}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Payor">
-                        <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
+                        <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
                                       ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
@@ -221,7 +221,7 @@
                                             <dxe:ComboBoxEdit x:Name="cmbLocation"
                                               IsTextEditable="False"
                                               ItemsSource="{Binding HealthOrganisations}"
-                                              SelectedItem="{Binding SelectHealthOrganisation}"
+                                              SelectedItem="{Binding SelectHealthOrganisations}"
                                               DisplayMember="Name"
                                               ValueMember="HealthOrganisationUID"
                                               />

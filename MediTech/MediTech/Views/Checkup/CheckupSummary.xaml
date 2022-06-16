@@ -22,10 +22,10 @@
                               Width="300"
                               dxlc:DockLayoutControl.AllowHorizontalSizing="True">
                     <dxlc:LayoutItem Label="Payor">
-                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompanyDetails}" 
+                                      SelectedItem="{Binding SelectInsuranceCompanyDetail}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -46,7 +46,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                         </dxg:GridControl.View>
-                                        <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                        <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                     </dxg:GridControl>
                                 </ControlTemplate>
                             </dxg:LookUpEdit.PopupContentTemplate>

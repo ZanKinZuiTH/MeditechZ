@@ -130,11 +130,11 @@
                                     </dxlc:LayoutItem>
                                 </dxlc:LayoutGroup>
                                 <dxlc:LayoutGroup Orientation="Horizontal">
-                                    <dxlc:LayoutItem Label="สถานประกอบการ">
+                                    <dxlc:LayoutItem Label="แผนก">
                                         <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
+                                      ItemsSource="{Binding Location}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
@@ -287,6 +287,7 @@
                             </dxg:GridColumn.EditSettings>
                         </dxg:GridColumn>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานะ" FieldName="OrderStatus" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานะผล" FieldName="ResultStatus" ReadOnly="True"/>
                         <dxg:GridColumn Header="วันที่ผลออก" FieldName="ResultedDttm" ReadOnly="True"/>
