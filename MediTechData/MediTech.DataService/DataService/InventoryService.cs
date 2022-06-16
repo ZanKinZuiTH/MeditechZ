@@ -469,9 +469,9 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationToUID)
+        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationToUID,int? locationUID)
         {
-            string requestApi = string.Format("Api/Inventory/SearchStockWorkList?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}", dateFrom, dateTo, organisationToUID);
+            string requestApi = string.Format("Api/Inventory/SearchStockWorkList?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}&locationUID={3}", dateFrom, dateTo, organisationToUID,locationUID);
             List<StockWorkListModel> returnData = MeditechApiHelper.Get<List<StockWorkListModel>>(requestApi);
 
             return returnData;
@@ -480,9 +480,9 @@ namespace MediTech.DataService
         #endregion
 
         #region ItemRequest
-        public List<ItemRequestModel> SearchItemRequest(DateTime? dateFrom, DateTime? dateTo, string requestID, int? organisationUID, int? organisationToUID, int? requestStatus, int? priority)
+        public List<ItemRequestModel> SearchItemRequest(DateTime? dateFrom, DateTime? dateTo, string requestID, int? organisationUID, int? locationUID, int? requestOnOrganistaionUID, int? requestOnLocationUID, int? requestStatus, int? priority)
         {
-            string requestApi = string.Format("Api/Inventory/SearchItemRequest?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&requestID={2}&organisationUID={3}&organisationToUID={4}&requestStatus={5}&priority={6}", dateFrom, dateTo, requestID, organisationUID, organisationToUID, requestStatus, priority);
+            string requestApi = string.Format("Api/Inventory/SearchItemRequest?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&requestID={2}&organisationUID={3}&locationUID={4}&requestOnOrganistaionUID={5}&requestOnLocationUID={6}&requestStatus={7}&priority={8}", dateFrom, dateTo, requestID, organisationUID, locationUID, requestOnOrganistaionUID, requestOnLocationUID, requestStatus, priority);
             List<ItemRequestModel> listItemRequest = MeditechApiHelper.Get<List<ItemRequestModel>>(requestApi);
 
             return listItemRequest;
@@ -542,18 +542,18 @@ namespace MediTech.DataService
 
         #region ItemIssue
 
-        public List<ItemIssueModel> SearchItemIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int ISSTPUID, int? issueStatus, int? organisationUID, int? organisationToUID)
+        public List<ItemIssueModel> SearchItemIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int ISSTPUID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
         {
-            string requestApi = string.Format("Api/Inventory/SearchItemIssue?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&issueID={2}&ISSTPUID={3}&issueStatus={4}&organisationUID={5}&organisationToUID={6}", dateFrom, dateTo, issueID, ISSTPUID, issueStatus, organisationUID, organisationToUID);
+            string requestApi = string.Format("Api/Inventory/SearchItemIssue?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&issueID={2}&ISSTPUID={3}&issueStatus={4}&organisationUID={5}&locationUID={6}&organisationToUID={7}&locationToUID={8}", dateFrom, dateTo, issueID, ISSTPUID, issueStatus, organisationUID,locationUID, organisationToUID,locationToUID);
             List<ItemIssueModel> returnData = MeditechApiHelper.Get<List<ItemIssueModel>>(requestApi);
 
             return returnData;
         }
 
 
-        public List<ItemIssueModel> SearchItemIssueForListIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? organisationToUID)
+        public List<ItemIssueModel> SearchItemIssueForListIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
         {
-            string requestApi = string.Format("Api/Inventory/SearchItemIssueForListIssue?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&issueID={2}&issueStatus={3}&organisationUID={4}&organisationToUID={5}", dateFrom, dateTo, issueID, issueStatus, organisationUID, organisationToUID);
+            string requestApi = string.Format("Api/Inventory/SearchItemIssueForListIssue?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&issueID={2}&issueStatus={3}&organisationUID={4}&locationUID={5}&organisationToUID={6}&locationToUID={7}", dateFrom, dateTo, issueID, issueStatus, organisationUID, locationUID, organisationToUID, locationToUID);
             List<ItemIssueModel> returnData = MeditechApiHelper.Get<List<ItemIssueModel>>(requestApi);
 
             return returnData;
@@ -648,6 +648,14 @@ namespace MediTech.DataService
         #endregion
 
         #region ItemTransfer
+
+        public List<ItemIssueModel> SearchItemTranfer(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
+        {
+            string requestApi = string.Format("Api/Inventory/SearchItemTranfer?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&issueID={2}&issueStatus={3}&organisationUID={4}&locationUID={5}&organisationToUID={6}&locationToUID={7}", dateFrom, dateTo, issueID, issueStatus, organisationUID, locationUID, organisationToUID, locationToUID);
+            List<ItemIssueModel> returnData = MeditechApiHelper.Get<List<ItemIssueModel>>(requestApi);
+
+            return returnData;
+        }
         public bool ManageItemTransfer(ItemIssueModel model, int userUID)
         {
             bool flag = false;
@@ -702,9 +710,9 @@ namespace MediTech.DataService
 
         #region ItemReceive
 
-        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID, int? organisationReceiveUID)
+        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID, int? locationIssueUID, int? organisationReceiveUID, int? locationReceiveUID)
         {
-            string requestApi = string.Format("Api/Inventory/SearchItemReceive?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&receiveID={2}&organisationIssueUID={3}&organisationReceiveUID={4}", dateFrom, dateTo, receiveID, organisationIssueUID, organisationReceiveUID);
+            string requestApi = string.Format("Api/Inventory/SearchItemReceive?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&receiveID={2}&organisationIssueUID={3}&locationIssueUID={4}&organisationReceiveUID={5}&locationReceiveUID={6}", dateFrom, dateTo, receiveID, organisationIssueUID,locationIssueUID, organisationReceiveUID,locationReceiveUID);
             List<ItemReceiveModel> returnData = MeditechApiHelper.Get<List<ItemReceiveModel>>(requestApi);
 
             return returnData;

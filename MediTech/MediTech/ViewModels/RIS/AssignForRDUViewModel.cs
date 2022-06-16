@@ -426,7 +426,7 @@ namespace MediTech.ViewModels
                 ORDSTUID = SelectRequestStatus.Key;
             }
 
-            var tempExamList = DataService.Radiology.SearchRequestExamListForAssign(DateFrom, DateTo, organisationUID, patientUID, RequestItemName, rimtyp, payorDetailUID, ORDSTUID);
+            var tempExamList = DataService.Radiology.SearchRequestExamListForAssign(DateFrom, DateTo, organisationUID, patientUID, RequestItemName, rimtyp, null,payorDetailUID, ORDSTUID);
             RequestExamList = new ObservableCollection<RequestListModel>(tempExamList);
         }
 

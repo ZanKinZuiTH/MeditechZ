@@ -13,17 +13,17 @@ namespace MediTech.DataService
 {
     public class LabDataService
     {
-        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? payorDetailUID, int? organisationUID)
+        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID)
         {
-            string requestApi = string.Format("Api/Lab/SearchRequestLabList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusLis={2}&patientUID={3}&requestItemUID={4}&labNumber={5}&payorDetailUID={6}&organisationUID={7}", requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, payorDetailUID, organisationUID);
+            string requestApi = string.Format("Api/Lab/SearchRequestLabList?requestDateFrom={0:MM/dd/yyyy}&requestDateTo={1:MM/dd/yyyy}&statusLis={2}&patientUID={3}&requestItemUID={4}&labNumber={5}&insuranceCompanyUID={6}&organisationUID={7}&locationUID={8}", requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, locationUID);
             List<RequestLabModel> listData = MeditechApiHelper.Get<List<RequestLabModel>>(requestApi);
             return listData;
         }
 
 
-        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID)
         {
-            string requestApi = string.Format("Api/Lab/SearchResultLabList?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&payorDetailUID={3}", dateFrom, dateTo, patientUID, payorDetailUID);
+            string requestApi = string.Format("Api/Lab/SearchResultLabList?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&insuranceCompanyUID={3}", dateFrom, dateTo, patientUID, insuranceCompanyUID);
             List<PatientResultComponentModel> listData = MeditechApiHelper.Get<List<PatientResultComponentModel>>(requestApi);
             return listData;
         }
@@ -36,11 +36,11 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? payorDetailUID
+        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int? ownerOrganisationUID, int? insuranceCompanyUID, int? locationUID
     , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
             string requestApi = string.Format("Api/Lab/GetRequesDetailLabForImport?patientID={0}&ownerOrganisationUID={1}" +
-                "&payorDetailUID={2}&requestItemUID={3}&dateFrom={4:MM/dd/yyyy}&dateTo={5:MM/dd/yyyy}", patientID,ownerOrganisationUID,payorDetailUID,requestItemUID
+                "&insuranceCompanyUID={2}&locationUID={3}&requestItemUID={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}", patientID,ownerOrganisationUID, insuranceCompanyUID, locationUID, requestItemUID
                 , dateFrom,dateTo);
             RequestDetailItemModel data = MeditechApiHelper.Get<RequestDetailItemModel>(requestApi);
             return data;

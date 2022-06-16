@@ -939,9 +939,9 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientVisitModel> SearchPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
             , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
-            , int? payorDetailUID, int? checkupJobUID, string encounter)
+            , int? insuranceCompanyUID, int? checkupJobUID, string encounter)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, payorDetailUID, checkupJobUID, encounter);
+            DataTable dataTable = SqlDirectStore.pSearchPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter);
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
@@ -2279,7 +2279,7 @@ namespace MediTechWebApi.Controllers
         [Route("SearchBooking")]
         [HttpGet]
         public List<BookingModel> SearchBooking(DateTime? dateFrom, DateTime? dateTo, int? careproviderUID
-            , long? patientUID, int? bookStatus, int? PATMSGUID, int? ownerOrganisationUID)
+            , long? patientUID, int? bookStatus, int? PATMSGUID, int? ownerOrganisationUID, int? locationUID)
         {
             List<BookingModel> data = (from bki in db.Booking
                                        join pa in db.Patient on bki.PatientUID equals pa.UID
@@ -2291,6 +2291,7 @@ namespace MediTechWebApi.Controllers
                                           && (bookStatus == null || bki.BKSTSUID == bookStatus)
                                           && (PATMSGUID == null || bki.PATMSGUID == PATMSGUID)
                                           && (ownerOrganisationUID == null || bki.OwnerOrganisationUID == ownerOrganisationUID)
+                                          && (locationUID == null || bki.LocationUID == locationUID)
                                        select new BookingModel
                                        {
                                            BookingUID = bki.UID,
@@ -2307,6 +2308,8 @@ namespace MediTechWebApi.Controllers
                                            OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(bki.OwnerOrganisationUID),
                                            PATMSGUID = bki.PATMSGUID,
                                            PatientReminderMessage = SqlFunction.fGetRfValDescription(bki.PATMSGUID ?? 0),
+                                           LocationUID = bki.LocationUID,
+                                           Location = SqlFunction.fGetLocationName(bki.LocationUID)
                                        }).ToList();
 
 
@@ -2379,6 +2382,7 @@ namespace MediTechWebApi.Controllers
                 data.Comments = bki.Comments;
                 data.PatientUID = bki.PatientUID;
                 data.OwnerOrganisationUID = bki.OwnerOrganisationUID;
+                data.LocationUID = bki.LocationUID;
             }
 
             return data;
@@ -2409,6 +2413,7 @@ namespace MediTechWebApi.Controllers
                 bki.BKSTSUID = model.BKSTSUID;
                 bki.Comments = model.Comments;
                 bki.CareProviderUID = model.CareProviderUID;
+                bki.LocationUID = model.LocationUID;
 
                 db.Booking.AddOrUpdate(bki);
                 db.SaveChanges();

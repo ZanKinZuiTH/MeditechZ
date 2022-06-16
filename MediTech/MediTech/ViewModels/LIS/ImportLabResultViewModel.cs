@@ -106,36 +106,36 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRequestStatus, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Location;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Location
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Location; }
+            set { Set(ref _Location, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocation;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocation
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
         private List<RequestItemModel> _RequestItems;
@@ -404,8 +404,11 @@ namespace MediTech.ViewModels
                 .Where(p => p.RequestResultLinks.Count() > 0)
                 .Where(p => p.RequestResultLinks.FirstOrDefault(s => s.ResultValueType == "Image") == null).OrderBy(p => p.ItemName).ToList();
 
-            Organisations = GetHealthOrganisationRoleMedical();
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 30, Display = "30 วัน" });
             DateTypes.Add(new LookupItemModel { Key = 60, Display = "60 วัน" });
@@ -448,11 +451,7 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก วันที่");
                 return;
             }
-            if (SelectOrganisation == null)
-            {
-                WarningDialog("กรุณาเลือก สถานประกอบการ");
-                return;
-            }
+
             OleDbConnection conn;
             OleDbCommand cmd;
             System.Data.DataTable dt;
@@ -505,9 +504,10 @@ namespace MediTech.ViewModels
                     view.SetProgressBarLimits(0, upperlimit);
                     if (upperlimit > 0)
                     {
-                        int ownerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
-                        int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
+                        int ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                        int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
                         int requestItemUID = SelectedRequestItem.RequestItemUID;
+                        int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
                         if (!ColumnsResultItems.Any(p => p.Header == "PatientName"))
                         {
                             ColumnsResultItems.Add(new Column() { Header = "PatientName", FieldName = "PatientName", VisibleIndex = 1 });
@@ -530,8 +530,8 @@ namespace MediTech.ViewModels
                                 continue;
                             }
 
-                            var dataPatientRequest = DataService.Lab.GetRequesDetailLabForImport(patientID, ownerOrganisationUID
-                                , payorDetailUID, requestItemUID, DateFrom, DateTo);
+                            var dataPatientRequest = DataService.Lab.GetRequesDetailLabForImport(patientID, ownerOrganisationUID , insuranceCompanyUID, locationUID
+                                , requestItemUID, DateFrom, DateTo);
                             view.gvTestParameter.AddNewRow();
                             int newRowHandle = DataControlBase.NewItemRowHandle;
 

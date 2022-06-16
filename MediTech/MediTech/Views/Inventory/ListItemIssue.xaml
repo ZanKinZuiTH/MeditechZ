@@ -37,12 +37,35 @@
                                       PopupHeight="400" 
                                       IsPopupAutoWidth="True"
                                       PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      NullValueButtonPlacement="EditBox"
                                       AutoPopulateColumns="False">
                         <dxg:LookUpEdit.StyleSettings>
                             <dxg:SearchLookUpEditStyleSettings/>
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="จาก แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationFrom}" 
+                                      SelectedItem="{Binding SelectLocationFrom}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="สถานะ">
+                    <dxe:ComboBoxEdit Name="cmbRequestStatus"
+                                      ItemsSource="{Binding IssueStatus}" 
+                                      SelectedItem="{Binding SelectIssueStatus}"
+                                      ValueMember="Key"
+                                      DisplayMember="Display"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      AllowNullInput="True"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="ถึง สถานประกอบการ">
                     <dxg:LookUpEdit Name="lkeOrganisationTo" ItemsSource="{Binding OrganisationsTo}" 
                                       SelectedItem="{Binding SelectOrganisationTo}"
@@ -58,33 +81,32 @@
                                       PopupHeight="400" 
                                       IsPopupAutoWidth="True"
                                       PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
+                                      NullValueButtonPlacement="EditBox"
                                       AutoPopulateColumns="False">
                         <dxg:LookUpEdit.StyleSettings>
                             <dxg:SearchLookUpEditStyleSettings/>
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานะ">
-                    <dxe:ComboBoxEdit Name="cmbRequestStatus"
-                                      ItemsSource="{Binding IssueStatus}" 
-                                      SelectedItem="{Binding SelectIssueStatus}"
-                                      ValueMember="Key"
-                                      DisplayMember="Display"
+                <dxlc:LayoutItem Label="ถึง แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationTo}" 
+                                      SelectedItem="{Binding SelectLocationTo}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
-                                      AllowNullInput="True"
                                       ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คื่นค่า"/>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutItem >
-                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
-                                     Height="25" Content="ค้นหา"/>
-                    <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
-                </dxlc:LayoutGroup>
-            </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl Name="grdItemIssue" ItemsSource="{Binding ItemIssues}"
                                  SelectedItem="{Binding SelectItemIssues}">

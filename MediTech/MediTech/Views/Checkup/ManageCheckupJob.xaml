@@ -24,8 +24,8 @@
                                 <TextBlock Text="Payor" />
                             </StackPanel>
                         </dxlc:LayoutItem.Label>
-                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
+                        <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsurancCompany}" 
+                                      SelectedItem="{Binding SelectInsurancCompany}"
                                       ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"

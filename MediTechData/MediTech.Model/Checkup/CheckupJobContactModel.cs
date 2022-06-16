@@ -11,7 +11,7 @@ namespace MediTech.Model
         public int CheckupJobContactUID { get; set; }
         public System.Guid JobContactID { get; set; }
         public string JobNumber { get; set; }
-        public int PayorDetailUID { get; set; }
+        public int InsuranceCompanyUID { get; set; }
         public string CompanyName { get; set; }
         public string Description { get; set; }
         public string Location { get; set; }

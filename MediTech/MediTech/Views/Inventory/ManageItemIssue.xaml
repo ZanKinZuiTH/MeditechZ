@@ -80,6 +80,21 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
+                            <TextBlock Text="จาก แผนก/สถานที่" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationFrom}" 
+                                      SelectedItem="{Binding SelectLocationFrom}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
                             <TextBlock Text="จาก Store" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
@@ -126,9 +141,25 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
+                            <TextBlock Text="ถึง แผนก/สถานที่" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationTo}" 
+                                      SelectedItem="{Binding SelectLocationTo}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem >
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
                             <TextBlock Text="ถึง Stroe" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
+                    
                     <dxe:ComboBoxEdit ItemsSource="{Binding StoresTo}" 
                                       SelectedItem="{Binding SelectStoreTo}"
                                       ValueMember="StoreUID"
@@ -136,6 +167,7 @@
                                       AutoComplete="True" 
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
+
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup>
                 <dxlc:LayoutItem >
@@ -148,11 +180,11 @@
                     </dxlc:LayoutItem.Label>
                     <dxe:DateEdit EditValue="{Binding IssueDate,Mode=TwoWay}"/>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="อ้างอิงใบ Request เลขที่ : " >
+                    <TextBlock Text="{Binding RequestNo}"/>
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="อ้างอิงใบ Request เลขที่" HorizontalAlignment="Left">
-                            <TextBlock Text="{Binding RequestNo}"/>
-                        </dxlc:LayoutItem>
 
                         <Image Width="30" Height="30" HorizontalAlignment="Right"
                            Visibility="{Binding VisibilitySearchRequest}"

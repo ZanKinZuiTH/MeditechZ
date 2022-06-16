@@ -112,7 +112,7 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Document/File.png"
+                                <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
                                    ToolTip="แก้ไข Payor">
@@ -299,7 +299,7 @@
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup>
-                                <dxlc:LayoutItem Label="สถานประกอบการ">
+                                <!--<dxlc:LayoutItem Label="สถานประกอบการ">
                                     <dxe:ComboBoxEdit x:Name="cmbOrganisation" 
                                       ItemsSource="{Binding Organisations}" 
                                       SelectedItem="{Binding SelectOrganisation}"
@@ -308,20 +308,20 @@
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="Location">
+                                </dxlc:LayoutItem>-->
+                                <dxlc:LayoutItem Label="แผนก">
                                     <dxe:ComboBoxEdit x:Name="cmbLocation" 
                                       ItemsSource="{Binding Location}" 
                                       SelectedItem="{Binding SelectLocation}"
-                                      ValueMember="LocationUID"
+                                      ValueMember="LocationUID" 
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Payor">
-                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
+                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
                                       ValueMember="InsuranceCompanyUID"
                                       DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
@@ -376,13 +376,17 @@
                                         </dxe:ComboBoxEdit.StyleSettings>
                                     </dxe:ComboBoxEdit>
                                 </dxlc:LayoutItem>
-
+                                <dxlc:LayoutItem >
+                                    <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
+                                     Command="{Binding SearchCommand}"
+                                     HorizontalAlignment="Right"/>
+                                </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
-                            <dxlc:LayoutGroup>
+                            <!--<dxlc:LayoutGroup>
                                 <dx:SimpleButton x:Name="btnSearch" Width="80" Height="25" Content="ค้นหา"
                                      Command="{Binding SearchCommand}"
                                      HorizontalAlignment="Right"/>
-                            </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>-->
 
 
                         </dxlc:LayoutControl>
@@ -431,6 +435,7 @@
                     <dxg:GridColumn Header="แพทย์เจ้าของคนไข้" FieldName="CareProviderName" ReadOnly="True"/>
                     <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                     <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                     <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>

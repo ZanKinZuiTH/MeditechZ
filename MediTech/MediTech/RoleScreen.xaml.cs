@@ -62,7 +62,7 @@ namespace MediTech
                 List<RoleProfileModel> roleProfile = userManageService.GetRoleProfileByLoginUID(AppUtil.Current.LoginID, (int)lkeOrganisation.EditValue);
                 grdRole.ItemsSource = roleProfile;
 
-                _careproviderLocations = userManageService.GetCareProviderLocationByUser(AppUtil.Current.LoginID, (int)lkeOrganisation.EditValue);
+                _careproviderLocations = userManageService.GetCareProviderLocationByUser(AppUtil.Current.UserID, (int)lkeOrganisation.EditValue);
             }
         }
 

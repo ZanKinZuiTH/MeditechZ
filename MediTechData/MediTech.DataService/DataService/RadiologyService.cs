@@ -20,9 +20,9 @@ namespace MediTech.DataService
         }
 
         public List<RequestListModel> SearchRequestExamListForAssign(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, long? patientUID, string requestItemName
-            , int? RIMTYPUID, int? payorDetailUID, int? ORDSTUID)
+            , int? RIMTYPUID, int? locationUID, int? insuranceCompanyUID, int? ORDSTUID)
         {
-            string requestApi = string.Format("Api/Radiology/SearchRequestExamListForAssign?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}&patientUID={3}&requestItemName={4}&RIMTYPUID={5}&payorDetailUID={6}&ORDSTUID={7}", dateFrom, dateTo, organisationUID, patientUID, requestItemName, RIMTYPUID, payorDetailUID, ORDSTUID);
+            string requestApi = string.Format("Api/Radiology/SearchRequestExamListForAssign?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&organisationUID={2}&patientUID={3}&insuranceCompanyUID={4}&requestItemName={4}&RIMTYPUID={5}&locationUID={6}&insuranceCompanyUID={7}&ORDSTUID={8}", dateFrom, dateTo, organisationUID, patientUID, requestItemName, RIMTYPUID, locationUID, insuranceCompanyUID, ORDSTUID);
             List<RequestListModel> listData = MeditechApiHelper.Get<List<RequestListModel>>(requestApi);
             return listData;
         }
@@ -83,18 +83,18 @@ namespace MediTech.DataService
             return listData;
         }
 
-        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string itemName, int? RABSTSUID, int? payorDetailUID)
+        public List<PatientResultRadiology> SearchResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string itemName, int? RABSTSUID, int? insuranceCompany)
         {
-            string requestApi = string.Format("Api/Radiology/SearchResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&itemName={3}&RABSTSUID={4}&payorDetailUID={5}",
-                dateFrom, dateTo, patientUID, itemName, RABSTSUID, payorDetailUID);
+            string requestApi = string.Format("Api/Radiology/SearchResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&itemName={3}&RABSTSUID={4}&insuranceCompany={5}",
+                dateFrom, dateTo, patientUID, itemName, RABSTSUID, insuranceCompany);
             List<PatientResultRadiology> listData = MeditechApiHelper.Get<List<PatientResultRadiology>>(requestApi);
             return listData;
 
         }
 
-        public PatientResultRadiology SearchPatientResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, string patientID, string itemName, int? RABSTSUID, int? payorDetailUID)
+        public PatientResultRadiology SearchPatientResultRadiologyForTranslate(DateTime? dateFrom, DateTime? dateTo, string patientID, string itemName, int? RABSTSUID, int? insuranceCompanyUID)
         {
-            string requestApi = string.Format("Api/Radiology/SearchPatientResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientID={2}&itemName={3}&RABSTSUID={4}&payorDetailUID={5}", dateFrom, dateTo, patientID, itemName, RABSTSUID, payorDetailUID);
+            string requestApi = string.Format("Api/Radiology/SearchPatientResultRadiologyForTranslate?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientID={2}&itemName={3}&RABSTSUID={4}&insuranceCompanyUID={5}", dateFrom, dateTo, patientID, itemName, RABSTSUID, insuranceCompanyUID);
             PatientResultRadiology listData = MeditechApiHelper.Get<PatientResultRadiology>(requestApi);
             return listData;
 

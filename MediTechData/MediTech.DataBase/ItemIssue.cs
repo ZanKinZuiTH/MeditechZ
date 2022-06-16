@@ -16,8 +16,10 @@ namespace MediTech.DataBase
     {
         public int UID { get; set; }
         public int OrganisationUID { get; set; }
+        public Nullable<int> LocationUID { get; set; }
         public int StoreUID { get; set; }
         public int RequestedByOrganisationUID { get; set; }
+        public Nullable<int> RequestedByLocationUID { get; set; }
         public int RequestedByStoreUID { get; set; }
         public System.DateTime ItemIssueDttm { get; set; }
         public string ItemIssueID { get; set; }

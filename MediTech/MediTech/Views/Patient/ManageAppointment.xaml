@@ -66,17 +66,19 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="สถานประกอบการ" />
+                            <TextBlock Text="แผนก" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
-                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
+                    <dxlc:LayoutItem>
+                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocations}"
+                                      ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานะ">
                     <dxe:ComboBoxEdit 

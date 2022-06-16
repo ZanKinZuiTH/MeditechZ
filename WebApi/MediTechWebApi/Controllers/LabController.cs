@@ -23,19 +23,19 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchRequestLabList")]
         [HttpGet]
-        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? payorDetailUID, int? organisationUID)
+        public List<RequestLabModel> SearchRequestLabList(DateTime? requestDateFrom, DateTime? requestDateTo, string statusLis, long? patientUID, int? requestItemUID, string labNumber, int? insuranceCompanyUID, int? organisationUID, int? locationUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchRequestLabList(requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, payorDetailUID, organisationUID);
+            DataTable dataTable = SqlDirectStore.pSearchRequestLabList(requestDateFrom, requestDateTo, statusLis, patientUID, requestItemUID, labNumber, insuranceCompanyUID, organisationUID, locationUID);
             List<RequestLabModel> listData = dataTable.ToList<RequestLabModel>();
             return listData;
         }
 
         [Route("SearchResultLabList")]
         [HttpGet]
-        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? payorDetailUID)
+        public List<PatientResultComponentModel> SearchResultLabList(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? insuranceCompanyUID)
         {
             List<PatientResultComponentModel> data = null;
-            DataTable dt = SqlDirectStore.pSearchResultLabList(dateFrom, dateTo, patientUID, payorDetailUID);
+            DataTable dt = SqlDirectStore.pSearchResultLabList(dateFrom, dateTo, patientUID, insuranceCompanyUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientResultComponentModel>();
@@ -159,10 +159,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetRequesDetailLabForImport")]
         [HttpGet]
-        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int? payorDetailUID
+        public RequestDetailItemModel GetRequesDetailLabForImport(string patientID, int ownerOrganisationUID, int? insuranceCompanyUID, int? locationUID
             , int requestItemUID, DateTime? dateFrom, DateTime? dateTo = null)
         {
-            DataTable dataTable = SqlDirectStore.pGetRequesDetailLabForImport(patientID, ownerOrganisationUID, payorDetailUID
+            DataTable dataTable = SqlDirectStore.pGetRequesDetailLabForImport(patientID, ownerOrganisationUID, insuranceCompanyUID, locationUID
                 , requestItemUID, dateFrom, dateTo);
             List<RequestDetailItemModel> returnData = dataTable.ToList<RequestDetailItemModel>();
             return returnData.FirstOrDefault();

@@ -56,11 +56,11 @@
                                               SelectedItem="{Binding Path=SelectBookingStatus}">
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="สถานประกอบการ">
+                <dxlc:LayoutItem Label="แผนก">
                     <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
+                                      ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocations}"
+                                      ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
@@ -107,6 +107,7 @@
                     <dxg:GridColumn Header="มาเพื่อ" FieldName="PatientReminderMessage"/>
                     <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisationName"/>
+                    <dxg:GridColumn Header="แผนก" FieldName="Location"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>
                 </dxg:GridControl.Columns>
                 <dxg:GridControl.View>

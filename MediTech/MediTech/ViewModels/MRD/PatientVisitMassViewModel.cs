@@ -139,37 +139,37 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Location;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Location
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Location; }
+            set { Set(ref _Location, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocation;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocation
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocation; }
+            set { Set(ref _SelectLocation, value); }
         }
 
 
-        private List<InsuranceCompanyModel> _PayorDetails;
+        private List<InsuranceCompanyModel> _InsuranceCompany;
 
-        public List<InsuranceCompanyModel> PayorDetails
+        public List<InsuranceCompanyModel> InsuranceCompany
         {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
+            get { return _InsuranceCompany; }
+            set { Set(ref _InsuranceCompany, value); }
         }
 
-        private InsuranceCompanyModel _SelectPayorDetail;
+        private InsuranceCompanyModel _SelectInsuranceCompany;
 
-        public InsuranceCompanyModel SelectPayorDetail
+        public InsuranceCompanyModel SelectInsuranceCompany
         {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
+            get { return _SelectInsuranceCompany; }
+            set { Set(ref _SelectInsuranceCompany, value); }
         }
 
 
@@ -193,9 +193,9 @@ namespace MediTech.ViewModels
                 if (!string.IsNullOrEmpty(_SearchOrderCriteria) && _SearchOrderCriteria.Length >= 3)
                 {
                     int ownerOrganisationUID = 0;
-                    if (SelectHealthOrganisation != null)
+                    if (SelectHealthOrganisations != null)
                     {
-                        ownerOrganisationUID = SelectHealthOrganisation.HealthOrganisationUID;
+                        ownerOrganisationUID = SelectHealthOrganisations.HealthOrganisationUID;
                     }
                     var dataOrderIitems = DataService.OrderProcessing.SearchOrderItem(_SearchOrderCriteria, ownerOrganisationUID);
                     OrderItems = dataOrderIitems.Where(p => p.TypeOrder != "Drug" && p.TypeOrder != "Medical Supplies" && p.TypeOrder != "Supply").ToList();
@@ -241,15 +241,15 @@ namespace MediTech.ViewModels
             set { Set(ref _HealthOrganisations, value); }
         }
 
-        private HealthOrganisationModel _SelectHealthOrganisation;
+        private HealthOrganisationModel _SelectHealthOrganisations;
 
-        public HealthOrganisationModel SelectHealthOrganisation
+        public HealthOrganisationModel SelectHealthOrganisations
         {
-            get { return _SelectHealthOrganisation; }
+            get { return _SelectHealthOrganisations; }
             set
             {
-                Set(ref _SelectHealthOrganisation, value);
-                if (SelectHealthOrganisation == null)
+                Set(ref _SelectHealthOrganisations, value);
+                if (_SelectHealthOrganisations == null)
                 {
                     EnableSearchItem = false;
                 }
@@ -538,17 +538,21 @@ namespace MediTech.ViewModels
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
 
-            Organisations = GetHealthOrganisationRoleMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            //Organisations = GetHealthOrganisationRoleMedical();
+            //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
-            PayorDetails = DataService.Billing.GetInsuranceCompanyAll();
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
 
 
             Careproviders = DataService.UserManage.GetCareproviderAll();
             SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
 
-            HealthOrganisations = Organisations;
-            SelectHealthOrganisation = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            HealthOrganisations = DataService.MasterData.GetHealthOrganisation();
+            SelectHealthOrganisations = HealthOrganisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
 
             SaveVisitStatusList = refVisitStatus;
@@ -597,9 +601,10 @@ namespace MediTech.ViewModels
             }
 
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
-            int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            int? payorDetailUID = (SelectPayorDetail != null && SelectPayorDetail.InsuranceCompanyUID != 0) ? SelectPayorDetail.InsuranceCompanyUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,null, payorDetailUID, null, ""));
+            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            int ? insuranceCompanyUID = (SelectInsuranceCompany != null && SelectInsuranceCompany.InsuranceCompanyUID != 0) ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, ""));
 
         }
 
@@ -663,9 +668,9 @@ namespace MediTech.ViewModels
                                 }
 
 
-                                if (SelectHealthOrganisation == null)
+                                if (SelectHealthOrganisations == null)
                                 {
-                                    owerOrganisationUID = SelectHealthOrganisation.HealthOrganisationUID;
+                                    owerOrganisationUID = SelectHealthOrganisations.HealthOrganisationUID;
                                 }
                                 else
                                 {
@@ -894,8 +899,8 @@ namespace MediTech.ViewModels
             }
 
             SelectDateType = DateTypes.FirstOrDefault();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-            SelectPayorDetail = null;
+            SelectLocation = Location.FirstOrDefault(p => p.OwnerOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectInsuranceCompany = null;
         }
 
         public void ClearOrder()
@@ -914,7 +919,7 @@ namespace MediTech.ViewModels
 
         void ApplyOrderItem(SearchOrderItem orderItem)
         {
-            if (SelectHealthOrganisation == null)
+            if (SelectHealthOrganisations == null)
             {
                 WarningDialog("กรุณาเลือก Order จาก");
                 return;
@@ -923,7 +928,7 @@ namespace MediTech.ViewModels
             if (orderItem.TypeOrder == "OrderSet")
             {
                 OrderSetModel orderSet = DataService.MasterData.GetOrderSetByUID(orderItem.BillableItemUID);
-                int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
+                int ownerUID = SelectHealthOrganisations.HealthOrganisationUID;
                 if (orderSet.OrderSetBillableItems != null)
                 {
                     var OrderSetBillItmActive = orderSet.OrderSetBillableItems
@@ -1054,7 +1059,7 @@ namespace MediTech.ViewModels
             }
             BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
 
-            int ownerUID = SelectHealthOrganisation.HealthOrganisationUID;
+            int ownerUID = SelectHealthOrganisations.HealthOrganisationUID;
 
             var billItemPrice = GetBillableItemPrice(billItem.BillableItemDetails, ownerUID);
 

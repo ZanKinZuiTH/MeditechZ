@@ -22,7 +22,7 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutItem Label="ร้องขอโดย">
+                <dxlc:LayoutItem Label="สถานประกอบการ">
                     <dxg:LookUpEdit Name="lkeOrganisation" ItemsSource="{Binding Organisations}" 
                                       SelectedItem="{Binding SelectOrganisation}"
                                       ValueMember="HealthOrganisationUID"
@@ -44,27 +44,6 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="ถึง">
-                    <dxg:LookUpEdit Name="lkeOrganisationTo" ItemsSource="{Binding OrganisationsTo}" 
-                                      SelectedItem="{Binding SelectOrganisationTo}"
-                                      ValueMember="HealthOrganisationUID"
-                                      DisplayMember="Name"
-                                      AllowNullInput="True"
-                                      AutoComplete="True" 
-                                      ImmediatePopup="True"
-                                      FindButtonPlacement = "Popup"
-                                      FindMode = "Always"
-                                      PopupMinHeight="100"
-                                      PopupMinWidth="100"
-                                      PopupHeight="400" 
-                                      IsPopupAutoWidth="True"
-                                      PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
-                                      AutoPopulateColumns="False">
-                        <dxg:LookUpEdit.StyleSettings>
-                            <dxg:SearchLookUpEditStyleSettings/>
-                        </dxg:LookUpEdit.StyleSettings>
-                    </dxg:LookUpEdit>
-                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานะ">
                     <dxe:ComboBoxEdit Name="cmbRequestStatus"
                                       ItemsSource="{Binding RequestStatus}" 
@@ -76,8 +55,7 @@
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal" >
+
                 <dxlc:LayoutItem Label="ความสำคัญ">
                     <dxe:ComboBoxEdit Name="cmbPriority"
                                       ItemsSource="{Binding Prioritys}" 
@@ -88,19 +66,30 @@
                                       AllowNullInput="True"
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem/>
-                <dxlc:LayoutItem>
-                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}" 
-                                     Height="25" Content="ค้นหา"/>
-                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
-                                     Height="25" Content="คื่นค่า"/>
-                    </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal" >
+                <dxlc:LayoutItem Label="แผนก/สถานที่">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
 
-
+                <dxlc:LayoutItem/>
+                <dxlc:LayoutItem/>
 
             </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                    <dx:SimpleButton Width="80" Command="{Binding SearchCommand}" 
+                                     Height="25" Content="ค้นหา"/>
+                    <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คื่นค่า"/>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl Name="grdItemRequest" ItemsSource="{Binding ItemRequests}"
                                  SelectedItem="{Binding SelectItemRequest}">
@@ -109,9 +98,10 @@
                     </dxmvvm:Interaction.Behaviors>
                     <dxg:GridControl.Columns>
                         <dxg:GridColumn Header="สถานะ" FieldName="RequestStatus" ReadOnly="True"/>
-                        <dxg:GridColumn Header="จาก สถานประกอบการ" FieldName="Organisation" ReadOnly="True"/>
+                        <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
+                        <!--<dxg:GridColumn Header="จาก สถานประกอบการ" FieldName="Organisation" ReadOnly="True"/>-->
                         <dxg:GridColumn Header="จาก Store" FieldName="Store" ReadOnly="True"/>
-                        <dxg:GridColumn Header="ถึง สถานประกอบการ" FieldName="RequestOnOrganisation" ReadOnly="True"/>
+                        <!--<dxg:GridColumn Header="ถึง สถานประกอบการ" FieldName="RequestOnOrganisation" ReadOnly="True"/>-->
                         <dxg:GridColumn Header="ถึง Store" FieldName="RequestOnStore" ReadOnly="True"/>
                         <dxg:GridColumn Header="วันที่ร้องขอ" FieldName="RequestedDttm" ReadOnly="True"/>
                         <dxg:GridColumn Header="เลขเอกสารอ้างอิง" FieldName="ItemRequestID" ReadOnly="True"/>

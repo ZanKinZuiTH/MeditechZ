@@ -36,6 +36,7 @@
                                       PopupMinWidth="100"
                                       PopupHeight="400" 
                                       IsPopupAutoWidth="True"
+                                      NullValueButtonPlacement="EditBox"
                                       PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
                                       AutoPopulateColumns="False">
                         <dxg:LookUpEdit.StyleSettings>
@@ -43,6 +44,18 @@
                         </dxg:LookUpEdit.StyleSettings>
                     </dxg:LookUpEdit>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แผนก/สถานที่ รับสินค้า">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationTo}" 
+                                      SelectedItem="{Binding SelectLocationTo}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem />
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="สถานประกอบที่ส่งสินค้า">
                     <dxg:LookUpEdit Name="lkeOrganisationFrom" ItemsSource="{Binding OrganisationsFrom}" 
                                       SelectedItem="{Binding SelectOrganisationFrom}"
@@ -57,6 +70,7 @@
                                       PopupMinWidth="100"
                                       PopupHeight="400" 
                                       IsPopupAutoWidth="True"
+                                      NullValueButtonPlacement="EditBox"
                                       PopupContentTemplate="{StaticResource HealthOrganisationTemplate}"
                                       AutoPopulateColumns="False">
                         <dxg:LookUpEdit.StyleSettings>
@@ -65,14 +79,27 @@
                     </dxg:LookUpEdit>
 
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem />
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+
+                <dxlc:LayoutItem Label="แผนก/สถานที่ ส่งสินค้า">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding LocationFrom}"
+                                      SelectedItem="{Binding SelectLocationFrom}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
                                      Height="25" Content="ค้นหา"/>
-                <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
                                      Height="25" Content="คื่นค่า"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
+                
             </dxlc:LayoutGroup>
+ 
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxg:GridControl Name="grdItemReceive" ItemsSource="{Binding ItemReceives}"
                                  SelectedItem="{Binding SelectItemReceive}">

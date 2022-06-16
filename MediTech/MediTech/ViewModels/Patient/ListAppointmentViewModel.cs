@@ -156,20 +156,20 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectAppointmentMassage, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Locations;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Locations
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocations;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocations
         {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
+            get { return _SelectLocations; }
+            set { Set(ref _SelectLocations, value); }
         }
 
         private bool _IsEnableRegister = false;
@@ -268,9 +268,10 @@ namespace MediTech.ViewModels
             BookingStatus = refDAta.Where(p => p.DomainCode == "BKSTS").ToList();
             AppointmentMassage = refDAta.Where(p => p.DomainCode == "PATMSG").ToList();
             SelectBookingStatus = BookingStatus.FirstOrDefault(p => p.Key == 2944);
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
-            Organisations = GetHealthOrganisationMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
 
             Search();
         }
@@ -280,19 +281,17 @@ namespace MediTech.ViewModels
         {
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             long? patientUID = null;
-            int? healthOrganisationUID = null;
+            int? locationUID = SelectLocations != null ? SelectLocations.LocationUID : (int?)null;
+            int? wnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             if (!string.IsNullOrEmpty(SearchPatientCriteria) && SelectedPateintSearch != null)
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? bookingStatus = SelectBookingStatus != null ? SelectBookingStatus.Key : (int?)null;
             int? appointmentMessage = SelectAppointmentMassage != null ? SelectAppointmentMassage.Key : (int?)null;
-            if (SelectOrganisation != null)
-            {
-                healthOrganisationUID = SelectOrganisation.HealthOrganisationUID;
-            }
 
-            BookingSource = DataService.PatientIdentity.SearchBooking(DateFrom, DateTo, careproviderUID, patientUID, bookingStatus, appointmentMessage, healthOrganisationUID);
+
+            BookingSource = DataService.PatientIdentity.SearchBooking(DateFrom, DateTo, careproviderUID, patientUID, bookingStatus, appointmentMessage, wnerOrganisationUID, locationUID);
             BookingSource = BookingSource.OrderBy(p => p.AppointmentDttm).ToList();
         }
 

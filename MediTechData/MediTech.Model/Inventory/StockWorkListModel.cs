@@ -13,7 +13,9 @@ namespace MediTech.Model
         public string DocumentNumber { get; set; }
         public DateTime DocumentDate { get; set; }
         public string RasiedOn { get; set; }
+        public string RasiedOnLocation { get; set; }
         public string RasiedBy { get; set; }
+        public string RasiedByLocation { get; set; }
         public string Status { get; set; }
         public int StatusUID { get; set; }
     }

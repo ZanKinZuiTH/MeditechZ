@@ -36,7 +36,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectOrganisation, value);
                 if (_SelectOrganisation != null)
                 {
-                    Locations = DataService.MasterData.GetLocationByOrganisationUID(_SelectOrganisation.HealthOrganisationUID);
+                    Locations = GetLocatioinRole(_SelectOrganisation.HealthOrganisationUID);
                 }
             }
         }

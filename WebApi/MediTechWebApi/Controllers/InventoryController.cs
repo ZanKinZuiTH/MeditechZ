@@ -1165,7 +1165,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockBatch")]
         [HttpGet]
-        public List<StockModel> SearchStockBatch(int? organisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public List<StockModel> SearchStockBatch(int? organisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             DataTable data = SqlDirectStore.pSearchStockBatch(organisationUID, locationUID, storeUID, itemType, itemCode, itemName);
             List<StockModel> returnData = data.ToList<StockModel>();
@@ -1229,9 +1229,9 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockWorkList")]
         [HttpGet]
-        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID)
+        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID,int? locationUID)
         {
-            DataTable data = SqlDirectStore.pSearchStockWorkList(dateFrom, dateTo, organisationUID);
+            DataTable data = SqlDirectStore.pSearchStockWorkList(dateFrom, dateTo, organisationUID, locationUID);
             List<StockWorkListModel> returnData = data.ToList<StockWorkListModel>();
 
             return returnData;
@@ -1351,7 +1351,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchItemRequest")]
         [HttpGet]
-        public List<ItemRequestModel> SearchItemRequest(DateTime? dateFrom, DateTime? dateTo, string requestID, int? organisationUID, int? organisationToUID, int? requestStatus, int? priority)
+        public List<ItemRequestModel> SearchItemRequest(DateTime? dateFrom, DateTime? dateTo, string requestID, int? organisationUID, int? locationUID, int? requestOnOrganistaionUID, int? requestOnLocationUID, int? requestStatus, int? priority)
         {
             List<ItemRequestModel> data = (from j in db.ItemRequest
                                            where j.StatusFlag == "A"
@@ -1359,18 +1359,24 @@ namespace MediTechWebApi.Controllers
                                            && (dateTo == null || DbFunctions.TruncateTime(j.RequestedDttm) <= DbFunctions.TruncateTime(dateTo))
                                            && (string.IsNullOrEmpty(requestID) || j.ItemRequestID == requestID)
                                            && (organisationUID == null || j.OrganisationUID == organisationUID)
-                                           && (organisationToUID == null || j.RequestOnOrganistaionUID == organisationToUID)
+                                               && (locationUID == null || j.LocationUID == locationUID)
+                                           && (requestOnOrganistaionUID == null || j.RequestOnOrganistaionUID == requestOnOrganistaionUID)
+                                           && (requestOnLocationUID == null || j.RequestOnLocationUID == requestOnLocationUID)
                                            && (requestStatus == null || j.RQSTSUID == requestStatus)
                                            && (priority == null || j.IRPRIUID == priority)
                                            select new ItemRequestModel
                                            {
                                                OrganisationUID = j.OrganisationUID,
                                                StoreUID = j.StoreUID,
+                                               LocationUID = j.LocationUID ?? 0,
                                                RequestOnOrganistaionUID = j.RequestOnOrganistaionUID,
+                                               RequestOnLocationUID = j.RequestOnLocationUID ?? 0,
                                                RequestOnStoreUID = j.RequestOnStoreUID,
                                                Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
+                                               LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
                                                Store = SqlFunction.fGetStoreName(j.StoreUID),
                                                RequestOnOrganisation = SqlFunction.fGetHealthOrganisationName(j.RequestOnOrganistaionUID),
+                                               RequestOnLocationName = SqlFunction.fGetLocationName(j.RequestOnLocationUID ?? 0),
                                                RequestOnStore = SqlFunction.fGetStoreName(j.RequestOnStoreUID),
                                                RQSTSUID = j.RQSTSUID,
                                                RequestStatus = SqlFunction.fGetRfValDescription(j.RQSTSUID ?? 0),
@@ -1401,12 +1407,16 @@ namespace MediTechWebApi.Controllers
                                      select new ItemRequestModel
                                      {
                                          OrganisationUID = j.OrganisationUID,
+                                         LocationUID = j.LocationUID ?? 0,
                                          StoreUID = j.StoreUID,
                                          RequestOnOrganistaionUID = j.RequestOnOrganistaionUID,
+                                         RequestOnLocationUID = j.RequestOnLocationUID ?? 0,
                                          RequestOnStoreUID = j.RequestOnStoreUID,
                                          Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
+                                         LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
                                          Store = SqlFunction.fGetStoreName(j.StoreUID),
                                          RequestOnOrganisation = SqlFunction.fGetHealthOrganisationName(j.RequestOnOrganistaionUID),
+                                         RequestOnLocationName = SqlFunction.fGetLocationName(j.RequestOnLocationUID ?? 0),
                                          RequestOnStore = SqlFunction.fGetStoreName(j.RequestOnStoreUID),
                                          RQSTSUID = j.RQSTSUID,
                                          RequestStatus = SqlFunction.fGetRfValDescription(j.RQSTSUID ?? 0),
@@ -1531,8 +1541,10 @@ namespace MediTechWebApi.Controllers
                     itemREQ.MUser = userUID;
                     itemREQ.MWhen = now;
                     itemREQ.OrganisationUID = model.OrganisationUID;
+                    itemREQ.LocationUID = model.LocationUID;
                     itemREQ.StoreUID = model.StoreUID;
                     itemREQ.RequestOnOrganistaionUID = model.RequestOnOrganistaionUID;
+                    itemREQ.RequestOnLocationUID = model.RequestOnLocationUID;
                     itemREQ.RequestOnStoreUID = model.RequestOnStoreUID;
                     itemREQ.RQSTSUID = model.RQSTSUID;
                     itemREQ.RequestedBy = userUID;
@@ -1626,7 +1638,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchItemIssue")]
         [HttpGet]
-        public List<ItemIssueModel> SearchItemIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int ISSTPUID, int? issueStatus, int? organisationUID, int? organisationToUID)
+        public List<ItemIssueModel> SearchItemIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int ISSTPUID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
         {
             List<ItemIssueModel> data = (from j in db.ItemIssue
                                          where j.StatusFlag == "A"
@@ -1636,12 +1648,18 @@ namespace MediTechWebApi.Controllers
                                          && (dateTo == null || DbFunctions.TruncateTime(j.ItemIssueDttm) <= DbFunctions.TruncateTime(dateTo))
                                          && (string.IsNullOrEmpty(issueID) || j.ItemIssueID == issueID)
                                          && (organisationUID == null || j.OrganisationUID == organisationUID)
+                                         && (locationUID == null || j.LocationUID == locationUID)
                                          && (organisationToUID == null || j.RequestedByOrganisationUID == organisationToUID)
+                                         && (locationToUID == null || j.RequestedByLocationUID == locationToUID)
                                          select new ItemIssueModel
                                          {
                                              OrganisationUID = j.OrganisationUID,
+                                             LocationUID = j.LocationUID ?? 0,
+                                             LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
                                              StoreUID = j.StoreUID,
                                              RequestedByOrganisationUID = j.RequestedByOrganisationUID,
+                                             RequestedByLocationName = SqlFunction.fGetLocationName(j.RequestedByLocationUID ?? 0),
+                                             RequestedByLocationUID = j.RequestedByLocationUID ?? 0,
                                              RequestedByStoreUID = j.RequestedByStoreUID,
                                              Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
                                              Store = SqlFunction.fGetStoreName(j.StoreUID),
@@ -1671,7 +1689,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchItemIssueForListIssue")]
         [HttpGet]
-        public List<ItemIssueModel> SearchItemIssueForListIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? organisationToUID)
+        public List<ItemIssueModel> SearchItemIssueForListIssue(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
         {
             int issue = 2917;
             int consumption = 2921;
@@ -1683,12 +1701,18 @@ namespace MediTechWebApi.Controllers
                                          && (dateTo == null || DbFunctions.TruncateTime(j.ItemIssueDttm) <= DbFunctions.TruncateTime(dateTo))
                                          && (string.IsNullOrEmpty(issueID) || j.ItemIssueID == issueID)
                                          && (organisationUID == null || j.OrganisationUID == organisationUID)
+                                         && (locationUID == null || j.LocationUID == locationUID)
                                          && (organisationToUID == null || j.RequestedByOrganisationUID == organisationToUID)
+                                         && (locationToUID == null || j.RequestedByLocationUID == locationToUID)
                                          select new ItemIssueModel
                                          {
                                              OrganisationUID = j.OrganisationUID,
+                                             LocationUID = j.LocationUID ?? 0,
+                                             LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
                                              StoreUID = j.StoreUID,
                                              RequestedByOrganisationUID = j.RequestedByOrganisationUID,
+                                             RequestedByLocationName = SqlFunction.fGetLocationName(j.RequestedByLocationUID ?? 0),
+                                             RequestedByLocationUID = j.RequestedByLocationUID ?? 0,
                                              RequestedByStoreUID = j.RequestedByStoreUID,
                                              Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
                                              Store = SqlFunction.fGetStoreName(j.StoreUID),
@@ -1726,8 +1750,10 @@ namespace MediTechWebApi.Controllers
                                    select new ItemIssueModel
                                    {
                                        OrganisationUID = j.OrganisationUID,
+                                       LocationUID = j.LocationUID ?? 0,
                                        StoreUID = j.StoreUID,
                                        RequestedByOrganisationUID = j.RequestedByOrganisationUID,
+                                       RequestedByLocationUID = j.RequestedByLocationUID ?? 0,
                                        RequestedByStoreUID = j.RequestedByStoreUID,
                                        Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
                                        Store = SqlFunction.fGetStoreName(j.StoreUID),
@@ -1865,8 +1891,10 @@ namespace MediTechWebApi.Controllers
                     itemIssue.MUser = userUID;
                     itemIssue.MWhen = now;
                     itemIssue.OrganisationUID = model.OrganisationUID;
+                    itemIssue.LocationUID = model.LocationUID;
                     itemIssue.StoreUID = model.StoreUID;
                     itemIssue.RequestedByOrganisationUID = model.RequestedByOrganisationUID;
+                    itemIssue.RequestedByLocationUID = model.RequestedByLocationUID;
                     itemIssue.RequestedByStoreUID = model.RequestedByStoreUID;
                     itemIssue.ItemIssueDttm = model.ItemIssueDttm;
                     itemIssue.ISSTPUID = 2917;
@@ -2192,6 +2220,59 @@ namespace MediTechWebApi.Controllers
         #region ItemTransfer
 
 
+        [Route("SearchItemTranfer")]
+        [HttpGet]
+        public List<ItemIssueModel> SearchItemTranfer(DateTime? dateFrom, DateTime? dateTo, string issueID, int? issueStatus, int? organisationUID, int? locationUID, int? organisationToUID, int? locationToUID)
+        {
+            int tranfer = 2918;
+            List<ItemIssueModel> data = (from j in db.ItemIssue
+                                         where j.StatusFlag == "A"
+                                         && (j.ISSTPUID == tranfer)
+                                         && (issueStatus == null || j.ISUSTUID == issueStatus)
+                                         && (dateFrom == null || DbFunctions.TruncateTime(j.ItemIssueDttm) >= DbFunctions.TruncateTime(dateFrom))
+                                         && (dateTo == null || DbFunctions.TruncateTime(j.ItemIssueDttm) <= DbFunctions.TruncateTime(dateTo))
+                                         && (string.IsNullOrEmpty(issueID) || j.ItemIssueID == issueID)
+                                         && (organisationUID == null || j.OrganisationUID == organisationUID)
+                                         && (locationUID == null || j.LocationUID == locationUID)
+                                         && (organisationToUID == null || j.RequestedByOrganisationUID == organisationToUID)
+                                         && (locationToUID == null || j.RequestedByLocationUID == locationToUID)
+                                         select new ItemIssueModel
+                                         {
+                                             OrganisationUID = j.OrganisationUID,
+                                             LocationUID = j.LocationUID ?? 0,
+                                             LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
+                                             StoreUID = j.StoreUID,
+                                             RequestedByOrganisationUID = j.RequestedByOrganisationUID,
+                                             RequestedByLocationName = SqlFunction.fGetLocationName(j.RequestedByLocationUID ?? 0),
+                                             RequestedByLocationUID = j.RequestedByLocationUID ?? 0,
+                                             RequestedByStoreUID = j.RequestedByStoreUID,
+                                             Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
+                                             Store = SqlFunction.fGetStoreName(j.StoreUID),
+                                             RequestedByOrganisation = SqlFunction.fGetHealthOrganisationName(j.RequestedByOrganisationUID),
+                                             RequestedByStore = SqlFunction.fGetStoreName(j.RequestedByStoreUID),
+                                             ItemIssueDttm = j.ItemIssueDttm,
+                                             ItemIssueID = j.ItemIssueID,
+                                             ISUSTUID = j.ISUSTUID,
+                                             IssueType = SqlFunction.fGetRfValDescription(j.ISSTPUID ?? 0),
+                                             IssueStatus = SqlFunction.fGetRfValDescription(j.ISUSTUID ?? 0),
+                                             IssueBy = j.IssueBy,
+                                             IssueByName = SqlFunction.fGetCareProviderName(j.IssueBy),
+                                             Comments = j.Comments,
+                                             ItemRequestID = j.ItemRequestID,
+                                             ItemReceiveID = j.ItemReceiveID,
+                                             ItemRequestUID = j.ItemRequestUID,
+                                             ItemReceiveUID = j.ItemReceiveUID,
+                                             CancelReason = j.CancelReason,
+                                             ISSTPUID = j.ISSTPUID,
+                                             ItemIssueUID = j.UID,
+                                             NetAmount = j.NetAmount,
+                                             OtherCharges = j.OtherCharges
+                                         }).ToList();
+
+            return data;
+        }
+
+
         [Route("ManageItemTransfer")]
         [HttpPost]
         public HttpResponseMessage ManageItemTransfer(ItemIssueModel model, int userUID)
@@ -2228,8 +2309,10 @@ namespace MediTechWebApi.Controllers
                     itemIssue.MUser = userUID;
                     itemIssue.MWhen = now;
                     itemIssue.OrganisationUID = model.OrganisationUID;
+                    itemIssue.LocationUID = model.LocationUID;
                     itemIssue.StoreUID = model.StoreUID;
                     itemIssue.RequestedByOrganisationUID = model.RequestedByOrganisationUID;
+                    itemIssue.RequestedByLocationUID = model.RequestedByLocationUID;
                     itemIssue.RequestedByStoreUID = model.RequestedByStoreUID;
                     itemIssue.ItemIssueDttm = model.ItemIssueDttm;
                     itemIssue.ISSTPUID = 2918;
@@ -2418,7 +2501,7 @@ namespace MediTechWebApi.Controllers
 
         #region ItemReceive
         [HttpGet]
-        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID, int? organisationReceiveUID)
+        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID,int? locationIssueUID, int? organisationReceiveUID,int? locationReceiveUID)
         {
             List<ItemReceiveModel> data = (from j in db.ItemReceive
                                            where j.StatusFlag == "A"
@@ -2426,16 +2509,22 @@ namespace MediTechWebApi.Controllers
                                            && (dateTo == null || DbFunctions.TruncateTime(j.ReceivedDttm) <= DbFunctions.TruncateTime(dateTo))
                                            && (string.IsNullOrEmpty(receiveID) || j.ItemReceiveID == receiveID)
                                            && (organisationReceiveUID == null || j.OrganisationUID == organisationReceiveUID)
+                                           && (locationReceiveUID == null || j.LocationUID == locationReceiveUID)
                                            && (organisationIssueUID == null || j.IssuedByOrganisationUID == organisationIssueUID)
+                                           && (locationIssueUID == null || j.IssuedByLocationUID == locationIssueUID)
                                            select new ItemReceiveModel
                                            {
                                                OrganisationUID = j.OrganisationUID,
+                                               LocationUID = j.LocationUID ?? 0,
                                                StoreUID = j.StoreUID,
                                                IssuedByOrganisationUID = j.IssuedByOrganisationUID,
+                                               IssuedByLocationUID = j.IssuedByLocationUID ?? 0,
                                                IssuedByStoreUID = j.IssuedByStoreUID,
                                                Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
+                                               LocationName = SqlFunction.fGetLocationName(j.LocationUID ?? 0),
                                                Store = SqlFunction.fGetStoreName(j.StoreUID),
                                                IssuedByOrganisation = SqlFunction.fGetHealthOrganisationName(j.IssuedByOrganisationUID),
+                                               IssuedByLocation = SqlFunction.fGetLocationName(j.IssuedByLocationUID ?? 0),
                                                IssuedByStore = SqlFunction.fGetStoreName(j.IssuedByStoreUID),
                                                ReceivedDttm = j.ReceivedDttm,
                                                ItemReceiveID = j.ItemReceiveID,
@@ -2465,8 +2554,10 @@ namespace MediTechWebApi.Controllers
                                      select new ItemReceiveModel
                                      {
                                          OrganisationUID = j.OrganisationUID,
+                                         LocationUID = j.LocationUID ?? 0,
                                          StoreUID = j.StoreUID,
                                          IssuedByOrganisationUID = j.IssuedByOrganisationUID,
+                                         IssuedByLocationUID = j.IssuedByLocationUID ?? 0,
                                          IssuedByStoreUID = j.IssuedByStoreUID,
                                          Organisation = SqlFunction.fGetHealthOrganisationName(j.OrganisationUID),
                                          Store = SqlFunction.fGetStoreName(j.StoreUID),
@@ -2670,8 +2761,10 @@ namespace MediTechWebApi.Controllers
                     itemReceive.MUser = userUID;
                     itemReceive.MWhen = now;
                     itemReceive.OrganisationUID = model.OrganisationUID;
+                    itemReceive.LocationUID = model.LocationUID;
                     itemReceive.StoreUID = model.StoreUID;
                     itemReceive.IssuedByOrganisationUID = model.IssuedByOrganisationUID;
+                    itemReceive.IssuedByLocationUID = model.IssuedByLocationUID;
                     itemReceive.IssuedByStoreUID = model.IssuedByStoreUID;
                     itemReceive.ReceivedDttm = model.ReceivedDttm;
                     itemReceive.ItemIssueUID = model.ItemIssueUID;

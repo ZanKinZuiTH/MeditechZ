@@ -11,11 +11,15 @@ namespace MediTech.Model
         public int ItemRecieveUID { get; set; }
         public int OrganisationUID { get; set; }
         public string Organisation { get; set; }
+        public string LocationName { get; set; }
+        public int LocationUID { get; set; }
         public int StoreUID { get; set; }
         public string Store { get; set; }
         public int IssuedByStoreUID { get; set; }
+        public int IssuedByLocationUID { get; set; }
         public int IssuedByOrganisationUID { get; set; }
         public string IssuedByStore { get; set; }
+        public string IssuedByLocation { get; set; }
         public string IssuedByOrganisation { get; set; }
         public int? ItemIssueUID { get; set; }
         public string ItemIssueID { get; set; }

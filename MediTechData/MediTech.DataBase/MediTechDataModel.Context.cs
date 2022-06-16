@@ -87,8 +87,10 @@ namespace MediTech.DataBase
         public virtual DbSet<MediTechInterface> MediTechInterface { get; set; }
         public virtual DbSet<MediTechInterfaceDetail> MediTechInterfaceDetail { get; set; }
         public virtual DbSet<NotificationTaskResult> NotificationTaskResult { get; set; }
+        public virtual DbSet<OrderCategory> OrderCategory { get; set; }
         public virtual DbSet<OrderSet> OrderSet { get; set; }
         public virtual DbSet<OrderSetBillableItem> OrderSetBillableItem { get; set; }
+        public virtual DbSet<OrderSubCategory> OrderSubCategory { get; set; }
         public virtual DbSet<PageView> PageView { get; set; }
         public virtual DbSet<PageViewModule> PageViewModule { get; set; }
         public virtual DbSet<PageViewPermission> PageViewPermission { get; set; }
@@ -219,8 +221,6 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateCondition> XrayTranslateCondition { get; set; }
         public virtual DbSet<XrayTranslateConditionDetail> XrayTranslateConditionDetail { get; set; }
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
-        public virtual DbSet<OrderCategory> OrderCategory { get; set; }
-        public virtual DbSet<OrderSubCategory> OrderSubCategory { get; set; }
     
         [DbFunction("MediTechEntities", "splitstring")]
         public virtual IQueryable<splitstring_Result> splitstring(string stringToSplit)
