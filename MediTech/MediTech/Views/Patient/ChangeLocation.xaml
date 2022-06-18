@@ -1,0 +1,120 @@
+﻿<UserControl x:Class="MediTech.Views.ChangeLocation"
+             xmlns:cc="clr-namespace:MediTech.CustomControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=ChangeLocationViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Resources>
+        <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+    </UserControl.Resources>
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Name="layoutSearchPatient" Label="ค้นหาผู้ป่วย">
+                    <cc:AutoCompleteTextBox     Text="{Binding SearchPatientCriteria,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                                    ColumnsSource="{Binding Path=Columns,Source={StaticResource PatientColumn}}"
+                                                    OnTextChangedEvent="False"
+                                                    Binding="{Binding PatientName}"
+                                                    MaxCompletions="30"
+                                                    ItemsSource="{Binding PatientsSearchSource}"
+                                                    SelectedItem="{Binding SelectedPateintSearch,Mode=OneWayToSource}"
+                                                    >
+                        <cc:AutoCompleteTextBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding PatientSearchCommand}" />
+
+                        </cc:AutoCompleteTextBox.InputBindings>
+                    </cc:AutoCompleteTextBox>
+                    <dxlc:LayoutItem.Style>
+                        <Style TargetType="dxlc:LayoutItem">
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsManageEmergency}" Value="true">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dxlc:LayoutItem.Style>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="VisitID">
+                    <dxe:TextEdit Text="{Binding VisitID}" AcceptsReturn="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คืนค่า"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Header="ข้อมูลแผนก" View="GroupBox" Orientation="Vertical" Margin="0,20,0,0">
+                <dxlc:LayoutGroup ItemSpace="10" Orientation="Horizontal" Margin="0,5,0,0">
+                    
+                    <dxlc:LayoutItem Label="แผนกเดิม" Padding="0,0,5,0">
+                        <dxe:TextEdit Text="{Binding CurrentLocation,Mode=TwoWay}" IsReadOnly="True" Foreground="LightGray"/>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Width="50">
+                        <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
+                                   Width="30" Height="30"></Image>
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="แผนกใหม่" >
+                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocations}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+
+                    </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Width="100"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup>
+                    <dxlc:LayoutItem>
+
+                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                            <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="25" Content="บันทึก"/>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutItem>
+
+                </dxlc:LayoutGroup>
+                <dxg:GridControl Name="grdConsultResult"
+                             ItemsSource="{Binding PatientVisitData,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectPatientVisit,UpdateSourceTrigger=PropertyChanged}">
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" Width="200"/>
+                        <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
+                        <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType" ReadOnly="True"/>
+                        <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" Width="180"/>
+                        <dxg:GridColumn Header="แผนก" FieldName="LocationName" Width="180"/>
+                        <dxg:GridColumn Header="เข้ารับบริการ" FieldName="StartDttm"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:DateEditSettings DisplayFormat="dd/MM/yyyy HH:mm" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView ShowGroupPanel="False" AllowEditing="False">
+                            <dxg:TableView.FormatConditions>
+                                <dxg:FormatCondition ApplyToRow="True" Expression="[BookingStatus] = 'Booked' And [AppointmentDate] = LocalDateTimeToday()" FieldName="PatientName">
+                                    <dx:Format Background="#FFEE8D3D"/>
+                                </dxg:FormatCondition>
+                            </dxg:TableView.FormatConditions>
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -1754,6 +1754,51 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ConsultRequestViewModel ConsultRequestViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ConsultRequestViewModel>())
+                    SimpleIoc.Default.Register<ConsultRequestViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ConsultRequestViewModel>();
+            }
+        }
+
+        public SendConsultViewModel SendConsultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<SendConsultViewModel>())
+                    SimpleIoc.Default.Register<SendConsultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<SendConsultViewModel>();
+            }
+        }
+
+        public PatientArrivedViewModel PatientArrivedViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientArrivedViewModel>())
+                    SimpleIoc.Default.Register<PatientArrivedViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientArrivedViewModel>();
+            }
+        }
+
+        public ChangeLocationViewModel ChangeLocationViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ChangeLocationViewModel>())
+                    SimpleIoc.Default.Register<ChangeLocationViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ChangeLocationViewModel>();
+            }
+        }
+
+
         #endregion
 
         #region Phamacy
