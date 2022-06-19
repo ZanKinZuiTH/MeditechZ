@@ -20,13 +20,13 @@ namespace MediTech.DataBase
         public Nullable<int> PATMSGUID { get; set; }
         public System.DateTime AppointmentDttm { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
+        public int LocationUID { get; set; }
         public string Comments { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public int OwnerOrganisationUID { get; set; }
-        public int LocationUID { get; set; }
         public string StatusFlag { get; set; }
     }
 }
