@@ -118,7 +118,7 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectHealthOrganisation, value);
-                if (SelectHealthOrganisation == null || (PatientVisit.VISTSUID == FINDIS || PatientVisit.VISTSUID == CANCEL))
+                if (SelectHealthOrganisation == null  || (PatientVisit.VISTSUID == FINDIS || PatientVisit.VISTSUID == CANCEL))
                 {
                     EnableSearchItem = false;
                 }

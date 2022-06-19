@@ -20,14 +20,14 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for PatientBilled.xaml
     /// </summary>
-    public partial class PatientBilled : UserControl
+    public partial class PatientBilledOP : UserControl
     {
-        public PatientBilled()
+        public PatientBilledOP()
         {
             InitializeComponent();
-            if (this.DataContext is PatientBilledViewModel)
+            if (this.DataContext is PatientBilledOPViewModel)
             {
-                (this.DataContext as PatientBilledViewModel).UpdateEvent += PatientBilledViewModel_UpdateEvent;
+                (this.DataContext as PatientBilledOPViewModel).UpdateEvent += PatientBilledViewModel_UpdateEvent;
             }
         }
 
@@ -45,7 +45,7 @@ namespace MediTech.Views
                 PatientBillModel rowSelected = (e.Row as PatientBillModel);
                 if (rowSelected != null)
                 {
-                    (this.DataContext as PatientBilledViewModel).UpdatePatientBill(rowSelected.PatientBillUID, rowSelected.PAYMDUID ?? 0);
+                    (this.DataContext as PatientBilledOPViewModel).UpdatePatientBill(rowSelected.PatientBillUID, rowSelected.PAYMDUID ?? 0);
                 }
 
             }

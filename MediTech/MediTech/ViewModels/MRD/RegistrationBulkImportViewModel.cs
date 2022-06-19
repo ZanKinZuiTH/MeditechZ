@@ -853,6 +853,11 @@ namespace MediTech.ViewModels
                     if (toBeCreateVisitCount > 0)
                     {
                         CreateVisit createVisitPopUp = new Views.CreateVisit();
+                        var datacontext = (createVisitPopUp.DataContext as CreateVisitViewModel);
+                        datacontext.ShowSaveButton = System.Windows.Visibility.Visible;
+                        datacontext.IsMassRegister = true;
+                        datacontext.Patient = null;
+
                         CreateVisitViewModel result = (CreateVisitViewModel)LaunchViewDialogNonPermiss(createVisitPopUp, true);
                         if (result != null && result.ResultDialog == ActionDialog.Save)
                         {
@@ -860,21 +865,12 @@ namespace MediTech.ViewModels
                             {
                                 if (currentData.Register && !string.IsNullOrEmpty(currentData.BN) && !currentData.HasVisitToday)
                                 {
-                                    PatientVisitModel visitInfo = new PatientVisitModel();
-                                    visitInfo.StartDttm = result.StartDate.Add(result.StartTime.TimeOfDay);
+                                    PatientVisitModel visitInfo = result.PatientVisitInfo;
                                     visitInfo.PatientUID = currentData.PatientUID;
-                                    visitInfo.VISTYUID = result.SelectedVisitType.Key;
                                     visitInfo.VISTSUID = 418; //Medical Discharge
-                                    visitInfo.CheckupJobUID = result.SelectedCheckupJob != null ? result.SelectedCheckupJob.CheckupJobContactUID : (int?)null;
                                     visitInfo.CompanyName = currentData.Company;
-                                    visitInfo.PRITYUID = result.SelectedPriority.Key;
-                                    visitInfo.PayorDetailUID = 0;
-                                    //visitInfo.PayorAgreementUID = result.SelectedPayorAgreement.PayorAgreementUID;
-                                    visitInfo.Comments = result.CommentDoctor;
                                     visitInfo.RefNo = currentData.No;
-                                    visitInfo.OwnerOrganisationUID = result.SelectOrganisation.HealthOrganisationUID;
-                                    if (result.SelectedCareprovider != null)
-                                        visitInfo.CareProviderUID = result.SelectedCareprovider.CareproviderUID;
+                                    visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                                     PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
 
                                     currentData.VisitID = returnData.VisitID;

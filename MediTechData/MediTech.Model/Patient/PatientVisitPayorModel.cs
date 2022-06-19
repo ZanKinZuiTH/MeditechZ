@@ -52,5 +52,7 @@ namespace MediTech.Model
             set { _IsExpired = value; }
         }
 
+        public string Description { get; set; }
+
     }
 }

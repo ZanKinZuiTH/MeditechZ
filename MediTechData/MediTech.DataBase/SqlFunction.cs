@@ -1500,6 +1500,7 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
+
         public static DataTable pSearchPatientVisitForRISBilling(DateTime? dateFrom, DateTime? dateTo, string firstName, string lastName, string patientID)
         {
             MediTechEntities entities = new MediTechEntities();
@@ -1515,6 +1516,23 @@ namespace MediTech.DataBase
             adp.Fill(ds);
             return ds.Tables[0];
         }
+
+        public static DataTable pSearchUnbilledPatients(long? patientUID,DateTime? billFromDTTM, DateTime? billToDTTM,int? ownerOrganisationUID,string IsIP)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlDataAdapter adp = new SqlDataAdapter("pSearchUnbilledPatients", entities.Database.Connection.ConnectionString);
+            adp.SelectCommand.CommandTimeout = 3000;
+            adp.SelectCommand.CommandType = CommandType.StoredProcedure;
+            adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BillFromDTTM", billFromDTTM ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_BillToDTTM", billToDTTM ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID ?? (object)DBNull.Value);
+            adp.SelectCommand.Parameters.AddWithValue("@P_IsIP", IsIP ?? (object)DBNull.Value);
+            DataSet ds = new DataSet();
+            adp.Fill(ds);
+            return ds.Tables[0];
+        }
+
         public static DataTable pSearchRequestList(DateTime? requestDateFrom, DateTime? requestDateTo, DateTime? assignDateFrom, DateTime? assignDateTo
             , string statusList, int? RQPRTUID, string firstName, string lastName, string patientID, string orderName, int? RIMTYPUID, int? radiologistUID)
         {

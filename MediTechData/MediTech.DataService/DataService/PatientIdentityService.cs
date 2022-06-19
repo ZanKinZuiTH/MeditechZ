@@ -222,7 +222,7 @@ namespace MediTech.DataService
         }
 
         public List<PatientVisitModel> SearchPatientMedicalDischarge(string hn, string firstName, string lastName, int? careproviderUID,
-            DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID, int? payorDetailUID)
+            DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID,int? payorDetailUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/SearchPatientMedicalDischarge?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&dateFrom={4:MM/dd/yyyy}&dateTo={5:MM/dd/yyyy}&ownerOrganisationUID={6}&payorDetailUID={7}", hn, firstName, lastName, careproviderUID, dateFrom, dateTo, ownerOrganisationUID, payorDetailUID);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
@@ -323,6 +323,14 @@ namespace MediTech.DataService
         public PatientVisitModel GetLatestPatientVisit(long patientUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetLatestPatientVisit?patientUID={0}", patientUID);
+            PatientVisitModel data = MeditechApiHelper.Get<PatientVisitModel>(requestApi);
+
+            return data;
+        }
+
+        public PatientVisitModel GetLatestPatientVisitNonClose(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetLatestPatientVisitNonClose?patientUID={0}", patientUID);
             PatientVisitModel data = MeditechApiHelper.Get<PatientVisitModel>(requestApi);
 
             return data;

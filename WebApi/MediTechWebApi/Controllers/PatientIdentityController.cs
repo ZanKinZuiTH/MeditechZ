@@ -965,9 +965,9 @@ namespace MediTechWebApi.Controllers
         [Route("SearchPatientMedicalDischarge")]
         [HttpGet]
         public List<PatientVisitModel> SearchPatientMedicalDischarge(string hn, string firstName, string lastName, int? careproviderUID,
-            DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID, int? payorDetailUID)
+            DateTime? dateFrom, DateTime? dateTo, int? ownerOrganisationUID,int? payorDetailUID)
         {
-            DataTable dataTable = SqlDirectStore.pSearchPatientMedicalDischarge(hn, firstName, lastName, careproviderUID, dateFrom, dateTo, ownerOrganisationUID, payorDetailUID);
+            DataTable dataTable = SqlDirectStore.pSearchPatientMedicalDischarge(hn, firstName, lastName, careproviderUID, dateFrom, dateTo, ownerOrganisationUID,payorDetailUID);
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
@@ -999,6 +999,7 @@ namespace MediTechWebApi.Controllers
                     patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
                     patientVisit.VISTSUID = patientVisitInfo.VISTSUID;
                     patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
+                    patientVisit.ENTYPUID = patientVisitInfo.ENTYPUID;
                     patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
                     patientVisit.RefNo = patientVisitInfo.RefNo;
                     patientVisit.CompanyName = patientVisitInfo.CompanyName;
@@ -1007,6 +1008,7 @@ namespace MediTechWebApi.Controllers
                     patientVisit.BookingUID = patientVisitInfo.BookingUID;
                     patientVisit.StartDttm = patientVisitInfo.StartDttm;
                     patientVisit.ArrivedDttm = patientVisitInfo.StartDttm;
+                    patientVisit.LocationUID = patientVisitInfo.LocationUID;
                     patientVisit.CUser = userID;
                     patientVisit.CWhen = now;
                     patientVisit.MUser = userID;
@@ -1722,6 +1724,41 @@ namespace MediTechWebApi.Controllers
             return visitData;
         }
 
+
+
+        [Route("GetLatestPatientVisitNonClose")]
+        [HttpGet]
+        public PatientVisitModel GetLatestPatientVisitNonClose(long patientUID)
+        {
+            PatientVisitModel visitData = null;
+            visitData = db.PatientVisit.Where(p => p.PatientUID == patientUID 
+            && p.EndDttm == null
+            && p.VISTSUID != 421
+            && p.VISTSUID != 410 && p.StatusFlag == "A")
+                        .Select(p => new PatientVisitModel
+                        {
+                            PatientUID = p.PatientUID,
+                            PatientVisitUID = p.UID,
+                            StartDttm = p.StartDttm,
+                            EndDttm = p.EndDttm,
+                            ArrivedDttm = p.ArrivedDttm,
+                            CareProviderUID = p.CareProviderUID,
+                            Comments = p.Comments,
+                            VISTYUID = p.VISTYUID,
+                            VISTSUID = p.VISTSUID,
+                            IsBillFinalized = p.IsBillFinalized,
+                            VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
+                            VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
+                            VisitID = p.VisitID,
+                            PRITYUID = p.PRITYUID,
+                            CWhen = p.CWhen,
+                            OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0
+                        }).OrderByDescending(p => p.StartDttm).FirstOrDefault();
+
+            return visitData;
+        }
+
         [Route("ChangeVisitStatus")]
         [HttpPut]
         public HttpResponseMessage ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, DateTime? editDttm, int userID)
@@ -2060,6 +2097,11 @@ namespace MediTechWebApi.Controllers
                                                      CoveredAmount = pvp.CoveredAmount,
                                                      StatusFlag = pvp.StatusFlag                                                     
                                                  }).ToList();
+
+            foreach (var item in data)
+            {
+                item.Description = item.PayorType + " " + item.InsuranceName + "-" +item.AgreementName;
+            }
 
 
 

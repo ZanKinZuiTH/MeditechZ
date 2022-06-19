@@ -80,6 +80,22 @@
                                AllowCustomization="False">
                 <dxr:RibbonControl.ApplicationMenu>
                     <dxr:ApplicationMenu>
+                        <dxb:BarEditItem Glyph="{x:Null}" EditHorizontalAlignment="Left"                                       
+                                         LargeGlyph="{x:Null}" >
+                            <dxb:BarEditItem.EditTemplate>
+                                <DataTemplate>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Text="{Binding DataContext.RoleName,RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" 
+                                                   FontSize="12" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding DataContext.UserName,RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                                   FontSize="12"/>
+                                        <TextBlock Text="{Binding DataContext.OrganisationName,RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" 
+                                                   FontSize="12" FontWeight="Bold"/>
+                                    </StackPanel>
+                                </DataTemplate>
+                            </dxb:BarEditItem.EditTemplate>
+                        </dxb:BarEditItem>
+                        <dxb:BarItemSeparator />
                         <dxb:BarButtonItem Name="btnChangePass" Content="เปลี่ยนรหัสผ่าน"
                                            Command="{Binding ChangePasswordCommand}"
                                            LargeGlyph="Resources/Images/Other/Password.png"/>
@@ -123,7 +139,7 @@
                     </dxb:BarEditItem>
                 </dxr:RibbonControl.PageHeaderItems>
                 <dxr:RibbonDefaultPageCategory >
-                    <dxr:RibbonPage Caption="มุมมอง" MergeOrder="99">
+                    <dxr:RibbonPage Caption="Settings" MergeOrder="99">
                         <dxr:RibbonPageGroup Caption="Theme" >
                             <dxr:RibbonGalleryBarItemLink BarItemName="ribbonGalleryBarItem1">
                                 <dxr:RibbonGalleryBarItemLink.CustomResources>
@@ -164,9 +180,9 @@
                 </dxdo:LayoutPanel>
             </dxdo:LayoutGroup>
         </dxdo:DockLayoutManager>
-        
-        <dxr:RibbonStatusBarControl Grid.Row="2" >
-            <dxr:RibbonStatusBarControl.LeftItems>
+
+            <dxr:RibbonStatusBarControl Grid.Row="2" >
+                <dxr:RibbonStatusBarControl.LeftItems>
                 <dxb:BarEditItem Content="{Binding LoginUser}" />
                 <dxb:BarEditItem Content="{Binding LoginDate}" />
             </dxr:RibbonStatusBarControl.LeftItems>
