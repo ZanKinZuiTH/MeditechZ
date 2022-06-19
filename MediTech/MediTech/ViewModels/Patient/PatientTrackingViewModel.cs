@@ -19,7 +19,13 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientTracking, value); }
         }
 
-        
+        private PatientVisitModel _SelectPatientVisit;
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set { Set(ref _SelectPatientVisit, value); }
+        }
+
         private PatientVisitModel _PatientVisit;
         public PatientVisitModel PatientVisit
         {
@@ -41,6 +47,7 @@ namespace MediTech.ViewModels
         public void AssingModel(PatientVisitModel model)
         {
             PatientVisit = model;
+            SelectPatientVisit = model;
         }
 
         #endregion

@@ -433,7 +433,7 @@ namespace MediTechWebApi.Controllers
                         foreach (var payor in activedVisitPayors)
                         {
                             PatientInsuranceDetail detail = db.PatientInsuranceDetail.Where(i => i.InsuranceCompanyUID == payor.InsuranceCompanyUID
-&& i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
+                            && i.PayorDetailUID == payor.PayorDetailUID && i.PayorAgreementUID == payor.PayorAgreementUID).FirstOrDefault();
                             if (detail == null)
                             {
                                 detail = new PatientInsuranceDetail();
@@ -1566,6 +1566,40 @@ namespace MediTechWebApi.Controllers
             return visitData;
         }
 
+        [Route("GetPatientVisitToChangeLocation")]
+        [HttpGet]
+        public List<PatientVisitModel> GetPatientVisitToChangeLocation(long? patientUID, string visitID)
+        {
+            List<PatientVisitModel> visitData = db.PatientVisit.Where(p => p.VISTSUID != 418 && p.VISTSUID != 410 && p.VISTSUID != 421
+                                        && (visitID == null || p.VisitID == visitID)
+                                        && (patientUID == null || p.PatientUID == patientUID)
+                                        && p.StatusFlag == "A")
+                                                    .Select(p => new PatientVisitModel
+                                                    {
+                                                        PatientUID = p.PatientUID,
+                                                        PatientVisitUID = p.UID,
+                                                        PatientName = SqlFunction.fGetPatientName(p.PatientUID),
+                                                        StartDttm = p.StartDttm,
+                                                        EndDttm = p.EndDttm,
+                                                        ArrivedDttm = p.ArrivedDttm,
+                                                        CareProviderUID = p.CareProviderUID,
+                                                        Comments = p.Comments,
+                                                        VISTYUID = p.VISTYUID,
+                                                        VISTSUID = p.VISTSUID,
+                                                        IsBillFinalized = p.IsBillFinalized,
+                                                        VisitStatus = SqlFunction.fGetRfValDescription(p.VISTSUID ?? 0),
+                                                        VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
+                                                        VisitID = p.VisitID,
+                                                        PRITYUID = p.PRITYUID,
+                                                        OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
+                                                        OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
+                                                        LocationUID = p.LocationUID,
+                                                        LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0)
+                                                    }).ToList();
+
+            return visitData;
+        }
+
         [Route("GetPatientAEAdmissionByUID")]
         [HttpGet]
         public PatientAEAdmissionModel GetPatientAEAdmissionByUID(long patientVisitUID)
@@ -1782,6 +1816,52 @@ namespace MediTechWebApi.Controllers
                     serviceEvent.PatientVisitUID = patientvisit.UID;
                     serviceEvent.EventStartDttm = editDttm ?? patientvisit.MWhen;
                     serviceEvent.VISTSUID = VISTSUID;
+                    serviceEvent.MUser = userID;
+                    serviceEvent.MWhen = now;
+                    serviceEvent.CUser = userID;
+                    serviceEvent.CWhen = now;
+                    serviceEvent.StatusFlag = "A";
+
+                    db.PatientServiceEvent.Add(serviceEvent);
+                    #endregion
+
+
+
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ChangeVisitLocation")]
+        [HttpPut]
+        public HttpResponseMessage ChangeVisitLocation(long patientVisitUID, int locaionUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                PatientVisit patientvisit = db.PatientVisit.Find(patientVisitUID);
+                if (patientvisit != null)
+                {
+                    db.PatientVisit.Attach(patientvisit);
+
+                    patientvisit.VISTSUID = 427; //ChangeLocation
+
+                    patientvisit.LocationUID = locaionUID;
+                    patientvisit.MUser = userID;
+                    patientvisit.MWhen = now;
+
+                    #region PatientServiceEvent
+                    PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                    serviceEvent.PatientVisitUID = patientvisit.UID;
+                    serviceEvent.EventStartDttm = now;
+                    serviceEvent.VISTSUID = 427;
                     serviceEvent.MUser = userID;
                     serviceEvent.MWhen = now;
                     serviceEvent.CUser = userID;
@@ -2928,6 +3008,238 @@ namespace MediTechWebApi.Controllers
                 }).OrderByDescending(p => p.EventStartDttm).ToList();
 
             return data;
+        }
+
+        #endregion
+
+        #region Consult
+
+        [Route("GetAppointmentRequestbyUID")]
+        [HttpGet]
+        public List<AppointmentRequestModel> GetAppointmentRequestbyUID(int patientUID, int patientVisitUID, int BKSTSUID)
+        {
+            List<AppointmentRequestModel> data = db.AppointmentRequest.Where(p => p.PatientUID == patientUID 
+                                            &&  p.PatientVisitUID == patientVisitUID
+                                            && p.PatientUID == patientVisitUID 
+                                            && p.BKSTSUID == BKSTSUID
+                                            && p.StatusFlag == "A")
+                                            .Select(p => new AppointmentRequestModel()
+                                                {
+                                                      AppointmentRequestUID = p.UID,
+                                                      PatientUID = p.PatientUID,
+                                                      PatientVisitUID = p.PatientVisitUID ?? 0,                                               
+                                                      PatientName = SqlFunction.fGetPatientName(p.PatientUID),
+                                                      AppointmentDttm = p.AppointmentDttm,
+                                                      Comments = p.Comments,
+                                                      CareProviderUID = p.CareproviderUID,
+                                                      CareProviderName = SqlFunction.fGetCareProviderName(p.CareproviderUID ?? 0),
+                                                      BKSTSUID = p.BKSTSUID ?? 0,
+                                                      RequestStatus = SqlFunction.fGetRfValDescription(p.BKSTSUID ?? 0),
+                                                      OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                      OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                                                      LocationUID = p.LocationUID ?? 0,
+                                                      LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0)
+                                             }).ToList();
+
+            return data;
+        }
+
+        [Route("ManageAppointmentRequest")]
+        [HttpPost]
+        public HttpResponseMessage ManageAppointmentRequest(List<AppointmentRequestModel> appointmentRequests, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                foreach (var request in appointmentRequests)
+                {
+                    AppointmentRequest detail = db.AppointmentRequest.Find(request.AppointmentRequestUID);
+                    if (detail == null)
+                    {
+                        detail = new AppointmentRequest();
+                        detail.CUser = userUID;
+                        detail.CWhen = now;
+                    }
+
+                    if(detail != null && request.StatusFlag == "A")
+                    {
+                        detail.PatientUID = request.PatientUID;
+                        detail.PatientVisitUID = request.PatientVisitUID;
+                        detail.AppointmentDttm = request.AppointmentDttm;
+                        detail.CareproviderUID = request.CareProviderUID;
+                        detail.BKSTSUID = request.BKSTSUID;
+                        detail.RequestedBy = request.RequestedBy;
+                        detail.RequestedDate = request.RequestedDate;
+                        detail.Comments = request.Comments;
+                        detail.CareproviderUID = request.CareProviderUID;
+                        detail.LocationUID = request.LocationUID;
+                        detail.OwnerOrganisationUID = request.OwnerOrganisationUID;
+                        detail.MUser = userUID;
+                        detail.MWhen = now;
+                        detail.StatusFlag = request.StatusFlag;
+                    }
+                    else
+                    {
+                        detail.StatusFlag = request.StatusFlag;
+                        detail.MUser = userUID;
+                        detail.MWhen = now;
+                    }
+                    
+                    db.AppointmentRequest.AddOrUpdate(detail);
+                    db.SaveChanges();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("SearchAppointmentRequest")]
+        [HttpGet]
+        public List<AppointmentRequestModel> SearchAppointmentRequest(DateTime? dateFrom, DateTime? dateTo,int? locationUID, int? bookStatus, int? ownerOrganisationUID, int? careproviderUID)
+        {
+            List<AppointmentRequestModel> data = (from app in db.AppointmentRequest
+                                       join pa in db.Patient on app.PatientUID equals pa.UID
+                                       where app.StatusFlag == "A"
+                                          && (dateFrom == null || DbFunctions.TruncateTime(app.AppointmentDttm) >= DbFunctions.TruncateTime(dateFrom))
+                                          && (dateTo == null || DbFunctions.TruncateTime(app.AppointmentDttm) <= DbFunctions.TruncateTime(dateTo))
+                                          && (careproviderUID == null || app.CareproviderUID == careproviderUID)
+                                          && (bookStatus == null || app.BKSTSUID == bookStatus)
+                                          && (ownerOrganisationUID == null || app. OwnerOrganisationUID== ownerOrganisationUID)
+                                          && (locationUID == null || app.LocationUID == locationUID)
+                                       select new AppointmentRequestModel
+                                       {
+                                           AppointmentRequestUID = app.UID,
+                                           PatientUID = app.PatientUID,
+                                           PatientVisitUID = app.PatientVisitUID ?? 0,
+                                           PatientName = SqlFunction.fGetPatientName(app.PatientUID),
+                                           AppointmentDttm = app.AppointmentDttm,
+                                           Comments = app.Comments,
+                                           CareProviderUID = app.CareproviderUID,
+                                           CareProviderName = SqlFunction.fGetCareProviderName(app.CareproviderUID ?? 0),
+                                           BKSTSUID = app.BKSTSUID ?? 0,
+                                           RequestStatus = SqlFunction.fGetRfValDescription(app.BKSTSUID ?? 0),
+                                           OwnerOrganisationUID = app.OwnerOrganisationUID,
+                                           OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(app.OwnerOrganisationUID),
+                                           LocationUID = app.LocationUID ?? 0,
+                                           LocationName = SqlFunction.fGetLocationName(app.LocationUID ?? 0)
+                                       }).ToList();
+
+            return data;
+        }
+
+        [Route("ChangeAppointmentRequest")]
+        [HttpPut]
+        public HttpResponseMessage ChangeAppointmentRequest(int appointmentRequestUID, int statusUID, int userID)
+        {
+            try
+            {
+                AppointmentRequest requestModel = db.AppointmentRequest.Find(appointmentRequestUID);
+                if (requestModel != null)
+                {
+                    db.AppointmentRequest.Attach(requestModel);
+                    requestModel.BKSTSUID = statusUID; 
+                    requestModel.MUser = userID;
+                    requestModel.MWhen = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("SavePatientVisitCareprovider")]
+        [HttpPost]
+        public HttpResponseMessage SavePatientVisitCareprovider(PatientVisitCareproviderModel patientVisitCareprovider,int appointmentRequestUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                AppointmentRequest appointment = db.AppointmentRequest.Find(appointmentRequestUID);
+                if (appointment != null)
+                {
+                    db.AppointmentRequest.Attach(appointment);
+                    appointment.BKSTSUID = patientVisitCareprovider.PACLSUID;
+                    appointment.MUser = patientVisitCareprovider.CUser;
+                    appointment.MWhen = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+
+                PatientVisitCareProvider detail = new PatientVisitCareProvider();
+                detail.PatientVisitUID = patientVisitCareprovider.PatientVisitUID;
+                detail.StartDttm = patientVisitCareprovider.StartDttm;
+                detail.CareproviderUID = patientVisitCareprovider.CareProviderUID;
+                detail.CareProviderName = patientVisitCareprovider.CareProviderName;
+                detail.PACLSUID = patientVisitCareprovider.PACLSUID;
+                detail.ReferralUID = patientVisitCareprovider.ReferralUID;
+                detail.BookingUID = patientVisitCareprovider.BookingUID;
+                detail.LocationUID = patientVisitCareprovider.LocationUID;
+                detail.OwnerOrganisationUID = patientVisitCareprovider.OwnerOrganisationUID;
+                detail.MUser = patientVisitCareprovider.CUser; 
+                detail.MWhen = now;
+                detail.CUser = patientVisitCareprovider.CUser; 
+                detail.CWhen = now;
+                detail.StatusFlag = "A";
+
+                db.PatientVisitCareProvider.Add(detail);
+                db.SaveChanges();
+
+
+                #region PatientServiceEvent
+                PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                serviceEvent.PatientVisitUID = patientVisitCareprovider.PatientVisitUID;
+                serviceEvent.EventStartDttm = now;
+                serviceEvent.VISTSUID = 417;
+                serviceEvent.MUser = patientVisitCareprovider.CUser;
+                serviceEvent.MWhen = now;
+                serviceEvent.CUser = patientVisitCareprovider.CUser;
+                serviceEvent.CWhen = now;
+                serviceEvent.StatusFlag = "A";
+
+                db.PatientServiceEvent.Add(serviceEvent);
+                #endregion
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ChangePatientVisitCareproviderStatus")]
+        [HttpPut]
+        public HttpResponseMessage ChangePatientVisitCareproviderStatus(int patientVisitCareproviderUID, int statusUID, int userID)
+        {
+            try
+            {
+                PatientVisitCareProvider patientVisitCare = db.PatientVisitCareProvider.Find(patientVisitCareproviderUID);
+                if (patientVisitCare != null)
+                {
+                    db.PatientVisitCareProvider.Attach(patientVisitCare);
+                    patientVisitCare.PACLSUID = statusUID;
+                    patientVisitCare.MUser = userID;
+                    patientVisitCare.MWhen = DateTime.Now;
+
+                    db.SaveChanges();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
         }
 
         #endregion

@@ -1,0 +1,108 @@
+﻿<UserControl x:Class="MediTech.Views.ConsultRequest"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=ConsultRequestViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}" />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="สถานะ">
+                    <dxe:ComboBoxEdit x:Name="cmbStatus"
+                                              ItemsSource="{Binding BookingStatus}"
+                                              IsTextEditable="True" 
+                                              DisplayMember="Display"
+                                              ValueMember="Key"
+                                              AllowNullInput="True"
+                                              NullValueButtonPlacement="EditBox"
+                                              SelectedItem="{Binding Path=SelectBookingStatus}">
+                    </dxe:ComboBoxEdit>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="แผนก">
+                    <dxe:ComboBoxEdit Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Locations}" 
+                                      SelectedItem="{Binding SelectLocations}"
+                                      ValueMember="LocationUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True"
+                                      NullValueButtonPlacement="EditBox"
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แพทย์">
+                    <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                              ItemsSource="{Binding Doctors}"
+                                              SelectedItem="{Binding SelectDoctor}"
+                                              IsTextEditable="True" 
+                                              DisplayMember="FullName"
+                                              AllowNullInput="True"
+                                              NullValueButtonPlacement="EditBox"
+                                              ValueMember="CareproviderUID"
+                                              />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                        <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                        <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="คืนค่า"/>
+                    </dxlc:LayoutGroup>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxg:GridControl Name="grdConsultResult"
+                             ItemsSource="{Binding AppointmentRequest,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectAppointmentRequest,UpdateSourceTrigger=PropertyChanged}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="ชื่อผู้ป่วย" FieldName="PatientName" Width="200"/>
+                    <dxg:GridColumn Header="วันที่" FieldName="AppointmentDttm" >
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings  DisplayFormat="MM/dd/yyyy" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="เวลาที่นัด" FieldName="AppointmentDttm">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:DateEditSettings  DisplayFormat="HH:mm" />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Header="สถานะ" FieldName="RequestStatus"/>
+                    <dxg:GridColumn Header="แพทย์" FieldName="CareProviderName" Width="200"/>
+                    <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisationName" Width="180"/>
+                    <dxg:GridColumn Header="แผนก" FieldName="LocationName" Width="180"/>
+                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False">
+                        <dxg:TableView.FormatConditions>
+                            <dxg:FormatCondition ApplyToRow="True" Expression="[BookingStatus] = 'Booked' And [AppointmentDate] = LocalDateTimeToday()" FieldName="PatientName">
+                                <dx:Format Background="#FFEE8D3D"/>
+                            </dxg:FormatCondition>
+                        </dxg:TableView.FormatConditions>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding CheckinCommand}"
+                                     Height="25" Content="Checkin"/>
+                <dx:SimpleButton Width="80" Command="{Binding DropCommand}" IsEnabled="{Binding IsEnableCancel}"
+                                     Height="25" Content="Drop"/>
+                <!--<dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
+                                     Height="25" Content="cancel"/>-->
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>
