@@ -56,7 +56,9 @@
             <dxlc:LayoutGroup>
                 
                 <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                    <uc:PatientBanner x:Name="patientBanner"/>
+                    <uc:PatientBanner x:Name="patientBanner"
+                                      PatientVisit="{Binding PatientVisit}"
+                                      />
                 </dxlc:LayoutItem>
 
 

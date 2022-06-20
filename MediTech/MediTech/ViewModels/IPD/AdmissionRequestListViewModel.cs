@@ -253,8 +253,14 @@ namespace MediTech.ViewModels
             { 
                 if(SelectedIPBooking.BedBookingRequest != "Requested")
                 {
-                    WarningDialog("สถานนะเป็น"+ SelectedIPBooking.BedBookingRequest+ " ไม่สามารถ Admit ได้");
+                    WarningDialog("สถานะเป็น"+ SelectedIPBooking.BedBookingRequest+ " ไม่สามารถ Admit ได้");
                     return;
+                }
+                if (SelectedIPBooking.BedBookingRequest != null)
+                {
+                    AdmissionDetail pageview = new AdmissionDetail();
+                    (pageview.DataContext as AdmissionDetailViewModel).ConfirmFromRequestAdmission(SelectedIPBooking);
+                    AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
                 }
             }
         }

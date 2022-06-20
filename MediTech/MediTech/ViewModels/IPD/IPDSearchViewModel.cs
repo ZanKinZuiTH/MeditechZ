@@ -1,5 +1,4 @@
 ﻿using GalaSoft.MvvmLight.Command;
-using MediTech.DataService;
 using MediTech.Model;
 using MediTech.Views;
 using System;
@@ -8,65 +7,16 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Forms;
+
 namespace MediTech.ViewModels
 {
     public class IPDSearchViewModel : MediTechViewModelBase
     {
-
         #region Properties
-
         public string LN { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-
         public bool IsEditDate { get; set; }
-
-        private List<LookupReferenceValueModel> _EncounterType;
-        public List<LookupReferenceValueModel> EncounterType
-        {
-            get { return _EncounterType; }
-            set { Set(ref _EncounterType, value); }
-        }
-
-        private LookupReferenceValueModel _SelectEncounterType;
-        public LookupReferenceValueModel SelectEncounterType
-        {
-            get { return _SelectEncounterType; }
-            set { Set(ref _SelectEncounterType, value); }
-        }
-
-        private List<PayorDetailModel> _PayorDetails;
-
-        public List<PayorDetailModel> PayorDetails
-        {
-            get { return _PayorDetails; }
-            set { Set(ref _PayorDetails, value); }
-        }
-
-        private PayorDetailModel _SelectPayorDetail;
-
-        public PayorDetailModel SelectPayorDetail
-        {
-            get { return _SelectPayorDetail; }
-            set { Set(ref _SelectPayorDetail, value); }
-        }
-
-        private ObservableCollection<PatientVisitModel> _PatientVisits;
-
-        public ObservableCollection<PatientVisitModel> PatientVisits
-        {
-            get { return _PatientVisits; }
-            set { Set(ref _PatientVisits, value); }
-        }
-
-        private PatientVisitModel _SelectPatientVisit;
-
-        public PatientVisitModel SelectPatientVisit
-        {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
-        }
 
         public List<CareproviderModel> Doctors { get; set; }
         private CareproviderModel _SelectDoctor;
@@ -87,11 +37,7 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectVisitStatusList, value); }
         }
 
-
-
-
         private DateTime? _DateFrom;
-
         public DateTime? DateFrom
         {
             get { return _DateFrom; }
@@ -106,9 +52,7 @@ namespace MediTech.ViewModels
             }
         }
 
-
         private DateTime? _DateTo;
-
         public DateTime? DateTo
         {
             get { return _DateTo; }
@@ -121,9 +65,10 @@ namespace MediTech.ViewModels
                 }
             }
         }
-        public List<LookupItemModel> DateTypes { get; set; }
-        private LookupItemModel _SelectDateType;
 
+        public List<LookupItemModel> DateTypes { get; set; }
+
+        private LookupItemModel _SelectDateType;
         public LookupItemModel SelectDateType
         {
             get { return _SelectDateType; }
@@ -159,7 +104,6 @@ namespace MediTech.ViewModels
         }
 
         private List<HealthOrganisationModel> _Organisations;
-
         public List<HealthOrganisationModel> Organisations
         {
             get { return _Organisations; }
@@ -167,141 +111,121 @@ namespace MediTech.ViewModels
         }
 
         private HealthOrganisationModel _SelectOrganisation;
-
         public HealthOrganisationModel SelectOrganisation
         {
             get { return _SelectOrganisation; }
             set { Set(ref _SelectOrganisation, value); }
         }
 
+        private List<PayorDetailModel> _PayorDetails;
+        public List<PayorDetailModel> PayorDetails
+        {
+            get { return _PayorDetails; }
+            set { Set(ref _PayorDetails, value); }
+        }
+
+        private PayorDetailModel _SelectPayorDetail;
+        public PayorDetailModel SelectPayorDetail
+        {
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); }
+        }
+
+        private ObservableCollection<PatientVisitModel> _PatientVisits;
+        public ObservableCollection<PatientVisitModel> PatientVisits
+        {
+            get { return _PatientVisits; }
+            set { Set(ref _PatientVisits, value); }
+        }
+
+        private PatientVisitModel _SelectPatientVisit;
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set { Set(ref _SelectPatientVisit, value); }
+        }
+
+        private List<LookupReferenceValueModel> _EncounterType;
+        public List<LookupReferenceValueModel> EncounterType
+        {
+            get { return _EncounterType; }
+            set { Set(ref _EncounterType, value); }
+        }
+
+        private LookupReferenceValueModel _SelectEncounterType;
+        public LookupReferenceValueModel SelectEncounterType
+        {
+            get { return _SelectEncounterType; }
+            set { Set(ref _SelectEncounterType, value); }
+        }
 
         #endregion
 
         #region Command
 
         private RelayCommand _SearchCommand;
-
         public RelayCommand SearchCommand
         {
             get { return _SearchCommand ?? (_SearchCommand = new RelayCommand(SearchPatientVisit)); }
         }
 
-
         private RelayCommand _SendToDoctorCommand;
-
         public RelayCommand SendToDoctorCommand
         {
             get { return _SendToDoctorCommand ?? (_SendToDoctorCommand = new RelayCommand(SendToDoctor)); }
         }
 
-        private RelayCommand _MedicalDischargeCommand;
+        private RelayCommand _VitalSignCommand;
+        public RelayCommand VitalSignCommand
+        {
+            get { return _VitalSignCommand ?? (_VitalSignCommand = new RelayCommand(VitalSign)); }
+        }
 
+        private RelayCommand _AllergyCommand;
+        public RelayCommand AllergyCommand
+        {
+            get { return _AllergyCommand ?? (_AllergyCommand = new RelayCommand(Allergy)); }
+        }
+
+        private RelayCommand _CreateOrderCommand;
+        public RelayCommand CreateOrderCommand
+        {
+            get { return _CreateOrderCommand ?? (_CreateOrderCommand = new RelayCommand(CreateOrder)); }
+        }
+
+        private RelayCommand _MedicalDischargeCommand;
         public RelayCommand MedicalDischargeCommand
         {
             get { return _MedicalDischargeCommand ?? (_MedicalDischargeCommand = new RelayCommand(MedicalDischarge)); }
         }
 
         private RelayCommand _RunPatientReportCommand;
-
         public RelayCommand RunPatientReportCommand
         {
             get { return _RunPatientReportCommand ?? (_RunPatientReportCommand = new RelayCommand(RunPatientReport)); }
         }
 
-
-        private RelayCommand _VitalSignCommand;
-
-        public RelayCommand VitalSignCommand
+        private RelayCommand _ModifyVisitCommand;
+        public RelayCommand ModifyVisitCommand
         {
-            get { return _VitalSignCommand ?? (_VitalSignCommand = new RelayCommand(VitalSign)); }
+            get { return _ModifyVisitCommand ?? (_ModifyVisitCommand = new RelayCommand(OpenModifyVisit)); }
         }
-
-        private RelayCommand _CreateOrderCommand;
-
-        public RelayCommand CreateOrderCommand
-        {
-            get { return _CreateOrderCommand ?? (_CreateOrderCommand = new RelayCommand(CreateOrder)); }
-        }
-
-        private RelayCommand _AllergyCommand;
-
-        public RelayCommand AllergyCommand
-        {
-            get { return _AllergyCommand ?? (_AllergyCommand = new RelayCommand(Allergy)); }
-        }
-
 
         private RelayCommand _PatientRecordsCommand;
-
         public RelayCommand PatientRecordsCommand
         {
             get { return _PatientRecordsCommand ?? (_PatientRecordsCommand = new RelayCommand(PatientRecords)); }
         }
 
-        private RelayCommand _ModifyVisitCommand;
-
-        public RelayCommand ModifyVisitCommand
+        private RelayCommand _ManageAEAdmissionCommand;
+        public RelayCommand ManageAEAdmissionCommand
         {
-            get { return _ModifyVisitCommand ?? (_ModifyVisitCommand = new RelayCommand(PatientRecords)); }
+            get { return _ManageAEAdmissionCommand ?? (_ManageAEAdmissionCommand = new RelayCommand(ManageAEAdmission)); }
         }
-
-
-        private RelayCommand _ArrivedCommand;
-
-        public RelayCommand ArrivedCommand
-        {
-            get { return _ArrivedCommand ?? (_ArrivedCommand = new RelayCommand(ArrivedVisit)); }
-        }
-
-
-        private RelayCommand _CancelAdmissionCommand;
-
-        public RelayCommand CancelAdmissionCommand
-        {
-            get { return _CancelAdmissionCommand ?? (_CancelAdmissionCommand = new RelayCommand(CancelVisitAdmission)); }
-        }
-
-
-
-
-        private RelayCommand _ScannedDocumentCommand;
-
-        public RelayCommand ScannedDocumentCommand
-        {
-            get { return _ScannedDocumentCommand ?? (_ScannedDocumentCommand = new RelayCommand(ScannedDocument)); }
-        }
-
-
-        private RelayCommand _SalesItemCommand;
-
-        public RelayCommand SalesItemCommand
-        {
-            get { return _SalesItemCommand ?? (_SalesItemCommand = new RelayCommand(SalesItem)); }
-        }
-
-      
-
-
-        private RelayCommand _AdmissionRequestCommand;
-        public RelayCommand AdmissionRequestCommand
-        {
-            get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
-        }
-
-
-        private RelayCommand _DirectAdmitCommand;
-
-        public RelayCommand DirectAdmitCommand
-        {
-            get { return _DirectAdmitCommand ?? (_DirectAdmitCommand = new RelayCommand(DirectAdmit)); }
-        }
-
 
         #endregion
 
-        #region Method
-
-        #region Variable
+        #region Medtod
 
         int REGST = 417;
         int CHKOUT = 418;
@@ -309,12 +233,10 @@ namespace MediTech.ViewModels
         int FINDIS = 421;
         int CANCEL = 410;
 
-        #endregion
-
         public IPDSearchViewModel()
         {
             EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
-            SelectEncounterType = EncounterType.Find(p => p.ValueCode == "OUPAT");
+            SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "INPAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
             SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
@@ -326,28 +248,14 @@ namespace MediTech.ViewModels
             SelectDateType = DateTypes.FirstOrDefault();
 
             Organisations = GetHealthOrganisationMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == 17);
             PayorDetails = DataService.Billing.GetPayorDetail();
-
         }
-
-        public void DirectAdmit()
-        {
-            if (SelectPatientVisit != null)
-            {
-                PatientVisitModel senddata = SelectPatientVisit;
-                AdmissionDetail pageview = new AdmissionDetail();
-                (pageview.DataContext as AdmissionDetailViewModel).sendVisit(SelectPatientVisit);
-                AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
-            } 
-
-          
-        }
-
         public override void OnLoaded()
         {
             SearchPatientVisit();
         }
+
         private void SearchPatientVisit()
         {
             string statusList = string.Empty;
@@ -371,97 +279,6 @@ namespace MediTech.ViewModels
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
             PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchIPDPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, 17, payorDetailUID, null));
-        }
-
-        private void VitalSign()
-        {
-            if (SelectPatientVisit != null)
-            {
-                PatientVitalSign pageview = new PatientVitalSign();
-                (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(SelectPatientVisit);
-                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    //SearchPatientVisit();
-                }
-            }
-
-        }
-
-        private void CreateOrder()
-        {
-            if (SelectPatientVisit != null)
-            {
-                PatientOrderEntry pageview = new PatientOrderEntry();
-                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
-                PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
-            }
-        }
-
-        private void ArrivedVisit()
-        {
-            if (SelectPatientVisit != null)
-            {
-
-                ModifyVisit pageview = new ModifyVisit();
-                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
-                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-        }
-
-
-        private void CancelVisitAdmission()
-        {
-            if (SelectPatientVisit != null)
-            {
-
-                ModifyVisit pageview = new ModifyVisit();
-                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
-                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-        }
-
-        private void ScannedDocument()
-        {
-            if (SelectPatientVisit != null)
-            {
-
-                ScannedDocument pageview = new ScannedDocument();
-                (pageview.DataContext as ScannedDocumentViewModel).AssingPatientVisit(SelectPatientVisit);
-                ScannedDocumentViewModel result = (ScannedDocumentViewModel)LaunchViewDialog(pageview, "PATSCD", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-        }
-
-        private void Allergy()
-        {
-            if (SelectPatientVisit != null)
-            {
-                PatientAllergy pageview = new PatientAllergy();
-                (pageview.DataContext as PatientAllergyViewModel).AssingPatientVisit(SelectPatientVisit);
-                PatientAllergyViewModel result = (PatientAllergyViewModel)LaunchViewDialog(pageview, "LIARGY", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    //SearchPatientVisit();
-                }
-            }
-
         }
 
         private void SendToDoctor()
@@ -490,100 +307,70 @@ namespace MediTech.ViewModels
             }
         }
 
+        private void ManageAEAdmission()
+        {
+
+            if (SelectPatientVisit != null)
+            {
+                PatientAEAdmissionModel erVisit = DataService.PatientIdentity.GetPatientAEAdmissionByUID(SelectPatientVisit.PatientVisitUID);
+
+                EmergencyRegister pageview = new EmergencyRegister();
+                (pageview.DataContext as EmergencyRegisterViewModel).AssingModel(new PatientInformationModel(), erVisit);
+                EmergencyRegisterViewModel result = (EmergencyRegisterViewModel)LaunchViewDialog(pageview, "ERREG", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+
+
+            }
+        }
+
+
+        private void VitalSign()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientVitalSign pageview = new PatientVitalSign();
+                (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(SelectPatientVisit);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+            }
+
+        }
+
+        private void Allergy()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientAllergy pageview = new PatientAllergy();
+                (pageview.DataContext as PatientAllergyViewModel).AssingPatientVisit(SelectPatientVisit);
+                PatientAllergyViewModel result = (PatientAllergyViewModel)LaunchViewDialog(pageview, "LIARGY", false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+            }
+
+        }
+
+        private void CreateOrder()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientOrderEntry pageview = new PatientOrderEntry();
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
+                PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
+            }
+        }
         private void MedicalDischarge()
         {
-            if (SelectPatientVisit != null)
-            {
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
-                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
-                    OnUpdateEvent();
-                    return;
-                }
-                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge);
-                medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                medicalDischarge.Owner = MainWindow;
-                medicalDischarge.ShowDialog();
-                ActionDialog result = medicalDischarge.ResultDialog;
-                if (result == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-        }
-
-
-        private void PatientRecords()
-        {
-            if (SelectPatientVisit != null)
-            {
-                EMRView pageview = new EMRView();
-                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(SelectPatientVisit);
-                EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
-            }
-        }
-        private void SalesItem()
-        {
-            if (SelectPatientVisit != null)
-            {
-                //if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS)
-                //{
-                //    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                //    return;
-                //}
-                ManageBilledItemSale pageview = new ManageBilledItemSale();
-                //(pageview.DataContext as ManageBilledItemSaleViewModel).AssingPatientVisit(SelectPatientVisit);
-                ManageBilledItemSaleViewModel result = (ManageBilledItemSaleViewModel)LaunchViewDialog(pageview, "SALESAPP", true);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-        }
-        private void AdmissionRequest()
-        {
-            if (SelectPatientVisit != null)
-            {
-
-
-                AdmissionRequest pageview = new AdmissionRequest();
-                (pageview.DataContext as AdmissionRequestViewModel).AssingModel(SelectPatientVisit);
-                AdmissionRequestViewModel result = (AdmissionRequestViewModel)LaunchViewDialog(pageview, "ADRQST", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-
-        }
-
-        private void ExportToExcel()
-        {
-            try
-            {
-                if (PatientVisits != null)
-                {
-                    string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
-                    if (fileName != "")
-                    {
-                        PatientList view = (PatientList)this.View;
-                        view.tableViewVisitList.ExportToXlsx(fileName);
-                        OpenFile(fileName);
-                    }
-
-                }
-            }
-            catch (Exception er)
-            {
-
-                ErrorDialog(er.Message);
-            }
 
         }
 
@@ -594,6 +381,33 @@ namespace MediTech.ViewModels
                 ShowModalDialogUsingViewModel(new RunPatientReports(), new RunPatientReportsViewModel() { SelectPatientVisit = SelectPatientVisit }, true);
             }
         }
+
+        private void OpenModifyVisit()
+        {
+            if (SelectPatientVisit != null)
+            {
+
+                ModifyVisit pageview = new ModifyVisit();
+                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
+        }
+
+        private void PatientRecords()
+        {
+            if (SelectPatientVisit != null)
+            {
+                EMRView pageview = new EMRView();
+                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(SelectPatientVisit);
+                EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
+            }
+        }
+
         #endregion
     }
 }

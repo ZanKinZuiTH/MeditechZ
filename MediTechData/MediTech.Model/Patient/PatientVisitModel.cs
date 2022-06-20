@@ -24,7 +24,7 @@ namespace MediTech.Model
         public Nullable<System.DateTime> ArrivedDttm { get; set; }
         public Nullable<System.DateTime> DischargeDttm { get; set; }
         public Nullable<System.DateTime> AdmisstionDttm { get; set; }
-
+        public string DischargedUser { get; set; }
         public String LocationName { get; set; }
         public String EncounterType { get; set; }
 

@@ -24,7 +24,7 @@
     <Grid >
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
-                <uc:PatientBanner x:Name="banner" PatientVisit="{Binding SelectPatientVisit}"/>
+                <uc:PatientBanner x:Name="banner" PatientVisit="{Binding SelectPatientVisit}" Visibility="{Binding IsPatientVisibility}"/>
             </dxlc:LayoutItem>
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -32,7 +32,7 @@
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <dxlc:LayoutControl Orientation="Vertical" Grid.Column="0">
-                    <dxlc:LayoutItem >
+                    <!--<dxlc:LayoutItem >
                         <dxlc:LayoutItem.Label>
                             <StackPanel Orientation="Horizontal">
                                 <Label Content="*" FontSize="15" Margin="0,-10,0,0"
@@ -44,7 +44,7 @@
                                       ValueMember="HealthOrganisationUID"
                                       ItemsSource="{Binding Organisations}"
                                       SelectedItem="{Binding SelectOrganisation}"/>
-                    </dxlc:LayoutItem>
+                    </dxlc:LayoutItem>-->
                     <dxlc:LayoutItem >
                         <dxlc:LayoutItem.Label>
                             <StackPanel Orientation="Horizontal">
@@ -277,10 +277,30 @@
                                            />
                         </dxg:GridControl.View>
                     </dxg:GridControl>
+
                 </dxlc:LayoutControl>
 
             </Grid>
-
+            <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal" Visibility="{Binding ShowSaveButton}">
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Name="btnSavePatient" Content="บันทึก"
+                                     Command="{Binding SaveCommand}"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"
+                                     Visibility="Visible"
+                                     Width="80"
+                                     Height="25"  />
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem>
+                    <dx:SimpleButton Name="btnCancel" Content="ยกเลิก"
+                                     Command="{Binding CancelCommand}"
+                                     HorizontalAlignment="Right"
+                                     VerticalAlignment="Bottom"
+                                     Visibility="Visible"
+                                     Width="80"
+                                     Height="25"  />
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

@@ -228,7 +228,6 @@ namespace MediTech.ViewModels
 
 
             //SaveSuccessDialog();
-            CloseViewDialog(ActionDialog.Save);
 
 
         }

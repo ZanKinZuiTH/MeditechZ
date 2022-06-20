@@ -15,7 +15,7 @@ using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
-    public class PatientBilledViewModel : MediTechViewModelBase
+    public class PatientBilledOPViewModel : MediTechViewModelBase
     {
 
         #region Properties
@@ -48,22 +48,6 @@ namespace MediTech.ViewModels
                 Set(ref _SearchPatientCriteria, value);
                 PatientsSearchSource = null;
             }
-        }
-
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
-
-        private HealthOrganisationModel _SelectOrganisation;
-
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
         }
 
         private DateTime? _DateFrom;
@@ -164,12 +148,10 @@ namespace MediTech.ViewModels
 
         #region Method
 
-        public PatientBilledViewModel()
+        public PatientBilledOPViewModel()
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            Organisations = GetHealthOrganisationRoleMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             PaymentMethods = DataService.Technical.GetReferenceValueMany("PAYMD");
         }
 
@@ -186,7 +168,7 @@ namespace MediTech.ViewModels
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID));
         }
 
@@ -331,7 +313,7 @@ namespace MediTech.ViewModels
                     string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
                     if (fileName != "")
                     {
-                        PatientBilled view = (PatientBilled)this.View;
+                        PatientBilledOP view = (PatientBilledOP)this.View;
                         view.gvPatBill.ExportToXlsx(fileName);
                         OpenFile(fileName);
                     }

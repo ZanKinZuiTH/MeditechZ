@@ -80,7 +80,9 @@ namespace MediTech
                 AppUtil.Current.RoleUID = ((RoleProfileModel)grdRole.SelectedItem).RoleUID;
                 AppUtil.Current.LocationUID = ((RoleProfileModel)grdRole.SelectedItem).LocationUID;
                 AppUtil.Current.OwnerOrganisationUID = ((RoleProfileModel)grdRole.SelectedItem).HealthOrganisationUID;
-
+                AppUtil.Current.RoleName = ((RoleProfileModel)grdRole.SelectedItem).RoleName;
+                AppUtil.Current.LocationName = ((RoleProfileModel)grdRole.SelectedItem).LocationName;
+                AppUtil.Current.OwnerOrganisationName = ((RoleProfileModel)grdRole.SelectedItem).HealthOrganisationName;
                 AppUtil.Current.CareproviderLocations = _careproviderLocations;
                 userManageService.StampAppLastAccess(AppUtil.Current.LoginID);
                 this.Hide();

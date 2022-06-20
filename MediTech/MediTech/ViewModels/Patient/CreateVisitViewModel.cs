@@ -22,33 +22,33 @@ namespace MediTech.ViewModels
     {
         #region Properties
 
-        private List<HealthOrganisationModel> _Organisations;
+        //private List<HealthOrganisationModel> _Organisations;
 
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
+        //public List<HealthOrganisationModel> Organisations
+        //{
+        //    get { return _Organisations; }
+        //    set { Set(ref _Organisations, value); }
+        //}
 
-        private HealthOrganisationModel _SelectOrganisation;
+        //private HealthOrganisationModel _SelectOrganisation;
 
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set
-            {
-                Set(ref _SelectOrganisation, value);
-                if (SelectOrganisation != null)
-                {
-                    Locations = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
-                    SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-                    if (SelectOrganisation.HealthOrganisationUID == 5)
-                    {
-                        SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
-                    }
-                }
-            }
-        }
+        //public HealthOrganisationModel SelectOrganisation
+        //{
+        //    get { return _SelectOrganisation; }
+        //    set
+        //    {
+        //        Set(ref _SelectOrganisation, value);
+        //        if (SelectOrganisation != null)
+        //        {
+        //            Locations = DataService.MasterData.GetLocationIsRegister(SelectOrganisation.HealthOrganisationUID);
+        //            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+        //            if (SelectOrganisation.HealthOrganisationUID == 5)
+        //            {
+        //                SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.ValueCode == "MBCHK");
+        //            }
+        //        }
+        //    }
+        //}
 
         private List<LocationModel> _Locations;
 
@@ -367,7 +367,26 @@ namespace MediTech.ViewModels
         public PatientInformationModel Patient
         {
             get { return _Patient; }
-            set { Set(ref _Patient, value); }
+            set
+            {
+                Set(ref _Patient, value);
+                if (_Patient != null)
+                {
+                    IsPatientVisibility = Visibility.Visible;
+                }
+                else
+                {
+                    IsPatientVisibility = Visibility.Collapsed;
+                }
+            }
+        }
+
+        private Visibility _IsPatientVisibility = Visibility.Collapsed;
+
+        public Visibility IsPatientVisibility
+        {
+            get { return _IsPatientVisibility; }
+            set { Set(ref _IsPatientVisibility, value); }
         }
 
 
@@ -393,6 +412,24 @@ namespace MediTech.ViewModels
             get { return _UseReadCard; }
             set { _UseReadCard = value; }
         }
+
+        private bool _IsMassRegister = false;
+
+        public bool IsMassRegister
+        {
+            get { return _IsMassRegister; }
+            set { _IsMassRegister = value; }
+        }
+
+        private Visibility _ShowSaveButton = Visibility.Collapsed;
+
+        public Visibility ShowSaveButton
+        {
+            get { return _ShowSaveButton; }
+            set { Set(ref _ShowSaveButton, value); }
+        }
+
+        public PatientVisitModel PatientVisitInfo { get; set; }
         #endregion
 
         #region Command
@@ -443,15 +480,17 @@ namespace MediTech.ViewModels
             DateTime now = DateTime.Now;
 
             (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
-
+            var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT,PAYRTP");
-            Organisations = GetHealthOrganisationMedical();
+            //Organisations = GetHealthOrganisationMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
             PayorTypes = dataLookupSource.Where(P => P.DomainCode == "PAYRTP").ToList();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             InsuranceCompanys = DataService.Billing.GetInsuranceCompanies();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             SelectedVisitType = VisitTypeSource.FirstOrDefault();
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == 440);
 
@@ -558,8 +597,8 @@ namespace MediTech.ViewModels
                             defaultPatientVisitPayor.PolicyName = agreement.PolicyName;
                         }
 
-                        defaultPatientVisitPayor.ClaimPercentage = 0;
-                        defaultPatientVisitPayor.FixedCopayAmount = 0;
+                        defaultPatientVisitPayor.ClaimPercentage = null;
+                        defaultPatientVisitPayor.FixedCopayAmount = null;
                         defaultPatientVisitPayor.PayorDetailUID = (billconfiguration.PayorUID ?? 0);
                         defaultPatientVisitPayor.PayorName = GetPayorDetailName(billconfiguration.PayorUID ?? 0);
                         defaultPatientVisitPayor.StatusFlag = "A";
@@ -741,60 +780,73 @@ namespace MediTech.ViewModels
             (this.View as CreateVisit).grdVisitPayor.RefreshData();
         }
 
+
+
         void SavePatientVisit()
         {
             if (ValidateVisitData())
             {
                 return;
             }
+
             PatientVisitModel visitInfo = new PatientVisitModel();
             visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
             visitInfo.PatientUID = Patient.PatientUID;
             visitInfo.VISTYUID = SelectedVisitType.Key;
+            visitInfo.ENTYPUID = 4325;
             visitInfo.VISTSUID = 417;
-
-            if (UseReadCard && Booking == null && Patient.PatientUID != 0)
-            {
-                var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
-                if (Bookings != null && Bookings.Count > 0)
-                {
-                    string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
-                    MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด " + reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
-                    if (result == MessageBoxResult.Yes)
-                    {
-                        Booking = Bookings.FirstOrDefault();
-                    }
-                }
-            }
-
-            if (Booking != null)
-                visitInfo.BookingUID = Booking.BookingUID; //Appointment
-
             visitInfo.PRITYUID = SelectedPriority.Key;
             visitInfo.Comments = CommentDoctor;
-            visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+            visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
             if (SelectedCareprovider != null)
                 visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
-            
+            visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
-            PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
-            if (string.IsNullOrEmpty(returnData.VisitID))
+            if (!IsMassRegister)
             {
-                ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
-                return;
+
+
+                if (UseReadCard && Booking == null && Patient.PatientUID != 0)
+                {
+                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
+                    if (Bookings != null && Bookings.Count > 0)
+                    {
+                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด " + reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Booking = Bookings.FirstOrDefault();
+                        }
+                    }
+                }
+
+                if (Booking != null)
+                    visitInfo.BookingUID = Booking.BookingUID; //Appointment
+
+                PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
+                if (string.IsNullOrEmpty(returnData.VisitID))
+                {
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
+                    return;
+                }
+                else
+                {
+                    var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                    if (_deletedVisitPayorList != null)
+                        PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                    DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
+                    if (Booking != null)
+                    {
+                        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
+                    }
+                }
             }
             else
             {
-                var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
-                if (_deletedVisitPayorList != null)
-                    PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
-                DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
-                if (Booking != null)
-                {
-                    DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
-                }
+                PatientVisitInfo = visitInfo;
             }
+       
 
             var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
             if (parent != null && parent is System.Windows.Window)
@@ -867,11 +919,18 @@ namespace MediTech.ViewModels
 
         public bool ValidateVisitData()
         {
-            if (SelectOrganisation == null)
+            ////if (SelectOrganisation == null)
+            //{
+            //    WarningDialog("กรุณาเลือก สถานประกอบการ");
+            //    return true;
+            //}
+
+            if (SelectLocation == null)
             {
-                WarningDialog("กรุณาเลือก สถานประกอบการ");
+                WarningDialog("กรุณาเลือก แผนก");
                 return true;
             }
+
             if (SelectedVisitType == null)
             {
                 WarningDialog("กรุณาเลือก ประเภท Visit");

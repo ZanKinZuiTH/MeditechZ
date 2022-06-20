@@ -178,6 +178,7 @@
     </ApplicationDefinition>
     <Compile Include="AppUtil.cs" />
     <Compile Include="Converter\BitmapToBitmapImage.cs" />
+    <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DiscRecorderValueConverter.cs" />
     <Compile Include="Converter\ImageConverter.cs" />
@@ -1415,13 +1416,18 @@
       <DependentUpon>SplashScreen.xaml</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\BillingConfiguration\InsuranceCompanyViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ListPackageViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListPayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ListPolicyMasterViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageInsuranceCompanyViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManageInsurancePlanViewModel.cs" />
+    <Compile Include="ViewModels\BillingConfiguration\ManagePackageViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
@@ -1457,9 +1463,7 @@
     <Compile Include="ViewModels\Emergency\AECheckoutViewModel.cs" />
     <Compile Include="ViewModels\Emergency\EmergencyBedStatusViewModel.cs" />
     <Compile Include="ViewModels\Emergency\EmergencyListViewModel.cs" />
-    <Compile Include="ViewModels\Emergency\EmergencyMangePatientViewModel.cs" />
     <Compile Include="ViewModels\Emergency\EmergencyRegisterViewModel.cs" />
-    <Compile Include="ViewModels\Emergency\SearchEmergencyPatientViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CCHPIViewModel.cs" />
     <Compile Include="ViewModels\EMRView\CustomTemplateViewModel.cs" />
     <Compile Include="ViewModels\EMRView\EMRViewViewModel.cs" />
@@ -1470,19 +1474,16 @@
     <Compile Include="ViewModels\Documents\InventoryReportViewModel.cs" />
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\PrintDrugStickerViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispenseDrugViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockReasonViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
-    <Compile Include="ViewModels\IPD\AdmissionDetailViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestListViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestViewModel.cs" />
-    <Compile Include="ViewModels\IPD\BedChangedStatusViewModel.cs" />
-    <Compile Include="ViewModels\IPD\IPDMedicalDischargeViewModel.cs" />
-    <Compile Include="ViewModels\IPD\IPDSearchViewModel.cs" />
-    <Compile Include="ViewModels\IPD\PatientArrivedViewModel.cs" />
-    <Compile Include="ViewModels\IPD\TranferBedViewModel.cs" />
     <Compile Include="ViewModels\IPD\WardViewModel.cs" />
     <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
     <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
@@ -1501,6 +1502,8 @@
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ChangeLocationViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ConsultRequestViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1525,8 +1528,12 @@
     <Compile Include="ViewModels\ClinicalData\ManageBilledItemSaleViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageEncounterMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ModifyVisitPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientArrivedViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientTrackingViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Patient\SendConsultViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ManageReceiptViewModel.cs" />
     <Compile Include="ViewModels\Purchase\SearchPatientBillViewModel.cs" />
@@ -1541,7 +1548,7 @@
     <Compile Include="ViewModels\RIS\PACSWorkListViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListAppointmentViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageAppointmentViewModel.cs" />
-    <Compile Include="ViewModels\Billing\PatientBilledViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\CashierWorklistViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugFrequencyViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugGenericViewModel.cs" />
@@ -1608,6 +1615,9 @@
     <Compile Include="Views\BillingConfiguration\InsuranceCompany.xaml.cs">
       <DependentUpon>InsuranceCompany.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BillingConfiguration\ListPackage.xaml.cs">
+      <DependentUpon>ListPackage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BillingConfiguration\ListPayorDetail.xaml.cs">
       <DependentUpon>ListPayorDetail.xaml</DependentUpon>
     </Compile>
@@ -1620,6 +1630,9 @@
     <Compile Include="Views\BillingConfiguration\ManageInsurancePlan.xaml.cs">
       <DependentUpon>ManageInsurancePlan.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\BillingConfiguration\ManagePackage.xaml.cs">
+      <DependentUpon>ManagePackage.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePayorAgreement.xaml.cs">
       <DependentUpon>ManagePayorAgreement.xaml</DependentUpon>
     </Compile>
@@ -1628,6 +1641,15 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePolicyMaster.xaml.cs">
       <DependentUpon>ManagePolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
+      <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsOP.xaml.cs">
+      <DependentUpon>ListQueryBillsOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\GenerateBill.xaml.cs">
+      <DependentUpon>GenerateBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
@@ -1726,29 +1748,14 @@
     <Compile Include="Views\Emergency\AECheckout.xaml.cs">
       <DependentUpon>AECheckout.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Emergency\ChangeStatus.xaml.cs">
-      <DependentUpon>ChangeStatus.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Emergency\EmergencyBedStatus.xaml.cs">
       <DependentUpon>EmergencyBedStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Emergency\EmergencyList.xaml.cs">
       <DependentUpon>EmergencyList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Emergency\EmergencyMangePatient.xaml.cs">
-      <DependentUpon>EmergencyMangePatient.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\Emergency\EmergencyRegister.xaml.cs">
       <DependentUpon>EmergencyRegister.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Emergency\SearchEmergencyPatient.xaml.cs">
-      <DependentUpon>SearchEmergencyPatient.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Emergency\SendToBed.xaml.cs">
-      <DependentUpon>SendToBed.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Emergency\SendToDepartment.xaml.cs">
-      <DependentUpon>SendToDepartment.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\EMRView\CCHPI.xaml.cs">
       <DependentUpon>CCHPI.xaml</DependentUpon>
@@ -1777,8 +1784,20 @@
     <Compile Include="Views\EMRView\WellnessData.xaml.cs">
       <DependentUpon>WellnessData.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Inventory\CancelDispense.xaml.cs">
+      <DependentUpon>CancelDispense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\PrintDrugSticker.xaml.cs">
+      <DependentUpon>PrintDrugSticker.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\ChangeStore.xaml.cs">
+      <DependentUpon>ChangeStore.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Inventory\ConsumptionStock.xaml.cs">
       <DependentUpon>ConsumptionStock.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\DispenseDrug.xaml.cs">
+      <DependentUpon>DispenseDrug.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\DisposeStock.xaml.cs">
       <DependentUpon>DisposeStock.xaml</DependentUpon>
@@ -1792,29 +1811,11 @@
     <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
       <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\IPD\AdmissionDetail.xaml.cs">
-      <DependentUpon>AdmissionDetail.xaml</DependentUpon>
-    </Compile>
     <Compile Include="Views\IPD\AdmissionRequest.xaml.cs">
       <DependentUpon>AdmissionRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\AdmissionRequestList.xaml.cs">
       <DependentUpon>AdmissionRequestList.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IPD\BedStatusChanged.xaml.cs">
-      <DependentUpon>BedStatusChanged.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IPD\IPDMedicalDischarge.xaml.cs">
-      <DependentUpon>IPDMedicalDischarge.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IPD\IPDSearch.xaml.cs">
-      <DependentUpon>IPDSearch.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IPD\PatientArrived.xaml.cs">
-      <DependentUpon>PatientArrived.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\IPD\TranferBed.xaml.cs">
-      <DependentUpon>TranferBed.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\WardView.xaml.cs">
       <DependentUpon>WardView.xaml</DependentUpon>
@@ -1860,6 +1861,12 @@
     </Compile>
     <Compile Include="Views\OrderProcessing\OrderOtherType.xaml.cs">
       <DependentUpon>OrderOtherType.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ChangeLocation.xaml.cs">
+      <DependentUpon>ChangeLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ConsultRequest.xaml.cs">
+      <DependentUpon>ConsultRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
@@ -1930,14 +1937,20 @@
     <Compile Include="Views\Patient\ManageAppointment.xaml.cs">
       <DependentUpon>ManageAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Billing\PatientBilled.xaml.cs">
-      <DependentUpon>PatientBilled.xaml</DependentUpon>
+    <Compile Include="Views\Billing\PatientBilledOP.xaml.cs">
+      <DependentUpon>PatientBilledOP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
       <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\ModifyVisitPayor.xaml.cs">
+      <DependentUpon>ModifyVisitPayor.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
       <DependentUpon>ModifyVisit.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\PatientArrived.xaml.cs">
+      <DependentUpon>PatientArrived.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
@@ -1966,8 +1979,14 @@
     <Compile Include="Views\ClinicalData\ListBilledItemSale.xaml.cs">
       <DependentUpon>ListBilledItemSale.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\PatientTracking.xaml.cs">
+      <DependentUpon>PatientTracking.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ScannedDocument.xaml.cs">
       <DependentUpon>ScannedDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\SendConsult.xaml.cs">
+      <DependentUpon>SendConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Purchase\ListGRN.xaml.cs">
       <DependentUpon>ListGRN.xaml</DependentUpon>
@@ -2233,6 +2252,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\BillingConfiguration\ListPackage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BillingConfiguration\ListPayorDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2249,6 +2272,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\BillingConfiguration\ManagePackage.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\BillingConfiguration\ManagePayorAgreement.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2260,6 +2287,18 @@
     <Page Include="Views\BillingConfiguration\ManagePolicyMaster.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Billing\BillSettlementOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\GenerateBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Checkup\CheckupListReport.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -2389,10 +2428,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Emergency\ChangeStatus.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Emergency\EmergencyBedStatus.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2401,23 +2436,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\Emergency\EmergencyMangePatient.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="Views\Emergency\EmergencyRegister.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Emergency\SearchEmergencyPatient.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Emergency\SendToBed.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\Emergency\SendToDepartment.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2457,7 +2476,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Inventory\CancelDispense.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\PrintDrugSticker.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\ChangeStore.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Inventory\ConsumptionStock.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\DispenseDrug.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2477,10 +2512,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\IPD\AdmissionDetail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="Views\IPD\AdmissionRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2488,26 +2519,6 @@
     <Page Include="Views\IPD\AdmissionRequestList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\IPD\BedStatusChanged.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\IPD\IPDMedicalDischarge.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\IPD\IPDSearch.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="Views\IPD\PatientArrived.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Views\IPD\TranferBed.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\IPD\WardView.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -2566,6 +2577,14 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\OrderProcessing\OrderOtherType.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\ChangeLocation.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Patient\ConsultRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -2661,7 +2680,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Billing\PatientBilled.xaml">
+    <Page Include="Views\Billing\PatientBilledOP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2669,9 +2688,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Patient\ModifyVisitPayor.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Patient\ModifyVisit.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\PatientArrived.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\PatientList.xaml">
       <SubType>Designer</SubType>
@@ -2709,9 +2736,17 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Patient\PatientTracking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Patient\ScannedDocument.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\SendConsult.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Purchase\ListGRN.xaml">
       <SubType>Designer</SubType>
@@ -3766,7 +3801,6 @@
     <Resource Include="Resources\Images\Other\PATEINTHISTORY.png" />
     <Resource Include="Resources\Images\Other\PatientListIcon.png" />
     <Resource Include="Resources\Images\Other\PatientRecords.png" />
-    <Resource Include="Resources\Images\Other\PatientTracking.png" />
     <Resource Include="Resources\Images\Other\People-Doctor-Male-icon.png" />
     <Resource Include="Resources\Images\Other\Voice-Blue.png" />
   </ItemGroup>
@@ -3913,6 +3947,23 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Time\FutureAppointment.png" />
+    <Resource Include="Resources\Images\Time\PatientTracking.png" />
+    <Resource Include="Resources\Images\Fincace\money-bag.png" />
+    <Resource Include="Resources\Images\Fincace\Generatebill.png" />
+    <Resource Include="Resources\Images\Menu\Allocatebill.png" />
+    <Resource Include="Resources\Images\Menu\ViewBill.png" />
+    <Resource Include="Resources\Images\Module\IPD Billing.png" />
+    <Resource Include="Resources\Images\Module\OPD Billing.png" />
+    <Resource Include="Resources\Images\Fincace\modifypayor.png" />
+    <Resource Include="Resources\Images\Phamacy\Allocate.png" />
+    <Resource Include="Resources\Images\Phamacy\Prescription2.png" />
+    <Resource Include="Resources\Images\Other\ResultsIcon.png" />
+    <Resource Include="Resources\Images\Module\Emergency.png" />
+    <Resource Include="Resources\Images\Action\ModifyDemographics.png" />
+    <Resource Include="Resources\Images\Document\ConsentForm.png" />
+    <Resource Include="Resources\Images\Document\open.png" />
+    <Resource Include="Resources\Images\Document\File.png" />
     <Resource Include="Resources\Images\Ward\bed.png" />
     <Resource Include="Resources\Images\Ward\bedLevel0.png" />
     <Resource Include="Resources\Images\Ward\BedLevel1.png" />

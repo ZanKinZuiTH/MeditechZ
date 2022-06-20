@@ -14,7 +14,14 @@ namespace MediTech.ViewModels
         #region Properties
 
         public IPBookingModel iPBooking;
-        
+
+        private PatientVisitModel _SelectPatientVisit;
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set { Set(ref _SelectPatientVisit, value); }
+        }
+
         private List<LocationModel> _ListWard;
         public List<LocationModel> ListWard 
         {
@@ -226,6 +233,7 @@ namespace MediTech.ViewModels
             iPBooking.PatientVisitUID = patientVisit.PatientVisitUID;
             iPBooking.VISTYUID = patientVisit.VISTYUID ?? 0;
             //AssingModelProperties();
+            SelectPatientVisit = patientVisit;
         }
 
         public void AssingPropertiesToModel()

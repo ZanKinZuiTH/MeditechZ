@@ -239,7 +239,11 @@ namespace MediTech.ViewModels
                 _SelectedPateintSearch = value;
                 if (_SelectedPateintSearch != null)
                 {
-                    SearchPatientVisit();
+                    if (PatientVisit != null)
+                    {
+                        SearchPatientVisit();
+                    }
+                    
                 }
             }
         }
@@ -372,6 +376,16 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
+
+        private PatientVisitModel _PatientVisit;
+
+        public PatientVisitModel PatientVisit
+        {
+            get { return _PatientVisit; }
+            set { Set(ref _PatientVisit, value); }
+        }
+
         #endregion
 
 
@@ -402,7 +416,7 @@ namespace MediTech.ViewModels
             var test = DataService.MasterData.GetHealthOrganisation();
             Location = locationAll;
             Ward = locationAll.Where(w=>w.LOTYPUID == 3152).ToList();
-
+          
             StartDate = now.Date;
             StartTime = now;
         }
@@ -419,6 +433,20 @@ namespace MediTech.ViewModels
 
 
         }
+
+
+        private void ByPatientVisit(long UIDPatient)
+        {
+            //if (UIDPatient != null)
+            //{
+            //    var patientInfo = DataService.PatientIdentity.GetPatientByUID(UIDPatient);
+            //    (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID, 0);
+            //}
+
+
+        }
+
+
 
         void Close()
         {
@@ -518,6 +546,11 @@ namespace MediTech.ViewModels
                     WarningDialog("กรุณาใส่ เตียง");
                     return;
                 }
+                if (SelectDoctor == null )
+                {
+                    WarningDialog("กรุณา เลือกแพทย์");
+                    return;
+                }
 
                 PatientVisitModel visitInfo = new PatientVisitModel();
                 visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
@@ -529,29 +562,24 @@ namespace MediTech.ViewModels
                 visitInfo.PRITYUID = 1122; // เลขอาไรหว่า ใส่ 1122 ไปก่อน
                 visitInfo.Comments = "test iPD insert";
                 visitInfo.OwnerOrganisationUID = 17; //รอเปลี่ยนใช้ของคลินิกไปก่อน
-                visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
-               
+                visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "INPAT").Key;
                 visitInfo.LocationUID = SelectWard.LocationUID;
-               
                 visitInfo.BedUID = SelectedListBed.LocationUID;
-
-
                 PatientAEAdmissionModel aeAdmission = AssingVisitIPDToModel();
-
                 visitInfo.AEAdmission = aeAdmission;
-           
                 visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
                 if (SelectDoctor != null)
                     visitInfo.CareProviderUID = SelectDoctor.CareproviderUID;
                 visitInfo.PatientVisitPayors = null;
                 PatientVisitModel returnData = DataService.PatientIdentity.SaveIPDPatientVisit(visitInfo, AppUtil.Current.UserID);
 
-                SaveSuccessDialog("BN : " + returnData.PatientID);
+                SaveSuccessDialog("BN : " + returnData.VisitID);
 
                 if (SelectWard != null)
                 {
                     WardView pageto = new WardView();
                     ChangeViewPermission(pageto);
+                    CloseViewDialog(ActionDialog.Save);
                 }
                 else
                 {
@@ -595,13 +623,35 @@ namespace MediTech.ViewModels
 
         }
 
-
-        public void sendVisit(PatientVisitModel  sendvisit)
+        public void ConfirmFromRequestAdmission(IPBookingModel datarequest)
         {
 
-            //var patientInfo = DataService.PatientIdentity.GetPatientByUID(IDpatient);
-            // (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID, 0);
-            (this.View as AdmissionDetail).patientBanner.SetPatientBanner(sendvisit.PatientUID,sendvisit.PatientVisitUID);
+            //SelectBed = ListWard;
+            //SelectBedCatagory = BedCatagory.FirstOrDefault
+            if (datarequest.LocationUID != null)
+            {
+                Ward = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.LocationUID).ToList();
+                ListWard = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.BedUID).ToList();
+                SelectWard = ListWard.FirstOrDefault(p=> p.LocationUID == datarequest.LocationUID);
+
+                //EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
+                //SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "INPAT");
+
+            }
+            var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datarequest.PatientVisitUID ?? 0);
+            SelectedPateintSearch = DataService.PatientIdentity.GetPatientByUID(datarequest.PatientUID);
+            PatientVisit = visitInfo;
+      
+        
+        }
+
+
+        public void sendVisit(PatientVisitModel datavisit)
+        {
+
+           // ListWard = DataService.PatientIdentity.GetBedLocation((inforequest.BedUID ?? 0), null).Where(p => p.BedIsUse == "N").ToList();
+            var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datavisit.PatientVisitUID);
+            PatientVisit = visitInfo;
 
         }
 

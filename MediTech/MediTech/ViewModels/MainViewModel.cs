@@ -64,6 +64,32 @@ namespace MediTech.ViewModels
             set { Set(ref _LoginDate, value); }
         }
 
+        private String _UserName;
+
+        public String UserName
+        {
+            get { return _UserName; }
+            set { Set(ref _UserName, value); }
+        }
+
+        private string _RoleName;
+
+        public string RoleName
+        {
+            get { return _RoleName; }
+            set { Set(ref _RoleName, value); }
+        }
+
+
+        private String _OrganisationName;
+
+        public String OrganisationName
+        {
+            get { return _OrganisationName; }
+            set { Set(ref _OrganisationName, value); }
+        }
+
+
         private ObservableCollection<PageViewModuleModel>  _PageViewModule;
 
         public ObservableCollection<PageViewModuleModel>  PageViewModule
@@ -188,9 +214,17 @@ namespace MediTech.ViewModels
         public override void OnLoaded()
         {
             CreateMenuByRole();
+            AssingUserInformation();
             AssingStatuBar();
         }
 
+        private void AssingUserInformation()
+        {
+
+            UserName = AppUtil.Current.UserName + " @ " + AppUtil.Current.LocationName;
+            RoleName = AppUtil.Current.RoleName;
+            OrganisationName = AppUtil.Current.OwnerOrganisationName;
+        }
         private void AssingStatuBar()
         {
             LoginUser = AppUtil.Current.LoginName;

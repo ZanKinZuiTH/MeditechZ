@@ -168,19 +168,45 @@ namespace MediTech.ViewModels
         {
 
         }
+        public void wardveiewpge()
+        {
+
+        }
 
         public void Discharge()
         {
             if (SelectedBedWardView != null)
             {
-               // SelectedBedWardView.
+                // SelectedBedWardView.
                 // int parentlocaion = (SelectedBedWardView.ParentLocationUID ?? 0);
                 //SelectBedData = DataService.PatientIdentity.GetBedByPatientVisit(parentlocaion).ToList();
 
-                IPDMedicalDischarge  pageview = new IPDMedicalDischarge();
-                (pageview.DataContext as IPDMedicalDischargeViewModel).closeMed();
-                IPDMedicalDischargeViewModel result = (IPDMedicalDischargeViewModel)LaunchViewDialogNonPermiss(pageview, false);
+                //IPDMedicalDischarge pageview = new IPDMedicalDischarge();
+                //(pageview.DataContext as IPDMedicalDischargeViewModel).closeMed();
+                //IPDMedicalDischargeViewModel result = (IPDMedicalDischargeViewModel)LaunchViewDialogNonPermiss(pageview, false);
+
+                PatientVisitModel patietnvisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID ?? 0);
+
+                PatientStatus medicalDischarge = new PatientStatus(patietnvisit, PatientStatusType.MedicalDischarge);
+                medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                medicalDischarge.Owner = MainWindow;
+                medicalDischarge.ShowDialog();
+                ActionDialog result = medicalDischarge.ResultDialog;
+                if (result == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    wardveiewpge();
+                    
+                }
+
+
+
+
             }
+
+         
+
+
         }
 
         public void DirectAdmit()

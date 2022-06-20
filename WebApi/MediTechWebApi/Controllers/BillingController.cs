@@ -807,6 +807,20 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("SearchUnbilledPatients")]
+        [HttpGet]
+        public List<PatientVisitModel> SearchUnbilledPatients(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? ownerOrganisationUID, string IsIP)
+        {
+            List<PatientVisitModel> data = new List<PatientVisitModel>();
+            DataTable dt = SqlDirectStore.pSearchUnbilledPatients(patientUID, billFromDTTM, billToDTTM, ownerOrganisationUID, IsIP);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<PatientVisitModel>();
+                data = dt.ToList<PatientVisitModel>();
+            }
+            return data;
+        }
+
         [Route("SearchPatientBill")]
         [HttpGet]
         public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)

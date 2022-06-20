@@ -61,6 +61,9 @@
     <Compile Include="Amphur.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="AppointmentRequest.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="BillableItem.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -833,6 +836,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchStockWorkList_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchUnbilledPatients_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pStockMassFile_Result.cs">

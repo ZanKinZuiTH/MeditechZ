@@ -312,8 +312,12 @@ namespace MediTech.ViewModels
         {
             get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
         }
-
         
+        private RelayCommand _ConsultCommand;
+        public RelayCommand ConsultCommand
+        {
+            get { return _ConsultCommand ?? (_ConsultCommand = new RelayCommand(Consult)); }
+        }
 
         #endregion
 
@@ -324,6 +328,7 @@ namespace MediTech.ViewModels
         int REGST = 417;
         int CHKOUT = 418;
         int SNDDOC = 419;
+        int BLINP = 423;
         int FINDIS = 421;
         int CANCEL = 410;
 
@@ -348,7 +353,7 @@ namespace MediTech.ViewModels
             //Organisations = GetHealthOrganisationMedical();
             //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
-            SelectInsuranceCompany = InsuranceCompany.FirstOrDefault(p => p.Code == "000001");
+            //SelectInsuranceCompany = InsuranceCompany.FirstOrDefault(p => p.Code == "000001");
         }
 
         public override void OnLoaded()
@@ -500,7 +505,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == BLINP || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
@@ -526,7 +531,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == BLINP || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
@@ -580,6 +585,11 @@ namespace MediTech.ViewModels
         {
             if(SelectPatientVisit != null)
             {
+                if (SelectPatientVisit.VISTSUID != REGST)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    return;
+                }
                 AdmissionRequest pageview = new AdmissionRequest();
                 (pageview.DataContext as AdmissionRequestViewModel).AssingModel(SelectPatientVisit);
                 AdmissionRequestViewModel result = (AdmissionRequestViewModel)LaunchViewDialog(pageview, "ADRQST", false);
@@ -590,6 +600,26 @@ namespace MediTech.ViewModels
                 }
             }
             
+        }
+        private void Consult()
+        {
+            if (SelectPatientVisit != null)
+            {
+                if (SelectPatientVisit.VISTSUID != REGST)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    return;
+                }
+                SendConsult pageview = new SendConsult();
+                (pageview.DataContext as SendConsultViewModel).AssignData(SelectPatientVisit);
+                SendConsultViewModel result = (SendConsultViewModel)LaunchViewDialog(pageview, "CONSLTR", false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
+
         }
 
         private void PatientTracking()

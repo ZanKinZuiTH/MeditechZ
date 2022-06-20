@@ -93,14 +93,47 @@ namespace MediTech.ViewModels
             }
         }
 
-        public PatientBilledViewModel PatientBilledViewModel
+        public PatientBilledOPViewModel PatientBilledOPViewModel
         {
             get
             {
-                if (!SimpleIoc.Default.ContainsCreated<PatientBilledViewModel>())
-                    SimpleIoc.Default.Register<PatientBilledViewModel>();
+                if (!SimpleIoc.Default.ContainsCreated<PatientBilledOPViewModel>())
+                    SimpleIoc.Default.Register<PatientBilledOPViewModel>();
 
-                return ServiceLocator.Current.GetInstance<PatientBilledViewModel>();
+                return ServiceLocator.Current.GetInstance<PatientBilledOPViewModel>();
+            }
+        }
+
+        public BillSettlementOPViewModel BillSettlementOPViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BillSettlementOPViewModel>())
+                    SimpleIoc.Default.Register<BillSettlementOPViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BillSettlementOPViewModel>();
+            }
+        }
+
+        public ListQueryBillsOPViewModel ListQueryBillsOPViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListQueryBillsOPViewModel>())
+                    SimpleIoc.Default.Register<ListQueryBillsOPViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListQueryBillsOPViewModel>();
+            }
+        }
+
+        public GenerateBillViewModel GenerateBillViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<GenerateBillViewModel>())
+                    SimpleIoc.Default.Register<GenerateBillViewModel>();
+
+                return ServiceLocator.Current.GetInstance<GenerateBillViewModel>();
             }
         }
 
@@ -1753,6 +1786,51 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<PatientTrackingViewModel>();
             }
         }
+
+        public ConsultRequestViewModel ConsultRequestViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ConsultRequestViewModel>())
+                    SimpleIoc.Default.Register<ConsultRequestViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ConsultRequestViewModel>();
+            }
+        }
+
+        public SendConsultViewModel SendConsultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<SendConsultViewModel>())
+                    SimpleIoc.Default.Register<SendConsultViewModel>();
+
+                return ServiceLocator.Current.GetInstance<SendConsultViewModel>();
+            }
+        }
+
+        public PatientArrivedViewModel PatientArrivedViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientArrivedViewModel>())
+                    SimpleIoc.Default.Register<PatientArrivedViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientArrivedViewModel>();
+            }
+        }
+
+        public ChangeLocationViewModel ChangeLocationViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ChangeLocationViewModel>())
+                    SimpleIoc.Default.Register<ChangeLocationViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ChangeLocationViewModel>();
+            }
+        }
+
 
         #endregion
 
