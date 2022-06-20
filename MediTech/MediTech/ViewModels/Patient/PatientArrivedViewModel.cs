@@ -114,7 +114,7 @@ namespace MediTech.ViewModels
             {
                 AssignToModel();
                 DataService.PatientIdentity.SavePatientVisitCareprovider(patientVisitCareprovider, appointmentRequest.AppointmentRequestUID);
-                CloseViewDialog(ActionDialog.Cancel);
+                CloseViewDialog(ActionDialog.Save);
             }
         }
 

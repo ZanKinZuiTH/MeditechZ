@@ -318,7 +318,12 @@ namespace MediTech.ViewModels
         {
             get { return _ConsultCommand ?? (_ConsultCommand = new RelayCommand(Consult)); }
         }
-
+        
+        private RelayCommand _ArrivedCommand;
+        public RelayCommand ArrivedCommand
+        {
+            get { return _ArrivedCommand ?? (_ArrivedCommand = new RelayCommand(Arrived)); }
+        }
         #endregion
 
         #region Method
@@ -497,6 +502,31 @@ namespace MediTech.ViewModels
                 }
             }
 
+        }
+        private void Arrived()
+        {
+            if (SelectPatientVisit != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
+                    return;
+                }
+                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive);
+                arrived.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                arrived.Owner = MainWindow;
+                arrived.ShowDialog();
+                ActionDialog result = arrived.ResultDialog;
+                if (result == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
         }
 
         private void SendToDoctor()

@@ -1499,6 +1499,8 @@
     <Compile Include="ViewModels\MRD\LabResultMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\OrderOtherTypeViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ChangeLocationViewModel.cs" />
+    <Compile Include="ViewModels\Patient\ConsultRequestViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListPatMergeViewModel.cs" />
     <Compile Include="ViewModels\MRD\PatientVisitMassViewModel.cs" />
     <Compile Include="ViewModels\OrderProcessing\CancelOrderViewModel.cs" />
@@ -1525,8 +1527,10 @@
     <Compile Include="ViewModels\Patient\ManagePatientMergeViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitPayorViewModel.cs" />
     <Compile Include="ViewModels\Patient\ModifyVisitViewModel.cs" />
+    <Compile Include="ViewModels\Patient\PatientArrivedViewModel.cs" />
     <Compile Include="ViewModels\Patient\PatientTrackingViewModel.cs" />
     <Compile Include="ViewModels\Patient\ScannedDocumentViewModel.cs" />
+    <Compile Include="ViewModels\Patient\SendConsultViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ListGroupReceiptViewModel.cs" />
     <Compile Include="ViewModels\Purchase\ManageReceiptViewModel.cs" />
     <Compile Include="ViewModels\Purchase\SearchPatientBillViewModel.cs" />
@@ -1846,6 +1850,12 @@
     <Compile Include="Views\OrderProcessing\OrderOtherType.xaml.cs">
       <DependentUpon>OrderOtherType.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\ChangeLocation.xaml.cs">
+      <DependentUpon>ChangeLocation.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\ConsultRequest.xaml.cs">
+      <DependentUpon>ConsultRequest.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\ListPatMerge.xaml.cs">
       <DependentUpon>ListPatMerge.xaml</DependentUpon>
     </Compile>
@@ -1927,6 +1937,9 @@
     <Compile Include="Views\Patient\ModifyVisit.xaml.cs">
       <DependentUpon>ModifyVisit.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Patient\PatientArrived.xaml.cs">
+      <DependentUpon>PatientArrived.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Patient\PatientList.xaml.cs">
       <DependentUpon>PatientList.xaml</DependentUpon>
     </Compile>
@@ -1959,6 +1972,9 @@
     </Compile>
     <Compile Include="Views\Patient\ScannedDocument.xaml.cs">
       <DependentUpon>ScannedDocument.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Patient\SendConsult.xaml.cs">
+      <DependentUpon>SendConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Purchase\ListGRN.xaml.cs">
       <DependentUpon>ListGRN.xaml</DependentUpon>
@@ -2540,6 +2556,14 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Patient\ChangeLocation.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\ConsultRequest.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2648,6 +2672,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Patient\PatientArrived.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Patient\PatientList.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -2689,6 +2717,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ScannedDocument.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Patient\SendConsult.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -3892,6 +3924,13 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
+    <Resource Include="Resources\Images\Fincace\modifypayor.png" />
+    <Resource Include="Resources\Images\Fincace\Finance.png" />
+    <Resource Include="Resources\Images\Menu\ViewBill.png" />
+    <Resource Include="Resources\Images\Menu\allocatebill.png" />
+    <Resource Include="Resources\Images\Module\OPD Billing.png" />
+    <Resource Include="Resources\Images\Module\IPD Billing.png" />
     <Resource Include="Resources\Images\Phamacy\Allocate.png" />
     <Resource Include="Resources\Images\Phamacy\Prescription2.png" />
     <Resource Include="Resources\Images\Other\ResultsIcon.png" />

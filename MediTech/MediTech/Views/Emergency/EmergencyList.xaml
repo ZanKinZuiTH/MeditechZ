@@ -89,6 +89,16 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
+                                <Image Source="/MediTech;component/Resources/Images/Other/PatientTracking.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="Arrived">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
                                 <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -164,7 +174,7 @@
                                 <Image Source="/MediTech;component/Resources/Images/Menu/ReportResultMass.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
-                                   ToolTip="Scanned Document">
+                                   ToolTip="Manage AEAdmission">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
@@ -272,21 +282,21 @@
                             </dxlc:LayoutGroup>
 
                             <dxlc:LayoutGroup>
-                                <dxlc:LayoutItem Label="สถานประกอบการ">
-                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
+                                <dxlc:LayoutItem Label="แผนก">
+                                    <dxe:ComboBoxEdit x:Name="cmbLocation" 
+                                      ItemsSource="{Binding Location}" 
+                                      SelectedItem="{Binding SelectLocation}"
+                                      ValueMember="LocationUID" 
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Payor">
-                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
-                                      SelectedItem="{Binding SelectPayorDetail}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
+                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
+                                      SelectedItem="{Binding SelectInsuranceCompany}"
+                                      ValueMember="InsuranceCompanyUID"
+                                      DisplayMember="CompanyName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -307,7 +317,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                                     </dxg:GridControl.View>
-                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
+                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
                                                 </dxg:GridControl>
                                             </ControlTemplate>
                                         </dxg:LookUpEdit.PopupContentTemplate>

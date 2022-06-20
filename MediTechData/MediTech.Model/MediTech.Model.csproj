@@ -140,6 +140,7 @@
     <Compile Include="PatientHistory\PhysicalExamTemplateModel.cs" />
     <Compile Include="PatientHistory\ProgressModel.cs" />
     <Compile Include="PatientHistory\WellnessDataModel.cs" />
+    <Compile Include="Patient\AppointmentRequestModel.cs" />
     <Compile Include="Patient\BookingModel.cs" />
     <Compile Include="Patient\PatientAddressModel.cs" />
     <Compile Include="Patient\PatientAEAdmissionModel.cs" />
@@ -152,6 +153,7 @@
     <Compile Include="Patient\PatientMergeModel.cs" />
     <Compile Include="Patient\PatientScannedDocumentModel.cs" />
     <Compile Include="Patient\PatientServiceEventModel.cs" />
+    <Compile Include="Patient\PatientVisitCareproviderModel.cs" />
     <Compile Include="Patient\PatientVisitIDModel.cs" />
     <Compile Include="Patient\PatientVisitPayorModel.cs" />
     <Compile Include="Patient\VIPPatientModel.cs" />

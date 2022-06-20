@@ -167,10 +167,10 @@ namespace MediTech.DataService
         }
 
         public List<PatientVisitModel> SearchERPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-                  , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-            , int? payorDetailUID, int? checkupJobUID)
+                  , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+            , int? insuranceCompanyUID, int? checkupJobUID, int? encounter)
         {
-            string requestApi = string.Format("Api/PatientIdentity/SearchERPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&payorDetailUID={9}&checkupJobUID={10}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+            string requestApi = string.Format("Api/PatientIdentity/SearchERPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&locationUID={9}&insuranceCompanyUID={10}&checkupJobUID={11}&encounter={12}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter);
             List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
 
             return data;

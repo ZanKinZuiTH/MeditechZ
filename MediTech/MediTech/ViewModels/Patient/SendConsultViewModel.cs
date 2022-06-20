@@ -142,6 +142,7 @@ namespace MediTech.ViewModels
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             AppointmentDate = DateTime.Now;
+            AppointmentTime = DateTime.Now;
         }
         private void Add()
         {

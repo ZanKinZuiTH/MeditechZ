@@ -951,10 +951,10 @@ namespace MediTechWebApi.Controllers
         [Route("SearchERPatientVisit")]
         [HttpGet]
         public List<PatientVisitModel> SearchERPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
-            , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-            , int? payorDetailUID, int? checkupJobUID)
+            , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+            , int? insuranceCompanyUID, int? checkupJobUID, int? encounter)
         {
-            DataTable dataTable = SqlDirectStore.pSearchEmergencyVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+            DataTable dataTable = SqlDirectStore.pSearchEmergencyVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, locationUID, insuranceCompanyUID, checkupJobUID, encounter);
 
             List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
 
@@ -1393,6 +1393,22 @@ namespace MediTechWebApi.Controllers
                     db.AEDischargeEvent.Add(aEDischarge);
                     db.SaveChanges();
 
+                    #region PatientServiceEvent
+                    PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                    serviceEvent.PatientVisitUID = dischargemodel.PatientVisitUID;
+                    serviceEvent.EventStartDttm = now;
+                    serviceEvent.VISTSUID = 418;
+                    serviceEvent.LocationUID = dischargemodel.LocationUID;
+                    serviceEvent.MUser = userUID;
+                    serviceEvent.MWhen = now;
+                    serviceEvent.CUser = userUID;
+                    serviceEvent.CWhen = now;
+                    serviceEvent.StatusFlag = "A";
+
+                    db.PatientServiceEvent.Add(serviceEvent);
+                    db.SaveChanges();
+                    #endregion
+
                     tran.Complete();
                 }
 
@@ -1441,7 +1457,7 @@ namespace MediTechWebApi.Controllers
                     iPBooking.BookedDttm = now;
                     iPBooking.BKSTSUID = 0;
                     iPBooking.VISTYUID = iPBookingModel.VISTYUID;
-                    iPBooking.BKTYPUID = 5357;
+                    iPBooking.BKTYPUID = iPBookingModel.BKTYPUID;
                     iPBooking.BDCATUID = 0; //ยังไม่มี referance value
                     iPBooking.ReferredBy = iPBookingModel.ReferredBy;
                     iPBooking.ReferredByUID = iPBookingModel.ReferredByUID;
@@ -1880,7 +1896,7 @@ namespace MediTechWebApi.Controllers
                         && b.StatusFlag == "A"
                         && pae.StatusFlag == "A"
                         && pt.StatusFlag == "A"
-                        && pv.ENTYPUID == 4310
+                        && pv.ENTYPUID == 4339
                         && pv.VISTSUID != 410
                         && pv.VISTSUID != 418
                         && pv.VISTSUID != 421
@@ -3158,6 +3174,7 @@ namespace MediTechWebApi.Controllers
                 serviceEvent.PatientVisitUID = patientVisitCareprovider.PatientVisitUID;
                 serviceEvent.EventStartDttm = now;
                 serviceEvent.VISTSUID = 417;
+                serviceEvent.LocationUID = patientVisitCareprovider.LocationUID;
                 serviceEvent.MUser = patientVisitCareprovider.CUser;
                 serviceEvent.MWhen = now;
                 serviceEvent.CUser = patientVisitCareprovider.CUser;
@@ -3165,6 +3182,7 @@ namespace MediTechWebApi.Controllers
                 serviceEvent.StatusFlag = "A";
 
                 db.PatientServiceEvent.Add(serviceEvent);
+                db.SaveChanges();
                 #endregion
 
                 return Request.CreateResponse(HttpStatusCode.OK);

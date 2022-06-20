@@ -1458,8 +1458,8 @@ namespace MediTech.DataBase
         }
 
         public static DataTable pSearchEmergencyVisit(string hn, string firstName, string lastName, int? careproviderUID
-   , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
-          , int? PayorDetailUID, int? checkupJobUID)
+   , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? locationUID
+          , int? insuranceCompanyUID, int? checkupJobUID, int? encounter)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchEmergencyVisit", entities.Database.Connection.ConnectionString);
@@ -1474,8 +1474,10 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@DateTo", dateTo != DateTime.MinValue && dateTo != null ? dateTo : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@ArrivedDttm", arrivedDttm != DateTime.MinValue && arrivedDttm != null ? arrivedDttm : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@OwnerOrganisation", ownerOrganisationUID != null ? ownerOrganisationUID : (Object)(DBNull.Value));
-            adp.SelectCommand.Parameters.AddWithValue("@PayorDetailUID", PayorDetailUID != null ? PayorDetailUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@LocationUID", locationUID != null ? locationUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@InsuranceCompanyUID", insuranceCompanyUID != null ? insuranceCompanyUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@CheckupJobUID", checkupJobUID != null ? checkupJobUID : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@Encounter", encounter != null ? encounter : (Object)(DBNull.Value));
             DataSet ds = new DataSet();
             adp.Fill(ds);
             return ds.Tables[0];
