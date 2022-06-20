@@ -30,6 +30,7 @@ namespace MediTech.DataBase
         public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
         public virtual DbSet<AEDischargeEvent> AEDischargeEvent { get; set; }
         public virtual DbSet<Amphur> Amphur { get; set; }
+        public virtual DbSet<AppointmentRequest> AppointmentRequest { get; set; }
         public virtual DbSet<BillableItem> BillableItem { get; set; }
         public virtual DbSet<BillableItemDetail> BillableItemDetail { get; set; }
         public virtual DbSet<BillConfiguration> BillConfiguration { get; set; }
@@ -1918,7 +1919,7 @@ namespace MediTech.DataBase
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.DateTime>>("pInvenTransferItem", p_ItemIssueUIDParameter, p_UserUIDParameter);
         }
     
-        public virtual ObjectResult<pSearchStockWorkList_Result> pSearchStockWorkList(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID)
+        public virtual ObjectResult<pSearchStockWorkList_Result> pSearchStockWorkList(Nullable<System.DateTime> p_DateFrom, Nullable<System.DateTime> p_DateTo, Nullable<int> p_OrganisationUID, Nullable<int> p_LocationUID)
         {
             var p_DateFromParameter = p_DateFrom.HasValue ?
                 new ObjectParameter("P_DateFrom", p_DateFrom) :
@@ -1932,7 +1933,11 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_OrganisationUID", p_OrganisationUID) :
                 new ObjectParameter("P_OrganisationUID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockWorkList_Result>("pSearchStockWorkList", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter);
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchStockWorkList_Result>("pSearchStockWorkList", p_DateFromParameter, p_DateToParameter, p_OrganisationUIDParameter, p_LocationUIDParameter);
         }
     
         public virtual ObjectResult<pGetOrderDuplicate_Result> pGetOrderDuplicate(Nullable<long> p_PatientUID)
@@ -3672,6 +3677,31 @@ namespace MediTech.DataBase
                 new ObjectParameter("P_VisitTypeUID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pRPTEcoutSumGroupReceipt_Result>("pRPTEcoutSumGroupReceipt", p_DateFromParameter, p_DateToParameter, p_OrganisationListParameter, p_VisitTypeUIDParameter);
+        }
+    
+        public virtual ObjectResult<pSearchUnbilledPatients_Result> pSearchUnbilledPatients(Nullable<long> p_PatientUID, Nullable<System.DateTime> p_BillFromDTTM, Nullable<System.DateTime> p_BillToDTTM, Nullable<int> p_OwnerOrganisationUID, string p_IsIP)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_BillFromDTTMParameter = p_BillFromDTTM.HasValue ?
+                new ObjectParameter("P_BillFromDTTM", p_BillFromDTTM) :
+                new ObjectParameter("P_BillFromDTTM", typeof(System.DateTime));
+    
+            var p_BillToDTTMParameter = p_BillToDTTM.HasValue ?
+                new ObjectParameter("P_BillToDTTM", p_BillToDTTM) :
+                new ObjectParameter("P_BillToDTTM", typeof(System.DateTime));
+    
+            var p_OwnerOrganisationUIDParameter = p_OwnerOrganisationUID.HasValue ?
+                new ObjectParameter("P_OwnerOrganisationUID", p_OwnerOrganisationUID) :
+                new ObjectParameter("P_OwnerOrganisationUID", typeof(int));
+    
+            var p_IsIPParameter = p_IsIP != null ?
+                new ObjectParameter("P_IsIP", p_IsIP) :
+                new ObjectParameter("P_IsIP", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pSearchUnbilledPatients_Result>("pSearchUnbilledPatients", p_PatientUIDParameter, p_BillFromDTTMParameter, p_BillToDTTMParameter, p_OwnerOrganisationUIDParameter, p_IsIPParameter);
         }
     }
 }

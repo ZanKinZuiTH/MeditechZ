@@ -526,7 +526,9 @@ namespace MediTech.ViewModels
         int REGST = 417;
         int CHKOUT = 418;
         int SNDDOC = 419;
+        int BLINP = 423;
         int FINDIS = 421;
+
 
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {

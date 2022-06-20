@@ -1425,6 +1425,9 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
@@ -1545,7 +1548,7 @@
     <Compile Include="ViewModels\RIS\PACSWorkListViewModel.cs" />
     <Compile Include="ViewModels\Patient\ListAppointmentViewModel.cs" />
     <Compile Include="ViewModels\Patient\ManageAppointmentViewModel.cs" />
-    <Compile Include="ViewModels\Billing\PatientBilledViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\CashierWorklistViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugFrequencyViewModel.cs" />
     <Compile Include="ViewModels\ClinicalData\ListDrugGenericViewModel.cs" />
@@ -1638,6 +1641,15 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePolicyMaster.xaml.cs">
       <DependentUpon>ManagePolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
+      <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsOP.xaml.cs">
+      <DependentUpon>ListQueryBillsOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\GenerateBill.xaml.cs">
+      <DependentUpon>GenerateBill.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
@@ -1925,8 +1937,8 @@
     <Compile Include="Views\Patient\ManageAppointment.xaml.cs">
       <DependentUpon>ManageAppointment.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\Billing\PatientBilled.xaml.cs">
-      <DependentUpon>PatientBilled.xaml</DependentUpon>
+    <Compile Include="Views\Billing\PatientBilledOP.xaml.cs">
+      <DependentUpon>PatientBilledOP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Patient\ManagePatientMerge.xaml.cs">
       <DependentUpon>ManagePatientMerge.xaml</DependentUpon>
@@ -2276,6 +2288,18 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Billing\BillSettlementOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\GenerateBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Checkup\CheckupListReport.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -2557,12 +2581,12 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ChangeLocation.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ConsultRequest.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\ListPatMerge.xaml">
       <SubType>Designer</SubType>
@@ -2656,7 +2680,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Billing\PatientBilled.xaml">
+    <Page Include="Views\Billing\PatientBilledOP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2673,8 +2697,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Patient\PatientArrived.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Patient\PatientList.xaml">
       <SubType>Designer</SubType>
@@ -2721,8 +2745,8 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Patient\SendConsult.xaml">
-      <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Purchase\ListGRN.xaml">
       <SubType>Designer</SubType>
@@ -3777,7 +3801,6 @@
     <Resource Include="Resources\Images\Other\PATEINTHISTORY.png" />
     <Resource Include="Resources\Images\Other\PatientListIcon.png" />
     <Resource Include="Resources\Images\Other\PatientRecords.png" />
-    <Resource Include="Resources\Images\Other\PatientTracking.png" />
     <Resource Include="Resources\Images\Other\People-Doctor-Male-icon.png" />
     <Resource Include="Resources\Images\Other\Voice-Blue.png" />
   </ItemGroup>
@@ -3924,13 +3947,15 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
-    <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
-    <Resource Include="Resources\Images\Fincace\modifypayor.png" />
-    <Resource Include="Resources\Images\Fincace\Finance.png" />
+    <Resource Include="Resources\Images\Time\FutureAppointment.png" />
+    <Resource Include="Resources\Images\Time\PatientTracking.png" />
+    <Resource Include="Resources\Images\Fincace\money-bag.png" />
+    <Resource Include="Resources\Images\Fincace\Generatebill.png" />
+    <Resource Include="Resources\Images\Menu\Allocatebill.png" />
     <Resource Include="Resources\Images\Menu\ViewBill.png" />
-    <Resource Include="Resources\Images\Menu\allocatebill.png" />
-    <Resource Include="Resources\Images\Module\OPD Billing.png" />
     <Resource Include="Resources\Images\Module\IPD Billing.png" />
+    <Resource Include="Resources\Images\Module\OPD Billing.png" />
+    <Resource Include="Resources\Images\Fincace\modifypayor.png" />
     <Resource Include="Resources\Images\Phamacy\Allocate.png" />
     <Resource Include="Resources\Images\Phamacy\Prescription2.png" />
     <Resource Include="Resources\Images\Other\ResultsIcon.png" />

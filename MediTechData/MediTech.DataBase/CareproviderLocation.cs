@@ -17,6 +17,7 @@ namespace MediTech.DataBase
         public int UID { get; set; }
         public int CareproviderUID { get; set; }
         public int LocationUID { get; set; }
+        public int HealthOrganisationUID { get; set; }
         public System.DateTime ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public int CUser { get; set; }
@@ -24,7 +25,6 @@ namespace MediTech.DataBase
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public int HealthOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
     }
 }
