@@ -1482,8 +1482,16 @@
     <Compile Include="ViewModels\Inventory\DisposeStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ListItemTransferViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ManageItemTransferViewModel.cs" />
+    <Compile Include="ViewModels\IPD\AdmissionDetailViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestListViewModel.cs" />
     <Compile Include="ViewModels\IPD\AdmissionRequestViewModel.cs" />
+    <Compile Include="ViewModels\IPD\BedBookingViewModel.cs" />
+    <Compile Include="ViewModels\IPD\BedChangedStatusViewModel.cs" />
+    <Compile Include="ViewModels\IPD\CancelDischargeViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDMedicalDischargeViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDSearchViewModel.cs" />
+    <Compile Include="ViewModels\IPD\TranferBedListViewModel.cs" />
+    <Compile Include="ViewModels\IPD\TranferBedViewModel.cs" />
     <Compile Include="ViewModels\IPD\WardViewModel.cs" />
     <Compile Include="ViewModels\LIS\ImportLabResultViewModel.cs" />
     <Compile Include="ViewModels\LIS\SpecimenAcceptViewModel.cs" />
@@ -1811,11 +1819,35 @@
     <Compile Include="Views\Inventory\ManageItemTransfer.xaml.cs">
       <DependentUpon>ManageItemTransfer.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\IPD\AdmissionDetail.xaml.cs">
+      <DependentUpon>AdmissionDetail.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\IPD\AdmissionRequest.xaml.cs">
       <DependentUpon>AdmissionRequest.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\AdmissionRequestList.xaml.cs">
       <DependentUpon>AdmissionRequestList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\BedBooking.xaml.cs">
+      <DependentUpon>BedBooking.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\BedStatusChanged.xaml.cs">
+      <DependentUpon>BedStatusChanged.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\CancelDischarge.xaml.cs">
+      <DependentUpon>CancelDischarge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDMedicalDischarge.xaml.cs">
+      <DependentUpon>IPDMedicalDischarge.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDSearch.xaml.cs">
+      <DependentUpon>IPDSearch.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\TranferBed.xaml.cs">
+      <DependentUpon>TranferBed.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\TranferBedList.xaml.cs">
+      <DependentUpon>TranferBedList.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\WardView.xaml.cs">
       <DependentUpon>WardView.xaml</DependentUpon>
@@ -2512,11 +2544,43 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\IPD\AdmissionDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\IPD\AdmissionRequest.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\IPD\AdmissionRequestList.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\BedBooking.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\BedStatusChanged.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\CancelDischarge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDMedicalDischarge.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDSearch.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\TranferBed.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\TranferBedList.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -3947,6 +4011,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
     <Resource Include="Resources\Images\Time\FutureAppointment.png" />
     <Resource Include="Resources\Images\Time\PatientTracking.png" />
     <Resource Include="Resources\Images\Fincace\money-bag.png" />
