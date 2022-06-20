@@ -16,6 +16,7 @@ namespace MediTech.Model
         public Nullable<int> ParentLocationUID { get; set; }
         public string IsRegistrationAllowed { get; set; }
         public Nullable<int> LCTSTUID { get; set; }
+        public string StatusBedWord { get; set; }
         public string LocationStatus { get; set; }
         public Nullable<int> EMRZONUID { get; set; }
         public string EmergencyZone { get; set; }
@@ -40,6 +41,7 @@ namespace MediTech.Model
         public string EMGTPUID { get; set; }
         public string EMGCDUID { get; set; }
         public string Level { get; set; }
+        public string Comment { get; set; }
         public DateTime? EmergencyVisitDate { get; set; }
         public DateTime? AdmissionDate { get; set; }
         public DateTime? ExpDischargeDate { get; set; }

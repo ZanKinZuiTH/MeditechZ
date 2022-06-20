@@ -48,6 +48,7 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
         public List<LocationModel> LocationDepartment { get; set; }
 
         private LocationModel _SelectedLocationDepartment;

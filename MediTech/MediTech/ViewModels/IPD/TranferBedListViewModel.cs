@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class AdmissionRequestListViewModel : MediTechViewModelBase
+    public class TranferBedListViewModel : MediTechViewModelBase
     {
         #region Properties
-        
+
         private bool _IsRequest;
         public bool IsRequest
         {
@@ -39,7 +39,7 @@ namespace MediTech.ViewModels
                 Set(ref _DateTo, value);
             }
         }
-        
+
         private List<PatientVisitModel> _PatientSerach;
         public List<PatientVisitModel> PatientSerach
         {
@@ -61,7 +61,7 @@ namespace MediTech.ViewModels
             set
             {
                 _SelectedIPBooking = value;
-                if(SelectedIPBooking != null)
+                if (SelectedIPBooking != null)
                 {
                     IsRequest = SelectedIPBooking.BedBookingRequest == "Requested" ? true : false;
                 }
@@ -179,7 +179,7 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Method
-        public AdmissionRequestListViewModel()
+        public TranferBedListViewModel()
         {
             DateFrom = DateTime.Now;
             WardSource = DataService.Technical.GetLocationByTypeUID(3152);
@@ -250,23 +250,17 @@ namespace MediTech.ViewModels
         private void Admit()
         {
             if (SelectedIPBooking != null)
-            { 
-                if(SelectedIPBooking.BedBookingRequest != "Requested")
+            {
+                if (SelectedIPBooking.BedBookingRequest != "Requested")
                 {
-                    WarningDialog("สถานะเป็น"+ SelectedIPBooking.BedBookingRequest+ " ไม่สามารถ Admit ได้");
+                    WarningDialog("สถานนะเป็น" + SelectedIPBooking.BedBookingRequest + " ไม่สามารถ Admit ได้");
                     return;
-                }
-                if (SelectedIPBooking.BedBookingRequest != null)
-                {
-                    AdmissionDetail pageview = new AdmissionDetail();
-                    (pageview.DataContext as AdmissionDetailViewModel).ConfirmFromRequestAdmission(SelectedIPBooking);
-                    AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
                 }
             }
         }
         private void Drop()
         {
-            if(SelectedIPBooking != null)
+            if (SelectedIPBooking != null)
             {
                 DataService.PatientIdentity.DropIPBooking(SelectedIPBooking.IPBookingUID, AppUtil.Current.UserID);
             }

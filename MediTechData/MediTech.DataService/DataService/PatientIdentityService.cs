@@ -175,6 +175,15 @@ namespace MediTech.DataService
 
             return data;
         }
+        public List<PatientVisitModel> SearchIPDPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
+                   , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
+             , int? payorDetailUID, int? checkupJobUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/SearchIPDPatientVisit?hn={0}&firstName={1}&lastName={2}&careproviderUID={3}&statusList={4}&dateFrom={5:MM/dd/yyyy}&dateTo={6:MM/dd/yyyy}&arrivedDttm={7:MM/dd/yyyy}&ownerOrganisationUID={8}&payorDetailUID={9}&checkupJobUID={10}", hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+            List<PatientVisitModel> data = MeditechApiHelper.Get<List<PatientVisitModel>>(requestApi);
+
+            return data;
+        }
 
         public PatientAEAdmissionModel ManageEmergencyAE(PatientAEAdmissionModel model, int userUID)
         {
@@ -259,6 +268,23 @@ namespace MediTech.DataService
             }
             return returnData;
         }
+
+
+        public PatientVisitModel SaveIPDPatientVisit(PatientVisitModel patientVisitInfo, int userID)
+        {
+            PatientVisitModel returnData;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/SaveIPDPatientVisit?userID={0}", userID);
+                returnData = MeditechApiHelper.Post<PatientVisitModel, PatientVisitModel>(requestApi, patientVisitInfo);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
 
         public void ModifyPatientVisit(PatientVisitModel patientVisitInfo, int userID)
         {
@@ -389,6 +415,15 @@ namespace MediTech.DataService
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
         }
+
+        public List<BedStatusModel> GetBedWardView(int parentLocationUID,string IPD)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetBedWardView?parentLocationUID={0}&IPD={1}", parentLocationUID,IPD);
+            List<BedStatusModel> data = MeditechApiHelper.Get<List<BedStatusModel>>(requestApi);
+            return data;
+        }
+
+
 
         public List<LocationModel> GetBedLocation(int parentLocationUID, int? entypUID)
         {
