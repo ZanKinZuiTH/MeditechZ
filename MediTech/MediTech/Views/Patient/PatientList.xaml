@@ -82,7 +82,7 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Other/PatientTracking.png" 
+                                <Image Source="/MediTech;component/Resources/Images/Action/MoveDown.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
                                    ToolTip="Arrived">

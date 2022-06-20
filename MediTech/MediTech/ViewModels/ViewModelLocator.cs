@@ -2308,17 +2308,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        public PatientArrivedViewModel PatientArrivedViewModel
-        {
-            get
-            {
-                if (!SimpleIoc.Default.ContainsCreated<PatientArrivedViewModel>())
-                    SimpleIoc.Default.Register<PatientArrivedViewModel>();
-
-                return ServiceLocator.Current.GetInstance<PatientArrivedViewModel>();
-            }
-        }
-
         public TranferBedViewModel TranferBedViewModel
         {
             get
