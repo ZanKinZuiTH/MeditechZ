@@ -220,10 +220,10 @@
                                         <dxlc:LayoutItem Label="Order จาก :">
                                             <dxe:ComboBoxEdit x:Name="cmbLocation"
                                               IsTextEditable="False"
-                                              ItemsSource="{Binding HealthOrganisations}"
-                                              SelectedItem="{Binding SelectHealthOrganisations}"
+                                              ItemsSource="{Binding LocationOrders}"
+                                              SelectedItem="{Binding SelectLocationOrder}"
                                               DisplayMember="Name"
-                                              ValueMember="HealthOrganisationUID"
+                                              ValueMember="LocationUID"
                                               />
                                         </dxlc:LayoutItem>
                                     </dxlc:LayoutGroup>

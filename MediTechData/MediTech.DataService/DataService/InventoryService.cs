@@ -409,6 +409,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<StockModel> GetStockRemainForDispensedByItemMasterUID(int itemMasterUID, int organisation)
+        {
+            string requestApi = string.Format("Api/Inventory/GetStockRemainForDispensedByItemMasterUID?itemMasterUID={0}&organisation={1}", itemMasterUID, organisation);
+            List<StockModel> data = MeditechApiHelper.Get<List<StockModel>>(requestApi);
+
+            return data;
+        }
+
         public List<StockModel> GetStoreEcounByItemMaster(int itemMasterUID, int organisation)
         {
             string requestApi = string.Format("Api/Inventory/GetStoreEcounByItemMaster?itemMasterUID={0}&organisation={1}", itemMasterUID, organisation);

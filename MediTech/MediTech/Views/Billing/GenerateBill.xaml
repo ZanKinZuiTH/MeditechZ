@@ -11,12 +11,17 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+            <dxlc:LayoutItem Name="Banner">
+                <uc:PatientBanner PatientVisit="{Binding SelectPateintVisit}"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Label="Payor">
-                    <dxe:ComboBoxEdit />
+                    <dxe:ComboBoxEdit 
+                        ItemsSource="{Binding PatientVisitPayors}" 
+                        SelectedItem="{Binding SelectPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"
+                        ValueMember="PatientVisitPayorUID"
+                        DisplayMember="Description"
+                        />
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem/>
             </dxlc:LayoutGroup>

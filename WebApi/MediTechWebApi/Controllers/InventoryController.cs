@@ -1149,6 +1149,31 @@ namespace MediTechWebApi.Controllers
         {
             DataTable dt = SqlDirectStore.pGetStoreQtyByItemMasterUID(itemMasterUID, organisation);
             List<StockModel> data = dt.ToList<StockModel>();
+            return data;
+        }
+
+        [Route("GetStockRemainForDispensedByItemMasterUID")]
+        [HttpGet]
+        public List<StockModel> GetStockRemainForDispensedByItemMasterUID(int itemMasterUID, int organisation)
+        {
+            DataTable dt = SqlDirectStore.pGetStoreQtyByItemMasterUID(itemMasterUID, organisation);
+            List<StockModel> data = dt.ToList<StockModel>();
+
+            if (data != null && data.Count > 0)
+            {
+                foreach (StockModel item in data)
+                {
+                    //PrescriptionItem Raised Status
+                    var prescriptionItems = db.PrescriptionItem.Where(p => p.ItemMasterUID == itemMasterUID
+                    && p.StoreUID == item.StoreUID && p.StatusFlag == "A" && p.ORDSTUID == 2847).ToList();
+
+                    if(prescriptionItems != null && prescriptionItems.Count > 0)
+                    {
+                        item.Quantity = item.Quantity - (prescriptionItems.Sum(p => p.Quantity) ?? 0);
+                    }
+
+                }
+            }
 
             return data;
         }
