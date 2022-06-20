@@ -93,7 +93,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        private double? _StockQuantity;
+        private double? _StockQuantity = 0;
 
         public double? StockQuantity
         {
@@ -222,7 +222,7 @@ namespace MediTech.ViewModels
         {
             DateTime now = DateTime.Now;
             ItemMaster = DataService.Inventory.GetItemMasterByUID(BillableItem.ItemUID.Value);
-            Stores = DataService.Inventory.GetStockRemainByItemMasterUID(ItemMaster.ItemMasterUID, OwnerOrgansitaionUID);
+            Stores = DataService.Inventory.GetStockRemainForDispensedByItemMasterUID(ItemMaster.ItemMasterUID, OwnerOrgansitaionUID);
             BindingData();
 
             TypeOrder = BillableItem.BillingServiceMetaData;
@@ -254,7 +254,7 @@ namespace MediTech.ViewModels
         public void BindingFromPatientOrderDetail()
         {
             ItemMaster = DataService.Inventory.GetItemMasterByUID(PatientOrderDetail.ItemUID.Value);
-            Stores = DataService.Inventory.GetStockRemainByItemMasterUID(ItemMaster.ItemMasterUID, PatientOrderDetail.OwnerOrganisationUID);
+            Stores = DataService.Inventory.GetStockRemainForDispensedByItemMasterUID(ItemMaster.ItemMasterUID, PatientOrderDetail.OwnerOrganisationUID);
             BindingData();
 
             TypeOrder = PatientOrderDetail.BillingService;

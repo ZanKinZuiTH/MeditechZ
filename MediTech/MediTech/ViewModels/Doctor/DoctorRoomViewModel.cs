@@ -1077,7 +1077,7 @@ namespace MediTech.ViewModels
                             {
                                 ItemMasterModel itemMaster = DataService.Inventory.GetItemMasterByUID(billItem.ItemUID.Value);
                                 List<StockModel> stores = new List<StockModel>();
-                                stores = DataService.Inventory.GetStockRemainByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
+                                stores = DataService.Inventory.GetStockRemainForDispensedByItemMasterUID(itemMaster.ItemMasterUID, ownerUID ?? 0);
 
                                 if (stores == null || stores.Count <= 0)
                                 {
@@ -1086,7 +1086,15 @@ namespace MediTech.ViewModels
                                 }
                                 else
                                 {
-                                    if (itemDrug.Quantity > stores.FirstOrDefault().Quantity)
+                                    bool CanDispense = false;
+                                    foreach (var store in stores)
+                                    {
+                                        if (itemDrug.Quantity > store.Quantity)
+                                        {
+                                            CanDispense = true;
+                                        }
+                                    }
+                                    if (CanDispense == false)
                                     {
                                         if (itemMaster.CanDispenseWithOutStock != "Y")
                                         {
@@ -1119,7 +1127,7 @@ namespace MediTech.ViewModels
 
 
                                 newOrder.IsStock = itemMaster.IsStock;
-                                newOrder.StoreUID = stores.FirstOrDefault().StoreUID;
+                                newOrder.StoreUID = stores.FirstOrDefault(p => p.Quantity > itemDrug.Quantity).StoreUID;
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;

@@ -61,10 +61,10 @@
                             <dxlc:LayoutItem Label="Order จาก :">
                                 <dxe:ComboBoxEdit x:Name="cmbLocation"
                                               IsTextEditable="False"
-                                              ItemsSource="{Binding HealthOrganisations}"
-                                              SelectedItem="{Binding SelectHealthOrganisation}"
+                                              ItemsSource="{Binding Locations}"
+                                              SelectedItem="{Binding SelectLocation}"
                                               DisplayMember="Name"
-                                              ValueMember="HealthOrganisationUID"
+                                              ValueMember="LocationUID"
                                               />
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem/>

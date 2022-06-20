@@ -252,6 +252,12 @@
     <Compile Include="MediTechInterfaceDetail.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="meditechtestpatchInterface.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="meditechtestpatchInterfaceDetail.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="NotificationTaskResult.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -778,6 +784,15 @@
     <Compile Include="pSearchCheckupResultValue_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="pSearchEmergencyVisit_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchIPBooking_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchIPDPatientVisit_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="pSearchItemMasterCriteria_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
@@ -788,6 +803,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientCheckup_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pSearchPatientEmergency_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="pSearchPatientMedicalDischarge_Result.cs">
@@ -958,10 +976,16 @@
     <Compile Include="SEQDISPOSEID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEQERVisitID.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEQGRNID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQGroupReceipt.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEQIPDVisitID.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQITCODE.cs">
@@ -1027,6 +1051,12 @@
     <Compile Include="splitstring_Result.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
     <Compile Include="SqlFunction.cs" />
     <Compile Include="Stock.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
@@ -1044,6 +1074,9 @@
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="StoreUOMConversion.cs">
+      <DependentUpon>MediTechEntites.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sysdiagrams.cs">
       <DependentUpon>MediTechEntites.tt</DependentUpon>
     </Compile>
     <Compile Include="VendorDetail.cs">

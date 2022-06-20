@@ -18,8 +18,8 @@ namespace MediTech.DataBase
         public int OrganisationUID { get; set; }
         public Nullable<int> LocationUID { get; set; }
         public int StoreUID { get; set; }
-        public int IssuedByStoreUID { get; set; }
         public Nullable<int> IssuedByLocationUID { get; set; }
+        public int IssuedByStoreUID { get; set; }
         public int IssuedByOrganisationUID { get; set; }
         public string ItemReceiveID { get; set; }
         public System.DateTime ReceivedDttm { get; set; }

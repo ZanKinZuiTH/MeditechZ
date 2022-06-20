@@ -12,28 +12,17 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class BillPackage
+    public partial class meditechtestpatchInterface
     {
         public int UID { get; set; }
-        public string PackageName { get; set; }
-        public string Description { get; set; }
-        public int NoofDays { get; set; }
-        public double TotalAmount { get; set; }
-        public int CURNCUID { get; set; }
-        public Nullable<int> PBLCTUID { get; set; }
-        public Nullable<double> MaxValue { get; set; }
-        public Nullable<double> MinValue { get; set; }
-        public System.DateTime ActiveFrom { get; set; }
-        public Nullable<System.DateTime> ActiveTo { get; set; }
-        public Nullable<int> OrderCategoryUID { get; set; }
-        public Nullable<int> OrderSubCategoryUID { get; set; }
         public string Code { get; set; }
+        public string Description { get; set; }
+        public Nullable<int> ParentUID { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public int OwnerOrganisationUID { get; set; }
-        public byte[] TIMESTAMP { get; set; }
+        public byte[] TIMTESTAMP { get; set; }
     }
 }

@@ -176,6 +176,12 @@ namespace MediTech.ViewModels
             get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
         }
 
+        private RelayCommand _GeneratebillCommand;
+        public RelayCommand GeneratebillCommand
+        {
+            get { return _GeneratebillCommand ?? (_GeneratebillCommand = new RelayCommand(Generatebill)); }
+        }
+
         #endregion
 
         #region Method
@@ -245,6 +251,17 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
+        private void Generatebill()
+        {
+            GenerateBill pageview = new GenerateBill();
+            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, true);
+            if (result != null && result.ResultDialog == ActionDialog.Save)
+            {
+                SaveSuccessDialog();
+            }
+        }
+    
 
         public void PatientSearch()
         {
