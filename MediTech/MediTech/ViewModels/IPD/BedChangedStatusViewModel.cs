@@ -141,7 +141,7 @@ namespace MediTech.ViewModels
 
         }
 
-        public void SendingBed(LocationModel SelectBed)
+        public void SendingBed(BedStatusModel SelectBed)
         {
             BedHeader = SelectBed.Name +": "+SelectBed.Description;
             List<LocationModel> beddata = new List<LocationModel>();

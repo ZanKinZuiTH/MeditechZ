@@ -2252,6 +2252,38 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CancelDischargeViewModel CancelDischargeViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CancelDischargeViewModel>())
+                    SimpleIoc.Default.Register<CancelDischargeViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CancelDischargeViewModel>();
+            }
+        }
+
+        public BedBookingViewModel BedBookingViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BedBookingViewModel>())
+                    SimpleIoc.Default.Register<BedBookingViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BedBookingViewModel>();
+            }
+        }
+        public TranferBedListViewModel TranferBedListViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<TranferBedListViewModel>())
+                    SimpleIoc.Default.Register<TranferBedListViewModel>();
+
+                return ServiceLocator.Current.GetInstance<TranferBedListViewModel>();
+            }
+        }
+
         #endregion
 
         public static void Cleanup()

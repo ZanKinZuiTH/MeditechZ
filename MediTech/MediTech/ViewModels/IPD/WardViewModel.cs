@@ -26,11 +26,28 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedWard, value);
                 if (SelectedWard != null)
                 {
-                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
                     WardName = SelectedWard.Name;
+                    
+
                 }
             }
         }
+
+
+        private BedStatusModel _SelectBedData;
+
+        public BedStatusModel SelectBedData
+        {
+            get { return _SelectBedData; }
+            set
+            {
+                Set(ref _SelectBedData, value);
+            }
+        }
+
+
+
 
         private String _WardName;
         public String WardName
@@ -39,25 +56,29 @@ namespace MediTech.ViewModels
             set { Set(ref _WardName, value); }
         }
 
-        private List<LocationModel> _BedWardView;
-        public List<LocationModel> BedWardView
+        private List<BedStatusModel> _BedWardView;
+        public List<BedStatusModel> BedWardView
         {
             get { return _BedWardView; }
             set { Set(ref _BedWardView, value); }
         }
 
-        private LocationModel _SelectedBedWardView;
-        public LocationModel SelectedBedWardView
+        private BedStatusModel _SelectedBedWardView;
+        public BedStatusModel SelectedBedWardView
         {
             get { return _SelectedBedWardView; }
             set { Set(ref _SelectedBedWardView, value); }
            
         }
 
+
+        public string PatientName { get; set; }
+        public string PatientID { get; set; }
+
         #endregion
 
         #region Command
-   
+
         private RelayCommand _NewRequestrCommand;
 
         public RelayCommand NewRequestrCommand
@@ -130,7 +151,7 @@ namespace MediTech.ViewModels
         {
             WardSource = DataService.Technical.GetLocationByTypeUID(3152); //แก้
             SelectedWard = WardSource.FirstOrDefault(p => p.LocationUID == 35);
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
         }
 
         public void NewRequest()
@@ -150,12 +171,26 @@ namespace MediTech.ViewModels
 
         public void Discharge()
         {
+            if (SelectedBedWardView != null)
+            {
+               // SelectedBedWardView.
+                // int parentlocaion = (SelectedBedWardView.ParentLocationUID ?? 0);
+                //SelectBedData = DataService.PatientIdentity.GetBedByPatientVisit(parentlocaion).ToList();
 
+                IPDMedicalDischarge  pageview = new IPDMedicalDischarge();
+                (pageview.DataContext as IPDMedicalDischargeViewModel).closeMed();
+                IPDMedicalDischargeViewModel result = (IPDMedicalDischargeViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
         }
 
         public void DirectAdmit()
         {
-
+            if (SelectedBedWardView != null)
+            { 
+                AdmissionDetail pageview = new AdmissionDetail();
+            (pageview.DataContext as AdmissionDetailViewModel).SendbedWard(SelectedBedWardView);
+            AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
         }
 
         public void BedTranfer()
@@ -190,6 +225,7 @@ namespace MediTech.ViewModels
         {
 
         }
+        
 
         #endregion
     }

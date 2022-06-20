@@ -41,6 +41,14 @@ namespace MediTech.ViewModels
             //LenghtofDay = "1";
         }
 
+        public void closeMed()
+        {
+            //ExpectedAdmission = DateTime.Now;
+            //WardSource = DataService.Technical.GetLocationByTypeUID(3152);
+            Doctors = DataService.UserManage.GetCareproviderDoctor();
+        
+        }
+
         #endregion
 
     }

@@ -961,6 +961,19 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("SearchIPDPatientVisit")]
+        [HttpGet]
+        public List<PatientVisitModel> SearchIPDPatientVisit(string hn, string firstName, string lastName, int? careproviderUID
+           , string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID
+           , int? payorDetailUID, int? checkupJobUID)
+        {
+            DataTable dataTable = SqlDirectStore.pSearchIPDPatientVisit(hn, firstName, lastName, careproviderUID, statusList, dateFrom, dateTo, arrivedDttm, ownerOrganisationUID, payorDetailUID, checkupJobUID);
+
+            List<PatientVisitModel> data = dataTable.ToList<PatientVisitModel>();
+
+            return data;
+        }
+
 
         [Route("SearchPatientMedicalDischarge")]
         [HttpGet]
@@ -1033,9 +1046,9 @@ namespace MediTechWebApi.Controllers
 
                     db.SaveChanges();
 
+               
                     foreach (var aIns in patientVisitInfo.PatientVisitPayors)
                     {
-
                         PatientVisitPayor aPayor = new PatientVisitPayor();
                         aPayor.PatientUID = patientVisitInfo.PatientUID;
                         aPayor.PatientVisitUID = patientVisit.UID;
@@ -1060,7 +1073,7 @@ namespace MediTechWebApi.Controllers
 
                         db.PatientVisitPayor.Add(aPayor);
                     }
-
+                 
 
                     db.SaveChanges();
 
@@ -1245,6 +1258,209 @@ namespace MediTechWebApi.Controllers
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
+
+        [Route("SaveIPDPatientVisit")]
+        [HttpPost]
+        public HttpResponseMessage SaveIPDPatientVisit(PatientVisitModel patientVisitInfo, int userID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+                    DateTime now = DateTime.Now;
+
+                    int outseqervisitUID;
+                    //string erseqVisitID = SEQHelper.GetSEQIDFormat("SEQERVisitID", out outseqervisitUID);
+                    string erseqVisitID = "1155223";
+
+                    if (string.IsNullOrEmpty(erseqVisitID))
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQVisitID in SEQCONFIGURATION");
+                    }
+
+                    PatientVisit patientVisit = new PatientVisit();
+                    patientVisit.PatientUID = patientVisitInfo.PatientUID;
+                    patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
+                    patientVisit.VISTSUID = patientVisitInfo.VISTSUID;
+                    patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
+                    patientVisit.CheckupJobUID = patientVisitInfo.CheckupJobUID;
+                    patientVisit.ENTYPUID = patientVisitInfo.ENTYPUID;
+                    patientVisit.LocationUID = patientVisitInfo.LocationUID;
+                    patientVisit.BedUID = patientVisitInfo.BedUID;
+                    patientVisit.RefNo = patientVisitInfo.RefNo;
+                    patientVisit.CompanyName = patientVisitInfo.CompanyName;
+                    patientVisit.VisitID = erseqVisitID;
+                    patientVisit.CareProviderUID = patientVisitInfo.CareProviderUID;
+                    patientVisit.BookingUID = patientVisitInfo.BookingUID;
+                    patientVisit.StartDttm = patientVisitInfo.StartDttm;
+                    patientVisit.ArrivedDttm = patientVisitInfo.StartDttm;
+                    patientVisit.CUser = userID;
+                    patientVisit.CWhen = now;
+                    patientVisit.MUser = userID;
+                    patientVisit.MWhen = now;
+                    patientVisit.StatusFlag = "A";
+                    patientVisit.OwnerOrganisationUID = patientVisitInfo.OwnerOrganisationUID;
+                    patientVisit.VisitLocationUID = patientVisitInfo.BedUID;
+
+                    db.PatientVisit.Add(patientVisit);
+                    db.SaveChanges();
+
+                    PatientVisitPayor visitPayor = new PatientVisitPayor();
+                    visitPayor.PatientUID = patientVisitInfo.PatientUID;
+                    visitPayor.PatientVisitUID = patientVisit.UID;
+                    visitPayor.PayorDetailUID = 1;
+                    visitPayor.PayorAgreementUID = 1;
+                    visitPayor.CUser = userID;
+                    visitPayor.CWhen = now;
+                    visitPayor.MUser = userID;
+                    visitPayor.MWhen = now;
+                    visitPayor.StatusFlag = "A";
+
+                    db.PatientVisitPayor.Add(visitPayor);
+                    db.SaveChanges();
+
+                    if (patientVisit != null)
+                    {
+                        PatientVisitID patientVisitID = new PatientVisitID();
+                        patientVisitID.PatientVisitUID = patientVisit.UID;
+                        patientVisitID.VISIDUID = patientVisit.VISTYUID ?? 0;
+                        patientVisitID.MainIdentifier = "Y";
+                        patientVisitID.Identifier = patientVisit.VisitID;
+                        patientVisitID.ActiveFrom = patientVisit.StartDttm ?? now;
+                        patientVisitID.CUser = userID;
+                        patientVisitID.CWhen = now;
+                        patientVisitID.MUser = userID;
+                        patientVisitID.MWhen = now;
+                        patientVisitID.StatusFlag = "A";
+
+                        db.PatientVisitID.Add(patientVisitID);
+                        db.SaveChanges();
+                    }
+
+                    if (patientVisitInfo.AEAdmission != null)
+                    {
+                        PatientAEAdmission aEAdmission = new PatientAEAdmission();
+                        aEAdmission.PatientUID = patientVisit.PatientUID;
+                        aEAdmission.PatientVisitUID = patientVisit.UID;
+                        //aEAdmission.ADTYPUID = patientVisitInfo.AEAdmission.ADTYPUID;
+                        aEAdmission.ARRMDUID = patientVisitInfo.AEAdmission.ARRMDUID;
+                        aEAdmission.RELTNUID = patientVisitInfo.AEAdmission.RELTNUID;
+                        aEAdmission.ESCTPUID = patientVisitInfo.AEAdmission.ESCTPUID;
+                        aEAdmission.VehicleNumber = patientVisitInfo.AEAdmission.VehicleNumber;
+                        aEAdmission.EmergencyOcurredDttm = patientVisitInfo.AEAdmission.EventOccuredDttm;
+                        aEAdmission.EMGTPUID = patientVisitInfo.AEAdmission.EMGTPUID;
+                        aEAdmission.EMGCDUID = patientVisitInfo.AEAdmission.EMGCDUID;
+                        aEAdmission.ProblemUID = patientVisitInfo.AEAdmission.ProblemUID;
+                        aEAdmission.InjuryReason = patientVisitInfo.AEAdmission.InjuryReason;
+                        aEAdmission.EmergencyExamDetail = patientVisitInfo.AEAdmission.EmergencyExamDetail;
+                        aEAdmission.IsDead = patientVisitInfo.AEAdmission.IsDead;
+                        aEAdmission.Line1 = patientVisitInfo.AEAdmission.Line1;
+                        aEAdmission.Line2 = patientVisitInfo.AEAdmission.Line2;
+                        aEAdmission.Line3 = patientVisitInfo.AEAdmission.Line3;
+                        aEAdmission.Line4 = patientVisitInfo.AEAdmission.Line4;
+                        aEAdmission.DistrictUID = patientVisitInfo.AEAdmission.DistrictUID;
+                        aEAdmission.AmphurUID = patientVisitInfo.AEAdmission.AmphurUID;
+                        aEAdmission.ProvinceUID = patientVisitInfo.AEAdmission.ProvinceUID;
+                        aEAdmission.ZipCode = patientVisitInfo.AEAdmission.ZipCode;
+                        aEAdmission.PhoneNumber = patientVisitInfo.AEAdmission.PhoneNumber;
+                        aEAdmission.MobileNumber = patientVisitInfo.AEAdmission.MobileNumber;
+                        aEAdmission.Comments = patientVisitInfo.AEAdmission.Comments;
+                        aEAdmission.CUser = userID;
+                        aEAdmission.CWhen = now;
+                        aEAdmission.MUser = userID;
+                        aEAdmission.MWhen = now;
+                        aEAdmission.StatusFlag = "A";
+
+                        db.PatientAEAdmission.Add(aEAdmission);
+                        db.SaveChanges();
+                    }
+
+
+                    if (patientVisit != null)
+                    {
+                        AdmissionEvent admissionEvent = new AdmissionEvent();
+
+                        admissionEvent.PatientUID = patientVisit.PatientUID;
+                        admissionEvent.PatientVisitUID = patientVisit.UID;
+                        admissionEvent.CareproviderUID = 4;
+                        admissionEvent.ExpectedLengthOfStay = 3;
+                        admissionEvent.AdmissionDttm = now;
+                        admissionEvent.IPBookingUID = 12;
+                        admissionEvent.PreviousEventUID = 134;
+                        admissionEvent.Comments ="test ipd inset";
+                        admissionEvent.OwnerOrganisationUID = 17;
+                        //admissionEvent.ValidFromDttm = model.ValidFromDttm;
+                        //admissionEvent.ValidToDttm = model.ValidToDttm;
+                        admissionEvent.IsNoVisitorAllowed = "Y";
+                        admissionEvent.RequestingLocationUID = patientVisitInfo.LocationUID;
+                        admissionEvent.MUser = 1;
+                        admissionEvent.MWhen = now;
+                        admissionEvent.CUser = 1;
+                        admissionEvent.CWhen = now;
+                        admissionEvent.StatusFlag = "A";
+
+                        db.AdmissionEvent.AddOrUpdate(admissionEvent);
+                        db.SaveChanges();
+
+                    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                    #region PatientServiceEvent
+                    PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                    serviceEvent.PatientVisitUID = patientVisit.UID;
+                    serviceEvent.EventStartDttm = now;
+                    serviceEvent.VISTSUID = patientVisit.VISTSUID ?? 0;
+                    serviceEvent.LocationUID = patientVisitInfo.LocationUID;
+                    serviceEvent.MUser = userID;
+                    serviceEvent.MWhen = now;
+                    serviceEvent.CUser = userID;
+                    serviceEvent.CWhen = now;
+                    serviceEvent.StatusFlag = "A";
+
+                    db.PatientServiceEvent.Add(serviceEvent);
+                    #endregion
+
+                    #region Patient
+                    Patient patient = db.Patient.Find(patientVisit.PatientUID);
+                    if (patient != null)
+                    {
+                        db.Patient.Attach(patient);
+                        patient.LastVisitDttm = patientVisit.StartDttm;
+                        patient.MUser = userID;
+                        patient.MWhen = DateTime.Now;
+                        db.SaveChanges();
+                    }
+                    #endregion
+
+                    patientVisitInfo.VisitID = erseqVisitID;
+                    patientVisitInfo.PatientVisitUID = patientVisit.UID;
+                    tran.Complete();
+                }
+                return Request.CreateResponse(HttpStatusCode.OK, patientVisitInfo);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+
+
+
 
         [Route("ManageEmergencyAE")]
         [HttpPost]
@@ -1948,6 +2164,99 @@ namespace MediTechWebApi.Controllers
 
             return bed;
         }
+
+
+
+        [Route("GetBedWardView")]
+        [HttpGet]
+        public List<BedStatusModel> GetBedWardView(int parentLocationUID,String IPD)
+        {
+            var bed = db.Location.Where(p => p.ParentLocationUID == parentLocationUID).Select(p => new BedStatusModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                IsTemporaryBed = p.IsTemporaryBed,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            var data = (from pv in db.PatientVisit
+                        join b in db.Location on pv.BedUID equals b.UID
+                        join ad in db.AdmissionEvent on pv.UID equals ad.PatientVisitUID
+                        join pt in db.Patient on pv.PatientUID equals pt.UID
+                        where pv.StatusFlag == "A"
+                        && b.StatusFlag == "A"
+                        && ad.StatusFlag == "A"
+                        && pt.StatusFlag == "A"
+                        && pv.VISTSUID != 410
+                        && pv.VISTSUID != 418
+                        && pv.VISTSUID != 421
+                        select new BedStatusModel
+                        {
+                            LocationUID = b.UID,
+                            Name = b.Name,
+                            Description = b.Description,
+                            LOTYPUID = b.LOTYPUID,
+                            LCTSTUID = b.LCTSTUID,
+                            ParentLocationUID = b.ParentLocationUID,
+                            ActiveFrom = b.ActiveFrom,
+                            ActiveTo = b.ActiveTo,
+                            CUser = b.CUser,
+                            CWhen = b.CWhen,
+                            MUser = b.MUser,
+                            EMRZONUID = b.EMZONEUID,
+                            OwnerOrganisationUID = b.OwnerOrganisationUID,
+                            IsTemporaryBed = b.IsTemporaryBed,
+                            MWhen = b.MWhen,
+                            StatusFlag = b.StatusFlag,
+                            PatientName = SqlFunction.fGetPatientName(pv.PatientUID),
+                            PatientID = pt.PatientID,
+                            PatientUID = pt.UID,
+                            PatientVisitUID = pv.UID,
+                            AdmissionEventUID = ad.UID,
+                            AgeString = SqlFunction.fGetAgeString(pt.DOBDttm.Value),
+                            AdmissionDate = ad.AdmissionDttm,
+                            ExpDischargeDate = ad.ExpectedDischargeDttm,
+                            Gender = SqlFunction.fGetRfValDescription(pt.SEXXXUID ?? 0),
+                            CareProviderName = SqlFunction.fGetCareProviderName(pv.CareProviderUID ?? 0),
+                            OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(b.OwnerOrganisationUID)
+                        }).ToList();
+
+            if (data != null)
+            {
+                for (int i = 0; i < bed.Count; i++)
+                {
+                    var used = data.Where(p => p.LocationUID == bed[i].LocationUID).FirstOrDefault();
+                    if (used != null)
+                    {
+                        bed[i] = used;
+                        bed[i].BedIsUse = "Y";
+                        bed[i].Isused = true;
+                    }
+                    else
+                    {
+                        bed[i].Isused = false;
+                        bed[i].BedIsUse = "N";
+                    }
+                }
+            }
+
+
+            return bed;
+        }
+
+
 
 
         [Route("GetBedLocation")]

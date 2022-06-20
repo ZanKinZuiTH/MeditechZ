@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 
 namespace MediTech.ViewModels
 {
-    public class AdmissionDetailViewModel : MediTechViewModelBase
+    public class BedBookingViewModel : MediTechViewModelBase
     {
         #region property
 
@@ -83,7 +83,7 @@ namespace MediTech.ViewModels
                 Set(ref _DischargeDate, value);
                 if (DischargeDate != null)
                 {
-                   
+
                 }
 
             }
@@ -142,11 +142,11 @@ namespace MediTech.ViewModels
             set { Set(ref _ListWard, value); }
         }
 
-        private LocationModel _SelectedListBed;
-        public LocationModel SelectedListBed
+        private LocationModel _SelectedListWard;
+        public LocationModel SelectedListWard
         {
-            get { return _SelectedListBed; }
-            set { Set(ref _SelectedListBed, value); }
+            get { return _SelectedListWard; }
+            set { Set(ref _SelectedListWard, value); }
         }
 
 
@@ -276,13 +276,7 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<LocationModel> _ward;
-        public List<LocationModel> Ward
-        {
-            get { return _ward; }
-            set { _ward = value; }
-        }
-
+        public List<LocationModel> Ward { get; set; }
 
 
         private LocationModel _SelectWard;
@@ -359,7 +353,7 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedPayorDetail, value);
                 if (_SelectedPayorDetail != null)
                 {
-                    
+
                     CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
                     if (PayorAgreementSource != null)
                     {
@@ -390,9 +384,9 @@ namespace MediTech.ViewModels
 
         #region method
 
-    
 
-        public AdmissionDetailViewModel()
+
+        public BedBookingViewModel()
         {
             DateTime now = DateTime.Now;
             var locationAll = DataService.IPDService.GetBedALL();
@@ -401,7 +395,7 @@ namespace MediTech.ViewModels
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             var test = DataService.MasterData.GetHealthOrganisation();
             Location = locationAll;
-            Ward = locationAll.Where(w=>w.LOTYPUID == 3152).ToList();
+            Ward = locationAll.Where(w => w.LOTYPUID == 3152).ToList();
 
             StartDate = now.Date;
             StartTime = now;
@@ -414,7 +408,7 @@ namespace MediTech.ViewModels
             {
                 UIDPatient = SelectedPateintSearch.PatientUID;
                 var patientInfo = DataService.PatientIdentity.GetPatientByUID(UIDPatient);
-                (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID,0);
+                (this.View as BedBooking).patientBanner.SetPatientBanner(patientInfo.PatientUID, 0);
             }
 
 
@@ -436,11 +430,9 @@ namespace MediTech.ViewModels
 
 
 
-
-
         void SavePatientVisit()
         {
-           
+
             PatientVisitModel visitInfo = new PatientVisitModel();
             visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
             visitInfo.PatientUID = SelectedPateintSearch.PatientUID;
@@ -452,7 +444,7 @@ namespace MediTech.ViewModels
             visitInfo.Comments = "test";
             visitInfo.OwnerOrganisationUID = 17;
             visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
-            if (SelectDoctor!= null)
+            if (SelectDoctor != null)
                 visitInfo.CareProviderUID = SelectDoctor.CareproviderUID;
             visitInfo.PatientVisitPayors = null;
             PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
@@ -478,142 +470,48 @@ namespace MediTech.ViewModels
         }
 
 
-        //void SaveAdmit()
-        //{
-        //    try
-        //    {
-
-        //        //SavePatientVisit();
-        //       // DataService.PatientIdentity.SavePatientVisit(, AppUtil.Current.UserID);
-        //        CloseViewDialog(ActionDialog.Save);
-        //        WardView pageview = new WardView();
-        //        (pageview.DataContext as WardViewModel).Eventlog();
-        //        WardViewModel result = (WardViewModel)LaunchViewDialogNonPermiss(pageview, false);
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        ErrorDialog(ex.Message);
-        //    }
-
-        //}
-
-        public void SaveAdmit()
+        void SaveAdmit()
         {
-
             try
             {
 
-
-                if (SelectWard == null)
-                {
-                    WarningDialog("กรุณาใส่ Ward");
-                    return;
-                }
-
-                if (SelectedListBed == null)
-                {
-                    WarningDialog("กรุณาใส่ เตียง");
-                    return;
-                }
-
-                PatientVisitModel visitInfo = new PatientVisitModel();
-                visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-                visitInfo.PatientUID = SelectedPateintSearch.PatientUID;
-                visitInfo.VISTYUID = DataService.Technical.GetReferenceValueByCode("VISTY", "IPD").Key; ; //visit type IPD
-                visitInfo.VISTSUID = 417; //Registered
-                //visitInfo.BookingUID = Booking.BookingUID; //Appointment
-                //visitInfo.PRITYUID = SelectedPriority.Key;
-                visitInfo.PRITYUID = 1122; // เลขอาไรหว่า ใส่ 1122 ไปก่อน
-                visitInfo.Comments = "test iPD insert";
-                visitInfo.OwnerOrganisationUID = 17; //รอเปลี่ยนใช้ของคลินิกไปก่อน
-                visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
-               
-                visitInfo.LocationUID = SelectWard.LocationUID;
-               
-                visitInfo.BedUID = SelectedListBed.LocationUID;
+                //SavePatientVisit();
+                // DataService.PatientIdentity.SavePatientVisit(, AppUtil.Current.UserID);
+                CloseViewDialog(ActionDialog.Save);
+                WardView pageview = new WardView();
+                (pageview.DataContext as WardViewModel).Eventlog();
+                WardViewModel result = (WardViewModel)LaunchViewDialogNonPermiss(pageview, false);
 
 
-                PatientAEAdmissionModel aeAdmission = AssingVisitIPDToModel();
-
-                visitInfo.AEAdmission = aeAdmission;
-           
-                visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
-                if (SelectDoctor != null)
-                    visitInfo.CareProviderUID = SelectDoctor.CareproviderUID;
-                visitInfo.PatientVisitPayors = null;
-                PatientVisitModel returnData = DataService.PatientIdentity.SaveIPDPatientVisit(visitInfo, AppUtil.Current.UserID);
-
-                SaveSuccessDialog("BN : " + returnData.PatientID);
-
-                if (SelectWard != null)
-                {
-                    WardView pageto = new WardView();
-                    ChangeViewPermission(pageto);
-                }
-                else
-                {
-                    WardView pageto = new WardView();
-                    ChangeViewPermission(pageto);
-                }
             }
-            catch (Exception er)
+            catch (Exception ex)
             {
-                ErrorDialog(er.Message);
+
+                ErrorDialog(ex.Message);
             }
-        }
-
-
-
-
-
-        public PatientAEAdmissionModel AssingVisitIPDToModel()
-        {
-            PatientAEAdmissionModel visitErModel = new PatientAEAdmissionModel();
-
-            visitErModel.LocationUid = SelectWard.LocationUID;
-            visitErModel.CareproviderUID = SelectDoctor.CareproviderUID;
-
-          //  visitErModel.InjuryReason = ReasonDetail;
-          //  visitErModel.EmergencyExamDetail = EmergencyExamDetail;
-           // visitErModel.VehicleNumber = VehicleNumber;
-            visitErModel.EventOccuredDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-           // visitErModel.PhoneNumber = SeconePhone;
-           // visitErModel.MobileNumber = MobilePhone;
-            //if (SelectedProvince != null)
-            //    visitErModel.ProvinceUID = SelectedProvince.Key;
-
-            return visitErModel;
-        }
-
-
-        public void TestC()
-        {
-
 
         }
 
 
-        public void sendVisit(PatientVisitModel  sendvisit)
-        {
 
-            //var patientInfo = DataService.PatientIdentity.GetPatientByUID(IDpatient);
-            // (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID, 0);
-            (this.View as AdmissionDetail).patientBanner.SetPatientBanner(sendvisit.PatientUID,sendvisit.PatientVisitUID);
+
+
+        public void AssingPropertiesToModel()
+        {
+            DateTime date = DateTime.Now;
+
+
+
 
         }
 
-        public void SendbedWard(BedStatusModel resivebed)
+        public void testcl()
         {
-            //List<LocationModel> res = new List<LocationModel>();
-            //Ward.Add(resivebed);
+            DateTime date = DateTime.Now;
 
-            int idlocation = (resivebed.ParentLocationUID ?? 0);
-            ListWard = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).ToList();
-            SelectedListBed = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).FirstOrDefault();
-            //SelectWard = resivebed;
+
+
+
 
         }
 

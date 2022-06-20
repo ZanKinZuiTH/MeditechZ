@@ -242,8 +242,27 @@ namespace MediTech.ViewModels
 
         public RelayCommand ModifyVisitCommand
         {
-            get { return _ModifyVisitCommand ?? (_ModifyVisitCommand = new RelayCommand(OpenModifyVisit)); }
+            get { return _ModifyVisitCommand ?? (_ModifyVisitCommand = new RelayCommand(PatientRecords)); }
         }
+
+
+        private RelayCommand _ArrivedCommand;
+
+        public RelayCommand ArrivedCommand
+        {
+            get { return _ArrivedCommand ?? (_ArrivedCommand = new RelayCommand(ArrivedVisit)); }
+        }
+
+
+        private RelayCommand _CancelAdmissionCommand;
+
+        public RelayCommand CancelAdmissionCommand
+        {
+            get { return _CancelAdmissionCommand ?? (_CancelAdmissionCommand = new RelayCommand(CancelVisitAdmission)); }
+        }
+
+
+
 
         private RelayCommand _ScannedDocumentCommand;
 
@@ -260,18 +279,23 @@ namespace MediTech.ViewModels
             get { return _SalesItemCommand ?? (_SalesItemCommand = new RelayCommand(SalesItem)); }
         }
 
-        private RelayCommand _ExportToExcelCommand;
+      
 
-        public RelayCommand ExportToExcelCommand
-        {
-            get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
-        }
 
         private RelayCommand _AdmissionRequestCommand;
         public RelayCommand AdmissionRequestCommand
         {
             get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
         }
+
+
+        private RelayCommand _DirectAdmitCommand;
+
+        public RelayCommand DirectAdmitCommand
+        {
+            get { return _DirectAdmitCommand ?? (_DirectAdmitCommand = new RelayCommand(DirectAdmit)); }
+        }
+
 
         #endregion
 
@@ -307,6 +331,19 @@ namespace MediTech.ViewModels
 
         }
 
+        public void DirectAdmit()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientVisitModel senddata = SelectPatientVisit;
+                AdmissionDetail pageview = new AdmissionDetail();
+                (pageview.DataContext as AdmissionDetailViewModel).sendVisit(SelectPatientVisit);
+                AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            } 
+
+          
+        }
+
         public override void OnLoaded()
         {
             SearchPatientVisit();
@@ -333,7 +370,7 @@ namespace MediTech.ViewModels
             int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, payorDetailUID, null));
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchIPDPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, 17, payorDetailUID, null));
         }
 
         private void VitalSign()
@@ -362,7 +399,24 @@ namespace MediTech.ViewModels
             }
         }
 
-        private void OpenModifyVisit()
+        private void ArrivedVisit()
+        {
+            if (SelectPatientVisit != null)
+            {
+
+                ModifyVisit pageview = new ModifyVisit();
+                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    SearchPatientVisit();
+                }
+            }
+        }
+
+
+        private void CancelVisitAdmission()
         {
             if (SelectPatientVisit != null)
             {
