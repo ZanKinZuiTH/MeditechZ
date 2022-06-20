@@ -1,0 +1,83 @@
+﻿<UserControl xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"   
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             x:Class="MediTech.Views.BedStatusChanged"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             mc:Ignorable="d"
+             DataContext="{Binding Path=BedChangedStatusViewModel,Source={StaticResource Locator}}"
+             d:DesignHeight="600" d:DesignWidth="900">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="Bed Status Change"></dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Bed Code : ">
+                    <dxe:TextEdit x:Name="txtHeader" 
+                                          EditValue="{Binding BedHeader}"
+                                          FontWeight="Bold"
+                                          AllowNullInput="True"
+                                             IsReadOnly="True" 
+                                          ShowBorder="False"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutItem>
+            <dxg:GridControl x:Name="grdListBed" ItemsSource="{Binding ListBedStatus}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="รหัส" FieldName="LocationUID"/>
+                    <dxg:GridColumn Header="เตียง" FieldName="Name"/>
+               
+                    <dxg:GridColumn Header="รายละเอียด" FieldName="Description"/>
+                    <dxg:GridColumn Header="สถานะ" FieldName="StatusBedWord"/>
+                    <dxg:GridColumn Header="เริ่มการจอง" FieldName="ActiveTo"/>
+                    <dxg:GridColumn Header="หมายเหตู" FieldName="StatusBedWord"/>
+
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView Name="viewListBed" ShowGroupPanel="False"  AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding ActiveToDate}"/>
+                </dxlc:LayoutItem>
+
+                <dxlc:LayoutItem Label="เวลา ">
+                    <dxe:DateEdit x:Name="timeEor" 
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                        <dxe:DateEdit.StyleSettings>
+                            <dxe:DateEditPickerStyleSettings/>
+                        </dxe:DateEdit.StyleSettings>
+                    </dxe:DateEdit>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem />
+            </dxlc:LayoutGroup>
+            
+            <dxlc:LayoutItem Label="Unavailable Reason">
+                <dxe:ComboBoxEdit  DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      NullValueButtonPlacement="EditBox"
+                                      ItemsSource="{Binding StatusBed}"
+                                      SelectedItem="{Binding SelectStatusBed}"/>
+
+            </dxlc:LayoutItem>
+
+            <dxlc:LayoutItem Label="Comment">
+                <dxlc:LayoutItem  LabelVerticalAlignment="Top">
+                    <dxe:TextEdit Text="{Binding AllergyDescription}" Height="50"  AcceptsReturn="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutItem>
+            <dxlc:LayoutGroup HorizontalAlignment="Center" Orientation="Horizontal">
+                <dx:SimpleButton Width="80" Command="{Binding SaveCommand}"
+                                     Height="40" Content="Save"/>
+                <dx:SimpleButton Width="80" Margin="50,0,0,0" Command="{Binding DeleteCommand}"
+                                     Height="40" Content="Clear"/>
+            </dxlc:LayoutGroup>
+
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>

@@ -1,11 +1,14 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.DataService;
 using MediTech.Model;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
@@ -23,11 +26,28 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedWard, value);
                 if (SelectedWard != null)
                 {
-                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
                     WardName = SelectedWard.Name;
+                    
+
                 }
             }
         }
+
+
+        private BedStatusModel _SelectBedData;
+
+        public BedStatusModel SelectBedData
+        {
+            get { return _SelectBedData; }
+            set
+            {
+                Set(ref _SelectBedData, value);
+            }
+        }
+
+
+
 
         private String _WardName;
         public String WardName
@@ -36,23 +56,29 @@ namespace MediTech.ViewModels
             set { Set(ref _WardName, value); }
         }
 
-        private List<LocationModel> _BedWardView;
-        public List<LocationModel> BedWardView
+        private List<BedStatusModel> _BedWardView;
+        public List<BedStatusModel> BedWardView
         {
             get { return _BedWardView; }
             set { Set(ref _BedWardView, value); }
         }
 
-        private LocationModel _SelectedBedWardView;
-        public LocationModel SelectedBedWardView
+        private BedStatusModel _SelectedBedWardView;
+        public BedStatusModel SelectedBedWardView
         {
             get { return _SelectedBedWardView; }
             set { Set(ref _SelectedBedWardView, value); }
+           
         }
+
+
+        public string PatientName { get; set; }
+        public string PatientID { get; set; }
 
         #endregion
 
         #region Command
+
         private RelayCommand _NewRequestrCommand;
 
         public RelayCommand NewRequestrCommand
@@ -74,6 +100,15 @@ namespace MediTech.ViewModels
             get { return _DischargeCommand ?? (_DischargeCommand = new RelayCommand(Discharge)); }
         }
 
+        private RelayCommand _TranferCommand;
+        
+        public RelayCommand TranferCommand
+        {
+            get { return _TranferCommand ?? (_TranferCommand = new RelayCommand(BedTranfer)); }
+        }
+
+
+
         private RelayCommand _DirectAdmitCommand;
 
         public RelayCommand DirectAdmitCommand
@@ -85,7 +120,7 @@ namespace MediTech.ViewModels
 
         public RelayCommand BedStatusChangeCommand
         {
-            get { return _BedStatusChangeCommand ?? (_BedStatusChangeCommand = new RelayCommand(BedStatusChange)); }
+            get { return _BedStatusChangeCommand ?? (_BedStatusChangeCommand = new RelayCommand(BedChangeStatus)); }
         }
 
         private RelayCommand _VitalSignCommand;
@@ -116,7 +151,7 @@ namespace MediTech.ViewModels
         {
             WardSource = DataService.Technical.GetLocationByTypeUID(3152); //แก้
             SelectedWard = WardSource.FirstOrDefault(p => p.LocationUID == 35);
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
+            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
         }
 
         public void NewRequest()
@@ -133,20 +168,77 @@ namespace MediTech.ViewModels
         {
 
         }
+        public void wardveiewpge()
+        {
+
+        }
 
         public void Discharge()
         {
+            if (SelectedBedWardView != null)
+            {
+                // SelectedBedWardView.
+                // int parentlocaion = (SelectedBedWardView.ParentLocationUID ?? 0);
+                //SelectBedData = DataService.PatientIdentity.GetBedByPatientVisit(parentlocaion).ToList();
+
+                //IPDMedicalDischarge pageview = new IPDMedicalDischarge();
+                //(pageview.DataContext as IPDMedicalDischargeViewModel).closeMed();
+                //IPDMedicalDischargeViewModel result = (IPDMedicalDischargeViewModel)LaunchViewDialogNonPermiss(pageview, false);
+
+                PatientVisitModel patietnvisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID ?? 0);
+
+                PatientStatus medicalDischarge = new PatientStatus(patietnvisit, PatientStatusType.MedicalDischarge);
+                medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                medicalDischarge.Owner = MainWindow;
+                medicalDischarge.ShowDialog();
+                ActionDialog result = medicalDischarge.ResultDialog;
+                if (result == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    wardveiewpge();
+                    
+                }
+
+
+
+
+            }
+
+         
+
 
         }
 
         public void DirectAdmit()
         {
-
+            if (SelectedBedWardView != null)
+            { 
+                AdmissionDetail pageview = new AdmissionDetail();
+            (pageview.DataContext as AdmissionDetailViewModel).SendbedWard(SelectedBedWardView);
+            AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
         }
 
-        public void BedStatusChange()
+        public void BedTranfer()
         {
+            if (SelectedBedWardView != null)
+            {
+                TranferBed pageview = new TranferBed();
+                (pageview.DataContext as TranferBedViewModel).SendingBed(SelectedBedWardView);
+                TranferBedViewModel result = (TranferBedViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
+        }
 
+
+        public void BedChangeStatus()
+        {
+            if (SelectedBedWardView != null)
+            {
+                BedStatusChanged pageview = new BedStatusChanged();
+                 (pageview.DataContext as BedChangedStatusViewModel).SendingBed(SelectedBedWardView);
+                BedChangedStatusViewModel result = (BedChangedStatusViewModel)LaunchViewDialogNonPermiss(pageview, false);
+            }
+          
         }
 
         public void NewEMR()
@@ -159,6 +251,7 @@ namespace MediTech.ViewModels
         {
 
         }
+        
 
         #endregion
     }

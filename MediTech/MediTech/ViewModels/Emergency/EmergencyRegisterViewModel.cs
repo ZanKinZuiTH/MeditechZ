@@ -562,8 +562,8 @@ namespace MediTech.ViewModels
 
         #endregion
 
-        private List<LookupReferenceValueModel> _Location;
-        public List<LookupReferenceValueModel> Location
+        private List<LocationModel> _Location;
+        public List<LocationModel> Location
         {
             get { return _Location; }
             set { Set(ref _Location, value); }
@@ -705,12 +705,15 @@ namespace MediTech.ViewModels
             ProvinceSource = DataService.Technical.GetProvince();
             Triage = dataLookupSource.Where(p => p.DomainCode == "EMGCD").ToList();
             //Location = DataService.Technical.GetLocationByType(3160);
-            SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
+            //SelectedLocation = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
+            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            SelectedLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
             EncouterER = dataLookupSource.Where(p => p.DomainCode == "ENTYP").FirstOrDefault(p => p.ValueCode == "AEPAT");
             //Bed = DataService.Technical.GetLocationByLocationUID(SelectedLocation.LocationUID).ToList();
-
-            Bed = DataService.PatientIdentity.GetBedLocation(SelectedLocation.LocationUID, EncouterER.Key).Where(p => p.BedIsUse == "N").ToList();
+            var bed = DataService.Technical.GetLocationByTypeUID(3160).FirstOrDefault();
+            Bed = DataService.PatientIdentity.GetBedLocation(bed.LocationUID, EncouterER.Key).Where(p => p.BedIsUse == "N").ToList();
             
 
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
@@ -802,9 +805,9 @@ namespace MediTech.ViewModels
                 
                 visitInfo.VISTSUID = 417; //Registered
                 visitInfo.PRITYUID = 442; //Emergency
-                visitInfo.OwnerOrganisationUID = 17; //รอเปลี่ยนใช้ของคลินิกไปก่อน
+                visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID; //รอเปลี่ยนใช้ของคลินิกไปก่อน
                 visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
-                visitInfo.LocationUID = SelectedLocation.LocationUID;
+                visitInfo.LocationUID = AppUtil.Current.LocationUID;
                 if (SelectedBed != null)
                 {
                     visitInfo.BedUID = SelectedBed.LocationUID;

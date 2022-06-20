@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="MediTech.Views.EmergencyList"
+﻿<UserControl x:Class="MediTech.Views.IPDSearch"
              xmlns:vm="clr-namespace:MediTech.Views"
              xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" 
              xmlns:dxb="http://schemas.devexpress.com/winfx/2008/xaml/bars" 
@@ -15,7 +15,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d" 
-                         DataContext="{Binding EmergencyListViewModel ,Source={StaticResource Locator}}"
+                         DataContext="{Binding  IPDSearchViewModel ,Source={StaticResource Locator}}"
             d:DesignHeight="600" d:DesignWidth="900">
     <UserControl.Resources>
         <cv:ImageConverter x:Key="imgconvert" />
@@ -89,16 +89,6 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Action/MoveDown.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="Arrived">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
                                 <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -174,7 +164,7 @@
                                 <Image Source="/MediTech;component/Resources/Images/Menu/ReportResultMass.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
-                                   ToolTip="Manage AEAdmission">
+                                   ToolTip="Scanned Document">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
@@ -282,21 +272,21 @@
                             </dxlc:LayoutGroup>
 
                             <dxlc:LayoutGroup>
-                                <dxlc:LayoutItem Label="แผนก">
-                                    <dxe:ComboBoxEdit x:Name="cmbLocation" 
-                                      ItemsSource="{Binding Location}" 
-                                      SelectedItem="{Binding SelectLocation}"
-                                      ValueMember="LocationUID" 
+                                <dxlc:LayoutItem Label="สถานประกอบการ">
+                                    <dxe:ComboBoxEdit x:Name="cmbOrganisation" 
+                                      ItemsSource="{Binding Organisations}" 
+                                      SelectedItem="{Binding SelectOrganisation}"
+                                      ValueMember="HealthOrganisationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"
                                       NullValueButtonPlacement="EditBox"
                                       ImmediatePopup="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="Payor">
-                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding InsuranceCompany}" 
-                                      SelectedItem="{Binding SelectInsuranceCompany}"
-                                      ValueMember="InsuranceCompanyUID"
-                                      DisplayMember="CompanyName"
+                                    <dxg:LookUpEdit x:Name="lkePayorName" ItemsSource="{Binding PayorDetails}" 
+                                      SelectedItem="{Binding SelectPayorDetail}"
+                                      ValueMember="PayorDetailUID"
+                                      DisplayMember="PayorName"
                                       NullValueButtonPlacement="EditBox"
                                       AllowNullInput="True"
                                       AutoComplete="True" 
@@ -317,7 +307,7 @@
                         AutoWidth="True"
                         ShowGroupedColumns="False" />
                                                     </dxg:GridControl.View>
-                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="CompanyName"/>
+                                                    <dxg:GridColumn x:Name="colPayorName" FieldName="PayorName"/>
                                                 </dxg:GridControl>
                                             </ControlTemplate>
                                         </dxg:LookUpEdit.PopupContentTemplate>

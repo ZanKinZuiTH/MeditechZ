@@ -373,7 +373,8 @@ namespace MediTech.ViewModels
                 model.BookedDttm = DateTime.Parse(CheckoutDate.ToString("dd/MM/yyyy") + " " + CheckoutTime.ToString("HH:mm"));
                 model.ReferredByUID = AppUtil.Current.UserID;
                 model.VISTYUID = DataService.Technical.GetReferenceValueByCode("VISTY", "EMR").Key.Value;
-                model.RequestedByLocationUID = DataService.Technical.GetLocationByUID(43).LocationUID;
+                model.RequestedByLocationUID = AppUtil.Current.LocationUID;
+                model.BKTYPUID = DataService.Technical.GetReferenceValueByCode("BKTYP", "REQTD").Key ?? 0;
 
                 model = DataService.PatientIdentity.SaveIPBooking(model, AppUtil.Current.UserID);
                 CloseViewDialog(ActionDialog.Save);

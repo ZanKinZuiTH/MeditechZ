@@ -154,7 +154,8 @@
                         <!-- Context Menu when right click on listbox space -->
                         <ContextMenu x:Key="ListContextMenu">
                             <MenuItem Header="Direct Admit" Command="{Binding DataContext.DirectAdmitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
-                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="Tranfer Bed" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
                             <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
                             </MenuItem>
                             <MenuItem Header="Event log" Command="{Binding DataContext.EventlogCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >

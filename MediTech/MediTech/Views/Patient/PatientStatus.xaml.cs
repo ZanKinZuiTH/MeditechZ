@@ -56,7 +56,7 @@ namespace MediTech.Views
         void PatientStatus_Loaded(object sender, RoutedEventArgs e)
         {
 
-            cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "CHKOUT" || p.ValueCode == "SNDDOC").ToList();
+            cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "CHKOUT" || p.ValueCode == "SNDDOC" || p.ValueCode == "ARRVD").ToList();
             if (cmbStatus.ItemsSource != null)
             {
                 if (type == PatientStatusType.SendToDoctor)
@@ -69,6 +69,11 @@ namespace MediTech.Views
                 {
                     txtTitle.Text = "Medical Discharge";
                     cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "CHKOUT");
+                }
+                else if (type == PatientStatusType.Arrive)
+                {
+                    txtTitle.Text = "Arrived";
+                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "ARRVD");
                 }
             }
 

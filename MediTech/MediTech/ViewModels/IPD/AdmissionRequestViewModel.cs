@@ -48,6 +48,7 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
         public List<LocationModel> LocationDepartment { get; set; }
 
         private LocationModel _SelectedLocationDepartment;
@@ -254,6 +255,7 @@ namespace MediTech.ViewModels
             iPBooking.LocationUID = SelectedLocationDepartment.LocationUID;
             iPBooking.RequestedByUID = AppUtil.Current.UserID;
             iPBooking.RequestedByLocationUID = AppUtil.Current.OwnerOrganisationUID;
+            iPBooking.BKTYPUID = DataService.Technical.GetReferenceValueByCode("BKTYP", "REQTD").Key ?? 0;
         }
 
         private void Cancel()

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class EmergencyListViewModel: MediTechViewModelBase
+    public class IPDSearchViewModel : MediTechViewModelBase
     {
         #region Properties
         public string LN { get; set; }
@@ -103,32 +103,32 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<LocationModel> _Location;
-        public List<LocationModel> Location
+        private List<HealthOrganisationModel> _Organisations;
+        public List<HealthOrganisationModel> Organisations
         {
-            get { return _Location; }
-            set { Set(ref _Location, value); }
+            get { return _Organisations; }
+            set { Set(ref _Organisations, value); }
         }
 
-        private LocationModel _SelectLocation;
-        public LocationModel SelectLocation
+        private HealthOrganisationModel _SelectOrganisation;
+        public HealthOrganisationModel SelectOrganisation
         {
-            get { return _SelectLocation; }
-            set { Set(ref _SelectLocation, value); }
+            get { return _SelectOrganisation; }
+            set { Set(ref _SelectOrganisation, value); }
         }
 
-        private List<InsuranceCompanyModel> _InsuranceCompany;
-        public List<InsuranceCompanyModel> InsuranceCompany
+        private List<PayorDetailModel> _PayorDetails;
+        public List<PayorDetailModel> PayorDetails
         {
-            get { return _InsuranceCompany; }
-            set { Set(ref _InsuranceCompany, value); }
+            get { return _PayorDetails; }
+            set { Set(ref _PayorDetails, value); }
         }
 
-        private InsuranceCompanyModel _SelectInsuranceCompany;
-        public InsuranceCompanyModel SelectInsuranceCompany
+        private PayorDetailModel _SelectPayorDetail;
+        public PayorDetailModel SelectPayorDetail
         {
-            get { return _SelectInsuranceCompany; }
-            set { Set(ref _SelectInsuranceCompany, value); }
+            get { return _SelectPayorDetail; }
+            set { Set(ref _SelectPayorDetail, value); }
         }
 
         private ObservableCollection<PatientVisitModel> _PatientVisits;
@@ -223,12 +223,6 @@ namespace MediTech.ViewModels
             get { return _ManageAEAdmissionCommand ?? (_ManageAEAdmissionCommand = new RelayCommand(ManageAEAdmission)); }
         }
 
-        private RelayCommand _ArrivedCommand;
-        public RelayCommand ArrivedCommand
-        {
-            get { return _ArrivedCommand ?? (_ArrivedCommand = new RelayCommand(Arrived)); }
-        }
-
         #endregion
 
         #region Medtod
@@ -239,24 +233,23 @@ namespace MediTech.ViewModels
         int FINDIS = 421;
         int CANCEL = 410;
 
-        public EmergencyListViewModel()
+        public IPDSearchViewModel()
         {
             EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
-            SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "AEPAT");
+            SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "INPAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
             SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
-            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC").Key) ;
+            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC").Key);
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 1, Display = "วันนี้" });
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });
             DateTypes.Add(new LookupItemModel { Key = 3, Display = "เดือนนี้" });
             SelectDateType = DateTypes.FirstOrDefault();
 
-            var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Location = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            SelectLocation = Location.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-            InsuranceCompany = DataService.Billing.GetInsuranceCompanyAll();
+            Organisations = GetHealthOrganisationMedical();
+            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == 17);
+            PayorDetails = DataService.Billing.GetPayorDetail();
         }
         public override void OnLoaded()
         {
@@ -282,37 +275,10 @@ namespace MediTech.ViewModels
                 }
             }
 
-            int? insuranceCompanyUID = SelectInsuranceCompany != null ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
+            int? payorDetailUID = SelectPayorDetail != null ? SelectPayorDetail.PayorDetailUID : (int?)null;
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
-            int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
-            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            int? encounterUID = SelectEncounterType.Key ?? 0;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchERPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID, locationUID, insuranceCompanyUID, null, encounterUID));
-        }
-        private void Arrived()
-        {
-            if (SelectPatientVisit != null)
-            {
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
-                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
-                    OnUpdateEvent();
-                    return;
-                }
-                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive);
-                arrived.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                arrived.Owner = MainWindow;
-                arrived.ShowDialog();
-                ActionDialog result = arrived.ResultDialog;
-                if (result == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
+            int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchIPDPatientVisit(LN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, 17, payorDetailUID, null));
         }
 
         private void SendToDoctor()
@@ -343,19 +309,21 @@ namespace MediTech.ViewModels
 
         private void ManageAEAdmission()
         {
-            
+
             if (SelectPatientVisit != null)
             {
                 PatientAEAdmissionModel erVisit = DataService.PatientIdentity.GetPatientAEAdmissionByUID(SelectPatientVisit.PatientVisitUID);
 
                 EmergencyRegister pageview = new EmergencyRegister();
-                (pageview.DataContext as EmergencyRegisterViewModel).AssingModel(new PatientInformationModel(),erVisit);
+                (pageview.DataContext as EmergencyRegisterViewModel).AssingModel(new PatientInformationModel(), erVisit);
                 EmergencyRegisterViewModel result = (EmergencyRegisterViewModel)LaunchViewDialog(pageview, "ERREG", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
-                    SearchPatientVisit();
+                    //SearchPatientVisit();
                 }
+
+
             }
         }
 
@@ -366,7 +334,7 @@ namespace MediTech.ViewModels
             {
                 PatientVitalSign pageview = new PatientVitalSign();
                 (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(SelectPatientVisit);
-                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT",true);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
@@ -403,31 +371,8 @@ namespace MediTech.ViewModels
         }
         private void MedicalDischarge()
         {
-            if (SelectPatientVisit != null)
-            {
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
-                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
-                    OnUpdateEvent();
-                    return;
-                }
-                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge);
-                medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
-                medicalDischarge.Owner = MainWindow;
-                medicalDischarge.ShowDialog();
-                ActionDialog result = medicalDischarge.ResultDialog;
-                if (result == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
+
         }
-
-
 
         private void RunPatientReport()
         {
