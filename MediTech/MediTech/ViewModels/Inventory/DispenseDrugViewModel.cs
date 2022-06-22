@@ -180,7 +180,7 @@ namespace MediTech.ViewModels
                 //DataService.Pharmacy.DispensePrescription(Prescription,AppUtil.Current.UserID);
                 foreach (var item in PrescriptionItems)
                 {
-                    if (item.Quantity >= item.BalQty && item.ORDSTUID == 2847)
+                    if (item.BalQty > item.Quantity && item.ORDSTUID == 2847)
                     {
                         DataService.Pharmacy.DispensePrescriptionItem(item, AppUtil.Current.UserID);
 
