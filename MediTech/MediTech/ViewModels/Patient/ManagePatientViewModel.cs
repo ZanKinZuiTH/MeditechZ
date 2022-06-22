@@ -43,14 +43,14 @@ namespace MediTech.ViewModels
                     //PayorDetailSource = DataService.Billing.GetPayorDetail();
                     //PolicySource = DataService.Billing.GetPolicyMasterAll();
 
-                    if (patientModel.PatientUID != 0)
+                    if (patientModel != null && patientModel.PatientUID != 0)
                     {
                         var PatientInsurance = DataService.PatientIdentity.GetPatientInsuranceDetail(patientModel.PatientUID);
                         PatientInsuranceDetail = new ObservableCollection<PatientInsuranceDetailModel>(PatientInsurance);
                     }
                     if (SelectTabIndex == 2)
                     {
-                        if (patientModel.PatientUID != 0)
+                        if (patientModel != null && patientModel.PatientUID != 0)
                         {
                             PatientModificateLog = DataService.PatientIdentity.GetPatientDemographicLogByUID(patientModel.PatientUID);
                         }
