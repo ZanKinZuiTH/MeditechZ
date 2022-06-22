@@ -1273,7 +1273,7 @@ namespace MediTechWebApi.Controllers
 
                     int outseqervisitUID;
                     string erseqVisitID = SEQHelper.GetSEQIDFormat("SEQIPDVisitID", out outseqervisitUID);
-                    //string erseqVisitID = "1155223";
+                   
 
                     if (string.IsNullOrEmpty(erseqVisitID))
                     {
