@@ -1,5 +1,6 @@
 ﻿using MediTech.DataService;
 using MediTech.Model;
+using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +56,10 @@ namespace MediTech.Views
 
         void PatientStatus_Loaded(object sender, RoutedEventArgs e)
         {
-
-            cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "CHKOUT" || p.ValueCode == "SNDDOC" || p.ValueCode == "ARRVD").ToList();
+            var org = (new MediTechViewModelBase()).GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            cmbLocations.ItemsSource = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "REGST" || p.ValueCode == "ARRVD"
+            || p.ValueCode == "ARRWI" || p.ValueCode == "SNDDOC" || p.ValueCode == "AWRES" || p.ValueCode == "RFLSTS").ToList();
             if (cmbStatus.ItemsSource != null)
             {
                 if (type == PatientStatusType.SendToDoctor)
@@ -64,16 +67,45 @@ namespace MediTech.Views
                     txtTitle.Text = "Send To Doctor";
                     cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "SNDDOC");
                     cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
+                    cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
                 }
                 else if (type == PatientStatusType.MedicalDischarge)
                 {
+                    cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "CHKOUT" || p.ValueCode == "SNDDOC" || p.ValueCode == "ARRVD").ToList();
                     txtTitle.Text = "Medical Discharge";
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "CHKOUT");
+                    cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+                    
+                    if(model.VISTSUID != 418)
+                    {
+                        cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "CHKOUT");
+                        cmbStatus.IsEnabled = false;
+                    }
+                    else
+                    {
+                        cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "ARRVD");
+                        cmbStatus.IsEnabled = false;
+                    }
                 }
                 else if (type == PatientStatusType.Arrive)
                 {
-                    txtTitle.Text = "Arrived";
-                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "ARRVD");
+                    txtTitle.Text = "Change Status";
+                    cmbDoctor.ItemsSource = (new UserManageService()).GetCareproviderDoctor();
+                    cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.Key == model.VISTSUID);
+                    if (model.LocationUID != null && model.LocationUID != 0)
+                    {
+                        cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == model.LocationUID);
+                    }
+
+                    if(model.VISTSUID == 419)
+                    {
+                        lytDoctor.Visibility = System.Windows.Visibility.Visible;
+                        cmbDoctor.SelectedItem = ((List<CareproviderModel>)cmbDoctor.ItemsSource).FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);   
+                    }
+                    else
+                    {
+                        lytDoctor.Visibility = System.Windows.Visibility.Collapsed;
+                    }
                 }
             }
 
@@ -95,6 +127,7 @@ namespace MediTech.Views
             {
                 int? CareProviderUID = null;
                 DateTime arriveTime = timeEditor.DateTime;
+                int? LocationUID = null;
 
                 if (type == PatientStatusType.SendToDoctor)
                 {
@@ -102,16 +135,33 @@ namespace MediTech.Views
                     {
                         return;
                     }
-
+                    LocationUID = model.LocationUID;
                     CareProviderUID = (int)cmbDoctor.EditValue;
                 }
-                else if(type == PatientStatusType.MedicalDischarge)
+                else if (type == PatientStatusType.MedicalDischarge)
                 {
+                    LocationUID = model.LocationUID;
                     CareProviderUID = model.CareProviderUID;
+                }
+                else if(type == PatientStatusType.Arrive)
+                {
+                    LocationUID = model.LocationUID;
+                    CareProviderUID = model.CareProviderUID;
+
+                    if ((int)cmbStatus.EditValue == 419)
+                    {
+                        if (cmbDoctor.EditValue == null)
+                        {
+                            (new MediTechViewModelBase()).WarningDialog("กรุณาเลือกแพทย์");
+                            return;
+                        }
+                        
+                        CareProviderUID = (int)cmbDoctor.EditValue;
+                    }
                 }
 
 
-                (new PatientIdentityService()).ChangeVisitStatus(model.PatientVisitUID, (int)cmbStatus.EditValue, CareProviderUID, arriveTime, AppUtil.Current.UserID);
+                (new PatientIdentityService()).ChangeVisitStatus(model.PatientVisitUID, (int)cmbStatus.EditValue, CareProviderUID, LocationUID, arriveTime, AppUtil.Current.UserID);
                 ResultDialog = ActionDialog.Save;
                 this.Close();
             }

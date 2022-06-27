@@ -29,5 +29,6 @@ namespace MediTech.Model
         public string OwnerOrganisationName { get; set; }
         public string StatusFlag { get; set; }
         public string RequestStatus { get; set; }
+        public bool IsCheckin { get; set; }
     }
 }

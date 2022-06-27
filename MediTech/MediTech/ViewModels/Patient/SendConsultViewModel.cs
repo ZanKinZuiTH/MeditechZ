@@ -137,7 +137,7 @@ namespace MediTech.ViewModels
 
         public SendConsultViewModel()
         {
-            BookingStatus = DataService.Technical.GetReferenceValueByCode("BKSTS", "REQTED");
+            BookingStatus = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
@@ -151,6 +151,11 @@ namespace MediTech.ViewModels
                 WarningDialog("มีรายการร้องขอแล้ว ไม่สามารถทำรายการได้อีก");
                 return;
             }
+
+            //if(SelectLocations.LocationUID == AppUtil.Current.LocationUID){
+            //    WarningDialog("กรุณาเลือกแผนกใหม่");
+            //    return;
+            //}
 
             if (AppointmentDate == DateTime.MinValue)
             {
@@ -170,13 +175,7 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือกวันเวลาทำนัดใหม่");
                 return;
             }
-
-            if (SelectLocations == null)
-            {
-                WarningDialog("กรุณาเลือกแผนก");
-                return;
-            }
-
+            
             AssignToGrid();
 
             if(requestDetail != null)
@@ -191,7 +190,7 @@ namespace MediTech.ViewModels
             patientVisitModel = model;
             int patientUID = Convert.ToInt32(model.PatientUID);
             int patientVisitUID = Convert.ToInt32(model.PatientVisitUID);
-            int bkstsUID = DataService.Technical.GetReferenceValueByCode("BKSTS","REQTED").Key ?? 0;
+            int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
 
             var requestData = DataService.PatientIdentity.GetAppointmentRequestbyUID(patientUID, patientVisitUID, bkstsUID);
             AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(requestData);
@@ -200,14 +199,16 @@ namespace MediTech.ViewModels
         private void AssignToGrid()
         {
             requestDetail = new AppointmentRequestModel();
+            var time = AppointmentTime.Value.TimeOfDay;
 
-            requestDetail.AppointmentDttm = AppointmentDate.Add(AppointmentTime.Value.TimeOfDay);
+            requestDetail.AppointmentDttm = AppointmentDate;
+            requestDetail.AppointmentDttm.Date.Add(AppointmentTime.Value.TimeOfDay);
             requestDetail.BKSTSUID = BookingStatus.Key ?? 0;
             requestDetail.RequestStatus = BookingStatus.Display;
             requestDetail.PatientUID = patientVisitModel.PatientUID;
             requestDetail.PatientVisitUID = patientVisitModel.PatientVisitUID;
             requestDetail.CareProviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
-            requestDetail.CareProviderName = Doctors.FirstOrDefault(p => p.CareproviderUID == SelectDoctor.CareproviderUID).FullName;
+            requestDetail.CareProviderName = SelectDoctor != null ? Doctors.FirstOrDefault(p => p.CareproviderUID == SelectDoctor.CareproviderUID).FullName : null;
             requestDetail.Comments = Comments;
             requestDetail.CUser = AppUtil.Current.UserID;
             requestDetail.MUser = AppUtil.Current.UserID;

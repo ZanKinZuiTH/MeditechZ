@@ -96,12 +96,33 @@
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
-                <dx:SimpleButton Width="80" Command="{Binding CheckinCommand}"
-                                     Height="25" Content="Checkin"/>
-                <dx:SimpleButton Width="80" Command="{Binding DropCommand}" IsEnabled="{Binding IsEnableCancel}"
-                                     Height="25" Content="Drop"/>
-                <!--<dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
-                                     Height="25" Content="cancel"/>-->
+                <dx:SimpleButton Width="80" Command="{Binding CheckinCommand}" 
+                                     Height="25" Content="Checkin">
+                    <dx:SimpleButton.Style>
+                        <Style TargetType="dx:SimpleButton">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRequest}" Value="True">
+                                    <Setter Property="IsEnabled" Value="false"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dx:SimpleButton.Style>
+                </dx:SimpleButton>
+                <dx:SimpleButton Width="80" Command="{Binding DropCommand}"
+                                     Height="25" Content="Drop">
+                    <dx:SimpleButton.Style>
+                        <Style TargetType="dx:SimpleButton">
+                            <Setter Property="IsEnabled" Value="True"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsRequest}" Value="True">
+                                    <Setter Property="IsEnabled" Value="false"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </dx:SimpleButton.Style>
+                </dx:SimpleButton>
+
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
