@@ -126,9 +126,9 @@
                                 <dxlc:LayoutItem Label="Claim Percentage">
                                     <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True" Mask="\d+" MaskType="RegEx"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="Fixed Copay Amount">
+                                <!--<dxlc:LayoutItem Label="Fixed Copay Amount">
                                     <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
-                                </dxlc:LayoutItem>
+                                </dxlc:LayoutItem>-->
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutItem Label="Active From">
                                 <dxe:DateEdit EditValue="{Binding ActiveFrom}" AllowNullInput="True"/>

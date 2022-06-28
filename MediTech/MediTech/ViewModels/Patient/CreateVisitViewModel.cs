@@ -81,6 +81,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _EncouterTypeSource;
+
+        public List<LookupReferenceValueModel> EncouterTypeSource
+        {
+            get { return _EncouterTypeSource; }
+            set
+            {
+                Set(ref _EncouterTypeSource, value);
+            }
+        }
+
 
         private LookupReferenceValueModel _SelectedVisitType;
 
@@ -482,13 +493,14 @@ namespace MediTech.ViewModels
             (this.View as CreateVisit).banner.SetPatientBanner(Patient.PatientUID, 0);
             var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
-            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT,PAYRTP");
+            List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT,PAYRTP,ENTYP");
             //Organisations = GetHealthOrganisationMedical();
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").ToList();
             PayorTypes = dataLookupSource.Where(P => P.DomainCode == "PAYRTP").ToList();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
             InsuranceCompanys = DataService.Billing.GetInsuranceCompanies();
+            EncouterTypeSource = dataLookupSource.Where(p => p.DomainCode == "ENTYP").ToList();
             //SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
             SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
             SelectedVisitType = VisitTypeSource.FirstOrDefault();
@@ -793,7 +805,19 @@ namespace MediTech.ViewModels
             visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
             visitInfo.PatientUID = Patient.PatientUID;
             visitInfo.VISTYUID = SelectedVisitType.Key;
-            visitInfo.ENTYPUID = 4325;
+            switch (SelectedVisitType.ValueCode)
+            {
+                case "HLPRO":
+                case "MBCHK":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "HEAL").Key;
+                    break;
+                case "EMR":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "AEPAT").Key;
+                    break;
+                default:
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "OUPAT").Key;
+                    break;
+            }
             visitInfo.VISTSUID = 417;
             visitInfo.PRITYUID = SelectedPriority.Key;
             visitInfo.Comments = CommentDoctor;
@@ -846,7 +870,7 @@ namespace MediTech.ViewModels
             {
                 PatientVisitInfo = visitInfo;
             }
-       
+
 
             var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
             if (parent != null && parent is System.Windows.Window)

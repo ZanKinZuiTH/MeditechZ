@@ -139,7 +139,7 @@
             RowTreeWidth="243" ShowBorder="False" ShowColumnHeaders="False" ShowRowHeaders="False" ShowDataHeaders="False" AllowDrop="False" AllowDrag="False" ShowColumnGrandTotals="True"
                                            ShowFilterHeaders="False">
                 <dxpg:PivotGridControl.Fields>
-                    <dxpg:PivotGridField  FieldName="SubAccountName" Area="RowArea" AllowFilter="False"
+                    <dxpg:PivotGridField  FieldName="SubAccountName" Area="RowArea" AllowFilter="False" 
                                 AreaIndex="0" Width="150" Caption="Item" />
                     <dxpg:PivotGridField  FieldName="SubGroupName" Area="RowArea" AllowFilter="False"
                                 AreaIndex="0" Width="150" Caption="Sub Group" />

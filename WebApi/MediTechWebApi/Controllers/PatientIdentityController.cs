@@ -1000,7 +1000,25 @@ namespace MediTechWebApi.Controllers
 
 
                     int outseqvisitUID;
-                    string seqVisitID = SEQHelper.GetSEQIDFormat("SEQVisitID", out outseqvisitUID);
+                    var encounterType = db.ReferenceValue.Where(p => p.DomainCode == "ENTYP").ToList();
+                    var selectEncounterType = encounterType.FirstOrDefault(p => p.UID == patientVisitInfo.ENTYPUID);
+                    string seqVisitID = "";
+                    switch (selectEncounterType.ValueCode)
+                    {
+                        case "HEAL":
+                            seqVisitID = SEQHelper.GetSEQIDFormat("SEQVisitID", out outseqvisitUID);
+                            seqVisitID = seqVisitID.Replace("O", "H");
+                            break;
+                        case "AEPAT":
+                            seqVisitID = SEQHelper.GetSEQIDFormat("SEQERVisitID", out outseqvisitUID);
+                            break;
+                        default:
+                            seqVisitID = SEQHelper.GetSEQIDFormat("SEQVisitID", out outseqvisitUID);
+                            break;
+                    }
+
+
+
 
                     if (string.IsNullOrEmpty(seqVisitID))
                     {

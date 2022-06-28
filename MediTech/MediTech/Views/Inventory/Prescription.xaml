@@ -328,19 +328,23 @@
 
                         </dx:SimpleButton>
                     </dxlc:LayoutItem>
-
-
-                    <dxlc:LayoutGroup >
-                        <dxlc:LayoutItem>
-                            <dx:SimpleButton Width="85" Command="{Binding DispenseCommand}"
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding EditDispenseCommand}"
                                      Height="25" >
-                                <StackPanel  Orientation="Horizontal">
-                                    <TextBlock Text="จ่ายยา" VerticalAlignment="Center"/>
-                                </StackPanel>
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="แก้ไข จ่ายยา" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
 
-                            </dx:SimpleButton>
-                        </dxlc:LayoutItem>
-                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Width="85" Command="{Binding DispenseCommand}"
+                                     Height="25" >
+                            <StackPanel  Orientation="Horizontal">
+                                <TextBlock Text="จ่ายยา" VerticalAlignment="Center"/>
+                            </StackPanel>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>

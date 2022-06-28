@@ -187,6 +187,14 @@ namespace MediTech.ViewModels
             get { return _DispenseCommand ?? (_DispenseCommand = new RelayCommand(Dispense)); }
         }
 
+        private RelayCommand _EditDispenseCommand;
+
+        public RelayCommand EditDispenseCommand
+        {
+            get { return _EditDispenseCommand ?? (_EditDispenseCommand = new RelayCommand(Dispense)); }
+        }
+
+
         private RelayCommand _CancelDispenseCommand;
 
         public RelayCommand CancelDispenseCommand
@@ -339,6 +347,20 @@ namespace MediTech.ViewModels
                     CancelDispense cancelDispense = new CancelDispense();
                     (cancelDispense.DataContext as CancelDispenseViewModel).AssignModel(SelectPrescription.PrescriptionItems, patientVisit);
                     ChangeViewPermission(cancelDispense);
+                }
+            }
+        }
+
+        public void EditDispense()
+        {
+            if (SelectPrescription != null)
+            {
+                if (SelectPrescription.PrescriptionStatus == "Raised")
+                {
+                    var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
+                    DispenseDrug dispense = new DispenseDrug();
+                    (dispense.DataContext as DispenseDrugViewModel).AssingModel(SelectPrescription, patientVisit);
+                    ChangeViewPermission(dispense);
                 }
             }
         }
