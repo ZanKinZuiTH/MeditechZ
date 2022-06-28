@@ -625,15 +625,16 @@ namespace MediTech.ViewModels
 
         public void ConfirmFromRequestAdmission(IPBookingModel datarequest)
         {
-
-            //SelectBed = ListWard;
-            //SelectBedCatagory = BedCatagory.FirstOrDefault
+           
             if (datarequest.LocationUID != null)
             {
+                if (datarequest.BedUID != null)
+                {
+
+                }
                 Ward = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.LocationUID).ToList();
                 ListWard = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.BedUID).ToList();
                 SelectWard = ListWard.FirstOrDefault(p=> p.LocationUID == datarequest.LocationUID);
-
                 //EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
                 //SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "INPAT");
 

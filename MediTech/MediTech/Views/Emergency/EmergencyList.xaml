@@ -392,6 +392,7 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="แพทย์เจ้าของคนไข้" FieldName="CareProviderName" ReadOnly="True"/>
                     <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="IDPassport" FieldName="PassportNo" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
                     <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
                     <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>

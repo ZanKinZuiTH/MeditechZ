@@ -98,7 +98,7 @@
                                    ToolTip="Arrived">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -108,7 +108,7 @@
                                    ToolTip="ส่งตรวจ">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -118,7 +118,7 @@
                                    ToolTip="Vital Sign">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -128,7 +128,7 @@
                                    ToolTip="แพ้ยา">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.AllergyCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -138,7 +138,7 @@
                                    ToolTip="คีย์ Order">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -148,7 +148,7 @@
                                    ToolTip="จบการรักษา">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.MedicalDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -158,7 +158,7 @@
                                    ToolTip="พิมพ์ เอกสาร">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.RunPatientReportCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -170,7 +170,7 @@
                                    ToolTip="แก้ไข Visit">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ModifyVisitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -180,7 +180,7 @@
                                    ToolTip="Manage AEAdmission">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -190,7 +190,7 @@
                                    ToolTip="ER Patient Record">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -200,7 +200,7 @@
                                    ToolTip="ขายสินค้า">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding Path=DataContext.SalesItemCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}" />
+                                            <mvvm:EventToCommand Command="{Binding Path=DataContext.SalesItemCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>-->
@@ -365,7 +365,7 @@
                                        DataRowTemplate="{StaticResource expandableRowDetailTemplate}">
                             <dxg:TableView.ColumnMenuCustomizations>
                                 <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
-                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyList}}}"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:IPDSearch}}}"
                                                    Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
                                                    dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
                                 <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />

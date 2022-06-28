@@ -339,7 +339,7 @@ namespace MediTech.ViewModels
                             SelectDrugSearch = new ItemMasterModel { ItemMasterUID = SelectPatientAllergy.IdentifyingUID.Value, Name = SelectPatientAllergy.AllergicTo };
                             FreeText = "";
                             break;
-                        case "อื่นๆ":
+                        case "ไม่มีในระบบ":
 
                             SearchGenericCriteria = "";
                             SearchDrugCriteria = "";
@@ -416,7 +416,7 @@ namespace MediTech.ViewModels
         {
             var refData = DataService.Technical.GetReferenceValueList("ALRCL,SEVRT,CERNT");
             AllergyClass = refData.Where(p => p.DomainCode == "ALRCL").ToList();
-            Severity = refData.Where(p => p.DomainCode == "SEVRT").ToList();
+            Severity = refData.Where(p => p.DomainCode == "SEVRT").OrderBy(w=> w.DisplayOrder).ToList();
             Accuracy = refData.Where(p => p.DomainCode == "CERNT").ToList();
             SelectAllergyClass = AllergyClass.FirstOrDefault();
 

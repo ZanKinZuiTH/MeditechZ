@@ -42,6 +42,7 @@ namespace MediTech.Model
         public long PatientUID { get; set; }
         public string PatientName { get; set; }
         public string Gender { get; set; }
+        public string VisitStatusCode { get; set; }
 
         public string PatientID { get; set; }
         public string AgeString { get; set; }

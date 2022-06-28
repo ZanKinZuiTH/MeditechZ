@@ -50,6 +50,44 @@ namespace MediTechWebApi.Controllers
         }
 
 
+
+        [Route("GetLocationByBedUID")]
+        [HttpPost]
+        public HttpResponseMessage ChangeBedStatus(int BedUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                MediTech.DataBase.Location vendorDetail = db.Location.Where(p => p.UID == locationModel.LocationUID && p.StatusFlag == "A").FirstOrDefault();
+
+                //if (CurrentModel == null)
+                //{
+                //    vendorDetail = new MediTech.DataBase.VendorDetail();
+                //    vendorDetail.CUser = userID;
+                //    vendorDetail.CWhen = now;
+                //}
+
+                //vendorDetail.LCTSTUID = locationModel.LCTSTUID;
+                //vendorDetail.ActiveTo = locationModel.ActiveTo;
+                vendorDetail.MUser = userID;
+                vendorDetail.MWhen = now;
+                vendorDetail.StatusFlag = "A";
+                db.Location.AddOrUpdate(vendorDetail);
+                db.SaveChanges();
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+
+
+
         [Route("ChangeBedStatus")]
         [HttpPost]
         public HttpResponseMessage ChangeBedStatus(LocationModel locationModel, int userID)

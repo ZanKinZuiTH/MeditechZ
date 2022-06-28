@@ -34,18 +34,7 @@ namespace MediTech.ViewModels
             }
         }
 
-
-        private BedStatusModel _SelectBedData;
-
-        public BedStatusModel SelectBedData
-        {
-            get { return _SelectBedData; }
-            set
-            {
-                Set(ref _SelectBedData, value);
-            }
-        }
-
+  
 
 
 
@@ -70,6 +59,14 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedBedWardView, value); }
            
         }
+
+        private PatientVisitModel _SelectPatientVisit;
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set { Set(ref _SelectPatientVisit, value); }
+        }
+
 
 
         public string PatientName { get; set; }
@@ -144,14 +141,154 @@ namespace MediTech.ViewModels
             get { return _EventlogCommand ?? (_EventlogCommand = new RelayCommand(Eventlog)); }
         }
 
+
+        private RelayCommand _ArrivedCommand;
+        public RelayCommand ArrivedCommand
+        {
+            get { return _ArrivedCommand ?? (_ArrivedCommand = new RelayCommand(Arrived)); }
+
+        }
+        private RelayCommand _CreateOrderCommand;
+
+        public RelayCommand CreateOrderCommand
+        {
+            get { return _CreateOrderCommand ?? (_CreateOrderCommand = new RelayCommand(CreateOrder)); }
+        }
+
+
+        private RelayCommand _PrintDocumentCommand;
+
+        public RelayCommand PrintDocumentCommand
+        {
+            get { return _PrintDocumentCommand ?? (_PrintDocumentCommand = new RelayCommand(PrintDocument)); }
+        }
+
+
+        private RelayCommand _PatientRecordsCommand;
+
+        public RelayCommand PatientRecordsCommand
+        {
+            get { return _PatientRecordsCommand ?? (_PatientRecordsCommand = new RelayCommand(PatientRecords)); }
+        }
+
+
         #endregion
 
         #region Method
+
+
+        int REGST = 417;
+        int CHKOUT = 418;
+        int SNDDOC = 419;
+        int FINDIS = 421;
+        int CANCEL = 410;
+
         public WardViewModel()
         {
             WardSource = DataService.Technical.GetLocationByTypeUID(3152); //แก้
             SelectedWard = WardSource.FirstOrDefault(p => p.LocationUID == 35);
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
+            //BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
+            AllBedStatus();
+
+        }
+
+        private void PatientRecords()
+        {
+            if (SelectedBedWardView != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectedBedWardView.PatientID;
+                visitModel.PatientUID = SelectedBedWardView.PatientUID;
+                visitModel.PatientVisitUID = SelectedBedWardView.PatientVisitUID ?? 0;
+                EMRView pageview = new EMRView();
+                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(visitModel);
+                EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
+            }
+        }
+
+
+        private void AllBedStatus()
+        {
+            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID, "IPD");
+            //for (int i = 0; i < length; i++)
+            //{
+
+            //}
+           
+        }
+
+        private void VitalSign()
+        {
+            if (SelectedBedWardView != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectedBedWardView.PatientID;
+                visitModel.PatientUID = SelectedBedWardView.PatientUID;
+                visitModel.PatientVisitUID = SelectedBedWardView.PatientVisitUID ?? 0;
+                PatientVitalSign pageview = new PatientVitalSign();
+                (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(visitModel);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+            }
+
+        }
+
+        private void Arrived()
+        {
+
+            if (SelectedBedWardView != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID??0);
+                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
+                    SelectPatientVisit.VisitStatus = patientVisit.VisitStatus;
+                    OnUpdateEvent();
+                    return;
+                }
+                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive);
+                arrived.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
+                arrived.Owner = MainWindow;
+                arrived.ShowDialog();
+                ActionDialog result = arrived.ResultDialog;
+                if (result == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                    //SearchPatientVisit();
+                }
+            }
+        }
+
+        private void PrintDocument()
+        {
+            if (SelectedBedWardView != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectedBedWardView.PatientID;
+                visitModel.PatientUID = SelectedBedWardView.PatientUID;
+                visitModel.PatientVisitUID = SelectedBedWardView.PatientVisitUID ?? 0;
+                visitModel.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                ShowModalDialogUsingViewModel(new RunPatientReports(), new RunPatientReportsViewModel() { SelectPatientVisit = visitModel }, true);
+            }
+        }
+
+        private void CreateOrder()
+        {
+            if (SelectedBedWardView != null)
+            {
+                PatientVisitModel visitModel = new PatientVisitModel();
+                visitModel.PatientID = SelectedBedWardView.PatientID;
+                visitModel.PatientUID = SelectedBedWardView.PatientUID;
+                visitModel.PatientVisitUID = SelectedBedWardView.PatientVisitUID ?? 0;
+                PatientOrderEntry pageview = new PatientOrderEntry();
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(visitModel);
+                PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
+            }
         }
 
         public void NewRequest()
@@ -164,10 +301,7 @@ namespace MediTech.ViewModels
 
         }
 
-        public void VitalSign()
-        {
-
-        }
+    
         public void wardveiewpge()
         {
 
@@ -199,15 +333,12 @@ namespace MediTech.ViewModels
                     
                 }
 
-
-
-
             }
-
-         
 
 
         }
+
+        
 
         public void DirectAdmit()
         {
