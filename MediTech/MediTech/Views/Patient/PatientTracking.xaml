@@ -22,11 +22,10 @@
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxg:GridControl x:Name="grdModification" ItemsSource="{Binding PatientTracking}">
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="Status" FieldName="VisitStatus" ReadOnly="True"/>
-                        <dxg:GridColumn Header="UserName" FieldName="UserName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Status" FieldName="VisitStatus" ReadOnly="True" Width="150"/>
+                        <dxg:GridColumn Header="UserName" FieldName="UserName" ReadOnly="True" Width="150"/>
                         <dxg:GridColumn Header="StartTime" FieldName="EventStartDttm" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Location" FieldName="Location" ReadOnly="True"/>
-                        <dxg:GridColumn Header="PatientVisitUID" FieldName="PatientVistUID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Location" FieldName="Location" ReadOnly="True" Width="180"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False"  ShowSearchPanelMode="Never" 

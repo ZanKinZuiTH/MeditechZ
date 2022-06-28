@@ -557,7 +557,7 @@ namespace MediTech.ViewModels
                     MessageBoxResult result = QuestionDialog("คูณต้องการส่งผู้ป่วยกลับไปรักษาใช้หรือไม่ ?");
                     if (result == MessageBoxResult.Yes)
                     {
-                        DataService.PatientIdentity.ChangeVisitStatus(SelectPatientCloseMed.PatientVisitUID, 417, SelectPatientCloseMed.CareProviderUID, null, AppUtil.Current.UserID);
+                        DataService.PatientIdentity.ChangeVisitStatus(SelectPatientCloseMed.PatientVisitUID, 417, SelectPatientCloseMed.CareProviderUID,AppUtil.Current.LocationUID, null, AppUtil.Current.UserID);
                         SaveSuccessDialog();
                         SelectPatientCloseMed = null;
                         SearchPatientVisit();

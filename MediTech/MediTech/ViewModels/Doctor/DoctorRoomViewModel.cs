@@ -944,7 +944,7 @@ namespace MediTech.ViewModels
                     MessageBoxResult result = QuestionDialog("ต้องการจบการรักษา");
                     if (result == MessageBoxResult.Yes)
                     {
-                        DataService.PatientIdentity.ChangeVisitStatus(SelectVisitMedical.PatientVisitUID, 418, SelectVisitMedical.CareProviderUID, null, AppUtil.Current.UserID);
+                        DataService.PatientIdentity.ChangeVisitStatus(SelectVisitMedical.PatientVisitUID, 418, SelectVisitMedical.CareProviderUID, AppUtil.Current.LocationUID, null, AppUtil.Current.UserID);
                         SaveSuccessDialog();
                         SelectVisitMedical = null;
                         //OnLoaded();

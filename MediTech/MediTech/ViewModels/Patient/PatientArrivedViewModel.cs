@@ -91,9 +91,14 @@ namespace MediTech.ViewModels
         #region Method
         public PatientArrivedViewModel()
         {
-            StatusSource = DataService.Technical.GetReferenceValueMany("BKSTS");
+            StatusSource = DataService.Technical.GetReferenceValueMany("VISTS");
+
+            StatusSource = StatusSource.Where(p => p.ValueCode == "REGST" || p.ValueCode == "ARRVD" 
+            || p.ValueCode == "ARRWI" || p.ValueCode == "SNDDOC" || p.ValueCode == "AWRES" || p.ValueCode == "RFLSTS").ToList();
+
             SelectStatus = StatusSource.FirstOrDefault(p => p.ValueCode == "ARRVD");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
+            Doctors = Doctors.Where(p => p.IsDoctor == true).ToList();
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             StartTime = DateTime.Now;
@@ -110,8 +115,14 @@ namespace MediTech.ViewModels
 
         private void Save()
         {
-            if(SelectStatus != null)
+            if (SelectStatus != null)
             {
+                if (SelectStatus.ValueCode == "SNDDOC" && SelectDoctor == null)
+                {
+                    WarningDialog("กรุณาเลือกแพทย์");
+                    return;
+                }
+
                 AssignToModel();
                 DataService.PatientIdentity.SavePatientVisitCareprovider(patientVisitCareprovider, appointmentRequest.AppointmentRequestUID);
                 CloseViewDialog(ActionDialog.Save);
@@ -124,8 +135,8 @@ namespace MediTech.ViewModels
 
             patientVisitCareprovider.PatientVisitUID = appointmentRequest.PatientVisitUID;
             patientVisitCareprovider.StartDttm = StartTime;
-            patientVisitCareprovider.CareProviderUID = SelectDoctor.CareproviderUID;
-            patientVisitCareprovider.CareProviderName = SelectDoctor.FullName;
+            patientVisitCareprovider.CareProviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : 0;
+            patientVisitCareprovider.CareProviderName = SelectDoctor != null ? SelectDoctor.FullName : null;
             patientVisitCareprovider.PACLSUID = SelectStatus.Key;
             patientVisitCareprovider.LocationUID = SelectLocations.LocationUID;
             patientVisitCareprovider.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
