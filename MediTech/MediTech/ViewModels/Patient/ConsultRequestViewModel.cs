@@ -13,6 +13,12 @@ namespace MediTech.ViewModels
     public class ConsultRequestViewModel : MediTechViewModelBase
     {
         #region Properties
+        private bool _IsRequest;
+        public bool IsRequest
+        {
+            get { return _IsRequest; }
+            set { Set(ref _IsRequest, value); }
+        }
 
         private DateTime? _DateFrom;
         public DateTime? DateFrom
@@ -61,7 +67,12 @@ namespace MediTech.ViewModels
         public AppointmentRequestModel SelectAppointmentRequest
         {
             get { return _SelectAppointmentRequest; }
-            set { Set(ref _SelectAppointmentRequest, value); }
+            set { Set(ref _SelectAppointmentRequest, value);
+                if (SelectAppointmentRequest != null)
+                {
+                    IsRequest = SelectAppointmentRequest.IsCheckin;
+                }
+            }
         }
 
         private ObservableCollection<AppointmentRequestModel> _AppointmentRequest;
@@ -124,13 +135,14 @@ namespace MediTech.ViewModels
 
         public ConsultRequestViewModel()
         {
-            DateFrom = DateTime.Now;
-            DateTo = DateTime.Now;
+            DateFrom = DateTime.Today;
+            DateTo = DateTime.Today;
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             BookingStatus = DataService.Technical.GetReferenceValueMany("BKSTS");
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
         }
 
         private void Search()
@@ -139,8 +151,8 @@ namespace MediTech.ViewModels
             int? locationUID = SelectLocations != null ? SelectLocations.LocationUID : (int?)null;
             int? wnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             int? bookingStatus = SelectBookingStatus != null ? SelectBookingStatus.Key : (int?)null;
-
-            AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(DataService.PatientIdentity.SearchAppointmentRequest(DateFrom, DateTo, locationUID, bookingStatus, wnerOrganisationUID, careproviderUID));
+            DateTime dateto = DateTo.Value.AddDays(1);
+            AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(DataService.PatientIdentity.SearchAppointmentRequest(DateFrom, dateto, locationUID, bookingStatus, wnerOrganisationUID, careproviderUID));
             AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(AppointmentRequest.OrderBy(p => p.AppointmentDttm).ToList());
         }
 
@@ -167,22 +179,23 @@ namespace MediTech.ViewModels
         {
             if (SelectAppointmentRequest != null)
             {
-                if (SelectAppointmentRequest.RequestStatus == "Requested")
-                {
+                //if (SelectAppointmentRequest.RequestStatus == "Requested")
+                //{
                     PatientArrived pageview = new PatientArrived();
                     (pageview.DataContext as PatientArrivedViewModel).AssignData(SelectAppointmentRequest);
                     PatientArrivedViewModel result = (PatientArrivedViewModel)LaunchViewDialog(pageview, "PTARRD", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
+                        //SelectAppointmentRequest.IsCheckin = true;
                         SaveSuccessDialog();
                         Search();
                     }
-                }
-                else
-                {
-                    WarningDialog("สถานะ" + SelectAppointmentRequest.RequestStatus + "ไม่สามารถทำรายการได้");
-                    return;
-                }
+                //}
+                //else
+                //{
+                //    WarningDialog("สถานะ" + SelectAppointmentRequest.RequestStatus + "ไม่สามารถทำรายการได้");
+                //    return;
+                //}
             }
            
         }

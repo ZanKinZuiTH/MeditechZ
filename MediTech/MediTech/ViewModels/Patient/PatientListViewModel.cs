@@ -438,15 +438,23 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-
-                ModifyVisit pageview = new ModifyVisit();
-                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
-                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
+                ModifyVisitPayor pageview = new ModifyVisitPayor();
+                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
                     SearchPatientVisit();
                 }
+
+                //ModifyVisit pageview = new ModifyVisit();
+                //(pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
+                //ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
+                //if (result != null && result.ResultDialog == ActionDialog.Save)
+                //{
+                //    SaveSuccessDialog();
+                //    SearchPatientVisit();
+                //}
             }
         }
 
@@ -561,7 +569,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
-                if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == BLINP || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
+                if (patientVisit.VISTSUID == BLINP || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     SelectPatientVisit.VISTSUID = patientVisit.VISTSUID;
@@ -615,7 +623,7 @@ namespace MediTech.ViewModels
         {
             if(SelectPatientVisit != null)
             {
-                if (SelectPatientVisit.VISTSUID != REGST)
+                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     return;
@@ -635,7 +643,7 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                if (SelectPatientVisit.VISTSUID != REGST)
+                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
                 {
                     WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
                     return;

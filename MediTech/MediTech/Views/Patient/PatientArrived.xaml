@@ -17,16 +17,6 @@
                 <dxlc:LayoutItem Label="ผู้ป่วย ">
                     <TextBlock Name="txtPatientName" FontWeight="Bold" Text="{Binding PatientName}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="แพทย์">
-                    <dxe:ComboBoxEdit x:Name="cmbDoctor"
-                                      IsEnabled="False"
-                                              ItemsSource="{Binding Doctors}"
-                                              SelectedItem="{Binding SelectDoctor}"
-                                              DisplayMember="FullName"
-                                              AllowNullInput="True"
-                                              ValueMember="CareproviderUID"
-                                              />
-                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="แผนก">
                     <dxe:ComboBoxEdit Name="cmbOrganisation" 
                                       IsEnabled="False"
@@ -37,6 +27,16 @@
                                       AutoComplete="True"
                                       ImmediatePopup="True"/>
                 </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="แพทย์">
+                    <dxe:ComboBoxEdit x:Name="cmbDoctor"
+                                      IsEnabled="True"
+                                              ItemsSource="{Binding Doctors}"
+                                              SelectedItem="{Binding SelectDoctor}"
+                                              DisplayMember="FullName"
+                                              AllowNullInput="True"
+                                              ValueMember="CareproviderUID"
+                                              />
+                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานะ">
                     <dxe:ComboBoxEdit x:Name="cmbStatus"
                                               ItemsSource="{Binding StatusSource}"
@@ -45,7 +45,7 @@
                                               ValueMember="Key"
                                               AllowNullInput="True"
                                               NullValueButtonPlacement="EditBox"
-                                              SelectedItem="{Binding Path=SelectStatus}">
+                                              SelectedItem="{Binding SelectStatus}">
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutGroup>

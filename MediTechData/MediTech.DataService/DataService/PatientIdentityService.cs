@@ -370,12 +370,12 @@ namespace MediTech.DataService
             return data;
         }
 
-        public bool ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, DateTime? editDttm, int userID)
+        public bool ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/PatientIdentity/ChangeVisitStatus?patientVisitUID={0}&VISTSUID={1}&careProviderUID={2}&editDttm={3:MM/dd/yyyy HH:mm:ss}&userID={4}", patientVisitUID, VISTSUID, careProviderUID, editDttm, userID);
+                string requestApi = string.Format("Api/PatientIdentity/ChangeVisitStatus?patientVisitUID={0}&VISTSUID={1}&careProviderUID={2}&locationUID={3}&&editDttm={4:MM/dd/yyyy HH:mm:ss}&userID={5}", patientVisitUID, VISTSUID, careProviderUID, locationUID, editDttm, userID);
                 MeditechApiHelper.Put(requestApi);
                 flag = true;
             }

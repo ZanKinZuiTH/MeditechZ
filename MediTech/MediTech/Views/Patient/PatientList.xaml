@@ -82,17 +82,17 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
-                                <Image Source="/MediTech;component/Resources/Images/Action/MoveDown.png" 
+                                <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
-                                   ToolTip="Arrived">
+                                   ToolTip="Arrive">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
+                                <!--<Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
                                    ToolTip="ส่งตรวจ">
@@ -101,7 +101,7 @@
                                             <mvvm:EventToCommand Command="{Binding DataContext.SendToDoctorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
-                                </Image>
+                                </Image>-->
                                 <Image Source="/MediTech;component/Resources/Images/Medical/VitalSign.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
@@ -204,7 +204,7 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png" 
+                                <Image Source="/MediTech;component/Resources/Images/Time/PatientTracking.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
                                    ToolTip="Patient Tracking">
