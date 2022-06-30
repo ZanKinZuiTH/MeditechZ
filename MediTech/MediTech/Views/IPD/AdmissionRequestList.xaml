@@ -101,10 +101,7 @@
             
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
-                    <dxlc:LayoutItem HorizontalAlignment="Right">
-                        <dx:SimpleButton Content="Tes Admit" Width="100" Height="30"
-                                         Command="{Binding AdmitCommand}"/>
-                    </dxlc:LayoutItem>
+                  
                     <dxlc:LayoutItem HorizontalAlignment="Right">
                         <dx:SimpleButton Content="Print" Width="100" Height="30"
                                          Command="{Binding PrintDocumentCommand}"/>

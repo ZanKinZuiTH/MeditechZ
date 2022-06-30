@@ -174,6 +174,9 @@ namespace MediTech.ViewModels
             SpecialitySource = DataService.MasterData.GetSpecialityAll();
             RequestedDoctor = DataService.UserManage.GetCareproviderDoctor();
             LocationDepartment = DataService.Technical.GetLocationByTypeUID(3159);
+            SelectedLocationDepartment = LocationDepartment.FirstOrDefault(p=> p.LocationUID == AppUtil.Current.LocationUID);
+        
+
             LenghtofDay = "1";
         }
 

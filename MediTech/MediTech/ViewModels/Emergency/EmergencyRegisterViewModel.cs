@@ -41,6 +41,10 @@ namespace MediTech.ViewModels
             set { Set(ref _LastName, value); }
         }
 
+
+
+
+
         private string _NickName;
         public string NickName
         {
@@ -808,6 +812,7 @@ namespace MediTech.ViewModels
                 visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID; //รอเปลี่ยนใช้ของคลินิกไปก่อน
                 visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "AEPAT").Key;
                 visitInfo.LocationUID = AppUtil.Current.LocationUID;
+                visitInfo.IDPassport = PassportNo;
                 if (SelectedBed != null)
                 {
                     visitInfo.BedUID = SelectedBed.LocationUID;
@@ -1132,6 +1137,7 @@ namespace MediTech.ViewModels
             FirstName = patientModel.FirstName;
             LastName = patientModel.LastName;
             NickName = patientModel.NickName;
+
 
             BirthDate = patientModel.BirthDttm;
             if (BirthDate != null)

@@ -86,7 +86,7 @@
                                                     />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding VisibilityDrug}">
-                            <RadioButton Content="ยา" Command="{Binding SelectTypeCommand}" 
+                            <RadioButton Content="ชื่อยาการค้า" Command="{Binding SelectTypeCommand}" 
                                          IsChecked="{Binding IsCheckDrug,Mode=TwoWay}"
                                          CommandParameter="{Binding ElementName=rbDrug,Path=Content}"
                                          Name="rbDrug" GroupName="Type"/>
@@ -102,7 +102,7 @@
                                                      />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding VisibilityOther}">
-                            <RadioButton Content="อื่นๆ"
+                            <RadioButton Content="ไม่มีในระบบ"
                                          IsChecked="{Binding IsCheckOther,Mode=TwoWay}"
                                          Command="{Binding SelectTypeCommand}" 
                                          CommandParameter="{Binding ElementName=rbOther,Path=Content}"

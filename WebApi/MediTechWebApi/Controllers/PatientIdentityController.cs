@@ -1292,7 +1292,7 @@ namespace MediTechWebApi.Controllers
 
                     int outseqervisitUID;
                     string erseqVisitID = SEQHelper.GetSEQIDFormat("SEQIPDVisitID", out outseqervisitUID);
-                    //string erseqVisitID = "1155223";
+                   
 
                     if (string.IsNullOrEmpty(erseqVisitID))
                     {
@@ -2357,6 +2357,7 @@ namespace MediTechWebApi.Controllers
                         join b in db.Location on pv.BedUID equals b.UID
                         join ad in db.AdmissionEvent on pv.UID equals ad.PatientVisitUID
                         join pt in db.Patient on pv.PatientUID equals pt.UID
+                        //join ib in db.IPBooking on pv.UID equals ib.PatientVisitUID
                         where pv.StatusFlag == "A"
                         && b.StatusFlag == "A"
                         && ad.StatusFlag == "A"
@@ -2386,6 +2387,7 @@ namespace MediTechWebApi.Controllers
                             PatientID = pt.PatientID,
                             PatientUID = pt.UID,
                             PatientVisitUID = pv.UID,
+                            VisitStatusCode = SqlFunction.fGetRfValCode(pv.VISTSUID??0),
                             AdmissionEventUID = ad.UID,
                             AgeString = SqlFunction.fGetAgeString(pt.DOBDttm.Value),
                             AdmissionDate = ad.AdmissionDttm,
@@ -2405,6 +2407,10 @@ namespace MediTechWebApi.Controllers
                         bed[i] = used;
                         bed[i].BedIsUse = "Y";
                         bed[i].Isused = true;
+                        //if (used.VisitStatusCode == "ARRVD")
+                        //{
+                        //    bed[i].BedIsUse = "A";
+                        //}
                     }
                     else
                     {

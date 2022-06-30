@@ -229,7 +229,29 @@
                                     </dxg:LookUpEdit.StyleSettings>
                                 </dxg:LookUpEdit>
                             </dxlc:LayoutItem>
+                            
+                            
+                            
+                            
+                            
+                            
                         </dxlc:LayoutGroup>
+
+
+                        <dxlc:LayoutItem Label="เลขบัตรประชาชน" >
+                            <dxe:TextEdit  Name="txtNationID"
+                                           
+                                       MaskType="RegEx"
+                                       Mask="\d{0,13}"
+                                     
+                                       Text="{Binding NatinonalID,Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="เลขพาสปอร์ต" >
+                            <dxe:TextEdit  Name="txtPassortNo"
+                                       Text="{Binding PassportNo,Mode=TwoWay}"/>
+                        </dxlc:LayoutItem>
+
+
                     </dxlc:LayoutGroup>
 
                     <dxlc:LayoutItem Margin="0,5,0,5"/>

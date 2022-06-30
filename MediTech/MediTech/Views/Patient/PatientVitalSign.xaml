@@ -24,12 +24,12 @@
                     Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="Height" FontSize="14" />
-                            <dxe:TextEdit  Name="txtHeight" Height="25"  EditValue="{Binding Height}"
-                                 Width="100" 
-                                 VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
+                            <dxe:TextEdit  Name="txtHeight" Height="25"  
+                                           Width="100"
+                                           EditValue="{Binding Height}" VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"/>
                             <TextBlock Text="Cms" FontSize="14" />
-                            <TextBlock />
-                            <TextBlock  />
+                            <TextBlock Text="วันที่บันทึก" Height="25" />
+                            <dxe:DateEdit Height="25" EditValue="{Binding StampDate}"  />
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="Weight" FontSize="14" />
@@ -37,9 +37,17 @@
                                        Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx"
                                        Width="100" 
                                        VerticalAlignment="Top"/>
-                            <TextBlock Text="kg" FontSize="14" />
-                            <TextBlock />
-                            <TextBlock />
+                            <TextBlock Text="kg" FontSize="14" Height="25" />
+                            <TextBlock Text="เวลาที่บันทึก"  Height="25" />
+                            <dxe:DateEdit x:Name="timeEditor" Height="25"
+                                      EditValue="{Binding StampTime}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="BMI" FontSize="14" />
@@ -51,6 +59,7 @@
                             <TextBlock Text="kg/m2" FontSize="14" />
                             <TextBlock />
                             <TextBlock />
+
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <TextBlock Text="BSA" FontSize="14" />
@@ -217,7 +226,9 @@
                                  VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx" />
                                 <TextBlock Text="Cms" FontSize="14" />
                                 <TextBlock />
-                                <TextBlock  />
+                             
+                                <TextBlock Text="วันที่บันทึก" Height="25" />
+                                <dxe:DateEdit Height="25" EditValue="{Binding StampDateRe}" />
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <TextBlock Text="Weight" FontSize="14" />
@@ -228,7 +239,15 @@
                                        VerticalAlignment="Top"/>
                                 <TextBlock Text="kg" FontSize="14" />
                                 <TextBlock />
-                                <TextBlock />
+                                <TextBlock Text="เวลาที่บันทึก"  Height="25" />
+                                <dxe:DateEdit x:Name="timeEditorRe" Height="25" 
+                                      EditValue="{Binding StampTimeRe}"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                    <dxe:DateEdit.StyleSettings>
+                                        <dxe:DateEditPickerStyleSettings/>
+                                    </dxe:DateEdit.StyleSettings>
+                                </dxe:DateEdit>
                             </dxlc:LayoutGroup>
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <TextBlock Text="BMI" FontSize="14" />

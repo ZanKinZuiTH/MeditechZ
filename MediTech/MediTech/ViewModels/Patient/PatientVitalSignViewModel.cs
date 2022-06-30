@@ -65,6 +65,37 @@ namespace MediTech.ViewModels
         }
 
 
+        private DateTime? _StampDate;
+        public DateTime? StampDate
+        {
+            get { return _StampDate; }
+            set { Set(ref _StampDate, value); }
+        }
+
+        private DateTime? _StampTime;
+        public DateTime? StampTime
+        {
+            get { return _StampTime; }
+            set { Set(ref _StampTime, value); }
+        }
+
+
+
+        private DateTime? _StampDateRe;
+        public DateTime? StampDateRe
+        {
+            get { return _StampDateRe; }
+            set { Set(ref _StampDateRe, value); }
+        }
+
+        private DateTime? _StampTimeRe;
+        public DateTime? StampTimeRe
+        {
+            get { return _StampTimeRe; }
+            set { Set(ref _StampTimeRe, value); }
+        }
+
+
         private double? _Height;
 
         public double? Height
@@ -388,6 +419,7 @@ namespace MediTech.ViewModels
         {
             SelectPatientVisit = visitModel;
             RecentVitals = DataService.PatientHistory.GetPatientVitalSignByVisitUID(SelectPatientVisit.PatientVisitUID);
+            //StampTime
         }
         public void AssingModel(PatientVitalSignModel modelData)
         {
@@ -407,6 +439,8 @@ namespace MediTech.ViewModels
             SBPRe = model.BPSys;
             DBPRe = model.BPDio;
             OxygenSatRe = model.OxygenSat;
+            StampDateRe = model.RecordedDttm;
+            StampTimeRe = model.RecordedDttm;
             WaistCircumferenceRe = model.WaistCircumference;
             IsPregnantRe = model.IsPregnant ?? false;
             CommentRe = model.Comments;
@@ -432,6 +466,7 @@ namespace MediTech.ViewModels
                 model.RecordedDttm = DateTime.Now;
                 model.WaistCircumference = WaistCircumference;
                 model.IsPregnant = IsPregnant;
+                model.RecordedDttm = DateTime.Parse(StampDate.Value.ToString("dd/MM/yyyy") + " " + StampTime.Value.ToString("HH:mm"));
                 model.Comments = !string.IsNullOrEmpty(Comment) ? Comment.Trim() : null;
             }
             else if (SelectTabIndex == 1)
@@ -450,6 +485,7 @@ namespace MediTech.ViewModels
                     model.OxygenSat = OxygenSatRe;
                     model.WaistCircumference = WaistCircumferenceRe;
                     model.IsPregnant = IsPregnantRe;
+                    model.RecordedDttm = DateTime.Parse(StampDateRe.Value.ToString("dd/MM/yyyy") + " " + StampTimeRe.Value.ToString("HH:mm"));
                     model.Comments = !string.IsNullOrEmpty(CommentRe) ? CommentRe.Trim() : null;
                 }
             }
