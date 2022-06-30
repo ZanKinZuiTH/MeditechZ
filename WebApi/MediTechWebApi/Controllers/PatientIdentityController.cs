@@ -1055,6 +1055,7 @@ namespace MediTechWebApi.Controllers
                     serviceEvent.PatientVisitUID = patientVisit.UID;
                     serviceEvent.EventStartDttm = now;
                     serviceEvent.VISTSUID = patientVisit.VISTSUID ?? 0;
+                    serviceEvent.LocationUID = patientVisit.LocationUID;
                     serviceEvent.MUser = userID;
                     serviceEvent.MWhen = now;
                     serviceEvent.CUser = userID;
@@ -1736,7 +1737,7 @@ namespace MediTechWebApi.Controllers
                 if (patientVisit != null)
                 {
                     db.PatientVisit.Attach(patientVisit);
-                    patientVisit.OwnerOrganisationUID = patientVisitInfo.OwnerOrganisationUID;
+                    patientVisit.LocationUID = patientVisitInfo.LocationUID;
                     patientVisit.VISTYUID = patientVisitInfo.VISTYUID;
                     patientVisit.StartDttm = patientVisitInfo.StartDttm;
                     patientVisit.PRITYUID = patientVisitInfo.PRITYUID;
@@ -1745,18 +1746,6 @@ namespace MediTechWebApi.Controllers
                     patientVisit.Comments = patientVisitInfo.Comments;
                     patientVisit.MUser = userID;
                     patientVisit.MWhen = DateTime.Now;
-
-                    PatientVisitPayor patientVisitPayor = db.PatientVisitPayor.FirstOrDefault(p => p.PatientVisitUID == patientVisit.UID && p.StatusFlag == "A");
-                    if (patientVisitPayor != null &&
-                        (patientVisitPayor.UID != patientVisitInfo.PayorDetailUID
-                        || patientVisitPayor.PayorAgreementUID != patientVisitInfo.PayorAgreementUID))
-                    {
-                        db.PatientVisitPayor.Attach(patientVisitPayor);
-                        patientVisitPayor.PayorDetailUID = patientVisitInfo.PayorDetailUID;
-                        patientVisitPayor.PayorAgreementUID = patientVisitInfo.PayorAgreementUID;
-                        patientVisitPayor.MUser = userID;
-                        patientVisitPayor.MWhen = DateTime.Now;
-                    }
                 }
 
                 db.SaveChanges();

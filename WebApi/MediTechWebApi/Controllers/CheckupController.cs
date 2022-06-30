@@ -94,7 +94,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<CheckupJobContactModel> GetCheckupJobContactByPayorDetailUID(int payorDetailUID)
         {
-            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.InsuranceCompanyUID == payorDetailUID)
+            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p => p.InsuranceCompanyUID == payorDetailUID && p.StatusFlag == "A")
                 .Select(p => new CheckupJobContactModel
                 {
                     CheckupJobContactUID = p.UID,
@@ -113,6 +113,39 @@ namespace MediTechWebApi.Controllers
                     EndDttm = p.EndDttm,
                     CollectDttm = p.CollectDttm
                 }).ToList();
+
+            return data;
+        }
+
+        [Route("GetCheckupJobContactAllActive")]
+        [HttpGet]
+        public List<CheckupJobContactModel> GetCheckupJobContactAllActive()
+        {
+            DateTime now = DateTime.Now;
+            List<CheckupJobContactModel> data = db.CheckupJobContact.Where(p =>
+            p.StatusFlag == "A" &&
+            p.StartDttm == null || DbFunctions.TruncateTime(now) >= DbFunctions.TruncateTime(p.StartDttm) &&
+            p.EndDttm == null || DbFunctions.TruncateTime(now) <= DbFunctions.TruncateTime(p.EndDttm))
+                .Select(p => new CheckupJobContactModel
+                {
+                    CheckupJobContactUID = p.UID,
+                    JobContactID = p.JobContactID,
+                    InsuranceCompanyUID = p.InsuranceCompanyUID,
+                    CompanyName = p.CompanyName,
+                    Description = p.Description,
+                    JobNumber = p.JobNumber,
+                    Location = p.Location,
+                    ContactPerson = p.ContactPerson,
+                    ContactEmail = p.ContactEmail,
+                    ContactPhone = p.ContactPhone,
+                    ServiceName = p.ServiceName,
+                    VisitCount = p.VisitCount,
+                    StartDttm = p.StartDttm,
+                    EndDttm = p.EndDttm,
+                    CollectDttm = p.CollectDttm
+                }).ToList();
+
+            data = data.OrderBy(p => p.CompanyName).ThenBy(p => p.StartDttm).ToList();
 
             return data;
         }
@@ -1567,7 +1600,7 @@ namespace MediTechWebApi.Controllers
             try
             {
                 CheckupGroupResult checkupTran = db.CheckupGroupResult.FirstOrDefault(p => p.PatientVisitUID == groupResult.PatientVisitUID
-                && p.GPRSTUID == groupResult.GPRSTUID && p.StatusFlag == "A" );
+                && p.GPRSTUID == groupResult.GPRSTUID && p.StatusFlag == "A");
                 if (checkupTran == null)
                 {
                     checkupTran = new CheckupGroupResult();
@@ -1883,7 +1916,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetResultCumulative")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetResultCumulative(long patientUID,long patientVisitUID, int requestItemUID)
+        public List<PatientResultComponentModel> GetResultCumulative(long patientUID, long patientVisitUID, int requestItemUID)
         {
             List<PatientResultComponentModel> data = null;
             DataTable dt = SqlDirectStore.pGetResultCumulative(patientUID, patientVisitUID, requestItemUID);
@@ -1911,7 +1944,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetVitalSignCumulative")]
         [HttpGet]
-        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID,long patientVisitUID)
+        public List<PatientResultComponentModel> GetVitalSignCumulative(long patientUID, long patientVisitUID)
         {
             List<PatientResultComponentModel> data = null;
             DataTable dt = SqlDirectStore.pGetVitalSignCumulative(patientUID, patientVisitUID);
@@ -1961,13 +1994,13 @@ namespace MediTechWebApi.Controllers
                                                       RABSTSUID = ck.RABSTSUID,
                                                       Conclusion = ck.Conclusion,
                                                       GroupResult = rf.Description,
-                                                      ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง":  "ปกติ",
+                                                      ResultStatus = ck.RABSTSUID == 2882 ? "ผิดปกติ" : ck.RABSTSUID == 2885 ? "เฝ้าระวัง" : "ปกติ",
                                                       GroupCode = rf.ValueCode,
-                                                      ItemNameResult = SqlFunction.fGetRfValDescription(((int)ck.GPRSTUID)),  
+                                                      ItemNameResult = SqlFunction.fGetRfValDescription(((int)ck.GPRSTUID)),
 
                                                   }).ToList();
 
-            
+
 
             return data;
         }
@@ -1985,67 +2018,67 @@ namespace MediTechWebApi.Controllers
                 {
                     var now = DateTime.Now;
                     var resultData = (from rsc in db.ResultComponent
-                                        join rs in db.Result on rsc.ResultUID equals rs.UID
-                                        join rqd in db.RequestDetail on rs.RequestDetailUID equals rqd.UID
-                                        join rq in db.Request on rqd.RequestUID equals rq.UID
-                                        join pvp in db.PatientVisitPayor on rq.PatientVisitUID equals pvp.PatientVisitUID
-                                        where rsc.StatusFlag == "A"
-                                        && rs.StatusFlag == "A"
-                                        && rqd.StatusFlag == "A"
-                                        && rq.StatusFlag == "A"
-                                        && pvp.StatusFlag == "A"
-                                        && rsc.Comments == "Migrate Lab Result"
-                                        && rs.PatientUID == patientUID
-                                        && rs.RequestItemCode == codeLab
-                                        && rq.RequestedDttm == enterDate
-                                        && pvp.PayorDetailUID == payorDetailUID
-                                        select new 
-                                        {
-                                            UID = rsc.UID,
-                                            ResultUID = rs.UID,
-                                            ResultValue = rsc.ResultValue,
-                                            ResultItemName = rsc.ResultItemName,
-                                            ResultItemCode = rsc.ResultItemCode
-                                        }).FirstOrDefault();
+                                      join rs in db.Result on rsc.ResultUID equals rs.UID
+                                      join rqd in db.RequestDetail on rs.RequestDetailUID equals rqd.UID
+                                      join rq in db.Request on rqd.RequestUID equals rq.UID
+                                      join pvp in db.PatientVisitPayor on rq.PatientVisitUID equals pvp.PatientVisitUID
+                                      where rsc.StatusFlag == "A"
+                                      && rs.StatusFlag == "A"
+                                      && rqd.StatusFlag == "A"
+                                      && rq.StatusFlag == "A"
+                                      && pvp.StatusFlag == "A"
+                                      && rsc.Comments == "Migrate Lab Result"
+                                      && rs.PatientUID == patientUID
+                                      && rs.RequestItemCode == codeLab
+                                      && rq.RequestedDttm == enterDate
+                                      && pvp.PayorDetailUID == payorDetailUID
+                                      select new
+                                      {
+                                          UID = rsc.UID,
+                                          ResultUID = rs.UID,
+                                          ResultValue = rsc.ResultValue,
+                                          ResultItemName = rsc.ResultItemName,
+                                          ResultItemCode = rsc.ResultItemCode
+                                      }).FirstOrDefault();
 
-                    if(resultData != null)
+                    if (resultData != null)
                     {
-                           List<ResultComponent> delResultcomponents = db.ResultComponent.Where(p =>
-                           p.ResultUID == resultData.ResultUID
-                           && p.StatusFlag == "A").ToList();
+                        List<ResultComponent> delResultcomponents = db.ResultComponent.Where(p =>
+                        p.ResultUID == resultData.ResultUID
+                        && p.StatusFlag == "A").ToList();
 
-                            foreach (var item in delResultcomponents)
-                            {
-                                ResultComponent resultc = db.ResultComponent.Find(item.UID);
-                                resultc.StatusFlag = "D";
-                                resultc.MWhen = now;
+                        foreach (var item in delResultcomponents)
+                        {
+                            ResultComponent resultc = db.ResultComponent.Find(item.UID);
+                            resultc.StatusFlag = "D";
+                            resultc.MWhen = now;
 
-                                db.ResultComponent.AddOrUpdate(resultc);
-                                db.SaveChanges();
-                            }
+                            db.ResultComponent.AddOrUpdate(resultc);
+                            db.SaveChanges();
+                        }
 
-                            foreach (var resultitem in resultItemRange.ResultComponents)
-                            {
-                                    ResultComponent resultComponent = new ResultComponent();
-                                    resultComponent.CUser = userID;
-                                    resultComponent.CWhen = now;
-                                    resultComponent.MUser = userID;
-                                    resultComponent.MWhen = now;
-                                    resultComponent.StatusFlag = "A";
-                                    resultComponent.ResultUID = resultData.ResultUID;
-                                    resultComponent.ReferenceRange = resultitem.ReferenceRange;
-                                    resultComponent.ResultItemUID = resultitem.ResultItemUID;
-                                    resultComponent.RVTYPUID = resultitem.RVTYPUID;
-                                    resultComponent.ResultItemName = resultitem.ResultItemName;
-                                    resultComponent.ResultItemCode = resultitem.ResultItemCode;
-                                    resultComponent.ResultValue = resultitem.ResultValue;
-                                    resultComponent.Comments = "Migrate Lab Result";
-                                    resultComponent.RSUOMUID = resultitem.RSUOMUID;
-                                    resultComponent.ResultDTTM = enterDate;
+                        foreach (var resultitem in resultItemRange.ResultComponents)
+                        {
+                            ResultComponent resultComponent = new ResultComponent();
+                            resultComponent.CUser = userID;
+                            resultComponent.CWhen = now;
+                            resultComponent.MUser = userID;
+                            resultComponent.MWhen = now;
+                            resultComponent.StatusFlag = "A";
+                            resultComponent.ResultUID = resultData.ResultUID;
+                            resultComponent.ReferenceRange = resultitem.ReferenceRange;
+                            resultComponent.ResultItemUID = resultitem.ResultItemUID;
+                            resultComponent.RVTYPUID = resultitem.RVTYPUID;
+                            resultComponent.ResultItemName = resultitem.ResultItemName;
+                            resultComponent.ResultItemCode = resultitem.ResultItemCode;
+                            resultComponent.ResultValue = resultitem.ResultValue;
+                            resultComponent.Comments = "Migrate Lab Result";
+                            resultComponent.RSUOMUID = resultitem.RSUOMUID;
+                            resultComponent.ResultDTTM = enterDate;
 
-                                    db.ResultComponent.Add(resultComponent);
-                                    db.SaveChanges();
-                            }
+                            db.ResultComponent.Add(resultComponent);
+                            db.SaveChanges();
+                        }
                     }
                     else
                     {
@@ -2102,7 +2135,7 @@ namespace MediTechWebApi.Controllers
                         {
                             return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQRequest is Fail");
                         }
-                        
+
 
                         Request request = new Request();
                         if (visitPayor != null)

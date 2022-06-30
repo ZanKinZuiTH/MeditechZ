@@ -66,6 +66,16 @@ namespace MediTech.ViewModels
         }
 
 
+
+        private bool _IsEditDispense;
+
+        public bool IsEditDispense
+        {
+            get { return _IsEditDispense; }
+            set { Set(ref _IsEditDispense, value); }
+        }
+
+
         #endregion
 
         #region Command
@@ -116,6 +126,10 @@ namespace MediTech.ViewModels
         {
             base.OnLoaded();
             PrescriptionItems = new ObservableCollection<PrescriptionItemModel>(DataService.Pharmacy.GetPrescriptionItemByPrescriptionUID(Prescription.PrescriptionUID));
+            if (IsEditDispense == true)
+            {
+                PrescriptionItems = new ObservableCollection<PrescriptionItemModel>(PrescriptionItems?.Where(p => p.PrestionItemStatus == "Raised"));
+            }
             foreach (var item in PrescriptionItems)
             {
                 var storeUsed = DataService.Pharmacy.GetDrugStoreDispense(item.ItemMasterUID ?? 0, item.Quantity ?? 0, item.IMUOMUID ?? 0, item.StoreUID ?? 0);
@@ -180,7 +194,7 @@ namespace MediTech.ViewModels
                 //DataService.Pharmacy.DispensePrescription(Prescription,AppUtil.Current.UserID);
                 foreach (var item in PrescriptionItems)
                 {
-                    if (item.BalQty > item.Quantity && item.ORDSTUID == 2847)
+                    if (item.BalQty >= item.Quantity && item.ORDSTUID == 2847)
                     {
                         DataService.Pharmacy.DispensePrescriptionItem(item, AppUtil.Current.UserID);
 

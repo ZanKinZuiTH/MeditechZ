@@ -251,10 +251,13 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="สถานะ">
                     <dxe:ComboBoxEdit x:Name="cmbStatus" ItemsSource="{Binding PrescritionStatus}"
-                                                          IsTextEditable="False" 
-                                                          DisplayMember="Display"
-                                                          ValueMember="Key"  NullValueButtonPlacement="EditBox"
-                                                          SelectedItem="{Binding Path=SelectPrescritionStatus}">
+                                                         IsTextEditable="False" 
+                                                         DisplayMember="Display"
+                                                         ValueMember="Key"
+                                                         EditValue="{Binding SelectPrescritionStatus}">
+                        <dxe:ComboBoxEdit.StyleSettings>
+                            <dxe:CheckedComboBoxStyleSettings />
+                        </dxe:ComboBoxEdit.StyleSettings>
                     </dxe:ComboBoxEdit>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
@@ -321,6 +324,7 @@
                 <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding CancelDispenseCommand}"
+                                         IsEnabled="{Binding IsEnableCancelDispense}"
                                      Height="25" >
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock Text="ยกเลิก จ่ายยา" VerticalAlignment="Center"/>
@@ -330,6 +334,7 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding EditDispenseCommand}"
+                                         IsEnabled="{Binding IsEnableEditDispense}"
                                      Height="25" >
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock Text="แก้ไข จ่ายยา" VerticalAlignment="Center"/>
@@ -339,6 +344,7 @@
 
                     <dxlc:LayoutItem>
                         <dx:SimpleButton Width="85" Command="{Binding DispenseCommand}"
+                                         IsEnabled="{Binding IsEnableDispense}"
                                      Height="25" >
                             <StackPanel  Orientation="Horizontal">
                                 <TextBlock Text="จ่ายยา" VerticalAlignment="Center"/>

@@ -173,10 +173,10 @@ namespace MediTech.DataService
 
         #region Prescription
 
-        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
+        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, string statusList, long? patientUID
     , string prescriptionNumber, int? organisationUID)
         {
-            string requestApi = string.Format("Api/Pharmacy/Searchprescription?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&ORDSTUID={2}&patientUID={3}&prescriptionNumber={4}&organisationUID={5}", dateFrom, dateTo, ORDSTUID, patientUID, prescriptionNumber, organisationUID);
+            string requestApi = string.Format("Api/Pharmacy/Searchprescription?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&statusList={2}&patientUID={3}&prescriptionNumber={4}&organisationUID={5}", dateFrom, dateTo, statusList, patientUID, prescriptionNumber, organisationUID);
             List<PrescriptionModel> returnData = MeditechApiHelper.Get<List<PrescriptionModel>>(requestApi);
 
             return returnData;

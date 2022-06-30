@@ -44,6 +44,8 @@ namespace MediTech.Model
         public string OwnerOrganisation { get; set; }
         public int PayorDetailUID { get; set; }
         public string PayorName { get; set; }
+        public string PolicyName { get; set; }
+        public double? EligibileAmount { get; set; }
         public int PayorAgreementUID { get; set; }
         public string WellnessResult { get; set; }
         public bool IsWellnessResult { get; set; }

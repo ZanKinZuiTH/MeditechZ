@@ -7,7 +7,7 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ModifyVisitViewModel,Source={StaticResource Locator}}"
-             d:DesignHeight="450" d:DesignWidth="600">
+             d:DesignHeight="400" d:DesignWidth="600">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
@@ -20,13 +20,13 @@
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                            <TextBlock Text="สถานประกอบการ" />
+                            <TextBlock Text="แผนก" />
                         </StackPanel>
                     </dxlc:LayoutItem.Label>
-                    <dxe:ComboBoxEdit DisplayMember="Name" 
-                                      ValueMember="HealthOrganisationUID"
-                                      ItemsSource="{Binding Organisations}"
-                                      SelectedItem="{Binding SelectOrganisation}"/>
+                    <dxe:ComboBoxEdit DisplayMember="Name"
+                                      ValueMember="LocationUID"
+                                      ItemsSource="{Binding Locations}"
+                                      SelectedItem="{Binding SelectLocation}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
@@ -73,64 +73,6 @@
 
                 </dxlc:LayoutGroup>
 
-                <dxlc:LayoutItem >
-                    <dxlc:LayoutItem.Label>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
-                                           Foreground="Red"/>
-                            <TextBlock Text="Payor" />
-                        </StackPanel>
-                    </dxlc:LayoutItem.Label>
-                    <dxg:LookUpEdit Name="lkePayorName" ItemsSource="{Binding PayorDetailSource}" 
-                                      SelectedItem="{Binding SelectedPayorDetail}"
-                                      IsEnabled="{Binding IsEnableFinancial}"
-                                      ValueMember="PayorDetailUID"
-                                      DisplayMember="PayorName"
-                                      AllowNullInput="True"
-                                      AutoComplete="True" 
-                                      ImmediatePopup="True"
-                                      FindButtonPlacement = "Popup"
-                                      FindMode = "Always"
-                                      PopupMinHeight="100"
-                                      PopupMinWidth="100"
-                                      PopupHeight="300" 
-                                      IsPopupAutoWidth="True"
-                                      AutoPopulateColumns="False">
-                        <dxg:LookUpEdit.PopupContentTemplate>
-                            <ControlTemplate>
-                                <dxg:GridControl x:Name="PART_GridControl"  >
-                                    <dxg:GridControl.Columns>
-                                        <dxg:GridColumn Name="colPayorName" FieldName="PayorName"/>
-                                    </dxg:GridControl.Columns>
-                                    <dxg:GridControl.View>
-                                        <dxg:TableView
-                        Name="View"  ShowColumnHeaders="False"
-                        AutoWidth="True"
-                        ShowGroupedColumns="False" >
-                                        </dxg:TableView>
-                                    </dxg:GridControl.View>
-                                </dxg:GridControl>
-                            </ControlTemplate>
-                        </dxg:LookUpEdit.PopupContentTemplate>
-                        <dxg:LookUpEdit.StyleSettings>
-                            <dxg:SearchLookUpEditStyleSettings/>
-                        </dxg:LookUpEdit.StyleSettings>
-                    </dxg:LookUpEdit>
-                </dxlc:LayoutItem>
-                <dxlc:LayoutItem >
-                    <dxlc:LayoutItem.Label>
-                        <StackPanel Orientation="Horizontal">
-                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
-                                           Foreground="Red"/>
-                            <TextBlock Text="Agreement" />
-                        </StackPanel>
-                    </dxlc:LayoutItem.Label>
-                    <dxe:ComboBoxEdit DisplayMember="Name" 
-                                      ValueMember="PayorAgreementUID"
-                                      ItemsSource="{Binding PayorAgreementSource}"
-                                      SelectedItem="{Binding SelectedPayorAgreement}"
-                                      IsEnabled="{Binding IsEnableFinancial}"/>
-                </dxlc:LayoutItem>
                 <dxlc:LayoutItem Visibility="{Binding VisibiltyCheckupCompany}">
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">
@@ -203,7 +145,7 @@
                                                      AcceptsReturn="True"             
                                                      TextWrapping="Wrap" />
                 </dxlc:LayoutItem>
-                <dxlc:LayoutGroup >
+                <dxlc:LayoutGroup VerticalAlignment="Bottom">
                     <dx:SimpleButton Content="ยกเลิกการลงทะเบียน" Width="120" Height="25" Command="{Binding CancelVisitCommand}" HorizontalAlignment="Left"
                                      IsEnabled="{Binding IsEnableFinancial}"
                                      Foreground="Red"/>

@@ -105,6 +105,8 @@ namespace MediTech.CustomControl.Banner
             BitmapImage image = new BitmapImage(uri);
             patientImage.Source = image;
             patientImageTootip.Source = image;
+            txtVisitID.Text = "";
+            txtPastVisits.Text = "";
         }
 
         public void SetPatientBanner(long patientUID, long patientVisitUID)
@@ -125,6 +127,8 @@ namespace MediTech.CustomControl.Banner
                 txtBMI.Text = patientVisit.BMI.ToString() ?? "";
                 txtMobile.Text = patientVisit.MobilePhone;
                 txtPhone.Text = patientVisit.SecondPhone;
+                txtVisitID.Text = patientVisit.VisitID?.ToString();
+                txtPastVisits.Text = (patientVisit.VisitCount?.ToString() != "0" && patientVisit.VisitCount?.ToString() != "") ? "Past Vists : " + patientVisit.VisitCount.ToString() ?? "" : "";
 
                 if (patientVisit.IsAllergy)
                 {
@@ -146,7 +150,7 @@ namespace MediTech.CustomControl.Banner
                 }
                 else
                 {
-                    imgVIP.Visibility = System.Windows.Visibility.Collapsed;                  
+                    imgVIP.Visibility = System.Windows.Visibility.Collapsed;
                 }
 
                 if (patientVisit.PatientImage != null)
@@ -159,13 +163,13 @@ namespace MediTech.CustomControl.Banner
                     patientImage.Source = image;
                     patientImageTootip.Source = image;
                 }
-                else
-                {
-                    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
-                    BitmapImage image = new BitmapImage(uri);
-                    patientImage.Source = image;
-                    patientImageTootip.Source = image;
-                }
+                //else
+                //{
+                //    Uri uri = new Uri(@"pack://application:,,,/MediTech;component/Resources/Images/Other/Blue-Pictures-icon.png");
+                //    BitmapImage image = new BitmapImage(uri);
+                //    patientImage.Source = image;
+                //    patientImageTootip.Source = image;
+                //}
             }
             else
             {

@@ -109,7 +109,7 @@
                                    ToolTip="Patient Tracking">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsOP}}}" />
+                                            <mvvm:EventToCommand Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsOP}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>

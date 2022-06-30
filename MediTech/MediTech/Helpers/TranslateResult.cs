@@ -113,6 +113,8 @@ namespace MediTech.Helpers
 
                     isConvert = true;
                 }
+
+                //หมอก้องให้แก้เป็น separator
                 //foreach (DataRow row in dt.Rows)
                 //{
                 //    if (formatText.ToLower().Trim() == row["EngResult"].ToString().ToLower().Trim())

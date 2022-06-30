@@ -30,6 +30,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<CheckupJobContactModel> GetCheckupJobContactAllActive()
+        {
+            string requestApi = string.Format("Api/Checkup/GetCheckupJobContactAllActive");
+            List<CheckupJobContactModel> data = MeditechApiHelper.Get<List<CheckupJobContactModel>>(requestApi);
+            return data;
+        }
+
         public List<ResultComponentModel> GetResultItemByRequestDetailUID(long requestDetailUID)
         {
             string requestApi = string.Format("Api/Checkup/GetResultItemByRequestDetailUID?requestDetailUID={0}", requestDetailUID);

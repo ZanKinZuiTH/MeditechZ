@@ -163,7 +163,7 @@
                                     </i:Interaction.Triggers>
                                 </Image>
                             </StackPanel>
-                            <StackPanel Orientation="Horizontal">
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <Image Source="/MediTech;component/Resources/Images/Document/EditProperty.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -440,12 +440,13 @@
                     </dxg:GridColumn>
                     <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                     <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
-                    <dxg:GridColumn Header="เลขบัตรประชาชน" FieldName="NationalID" ReadOnly="True"/>
                     <dxg:GridColumn Header="เพศ" FieldName="Gender" ReadOnly="True"/>
                     <dxg:GridColumn Header="อายุ" FieldName="Age" ReadOnly="True"/>
-                    <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>
-                    <dxg:GridColumn Header="เลขพาสปอร์ต" FieldName="IDPassport" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus" ReadOnly="True"/>
+                    <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="วันเดือนปีเกิด" FieldName="BirthDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขบัตรประชาชน" FieldName="NationalID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="เลขพาสปอร์ต" FieldName="IDPassport" ReadOnly="True"/>
                     <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType" ReadOnly="True"/>
                     <dxg:GridColumn Header="เข้ารับบริการ" FieldName="StartDttm"  ReadOnly="True">
                         <dxg:GridColumn.EditSettings>
@@ -455,8 +456,9 @@
                     <dxg:GridColumn Header="แพทย์เจ้าของคนไข้" FieldName="CareProviderName" ReadOnly="True"/>
                     <dxg:GridColumn Header="VisitID" FieldName="VisitID" ReadOnly="True"/>
                     <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisation" ReadOnly="True"/>
-                    <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
-                    <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Primary Payor" FieldName="PayorName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Plan Name" FieldName="PolicyName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Eligibile Amount" FieldName="EligibileAmount" ReadOnly="True"/>
                     <dxg:GridColumn Header="RefNo" FieldName="RefNo" ReadOnly="True"/>
                     <dxg:GridColumn Header="หมายเหตุ" FieldName="Note" ReadOnly="True"/>
                 </dxg:GridControl>

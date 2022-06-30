@@ -15,7 +15,7 @@
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}" />
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem>

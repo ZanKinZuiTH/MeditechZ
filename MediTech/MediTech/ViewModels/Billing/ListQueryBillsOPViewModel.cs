@@ -129,6 +129,12 @@ namespace MediTech.ViewModels
             get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
         }
 
+        private RelayCommand _PatientTrackingCommand;
+        public RelayCommand PatientTrackingCommand
+        {
+            get { return _PatientTrackingCommand ?? (_PatientTrackingCommand = new RelayCommand(PatientTracking)); }
+        }
+
 
         private RelayCommand _CleanCommand;
 
@@ -186,6 +192,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        private void PatientTracking()
+        {
+            if (SelectPatientVisit != null)
+            {
+                PatientTracking pageview = new PatientTracking();
+                (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectPatientVisit);
+                PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);
+            }
+
+        }
 
         private void ModifyVisitPayor()
         {

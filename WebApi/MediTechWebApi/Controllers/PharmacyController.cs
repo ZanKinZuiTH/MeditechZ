@@ -591,76 +591,90 @@ namespace MediTechWebApi.Controllers
 
         [Route("Searchprescription")]
         [HttpGet]
-        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, int? ORDSTUID, long? patientUID
+        public List<PrescriptionModel> Searchprescription(DateTime? dateFrom, DateTime? dateTo, string statusList, long? patientUID
             , string prescriptionNumber, int? organisationUID)
         {
-            List<PrescriptionModel> data = (from ps in db.Prescription
-                                            join pa in db.Patient on ps.PatientUID equals pa.UID
-                                            join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
-                                            where ps.StatusFlag == "A"
-                 && (dateFrom == null || DbFunctions.TruncateTime(ps.PrescribedDttm) >= DbFunctions.TruncateTime(dateFrom))
-                 && (dateTo == null || DbFunctions.TruncateTime(ps.PrescribedDttm) <= DbFunctions.TruncateTime(dateTo))
-                 && (ORDSTUID == null || ps.ORDSTUID == ORDSTUID)
-                 && (patientUID == null || ps.PatientUID == patientUID)
-                 && (string.IsNullOrEmpty(prescriptionNumber) || ps.PrescriptionNumber == prescriptionNumber)
-                 && (organisationUID == null || ps.OwnerOrganisationUID == organisationUID)
-                                            select new PrescriptionModel
-                                            {
-                                                PrescriptionUID = ps.UID,
-                                                PrescriptionNumber = ps.PrescriptionNumber,
-                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
-                                                PatientID = pa.PatientID,
-                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
-                                                PatientVisitUID = ps.PatientVisitUID,
-                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
-                                                DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
-                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
-                                                EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
-                                                PrescribedDttm = ps.PrescribedDttm,
-                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
-                                                LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
-                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
-                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
-                                            }).ToList();
-
-            if (data != null)
+            try
             {
-                foreach (var prescription in data)
+                List<int> ordstList = !string.IsNullOrEmpty(statusList) ? statusList.Split(',').Select(p => int.Parse(p)).ToList() : new List<int>();
+                List<PrescriptionModel> data = (from ps in db.Prescription
+                                                join pa in db.Patient on ps.PatientUID equals pa.UID
+                                                join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
+                                                where ps.StatusFlag == "A"
+                     && (dateFrom == null || DbFunctions.TruncateTime(ps.PrescribedDttm) >= DbFunctions.TruncateTime(dateFrom))
+                     && (dateTo == null || DbFunctions.TruncateTime(ps.PrescribedDttm) <= DbFunctions.TruncateTime(dateTo))
+                     && (statusList == null || ordstList.Any(p => p == ps.ORDSTUID))
+                     && (patientUID == null || ps.PatientUID == patientUID)
+                     && (string.IsNullOrEmpty(prescriptionNumber) || ps.PrescriptionNumber == prescriptionNumber)
+                     && (organisationUID == null || ps.OwnerOrganisationUID == organisationUID)
+                                                select new PrescriptionModel
+                                                {
+                                                    PrescriptionUID = ps.UID,
+                                                    PrescriptionNumber = ps.PrescriptionNumber,
+                                                    PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                                    PatientID = pa.PatientID,
+                                                    PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
+                                                    PatientVisitUID = ps.PatientVisitUID,
+                                                    AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                    DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
+                                                    Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                    EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
+                                                    PrescribedDttm = ps.PrescribedDttm,
+                                                    IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                    LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                                    OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                                    OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                                }).ToList();
+
+
+
+
+                if (data != null)
                 {
-                    var prescriptionItems = db.PrescriptionItem
-                    .Where(p => p.PrescriptionUID == prescription.PrescriptionUID && p.StatusFlag == "A")
-                    .Select(p => new PrescriptionItemModel
+                    foreach (var prescription in data)
                     {
-                        PrescriptionItemUID = p.UID,
-                        PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
-                        ORDSTUID = p.ORDSTUID,
-                        ItemCode = p.ItemCode,
-                        ItemName = p.ItemName,
-                        ItemMasterUID = p.ItemMasterUID,
-                        Quantity = p.Quantity,
-                        QuantityUnit = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
-                        IMUOMUID = p.IMUOMUID,
-                        DFORMUID = p.DFORMUID,
-                        DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
-                        StoreUID = p.StoreUID,
-                        StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
-                        InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),
-                        Dosage = p.Dosage,
-                        FRQNCUID = p.FRQNCUID,
-                        Frequency = (p.FRQNCUID != null && p.FRQNCUID != 0) ? SqlFunction.fGetFrequencyDescription(p.FRQNCUID ?? 0, "TH") : "",
-                        InstructionText = p.InstructionText,
-                        LocalInstructionText = p.LocalInstructionText,
-                        ClinicalComments = p.ClinicalComments,
-                        DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0)
-                    });
+                        var prescriptionItems = db.PrescriptionItem
+                        .Where(p => p.PrescriptionUID == prescription.PrescriptionUID && p.StatusFlag == "A")
+                        .Select(p => new PrescriptionItemModel
+                        {
+                            PrescriptionItemUID = p.UID,
+                            PrescriptionUID = p.PrescriptionUID,
+                            PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
+                            ORDSTUID = p.ORDSTUID,
+                            ItemCode = p.ItemCode,
+                            ItemName = p.ItemName,
+                            ItemMasterUID = p.ItemMasterUID,
+                            Quantity = p.Quantity,
+                            QuantityUnit = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
+                            IMUOMUID = p.IMUOMUID,
+                            DFORMUID = p.DFORMUID,
+                            DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
+                            StoreUID = p.StoreUID,
+                            StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
+                            InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),
+                            Dosage = p.Dosage,
+                            FRQNCUID = p.FRQNCUID,
+                            Frequency = (p.FRQNCUID != null && p.FRQNCUID != 0) ? SqlFunction.fGetFrequencyDescription(p.FRQNCUID ?? 0, "TH") : "",
+                            InstructionText = p.InstructionText,
+                            LocalInstructionText = p.LocalInstructionText,
+                            ClinicalComments = p.ClinicalComments,
+                            DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0)
+                        });
 
-                    prescription.PrescriptionItems = new System.Collections.ObjectModel.ObservableCollection<PrescriptionItemModel>(prescriptionItems);
+                        prescription.PrescriptionItems = new System.Collections.ObjectModel.ObservableCollection<PrescriptionItemModel>(prescriptionItems);
 
+                    }
                 }
+
+
+                return data;
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
 
-
-            return data;
         }
 
         [Route("GetPrescriptionItemByPrescriptionUID")]
@@ -671,6 +685,7 @@ namespace MediTechWebApi.Controllers
                 .Select(p => new PrescriptionItemModel
                 {
                     PrescriptionItemUID = p.UID,
+                    PrescriptionUID = p.PrescriptionUID,
                     PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
                     ORDSTUID = p.ORDSTUID,
                     ItemCode = p.ItemCode,

@@ -438,9 +438,9 @@ namespace MediTech.ViewModels
         {
             if (SelectPatientVisit != null)
             {
-                ModifyVisitPayor pageview = new ModifyVisitPayor();
-                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
-                ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
+                ModifyVisit pageview = new ModifyVisit();
+                (pageview.DataContext as ModifyVisitViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitViewModel result = (ModifyVisitViewModel)LaunchViewDialog(pageview, "MDVIS", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();

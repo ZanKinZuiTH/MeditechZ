@@ -44,11 +44,11 @@ namespace MediTech.ViewModels
             set { Set(ref _PrescritionStatus, value); }
         }
 
-        private LookupReferenceValueModel _SelectPrescritionStatus;
+        private List<object> _SelectPrescritionStatus;
 
-        public LookupReferenceValueModel SelectPrescritionStatus
+        public List<object> SelectPrescritionStatus
         {
-            get { return _SelectPrescritionStatus; }
+            get { return _SelectPrescritionStatus ?? (_SelectPrescritionStatus = new List<object>()); }
             set { Set(ref _SelectPrescritionStatus, value); }
         }
 
@@ -68,6 +68,29 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _SelectPrescription, value);
+                if(_SelectPrescription != null)
+                {
+                    IsEnableCancelDispense = false;
+                    IsEnableEditDispense = false;
+                    IsEnableDispense = false;
+                    if (_SelectPrescription.IsBilled == "N")
+                    {
+                        if (_SelectPrescription.PrescriptionStatus == "Dispensed" || _SelectPrescription.PrescriptionStatus == "Partially Dispensed")
+                        {
+                            IsEnableCancelDispense = true;
+                        }
+                    }
+
+                    if (_SelectPrescription.PrescriptionStatus == "Partially Dispensed")
+                    {
+                        IsEnableEditDispense = true;
+                    }
+
+                    if (_SelectPrescription.PrescriptionStatus == "Raised")
+                    {
+                        IsEnableDispense = true;
+                    }
+                }
             }
         }
 
@@ -136,10 +159,34 @@ namespace MediTech.ViewModels
         public string PrescriptionNumber
         {
             get { return _PrescriptionNumber; }
-            set { _PrescriptionNumber = value; }
+            set { Set(ref _PrescriptionNumber, value); }
         }
 
 
+        private bool _IsEnableCancelDispense = false;
+
+        public bool IsEnableCancelDispense
+        {
+            get { return _IsEnableCancelDispense; }
+            set { Set(ref _IsEnableCancelDispense, value); }
+        }
+
+        private bool _IsEnableEditDispense = false;
+
+        public bool IsEnableEditDispense
+        {
+            get { return _IsEnableEditDispense; }
+            set { Set(ref _IsEnableEditDispense, value); }
+        }
+
+
+        private bool _IsEnableDispense = false;
+
+        public bool IsEnableDispense
+        {
+            get { return _IsEnableDispense; }
+            set { Set(ref _IsEnableDispense, value); }
+        }
 
         #endregion
 
@@ -191,7 +238,7 @@ namespace MediTech.ViewModels
 
         public RelayCommand EditDispenseCommand
         {
-            get { return _EditDispenseCommand ?? (_EditDispenseCommand = new RelayCommand(Dispense)); }
+            get { return _EditDispenseCommand ?? (_EditDispenseCommand = new RelayCommand(EditDispense)); }
         }
 
 
@@ -220,6 +267,7 @@ namespace MediTech.ViewModels
             PrescritionStatus = refValues.Where(p => p.ValueCode == "RAISED" || p.ValueCode == "DISPE" || p.ValueCode == "CANCLD"
             || p.ValueCode == "DISPCANCL" || p.ValueCode == "OPDISP"
             || p.ValueCode == "OPCANDISP" || p.ValueCode == "PRCAN").ToList();
+
             DefaultControl();
             SearchPrescrition();
         }
@@ -227,13 +275,23 @@ namespace MediTech.ViewModels
 
         void SearchPrescrition()
         {
-            int? ORDSTUID = null;
             long? patientUID = null;
-            int? organisationUID = null;
 
+            string statusList = string.Empty;
             if (SelectPrescritionStatus != null)
             {
-                ORDSTUID = SelectPrescritionStatus.Key;
+                foreach (object item in SelectPrescritionStatus)
+                {
+                    if (statusList == "")
+                    {
+                        statusList = item.ToString();
+                    }
+                    else
+                    {
+                        statusList += "," + item.ToString();
+
+                    }
+                }
             }
 
             if (!string.IsNullOrEmpty(SearchPatientCriteria))
@@ -244,7 +302,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, ORDSTUID, patientUID, PrescriptionNumber, AppUtil.Current.OwnerOrganisationUID);
+            Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, statusList, patientUID, PrescriptionNumber, AppUtil.Current.OwnerOrganisationUID);
             int te = Prescriptons.Count;
         }
 
@@ -286,7 +344,8 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = null;
-            SelectPrescritionStatus = null;
+            SelectPrescritionStatus.Add(PrescritionStatus.FirstOrDefault(p => p.ValueCode == "RAISED").Key);
+            SelectPrescritionStatus.Add(PrescritionStatus.FirstOrDefault(p => p.ValueCode == "OPDISP").Key);
             SelectedPateintSearch = null;
             SearchPatientCriteria = "";
             PrescriptionNumber = "";
@@ -355,11 +414,13 @@ namespace MediTech.ViewModels
         {
             if (SelectPrescription != null)
             {
-                if (SelectPrescription.PrescriptionStatus == "Raised")
+                if (SelectPrescription.PrescriptionStatus == "Partially Dispensed")
                 {
                     var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
                     DispenseDrug dispense = new DispenseDrug();
-                    (dispense.DataContext as DispenseDrugViewModel).AssingModel(SelectPrescription, patientVisit);
+                    var dataContext = (dispense.DataContext as DispenseDrugViewModel);
+                    dataContext.IsEditDispense = true;
+                    dataContext.AssingModel(SelectPrescription, patientVisit);
                     ChangeViewPermission(dispense);
                 }
             }

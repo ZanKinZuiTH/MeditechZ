@@ -106,6 +106,11 @@ namespace MediTech.ViewModels
                     VisibiltyCheckupCompany = Visibility.Collapsed;
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
+                        if (CheckupJobSource == null)
+                        {
+                            CheckupJobSource = DataService.Checkup.GetCheckupJobContactAllActive();
+                        }
+
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }
 

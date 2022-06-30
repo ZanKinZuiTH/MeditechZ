@@ -21,46 +21,6 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectPatientVisit, value); }
         }
 
-        public List<PayorDetailModel> PayorDetailSource { get; set; }
-        private PayorDetailModel _SelectedPayorDetail;
-
-        public PayorDetailModel SelectedPayorDetail
-        {
-            get { return _SelectedPayorDetail; }
-            set
-            {
-                Set(ref _SelectedPayorDetail, value);
-                if (_SelectedPayorDetail != null)
-                {
-                    PayorAgreementSource = DataService.Billing.GetPayorAgreementByPayorDetailUID(SelectedPayorDetail.PayorDetailUID);
-                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    if (PayorAgreementSource != null)
-                    {
-                        SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
-                    }
-                    if (CheckupJobSource != null)
-                    {
-                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
-                    }
-                }
-            }
-        }
-
-        private List<PayorAgreementModel> _PayorAgreementSource;
-
-        public List<PayorAgreementModel> PayorAgreementSource
-        {
-            get { return _PayorAgreementSource; }
-            set { Set(ref _PayorAgreementSource, value); }
-        }
-
-        private PayorAgreementModel _SelectedPayorAgreement;
-
-        public PayorAgreementModel SelectedPayorAgreement
-        {
-            get { return _SelectedPayorAgreement; }
-            set { Set(ref _SelectedPayorAgreement, value); }
-        }
 
         public List<LookupReferenceValueModel> PrioritySource { get; set; }
         private LookupReferenceValueModel _SelectedPriority;
@@ -86,22 +46,22 @@ namespace MediTech.ViewModels
             set { Set(ref _StartTime, value); }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
+        private List<LocationModel> _Locations;
 
-        public List<HealthOrganisationModel> Organisations
+        public List<LocationModel> Locations
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _Locations; }
+            set { Set(ref _Locations, value); }
         }
 
-        private HealthOrganisationModel _SelectOrganisation;
+        private LocationModel _SelectLocation;
 
-        public HealthOrganisationModel SelectOrganisation
+        public LocationModel SelectLocation
         {
-            get { return _SelectOrganisation; }
+            get { return _SelectLocation; }
             set
             {
-                Set(ref _SelectOrganisation, value);
+                Set(ref _SelectLocation, value);
             }
         }
 
@@ -125,6 +85,10 @@ namespace MediTech.ViewModels
                     VisibiltyCheckupCompany = Visibility.Collapsed;
                     if (SelectedVisitType.ValueCode == "MBCHK" || SelectedVisitType.ValueCode == "CHKUP" || SelectedVisitType.ValueCode == "CHKIN")
                     {
+                        if (CheckupJobSource == null)
+                        {
+                            CheckupJobSource = DataService.Checkup.GetCheckupJobContactAllActive();
+                        }
                         VisibiltyCheckupCompany = Visibility.Visible;
                     }
                     else
@@ -229,8 +193,8 @@ namespace MediTech.ViewModels
             List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT");
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
-            Organisations = GetHealthOrganisationMedical();
-            PayorDetailSource = DataService.Billing.GetPayorDetail();
+            var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
         }
         private void Save()
@@ -250,13 +214,11 @@ namespace MediTech.ViewModels
                     visitInfo.StartDttm = DateTime.Parse(StartDate.Value.ToString("dd/MM/yyyy") + " " + StartTime.Value.ToString("HH:mm"));
                     visitInfo.VISTYUID = SelectedVisitType.Key;
                     visitInfo.PRITYUID = SelectedPriority.Key;
-                    visitInfo.PayorDetailUID = SelectedPayorDetail.PayorDetailUID;
-                    visitInfo.PayorAgreementUID = SelectedPayorAgreement.PayorAgreementUID;
 
                     visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
 
                     visitInfo.Comments = CommentDoctor;
-                    visitInfo.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
+                    visitInfo.LocationUID = SelectLocation.LocationUID;
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
 
@@ -301,16 +263,12 @@ namespace MediTech.ViewModels
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {
             SelectPatientVisit = visitModel;
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == SelectPatientVisit.OwnerOrganisationUID);
+            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
             SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Key == SelectPatientVisit.VISTYUID);
             StartDate = SelectPatientVisit.StartDttm != null ? SelectPatientVisit.StartDttm.Value : (DateTime?)null;
             StartTime = SelectPatientVisit.StartDttm != null ? SelectPatientVisit.StartDttm.Value : (DateTime?)null;
-            SelectedPayorDetail = PayorDetailSource.FirstOrDefault(p => p.PayorDetailUID == SelectPatientVisit.PayorDetailUID);
-            if (SelectedPayorDetail != null)
-            {
-                SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault(p => p.PayorAgreementUID == SelectPatientVisit.PayorAgreementUID);
-                SelectedCheckupJob = CheckupJobSource.FirstOrDefault(p => p.CheckupJobContactUID == SelectPatientVisit.CheckupJobUID);
-            }
+
+            SelectedCheckupJob = CheckupJobSource?.FirstOrDefault(p => p.CheckupJobContactUID == SelectPatientVisit.CheckupJobUID);
             SelectedPriority = PrioritySource.FirstOrDefault(p => p.Key == SelectPatientVisit.PRITYUID);
             SelectedCareprovider = CareproviderSource.FirstOrDefault(p => p.CareproviderUID == SelectPatientVisit.CareProviderUID);
             CommentDoctor = SelectPatientVisit.Comments;
@@ -328,9 +286,10 @@ namespace MediTech.ViewModels
 
         public bool ValidateVisitData()
         {
-            if (SelectOrganisation == null)
+
+            if (SelectLocation == null)
             {
-                WarningDialog("กรุณาเลือก สถานประกอบการ");
+                WarningDialog("กรุณาเลือก แผนก");
                 return true;
             }
             if (SelectedVisitType == null)
@@ -339,17 +298,6 @@ namespace MediTech.ViewModels
                 return true;
             }
 
-            if (SelectedPayorDetail == null)
-            {
-                WarningDialog("กรุณาเลือก Payor");
-                return true;
-            }
-
-            if (SelectedPayorAgreement == null)
-            {
-                WarningDialog("กรุณาเลือก Agreemnet");
-                return true;
-            }
 
             if (VisibiltyCheckupCompany == Visibility.Visible)
             {
