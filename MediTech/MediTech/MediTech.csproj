@@ -1425,6 +1425,7 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorAgreementViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
+    <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
@@ -1649,6 +1650,9 @@
     </Compile>
     <Compile Include="Views\BillingConfiguration\ManagePolicyMaster.xaml.cs">
       <DependentUpon>ManagePolicyMaster.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\AllocateBillPopup.xaml.cs">
+      <DependentUpon>AllocateBillPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
       <DependentUpon>BillSettlementOP.xaml</DependentUpon>
@@ -2319,6 +2323,10 @@
     <Page Include="Views\BillingConfiguration\ManagePolicyMaster.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Billing\AllocateBillPopup.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Billing\BillSettlementOP.xaml">
       <SubType>Designer</SubType>
@@ -4011,6 +4019,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
     <Resource Include="Resources\Images\Time\FutureAppointment.png" />
     <Resource Include="Resources\Images\Time\PatientTracking.png" />
     <Resource Include="Resources\Images\Fincace\money-bag.png" />
