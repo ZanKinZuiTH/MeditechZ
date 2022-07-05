@@ -198,7 +198,7 @@ namespace MediTech.ViewModels
             TypeOrder = PatientOrderDetail.BillingService;
             OrderName = PatientOrderDetail.ItemName;
             OrderCode = "Code : " + PatientOrderDetail.ItemCode;
-            UnitPrice = PatientOrderDetail.UnitPrice.Value.ToString("#,#.00");
+            UnitPrice = PatientOrderDetail.OriginalUnitPrice.Value.ToString("#,#.00");
             Quantity = PatientOrderDetail.Quantity ?? 1;
 
             StartDate = PatientOrderDetail.StartDttm.Value.Date;
@@ -245,6 +245,7 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.ItemName = BillableItem.ItemName;
                     PatientOrderDetail.BillingService = BillableItem.BillingServiceMetaData;
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
+                    PatientOrderDetail.OriginalUnitPrice = BillableItem.Price;
                     PatientOrderDetail.DoctorFeePer = BillableItem.DoctorFee;
                 }
 
@@ -261,6 +262,7 @@ namespace MediTech.ViewModels
 
                 if (OverwritePrice != null)
                 {
+                    PatientOrderDetail.UnitPrice = OverwritePrice;
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "Y";
                     //PatientOrderDetail.NetAmount = OverwritePrice + (PatientOrderDetail.DoctorFee ?? 0);
@@ -271,9 +273,10 @@ namespace MediTech.ViewModels
                 {
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "N";
+                    PatientOrderDetail.UnitPrice = PatientOrderDetail.OriginalUnitPrice;
+                    PatientOrderDetail.DisplayPrice = PatientOrderDetail.UnitPrice;
                     //PatientOrderDetail.NetAmount = (PatientOrderDetail.UnitPrice ?? 0) + (PatientOrderDetail.DoctorFee ?? 0);
                     PatientOrderDetail.NetAmount = ((PatientOrderDetail.UnitPrice ?? 0) * PatientOrderDetail.Quantity);
-                    PatientOrderDetail.DisplayPrice = PatientOrderDetail.UnitPrice;
                 }
 
                 PatientOrderDetail.DoctorFee = (PatientOrderDetail.DoctorFeePer / 100) * PatientOrderDetail.NetAmount;

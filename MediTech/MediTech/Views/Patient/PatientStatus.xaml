@@ -15,7 +15,7 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="แผนก">
                     <dxe:ComboBoxEdit Name="cmbLocations" 
-                                      IsEnabled="False"
+                                      IsEnabled="True"
                                       ValueMember="LocationUID"
                                       DisplayMember="Name"
                                       AutoComplete="True"

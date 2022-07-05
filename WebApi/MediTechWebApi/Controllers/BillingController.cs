@@ -835,7 +835,37 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetAllocatedPatBillableItemsPalm")]
+        [HttpGet]
+        public List<AllocatedPatientBillableItemsPalmModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+            , int? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
+    )
+        {
+            List<AllocatedPatientBillableItemsPalmModel> data = new List<AllocatedPatientBillableItemsPalmModel>();
+            DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, startDate, endDate);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<AllocatedPatientBillableItemsPalmModel>();
+                data = dt.ToList<AllocatedPatientBillableItemsPalmModel>();
+            }
+            return data;
+        }
 
+        [Route("AllocatePatientBillableItem")]
+        [HttpPost]
+        public HttpResponseMessage AllocatePatientBillableItem(AllocatePatientBillableItem allocateModel)
+        {
+            try
+            {
+                SqlDirectStore.pAllocatePatientBillableItem(allocateModel.patientUID, allocateModel.patientVisitUID, allocateModel.ownerOrganisationUID, allocateModel.isAutoAllocate, allocateModel.groupUID, allocateModel.subGroupUID, allocateModel.patientVisitPayorUID
+                    , allocateModel.payorAgreementUID, allocateModel.userUID, allocateModel.allocatedVisitPayorUID, allocateModel.patientBillableItemUID, allocateModel.canKeepDiscount, allocateModel.startDate, allocateModel.endDate);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
 
         [Route("CancelBill")]
         [HttpPut]
@@ -1207,7 +1237,7 @@ namespace MediTechWebApi.Controllers
                 OrderSubCategoryUID = p.OrderSubCategoryUID,
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
             }).ToList();
-            
+
             return data;
         }
 
@@ -1221,21 +1251,21 @@ namespace MediTechWebApi.Controllers
                                                  && p.BillPackageUID == billPackageUID
                                                  && b.StatusFlag == "A"
                                                  select new BillPackageDetailModel
-                                                    {
-                                                        BillPackageUID = p.UID,
-                                                        BillableItemUID = p.BillableItemUID,
-                                                        Amount = p.Amount,
-                                                        Quantity = p.Quantity,
-                                                        ItemUID = p.ItemUID,
-                                                        ItemCode = b.Code,
-                                                        ItemName = b.Name,
-                                                        CURNCUID = p.CURNCUID,
-                                                        ActiveFrom = p.ActiveFrom,
-                                                        ActiveTo = p.ActiveTo,
-                                                        OrderCategoryUID = p.OrderCategoryUID,
-                                                        OrderSubCategoryUID = p.OrderSubCategoryUID,
-                                                        OwnerOrganisationUID = p.OwnerOrganisationUID,
-                                                    }).ToList();
+                                                 {
+                                                     BillPackageUID = p.UID,
+                                                     BillableItemUID = p.BillableItemUID,
+                                                     Amount = p.Amount,
+                                                     Quantity = p.Quantity,
+                                                     ItemUID = p.ItemUID,
+                                                     ItemCode = b.Code,
+                                                     ItemName = b.Name,
+                                                     CURNCUID = p.CURNCUID,
+                                                     ActiveFrom = p.ActiveFrom,
+                                                     ActiveTo = p.ActiveTo,
+                                                     OrderCategoryUID = p.OrderCategoryUID,
+                                                     OrderSubCategoryUID = p.OrderSubCategoryUID,
+                                                     OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                 }).ToList();
 
             return data;
         }
@@ -1343,7 +1373,7 @@ namespace MediTechWebApi.Controllers
                             billPackageItem.OrderSubCategoryUID = item.OrderSubCategoryUID;
                             billPackageItem.OwnerOrganisationUID = item.OwnerOrganisationUID;
                             billPackageItem.ActiveFrom = null;
-                            billPackageItem.ActiveTo = null; 
+                            billPackageItem.ActiveTo = null;
 
                             db.BillPackageItem.AddOrUpdate(billPackageItem);
                             db.SaveChanges();
@@ -1372,7 +1402,7 @@ namespace MediTechWebApi.Controllers
                 using (var tran = new TransactionScope())
                 {
                     var billPackage = db.BillPackage.Find(billPackageUID);
-                    if(billPackage != null)
+                    if (billPackage != null)
                     {
                         db.BillPackage.Attach(billPackage);
                         billPackage.MUser = userID;
@@ -1550,8 +1580,8 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<InsurancePlanModel> GetInsurancePlansGroupPayorCompany()
         {
-           
-            var data = db.InsurancePlan.Where(p => p.StatusFlag == "A").GroupBy(g => new {g.InsuranceCompanyUID})
+
+            var data = db.InsurancePlan.Where(p => p.StatusFlag == "A").GroupBy(g => new { g.InsuranceCompanyUID })
                 .Select(x => new InsurancePlanModel()
                 {
                     InsuranceCompanyUID = x.Key.InsuranceCompanyUID,
@@ -2425,7 +2455,7 @@ namespace MediTechWebApi.Controllers
                 data.PayorAgreementUID = agreementData.UID;
 
                 var policyMaster = db.PolicyMaster.Find(agreementData.PolicyMasterUID);
-                if(policyMaster != null)
+                if (policyMaster != null)
                 {
                     data.PolicyMasterUID = policyMaster.UID;
                     data.PolicyName = policyMaster.PolicyName;

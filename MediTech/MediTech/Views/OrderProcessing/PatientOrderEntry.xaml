@@ -58,7 +58,7 @@
                                               ValueMember="CareproviderUID"
                                               />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem Label="Order จาก :">
+                            <dxlc:LayoutItem Label="Order จาก :" IsEnabled="{Binding IsEnableOrderFrom}">
                                 <dxe:ComboBoxEdit x:Name="cmbLocation"
                                               IsTextEditable="False"
                                               ItemsSource="{Binding Locations}"

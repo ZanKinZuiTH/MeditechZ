@@ -425,10 +425,13 @@ namespace MediTechWebApi.Controllers
                                                       join l in db.Login on j.LoginUID equals l.UID
                                                       join c in db.Careprovider on l.CareproviderUID equals c.UID
                                                       join h in db.CareproviderLocation on c.UID equals h.CareproviderUID
+                                                      join lt in db.Location on h.LocationUID equals lt.UID
                                                       where j.StatusFlag == "A"
                                                       && i.StatusFlag == "A"
                                                       && c.StatusFlag == "A"
                                                       && h.StatusFlag == "A"
+                                                      && lt.StatusFlag == "A"
+                                                      && lt.Description != "Pac_Bed"
                                                       && j.LoginUID == loginUID
                                                       && h.HealthOrganisationUID == organisationUID
                                                       && (h.ActiveFrom == null || DbFunctions.TruncateTime(h.ActiveFrom) <= DbFunctions.TruncateTime(dateNow))

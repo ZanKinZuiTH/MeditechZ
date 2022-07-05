@@ -59,7 +59,7 @@ namespace MediTechWebApi.Controllers
             {
                 DateTime now = DateTime.Now;
 
-                MediTech.DataBase.Location vendorDetail = db.Location.Where(p => p.UID == locationModel.LocationUID && p.StatusFlag == "A").FirstOrDefault();
+                MediTech.DataBase.Location vendorDetail = db.Location.Where(p => p.UID == BedUID && p.StatusFlag == "A").FirstOrDefault();
 
                 //if (CurrentModel == null)
                 //{

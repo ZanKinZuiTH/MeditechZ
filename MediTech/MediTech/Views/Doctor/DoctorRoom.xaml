@@ -111,16 +111,6 @@
                             </dxe:ComboBoxEdit.StyleSettings>
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="สถานประกอบการ">
-                        <dxe:ComboBoxEdit Name="cmbOrganisation" 
-                                      ItemsSource="{Binding Organisations}" 
-                                      SelectedItem="{Binding SelectOrganisation}"
-                                      ValueMember="HealthOrganisationUID"
-                                      DisplayMember="Name"
-                                      AutoComplete="True"
-                                      NullValueButtonPlacement="EditBox"
-                                      ImmediatePopup="True"/>
-                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
                 <dxlc:GroupBox Padding="0">
@@ -150,7 +140,7 @@
                             </i:EventTrigger>
                         </i:Interaction.Triggers>
                         <dxg:GridControl.Columns>
-                            <dxg:GridColumn Header="BN" FieldName="PatientID"
+                            <dxg:GridColumn Header="HN" FieldName="PatientID"
                                             Width="80"
                                             HorizontalHeaderContentAlignment="Center"
                                             ReadOnly="True">

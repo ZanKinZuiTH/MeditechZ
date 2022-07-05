@@ -168,10 +168,10 @@
 
             <StackPanel Orientation="Horizontal" Grid.Column="2" Grid.Row="2" 
                         HorizontalAlignment="Center">
-                <TextBlock Name="txtVisitID" Text="O0000000" FontSize="14" 
+                <TextBlock Name="txtVisitID"  FontSize="14" 
                            FontStyle="Italic" Foreground="Blue" />
 
-                <TextBlock Name="txtPastVisits" Text="Past Vists : 2" FontSize="14" Margin="10,0,0,0"
+                <TextBlock Name="txtPastVisits"  FontSize="14" Margin="10,0,0,0"
                            FontStyle="Italic" Foreground="Blue" />
             </StackPanel>
         </Grid>

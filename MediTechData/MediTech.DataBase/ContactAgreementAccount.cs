@@ -12,23 +12,12 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientOrder
+    public partial class ContactAgreementAccount
     {
-        public long UID { get; set; }
-        public string OrderNumber { get; set; }
-        public long PatientUID { get; set; }
-        public long PatientVisitUID { get; set; }
-        public Nullable<System.DateTime> StartDttm { get; set; }
-        public Nullable<System.DateTime> EndDttm { get; set; }
-        public Nullable<int> PRSTYPUID { get; set; }
-        public string Comments { get; set; }
-        public Nullable<long> IdentifyingUID { get; set; }
+        public int UID { get; set; }
+        public int PolicyMasterUID { get; set; }
+        public int IdentifyingUID { get; set; }
         public string IdentifyingType { get; set; }
-        public int OrderRaisedBy { get; set; }
-        public Nullable<int> RoomBillPackageUID { get; set; }
-        public Nullable<int> OrderLocationUID { get; set; }
-        public Nullable<int> OrderToLocationUID { get; set; }
-        public string IsContinuous { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

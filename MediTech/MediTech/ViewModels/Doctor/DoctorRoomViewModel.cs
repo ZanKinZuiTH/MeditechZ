@@ -143,21 +143,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
-        {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
-        }
-
-        private HealthOrganisationModel _SelectOrganisation;
-
-        public HealthOrganisationModel SelectOrganisation
-        {
-            get { return _SelectOrganisation; }
-            set { Set(ref _SelectOrganisation, value); }
-        }
 
         #endregion
 
@@ -618,9 +603,6 @@ namespace MediTech.ViewModels
             SelectVisitStatus = VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC");
             VisitDate = DateTime.Now;
 
-            Organisations = GetHealthOrganisationMedical();
-            SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == AppUtil.Current.OwnerOrganisationUID);
-
         }
 
         public override void OnLoaded()
@@ -650,7 +632,7 @@ namespace MediTech.ViewModels
 
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             string patientID = (SelectedPateintSearch != null && SearchPatientCriteria != "") ? SelectedPateintSearch.PatientID : "";
-            int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
+            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, "");
         }
 

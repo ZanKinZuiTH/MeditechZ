@@ -17,7 +17,7 @@ namespace MediTech.DataBase
         public long UID { get; set; }
         public long PatientUID { get; set; }
         public Nullable<long> PatientVisitUID { get; set; }
-        public int IdentifyingUID { get; set; }
+        public long IdentifyingUID { get; set; }
         public string IdentifyingType { get; set; }
         public Nullable<int> ProcedureUID { get; set; }
         public int BSMDDUID { get; set; }
@@ -30,20 +30,33 @@ namespace MediTech.DataBase
         public Nullable<double> ItemMultiplier { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
+        public Nullable<int> DiscountAuthorizedBy { get; set; }
         public Nullable<int> ItemUID { get; set; }
         public string ItemName { get; set; }
+        public Nullable<int> VISITYUID { get; set; }
+        public Nullable<int> RSLVLUID { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public Nullable<double> ConsultantShare { get; set; }
+        public Nullable<double> EducationCess { get; set; }
+        public Nullable<double> HigherEducationCess { get; set; }
+        public Nullable<double> ServiceTax { get; set; }
         public Nullable<System.DateTime> EventOccuredDttm { get; set; }
         public Nullable<int> QNUOMUID { get; set; }
         public Nullable<double> ConsultantDiscount { get; set; }
+        public Nullable<int> PatientVisitPayorUID { get; set; }
         public Nullable<int> PayorDetailUID { get; set; }
         public string BatchID { get; set; }
+        public Nullable<double> VATPercentage { get; set; }
+        public Nullable<double> InternalCost { get; set; }
+        public string CalculateTaxOnMRP { get; set; }
         public Nullable<int> StoreUID { get; set; }
         public Nullable<int> BillPackageUID { get; set; }
         public Nullable<double> SplitDiscount { get; set; }
+        public Nullable<int> BLTYPUID { get; set; }
         public string OrderType { get; set; }
         public Nullable<long> OrderTypeUID { get; set; }
+        public string ReceiptNumber { get; set; }
+        public string RefundBillNumber { get; set; }
         public Nullable<long> PatientOrderDetailUID { get; set; }
         public Nullable<long> IPFillProcessUID { get; set; }
         public Nullable<int> ORDSTUID { get; set; }
@@ -60,6 +73,7 @@ namespace MediTech.DataBase
         public Nullable<double> SubGroupCovered { get; set; }
         public Nullable<double> ItemMaxCoverage { get; set; }
         public Nullable<double> ItemCovered { get; set; }
+        public Nullable<int> PatientFixPriceUID { get; set; }
         public Nullable<int> PBLCTUID { get; set; }
         public Nullable<int> ALLDIUID { get; set; }
         public Nullable<int> OrderSetBillableItemUID { get; set; }

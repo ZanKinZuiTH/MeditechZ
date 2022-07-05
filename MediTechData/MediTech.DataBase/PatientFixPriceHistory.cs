@@ -12,28 +12,23 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderSet
+    public partial class PatientFixPriceHistory
     {
         public int UID { get; set; }
-        public string Code { get; set; }
+        public int PatientFixPriceUID { get; set; }
+        public long PatientVisitUID { get; set; }
         public string Name { get; set; }
-        public string Description { get; set; }
-        public string OrdersetNameSearch { get; set; }
-        public Nullable<int> BillGroupUID { get; set; }
-        public Nullable<int> BillSubGroupUID { get; set; }
-        public Nullable<int> OrderCategoryUID { get; set; }
-        public Nullable<int> OrderSubCategoryUID { get; set; }
-        public Nullable<int> NoOfDay { get; set; }
-        public string IsFixPrice { get; set; }
-        public Nullable<System.DateTime> ActiveFrom { get; set; }
+        public Nullable<int> FixPriceUID { get; set; }
+        public Nullable<double> TotalAmount { get; set; }
+        public System.DateTime ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }
-        public string NOTAllowDiscount { get; set; }
-        public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<int> Duration { get; set; }
+        public Nullable<System.DateTime> EventOccuredDttm { get; set; }
+        public Nullable<double> NoOfDay { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
-        public byte[] TIMESTAMP { get; set; }
     }
 }

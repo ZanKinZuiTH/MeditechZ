@@ -458,7 +458,7 @@ namespace MediTech.ViewModels
             TypeOrder = PatientOrderDetail.BillingService;
             OrderName = PatientOrderDetail.ItemName;
             OrderCode = "Code : " + PatientOrderDetail.ItemCode;
-            UnitPrice = PatientOrderDetail.UnitPrice.Value.ToString("#,#.00");
+            UnitPrice = PatientOrderDetail.OriginalUnitPrice.Value.ToString("#,#.00");
             StartDate = PatientOrderDetail.StartDttm.Value.Date;
             StartTime = PatientOrderDetail.StartDttm.Value;
             OverwritePrice = PatientOrderDetail.OverwritePrice;
@@ -555,6 +555,7 @@ namespace MediTech.ViewModels
                     PatientOrderDetail.ItemName = BillableItem.ItemName;
                     PatientOrderDetail.BillingService = BillableItem.BillingServiceMetaData;
                     PatientOrderDetail.UnitPrice = BillableItem.Price;
+                    PatientOrderDetail.OriginalUnitPrice = BillableItem.Price;
                     PatientOrderDetail.DoctorFee = (BillableItem.DoctorFee / 100) * BillableItem.Price;
                 }
 
@@ -598,6 +599,7 @@ namespace MediTech.ViewModels
 
                 if (OverwritePrice != null)
                 {
+                    PatientOrderDetail.UnitPrice = OverwritePrice;
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "Y";
                     PatientOrderDetail.DisplayPrice = PatientOrderDetail.OverwritePrice;
@@ -619,6 +621,7 @@ namespace MediTech.ViewModels
                 {
                     PatientOrderDetail.OverwritePrice = OverwritePrice;
                     PatientOrderDetail.IsPriceOverwrite = "N";
+                    PatientOrderDetail.UnitPrice = PatientOrderDetail.OriginalUnitPrice;
                     PatientOrderDetail.DisplayPrice = PatientOrderDetail.UnitPrice;
 
                     if (SelectUnit.ConversionUOMUID == ItemMaster.BaseUOM)

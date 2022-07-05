@@ -345,8 +345,9 @@ namespace MediTech.ViewModels
             SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(DataService.Technical.GetReferenceValueMany("VISTS"));
-            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
-            SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC").Key);
+            //SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "REGST").Key);
+            //SelectVisitStatusList.Add(VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC").Key);
+            SelectVisitStatusList.AddRange(VisitStatus?.Where(p => p.ValueCode != "FINDIS").Select(p => (object)p.Key.Value).ToList());
             DateTypes = new List<LookupItemModel>();
             DateTypes.Add(new LookupItemModel { Key = 1, Display = "วันนี้" });
             DateTypes.Add(new LookupItemModel { Key = 2, Display = "อาทิตย์ล่าสุด" });

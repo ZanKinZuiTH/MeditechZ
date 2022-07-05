@@ -406,7 +406,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("CreateOrder")]
         [HttpPost]
-        public HttpResponseMessage CreateOrder(long patientUID, long patientVisitUID, int userUID, int locationUID,int ownerOrganisationUID, List<PatientOrderDetailModel> orderDetails)
+        public HttpResponseMessage CreateOrder(long patientUID, long patientVisitUID, int userUID, int locationUID, int ownerOrganisationUID, List<PatientOrderDetailModel> orderDetails)
         {
             try
             {
@@ -430,7 +430,7 @@ namespace MediTechWebApi.Controllers
                 using (var tran = new TransactionScope())
                 {
                     IEnumerable<int> groupBSMDD = orderDetails.Select(p => p.BSMDDUID).Distinct();
-                    IEnumerable<int> groupOrganisation = orderDetails.Select(p => p.OwnerOrganisationUID).Distinct();
+                    //IEnumerable<int> groupOrganisation = orderDetails.Select(p => p.LocationUID).Distinct();
 
                     foreach (int BSMDDUID in groupBSMDD)
                     {
@@ -621,6 +621,7 @@ namespace MediTechWebApi.Controllers
                                 orderDetail.UnitPrice = item.UnitPrice;
                                 orderDetail.IsPriceOverwrite = item.IsPriceOverwrite;
                                 orderDetail.OverwritePrice = item.OverwritePrice;
+                                orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;                                
                                 orderDetail.DoctorFee = item.DoctorFee;
                                 orderDetail.CareproviderUID = item.CareproviderUID;
                                 orderDetail.NetAmount = item.NetAmount;
@@ -657,6 +658,8 @@ namespace MediTechWebApi.Controllers
                                 db.SaveChanges();
 
                                 #endregion
+
+
 
                                 #region SaveOrderAlert
 
@@ -779,6 +782,41 @@ namespace MediTechWebApi.Controllers
                                     orderDetail.IdentifyingType = "PRESCRIPTIONITEM";
                                     db.SaveChanges();
                                 }
+
+                                #endregion
+
+
+                                #region SavePatientBillableItem
+
+                                PatientBillableItem patBillableItem = new PatientBillableItem();
+                                patBillableItem.PatientUID = patientOrder.PatientUID;
+                                patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
+                                patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                                patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
+                                switch (orderDetail.IdentifyingType)
+                                {
+                                    case "ORDERITEM":
+                                        patBillableItem.IdentifyingType = "ORDERITEM";
+                                        break;
+                                    case "PRESCRIPTIONITEM":
+                                        patBillableItem.IdentifyingType = "STORE";
+                                        break;
+                                    case "REQUESTDETAIL":
+                                        patBillableItem.IdentifyingType = "REQUESTITEM";
+                                        break;
+
+                                }
+
+                                patBillableItem.BSMDDUID = BSMDDUID;
+                                patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                                patBillableItem.Amount = orderDetail.UnitPrice;
+                                patBillableItem.Discount = orderDetail.NetAmount;
+                                patBillableItem.CUser = userUID;
+                                patBillableItem.CWhen = now;
+                                patBillableItem.MUser = userUID;
+                                patBillableItem.MWhen = now;
+                                patBillableItem.StatusFlag = "A";
+                                db.PatientBillableItem.Add(patBillableItem);
 
                                 #endregion
                             }

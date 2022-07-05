@@ -15,7 +15,7 @@
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup Header="รายละเอียด Visit" Margin="0,0,0,0" Padding="10,0,10,0"
                                   Orientation="Vertical">
-                <dxlc:LayoutItem >
+                <!--<dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">
                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
@@ -27,7 +27,7 @@
                                       ValueMember="LocationUID"
                                       ItemsSource="{Binding Locations}"
                                       SelectedItem="{Binding SelectLocation}"/>
-                </dxlc:LayoutItem>
+                </dxlc:LayoutItem>-->
                 <dxlc:LayoutItem >
                     <dxlc:LayoutItem.Label>
                         <StackPanel Orientation="Horizontal">

@@ -135,10 +135,10 @@ namespace MediTech.ViewModels
 
             patientVisitCareprovider.PatientVisitUID = appointmentRequest.PatientVisitUID;
             patientVisitCareprovider.StartDttm = StartTime;
-            patientVisitCareprovider.CareProviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : 0;
+            patientVisitCareprovider.CareProviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             patientVisitCareprovider.CareProviderName = SelectDoctor != null ? SelectDoctor.FullName : null;
             patientVisitCareprovider.PACLSUID = SelectStatus.Key;
-            patientVisitCareprovider.LocationUID = SelectLocations.LocationUID;
+            patientVisitCareprovider.LocationUID = SelectLocations != null ? SelectLocations.LocationUID : (int?)null;
             patientVisitCareprovider.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             patientVisitCareprovider.CUser = AppUtil.Current.UserID;
         }

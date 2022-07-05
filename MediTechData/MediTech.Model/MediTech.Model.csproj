@@ -44,6 +44,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Billing\AllocatedPatientBillableItemsPalmModel.cs" />
+    <Compile Include="Billing\AllocatePatientBillableItem.cs" />
     <Compile Include="Billing\BillConfigurationModel.cs" />
     <Compile Include="Billing\BillPackageDetailModel.cs" />
     <Compile Include="Billing\BillPackageModel.cs" />

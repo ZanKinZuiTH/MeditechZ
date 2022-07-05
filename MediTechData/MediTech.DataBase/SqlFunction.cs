@@ -238,7 +238,7 @@ namespace MediTech.DataBase
         }
 
         [DbFunction("MediTechModel.Store", "fGetFrequencyDescription")]
-        public static string fGetFrequencyDescription(int frequencyUID,string language)
+        public static string fGetFrequencyDescription(int frequencyUID, string language)
         {
             throw new NotSupportedException("Direct calls are not supported.");
         }
@@ -246,7 +246,7 @@ namespace MediTech.DataBase
 
     public static class SqlDirectStore
     {
-        public static DataTable pGetCheckupRiskAudioTimus(long patientUID,int payorDetailUID)
+        public static DataTable pGetCheckupRiskAudioTimus(long patientUID, int payorDetailUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pGetCheckupRiskAudioTimus", entities.Database.Connection.ConnectionString);
@@ -259,7 +259,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pStockMassFile(int storeUID, int itemMasterUID,string serialNumber,DateTime? expiryDate)
+        public static DataTable pStockMassFile(int storeUID, int itemMasterUID, string serialNumber, DateTime? expiryDate)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pStockMassFile", entities.Database.Connection.ConnectionString);
@@ -438,7 +438,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_RefTable", refTable ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_RefUID", refUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_NoteMovement", noteMovement ?? (object)DBNull.Value);
-      
+
 
                 cmd.ExecuteNonQuery();
                 flag = true;
@@ -1086,7 +1086,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable SearchIPBooking(string patientID,  DateTime? dateFrom , DateTime? dateTo, int? bktypUID, int? wardUID)
+        public static DataTable SearchIPBooking(string patientID, DateTime? dateFrom, DateTime? dateTo, int? bktypUID, int? wardUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchIPBooking", entities.Database.Connection.ConnectionString);
@@ -1485,7 +1485,7 @@ namespace MediTech.DataBase
 
 
         public static DataTable pSearchIPDPatientVisit(string hn, string firstName, string lastName, int? careproviderUID,
-            string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID,int? PayorDetailUID, int? checkupJobUID)
+            string statusList, DateTime? dateFrom, DateTime? dateTo, DateTime? arrivedDttm, int? ownerOrganisationUID, int? PayorDetailUID, int? checkupJobUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchIPDPatientVisit", entities.Database.Connection.ConnectionString);
@@ -1547,7 +1547,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchUnbilledPatients(long? patientUID,DateTime? billFromDTTM, DateTime? billToDTTM,int? ownerOrganisationUID,string IsIP)
+        public static DataTable pSearchUnbilledPatients(long? patientUID, DateTime? billFromDTTM, DateTime? billToDTTM, int? ownerOrganisationUID, string IsIP)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchUnbilledPatients", entities.Database.Connection.ConnectionString);
@@ -1609,7 +1609,7 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pSearchStockBatch(int? ownerOrganisationUID,int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
+        public static DataTable pSearchStockBatch(int? ownerOrganisationUID, int? locationUID, int? storeUID, int? itemType, string itemCode, string itemName)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockBatch", entities.Database.Connection.ConnectionString);
@@ -1697,7 +1697,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID,int? locationUID)
+        public static DataTable pSearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? locationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchStockWorkList", entities.Database.Connection.ConnectionString);
@@ -1967,7 +1967,7 @@ namespace MediTech.DataBase
 
 
 
-        public static DataTable pRPTRevenuePerDay(DateTime billGeneratedDttm,string organisationList)
+        public static DataTable pRPTRevenuePerDay(DateTime billGeneratedDttm, string organisationList)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pRPTRevenuePerDay", entities.Database.Connection.ConnectionString);
@@ -2467,6 +2467,97 @@ namespace MediTech.DataBase
             }
 
             return seqUID;
+        }
+
+
+        public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID,int? accountUID,int? subAccountUID,int ownerOrganisationUID
+            ,int? patientVisitPayorUID,int? careProviderUID, DateTime startDate,DateTime endDate
+    )
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pAllocatePatientBillableItem";
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID);
+                cmd.Parameters.AddWithValue("@P_AccountUID", accountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubAccountUID", subAccountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_CareProviderUID", careProviderUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
+                cmd.Parameters.AddWithValue("@P_Dateto", endDate);
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
+            , int? patientVisitPayorUID, int? payorAgreementUID, int userUID, int? allocatedVisitPayorUID, int? patientBillableItemUID, string canKeepDiscount, DateTime startDate,
+            DateTime endDate
+            )
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pAllocatePatientBillableItem";
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID);
+                cmd.Parameters.AddWithValue("@P_IsAutoAllocate", isAutoAllocate);
+                cmd.Parameters.AddWithValue("@P_GroupUID", groupUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubGroupUID", subGroupUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PayorAgreementUID", payorAgreementUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_User", userUID);
+                cmd.Parameters.AddWithValue("@P_AllocatedVisitPayorUID", allocatedVisitPayorUID);
+                cmd.Parameters.AddWithValue("@P_PatientBillableItemUID", patientBillableItemUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_CanKeepDiscount", canKeepDiscount);
+                cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
+                cmd.Parameters.AddWithValue("@P_Dateto", endDate);
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
         }
 
     }

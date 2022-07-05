@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> ActiveTo { get; set; }
         public Nullable<int> OrderCategoryUID { get; set; }
         public Nullable<int> OrderSubCategoryUID { get; set; }
+        public string AllowOverridePrice { get; set; }
         public string Code { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }

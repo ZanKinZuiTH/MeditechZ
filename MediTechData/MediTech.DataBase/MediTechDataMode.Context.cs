@@ -15,10 +15,10 @@ namespace MediTech.DataBase
     using System.Data.Entity.Core.Objects;
     using System.Linq;
     
-    public partial class MediTechEntities : DbContext
+    public partial class meditechtestpatchEntities : DbContext
     {
-        public MediTechEntities()
-            : base("name=MediTechEntities")
+        public meditechtestpatchEntities()
+            : base("name=meditechtestpatchEntities")
         {
         }
     
@@ -27,6 +27,7 @@ namespace MediTech.DataBase
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
         public virtual DbSet<AEDischargeEvent> AEDischargeEvent { get; set; }
         public virtual DbSet<AgreementAccountDiscount> AgreementAccountDiscount { get; set; }
         public virtual DbSet<AgreementDetailDiscount> AgreementDetailDiscount { get; set; }
@@ -237,19 +238,18 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
         public virtual DbSet<vAllBillableItemRates> vAllBillableItemRates { get; set; }
         public virtual DbSet<vAllPayorAgreementsDiscount> vAllPayorAgreementsDiscount { get; set; }
-        public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
     
-        [DbFunction("Entities", "fGetBigIntList")]
+        [DbFunction("meditechtestpatchEntities", "fGetBigIntList")]
         public virtual IQueryable<fGetBigIntList_Result> fGetBigIntList(string p_KeyWordList)
         {
             var p_KeyWordListParameter = p_KeyWordList != null ?
                 new ObjectParameter("P_KeyWordList", p_KeyWordList) :
                 new ObjectParameter("P_KeyWordList", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fGetBigIntList_Result>("[Entities].[fGetBigIntList](@P_KeyWordList)", p_KeyWordListParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fGetBigIntList_Result>("[meditechtestpatchEntities].[fGetBigIntList](@P_KeyWordList)", p_KeyWordListParameter);
         }
     
-        [DbFunction("Entities", "fGetPackagePriceROOMCharge")]
+        [DbFunction("meditechtestpatchEntities", "fGetPackagePriceROOMCharge")]
         public virtual IQueryable<fGetPackagePriceROOMCharge_Result> fGetPackagePriceROOMCharge(Nullable<int> patientBillableITemUID, Nullable<System.DateTime> dateOrder, Nullable<int> billPackageITEMUID, Nullable<int> tariff)
         {
             var patientBillableITemUIDParameter = patientBillableITemUID.HasValue ?
@@ -268,17 +268,17 @@ namespace MediTech.DataBase
                 new ObjectParameter("Tariff", tariff) :
                 new ObjectParameter("Tariff", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fGetPackagePriceROOMCharge_Result>("[Entities].[fGetPackagePriceROOMCharge](@PatientBillableITemUID, @DateOrder, @BillPackageITEMUID, @Tariff)", patientBillableITemUIDParameter, dateOrderParameter, billPackageITEMUIDParameter, tariffParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fGetPackagePriceROOMCharge_Result>("[meditechtestpatchEntities].[fGetPackagePriceROOMCharge](@PatientBillableITemUID, @DateOrder, @BillPackageITEMUID, @Tariff)", patientBillableITemUIDParameter, dateOrderParameter, billPackageITEMUIDParameter, tariffParameter);
         }
     
-        [DbFunction("Entities", "splitstring")]
+        [DbFunction("meditechtestpatchEntities", "splitstring")]
         public virtual IQueryable<splitstring_Result> splitstring(string stringToSplit)
         {
             var stringToSplitParameter = stringToSplit != null ?
                 new ObjectParameter("stringToSplit", stringToSplit) :
                 new ObjectParameter("stringToSplit", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<splitstring_Result>("[Entities].[splitstring](@stringToSplit)", stringToSplitParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<splitstring_Result>("[meditechtestpatchEntities].[splitstring](@stringToSplit)", stringToSplitParameter);
         }
     }
 }

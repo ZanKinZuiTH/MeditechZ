@@ -127,25 +127,21 @@ namespace MediTech.Views
             {
                 int? CareProviderUID = null;
                 DateTime arriveTime = timeEditor.DateTime;
-                int? LocationUID = null;
-
+                int? LocationUID = (int?)cmbLocations.EditValue != null ? (int?)cmbLocations.EditValue : (int?)null;
                 if (type == PatientStatusType.SendToDoctor)
                 {
                     if (cmbDoctor.EditValue == null)
                     {
                         return;
                     }
-                    LocationUID = model.LocationUID;
                     CareProviderUID = (int)cmbDoctor.EditValue;
                 }
                 else if (type == PatientStatusType.MedicalDischarge)
                 {
-                    LocationUID = model.LocationUID;
                     CareProviderUID = model.CareProviderUID;
                 }
                 else if(type == PatientStatusType.Arrive)
                 {
-                    LocationUID = model.LocationUID;
                     CareProviderUID = model.CareProviderUID;
 
                     if ((int)cmbStatus.EditValue == 419)

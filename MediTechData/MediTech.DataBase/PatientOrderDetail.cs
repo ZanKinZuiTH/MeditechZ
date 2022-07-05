@@ -32,15 +32,20 @@ namespace MediTech.DataBase
         public Nullable<double> NetAmount { get; set; }
         public string IsPriceOverwrite { get; set; }
         public Nullable<double> OverwritePrice { get; set; }
+        public Nullable<double> OriginalUnitPrice { get; set; }
+        public Nullable<double> Discount { get; set; }
         public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> DFORMUID { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
+        public Nullable<double> UsedQuantity { get; set; }
         public Nullable<double> Dosage { get; set; }
         public Nullable<int> DrugDuration { get; set; }
         public string InstructionText { get; set; }
         public string LocalInstructionText { get; set; }
         public int BillableItemUID { get; set; }
         public Nullable<int> StoreUID { get; set; }
+        public string MainFixPrice { get; set; }
+        public Nullable<int> PatientFixPriceUID { get; set; }
         public Nullable<int> BillPackageUID { get; set; }
         public Nullable<int> CareproviderUID { get; set; }
         public string CancelledReason { get; set; }

@@ -18,7 +18,7 @@ namespace MediTech.DataService
             return data;
         }
 
-        public string CreateOrder(long patientUID, long patientVisitUID, int userUID, int locationUID,int ownerOrganisationUID, List<PatientOrderDetailModel> orderDetails)
+        public string CreateOrder(long patientUID, long patientVisitUID, int userUID,int locationUID,int ownerOrganisationUID, List<PatientOrderDetailModel> orderDetails)
         {
             string requestApi = string.Format("Api/OrderProcessing/CreateOrder?patientUID={0}&patientVisitUID={1}&userUID={2}&locationUID={3}&ownerOrganisationUID={4}", patientUID, patientVisitUID, userUID, locationUID, ownerOrganisationUID);
             string message = MeditechApiHelper.Post<List<PatientOrderDetailModel>, string>(requestApi, orderDetails);

@@ -131,7 +131,13 @@ namespace MediTech.ViewModels
         public ObservableCollection<PatientOrderDetailModel> PatientOrders
         {
             get { return _PatientOrders ?? (_PatientOrders = new ObservableCollection<PatientOrderDetailModel>()); }
-            set { Set(ref _PatientOrders, value); }
+            set { Set(ref _PatientOrders, value);
+                IsEnableOrderFrom = true;
+                if (_PatientOrders != null || _PatientOrders.Count > 0)
+                {
+                    IsEnableOrderFrom = false;
+                }
+            }
         }
 
         private PatientOrderDetailModel _SelectPatientOrder;
@@ -249,6 +255,15 @@ namespace MediTech.ViewModels
             get { return _EnabledCancelOrder; ; }
             set { Set(ref _EnabledCancelOrder, value); }
         }
+
+        private bool _IsEnableOrderFrom = true;
+
+        public bool IsEnableOrderFrom
+        {
+            get { return _IsEnableOrderFrom; }
+            set { Set(ref _IsEnableOrderFrom, value); }
+        }
+
 
 
         #endregion

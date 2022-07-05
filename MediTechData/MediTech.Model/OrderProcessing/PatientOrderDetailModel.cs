@@ -25,6 +25,8 @@ namespace MediTech.Model
         public string QuantityUnit { get; set; }
         public string Comments { get; set; }
         public Nullable<double> UnitPrice { get; set; }
+
+        public Nullable<double> OriginalUnitPrice { get; set; }
         public Nullable<double> DoctorFee { get; set; }
         public Nullable<double> DoctorFeePer { get; set; }
         public Nullable<double> NetAmount { get; set; }
@@ -78,6 +80,8 @@ namespace MediTech.Model
         public string StatusFlag { get; set; }
         public string OwnerOrganisationName { get; set; }
         public int OwnerOrganisationUID { get; set; }
+
+        public int LocationUID { get; set; }
 
         public System.Nullable<double> Discount { get; set; }
 

@@ -46,24 +46,24 @@ namespace MediTech.ViewModels
             set { Set(ref _StartTime, value); }
         }
 
-        private List<LocationModel> _Locations;
+        //private List<LocationModel> _Locations;
 
-        public List<LocationModel> Locations
-        {
-            get { return _Locations; }
-            set { Set(ref _Locations, value); }
-        }
+        //public List<LocationModel> Locations
+        //{
+        //    get { return _Locations; }
+        //    set { Set(ref _Locations, value); }
+        //}
 
-        private LocationModel _SelectLocation;
+        //private LocationModel _SelectLocation;
 
-        public LocationModel SelectLocation
-        {
-            get { return _SelectLocation; }
-            set
-            {
-                Set(ref _SelectLocation, value);
-            }
-        }
+        //public LocationModel SelectLocation
+        //{
+        //    get { return _SelectLocation; }
+        //    set
+        //    {
+        //        Set(ref _SelectLocation, value);
+        //    }
+        //}
 
         private List<LookupReferenceValueModel> _VisitTypeSource;
 
@@ -193,8 +193,8 @@ namespace MediTech.ViewModels
             List<LookupReferenceValueModel> dataLookupSource = DataService.Technical.GetReferenceValueList("VISTY,RQPRT");
             VisitTypeSource = dataLookupSource.Where(p => p.DomainCode == "VISTY").OrderBy(p => p.DisplayOrder).ToList();
             PrioritySource = dataLookupSource.Where(P => P.DomainCode == "RQPRT").OrderBy(p => p.DisplayOrder).ToList();
-            var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
-            Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
+            //var LocationSource = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
+            //Locations = LocationSource.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             CareproviderSource = DataService.UserManage.GetCareproviderDoctor();
         }
         private void Save()
@@ -218,7 +218,7 @@ namespace MediTech.ViewModels
                     visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
 
                     visitInfo.Comments = CommentDoctor;
-                    visitInfo.LocationUID = SelectLocation.LocationUID;
+                    //visitInfo.LocationUID = SelectLocation.LocationUID;
                     if (SelectedCareprovider != null)
                         visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
 
@@ -263,7 +263,7 @@ namespace MediTech.ViewModels
         public void AssingPatientVisit(PatientVisitModel visitModel)
         {
             SelectPatientVisit = visitModel;
-            SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
+            //SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == SelectPatientVisit.LocationUID);
             SelectedVisitType = VisitTypeSource.FirstOrDefault(p => p.Key == SelectPatientVisit.VISTYUID);
             StartDate = SelectPatientVisit.StartDttm != null ? SelectPatientVisit.StartDttm.Value : (DateTime?)null;
             StartTime = SelectPatientVisit.StartDttm != null ? SelectPatientVisit.StartDttm.Value : (DateTime?)null;
@@ -287,11 +287,11 @@ namespace MediTech.ViewModels
         public bool ValidateVisitData()
         {
 
-            if (SelectLocation == null)
-            {
-                WarningDialog("กรุณาเลือก แผนก");
-                return true;
-            }
+            //if (SelectLocation == null)
+            //{
+            //    WarningDialog("กรุณาเลือก แผนก");
+            //    return true;
+            //}
             if (SelectedVisitType == null)
             {
                 WarningDialog("กรุณาเลือก ประเภท Visit");
