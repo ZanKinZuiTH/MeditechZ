@@ -54,10 +54,13 @@
                 <dxg:GridColumn Header="สถานะ Visit" FieldName="VisitStatus"/>
                 <dxg:GridColumn Header="ประเภท Visit" FieldName="VisitType"/>
                 <dxg:GridColumn Header="ยอดซื้อรวมแต่ละ Visit" FieldName="NetAmountVisit"/>
+                <dxg:GridColumn Header="ประเภท Order" FieldName="TypeOrder"/>
                 <dxg:GridColumn Header="แพทย์ที่เข้าพบ" FieldName="Doctor"/>
                 <dxg:GridColumn Header="Payor" FieldName="PayorName"/>
                 <dxg:GridColumn Header="ยาที่แพ้" FieldName="Allergy"/>
                 <dxg:GridColumn Header="วันที่นัด" FieldName="AppointmentDttm">
+                    
+                    
                     <dxg:GridColumn.EditSettings>
                         <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"  MaskType="DateTime"/>
                     </dxg:GridColumn.EditSettings>
