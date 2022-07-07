@@ -37,9 +37,9 @@ namespace MediTech.ViewModels
             set { _SelectDoctor = value; }
         }
 
-        private DateTime _VisitDate;
+        private DateTime? _VisitDate;
 
-        public DateTime VisitDate
+        public DateTime? VisitDate
         {
             get { return _VisitDate; }
             set { _VisitDate = value; }
@@ -47,6 +47,7 @@ namespace MediTech.ViewModels
 
 
         public ObservableCollection<LookupReferenceValueModel> VisitStatus { get; set; }
+        public ObservableCollection<LookupReferenceValueModel> EncounterType { get; set; }
         private LookupReferenceValueModel _SelectVisitStatus;
 
         public LookupReferenceValueModel SelectVisitStatus
@@ -516,6 +517,14 @@ namespace MediTech.ViewModels
             get { return _RefershDataCommand ?? (_RefershDataCommand = new RelayCommand(RefershData)); }
         }
 
+        private RelayCommand _ActivePatientsIPDCommand;
+
+        public RelayCommand ActivePatientsIPDCommand
+        {
+            get { return _ActivePatientsIPDCommand ?? (_ActivePatientsIPDCommand = new RelayCommand(ActivePatientsIPD)); }
+        }
+
+
         private RelayCommand _VisitMedicalCommand;
 
         public RelayCommand VisitMedicalCommand
@@ -597,10 +606,11 @@ namespace MediTech.ViewModels
         public DoctorRoomViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP");
+            var refData = DataService.Technical.GetReferenceValueList("VISTS,DIAGTYP,ENTYP");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "VISTS"));
-
+            EncounterType = new ObservableCollection<LookupReferenceValueModel>(refData.Where(p => p.DomainCode == "ENTYP"));
             SelectVisitStatus = VisitStatus.FirstOrDefault(p => p.ValueCode == "SNDDOC");
+            SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             VisitDate = DateTime.Now;
 
         }
@@ -630,10 +640,28 @@ namespace MediTech.ViewModels
                 }
             }
 
+            string outPatientType = string.Empty;
+            if (EncounterType != null)
+            {
+                var encounterList = EncounterType.Where(P => P.ValueCode != "INPAT").Select(p => p.Key);
+                foreach (int item in encounterList)
+                {
+                    if (outPatientType == "")
+                    {
+                        outPatientType = item.ToString();
+                    }
+                    else
+                    {
+                        outPatientType += "," + item.ToString();
+
+                    }
+                }
+            }
+
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             string patientID = (SelectedPateintSearch != null && SearchPatientCriteria != "") ? SelectedPateintSearch.PatientID : "";
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, "");
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit(patientID, "", "", careproviderUID, statusList, VisitDate, null, null, ownerOrganisationUID,null,null, null, outPatientType);
         }
 
         private void VisitMedical()
@@ -656,6 +684,14 @@ namespace MediTech.ViewModels
                 summeryViewModel.LoadRaiologyResult();
                 GetLastVitalSign();
             }
+        }
+
+        private void ActivePatientsIPD()
+        {
+            int careproviderUID = AppUtil.Current.UserID;
+            int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            string inPatientType = EncounterType?.Where(P => P.ValueCode == "INPAT").FirstOrDefault().Key.ToString();
+            PatientVisits = DataService.PatientIdentity.SearchPatientVisit("", "", "", careproviderUID, null, null, null, null, ownerOrganisationUID, null, null, null, inPatientType);
         }
 
         public void PatientSearch()

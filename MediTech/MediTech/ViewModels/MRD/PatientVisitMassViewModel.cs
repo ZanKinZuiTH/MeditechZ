@@ -172,6 +172,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectInsuranceCompany, value); }
         }
 
+        public ObservableCollection<LookupReferenceValueModel> EncounterType { get; set; }
+
+        private List<object> _SelectEncounterType;
+        public List<object> SelectEncounterType
+        {
+            get { return _SelectEncounterType ?? (_SelectEncounterType = new List<object>()); }
+            set { Set(ref _SelectEncounterType, value); }
+        }
+
 
 
         private bool _EnableSearchItem = true;
@@ -509,9 +518,10 @@ namespace MediTech.ViewModels
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVisitStatus = DataService.Technical.GetReferenceValueMany("VISTS");
-            VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVisitStatus);
-
+            var refVal = DataService.Technical.GetReferenceValueMany("VISTS,ENTYP");
+            VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS"));
+            EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
+            SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
             foreach (var item in VisitStatus)
             {
                 if (item.Key == REGST || item.Key == CHKOUT)
@@ -544,7 +554,7 @@ namespace MediTech.ViewModels
             SelectLocationOrder = LocationOrders.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
 
-            SaveVisitStatusList = refVisitStatus;
+            SaveVisitStatusList = VisitStatus.ToList();
             SaveVisitStatusDate = DateTime.Now;
             SaveVisitStatusTime = SaveVisitStatusDate;
             GetPrinters();
@@ -589,11 +599,28 @@ namespace MediTech.ViewModels
                 }
             }
 
+            string encounterList = string.Empty;
+            if (SelectEncounterType != null)
+            {
+                foreach (object item in SelectEncounterType)
+                {
+                    if (encounterList == "")
+                    {
+                        encounterList = item.ToString();
+                    }
+                    else
+                    {
+                        encounterList += "," + item.ToString();
+
+                    }
+                }
+            }
+
             int? careproviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             int? locationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
             int ? insuranceCompanyUID = (SelectInsuranceCompany != null && SelectInsuranceCompany.InsuranceCompanyUID != 0) ? SelectInsuranceCompany.InsuranceCompanyUID : (int?)null;
-            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, ""));
+            PatientVisits = new ObservableCollection<PatientVisitModel>(DataService.PatientIdentity.SearchPatientVisit(BN, FirstName, LastName, careproviderUID, statusList, DateFrom, DateTo, null, ownerOrganisationUID,locationUID, insuranceCompanyUID, null, encounterList));
 
         }
 

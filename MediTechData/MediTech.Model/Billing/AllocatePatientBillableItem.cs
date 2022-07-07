@@ -22,7 +22,7 @@ namespace MediTech.Model
 
         public int? subGroupUID { get; set; }
 
-        public int? patientVisitPayorUID { get; set; }
+        public long? patientVisitPayorUID { get; set; }
 
         public int? payorAgreementUID { get; set; }
 

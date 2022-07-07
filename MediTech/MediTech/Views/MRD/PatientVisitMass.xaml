@@ -121,7 +121,29 @@
                             </dxg:LookUpEdit.StyleSettings>
                         </dxg:LookUpEdit>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem />
+                    <dxlc:LayoutItem Label="Encounter">
+                        <!--<dxe:ComboBoxEdit x:Name="cmbEncounterType"
+                                                  DisplayMember="Display"
+                                                  ValueMember="Key"
+                                                  ItemsSource="{Binding EncounterType}"
+                                                  SelectedItem="{Binding SelectEncounterType}">
+                                        <Style TargetType="dxg:GridSearchControl">
+                                            <Style.Resources>
+                                                <Style TargetType="dxe:ComboBoxEdit"/>
+                                            </Style.Resources>
+                                        </Style>
+                                    </dxe:ComboBoxEdit>-->
+                        <dxe:ComboBoxEdit x:Name="cmbEncounterType"
+                                              ItemsSource="{Binding EncounterType}"
+                                              IsTextEditable="False" 
+                                              DisplayMember="Display"
+                                              ValueMember="Key"
+                                              EditValue="{Binding SelectEncounterType, UpdateSourceTrigger=PropertyChanged}">
+                            <dxe:ComboBoxEdit.StyleSettings>
+                                <dxe:CheckedComboBoxStyleSettings />
+                            </dxe:ComboBoxEdit.StyleSettings>
+                        </dxe:ComboBoxEdit>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem>
                         <dxlc:LayoutGroup HorizontalAlignment="Right">
                             <dx:SimpleButton Command="{Binding SearchCommand}" Content="ค้นหา" Height="25" Width="80"/>

@@ -2485,7 +2485,7 @@ namespace MediTech.DataBase
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
-                cmd.CommandText = "pAllocatePatientBillableItem";
+                cmd.CommandText = "pGetAllocatedPatBillableItemsPalm";
 
                 cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
                 cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
@@ -2495,7 +2495,7 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_CareProviderUID", careProviderUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
-                cmd.Parameters.AddWithValue("@P_Dateto", endDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", endDate);
                 dt.Load(cmd.ExecuteReader());
                 return dt;
             }
@@ -2512,7 +2512,7 @@ namespace MediTech.DataBase
         }
 
         public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
-            , int? patientVisitPayorUID, int? payorAgreementUID, int userUID, int? allocatedVisitPayorUID, int? patientBillableItemUID, string canKeepDiscount, DateTime startDate,
+            , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, int? allocatedVisitPayorUID, int? patientBillableItemUID, string canKeepDiscount, DateTime startDate,
             DateTime endDate
             )
         {
@@ -2538,11 +2538,11 @@ namespace MediTech.DataBase
                 cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_PayorAgreementUID", payorAgreementUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_User", userUID);
-                cmd.Parameters.AddWithValue("@P_AllocatedVisitPayorUID", allocatedVisitPayorUID);
+                cmd.Parameters.AddWithValue("@P_AllocatedVisitPayorUID", allocatedVisitPayorUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_PatientBillableItemUID", patientBillableItemUID ?? (object)DBNull.Value);
-                cmd.Parameters.AddWithValue("@P_CanKeepDiscount", canKeepDiscount);
+                cmd.Parameters.AddWithValue("@P_CanKeepDiscount", canKeepDiscount ?? "");
                 cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
-                cmd.Parameters.AddWithValue("@P_Dateto", endDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", endDate);
 
                 cmd.ExecuteNonQuery();
                 flag = true;

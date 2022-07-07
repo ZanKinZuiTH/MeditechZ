@@ -96,7 +96,7 @@
                                               />
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="วันที่">
-                        <dxe:DateEdit EditValue="{Binding VisitDate}"/>
+                        <dxe:DateEdit EditValue="{Binding VisitDate}" NullValueButtonPlacement="EditBox"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="สถานะ" >
                         <dxe:ComboBoxEdit x:Name="cmbStatus"
@@ -111,18 +111,18 @@
                             </dxe:ComboBoxEdit.StyleSettings>
                         </dxe:ComboBoxEdit>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutItem>
+                        <dx:SimpleButton Height="20" Command="{Binding  ActivePatientsIPDCommand}">
+                            <TextBlock Text="Active Patients (IPD)" FontWeight="Bold"/>
+                        </dx:SimpleButton>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
 
                 <dxlc:GroupBox Padding="0">
                     <dxlc:GroupBox.HeaderTemplate>
                         <DataTemplate >
                             <Grid>
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="Auto"/>
-                                    <ColumnDefinition Width="*"/>
-                                </Grid.ColumnDefinitions>
-                                <TextBlock Text="คิวผู้ป่วย" />
-                                <Button Name="imaRefersh" Grid.Column="1" 
+                                <Button Name="imaRefersh"
                                         Command="{Binding DataContext.RefershPatientCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:DoctorRoom}}}"
                                         ToolTip="Refersh"
                                         HorizontalAlignment="Right">

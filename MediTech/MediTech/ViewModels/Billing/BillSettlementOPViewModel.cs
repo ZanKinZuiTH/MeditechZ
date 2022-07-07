@@ -3,6 +3,7 @@ using MediTech.Model;
 using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -119,13 +120,26 @@ namespace MediTech.ViewModels
             }
         }
 
-        private bool _ExpandAll;
+        private bool _IsExpanded;
 
-        public bool ExpandAll
+        public bool IsExpanded
         {
+            get { return _IsExpanded; }
             set
             {
-                Set(ref _ExpandAll, value);
+                Set(ref _IsExpanded, value);
+                CollpaseExpand();
+            }
+        }
+
+        private ObservableCollection<AllocatedPatientBillableItemsPalmModel> _AllocatedPatientBillableItems;
+
+        public ObservableCollection<AllocatedPatientBillableItemsPalmModel> AllocatedPatientBillableItems
+        {
+            get { return _AllocatedPatientBillableItems; }
+            set
+            {
+                Set(ref _AllocatedPatientBillableItems, value);
             }
         }
 
@@ -196,7 +210,9 @@ namespace MediTech.ViewModels
         {
             base.OnLoaded();
             if (SelectPatientVisit != null)
+            {
                 GetVisitPayors(SelectPatientVisit.PatientVisitUID);
+            }
         }
 
         private void Search()
@@ -206,12 +222,52 @@ namespace MediTech.ViewModels
 
         private void AutoAllocate()
         {
-
+            CallAllocation("F");
+            if (SelectPatientVisitPayor != null)
+            {
+                CallAllocation("Y", SelectPatientVisitPayor.PatientVisitPayorUID, SelectPatientVisitPayor.PayorAgreementUID);
+            }
+            else
+            {
+                foreach (var visitPayor in PatientVisitPayors)
+                {
+                    CallAllocation("Y", visitPayor.PatientVisitPayorUID, visitPayor.PayorAgreementUID);
+                }
+            }
+            LoadBillTodate();
         }
 
         private void Clear()
         {
+            CallAllocation("F");
+        }
 
+        private void CallAllocation(string cAllocationType, long? patientVisitPayorUID = null, int? payorAgreementUID = null, int? allocatedVisitPayorUID = null, int? patientBillableItemUID = null,
+            int? groupUID = null,string canKeepDiscount = null)
+        {
+            AllocatePatientBillableItem allocateModel = new AllocatePatientBillableItem();
+            allocateModel.patientUID = SelectPatientVisit.PatientUID;
+            allocateModel.patientVisitUID = SelectPatientVisit.PatientVisitUID;
+            allocateModel.ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            allocateModel.isAutoAllocate = cAllocationType;
+            allocateModel.patientVisitPayorUID = patientVisitPayorUID;
+            allocateModel.payorAgreementUID = payorAgreementUID;
+            allocateModel.userUID = AppUtil.Current.UserID;
+            allocateModel.allocatedVisitPayorUID = allocatedVisitPayorUID;
+            allocateModel.patientBillableItemUID = patientBillableItemUID;
+            allocateModel.groupUID = groupUID;
+            allocateModel.canKeepDiscount = canKeepDiscount;
+            allocateModel.startDate = DateFrom ?? SelectPatientVisit.StartDttm.Value;
+            allocateModel.endDate = DateTo ?? DateTime.Now;
+            DataService.Billing.AllocatePatientBillableItem(allocateModel);
+        }
+
+        private void LoadBillTodate()
+        {
+            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, AppUtil.Current.OwnerOrganisationUID
+                , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
+                ));
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatientBillableItemsPalmModel>(allocatedBillableItems);
         }
 
         private void GetVisitPayors(long patientVisitUID)
@@ -225,6 +281,15 @@ namespace MediTech.ViewModels
             IsPatientSearchEnabled = Visibility.Collapsed;
             GetVisitPayors(SelectPatientVisit.PatientVisitUID);
         }
+
+        private void CollpaseExpand()
+        {
+            if (IsExpanded)
+                ((BillSettlementOP)View).Expand();
+            else
+                ((BillSettlementOP)View).Collapse();
+        }
+        //
 
         private void CreateOrder()
         {
@@ -261,7 +326,7 @@ namespace MediTech.ViewModels
                 SaveSuccessDialog();
             }
         }
-    
+
 
         public void PatientSearch()
         {

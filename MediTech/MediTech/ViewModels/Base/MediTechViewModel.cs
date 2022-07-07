@@ -539,6 +539,12 @@ namespace MediTech.ViewModels
 
         }
 
+        public void SaveSuccessDialog(FrameworkElement owner)
+        {
+            DXMessageBox.Show(owner, "บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+
+        }
+
         public void DeleteSuccessDialog()
         {
             DXMessageBox.Show("ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);

@@ -88,7 +88,7 @@
                     </dx:SimpleButton>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Left">
-                    <dxe:CheckEdit  Width="80" Content="Expand All"  Margin="0,0,0,0" IsChecked="{Binding ExpandAll}"/>
+                    <dxe:CheckEdit  Width="80" Content="Expand All"  Margin="0,0,0,0" IsChecked="{Binding IsExpanded}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Left">
                     <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"

@@ -35,5 +35,14 @@ namespace MediTech.Views
             container.ContainerStartupLocation = WindowStartupLocation.CenterOwner;
             calculator.Focus();
         }
+
+        public void Collapse()
+        {
+            pivotGrid.CollapseAllRows();
+        }
+        public void Expand()
+        {
+            pivotGrid.ExpandAllRows();
+        }
     }
 }

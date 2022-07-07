@@ -294,6 +294,17 @@ namespace MediTechWebApi.Controllers
 
                         #endregion
 
+
+                        List<PatientBillableItem> listpatBillableItem = db.PatientBillableItem.Where(p => p.StatusFlag == "A" && p.PatientOrderDetailUID == dataOrderDetail.UID).ToList();
+                        foreach (var item in listpatBillableItem)
+                        {
+                            db.PatientBillableItem.Attach(item);
+                            item.ORDSTUID = 2848;
+                            item.MUser = userUID;
+                            item.MWhen = now;
+                            item.StatusFlag = "D";
+                        }
+
                         db.SaveChanges();
 
                         if (requestUID != null)
@@ -621,7 +632,7 @@ namespace MediTechWebApi.Controllers
                                 orderDetail.UnitPrice = item.UnitPrice;
                                 orderDetail.IsPriceOverwrite = item.IsPriceOverwrite;
                                 orderDetail.OverwritePrice = item.OverwritePrice;
-                                orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;                                
+                                orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;
                                 orderDetail.DoctorFee = item.DoctorFee;
                                 orderDetail.CareproviderUID = item.CareproviderUID;
                                 orderDetail.NetAmount = item.NetAmount;
@@ -804,20 +815,56 @@ namespace MediTechWebApi.Controllers
                                     case "REQUESTDETAIL":
                                         patBillableItem.IdentifyingType = "REQUESTITEM";
                                         break;
+                                    default:
+                                        patBillableItem.IdentifyingType = orderDetail.IdentifyingType;
+                                        break;
 
                                 }
 
+                                switch (orderDetail.IdentifyingType)
+                                {
+                                    case "ORDERITEM":
+                                        patBillableItem.OrderType = "PATIENTORDER";
+                                        break;
+                                    case "PRESCRIPTIONITEM":
+                                        patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                                        break;
+                                    case "REQUESTDETAIL":
+                                        patBillableItem.OrderType = "REQUEST";
+                                        break;
+                                    default:
+                                        patBillableItem.OrderType = "PATIENTORDER";
+                                        break;
+
+                                }
+                                patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
                                 patBillableItem.BSMDDUID = BSMDDUID;
-                                patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                                patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
                                 patBillableItem.Amount = orderDetail.UnitPrice;
-                                patBillableItem.Discount = orderDetail.NetAmount;
+                                patBillableItem.Discount = orderDetail.Discount;
+                                patBillableItem.NetAmount = orderDetail.NetAmount;
+                                patBillableItem.ItemMultiplier = orderDetail.Quantity;
+                                patBillableItem.StartDttm = orderDetail.StartDttm;
+                                patBillableItem.EndDttm = orderDetail.EndDttm;
+                                patBillableItem.ItemName = orderDetail.ItemName;
+                                patBillableItem.CareProviderUID = orderDetail.CareproviderUID;
+                                patBillableItem.EventOccuredDttm = orderDetail.StartDttm;
+                                patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
+                                patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
+                                patBillableItem.StoreUID = orderDetail.StoreUID;
+                                patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
+                                patBillableItem.PatientOrderDetailUID = orderDetail.UID;
+                                patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
+                                patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
+                                patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
                                 patBillableItem.CUser = userUID;
                                 patBillableItem.CWhen = now;
                                 patBillableItem.MUser = userUID;
                                 patBillableItem.MWhen = now;
                                 patBillableItem.StatusFlag = "A";
+                                patBillableItem.OwnerOrganisationUID = orderDetail.OwnerOrganisationUID;
                                 db.PatientBillableItem.Add(patBillableItem);
-
+                                db.SaveChanges();
                                 #endregion
                             }
                         }

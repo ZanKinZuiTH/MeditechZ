@@ -150,6 +150,7 @@ namespace MediTech.ViewModels
         public ListQueryBillsOPViewModel()
         {
             DateFrom = DateTime.Now;
+            Search();
         }
 
 
