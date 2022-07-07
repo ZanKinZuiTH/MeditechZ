@@ -200,6 +200,13 @@ namespace MediTech.DataService
             return data;
         }
 
+        public List<BillPackageModel> GetBillPackageByOrderSubCategoryUID(int orderSubCategoryUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetBillPackageByOrderSubCategoryUID?orderSubCategoryUID={0}", orderSubCategoryUID);
+            List<BillPackageModel> data = MeditechApiHelper.Get<List<BillPackageModel>>(requestApi);
+            return data;
+        }
+
         public void ManageBillPackage(BillPackageModel billPackageModel, int userID)
         {
             try
@@ -444,44 +451,6 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
-        public List<PolicyMasterModel> SearchPolicyMaster(string code, string name)
-        {
-            string requestApi = string.Format("Api/Billing/SearchPolicyMaster?code={0}&name={1}", code, name);
-            List<PolicyMasterModel> dataRequest = MeditechApiHelper.Get<List<PolicyMasterModel>>(requestApi);
-
-            return dataRequest;
-        }
-
-        public void ManagePolicyMaster(PolicyMasterModel policyMaster, int userID)
-        {
-            try
-            {
-                string requestApi = string.Format("Api/Billing/ManagePolicyMaster?userID={0}", userID);
-                MeditechApiHelper.Post(requestApi, policyMaster);
-            }
-            catch (Exception ex)
-            {
-
-                throw (ex);
-            }
-        }
-
-        public bool DeletePolicyMaster(int policyUID, int userID)
-        {
-            bool flag = false;
-
-            try
-            {
-                string requestApi = string.Format("Api/Billing/DeletePolicyMaster?policyUID={0}&userID={1}", policyUID, userID);
-                MeditechApiHelper.Delete(requestApi);
-                flag = true;
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-            return flag;
-        }
 
         public InsurancePlanModel CheckInsurancePlan(int? payorDetailUID, int? payorAgreementUID)
         {
@@ -595,6 +564,38 @@ namespace MediTech.DataService
 
             return dataRequest;
         }
+
+        public PayorAgreementModel GetPolicyForPayorAgreement(int policyMasterUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPolicyForPayorAgreement?policyMasterUID={0}", policyMasterUID);
+            PayorAgreementModel dataRequest = MeditechApiHelper.Get<PayorAgreementModel>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<AgreementAccountDiscountModel> GetAgreementAccountByAgreementUID(int payorAgreementUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetAgreementAccountByAgreementUID?payorAgreementUID={0}", payorAgreementUID);
+            List<AgreementAccountDiscountModel> dataRequest = MeditechApiHelper.Get<List<AgreementAccountDiscountModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<AgreementDetailDiscountModel> GetAgreementAccountDetailByAgreementUID(int payorAgreementUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetAgreementAccountDetailByAgreementUID?payorAgreementUID={0}", payorAgreementUID);
+            List<AgreementDetailDiscountModel> dataRequest = MeditechApiHelper.Get<List<AgreementDetailDiscountModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public List<AgreementItemDiscountModel> GetAgreementItemByAgreementUID(int payorAgreementUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetAgreementItemByAgreementUID?payorAgreementUID={0}", payorAgreementUID);
+            List<AgreementItemDiscountModel> dataRequest = MeditechApiHelper.Get<List<AgreementItemDiscountModel>>(requestApi);
+
+            return dataRequest;
+        }
         #endregion
 
         #region PolicyMaster
@@ -606,6 +607,52 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<PolicyMasterModel> SearchPolicyMaster(string code, string name)
+        {
+            string requestApi = string.Format("Api/Billing/SearchPolicyMaster?code={0}&name={1}", code, name);
+            List<PolicyMasterModel> dataRequest = MeditechApiHelper.Get<List<PolicyMasterModel>>(requestApi);
+
+            return dataRequest;
+        }
+
+        public PolicyMasterModel GetPolicyOrder(int policyMasterUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetPolicyOrder?policyMasterUID={0}", policyMasterUID);
+            PolicyMasterModel dataRequest = MeditechApiHelper.Get<PolicyMasterModel>(requestApi);
+
+            return dataRequest;
+        }
+
+        public void ManagePolicyMaster(PolicyMasterModel policyMaster, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/Billing/ManagePolicyMaster?userID={0}", userID);
+                MeditechApiHelper.Post(requestApi, policyMaster);
+            }
+            catch (Exception ex)
+            {
+
+                throw (ex);
+            }
+        }
+
+        public bool DeletePolicyMaster(int policyUID, int userID)
+        {
+            bool flag = false;
+
+            try
+            {
+                string requestApi = string.Format("Api/Billing/DeletePolicyMaster?policyUID={0}&userID={1}", policyUID, userID);
+                MeditechApiHelper.Delete(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
         #endregion
 
     }

@@ -19,11 +19,13 @@ namespace MediTech.Model
         public double Price { get; set; }
         public double Cost { get; set; }
         public int CURNCUID { get; set; }
+        public int? PBLCTUID { get; set; }
         public String Unit { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public string Tariff { get; set; }
     }
 }

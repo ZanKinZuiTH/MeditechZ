@@ -317,6 +317,46 @@ namespace MediTech.ViewModels
             get { return _EnableBillItemName; }
             set { Set(ref _EnableBillItemName, value); }
         }
+
+        private List<OrderCategoryModel> _Category;
+        public List<OrderCategoryModel> Category
+        {
+            get { return _Category; }
+            set { Set(ref _Category, value); }
+        }
+
+        private OrderCategoryModel _SelectCategory;
+        public OrderCategoryModel SelectCategory
+        {
+            get { return _SelectCategory; }
+            set
+            {
+                Set(ref _SelectCategory, value);
+                if (SelectCategory != null)
+                {
+                    OrderSubCategory = DataService.MasterData.GetOrderSubCategoryByUID(SelectCategory.OrderCategoryUID);
+                }
+            }
+        }
+
+        private List<OrderSubCategoryModel> _OrderSubCategory;
+        public List<OrderSubCategoryModel> OrderSubCategory
+        {
+            get { return _OrderSubCategory; }
+            set
+            {
+                Set(ref _OrderSubCategory, value);
+
+            }
+        }
+
+        private OrderSubCategoryModel _SelectOrderSubCategory;
+        public OrderSubCategoryModel SelectOrderSubCategory
+        {
+            get { return _SelectOrderSubCategory; }
+            set { Set(ref _SelectOrderSubCategory, value); }
+        }
+
         #endregion
 
         #region Command
@@ -412,7 +452,7 @@ namespace MediTech.ViewModels
             Quantity = 1;
             ActiveFrom = DateTime.Now;
             ActiveFrom2 = ActiveFrom;
-
+            Category = DataService.MasterData.GetOrderCategory();
 
         }
         private void SaveOrderSet()
@@ -612,6 +652,9 @@ namespace MediTech.ViewModels
             //    OnUpdateEvent();
             //}
             SelectOrderSetBillableItem = null;
+            SelectCategory = model.OrderCategoryUID != null ? Category.FirstOrDefault(p => p.OrderCategoryUID == model.OrderCategoryUID) : null;
+            SelectOrderSubCategory = model.OrderSubCategoryUID != null ? OrderSubCategory.FirstOrDefault(p => p.OrderSubCategoryUID == model.OrderSubCategoryUID) : null;
+
         }
         public void AssingPropertiesToModel()
         {
@@ -625,6 +668,8 @@ namespace MediTech.ViewModels
             model.ActiveFrom = ActiveFrom;
             model.ActiveTo = ActiveTo;
             model.OrderSetBillableItems = OrderSetBillableItems.ToList();
+            model.OrderCategoryUID = SelectCategory.OrderCategoryUID;
+            model.OrderSubCategoryUID = SelectOrderSubCategory.OrderSubCategoryUID;
         }
 
         #endregion

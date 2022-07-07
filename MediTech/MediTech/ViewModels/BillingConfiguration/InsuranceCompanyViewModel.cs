@@ -328,7 +328,7 @@ namespace MediTech.ViewModels
                 {
                     ManagePayorAgreement page = new ManagePayorAgreement();
                     (page.DataContext as ManagePayorAgreementViewModel).AssignModel(SelectInsranceCompany.InsuranceCompanyUID,null);
-                    ManagePayorAgreementViewModel result = (ManagePayorAgreementViewModel)LaunchViewDialog(page, "MNPYAGM", true);
+                    ManagePayorAgreementViewModel result = (ManagePayorAgreementViewModel)LaunchViewDialog(page, "MNPYAGM", false, true);
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
@@ -387,7 +387,7 @@ namespace MediTech.ViewModels
                 }
                     ManagePayorAgreement page = new ManagePayorAgreement();
                     (page.DataContext as ManagePayorAgreementViewModel).AssignModel(SelectInsranceCompany.InsuranceCompanyUID, SelectPayorAgreement);
-                    ManagePayorAgreementViewModel result = (ManagePayorAgreementViewModel)LaunchViewDialog(page, "MNPYAGM", true);
+                    ManagePayorAgreementViewModel result = (ManagePayorAgreementViewModel)LaunchViewDialog(page, "MNPYAGM", false,true);
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {

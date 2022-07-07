@@ -979,7 +979,7 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<BillableItemModel> SearchBillableItem(string code, string itemName, int? BSMDDUID, int? billingGroupUID, int? billingSubGroupUID, int? ownerUID)
         {
-            List<BillableItemModel> data = (from p in db.BillableItem
+           List<BillableItemModel> data = (from p in db.BillableItem
                                             where p.StatusFlag == "A"
                                             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
                                             && (string.IsNullOrEmpty(itemName) || p.ItemNameSearch.ToLower().Contains(itemName.ToLower()))
@@ -1002,6 +1002,8 @@ namespace MediTechWebApi.Controllers
                                                 BillingGroupUID = p.BillingGroupUID,
                                                 BillingSubGroupUID = p.BillingSubGroupUID,
                                                 IsShareDoctor = p.IsShareDoctor,
+                                                OrderCategoryUID = p.OrderCategeoryUID,
+                                                OrderSubCategoryUID = p.OrderSubCategeoryUID,
                                                 Comments = p.Comments,
                                                 ItemUID = p.ItemUID,
                                                 ActiveFrom = p.ActiveFrom,
@@ -1039,6 +1041,8 @@ namespace MediTechWebApi.Controllers
                                                 BillingServiceMetaData = SqlFunction.fGetRfValDescription(p.BSMDDUID),
                                                 BillingGroupUID = p.BillingGroupUID,
                                                 BillingSubGroupUID = p.BillingSubGroupUID,
+                                                OrderCategoryUID = p.OrderCategeoryUID,
+                                                OrderSubCategoryUID = p.OrderSubCategeoryUID,
                                                 IsShareDoctor = p.IsShareDoctor,
                                                 Comments = p.Comments,
                                                 ItemUID = p.ItemUID,
@@ -1079,6 +1083,47 @@ namespace MediTechWebApi.Controllers
                     Comments = p.Comments,
                     BillingGroupUID = p.BillingGroupUID,
                     BillingSubGroupUID = p.BillingSubGroupUID,
+                    OrderCategoryUID = p.OrderCategeoryUID,
+                    OrderSubCategoryUID = p.OrderSubCategeoryUID,
+                    ItemUID = p.ItemUID,
+                    ActiveFrom = p.ActiveFrom,
+                    ActiveTo = p.ActiveTo,
+                    CUser = p.CUser,
+                    CWhen = p.CWhen,
+                    MUser = p.MUser,
+                    MWhen = p.MWhen,
+                    StatusFlag = p.StatusFlag
+                }).ToList();
+
+            return data;
+        }
+
+        [Route("GetBillableItemByBillingSubGroupUID")]
+        [HttpGet]
+        public List<BillableItemModel> GetBillableItemByBillingSubGroupUID(int billingSubGropUID)
+        {
+            DateTime now = DateTime.Now.Date;
+            List<BillableItemModel> data = db.BillableItem
+                .Where(p => p.BillingSubGroupUID == billingSubGropUID && p.StatusFlag == "A"
+                 && (p.ActiveFrom == null || DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(now))
+                 && (p.ActiveTo == null || DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(now))
+                )
+                .Select(p => new BillableItemModel()
+                {
+                    BillableItemUID = p.UID,
+                    Code = p.Code,
+                    Description = p.Description,
+                    ItemName = p.ItemName,
+                    Cost = p.Cost,
+                    DoctorFee = p.DoctorFee,
+                    TotalCost = p.TotalCost,
+                    BSMDDUID = p.BSMDDUID,
+                    IsShareDoctor = p.IsShareDoctor,
+                    Comments = p.Comments,
+                    BillingGroupUID = p.BillingGroupUID,
+                    BillingSubGroupUID = p.BillingSubGroupUID,
+                    OrderCategoryUID = p.OrderCategeoryUID,
+                    OrderSubCategoryUID = p.OrderSubCategeoryUID,
                     ItemUID = p.ItemUID,
                     ActiveFrom = p.ActiveFrom,
                     ActiveTo = p.ActiveTo,
@@ -1121,7 +1166,9 @@ namespace MediTechWebApi.Controllers
                                           CWhen = bl.CWhen,
                                           MUser = bl.MUser,
                                           MWhen = bl.MWhen,
-                                          StatusFlag = bl.StatusFlag
+                                          StatusFlag = bl.StatusFlag,
+                                          OrderCategoryUID = bl.OrderCategeoryUID,
+                                          OrderSubCategoryUID = bl.OrderSubCategeoryUID
                                       }).FirstOrDefault();
 
             if (data != null)
@@ -1152,7 +1199,9 @@ namespace MediTechWebApi.Controllers
                         OwnerOrganisationUID = p.OwnerOrganisationUID,
                         OwnerOrganisationName = p.OwnerOrganisationUID != 0 ? SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID) : "ราคามาตรฐานส่วนกลาง",
                         CURNCUID = p.CURNCUID,
-                        Unit = SqlFunction.fGetRfValDescription(p.CURNCUID)
+                        Unit = SqlFunction.fGetRfValDescription(p.CURNCUID),
+                        PBLCTUID = p.PBLCTUID,
+                        Tariff = SqlFunction.fGetRfValDescription(p.PBLCTUID ?? 0)
                     }).ToList();
 
             return data;
@@ -1182,6 +1231,8 @@ namespace MediTechWebApi.Controllers
                                                 BillingServiceMetaData = SqlFunction.fGetRfValDescription(bl.BSMDDUID),
                                                 BillingGroupUID = bl.BillingGroupUID,
                                                 BillingSubGroupUID = bl.BillingSubGroupUID,
+                                                OrderCategoryUID = bl.OrderCategeoryUID,
+                                                OrderSubCategoryUID = bl.OrderSubCategeoryUID,
                                                 Comments = bl.Comments,
                                                 ItemUID = bl.ItemUID,
                                                 ActiveFrom = bl.ActiveFrom,
@@ -1227,6 +1278,8 @@ namespace MediTechWebApi.Controllers
                         BillingGroupUID = f.BillingGroupUID,
                         BillingSubGroupUID = f.BillingSubGroupUID,
                         BillingServiceMetaData = SqlFunction.fGetRfValDescription(f.BSMDDUID),
+                        OrderCategoryUID = f.OrderCategeoryUID,
+                        OrderSubCategoryUID = f.OrderSubCategeoryUID,
                         ActiveFrom = f.ActiveFrom,
                         ActiveTo = f.ActiveTo,
                         Description = f.Description
@@ -1281,6 +1334,8 @@ namespace MediTechWebApi.Controllers
                     billableItem.MUser = userID;
                     billableItem.MWhen = now;
                     billableItem.StatusFlag = "A";
+                    billableItem.OrderCategeoryUID = billableItemModel.OrderCategoryUID;
+                    billableItem.OrderSubCategeoryUID = billableItemModel.OrderSubCategoryUID;
 
                     db.BillableItem.AddOrUpdate(billableItem);
                     db.SaveChanges();
@@ -1340,6 +1395,7 @@ namespace MediTechWebApi.Controllers
                                 billItemDetail.Cost = item.Cost;
                                 billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
                                 billItemDetail.CURNCUID = item.CURNCUID;
+                                billItemDetail.PBLCTUID = item.PBLCTUID;
                             }
                             else if (item.StatusFlag == "A")
                             {
@@ -1354,6 +1410,7 @@ namespace MediTechWebApi.Controllers
                                     billItemDetail.Cost = item.Cost;
                                     billItemDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
                                     billItemDetail.CURNCUID = item.CURNCUID;
+                                    billItemDetail.PBLCTUID = item.PBLCTUID;
                                 }
 
                             }
@@ -1441,6 +1498,34 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetOrderSetByOrderSubCategoryUID")]
+        [HttpGet]
+        public List<OrderSetModel> GetOrderSetByOrderSubCategoryUID(int orderSubCategoryUID)
+        {
+            List<OrderSetModel> data = (from p in db.OrderSet
+                                        where p.StatusFlag == "A" 
+                                        && p.OrderSubCategoryUID == orderSubCategoryUID
+                                        select new OrderSetModel
+                                        {
+                                            OrderSetUID = p.UID,
+                                            Code = p.Code,
+                                            Description = p.Description,
+                                            Name = p.Name,
+                                            OrdersetNameSearch = p.OrdersetNameSearch,
+                                            OrderCategoryUID = p.OrderCategoryUID,
+                                            OrderSubCategoryUID = p.OrderSubCategoryUID,
+                                            ActiveFrom = p.ActiveFrom,
+                                            ActiveTo = p.ActiveTo,
+                                            CUser = p.CUser,
+                                            CWhen = p.CWhen,
+                                            MUser = p.MUser,
+                                            MWhen = p.MWhen,
+                                            StatusFlag = p.StatusFlag
+                                        }).ToList();
+
+            return data;
+        }
+
         [Route("GetOrderSetByUID")]
         [HttpGet]
         public OrderSetModel GetOrderSetByUID(int orderSetUID)
@@ -1455,6 +1540,8 @@ namespace MediTechWebApi.Controllers
                                       Description = p.Description,
                                       Name = p.Name,
                                       OrdersetNameSearch = p.OrdersetNameSearch,
+                                      OrderCategoryUID = p.OrderCategoryUID,
+                                      OrderSubCategoryUID = p.OrderSubCategoryUID,
                                       ActiveFrom = p.ActiveFrom,
                                       ActiveTo = p.ActiveTo,
                                       CUser = p.CUser,
@@ -1533,6 +1620,8 @@ namespace MediTechWebApi.Controllers
                     orderSet.MUser = userID;
                     orderSet.MWhen = now;
                     orderSet.StatusFlag = "A";
+                    orderSet.OrderCategoryUID = orderSetModel.OrderCategoryUID;
+                    orderSet.OrderSubCategoryUID = orderSetModel.OrderSubCategoryUID;
 
                     db.OrderSet.AddOrUpdate(orderSet);
                     db.SaveChanges();

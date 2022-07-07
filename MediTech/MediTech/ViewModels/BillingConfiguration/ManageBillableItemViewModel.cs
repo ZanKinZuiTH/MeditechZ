@@ -362,6 +362,19 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _Tariff;
+        public List<LookupReferenceValueModel> Tariff
+        {
+            get { return _Tariff; }
+            set { Set(ref _Tariff, value); }
+        }
+
+        private LookupReferenceValueModel _SelectTariff;
+        public LookupReferenceValueModel SelectTariff
+        {
+            get { return _SelectTariff; }
+            set { Set(ref _SelectTariff, value); }
+        }
 
         private List<BillingSubGroupModel> _BillingSubGroup;
 
@@ -489,6 +502,45 @@ namespace MediTech.ViewModels
             get { return _IsVisibilityRefCode; }
             set { Set(ref _IsVisibilityRefCode, value); }
         }
+        private List<OrderCategoryModel> _Category;
+        public List<OrderCategoryModel> Category
+        {
+            get { return _Category; }
+            set { Set(ref _Category, value); }
+        }
+
+        private OrderCategoryModel _SelectCategory;
+        public OrderCategoryModel SelectCategory
+        {
+            get { return _SelectCategory; }
+            set
+            {
+                Set(ref _SelectCategory, value);
+                if (SelectCategory != null)
+                {
+                    OrderSubCategory = DataService.MasterData.GetOrderSubCategoryByUID(SelectCategory.OrderCategoryUID);
+                }
+            }
+        }
+
+        private List<OrderSubCategoryModel> _OrderSubCategory;
+        public List<OrderSubCategoryModel> OrderSubCategory
+        {
+            get { return _OrderSubCategory; }
+            set
+            {
+                Set(ref _OrderSubCategory, value);
+
+            }
+        }
+
+        private OrderSubCategoryModel _SelectOrderSubCategory;
+        public OrderSubCategoryModel SelectOrderSubCategory
+        {
+            get { return _SelectOrderSubCategory; }
+            set { Set(ref _SelectOrderSubCategory, value); }
+        }
+
         #endregion
 
         #region Command
@@ -551,6 +603,8 @@ namespace MediTech.ViewModels
             SelectUnit = Units.FirstOrDefault();
             ActiveFrom = DateTime.Now;
             ActiveFrom2 = ActiveFrom ?? DateTime.Now;
+            Category = DataService.MasterData.GetOrderCategory();
+            Tariff = DataService.Technical.GetReferenceValueMany("PBLCT");
         }
 
         public override void OnLoaded()
@@ -640,6 +694,7 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเลือก สถานประกอบการ");
                 return;
             }
+
             if (BillableItemDetail != null)
             {
                 if (BillableItemDetail.Count(p => p.OwnerOrganisationUID == SelectOrganisation.HealthOrganisationUID) > 0)
@@ -649,13 +704,20 @@ namespace MediTech.ViewModels
                 }
             }
 
+            if (SelectTariff == null)
+            {
+                WarningDialog("กรุณาเลือก Tariff");
+                return;
+            }
+
             BillableItemDetailModel newBillItmDetail = new BillableItemDetailModel();
             newBillItmDetail.ActiveFrom = ActiveFrom2;
             newBillItmDetail.ActiveTo = ActiveTo2;
 
             newBillItmDetail.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
             newBillItmDetail.OwnerOrganisationName = SelectOrganisation.Name;
-
+            newBillItmDetail.PBLCTUID = SelectTariff != null ? SelectTariff.Key : (int?)null;
+            newBillItmDetail.Tariff = SelectTariff.Display;
             newBillItmDetail.Price = Price;
             newBillItmDetail.Cost = Cost;
             newBillItmDetail.CURNCUID = SelectUnit.Key.Value;
@@ -683,6 +745,11 @@ namespace MediTech.ViewModels
                     return;
                 }
             }
+            if (SelectTariff == null)
+            {
+                WarningDialog("กรุณาเลือก Tariff");
+                return;
+            }
             if (SelectBillableItemDetail != null)
             {
                 SelectBillableItemDetail.ActiveFrom = ActiveFrom2;
@@ -690,7 +757,8 @@ namespace MediTech.ViewModels
 
                 SelectBillableItemDetail.OwnerOrganisationUID = SelectOrganisation.HealthOrganisationUID;
                 SelectBillableItemDetail.OwnerOrganisationName = SelectOrganisation.Name;
-
+                SelectBillableItemDetail.PBLCTUID = SelectTariff != null ? SelectTariff.Key : (int?)null;
+                SelectBillableItemDetail.Tariff = SelectTariff.Display;
                 SelectBillableItemDetail.Price = Price;
                 SelectBillableItemDetail.Cost = Cost;
                 SelectBillableItemDetail.CURNCUID = SelectUnit.Key.Value;
@@ -764,6 +832,9 @@ namespace MediTech.ViewModels
                 join i in model.BillableItemDetails on j.HealthOrganisationUID equals i.OwnerOrganisationUID
                 select i
                 );
+            SelectCategory = model.OrderCategoryUID != null ? Category.FirstOrDefault(p => p.OrderCategoryUID == model.OrderCategoryUID) : null;
+            SelectOrderSubCategory = model.OrderSubCategoryUID != null ? OrderSubCategory.FirstOrDefault(p => p.OrderSubCategoryUID == model.OrderSubCategoryUID) : null;
+
         }
 
         void AssingPropertiesToModel()
@@ -795,12 +866,12 @@ namespace MediTech.ViewModels
             model.ActiveTo = ActiveTo;
             model.IsShareDoctor = IsShareDoctor == true ? "Y" : "N";
             model.BillableItemDetails = BillableItemDetail.ToList();
+            model.OrderCategoryUID = SelectCategory.OrderCategoryUID;
+            model.OrderSubCategoryUID = SelectOrderSubCategory.OrderSubCategoryUID;
+
         }
 
-
-
         #endregion
-
 
     }
 }

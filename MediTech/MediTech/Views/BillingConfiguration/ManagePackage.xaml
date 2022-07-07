@@ -140,7 +140,7 @@
 
                 <dxlc:LayoutGroup HorizontalAlignment="Right" Orientation="Horizontal">
                     <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
-                                     Height="25" Content="เพิ่ม"/>
+                                     Height="25" Content="บันทึก"/>
                     <dx:SimpleButton Width="80" Command="{Binding CancelCommand}"
                                      Height="25" Content="ยกเลิก"/>
                 </dxlc:LayoutGroup>

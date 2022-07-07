@@ -250,6 +250,14 @@ namespace MediTech.DataService
             return dataRequest;
         }
 
+        public List<BillableItemModel> GetBillableItemByBillingSubGroupUID(int billingSubGropUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetBillableItemByBillingSubGroupUID?billingSubGropUID={0}", billingSubGropUID);
+            List<BillableItemModel> dataRequest = MeditechApiHelper.Get<List<BillableItemModel>>(requestApi);
+
+            return dataRequest;
+        }
+
         public BillableItemModel GetBillableItemByUID(int billableItemUID)
         {
             string requestApi = string.Format("Api/MasterData/GetBillableItemByUID?billableItemUID={0}", billableItemUID);
@@ -330,6 +338,13 @@ namespace MediTech.DataService
         public List<OrderSetModel> SearchOrderSet(string code, string name)
         {
             string requestApi = string.Format("Api/MasterData/SearchOrderSet?code={0}&name={1}", code, name);
+            List<OrderSetModel> dataRequest = MeditechApiHelper.Get<List<OrderSetModel>>(requestApi);
+
+            return dataRequest;
+        }
+        public List<OrderSetModel> GetOrderSetByOrderSubCategoryUID(int orderSubCategoryUID)
+        {
+            string requestApi = string.Format("Api/MasterData/GetOrderSetByOrderSubCategoryUID?orderSubCategoryUID={0}", orderSubCategoryUID);
             List<OrderSetModel> dataRequest = MeditechApiHelper.Get<List<OrderSetModel>>(requestApi);
 
             return dataRequest;

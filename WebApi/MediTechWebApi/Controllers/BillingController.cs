@@ -1186,28 +1186,34 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<BillPackageModel> SearchBillPackage(string code, string name)
         {
-            List<BillPackageModel> data = db.BillPackage.Where(p => p.StatusFlag == "A"
-            && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
-            && (string.IsNullOrEmpty(name) || p.PackageName.ToLower().Contains(name.ToLower()))
-            ).Select(p => new BillPackageModel
-            {
-                BillPackageUID = p.UID,
-                PackageName = p.PackageName,
-                Description = p.Description,
-                NoofDays = p.NoofDays,
-                TotalAmount = p.TotalAmount,
-                CURNCUID = p.CURNCUID,
-                PBLCTUID = p.PBLCTUID ?? 0,
-                ActiveFrom = p.ActiveFrom,
-                ActiveTo = p.ActiveTo,
-                MaxValue = p.MaxValue,
-                MinValue = p.MinValue,
-                Code = p.Code,
-                OrderCategoryUID = p.OrderCategoryUID,
-                OrderSubCategoryUID = p.OrderSubCategoryUID,
-                OwnerOrganisationUID = p.OwnerOrganisationUID,
-            }).ToList();
-            
+            List<BillPackageModel> data = (from p in db.BillPackage
+                                          join o in db.OrderCategory on p.OrderCategoryUID equals o.UID
+                                          join os in db.OrderSubCategory on p.OrderSubCategoryUID equals os.UID
+                                          where p.StatusFlag == "A"
+                                          && o.StatusFlag == "A"
+                                          && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
+                                          && (string.IsNullOrEmpty(name) || p.PackageName.ToLower().Contains(name.ToLower()))
+                                          select new BillPackageModel
+                                          {
+                                            BillPackageUID = p.UID,
+                                            PackageName = p.PackageName,
+                                            Description = p.Description,
+                                            NoofDays = p.NoofDays,
+                                            TotalAmount = p.TotalAmount,
+                                            CURNCUID = p.CURNCUID,
+                                            PBLCTUID = p.PBLCTUID ?? 0,
+                                            ActiveFrom = p.ActiveFrom,
+                                            ActiveTo = p.ActiveTo,
+                                            MaxValue = p.MaxValue,
+                                            MinValue = p.MinValue,
+                                            Code = p.Code,
+                                            OrderCategoryUID = p.OrderCategoryUID,
+                                            OrderSubCategoryUID = p.OrderSubCategoryUID,
+                                            OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                            OrderCategory = o.Name,
+                                            OrderSubCategory = os.Name
+                                          }).ToList();
+
             return data;
         }
 
@@ -1236,6 +1242,34 @@ namespace MediTechWebApi.Controllers
                                                         OrderSubCategoryUID = p.OrderSubCategoryUID,
                                                         OwnerOrganisationUID = p.OwnerOrganisationUID,
                                                     }).ToList();
+
+            return data;
+        }
+
+        [Route("GetBillPackageByOrderSubCategoryUID")]
+        [HttpGet]
+        public List<BillPackageModel> GetBillPackageByOrderSubCategoryUID(int orderSubCategoryUID)
+        {
+            List<BillPackageModel> data = data = db.BillPackage.Where(p => p.StatusFlag == "A"
+                                        && p.OrderSubCategoryUID == orderSubCategoryUID
+                                        ).Select(p => new BillPackageModel
+                                        {
+                                            BillPackageUID = p.UID,
+                                            PackageName = p.PackageName,
+                                            Description = p.Description,
+                                            NoofDays = p.NoofDays,
+                                            TotalAmount = p.TotalAmount,
+                                            CURNCUID = p.CURNCUID,
+                                            PBLCTUID = p.PBLCTUID ?? 0,
+                                            ActiveFrom = p.ActiveFrom,
+                                            ActiveTo = p.ActiveTo,
+                                            MaxValue = p.MaxValue,
+                                            MinValue = p.MinValue,
+                                            Code = p.Code,
+                                            OrderCategoryUID = p.OrderCategoryUID,
+                                            OrderSubCategoryUID = p.OrderSubCategoryUID,
+                                            OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                        }).ToList();
 
             return data;
         }
@@ -1898,6 +1932,7 @@ namespace MediTechWebApi.Controllers
                     payorAgreement.PrimaryPBLCTUID = payorAgreementModel.PrimaryPBLCTUID;
                     payorAgreement.SecondaryPBLCTUID = payorAgreementModel.SecondaryPBLCTUID;
                     payorAgreement.TertiaryPBLCTUID = payorAgreementModel.TertiaryPBLCTUID;
+                    payorAgreement.IsLimitAfterDiscount = payorAgreementModel.IsLimitAfterDiscount;
                     payorAgreement.AGTYPUID = payorAgreementModel.AGTYPUID;
                     payorAgreement.MUser = userID;
                     payorAgreement.MWhen = now;
@@ -1905,6 +1940,109 @@ namespace MediTechWebApi.Controllers
 
                     db.PayorAgreement.AddOrUpdate(payorAgreement);
                     db.SaveChanges();
+
+                    if (payorAgreementModel.AgreementDiscount != null)
+                    {
+                        foreach (var item in payorAgreementModel.AgreementDiscount)
+                        {
+                            var agreementAccount = db.AgreementAccountDiscount.Find(item.AgreementAccountDiscountUID);
+
+                            if (agreementAccount == null)
+                            {
+                                agreementAccount = new AgreementAccountDiscount();
+                                agreementAccount.CUser = userID;
+                                agreementAccount.CWhen = now;
+                                agreementAccount.StatusFlag = "A";
+                            }
+
+                            agreementAccount.PayorAgreementUID = payorAgreement.UID;
+                            agreementAccount.ALLDIUID = item.ALLDIUID;
+                            agreementAccount.PBLCTUID = item.PBLCTUID;
+                            agreementAccount.ServiceUID = item.ServiceUID;
+                            agreementAccount.IsPercentage = item.IsPercentage;
+                            agreementAccount.Discount = item.Discount;
+                            agreementAccount.DateFrom = item.DateFrom;
+                            agreementAccount.DateTo = item.DateTo;
+                            agreementAccount.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                            agreementAccount.MWhen = now;
+                            agreementAccount.MUser = userID;
+                            agreementAccount.StatusFlag = item.StatusFlag == "D" ? "D" : "A";
+
+                            db.AgreementAccountDiscount.AddOrUpdate(agreementAccount);
+                            db.SaveChanges();
+
+                            if (payorAgreementModel.AgreementDiscountDetails != null)
+                            {
+                                foreach (var item2 in payorAgreementModel.AgreementDiscountDetails)
+                                {
+                                    if (item2.BillgGroupUID == item.ServiceUID)
+                                    {
+                                        var agreementDetail = db.AgreementDetailDiscount.Find(item2.AgreementDetailDiscountUID);
+
+                                        if (agreementDetail == null)
+                                        {
+                                            agreementDetail = new AgreementDetailDiscount();
+                                            agreementDetail.CUser = userID;
+                                            agreementDetail.CWhen = now;
+                                            agreementDetail.StatusFlag = "A";
+                                        }
+                                        agreementDetail.AgreementAccountDiscountUID = agreementAccount.UID;
+                                        agreementDetail.PayorAgreementUID = payorAgreement.UID;
+                                        agreementDetail.ALLDIUID = item2.ALLDIUID;
+                                        agreementDetail.PBLCTUID = item2.PBLCTUID;
+                                        agreementDetail.ServiceUID = item2.ServiceUID;
+                                        agreementDetail.IsPercentage = item2.IsPercentage;
+                                        agreementDetail.Discount = item2.Discount;
+                                        agreementDetail.DateFrom = item2.DateFrom;
+                                        agreementDetail.DateTo = item2.DateTo;
+                                        agreementDetail.OwnerOrganisationUID = item2.OwnerOrganisationUID;
+                                        agreementDetail.MWhen = now;
+                                        agreementDetail.MUser = userID;
+                                        agreementDetail.StatusFlag = item2.StatusFlag == "D" ? "D" : "A";
+
+                                        db.AgreementDetailDiscount.AddOrUpdate(agreementDetail);
+                                        db.SaveChanges();
+
+                                        if (payorAgreementModel.AgreementItems != null)
+                                        {
+                                            foreach (var item3 in payorAgreementModel.AgreementItems)
+                                            {
+                                                if (item3.BillingSubGroupUID == item2.ServiceUID)
+                                                {
+                                                    var agreementItem = db.AgreementItemDiscount.Find(item3.AgreementItemDiscountUID);
+
+                                                    if (agreementItem == null)
+                                                    {
+                                                        agreementItem = new AgreementItemDiscount();
+                                                        agreementItem.CUser = userID;
+                                                        agreementItem.CWhen = now;
+                                                        agreementItem.StatusFlag = "A";
+                                                    }
+                                                    agreementItem.AgreementDetailDiscountUID = agreementDetail.UID;
+                                                    agreementItem.PayorAgreementUID = payorAgreement.UID;
+                                                    agreementItem.ALLDIUID = item3.ALLDIUID;
+                                                    agreementItem.PBLCTUID = item3.PBLCTUID;
+                                                    agreementItem.BillableItemUID = item3.BillableItemUID;
+                                                    agreementItem.IsPercentage = item3.IsPercentage;
+                                                    agreementItem.IsPackage = item3.IsPackage;
+                                                    agreementItem.Discount = item3.Discount;
+                                                    agreementItem.DateFrom = item3.DateFrom;
+                                                    agreementItem.DateTo = item3.DateTo;
+                                                    agreementItem.OwnerOrganisationUID = item3.OwnerOrganisationUID;
+                                                    agreementItem.MWhen = now;
+                                                    agreementItem.MUser = userID;
+                                                    agreementItem.StatusFlag = item3.StatusFlag == "D" ? "D" : "A";
+
+                                                    db.AgreementItemDiscount.AddOrUpdate(agreementItem);
+                                                    db.SaveChanges();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
 
                     tran.Complete();
                 }
@@ -2058,93 +2196,6 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        [Route("SearchPolicyMaster")]
-        [HttpGet]
-        public List<PolicyMasterModel> SearchPolicyMaster(string code, string name)
-        {
-            List<PolicyMasterModel> data = db.PolicyMaster
-                    .Where(p => p.StatusFlag == "A"
-                    && (String.IsNullOrEmpty(p.Code) || p.Code.ToLower().Contains(code.ToLower()))
-                    && (String.IsNullOrEmpty(p.PolicyName) || p.PolicyName.ToLower().Contains(code.ToLower()))
-                    ).Select(p => new PolicyMasterModel()
-                    {
-                        PolicyMasterUID = p.UID,
-                        Code = p.Code,
-                        PolicyName = p.PolicyName,
-                        Description = p.Description,
-                        AGTYPUID = p.AGTYPUID
-                    }).ToList();
-            return data;
-        }
-
-        [Route("ManagePolicyMaster")]
-        [HttpPost]
-        public HttpResponseMessage ManagePolicyMaster(PolicyMasterModel policyMaster, int userID)
-        {
-            try
-            {
-                DateTime now = DateTime.Now;
-                using (var tran = new TransactionScope())
-                {
-                    var policy = db.PolicyMaster.Find(policyMaster.PolicyMasterUID);
-
-                    if (policy == null)
-                    {
-                        policy = new PolicyMaster();
-                        policy.CUser = userID;
-                        policy.CWhen = now;
-                    }
-                    policy.PolicyName = policyMaster.PolicyName;
-                    policy.Code = policyMaster.Code;
-                    policy.AGTYPUID = policyMaster.AGTYPUID;
-                    policy.Description = policyMaster.Description;
-                    policy.MUser = userID;
-                    policy.MWhen = now;
-                    policy.StatusFlag = "A";
-
-                    db.PolicyMaster.AddOrUpdate(policy);
-                    db.SaveChanges();
-
-                    tran.Complete();
-                }
-
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
-            }
-        }
-
-        [Route("DeletePolicyMaster")]
-        [HttpDelete]
-        public HttpResponseMessage DeletePolicyMaster(int policyUID, int userID)
-        {
-            try
-            {
-                DateTime now = DateTime.Now;
-                using (var tran = new TransactionScope())
-                {
-                    var policy = db.PolicyMaster.Where(p => p.UID == policyUID).FirstOrDefault();
-                    if (policy != null)
-                    {
-                        db.PolicyMaster.Attach(policy);
-                        policy.MUser = userID;
-                        policy.MWhen = now;
-                        policy.StatusFlag = "D";
-                        db.SaveChanges();
-                    }
-                    tran.Complete();
-                };
-                return Request.CreateResponse(HttpStatusCode.OK);
-            }
-            catch (Exception ex)
-            {
-                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
-            }
-        }
-
         [Route("CheckInsurancePlan")]
         [HttpGet]
         public InsurancePlanModel CheckInsurancePlan(int? payorDetailUID, int? payorAgreementUID)
@@ -2167,8 +2218,6 @@ namespace MediTechWebApi.Controllers
         }
 
         #endregion
-
-
 
         #region PayorDetail
 
@@ -2261,8 +2310,6 @@ namespace MediTechWebApi.Controllers
                 data.MWhen = PayorDetail.MWhen;
                 data.StatusFlag = PayorDetail.StatusFlag;
             }
-
-
             return data;
         }
 
@@ -2435,6 +2482,136 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetPolicyForPayorAgreement")]
+        [HttpGet]
+        public PayorAgreementModel GetPolicyForPayorAgreement(int policyMasterUID)
+        {
+            PayorAgreementModel data = new PayorAgreementModel();
+            var oderGroup = GetBillingGroupByPolicyUID(policyMasterUID);
+            if (oderGroup.Count > 0)
+            {
+                data.OrderGroup = oderGroup;
+                foreach (var item in oderGroup)
+                {
+                    var group = GetBillingSubGroupByPolicyUID(item.ContactAgreementAccountUID ?? 0);
+
+                    if (group.Count != 0)
+                    {
+                        if (data.OrderSubGroup == null)
+                            data.OrderSubGroup = new List<BillingSubGroupModel>();
+
+                        data.OrderSubGroup.AddRange(group);
+
+                        foreach (var item2 in group)
+                        {
+                            var orderItem = GetBillableItemByPolicyUID(item2.ContactAgreementAccountDetailUID ?? 0);
+                            if (orderItem.Count != 0)
+                            {
+                                if (data.OrderItem == null)
+                                    data.OrderItem = new List<BillableItemModel>();
+
+                                data.OrderItem.AddRange(orderItem);
+                            }
+                        }
+                    }
+                }
+            }
+
+            return data;
+        }
+
+        
+        [Route("GetAgreementAccountByAgreementUID")]
+        [HttpGet]
+        public List<AgreementAccountDiscountModel> GetAgreementAccountByAgreementUID(int payorAgreementUID)
+        {
+            List<AgreementAccountDiscountModel> data = (from p in db.AgreementAccountDiscount
+                                                        join g in db.BillingGroup on p.ServiceUID equals g.UID
+                                                        where p.PayorAgreementUID == payorAgreementUID
+                                                        && p.StatusFlag == "A"
+                                                        && p.StatusFlag == "A"
+                                                        select new AgreementAccountDiscountModel
+                                                        {
+                                                            AgreementAccountDiscountUID = p.UID,
+                                                            ServiceUID = p.ServiceUID,
+                                                            ServiceName = g.Description,
+                                                            PayorAgreementUID = p.PayorAgreementUID,
+                                                            OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                            PBLCTUID = p.PBLCTUID ?? 0,
+                                                            ALLDIUID = p.ALLDIUID ?? 0,
+                                                            Discount = p.Discount ?? 0,
+                                                            IsPercentage = p.IsPercentage,
+                                                            AllowDiscount = SqlFunction.fGetRfValDescription(p.ALLDIUID ?? 0),
+                                                            DateFrom = p.DateFrom,
+                                                            DateTo = p.DateTo,
+                                                            StatusFlag = p.StatusFlag
+                                                        }).ToList();
+
+            return data;
+        }
+
+        [Route("GetAgreementAccountDetailByAgreementUID")]
+        [HttpGet]
+        public List<AgreementDetailDiscountModel> GetAgreementAccountDetailByAgreementUID(int payorAgreementUID)
+        {
+            List<AgreementDetailDiscountModel> data = (from p in db.AgreementDetailDiscount
+                                                       join g in db.BillingSubGroup on p.ServiceUID equals g.UID
+                                                       where p.PayorAgreementUID == payorAgreementUID
+                                                       && p.StatusFlag == "A"
+                                                       && p.StatusFlag == "A"
+                                                       select new AgreementDetailDiscountModel
+                                                       {
+                                                           AgreementDetailDiscountUID = p.UID,
+                                                           AgreementAccountDiscountUID = p.AgreementAccountDiscountUID,
+                                                           BillgGroupUID = g.BillingGroupUID,
+                                                           ServiceUID = p.ServiceUID,
+                                                           ServiceName = g.Description,
+                                                           PayorAgreementUID = p.PayorAgreementUID,
+                                                           OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                           PBLCTUID = p.PBLCTUID ?? 0,
+                                                           ALLDIUID = p.ALLDIUID ?? 0,
+                                                           Discount = p.Discount ?? 0,
+                                                           IsPercentage = p.IsPercentage,
+                                                           AllowDiscount = SqlFunction.fGetRfValDescription(p.ALLDIUID ?? 0),
+                                                           DateFrom = p.DateFrom,
+                                                           DateTo = p.DateTo,
+                                                           StatusFlag = p.StatusFlag
+                                                       }).ToList();
+
+            return data;
+        }
+
+        [Route("GetAgreementItemByAgreementUID")]
+        [HttpGet]
+        public List<AgreementItemDiscountModel> GetAgreementItemByAgreementUID(int payorAgreementUID)
+        {
+            List<AgreementItemDiscountModel> data = (from p in db.AgreementItemDiscount
+                                                     join g in db.BillableItem on p.BillableItemUID equals g.UID
+                                                     where p.PayorAgreementUID == payorAgreementUID
+                                                     && p.StatusFlag == "A"
+                                                     && p.StatusFlag == "A"
+                                                     select new AgreementItemDiscountModel
+                                                     {
+                                                         AgreementItemDiscountUID = p.UID,
+                                                         AgreementDetailDiscountUID = p.AgreementDetailDiscountUID ?? 0,
+                                                         BillingSubGroupUID = g.BillingSubGroupUID ?? 0,
+                                                         BillableItemUID = g.UID,
+                                                         BillableItemName = g.ItemName,
+                                                         PayorAgreementUID = p.PayorAgreementUID,
+                                                         OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                         PBLCTUID = p.PBLCTUID ?? 0,
+                                                         ALLDIUID = p.ALLDIUID ?? 0,
+                                                         Discount = p.Discount,
+                                                         IsPackage = p.IsPackage,
+                                                         IsPercentage = p.IsPercentage,
+                                                         AllowDiscount = SqlFunction.fGetRfValDescription(p.ALLDIUID ?? 0),
+                                                         DateFrom = p.DateFrom,
+                                                         DateTo = p.DateTo,
+                                                         StatusFlag = p.StatusFlag
+                                                     }).ToList();
+            return data;
+        }
+
         #endregion
 
         #region PolicyMaster
@@ -2456,6 +2633,611 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("SearchPolicyMaster")]
+        [HttpGet]
+        public List<PolicyMasterModel> SearchPolicyMaster(string code, string name)
+        {
+            List<PolicyMasterModel> data = db.PolicyMaster
+                    .Where(p => p.StatusFlag == "A"
+                    && (String.IsNullOrEmpty(p.Code) || p.Code.ToLower().Contains(code.ToLower()))
+                    && (String.IsNullOrEmpty(p.PolicyName) || p.PolicyName.ToLower().Contains(code.ToLower()))
+                    ).Select(p => new PolicyMasterModel()
+                    {
+                        PolicyMasterUID = p.UID,
+                        Code = p.Code,
+                        PolicyName = p.PolicyName,
+                        Description = p.Description,
+                        AGTYPUID = p.AGTYPUID
+                    }).ToList();
+            return data;
+        }
+
+        [Route("GetPolicyOrder")]
+        [HttpGet]
+        public PolicyMasterModel GetPolicyOrder(int policyMasterUID)
+        {
+            string identifyOrdersetType = "BILLINGORDSET";
+            string identifyPackageType = "BILLINGPACK";
+
+            PolicyMasterModel data = new PolicyMasterModel();
+            var oderGroup = GetBillingGroupByPolicyUID(policyMasterUID);
+            if (oderGroup.Count > 0)
+            {
+                data.OrderGroup = oderGroup;
+                foreach (var item in oderGroup)
+                {
+                    var group = GetBillingSubGroupByPolicyUID(item.ContactAgreementAccountUID ?? 0);
+
+                    if (group.Count != 0)
+                    {
+                        if (data.OrderSubGroup == null)
+                            data.OrderSubGroup = new List<BillingSubGroupModel>();
+
+                        data.OrderSubGroup.AddRange(group);
+
+                        foreach (var item2 in group)
+                        {
+                            var orderItem = GetBillableItemByPolicyUID(item2.ContactAgreementAccountDetailUID ?? 0);
+                            if (orderItem.Count != 0)
+                            {
+                                if (data.OrderItem == null)
+                                    data.OrderItem = new List<BillableItemModel>();
+
+                                data.OrderItem.AddRange(orderItem);
+                            }
+                        }
+                    }
+                }
+            }
+
+            var oderSetGroup = GetOrderCategoryByPolicyUID(policyMasterUID, identifyOrdersetType);
+            if (oderSetGroup.Count != 0)
+            {
+                data.OrderSetGroup = oderSetGroup;
+                foreach (var item in oderSetGroup)
+                {
+                    var group = GetOrderSubCategoryByPolicyUID(item.ContactAgreementAccountUID ?? 0, identifyOrdersetType);
+
+                    if (group.Count != 0)
+                    {
+                        if (data.OrderSetSubGroup == null)
+                            data.OrderSetSubGroup = new List<OrderSubCategoryModel>();
+
+                        data.OrderSetSubGroup.AddRange(group);
+
+                        foreach (var item2 in group)
+                        {
+                            var orderset = GetOrderSetByPolicyUID(item2.ContactAgreementAccountDetailUID ?? 0);
+                            if (orderset.Count != 0)
+                            {
+                                if (data.OrderSetItem == null)
+                                    data.OrderSetItem = new List<OrderSetModel>();
+
+                                data.OrderSetItem.AddRange(orderset);
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            var package = GetOrderCategoryByPolicyUID(policyMasterUID, identifyPackageType);
+            if (package.Count != 0)
+            {
+                data.PackageGroup = package;
+                foreach (var item in package)
+                {
+                    var group = GetOrderSubCategoryByPolicyUID(item.ContactAgreementAccountUID ?? 0, identifyPackageType);
+
+                    if (group.Count != 0)
+                    {
+                        if (data.PackageSubGroup == null)
+                            data.PackageSubGroup = new List<OrderSubCategoryModel>();
+
+                        data.PackageSubGroup.AddRange(group);
+
+                        foreach (var item2 in group)
+                        {
+                            var billPackages = GetPackageByPolicyUID(item2.ContactAgreementAccountDetailUID ?? 0);
+                            if (billPackages.Count != 0)
+                            {
+                                if (data.Package == null)
+                                    data.Package = new List<BillPackageModel>();
+
+                                data.Package.AddRange(billPackages);
+                            }
+
+                        }
+                    }
+                }
+            }
+
+            return data;
+        }
+
+        [Route("GetBillingGroupByPolicyUID")]
+        [HttpGet]
+        public List<BillingGroupModel> GetBillingGroupByPolicyUID(int policyMasterUID)
+        {
+            var data = (from gp in db.BillingGroup
+                        join d in db.ContactAgreementAccount on gp.UID equals d.IdentifyingUID
+                        where d.PolicyMasterUID == policyMasterUID
+                        && d.StatusFlag == "A"
+                        && gp.StatusFlag == "A"
+                        && d.IdentifyingType == "BILLINGACCOUNT"
+                        select new BillingGroupModel
+                        {
+                            BillingGroupUID = gp.UID,
+                            Name = gp.Name,
+                            Description = gp.Description,
+                            ContactAgreementAccountUID = d.UID,
+                            DisplayOrder = gp.DisplayOrder,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+
+            return data;
+        }
+
+        [Route("GetBillingSubGroupByPolicyUID")]
+        [HttpGet]
+        public List<BillingSubGroupModel> GetBillingSubGroupByPolicyUID(int contactAgreementAccountUID)
+        {
+            var data = (from gp in db.BillingSubGroup
+                        join d in db.ContactAgreementAccountDetail on gp.UID equals d.IdentifyingUID
+                        where d.ContactAgreementAccountUID == contactAgreementAccountUID
+                        && d.StatusFlag == "A"
+                        && gp.StatusFlag == "A"
+                        && d.IdentifyingType == "BILLINGACCOUNT"
+                        select new BillingSubGroupModel
+                        {
+                            BillingGroupUID = gp.BillingGroupUID,
+                            BillingSubGroupUID = gp.UID,
+                            Name = gp.Name,
+                            Description = gp.Description,
+                            ContactAgreementAccountDetailUID = d.UID,
+                            DisplayOrder = gp.DisplayOrder,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+            return data;
+        }
+
+        [Route("GetBillableItemByPolicyUID")]
+        [HttpGet]
+        public List<BillableItemModel> GetBillableItemByPolicyUID(int contactAgreementAccountDetailUID)
+        {
+            var data = (from b in db.BillableItem
+                        join d in db.ContactAgreementAccountItem on b.UID equals d.IdentifyingUID
+                        where d.ContactAgreementAccountDetailUID == contactAgreementAccountDetailUID
+                        && d.StatusFlag == "A"
+                        && b.StatusFlag == "A"
+                        && d.IdentifyingType == "BILLINGACCOUNT"
+                        select new BillableItemModel
+                        {
+                            BillableItemUID = b.UID,
+                            Code = b.Code,
+                            BillingGroupUID = b.BillingGroupUID,
+                            BillingSubGroupUID = b.BillingSubGroupUID,
+                            ItemName = b.ItemName,
+                            Description = b.Description,
+                            ContactAgreementAccountItemUID = d.UID,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+            return data;
+        }
+
+        [Route("GetOrderCategoryByPolicyUID")]
+        [HttpGet]
+        public List<OrderCategoryModel> GetOrderCategoryByPolicyUID(int policyMasterUID, string identifyingType)
+        {
+            var data = (from gp in db.OrderCategory
+                        join d in db.ContactAgreementAccount on gp.UID equals d.IdentifyingUID
+                        where d.PolicyMasterUID == policyMasterUID
+                        && d.StatusFlag == "A"
+                        && gp.StatusFlag == "A"
+                        && d.IdentifyingType == identifyingType
+                        select new OrderCategoryModel
+                        {
+                            OrderCategoryUID = gp.UID,
+                            Code = gp.Code,
+                            Name = gp.Name,
+                            Description = gp.Description,
+                            ContactAgreementAccountUID = d.UID,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+
+            return data;
+        }
+
+        [Route("GetOrderSubCategoryByPolicyUID")]
+        [HttpGet]
+        public List<OrderSubCategoryModel> GetOrderSubCategoryByPolicyUID(int contactAgreementAccountUID, string identifyingType)
+        {
+            var data = (from gp in db.OrderSubCategory
+                        join d in db.ContactAgreementAccountDetail on gp.UID equals d.IdentifyingUID
+                        where d.ContactAgreementAccountUID == contactAgreementAccountUID
+                        && d.StatusFlag == "A"
+                        && gp.StatusFlag == "A"
+                        && d.IdentifyingType == identifyingType
+                        select new OrderSubCategoryModel
+                        {
+                            OrderCategoryUID = gp.OrderCategoryUID,
+                            OrderSubCategoryUID = gp.UID,
+                            Name = gp.Name,
+                            Description = gp.Description,
+                            ContactAgreementAccountDetailUID = d.UID,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+            return data;
+        }
+
+        [Route("GetOrderSetByPolicyUID")]
+        [HttpGet]
+        public List<OrderSetModel> GetOrderSetByPolicyUID(int contactAgreementAccountDetailUID)
+        {
+            var data = (from b in db.OrderSet
+                        join d in db.ContactAgreementAccountItem on b.UID equals d.IdentifyingUID
+                        where d.ContactAgreementAccountDetailUID == contactAgreementAccountDetailUID
+                        && d.StatusFlag == "A"
+                        && b.StatusFlag == "A"
+                        && d.IdentifyingType == "BILLINGORDSET"
+                        select new OrderSetModel
+                        {
+                            OrderSetUID = b.UID,
+                            Code = b.Code,
+                            OrderCategoryUID = b.OrderCategoryUID,
+                            OrderSubCategoryUID = b.OrderSubCategoryUID,
+                            Name = b.Name,
+                            OrdersetNameSearch = b.OrdersetNameSearch,
+                            Description = b.Description,
+                            ContactAgreementAccountItemUID = d.UID,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+            return data;
+        }
+
+        [Route("GetPackageByPolicyUID")]
+        [HttpGet]
+        public List<BillPackageModel> GetPackageByPolicyUID(int contactAgreementAccountDetailUID)
+        {
+            var data = (from b in db.BillPackage
+                        join d in db.ContactAgreementAccountItem on b.UID equals d.IdentifyingUID
+                        where d.ContactAgreementAccountDetailUID == contactAgreementAccountDetailUID
+                        && d.StatusFlag == "A"
+                        && b.StatusFlag == "A"
+                        && d.IdentifyingType == "BILLINGPACK"
+                        select new BillPackageModel
+                        {
+                            BillPackageUID = b.UID,
+                            Code = b.Code,
+                            OrderCategoryUID = b.OrderCategoryUID,
+                            OrderSubCategoryUID = b.OrderSubCategoryUID,
+                            PackageName = b.PackageName,
+                            Description = b.Description,
+                            ContactAgreementAccountItemUID = d.UID,
+                            StatusFlag = d.StatusFlag
+                        }).ToList();
+            return data;
+        }
+
+
+        [Route("ManagePolicyMaster")]
+        [HttpPost]
+        public HttpResponseMessage ManagePolicyMaster(PolicyMasterModel policyMaster, int userID)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+
+                    DateTime now = DateTime.Now;
+
+                    var policy = db.PolicyMaster.Find(policyMaster.PolicyMasterUID);
+
+                    if (policy == null)
+                    {
+                        policy = new PolicyMaster();
+                        policy.CUser = userID;
+                        policy.CWhen = now;
+                    }
+                    policy.PolicyName = policyMaster.PolicyName;
+                    policy.Code = policyMaster.Code;
+                    policy.AGTYPUID = policyMaster.AGTYPUID;
+                    policy.Description = policyMaster.Description;
+                    policy.MUser = userID;
+                    policy.MWhen = now;
+                    policy.StatusFlag = "A";
+
+                    db.PolicyMaster.AddOrUpdate(policy);
+                    db.SaveChanges();
+
+                    if (policyMaster.OrderGroup != null)
+                    {
+                        foreach (var item in policyMaster.OrderGroup)
+                        {
+                            ContactAgreementAccount order = db.ContactAgreementAccount.Find(item.ContactAgreementAccountUID);
+                            if (order == null)
+                            {
+                                order = new ContactAgreementAccount();
+                                order.CWhen = now;
+                                order.CUser = userID;
+                                order.PolicyMasterUID = policy.UID;
+                                order.IdentifyingType = "BILLINGACCOUNT";
+                                order.IdentifyingUID = item.BillingGroupUID;
+                                order.StatusFlag = "A";
+                            }
+
+                            order.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                            order.MWhen = now;
+                            order.MUser = userID;
+                            order.StatusFlag = item.StatusFlag == "D" ? "D" : "A";
+
+                            db.ContactAgreementAccount.AddOrUpdate(order);
+                            db.SaveChanges();
+
+                            if (policyMaster.OrderSubGroup != null)
+                            {
+                                foreach (var item2 in policyMaster.OrderSubGroup)
+                                {
+                                    if (item2.BillingGroupUID == item.BillingGroupUID)
+                                    {
+                                        ContactAgreementAccountDetail detail = db.ContactAgreementAccountDetail.Find(item2.ContactAgreementAccountDetailUID);
+                                        if (detail == null)
+                                        {
+                                            detail = new ContactAgreementAccountDetail();
+                                            detail.CWhen = now;
+                                            detail.CUser = userID;
+                                            detail.StatusFlag = "A";
+                                        }
+                                        detail.ContactAgreementAccountUID = order.UID;
+                                        detail.IdentifyingType = "BILLINGACCOUNT";
+                                        detail.IdentifyingUID = item2.BillingSubGroupUID;
+                                        detail.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                        detail.MWhen = now;
+                                        detail.MUser = userID;
+                                        detail.StatusFlag = item2.StatusFlag;
+
+                                        db.ContactAgreementAccountDetail.AddOrUpdate(detail);
+                                        db.SaveChanges();
+
+
+
+                                        if (policyMaster.OrderItem != null)
+                                        {
+                                            foreach (var item3 in policyMaster.OrderItem)
+                                            {
+                                                if (item3.BillingSubGroupUID == item2.BillingSubGroupUID)
+                                                {
+                                                    ContactAgreementAccountItem detail2 = db.ContactAgreementAccountItem.Find(item3.ContactAgreementAccountItemUID);
+
+                                                    if (detail2 == null)
+                                                    {
+                                                        detail2 = new ContactAgreementAccountItem();
+                                                        detail2.CWhen = now;
+                                                        detail2.CUser = userID;
+                                                        detail2.StatusFlag = "A";
+                                                    }
+                                                    detail2.ContactAgreementAccountDetailUID = detail.UID;
+                                                    detail2.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                                    detail2.IdentifyingType = "BILLINGACCOUNT";
+                                                    detail2.IdentifyingUID = item3.BillableItemUID;
+                                                    detail2.MWhen = now;
+                                                    detail2.MUser = userID;
+                                                    detail2.StatusFlag = item3.StatusFlag;
+
+                                                    db.ContactAgreementAccountItem.AddOrUpdate(detail2);
+                                                    db.SaveChanges();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (policyMaster.OrderSetGroup != null)
+                    {
+                        foreach (var odgp in policyMaster.OrderSetGroup)
+                        {
+                            ContactAgreementAccount data = db.ContactAgreementAccount.Find(odgp.ContactAgreementAccountUID);
+                            if (data == null)
+                            {
+                                data = new ContactAgreementAccount();
+                                data.CWhen = now;
+                                data.CUser = userID;
+                                data.PolicyMasterUID = policy.UID;
+                                data.IdentifyingType = "BILLINGORDSET";
+                                data.IdentifyingUID = odgp.OrderCategoryUID;
+                                data.StatusFlag = "A";
+                            }
+                            data.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                            data.MWhen = now;
+                            data.MUser = userID;
+                            data.StatusFlag = odgp.StatusFlag == "D" ? "D" : "A";
+
+                            db.ContactAgreementAccount.AddOrUpdate(data);
+                            db.SaveChanges();
+
+                            if (policyMaster.OrderSetSubGroup != null)
+                            {
+                                foreach (var odsubgp in policyMaster.OrderSetSubGroup)
+                                {
+                                    if (odsubgp.OrderCategoryUID == odgp.OrderCategoryUID)
+                                    {
+                                        ContactAgreementAccountDetail detail = db.ContactAgreementAccountDetail.Find(odsubgp.ContactAgreementAccountDetailUID);
+                                        if (detail == null)
+                                        {
+                                            detail = new ContactAgreementAccountDetail();
+                                            detail.CWhen = now;
+                                            detail.CUser = userID;
+                                            detail.ContactAgreementAccountUID = data.UID;
+                                            detail.IdentifyingType = "BILLINGORDSET";
+                                            detail.IdentifyingUID = odsubgp.OrderSubCategoryUID;
+                                            detail.StatusFlag = "A";
+                                        }
+                                        detail.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                        detail.MWhen = now;
+                                        detail.MUser = userID;
+                                        detail.StatusFlag = odsubgp.StatusFlag == "D" ? "D" : "A";
+
+                                        db.ContactAgreementAccountDetail.AddOrUpdate(detail);
+                                        db.SaveChanges();
+
+                                        if (policyMaster.OrderSetItem != null)
+                                        {
+                                            foreach (var odit in policyMaster.OrderSetItem)
+                                            {
+                                                if (odit.OrderSubCategoryUID == odsubgp.OrderSubCategoryUID)
+                                                {
+                                                    ContactAgreementAccountItem detail2 = db.ContactAgreementAccountItem.Find(odit.ContactAgreementAccountItemUID);
+
+                                                    if (detail2 == null)
+                                                    {
+                                                        detail2 = new ContactAgreementAccountItem();
+                                                        detail2.CWhen = now;
+                                                        detail2.CUser = userID;
+                                                        detail2.ContactAgreementAccountDetailUID = detail.UID;
+                                                        detail2.IdentifyingUID = odit.OrderSetUID;
+                                                        detail2.IdentifyingType = "BILLINGORDSET";
+                                                        detail2.StatusFlag = "A";
+                                                    }
+                                                    detail2.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                                    detail2.MWhen = now;
+                                                    detail2.MUser = userID;
+                                                    detail2.StatusFlag = odit.StatusFlag == "D" ? "D" : "A";
+
+                                                    db.ContactAgreementAccountItem.AddOrUpdate(detail2);
+                                                    db.SaveChanges();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                    if (policyMaster.PackageGroup != null)
+                    {
+                        foreach (var pkgp in policyMaster.PackageGroup)
+                        {
+                            ContactAgreementAccount data = db.ContactAgreementAccount.Find(pkgp.ContactAgreementAccountUID);
+                            if (data == null)
+                            {
+                                data = new ContactAgreementAccount();
+                                data.CWhen = now;
+                                data.CUser = userID;
+                                data.PolicyMasterUID = policy.UID;
+                                data.IdentifyingType = "BILLINGPACK";
+                                data.IdentifyingUID = pkgp.OrderCategoryUID;
+                                data.StatusFlag = "A";
+                            }
+
+                            data.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                            data.MWhen = now;
+                            data.MUser = userID;
+                            data.StatusFlag = pkgp.StatusFlag == "D" ? "D" : "A";
+
+                            db.ContactAgreementAccount.AddOrUpdate(data);
+                            db.SaveChanges();
+
+                            if (policyMaster.PackageSubGroup != null)
+                            {
+                                foreach (var pksubgp in policyMaster.PackageSubGroup)
+                                {
+                                    if (pksubgp.OrderCategoryUID == pkgp.OrderCategoryUID)
+                                    {
+                                        ContactAgreementAccountDetail detail = db.ContactAgreementAccountDetail.Find(pksubgp.ContactAgreementAccountDetailUID);
+                                        if (detail == null)
+                                        {
+                                            detail = new ContactAgreementAccountDetail();
+                                            detail.CWhen = now;
+                                            detail.CUser = userID;
+                                            detail.StatusFlag = "A";
+                                            detail.ContactAgreementAccountUID = data.UID;
+                                            detail.IdentifyingType = "BILLINGPACK";
+                                            detail.IdentifyingUID = pksubgp.OrderSubCategoryUID;
+                                        }
+                                        detail.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                        detail.MWhen = now;
+                                        detail.MUser = userID;
+                                        detail.StatusFlag = pksubgp.StatusFlag == "D" ? "D" : "A";
+
+                                        db.ContactAgreementAccountDetail.AddOrUpdate(detail);
+                                        db.SaveChanges();
+
+
+                                        if (policyMaster.Package != null)
+                                        {
+                                            foreach (var odit in policyMaster.Package)
+                                            {
+                                                if (odit.OrderSubCategoryUID == pksubgp.OrderSubCategoryUID)
+                                                {
+                                                    ContactAgreementAccountItem detail2 = db.ContactAgreementAccountItem.Find(odit.ContactAgreementAccountItemUID);
+
+                                                    if (detail2 == null)
+                                                    {
+                                                        detail2 = new ContactAgreementAccountItem();
+                                                        detail2.CWhen = now;
+                                                        detail2.CUser = userID;
+                                                        detail2.ContactAgreementAccountDetailUID = detail.UID;
+                                                        detail2.IdentifyingUID = odit.BillPackageUID;
+                                                        detail2.IdentifyingType = "BILLINGPACK";
+                                                        detail2.StatusFlag = "A";
+                                                    }
+                                                    detail2.OwnerOrganisationUID = policyMaster.OwnweOwnerOrganisationUID;
+                                                    detail2.MWhen = now;
+                                                    detail2.MUser = userID;
+                                                    detail2.StatusFlag = odit.StatusFlag == "D" ? "D" : "A";
+
+                                                    db.ContactAgreementAccountItem.AddOrUpdate(detail2);
+                                                    db.SaveChanges();
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    tran.Complete();
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("DeletePolicyMaster")]
+        [HttpDelete]
+        public HttpResponseMessage DeletePolicyMaster(int policyUID, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+                using (var tran = new TransactionScope())
+                {
+                    var policy = db.PolicyMaster.Where(p => p.UID == policyUID).FirstOrDefault();
+                    if (policy != null)
+                    {
+                        db.PolicyMaster.Attach(policy);
+                        policy.MUser = userID;
+                        policy.MWhen = now;
+                        policy.StatusFlag = "D";
+                        db.SaveChanges();
+                    }
+                    tran.Complete();
+                };
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
         #endregion
     }
 }

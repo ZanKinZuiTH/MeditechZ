@@ -127,7 +127,7 @@
                                         <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
                                     </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
-                                        <dxg:TableView Name="gvPayorDetail" ShowGroupPanel="True"  AllowEditing="False" />
+                                        <dxg:TableView Name="gvPayorDetail" ShowGroupPanel="False"  AllowEditing="False" />
                                     </dxg:GridControl.View>
                                 </dxg:GridControl>
                             </dxlc:LayoutGroup>
@@ -146,7 +146,7 @@
                                         <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
                                     </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
-                                        <dxg:TableView Name="gvPayoAgreement" ShowGroupPanel="True"  AllowEditing="False" />
+                                        <dxg:TableView Name="gvPayoAgreement" ShowGroupPanel="False"  AllowEditing="False" />
                                     </dxg:GridControl.View>
                                 </dxg:GridControl>
                             </dxlc:LayoutGroup>
@@ -167,7 +167,7 @@
                                         <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
                                     </dxg:GridControl.Columns>
                                     <dxg:GridControl.View>
-                                        <dxg:TableView Name="gvInsurancePlen" ShowGroupPanel="True"  AllowEditing="False" />
+                                        <dxg:TableView Name="gvInsurancePlen" ShowGroupPanel="False"  AllowEditing="False" />
                                     </dxg:GridControl.View>
                                 </dxg:GridControl>
                             </dxlc:LayoutGroup>
