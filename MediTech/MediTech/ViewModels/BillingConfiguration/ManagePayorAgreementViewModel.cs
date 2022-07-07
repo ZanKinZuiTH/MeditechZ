@@ -786,6 +786,26 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาระบุ Code");
                 return;
             }
+            if(SelectBillType == null)
+            {
+                WarningDialog("กรุณาเลือก Bill Type");
+                return;
+            }
+            if (SelectPayorBillType == null)
+            {
+                WarningDialog("กรุณาเลือก Payor Bill Type");
+                return;
+            }
+            if (SelectPolicyMaster == null)
+            {
+                WarningDialog("กรุณาเลือก Contact");
+                return;
+            }
+            if(SelectPrimaryTariff == null)
+            {
+                WarningDialog("กรุณาเลือก Primary Tariff");
+                return;
+            }
 
             AssignProprotiesToModel();
 
@@ -906,7 +926,7 @@ namespace MediTech.ViewModels
             payorAgreement.CRDTRMUID = SelectCreditTerm != null ? SelectCreditTerm.Key : (int?)null;
             payorAgreement.PBTYPUID = SelectPayorBillType != null ? SelectPayorBillType.Key : (int?)null;
 
-            payorAgreement.ClaimPercentage = !String.IsNullOrEmpty(ClaimPercentage) ? double.Parse(ClaimPercentage) : (double?)null;
+            payorAgreement.ClaimPercentage = !String.IsNullOrEmpty(ClaimPercentage) ? double.Parse(ClaimPercentage) : 0;
             payorAgreement.OPDCoverPerDay = !String.IsNullOrEmpty(CoverPerDay) ? double.Parse(CoverPerDay) : (double?)null;
 
             payorAgreement.PrimaryPBLCTUID = SelectPrimaryTariff != null ? SelectPrimaryTariff.Key : (int?)null;

@@ -68,7 +68,14 @@
                                                   ValueMember="Key"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup>
-                                    <dxlc:LayoutItem  Label="Contact">
+                                    <dxlc:LayoutItem >
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                                <TextBlock Text="Contact" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
                                         <dxe:ComboBoxEdit ItemsSource="{Binding PolicyMaster}"
                                                       SelectedItem="{Binding SelectPolicyMaster}"
                                                       DisplayMember="PolicyName"
@@ -99,7 +106,14 @@
                             <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5" Margin="5,0,5,0">
                                
 
-                                <dxlc:LayoutItem  Label="Primary Tariff">
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Primary Tariff" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
                                     <dxe:ComboBoxEdit ItemsSource="{Binding PrimaryTariff}"
                                                       SelectedItem="{Binding SelectPrimaryTariff}"
                                                       DisplayMember="Display"
