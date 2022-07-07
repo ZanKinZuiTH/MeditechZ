@@ -29,5 +29,8 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public List<BillPackageDetailModel> BillableItemDetails { get; set; }
+        public string OrderCategory { get; set; }
+        public string OrderSubCategory { get; set; }
+        public int? ContactAgreementAccountItemUID { get; set; }
     }
 }

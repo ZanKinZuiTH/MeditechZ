@@ -94,16 +94,13 @@ namespace MediTech.ViewModels
 
         private void Add()
         {
-            if(SelectPolicyMaster != null)
-            {
                 ManagePolicyMaster pageview = new ManagePolicyMaster();
-                ManagePolicyMasterViewModel result = (ManagePolicyMasterViewModel)LaunchViewDialog(pageview, "MNPCMT", true);
+                ManagePolicyMasterViewModel result = (ManagePolicyMasterViewModel)LaunchViewDialog(pageview, "MNPCMT", false,true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();
                     PolicyMasterSource = DataService.Billing.GetPolicyMasterAll();
                 }
-            }
         }
 
         private void Modify()
@@ -112,7 +109,7 @@ namespace MediTech.ViewModels
             {
                 ManagePolicyMaster pageview = new ManagePolicyMaster();
                 (pageview.DataContext as ManagePolicyMasterViewModel).AssingModel(SelectPolicyMaster.PolicyMasterUID);
-                ManagePolicyMasterViewModel result = (ManagePolicyMasterViewModel)LaunchViewDialog(pageview, "MNPCMT", true);
+                ManagePolicyMasterViewModel result = (ManagePolicyMasterViewModel)LaunchViewDialog(pageview, "MNPCMT", false, true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
                     SaveSuccessDialog();

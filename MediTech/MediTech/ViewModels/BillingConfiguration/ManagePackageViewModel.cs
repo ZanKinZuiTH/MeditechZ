@@ -401,6 +401,16 @@ namespace MediTech.ViewModels
                 WarningDialog("กรุณาเพิ่มรายการ item");
                 return;
             }
+            if (SelectCatagory == null)
+            {
+                WarningDialog("กรุณาเพิ่มรายการ Catagory");
+                return;
+            }
+            if (SelectOrderSubCatagory == null)
+            {
+                WarningDialog("กรุณาเพิ่มรายการ Order SubCatagory");
+                return;
+            }
 
             CalculateNetAmount();
             AssingPropertiesToModel();
@@ -461,9 +471,10 @@ namespace MediTech.ViewModels
 
                 foreach (var item in data)
                 {
+                    item.TotalAmount = item.Amount * Convert.ToDouble(item.Quantity);
                     BillPackageDetail.Add(item);
                 }
-                CalculateNetAmount();
+                //CalculateNetAmount();
             }
         }
 
@@ -488,7 +499,8 @@ namespace MediTech.ViewModels
                 model.TotalAmount = double.Parse(TotalAmount);
                 model.NoofDays = 0;
                 model.CURNCUID = 2811;
-                //model.OrderCategoryUID = 
+                model.OrderCategoryUID = SelectCatagory != null ? SelectCatagory.OrderCategoryUID : (int?)null;
+                model.OrderSubCategoryUID = SelectOrderSubCatagory != null ? SelectOrderSubCatagory.OrderSubCategoryUID : (int?)null;
                 model.BillableItemDetails.AddRange(BillPackageDetail);
             }
         }

@@ -42,5 +42,12 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public List<BillingGroupModel> OrderGroup { get; set; }
+        public List<BillingSubGroupModel> OrderSubGroup { get; set; }
+        public List<BillableItemModel> OrderItem { get; set; }
+
+        public List<AgreementAccountDiscountModel> AgreementDiscount { get; set; }
+        public List<AgreementDetailDiscountModel> AgreementDiscountDetails { get; set; }
+        public List<AgreementItemDiscountModel> AgreementItems { get; set; }
     }
 }

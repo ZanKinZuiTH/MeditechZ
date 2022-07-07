@@ -30,8 +30,8 @@
                     <dxg:GridColumn Header="Code" FieldName="Code"/>
                     <dxg:GridColumn Header="PackageName" FieldName="PackageName"/>
                     <dxg:GridColumn Header="Total Amount" FieldName="TotalAmount"/>
-                    <dxg:GridColumn Header="Catagory" FieldName="Price"/>
-                    <dxg:GridColumn Header="SubCatagory" FieldName="Profit"/>
+                    <dxg:GridColumn Header="Catagory" FieldName="OrderCategory"/>
+                    <dxg:GridColumn Header="SubCatagory" FieldName="OrderSubCategory"/>
                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>
                     <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo"/>
                 </dxg:GridControl.Columns>

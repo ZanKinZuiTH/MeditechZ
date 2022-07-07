@@ -24,5 +24,8 @@ namespace MediTech.Model
         public string OwnerOrganisationName { get; set; }
         public double Price { get; set; }
         public List<OrderSetBillableItemModel> OrderSetBillableItems { get; set; }
+        public int? OrderCategoryUID { get; set; }
+        public int? OrderSubCategoryUID { get; set; }
+        public int? ContactAgreementAccountItemUID { get; set; }
     }
 }

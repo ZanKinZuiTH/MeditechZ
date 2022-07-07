@@ -10,129 +10,529 @@
              xmlns:local="clr-namespace:MediTech.Views"
              mc:Ignorable="d" 
              DataContext="{Binding Path=ManagePayorAgreementViewModel,Source={StaticResource Locator}}"
-             Width="800" Height="380"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="600" d:DesignWidth="1000">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutGroup Margin="50" Orientation="Horizontal">
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutItem >
-                            <dxlc:LayoutItem.Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+            <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
+                <dx:DXTabItem Header="Detail">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5" Margin="5,0,5,0">
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                    <TextBlock Text="Code" />
-                                </StackPanel>
-                            </dxlc:LayoutItem.Label>
-                            <dxe:TextEdit Text="{Binding Code}"/>
-                        </dxlc:LayoutItem>
+                                            <TextBlock Text="Code" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:TextEdit Text="{Binding Code}"/>
+                                </dxlc:LayoutItem>
 
-                        <dxlc:LayoutItem >
-                            <dxlc:LayoutItem.Label>
-                                <StackPanel Orientation="Horizontal">
-                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                    <TextBlock Text="Company Name" />
-                                </StackPanel>
-                            </dxlc:LayoutItem.Label>
-                            <dxe:TextEdit Text="{Binding Name}"/>
-                        </dxlc:LayoutItem>
+                                            <TextBlock Text="Company Name" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:TextEdit Text="{Binding Name}"/>
+                                </dxlc:LayoutItem>
 
-                        <!--<dxlc:LayoutItem  Label="Description">
-                            <dxe:TextEdit Text="{Binding Description}"/>
-                        </dxlc:LayoutItem>-->
-
-                        <dxlc:LayoutItem  Label="เปิดใช้งาน">
-                            <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
-                        </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem  Label="ปิดใช้งาน">
-                            <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
-                        </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem>
-                        <dxlc:LayoutItem.Label>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                <TextBlock Text="Bill Type" />
-                            </StackPanel>
-                        </dxlc:LayoutItem.Label>
-                        <dxe:ComboBoxEdit ItemsSource="{Binding BillType}"
+                                            <TextBlock Text="Bill Type" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding BillType}"
                                                   SelectedItem="{Binding SelectBillType}"
                                                   DisplayMember="Display"
                                                   ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-                    
-                    <dxlc:LayoutItem>
-                        <dxlc:LayoutItem.Label>
-                            <StackPanel Orientation="Horizontal">
-                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                <TextBlock Text="payor Bill Type" />
-                            </StackPanel>
-                        </dxlc:LayoutItem.Label>
-                        <dxe:ComboBoxEdit ItemsSource="{Binding PayorBillType}"
+                                            <TextBlock Text="payor Bill Type" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding PayorBillType}"
                                                   SelectedItem="{Binding SelectPayorBillType}"
                                                   DisplayMember="Display"
                                                   ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem  Label="Credit Term">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding CreditTerm}"
-                                                      SelectedItem="{Binding SelectCreditTerm}"
-                                                      DisplayMember="Display"
-                                                      ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    
-                </dxlc:LayoutGroup>
-                
-                
-                <dxlc:LayoutGroup Orientation="Vertical">
-                    <dxlc:LayoutItem  Label="OPDCoverPerDay">
-                        <dxe:TextEdit EditValue="{Binding CoverPerDay}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem  Label="ClaimPercentage">
-                        <dxe:TextEdit EditValue="{Binding ClaimPercentage}"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem  Label="Primary Tariff">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding PrimaryTariff}"
-                                                      SelectedItem="{Binding SelectPrimaryTariff}"
-                                                      DisplayMember="Display"
-                                                      ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem  Label="Secondaary Tariff">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding SecondaryTariff}"
-                                                      SelectedItem="{Binding SelectSecondaryTariff}"
-                                                      DisplayMember="Display"
-                                                      ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-
-                    <dxlc:LayoutItem  Label="ertiary Tariff">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding TertiaryTariff}"
-                                                      SelectedItem="{Binding SelectTertiaryTariff}"
-                                                      DisplayMember="Display"
-                                                      ValueMember="Key"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutGroup>
-                        <dxlc:LayoutItem  Label="Contact">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding PolicyMaster}"
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutGroup>
+                                    <dxlc:LayoutItem >
+                                        <dxlc:LayoutItem.Label>
+                                            <StackPanel Orientation="Horizontal">
+                                                <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                                <TextBlock Text="Contact" />
+                                            </StackPanel>
+                                        </dxlc:LayoutItem.Label>
+                                        <dxe:ComboBoxEdit ItemsSource="{Binding PolicyMaster}"
                                                       SelectedItem="{Binding SelectPolicyMaster}"
                                                       DisplayMember="PolicyName"
                                                       ValueMember="PolicyMasterUID"/>
-                    </dxlc:LayoutItem>
-                        <dxlc:LayoutItem  Label="{Binding AgreementType}"  Width="40"/>
-                    </dxlc:LayoutGroup>
+                                    </dxlc:LayoutItem>
+                                </dxlc:LayoutGroup>
 
-                </dxlc:LayoutGroup>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5" Margin="5,0,5,0">
+                                <dxlc:LayoutItem  Label="OPDCover PerDay">
+                                    <dxe:TextEdit EditValue="{Binding CoverPerDay}"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem  Label="Claim Percentage">
+                                    <dxe:TextEdit EditValue="{Binding ClaimPercentage}"/>
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem  Label="เปิดใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem  Label="ปิดใช้งาน">
+                                    <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                                </dxlc:LayoutItem>
+                                
+                                <dxlc:LayoutItem  Label="{Binding AgreementType}"/>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5" Margin="5,0,5,0">
+                               
+
+                                <dxlc:LayoutItem >
+                                    <dxlc:LayoutItem.Label>
+                                        <StackPanel Orientation="Horizontal">
+                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                                            <TextBlock Text="Primary Tariff" />
+                                        </StackPanel>
+                                    </dxlc:LayoutItem.Label>
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding PrimaryTariff}"
+                                                      SelectedItem="{Binding SelectPrimaryTariff}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem  Label="Secondary Tariff">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding SecondaryTariff}"
+                                                      SelectedItem="{Binding SelectSecondaryTariff}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutItem  Label="ertiary Tariff">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding TertiaryTariff}"
+                                                      SelectedItem="{Binding SelectTertiaryTariff}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem  Label="Credit Term">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding CreditTerm}"
+                                                      SelectedItem="{Binding SelectCreditTerm}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem>
+                                    <dxlc:LayoutGroup>
+                                        <dxe:CheckEdit Content="IsLimitAfterDiscount" IsChecked="{Binding IsLimitAfterDiscount}"/>
+                                    </dxlc:LayoutGroup>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup HorizontalAlignment="Left" VerticalAlignment="Top">
+                            <TextBlock Text="{Binding SelectBillingGroupSource.Description}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                            <TextBlock Text=" >> " FontWeight="SemiBold" FontSize="15" Foreground="Gray">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectBillingSubGroupSource.Description}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Text="{Binding SelectBillingSubGroupSource.Description}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                            <TextBlock Text=" >> " FontWeight="SemiBold" FontSize="15" Foreground="Gray">
+                                <TextBlock.Style>
+                                    <Style TargetType="TextBlock">
+                                        <Setter Property="Visibility" Value="Visible"/>
+                                        <Style.Triggers>
+                                            <DataTrigger Binding="{Binding SelectItemSource.ItemName}" Value="{x:Null}">
+                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                            </DataTrigger>
+                                        </Style.Triggers>
+                                    </Style>
+                                </TextBlock.Style>
+                            </TextBlock>
+                            <TextBlock Text="{Binding SelectItemSource.ItemName}" FontWeight="SemiBold" FontSize="15" Foreground="Gray"/>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Vertical">
+                            
+                            <dxlc:LayoutGroup>
+                                <dx:DXTabControl SelectedIndex="{Binding SelectContactIndex}">
+                                    <dx:DXTabItem Header="Group" >
+                                        <dxlc:LayoutControl Orientation="Vertical">
+                                            <dxg:GridControl x:Name="grdGroup" ItemsSource="{Binding BillingGroupSource}" SelectedItem="{Binding SelectBillingGroupSource}">
+                                                <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn Header="Description" Width="300" FieldName="Description"/>
+                                                </dxg:GridControl.Columns>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </dxlc:LayoutControl>
+                                    </dx:DXTabItem>
+                                    <dx:DXTabItem Header="SubGroup" >
+                                        <dxlc:LayoutControl Orientation="Vertical">
+                                            <dxg:GridControl x:Name="grdSubGroup" ItemsSource="{Binding BillingSubGroupSource}" SelectedItem="{Binding SelectBillingSubGroupSource}">
+                                                <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn Header="Description" Width="500" FieldName="Description"/>
+                                                </dxg:GridControl.Columns>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </dxlc:LayoutControl>
+                                    </dx:DXTabItem>
+                                    <dx:DXTabItem Header="Item" >
+                                        <dxlc:LayoutControl Orientation="Vertical">
+                                            <dxg:GridControl x:Name="grditem" ItemsSource="{Binding ItemSource}" SelectedItem="{Binding SelectItemSource}">
+                                                <dxg:GridControl.Columns>
+                                                    <dxg:GridColumn Header="Description" Width="500" FieldName="ItemName"/>
+                                                </dxg:GridControl.Columns>
+                                                <dxg:GridControl.View>
+                                                    <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                                </dxg:GridControl.View>
+                                            </dxg:GridControl>
+                                        </dxlc:LayoutControl>
+                                    </dx:DXTabItem>
+                                </dx:DXTabControl>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
                 
+                
+                <dx:DXTabItem Header="Discount">
+                    <dxlc:LayoutControl Orientation="Vertical">
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem  Label="Primary Tariff" Width="350">
+                                <dxe:ComboBoxEdit ItemsSource="{Binding Tariff}"
+                                              SelectedItem="{Binding SelectTariff}"
+                                              DisplayMember="Display"
+                                              ValueMember="Key"/>
+                            </dxlc:LayoutItem>
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup >
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:GroupBox Header="Groub">
+                                    <dxlc:LayoutControl Orientation="Vertical">
+                                        <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
+                                            <dxlc:LayoutItem  Label="Name">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding GroupName}"
+                                                      SelectedItem="{Binding SelectGroupName}"
+                                                      DisplayMember="Description"
+                                                      ValueMember="BillingGroupUID">
+                                                    <dxe:ComboBoxEdit.Style>
+                                                        <Style TargetType="dxe:ComboBoxEdit">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsSelectGroup}" Value="true">
+                                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </dxe:ComboBoxEdit.Style>
+                                                </dxe:ComboBoxEdit>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem  Label="Discount">
+                                                <dxlc:LayoutGroup>
+                                                    <dxlc:LayoutItem>
+                                                        <dxe:TextEdit EditValue="{Binding GroupDiscount}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <dxlc:LayoutGroup>
+                                                            <dxe:CheckEdit Content="Is Percentage" IsChecked="{Binding GroupIsPer}"/>
+                                                        </dxlc:LayoutGroup>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutItem>
 
-            </dxlc:LayoutGroup>
-            
+                                            <dxlc:LayoutItem  Label="Allow Discoun">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding GroupAllowDiscount}"
+                                                      SelectedItem="{Binding SelectGroupAllowDiscount}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active From">
+                                                <dxe:DateEdit EditValue="{Binding GroupDateFrom}"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active To">
+                                                <dxe:DateEdit EditValue="{Binding GroupDateTo}"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding AddGroupCommand}"
+                                                             Height="25" Content="Add">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectGroup}" Value="true">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding UpdateGroupCommand}"
+                                                             Height="25" Content="Update">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectGroup}" Value="true">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteGroupCommand}"
+                                                             Height="25" Content="Delete"/>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearGroupCommand}"
+                                                             Height="25" Content="clear"/>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxg:GridControl x:Name="grdContactGroup" ItemsSource="{Binding DiscountGroupSource}" SelectedItem="{Binding SelectDiscountGroupSource}">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn Header="Name" FieldName="ServiceName"/>
+                                                <dxg:GridColumn Header="Discount" Width="70" FieldName="Discount"/>
+                                                <dxg:GridColumn Header="%" Width="40" FieldName="IsPercentage"/>
+                                                <dxg:GridColumn Header="AllowDiscount" FieldName="AllowDiscount"/>
+                                                <dxg:GridColumn Header="ActiveFrom" Width="70" FieldName="DateFrom"/>
+                                                <dxg:GridColumn Header="ActiveTo" Width="70" FieldName="DateTo"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dxlc:LayoutControl>
+                                </dxlc:GroupBox>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:GroupBox Header="SubGroub">
+                                    <dxlc:LayoutControl Orientation="Vertical">
+                                        <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
+                                            <dxlc:LayoutItem  Label="Name">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding SubGroupName}"
+                                                      SelectedItem="{Binding SelectSubGroupName}"
+                                                      DisplayMember="Description"
+                                                      ValueMember="BillingSubGroupUID">
+                                                    <dxe:ComboBoxEdit.Style>
+                                                        <Style TargetType="dxe:ComboBoxEdit">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsSelectSubGroup}" Value="true">
+                                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </dxe:ComboBoxEdit.Style>
+                                                </dxe:ComboBoxEdit>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem  Label="Discount">
+                                                <dxlc:LayoutGroup>
+                                                    <dxlc:LayoutItem>
+                                                        <dxe:TextEdit EditValue="{Binding SubGroupDiscount}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <dxlc:LayoutGroup>
+                                                            <dxe:CheckEdit Content="Is Percentage" IsChecked="{Binding SubGroupIsPer}"/>
+                                                            </dxlc:LayoutGroup>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem  Label="Allow Discoun">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding SubGroupAllowDiscount}"
+                                                      SelectedItem="{Binding SelectSubGroupAllowDiscount}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active From">
+                                                <dxe:DateEdit EditValue="{Binding SubGroupDateFrom}"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active To">
+                                                <dxe:DateEdit EditValue="{Binding SubGroupDateTo}"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding AddSubGroupCommand}"
+                                                             Height="25" Content="Add">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectSubGroup}" Value="true">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding UpdateSubGroupCommand}"
+                                                             Height="25" Content="Update">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectSubGroup}" Value="true">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteSubGroupCommand}"
+                                                             Height="25" Content="Delete"/>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearSubGroupCommand}"
+                                                             Height="25" Content="clear"/>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxg:GridControl x:Name="grdContactItem" ItemsSource="{Binding DiscountSubGroupSource}" SelectedItem="{Binding SelectDiscountSubGroupSource}">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn Header="Name" FieldName="ServiceName"/>
+                                                <dxg:GridColumn Header="Discount" Width="70" FieldName="Discount"/>
+                                                <dxg:GridColumn Header="%" Width="40" FieldName="IsPercentage"/>
+                                                <dxg:GridColumn Header="AllowDiscount" FieldName="AllowDiscount"/>
+                                                <dxg:GridColumn Header="ActiveFrom" Width="70" FieldName="DateFrom"/>
+                                                <dxg:GridColumn Header="ActiveTo"  Width="70" FieldName="DateTo"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dxlc:LayoutControl>
+
+                                </dxlc:GroupBox>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:GroupBox Header="Item">
+                                    <dxlc:LayoutControl Orientation="Vertical">
+                                        <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="5">
+                                            <dxlc:LayoutItem  Label="Name">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding ItemName}"
+                                                      SelectedItem="{Binding SelectItemName}"
+                                                      DisplayMember="ItemName"
+                                                      ValueMember="BillableItemUID">
+                                                    <dxe:ComboBoxEdit.Style>
+                                                        <Style TargetType="dxe:ComboBoxEdit">
+                                                            <Setter Property="IsEnabled" Value="True"/>
+                                                            <Style.Triggers>
+                                                                <DataTrigger Binding="{Binding IsSelectItem}" Value="true">
+                                                                    <Setter Property="IsEnabled" Value="False"/>
+                                                                </DataTrigger>
+                                                            </Style.Triggers>
+                                                        </Style>
+                                                    </dxe:ComboBoxEdit.Style>
+                                                </dxe:ComboBoxEdit>
+                                            </dxlc:LayoutItem>
+                                            <dxlc:LayoutItem  Label="Discount">
+                                                <dxlc:LayoutGroup>
+                                                    <dxlc:LayoutItem>
+                                                        <dxe:TextEdit EditValue="{Binding ItemDiscount}"/>
+                                                    </dxlc:LayoutItem>
+                                                    <dxlc:LayoutItem>
+                                                        <dxlc:LayoutGroup>
+                                                            <dxe:CheckEdit Content="Is Percentage" IsChecked="{Binding ItemIsPer}"/>
+                                                        </dxlc:LayoutGroup>
+                                                    </dxlc:LayoutItem>
+                                                </dxlc:LayoutGroup>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem  Label="Allow Discoun">
+                                                <dxe:ComboBoxEdit ItemsSource="{Binding ItemAllowDiscount}"
+                                                      SelectedItem="{Binding SelectItemAllowDiscount}"
+                                                      DisplayMember="Display"
+                                                      ValueMember="Key"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active From">
+                                                <dxe:DateEdit EditValue ="{Binding ItemDateFrom}"/>
+                                            </dxlc:LayoutItem>
+
+                                            <dxlc:LayoutItem Label="Active To">
+                                                <dxe:DateEdit EditValue ="{Binding ItemDateTo}"/>
+                                            </dxlc:LayoutItem>
+                                        </dxlc:LayoutGroup>
+                                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding AddItemCommand}"
+                                                             Height="25" Content="Add">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Visible"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectItem}" Value="true">
+                                                                <Setter Property="Visibility" Value="Collapsed"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding UpdateItemCommand}"
+                                                             Height="25" Content="Update">
+                                                <dx:SimpleButton.Style>
+                                                    <Style TargetType="dx:SimpleButton">
+                                                        <Setter Property="Visibility" Value="Collapsed"/>
+                                                        <Style.Triggers>
+                                                            <DataTrigger Binding="{Binding IsSelectItem}" Value="true">
+                                                                <Setter Property="Visibility" Value="Visible"/>
+                                                            </DataTrigger>
+                                                        </Style.Triggers>
+                                                    </Style>
+                                                </dx:SimpleButton.Style>
+                                            </dx:SimpleButton>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding DeleteItemCommand}"
+                                                             Height="25" Content="Delete"/>
+                                            <dx:SimpleButton Width="70" HorizontalAlignment="Right" Command="{Binding ClearItemCommand}"
+                                                             Height="25" Content="clear"/>
+                                        </dxlc:LayoutGroup>
+
+                                        <dxg:GridControl x:Name="grdDiscountSubGroup" ItemsSource="{Binding DiscountItemSource}" SelectedItem="{Binding SelectDiscountItemSource}">
+                                            <dxg:GridControl.Columns>
+                                                <dxg:GridColumn Header="Name" FieldName="BillableItemName"/>
+                                                <dxg:GridColumn Header="Discount" Width="70" FieldName="Discount"/>
+                                                <dxg:GridColumn Header="%" Width="40" FieldName="IsPercentage"/>
+                                                <dxg:GridColumn Header="AllowDiscount" FieldName="AllowDiscount"/>
+                                                <dxg:GridColumn Header="ActiveFrom" Width="70" FieldName="DateFrom"/>
+                                                <dxg:GridColumn Header="ActiveTo" Width="70" FieldName="DateTo"/>
+                                            </dxg:GridControl.Columns>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView ShowGroupPanel="False"  AllowEditing="False"/>
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </dxlc:LayoutControl>
+                                </dxlc:GroupBox>
+                            </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
+                </dx:DXTabItem>
+            </dx:DXTabControl>
             <dxlc:LayoutGroup>
                 <dx:SimpleButton Width="80" 
                                      HorizontalAlignment="Right"
