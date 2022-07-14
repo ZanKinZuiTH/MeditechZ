@@ -582,6 +582,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                         || p.RequestItemCode.Contains("LAB554")
                         || p.RequestItemCode.Contains("LAB595")
                         || p.RequestItemCode.Contains("LAB596")
+                        || p.RequestItemCode.Contains("LAB582")
                         )
                          .OrderByDescending(p => p.Year);
                     GenerateImmunology(ImmunologyTestSet);
@@ -1387,7 +1388,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
                 page5.cellHbsAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year2)?.ResultValue;
                 page5.cellHbsAg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR35" && p.Year == year3)?.ResultValue;
 
-
+                page5.cellHbcRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255")?.ReferenceRange;
+                page5.cellHbc1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year1)?.ResultValue;
+                page5.cellHbc2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year2)?.ResultValue;
+                page5.cellHbc3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year3)?.ResultValue;
 
                 page5.cellCoiAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34")?.ReferenceRange;
                 page5.cellCoiAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.ResultValue;

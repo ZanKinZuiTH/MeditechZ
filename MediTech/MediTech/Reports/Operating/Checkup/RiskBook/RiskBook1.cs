@@ -474,6 +474,7 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                         .Where(p => p.RequestItemCode.Contains("LAB451")
                         || p.RequestItemCode.Contains("LAB441")
                         || p.RequestItemCode.Contains("LAB452")
+                        || p.RequestItemCode.Contains("LAB582")
                         || p.RequestItemCode.Contains("LAB512") //เชื้อไวรัสตับอักเสบเอ
                         || p.RequestItemCode.Contains("LAB554")) //ถูมิไวรัสตับอักเสบเอ
                         .OrderByDescending(p => p.Year);
@@ -744,6 +745,17 @@ namespace MediTech.Reports.Operating.Checkup.RiskBook
                 page3.HavIgG1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year1)?.ResultValue;
                 page3.HavIgG2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year2)?.ResultValue;
                 page3.HavIgG3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR190" && p.Year == year3)?.ResultValue;
+
+                page3.cellHBCRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255")?.ReferenceRange;
+                page3.cellHBC1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year1)?.ResultValue;
+                page3.cellHBC2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year2)?.ResultValue;
+                page3.cellHBC3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1255" && p.Year == year3)?.ResultValue;
+
+                page3.cellCoiAgRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34")?.ReferenceRange;
+                page3.cellCoiAg1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year1)?.ResultValue;
+                page3.cellCoiAg2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year2)?.ResultValue;
+                page3.cellCoiAg3.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR34" && p.Year == year3)?.ResultValue;
+
 
             }
         }
