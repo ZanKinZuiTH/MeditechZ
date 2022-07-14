@@ -34,6 +34,7 @@
                     <dxg:GridColumn Header="Generic Name" FieldName="GenaricName"/>
                     <dxg:GridColumn Header="Trade Name" FieldName="Name"/>
                     <dxg:GridColumn Header="ประเภท" FieldName="ItemType"/>
+                    <dxg:GridColumn Header="Route" FieldName="Route"/>
                     <dxg:GridColumn Header="ตัด Stock" FieldName="IsStock"/>
                     <dxg:GridColumn Header="หน่วย" FieldName="BaseUnit"/>
                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom"/>

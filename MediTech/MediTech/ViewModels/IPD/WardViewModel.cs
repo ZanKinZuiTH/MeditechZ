@@ -26,10 +26,8 @@ namespace MediTech.ViewModels
                 Set(ref _SelectedWard, value);
                 if (SelectedWard != null)
                 {
-                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID,"IPD");
+                    BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
                     WardName = SelectedWard.Name;
-                    
-
                 }
             }
         }
@@ -209,7 +207,7 @@ namespace MediTech.ViewModels
 
         private void AllBedStatus()
         {
-            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID, "IPD");
+            BedWardView = DataService.PatientIdentity.GetBedWardView(SelectedWard.LocationUID);
             //for (int i = 0; i < length; i++)
             //{
 

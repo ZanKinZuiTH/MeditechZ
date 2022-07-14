@@ -12,7 +12,6 @@ namespace MediTech.ViewModels
     public class AdmissionRequestViewModel : MediTechViewModelBase
     {
         #region Properties
-
         public IPBookingModel iPBooking;
 
         private PatientVisitModel _SelectPatientVisit;
@@ -201,19 +200,26 @@ namespace MediTech.ViewModels
                     }
                 }
 
-                if(SelectRequestedDoctor == null)
+                //if(SelectRequestedDoctor == null)
+                //{
+                //    WarningDialog("กรุณาใส่ Requested Docto");
+                //    return;
+                //}
+
+                //if(SelectedLocationDepartment == null)
+                //{
+                //    WarningDialog("กรุณาใส่ Requested Location");
+                //    return;
+                //}
+
+                var data = DataService.PatientIdentity.GetAdmissionEventByPatientVisitUID(iPBooking.PatientVisitUID ?? 0);
+
+                if (data != null)
                 {
-                    WarningDialog("กรุณาใส่ Requested Docto");
+                    WarningDialog("คนไข้มีรายการ Request Admit แล้ว");
                     return;
                 }
 
-                if(SelectedLocationDepartment == null)
-                {
-                    WarningDialog("กรุณาใส่ Requested Location");
-                    return;
-                }
-
-                //AssingPropertiesToModel();
                 AssingPropertiesToModel();
                 DataService.PatientIdentity.SaveIPBooking(iPBooking, AppUtil.Current.UserID);
                 //SaveSuccessDialog();
@@ -252,12 +258,12 @@ namespace MediTech.ViewModels
             iPBooking.AdmissionDttm = (DateTime)(ExpectedAdmission != null ? ExpectedAdmission : date);
             iPBooking.ExpectedDischargeDttm = (DateTime)(DischargeDate != null ? DischargeDate : date);
             iPBooking.ExpectedLengthofStay = LenghtofDay != null ? Int32.Parse(LenghtofDay) : (int?)null;
-            iPBooking.CareproviderUID = SelectRequestedDoctor.CareproviderUID;
+            iPBooking.CareproviderUID = SelectRequestedDoctor.CareproviderUID != 0 ? SelectRequestedDoctor.CareproviderUID : 0;
             iPBooking.SpecialityUID = SelectSpeciality != null ? SelectSpeciality.SpecialityUID : (int?)null;
             iPBooking.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            iPBooking.LocationUID = SelectedLocationDepartment.LocationUID;
+            iPBooking.LocationUID = SelectedWard != null ? SelectedWard.LocationUID : (int?)null;
             iPBooking.RequestedByUID = AppUtil.Current.UserID;
-            iPBooking.RequestedByLocationUID = AppUtil.Current.OwnerOrganisationUID;
+            iPBooking.RequestedByLocationUID = SelectedLocationDepartment.LocationUID != 0 ? SelectedLocationDepartment.LocationUID : (int?)null;
             iPBooking.BKTYPUID = DataService.Technical.GetReferenceValueByCode("BKTYP", "REQTD").Key ?? 0;
         }
 

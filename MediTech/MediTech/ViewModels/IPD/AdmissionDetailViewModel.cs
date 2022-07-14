@@ -19,59 +19,92 @@ namespace MediTech.ViewModels
     {
         #region property
 
-        private List<LookupReferenceValueModel> _PayorTypes;
+        #region PatientSearch
 
-        public List<LookupReferenceValueModel> PayorTypes
+        private string _SearchPatientCriteria;
+        public string SearchPatientCriteria
         {
-            get { return _PayorTypes; }
+            get { return _SearchPatientCriteria; }
             set
             {
-                Set(ref _PayorTypes, value);
+                Set(ref _SearchPatientCriteria, value);
+                PatientsSearchSource = null;
             }
         }
 
-
-        private LookupReferenceValueModel _SelectedPayorType;
-
-        public LookupReferenceValueModel SelectedPayorType
+        private List<PatientInformationModel> _PatientsSearchSource;
+        public List<PatientInformationModel> PatientsSearchSource
         {
-            get { return _SelectedPayorType; }
-            set
-            {
-                Set(ref _SelectedPayorType, value);
-            }
+            get { return _PatientsSearchSource; }
+            set { Set(ref _PatientsSearchSource, value); }
         }
 
-        private List<InsuranceCompanyModel> _InsuranceCompanys;
-
-        public List<InsuranceCompanyModel> InsuranceCompanys
+        private PatientInformationModel _SelectedPateintSearch;
+        public PatientInformationModel SelectedPateintSearch
         {
-            get { return _InsuranceCompanys; }
-            set { Set(ref _InsuranceCompanys, value); }
-        }
-
-        private InsuranceCompanyModel _SelectInsuranceCompany;
-
-        public InsuranceCompanyModel SelectInsuranceCompany
-        {
-            get { return _SelectInsuranceCompany; }
+            get { return _SelectedPateintSearch; }
             set
             {
-                Set(ref _SelectInsuranceCompany, value);
-                if (_SelectInsuranceCompany != null)
+                _SelectedPateintSearch = value;
+                if (_SelectedPateintSearch != null)
                 {
-                    var insurancePlan = DataService.Billing.GetInsurancePlans(_SelectInsuranceCompany.InsuranceCompanyUID);
+                    PatientVisitModel visitInfoNonClose = DataService.PatientIdentity.GetLatestPatientVisitToConvert(_SelectedPateintSearch.PatientUID);
+
+                    if (IsSearchAll != true)
+                    {
+                        SelectPatientVisit = visitInfoNonClose != null ? visitInfoNonClose : null;
+                        IsLatestVisit = true;
+                    }
+                    else
+                    {
+                        if (visitInfoNonClose != null)
+                        {
+                            SelectPatientVisit = visitInfoNonClose;
+                        }
+                        else
+                        {
+                            PatientVisitModel patientVisit = new PatientVisitModel();
+                            patientVisit.PatientID = SelectedPateintSearch.PatientID;
+                            patientVisit.PatientUID = SelectedPateintSearch.PatientUID;
+
+                            SelectPatientVisit = patientVisit;
+                        }
+                    }
                 }
             }
         }
 
-
-        private List<HealthOrganisationModel> _Organisations;
-
-        public List<HealthOrganisationModel> Organisations
+        private bool _IsSearchAll;
+        public bool IsSearchAll
         {
-            get { return _Organisations; }
-            set { Set(ref _Organisations, value); }
+            get { return _IsSearchAll; }
+            set { _IsSearchAll = value; }
+        }
+
+        private PatientVisitModel _SelectPatientVisit;
+        public PatientVisitModel SelectPatientVisit
+        {
+            get { return _SelectPatientVisit; }
+            set
+            {
+                Set(ref _SelectPatientVisit, value);
+            }
+        }
+
+        #endregion
+        
+        private bool _IsRequestAdmit;
+        public bool IsRequestAdmit
+        {
+            get { return _IsRequestAdmit; }
+            set { Set(ref _IsRequestAdmit, value); }
+        }
+
+        private long _IpBookingUID;
+        public long IpBookingUID
+        {
+            get { return _IpBookingUID; }
+            set { Set(ref _IpBookingUID, value); }
         }
 
         private DateTime? _DischargeDate;
@@ -85,55 +118,33 @@ namespace MediTech.ViewModels
                 {
                    
                 }
-
             }
         }
 
-
-        private DateTime _StartDate;
-
-        public DateTime StartDate
-        {
-            get { return _StartDate; }
-            set { Set(ref _StartDate, value); }
-        }
-
-        private DateTime _StartTime;
-        public DateTime StartTime
-        {
-            get { return _StartTime; }
-            set { Set(ref _StartTime, value); }
-        }
-
-
-        private DateTime? _ExpectedAdmission;
-        public DateTime? ExpectedAdmission
+        private DateTime _ExpectedAdmission;
+        public DateTime ExpectedAdmission
         {
             get { return _ExpectedAdmission; }
             set
             {
                 Set(ref _ExpectedAdmission, value);
 
+                DischargeDate = ExpectedAdmission.AddDays(LenghtofDay);
             }
         }
 
-
-
-        private string _LenghtofDay;
-        public string LenghtofDay
+        private int _LenghtofDay;
+        public int LenghtofDay
         {
             get { return _LenghtofDay; }
             set
             {
                 Set(ref _LenghtofDay, value);
 
-                double OutVal;
-                double.TryParse(LenghtofDay, out OutVal);
-                DischargeDate = ExpectedAdmission?.AddDays(OutVal);
+                DischargeDate = ExpectedAdmission.AddDays(LenghtofDay);
 
             }
         }
-
 
         private List<LocationModel> _ListWard;
         public List<LocationModel> ListWard
@@ -150,39 +161,21 @@ namespace MediTech.ViewModels
         }
 
 
+        //private List<LookupReferenceValueModel> _BillingCatagory;
 
+        //public List<LookupReferenceValueModel> BillingCatagory
+        //{
+        //    get { return _BillingCatagory; }
+        //    set { Set(ref _BillingCatagory, value); }
+        //}
 
-        private RelayCommand _PatientSearchCommand;
+        //private LookupReferenceValueModel _SelectBillCatagory;
 
-        public RelayCommand PatientSearchCommand
-        {
-            get { return _PatientSearchCommand ?? (_PatientSearchCommand = new RelayCommand(PatientSearch)); }
-        }
-
-
-        private PatientVisitModel _PatientMed;
-        public PatientVisitModel PatientMed
-        {
-            get { return _PatientMed; }
-            set { Set(ref _PatientMed, value); }
-        }
-
-
-        private List<LookupReferenceValueModel> _BillingCatagory;
-
-        public List<LookupReferenceValueModel> BillingCatagory
-        {
-            get { return _BillingCatagory; }
-            set { Set(ref _BillingCatagory, value); }
-        }
-
-        private LookupReferenceValueModel _SelectBillCatagory;
-
-        public LookupReferenceValueModel SelectBillCatagory
-        {
-            get { return _SelectBillCatagory; }
-            set { Set(ref _SelectBillCatagory, value); }
-        }
+        //public LookupReferenceValueModel SelectBillCatagory
+        //{
+        //    get { return _SelectBillCatagory; }
+        //    set { Set(ref _SelectBillCatagory, value); }
+        //}
 
 
         private List<LookupReferenceValueModel> _BedCatagory;
@@ -202,81 +195,18 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectBedCatagory, value); }
         }
 
-
-
-
-
-        #region PatientSearch
-
-        private string _SearchPatientCriteria;
-
-        public string SearchPatientCriteria
+        private bool _IsLatestVisit;
+        public bool IsLatestVisit
         {
-            get { return _SearchPatientCriteria; }
-            set
-            {
-                Set(ref _SearchPatientCriteria, value);
-                PatientsSearchSource = null;
-            }
+            get { return _IsLatestVisit; }
+            set { _IsLatestVisit = value; }
         }
 
-
-        private List<PatientInformationModel> _PatientsSearchSource;
-
-        public List<PatientInformationModel> PatientsSearchSource
+        private bool _IsReAdmission;
+        public bool IsReAdmission
         {
-            get { return _PatientsSearchSource; }
-            set { Set(ref _PatientsSearchSource, value); }
-        }
-
-        private PatientInformationModel _SelectedPateintSearch;
-
-        public PatientInformationModel SelectedPateintSearch
-        {
-            get { return _SelectedPateintSearch; }
-            set
-            {
-                _SelectedPateintSearch = value;
-                if (_SelectedPateintSearch != null)
-                {
-                    if (PatientVisit != null)
-                    {
-                        SearchPatientVisit();
-                    }
-                    
-                }
-            }
-        }
-
-        private List<CheckupJobContactModel> _CheckupJobSource;
-
-        public List<CheckupJobContactModel> CheckupJobSource
-        {
-            get { return _CheckupJobSource; }
-            set { Set(ref _CheckupJobSource, value); }
-        }
-
-        private List<PayorAgreementModel> _PayorAgreementSource;
-
-        public List<PayorAgreementModel> PayorAgreementSource
-        {
-            get { return _PayorAgreementSource; }
-            set { Set(ref _PayorAgreementSource, value); }
-        }
-
-
-
-
-
-        public List<LocationModel> Bed { get; set; }
-
-
-        private LocationModel _SelectBed;
-
-        public LocationModel SelectBed
-        {
-            get { return _SelectBed; }
-            set { _SelectBed = value; }
+            get { return _IsReAdmission; }
+            set { _IsReAdmission = value; }
         }
 
 
@@ -284,13 +214,10 @@ namespace MediTech.ViewModels
         public List<LocationModel> Ward
         {
             get { return _ward; }
-            set { _ward = value; }
+            set { Set(ref _ward, value); }
         }
 
-
-
         private LocationModel _SelectWard;
-
         public LocationModel SelectWard
         {
             get { return _SelectWard; }
@@ -304,236 +231,279 @@ namespace MediTech.ViewModels
             }
         }
 
-
-
-
-
-
         public List<LocationModel> Location { get; set; }
 
 
         private LocationModel _SelectLocation;
-
         public LocationModel SelectLocation
         {
             get { return _SelectLocation; }
-            set { _SelectLocation = value; }
+            set { Set(ref _SelectLocation, value); }
         }
 
-
-
-
-
-        public List<CareproviderModel> Doctors { get; set; }
-
+        private List<CareproviderModel> _Doctors;
+        public List<CareproviderModel> Doctors
+        {
+            get { return _Doctors; }
+            set { Set(ref _Doctors, value); }
+        }
 
         private CareproviderModel _SelectDoctor;
-
         public CareproviderModel SelectDoctor
         {
             get { return _SelectDoctor; }
-            set { _SelectDoctor = value; }
+            set { Set(ref _SelectDoctor, value); }
+        }
+
+        private List<CareproviderModel> _SecondDoctors;
+        public List<CareproviderModel> SecondDoctors
+        {
+            get { return _SecondDoctors; }
+            set { Set(ref _SecondDoctors, value); }
+        }
+
+        private CareproviderModel _SelectSecondDoctors;
+        public CareproviderModel SelectSecondDoctors
+        {
+            get { return _SelectSecondDoctors; }
+            set { Set(ref _SelectSecondDoctors, value); }
+        }
+
+        private ObservableCollection<CareproviderModel> _SecondDoctorsSource;
+        public ObservableCollection<CareproviderModel> SecondDoctorsSource
+        {
+            get { return _SecondDoctorsSource ?? (_SecondDoctorsSource = new ObservableCollection<CareproviderModel>()); }
+           
+            set { Set(ref _SecondDoctorsSource, value); }
         }
 
 
-
-        private PayorAgreementModel _SelectedPayorAgreement;
-
-        public PayorAgreementModel SelectedPayorAgreement
+        private List<ProblemModel> _ProblemSearchSource;
+        public List<ProblemModel> ProblemSearchSource
         {
-            get { return _SelectedPayorAgreement; }
-            set { Set(ref _SelectedPayorAgreement, value); }
+            get { return _ProblemSearchSource; }
+            set { Set(ref _ProblemSearchSource, value); }
         }
 
-        private CheckupJobContactModel _SelectedCheckupJob;
-
-        public CheckupJobContactModel SelectedCheckupJob
+        private ProblemModel _SelectedProblemSearch;
+        public ProblemModel SelectedProblemSearch
         {
-            get { return _SelectedCheckupJob; }
-            set { Set(ref _SelectedCheckupJob, value); }
-        }
-        public List<PayorDetailModel> PayorDetailSource { get; set; }
-        private PayorDetailModel _SelectedPayorDetail;
-
-        public PayorDetailModel SelectedPayorDetail
-        {
-            get { return _SelectedPayorDetail; }
+            get { return _SelectedProblemSearch; }
             set
             {
-                Set(ref _SelectedPayorDetail, value);
-                if (_SelectedPayorDetail != null)
+                Set(ref _SelectedProblemSearch, value);
+                if (_SelectedProblemSearch != null)
                 {
-                    
-                    CheckupJobSource = DataService.Checkup.GetCheckupJobContactByPayorDetailUID(_SelectedPayorDetail.PayorDetailUID);
-                    if (PayorAgreementSource != null)
-                    {
-                        SelectedPayorAgreement = PayorAgreementSource.FirstOrDefault();
-                    }
-                    if (CheckupJobSource != null)
-                    {
-                        SelectedCheckupJob = CheckupJobSource.OrderByDescending(p => p.StartDttm).FirstOrDefault();
-                    }
                 }
             }
         }
 
-
-        private PatientVisitModel _PatientVisit;
-
-        public PatientVisitModel PatientVisit
+        private string _SearchProblemCriteria;
+        public string SearchProblemCriteria
         {
-            get { return _PatientVisit; }
-            set { Set(ref _PatientVisit, value); }
+            get { return _SearchProblemCriteria; }
+            set
+            {
+                Set(ref _SearchProblemCriteria, value);
+                ProblemSearchSource = null;
+            }
         }
 
-        #endregion
+        private List<SpecialityModel> _SpecialitySource;
+        public List<SpecialityModel> SpecialitySource
+        {
+            get { return _SpecialitySource; }
+            set { Set(ref _SpecialitySource, value); }
+        }
 
+        private SpecialityModel _SelectSpeciality;
+        public SpecialityModel SelectSpeciality
+        {
+            get { return _SelectSpeciality; }
+            set
+            {
+                Set(ref _SelectSpeciality, value);
+            }
+        }
+
+        private List<BillPackageModel> _ChargablePackage;
+        public List<BillPackageModel> ChargablePackage
+        {
+            get { return _ChargablePackage; }
+            set { Set(ref _ChargablePackage, value); }
+        }
+
+        private BillPackageModel _SelectChargablePackage;
+        public BillPackageModel SelectChargablePackage
+        {
+            get { return _SelectChargablePackage; }
+            set
+            {
+                Set(ref _SelectChargablePackage, value);
+            }
+        }
+
+        //private PatientVisitModel _PatientVisit;
+        //public PatientVisitModel PatientVisit
+        //{
+        //    get { return _PatientVisit; }
+        //    set { Set(ref _PatientVisit, value); }
+        //}
 
         #endregion
 
         #region command
 
-        private RelayCommand _SaveAdmitCommand;
+        private RelayCommand _PatientSearchCommand;
+        public RelayCommand PatientSearchCommand
+        {
+            get { return _PatientSearchCommand ?? (_PatientSearchCommand = new RelayCommand(PatientSearch)); }
+        }
 
+        private RelayCommand _ModifyPayorCommand;
+        public RelayCommand ModifyPayorCommand
+        {
+            get { return _ModifyPayorCommand ?? (_ModifyPayorCommand = new RelayCommand(ModifyPayorDetail)); }
+        }
+
+        private RelayCommand _AddSecondDoctorCommand;
+        public RelayCommand AddSecondDoctorCommand
+        {
+            get { return _AddSecondDoctorCommand ?? (_AddSecondDoctorCommand = new RelayCommand(AddSecondDoctor)); }
+        }
+
+        private RelayCommand _DeleteSecondDoctorCommand;
+        public RelayCommand DeleteSecondDoctorCommand
+        {
+            get { return _DeleteSecondDoctorCommand ?? (_DeleteSecondDoctorCommand = new RelayCommand(DeleteSecondDoctor)); }
+        }
+
+        private RelayCommand _SaveAdmitCommand;
         public RelayCommand SaveAdmitCommand
         {
             get { return _SaveAdmitCommand ?? (_SaveAdmitCommand = new RelayCommand(SaveAdmit)); }
         }
 
+        private RelayCommand _PatientSearchProblemCommand;
+        public RelayCommand PatientSearchProblemCommand
+        {
+            get { return _PatientSearchProblemCommand ?? (_PatientSearchProblemCommand = new RelayCommand(ProblemSearch)); }
+        }
+
+        private RelayCommand _CloseCommand;
+        public RelayCommand CloseCommand
+        {
+            get { return _CloseCommand ?? (_CloseCommand = new RelayCommand(Close)); }
+        }
+
         #endregion
 
         #region method
-
-    
-
+        PatientVisitModel visitModel;
+        List<CareproviderModel> secondDoctor = new List<CareproviderModel>();
         public AdmissionDetailViewModel()
         {
             DateTime now = DateTime.Now;
+            ExpectedAdmission = now;
+            LenghtofDay = 1;
+
             var locationAll = DataService.IPDService.GetBedALL();
-            BillingCatagory = DataService.Technical.GetReferenceValueMany("TARIFF");
+            //BillingCatagory = DataService.Technical.GetReferenceValueMany("TARIFF");
             BedCatagory = DataService.Technical.GetReferenceValueMany("BEDCAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
+            SecondDoctors = DataService.UserManage.GetCareproviderDoctor();
             var test = DataService.MasterData.GetHealthOrganisation();
             Location = locationAll;
             Ward = locationAll.Where(w=>w.LOTYPUID == 3152).ToList();
-          
-            StartDate = now.Date;
-            StartTime = now;
+            SpecialitySource = DataService.MasterData.GetSpecialityAll();
+            var roomcharge = DataService.MasterData.GetOrderCategory().Where(p => p.Name == "ค่าห้อง").FirstOrDefault();
+            var Subroomcharge = DataService.MasterData.GetOrderSubCategoryByUID(roomcharge.OrderCategoryUID).FirstOrDefault();
+            ChargablePackage = DataService.Billing.SearchBillPackage("", "", roomcharge.OrderCategoryUID, Subroomcharge.OrderSubCategoryUID);
         }
 
-        private void SearchPatientVisit()
+        public void ProblemSearch()
         {
-            long UIDPatient;
-            if (SearchPatientCriteria != "" && SelectedPateintSearch != null)
+            if (SearchProblemCriteria.Length >= 3)
             {
-                UIDPatient = SelectedPateintSearch.PatientUID;
-                var patientInfo = DataService.PatientIdentity.GetPatientByUID(UIDPatient);
-                (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID,0);
+                List<ProblemModel> searchProblem = DataService.PatientDiagnosis.SearchProblem(SearchProblemCriteria);
+                ProblemSearchSource = searchProblem;
             }
-
-
+            else
+            {
+                ProblemSearchSource = null;
+            }
         }
 
 
-        private void ByPatientVisit(long UIDPatient)
+        private void ModifyPayorDetail()
         {
-            //if (UIDPatient != null)
-            //{
-            //    var patientInfo = DataService.PatientIdentity.GetPatientByUID(UIDPatient);
-            //    (this.View as AdmissionDetail).patientBanner.SetPatientBanner(patientInfo.PatientUID, 0);
-            //}
-
-
+            if (SelectPatientVisit != null && SelectPatientVisit.PatientVisitUID != 0)
+            {
+                ModifyVisitPayor pageview = new ModifyVisitPayor();
+                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+                }
+            }
         }
 
-
-
-        void Close()
+        private void AddSecondDoctor()
         {
-            try
+            if(SelectSecondDoctors != null)
             {
-                this.CloseViewDialog(ActionDialog.Cancel);
-            }
-            catch (Exception ex)
-            {
+                if(SelectDoctor != null)
+                {
+                    if (SelectSecondDoctors.CareproviderUID == SelectDoctor.CareproviderUID)
+                    {
+                        WarningDialog("มีรายการแพทย์หลักแล้ว กรุณาเลือกแพทย์ท่านอื่น");
+                        return;
+                    }
+                }
 
-                ErrorDialog(ex.Message);
-            }
+                var data = SecondDoctorsSource.FirstOrDefault(p => p.CareproviderUID == SelectSecondDoctors.CareproviderUID);
+                if (data != null)
+                {
+                    WarningDialog("มีรายการแพทย์ท่านนี้แล้ว กรุณาเลือกแพทย์ท่านอื่น");
+                    return;
+                }
+                SelectSecondDoctors.VISTYUID = DataService.Technical.GetReferenceValueByCode("CONTYP", "SCNDCONS").Key ?? 0;
+                secondDoctor.Add(SelectSecondDoctors);
+                SecondDoctorsSource = new ObservableCollection<CareproviderModel>(secondDoctor);
 
+                SelectSecondDoctors = null;
+            }
         }
 
-
-
-
-
-        void SavePatientVisit()
+        private void DeleteSecondDoctor()
         {
-           
-            PatientVisitModel visitInfo = new PatientVisitModel();
-            visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-            visitInfo.PatientUID = SelectedPateintSearch.PatientUID;
-            visitInfo.VISTYUID = 430;
-            visitInfo.VISTSUID = 417;
-            //visitInfo.BookingUID = Booking.BookingUID; //Appointment
-            //visitInfo.PRITYUID = SelectedPriority.Key;
-            visitInfo.PRITYUID = 144;
-            visitInfo.Comments = "test";
-            visitInfo.OwnerOrganisationUID = 17;
-            visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
-            if (SelectDoctor!= null)
-                visitInfo.CareProviderUID = SelectDoctor.CareproviderUID;
-            visitInfo.PatientVisitPayors = null;
-            PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
-            if (string.IsNullOrEmpty(returnData.VisitID))
+            if (SelectSecondDoctors != null)
             {
-                ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
-                return;
-            }
-            //else
-            //{
-            //    DataService.PatientIdentity.ManagePatientInsuranceDetail(PatientVisitPayorList.ToList());
-            //    if (Booking != null)
-            //    {
-            //        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
-            //    }
-            //}
-
-            var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
-            if (parent != null && parent is System.Windows.Window)
-            {
-                CloseViewDialog(ActionDialog.Save);
+                SecondDoctorsSource.Remove(SelectSecondDoctors);
             }
         }
 
-
-        //void SaveAdmit()
-        //{
-        //    try
-        //    {
-
-        //        //SavePatientVisit();
-        //       // DataService.PatientIdentity.SavePatientVisit(, AppUtil.Current.UserID);
-        //        CloseViewDialog(ActionDialog.Save);
-        //        WardView pageview = new WardView();
-        //        (pageview.DataContext as WardViewModel).Eventlog();
-        //        WardViewModel result = (WardViewModel)LaunchViewDialogNonPermiss(pageview, false);
-
-
-        //    }
-        //    catch (Exception ex)
-        //    {
-
-        //        ErrorDialog(ex.Message);
-        //    }
-
-        //}
+        private void Close()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
+        }
 
         public void SaveAdmit()
         {
-
             try
             {
+                if (SelectPatientVisit == null)
+                {
+                    WarningDialog("กรุณาเลือกคนไข้");
+                    return;
+                }
 
+                //if (SelectBillCatagory == null)
+                //{
+                //    WarningDialog("กรุณาใส่ Billing Catagory");
+                //    return;
+                //}
 
                 if (SelectWard == null)
                 {
@@ -548,34 +518,47 @@ namespace MediTech.ViewModels
                 }
                 if (SelectDoctor == null )
                 {
-                    WarningDialog("กรุณา เลือกแพทย์");
+                    WarningDialog("กรุณา เลือกแพทย์หลัก");
                     return;
                 }
 
-                PatientVisitModel visitInfo = new PatientVisitModel();
-                visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-                visitInfo.PatientUID = SelectedPateintSearch.PatientUID;
-                visitInfo.VISTYUID = DataService.Technical.GetReferenceValueByCode("VISTY", "IPD").Key; ; //visit type IPD
-                visitInfo.VISTSUID = 417; //Registered
-                //visitInfo.BookingUID = Booking.BookingUID; //Appointment
-                //visitInfo.PRITYUID = SelectedPriority.Key;
-                visitInfo.PRITYUID = 1122; // เลขอาไรหว่า ใส่ 1122 ไปก่อน
-                visitInfo.Comments = "test iPD insert";
-                visitInfo.OwnerOrganisationUID = 17; //รอเปลี่ยนใช้ของคลินิกไปก่อน
-                visitInfo.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "INPAT").Key;
-                visitInfo.LocationUID = SelectWard.LocationUID;
-                visitInfo.BedUID = SelectedListBed.LocationUID;
-                PatientAEAdmissionModel aeAdmission = AssingVisitIPDToModel();
-                visitInfo.AEAdmission = aeAdmission;
-                visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
-                if (SelectDoctor != null)
-                    visitInfo.CareProviderUID = SelectDoctor.CareproviderUID;
-                visitInfo.PatientVisitPayors = null;
-                PatientVisitModel returnData = DataService.PatientIdentity.SaveIPDPatientVisit(visitInfo, AppUtil.Current.UserID);
+                AssignPropertieToModel();
 
-                SaveSuccessDialog("BN : " + returnData.VisitID);
+                if (visitModel.PatientVisitUID != 0)
+                {
+                    SaveSuccessDialog("Patient OP visit will be converted to IP visit");
+                }
 
-                if (SelectWard != null)
+                PatientVisitModel returnData = DataService.PatientIdentity.SaveIPDPatientVisit(visitModel, AppUtil.Current.UserID);
+
+                if(IsRequestAdmit == true)
+                {
+                    int status = DataService.Technical.GetReferenceValueByCode("BKTYP", "ADMIT").Key ?? 0;
+                    DataService.PatientIdentity.ChangeStatusIPBooking(IpBookingUID, status, AppUtil.Current.UserID);
+                }
+
+                SaveSuccessDialog("HN : " + returnData.PatientID + " Admitted Sucessfully");
+
+                var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(returnData.PatientVisitUID);
+                if (patientVisitPayors == null)
+                {
+                    MessageBoxResult resultDiaglog = QuestionDialog("ยังไม่มี Payor Visit ต้องการ Modify Payor Visit หรือไม่");
+
+                    if (resultDiaglog == MessageBoxResult.Yes)
+                    {
+                        SelectPatientVisit.PatientVisitUID = returnData.PatientVisitUID;
+                        ModifyVisitPayor pageview = new ModifyVisitPayor();
+                        (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                        ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
+                        if (result != null && result.ResultDialog == ActionDialog.Save)
+                        {
+                            SaveSuccessDialog();
+                        }
+                        //continue;
+                    }
+                }
+                
+                if (IsRequestAdmit != true)
                 {
                     WardView pageto = new WardView();
                     ChangeViewPermission(pageto);
@@ -583,8 +566,7 @@ namespace MediTech.ViewModels
                 }
                 else
                 {
-                    WardView pageto = new WardView();
-                    ChangeViewPermission(pageto);
+                    CloseViewDialog(ActionDialog.Save);
                 }
             }
             catch (Exception er)
@@ -593,68 +575,67 @@ namespace MediTech.ViewModels
             }
         }
 
-
-
-
-
-        public PatientAEAdmissionModel AssingVisitIPDToModel()
+        public void AssignPropertieToModel()
         {
-            PatientAEAdmissionModel visitErModel = new PatientAEAdmissionModel();
+            if(visitModel == null)
+                visitModel = new PatientVisitModel();
 
-            visitErModel.LocationUid = SelectWard.LocationUID;
-            visitErModel.CareproviderUID = SelectDoctor.CareproviderUID;
+            visitModel.PatientUID = SelectPatientVisit.PatientUID != 0 ? SelectPatientVisit.PatientUID : SelectedPateintSearch.PatientUID;
+            visitModel.PatientVisitUID = SelectPatientVisit.PatientVisitUID != 0 ? SelectPatientVisit.PatientVisitUID : 0;
+            visitModel.VISTSUID = 417;
+            //visitModel.PRITYUID = SelectBillCatagory.Key;
+            visitModel.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            visitModel.ENTYPUID = DataService.Technical.GetReferenceValueByCode("ENTYP", "INPAT").Key;
+            visitModel.LocationUID = SelectWard.LocationUID;
+            visitModel.BedUID = SelectedListBed.LocationUID;
+            visitModel.IsReAdmisstion = IsReAdmission == true ? "Y" : null;
+            visitModel.SpecialityUID = SelectSpeciality != null ? SelectSpeciality.SpecialityUID : (int?)null;
+            visitModel.CareProviderUID =  SelectDoctor.CareproviderUID;
+            visitModel.ENSTAUID = DataService.Technical.GetReferenceValueByCode("ENSTA", "PEADMT").Key;
 
-          //  visitErModel.InjuryReason = ReasonDetail;
-          //  visitErModel.EmergencyExamDetail = EmergencyExamDetail;
-           // visitErModel.VehicleNumber = VehicleNumber;
-            visitErModel.EventOccuredDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
-           // visitErModel.PhoneNumber = SeconePhone;
-           // visitErModel.MobileNumber = MobilePhone;
-            //if (SelectedProvince != null)
-            //    visitErModel.ProvinceUID = SelectedProvince.Key;
+            if (SecondDoctorsSource.Count != 0)
+            {
+                List<CareproviderModel> secondDoctor = new List<CareproviderModel>(SecondDoctorsSource);
+                visitModel.SecondCareprovider = secondDoctor;
+            }
 
-            return visitErModel;
-        }
-
-
-        public void TestC()
-        {
-
-
+            visitModel.AdmissionEvent = new AdmissionEventModel();
+            visitModel.AdmissionEvent.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            visitModel.AdmissionEvent.CarepoviderUID =  SelectDoctor.CareproviderUID;
+            visitModel.AdmissionEvent.ExpectedLengthOfStay = LenghtofDay;
+            visitModel.AdmissionEvent.AdmissionDttm = ExpectedAdmission;
+            visitModel.AdmissionEvent.ExpectedDischargeDttm = DischargeDate;
         }
 
         public void ConfirmFromRequestAdmission(IPBookingModel datarequest)
         {
-           
+            IsRequestAdmit = true;
+            IpBookingUID = datarequest.IPBookingUID;
             if (datarequest.LocationUID != null)
             {
-                if (datarequest.BedUID != null)
-                {
-
-                }
-                Ward = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.LocationUID).ToList();
-                ListWard = DataService.Technical.GetLocation().Where(p => p.LocationUID == datarequest.BedUID).ToList();
-                SelectWard = ListWard.FirstOrDefault(p=> p.LocationUID == datarequest.LocationUID);
-                //EncounterType = DataService.Technical.GetReferenceValueMany("ENTYP");
-                //SelectEncounterType = EncounterType.FirstOrDefault(p => p.ValueCode == "INPAT");
-
+                SelectPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(datarequest.PatientVisitUID ?? 0);
+                visitModel = SelectPatientVisit;
+                AssignModelToProperties(datarequest);
             }
-            var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datarequest.PatientVisitUID ?? 0);
-            SelectedPateintSearch = DataService.PatientIdentity.GetPatientByUID(datarequest.PatientUID);
-            PatientVisit = visitInfo;
-      
-        
         }
 
-
-        public void sendVisit(PatientVisitModel datavisit)
+        public void AssignModelToProperties(IPBookingModel iPBooking)
         {
-
-           // ListWard = DataService.PatientIdentity.GetBedLocation((inforequest.BedUID ?? 0), null).Where(p => p.BedIsUse == "N").ToList();
-            var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datavisit.PatientVisitUID);
-            PatientVisit = visitInfo;
-
+            SelectWard = iPBooking.LocationUID != null ? Ward.FirstOrDefault(p => p.LocationUID == iPBooking.LocationUID) : null;
+            LenghtofDay = iPBooking.ExpectedLengthofStay ?? 1;
+            ExpectedAdmission = iPBooking.AdmissionDttm;
+            DischargeDate = iPBooking.ExpectedDischargeDttm;
+            SelectDoctor =  Doctors.FirstOrDefault(p => p.CareproviderUID == iPBooking.CareproviderUID);
+            SelectSpeciality = iPBooking.SpecialityUID != null ? SpecialitySource.FirstOrDefault(p => p.SpecialityUID == iPBooking.SpecialityUID) : null;
+            SelectedListBed = iPBooking.BedUID != null ? ListWard.FirstOrDefault(p => p.LocationUID == iPBooking.BedUID) : null;
         }
+
+        //public void sendVisit(PatientVisitModel datavisit)
+        //{
+        //   // ListWard = DataService.PatientIdentity.GetBedLocation((inforequest.BedUID ?? 0), null).Where(p => p.BedIsUse == "N").ToList();
+        //    var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datavisit.PatientVisitUID);
+        //    PatientVisit = visitInfo;
+        //}
 
         public void SendbedWard(BedStatusModel resivebed)
         {
@@ -665,7 +646,6 @@ namespace MediTech.ViewModels
             ListWard = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).ToList();
             SelectedListBed = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).FirstOrDefault();
             //SelectWard = resivebed;
-
         }
 
 
@@ -708,16 +688,12 @@ namespace MediTech.ViewModels
             }
             else
             {
-
                 PatientsSearchSource = null;
-
             }
 
         }
 
         #endregion
 
-
     }
-
 }

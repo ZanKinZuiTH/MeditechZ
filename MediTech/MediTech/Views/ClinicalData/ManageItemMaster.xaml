@@ -207,6 +207,15 @@
                                           ImmediatePopup="True"
                                           SelectedItem="{Binding SelectDrugFrom}"/>
                                 </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="Route">
+                                    <dxe:ComboBoxEdit ItemsSource="{Binding Route}"
+                                          AllowNullInput="True"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"
+                                          AutoComplete="True" 
+                                          ImmediatePopup="True"
+                                          SelectedItem="{Binding SelectRoute}"/>
+                                </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="วิธีใช้ยา">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding DrugInstructions}"
                                          AutoComplete="True"                                    

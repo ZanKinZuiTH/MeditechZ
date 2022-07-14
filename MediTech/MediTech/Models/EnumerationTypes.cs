@@ -36,6 +36,7 @@ namespace MediTech
     {
         Arrive,
         SendToDoctor,
-        MedicalDischarge
+        MedicalDischarge,
+        WordArrived
     }
 }

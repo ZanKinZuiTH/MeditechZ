@@ -370,6 +370,14 @@ namespace MediTech.DataService
             return data;
         }
 
+        public PatientVisitModel GetLatestPatientVisitToConvert(long patientUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetLatestPatientVisitToConvert?patientUID={0}", patientUID);
+            PatientVisitModel data = MeditechApiHelper.Get<PatientVisitModel>(requestApi);
+
+            return data;
+        }
+
         public bool ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID)
         {
             bool flag = false;
@@ -409,21 +417,12 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<LocationModel> GetBedWardView(int parentLocationUID)
+        public List<BedStatusModel> GetBedWardView(int parentLocationUID)
         {
             string requestApi = string.Format("Api/PatientIdentity/GetBedWardView?parentLocationUID={0}", parentLocationUID);
-            List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
-            return data;
-        }
-
-        public List<BedStatusModel> GetBedWardView(int parentLocationUID,string IPD)
-        {
-            string requestApi = string.Format("Api/PatientIdentity/GetBedWardView?parentLocationUID={0}&IPD={1}", parentLocationUID,IPD);
             List<BedStatusModel> data = MeditechApiHelper.Get<List<BedStatusModel>>(requestApi);
             return data;
         }
-
-
 
         public List<LocationModel> GetBedLocation(int parentLocationUID, int? entypUID)
         {
@@ -431,8 +430,6 @@ namespace MediTech.DataService
             List<LocationModel> data = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
             return data;
         }
-
-
 
         #endregion
 
@@ -712,6 +709,21 @@ namespace MediTech.DataService
             return data;
         }
 
+        public void ChangeStatusIPBooking(long ipBookingUID, int statusUID, int userID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ChangeStatusIPBooking?ipBookingUID={0}&statusUID={1}&userID={2}", ipBookingUID, statusUID, userID);
+                MeditechApiHelper.Put(requestApi);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
+        #endregion
+
         public void DropIPBooking(long ipBookingUID, int userUID)
         {
             try
@@ -724,6 +736,13 @@ namespace MediTech.DataService
             {
                 throw;
             }
+        }
+
+        public AdmissionEventModel GetAdmissionEventByPatientVisitUID(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetAdmissionEventByPatientVisitUID?patientVisitUID={0}", patientVisitUID);
+            AdmissionEventModel data = MeditechApiHelper.Get<AdmissionEventModel>(requestApi);
+            return data;
         }
 
         public AdmissionEventModel ManageAdmissionEvent(AdmissionEventModel model, int userUID)
@@ -741,7 +760,7 @@ namespace MediTech.DataService
             return returnData;
         }
 
-        #endregion
+       
 
         #region Patient DemographicLog
         public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(long patientUID)
@@ -836,8 +855,8 @@ namespace MediTech.DataService
             {
                 throw;
             }
-
-            #endregion
         }
+        #endregion
+        
     }
 }

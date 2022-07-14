@@ -140,7 +140,7 @@ namespace MediTech.Views
                 {
                     CareProviderUID = model.CareProviderUID;
                 }
-                else if(type == PatientStatusType.Arrive)
+                else if (type == PatientStatusType.Arrive)
                 {
                     CareProviderUID = model.CareProviderUID;
 
@@ -151,9 +151,13 @@ namespace MediTech.Views
                             (new MediTechViewModelBase()).WarningDialog("กรุณาเลือกแพทย์");
                             return;
                         }
-                        
+
                         CareProviderUID = (int)cmbDoctor.EditValue;
                     }
+                }
+                else if (type == PatientStatusType.Arrive)
+                { 
+
                 }
 
 

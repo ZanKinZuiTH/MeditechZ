@@ -87,12 +87,12 @@ namespace MediTech.ViewModels
         #region Method
         public ListPackageViewModel()
         {
-            BillPackage = DataService.Billing.SearchBillPackage(PackageCode,PackageName);
+            BillPackage = DataService.Billing.SearchBillPackage(PackageCode,PackageName,null,null);
         }
 
         private void Search()
         {
-            BillPackage = DataService.Billing.SearchBillPackage(PackageCode, PackageName);
+            BillPackage = DataService.Billing.SearchBillPackage(PackageCode, PackageName, null, null);
         }
 
         private void Add()

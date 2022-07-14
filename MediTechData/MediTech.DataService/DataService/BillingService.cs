@@ -216,9 +216,9 @@ namespace MediTech.DataService
         #endregion
 
         #region BillPackage
-        public List<BillPackageModel> SearchBillPackage(string code, string name)
+        public List<BillPackageModel> SearchBillPackage(string code, string name, int? orderCategoryUID, int? orderSubCategoryUID)
         {
-            string requestApi = string.Format("Api/Billing/SearchBillPackage?code={0}&name={1}", code, name);
+            string requestApi = string.Format("Api/Billing/SearchBillPackage?code={0}&name={1}&orderCategoryUID={2}&orderSubCategoryUID={3}", code, name, orderCategoryUID, orderSubCategoryUID);
             List<BillPackageModel> data = MeditechApiHelper.Get<List<BillPackageModel>>(requestApi);
             return data;
         }

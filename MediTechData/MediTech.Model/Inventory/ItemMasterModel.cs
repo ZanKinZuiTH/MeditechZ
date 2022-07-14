@@ -26,8 +26,10 @@ namespace MediTech.Model
         public Nullable<int> BaseUOM { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
         public Nullable<int> FORMMUID { get; set; }
+        public Nullable<int> ROUTEUID { get; set; }
+        public string Route { get; set; }
         public string BaseUnit { get; set; }
-        public Nullable<int> SalesUOM { get; set; }
+        public Nullable<int> SalesUOM { get; set; } 
         public string SalesUnit { get; set; }
         public Nullable<int> PrescriptionUOM { get; set; }
         public string PrescriptionUnit { get; set; }

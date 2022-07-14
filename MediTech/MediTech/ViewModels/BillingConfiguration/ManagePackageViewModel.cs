@@ -41,6 +41,36 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _RoomCharge;
+        public List<LookupReferenceValueModel> RoomCharge
+        {
+            get { return _RoomCharge; }
+            set { Set(ref _RoomCharge, value); }
+        }
+
+        private LookupReferenceValueModel _SelectRoomCharge;
+        public LookupReferenceValueModel SelectRoomCharge
+        {
+            get { return _SelectRoomCharge; }
+            set
+            {
+                Set(ref _SelectRoomCharge, value);
+                if (_SelectRoomCharge != null)
+                {
+                    if(SelectRoomCharge.Key == 1)
+                    {
+                        SelectCatagory = Catagory.FirstOrDefault(p => p.Description == "ค่าห้อง");
+                        SelectOrderSubCatagory = OrderSubCatagory.FirstOrDefault(p => p.Description == "ค่าห้อง");
+                    }
+                    else
+                    {
+                        SelectCatagory = null;
+                        SelectOrderSubCatagory = null;
+                    }
+                }
+            }
+        }
+
         private List<OrderSubCategoryModel> _OrderSubCatagory;
         public List<OrderSubCategoryModel> OrderSubCatagory
         {
@@ -257,7 +287,13 @@ namespace MediTech.ViewModels
             ActiveFrom = DateTime.Now.Date;
             ItemActiveFrom = DateTime.Now.Date;
             Catagory = DataService.MasterData.GetOrderCategory();
-            
+            RoomCharge = new List<LookupReferenceValueModel>
+            {
+                new LookupReferenceValueModel{Key = 1 , Display = "Yes"},
+                new LookupReferenceValueModel{Key = 2 , Display = "No"}
+            };
+
+            SelectRoomCharge = RoomCharge.FirstOrDefault(p => p.Display == "No");
         }
 
         void ApplyOrderItem(SearchOrderItem orderItem)
@@ -476,6 +512,10 @@ namespace MediTech.ViewModels
                 }
                 //CalculateNetAmount();
             }
+
+            int roomUID = Catagory.FirstOrDefault(p => p.Description == "ค่าห้อง").OrderCategoryUID;
+            int roomUID2 = OrderSubCatagory.FirstOrDefault(p => p.Description == "ค่าห้อง").OrderSubCategoryUID;
+            SelectRoomCharge = (model.OrderCategoryUID == roomUID && model.OrderSubCategoryUID == roomUID2) ? RoomCharge.FirstOrDefault(p => p.Key == 1) : RoomCharge.FirstOrDefault(p => p.Key == 2);
         }
 
         public void AssingPropertiesToModel()

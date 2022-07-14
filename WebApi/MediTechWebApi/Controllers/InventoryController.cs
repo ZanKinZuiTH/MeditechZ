@@ -76,6 +76,8 @@ namespace MediTechWebApi.Controllers
                                               DoseQuantity = p.DoseQuantity,
                                               ActiveFrom = p.ActiveFrom,
                                               ActiveTo = p.ActiveTo,
+                                              ROUTEUID = p.ROUTEUID,
+                                              Route = SqlFunction.fGetRfValDescription(p.ROUTEUID ?? 0),
                                               CUser = p.CUser,
                                               CWhen = p.CWhen,
                                               MUser = p.MUser,
@@ -128,6 +130,7 @@ namespace MediTechWebApi.Controllers
                 NarcoticType = SqlFunction.fGetRfValDescription(p.NRCTPUID ?? 0),
                 ActiveFrom = p.ActiveFrom,
                 ActiveTo = p.ActiveTo,
+                ROUTEUID = p.ROUTEUID,
                 CUser = p.CUser,
                 CWhen = p.CWhen,
                 MUser = p.MUser,
@@ -173,6 +176,7 @@ namespace MediTechWebApi.Controllers
                     FRQNCUID = p.FRQNCUID,
                     PDSTSUID = p.PDSTSUID,
                     FORMMUID = p.FORMMUID,
+                    ROUTEUID = p.ROUTEUID,
                     VATPercentage = p.VATPercentage,
                     PrescriptionUOM = p.PrescriptionUOM,
                     PrescriptionUnit = SqlFunction.fGetRfValDescription(p.PrescriptionUOM ?? 0),
@@ -295,6 +299,7 @@ namespace MediTechWebApi.Controllers
                 FRQNCUID = p.FRQNCUID,
                 PDSTSUID = p.PDSTSUID,
                 FORMMUID = p.FORMMUID,
+                ROUTEUID = p.ROUTEUID,
                 IsNarcotic = p.IsNarcotic,
                 Comments = p.Comments,
                 ItemCost = p.ItemCost,
@@ -337,6 +342,7 @@ namespace MediTechWebApi.Controllers
                 DoseQuantity = p.DoseQuantity,
                 MinSalesQty = p.MinSalesQty,
                 BaseUOM = p.BaseUOM,
+                ROUTEUID = p.ROUTEUID,
                 BaseUnit = SqlFunction.fGetRfValDescription(p.BaseUOM ?? 0),
                 SalesUOM = p.SalesUOM,
                 SalesUnit = SqlFunction.fGetRfValDescription(p.SalesUOM ?? 0),
@@ -418,6 +424,7 @@ namespace MediTechWebApi.Controllers
                     itemMaster.Comments = itemMasterModel.Comments;
                     itemMaster.ManufacturerByUID = itemMasterModel.ManufacturerByUID;
                     itemMaster.NRCTPUID = itemMasterModel.NRCTPUID;
+                    itemMaster.ROUTEUID = itemMasterModel.ROUTEUID;
                     itemMaster.MUser = userID;
                     itemMaster.MWhen = now;
                     itemMaster.StatusFlag = "A";

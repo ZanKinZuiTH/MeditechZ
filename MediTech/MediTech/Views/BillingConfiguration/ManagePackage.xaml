@@ -44,7 +44,14 @@
                             <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
                     </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-
+                    
+                    <dxlc:LayoutItem Label="Room change">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding RoomCharge}"
+                                          SelectedItem="{Binding SelectRoomCharge}"
+                                          NullValueButtonPlacement="EditBox"
+                                          DisplayMember="Display"
+                                          ValueMember="Key"/>
+                    </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Orientation="Vertical">
