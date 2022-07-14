@@ -335,8 +335,8 @@ namespace MediTech.ViewModels
                         //ItemMasterModel itemModel = GetItemByCode(drow["รหัสสินค้า"].ToString().Trim());
                         var itemcodefile = drow["รหัสสินค้า"].ToString().Trim();
                         var serialcodefiel = drow["หมายเลข Serial/Lot"].ToString().Trim();
-                        List<EcountMassFileModel> mapItem = new List<EcountMassFileModel>();
-                        EcountMassFileModel modelmap = mapItem.FirstOrDefault();
+                      //  List<EcountMassFileModel> mapItem = new List<EcountMassFileModel>();
+                       // EcountMassFileModel modelmap = mapItem.FirstOrDefault();
                         ItemMasterList newRow = new ItemMasterList();
                         ItemMasterModel curentItem = GetCuerryItemInStockWithSerial(itemcodefile,serialcodefiel) != null ? GetCuerryItemInStockWithSerial(itemcodefile, serialcodefiel) : null;
                         //mapItem = DataService.Inventory.GetEcountMassFile(SelectStoreFrom.StoreUID, itemModel.ItemMasterUID, drow["หมายเลข Serial/Lot"].ToString().Trim(), null);
@@ -346,7 +346,7 @@ namespace MediTech.ViewModels
                             newRow.ExpiryDttm = checkupDttm;
                         if (curentItem == null)
                         {
-                            WarningDialog("ไม่มี " + modelmap.ItemName + " ในคลัง");
+                            WarningDialog("ไม่มี  Item ในคลัง");
                             continue;
                         }
                         newRow.ItemMasterUID = curentItem.ItemMasterUID;
