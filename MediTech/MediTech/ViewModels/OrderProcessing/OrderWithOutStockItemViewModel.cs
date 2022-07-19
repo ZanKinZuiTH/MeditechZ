@@ -75,6 +75,15 @@ namespace MediTech.ViewModels
         }
 
 
+        private List<LookupReferenceValueModel> _OrderTypes;
+
+        public List<LookupReferenceValueModel> OrderTypes
+        {
+            get { return _OrderTypes; }
+            set { Set(ref _OrderTypes, value); }
+        }
+
+
         private string _OrderName;
 
         public string OrderName
@@ -171,6 +180,10 @@ namespace MediTech.ViewModels
             {
                 SelectCareprovider = Careproviders.FirstOrDefault(p => p.CareproviderUID == AppUtil.Current.UserID);
             }
+
+
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP");
+            OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
         }
         public void BindingFromBillableItem()
         {
@@ -181,8 +194,7 @@ namespace MediTech.ViewModels
             OrderCode = "Code : " + BillableItem.Code;
             UnitPrice = BillableItem.Price.ToString("#,#.00");
             Quantity = 1;
-            StartDate = now.Date;
-            StartTime = now;
+
             if (BillableItem.DoctorFee != null && BillableItem.DoctorFee != 0 && BillableItem.BSMDDUID != 2841)
             {
                 CareproviderVisibility = Visibility.Visible;
@@ -259,6 +271,9 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.Quantity = Quantity;
 
                 PatientOrderDetail.StartDttm = StartDate.Add(StartTime.TimeOfDay);
+                PatientOrderDetail.EndDttm = StartDate.AddDays(1);
+                PatientOrderDetail.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
+                PatientOrderDetail.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
 
                 if (OverwritePrice != null)
                 {

@@ -9,11 +9,30 @@
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              xmlns:vm="clr-namespace:MediTech.Views"
+             xmlns:my="clr-namespace:MediTech.CustomControl"
              xmlns:cc="clr-namespace:MediTech.CustomControl" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"   xmlns:dxpg="http://schemas.devexpress.com/winfx/2008/xaml/pivotgrid" 
              DataContext="{Binding Path=BillSettlementOPViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="900">
     <UserControl.Resources>
         <cc:PatientSearchPopUp x:Key="PatientColumn" d:IsDataSource="True" />
+        <Style
+			x:Key="ImageButtonStyle"
+			TargetType="{x:Type my:ImageButton}">
+
+            <Setter Property="HorizontalContentAlignment"
+				Value="Center"/>
+            <Setter Property="VerticalContentAlignment"
+				Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type my:ImageButton}">
+                        <Grid>
+                            <Image Source="{TemplateBinding Source}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
@@ -139,12 +158,13 @@
             RowTreeWidth="243" ShowBorder="False" ShowColumnHeaders="False" ShowRowHeaders="False" ShowDataHeaders="False" AllowDrop="False" AllowDrag="False" ShowColumnGrandTotals="True"
                                            ShowFilterHeaders="False">
                 <dxpg:PivotGridControl.Fields>
-                    <dxpg:PivotGridField  FieldName="SubAccountName" Area="RowArea" AllowFilter="False" 
-                                AreaIndex="0" Width="150" Caption="Item" />
-                    <dxpg:PivotGridField  FieldName="SubGroupName" Area="RowArea" AllowFilter="False"
-                                AreaIndex="0" Width="150" Caption="Sub Group" />
+
                     <dxpg:PivotGridField  FieldName="GroupName" Area="RowArea" AllowFilter="False"
                                 AreaIndex="0" Width="150" Caption="Group" />
+                    <dxpg:PivotGridField  FieldName="SubGroupName" Area="RowArea" AllowFilter="False"
+                                AreaIndex="0" Width="150" Caption="Sub Group" />
+                    <dxpg:PivotGridField  FieldName="SubAccountName" Area="RowArea" AllowFilter="False" 
+                                AreaIndex="0" Width="150" Caption="Item" />
                     <dxpg:PivotGridField FieldName="TotalAmount" Area="DataArea" AllowFilter="False"
                                 AreaIndex="2" Width="80" Caption="Total" CellFormat="f2"/>
                     <dxpg:PivotGridField FieldName="Discount" Area="DataArea" AllowFilter="False"
@@ -153,6 +173,22 @@
                                 AreaIndex="4" Width="80" Caption="Net Amount" CellFormat="f2" />
                     <dxpg:PivotGridField FieldName="PayorName" Area="ColumnArea" Width="150" AllowFilter="False"
                                 AreaIndex="0" Caption="Payor"  SummaryType="Sum" />
+                    <dxpg:PivotGridField FieldName="PatientBillableItemUID" Area="DataArea"  Width="25" Caption=" " SummaryType="Max" >
+                        <dxpg:PivotGridField.CellTemplate>
+                            <DataTemplate>
+                                <my:ImageButton x:Name="imgAllocate" Height="15" Width="15"
+                                                Source="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png"
+                                                SelectedSource="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png" 
+                                                HighlightSource="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png" 
+                                         CommandParameter="{Binding Value}"
+                                        Style="{DynamicResource ImageButtonStyle}"
+                                       Click="imgAllocate_Click"
+                                       ToolTip="Allocate" VerticalAlignment="Top" Cursor="Hand">
+                                    <Image Source="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png"/>
+                                </my:ImageButton>
+                            </DataTemplate>
+                        </dxpg:PivotGridField.CellTemplate>
+                    </dxpg:PivotGridField>
                 </dxpg:PivotGridControl.Fields>
                 <dxpg:PivotGridControl.Groups>
                     <dxpg:PivotGridGroup x:Name="PivotGridGroup1" />

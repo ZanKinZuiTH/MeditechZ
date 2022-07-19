@@ -302,7 +302,8 @@
                 <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName"/>
                 <dxg:GridColumn Header="แผนก" FieldName="LocationName"/>
                 <dxg:GridColumn Header="Encounter Type" FieldName="EncounterType"/>
-                <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName"/>
+                <dxg:GridColumn Header="Order Type" FieldName="PrescriptionType"/>
+                <!--<dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName"/>-->
                 <dxg:GridColumn Header="สถานะ" FieldName="PrescriptionStatus"/>
                 <dxg:GridColumn Header="Is Billed" FieldName="IsBilled"/>
                 <dxg:GridColumn Header="วันเวลาที่จ่ายยา" FieldName="DispenseDttm">

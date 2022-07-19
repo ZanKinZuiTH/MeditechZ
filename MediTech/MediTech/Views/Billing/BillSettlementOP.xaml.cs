@@ -1,5 +1,6 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Editors;
+using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,9 +23,14 @@ namespace MediTech.Views
     /// </summary>
     public partial class BillSettlementOP : UserControl
     {
+        BillSettlementOPViewModel viewModel;
         public BillSettlementOP()
         {
             InitializeComponent();
+            if (this.DataContext is BillSettlementOPViewModel)
+            {
+                viewModel = (this.DataContext as BillSettlementOPViewModel);
+            }
         }
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
@@ -43,6 +49,16 @@ namespace MediTech.Views
         public void Expand()
         {
             pivotGrid.ExpandAllRows();
+        }
+
+        private void imgAllocate_Click(object sender, RoutedEventArgs e)
+        {
+            Button bt = sender as Button;
+            if (bt != null && bt.CommandParameter != null)
+            {
+
+                viewModel.CallAllocatedBillableItem(long.Parse(bt.CommandParameter.ToString()));
+            }
         }
     }
 }

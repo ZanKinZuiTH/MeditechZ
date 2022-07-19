@@ -10,8 +10,8 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              x:Name="OrderDrugView"
              DataContext="{Binding Path=OrderDrugItemViewModel,Source={StaticResource Locator}}"
-             Width="900"
-             d:DesignHeight="350" d:DesignWidth="900">
+             Width="800"
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem>
@@ -30,41 +30,32 @@
                 <Border BorderThickness="0,1,0,0"
                     BorderBrush="Black"/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutGroup>
-                <dxlc:LayoutItem/>
-            </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup Orientation="Vertical" ItemSpace="7">
-                <dxlc:LayoutGroup Orientation="Horizontal">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutItem Label="Order Name" LabelHorizontalAlignment="Right">
+                        <TextBlock Text="{Binding OrderName}" FontWeight="Bold"  FontSize="14"/>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="วัน/เวลา" LabelHorizontalAlignment="Right">
-                            <dxe:DateEdit EditValue="{Binding StartDate}" DisplayFormatString="dd/MM/yyyy"/>
+                        <dxlc:LayoutItem Label="Type" LabelHorizontalAlignment="Right">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding PrescriptionTypes}"
+                                      Name="cmbOrderType"
+                                      DisplayMember="Display"
+                                      AutoComplete="True"                                    
+                                      IsTextEditable="True"
+                                      ValidateOnTextInput="False"
+                                      IncrementalFiltering="True"
+                                      ImmediatePopup="True"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectPrescriptionType}"/>
                         </dxlc:LayoutItem>
-
-                        <dxlc:LayoutItem Width="60">
-                            <dxe:DateEdit EditValue="{Binding StartTime}" x:Name="timeEditor" 
-                                      DisplayFormatString="HH:mm"
-                                      Mask="HH:mm">
-                                <dxe:DateEdit.StyleSettings>
-                                    <dxe:DateEditPickerStyleSettings/>
-                                </dxe:DateEdit.StyleSettings>
-                            </dxe:DateEdit>
+                        <dxlc:LayoutItem Label="FORM">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding DrugFORM}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectDrugFORM}"/>
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="Store" >
-                            <dxe:ComboBoxEdit ItemsSource="{Binding Stores}"
-                                          DisplayMember="StoreName"
-                                          ValueMember="StoreUID"
-                                          SelectedItem="{Binding SelectStore}"/>
-                        </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="จำนวนคงเหลือ" HorizontalAlignment="Right">
-                            <TextBlock FontWeight="Bold" 
-                                       Text="{Binding StockQuantity}"/>
-                        </dxlc:LayoutItem>
 
-                    </dxlc:LayoutGroup>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Horizontal">
                     <dxlc:LayoutItem Label="Label" LabelHorizontalAlignment="Right">
                         <dxe:ComboBoxEdit ItemsSource="{Binding DrugLabel}"
                                       Name="cmbDrugLable"
@@ -77,14 +68,7 @@
                                       ValueMember="Key"
                                       SelectedItem="{Binding SelectDrugLabel}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="FORM">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding DrugFORM}"
-                                      DisplayMember="Display"
-                                      ValueMember="Key"
-                                      SelectedItem="{Binding SelectDrugFORM}"/>
-                    </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup>
+
                     <dxlc:LayoutGroup Orientation="Horizontal">
                         <dxlc:LayoutItem Label="Dosage" Width="280" LabelHorizontalAlignment="Right">
                             <dxe:TextEdit Name="txtDosage" EditValue="{Binding DosageQuantity}"
@@ -92,12 +76,71 @@
                                           MaskType="RegEx" Mask="\d{0,9}(\R.\d{0,2})?" >
                             </dxe:TextEdit>
                         </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Margin="5,0,0,0">
+                            <TextBlock Text="{Binding DosageUnit}" FontWeight="Bold" />
+                        </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Width="80">
-                        <TextBlock Text="{Binding PrescriptionUnit}"/>
+
+                    <dxlc:LayoutGroup Orientation="Horizontal" >
+                        <dxlc:LayoutItem Label="วัน/เวลา เริ่มต้น" Width="280" LabelHorizontalAlignment="Right">
+                            <dxe:DateEdit EditValue="{Binding StartDate}" 
+                                          DisplayFormatString="dd/MM/yyyy"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="60">
+                            <dxe:DateEdit EditValue="{Binding StartTime}" x:Name="timeEditor" 
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="วัน/เวลา สิ้นสุด" Width="280" LabelHorizontalAlignment="Right">
+                            <dxe:DateEdit EditValue="{Binding EndDate}"
+                                          DisplayFormatString="dd/MM/yyyy"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="60">
+                            <dxe:DateEdit EditValue="{Binding EndTime}" x:Name="timeEditor2" 
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Vertical">
+
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup Orientation="Vertical">
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Store" LabelHorizontalAlignment="Right">
+                            <dxe:ComboBoxEdit ItemsSource="{Binding Stores}"
+                                          DisplayMember="StoreName"
+                                          ValueMember="StoreUID"
+                                          SelectedItem="{Binding SelectStore}"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="จำนวนคงเหลือ" HorizontalAlignment="Right">
+                            <TextBlock FontWeight="Bold" 
+                                       Text="{Binding StockQuantity}"/>
+                        </dxlc:LayoutItem>
+
+                    </dxlc:LayoutGroup>
+
+                    <dxlc:LayoutItem Label="Route" LabelHorizontalAlignment="Right">
+                        <dxe:ComboBoxEdit ItemsSource="{Binding DrugRoute}"
+                                      DisplayMember="Display"
+                                      ValueMember="Key"
+                                      SelectedItem="{Binding SelectDrugRoute}"/>
                     </dxlc:LayoutItem>
 
-                    <dxlc:LayoutItem Label="Frequency">
+                    <dxlc:LayoutItem Label="Frequency" LabelHorizontalAlignment="Right">
                         <cc:MyLookUpEdit x:Name="lkeFreq" ItemsSource="{Binding DrugFrequency}"
                                           DisplayMember="Code"
                                           ValueMember="FrequencyUID"
@@ -155,19 +198,19 @@
                             </dxg:LookUpEdit.PopupContentTemplate>
                         </cc:MyLookUpEdit>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem>
-                        <TextBlock Text="{Binding DrugFrequencyText}" FontWeight="Bold"/>
+                    <dxlc:LayoutItem >
+                        <TextBlock Text="{Binding DrugFrequencyText}" FontWeight="Bold" TextAlignment="Right"/>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Horizontal" >
-                    <dxlc:LayoutItem Label="Quantity" Width="280" LabelHorizontalAlignment="Right">
-                        <dxe:TextEdit Name="txtQuantity" EditValue="{Binding Quantity}"
+                    <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutItem Label="Quantity" LabelHorizontalAlignment="Right">
+                            <dxe:TextEdit Name="txtQuantity" EditValue="{Binding Quantity,UpdateSourceTrigger=PropertyChanged}"
                                       Mask="\d{0,9}"
                                       MaskType="RegEx">
-                        </dxe:TextEdit>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem >
-                        <dxg:LookUpEdit ItemsSource="{Binding Units}"
+                            </dxe:TextEdit>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Width="80">
+                            <dxg:LookUpEdit ItemsSource="{Binding Units}"
+                                            
                                         DisplayMember="ConversionUnit"
                                         ValueMember="ConversionValue"
                                         AllowNullInput="True"
@@ -180,52 +223,69 @@
                                         PopupWidth="200"
                                         AutoPopulateColumns="False"
                                         SelectedItem="{Binding SelectUnit}">
-                            <dxg:LookUpEdit.PopupContentTemplate>
-                                <ControlTemplate>
-                                    <dxg:GridControl Name="PART_GridControl">
-                                        <dxg:GridColumn Header="หน่วย" FieldName="ConversionUnit" ReadOnly="True"/>
-                                        <dxg:GridColumn Header="อัตราส่วน" FieldName="Ratio" ReadOnly="True"/>
-                                        <dxg:GridControl.View>
-                                            <dxg:TableView Name="view"
+                                <dxg:LookUpEdit.PopupContentTemplate>
+                                    <ControlTemplate>
+                                        <dxg:GridControl Name="PART_GridControl">
+                                            <dxg:GridColumn Header="หน่วย" FieldName="ConversionUnit" ReadOnly="True"/>
+                                            <dxg:GridColumn Header="อัตราส่วน" FieldName="Ratio" ReadOnly="True"/>
+                                            <dxg:GridControl.View>
+                                                <dxg:TableView Name="view"
                                                            AutoWidth="True"
                                                            ShowGroupPanel="False"/>
-                                        </dxg:GridControl.View>
-                                    </dxg:GridControl>
-                                </ControlTemplate>
-                            </dxg:LookUpEdit.PopupContentTemplate>
-                        </dxg:LookUpEdit>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Duration">
-                        <dxe:TextEdit x:Name="txtDuration" AllowNullInput="True" 
+                                            </dxg:GridControl.View>
+                                        </dxg:GridControl>
+                                    </ControlTemplate>
+                                </dxg:LookUpEdit.PopupContentTemplate>
+                            </dxg:LookUpEdit>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Label="Duration" >
+                            <dxe:TextEdit x:Name="txtDuration" AllowNullInput="True" 
                                       EditValue="{Binding Duration,UpdateSourceTrigger=PropertyChanged}" 
                                       Mask="\d{0,9}"  
                                       MaskType="RegEx">
-                        </dxe:TextEdit>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="วัน"
-                                     Width="50"
-                                     LabelVerticalAlignment="Center"/>
-                    <dxlc:LayoutItem Label="ราคา" >
-                        <TextBlock Text="{Binding UnitPrice}" HorizontalAlignment="Left" 
+                            </dxe:TextEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+
+
+
+                    <dxlc:LayoutGroup Orientation="Horizontal" >
+                        <dxlc:LayoutItem Label="ราคา" LabelHorizontalAlignment="Right">
+                            <TextBlock Text="{Binding UnitPrice}" HorizontalAlignment="Left" 
                                    VerticalAlignment="Center"
                                    FontWeight="Bold"
                                    FontSize="17"
                                    Background="Blue" Foreground="White"/>
-                    </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="ใส่ราคาเอง">
-                        <dxe:TextEdit  Mask="\d{0,9}(\R.\d{0,2})?"
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="ใส่ราคาเอง">
+                            <dxe:TextEdit  Mask="\d{0,9}(\R.\d{0,2})?"
                                        DisplayFormatString="#,#.00"
                                        EditValue="{Binding OverwritePrice}"
                                        HorizontalContentAlignment="Left"
                                        AllowNullInput="True" MaskType="RegEx"/>
-                    </dxlc:LayoutItem>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutItem Label="Instruction (Label Sticker)"
-                                 LabelHorizontalAlignment="Right">
-                    <dxe:TextEdit Text="{Binding LabelSticker}"/>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup Orientation="Vertical" >
+                <dxlc:LayoutItem LabelHorizontalAlignment="Right" LabelVerticalAlignment="Top">
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Instruction" HorizontalAlignment="Right"/>
+                            <TextBlock Text="(Label Sticker)" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:TextEdit Text="{Binding LabelSticker}" TextWrapping="Wrap" Height="50" VerticalContentAlignment="Top"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem Label="Instruction (Note to Pharmacy)" LabelHorizontalAlignment="Right">
-                    <dxe:TextEdit Text="{Binding NoteToPharmacy}"/>
+                <dxlc:LayoutItem LabelHorizontalAlignment="Right" LabelVerticalAlignment="Top">
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Vertical">
+                            <TextBlock Text="Instruction" HorizontalAlignment="Right"/>
+                            <TextBlock Text="(Note to Pharmacy)" HorizontalAlignment="Right"/>
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:TextEdit Text="{Binding NoteToPharmacy}" TextWrapping="Wrap" Height="50" VerticalContentAlignment="Top"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutGroup HorizontalAlignment="Right" 
                                   VerticalAlignment="Bottom" >
@@ -234,6 +294,7 @@
                     <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
                                      Height="25" Content="ยกเลิก"/>
                 </dxlc:LayoutGroup>
+
                 <dxlc:LayoutItem Label="Patient Instruction" LabelHorizontalAlignment="Right">
                     <TextBlock Text="{Binding PatientInstruction}"/>
                 </dxlc:LayoutItem>

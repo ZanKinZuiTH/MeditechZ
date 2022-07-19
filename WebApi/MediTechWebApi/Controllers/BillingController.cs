@@ -846,9 +846,47 @@ namespace MediTechWebApi.Controllers
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<AllocatedPatientBillableItemsPalmModel>();
-                data = dt.ToList<AllocatedPatientBillableItemsPalmModel>();
+                //data = dt.ToList<AllocatedPatientBillableItemsPalmModel>();
+                foreach (DataRow row in dt.Rows)
+                {
+                    AllocatedPatientBillableItemsPalmModel inData = new AllocatedPatientBillableItemsPalmModel();
+                    inData.PatientBillableItemUID = long.Parse(row["PatientBillableItemUID"].ToString());
+                    inData.SubAccountName = row["SubAccountName"].ToString();
+                    inData.SubAccountUID = int.Parse(row["SubAccountUID"].ToString());
+                    inData.ItemName = row["ItemName"].ToString();
+                    inData.Quantity = Convert.ToDouble(row["Quantity"]);
+                    inData.Amount = Convert.ToDouble(row["Amount"]);
+                    inData.Discount = Convert.ToDouble(row["Discount"]);
+                    inData.NetAmount = Convert.ToDouble(row["NetAmount"]);
+                    inData.PayorUID = !string.IsNullOrEmpty(row["PayorUID"].ToString()) ? Convert.ToInt32(row["PayorUID"]) : (int?)null;
+                    inData.PayorName = row["PayorName"]?.ToString();
+                    inData.BillableItemUID = Convert.ToInt64(row["BillableItemUID"]);
+                    inData.PatientVisitPayorUID = !string.IsNullOrEmpty(row["PatientVisitPayorUID"].ToString()) ? Convert.ToInt64(row["PatientVisitPayorUID"]) : (long?)null;
+                    inData.EventOccuredDttm = Convert.ToDateTime(row["EventOccuredDttm"]);
+                    inData.CareProviderUID = !string.IsNullOrEmpty(row["CareProviderUID"].ToString()) ? Convert.ToInt32(row["CareProviderUID"]) :(int?)null;
+                    inData.GroupMaxCoverage = !string.IsNullOrEmpty(row["GroupMaxCoverage"].ToString()) ? Convert.ToDouble(row["GroupMaxCoverage"]) : (double?)null;
+                    inData.GroupCovered = !string.IsNullOrEmpty(row["GroupCovered"].ToString()) ? Convert.ToDouble(row["GroupCovered"]) : (double?)null;
+                    inData.SubGroupMaxCoverage = !string.IsNullOrEmpty(row["SubGroupMaxCoverage"].ToString()) ? Convert.ToDouble(row["SubGroupMaxCoverage"]) : (double?)null;
+                    inData.SubGroupCovered = !string.IsNullOrEmpty(row["SubGroupCovered"].ToString()) ? Convert.ToDouble(row["SubGroupCovered"]) : (double?)null;
+                    inData.IsModified = row["IsModified"].ToString();
+                    inData.GroupUID = Convert.ToInt32(row["GroupUID"]);
+                    inData.PackageName = row["PackageName"].ToString();
+                    inData.GroupName = row["GroupName"].ToString();
+                    inData.SubGroupName = row["SubGroupName"].ToString();
+                    inData.TotalAmount = Convert.ToDouble(row["TotalAmount"]);
+                    inData.SubGroupTotal = !string.IsNullOrEmpty(row["SubGroupTotal"].ToString()) ? Convert.ToDouble(row["SubGroupTotal"]) : (double?)null;
+                    inData.SubGroupDiscount = !string.IsNullOrEmpty(row["SubGroupDiscount"].ToString()) ? Convert.ToDouble(row["SubGroupDiscount"]) : (double?)null;
+                    inData.GroupTotal = !string.IsNullOrEmpty(row["GroupTotal"].ToString()) ? Convert.ToDouble(row["GroupTotal"]) : (double?)null;
+                    inData.GroupDiscount = !string.IsNullOrEmpty(row["GroupDiscount"].ToString()) ? Convert.ToDouble(row["GroupDiscount"]) : (double?)null;
+                    inData.PBLCTUID = !string.IsNullOrEmpty(row["PBLCTUID"].ToString()) ? Convert.ToInt32(row["PBLCTUID"]) : (int?)null;
+                    inData.ALLDIUID = !string.IsNullOrEmpty(row["ALLDIUID"].ToString()) ? Convert.ToInt32(row["ALLDIUID"]) : (int?)null;
+                    inData.BSMDDUID = Convert.ToInt32(row["BSMDDUID"]);
+                    data.Add(inData);
+                }
             }
             return data;
+
+
         }
 
         [Route("AllocatePatientBillableItem")]
@@ -1237,7 +1275,7 @@ namespace MediTechWebApi.Controllers
                 OrderSubCategoryUID = p.OrderSubCategoryUID,
                 OwnerOrganisationUID = p.OwnerOrganisationUID,
             }).ToList();
-            
+
             return data;
         }
 
@@ -2544,7 +2582,7 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
-        
+
         [Route("GetAgreementAccountByAgreementUID")]
         [HttpGet]
         public List<AgreementAccountDiscountModel> GetAgreementAccountByAgreementUID(int payorAgreementUID)

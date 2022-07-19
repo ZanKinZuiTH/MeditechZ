@@ -16,6 +16,8 @@ namespace MediTech.Model
 
         public string IdentifyingType { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
+
+        public Nullable<System.DateTime> EndDttm { get; set; }
         public int ORDSTUID { get; set; }
         public string OrderDetailStatus { get; set; }
         public string PaymentStatus { get; set; }
@@ -39,11 +41,14 @@ namespace MediTech.Model
         public string GenericName { get; set; }
         public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> DFORMUID { get; set; }
+        public Nullable<int> PRSTYPUID { get; set; }
+        public string OrderType { get; set; }
         public string TypeDrug { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
         public string InstructionRoute { get; set; }
 
         public Nullable<double> Dosage { get; set; }
+        public string DosageUnit { get; set; }
         public Nullable<int> DrugDuration { get; set; }
         public string InstructionText { get; set; }
         public string LocalInstructionText { get; set; }

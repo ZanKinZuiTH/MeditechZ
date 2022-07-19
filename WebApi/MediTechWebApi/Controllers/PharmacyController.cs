@@ -612,6 +612,8 @@ namespace MediTechWebApi.Controllers
                                                 PrescriptionNumber = ps.PrescriptionNumber,
                                                 PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
                                                 PatientID = pa.PatientID,
+                                                PRSTYPUID = ps.PRSTYPUID,
+                                                PrescriptionType = SqlFunction.fGetRfValDescription(ps.PRSTYPUID ?? 0),
                                                 PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
                                                 PatientVisitUID = ps.PatientVisitUID,
                                                 AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",

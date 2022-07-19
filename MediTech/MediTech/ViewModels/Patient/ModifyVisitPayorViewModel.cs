@@ -151,7 +151,7 @@ namespace MediTech.ViewModels
             get { return _SelectedPatientVisitPayor; }
             set
             {
-                _SelectedPatientVisitPayor = value;
+                Set(ref _SelectedPatientVisitPayor, value);
                 if (_SelectedPatientVisitPayor != null)
                 {
                     SelectedPayorType = PayorTypes.FirstOrDefault(p => p.Key == _SelectedPatientVisitPayor.PAYRTPUID);
@@ -415,6 +415,7 @@ namespace MediTech.ViewModels
                 SelectedPatientVisitPayor.MUser = AppUtil.Current.UserID;
                 SelectedPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                 ClearControl();
+                SelectedPatientVisitPayor = null;
             }
         }
 
@@ -445,7 +446,6 @@ namespace MediTech.ViewModels
             ActiveFrom = DateTime.Now;
             ActiveTo = null;
             InsurancePlans = new List<InsurancePlanModel>();
-            SelectedPatientVisitPayor = null;
             (this.View as ModifyVisitPayor).grdVisitPayor.RefreshData();
         }
 

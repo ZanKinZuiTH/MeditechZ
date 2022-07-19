@@ -518,7 +518,7 @@ namespace MediTech.ViewModels
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVal = DataService.Technical.GetReferenceValueMany("VISTS,ENTYP");
+            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
             SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);

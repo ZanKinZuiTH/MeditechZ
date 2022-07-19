@@ -46,6 +46,8 @@ namespace MediTech.DataBase
         public Nullable<int> StoreUID { get; set; }
         public string MainFixPrice { get; set; }
         public Nullable<int> PatientFixPriceUID { get; set; }
+        public Nullable<long> ParentUID { get; set; }
+        public string IsStandingOrder { get; set; }
         public Nullable<int> BillPackageUID { get; set; }
         public Nullable<int> CareproviderUID { get; set; }
         public string CancelledReason { get; set; }

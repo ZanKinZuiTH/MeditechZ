@@ -51,6 +51,21 @@ namespace MediTech.ViewModels
             }
         }
 
+        private DateTime _StartDate;
+
+        public DateTime StartDate
+        {
+            get { return _StartDate; }
+            set { Set(ref _StartDate, value); }
+        }
+
+        private DateTime _StartTime;
+        public DateTime StartTime
+        {
+            get { return _StartTime; }
+            set { Set(ref _StartTime, value); }
+        }
+
 
         private List<LocationModel> _Locations;
 
@@ -365,6 +380,10 @@ namespace MediTech.ViewModels
             Locations = locationData.Where(p => p.IsCanOrder == "Y").ToList();
             SelectLocation = Locations.FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
 
+            DateTime now = DateTime.Now;
+            StartDate = now.Date;
+            StartTime = now;
+
             var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(PatientVisit.PatientVisitUID);
 
             if (patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
@@ -659,6 +678,7 @@ namespace MediTech.ViewModels
                             newOrder.Comments = item.ProcessingNotes;
                             newOrder.IsPriceOverwrite = "N";
                             newOrder.StartDttm = DateTime.Now;
+                            newOrder.EndDttm = newOrder.StartDttm;
 
                             newOrder.NetAmount = ((item.Price) * item.Quantity);
                             newOrder.DoctorFeePer = item.DoctorFee;
@@ -702,6 +722,7 @@ namespace MediTech.ViewModels
         {
             try
             {
+                DateTime startDttm = StartDate.Add(StartTime.TimeOfDay);
                 BillableItemModel billItem = DataService.MasterData.GetBillableItemByUID(billableItemUID);
                 var orderAlready = PatientOrders.FirstOrDefault(p => p.BillableItemUID == billableItemUID);
                 if (orderAlready != null)
@@ -748,7 +769,7 @@ namespace MediTech.ViewModels
                         case "Mobile Checkup":
                         case "Order Item":
                             {
-                                OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem, ownerUID);
+                                OrderWithOutStockItem ordRe = new OrderWithOutStockItem(billItem, ownerUID, startDttm: startDttm);
                                 OrderWithOutStockItemViewModel resultRe = (OrderWithOutStockItemViewModel)LaunchViewDialog(ordRe, "ORDLAB", true);
                                 if (resultRe != null && resultRe.ResultDialog == ActionDialog.Save)
                                 {
@@ -762,7 +783,7 @@ namespace MediTech.ViewModels
                             }
                         case "Medical Supplies":
                         case "Supply":
-                            OrderMedicalItem ordMed = new OrderMedicalItem(billItem, ownerUID);
+                            OrderMedicalItem ordMed = new OrderMedicalItem(billItem, ownerUID, startDttm: startDttm);
                             OrderMedicalItemViewModel resultMed = (OrderMedicalItemViewModel)LaunchViewDialog(ordMed, "ORDMED", true);
                             if (resultMed != null && resultMed.ResultDialog == ActionDialog.Save)
                             {
@@ -774,7 +795,7 @@ namespace MediTech.ViewModels
                             }
                             break;
                         case "Drug":
-                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID);
+                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID,startDttm: startDttm);
                             OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
                             if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
                             {

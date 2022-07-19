@@ -30,6 +30,7 @@ namespace MediTech.DataBase
         public string OrderInstruction { get; set; }
         public Nullable<int> FRQNCUID { get; set; }
         public Nullable<int> FORMMUID { get; set; }
+        public Nullable<int> ROUTEUID { get; set; }
         public Nullable<int> PDSTSUID { get; set; }
         public Nullable<int> BaseUOM { get; set; }
         public Nullable<int> SalesUOM { get; set; }

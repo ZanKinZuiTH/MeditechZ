@@ -568,6 +568,11 @@ namespace MediTech.ViewModels
         {
             DXMessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
+
+        public void ErrorDialog(FrameworkElement owner,string errorMessage)
+        {
+            DXMessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+        }
         public MessageBoxResult DeleteDialog()
         {
             return DXMessageBox.Show("คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);

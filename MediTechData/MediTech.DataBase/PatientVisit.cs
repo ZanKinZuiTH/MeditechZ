@@ -22,6 +22,7 @@ namespace MediTech.DataBase
         public Nullable<int> VISTYUID { get; set; }
         public Nullable<int> PRITYUID { get; set; }
         public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<int> SpecialityUID { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> ArrivedDttm { get; set; }

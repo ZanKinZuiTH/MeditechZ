@@ -33,6 +33,7 @@
             </dxlc:LayoutItem>
             <dx:DXTabControl SelectedIndex="{Binding SelectTabIndex}">
                 <dx:DXTabItem Header="เพิ่ม Order">
+                    <dxlc:LayoutControl>
                     <dxlc:LayoutGroup Orientation="Vertical">
                         <dxlc:LayoutGroup>
                             <dxlc:LayoutItem Label="ค้นหา Item :" >
@@ -69,6 +70,26 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutItem/>
                         </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem Label="วัน/เวลา สิ้นสุด :" >
+                                    <dxe:DateEdit EditValue="{Binding StartDate}"
+                                          DisplayFormatString="dd/MM/yyyy"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Width="70">
+                                    <dxe:DateEdit EditValue="{Binding StartTime}" x:Name="timeEditor2"
+                                      DisplayFormatString="HH:mm"
+                                      Mask="HH:mm">
+                                        <dxe:DateEdit.StyleSettings>
+                                            <dxe:DateEditPickerStyleSettings/>
+                                        </dxe:DateEdit.StyleSettings>
+                                    </dxe:DateEdit>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+                            <dxlc:LayoutItem/>
+                            <dxlc:LayoutItem/>
+                            <dxlc:LayoutItem/>
+                        </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup >
                             <dxlc:LayoutGroup.GroupBoxStyle >
                                 <Style  TargetType="{x:Type dxlc:GroupBox}">
@@ -78,7 +99,7 @@
                             <dxg:GridControl x:Name="grdOrderDetail" ItemsSource="{Binding PatientOrders}"
                                          SelectedItem="{Binding SelectPatientOrder}">
                                 <dxg:GridControl.Columns>
-                                    <dxg:GridColumn Width="40" >
+                                    <dxg:GridColumn Width="40" Fixed="Left">
                                         <dxg:GridColumn.CellTemplate>
                                             <DataTemplate>
                                                 <Image Width="25" Height="25" Stretch="UniformToFill"
@@ -104,7 +125,7 @@
                                             </DataTemplate>
                                         </dxg:GridColumn.CellTemplate>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True">
+                                    <dxg:GridColumn FieldName="No" Width="30" ReadOnly="True" Fixed="Left">
                                         <dxg:GridColumn.CellTemplate>
                                             <DataTemplate>
                                                 <TextBlock Text="{Binding RowData.RowHandle.Value
@@ -113,9 +134,8 @@
                                             </DataTemplate>
                                         </dxg:GridColumn.CellTemplate>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
-                                    <dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Width="50"/>
-                                    <dxg:GridColumn Name="colItemName" FieldName="ItemName"
+                                    <!--<dxg:GridColumn Header="รหัส" FieldName="ItemCode" ReadOnly="True" Width="50"/>-->
+                                    <dxg:GridColumn Name="colItemName" FieldName="ItemName" Fixed="Left"
                                                 Header="ชื่อ"  ReadOnly="True"  Width="300" >
                                         <dxg:GridColumn.CellTemplate>
                                             <DataTemplate>
@@ -129,20 +149,34 @@
                                             </DataTemplate>
                                         </dxg:GridColumn.CellTemplate>
                                     </dxg:GridColumn>
+                                    <dxg:GridColumn Header="ประเภท Order" FieldName="OrderType" ReadOnly="True" Fixed="Left"/>
 
+                                    <dxg:GridColumn Header="DosageQty" FieldName="Dosage" ReadOnly="True" Width="50"/>
+                                    <dxg:GridColumn Header="DosageUnit" FieldName="DosageUnit" ReadOnly="True" Width="50"/>
+                                    <dxg:GridColumn Header="Freq." FieldName="DrugFrequency" ReadOnly="True"/>
+                                    <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True" Width="50"/>
                                     <dxg:GridColumn Header="ราคาต่อหน่วย" FieldName="DisplayPrice"  ReadOnly="True">
                                         <dxg:GridColumn.EditSettings>
                                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                         </dxg:GridColumn.EditSettings>
                                     </dxg:GridColumn>
-                                    <dxg:GridColumn Header="จำนวน" FieldName="Quantity" ReadOnly="True" Width="50"/>
                                     <dxg:GridColumn Header="ราคารวม" FieldName="NetAmount" ReadOnly="True">
                                         <dxg:GridColumn.EditSettings>
                                             <dxe:TextEditSettings DisplayFormat="#,#.00"/>
                                         </dxg:GridColumn.EditSettings>
                                     </dxg:GridColumn>
-                                    <!--<dxg:GridColumn Header="ค่าแพทย์" FieldName="DoctorFee"  ReadOnly="True"/>-->
+                                    <dxg:GridColumn Header="StartDate" FieldName="StartDttm"  ReadOnly="True">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
+                                    <dxg:GridColumn Header="EndDate" FieldName="EndDttm"  ReadOnly="True">
+                                        <dxg:GridColumn.EditSettings>
+                                            <dxe:TextEditSettings MaskUseAsDisplayFormat="True" DisplayFormat="dd/MM/yyyy"/>
+                                        </dxg:GridColumn.EditSettings>
+                                    </dxg:GridColumn>
                                     <dxg:GridColumn Header="แพทย์" FieldName="CareproviderName"  ReadOnly="True"/>
+                                    <dxg:GridColumn Header="หมายเหตุ" FieldName="Comments" ReadOnly="True"/>
                                 </dxg:GridControl.Columns>
                                 <dxg:GridControl.View>
                                     <dxg:TableView x:Name="gvOrderDetail"  ShowGroupPanel="False" AllowBestFit="True" 
@@ -164,6 +198,7 @@
                                      Height="25" Content="Clear Order"/>
                         </dxlc:LayoutGroup>
                     </dxlc:LayoutGroup>
+                    </dxlc:LayoutControl>
                 </dx:DXTabItem>
                 <dx:DXTabItem Header="รายการคีย์ Order" >
                     <i:Interaction.Triggers>

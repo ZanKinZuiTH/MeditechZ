@@ -23,6 +23,7 @@ namespace MediTech.DataBase
         public string Comments { get; set; }
         public Nullable<int> ORDSTUID { get; set; }
         public Nullable<int> BSMDDUID { get; set; }
+        public Nullable<int> PRSTYPUID { get; set; }
         public Nullable<System.DateTime> DispensedDttm { get; set; }
         public Nullable<int> OrderLocationUID { get; set; }
         public Nullable<int> OrderToLocationUID { get; set; }

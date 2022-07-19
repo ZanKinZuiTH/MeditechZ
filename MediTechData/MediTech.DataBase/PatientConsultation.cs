@@ -12,24 +12,14 @@ namespace MediTech.DataBase
     using System;
     using System.Collections.Generic;
     
-    public partial class PatientOrder
+    public partial class PatientConsultation
     {
         public long UID { get; set; }
-        public string OrderNumber { get; set; }
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
-        public Nullable<System.DateTime> StartDttm { get; set; }
-        public Nullable<System.DateTime> EndDttm { get; set; }
-        public Nullable<int> PRSTYPUID { get; set; }
+        public int CareproviderUID { get; set; }
+        public System.DateTime RecordedDttm { get; set; }
         public string Comments { get; set; }
-        public Nullable<long> IdentifyingUID { get; set; }
-        public string IdentifyingType { get; set; }
-        public int OrderRaisedBy { get; set; }
-        public Nullable<int> RoomBillPackageUID { get; set; }
-        public Nullable<int> OrderLocationUID { get; set; }
-        public Nullable<int> OrderToLocationUID { get; set; }
-        public Nullable<long> ParentUID { get; set; }
-        public string IsContinuous { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
@@ -37,5 +27,10 @@ namespace MediTech.DataBase
         public string StatusFlag { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
+        public string CareProviderName { get; set; }
+        public Nullable<int> VISTYUID { get; set; }
+        public Nullable<System.DateTime> StartDttm { get; set; }
+        public Nullable<System.DateTime> EndDttm { get; set; }
+        public Nullable<int> CONSTSUID { get; set; }
     }
 }

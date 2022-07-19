@@ -25,6 +25,8 @@ namespace MediTech.Model
         public string Comments { get; set; }
         public int? ORDSTUID { get; set; }
         public Nullable<int> BSMDDUID { get; set; }
+        public Nullable<int> PRSTYPUID { get; set; }
+        public string PrescriptionType { get; set; }
         public Nullable<System.DateTime> DispensedDttm { get; set; }
         public long PatientOrderUID { get; set; }
         public int CUser { get; set; }

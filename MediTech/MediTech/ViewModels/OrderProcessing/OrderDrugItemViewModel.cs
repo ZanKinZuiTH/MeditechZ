@@ -86,6 +86,33 @@ namespace MediTech.ViewModels
             set { Set(ref _StartTime, value); }
         }
 
+
+        private DateTime? _EndDate;
+
+        public DateTime? EndDate
+        {
+            get { return _EndDate; }
+            set
+            {
+                Set(ref _EndDate, value);
+                if (_EndDate != null)
+                {
+                    var DurationTemp = (EndDate - StartDate).Value.Days;
+                    if (Duration != DurationTemp)
+                    {
+                        Duration = DurationTemp;
+                    }
+                }
+            }
+        }
+
+        private DateTime? _EndTime;
+        public DateTime? EndTime
+        {
+            get { return _EndTime; }
+            set { Set(ref _EndTime, value); }
+        }
+
         private List<StockModel> _Stores;
 
         public List<StockModel> Stores
@@ -148,6 +175,22 @@ namespace MediTech.ViewModels
             }
         }
 
+        private List<LookupReferenceValueModel> _PrescriptionTypes;
+
+        public List<LookupReferenceValueModel> PrescriptionTypes
+        {
+            get { return _PrescriptionTypes; }
+            set { Set(ref _PrescriptionTypes, value); }
+        }
+
+        private LookupReferenceValueModel _SelectPrescriptionType;
+
+        public LookupReferenceValueModel SelectPrescriptionType
+        {
+            get { return _SelectPrescriptionType; }
+            set { Set(ref _SelectPrescriptionType, value); }
+        }
+
         private List<LookupReferenceValueModel> _DrugLabel;
 
         public List<LookupReferenceValueModel> DrugLabel
@@ -180,6 +223,24 @@ namespace MediTech.ViewModels
             get { return _SelectDrugFORM; }
             set { Set(ref _SelectDrugFORM, value); }
         }
+
+        private List<LookupReferenceValueModel> _DrugRoute;
+
+        public List<LookupReferenceValueModel> DrugRoute
+        {
+            get { return _DrugRoute; }
+            set { Set(ref _DrugRoute, value); }
+        }
+
+
+        private LookupReferenceValueModel _SelectDrugRoute;
+
+        public LookupReferenceValueModel SelectDrugRoute
+        {
+            get { return _SelectDrugRoute; }
+            set { Set(ref _SelectDrugRoute, value); }
+        }
+
 
 
         private List<FrequencyDefinitionModel> _DrugFrequency;
@@ -218,12 +279,12 @@ namespace MediTech.ViewModels
             set { Set(ref _DrugFrequencyText, value); }
         }
 
-        private string _PrescriptionUnit;
+        private string _DosageUnit;
 
-        public string PrescriptionUnit
+        public string DosageUnit
         {
-            get { return _PrescriptionUnit; }
-            set { Set(ref _PrescriptionUnit, value); }
+            get { return _DosageUnit; }
+            set { Set(ref _DosageUnit, value); }
         }
 
         private int? _Duration;
@@ -234,7 +295,19 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _Duration, value);
-                CalculateQuantity();
+                if (_Duration != null)
+                {
+                    CalculateQuantity();
+                    if (SelectPrescriptionType != null && SelectPrescriptionType.ValueCode != "STORD")
+                    {
+                        DateTime? EndDateTemp = StartDate.AddDays(Duration.Value);
+                        if (EndDate?.Date != EndDateTemp?.Date)
+                        {
+                            EndDate = EndDateTemp;
+                            EndTime = EndDate?.Add(StartTime.TimeOfDay);
+                        }
+                    }
+                }
             }
         }
 
@@ -403,9 +476,11 @@ namespace MediTech.ViewModels
         private void BindingData()
         {
 
-            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM");
+            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP");
+            PrescriptionTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
             DrugFORM = refVale.Where(p => p.DomainCode == "FORMM").ToList();
             DrugLabel = refVale.Where(p => p.DomainCode == "PDSTS").ToList();
+            DrugRoute = refVale.Where(p => p.DomainCode == "ROUTE").ToList();
             DrugFrequency = DataService.Pharmacy.GetDrugFrequency();
             Units = DataService.Inventory.GetItemConvertUOM(ItemMaster.ItemMasterUID);
         }
@@ -420,15 +495,19 @@ namespace MediTech.ViewModels
             OrderName = BillableItem.ItemName;
             OrderCode = "Code : " + BillableItem.Code;
             UnitPrice = BillableItem.Price.ToString("#,#.00");
-            Duration = 1;
+
             SelectStore = Stores != null ? Stores.FirstOrDefault() : null;
             SelectDrugFORM = DrugFORM.FirstOrDefault(p => p.Key == ItemMaster.FORMMUID);
             SelectDrugLabel = DrugLabel.FirstOrDefault(p => p.Key == ItemMaster.PDSTSUID);
             SelectUnit = Units.FirstOrDefault(p => p.ConversionUOMUID == ItemMaster.BaseUOM);
             SelectDrugFrequency = DrugFrequency.FirstOrDefault(p => p.FrequencyUID == ItemMaster.FRQNCUID);
+
+            SelectPrescriptionType = PrescriptionTypes.FirstOrDefault(p => p.ValueCode == "ROMED");
+
             DosageQuantity = ItemMaster.DoseQuantity ?? 1;
             Quantity = ItemMaster.MinSalesQty ?? 1;
-            PrescriptionUnit = ItemMaster.PrescriptionUnit;
+            Duration = 1;
+            DosageUnit = ItemMaster.PrescriptionUnit;
 
             if (!string.IsNullOrEmpty(ItemMaster.DispenseEnglish) && !string.IsNullOrEmpty(ItemMaster.DispenseLocal))
             {
@@ -445,8 +524,9 @@ namespace MediTech.ViewModels
 
             OrderInstruction = ItemMaster.OrderInstruction;
             Comment = ItemMaster.Comments;
-            StartDate = now.Date;
-            StartTime = now;
+
+            EndDate = StartDate.AddDays(1).Date;
+            EndTime = EndDate?.Add(StartTime.TimeOfDay);
         }
 
         public void BindingFromPatientOrderDetail()
@@ -461,6 +541,10 @@ namespace MediTech.ViewModels
             UnitPrice = PatientOrderDetail.OriginalUnitPrice.Value.ToString("#,#.00");
             StartDate = PatientOrderDetail.StartDttm.Value.Date;
             StartTime = PatientOrderDetail.StartDttm.Value;
+
+            EndDate = PatientOrderDetail.EndDttm?.Date;
+            EndTime = PatientOrderDetail.EndDttm;
+
             OverwritePrice = PatientOrderDetail.OverwritePrice;
 
             SuppressDurationEvent = true;
@@ -470,6 +554,9 @@ namespace MediTech.ViewModels
             SelectDrugLabel = DrugLabel.FirstOrDefault(p => p.Key == PatientOrderDetail.PDSTSUID);
             SelectUnit = Units.FirstOrDefault(p => p.ConversionUOMUID == PatientOrderDetail.QNUOMUID);
 
+            SelectPrescriptionType = PrescriptionTypes.FirstOrDefault(p => p.Key == PatientOrderDetail.PRSTYPUID);
+
+
             SuppressQuantityEvent = true;
             SelectDrugFrequency = DrugFrequency.FirstOrDefault(p => p.FrequencyUID == PatientOrderDetail.FRQNCUID);
             SuppressQuantityEvent = true;
@@ -477,7 +564,7 @@ namespace MediTech.ViewModels
             SuppressQuantityEvent = true;
             Quantity = PatientOrderDetail.Quantity ?? 1;
 
-            PrescriptionUnit = ItemMaster.PrescriptionUnit;
+            DosageUnit = ItemMaster.PrescriptionUnit;
 
             if (!string.IsNullOrEmpty(ItemMaster.DispenseEnglish) && !string.IsNullOrEmpty(ItemMaster.DispenseLocal))
             {
@@ -562,7 +649,11 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.Comments = Comment;
                 PatientOrderDetail.StartDttm = StartDate.Add(StartTime.TimeOfDay);
 
+
+                PatientOrderDetail.EndDttm = EndDate != null ? EndDate?.Add(EndTime.Value.TimeOfDay) : null;
+
                 PatientOrderDetail.Dosage = DosageQuantity;
+                PatientOrderDetail.DosageUnit = DosageUnit;
                 PatientOrderDetail.Quantity = Quantity;
                 if (SelectUnit != null)
                 {
@@ -596,7 +687,8 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.DrugDuration = Duration ?? 1;
                 PatientOrderDetail.DFORMUID = SelectDrugFORM != null ? SelectDrugFORM.Key : (int?)null;
                 PatientOrderDetail.StoreUID = SelectStore.StoreUID;
-
+                PatientOrderDetail.PRSTYPUID = SelectPrescriptionType.Key;
+                PatientOrderDetail.OrderType = SelectPrescriptionType.Display;
                 if (OverwritePrice != null)
                 {
                     PatientOrderDetail.UnitPrice = OverwritePrice;

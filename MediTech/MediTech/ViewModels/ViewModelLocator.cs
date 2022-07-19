@@ -137,6 +137,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public AllocateBillPopupViewModel AllocateBillPopupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<AllocateBillPopupViewModel>())
+                    SimpleIoc.Default.Register<AllocateBillPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<AllocateBillPopupViewModel>();
+            }
+        }
+
         #endregion
 
         #region BillingConfiguration

@@ -27,6 +27,8 @@ namespace MediTech.DataBase
             throw new UnintentionalCodeFirstException();
         }
     
+        public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
+        public virtual DbSet<ADTEventStatus> ADTEventStatus { get; set; }
         public virtual DbSet<AEDischargeEvent> AEDischargeEvent { get; set; }
         public virtual DbSet<AgreementAccountDiscount> AgreementAccountDiscount { get; set; }
         public virtual DbSet<AgreementDetailDiscount> AgreementDetailDiscount { get; set; }
@@ -115,6 +117,7 @@ namespace MediTech.DataBase
         public virtual DbSet<PatientBillableItem> PatientBillableItem { get; set; }
         public virtual DbSet<PatientBilledItem> PatientBilledItem { get; set; }
         public virtual DbSet<PatientBillEditHistory> PatientBillEditHistory { get; set; }
+        public virtual DbSet<PatientConsultation> PatientConsultation { get; set; }
         public virtual DbSet<PatientDeceasedDetail> PatientDeceasedDetail { get; set; }
         public virtual DbSet<PatientDemographicLog> PatientDemographicLog { get; set; }
         public virtual DbSet<PatientEKG> PatientEKG { get; set; }
@@ -237,7 +240,6 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
         public virtual DbSet<vAllBillableItemRates> vAllBillableItemRates { get; set; }
         public virtual DbSet<vAllPayorAgreementsDiscount> vAllPayorAgreementsDiscount { get; set; }
-        public virtual DbSet<AdmissionEvent> AdmissionEvent { get; set; }
     
         [DbFunction("Entities", "fGetBigIntList")]
         public virtual IQueryable<fGetBigIntList_Result> fGetBigIntList(string p_KeyWordList)

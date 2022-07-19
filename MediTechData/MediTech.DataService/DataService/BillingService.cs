@@ -140,13 +140,13 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<AllocatedPatientBillableItemsPalmModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
            , long? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
    )
         {
             string requestApi = string.Format("Api/Billing/GetAllocatedPatBillableItemsPalm?patientUID={0}&patientVisitUID={1}&accountUID={2}&subAccountUID={3}&ownerOrganisationUID={4}&patientVisitPayorUID={5}&careProviderUID={6}" +
                 "&startDate={7:MM/dd/yyyy}&endDate={8:MM/dd/yyyy}", patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, startDate, endDate);
-            List<AllocatedPatientBillableItemsPalmModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatientBillableItemsPalmModel>>(requestApi);
+            List<AllocatedPatBillableItemsResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsResultModel>>(requestApi);
 
             return listPatBill;
         }

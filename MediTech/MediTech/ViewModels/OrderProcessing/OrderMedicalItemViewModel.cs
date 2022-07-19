@@ -129,6 +129,15 @@ namespace MediTech.ViewModels
         }
 
 
+        private List<LookupReferenceValueModel> _OrderTypes;
+
+        public List<LookupReferenceValueModel> OrderTypes
+        {
+            get { return _OrderTypes; }
+            set { Set(ref _OrderTypes, value); }
+        }
+
+
         private double _Quantity;
 
         public double Quantity
@@ -216,6 +225,9 @@ namespace MediTech.ViewModels
         private void BindingData()
         {
             Units = DataService.Inventory.GetItemConvertUOM(ItemMaster.ItemMasterUID);
+
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP");
+            OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
         }
 
         public void BindingFromBillableItem()
@@ -248,8 +260,6 @@ namespace MediTech.ViewModels
             
             OrderInstruction = ItemMaster.OrderInstruction;
             Comment = ItemMaster.Comments;
-            StartDate = now.Date;
-            StartTime = now;
         }
         public void BindingFromPatientOrderDetail()
         {
@@ -353,7 +363,7 @@ namespace MediTech.ViewModels
 
                 PatientOrderDetail.Comments = Comment;
                 PatientOrderDetail.StartDttm = StartDate.Add(StartTime.TimeOfDay);
-
+                PatientOrderDetail.EndDttm = StartDate.AddDays(1);
 
                 PatientOrderDetail.Quantity = Quantity;
                 if (SelectUnit != null)
@@ -364,7 +374,8 @@ namespace MediTech.ViewModels
 
 
 
-
+                PatientOrderDetail.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
+                PatientOrderDetail.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
                 PatientOrderDetail.LocalInstructionText = LabelSticker;
                 PatientOrderDetail.ClinicalComments = NoteToPharmacy;
                 PatientOrderDetail.IsStock = ItemMaster.IsStock;

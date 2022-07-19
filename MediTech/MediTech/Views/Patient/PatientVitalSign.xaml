@@ -225,7 +225,7 @@
                                  Width="100" 
                                  VerticalAlignment="Top" Mask="\d{0,9}(\R.\d{0,2})?" AllowNullInput="True"  MaskType="RegEx" />
                                 <TextBlock Text="Cms" FontSize="14" />
-                                <TextBlock />
+            
                              
                                 <TextBlock Text="วันที่บันทึก" Height="25" />
                                 <dxe:DateEdit Height="25" EditValue="{Binding StampDateRe}" />
@@ -238,7 +238,7 @@
                                        Width="100" 
                                        VerticalAlignment="Top"/>
                                 <TextBlock Text="kg" FontSize="14" />
-                                <TextBlock />
+
                                 <TextBlock Text="เวลาที่บันทึก"  Height="25" />
                                 <dxe:DateEdit x:Name="timeEditorRe" Height="25" 
                                       EditValue="{Binding StampTimeRe}"

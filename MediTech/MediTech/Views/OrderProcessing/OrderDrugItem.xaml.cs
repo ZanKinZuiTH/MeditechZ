@@ -23,13 +23,16 @@ namespace MediTech.Views
     /// </summary>
     public partial class OrderDrugItem : UserControl
     {
-        public OrderDrugItem(BillableItemModel billablItem,int ownerOrganisationUID)
+        public OrderDrugItem(BillableItemModel billablItem,int ownerOrganisationUID,DateTime? startDttm = null)
         {
             InitializeComponent();
             if (this.DataContext is OrderDrugItemViewModel)
             {
+                DateTime now = DateTime.Now;
                 (this.DataContext as OrderDrugItemViewModel).OwnerOrgansitaionUID = ownerOrganisationUID;
                 (this.DataContext as OrderDrugItemViewModel).BillableItem = billablItem;
+                (this.DataContext as OrderDrugItemViewModel).StartDate = startDttm != null ? startDttm.Value.Date : now.Date;
+                (this.DataContext as OrderDrugItemViewModel).StartTime = startDttm != null ? startDttm.Value : now;
                 (this.DataContext as OrderDrugItemViewModel).BindingFromBillableItem();
             }
         }
