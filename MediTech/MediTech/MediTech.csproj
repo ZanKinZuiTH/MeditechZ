@@ -185,6 +185,7 @@
     <Compile Include="Converter\ImageModuleConverter.cs" />
     <Compile Include="Converter\ImageMenuConverter.cs" />
     <Compile Include="Converter\IsNullOrEmptyConverter.cs" />
+    <Compile Include="Converter\NumericN2Formatter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
     <Compile Include="CustomControl\AutoComplete\AutoCompleteTextBox.cs" />
     <Compile Include="CustomControl\AutoComplete\ProblemSearchPopUp.cs" />
@@ -204,6 +205,7 @@
     <Compile Include="CustomControl\Banner\PatientRequestBanner.xaml.cs">
       <DependentUpon>PatientRequestBanner.xaml</DependentUpon>
     </Compile>
+    <Compile Include="CustomControl\ImageButton.cs" />
     <Compile Include="Helpers\AutoClosingMessageBox.cs" />
     <Compile Include="Helpers\BindableSelectedItemBehavior.cs" />
     <Compile Include="Helpers\BurnData\Interop\BurnData.cs" />
@@ -4019,6 +4021,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Action\plus.png" />
     <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
     <Resource Include="Resources\Images\Time\FutureAppointment.png" />
     <Resource Include="Resources\Images\Time\PatientTracking.png" />

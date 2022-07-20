@@ -1,9 +1,0 @@
-diff a/MediTech/MediTech/Reports/Statistic/Cashier/StockToEcount.Designer.cs b/MediTech/MediTech/Reports/Statistic/Cashier/StockToEcount.Designer.cs	(rejected hunks)
-@@ -38,7 +38,6 @@
-             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-             this.fieldDateOrder = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-             this.pivotGridField4 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
--            this.fieldHealthOrganisationName = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-             this.fieldNoBusiness = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-             this.xrPivotGridField22 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
-             this.xrPivotGridField21 = new DevExpress.XtraReports.UI.PivotGrid.XRPivotGridField();
