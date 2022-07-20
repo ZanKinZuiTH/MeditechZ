@@ -205,7 +205,13 @@
                             <dxe:TextEditSettings />
                         </dxg:GridColumn.EditSettings>
                     </dxg:GridColumn>
-                    <dxg:GridColumn Name="colItemName" Header="รายการสินค้า" FieldName="StockUID" Width="220">
+
+                    <dxg:GridColumn Header="รายการสินค้า" FieldName="ItemName">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings />
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <!--<dxg:GridColumn Name="colItemName" Header="รายการสินค้า" FieldName="StockUID" Width="220">
                         <dxg:GridColumn.CellTemplate>
                             <DataTemplate>
                                 <dxg:LookUpEdit Name="PART_Editor" 
@@ -227,7 +233,7 @@
                                 </dxg:LookUpEdit>
                             </DataTemplate>
                         </dxg:GridColumn.CellTemplate>
-                    </dxg:GridColumn>
+                    </dxg:GridColumn>-->
                     <dxg:GridColumn Header="รหัสของ" FieldName="ItemCode" ReadOnly="True"/>
                     <dxg:GridColumn Header="=ชื่อนำเข้าจากไฟล์" FieldName="ItemName" ReadOnly="True"/>
                     <dxg:GridColumn Header="จำนวนที่ย้าย" FieldName="Quantity">

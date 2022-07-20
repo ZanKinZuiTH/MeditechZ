@@ -1247,6 +1247,7 @@ namespace MediTech.ViewModels
                     foreach (var patientInfo in SelectPatientXrays.ToList())
                     {
                         string modlity = patientInfo.Modality;
+                        string bodyPartExam = "";
                         if (modlity == "DX")
                         {
                             modlity = "'DX','CR'";
@@ -1260,7 +1261,12 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
-                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity, IsSINE);
+                        if (patientInfo.RequestItemName.ToUpper().Contains("CHEST"))
+                        {
+                            bodyPartExam = "CHEST";
+                        }
+
+                        List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm, modlity, IsSINE, bodyPartExam);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
                             foreach (var file in dicomFiles.ToList())
@@ -1346,6 +1352,7 @@ namespace MediTech.ViewModels
                     foreach (var patientInfo in SelectPatientXrays.ToList())
                     {
                         string modlity = patientInfo.Modality;
+                        string bodyPartExam = "";
                         if (modlity == "DX")
                         {
                             modlity = "'DX','CR'";
@@ -1359,8 +1366,13 @@ namespace MediTech.ViewModels
                             modlity = "'" + patientInfo.Modality + "'";
                         }
 
+                        if (patientInfo.RequestItemName.ToUpper().Contains("CHEST"))
+                        {
+                            bodyPartExam = "CHEST";
+                        }
+
                         List<byte[]> dicomFiles = DataService.PACS.GetDicomFileByPatientID(patientInfo.HN, patientInfo.RequestedDttm
-                            , modlity, IsSINE);
+                            , modlity, IsSINE, bodyPartExam);
                         if (dicomFiles != null && dicomFiles.Count() > 0)
                         {
                             foreach (var file in dicomFiles.ToList())

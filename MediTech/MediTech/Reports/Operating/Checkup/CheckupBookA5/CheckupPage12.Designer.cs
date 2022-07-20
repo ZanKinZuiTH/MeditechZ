@@ -41,18 +41,19 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // 
             // TopMargin
             // 
-            this.TopMargin.HeightF = 20F;
+            this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrRichText2});
+            this.TopMargin.HeightF = 40F;
             this.TopMargin.Name = "TopMargin";
             // 
             // BottomMargin
             // 
-            this.BottomMargin.HeightF = 20F;
+            this.BottomMargin.HeightF = 40F;
             this.BottomMargin.Name = "BottomMargin";
             // 
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
-            this.xrRichText2,
             this.lbResultWellness2,
             this.TitleResultWellness2});
             this.Detail.HeightF = 749.8866F;
@@ -61,10 +62,10 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             // xrRichText2
             // 
             this.xrRichText2.Font = new System.Drawing.Font("Times New Roman", 9.75F);
-            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.xrRichText2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 20F);
             this.xrRichText2.Name = "xrRichText2";
             this.xrRichText2.SerializableRtfString = resources.GetString("xrRichText2.SerializableRtfString");
-            this.xrRichText2.SizeF = new System.Drawing.SizeF(17.5F, 23F);
+            this.xrRichText2.SizeF = new System.Drawing.SizeF(13F, 20F);
             // 
             // lbResultWellness2
             // 
@@ -75,11 +76,11 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             | DevExpress.XtraPrinting.BorderSide.Bottom)));
             this.lbResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 12F);
             this.lbResultWellness2.ForeColor = System.Drawing.Color.Black;
-            this.lbResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(31F, 43.33333F);
+            this.lbResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(0F, 26.33329F);
             this.lbResultWellness2.Multiline = true;
             this.lbResultWellness2.Name = "lbResultWellness2";
             this.lbResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 2, 2, 100F);
-            this.lbResultWellness2.SizeF = new System.Drawing.SizeF(514.6668F, 690.5533F);
+            this.lbResultWellness2.SizeF = new System.Drawing.SizeF(498F, 690.5533F);
             this.lbResultWellness2.StylePriority.UseBorderColor = false;
             this.lbResultWellness2.StylePriority.UseFont = false;
             this.lbResultWellness2.StylePriority.UseForeColor = false;
@@ -90,7 +91,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.TitleResultWellness2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.TitleResultWellness2.Borders = DevExpress.XtraPrinting.BorderSide.None;
             this.TitleResultWellness2.Font = new System.Drawing.Font("EucrosiaUPC", 13F, System.Drawing.FontStyle.Bold);
-            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(128.3334F, 17.00004F);
+            this.TitleResultWellness2.LocationFloat = new DevExpress.Utils.PointFloat(107.3334F, 0F);
             this.TitleResultWellness2.Name = "TitleResultWellness2";
             this.TitleResultWellness2.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.TitleResultWellness2.SizeF = new System.Drawing.SizeF(299.1667F, 25F);
@@ -108,7 +109,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
             this.BottomMargin,
             this.Detail});
             this.Font = new System.Drawing.Font("Arial", 9.75F);
-            this.Margins = new System.Drawing.Printing.Margins(5, 5, 20, 20);
+            this.Margins = new System.Drawing.Printing.Margins(40, 45, 40, 40);
             this.PageHeight = 827;
             this.PageWidth = 583;
             this.PaperKind = System.Drawing.Printing.PaperKind.A5;

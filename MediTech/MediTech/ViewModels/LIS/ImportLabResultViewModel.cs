@@ -575,7 +575,7 @@ namespace MediTech.ViewModels
                                     if (columnName == "Platelets Count ( cells/mcl )")
                                     {
                                         double pla_cells_ul = double.Parse(item[columnName].ToString());
-                                        if (pla_cells_ul < 100000)
+                                        if ( pla_cells_ul < 10000)
                                         {
                                             pla_cells_ul = pla_cells_ul * 1000;
                                         }

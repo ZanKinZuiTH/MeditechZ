@@ -202,9 +202,9 @@ namespace MediTech.Model.Report
         public string PAR1270 { get; set; } //Manganease
         public string PAR131 { get; set; } //ตรวจหาปริมาณนิเกิลในเลือด (Nikel in blood)
 
-
-
-
+        public string PAR1253 { get; set; }
+        public string PAR1254 { get; set; }
+        public string PAR1255 { get; set; }
 
 
         public string PAR1256 { get; set; }

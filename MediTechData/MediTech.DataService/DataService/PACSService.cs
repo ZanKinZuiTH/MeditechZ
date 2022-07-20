@@ -58,11 +58,11 @@ namespace MediTech.DataService
 
         }
 
-        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality,bool IsSINE)
+        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality,bool IsSINE, string bodyPartExam = "")
         {
             try
             {
-                string requestApi = string.Format("Api/PACS/GetDicomFileByPatientID?patientID={0}&studyDate={1:MM/dd/yyyy}&modality={2}&IsSINE={3}", patientID, studyDate, modality, IsSINE);
+                string requestApi = string.Format("Api/PACS/GetDicomFileByPatientID?patientID={0}&studyDate={1:MM/dd/yyyy}&modality={2}&IsSINE={3}&bodyPartExam={4}", patientID, studyDate, modality, IsSINE, bodyPartExam);
                 List<byte[]> dataRequest = PACSApiHelper.Get<List<byte[]>>(requestApi);
 
                 return dataRequest;
