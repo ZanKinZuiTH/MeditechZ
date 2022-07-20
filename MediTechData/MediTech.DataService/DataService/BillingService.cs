@@ -152,13 +152,31 @@ namespace MediTech.DataService
         }
 
 
-        public bool AllocatePatientBillableItem(AllocatePatientBillableItem allocateModel)
+        public bool AllocatePatientBillableItem(AllocatePatientBillableItemModel allocateModel)
         {
             bool flag = false;
             try
             {
                 string requestApi = string.Format("Api/Billing/AllocatePatientBillableItem");
-                MeditechApiHelper.Post<AllocatePatientBillableItem>(requestApi, allocateModel);
+                MeditechApiHelper.Post<AllocatePatientBillableItemModel>(requestApi, allocateModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+
+        }
+
+        public bool ManageSplitItem(AllocateSplitItemModel splitItemModel)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/ManageSplitItem");
+                MeditechApiHelper.Post<AllocateSplitItemModel>(requestApi, splitItemModel);
                 flag = true;
             }
             catch (Exception)

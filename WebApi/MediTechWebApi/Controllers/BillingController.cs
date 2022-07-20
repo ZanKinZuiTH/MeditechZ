@@ -837,27 +837,27 @@ namespace MediTechWebApi.Controllers
 
         [Route("GetAllocatedPatBillableItemsPalm")]
         [HttpGet]
-        public List<AllocatedPatientBillableItemsPalmModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
             , int? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
     )
         {
-            List<AllocatedPatientBillableItemsPalmModel> data = new List<AllocatedPatientBillableItemsPalmModel>();
+            List<AllocatedPatBillableItemsResultModel> data = new List<AllocatedPatBillableItemsResultModel>();
             DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, startDate, endDate);
             if (dt != null && dt.Rows.Count > 0)
             {
-                data = new List<AllocatedPatientBillableItemsPalmModel>();
+                data = new List<AllocatedPatBillableItemsResultModel>();
                 //data = dt.ToList<AllocatedPatientBillableItemsPalmModel>();
                 foreach (DataRow row in dt.Rows)
                 {
-                    AllocatedPatientBillableItemsPalmModel inData = new AllocatedPatientBillableItemsPalmModel();
+                    AllocatedPatBillableItemsResultModel inData = new AllocatedPatBillableItemsResultModel();
                     inData.PatientBillableItemUID = long.Parse(row["PatientBillableItemUID"].ToString());
                     inData.SubAccountName = row["SubAccountName"].ToString();
                     inData.SubAccountUID = int.Parse(row["SubAccountUID"].ToString());
                     inData.ItemName = row["ItemName"].ToString();
                     inData.Quantity = Convert.ToDouble(row["Quantity"]);
                     inData.Amount = Convert.ToDouble(row["Amount"]);
-                    inData.Discount = Convert.ToDouble(row["Discount"]);
-                    inData.NetAmount = Convert.ToDouble(row["NetAmount"]);
+                    inData.Discount = !string.IsNullOrEmpty(row["Discount"].ToString()) ? Convert.ToDouble(row["Discount"]) : (double?)null;
+                    inData.NetAmount = !string.IsNullOrEmpty(row["NetAmount"].ToString()) ? Convert.ToDouble(row["NetAmount"]) : (double?)null;
                     inData.PayorUID = !string.IsNullOrEmpty(row["PayorUID"].ToString()) ? Convert.ToInt32(row["PayorUID"]) : (int?)null;
                     inData.PayorName = row["PayorName"]?.ToString();
                     inData.BillableItemUID = Convert.ToInt64(row["BillableItemUID"]);
@@ -873,7 +873,7 @@ namespace MediTechWebApi.Controllers
                     inData.PackageName = row["PackageName"].ToString();
                     inData.GroupName = row["GroupName"].ToString();
                     inData.SubGroupName = row["SubGroupName"].ToString();
-                    inData.TotalAmount = Convert.ToDouble(row["TotalAmount"]);
+                    inData.TotalAmount = !string.IsNullOrEmpty(row["TotalAmount"].ToString()) ? Convert.ToDouble(row["TotalAmount"]) : (double?)null;
                     inData.SubGroupTotal = !string.IsNullOrEmpty(row["SubGroupTotal"].ToString()) ? Convert.ToDouble(row["SubGroupTotal"]) : (double?)null;
                     inData.SubGroupDiscount = !string.IsNullOrEmpty(row["SubGroupDiscount"].ToString()) ? Convert.ToDouble(row["SubGroupDiscount"]) : (double?)null;
                     inData.GroupTotal = !string.IsNullOrEmpty(row["GroupTotal"].ToString()) ? Convert.ToDouble(row["GroupTotal"]) : (double?)null;
@@ -891,12 +891,28 @@ namespace MediTechWebApi.Controllers
 
         [Route("AllocatePatientBillableItem")]
         [HttpPost]
-        public HttpResponseMessage AllocatePatientBillableItem(AllocatePatientBillableItem allocateModel)
+        public HttpResponseMessage AllocatePatientBillableItem(AllocatePatientBillableItemModel allocateModel)
         {
             try
             {
                 SqlDirectStore.pAllocatePatientBillableItem(allocateModel.patientUID, allocateModel.patientVisitUID, allocateModel.ownerOrganisationUID, allocateModel.isAutoAllocate, allocateModel.groupUID, allocateModel.subGroupUID, allocateModel.patientVisitPayorUID
                     , allocateModel.payorAgreementUID, allocateModel.userUID, allocateModel.allocatedVisitPayorUID, allocateModel.patientBillableItemUID, allocateModel.canKeepDiscount, allocateModel.startDate, allocateModel.endDate);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("ManageSplitItem")]
+        [HttpPost]
+        public HttpResponseMessage ManageSplitItem(AllocateSplitItemModel splitItemModel)
+        {
+            try
+            {
+                SqlDirectStore.pInsertSplitItem(splitItemModel.amount, splitItemModel.discount, splitItemModel.netAmount, splitItemModel.userUID, splitItemModel.isSplit, splitItemModel.groupUID,
+                    splitItemModel.subGroupUID, splitItemModel.currentVisitPayorUID, splitItemModel.canKeepDiscount, splitItemModel.discountDecimal, splitItemModel.amountDecimal, splitItemModel.fromDate, splitItemModel.toDate);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
             catch (Exception ex)

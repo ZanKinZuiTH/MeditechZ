@@ -2470,8 +2470,8 @@ namespace MediTech.DataBase
         }
 
 
-        public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID,int? accountUID,int? subAccountUID,int ownerOrganisationUID
-            ,int? patientVisitPayorUID,int? careProviderUID, DateTime startDate,DateTime endDate
+        public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+            , int? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
     )
         {
             MediTechEntities entities = new MediTechEntities();
@@ -2510,6 +2510,54 @@ namespace MediTech.DataBase
             }
 
         }
+
+        public static bool pInsertSplitItem(double amount, double discount, double netAmount, int userUID, string isSplit, int groupUID, int subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
+            , double amountDecimal, DateTime fromDate, DateTime toDate)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pInsertSplitItem";
+
+                cmd.Parameters.AddWithValue("@P_Amount", amount);
+                cmd.Parameters.AddWithValue("@P_Discount", discount);
+                cmd.Parameters.AddWithValue("@P_NetAmount", netAmount);
+                cmd.Parameters.AddWithValue("@P_User", userUID);
+                cmd.Parameters.AddWithValue("@P_IsSplit", isSplit);
+                cmd.Parameters.AddWithValue("@P_GroupUID", groupUID);
+                cmd.Parameters.AddWithValue("@P_SubGroupUID", subGroupUID);
+                cmd.Parameters.AddWithValue("@P_CurrentPatientVisitPayorUID", currentVisitPayorUID);
+                cmd.Parameters.AddWithValue("@P_CanKeepDiscount", canKeepDiscount);
+                cmd.Parameters.AddWithValue("@P_DiscountDecimal", discountDecimal);
+                cmd.Parameters.AddWithValue("@P_AmountDecimal", amountDecimal);
+                cmd.Parameters.AddWithValue("@P_FromDttm", fromDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", toDate);
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
+        }
+
+
 
         public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
             , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, int? allocatedVisitPayorUID, int? patientBillableItemUID, string canKeepDiscount, DateTime startDate,

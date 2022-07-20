@@ -1498,16 +1498,6 @@ namespace MediTechWebApi.Controllers
 
 
 
-
-
-
-
-
-
-
-
-
-
                     #region PatientServiceEvent
                     PatientServiceEvent serviceEvent = new PatientServiceEvent();
                     serviceEvent.PatientVisitUID = patientVisit.UID;

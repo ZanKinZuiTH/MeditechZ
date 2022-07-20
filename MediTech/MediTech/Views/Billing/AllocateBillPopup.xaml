@@ -15,7 +15,7 @@
         <dxlc:LayoutControl>
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutItem Label="SourcePayor">
-                    <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SelectedItem.PatientVisitPayorUID,UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SelectAllocateItem.PatientVisitPayorUID,UpdateSourceTrigger=PropertyChanged}" />
                 </dxlc:LayoutItem>
                 <TabControl Name="ControlTab">
                     <TabItem Header="Item">

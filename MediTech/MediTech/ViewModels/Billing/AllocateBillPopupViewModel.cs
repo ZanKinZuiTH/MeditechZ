@@ -75,6 +75,17 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectAllocateItem, value); }
         }
 
+
+        private List<PatientVisitPayorModel> _PatientVisitPayors;
+
+        public List<PatientVisitPayorModel> PatientVisitPayors
+        {
+            get { return _PatientVisitPayors; }
+            set { Set(ref _PatientVisitPayors, value); }
+        }
+
+
+
         private PatientVisitPayorModel _SelectedModifyPatientVisitPayor;
         public PatientVisitPayorModel SelectedModifyPatientVisitPayor
         {
@@ -607,6 +618,22 @@ namespace MediTech.ViewModels
             }
         }
 
+        private double _quantity;
+        public double Quantity
+        {
+            get
+            {
+                return _quantity;
+            }
+            set
+            {
+                if (_quantity != value)
+                {
+                    Set(ref _quantity, value);
+                }
+            }
+        }
+
         private long _splitPayorUID;
         public long SplitPayorUID
         {
@@ -651,13 +678,68 @@ namespace MediTech.ViewModels
             )
         {
 
+
+            this.PatientVisitPayors = PatientVisitPayors;
+
+            SelectAllocateItem = allocatedItem;
+            SelectedModifyPatientVisitPayor = new PatientVisitPayorModel();
+            PatientUID = patientUID;
+            PatientVisitUID = patintVisitUID;
+            //
+            if (SelectAllocateItem.Amount.HasValue)
+            {
+                CalculateNetAmount(BillableItems);
+
+                SubGroupCovered = SelectAllocateItem.SubGroupCovered ?? 0;
+                SubGroupTotal = SelectAllocateItem.SubGroupTotal ?? 0;
+                SubGroupDiscount = SelectAllocateItem.SubGroupDiscount ?? 0;
+                GroupCovered = SelectAllocateItem.GroupCovered ?? 0;
+                GroupTotal = SelectAllocateItem.GroupTotal ?? 0;
+                GroupDiscount = SelectAllocateItem.GroupDiscount ?? 0;
+                if (Discount > 0)
+                    _discountPercent = (Discount * (100 / (ItemAmount * Quantity)));
+
+                if (SelectAllocateItem.PackageName == null || SelectAllocateItem.PackageName.Length == 0)
+                    IsNotPackage = true;
+                FromDttm = fromDate;
+                ToDttm = toDate;
+            }
         }
 
         void Save()
         {
             try
             {
+                char process;
+                if (SelectAllocateItem.PatientVisitPayorUID == SelectedModifyPatientVisitPayor.PatientVisitPayorUID)
+                {
 
+                    ErrorDialog((AllocateBillPopup)this.View, "CannotAllocateTo");
+                    return;
+                }
+                //
+                if (IsItemSplit && SplitPayorUID == 0)
+                {
+                    ErrorDialog((AllocateBillPopup)this.View, "ChooseAPayor");
+                    return;
+                }
+
+                if (IsNotPackage)
+                    process = 'N';
+                else
+                    process = 'P';
+
+                if (((AllocateBillPopup)View).ControlTab.SelectedIndex == 0)
+                {
+                    if (IsItemSplit)
+                    {
+                        DataService.Billing.ManageSplitItem((SelectedItem.BillableItemUID ?? 0), _itemAmountSplit, ConvertedDiscount, ConvertedNetAmount, ApplicationContext.Current.UserUID, null, null, SelectedItem.PatientVisitPayorUID, PatientUID, PatientVisitUID, SplitPayorUID, CanKeepDiscount, _amountSplitPercentDecimal, _amountSplitPercentDecimal, process, FromDttm, ToDttm);
+                    }
+                    else
+                    {
+                        DataService.Billing.AllocatePatientBillableItem(PatientUID, PatientVisitUID, process, SelectedModifyPatientVisitPayor.PatientVisitPayorUID, SelectedItem.SubAccountUID, SelectedModifyPatientVisitPayor.PayorAgreementUID, SelectedItem.PatientVisitPayorUID, (SelectedItem.BillableItemUID ?? 0), SelectedItem.GroupUID, CanKeepDiscount, FromDttm, ToDttm);
+                    }
+                }
                 CloseViewDialog(ActionDialog.Save);
             }
             catch (Exception ex)
@@ -672,6 +754,20 @@ namespace MediTech.ViewModels
             CloseViewDialog(ActionDialog.Cancel);
         }
 
+        private void CalculateNetAmount(List<AllocatedPatBillableItemsResultModel> BillableItems)
+        {
+            if (BillableItems != null && BillableItems != null
+                && BillableItems.Count() > 0)
+            {
+                foreach (AllocatedPatBillableItemsResultModel oItem in BillableItems)
+                {
+                    //ItemAmount = ItemAmount SelectedItem.Amount ?? 0;
+                    DisplayAmount = DisplayAmount + oItem.TotalAmount ?? 0;
+                    Discount = Discount + oItem.Discount ?? 0;
+                    DisplayNetAmount = DisplayNetAmount + oItem.NetAmount ?? 0;
+                }
+            }
+        }
 
         private void Calculate(bool isNetAmount)
         {

@@ -13,9 +13,9 @@ namespace MediTech.Model
         public int SubAccountUID { get; set; }
         public string ItemName { get; set; }
         public double Quantity { get; set; }
-        public double Amount { get; set; }
-        public double Discount { get; set; }
-        public double NetAmount { get; set; }
+        public double? Amount { get; set; }
+        public double? Discount { get; set; }
+        public double? NetAmount { get; set; }
         public int? PayorUID { get; set; }
         public string PayorName { get; set; }
         public long BillableItemUID { get; set; }
@@ -32,7 +32,7 @@ namespace MediTech.Model
         public string PackageName { get; set; }
         public string SubGroupName { get; set; }
         public string GroupName { get; set; }
-        public double TotalAmount { get; set; }
+        public double? TotalAmount { get; set; }
         public double? SubGroupTotal { get; set; }
 
         public double? SubGroupDiscount { get; set; }

@@ -279,7 +279,7 @@ namespace MediTech.ViewModels
         private void CallAllocation(string cAllocationType, long? patientVisitPayorUID = null, int? payorAgreementUID = null, int? allocatedVisitPayorUID = null, int? patientBillableItemUID = null,
             int? groupUID = null, string canKeepDiscount = null)
         {
-            AllocatePatientBillableItem allocateModel = new AllocatePatientBillableItem();
+            AllocatePatientBillableItemModel allocateModel = new AllocatePatientBillableItemModel();
             allocateModel.patientUID = SelectPatientVisit.PatientUID;
             allocateModel.patientVisitUID = SelectPatientVisit.PatientVisitUID;
             allocateModel.ownerOrganisationUID = SelectPatientVisit.OwnerOrganisationUID.Value;

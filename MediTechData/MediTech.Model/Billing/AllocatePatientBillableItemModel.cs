@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class AllocatePatientBillableItem
+    public class AllocatePatientBillableItemModel
     {
 
         public long patientUID { get; set; }
