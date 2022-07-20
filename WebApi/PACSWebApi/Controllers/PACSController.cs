@@ -404,7 +404,7 @@ on ser.SeriesInstanceUID = ins.SeriesInstanceUID";
                 string whereConditionQuery = @"Where sty.PatientID = @PatientID
 and sty.ModalitiesInStudy IN(" + modality + ")" +
 @" and Convert(Date,sty.StudyDate) <= Convert(Date,@StudyDate)
-and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
+and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= @Days";
 
                 if (IsSINE == true)
                 {
@@ -419,8 +419,8 @@ and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
                 {
                     if (bodyPartExam.ToUpper() == "CHEST")
                     {
-                        whereConditionQuery += newLine + @"and ins.BodypartExamined Not in ('NECK','CLAVICLE'
-,'SKULL','CSPINE','STERNUM','FINGER','FEMUR','ELBOW','BREAST','SPINE','KNEE','JAW','ABDOMEN','SHOULDER','FOOT','PELVIS','ANKLE','WRIST','TSPINE','LSPINE','LEG','SSPINE','HIP','LARYNX','PATELLA','COCCYX','HUMERUS')";
+                        whereConditionQuery += newLine + @"and (ins.BodypartExamined is null OR ins.BodypartExamined Not in ('NECK','CLAVICLE'
+,'SKULL','CSPINE','STERNUM','FINGER','FEMUR','ELBOW','BREAST','SPINE','KNEE','JAW','ABDOMEN','SHOULDER','FOOT','PELVIS','ANKLE','WRIST','TSPINE','LSPINE','LEG','SSPINE','HIP','LARYNX','PATELLA','COCCYX','HUMERUS'))";
                     }
                     else
                     {
@@ -434,6 +434,7 @@ and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
 
                 cmd.Parameters.AddWithValue("@PatientID", patientID);
                 cmd.Parameters.AddWithValue("@StudyDate", studyDate);
+                cmd.Parameters.AddWithValue("@Days", 7);
                 dt.Load(cmd.ExecuteReader());
 
                 if (dt != null && dt.Rows.Count > 0)
@@ -456,6 +457,37 @@ and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
 
                     }
 
+                }
+                else
+                {
+                    cmd = new SqlCommand();
+                    cmd.Connection = conn;
+                    cmd.CommandText = SelectQuery + newLine + whereConditionQuery + newLine + orderByQuery;
+                    cmd.Parameters.AddWithValue("@PatientID", patientID);
+                    cmd.Parameters.AddWithValue("@StudyDate", studyDate);
+                    cmd.Parameters.AddWithValue("@Days", 15);
+                    dt.Load(cmd.ExecuteReader());
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        dicomFiles = new List<byte[]>();
+                        for (int i = 0; i < dt.Rows.Count; i++)
+                        {
+                            string studyInstanceUID = dt.Rows[i]["StudyInstanceUID"].ToString();
+                            string seriesInstanceUID = dt.Rows[i]["SeriesInstanceUID"].ToString();
+                            string instanceUID = dt.Rows[i]["SOPInstanceUID"].ToString();
+                            string fullName = dicomPath + studyInstanceUID + "\\" + seriesInstanceUID + "\\" + instanceUID + ".dcm";
+                            if (File.Exists(fullName))
+                            {
+                                var dicomFile = Dicom.DicomFile.Open(fullName);
+                                MemoryStream ms = new MemoryStream();
+                                dicomFile.Save(ms);
+                                dicomFiles.Add(ms.ToArray());
+
+                            }
+
+                        }
+
+                    }
                 }
 
 
