@@ -379,7 +379,7 @@ Order By InstanceNumber";
 
         [Route("GetDicomFileByPatientID")]
         [HttpGet]
-        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality, bool IsSINE)
+        public List<byte[]> GetDicomFileByPatientID(string patientID, DateTime studyDate, string modality, bool IsSINE, string bodyPartExam = "")
         {
             List<byte[]> dicomFiles = null;
             try
@@ -415,6 +415,19 @@ and DATEDIFF(DAY,Convert(Date,sty.StudyDate), Convert(Date,@StudyDate)) <= 7";
                     whereConditionQuery += newLine + "and (ins.NumberOfFrames is null OR ins.NumberOfFrames = 1)";
                 }
 
+                if (!String.IsNullOrEmpty(bodyPartExam))
+                {
+                    if (bodyPartExam.ToUpper() == "CHEST")
+                    {
+                        whereConditionQuery += newLine + @"and ins.BodypartExamined Not in ('NECK','CLAVICLE'
+,'SKULL','CSPINE','STERNUM','FINGER','FEMUR','ELBOW','BREAST','SPINE','KNEE','JAW','ABDOMEN','SHOULDER','FOOT','PELVIS','ANKLE','WRIST','TSPINE','LSPINE','LEG','SSPINE','HIP','LARYNX','PATELLA','COCCYX','HUMERUS')";
+                    }
+                    else
+                    {
+                        whereConditionQuery += newLine + "and ins.BodypartExamined = '" + bodyPartExam + @"'";
+                    }
+
+                }
                 string orderByQuery = "Order by Convert(Date, sty.StudyDate) DESC,TRY_CONVERT(TIME, sty.StudyTime) DESC";
 
                 cmd.CommandText = SelectQuery + newLine + whereConditionQuery + newLine + orderByQuery;
