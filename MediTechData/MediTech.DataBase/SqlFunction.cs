@@ -2545,8 +2545,8 @@ namespace MediTech.DataBase
 
         }
 
-        public static bool pInsertSplitItem(double amount, double discount, double netAmount, int userUID, string isSplit, int groupUID, int subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
-            , double amountDecimal, DateTime fromDate, DateTime toDate)
+        public static bool pInsertSplitItem(long allocatedPatBillableITemUID,double amount, double discount, double netAmount, int userUID, string isSplit, int? groupUID, int? subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
+            , double amountDecimal, DateTime? fromDate, DateTime? toDate)
         {
             bool flag = false;
             MediTechEntities entities = new MediTechEntities();
@@ -2560,7 +2560,7 @@ namespace MediTech.DataBase
                 cmd.Connection = con;
                 cmd.CommandType = CommandType.StoredProcedure;
                 cmd.CommandText = "pInsertSplitItem";
-
+                cmd.Parameters.AddWithValue("@P_AllocatedPatBillableItemUID", allocatedPatBillableITemUID);
                 cmd.Parameters.AddWithValue("@P_Amount", amount);
                 cmd.Parameters.AddWithValue("@P_Discount", discount);
                 cmd.Parameters.AddWithValue("@P_NetAmount", netAmount);

@@ -710,7 +710,7 @@ namespace MediTech.ViewModels
         {
             try
             {
-                char process;
+                String process;
                 if (SelectAllocateItem.PatientVisitPayorUID == SelectedModifyPatientVisitPayor.PatientVisitPayorUID)
                 {
 
@@ -725,19 +725,22 @@ namespace MediTech.ViewModels
                 }
 
                 if (IsNotPackage)
-                    process = 'N';
+                    process = "N";
                 else
-                    process = 'P';
+                    process = "P";
 
                 if (((AllocateBillPopup)View).ControlTab.SelectedIndex == 0)
                 {
                     if (IsItemSplit)
                     {
-                        DataService.Billing.ManageSplitItem((SelectedItem.BillableItemUID ?? 0), _itemAmountSplit, ConvertedDiscount, ConvertedNetAmount, ApplicationContext.Current.UserUID, null, null, SelectedItem.PatientVisitPayorUID, PatientUID, PatientVisitUID, SplitPayorUID, CanKeepDiscount, _amountSplitPercentDecimal, _amountSplitPercentDecimal, process, FromDttm, ToDttm);
+                        new AllocateSplitItemModel() {allocatedPatBillableITemUID = SelectAllocateItem.BillableItemUID,amount=_itemAmountSplit,discount = ConvertedDiscount,netAmount = ConvertedNetAmount,userUID = AppUtil.Current.UserID,groupUID = null,subGroupUID = null,currentVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,isSplit = process,fromDate = FromDttm,toDate = ToDttm ,canKeepDiscount = CanKeepDiscount ? "Y" : "N",discountDecimal = _amountSplitPercentDecimal ,amountDecimal = _amountSplitPercentDecimal };
                     }
                     else
                     {
-                        DataService.Billing.AllocatePatientBillableItem(PatientUID, PatientVisitUID, process, SelectedModifyPatientVisitPayor.PatientVisitPayorUID, SelectedItem.SubAccountUID, SelectedModifyPatientVisitPayor.PayorAgreementUID, SelectedItem.PatientVisitPayorUID, (SelectedItem.BillableItemUID ?? 0), SelectedItem.GroupUID, CanKeepDiscount, FromDttm, ToDttm);
+
+                        DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel() { patientUID = PatientUID, patientVisitUID = PatientVisitUID, isAutoAllocate = process, patientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitUID
+                            , subGroupUID = SelectAllocateItem.SubAccountUID, payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID, allocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0
+                            , patientBillableItemUID = SelectAllocateItem.BillableItemUID, groupUID = SelectAllocateItem.GroupUID, canKeepDiscount = CanKeepDiscount ? "Y" : "N", startDate = FromDttm, endDate = ToDttm });
                     }
                 }
                 CloseViewDialog(ActionDialog.Save);

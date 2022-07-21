@@ -26,15 +26,15 @@ namespace MediTech.Model
 
         public int? payorAgreementUID { get; set; }
 
-        public int? allocatedVisitPayorUID { get; set; }
+        public long? allocatedVisitPayorUID { get; set; }
 
-        public int? patientBillableItemUID { get; set; }
+        public long? patientBillableItemUID { get; set; }
 
         public string canKeepDiscount { get; set; }
 
 
-        public DateTime startDate { get; set; }
+        public DateTime? startDate { get; set; }
 
-        public DateTime endDate { get; set; }
+        public DateTime? endDate { get; set; }
     }
 }

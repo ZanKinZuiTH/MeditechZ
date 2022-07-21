@@ -911,7 +911,7 @@ namespace MediTechWebApi.Controllers
         {
             try
             {
-                SqlDirectStore.pInsertSplitItem(splitItemModel.amount, splitItemModel.discount, splitItemModel.netAmount, splitItemModel.userUID, splitItemModel.isSplit, splitItemModel.groupUID,
+                SqlDirectStore.pInsertSplitItem(splitItemModel.allocatedPatBillableITemUID, splitItemModel.amount, splitItemModel.discount, splitItemModel.netAmount, splitItemModel.userUID, splitItemModel.isSplit, splitItemModel.groupUID,
                     splitItemModel.subGroupUID, splitItemModel.currentVisitPayorUID, splitItemModel.canKeepDiscount, splitItemModel.discountDecimal, splitItemModel.amountDecimal, splitItemModel.fromDate, splitItemModel.toDate);
                 return Request.CreateResponse(HttpStatusCode.OK);
             }
