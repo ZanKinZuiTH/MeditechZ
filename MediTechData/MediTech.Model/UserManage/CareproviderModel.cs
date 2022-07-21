@@ -40,5 +40,6 @@ namespace MediTech.Model
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
         public LoginModel loginModel { get; set; }
+        public int VISTYUID { get; set; }
     }
 }

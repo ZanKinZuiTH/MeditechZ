@@ -34,7 +34,9 @@
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
         </dxlc:LayoutGroup>
-        <ListBox BorderThickness="0" ItemsSource="{Binding Bed}" SelectedItem="{Binding SelectBedData}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch" Name="ListBed">
+        <ListBox BorderThickness="0" ItemsSource="{Binding Bed}" SelectedItem="{Binding SelectBedData}" 
+                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                 Margin="50,10,50,10" HorizontalContentAlignment="Center" Name="ListBed">
             <ListBox.ItemsPanel>
                 <ItemsPanelTemplate>
                     <WrapPanel/>
@@ -148,7 +150,6 @@
                 </DataTemplate>
             </ListBox.ItemTemplate>
             <ListBox.Resources>
-                <!-- Context Menu when right click on selected List Item -->
                 <ContextMenu x:Key="ItemContextMenu">
                     <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyBedStatus}}}"  ></MenuItem>
                     <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:EmergencyBedStatus}}}"  ></MenuItem>
@@ -172,6 +173,9 @@
                             <Setter Property="Padding" Value="0"/>
                             <Setter Property="Margin" Value="5"/>
                         </DataTrigger>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Foreground" Value="Black" />
+                        </Trigger>
                         <!--<Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}">
                         </Setter>-->
                     </Style.Triggers>

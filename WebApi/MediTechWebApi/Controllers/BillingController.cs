@@ -1268,11 +1268,13 @@ namespace MediTechWebApi.Controllers
         #region BillPackage
         [Route("SearchBillPackage")]
         [HttpGet]
-        public List<BillPackageModel> SearchBillPackage(string code, string name)
+        public List<BillPackageModel> SearchBillPackage(string code, string name,int? orderCategoryUID, int? orderSubCategoryUID)
         {
             List<BillPackageModel> data = db.BillPackage.Where(p => p.StatusFlag == "A"
             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))
             && (string.IsNullOrEmpty(name) || p.PackageName.ToLower().Contains(name.ToLower()))
+            && (p.OrderCategoryUID == null || p.OrderCategoryUID == orderCategoryUID)
+            && (p.OrderSubCategoryUID == null || p.OrderSubCategoryUID == orderSubCategoryUID)
             ).Select(p => new BillPackageModel
             {
                 BillPackageUID = p.UID,

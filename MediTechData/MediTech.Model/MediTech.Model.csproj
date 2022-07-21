@@ -76,6 +76,8 @@
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="IPD\AdmissionEventModel.cs" />
     <Compile Include="IPD\BedStatusModel.cs" />
+    <Compile Include="IPD\DischargeEventModel.cs" />
+    <Compile Include="IPD\PatientADTEventModel.cs" />
     <Compile Include="Lab\IcheckupModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
     <Compile Include="Lab\RequestDetailItemModel.cs" />

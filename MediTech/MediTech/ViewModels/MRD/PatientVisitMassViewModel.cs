@@ -781,7 +781,7 @@ namespace MediTech.ViewModels
                                     {
                                         CareProviderUID = patientVisit.CareProviderUID;
                                     }
-                                    DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, AppUtil.Current.LocationUID, arriveTime, AppUtil.Current.UserID);
+                                    DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, AppUtil.Current.LocationUID, arriveTime, AppUtil.Current.UserID, null, null);
                                 }
                                 else
                                 {

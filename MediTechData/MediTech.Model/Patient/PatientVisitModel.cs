@@ -12,6 +12,7 @@ namespace MediTech.Model
         public Nullable<int> CareProviderUID { get; set; }
         public string CareProviderName { get; set; }
         public Nullable<int> ENTYPUID { get; set; }
+        public Nullable<int> ENSTAUID { get; set; }
         public Nullable<int> VISTSUID { get; set; }
         public Nullable<int> CheckupJobUID { get; set; }
         public string CompanyName { get; set; }
@@ -19,6 +20,7 @@ namespace MediTech.Model
         public string VisitStatus { get; set; }
         public Nullable<int> VISTYUID { get; set; }
         public Nullable<int> PRITYUID { get; set; }
+        public Nullable<int> SpecialityUID { get; set; }
         public Nullable<System.DateTime> StartDttm { get; set; }
         public Nullable<System.DateTime> EndDttm { get; set; }
         public Nullable<System.DateTime> ArrivedDttm { get; set; }
@@ -54,12 +56,16 @@ namespace MediTech.Model
         public int RowHandle { get; set; }
         public long RowNumber { get; set; }
         public bool Select { get; set; }
+        public string IsReAdmisstion { get; set; }
 
         public List<PatientVisitPayorModel> PatientVisitPayors { get; set; }
+        public PatientVisitPayorModel PatientVisitPayorsAdmit { get; set; }
         public PatientAEAdmissionModel AEAdmission { get; set; }
         public long? AEAdmissionUID { get; set; }
         public long? AdmissionEventUID { get; set; }
         public string BedName { get; set; }
-
+        public List<CareproviderModel> SecondCareprovider { get; set; }
+        public AdmissionEventModel AdmissionEvent { get; set; }
+        
     }
 }

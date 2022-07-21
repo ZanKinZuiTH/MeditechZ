@@ -50,6 +50,48 @@
                     </dxg:GridControl.View>
                 </dxg:GridControl>
             </ControlTemplate>
+            <ControlTemplate  x:Key="BillableItemTemplate" x:Name="BillableItemTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="ItemName"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
+            <ControlTemplate  x:Key="OrderSetTemplate" x:Name="OrderSetTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="Name"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
+            <ControlTemplate  x:Key="PackageTemplate" x:Name="PackageTemplate">
+                <dxg:GridControl x:Name="PART_GridControl"  >
+                    <dxg:GridControl.Columns>
+                        <dxg:GridColumn Name="colDesc" FieldName="PackageName"/>
+                    </dxg:GridControl.Columns>
+                    <dxg:GridControl.View>
+                        <dxg:TableView
+                        Name="View"  ShowColumnHeaders="False"
+                        AutoWidth="True"
+                        ShowGroupedColumns="False" >
+                        </dxg:TableView>
+                    </dxg:GridControl.View>
+                </dxg:GridControl>
+            </ControlTemplate>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary  Source="Resources/Style/AutoCompleteStyle.xaml" />
             </ResourceDictionary.MergedDictionaries>

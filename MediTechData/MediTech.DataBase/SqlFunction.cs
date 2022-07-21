@@ -2594,8 +2594,8 @@ namespace MediTech.DataBase
 
 
         public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
-            , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, int? allocatedVisitPayorUID, int? patientBillableItemUID, string canKeepDiscount, DateTime startDate,
-            DateTime endDate
+            , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, long? allocatedVisitPayorUID, long? patientBillableItemUID, string canKeepDiscount, DateTime? startDate,
+            DateTime? endDate
             )
         {
             bool flag = false;

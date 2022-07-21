@@ -80,7 +80,7 @@
                         <dxg:GridColumn Header="อายุ" FieldName="AgeString"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Ward" FieldName="Ward"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Location" FieldName="LocationName"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="Bed" FieldName="BedUID"  ReadOnly="True"/>
+                        <dxg:GridColumn Header="Bed" FieldName="BedName"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Organisation" FieldName="OwnerOrganisation"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Careprovider Name" FieldName="CareProviderName"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Speciality" FieldName="SpecialityName"  ReadOnly="True"/>

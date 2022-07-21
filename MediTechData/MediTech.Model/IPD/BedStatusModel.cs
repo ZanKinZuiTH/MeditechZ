@@ -30,6 +30,8 @@ namespace MediTech.Model
         public string OwnerOrganisation { get; set; }
         public string ParentLocationName { get; set; }
         public int BedUID { get; set; }
+        public int ENSTAUID { get; set; }
+        public string EncounterStatus { get; set; }
         public string BedIsUse { get; set; }
         public bool Isused { get; set; }
         public string EMGTPUID { get; set; }
@@ -46,6 +48,7 @@ namespace MediTech.Model
 
         public string PatientID { get; set; }
         public string AgeString { get; set; }
+        public int CareproviderUID { get; set; }
         public string CareProviderName { get; set; }
         public long? PatientVisitUID { get; set; }
         public long? AEAdmissionUID { get; set; }
@@ -55,5 +58,8 @@ namespace MediTech.Model
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public bool IsExpectedDischarge { get; set; }
+        public bool IsBillingProgress { get; set; }
+        public bool IsFinancial { get; set; }
     }
 }

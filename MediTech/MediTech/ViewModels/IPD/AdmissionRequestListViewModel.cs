@@ -256,11 +256,18 @@ namespace MediTech.ViewModels
                     WarningDialog("สถานะเป็น"+ SelectedIPBooking.BedBookingRequest+ " ไม่สามารถ Admit ได้");
                     return;
                 }
+
                 if (SelectedIPBooking.BedBookingRequest != null)
                 {
                     AdmissionDetail pageview = new AdmissionDetail();
                     (pageview.DataContext as AdmissionDetailViewModel).ConfirmFromRequestAdmission(SelectedIPBooking);
                     AdmissionDetailViewModel result = (AdmissionDetailViewModel)LaunchViewDialogNonPermiss(pageview, false);
+
+                    if (result != null && result.ResultDialog == ActionDialog.Save)
+                    {
+                        SaveSuccessDialog();
+                    }
+                    Search();
                 }
             }
         }
@@ -268,7 +275,10 @@ namespace MediTech.ViewModels
         {
             if(SelectedIPBooking != null)
             {
-                DataService.PatientIdentity.DropIPBooking(SelectedIPBooking.IPBookingUID, AppUtil.Current.UserID);
+                int status = DataService.Technical.GetReferenceValueByCode("BKTYP", "ADMIT").Key ?? 0;
+                DataService.PatientIdentity.ChangeStatusIPBooking(SelectedIPBooking.IPBookingUID, status, AppUtil.Current.UserID);
+
+                // DataService.PatientIdentity.DropIPBooking(SelectedIPBooking.IPBookingUID, AppUtil.Current.UserID);
             }
 
             Search();

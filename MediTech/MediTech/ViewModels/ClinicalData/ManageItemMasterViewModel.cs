@@ -249,6 +249,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectDrugFrom, value); }
         }
 
+        public List<LookupReferenceValueModel> Route { get; set; }
+        private LookupReferenceValueModel _SelectRoute;
+
+        public LookupReferenceValueModel SelectRoute
+        {
+            get { return _SelectRoute; }
+            set { Set(ref _SelectRoute, value); }
+        }
+
         public List<FrequencyDefinitionModel> DrugFrequencys { get; set; }
         private FrequencyDefinitionModel _SelectDrugFrequency;
 
@@ -376,7 +385,7 @@ namespace MediTech.ViewModels
         {
             ItemUOMConversions = new ObservableCollection<ItemUOMConversionModel>();
             ItemVendorDetails = new ObservableCollection<ItemVendorDetailModel>();
-            var refValue = DataService.Technical.GetReferenceValueList("IMUOM,NRCTP,ITMTYP,PDSTS,FORMM");
+            var refValue = DataService.Technical.GetReferenceValueList("IMUOM,NRCTP,ITMTYP,PDSTS,FORMM,ROUTE");
             DrugGenarics = DataService.Pharmacy.GetDrugGeneric();
             DrugFrequencys = DataService.Pharmacy.GetDrugFrequency();
             ItemMasterUnits = refValue.Where(p => p.DomainCode == "IMUOM").ToList();
@@ -384,7 +393,7 @@ namespace MediTech.ViewModels
             ItemTypes = refValue.Where(p => p.DomainCode == "ITMTYP").ToList();
             DrugForms = refValue.Where(p => p.DomainCode == "FORMM").ToList();
             DrugInstructions = refValue.Where(p => p.DomainCode == "PDSTS").ToList();
-
+            Route = refValue.Where(p => p.DomainCode == "ROUTE").ToList();
             var vendors = DataService.Purchaseing.GetVendorDetail();
             if (vendors != null)
             {
@@ -510,6 +519,7 @@ namespace MediTech.ViewModels
             SelectBaseUnit = ItemMasterUnits != null ? ItemMasterUnits.FirstOrDefault(p => p.Key == model.BaseUOM) : null;
             SelectPresUnit = ItemMasterUnits != null ? ItemMasterUnits.FirstOrDefault(p => p.Key == model.PrescriptionUOM) : null;
             SelectManufacturer = Manufacturers != null ? Manufacturers.FirstOrDefault(p => p.VendorDetailUID == model.ManufacturerByUID) : null;
+            SelectRoute = model.ROUTEUID != null ? Route.FirstOrDefault(p => p.Key == model.ROUTEUID) : null;
             Comments = model.Comments;
 
 
@@ -598,6 +608,7 @@ namespace MediTech.ViewModels
             model.FRQNCUID = SelectDrugFrequency != null ? SelectDrugFrequency.FrequencyUID : (int?)null;
             model.VATPercentage = VATPercentage;
             model.IsNarcotic = IsNarcotic == true ? "Y" : "N";
+            model.ROUTEUID = SelectRoute != null ? SelectRoute.Key : (int?)null;
             if (IsNarcotic == true)
             {
                 model.NRCTPUID = SelectNarcotic != null ? SelectNarcotic.Key : (int?)null;
