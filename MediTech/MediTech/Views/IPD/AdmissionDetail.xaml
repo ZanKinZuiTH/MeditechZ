@@ -125,8 +125,11 @@
                         </dxlc:LayoutItem.Label>
                         <dxe:DateEdit IsEnabled="False" EditValue="{Binding DischargeDate}"/>
                     </dxlc:LayoutItem>
-                    <dxlc:LayoutItem Label="Ward">
-                        <dxlc:LayoutItem Label="{Binding SelectWard.Description}" FontWeight="Bold"></dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Care Classification">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding Classification}"
+                                      SelectedItem="{Binding SelectClassification}"/>
                     </dxlc:LayoutItem>
                 </dxlc:LayoutGroup>
                 
@@ -178,9 +181,14 @@
                             </cc:AutoCompleteTextBox.InputBindings>
                         </cc:AutoCompleteTextBox>
                     </dxlc:LayoutItem>
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem Label="Ward">
+                        <dxlc:LayoutItem Label="{Binding SelectWard.Description}" FontWeight="Bold"></dxlc:LayoutItem>
+                    </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="Bed">
                         <dxlc:LayoutItem Label="{Binding SelectedListBed.Name}" FontWeight="Bold"></dxlc:LayoutItem>
                     </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
                 
                 <dxlc:LayoutGroup Orientation="Vertical">
@@ -231,15 +239,7 @@
             </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
 
-            <dxlc:LayoutGroup Orientation="Vertical">
-             
-
-               
-
-               
-               
-
-            </dxlc:LayoutGroup>
+           
             <!--<dxlc:LayoutGroup>
                 <dxlc:LayoutItem Label="Care Classification">
                     <dxe:TextEdit Text="{Binding PatientID,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>

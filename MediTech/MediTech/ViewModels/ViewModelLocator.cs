@@ -2350,6 +2350,16 @@ namespace MediTech.ViewModels
                 return ServiceLocator.Current.GetInstance<TranferBedListViewModel>();
             }
         }
+        public EditExpDischargeDateViewModel EditExpDischargeDateViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<EditExpDischargeDateViewModel>())
+                    SimpleIoc.Default.Register<EditExpDischargeDateViewModel>();
+
+                return ServiceLocator.Current.GetInstance<EditExpDischargeDateViewModel>();
+            }
+        }
 
         #endregion
 

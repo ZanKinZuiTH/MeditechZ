@@ -30,40 +30,60 @@
                     <TextBlock FontWeight="SemiBold" FontSize="20" Text="{Binding WardName}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutGroup Margin="10,20,10,10" Orientation="Vertical" HorizontalAlignment="Right" Padding="10">
-                        <dxlc:LayoutItem Label="Admit" HorizontalAlignment="Right">
-                            <dxe:TextEdit Background="LawnGreen" IsReadOnly="True" Width="50"/>
-                        </dxlc:LayoutItem>
+                       
+                        
                         <dxlc:LayoutItem Label="ว่าง" HorizontalAlignment="Right">
                             <dxe:TextEdit Background="Gray" IsReadOnly="True" Width="50"/>
                         </dxlc:LayoutItem>
-                        <!--<dxlc:LayoutItem Label="รอ Arrived" HorizontalAlignment="Right">
-                            <dxe:TextEdit Background="SkyBlue" IsReadOnly="True" Width="50"/>
-                        </dxlc:LayoutItem>-->
+                        <dxlc:LayoutItem Label="Admit" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="LawnGreen" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Arrived" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="#FEC56B" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+                        <dxlc:LayoutItem Label="Discharge" HorizontalAlignment="Right">
+                            <dxe:TextEdit Background="#929BDC" IsReadOnly="True" Width="50"/>
+                        </dxlc:LayoutItem>
+
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
-                <ListBox BorderThickness="0" ItemsSource="{Binding BedWardView}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch"  SelectedItem="{Binding SelectedBedWardView}" Name="ListBed">
+
+                <ListBox BorderThickness="0" ItemsSource="{Binding BedWardView}" Margin="50,10,50,10" HorizontalContentAlignment="Stretch" 
+                         ScrollViewer.HorizontalScrollBarVisibility="Disabled" ScrollViewer.VerticalScrollBarVisibility="Disabled"  SelectedItem="{Binding SelectedBedWardView}" Name="ListBed">
                     <ListBox.ItemsPanel>
                         <ItemsPanelTemplate>
-                            <WrapPanel/>
-                            <!--<WrapPanel  Width="{Binding ElementName=ListBed, Path=ActualWidth}"></WrapPanel>-->
+                            <WrapPanel Width="600"/>
                         </ItemsPanelTemplate>
                     </ListBox.ItemsPanel>
+                    
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <Border BorderBrush="LightBlue" BorderThickness="1" CornerRadius="5" Background="#ECF2F1">
-                                <Grid Grid.RowSpan="3" Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
+                                <Grid Margin="3,3,3,3" Background="White" Width="150" Height="200" HorizontalAlignment="Stretch">
                                 <Grid.Resources>
                                     <BooleanToVisibilityConverter x:Key="VisibilityConverter"/>
                                 </Grid.Resources>
                                     <StackPanel Orientation="Vertical" VerticalAlignment="Center" Margin="12,10,12,0">
                                         <StackPanel Orientation="Horizontal" Margin="0,30,0,0">
-                                            <Image Width="120" Height="100">
+                                            <Image x:Name="image" Width="120" Height="100">
                                                 <Image.Style>
                                                     <Style TargetType="{x:Type Image}">
                                                         <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel0.png" />
                                                         <Style.Triggers>
                                                             <DataTrigger Value="true" Binding="{Binding Isused}">
                                                                 <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedLevel1.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedArrived.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
+                                                            </DataTrigger>
+                                                            <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                                                <Setter Property="Source" Value="/MediTech;component/Resources/Images/Ward/bedDischarge.png"/>
                                                             </DataTrigger>
                                                         </Style.Triggers>
                                                         <!--<Style.Triggers>
@@ -151,48 +171,112 @@
                     <ListBox.Resources>
                         <!-- Context Menu when right click on selected List Item -->
                         <ContextMenu x:Key="ItemContextMenu">
-
-                            <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
-                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" ></MenuItem>
-                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" ></MenuItem>
-                            
-                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"></MenuItem>
-                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"></MenuItem>
-                            <MenuItem Header="Manage Patient" Command="{Binding DataContext.ManageAEAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"></MenuItem>
-
-
-
-                                <MenuItem Header="Transfer">
+                            <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Modify Payor" Command="{Binding DataContext.ModifyPayorCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Transfer">
                                 <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                                 <MenuItem Header="Release Bed"/>
                                 <MenuItem Header="Department Transfer"/>
                             </MenuItem>
-                            <MenuItem Header="medical discharge" Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Discharge Advice"  CommandParameter="DischargeAdvice" Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                         </ContextMenu>
-                        <!-- Context Menu when right click on listbox space -->
+
+                        <ContextMenu x:Key="ItemMenuDischargeAdvice">
+                            <MenuItem Header="New Order" Command="{Binding DataContext.CreateOrderCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                           <Separator />
+                            <MenuItem Header="Transfer">
+                                <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Medical Discharge" CommandParameter="MedicalDischarge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator/>
+                            <MenuItem Header="Cancel Discharge" Command="{Binding DataContext.CancelDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                        </ContextMenu>
+                        
+                        <ContextMenu x:Key="ItemMenuDischarge">
+                            <MenuItem Header="vital sign" Command="{Binding DataContext.VitalSignCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Lab Result" Command="{Binding DataContext.LabResultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Print Document" Command="{Binding DataContext.PrintDocumentCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Patient Record" Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator />
+                            <MenuItem Header="Transfer">
+                                <MenuItem Header="BedTarnfer" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                                <MenuItem Header="Release Bed"/>
+                                <MenuItem Header="Department Transfer"/>
+                            </MenuItem>
+                            <MenuItem Header="Discharge">
+                                <MenuItem Header="Discharge" CommandParameter="Discharge"  Command="{Binding DataContext.DischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            </MenuItem>
+                            <Separator />
+                            <MenuItem Header="Cancel Discharge" Command="{Binding DataContext.CancelDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Cancel Admission" Command="{Binding DataContext.CancelAdmissionCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Edit Exp. Discharged Date" Command="{Binding DataContext.EditExpDischargeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <Separator/>
+                            <MenuItem Header="Patient Tracking" Command="{Binding DataContext.PatientTrackingCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                        </ContextMenu>
+
+
                         <ContextMenu x:Key="ListContextMenu">
-                            <MenuItem Header="Arrived" Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
-                            <MenuItem Header="Direct Admit" Command="{Binding DataContext.DirectAdmitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
-                            <!--<MenuItem Header="Tranfer Bed" Command="{Binding DataContext.TranferCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>-->
-                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>
+                            <MenuItem Header="Direct Admit" Command="{Binding DataContext.DirectAdmitCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
                             <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  >
                             </MenuItem>
-                            <!--<MenuItem Header="Event log" Command="{Binding DataContext.EventlogCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"  ></MenuItem>-->
                         </ContextMenu>
-                        <!-- Applying Context Menu to ListBoxItem with Style -->
+                        
+                        <ContextMenu x:Key="AdmitContextMenu">
+                            <MenuItem Header="Patient Arrived" Command="{Binding DataContext.ArrivedCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}"/>
+                            <MenuItem Header="Bed Status Change" Command="{Binding DataContext.BedStatusChangeCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                            <MenuItem Header="New EMR" Command="{Binding DataContext.NewEMRCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:WardView}}}" />
+                        </ContextMenu>
+                       
                         <Style TargetType="{x:Type ListBoxItem}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding Isused}" Value="True">
-                                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}"/>
-                                    <Setter Property="Padding" Value="0"/>
-                                    <Setter Property="Margin" Value="5"/>
-                                </DataTrigger>
-                                <!--<Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}">
-                        </Setter>-->
-                            </Style.Triggers>
                             <Setter Property="ContextMenu" Value="{StaticResource ListContextMenu}"/>
                             <Setter Property="Padding" Value="0"/>
                             <Setter Property="Margin" Value="5"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding Isused}" Value="True">
+                                    <Setter Property="ContextMenu" Value="{StaticResource AdmitContextMenu}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Arrived" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemContextMenu}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Discharge Advice" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuDischargeAdvice}"/>
+                                </DataTrigger>
+                                <DataTrigger Value="Fit For Discharge" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuDischarge}"/>
+                                </DataTrigger>
+                                <!--<DataTrigger Value="Discharged" Binding="{Binding EncounterStatus}">
+                                    <Setter Property="ContextMenu" Value="{StaticResource ItemMenuEnd}"/>
+                                </DataTrigger>-->
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Foreground" Value="Black" />
+                                </Trigger>
+                            </Style.Triggers>
                         </Style>
                     </ListBox.Resources>
                 </ListBox>

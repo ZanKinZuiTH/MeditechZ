@@ -526,7 +526,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive);
+                PatientStatus arrived = new PatientStatus(SelectPatientVisit, PatientStatusType.Arrive,null);
                 arrived.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 arrived.Owner = MainWindow;
                 arrived.ShowDialog();
@@ -552,7 +552,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor);
+                PatientStatus sendToDoctor = new PatientStatus(SelectPatientVisit, PatientStatusType.SendToDoctor,null);
                 sendToDoctor.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 sendToDoctor.Owner = MainWindow;
                 sendToDoctor.ShowDialog();
@@ -578,7 +578,7 @@ namespace MediTech.ViewModels
                     OnUpdateEvent();
                     return;
                 }
-                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge);
+                PatientStatus medicalDischarge = new PatientStatus(SelectPatientVisit, PatientStatusType.MedicalDischarge,null);
                 medicalDischarge.WindowStartupLocation = System.Windows.WindowStartupLocation.CenterScreen;
                 medicalDischarge.Owner = MainWindow;
                 medicalDischarge.ShowDialog();
@@ -669,7 +669,6 @@ namespace MediTech.ViewModels
                 (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectPatientVisit);
                 PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);  
             }
-
         }
 
         private void ExportToExcel()

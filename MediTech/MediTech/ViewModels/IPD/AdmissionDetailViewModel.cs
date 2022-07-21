@@ -160,22 +160,19 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectedListBed, value); }
         }
 
+        private List<LookupReferenceValueModel> _Classification;
+        public List<LookupReferenceValueModel> Classification
+        {
+            get { return _Classification; }
+            set { Set(ref _Classification, value); }
+        }
 
-        //private List<LookupReferenceValueModel> _BillingCatagory;
-
-        //public List<LookupReferenceValueModel> BillingCatagory
-        //{
-        //    get { return _BillingCatagory; }
-        //    set { Set(ref _BillingCatagory, value); }
-        //}
-
-        //private LookupReferenceValueModel _SelectBillCatagory;
-
-        //public LookupReferenceValueModel SelectBillCatagory
-        //{
-        //    get { return _SelectBillCatagory; }
-        //    set { Set(ref _SelectBillCatagory, value); }
-        //}
+        private LookupReferenceValueModel _SelectClassification;
+        public LookupReferenceValueModel SelectClassification
+        {
+            get { return _SelectClassification; }
+            set { Set(ref _SelectClassification, value); }
+        }
 
 
         private List<LookupReferenceValueModel> _BedCatagory;
@@ -343,13 +340,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        //private PatientVisitModel _PatientVisit;
-        //public PatientVisitModel PatientVisit
-        //{
-        //    get { return _PatientVisit; }
-        //    set { Set(ref _PatientVisit, value); }
-        //}
-
         #endregion
 
         #region command
@@ -419,6 +409,7 @@ namespace MediTech.ViewModels
             var roomcharge = DataService.MasterData.GetOrderCategory().Where(p => p.Name == "ค่าห้อง").FirstOrDefault();
             var Subroomcharge = DataService.MasterData.GetOrderSubCategoryByUID(roomcharge.OrderCategoryUID).FirstOrDefault();
             ChargablePackage = DataService.Billing.SearchBillPackage("", "", roomcharge.OrderCategoryUID, Subroomcharge.OrderSubCategoryUID);
+            Classification = DataService.Technical.GetReferenceValueMany("CRCLS");
         }
 
         public void ProblemSearch()

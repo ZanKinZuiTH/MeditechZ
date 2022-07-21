@@ -26,8 +26,10 @@ namespace MediTech.Views
         public ActionDialog ResultDialog = ActionDialog.Cancel;
 
         PatientVisitModel model;
+        int? admissionUID;
+        int? ENSTAUID;
         PatientStatusType type;
-        public PatientStatus(PatientVisitModel modelData, PatientStatusType type)
+        public PatientStatus(PatientVisitModel modelData, PatientStatusType type, int? admissionEventUID)
         {
             InitializeComponent();
             this.Loaded += PatientStatus_Loaded;
@@ -36,6 +38,7 @@ namespace MediTech.Views
             cmbStatus.EditValueChanged += cmbStatus_EditValueChanged;
             this.model = modelData;
             this.type = type;
+            this.admissionUID = admissionEventUID;
         }
 
         void cmbStatus_EditValueChanged(object sender, DevExpress.Xpf.Editors.EditValueChangedEventArgs e)
@@ -60,8 +63,33 @@ namespace MediTech.Views
             cmbLocations.ItemsSource = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();
             cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "REGST" || p.ValueCode == "ARRVD"
             || p.ValueCode == "ARRWI" || p.ValueCode == "SNDDOC" || p.ValueCode == "AWRES" || p.ValueCode == "RFLSTS").ToList();
-            if (cmbStatus.ItemsSource != null)
+            
+            if (type == PatientStatusType.WardArrived)
             {
+                txtTitle.Text = "Arrived";
+                lytDoctor.Visibility = System.Windows.Visibility.Collapsed;
+                lytStatus.Visibility = System.Windows.Visibility.Collapsed;
+                lytDepatment.Visibility = System.Windows.Visibility.Collapsed;
+
+                var status = (new TechnicalService()).GetReferenceValueByCode("ENSTA", "ADMIT");
+                var location = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
+
+                this.ENSTAUID = status.Key;
+
+                cmbWardStatus.Text = status.Display;
+                cmbWard.Text = model.LocationName;
+                cmbBed.Text = model.BedName;
+                cmbWardDoctor.Text = model.CareProviderName;
+                cmbWardLocation.Text = location.Name;
+            }
+
+            if (cmbStatus.ItemsSource != null && type != PatientStatusType.WardArrived)
+            {
+                GroupWard.Visibility = System.Windows.Visibility.Collapsed;
+                GroupWardStatus.Visibility = System.Windows.Visibility.Collapsed;
+                GroupWardDoctor.Visibility = System.Windows.Visibility.Collapsed;
+                GroupWardLocation.Visibility = System.Windows.Visibility.Collapsed;
+
                 if (type == PatientStatusType.SendToDoctor)
                 {
                     txtTitle.Text = "Send To Doctor";
@@ -75,8 +103,8 @@ namespace MediTech.Views
                     cmbStatus.ItemsSource = (new TechnicalService()).GetReferenceValueMany("VISTS").Where(p => p.ValueCode == "CHKOUT" || p.ValueCode == "SNDDOC" || p.ValueCode == "ARRVD").ToList();
                     txtTitle.Text = "Medical Discharge";
                     cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == AppUtil.Current.LocationUID);
-                    
-                    if(model.VISTSUID != 418)
+
+                    if (model.VISTSUID != 418)
                     {
                         cmbStatus.SelectedItem = ((List<LookupReferenceValueModel>)cmbStatus.ItemsSource).FirstOrDefault(p => p.ValueCode == "CHKOUT");
                         cmbStatus.IsEnabled = false;
@@ -97,10 +125,10 @@ namespace MediTech.Views
                         cmbLocations.SelectedItem = ((List<LocationModel>)cmbLocations.ItemsSource).FirstOrDefault(p => p.LocationUID == model.LocationUID);
                     }
 
-                    if(model.VISTSUID == 419)
+                    if (model.VISTSUID == 419)
                     {
                         lytDoctor.Visibility = System.Windows.Visibility.Visible;
-                        cmbDoctor.SelectedItem = ((List<CareproviderModel>)cmbDoctor.ItemsSource).FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);   
+                        cmbDoctor.SelectedItem = ((List<CareproviderModel>)cmbDoctor.ItemsSource).FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
                     }
                     else
                     {
@@ -127,7 +155,8 @@ namespace MediTech.Views
             {
                 int? CareProviderUID = null;
                 DateTime arriveTime = timeEditor.DateTime;
-                int? LocationUID = (int?)cmbLocations.EditValue != null ? (int?)cmbLocations.EditValue : (int?)null;
+                int? LocationUID = (int?)cmbLocations.EditValue != null ? (int?)cmbLocations.EditValue : model.LocationUID;
+                
                 if (type == PatientStatusType.SendToDoctor)
                 {
                     if (cmbDoctor.EditValue == null)
@@ -155,13 +184,13 @@ namespace MediTech.Views
                         CareProviderUID = (int)cmbDoctor.EditValue;
                     }
                 }
-                else if (type == PatientStatusType.Arrive)
-                { 
 
-                }
+                int VisitTypeUID  = cmbStatus.EditValue != null ? (int)cmbStatus.EditValue : model.VISTSUID ?? 0;
 
+                //if (type == PatientStatusType.WardArrived)
+                //    (int)cmbStatus.EditValue = 408;
 
-                (new PatientIdentityService()).ChangeVisitStatus(model.PatientVisitUID, (int)cmbStatus.EditValue, CareProviderUID, LocationUID, arriveTime, AppUtil.Current.UserID);
+                (new PatientIdentityService()).ChangeVisitStatus(model.PatientVisitUID, VisitTypeUID, CareProviderUID, LocationUID, arriveTime, AppUtil.Current.UserID,admissionUID, ENSTAUID);
                 ResultDialog = ActionDialog.Save;
                 this.Close();
             }

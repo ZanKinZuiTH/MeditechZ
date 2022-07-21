@@ -37,6 +37,6 @@ namespace MediTech
         Arrive,
         SendToDoctor,
         MedicalDischarge,
-        WordArrived
+        WardArrived
     }
 }

@@ -8,98 +8,100 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
-         
              mc:Ignorable="d"
              DataContext="{Binding IPDMedicalDischargeViewModel ,Source={StaticResource Locator}}"
-             d:DesignHeight="600" d:DesignWidth="900">
+             d:DesignHeight="600" d:DesignWidth="800">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
-            <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
-                <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
-            </dxlc:LayoutItem>
             <dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical"  VerticalAlignment="Top" Width="600" HorizontalAlignment="Center">
-                    <!--<dxlc:LayoutGroup>
-                        <dxe:ListBoxRadioButton Content="Upload Attachment" IsChecked="{Binding UploadAttachment}"/>
-                        <dxe:ListBoxRadioButton Content="Scan Document" IsChecked="{Binding ScanDocument}"/>
-                    </dxlc:LayoutGroup>-->
-                    <dxlc:LayoutGroup Orientation="Horizontal">
-                     
-                       
-                    </dxlc:LayoutGroup>
-                    <dxlc:LayoutItem Label="status of Medical Dicharge">
-                        <dxe:ComboBoxEdit DisplayMember="Display" ValueMember="Key"
-                        ItemsSource="{Binding DocumentTypes}"
-                        SelectedItem="{Binding SelectDocumentType}"
-                        />
+                <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
+                    <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+            <dxlc:LayoutGroup  ItemSpace="10" HorizontalAlignment="Left" Orientation="Vertical" Width="500" Margin="50">
+                <dxlc:LayoutItem Label="Status of Medical Discharge">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DischargeStatus}"
+                                      SelectedItem="{Binding SelectDischargeStatus}"/>
                     </dxlc:LayoutItem>
-                  
-                    <dxlc:LayoutItem Label="Recommended By : แพทย์">
+                    <dxlc:LayoutGroup>
+                        <dxlc:LayoutItem>
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                               Foreground="Red"/>
+                                    <TextBlock Text="Discharge Date" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding DischargeDate}" IsEnabled="False"/>
+                        </dxlc:LayoutItem>
+
+                        <dxlc:LayoutItem Width="100">
+                            <dxlc:LayoutItem.Label>
+                                <StackPanel Orientation="Horizontal">
+                                    <Label FontSize="15" Margin="0,-10,0,0"/>
+                                    <TextBlock Text="Time" />
+                                </StackPanel>
+                            </dxlc:LayoutItem.Label>
+                            <dxe:DateEdit EditValue="{Binding DischargeDate}"
+                                      AllowNullInput="True"
+                                      IsEnabled="False"
+                                      DisplayFormatString="HH:mm"
+                                      x:Name="editor" Mask="HH:mm">
+                                <dxe:DateEdit.StyleSettings>
+                                    <dxe:DateEditPickerStyleSettings/>
+                                </dxe:DateEdit.StyleSettings>
+                            </dxe:DateEdit>
+                        </dxlc:LayoutItem>
+                    </dxlc:LayoutGroup>
+                <dxlc:LayoutItem Label="Recommended By">
                         <dxe:ComboBoxEdit x:Name="cmbDoctor"
-                                              ItemsSource="{Binding Doctors}"
-                                              SelectedItem="{Binding SelectDoctor}"
+                                              ItemsSource="{Binding DoctorsRecommended}"
+                                              SelectedItem="{Binding SelectDoctorsRecommended}"
                                               IsTextEditable="True" 
                                               DisplayMember="FullName"
                                               AllowNullInput="True"
-                                              ValueMember="CareproviderUID"
-                                              />
+                                              ValueMember="CareproviderUID" />
                     </dxlc:LayoutItem>
-
-
 
                     <dxlc:LayoutItem Label="Infection Type">
-                        <dxe:ComboBoxEdit DisplayMember="Display" ValueMember="Key"
-                        ItemsSource="{Binding DocumentTypes}"
-                        SelectedItem="{Binding SelectDocumentType}"
-                        />
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding InfectionTypes}"
+                                      SelectedItem="{Binding SelectInfectionTypes}"/>
                     </dxlc:LayoutItem>
+
                     <dxlc:LayoutItem Label="Disposition Type">
-                        <dxe:ComboBoxEdit DisplayMember="Display" ValueMember="Key"
-                        ItemsSource="{Binding DocumentTypes}"
-                        SelectedItem="{Binding SelectDocumentType}"
-                        />
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DispositionTypes}"
+                                      SelectedItem="{Binding SelectDispositionTypes}"/>
                     </dxlc:LayoutItem>
 
-
-                    <dxlc:LayoutItem Label="Discharge Type : สถานะ" >
-                        <dxe:ComboBoxEdit x:Name="cmbStatus"
-                                              ItemsSource="{Binding VisitStatus}"
-                                              IsTextEditable="False" 
-                                              DisplayMember="Display"
-                                              ValueMember="Key"
-                                              EditValue="{Binding Path=SelectVisitStatusList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
-                                              SelectedItem="{Binding Path=SelectVisitStatus,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                            <dxe:ComboBoxEdit.StyleSettings>
-                                <dxe:CheckedComboBoxStyleSettings />
-                            </dxe:ComboBoxEdit.StyleSettings>
-                        </dxe:ComboBoxEdit>
+                    <dxlc:LayoutItem Label="Discharge Type">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding DischargeTypes}"
+                                      SelectedItem="{Binding SelectDischargeTypes}"/>
                     </dxlc:LayoutItem>
 
-
-
-                    <!--<dxlc:LayoutItem Label="Mode of Transport">
-                        <dxe:ComboBoxEdit DisplayMember="Display" ValueMember="Key"
-                        ItemsSource="{Binding DocumentTypes}"
-                        SelectedItem="{Binding SelectDocumentType}"
-                        />
-                    </dxlc:LayoutItem>-->
-                    
-                    <dxlc:LayoutItem Label="Comment">
-                        <dxlc:LayoutItem  LabelVerticalAlignment="Top">
-                            <dxe:TextEdit Text="{Binding AllergyDescription}" Height="50" Width="350"  AcceptsReturn="True"/>
-                        </dxlc:LayoutItem>
+                    <dxlc:LayoutItem Label="Mode of Transport">
+                        <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding ModeTransport}"
+                                      SelectedItem="{Binding SelectModeTransport}"/>
                     </dxlc:LayoutItem>
-                </dxlc:LayoutGroup>
 
+                <dxlc:LayoutItem Label="Comment">
+                    <dxlc:LayoutItem  LabelVerticalAlignment="Top">
+                        <dxe:TextEdit Text="{Binding Comment}" Height="50" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
-
-
-    
-
-            <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dx:SimpleButton Width="80" Height="25" Content="Save" Command="{Binding CloseCommand}"/>
-                <dx:SimpleButton Width="80" Height="25" Content="Cancel" Command="{Binding CloseCommand}"/>
-              
+            <dxlc:LayoutGroup HorizontalAlignment="Right" >
+                <dx:SimpleButton Width="80" Height="25" Content="Save" Command="{Binding SaveCommand}"/>
+                <dx:SimpleButton Width="80" Height="25" Content="Cancel" Command="{Binding CancelCommand}"/>
             </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>

@@ -378,12 +378,12 @@ namespace MediTech.DataService
             return data;
         }
 
-        public bool ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID)
+        public bool ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID, int? AdmissionEventUID, int? ENSTAUID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/PatientIdentity/ChangeVisitStatus?patientVisitUID={0}&VISTSUID={1}&careProviderUID={2}&locationUID={3}&&editDttm={4:MM/dd/yyyy HH:mm:ss}&userID={5}", patientVisitUID, VISTSUID, careProviderUID, locationUID, editDttm, userID);
+                string requestApi = string.Format("Api/PatientIdentity/ChangeVisitStatus?patientVisitUID={0}&VISTSUID={1}&careProviderUID={2}&locationUID={3}&editDttm={4:MM/dd/yyyy HH:mm:ss}&userID={5}&AdmissionEventUID={6}&ENSTAUID={7}", patientVisitUID, VISTSUID, careProviderUID, locationUID, editDttm, userID, AdmissionEventUID, ENSTAUID);
                 MeditechApiHelper.Put(requestApi);
                 flag = true;
             }
@@ -722,8 +722,6 @@ namespace MediTech.DataService
             }
         }
 
-        #endregion
-
         public void DropIPBooking(long ipBookingUID, int userUID)
         {
             try
@@ -759,8 +757,78 @@ namespace MediTech.DataService
             }
             return returnData;
         }
+        public DischargeEventModel ManageIPDDischargeEvent(DischargeEventModel model, int userUID)
+        {
+            DischargeEventModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/ManageIPDDischargeEvent?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<DischargeEventModel, DischargeEventModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
 
-       
+        public DischargeEventModel CancelDischargeEvent(DischargeEventModel model, int userUID)
+        {
+            DischargeEventModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/CancelDischargeEvent?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<DischargeEventModel, DischargeEventModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        public PatientADTEventModel GetPatientADTEventType(long patientVisitUID, string type)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetPatientADTEventType?patientVisitUID={0}&type={1}", patientVisitUID,type);
+            PatientADTEventModel data = MeditechApiHelper.Get<PatientADTEventModel>(requestApi);
+            return data;
+        }
+
+        public void CancelAdmission(int patientVisitUID, int locationUID, int statusUID, int userUID)
+        {
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/CancelAdmission?patientVisitUID={0}&locationUID={1}&statusUID={2}&userUID={3}", patientVisitUID, locationUID, statusUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+        public DischargeEventModel GetDischargeEventByAdmissionUID(long admissionEventUID)
+        {
+            string requestApi = string.Format("Api/PatientIdentity/GetDischargeEventByAdmissionUID?admissionEventUID={0}", admissionEventUID);
+            DischargeEventModel data = MeditechApiHelper.Get<DischargeEventModel>(requestApi);
+            return data;
+        }
+
+        public AdmissionEventModel EditExpDischarged(AdmissionEventModel model, int userUID)
+        {
+            AdmissionEventModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/PatientIdentity/EditExpDischarged?userUID={0}", userUID);
+                returnData = MeditechApiHelper.Post<AdmissionEventModel, AdmissionEventModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return returnData;
+        }
+
+        #endregion
 
         #region Patient DemographicLog
         public List<PatientDemographicLogModel> GetPatientDemographicLogByUID(long patientUID)

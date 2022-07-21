@@ -1,33 +1,38 @@
-﻿<UserControl x:Class="MediTech.Views.CancelDischarge"
+﻿<UserControl x:Class="MediTech.Views.EditExpDischargeDate"
              xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core" 
-             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
              xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" 
              xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              mc:Ignorable="d"
-             DataContext="{Binding CancelDischargeViewModel ,Source={StaticResource Locator}}"
-             d:DesignHeight="400" d:DesignWidth="800">
+             DataContext="{Binding EditExpDischargeDateViewModel ,Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
                 <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
             </dxlc:LayoutItem>
             <dxlc:LayoutGroup ItemSpace="15" HorizontalAlignment="Left" Orientation="Vertical" Width="450" Margin="50" >
-                <dxlc:LayoutItem Label="Cancel Reason">
-                    <dxe:ComboBoxEdit DisplayMember="Display" 
-                                      ValueMember="Key"
-                                      ItemsSource="{Binding CancelDischarge}"
-                                      SelectedItem="{Binding SelectCancelDischarge}"/>
+                <dxlc:LayoutItem>
+                    <dxlc:LayoutItem.Label>
+                        <StackPanel Orientation="Horizontal">
+                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
+                                           Foreground="Red"/>
+                            <TextBlock Text="Expected Admission" />
+                        </StackPanel>
+                    </dxlc:LayoutItem.Label>
+                    <dxe:DateEdit EditValue="{Binding ExpectedDate}"/>
                 </dxlc:LayoutItem>
 
-                <dxlc:LayoutItem Label="Comment">
-                    <dxlc:LayoutItem  LabelVerticalAlignment="Top">
-                        <dxe:TextEdit Text="{Binding Comment}" Height="50" />
-                    </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Care Classification">
+                    <dxe:ComboBoxEdit DisplayMember="Display" 
+                                      ValueMember="Key"
+                                      ItemsSource="{Binding Classification}"
+                                      SelectedItem="{Binding SelectClassification}"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
