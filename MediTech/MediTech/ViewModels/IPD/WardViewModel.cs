@@ -226,7 +226,7 @@ namespace MediTech.ViewModels
             if (SelectedBedWardView != null)
             {
              
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID ?? 0);
+                PatientVisitModel patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID ?? 0);
                 //if (patientVisit.VISTSUID == CHKOUT || patientVisit.VISTSUID == FINDIS || patientVisit.VISTSUID == CANCEL)
                 //{
                 //    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");

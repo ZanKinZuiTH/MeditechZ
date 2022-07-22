@@ -146,6 +146,13 @@ namespace MediTech.ViewModels
             }
         }
 
+        private bool _IsWardView;
+        public bool IsWardView
+        {
+            get { return _IsWardView; }
+            set { Set(ref _IsWardView, value); }
+        }
+
         private List<LocationModel> _ListWard;
         public List<LocationModel> ListWard
         {
@@ -528,10 +535,10 @@ namespace MediTech.ViewModels
                     DataService.PatientIdentity.ChangeStatusIPBooking(IpBookingUID, status, AppUtil.Current.UserID);
                 }
 
-                SaveSuccessDialog("HN : " + returnData.PatientID + " Admitted Sucessfully");
+                SaveSuccessDialog("HN : " + returnData.PatientID + " Admitted Successfully");
 
                 var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(returnData.PatientVisitUID);
-                if (patientVisitPayors == null)
+                if (patientVisitPayors.Count == 0)
                 {
                     MessageBoxResult resultDiaglog = QuestionDialog("ยังไม่มี Payor Visit ต้องการ Modify Payor Visit หรือไม่");
 
@@ -621,24 +628,12 @@ namespace MediTech.ViewModels
             SelectedListBed = iPBooking.BedUID != null ? ListWard.FirstOrDefault(p => p.LocationUID == iPBooking.BedUID) : null;
         }
 
-        //public void sendVisit(PatientVisitModel datavisit)
-        //{
-        //   // ListWard = DataService.PatientIdentity.GetBedLocation((inforequest.BedUID ?? 0), null).Where(p => p.BedIsUse == "N").ToList();
-        //    var visitInfo = DataService.PatientIdentity.GetPatientVisitByUID(datavisit.PatientVisitUID);
-        //    PatientVisit = visitInfo;
-        //}
-
-        public void SendbedWard(BedStatusModel resivebed)
+        public void SendbedWard(BedStatusModel bedModel)
         {
-            //List<LocationModel> res = new List<LocationModel>();
-            //Ward.Add(resivebed);
-
-            int idlocation = (resivebed.ParentLocationUID ?? 0);
-            ListWard = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).ToList();
-            SelectedListBed = DataService.PatientIdentity.GetBedLocation(idlocation, null).Where(p => p.BedIsUse == "N" && p.LocationUID == resivebed.LocationUID).FirstOrDefault();
-            //SelectWard = resivebed;
+            SelectWard = Ward.FirstOrDefault(p => p.LocationUID == bedModel.ParentLocationUID);
+            SelectedListBed = ListWard.FirstOrDefault(p => p.LocationUID == bedModel.LocationUID);
+            
         }
-
 
         public void PatientSearch()
         {

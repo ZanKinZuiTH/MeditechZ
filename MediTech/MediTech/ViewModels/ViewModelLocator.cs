@@ -148,6 +148,39 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ListQueryBillsIPViewModel ListQueryBillsIPViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListQueryBillsIPViewModel>())
+                    SimpleIoc.Default.Register<ListQueryBillsIPViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListQueryBillsIPViewModel>();
+            }
+        }
+
+        public BillSettlementIPViewModel BillSettlementIPViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BillSettlementIPViewModel>())
+                    SimpleIoc.Default.Register<BillSettlementIPViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BillSettlementIPViewModel>();
+            }
+        }
+
+        public PatientBilledIPViewModel PatientBilledIPViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<PatientBilledIPViewModel>())
+                    SimpleIoc.Default.Register<PatientBilledIPViewModel>();
+
+                return ServiceLocator.Current.GetInstance<PatientBilledIPViewModel>();
+            }
+        }
+
 
 
         public MergeBillRecipetPopupViewModel MergeBillRecipetPopupViewModel
@@ -929,6 +962,39 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<PrintDrugStickerViewModel>();
 
                 return ServiceLocator.Current.GetInstance<PrintDrugStickerViewModel>();
+            }
+        }
+
+        public IPFillsViewModel IPFillsViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPFillsViewModel>())
+                    SimpleIoc.Default.Register<IPFillsViewModel>();
+
+                return ServiceLocator.Current.GetInstance<IPFillsViewModel>();
+            }
+        }
+
+        public NewIPFillsViewModel NewIPFillsViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<NewIPFillsViewModel>())
+                    SimpleIoc.Default.Register<NewIPFillsViewModel>();
+
+                return ServiceLocator.Current.GetInstance<NewIPFillsViewModel>();
+            }
+        }
+
+        public IPFillsDetailViewModel iPFillsDetailViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPFillsDetailViewModel>())
+                    SimpleIoc.Default.Register<IPFillsDetailViewModel>();
+
+                return ServiceLocator.Current.GetInstance<IPFillsDetailViewModel>();
             }
         }
 
