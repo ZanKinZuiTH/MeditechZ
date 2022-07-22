@@ -318,7 +318,17 @@ namespace MediTech.ViewModels
         {
             get { return _ConsultCommand ?? (_ConsultCommand = new RelayCommand(Consult)); }
         }
-        
+
+
+        private RelayCommand _testConsultCommand;
+        public RelayCommand testConsultCommand
+        {
+            get { return _testConsultCommand ?? (_testConsultCommand = new RelayCommand(ConsultIPD)); }
+        }
+
+
+
+
         private RelayCommand _ArrivedCommand;
         public RelayCommand ArrivedCommand
         {
@@ -660,6 +670,32 @@ namespace MediTech.ViewModels
             }
 
         }
+
+
+        private void ConsultIPD()
+        {
+            if (SelectPatientVisit != null)
+            {
+                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
+                {
+                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
+                    return;
+                }
+                IPDConsult pageview = new IPDConsult();
+                (pageview.DataContext as IPDConsultViewModel).AssignData(SelectPatientVisit);
+                IPDConsultViewModel result = (IPDConsultViewModel)LaunchViewDialog(pageview, "IPDCON", false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+
+                }
+            }
+
+
+        }
+
+
+
 
         private void PatientTracking()
         {

@@ -2372,6 +2372,17 @@ namespace MediTech.ViewModels
             }
         }
 
+
+        public IPDConsultViewModel IPDConsultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPDConsultViewModel>())
+                    SimpleIoc.Default.Register<IPDConsultViewModel>();
+                return ServiceLocator.Current.GetInstance<IPDConsultViewModel>();
+            }
+        }
+
         #endregion
 
         public static void Cleanup()
