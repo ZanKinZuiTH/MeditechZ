@@ -1,0 +1,62 @@
+﻿<UserControl x:Class="MediTech.Views.NewIPFills"
+             xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid" 
+             xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"  
+             xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:MediTech.Views"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=NewIPFillsViewModel, Source={StaticResource Locator}}"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <dxlc:LayoutControl Orientation="Vertical">
+            <dxlc:LayoutGroup Orientation="Horizontal">
+                <dxlc:LayoutItem Label="จากวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateFrom}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="ถึงวันที่">
+                    <dxe:DateEdit EditValue="{Binding DateTo}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutItem Label="Store">
+                    <dxe:ComboBoxEdit ItemsSource="{Binding Stores}" 
+                                      SelectedItem="{Binding SelectStore}"
+                                      ValueMember="StoreUID"
+                                      DisplayMember="Name"
+                                      AutoComplete="True" 
+                                      ImmediatePopup="True"/>
+                </dxlc:LayoutItem>
+            </dxlc:LayoutGroup>
+
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                <dx:SimpleButton Width="80" Command="{Binding SearchCommand}"
+                                     Height="25" Content="ค้นหา"/>
+                <dx:SimpleButton Width="80" Command="{Binding ClearCommand}"
+                                     Height="25" Content="Claer"/>
+            </dxlc:LayoutGroup>
+
+            <dxg:GridControl Name="grdItemIssue" ItemsSource="{Binding FillProcess}"
+                                 SelectedItem="{Binding SelectFillProcess}">
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Header="Fill ID" FieldName="IPFillProcessUID" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Fill Date" FieldName="FillDttm" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Filled by" FieldName="FillByUser" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Store Name" FieldName="StoreName" ReadOnly="True"/>
+                    <dxg:GridColumn Header="Ward Name" FieldName="WardName" ReadOnly="True"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView ShowGroupPanel="False"
+                                   AllowEditing="False" />
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+            <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
+                <dx:SimpleButton Width="80" Command="{Binding DispenseCommand}"
+                                     Height="25" Content="New Fill"/>
+                <dx:SimpleButton Width="80" Command="{Binding CloseCommand}"
+                                     Height="25" Content="Cancel"/>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </Grid>
+</UserControl>
