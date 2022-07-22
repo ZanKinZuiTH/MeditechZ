@@ -148,6 +148,19 @@ namespace MediTech.ViewModels
             }
         }
 
+
+
+        public MergeBillRecipetPopupViewModel MergeBillRecipetPopupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<MergeBillRecipetPopupViewModel>())
+                    SimpleIoc.Default.Register<MergeBillRecipetPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<MergeBillRecipetPopupViewModel>();
+            }
+        }
+
         #endregion
 
         #region BillingConfiguration

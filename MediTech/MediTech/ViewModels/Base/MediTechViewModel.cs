@@ -535,51 +535,41 @@ namespace MediTech.ViewModels
 
         public void SaveSuccessDialog()
         {
-            DXMessageBox.Show("บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
-
-        }
-
-        public void SaveSuccessDialog(FrameworkElement owner)
-        {
-            DXMessageBox.Show(owner, "บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement),"บันทึกข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
         public void DeleteSuccessDialog()
         {
-            DXMessageBox.Show("ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement), "ลบข้อมูลเรียบร้อย", "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
         public void SaveSuccessDialog(string message)
         {
-            DXMessageBox.Show(message, "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement),message, "Sucess", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
 
         public void InformationDialog(string message)
         {
-            DXMessageBox.Show(message, "", MessageBoxButton.OK, MessageBoxImage.Information);
+            DXMessageBox.Show((this.View as FrameworkElement), message, "", MessageBoxButton.OK, MessageBoxImage.Information);
         }
         public void WarningDialog(string message)
         {
-            DXMessageBox.Show(message, "Warining", MessageBoxButton.OK, MessageBoxImage.Warning);
+            DXMessageBox.Show((this.View as FrameworkElement), message, "Warining", MessageBoxButton.OK, MessageBoxImage.Warning);
         }
         public void ErrorDialog(string errorMessage)
         {
-            DXMessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            DXMessageBox.Show((this.View as FrameworkElement),errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
         }
 
-        public void ErrorDialog(FrameworkElement owner,string errorMessage)
-        {
-            DXMessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-        }
         public MessageBoxResult DeleteDialog()
         {
-            return DXMessageBox.Show("คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            return DXMessageBox.Show((this.View as FrameworkElement), "คุณต้องการลบรายที่เลือก ใช้หรือไม่ ?", "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
         }
         public MessageBoxResult QuestionDialog(string massage)
         {
-            return DXMessageBox.Show(massage, "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
+            return DXMessageBox.Show((this.View as FrameworkElement), massage, "Question", MessageBoxButton.YesNoCancel, MessageBoxImage.Question);
         }
 
         public string ShowSaveFileDialog(string title, string filter)

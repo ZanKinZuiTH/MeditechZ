@@ -141,11 +141,10 @@ namespace MediTech.DataService
         }
 
         public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
-           , long? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
+           , long? patientVisitPayorUID, int? careProviderUID, DateTime dateFrom, DateTime dateTo
    )
         {
-            string requestApi = string.Format("Api/Billing/GetAllocatedPatBillableItemsPalm?patientUID={0}&patientVisitUID={1}&accountUID={2}&subAccountUID={3}&ownerOrganisationUID={4}&patientVisitPayorUID={5}&careProviderUID={6}" +
-                "&startDate={7:MM/dd/yyyy}&endDate={8:MM/dd/yyyy}", patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, startDate, endDate);
+            string requestApi = string.Format(@"Api/Billing/GetAllocatedPatBillableItemsPalm?patientUID={0}&patientVisitUID={1}&accountUID={2}&subAccountUID={3}&ownerOrganisationUID={4}&patientVisitPayorUID={5}&careProviderUID={6}&dateFrom={7:MM/dd/yyyy}&dateTo={8:MM/dd/yyyy}", patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
             List<AllocatedPatBillableItemsResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsResultModel>>(requestApi);
 
             return listPatBill;
@@ -188,6 +187,22 @@ namespace MediTech.DataService
 
         }
 
+        public bool MergeBillRecipet(long patientVisitUID, long sourcePateintVisitPayorUID, long desPatientVisitPayorUID, DateTime dateFrom, DateTime dateTo)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/MergeBillRecipet?patientVisitUID={0}&sourcePateintVisitPayorUID={1}&desPatientVisitPayorUID={2}&dateFrom={3:MM/dd/yyyy}&dateTo={4:MM/dd/yyyy}", patientVisitUID, sourcePateintVisitPayorUID, desPatientVisitPayorUID, dateFrom, dateTo); ;
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
 
         #region BillgingGroup
 

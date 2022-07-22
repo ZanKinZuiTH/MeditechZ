@@ -838,11 +838,11 @@ namespace MediTechWebApi.Controllers
         [Route("GetAllocatedPatBillableItemsPalm")]
         [HttpGet]
         public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
-            , int? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
+           , long? patientVisitPayorUID, int? careProviderUID, DateTime dateFrom, DateTime dateTo
     )
         {
             List<AllocatedPatBillableItemsResultModel> data = new List<AllocatedPatBillableItemsResultModel>();
-            DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, startDate, endDate);
+            DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<AllocatedPatBillableItemsResultModel>();
@@ -852,9 +852,9 @@ namespace MediTechWebApi.Controllers
                     AllocatedPatBillableItemsResultModel inData = new AllocatedPatBillableItemsResultModel();
                     inData.PatientBillableItemUID = long.Parse(row["PatientBillableItemUID"].ToString());
                     inData.SubAccountName = row["SubAccountName"].ToString();
-                    inData.SubAccountUID = int.Parse(row["SubAccountUID"].ToString());
+                    inData.SubAccountUID = !string.IsNullOrEmpty(row["SubAccountUID"].ToString()) ? Convert.ToInt32(row["SubAccountUID"]) : (int?)null;
                     inData.ItemName = row["ItemName"].ToString();
-                    inData.Quantity = Convert.ToDouble(row["Quantity"]);
+                    inData.Quantity = !string.IsNullOrEmpty(row["Quantity"].ToString()) ? Convert.ToDouble(row["Quantity"]) : 0;
                     inData.Amount = Convert.ToDouble(row["Amount"]);
                     inData.Discount = !string.IsNullOrEmpty(row["Discount"].ToString()) ? Convert.ToDouble(row["Discount"]) : (double?)null;
                     inData.NetAmount = !string.IsNullOrEmpty(row["NetAmount"].ToString()) ? Convert.ToDouble(row["NetAmount"]) : (double?)null;
@@ -869,7 +869,7 @@ namespace MediTechWebApi.Controllers
                     inData.SubGroupMaxCoverage = !string.IsNullOrEmpty(row["SubGroupMaxCoverage"].ToString()) ? Convert.ToDouble(row["SubGroupMaxCoverage"]) : (double?)null;
                     inData.SubGroupCovered = !string.IsNullOrEmpty(row["SubGroupCovered"].ToString()) ? Convert.ToDouble(row["SubGroupCovered"]) : (double?)null;
                     inData.IsModified = row["IsModified"].ToString();
-                    inData.GroupUID = Convert.ToInt32(row["GroupUID"]);
+                    inData.GroupUID = !string.IsNullOrEmpty(row["GroupUID"].ToString()) ? Convert.ToInt32(row["GroupUID"]) : (int?)null;
                     inData.PackageName = row["PackageName"].ToString();
                     inData.GroupName = row["GroupName"].ToString();
                     inData.SubGroupName = row["SubGroupName"].ToString();
@@ -917,6 +917,22 @@ namespace MediTechWebApi.Controllers
             }
             catch (Exception ex)
             {
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("MergeBillRecipet")]
+        [HttpPut]
+        public HttpResponseMessage MergeBillRecipet(long patientVisitUID,long sourcePateintVisitPayorUID,long desPatientVisitPayorUID,DateTime dateFrom,DateTime dateTo)
+        {
+            try
+            {
+                SqlDirectStore.pMergeBillRecipet(patientVisitUID, sourcePateintVisitPayorUID, desPatientVisitPayorUID, dateFrom, dateTo);
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
         }
