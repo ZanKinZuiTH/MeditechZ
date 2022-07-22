@@ -11,10 +11,9 @@ using System.Windows;
 
 namespace MediTech.ViewModels
 {
-    public class BillSettlementOPViewModel : MediTechViewModelBase
+    public class BillSettlementIPViewModel : MediTechViewModelBase
     {
-        #region Properties
-
+        #region Properties 
         #region PatientSearch
 
         private string _SearchPatientCriteria;
@@ -143,11 +142,9 @@ namespace MediTech.ViewModels
             }
         }
 
-
         #endregion
 
         #region Command
-
 
         private RelayCommand _PatientSearchCommand;
 
@@ -195,34 +192,21 @@ namespace MediTech.ViewModels
         {
             get { return _GeneratebillCommand ?? (_GeneratebillCommand = new RelayCommand(Generatebill)); }
         }
-
         #endregion
 
         #region Method
-
-        public BillSettlementOPViewModel()
+        public BillSettlementIPViewModel()
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
         }
 
-        public override void OnLoaded()
+        private void CollpaseExpand()
         {
-            base.OnLoaded();
-            if (SelectPatientVisit != null)
-            {
-                GetVisitPayors(SelectPatientVisit.PatientVisitUID);
-            }
-            Search();
-        }
-
-        private void Search()
-        {
-            if (SelectPatientVisit != null)
-            {
-                Reload();
-            }
-
+            if (IsExpanded)
+                ((BillSettlementIP)View).Expand();
+            else
+                ((BillSettlementIP)View).Collapse();
         }
 
         private void AutoAllocate()
@@ -242,12 +226,21 @@ namespace MediTech.ViewModels
             Reload();
         }
 
+        private void Generatebill()
+        {
+            GenerateBill pageview = new GenerateBill();
+            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, true);
+            if (result != null && result.ResultDialog == ActionDialog.Save)
+            {
+                SaveSuccessDialog();
+            }
+        }
+
         private void Clear()
         {
             CallAllocation("F", allocatedVisitPayorUID: -1);
             Reload();
         }
-
         public void CallAllocatedBillableItem(long lAllocatedPatBillableItemUID)
         {
             AllocatedPatBillableItemsResultModel selectedAllocatedPatBillableItem;
@@ -256,18 +249,10 @@ namespace MediTech.ViewModels
             List<AllocatedPatBillableItemsResultModel> oBillableItems;
 
             if (lAllocatedPatBillableItemUID > 0 && AllocatedPatientBillableItems != null && AllocatedPatientBillableItems.Count() > 0
-    && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID) != null
-    && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).Count() > 0)
+            && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID) != null
+            && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).Count() > 0)
             {
-
-                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.FirstOrDefault(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID);
-                if (selectedAllocatedPatBillableItem != null &&  string.IsNullOrEmpty(selectedAllocatedPatBillableItem.PayorName))
-                {
-                    WarningDialog("ไม่มี Payor สำหรับการ Allocate");
-                    return;
-                }
-
-
+                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).FirstOrDefault();
                 oSubGroupPatBillableItems = new List<AllocatedPatBillableItemsResultModel>(AllocatedPatientBillableItems.Where(p => p.SubAccountUID == selectedAllocatedPatBillableItem.SubAccountUID && p.GroupUID == selectedAllocatedPatBillableItem.GroupUID
                     && p.PatientVisitPayorUID == selectedAllocatedPatBillableItem.PatientVisitPayorUID));
                 oGroupPatBillableItems = new List<AllocatedPatBillableItemsResultModel>(AllocatedPatientBillableItems.Where(p => p.GroupUID == selectedAllocatedPatBillableItem.GroupUID
@@ -308,36 +293,6 @@ namespace MediTech.ViewModels
             DataService.Billing.AllocatePatientBillableItem(allocateModel);
         }
 
-        private void Reload()
-        {
-            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
-                , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
-                ));
-            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
-            CollpaseExpand();
-        }
-        
-        private void GetVisitPayors(long patientVisitUID)
-        {
-            PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(patientVisitUID);
-        }
-
-        public void AssingPatientVisit(PatientVisitModel patientVisit)
-        {
-            SelectPatientVisit = patientVisit;
-            IsPatientSearchEnabled = Visibility.Collapsed;
-            GetVisitPayors(SelectPatientVisit.PatientVisitUID);
-        }
-
-        private void CollpaseExpand()
-        {
-            if (IsExpanded)
-                ((BillSettlementOP)View).Expand();
-            else
-                ((BillSettlementOP)View).Collapse();
-        }
-
-
         private void CreateOrder()
         {
             if (SelectPatientVisit != null)
@@ -347,7 +302,6 @@ namespace MediTech.ViewModels
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
             }
         }
-
 
         private void ModifyVisitPayor()
         {
@@ -363,17 +317,31 @@ namespace MediTech.ViewModels
                 }
             }
         }
-
-        private void Generatebill()
+        private void Search()
         {
-            GenerateBill pageview = new GenerateBill();
-            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, true);
-            if (result != null && result.ResultDialog == ActionDialog.Save)
-            {
-                SaveSuccessDialog();
-            }
+            Reload();
         }
 
+        public void AssingPatientVisit(PatientVisitModel patientVisit)
+        {
+            SelectPatientVisit = patientVisit;
+            IsPatientSearchEnabled = Visibility.Collapsed;
+            GetVisitPayors(SelectPatientVisit.PatientVisitUID);
+        }
+
+        private void GetVisitPayors(long patientVisitUID)
+        {
+            PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(patientVisitUID);
+        }
+
+        private void Reload()
+        {
+            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
+                , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
+                ));
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
+            CollpaseExpand();
+        }
 
         public void PatientSearch()
         {
@@ -417,8 +385,8 @@ namespace MediTech.ViewModels
                 PatientsSearchSource = null;
             }
 
+            #endregion
         }
 
-        #endregion
     }
 }

@@ -184,6 +184,7 @@
     <Compile Include="Converter\ImageConverter.cs" />
     <Compile Include="Converter\ImageModuleConverter.cs" />
     <Compile Include="Converter\ImageMenuConverter.cs" />
+    <Compile Include="Converter\InverseBooleanConverter.cs" />
     <Compile Include="Converter\IsNullOrEmptyConverter.cs" />
     <Compile Include="Converter\NumericN2Formatter.cs" />
     <Compile Include="Converter\VisibilityConverter.cs" />
@@ -1431,6 +1432,7 @@
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
+    <Compile Include="ViewModels\Billing\MergeBillRecipetPopupViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
@@ -1666,6 +1668,9 @@
     </Compile>
     <Compile Include="Views\Billing\GenerateBill.xaml.cs">
       <DependentUpon>GenerateBill.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\MergeBillRecipetPopup.xaml.cs">
+      <DependentUpon>MergeBillRecipetPopup.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
@@ -2347,6 +2352,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Billing\GenerateBill.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\MergeBillRecipetPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

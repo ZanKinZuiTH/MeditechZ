@@ -2505,7 +2505,7 @@ namespace MediTech.DataBase
 
 
         public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
-            , int? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
+            , long? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
     )
         {
             MediTechEntities entities = new MediTechEntities();
@@ -2591,7 +2591,41 @@ namespace MediTech.DataBase
             return flag;
         }
 
+        public static bool pMergeBillRecipet(long patientVisitUID, long sourcePateintVisitPayorUID, long desPatientVisitPayorUID, DateTime dateFrom, DateTime dateTo)
+        {
+            bool flag = false;
+            MediTechEntities entities = new MediTechEntities();
 
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+
+                con.Open();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pMergeBillRecipet";
+                cmd.Parameters.AddWithValue("@PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@SourcePatientVisitPayorUID", sourcePateintVisitPayorUID);
+                cmd.Parameters.AddWithValue("@DesPatientVisitPayorUID", desPatientVisitPayorUID);
+                cmd.Parameters.AddWithValue("@DateFrom", dateFrom);
+                cmd.Parameters.AddWithValue("@DateTo", dateTo);
+
+                cmd.ExecuteNonQuery();
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+            return flag;
+        }
 
         public static bool pAllocatePatientBillableItem(long patientUID, long patientVisitUID, int ownerOrganisationUID, string isAutoAllocate, int? groupUID, int? subGroupUID
             , long? patientVisitPayorUID, int? payorAgreementUID, int userUID, long? allocatedVisitPayorUID, long? patientBillableItemUID, string canKeepDiscount, DateTime? startDate,

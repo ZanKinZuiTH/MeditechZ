@@ -833,9 +833,26 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                SaveSuccessDialog("BN : " + resultPatient.PatientID);
+                SaveSuccessDialog("HN : " + returnData.PatientID + "Emergency Admitted Successfully");
 
-                if( IsWardView == true)
+                var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(returnData.PatientVisitUID);
+                if (patientVisitPayors.Count == 0)
+                {
+                    MessageBoxResult resultDiaglog = QuestionDialog("ยังไม่มี Payor Visit ต้องการ Modify Payor Visit หรือไม่");
+
+                    if (resultDiaglog == MessageBoxResult.Yes)
+                    {
+                        ModifyVisitPayor pageview = new ModifyVisitPayor();
+                        (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(returnData);
+                        ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
+                        if (result != null && result.ResultDialog == ActionDialog.Save)
+                        {
+                            SaveSuccessDialog();
+                        }
+                        //continue;
+                    }
+                }
+                if ( IsWardView == true)
                 {
                     EmergencyBedStatus emergencyWard = new EmergencyBedStatus();
                     ChangeViewPermission(emergencyWard);

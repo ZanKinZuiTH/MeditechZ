@@ -1366,6 +1366,7 @@ namespace MediTechWebApi.Controllers
                     PatientVisit patientVisit = db.PatientVisit.Find(patientVisitInfo.PatientVisitUID);
                     if (patientVisit == null)
                     {
+                        patientVisit = new PatientVisit();
                         patientVisit.PatientUID = patientVisitInfo.PatientUID;
                         patientVisit.VISTYUID = patientVisitInfo.VISTSUID;
                         patientVisit.VISTSUID = patientVisitInfo.VISTSUID;

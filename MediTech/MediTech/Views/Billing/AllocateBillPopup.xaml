@@ -10,6 +10,7 @@
              Width="550" Height="300">
     <UserControl.Resources>
         <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+        <cv:InverseBooleanConverter x:Key="InverseBooleanConverter" />
     </UserControl.Resources>
     <AdornerDecorator>
         <dxlc:LayoutControl>
@@ -21,13 +22,13 @@
                     <TabItem Header="Item">
                         <dxlc:LayoutGroup Orientation="Vertical">
                             <dxlc:LayoutItem >
-                                <Label Content="{Binding Path=SelectedItem.SubAccountName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                                <Label Content="{Binding Path=SelectAllocateItem.SubAccountName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="DestinationPayor">
+                            <dxlc:LayoutGroup Orientation="Horizontal" >
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="KeepDiscount">
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
@@ -77,13 +78,13 @@
                     <TabItem Header="Sub Group">
                         <dxlc:LayoutGroup Orientation="Vertical">
                             <dxlc:LayoutItem >
-                                <Label Content="{Binding Path=SelectedItem.SubGroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                                <Label Content="{Binding Path=SelectAllocateItem.SubGroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="DestinationPayor">
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="KeepDiscount">
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
@@ -134,13 +135,13 @@
                     <TabItem Header="Group">
                         <dxlc:LayoutGroup Orientation="Vertical">
                             <dxlc:LayoutItem >
-                                <Label Content="{Binding Path=SelectedItem.GroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
+                                <Label Content="{Binding Path=SelectAllocateItem.GroupName,UpdateSourceTrigger=PropertyChanged}" VerticalAlignment="Center" FontWeight="Bold" FontSize="12"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem Label="DestinationPayor">
+                                <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="KeepDiscount">
+                                <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
