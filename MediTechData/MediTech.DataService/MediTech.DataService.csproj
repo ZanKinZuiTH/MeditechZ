@@ -50,8 +50,8 @@
     <Compile Include="DataService\BillingService.cs" />
     <Compile Include="DataService\CheckupService.cs" />
     <Compile Include="DataService\IcheckupService.cs" />
+    <Compile Include="DataService\InPatientService.cs" />
     <Compile Include="DataService\InventoryService.cs" />
-    <Compile Include="DataService\IPDService.cs" />
     <Compile Include="DataService\LabDataService.cs" />
     <Compile Include="DataService\MainManageService.cs" />
     <Compile Include="DataService\MasterDataService.cs" />

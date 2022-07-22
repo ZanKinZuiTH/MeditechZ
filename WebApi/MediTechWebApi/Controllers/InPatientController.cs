@@ -207,5 +207,34 @@ namespace MediTechWebApi.Controllers
                                           }).ToList();
             return data;
         }
+
+
+        [Route("GetBedALL")]
+        [HttpGet]
+        public List<LocationModel> GetbedALL()
+        {
+            var listData = db.Location.Where(p => p.StatusFlag == "A").Select(p => new LocationModel()
+            {
+                LocationUID = p.UID,
+                Name = p.Name,
+                Description = p.Description,
+                LOTYPUID = p.LOTYPUID,
+                LCTSTUID = p.LCTSTUID,
+                ParentLocationUID = p.ParentLocationUID,
+                ActiveFrom = p.ActiveFrom,
+                ActiveTo = p.ActiveTo,
+                CUser = p.CUser,
+                CWhen = p.CWhen,
+                MUser = p.MUser,
+                EMRZONUID = p.EMZONEUID,
+                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                IsTemporaryBed = p.IsTemporaryBed,
+                MWhen = p.MWhen,
+                StatusFlag = p.StatusFlag
+            }).ToList();
+
+            return listData;
+        }
+
     }
 }

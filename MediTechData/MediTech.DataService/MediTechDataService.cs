@@ -119,13 +119,6 @@ namespace MediTech.DataService
             get { return _Checkup ?? (_Checkup = new CheckupService()); }
         }
 
-        private IPDService _IPDService;
-        public IPDService IPDService
-        {
-            get { return _IPDService ?? (_IPDService = new IPDService()); }
-        }
-
-
 
         private InPatientService _InPatientService;
         public InPatientService InPatientService

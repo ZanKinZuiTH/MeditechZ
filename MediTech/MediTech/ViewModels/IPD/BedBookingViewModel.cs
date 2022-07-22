@@ -389,7 +389,7 @@ namespace MediTech.ViewModels
         public BedBookingViewModel()
         {
             DateTime now = DateTime.Now;
-            var locationAll = DataService.IPDService.GetBedALL();
+            var locationAll = DataService.InPatientService.GetBedALL();
             BillingCatagory = DataService.Technical.GetReferenceValueMany("TARIFF");
             BedCatagory = DataService.Technical.GetReferenceValueMany("BEDCAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
