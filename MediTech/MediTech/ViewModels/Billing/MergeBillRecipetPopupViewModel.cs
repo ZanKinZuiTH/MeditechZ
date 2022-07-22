@@ -22,6 +22,15 @@ namespace MediTech.ViewModels
             set { Set(ref _PatientVisitPayors, value); }
         }
 
+        private List<AllocatedPatBillableItemsResultModel> _BillableItems;
+
+        public List<AllocatedPatBillableItemsResultModel> BillableItems
+        {
+            get { return _BillableItems; }
+            set { Set(ref _BillableItems, value); }
+        }
+
+
         private PatientVisitPayorModel _SelectedSourceVisitPayor;
         public PatientVisitPayorModel SelectedSourceVisitPayor
         {
@@ -31,10 +40,31 @@ namespace MediTech.ViewModels
             }
             set
             {
-                Set(ref _SelectedSourceVisitPayor, value);
+
+                if (_SelectedSourceVisitPayor != value)
+                {
+                    Set(ref _SelectedSourceVisitPayor, value);
+                    SourcePayorAmount = BillableItems.Where(f => (f.PatientVisitPayorUID ?? 0) == _SelectedSourceVisitPayor.PatientVisitPayorUID).Sum(p => p.Amount)?.ToString() ?? "0";
+                }
             }
         }
 
+        private PatientVisitPayorModel _SelectedDestinationVisitPayor;
+        public PatientVisitPayorModel SelectedDestinationVisitPayor
+        {
+            get
+            {
+                return _SelectedDestinationVisitPayor;
+            }
+            set
+            {
+                if (_SelectedDestinationVisitPayor != value)
+                {
+                    Set(ref _SelectedDestinationVisitPayor, value);
+                    DestinationPayorAmount = BillableItems.Where(f => (f.PatientVisitPayorUID ?? 0) == _SelectedDestinationVisitPayor.PatientVisitPayorUID).Sum(p => p.Amount)?.ToString() ?? "0";
+                }
+            }
+        }
 
         private string _SourcePayorAmount;
 
@@ -93,18 +123,7 @@ namespace MediTech.ViewModels
         }
 
 
-        private PatientVisitPayorModel _SelectedDestinationVisitPayor;
-        public PatientVisitPayorModel SelectedDestinationVisitPayor
-        {
-            get
-            {
-                return _SelectedDestinationVisitPayor;
-            }
-            set
-            {
-                Set(ref _SelectedDestinationVisitPayor, value);
-            }
-        }
+
 
         #endregion
 
@@ -133,6 +152,7 @@ namespace MediTech.ViewModels
         {
 
             this.PatientVisitPayors = PatientVisitPayors;
+            this.BillableItems = BillableItems;
             SelectedSourceVisitPayor = this.PatientVisitPayors.FirstOrDefault(p => p.PatientVisitPayorUID == allocatedItem.PatientVisitPayorUID);
             SelectedDestinationVisitPayor = this.PatientVisitPayors.FirstOrDefault(p => p.PatientVisitPayorUID == allocatedItem.PatientVisitPayorUID);
             FromDttm = fromDate;

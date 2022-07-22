@@ -313,7 +313,7 @@ namespace MediTech.ViewModels
             var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
                 , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
                 ));
-            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems.OrderByDescending(p => p.PatientBillableItemUID));
             CollpaseExpand();
         }
         
