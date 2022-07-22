@@ -1500,6 +1500,7 @@
     <Compile Include="ViewModels\IPD\BedChangedStatusViewModel.cs" />
     <Compile Include="ViewModels\IPD\CancelDischargeViewModel.cs" />
     <Compile Include="ViewModels\IPD\EditExpDischargeDateViewModel.cs" />
+    <Compile Include="ViewModels\IPD\IPDConsultViewModel.cs" />
     <Compile Include="ViewModels\IPD\IPDMedicalDischargeViewModel.cs" />
     <Compile Include="ViewModels\IPD\IPDSearchViewModel.cs" />
     <Compile Include="ViewModels\IPD\TranferBedListViewModel.cs" />
@@ -1875,6 +1876,9 @@
     </Compile>
     <Compile Include="Views\IPD\EditExpDischargeDate.xaml.cs">
       <DependentUpon>EditExpDischargeDate.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\IPD\IPDConsult.xaml.cs">
+      <DependentUpon>IPDConsult.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\IPD\IPDMedicalDischarge.xaml.cs">
       <DependentUpon>IPDMedicalDischarge.xaml</DependentUpon>
@@ -2640,6 +2644,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\IPD\EditExpDischargeDate.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\IPD\IPDConsult.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

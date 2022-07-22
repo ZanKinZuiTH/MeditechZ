@@ -126,6 +126,14 @@ namespace MediTech.DataService
         }
 
 
+
+        private InPatientService _InPatientService;
+        public InPatientService InPatientService
+        {
+            get { return _InPatientService ?? (_InPatientService = new InPatientService()); }
+        }
+
+
         private PACSService _PACS;
         public PACSService PACS
         {
