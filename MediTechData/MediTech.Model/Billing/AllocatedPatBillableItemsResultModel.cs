@@ -10,7 +10,7 @@ namespace MediTech.Model
     {
         public long PatientBillableItemUID { get; set; }
         public string SubAccountName { get; set; }
-        public int SubAccountUID { get; set; }
+        public int? SubAccountUID { get; set; }
         public string ItemName { get; set; }
         public double Quantity { get; set; }
         public double? Amount { get; set; }
@@ -27,7 +27,7 @@ namespace MediTech.Model
         public double? SubGroupMaxCoverage { get; set; }
         public double? SubGroupCovered { get; set; }
         public string IsModified { get; set; }
-        public int GroupUID { get; set; }
+        public int? GroupUID { get; set; }
 
         public string PackageName { get; set; }
         public string SubGroupName { get; set; }

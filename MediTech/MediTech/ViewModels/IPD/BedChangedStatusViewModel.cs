@@ -120,7 +120,7 @@ namespace MediTech.ViewModels
                 locamodel.Comment = Comment;
                 locamodel.ActiveTo = ActiveToDate;
 
-                DataService.IPDService.ChangeBedStatus(locamodel, AppUtil.Current.UserID);
+                DataService.InPatientService.ChangeBedStatus(locamodel, AppUtil.Current.UserID);
 
                 SaveSuccessDialog();
                 CloseViewDialog(ActionDialog.Save);

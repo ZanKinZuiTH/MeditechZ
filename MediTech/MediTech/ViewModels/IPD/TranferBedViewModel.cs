@@ -205,7 +205,7 @@ namespace MediTech.ViewModels
         {
             BedCatagory = DataService.Technical.GetReferenceValueMany("BEDCAT");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var locationAll = DataService.IPDService.GetBedALL();
+            var locationAll = DataService.InPatientService.GetBedALL();
             WardSource = locationAll.Where(w => w.LOTYPUID == 3152).ToList();
             StatusSource = DataService.Technical.GetReferenceValueList("BKTYP");
 

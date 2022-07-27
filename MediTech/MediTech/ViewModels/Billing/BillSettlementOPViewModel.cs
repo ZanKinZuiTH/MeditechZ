@@ -218,7 +218,11 @@ namespace MediTech.ViewModels
 
         private void Search()
         {
-            Reload();
+            if (SelectPatientVisit != null)
+            {
+                Reload();
+            }
+
         }
 
         private void AutoAllocate()
@@ -255,7 +259,15 @@ namespace MediTech.ViewModels
     && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID) != null
     && AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).Count() > 0)
             {
-                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).FirstOrDefault();
+
+                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.FirstOrDefault(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID);
+                if (selectedAllocatedPatBillableItem != null &&  string.IsNullOrEmpty(selectedAllocatedPatBillableItem.PayorName))
+                {
+                    WarningDialog("ไม่มี Payor สำหรับการ Allocate");
+                    return;
+                }
+
+
                 oSubGroupPatBillableItems = new List<AllocatedPatBillableItemsResultModel>(AllocatedPatientBillableItems.Where(p => p.SubAccountUID == selectedAllocatedPatBillableItem.SubAccountUID && p.GroupUID == selectedAllocatedPatBillableItem.GroupUID
                     && p.PatientVisitPayorUID == selectedAllocatedPatBillableItem.PatientVisitPayorUID));
                 oGroupPatBillableItems = new List<AllocatedPatBillableItemsResultModel>(AllocatedPatientBillableItems.Where(p => p.GroupUID == selectedAllocatedPatBillableItem.GroupUID
@@ -301,10 +313,10 @@ namespace MediTech.ViewModels
             var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
                 , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
                 ));
-            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems.OrderByDescending(p => p.PatientBillableItemUID));
             CollpaseExpand();
         }
-
+        
         private void GetVisitPayors(long patientVisitUID)
         {
             PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(patientVisitUID);

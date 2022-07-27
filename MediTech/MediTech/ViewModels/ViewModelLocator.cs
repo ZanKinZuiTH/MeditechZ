@@ -181,6 +181,19 @@ namespace MediTech.ViewModels
             }
         }
 
+
+
+        public MergeBillRecipetPopupViewModel MergeBillRecipetPopupViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<MergeBillRecipetPopupViewModel>())
+                    SimpleIoc.Default.Register<MergeBillRecipetPopupViewModel>();
+
+                return ServiceLocator.Current.GetInstance<MergeBillRecipetPopupViewModel>();
+            }
+        }
+
         #endregion
 
         #region BillingConfiguration
@@ -2435,6 +2448,17 @@ namespace MediTech.ViewModels
                     SimpleIoc.Default.Register<EditExpDischargeDateViewModel>();
 
                 return ServiceLocator.Current.GetInstance<EditExpDischargeDateViewModel>();
+            }
+        }
+
+
+        public IPDConsultViewModel IPDConsultViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<IPDConsultViewModel>())
+                    SimpleIoc.Default.Register<IPDConsultViewModel>();
+                return ServiceLocator.Current.GetInstance<IPDConsultViewModel>();
             }
         }
 

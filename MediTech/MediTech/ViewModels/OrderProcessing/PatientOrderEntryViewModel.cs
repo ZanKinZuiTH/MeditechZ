@@ -514,7 +514,7 @@ namespace MediTech.ViewModels
                     int ownerorganisationUID = AppUtil.Current.OwnerOrganisationUID;
                     string orderNumber = DataService.OrderProcessing.CreateOrder(PatientVisit.PatientUID, PatientVisit.PatientVisitUID, userUID, locationUID, ownerorganisationUID, PatientOrders.ToList());
                     PatientOrderEntry view = (PatientOrderEntry)this.View;
-                    SaveSuccessDialog(view);
+                    SaveSuccessDialog();
                     CloseViewDialog(ActionDialog.Save);
                 }
             }
