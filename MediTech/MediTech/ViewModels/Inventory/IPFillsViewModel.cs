@@ -1,10 +1,13 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -57,6 +60,7 @@ namespace MediTech.ViewModels
         #endregion
 
         #region Command
+
         private RelayCommand _SearchCommand;
         public RelayCommand SearchCommand
         {
@@ -94,32 +98,52 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             Stores = DataService.Inventory.GetStore();
+            SelectStore = Stores.FirstOrDefault();
         }
 
         private void Search()
         {
-
+            FillProcess = DataService.Inventory.SearchIPFills(DateFrom, DateTo, SelectStore.StoreUID);
         }
 
         private void NewFill()
         {
-
+            NewIPFills newIP = new NewIPFills();
+            ChangeViewPermission(newIP);
         }
 
         private void ViewDetail()
         {
-
+            if (SelectFillProcess != null)
+            {
+                IPFillsDetail page = new IPFillsDetail();
+                if(page.DataContext is IPFillsDetailViewModel)
+                {
+                    (page.DataContext as IPFillsDetailViewModel).AssignModel(SelectFillProcess);
+                    ChangeViewPermission(page);
+                }
+            }
         }
 
         private void Clear()
         {
             DateFrom = null;
             DateTo = null;
+            FillProcess = null;
         }
 
         private void Cancel()
         {
-
+            if (SelectFillProcess != null)
+            {
+                MessageBoxResult diagResult = DeleteDialog();
+                if (diagResult == MessageBoxResult.Yes)
+                {
+                    int fillId = Convert.ToInt32(SelectFillProcess.IPFillProcessUID);
+                    DataService.Inventory.CancelDispenseIPFills(fillId, AppUtil.Current.UserID);
+                    Search();
+                }
+            }
         }
 
         #endregion

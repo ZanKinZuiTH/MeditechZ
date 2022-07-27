@@ -622,10 +622,10 @@ namespace MediTechWebApi.Controllers
                             healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
                         }
 
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash) != null)
                         {
                             HealthOrganisationID healthIDBillType = null;
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type Cash in HealthOranisation");

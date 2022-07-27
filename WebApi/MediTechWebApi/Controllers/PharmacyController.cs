@@ -1018,5 +1018,78 @@ namespace MediTechWebApi.Controllers
         #endregion
 
 
+        [Route("GetPatientOrderStanding")]
+        [HttpGet]
+        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID)
+        {
+            List<PatientOrderStandingModel> data = (from ptod in db.PatientOrderDetail
+                                                  join pto in db.PatientOrder on ptod.PatientOrderUID equals pto.UID
+                                                  join pv in db.PatientVisit on pto.PatientVisitUID equals pv.UID
+                                                  join b in db.BillableItem on ptod.BillableItemUID equals b.UID
+                                                  where pv.StatusFlag == "A"
+                                                  && pto.StatusFlag == "A"
+                                                  && ptod.StatusFlag == "A"
+                                                  && b.StatusFlag == "A"
+                                                  && pv.VISTSUID != 423 //Billing Inprogress
+                                                  && ptod.ORDSTUID != 2848 // cancel
+                                                  && pv.ENSTAUID != 4423 //fit for discharge
+                                                  && pto.PRSTYPUID == 4416 //Standing Order
+                                                  //&& ptod.ORDSTUID == 2847 //Raised
+                                                  && ptod.ORDSTUID != 2845 //complete
+                                                  && ptod.IsStandingOrder == "Y"
+                                                  && pto.IsContinuous == "Y"
+                                                  && ptod.EndDttm == null
+                                                  && ptod.StoreUID == storeUID
+                                                  && ( wardUID == null || pv.LocationUID == wardUID)
+                                                  select new PatientOrderStandingModel
+                                                  {
+                                                      PatientOrderUID = pto.UID,
+                                                      PatientUID = pv.PatientUID,
+                                                      PatientVisitUID = pv.UID,
+                                                      PatientOrderDetailUID = ptod.UID,
+                                                      IdentifyingUID = pto.IdentifyingUID,
+                                                      PatientID = SqlFunction.fGetPatientID(pv.PatientUID),
+                                                      PatientName = SqlFunction.fGetPatientName(pv.PatientUID),
+                                                      ItemUID = b.ItemUID,
+                                                      Dosage = ptod.Dosage,
+                                                      DrugDuration = ptod.DrugDuration,
+                                                      DFORMUID = ptod.DFORMUID,
+                                                      PDSTSUID = ptod.PDSTSUID,
+                                                      FRQNCUID = ptod.FRQNCUID,
+                                                      StoreUID = ptod.StoreUID,
+                                                      QNUOMUID = ptod.QNUOMUID,
+                                                      Quantity = ptod.Quantity,
+                                                      UnitPrice = ptod.UnitPrice,
+                                                      NetAmount = ptod.NetAmount,
+                                                      OverwritePrice = ptod.OverwritePrice,
+                                                      OriginalUnitPrice = ptod.OriginalUnitPrice,
+                                                      ROUTEUID = ptod.ROUTEUID,
+                                                      BedUID = pv.BedUID ?? 0,
+                                                      BedName = SqlFunction.fGetLocationName(pv.BedUID ?? 0),
+                                                      WardUID = pv.LocationUID ?? 0,
+                                                      WardName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                                      OrderNumber = pto.OrderNumber,
+                                                      StartDttm = pto.StartDttm,
+                                                      ItemName = ptod.ItemName,
+                                                      ItemCode = ptod.ItemCode,
+                                                      BillableItemUID = b.UID,
+                                                      PRSTYPUID = pto.PRSTYPUID,
+                                                      DrugFrequency = SqlFunction.fGetFrequencyDescription(ptod.FRQNCUID ?? 0, "TH")
+                                                  }).ToList();
+
+            if (data.Count != 0)
+            {
+                foreach (var item in data.ToList())
+                {
+                    var orderDetail = db.PatientOrder.Where(p => p.ParentUID == item.PatientOrderUID && p.StatusFlag == "A" && p.IsIPFill == "Y" ).FirstOrDefault();
+                    if (orderDetail != null)
+                    {
+                        data.Remove(item);
+                    }
+                }
+            }
+
+            return data;
+        }
     }
 }

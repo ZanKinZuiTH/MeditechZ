@@ -360,10 +360,10 @@ namespace MediTechWebApi.Controllers
                     HealthOrganisationID healthIDBillType = null;
                     if (agreement.PBTYPUID == BLTYP_Receive)
                     {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash) != null)
                         {
                             billType = "Cash";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -403,10 +403,10 @@ namespace MediTechWebApi.Controllers
                     }
                     else if (agreement.PBTYPUID == BLTYP_Invoice)
                     {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Credit) != null)
                         {
                             billType = "Credit";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Credit);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -1064,7 +1064,7 @@ namespace MediTechWebApi.Controllers
                                     saleReturnList.IMUOMUID = stock.IMUOMUID;
                                     saleReturnList.ItemCost = stock.ItemCost;
                                     saleReturnList.DispensedItemUID = stockmovement.RefUID ?? 0;
-                                    saleReturnList.PatientOrderDetailUID = item.PatientOrderDetailUID;
+                                    saleReturnList.PatientOrderDetailUID = item.PatientOrderDetailUID ?? 0;
                                     saleReturnList.PatientBilledItemUID = item.UID;
                                     saleReturnList.OwnerOrganisationUID = stock.OwnerOrganisationUID;
                                     saleReturnList.MUser = userUID;

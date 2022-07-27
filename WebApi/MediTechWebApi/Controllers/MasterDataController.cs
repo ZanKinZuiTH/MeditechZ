@@ -1904,8 +1904,8 @@ namespace MediTechWebApi.Controllers
             {
                 HealthOrganisationIDUID = p.UID,
                 HealthOrganisationUID = p.HealthOrganisationUID,
-                BLTYPUID = p.BLTYPUID,
-                BillType = SqlFunction.fGetRfValDescription(p.BLTYPUID ?? 0),
+                BLTYPUID = p.PBTYPUID,
+                BillType = SqlFunction.fGetRfValDescription(p.PBTYPUID ?? 0),
                 IDFormat = p.IDFormat,
                 IDLength = p.IDLength,
                 LastRenumberDttm = p.LastRenumberDttm,
@@ -2023,7 +2023,7 @@ namespace MediTechWebApi.Controllers
                                 }
                             }
                             healthOrganID.HealthOrganisationUID = healthOrganisation.UID;
-                            healthOrganID.BLTYPUID = item.BLTYPUID;
+                            healthOrganID.PBTYPUID = item.BLTYPUID;
                             healthOrganID.IDFormat = item.IDFormat;
                             healthOrganID.IDLength = item.IDLength;
                             healthOrganID.LastRenumberDttm = item.LastRenumberDttm;
