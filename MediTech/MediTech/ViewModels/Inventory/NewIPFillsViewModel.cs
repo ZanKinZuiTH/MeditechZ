@@ -98,7 +98,7 @@ namespace MediTech.ViewModels
         public NewIPFillsViewModel()
         {
             ForDay = 1;
-            var locationAll = DataService.IPDService.GetBedALL();
+            var locationAll = DataService.InPatientService.GetBedALL();
             Ward = locationAll.Where(w => w.LOTYPUID == 3152).ToList();
             Stores = DataService.Inventory.GetStore();
             SelectStore = Stores.FirstOrDefault();

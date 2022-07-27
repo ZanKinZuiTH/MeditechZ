@@ -551,8 +551,8 @@ namespace MediTechWebApi.Controllers
                                         patBilled.StockUID = Convert.ToInt32(stockUsed["StockUID"]);
                                         patBilled.BatchID = stockUsed["BatchID"].ToString();
                                         patBilled.ItemCost = Convert.ToDouble(stockUsed["UnitCost"]) + doctorFee;
-                                        patBilled.ItemMutiplier = Convert.ToDouble(stockUsed["Qty"]);
-                                        patBilled.Amount = unitPrice * patBilled.ItemMutiplier;
+                                        patBilled.ItemMultiplier = Convert.ToDouble(stockUsed["Qty"]);
+                                        patBilled.Amount = unitPrice * patBilled.ItemMultiplier;
                                         patBilled.Discount = discount;
                                         patBilled.NetAmount = patBilled.Amount - patBilled.Discount;
 
@@ -616,7 +616,7 @@ namespace MediTechWebApi.Controllers
                             patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
                             patBilled.ItemName = item.ItemName;
                             patBilled.ItemCost = billItemDetail?.Cost;
-                            patBilled.ItemMutiplier = item.ItemMutiplier;
+                            patBilled.ItemMultiplier = item.ItemMutiplier;
                             patBilled.Amount = item.Amount;
                             patBilled.Discount = item.Discount;
                             patBilled.NetAmount = item.NetAmount;
@@ -769,7 +769,7 @@ namespace MediTechWebApi.Controllers
                     NetAmount = f.NetAmount,
                     Discount = f.Discount,
                     ItemName = f.ItemName,
-                    ItemMutiplier = f.ItemMutiplier,
+                    ItemMutiplier = f.ItemMultiplier,
                     BillingGroupUID = f.BillingGroupUID ?? 0,
                     BillingSubGroupUID = f.BillingSubGroupUID ?? 0,
                     BillingGroup = SqlFunction.fGetBillingGroupDesc(f.BillingGroupUID ?? 0, "G"),
@@ -794,7 +794,7 @@ namespace MediTechWebApi.Controllers
                         NetAmount = billed.NetAmount,
                         Discount = billed.Discount,
                         ItemName = billed.ItemName,
-                        ItemMutiplier = billed.ItemMutiplier,
+                        ItemMutiplier = billed.ItemMultiplier,
                         Unit = SqlFunction.fGetRfValDescription(pod.QNUOMUID ?? 0),
                         BillingGroupUID = billed.BillingGroupUID ?? 0,
                         BillingSubGroupUID = billed.BillingSubGroupUID ?? 0,

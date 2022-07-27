@@ -86,7 +86,7 @@ namespace MediTech.DataService
 
         public List<LocationModel> GetBedALL()
         {
-            string requestApi = string.Format("Api/IPD/GetBedALL");
+            string requestApi = string.Format("Api/InPatient/GetBedALL");
             List<LocationModel> listItem = MeditechApiHelper.Get<List<LocationModel>>(requestApi);
 
             return listItem;
