@@ -998,6 +998,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public DispenseReturnsViewModel DispenseReturnsViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<DispenseReturnsViewModel>())
+                    SimpleIoc.Default.Register<DispenseReturnsViewModel>();
+
+                return ServiceLocator.Current.GetInstance<DispenseReturnsViewModel>();
+            }
+        }
+
         #endregion
 
         #region LIS_RIS Setting
