@@ -142,7 +142,7 @@ namespace MediTech.ViewModels
                         item.ExpiryDate = storeUsed.FirstOrDefault() != null ? storeUsed.FirstOrDefault().ExpiryDate : null;
                         item.IsWithoutStock = storeUsed.FirstOrDefault(p => p.IsWithoutStock == true) != null ? true : false;
                         item.BatchID = storeUsed.FirstOrDefault().BatchID;
-                        item.ORDSTUID = DataService.Technical.GetReferenceValueByCode("ORDST", "CMPLT").Key ?? 0;
+                        item.ORDSTUID = DataService.Technical.GetReferenceValueByCode("ORDST", "DISPE").Key ?? 0;
                         item.ParentUID = Convert.ToInt32(item.PatientOrderUID);
                         item.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                         item.LocationUID = AppUtil.Current.LocationUID;

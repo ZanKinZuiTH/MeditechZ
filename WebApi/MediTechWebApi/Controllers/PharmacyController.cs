@@ -1079,10 +1079,19 @@ namespace MediTechWebApi.Controllers
 
             if (data.Count != 0)
             {
+                DateTime now = DateTime.Now.Date;
+                //DateTime now = DateTime.Parse("2022-07-29");
                 foreach (var item in data.ToList())
                 {
-                    var orderDetail = db.PatientOrder.Where(p => p.ParentUID == item.PatientOrderUID && p.StatusFlag == "A" && p.IsIPFill == "Y" ).FirstOrDefault();
-                    if (orderDetail != null)
+                    var d = (from o in db.PatientOrder
+                             join odd in db.PatientOrderDetail on o.UID equals odd.PatientOrderUID
+                             where o.IsIPFill == "Y"
+                             && o.ParentUID == item.PatientOrderUID
+                             && odd.ORDSTUID == 2861
+                             && DbFunctions.TruncateTime(o.StartDttm) == now select o).FirstOrDefault();
+
+                    //var orderDetail = db.PatientOrder.Where(p => p.ParentUID == item.PatientOrderUID && p.StatusFlag == "A" && p.IsIPFill == "Y" && DbFunctions.TruncateTime(p.StartDttm) == now).FirstOrDefault();
+                    if (d != null)
                     {
                         data.Remove(item);
                     }

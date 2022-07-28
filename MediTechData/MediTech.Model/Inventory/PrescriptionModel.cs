@@ -41,7 +41,7 @@ namespace MediTech.Model
         public DateTime? DOBDttm { get; set; }
 
         public string IsBilled { get; set; }
-
+        public string IsIPFill { get; set; }
 
         private ObservableCollection<PrescriptionItemModel> _PrescriptionItems;
 
