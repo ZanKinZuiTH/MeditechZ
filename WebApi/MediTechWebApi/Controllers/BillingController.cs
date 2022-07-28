@@ -1521,7 +1521,6 @@ namespace MediTechWebApi.Controllers
                         //            db.SaveChanges();
 
 
-
                         //            SaleReturn saleReturn = new SaleReturn();
 
 

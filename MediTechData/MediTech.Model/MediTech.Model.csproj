@@ -135,6 +135,7 @@
     <Compile Include="Inventory\StoreModel.cs" />
     <Compile Include="Inventory\StoreUOMConversionModel.cs" />
     <Compile Include="MasterData\ItemServiceModel.cs" />
+    <Compile Include="OrderProcessing\PatientOrderStandingModel.cs" />
     <Compile Include="PACS\InstancesCopyToModel.cs" />
     <Compile Include="PACS\DataInbound.cs" />
     <Compile Include="PACS\SendDicomFilesModel.cs" />
