@@ -181,7 +181,38 @@ namespace MediTech.ViewModels
             }
         }
 
+        public ListBillPaymentViewModel ListBillPaymentViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListBillPaymentViewModel>())
+                    SimpleIoc.Default.Register<ListBillPaymentViewModel>();
 
+                return ServiceLocator.Current.GetInstance<ListBillPaymentViewModel>();
+            }
+        }
+
+        public ListPaymentDetailsViewModel ListPaymentDetailsViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<ListPaymentDetailsViewModel>())
+                    SimpleIoc.Default.Register<ListPaymentDetailsViewModel>();
+
+                return ServiceLocator.Current.GetInstance<ListPaymentDetailsViewModel>();
+            }
+        }
+
+        public BillingPaymentModePopUpViewModel BillingPaymentModePopUpViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<BillingPaymentModePopUpViewModel>())
+                    SimpleIoc.Default.Register<BillingPaymentModePopUpViewModel>();
+
+                return ServiceLocator.Current.GetInstance<BillingPaymentModePopUpViewModel>();
+            }
+        }
 
         public MergeBillRecipetPopupViewModel MergeBillRecipetPopupViewModel
         {

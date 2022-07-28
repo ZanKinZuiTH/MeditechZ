@@ -781,81 +781,81 @@ namespace MediTech.ViewModels
                                     {
                                         CareProviderUID = patientVisit.CareProviderUID;
                                     }
-                                    DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, AppUtil.Current.LocationUID, arriveTime, AppUtil.Current.UserID, null, null);
+                                    DataService.PatientIdentity.ChangeVisitStatus(patientVisit.PatientVisitUID, selectVisitStatus, CareProviderUID, patientVisit.LocationUID, arriveTime, AppUtil.Current.UserID, null, null);
                                 }
-                                else
-                                {
-                                    List<PatientOrderDetailModel> orderAll = new List<PatientOrderDetailModel>();
-                                    List<PatientOrderDetailModel> DrugOrderList = new List<PatientOrderDetailModel>();
-                                    orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
-                                    orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
-                                    ObservableCollection<PatientBilledItemModel> OrderAllList = new ObservableCollection<PatientBilledItemModel>(orderAll.Select(p => new PatientBilledItemModel
-                                    {
-                                        BillableItemUID = p.BillableItemUID,
-                                        PatientOrderDetailUID = p.PatientOrderDetailUID,
-                                        ItemName = p.ItemName,
-                                        Amount = p.NetAmount,
-                                        Discount = p.Discount ?? 0,
-                                        NetAmount = p.NetAmount,
-                                        ItemMutiplier = p.Quantity ?? 1,
-                                        BSMDDUID = p.BSMDDUID,
-                                        DoctorFee = p.DoctorFee,
-                                        CareproviderUID = p.CareproviderUID,
-                                        IdentifyingUID = p.IdentifyingUID,
-                                        BillingService = p.BillingService
-                                    }));
+                                //else
+                                //{
+                                //    List<PatientOrderDetailModel> orderAll = new List<PatientOrderDetailModel>();
+                                //    List<PatientOrderDetailModel> DrugOrderList = new List<PatientOrderDetailModel>();
+                                //    orderAll = DataService.OrderProcessing.GetOrderAllByVisitUID(patientVisit.PatientVisitUID);
+                                //    orderAll = orderAll.Where(p => p.ORDSTUID != 2848).ToList();
+                                //    ObservableCollection<PatientBilledItemModel> OrderAllList = new ObservableCollection<PatientBilledItemModel>(orderAll.Select(p => new PatientBilledItemModel
+                                //    {
+                                //        BillableItemUID = p.BillableItemUID,
+                                //        PatientOrderDetailUID = p.PatientOrderDetailUID,
+                                //        ItemName = p.ItemName,
+                                //        Amount = p.NetAmount,
+                                //        Discount = p.Discount ?? 0,
+                                //        NetAmount = p.NetAmount,
+                                //        ItemMutiplier = p.Quantity ?? 1,
+                                //        BSMDDUID = p.BSMDDUID,
+                                //        DoctorFee = p.DoctorFee,
+                                //        CareproviderUID = p.CareproviderUID,
+                                //        IdentifyingUID = p.IdentifyingUID,
+                                //        BillingService = p.BillingService
+                                //    }));
 
-                                    var TempDrugList = orderAll.Where(p => p.IdentifyingType.ToUpper() == "PRESCRIPTIONITEM").ToList();
-                                    foreach (var drugItem in TempDrugList)
-                                    {
-                                        List<PatientOrderDetailModel> drugDetails = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
-                                        foreach (var item in drugDetails)
-                                        {
-                                            item.LocalInstructionText = drugItem.LocalInstructionText;
-                                            item.UnitPrice = drugItem.UnitPrice;
-                                            item.BillingService = drugItem.BillingService;
-                                        }
-                                        DrugOrderList.AddRange(drugDetails);
-                                    }
+                                //    var TempDrugList = orderAll.Where(p => p.IdentifyingType.ToUpper() == "PRESCRIPTIONITEM").ToList();
+                                //    foreach (var drugItem in TempDrugList)
+                                //    {
+                                //        List<PatientOrderDetailModel> drugDetails = DataService.Pharmacy.GetDrugStoreDispense(drugItem.IdentifyingUID ?? 0);
+                                //        foreach (var item in drugDetails)
+                                //        {
+                                //            item.LocalInstructionText = drugItem.LocalInstructionText;
+                                //            item.UnitPrice = drugItem.UnitPrice;
+                                //            item.BillingService = drugItem.BillingService;
+                                //        }
+                                //        DrugOrderList.AddRange(drugDetails);
+                                //    }
 
-                                    if (DrugOrderList != null)
-                                    {
-                                        foreach (var drugItem in DrugOrderList)
-                                        {
-                                            if (drugItem.StockUID == null || drugItem.StockUID == 0)
-                                            {
-                                                WarningDialog("รายการ " + drugItem.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
-                                                return;
-                                            }
-                                        }
-                                    }
+                                //    if (DrugOrderList != null)
+                                //    {
+                                //        foreach (var drugItem in DrugOrderList)
+                                //        {
+                                //            if (drugItem.StockUID == null || drugItem.StockUID == 0)
+                                //            {
+                                //                WarningDialog("รายการ " + drugItem.ItemName + " ไม่มีในคลังสินค้า โปรดตรวจสอบ หรือ ติดต่อ Admin");
+                                //                return;
+                                //            }
+                                //        }
+                                //    }
 
-                                    Double TotalAmount = OrderAllList.Sum(p => p.NetAmount) ?? 0;
+                                //    Double TotalAmount = OrderAllList.Sum(p => p.NetAmount) ?? 0;
 
-                                    PatientBillModel patbill = new PatientBillModel();
-                                    patbill.PatientBilledItems = new List<PatientBilledItemModel>();
-
-
-                                    //patbill.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-                                    patbill.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
-                                    patbill.CUser = AppUtil.Current.UserID;
-                                    patbill.MUser = AppUtil.Current.UserID;
-                                    patbill.PaidAmount = TotalAmount;
-                                    patbill.Comments = "From Visit Mass";
-                                    patbill.PatientName = patientVisit.PatientName;
-                                    patbill.PatientUID = patientVisit.PatientUID;
-                                    patbill.PatientVisitUID = patientVisit.PatientVisitUID;
-                                    patbill.PatientID = patientVisit.PatientID;
-                                    patbill.VisitID = patientVisit.VisitID;
-                                    patbill.VisitDttm = patientVisit.StartDttm.Value;
-                                    patbill.TotalAmount = TotalAmount;
-                                    patbill.NetAmount = TotalAmount;
-
-                                    patbill.PatientBilledItems.AddRange(OrderAllList);
+                                //    PatientBillModel patbill = new PatientBillModel();
+                                //    patbill.PatientBilledItems = new List<PatientBilledItemModel>();
 
 
-                                    PatientBillModel patBillResult = DataService.Billing.GeneratePatientBill(patbill);
-                                }
+                                //    //patbill.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                                //    patbill.OwnerOrganisationUID = patientVisit.OwnerOrganisationUID ?? AppUtil.Current.OwnerOrganisationUID;
+                                //    patbill.CUser = AppUtil.Current.UserID;
+                                //    patbill.MUser = AppUtil.Current.UserID;
+                                //    patbill.PaidAmount = TotalAmount;
+                                //    patbill.Comments = "From Visit Mass";
+                                //    patbill.PatientName = patientVisit.PatientName;
+                                //    patbill.PatientUID = patientVisit.PatientUID;
+                                //    patbill.PatientVisitUID = patientVisit.PatientVisitUID;
+                                //    patbill.PatientID = patientVisit.PatientID;
+                                //    patbill.VisitID = patientVisit.VisitID;
+                                //    patbill.VisitDttm = patientVisit.StartDttm.Value;
+                                //    patbill.TotalAmount = TotalAmount;
+                                //    patbill.NetAmount = TotalAmount;
+
+                                //    patbill.PatientBilledItems.AddRange(OrderAllList);
+
+
+                                //    PatientBillModel patBillResult = DataService.Billing.GeneratePatientBill(patbill);
+                                //}
 
                                 patientVisit.Select = false;
                                 loopCounter = loopCounter + 1;

@@ -14,7 +14,7 @@ namespace MediTech.Model
         public Nullable<int> IDLength { get; set; }
         public Nullable<int> NumberValue { get; set; }
         public Nullable<System.DateTime> LastRenumberDttm { get; set; }
-        public Nullable<int> BLTYPUID { get; set; }
+        public Nullable<int> PBTYPUID { get; set; }
         public string BillType { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }

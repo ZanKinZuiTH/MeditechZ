@@ -16,9 +16,11 @@ namespace MediTech.DataBase
     {
         public long UID { get; set; }
         public long PatientBillUID { get; set; }
+        public Nullable<System.DateTime> EventOccuredDttm { get; set; }
+        public string ServiceName { get; set; }
         public int BillableItemUID { get; set; }
         public string ItemName { get; set; }
-        public double ItemMutiplier { get; set; }
+        public double ItemMultiplier { get; set; }
         public Nullable<int> BillingGroupUID { get; set; }
         public Nullable<int> BillingSubGroupUID { get; set; }
         public Nullable<double> Amount { get; set; }
@@ -29,7 +31,7 @@ namespace MediTech.DataBase
         public Nullable<double> ItemCost { get; set; }
         public Nullable<double> ExtendCost { get; set; }
         public Nullable<long> PatientBillableItemUID { get; set; }
-        public long PatientOrderDetailUID { get; set; }
+        public Nullable<long> PatientOrderDetailUID { get; set; }
         public Nullable<long> PatientPackageItemUID { get; set; }
         public Nullable<int> BillPackageUID { get; set; }
         public Nullable<double> PackageItemAmount { get; set; }

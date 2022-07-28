@@ -611,7 +611,7 @@ namespace MediTechWebApi.Controllers
                     string BillID = "";
                     DateTime now = DateTime.Now;
                     GroupReceipt receipt = db.GroupReceipt.Find(model.GroupReceiptUID);
-                    int BLTYP_Cash = db.ReferenceValue.FirstOrDefault(p => p.ValueCode == "CASHBL" && p.DomainCode == "BLTYP").UID;
+                    int BLTYP_Receive = db.ReferenceValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
                     if (receipt == null)
                     {
                         receipt = new GroupReceipt();
@@ -622,10 +622,10 @@ namespace MediTechWebApi.Controllers
                             healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
                         }
 
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
                         {
                             HealthOrganisationID healthIDBillType = null;
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Cash);
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type Cash in HealthOranisation");

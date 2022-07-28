@@ -490,7 +490,7 @@ namespace MediTech.ViewModels
                     patbill.PatientBilledItems.AddRange(OrderAllList);
 
 
-                    PatientBillModel patBillResult = DataService.Billing.GeneratePatientBill(patbill);
+                    PatientBillModel patBillResult = DataService.Billing.OLDGeneratePatientBill(patbill);
                     SaveSuccessDialog();
 
                     if (IsPrint)
@@ -732,7 +732,7 @@ namespace MediTech.ViewModels
                 NetAmount = p.NetAmount,
                 DoctorFee = p.DoctorFee,
                 CareproviderUID = p.CareproviderUID,
-                ItemMutiplier = p.Quantity ?? 1,
+                ItemMultiplier = p.Quantity ?? 1,
                 BSMDDUID = p.BSMDDUID,
                 IdentifyingUID = p.IdentifyingUID,
                 BillingService = p.BillingService,

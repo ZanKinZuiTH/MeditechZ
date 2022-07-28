@@ -17,7 +17,8 @@ namespace MediTech.ViewModels
 {
     public class PatientBilledOPViewModel : MediTechViewModelBase
     {
-
+        int? opbill;
+        int? ipdbill;
         #region Properties
 
         private List<PatientInformationModel> _PatientsSearchSource;
@@ -90,12 +91,20 @@ namespace MediTech.ViewModels
             set { _SelectPatientBill = value; }
         }
 
-        private List<LookupReferenceValueModel> _PaymentMethods;
+        //private List<LookupReferenceValueModel> _PaymentMethods;
 
-        public List<LookupReferenceValueModel> PaymentMethods
+        //public List<LookupReferenceValueModel> PaymentMethods
+        //{
+        //    get { return _PaymentMethods; }
+        //    set { Set(ref _PaymentMethods, value); }
+        //}
+
+        private List<LookupReferenceValueModel> _BillingCategory;
+
+        public List<LookupReferenceValueModel> BillingCategory
         {
-            get { return _PaymentMethods; }
-            set { Set(ref _PaymentMethods, value); }
+            get { return _BillingCategory; }
+            set { Set(ref _BillingCategory, value); }
         }
 
         #endregion
@@ -114,6 +123,13 @@ namespace MediTech.ViewModels
         public RelayCommand ViewBillCommand
         {
             get { return _ViewBillCommand ?? (_ViewBillCommand = new RelayCommand(ViewBill)); }
+        }
+
+        private RelayCommand _ViewPaymentCommand;
+
+        public RelayCommand ViewPaymentCommand
+        {
+            get { return _ViewPaymentCommand ?? (_ViewPaymentCommand = new RelayCommand(ViewPayment)); }
         }
 
         private RelayCommand _CancelBillCommand;
@@ -152,7 +168,9 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PaymentMethods = DataService.Technical.GetReferenceValueMany("PAYMD");
+            BillingCategory = DataService.Technical.GetReferenceValueMany("BLCAT");
+            opbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPBILL").Key;
+            ipdbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "IPBILL").Key;
         }
 
         public override void OnLoaded()
@@ -169,7 +187,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID));
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"N", ownerOrganisationUID));
         }
 
         public void ViewBill()
@@ -200,9 +218,18 @@ namespace MediTech.ViewModels
 
                     ErrorDialog(er.Message);
                 }
-            };
+            }
         }
 
+        public void ViewPayment()
+        {
+            if (SelectPatientBill != null)
+            {
+                ListPaymentDetails view = new ListPaymentDetails();
+                (view.DataContext as ListPaymentDetailsViewModel).PatientBillUID = SelectPatientBill.PatientBillUID;
+                LaunchViewDialogNonPermiss(view, true);
+            }
+        }
         public void CancelBill()
         {
             if (SelectPatientBill != null)
@@ -215,7 +242,7 @@ namespace MediTech.ViewModels
                 try
                 {
                     CancelPopup cancelPopup = new CancelPopup();
-                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILL", true);
+                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLOP", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
                         if (String.IsNullOrEmpty(result.Comments))

@@ -1433,7 +1433,7 @@ namespace MediTech.DataBase
             return ds.Tables[0];
         }
 
-        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)
+        public static DataTable pSearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID)
         {
             MediTechEntities entities = new MediTechEntities();
             SqlDataAdapter adp = new SqlDataAdapter("pSearchPatientBill", entities.Database.Connection.ConnectionString);
@@ -1443,6 +1443,7 @@ namespace MediTech.DataBase
             adp.SelectCommand.Parameters.AddWithValue("@P_DateTo", dateTo != DateTime.MinValue && dateTo != null ? dateTo : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@P_PatientUID", patientUID != null ? patientUID : (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@P_BillNumber", !string.IsNullOrEmpty(billNumber) ? billNumber : (Object)(DBNull.Value));
+            adp.SelectCommand.Parameters.AddWithValue("@P_IsIP", isIP ?? (Object)(DBNull.Value));
             adp.SelectCommand.Parameters.AddWithValue("@P_OwnerOrganisatinUID", owerOrganisationUID != null ? owerOrganisationUID : (Object)(DBNull.Value));
             DataSet ds = new DataSet();
             adp.Fill(ds);
@@ -2503,8 +2504,138 @@ namespace MediTech.DataBase
             return seqUID;
         }
 
+        public static DataTable pGetPatientBillableItemsAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
 
-        public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pGetPatientBillableItemsAccount";
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_PackageUID", packageUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", endDate);
+                cmd.Parameters.AddWithValue("@P_AccountUID", accountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubAccountUID", subAccountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
+
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static DataTable pGetPatientBillableItemsSubAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID
+)
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pGetPatientBillableItemsSubAccount";
+
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_PackageUID", packageUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", endDate);
+                cmd.Parameters.AddWithValue("@P_IsPackage", isPackage ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_AccountUID", accountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubAccountUID", subAccountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
+
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static DataTable pGetPatientBillableItemsBySA(long patientUID, long patientVisitUID, int? packageUID, int? careproviderUID, int? billableItemUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID
+)
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pGetPatientBillableItemsBySA";
+
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                cmd.Parameters.AddWithValue("@P_AccountUID", accountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_SubAccountUID", subAccountUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_CareProviderUID", careproviderUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_BillableItemUID", billableItemUID ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_FromDttm", startDate);
+                cmd.Parameters.AddWithValue("@P_ToDttm", endDate);
+                cmd.Parameters.AddWithValue("@P_IsPackage", isPackage ?? (object)DBNull.Value);
+                cmd.Parameters.AddWithValue("@P_LocationUID", locationUID ?? (object)DBNull.Value);
+
+
+
+
+
+                dt.Load(cmd.ExecuteReader());
+                return dt;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
+        public static DataTable pGetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID
             , long? patientVisitPayorUID, int? careProviderUID, DateTime startDate, DateTime endDate
     )
         {
@@ -2523,7 +2654,6 @@ namespace MediTech.DataBase
 
                 cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
                 cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
-                cmd.Parameters.AddWithValue("@P_OwnerOrganisationUID", ownerOrganisationUID);
                 cmd.Parameters.AddWithValue("@P_AccountUID", accountUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_SubAccountUID", subAccountUID ?? (object)DBNull.Value);
                 cmd.Parameters.AddWithValue("@P_PatientVisitPayorUID", patientVisitPayorUID ?? (object)DBNull.Value);
@@ -2545,7 +2675,7 @@ namespace MediTech.DataBase
 
         }
 
-        public static bool pInsertSplitItem(long allocatedPatBillableITemUID,double amount, double discount, double netAmount, int userUID, string isSplit, int? groupUID, int? subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
+        public static bool pInsertSplitItem(long allocatedPatBillableITemUID, double amount, double discount, double netAmount, int userUID, string isSplit, int? groupUID, int? subGroupUID, long currentVisitPayorUID, string canKeepDiscount, double discountDecimal
             , double amountDecimal, DateTime? fromDate, DateTime? toDate)
         {
             bool flag = false;
@@ -2676,10 +2806,72 @@ namespace MediTech.DataBase
             return flag;
         }
 
+        public static string pCheckPatientBillStatus(long patientUID, long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                string status = "";
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand cmd = new SqlCommand();
+                cmd.Connection = con;
+                cmd.CommandType = CommandType.StoredProcedure;
+                cmd.CommandText = "pCheckPatientBillStatus";
+
+
+                cmd.Parameters.AddWithValue("@P_PatientUID", patientUID);
+                cmd.Parameters.AddWithValue("@P_PatientVisitUID", patientVisitUID);
+                status = cmd.ExecuteScalar().ToString();
+                return status;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+            }
+
+        }
+
     }
 
     public static class SqlStatement
     {
+        public static string GetCompleteBill(long patientVisitUID)
+        {
+            MediTechEntities entities = new MediTechEntities();
+            SqlConnection con = new SqlConnection(entities.Database.Connection.ConnectionString);
+            try
+            {
+                if (con.State == ConnectionState.Closed)
+                    con.Open();
+                DataTable dt = new DataTable();
+                SqlCommand command = new SqlCommand();
+                command.CommandType = CommandType.Text;
+                command.Connection = con;
+                command.CommandText = @"select dbo.fGetCompleteBill(@PatientVisitUID)";
+                command.Parameters.AddWithValue("@PatientVisitUID", patientVisitUID);
+                var isBIllComplete = command.ExecuteScalar().ToString();
+                return isBIllComplete;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            finally
+            {
+                con.Close();
+                con.Dispose();
+            }
+        }
         public static double GetItemTotalQuantity(int itemMasterUID, int storeUID, int ownerOrganisation)
         {
             MediTechEntities entities = new MediTechEntities();

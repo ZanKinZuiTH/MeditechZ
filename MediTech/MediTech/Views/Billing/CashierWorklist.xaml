@@ -268,7 +268,7 @@
                             </dxg:TableView>
                         </dxg:GridControl.View>
                         <dxg:GridColumn x:Name="colDescription" Header="รายการ" FieldName="ItemName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="จำนวน" FieldName="ItemMutiplier"  ReadOnly="True" />
+                        <dxg:GridColumn Header="จำนวน" FieldName="ItemMultiplier"  ReadOnly="True" />
                         <dxg:GridColumn Header="ราคา" FieldName="Amount"  ReadOnly="True" >
                             <dxg:GridColumn.EditSettings>
                                 <dxe:TextEditSettings DisplayFormat="#,#.00"/>
@@ -312,7 +312,7 @@
                                           EditValue="{Binding TotalPrice}"
                                           FontWeight="Bold"
                                           AllowNullInput="True"
-                                          DisplayFormatString="#,#.00"
+                                          DisplayFormatString="#,#0.00"
                                           IsEnabled="False"
                                           MaskType="Numeric" IsReadOnly="True" 
                                           ShowBorder="False"/>
@@ -336,7 +336,7 @@
                                           EditValue="{Binding DiscountAmount}"
                                           FontWeight="Bold"
                                           AllowNullInput="True"
-                                          DisplayFormatString="#,#.00"
+                                          DisplayFormatString="#,#0.00"
                                           IsEnabled="False"
                                           MaskType="Numeric" IsReadOnly="True" 
                                           ShowBorder="False"/>
@@ -360,7 +360,7 @@
                                                   FontWeight="Bold"    
                                                   AllowNullInput="True"
                                                   ShowBorder="False"
-                                                  DisplayFormatString="#,#.00"
+                                                  DisplayFormatString="#,#0.00"
                                                   IsEnabled="False"
                                                   MaskType="Numeric"/>
                                     </dxlc:LayoutItem>
@@ -380,7 +380,7 @@
                                         <dxe:TextEdit x:Name="txtPayment"  
                                                   EditValue="{Binding Payment,UpdateSourceTrigger=PropertyChanged}"
                                                   FontWeight="Bold"
-                                                  DisplayFormatString="#,#.00"
+                                                  DisplayFormatString="#,#0.00"
                                                   AllowNullInput="True"  MaskType="Numeric"/>
                                     </dxlc:LayoutItem>
                                     <dxlc:LayoutItem >
@@ -402,7 +402,7 @@
                                           FontWeight="Bold"            
                                           AllowNullInput="True"  
                                           MaskType="Numeric"
-                                          DisplayFormatString="#,#.00"
+                                          DisplayFormatString="#,#0.00"
                                           IsEnabled="False"
                                           ShowBorder="False"
                                           IsReadOnly="True"/>

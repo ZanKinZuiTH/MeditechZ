@@ -16,7 +16,7 @@
         <dxlc:LayoutControl>
             <dxlc:LayoutGroup Orientation="Vertical">
                 <dxlc:LayoutItem Label="SourcePayor">
-                    <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SelectAllocateItem.PatientVisitPayorUID,UpdateSourceTrigger=PropertyChanged}" />
+                    <ComboBox ItemsSource="{Binding Path= SourceVisitPayors,UpdateSourceTrigger=PropertyChanged}" IsEnabled="False" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SelectAllocateItem.PatientVisitPayorUID,UpdateSourceTrigger=PropertyChanged}" />
                 </dxlc:LayoutItem>
                 <TabControl Name="ControlTab">
                     <TabItem Header="Item">
@@ -26,7 +26,7 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup Orientation="Horizontal" >
                                 <dxlc:LayoutItem Label="DestinationPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
-                                    <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
+                                    <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedModifyPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay,Converter={StaticResource InverseBooleanConverter}}">
                                     <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>

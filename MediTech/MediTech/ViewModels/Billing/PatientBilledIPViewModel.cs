@@ -14,6 +14,9 @@ namespace MediTech.ViewModels
 {
     public class PatientBilledIPViewModel : MediTechViewModelBase
     {
+        int? opbill;
+        int? ipdbill;
+
         #region Properties
         private List<PatientInformationModel> _PatientsSearchSource;
 
@@ -85,12 +88,12 @@ namespace MediTech.ViewModels
             set { _SelectPatientBill = value; }
         }
 
-        private List<LookupReferenceValueModel> _PaymentMethods;
+        private List<LookupReferenceValueModel> _BillingCategory;
 
-        public List<LookupReferenceValueModel> PaymentMethods
+        public List<LookupReferenceValueModel> BillingCategory
         {
-            get { return _PaymentMethods; }
-            set { Set(ref _PaymentMethods, value); }
+            get { return _BillingCategory; }
+            set { Set(ref _BillingCategory, value); }
         }
         #endregion
 
@@ -144,7 +147,9 @@ namespace MediTech.ViewModels
         {
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
-            PaymentMethods = DataService.Technical.GetReferenceValueMany("PAYMD");
+            BillingCategory = DataService.Technical.GetReferenceValueMany("BLCAT");
+            opbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "OPBILL").Key;
+            ipdbill = BillingCategory.FirstOrDefault(p => p.ValueCode == "IPBILL").Key;
         }
 
         public override void OnLoaded()
@@ -161,7 +166,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID));
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"Y", ownerOrganisationUID));
         }
 
         public void ViewBill()

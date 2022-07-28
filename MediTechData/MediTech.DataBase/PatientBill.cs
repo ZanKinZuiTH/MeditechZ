@@ -23,11 +23,12 @@ namespace MediTech.DataBase
         public Nullable<double> DiscountAmount { get; set; }
         public Nullable<double> NetAmount { get; set; }
         public string BillNumber { get; set; }
-        public Nullable<int> PBLCTUID { get; set; }
+        public Nullable<int> PBTYPUID { get; set; }
         public Nullable<int> BLTYPUID { get; set; }
         public string IsPaymentComplete { get; set; }
         public string IsRefund { get; set; }
         public double PaidAmount { get; set; }
+        public Nullable<int> BLCATUID { get; set; }
         public Nullable<double> ChangeAmount { get; set; }
         public string ReferredBy { get; set; }
         public Nullable<int> StaffUID { get; set; }
