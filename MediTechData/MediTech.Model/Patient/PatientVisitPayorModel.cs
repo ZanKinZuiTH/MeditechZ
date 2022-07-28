@@ -21,6 +21,9 @@ namespace MediTech.Model
         public string InsuranceName { get; set; }
         public Nullable<double> EligibileAmount { get; set; }
         public Nullable<int> PAYRTPUID { get; set; }
+
+        public int? PBTYPUID { get; set; }
+        public int? BLTYPUID { get; set; }
         public string PayorType { get; set; }
         public Nullable<System.DateTime> ActiveFrom { get; set; }
         public Nullable<System.DateTime> ActiveTo { get; set; }

@@ -217,6 +217,12 @@
     <Compile Include="IPBooking.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="IPFillDetail.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="IPFillProcess.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="ItemAverageCost.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -460,6 +466,15 @@
     <Compile Include="Permission.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pGetPatientBillableItemsAccount_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pGetPatientBillableItemsBySA_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="pGetPatientBillableItemsSubAccount_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="PhysicalExam.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -599,6 +614,9 @@
     <Compile Include="SEQERVisitID.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="SEQFILLDETAILID.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="SEQGRNID.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -606,6 +624,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQIPDVisitID.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEQIPFILLID.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQITCODE.cs">
@@ -694,6 +715,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vAllBillableItemRates.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vAllPayorAgreements.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="vAllPayorAgreementsDiscount.cs">

@@ -29,13 +29,29 @@ namespace MediTech.DataService
 
         }
 
-        public PatientBillModel GeneratePatientBill(PatientBillModel model)
+        public PatientBillModel OLDGeneratePatientBill(PatientBillModel model)
+        {
+            PatientBillModel returnData = null;
+            try
+            {
+                string requestApi = string.Format("Api/Billing/OLDGeneratePatientBill");
+                returnData = MeditechApiHelper.Post<PatientBillModel, PatientBillModel>(requestApi, model);
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return returnData;
+        }
+
+        public PatientBillModel GeneratePatientBill(GeneratePatientBillModel model)
         {
             PatientBillModel returnData = null;
             try
             {
                 string requestApi = string.Format("Api/Billing/GeneratePatientBill");
-                returnData = MeditechApiHelper.Post<PatientBillModel, PatientBillModel>(requestApi, model);
+                returnData = MeditechApiHelper.Post<GeneratePatientBillModel, PatientBillModel>(requestApi, model);
             }
             catch (Exception)
             {
@@ -83,9 +99,9 @@ namespace MediTech.DataService
 
             return listPatBill;
         }
-        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)
+        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, string isIP, int? owerOrganisationUID)
         {
-            string requestApi = string.Format("Api/Billing/SearchPatientBill?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&billNumber={3}&owerOrganisationUID={4}", dateFrom, dateTo, patientUID, billNumber, owerOrganisationUID);
+            string requestApi = string.Format("Api/Billing/SearchPatientBill?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&billNumber={3}&isIP={4}&owerOrganisationUID={5}", dateFrom, dateTo, patientUID, billNumber, isIP, owerOrganisationUID);
             List<PatientBillModel> listPatBill = MeditechApiHelper.Get<List<PatientBillModel>>(requestApi);
 
             return listPatBill;
@@ -106,6 +122,30 @@ namespace MediTech.DataService
                 throw;
             }
             return flag;
+        }
+
+        public string CheckPatientBillStatus(long patientUID, long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Billing/CheckPatientBillStatus?patientUID={0}&patientVisitUID={1}", patientUID, patientVisitUID);
+            string isBillComplete = MeditechApiHelper.Get<string>(requestApi);
+
+            return isBillComplete;
+        }
+
+        public string GetCompleteBill(long patientVisitUID)
+        {
+            string requestApi = string.Format("Api/Billing/GetCompleteBill?patientVisitUID={0}", patientVisitUID);
+            string isBillComplete = MeditechApiHelper.Get<string>(requestApi);
+
+            return isBillComplete;
+        }
+
+        public List<PatientPaymentDetailModel> GetPatientPaymentDetailByBillUID(long patientBillUID)
+        {
+
+            string requestApi = string.Format("Api/Billing/GetPatientPaymentDetailByBillUID?patientBillUID={0}", patientBillUID);
+            List<PatientPaymentDetailModel> data = MeditechApiHelper.Get<List<PatientPaymentDetailModel>>(requestApi);
+            return data;
         }
 
         public bool UpdatePaymentMethod(long patientBillUID, int PAYMDUID, int userUID)
@@ -140,15 +180,41 @@ namespace MediTech.DataService
             return data;
         }
 
-        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
-           , long? patientVisitPayorUID, int? careProviderUID, DateTime dateFrom, DateTime dateTo
-   )
+        public List<AllocatedPatBillableItemsAccountResultModel> GetPatientBillableItemsAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, int? accountUID, int? subAccountUID, int? locationUID)
         {
-            string requestApi = string.Format(@"Api/Billing/GetAllocatedPatBillableItemsPalm?patientUID={0}&patientVisitUID={1}&accountUID={2}&subAccountUID={3}&ownerOrganisationUID={4}&patientVisitPayorUID={5}&careProviderUID={6}&dateFrom={7:MM/dd/yyyy}&dateTo={8:MM/dd/yyyy}", patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
+            string requestApi = string.Format(@"Api/Billing/GetPatientBillableItemsAccount?patientUID={0}&patientVisitUID={1}&packageUID={2}&patientVisitPayorUID={3}&startDate={4:MM/dd/yyyy}&endDate={5:MM/dd/yyyy}&accountUID={6}&subAccountUID={7}&locationUID={8}", patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, accountUID, subAccountUID, locationUID);
+            List<AllocatedPatBillableItemsAccountResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsAccountResultModel>>(requestApi);
+
+            return listPatBill;
+        }
+
+
+        public List<AllocatedPatBillableItemsSubAccountResultModel> GetPatientBillableItemsSubAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            string requestApi = string.Format(@"Api/Billing/GetPatientBillableItemsSubAccount?patientUID={0}&patientVisitUID={1}&packageUID={2}&patientVisitPayorUID={3}&startDate={4:MM/dd/yyyy}&endDate={5:MM/dd/yyyy}&isPackage={6}&accountUID={7}&subAccountUID={8}&locationUID={9}", patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, isPackage, accountUID, subAccountUID, locationUID);
+            List<AllocatedPatBillableItemsSubAccountResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsSubAccountResultModel>>(requestApi);
+
+            return listPatBill;
+        }
+
+        public List<AllocatedPatBillableItemsResultModel> GetPatientBillableItemsBySA(long patientUID, long patientVisitUID, int? packageUID, int? careproviderUID, int? billableItemUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            string requestApi = string.Format(@"Api/Billing/GetPatientBillableItemsBySA?patientUID={0}&patientVisitUID={1}&packageUID={2}&careproviderUID={3}&billableItemUID={4}&patientVisitPayorUID={5}&startDate={6:MM/dd/yyyy}&endDate={7:MM/dd/yyyy}&isPackage={8}&accountUID={9}&subAccountUID={10}&locationUID={11}", patientUID, patientVisitUID, packageUID, careproviderUID, billableItemUID, patientVisitPayorUID, startDate, endDate, isPackage, accountUID, subAccountUID, locationUID);
             List<AllocatedPatBillableItemsResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsResultModel>>(requestApi);
 
             return listPatBill;
         }
+
+        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID
+   , long? patientVisitPayorUID, int? careProviderUID, DateTime dateFrom, DateTime dateTo)
+        {
+            string requestApi = string.Format(@"Api/Billing/GetAllocatedPatBillableItemsPalm?patientUID={0}&patientVisitUID={1}&accountUID={2}&subAccountUID={3}&patientVisitPayorUID={4}&careProviderUID={5}&dateFrom={6:MM/dd/yyyy}&dateTo={7:MM/dd/yyyy}", patientUID, patientVisitUID, accountUID, subAccountUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
+            List<AllocatedPatBillableItemsResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsResultModel>>(requestApi);
+
+            return listPatBill;
+        }
+
+
 
 
         public bool AllocatePatientBillableItem(AllocatePatientBillableItemModel allocateModel)

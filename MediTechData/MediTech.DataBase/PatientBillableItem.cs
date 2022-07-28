@@ -43,7 +43,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> EventOccuredDttm { get; set; }
         public Nullable<int> QNUOMUID { get; set; }
         public Nullable<double> ConsultantDiscount { get; set; }
-        public Nullable<int> PatientVisitPayorUID { get; set; }
+        public Nullable<long> PatientVisitPayorUID { get; set; }
         public Nullable<int> PayorDetailUID { get; set; }
         public string BatchID { get; set; }
         public Nullable<double> VATPercentage { get; set; }

@@ -160,7 +160,7 @@ namespace MediTech.ViewModels
             long? patientUID = null;
 
             int? ownerOrganisationUID = (SelectOrganisation != null && SelectOrganisation.HealthOrganisationUID != 0) ? SelectOrganisation.HealthOrganisationUID : (int?)null;
-            PatientBillSource = DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber, ownerOrganisationUID);
+            PatientBillSource = DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,null, ownerOrganisationUID);
         }
 
         public void AddGroupResult()

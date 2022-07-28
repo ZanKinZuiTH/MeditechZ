@@ -7,11 +7,16 @@ using System.Text;
 using System.Threading.Tasks;
 using MediTech.Model;
 using MediTech.Views;
+using MediTech.Models;
+using System.Collections.ObjectModel;
 
 namespace MediTech.ViewModels
 {
     public class ListQueryBillsOPViewModel : MediTechViewModelBase
     {
+
+        int CHKOUT = 418;
+        int BLINP = 423;
 
         #region Properties
 
@@ -50,19 +55,21 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PatientVisitModel> _PatientVisitList;
-        public List<PatientVisitModel> PatientVisitList
+
+
+        private ObservableCollection<UnbilledPatientsResult> _UnBilledPatientLists;
+        public ObservableCollection<UnbilledPatientsResult> UnBilledPatientLists
         {
-            get { return _PatientVisitList; }
-            set { Set(ref _PatientVisitList, value); }
+            get { return _UnBilledPatientLists; }
+            set { Set(ref _UnBilledPatientLists, value); }
         }
 
-        private PatientVisitModel _SelectPatientVisit;
+        private UnbilledPatientsResult _SelectUnBilledPatient;
 
-        public PatientVisitModel SelectPatientVisit
+        public UnbilledPatientsResult SelectUnBilledPatient
         {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
+            get { return _SelectUnBilledPatient; }
+            set { Set(ref _SelectUnBilledPatient, value); }
         }
 
         #endregion
@@ -107,6 +114,24 @@ namespace MediTech.ViewModels
         {
             get { return _SearchCommand ?? (_SearchCommand = new RelayCommand(Search)); }
         }
+
+
+        private RelayCommand _LockCommand;
+
+        public RelayCommand LockCommand
+        {
+            get { return _LockCommand ?? (_LockCommand = new RelayCommand(Lock)); }
+        }
+
+
+
+        private RelayCommand _UnLockCommand;
+
+        public RelayCommand UnLockCommand
+        {
+            get { return _UnLockCommand ?? (_UnLockCommand = new RelayCommand(Unlock)); }
+        }
+
 
         private RelayCommand _AllocateBillCommand;
 
@@ -157,12 +182,41 @@ namespace MediTech.ViewModels
         void Search()
         {
             long? patientUID = null;
-
+            UnBilledPatientLists = null;
             if (SelectedPateintSearch != null && SearchPatientCriteria != "")
             {
                 patientUID = SelectedPateintSearch.PatientUID;
             }
-            PatientVisitList = DataService.Billing.SearchUnbilledPatients(patientUID, DateFrom, DateTo, AppUtil.Current.OwnerOrganisationUID, "N");
+            UnBilledPatientLists = new ObservableCollection<UnbilledPatientsResult>();
+            var patientVisitList = DataService.Billing.SearchUnbilledPatients(patientUID, DateFrom, DateTo, AppUtil.Current.OwnerOrganisationUID, "N");
+            foreach (var patVisit in patientVisitList)
+            {
+                UnbilledPatientsResult newPatient = new UnbilledPatientsResult();
+                newPatient.PatientUID = patVisit.PatientUID;
+                newPatient.PatientVisitUID = patVisit.PatientVisitUID;
+                newPatient.PatientName = patVisit.PatientName;
+                newPatient.PatientID = patVisit.PatientID;
+                newPatient.VisitID = patVisit.VisitID;
+                newPatient.OwnerOrganisationUID = patVisit.OwnerOrganisationUID;
+                newPatient.StartDttm = patVisit.StartDttm;
+                newPatient.VisitStatus = patVisit.VisitStatus;
+                newPatient.LocationUID = patVisit.LocationUID;
+                newPatient.LocationName = patVisit.LocationName;
+                newPatient.DischargeDttm = patVisit.DischargeDttm;
+                newPatient.DischargedUser = patVisit.DischargedUser;
+                newPatient.Gender = patVisit.Gender;
+                newPatient.BloodGroup = patVisit.BloodGroup;
+                newPatient.CareProviderName = patVisit.CareProviderName;
+                newPatient.PatientAddress = patVisit.PatientAddress;
+                newPatient.SecondPhone = patVisit.SecondPhone;
+                newPatient.MobilePhone = patVisit.MobilePhone;
+                newPatient.UnlockVisibility = patVisit.VisitStatus == "Billing Inprogress" ? System.Windows.Visibility.Visible : System.Windows.Visibility.Collapsed;
+                newPatient.LockVisibility = newPatient.UnlockVisibility == System.Windows.Visibility.Visible ? System.Windows.Visibility.Collapsed : System.Windows.Visibility.Visible;
+
+
+                UnBilledPatientLists.Add(newPatient);
+            }
+          
         }
 
         void Clean()
@@ -170,35 +224,87 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = null;
             SearchPatientCriteria = string.Empty;
-            PatientVisitList = null;
+            UnBilledPatientLists = null;
+        }
+
+        private void Lock()
+        {
+            try
+            {
+                if (SelectUnBilledPatient != null)
+                {
+                    DataService.PatientIdentity.ChangeVisitStatus(SelectUnBilledPatient.PatientVisitUID, BLINP, SelectUnBilledPatient.CareProviderUID, SelectUnBilledPatient.LocationUID, DateTime.Now, AppUtil.Current.UserID, null, null);
+                    SelectUnBilledPatient.VISTSUID = BLINP;
+                    SelectUnBilledPatient.VisitStatus = "Billing Inprogress";
+                    SelectUnBilledPatient.UnlockVisibility = System.Windows.Visibility.Visible;
+                    SelectUnBilledPatient.LockVisibility = System.Windows.Visibility.Collapsed;
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
+        }
+
+        private void Unlock()
+        {
+            try
+            {
+                if (SelectUnBilledPatient != null)
+                {
+                    DataService.PatientIdentity.ChangeVisitStatus(SelectUnBilledPatient.PatientVisitUID, CHKOUT, SelectUnBilledPatient.CareProviderUID, SelectUnBilledPatient.LocationUID, DateTime.Now, AppUtil.Current.UserID, null, null);
+                    SelectUnBilledPatient.VISTSUID = CHKOUT;
+                    SelectUnBilledPatient.VisitStatus = "Medical Discharge";
+                    SelectUnBilledPatient.UnlockVisibility = System.Windows.Visibility.Collapsed;
+                    SelectUnBilledPatient.LockVisibility = System.Windows.Visibility.Visible;
+                }
+            }
+            catch (Exception er)
+            {
+
+                ErrorDialog(er.Message);
+            }
+
         }
 
         private void AllocateBill()
         {
-            if (SelectPatientVisit != null)
+            if (SelectUnBilledPatient != null)
             {
+                if (SelectUnBilledPatient.VISTSUID == CHKOUT)
+                {
+                  var resultDiaglog =  QuestionDialog("สถานะยังไม่ได้ทำการ Lock Bill กด \"Yes\" เพื่อเปลี่ยนสถานะเป็น Lock แล้วดำเนินการ Allocate Bill ต่อไป");
+                    if (resultDiaglog == System.Windows.MessageBoxResult.Cancel || resultDiaglog == System.Windows.MessageBoxResult.No)
+                    {
+                        return;
+                    }
+                    Lock();
+                }
                 BillSettlementOP pageview = new BillSettlementOP();
-                (pageview.DataContext as BillSettlementOPViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as BillSettlementOPViewModel).AssingPatientVisit(SelectUnBilledPatient);
                 BillSettlementOPViewModel result = (BillSettlementOPViewModel)LaunchViewDialog(pageview, "BLSETTLEOP", false, true);
+                Search();
             }
         }
 
         private void CreateOrder()
         {
-            if (SelectPatientVisit != null)
+            if (SelectUnBilledPatient != null)
             {
                 PatientOrderEntry pageview = new PatientOrderEntry();
-                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectUnBilledPatient);
                 PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
             }
         }
 
         private void PatientTracking()
         {
-            if (SelectPatientVisit != null)
+            if (SelectUnBilledPatient != null)
             {
                 PatientTracking pageview = new PatientTracking();
-                (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectPatientVisit);
+                (pageview.DataContext as PatientTrackingViewModel).AssingModel(SelectUnBilledPatient);
                 PatientTrackingViewModel result = (PatientTrackingViewModel)LaunchViewDialog(pageview, "PATRCK", false);
             }
 
@@ -206,11 +312,11 @@ namespace MediTech.ViewModels
 
         private void ModifyVisitPayor()
         {
-            if (SelectPatientVisit != null)
+            if (SelectUnBilledPatient != null)
             {
-                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPatientVisit.PatientVisitUID);
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectUnBilledPatient.PatientVisitUID);
                 ModifyVisitPayor pageview = new ModifyVisitPayor();
-                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as ModifyVisitPayorViewModel).AssingPatientVisit(SelectUnBilledPatient);
                 ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {

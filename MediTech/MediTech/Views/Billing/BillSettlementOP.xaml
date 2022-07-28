@@ -107,7 +107,7 @@
                     </dx:SimpleButton>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Left">
-                    <dxe:CheckEdit  Width="80" Content="Expand All"  Margin="0,0,0,0" IsChecked="{Binding IsExpanded}"/>
+                    <dxe:CheckEdit  Width="80" Content="Expand All"   IsChecked="{Binding IsExpanded}"/>
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem HorizontalAlignment="Left">
                     <Image Source="/MediTech;component/Resources/Images/Fincace/modifypayor.png"
@@ -173,7 +173,7 @@
                                 AreaIndex="4" Width="80" Caption="Net Amount" CellFormat="f2" />
                     <dxpg:PivotGridField FieldName="PayorName" Area="ColumnArea" Width="150" AllowFilter="False"
                                 AreaIndex="0" Caption="Payor"  SummaryType="Sum" />
-                    <dxpg:PivotGridField FieldName="PatientBillableItemUID" Area="DataArea"  Width="25" Caption=" " SummaryType="Max" >
+                    <dxpg:PivotGridField x:Name="cellPluse" FieldName="PatientBillableItemUID" Area="DataArea"  Width="25" Caption=" " SummaryType="Max">
                         <dxpg:PivotGridField.CellTemplate>
                             <DataTemplate>
                                 <my:ImageButton x:Name="imgAllocate" Height="15" Width="15"

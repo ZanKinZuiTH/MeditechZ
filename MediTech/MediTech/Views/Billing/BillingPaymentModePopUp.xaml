@@ -1,0 +1,65 @@
+﻿<UserControl x:Class="MediTech.Views.BillingPaymentModePopUp"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" 
+             xmlns:local="clr-namespace:MediTech.Views.Billing" xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors"
+             mc:Ignorable="d" 
+             DataContext="{Binding Path=BillingPaymentModePopUpViewModel,Source={StaticResource Locator}}"
+             Height="200" Width="550">
+    <AdornerDecorator>
+        <dxlc:LayoutControl Orientation="Vertical" Name="PaymentModePopUp" Padding="1" >
+            <dxlc:LayoutGroup Orientation="Vertical">
+
+                <dxlc:LayoutGroup Orientation="Horizontal" Header="PaymentMode" Name="PaymdModeCombo" View="GroupBox" Margin="5,10,5,2">
+                    <dxlc:LayoutItem>
+                        <DockPanel HorizontalAlignment="Left">
+                            <RadioButton Width="100" VerticalAlignment="Center" Content="Cash" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCashChecked, UpdateSourceTrigger = PropertyChanged}" />
+                            <RadioButton Width="100" VerticalAlignment="Center" Content="Cheque" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCreditChecked, UpdateSourceTrigger = PropertyChanged}" />
+                            <RadioButton Width="100" VerticalAlignment="Center" Content="Card" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCardChecked, UpdateSourceTrigger = PropertyChanged}" />
+                            <RadioButton Width="100" VerticalAlignment="Center" Content="OnlineTransfer" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsOLTransferChecked, UpdateSourceTrigger = PropertyChanged}" />
+                            <RadioButton Width="100" VerticalAlignment="Center" Content="Coupon" GroupName="PaymdModeCombo" IsChecked="{Binding Path =IsCouponChecked, UpdateSourceTrigger = PropertyChanged}" />
+                        </DockPanel>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" Margin="10,0,10,0">
+                    <!--BankName-->
+                    <dxlc:LayoutItem Label="BankName" LabelHorizontalAlignment="Right">
+                        <ComboBox Name="BankNamecombo" ItemsSource="{Binding Path = BankNames}"  IsEnabled="{Binding Path=IsBankNameEnabled}"  SelectedValuePath="Display" DisplayMemberPath="Display" SelectedValue="{Binding Path=SelectedPaymentDetail.BankName,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedIndex="0"/>
+                    </dxlc:LayoutItem>
+
+                    <!--Number-->
+                    <dxlc:LayoutItem Label="Number" LabelHorizontalAlignment="Right">
+                        <TextBox Text="{Binding Path=SelectedPaymentDetail.CardNumber,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" IsEnabled="{Binding Path = IsNumberEnabled}"></TextBox>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" Margin="10,0,10,0">
+                    <!-- Card Type -->
+                    <dxlc:LayoutItem Label="CardType" LabelHorizontalAlignment="Right">
+                        <ComboBox ItemsSource="{Binding Path = CardTypes}" DisplayMemberPath="Display" SelectedValuePath="Key" SelectedValue="{Binding Path=SelectedPaymentDetail.CRDTYUID, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" SelectedIndex="0" IsEnabled="{Binding Path = IsCardNameEnabled}" />
+                    </dxlc:LayoutItem>
+
+                    <!--Date Time-->
+                    <dxlc:LayoutItem Label="{Binding Path = DateLabel}" LabelHorizontalAlignment="Right">
+                        <dxe:DateEdit Name="StartTimeDatePicker" EditValue="{Binding Path=SelectedPaymentDetail.PaidDttm, Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+
+                <dxlc:LayoutGroup Orientation="Horizontal" Margin="10,0,10,0">
+                    <!--Authorization Recpt Number-->
+                    <dxlc:LayoutItem Label="Auth Rept No." LabelHorizontalAlignment="Right">
+                        <TextBox Name="AuthRecptNoTxt" Text="{Binding Path =SelectedPaymentDetail.AuthorizationNumber,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}" IsEnabled="{Binding Path = IsCardNameEnabled}" />
+                    </dxlc:LayoutItem>
+
+                    <!--Ok-->
+                    <dxlc:LayoutItem>
+                        <Button Width="80" IsDefault="True" Content="บันทึก" HorizontalAlignment="Right" Command="{Binding ChangeCommand}" />
+                    </dxlc:LayoutItem>
+                </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>
+        </dxlc:LayoutControl>
+    </AdornerDecorator>
+</UserControl>

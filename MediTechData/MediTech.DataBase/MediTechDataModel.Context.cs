@@ -80,6 +80,8 @@ namespace MediTech.DataBase
         public virtual DbSet<InsuranceCompany> InsuranceCompany { get; set; }
         public virtual DbSet<InsurancePlan> InsurancePlan { get; set; }
         public virtual DbSet<IPBooking> IPBooking { get; set; }
+        public virtual DbSet<IPFillDetail> IPFillDetail { get; set; }
+        public virtual DbSet<IPFillProcess> IPFillProcess { get; set; }
         public virtual DbSet<ItemAverageCost> ItemAverageCost { get; set; }
         public virtual DbSet<ItemIssue> ItemIssue { get; set; }
         public virtual DbSet<ItemIssueDetail> ItemIssueDetail { get; set; }
@@ -202,9 +204,11 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQConfiguration> SEQConfiguration { get; set; }
         public virtual DbSet<SEQDISPOSEID> SEQDISPOSEID { get; set; }
         public virtual DbSet<SEQERVisitID> SEQERVisitID { get; set; }
+        public virtual DbSet<SEQFILLDETAILID> SEQFILLDETAILID { get; set; }
         public virtual DbSet<SEQGRNID> SEQGRNID { get; set; }
         public virtual DbSet<SEQGroupReceipt> SEQGroupReceipt { get; set; }
         public virtual DbSet<SEQIPDVisitID> SEQIPDVisitID { get; set; }
+        public virtual DbSet<SEQIPFILLID> SEQIPFILLID { get; set; }
         public virtual DbSet<SEQITCODE> SEQITCODE { get; set; }
         public virtual DbSet<SEQItemIssue> SEQItemIssue { get; set; }
         public virtual DbSet<SEQItemReceive> SEQItemReceive { get; set; }
@@ -239,6 +243,7 @@ namespace MediTech.DataBase
         public virtual DbSet<XrayTranslateConditionDetail> XrayTranslateConditionDetail { get; set; }
         public virtual DbSet<XrayTranslateMapping> XrayTranslateMapping { get; set; }
         public virtual DbSet<vAllBillableItemRates> vAllBillableItemRates { get; set; }
+        public virtual DbSet<vAllPayorAgreements> vAllPayorAgreements { get; set; }
         public virtual DbSet<vAllPayorAgreementsDiscount> vAllPayorAgreementsDiscount { get; set; }
     
         [DbFunction("Entities", "fGetBigIntList")]
@@ -281,6 +286,179 @@ namespace MediTech.DataBase
                 new ObjectParameter("stringToSplit", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<splitstring_Result>("[Entities].[splitstring](@stringToSplit)", stringToSplitParameter);
+        }
+    
+        public virtual ObjectResult<string> pCheckPatientBillStatus(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pCheckPatientBillStatus", p_PatientUIDParameter, p_PatientVisitUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetPatientBillableItemsAccount_Result> pGetPatientBillableItemsAccount(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID, Nullable<int> p_PackageUID, Nullable<long> p_PatientVisitPayorUID, Nullable<System.DateTime> p_FromDttm, Nullable<System.DateTime> p_ToDttm, Nullable<int> p_AccountUID, Nullable<int> p_SubAccountUID, Nullable<int> p_LocationUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            var p_PackageUIDParameter = p_PackageUID.HasValue ?
+                new ObjectParameter("P_PackageUID", p_PackageUID) :
+                new ObjectParameter("P_PackageUID", typeof(int));
+    
+            var p_PatientVisitPayorUIDParameter = p_PatientVisitPayorUID.HasValue ?
+                new ObjectParameter("P_PatientVisitPayorUID", p_PatientVisitPayorUID) :
+                new ObjectParameter("P_PatientVisitPayorUID", typeof(long));
+    
+            var p_FromDttmParameter = p_FromDttm.HasValue ?
+                new ObjectParameter("P_FromDttm", p_FromDttm) :
+                new ObjectParameter("P_FromDttm", typeof(System.DateTime));
+    
+            var p_ToDttmParameter = p_ToDttm.HasValue ?
+                new ObjectParameter("P_ToDttm", p_ToDttm) :
+                new ObjectParameter("P_ToDttm", typeof(System.DateTime));
+    
+            var p_AccountUIDParameter = p_AccountUID.HasValue ?
+                new ObjectParameter("P_AccountUID", p_AccountUID) :
+                new ObjectParameter("P_AccountUID", typeof(int));
+    
+            var p_SubAccountUIDParameter = p_SubAccountUID.HasValue ?
+                new ObjectParameter("P_SubAccountUID", p_SubAccountUID) :
+                new ObjectParameter("P_SubAccountUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetPatientBillableItemsAccount_Result>("pGetPatientBillableItemsAccount", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_PackageUIDParameter, p_PatientVisitPayorUIDParameter, p_FromDttmParameter, p_ToDttmParameter, p_AccountUIDParameter, p_SubAccountUIDParameter, p_LocationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetPatientBillableItemsBySA_Result> pGetPatientBillableItemsBySA(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID, Nullable<int> p_AccountUID, Nullable<int> p_SubAccountUID, Nullable<long> p_PatientVisitPayorUID, Nullable<int> p_CareProviderUID, Nullable<int> p_BillableItemUID, Nullable<System.DateTime> p_FromDttm, Nullable<System.DateTime> p_ToDttm, string p_IsPackage, Nullable<int> p_LocationUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            var p_AccountUIDParameter = p_AccountUID.HasValue ?
+                new ObjectParameter("P_AccountUID", p_AccountUID) :
+                new ObjectParameter("P_AccountUID", typeof(int));
+    
+            var p_SubAccountUIDParameter = p_SubAccountUID.HasValue ?
+                new ObjectParameter("P_SubAccountUID", p_SubAccountUID) :
+                new ObjectParameter("P_SubAccountUID", typeof(int));
+    
+            var p_PatientVisitPayorUIDParameter = p_PatientVisitPayorUID.HasValue ?
+                new ObjectParameter("P_PatientVisitPayorUID", p_PatientVisitPayorUID) :
+                new ObjectParameter("P_PatientVisitPayorUID", typeof(long));
+    
+            var p_CareProviderUIDParameter = p_CareProviderUID.HasValue ?
+                new ObjectParameter("P_CareProviderUID", p_CareProviderUID) :
+                new ObjectParameter("P_CareProviderUID", typeof(int));
+    
+            var p_BillableItemUIDParameter = p_BillableItemUID.HasValue ?
+                new ObjectParameter("P_BillableItemUID", p_BillableItemUID) :
+                new ObjectParameter("P_BillableItemUID", typeof(int));
+    
+            var p_FromDttmParameter = p_FromDttm.HasValue ?
+                new ObjectParameter("P_FromDttm", p_FromDttm) :
+                new ObjectParameter("P_FromDttm", typeof(System.DateTime));
+    
+            var p_ToDttmParameter = p_ToDttm.HasValue ?
+                new ObjectParameter("P_ToDttm", p_ToDttm) :
+                new ObjectParameter("P_ToDttm", typeof(System.DateTime));
+    
+            var p_IsPackageParameter = p_IsPackage != null ?
+                new ObjectParameter("P_IsPackage", p_IsPackage) :
+                new ObjectParameter("P_IsPackage", typeof(string));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetPatientBillableItemsBySA_Result>("pGetPatientBillableItemsBySA", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_AccountUIDParameter, p_SubAccountUIDParameter, p_PatientVisitPayorUIDParameter, p_CareProviderUIDParameter, p_BillableItemUIDParameter, p_FromDttmParameter, p_ToDttmParameter, p_IsPackageParameter, p_LocationUIDParameter);
+        }
+    
+        public virtual ObjectResult<pGetPatientBillableItemsSubAccount_Result> pGetPatientBillableItemsSubAccount(Nullable<long> p_PatientUID, Nullable<long> p_PatientVisitUID, Nullable<int> p_PackageUID, Nullable<long> p_PatientVisitPayorUID, Nullable<System.DateTime> p_FromDttm, Nullable<System.DateTime> p_ToDttm, string p_IsPackage, Nullable<int> p_AccountUID, Nullable<int> p_SubAccountUID, Nullable<int> p_LocationUID)
+        {
+            var p_PatientUIDParameter = p_PatientUID.HasValue ?
+                new ObjectParameter("P_PatientUID", p_PatientUID) :
+                new ObjectParameter("P_PatientUID", typeof(long));
+    
+            var p_PatientVisitUIDParameter = p_PatientVisitUID.HasValue ?
+                new ObjectParameter("P_PatientVisitUID", p_PatientVisitUID) :
+                new ObjectParameter("P_PatientVisitUID", typeof(long));
+    
+            var p_PackageUIDParameter = p_PackageUID.HasValue ?
+                new ObjectParameter("P_PackageUID", p_PackageUID) :
+                new ObjectParameter("P_PackageUID", typeof(int));
+    
+            var p_PatientVisitPayorUIDParameter = p_PatientVisitPayorUID.HasValue ?
+                new ObjectParameter("P_PatientVisitPayorUID", p_PatientVisitPayorUID) :
+                new ObjectParameter("P_PatientVisitPayorUID", typeof(long));
+    
+            var p_FromDttmParameter = p_FromDttm.HasValue ?
+                new ObjectParameter("P_FromDttm", p_FromDttm) :
+                new ObjectParameter("P_FromDttm", typeof(System.DateTime));
+    
+            var p_ToDttmParameter = p_ToDttm.HasValue ?
+                new ObjectParameter("P_ToDttm", p_ToDttm) :
+                new ObjectParameter("P_ToDttm", typeof(System.DateTime));
+    
+            var p_IsPackageParameter = p_IsPackage != null ?
+                new ObjectParameter("P_IsPackage", p_IsPackage) :
+                new ObjectParameter("P_IsPackage", typeof(string));
+    
+            var p_AccountUIDParameter = p_AccountUID.HasValue ?
+                new ObjectParameter("P_AccountUID", p_AccountUID) :
+                new ObjectParameter("P_AccountUID", typeof(int));
+    
+            var p_SubAccountUIDParameter = p_SubAccountUID.HasValue ?
+                new ObjectParameter("P_SubAccountUID", p_SubAccountUID) :
+                new ObjectParameter("P_SubAccountUID", typeof(int));
+    
+            var p_LocationUIDParameter = p_LocationUID.HasValue ?
+                new ObjectParameter("P_LocationUID", p_LocationUID) :
+                new ObjectParameter("P_LocationUID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pGetPatientBillableItemsSubAccount_Result>("pGetPatientBillableItemsSubAccount", p_PatientUIDParameter, p_PatientVisitUIDParameter, p_PackageUIDParameter, p_PatientVisitPayorUIDParameter, p_FromDttmParameter, p_ToDttmParameter, p_IsPackageParameter, p_AccountUIDParameter, p_SubAccountUIDParameter, p_LocationUIDParameter);
+        }
+    
+        public virtual ObjectResult<string> pMergeBillRecipet(Nullable<int> patientVisitUID, Nullable<int> sourcePatientVisitPayorUID, Nullable<int> desPatientVisitPayorUID, Nullable<System.DateTime> dateFrom, Nullable<System.DateTime> dateTo)
+        {
+            var patientVisitUIDParameter = patientVisitUID.HasValue ?
+                new ObjectParameter("PatientVisitUID", patientVisitUID) :
+                new ObjectParameter("PatientVisitUID", typeof(int));
+    
+            var sourcePatientVisitPayorUIDParameter = sourcePatientVisitPayorUID.HasValue ?
+                new ObjectParameter("SourcePatientVisitPayorUID", sourcePatientVisitPayorUID) :
+                new ObjectParameter("SourcePatientVisitPayorUID", typeof(int));
+    
+            var desPatientVisitPayorUIDParameter = desPatientVisitPayorUID.HasValue ?
+                new ObjectParameter("DesPatientVisitPayorUID", desPatientVisitPayorUID) :
+                new ObjectParameter("DesPatientVisitPayorUID", typeof(int));
+    
+            var dateFromParameter = dateFrom.HasValue ?
+                new ObjectParameter("DateFrom", dateFrom) :
+                new ObjectParameter("DateFrom", typeof(System.DateTime));
+    
+            var dateToParameter = dateTo.HasValue ?
+                new ObjectParameter("DateTo", dateTo) :
+                new ObjectParameter("DateTo", typeof(System.DateTime));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pMergeBillRecipet", patientVisitUIDParameter, sourcePatientVisitPayorUIDParameter, desPatientVisitPayorUIDParameter, dateFromParameter, dateToParameter);
         }
     }
 }

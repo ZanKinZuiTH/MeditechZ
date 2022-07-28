@@ -307,9 +307,9 @@ namespace MediTechWebApi.Controllers
             return listData;
         }
 
-        [Route("GeneratePatientBill")]
+        [Route("OLDGeneratePatientBill")]
         [HttpPost]
-        public HttpResponseMessage GeneratePatientBill(PatientBillModel model)
+        public HttpResponseMessage OLDGeneratePatientBill(PatientBillModel model)
         {
             try
             {
@@ -326,8 +326,6 @@ namespace MediTechWebApi.Controllers
                     int BSMDD_MDSLP = refValue.FirstOrDefault(p => p.ValueCode == "MDSLP" && p.DomainCode == "BSMDD").UID;
                     int BSMDD_SULPY = refValue.FirstOrDefault(p => p.ValueCode == "SUPLY" && p.DomainCode == "BSMDD").UID;
 
-                    int BLTYP_Cash = refValue.FirstOrDefault(p => p.ValueCode == "CASHBL" && p.DomainCode == "BLTYP").UID;
-                    int BLTYP_Credit = refValue.FirstOrDefault(p => p.ValueCode == "CREDBL" && p.DomainCode == "BLTYP").UID;
 
                     int BLTYP_Receive = refValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
                     int BLTYP_Invoice = refValue.FirstOrDefault(p => p.ValueCode == "INVOC" && p.DomainCode == "PBTYP").UID;
@@ -360,10 +358,10 @@ namespace MediTechWebApi.Controllers
                     HealthOrganisationID healthIDBillType = null;
                     if (agreement.PBTYPUID == BLTYP_Receive)
                     {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
                         {
-                            billType = "Cash";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Cash);
+                            billType = "Receive";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -403,10 +401,10 @@ namespace MediTechWebApi.Controllers
                     }
                     else if (agreement.PBTYPUID == BLTYP_Invoice)
                     {
-                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit) != null)
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice) != null)
                         {
-                            billType = "Credit";
-                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.BLTYPUID == BLTYP_Credit);
+                            billType = "Invoice";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice);
                             if (healthIDBillType == null)
                             {
                                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
@@ -502,134 +500,134 @@ namespace MediTechWebApi.Controllers
 
                     //}
 
-                    List<long> prescriptonUIDs = new List<long>();
+                    //List<long> prescriptonUIDs = new List<long>();
                     foreach (var item in model.PatientBilledItems)
                     {
                         BillableItem billItem = db.BillableItem.Find(item.BillableItemUID);
                         PatientOrderDetail patientOrderDetail = db.PatientOrderDetail.Find(item.PatientOrderDetailUID);
-                        if (billItem.BSMDDUID == BSMDD_MDSLP || billItem.BSMDDUID == BSMDD_STORE || billItem.BSMDDUID == BSMDD_SULPY)
-                        {
-                            if (item.IdentifyingUID != null)
-                            {
-                                DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(item.IdentifyingUID.Value, model.CUser);
-                                if (dtStockUsed != null && dtStockUsed.Rows.Count > 0)
-                                {
-                                    double doctorFee = 0;
-                                    double discount = 0;
-                                    //double amount = 0;
-                                    if ((billItem.DoctorFee ?? 0) != 0)
-                                    {
-                                        doctorFee = billItem.DoctorFee.Value / dtStockUsed.Rows.Count;
-                                    }
+                        //if (billItem.BSMDDUID == BSMDD_MDSLP || billItem.BSMDDUID == BSMDD_STORE || billItem.BSMDDUID == BSMDD_SULPY)
+                        //{
+                        //    if (item.IdentifyingUID != null)
+                        //    {
+                        //        DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(item.IdentifyingUID.Value, model.CUser);
+                        //        if (dtStockUsed != null && dtStockUsed.Rows.Count > 0)
+                        //        {
+                        //            double doctorFee = 0;
+                        //            double discount = 0;
+                        //            //double amount = 0;
+                        //            if ((billItem.DoctorFee ?? 0) != 0)
+                        //            {
+                        //                doctorFee = billItem.DoctorFee.Value / dtStockUsed.Rows.Count;
+                        //            }
 
-                                    if ((item.Discount ?? 0) != 0)
-                                    {
-                                        discount = item.Discount.Value / dtStockUsed.Rows.Count;
-                                    }
+                        //            if ((item.Discount ?? 0) != 0)
+                        //            {
+                        //                discount = item.Discount.Value / dtStockUsed.Rows.Count;
+                        //            }
 
-                                    double unitPrice = patientOrderDetail.IsPriceOverwrite == "Y" ? patientOrderDetail.OverwritePrice.Value : patientOrderDetail.UnitPrice ?? 0;
-                                    //amount = item.Amount.Value / dtStockUsed.Rows.Count;
-                                    foreach (DataRow stockUsed in dtStockUsed.Rows)
-                                    {
-                                        PatientBilledItem patBilled = new PatientBilledItem();
-                                        patBilled.CWhen = now;
-                                        patBilled.StatusFlag = "A";
-                                        patBilled.CUser = model.CUser;
-                                        patBilled.BSMDDUID = billItem.BSMDDUID;
-                                        patBilled.BillingGroupUID = billItem.BillingGroupUID;
-                                        patBilled.BillingSubGroupUID = billItem.BillingSubGroupUID;
+                        //            double unitPrice = patientOrderDetail.IsPriceOverwrite == "Y" ? patientOrderDetail.OverwritePrice.Value : patientOrderDetail.UnitPrice ?? 0;
+                        //            //amount = item.Amount.Value / dtStockUsed.Rows.Count;
+                        //            foreach (DataRow stockUsed in dtStockUsed.Rows)
+                        //            {
+                        //                PatientBilledItem patBilled = new PatientBilledItem();
+                        //                patBilled.CWhen = now;
+                        //                patBilled.StatusFlag = "A";
+                        //                patBilled.CUser = model.CUser;
+                        //                patBilled.BSMDDUID = billItem.BSMDDUID;
+                        //                patBilled.BillingGroupUID = billItem.BillingGroupUID;
+                        //                patBilled.BillingSubGroupUID = billItem.BillingSubGroupUID;
 
-                                        patBilled.BillableItemUID = item.BillableItemUID;
-                                        patBilled.PatientOrderDetailUID = item.PatientOrderDetailUID;
-                                        patBilled.PatientBillUID = patBill.UID;
-                                        patBilled.MUser = model.MUser;
-                                        patBilled.MWhen = now;
-                                        patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
-                                        patBilled.ItemName = item.ItemName;
+                        //                patBilled.BillableItemUID = item.BillableItemUID;
+                        //                patBilled.PatientOrderDetailUID = item.PatientOrderDetailUID;
+                        //                patBilled.PatientBillUID = patBill.UID;
+                        //                patBilled.MUser = model.MUser;
+                        //                patBilled.MWhen = now;
+                        //                patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
+                        //                patBilled.ItemName = item.ItemName;
 
-                                        patBilled.StoreUID = Convert.ToInt32(stockUsed["StoreUID"]);
-                                        patBilled.StockUID = Convert.ToInt32(stockUsed["StockUID"]);
-                                        patBilled.BatchID = stockUsed["BatchID"].ToString();
-                                        patBilled.ItemCost = Convert.ToDouble(stockUsed["UnitCost"]) + doctorFee;
-                                        patBilled.ItemMutiplier = Convert.ToDouble(stockUsed["Qty"]);
-                                        patBilled.Amount = unitPrice * patBilled.ItemMutiplier;
-                                        patBilled.Discount = discount;
-                                        patBilled.NetAmount = patBilled.Amount - patBilled.Discount;
-
-
-                                        db.PatientBilledItem.AddOrUpdate(patBilled);
-                                    }
-                                    //if (dtStockUsed.Rows.Count > 1)
-                                    //{
-                                    //    double sumCost = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("ItemCost"));
-                                    //    double sumQty = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("Qty"));
-                                    //    patBilled.ItemCost = sumCost / sumQty;
-                                    //}
-                                    //else
-                                    //{
-                                    //    patBilled.ItemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]);
-                                    //}
-                                    //patBilled.ItemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]) + (billItem.DoctorFee ?? 0);
-
-                                    long prescriptionUID = long.Parse(dtStockUsed.Rows[0]["PrescriptionUID"].ToString());
-                                    if (!prescriptonUIDs.Any(p => p == prescriptionUID))
-                                    {
-                                        prescriptonUIDs.Add(prescriptionUID);
-                                    }
-
-                                }
-
-                                //if (patpv.VISTYUID == careAtHome.UID)
-                                //{
-                                //    if (careAtHome.NumericValue != null)
-                                //    {
-                                //        patBilled.ExtendCost = Math.Round(patBilled.ItemCost ?? 0 * (careAtHome.NumericValue.Value / 100), 2);
-                                //    }
-
-                                //}
-
-                            }
-
-                        }
-                        else
-                        {
-                            BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
-                            && p.OwnerOrganisationUID == model.OwnerOrganisationUID
-                            && p.BillableItemUID == item.BillableItemUID
-                            && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
-                            && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
-
-                            PatientBilledItem patBilled = new PatientBilledItem();
-                            patBilled.CWhen = now;
-                            patBilled.StatusFlag = "A";
-                            patBilled.CUser = model.CUser;
-
-                            patBilled.BSMDDUID = billItem.BSMDDUID;
-                            patBilled.BillingGroupUID = billItem.BillingGroupUID;
-                            patBilled.BillingSubGroupUID = billItem.BillingSubGroupUID;
-
-                            patBilled.BillableItemUID = item.BillableItemUID;
-                            patBilled.PatientOrderDetailUID = item.PatientOrderDetailUID;
-                            patBilled.PatientBillUID = patBill.UID;
-                            patBilled.MUser = model.MUser;
-                            patBilled.MWhen = now;
-                            patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
-                            patBilled.ItemName = item.ItemName;
-                            patBilled.ItemCost = billItemDetail?.Cost;
-                            patBilled.ItemMutiplier = item.ItemMutiplier;
-                            patBilled.Amount = item.Amount;
-                            patBilled.Discount = item.Discount;
-                            patBilled.NetAmount = item.NetAmount;
-                            patBilled.DoctorFee = item.DoctorFee;
-                            patBilled.CareproviderUID = item.CareproviderUID ?? 0;
-                            //if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
-                            //{
-                            //    patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;
-                            //}
+                        //                patBilled.StoreUID = Convert.ToInt32(stockUsed["StoreUID"]);
+                        //                patBilled.StockUID = Convert.ToInt32(stockUsed["StockUID"]);
+                        //                patBilled.BatchID = stockUsed["BatchID"].ToString();
+                        //                patBilled.ItemCost = Convert.ToDouble(stockUsed["UnitCost"]) + doctorFee;
+                        //                patBilled.ItemMutiplier = Convert.ToDouble(stockUsed["Qty"]);
+                        //                patBilled.Amount = unitPrice * patBilled.ItemMutiplier;
+                        //                patBilled.Discount = discount;
+                        //                patBilled.NetAmount = patBilled.Amount - patBilled.Discount;
 
 
-                            db.PatientBilledItem.AddOrUpdate(patBilled);
-                        }
+                        //                db.PatientBilledItem.AddOrUpdate(patBilled);
+                        //            }
+                        //            //if (dtStockUsed.Rows.Count > 1)
+                        //            //{
+                        //            //    double sumCost = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("ItemCost"));
+                        //            //    double sumQty = dtStockUsed.AsEnumerable().Sum(x => x.Field<double>("Qty"));
+                        //            //    patBilled.ItemCost = sumCost / sumQty;
+                        //            //}
+                        //            //else
+                        //            //{
+                        //            //    patBilled.ItemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]);
+                        //            //}
+                        //            //patBilled.ItemCost = Convert.ToDouble(dtStockUsed.Rows[0]["UnitCost"]) + (billItem.DoctorFee ?? 0);
+
+                        //            //long prescriptionUID = long.Parse(dtStockUsed.Rows[0]["PrescriptionUID"].ToString());
+                        //            //if (!prescriptonUIDs.Any(p => p == prescriptionUID))
+                        //            //{
+                        //            //    prescriptonUIDs.Add(prescriptionUID);
+                        //            //}
+
+                        //        }
+
+                        //        //if (patpv.VISTYUID == careAtHome.UID)
+                        //        //{
+                        //        //    if (careAtHome.NumericValue != null)
+                        //        //    {
+                        //        //        patBilled.ExtendCost = Math.Round(patBilled.ItemCost ?? 0 * (careAtHome.NumericValue.Value / 100), 2);
+                        //        //    }
+
+                        //        //}
+
+                        //    }
+
+                        //}
+                        //else
+                        //{
+                        //    BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
+                        //    && p.OwnerOrganisationUID == model.OwnerOrganisationUID
+                        //    && p.BillableItemUID == item.BillableItemUID
+                        //    && (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+                        //    && (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
+
+                        //    PatientBilledItem patBilled = new PatientBilledItem();
+                        //    patBilled.CWhen = now;
+                        //    patBilled.StatusFlag = "A";
+                        //    patBilled.CUser = model.CUser;
+
+                        //    patBilled.BSMDDUID = billItem.BSMDDUID;
+                        //    patBilled.BillingGroupUID = billItem.BillingGroupUID;
+                        //    patBilled.BillingSubGroupUID = billItem.BillingSubGroupUID;
+
+                        //    patBilled.BillableItemUID = item.BillableItemUID;
+                        //    patBilled.PatientOrderDetailUID = item.PatientOrderDetailUID;
+                        //    patBilled.PatientBillUID = patBill.UID;
+                        //    patBilled.MUser = model.MUser;
+                        //    patBilled.MWhen = now;
+                        //    patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
+                        //    patBilled.ItemName = item.ItemName;
+                        //    patBilled.ItemCost = billItemDetail?.Cost;
+                        //    patBilled.ItemMutiplier = item.ItemMutiplier;
+                        //    patBilled.Amount = item.Amount;
+                        //    patBilled.Discount = item.Discount;
+                        //    patBilled.NetAmount = item.NetAmount;
+                        //    patBilled.DoctorFee = item.DoctorFee;
+                        //    patBilled.CareproviderUID = item.CareproviderUID ?? 0;
+                        //    //if (billItem.DoctorFee != null && billItem.DoctorFee > 0)
+                        //    //{
+                        //    //    patBilled.DoctorFee = (billItem.DoctorFee / 100) * item.NetAmount;
+                        //    //}
+
+
+                        //    db.PatientBilledItem.AddOrUpdate(patBilled);
+                        //}
                         //if (item.StockUID != null && item.StockUID != 0)
                         //{
                         //    Stock stock = db.Stock.Find(item.StockUID);
@@ -641,24 +639,56 @@ namespace MediTechWebApi.Controllers
                         //}
 
 
+
+
+                        //if (prescriptonUIDs != null && prescriptonUIDs.Count > 0)
+                        //{
+                        //    foreach (var prescriptionUID in prescriptonUIDs)
+                        //    {
+                        //        var prescription = db.Prescription.Find(prescriptionUID);
+
+                        //        db.Prescription.Attach(prescription);
+                        //        prescription.MUser = model.MUser;
+                        //        prescription.MWhen = now;
+                        //        prescription.DispensedDttm = now;
+                        //        prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
+
+                        //        db.SaveChanges();
+                        //    }
+
+                        //}
+
+
+                        BillableItemDetail billItemDetail = db.BillableItemDetail.FirstOrDefault(p => p.StatusFlag == "A"
+&& p.OwnerOrganisationUID == model.OwnerOrganisationUID
+&& p.BillableItemUID == item.BillableItemUID
+&& (p.ActiveFrom == null || (DbFunctions.TruncateTime(p.ActiveFrom) <= DbFunctions.TruncateTime(DateTime.Now)))
+&& (p.ActiveTo == null || (p.ActiveTo.HasValue && DbFunctions.TruncateTime(p.ActiveTo) >= DbFunctions.TruncateTime(DateTime.Now))));
+
+                        PatientBilledItem patBilled = new PatientBilledItem();
+                        patBilled.CWhen = now;
+                        patBilled.StatusFlag = "A";
+                        patBilled.CUser = model.CUser;
+
+                        patBilled.BSMDDUID = billItem.BSMDDUID;
+                        patBilled.BillingGroupUID = billItem.BillingGroupUID;
+                        patBilled.BillingSubGroupUID = billItem.BillingSubGroupUID;
+
+                        patBilled.BillableItemUID = item.BillableItemUID;
+                        patBilled.PatientOrderDetailUID = item.PatientOrderDetailUID;
+                        patBilled.PatientBillUID = patBill.UID;
+                        patBilled.MUser = model.MUser;
+                        patBilled.MWhen = now;
+                        patBilled.OwnerOrganisationUID = model.OwnerOrganisationUID;
+                        patBilled.ItemName = item.ItemName;
+                        patBilled.ItemCost = billItemDetail?.Cost;
+                        patBilled.ItemMultiplier = item.ItemMultiplier;
+                        patBilled.Amount = item.Amount;
+                        patBilled.Discount = item.Discount;
+                        patBilled.NetAmount = item.NetAmount;
+                        patBilled.DoctorFee = item.DoctorFee;
+                        patBilled.CareproviderUID = item.CareproviderUID ?? 0;
                         db.SaveChanges();
-
-                        if (prescriptonUIDs != null && prescriptonUIDs.Count > 0)
-                        {
-                            foreach (var prescriptionUID in prescriptonUIDs)
-                            {
-                                var prescription = db.Prescription.Find(prescriptionUID);
-
-                                db.Prescription.Attach(prescription);
-                                prescription.MUser = model.MUser;
-                                prescription.MWhen = now;
-                                prescription.DispensedDttm = now;
-                                prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
-
-                                db.SaveChanges();
-                            }
-
-                        }
                     }
 
 
@@ -700,6 +730,350 @@ namespace MediTechWebApi.Controllers
                     }
 
                     return Request.CreateResponse(HttpStatusCode.OK, model);
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("GeneratePatientBill")]
+        [HttpPost]
+        public HttpResponseMessage GeneratePatientBill(GeneratePatientBillModel generateBill)
+        {
+            try
+            {
+                using (var tran = new TransactionScope())
+                {
+
+                    DateTime now = DateTime.Now;
+                    var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BLTYP" || p.DomainCode == "PBTYP") && p.StatusFlag == "A");
+
+
+                    int BLTYP_Cash = refValue.FirstOrDefault(p => p.ValueCode == "CASHBL" && p.DomainCode == "BLTYP").UID;
+                    int BLTYP_Credit = refValue.FirstOrDefault(p => p.ValueCode == "CREDBL" && p.DomainCode == "BLTYP").UID;
+
+                    int BLTYP_Receive = refValue.FirstOrDefault(p => p.ValueCode == "RECEI" && p.DomainCode == "PBTYP").UID;
+                    int BLTYP_Invoice = refValue.FirstOrDefault(p => p.ValueCode == "INVOC" && p.DomainCode == "PBTYP").UID;
+
+                    PatientVisit patpv = db.PatientVisit.Find(generateBill.PatientVisitUID);
+                    var refVisitType = db.ReferenceValue.Where(p => p.StatusFlag == "A" && p.DomainCode == "VISTY" && (p.ValueCode == "NONMED" || p.ValueCode == "BUSNT"));
+                    ReferenceValue nonMed = refVisitType.FirstOrDefault(p => p.ValueCode == "NONMED");
+                    ReferenceValue businessUnits = refVisitType.FirstOrDefault(p => p.ValueCode == "BUSNT");
+
+                    PatientBill patBill = new PatientBill();
+                    int seqBillID = 0;
+                    string patientBillID = string.Empty;
+                    HealthOrganisationID healthIDBillType = null;
+                    IEnumerable<HealthOrganisationID> healthOrganisationIDs;
+                    string billType = "";
+
+                    if (patpv.VISTYUID == nonMed?.UID)
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == 2 && p.StatusFlag == "A"); //Nonmed
+                    }
+                    else
+                    {
+                        healthOrganisationIDs = db.HealthOrganisationID.Where(p => p.HealthOrganisationUID == patpv.OwnerOrganisationUID && p.StatusFlag == "A");
+                    }
+
+                    if (generateBill.PBTYPUID == BLTYP_Receive)
+                    {
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive) != null)
+                        {
+                            billType = "Receive";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Receive);
+                            if (healthIDBillType == null)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
+                            }
+                            else
+                            {
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                    healthIDBillType.NumberValue = 1;
+                                }
+                            }
+
+                            patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientBill", out seqBillID);
+                            if (string.IsNullOrEmpty(patientBillID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                            }
+                        }
+
+
+                    }
+                    else if (generateBill.PBTYPUID == BLTYP_Invoice)
+                    {
+                        if (healthOrganisationIDs != null && healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice) != null)
+                        {
+                            billType = "Invoice";
+                            healthIDBillType = healthOrganisationIDs.FirstOrDefault(p => p.PBTYPUID == BLTYP_Invoice);
+                            if (healthIDBillType == null)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No HealthOranisationID Type " + billType + " in HealthOranisation");
+                            }
+                            db.HealthOrganisationID.Attach(healthIDBillType);
+                            if (healthIDBillType.LastRenumberDttm == null)
+                            {
+                                healthIDBillType.LastRenumberDttm = now;
+                            }
+                            else
+                            {
+                                double dateDiff = ((now.Year - healthIDBillType.LastRenumberDttm.Value.Year) * 12) + now.Month - healthIDBillType.LastRenumberDttm.Value.Month;
+                                if (dateDiff >= 1)
+                                {
+                                    healthIDBillType.LastRenumberDttm = now;
+                                    healthIDBillType.NumberValue = 1;
+                                }
+                            }
+
+                            patientBillID = SEQHelper.GetSEQBillNumber(healthIDBillType.IDFormat, healthIDBillType.IDLength.Value, healthIDBillType.NumberValue.Value);
+                            seqBillID = healthIDBillType.NumberValue.Value;
+
+                            healthIDBillType.NumberValue = ++healthIDBillType.NumberValue;
+
+                            db.SaveChanges();
+                        }
+                        else
+                        {
+                            patientBillID = SEQHelper.GetSEQIDFormat("SEQPatientINVBill", out seqBillID);
+                            if (string.IsNullOrEmpty(patientBillID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientBill Or SEQPatientINVBill in SEQCONFIGURATION");
+                            }
+                        }
+
+                    }
+
+                    if (seqBillID == 0)
+                    {
+                        return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientBill Or SEQPatientINVBill is Fail");
+                    }
+                    patBill.CUser = generateBill.UserUID;
+                    patBill.CWhen = now;
+                    patBill.BillNumber = patientBillID;
+                    patBill.BillGeneratedDttm = now;
+                    patBill.MUser = generateBill.UserUID;
+                    patBill.MWhen = DateTime.Now;
+                    patBill.StatusFlag = "A";
+                    patBill.OwnerOrganisationUID = patpv.OwnerOrganisationUID;
+                    patBill.PatientUID = generateBill.PatientUID;
+                    patBill.PatientVisitUID = generateBill.PatientVisitUID;
+                    patBill.Comments = generateBill.Comments;
+                    patBill.TotalAmount = generateBill.TotalAmount;
+                    patBill.DiscountAmount = generateBill.DiscountAmount;
+                    patBill.NetAmount = generateBill.NetAmount;
+                    patBill.PatientVisitPayorUID = generateBill.PatientVisitPayorUID;
+                    patBill.PayorDetailUID = generateBill.PayorDetailUID;
+                    patBill.PayorAgreementUID = generateBill.PayorAgreementUID;
+                    patBill.PBTYPUID = generateBill.PBTYPUID;
+                    patBill.BLTYPUID = generateBill.BLTYPUID;
+                    patBill.BLCATUID = generateBill.BLCATUID;
+                    patBill.IsPaymentComplete = generateBill.PBTYPUID == BLTYP_Receive ? "Y" : generateBill.PBTYPUID == BLTYP_Invoice ? "N" : "Y";
+                    patBill.StaffUID = generateBill.UserUID;
+                    db.PatientBill.AddOrUpdate(patBill);
+                    db.SaveChanges();
+
+                    List<PatientBilledItem> patientBilledItemList = new List<PatientBilledItem>();
+
+                    foreach (var accountItem in generateBill.PatientBillableItemsAccounts)
+                    {
+                        List<AllocatedPatBillableItemsResultModel> patbillableItemSAList = new List<AllocatedPatBillableItemsResultModel>();
+                        if (accountItem.AllocatedPatBillableItemsSubGroups != null && accountItem.AllocatedPatBillableItemsSubGroups.Count > 0)
+                        {
+                            foreach (var subAccountItem in accountItem.AllocatedPatBillableItemsSubGroups)
+                            {
+                                if (subAccountItem.AllocatedPatBillableItems != null && subAccountItem.AllocatedPatBillableItems.Count > 0)
+                                {
+                                    if(subAccountItem.IsPackage == "N")
+                                    {
+                                        foreach (var patientbillableItemDetail in subAccountItem.AllocatedPatBillableItems)
+                                        {
+                                            PatientBillableItem patientBillableItem = db.PatientBillableItem.Find(patientbillableItemDetail.PatientBillableItemUID);
+
+                                            PatientBilledItem patientBilledItem = new PatientBilledItem();
+                                            patientBilledItem.PatientBillUID = patBill.UID;
+                                            patientBilledItem.EventOccuredDttm = patientbillableItemDetail.EventOccuredDttm;
+                                            patientBilledItem.ServiceName = patientbillableItemDetail.ServiceName;
+                                            patientBilledItem.BillableItemUID = patientbillableItemDetail.BillableItemUID ?? 0;
+                                            patientBilledItem.Amount = (patientbillableItemDetail.Amount ?? 0.0);
+                                            patientBilledItem.PatientBillableItemUID = patientbillableItemDetail.PatientBillableItemUID;
+                                            patientBilledItem.Discount = patientbillableItemDetail.Discount;
+                                            patientBilledItem.NetAmount = patientbillableItemDetail.NetAmount;
+                                            patientBilledItem.ItemMultiplier = patientbillableItemDetail.Quantity;
+                                            patientBilledItem.BSMDDUID = patientbillableItemDetail.BSMDDUID;
+                                            patientBilledItem.ItemName = patientbillableItemDetail.ItemName;
+                                            patientBilledItem.CareproviderUID = patientbillableItemDetail.CareProviderUID;
+                                            patientBilledItem.StatusFlag = "A";
+                                            patientBilledItem.PackageItemAmount = patientbillableItemDetail.AdjPackItemAmount;   
+                                            if (patientBillableItem != null)
+                                            {
+                                                patientBilledItem.BillingGroupUID = patientBillableItem.GroupUID;
+                                                patientBilledItem.BillingSubGroupUID = patientBillableItem.SubGroupUID;
+                                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID;
+                                            }
+
+                                            patientBilledItem.CUser = generateBill.UserUID;
+                                            patientBilledItem.CWhen = now;
+                                            patientBilledItem.MUser = generateBill.UserUID;
+                                            patientBilledItem.MWhen = DateTime.Now;
+                                            patientBilledItem.StatusFlag = "A";
+                                            patientBilledItemList.Add(patientBilledItem);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        var patbillableItemSA = GetPatientBillableItemsBySA(generateBill.PatientUID, generateBill.PatientVisitUID, null, null, null, generateBill.PatientVisitPayorUID, generateBill.DateFrom, generateBill.DateTo, accountItem.IsPackage, subAccountItem.AccountUID, subAccountItem.SubAccountUID, null);
+                                        patbillableItemSAList.AddRange(patbillableItemSA);
+                                    }
+                                }
+                                else
+                                {
+                                    var patbillableItemSA = GetPatientBillableItemsBySA(generateBill.PatientUID, generateBill.PatientVisitUID, null, null, null, generateBill.PatientVisitPayorUID, generateBill.DateFrom, generateBill.DateTo, accountItem.IsPackage, subAccountItem.AccountUID, subAccountItem.SubAccountUID, null);
+                                    patbillableItemSAList.AddRange(patbillableItemSA);
+                                }
+                            }
+                        }
+                        else
+                        {
+                            var patbillableItemSA = GetPatientBillableItemsBySA(generateBill.PatientUID, generateBill.PatientVisitUID, null, null, null, generateBill.PatientVisitPayorUID, generateBill.DateFrom, generateBill.DateTo, accountItem.IsPackage, accountItem.AccountUID, null, null);
+                            patbillableItemSAList.AddRange(patbillableItemSA);
+                        }
+
+                        foreach (var item in patbillableItemSAList)
+                        {
+                            PatientBillableItem patientBillableItem = db.PatientBillableItem.Find(item.PatientBillableItemUID);
+
+                            PatientBilledItem patientBilledItem = new PatientBilledItem();
+                            patientBilledItem.PatientBillUID = patBill.UID;
+                            patientBilledItem.EventOccuredDttm = item.EventOccuredDttm;
+                            patientBilledItem.ServiceName = item.ServiceName;
+                            patientBilledItem.BillableItemUID = item.BillableItemUID ?? 0;
+                            patientBilledItem.Amount = (item.Amount ?? 0.0);
+                            patientBilledItem.PatientBillableItemUID = item.PatientBillableItemUID;
+                            patientBilledItem.Discount = item.Discount;
+                            patientBilledItem.NetAmount = item.NetAmount;
+                            patientBilledItem.ItemMultiplier = item.Quantity;
+                            patientBilledItem.BSMDDUID = item.BSMDDUID;
+                            patientBilledItem.ItemName = item.ItemName;
+                            patientBilledItem.CareproviderUID = item.CareProviderUID;
+                            patientBilledItem.StatusFlag = "A";
+                            patientBilledItem.PackageItemAmount = item.AdjPackItemAmount;
+
+                            if (accountItem.IsPackage == "Y")
+                            {
+                                patientBilledItem.BillPackageUID = item.SubAccountUID;
+                            }
+                            if (accountItem.IsPackage == "Y" && item.BillableItemUID.HasValue && item.BillableItemUID.Value > 0)
+                            {
+                                patientBilledItem.PatientPackageItemUID = item.SubAccountUID;
+                            }
+
+
+                            if (patientBillableItem != null)
+                            {
+                                patientBilledItem.BillingGroupUID = patientBillableItem.GroupUID;
+                                patientBilledItem.BillingSubGroupUID = patientBillableItem.SubGroupUID;
+                                patientBilledItem.PatientOrderDetailUID = patientBillableItem.PatientOrderDetailUID;
+                            }
+
+                            patientBilledItem.CUser = generateBill.UserUID;
+                            patientBilledItem.CWhen = now;
+                            patientBilledItem.MUser = generateBill.UserUID;
+                            patientBilledItem.MWhen = DateTime.Now;
+                            patientBilledItem.StatusFlag = "A";
+                            patientBilledItemList.Add(patientBilledItem);
+                        }
+
+                    }
+
+
+                    db.PatientBilledItem.AddRange(patientBilledItemList);
+                    db.SaveChanges();
+
+
+                    List<PatientPaymentDetail> patientPaymentDetailList = new List<PatientPaymentDetail>();
+                    foreach (var patientPayment in generateBill.PatientPaymentDetails)
+                    {
+                        PatientPaymentDetail patientPaymentDetail = new PatientPaymentDetail();
+                        patientPaymentDetail.PatientBillUID = patBill.UID;
+                        patientPaymentDetail.PatientUID = generateBill.PatientUID;
+                        patientPaymentDetail.PatientVisitUID = generateBill.PatientVisitUID;
+                        patientPaymentDetail.PaidDttm = DateTime.Now;
+                        patientPaymentDetail.PAYMDUID = patientPayment.PAYMDUID;
+                        patientPaymentDetail.CURNCUID = patientPayment.CURNCUID;
+                        patientPaymentDetail.Amount = patientPayment.Amount;
+                        patientPaymentDetail.CRDTYUID = patientPayment.CRDTYUID;
+                        patientPaymentDetail.CardNumber = patientPayment.CardNumber;
+                        patientPaymentDetail.CardExpiryDttm = patientPayment.CardExpiryDttm;
+                        patientPaymentDetail.RecieptNumber = patientPayment.RecieptNumber;
+                        patientPaymentDetail.BankName = patientPayment.BankName;
+                        patientPaymentDetail.AuthorizationNumber = patientPayment.AuthorizationNumber;
+                        patientPaymentDetail.BLCATUID = patientPayment.BLCATUID;
+                        patientPaymentDetail.OwnerOrganisationUID = patpv.OwnerOrganisationUID ?? 0;
+                        patientPaymentDetail.CUser = generateBill.UserUID;
+                        patientPaymentDetail.CWhen = now;
+                        patientPaymentDetail.MUser = generateBill.UserUID;
+                        patientPaymentDetail.MWhen = DateTime.Now;
+                        patientPaymentDetail.StatusFlag = "A";
+                        patientPaymentDetailList.Add(patientPaymentDetail);
+                    }
+
+                    db.PatientPaymentDetail.AddRange(patientPaymentDetailList);
+                    db.SaveChanges();
+
+
+                    PatientBillModel patientBillModel = new PatientBillModel();
+                    patientBillModel.PatientBillUID = patBill.UID;
+                    patientBillModel.OwnerOrganisationUID = patBill.OwnerOrganisationUID ?? 0;
+                    patientBillModel.PatientBillUID = patBill.UID;
+                    patientBillModel.CUser = patBill.CUser;
+                    patientBillModel.CWhen = patBill.CWhen;
+                    patientBillModel.BillNumber = patBill.BillNumber;
+                    patientBillModel.BillGeneratedDttm = patBill.BillGeneratedDttm;
+                    patientBillModel.MUser = patBill.MUser;
+                    patientBillModel.MWhen = patBill.MWhen;
+                    patientBillModel.StatusFlag = patBill.StatusFlag;
+                    patientBillModel.OwnerOrganisationUID = patBill.OwnerOrganisationUID ?? 0;
+                    patientBillModel.PatientUID = patBill.PatientUID ?? 0;
+                    patientBillModel.PatientVisitUID = patBill.PatientVisitUID ?? 0;
+                    patientBillModel.Comments = patBill.Comments;
+                    patientBillModel.TotalAmount = patBill.TotalAmount;
+                    patientBillModel.DiscountAmount = patBill.DiscountAmount;
+                    patientBillModel.NetAmount = patBill.NetAmount;
+                    patientBillModel.PatientVisitPayorUID = patBill.PatientVisitPayorUID;
+                    patientBillModel.PayorDetailUID = patBill.PayorDetailUID;
+                    patientBillModel.PayorAgreementUID = patBill.PayorAgreementUID;
+                    patientBillModel.PBTYPUID = patBill.PBTYPUID;
+                    patientBillModel.BLTYPUID = patBill.BLTYPUID;
+                    patientBillModel.BLCATUID = patBill.BLCATUID;
+                    patientBillModel.IsPaymentComplete = patBill.IsPaymentComplete;
+                    patientBillModel.StaffUID = patBill.StaffUID;
+
+                    tran.Complete();
+
+                    return Request.CreateResponse(HttpStatusCode.OK, patientBillModel);
                 }
 
             }
@@ -769,7 +1143,7 @@ namespace MediTechWebApi.Controllers
                     NetAmount = f.NetAmount,
                     Discount = f.Discount,
                     ItemName = f.ItemName,
-                    ItemMutiplier = f.ItemMutiplier,
+                    ItemMultiplier = f.ItemMultiplier,
                     BillingGroupUID = f.BillingGroupUID ?? 0,
                     BillingSubGroupUID = f.BillingSubGroupUID ?? 0,
                     BillingGroup = SqlFunction.fGetBillingGroupDesc(f.BillingGroupUID ?? 0, "G"),
@@ -794,7 +1168,7 @@ namespace MediTechWebApi.Controllers
                         NetAmount = billed.NetAmount,
                         Discount = billed.Discount,
                         ItemName = billed.ItemName,
-                        ItemMutiplier = billed.ItemMutiplier,
+                        ItemMultiplier = billed.ItemMultiplier,
                         Unit = SqlFunction.fGetRfValDescription(pod.QNUOMUID ?? 0),
                         BillingGroupUID = billed.BillingGroupUID ?? 0,
                         BillingSubGroupUID = billed.BillingSubGroupUID ?? 0,
@@ -823,10 +1197,10 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchPatientBill")]
         [HttpGet]
-        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber, int? owerOrganisationUID)
+        public List<PatientBillModel> SearchPatientBill(DateTime? dateFrom, DateTime? dateTo, long? patientUID, string billNumber,string isIP, int? owerOrganisationUID)
         {
             List<PatientBillModel> data = new List<PatientBillModel>();
-            DataTable dt = SqlDirectStore.pSearchPatientBill(dateFrom, dateTo, patientUID, billNumber, owerOrganisationUID);
+            DataTable dt = SqlDirectStore.pSearchPatientBill(dateFrom, dateTo, patientUID, billNumber, isIP, owerOrganisationUID);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<PatientBillModel>();
@@ -835,14 +1209,58 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+
+        [Route("GetPatientBillableItemsAccount")]
+        [HttpGet]
+        public List<AllocatedPatBillableItemsAccountResultModel> GetPatientBillableItemsAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            List<AllocatedPatBillableItemsAccountResultModel> data = new List<AllocatedPatBillableItemsAccountResultModel>();
+            DataTable dt = SqlDirectStore.pGetPatientBillableItemsAccount(patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, accountUID, subAccountUID, locationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<AllocatedPatBillableItemsAccountResultModel>();
+                data = dt.ToList<AllocatedPatBillableItemsAccountResultModel>();
+            }
+            return data;
+        }
+
+        [Route("GetPatientBillableItemsSubAccount")]
+        [HttpGet]
+        public List<AllocatedPatBillableItemsSubAccountResultModel> GetPatientBillableItemsSubAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            List<AllocatedPatBillableItemsSubAccountResultModel> data = new List<AllocatedPatBillableItemsSubAccountResultModel>();
+            DataTable dt = SqlDirectStore.pGetPatientBillableItemsSubAccount(patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, isPackage, accountUID, subAccountUID, locationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<AllocatedPatBillableItemsSubAccountResultModel>();
+                data = dt.ToList<AllocatedPatBillableItemsSubAccountResultModel>();
+            }
+            return data;
+        }
+
+        [Route("GetPatientBillableItemsBySA")]
+        [HttpGet]
+        public List<AllocatedPatBillableItemsResultModel> GetPatientBillableItemsBySA(long patientUID, long patientVisitUID, int? packageUID, int? careproviderUID, int? billableItemUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, string isPackage, int? accountUID, int? subAccountUID, int? locationUID)
+        {
+            List<AllocatedPatBillableItemsResultModel> data = new List<AllocatedPatBillableItemsResultModel>();
+            DataTable dt = SqlDirectStore.pGetPatientBillableItemsBySA(patientUID, patientVisitUID, packageUID, careproviderUID, billableItemUID, patientVisitPayorUID, startDate, endDate, isPackage, accountUID, subAccountUID, locationUID);
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                data = new List<AllocatedPatBillableItemsResultModel>();
+                data = dt.ToList<AllocatedPatBillableItemsResultModel>();
+            }
+            return data;
+        }
+
+
         [Route("GetAllocatedPatBillableItemsPalm")]
         [HttpGet]
-        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID, int ownerOrganisationUID
+        public List<AllocatedPatBillableItemsResultModel> GetAllocatedPatBillableItemsPalm(long patientUID, long patientVisitUID, int? accountUID, int? subAccountUID
            , long? patientVisitPayorUID, int? careProviderUID, DateTime dateFrom, DateTime dateTo
     )
         {
             List<AllocatedPatBillableItemsResultModel> data = new List<AllocatedPatBillableItemsResultModel>();
-            DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, ownerOrganisationUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
+            DataTable dt = SqlDirectStore.pGetAllocatedPatBillableItemsPalm(patientUID, patientVisitUID, accountUID, subAccountUID, patientVisitPayorUID, careProviderUID, dateFrom, dateTo);
             if (dt != null && dt.Rows.Count > 0)
             {
                 data = new List<AllocatedPatBillableItemsResultModel>();
@@ -860,10 +1278,10 @@ namespace MediTechWebApi.Controllers
                     inData.NetAmount = !string.IsNullOrEmpty(row["NetAmount"].ToString()) ? Convert.ToDouble(row["NetAmount"]) : (double?)null;
                     inData.PayorUID = !string.IsNullOrEmpty(row["PayorUID"].ToString()) ? Convert.ToInt32(row["PayorUID"]) : (int?)null;
                     inData.PayorName = row["PayorName"]?.ToString();
-                    inData.BillableItemUID = Convert.ToInt64(row["BillableItemUID"]);
+                    inData.BillableItemUID = !string.IsNullOrEmpty(row["BillableItemUID"].ToString()) ? Convert.ToInt32(row["BillableItemUID"]) : (int?)null;
                     inData.PatientVisitPayorUID = !string.IsNullOrEmpty(row["PatientVisitPayorUID"].ToString()) ? Convert.ToInt64(row["PatientVisitPayorUID"]) : (long?)null;
                     inData.EventOccuredDttm = Convert.ToDateTime(row["EventOccuredDttm"]);
-                    inData.CareProviderUID = !string.IsNullOrEmpty(row["CareProviderUID"].ToString()) ? Convert.ToInt32(row["CareProviderUID"]) :(int?)null;
+                    inData.CareProviderUID = !string.IsNullOrEmpty(row["CareProviderUID"].ToString()) ? Convert.ToInt32(row["CareProviderUID"]) : (int?)null;
                     inData.GroupMaxCoverage = !string.IsNullOrEmpty(row["GroupMaxCoverage"].ToString()) ? Convert.ToDouble(row["GroupMaxCoverage"]) : (double?)null;
                     inData.GroupCovered = !string.IsNullOrEmpty(row["GroupCovered"].ToString()) ? Convert.ToDouble(row["GroupCovered"]) : (double?)null;
                     inData.SubGroupMaxCoverage = !string.IsNullOrEmpty(row["SubGroupMaxCoverage"].ToString()) ? Convert.ToDouble(row["SubGroupMaxCoverage"]) : (double?)null;
@@ -923,7 +1341,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("MergeBillRecipet")]
         [HttpPut]
-        public HttpResponseMessage MergeBillRecipet(long patientVisitUID,long sourcePateintVisitPayorUID,long desPatientVisitPayorUID,DateTime dateFrom,DateTime dateTo)
+        public HttpResponseMessage MergeBillRecipet(long patientVisitUID, long sourcePateintVisitPayorUID, long desPatientVisitPayorUID, DateTime dateFrom, DateTime dateTo)
         {
             try
             {
@@ -944,6 +1362,8 @@ namespace MediTechWebApi.Controllers
 
             try
             {
+                int BLINP = 423;
+                int FINDIS = 421;
                 using (var tran = new TransactionScope())
                 {
                     PatientBill patientBill = db.PatientBill.Find(patientBillUID);
@@ -958,179 +1378,199 @@ namespace MediTechWebApi.Controllers
                         patientBill.MUser = userUID;
                         patientBill.MWhen = now;
                         db.SaveChanges();
-                        List<PatientBilledItem> patBilledItem = db.PatientBilledItem.Where(p => p.PatientBillUID == patientBill.UID && p.StatusFlag == "A").ToList();
-                        if (patBilledItem != null)
+
+
+                        var patPaymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patientBill.UID);
+                        if (patPaymentDetails != null && patPaymentDetails.Count() > 0)
                         {
-                            foreach (var item in patBilledItem)
+                            foreach (var patPay in patPaymentDetails)
                             {
-
-                                if (item.BSMDDUID == 2826 || item.BSMDDUID == 2953 || item.BSMDDUID == 3078)
-                                {
-
-                                    var stockmovement = (from pre in db.PrescriptionItem
-                                                         join dis in db.DispensedItem on pre.UID equals dis.PrescriptionItemUID
-                                                         join stv in db.StockMovement on new { key1 = dis.UID, key2 = "DispensedItem" } equals new { key1 = stv.RefUID ?? 0, key2 = stv.RefTable }
-                                                         where pre.StatusFlag == "A"
-                                                         && dis.StatusFlag == "A"
-                                                         && stv.StatusFlag == "A"
-                                                         && dis.ORDSTUID == 2861 // Dispensed
-                                                         && pre.PatientOrderDetailUID == item.PatientOrderDetailUID
-                                                         select new
-                                                         {
-                                                             StockUID = stv.StockUID,
-                                                             OutQty = stv.OutQty,
-                                                             RefUID = stv.RefUID,
-                                                             StoreUID = stv.StoreUID,
-                                                             StockmovementUID = stv.UID,
-                                                             DispensedItemUID = dis.UID,
-                                                             PresciptionItemUID = pre.UID,
-                                                             PrescriptionUID = pre.PrescriptionUID
-                                                         }).FirstOrDefault();
-
-
-                                    Stock stock = db.Stock.Find(stockmovement.StockUID);
-
-                                    double totalBFQty = SqlStatement.GetItemTotalQuantity(stock.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
-                                    double bfQty = stock.Quantity;
-
-                                    //SqlDirectStore.pCancelDispensed(item.PatientOrderDetailUID, userUID);
-
-                                    DispensedItem dispensedItem = db.DispensedItem.Find(stockmovement.DispensedItemUID);
-                                    db.DispensedItem.Attach(dispensedItem);
-                                    dispensedItem.MUser = userUID;
-                                    dispensedItem.MWhen = now;
-                                    dispensedItem.ORDSTUID = 2875;
-
-
-                                    PrescriptionItem prescriptionItem = db.PrescriptionItem.Find(stockmovement.PresciptionItemUID);
-                                    db.PrescriptionItem.Attach(prescriptionItem);
-                                    prescriptionItem.MUser = userUID;
-                                    prescriptionItem.MWhen = now;
-                                    prescriptionItem.ORDSTUID = 2875;
-                                    db.SaveChanges();
-
-                                    Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
-                                    db.Prescription.Attach(prescription);
-                                    prescription.MUser = userUID;
-                                    prescription.MWhen = now;
-                                    prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
-
-
-
-                                    PatientOrderDetail patientOrderDetail = db.PatientOrderDetail.Find(item.PatientOrderDetailUID);
-                                    db.PatientOrderDetail.Attach(patientOrderDetail);
-                                    patientOrderDetail.MUser = userUID;
-                                    patientOrderDetail.MWhen = now;
-                                    patientOrderDetail.ORDSTUID = 2875;
-
-                                    PatientOrderDetailHistory patOrderDetailHistory = new PatientOrderDetailHistory();
-                                    patOrderDetailHistory.PatientOrderDetailUID = patientOrderDetail.UID;
-                                    patOrderDetailHistory.ORDSTUID = patientOrderDetail.ORDSTUID;
-                                    patOrderDetailHistory.EditByUserID = userUID;
-                                    patOrderDetailHistory.EditedDttm = now;
-                                    patOrderDetailHistory.CUser = userUID;
-                                    patOrderDetailHistory.CWhen = now;
-                                    patOrderDetailHistory.MUser = userUID;
-                                    patOrderDetailHistory.MWhen = now;
-                                    patOrderDetailHistory.StatusFlag = "A";
-                                    db.PatientOrderDetailHistory.Add(patOrderDetailHistory);
-
-                                    db.Stock.Attach(stock);
-                                    stock.Quantity = stock.Quantity + stockmovement.OutQty;
-                                    stock.MUser = userUID;
-                                    stock.MWhen = now;
-                                    stock.StatusFlag = "A";
-
-
-                                    StockMovement stockMovement = db.StockMovement.Find(stockmovement.StockmovementUID);
-                                    db.StockMovement.Attach(stockMovement);
-                                    stockMovement.MUser = userUID;
-                                    stockMovement.MWhen = now;
-                                    stockMovement.Note = "SaleReturn";
-
-
-                                    db.SaveChanges();
-
-
-
-                                    SaleReturn saleReturn = new SaleReturn();
-
-
-                                    db.SaleReturn.Add(saleReturn);
-                                    saleReturn.ReturnedBy = userUID;
-                                    saleReturn.ReturnDttm = now;
-                                    saleReturn.PatientUID = patientBill.PatientUID;
-                                    saleReturn.PatientVisitUID = patientBill.PatientVisitUID;
-                                    saleReturn.StoreUID = stockmovement.StoreUID ?? 0;
-                                    saleReturn.OwnerOrganisationUID = stock.OwnerOrganisationUID;
-                                    saleReturn.MUser = userUID;
-                                    saleReturn.MWhen = now;
-                                    saleReturn.CUser = userUID;
-                                    saleReturn.CWhen = now;
-                                    saleReturn.StatusFlag = "A";
-                                    db.SaveChanges();
-
-                                    SaleReturnList saleReturnList = new SaleReturnList();
-                                    saleReturnList.SaleReturnUID = saleReturn.UID;
-                                    saleReturnList.StockUID = stock.UID;
-                                    saleReturnList.BatchID = stock.BatchID;
-                                    saleReturnList.ItemMasterUID = stock.ItemMasterUID;
-                                    saleReturnList.ItemName = stock.ItemName;
-                                    saleReturnList.Quantity = stockmovement.OutQty;
-                                    saleReturnList.IMUOMUID = stock.IMUOMUID;
-                                    saleReturnList.ItemCost = stock.ItemCost;
-                                    saleReturnList.DispensedItemUID = stockmovement.RefUID ?? 0;
-                                    saleReturnList.PatientOrderDetailUID = item.PatientOrderDetailUID;
-                                    saleReturnList.PatientBilledItemUID = item.UID;
-                                    saleReturnList.OwnerOrganisationUID = stock.OwnerOrganisationUID;
-                                    saleReturnList.MUser = userUID;
-                                    saleReturnList.MWhen = now;
-                                    saleReturnList.CUser = userUID;
-                                    saleReturnList.CWhen = now;
-                                    saleReturnList.StatusFlag = "A";
-                                    db.SaleReturnList.Add(saleReturnList);
-                                    db.SaveChanges();
-
-                                    double totalBalQty = SqlStatement.GetItemTotalQuantity(saleReturnList.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
-                                    double balQty = stock.Quantity;
-                                    SqlDirectStore.pInvenInsertStockMovement(saleReturnList.StockUID, stock.StoreUID, null, saleReturnList.ItemMasterUID, saleReturnList.BatchID, now, totalBFQty, bfQty, saleReturnList.Quantity, 0, balQty, totalBalQty, stock.IMUOMUID, stock.ItemCost ?? 0, null, "SaleReturnList", saleReturnList.UID, null, null, userUID);
-
-                                    SqlDirectStore.pInvenInsertStockBalance(stock.StoreUID, stock.ItemMasterUID, userUID);
-
-                                }
+                                db.PatientPaymentDetail.Attach(patPay);
+                                patPay.IsRefund = "Y";
+                                patPay.MUser = userUID;
+                                patPay.MWhen = now;
+                                db.SaveChanges();
                             }
+
                         }
 
                         PatientVisit patpv = db.PatientVisit.Find(patientBill.PatientVisitUID);
                         if (patpv != null)
                         {
-                            db.PatientVisit.Attach(patpv);
-                            patpv.MUser = userUID;
-                            patpv.MWhen = now;
-                            patpv.IsBillFinalized = null;
-                            patpv.VISTSUID = 418;
-                            patpv.EndDttm = null;
-                            db.SaveChanges();
+                            if (patpv.VISTSUID == FINDIS)
+                            {
+                                db.PatientVisit.Attach(patpv);
+                                patpv.MUser = userUID;
+                                patpv.MWhen = now;
+                                patpv.IsBillFinalized = null;
+                                patpv.VISTSUID = BLINP;
+                                patpv.EndDttm = null;
+                                db.SaveChanges();
 
-                            #region PatientServiceEvent
+                                #region PatientServiceEvent
 
-                            PatientServiceEvent serviceEvent = new PatientServiceEvent();
-                            serviceEvent.PatientVisitUID = patpv.UID;
-                            serviceEvent.EventStartDttm = now;
-                            serviceEvent.VISTSUID = patpv.VISTSUID.Value;
-                            serviceEvent.MUser = userUID;
-                            serviceEvent.MWhen = now;
-                            serviceEvent.CUser = userUID;
-                            serviceEvent.CWhen = now;
-                            serviceEvent.StatusFlag = "A";
+                                PatientServiceEvent serviceEvent = new PatientServiceEvent();
+                                serviceEvent.PatientVisitUID = patpv.UID;
+                                serviceEvent.EventStartDttm = now;
+                                serviceEvent.VISTSUID = patpv.VISTSUID.Value;
+                                serviceEvent.MUser = userUID;
+                                serviceEvent.MWhen = now;
+                                serviceEvent.CUser = userUID;
+                                serviceEvent.CWhen = now;
+                                serviceEvent.StatusFlag = "A";
 
-                            db.PatientServiceEvent.Add(serviceEvent);
-                            #endregion
+                                db.PatientServiceEvent.Add(serviceEvent);
+                                #endregion
 
-                            db.SaveChanges();
+                                db.SaveChanges();
+                            }
                         }
 
                         tran.Complete();
+                        //List<PatientBilledItem> patBilledItem = db.PatientBilledItem.Where(p => p.PatientBillUID == patientBill.UID && p.StatusFlag == "A").ToList();
+                        //if (patBilledItem != null)
+                        //{
+                        //    foreach (var item in patBilledItem)
+                        //    {
+
+                        //        if (item.BSMDDUID == 2826 || item.BSMDDUID == 2953 || item.BSMDDUID == 3078)
+                        //        {
+
+                        //            var stockmovement = (from pre in db.PrescriptionItem
+                        //                                 join dis in db.DispensedItem on pre.UID equals dis.PrescriptionItemUID
+                        //                                 join stv in db.StockMovement on new { key1 = dis.UID, key2 = "DispensedItem" } equals new { key1 = stv.RefUID ?? 0, key2 = stv.RefTable }
+                        //                                 where pre.StatusFlag == "A"
+                        //                                 && dis.StatusFlag == "A"
+                        //                                 && stv.StatusFlag == "A"
+                        //                                 && dis.ORDSTUID == 2861 // Dispensed
+                        //                                 && pre.PatientOrderDetailUID == item.PatientOrderDetailUID
+                        //                                 select new
+                        //                                 {
+                        //                                     StockUID = stv.StockUID,
+                        //                                     OutQty = stv.OutQty,
+                        //                                     RefUID = stv.RefUID,
+                        //                                     StoreUID = stv.StoreUID,
+                        //                                     StockmovementUID = stv.UID,
+                        //                                     DispensedItemUID = dis.UID,
+                        //                                     PresciptionItemUID = pre.UID,
+                        //                                     PrescriptionUID = pre.PrescriptionUID
+                        //                                 }).FirstOrDefault();
+
+
+                        //            Stock stock = db.Stock.Find(stockmovement.StockUID);
+
+                        //            double totalBFQty = SqlStatement.GetItemTotalQuantity(stock.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
+                        //            double bfQty = stock.Quantity;
+
+                        //            //SqlDirectStore.pCancelDispensed(item.PatientOrderDetailUID, userUID);
+
+                        //            DispensedItem dispensedItem = db.DispensedItem.Find(stockmovement.DispensedItemUID);
+                        //            db.DispensedItem.Attach(dispensedItem);
+                        //            dispensedItem.MUser = userUID;
+                        //            dispensedItem.MWhen = now;
+                        //            dispensedItem.ORDSTUID = 2875;
+
+
+                        //            PrescriptionItem prescriptionItem = db.PrescriptionItem.Find(stockmovement.PresciptionItemUID);
+                        //            db.PrescriptionItem.Attach(prescriptionItem);
+                        //            prescriptionItem.MUser = userUID;
+                        //            prescriptionItem.MWhen = now;
+                        //            prescriptionItem.ORDSTUID = 2875;
+                        //            db.SaveChanges();
+
+                        //            Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
+                        //            db.Prescription.Attach(prescription);
+                        //            prescription.MUser = userUID;
+                        //            prescription.MWhen = now;
+                        //            prescription.ORDSTUID = (new PharmacyController()).CheckPrescriptionStatus(prescription.UID);
+
+
+
+                        //            PatientOrderDetail patientOrderDetail = db.PatientOrderDetail.Find(item.PatientOrderDetailUID);
+                        //            db.PatientOrderDetail.Attach(patientOrderDetail);
+                        //            patientOrderDetail.MUser = userUID;
+                        //            patientOrderDetail.MWhen = now;
+                        //            patientOrderDetail.ORDSTUID = 2875;
+
+                        //            PatientOrderDetailHistory patOrderDetailHistory = new PatientOrderDetailHistory();
+                        //            patOrderDetailHistory.PatientOrderDetailUID = patientOrderDetail.UID;
+                        //            patOrderDetailHistory.ORDSTUID = patientOrderDetail.ORDSTUID;
+                        //            patOrderDetailHistory.EditByUserID = userUID;
+                        //            patOrderDetailHistory.EditedDttm = now;
+                        //            patOrderDetailHistory.CUser = userUID;
+                        //            patOrderDetailHistory.CWhen = now;
+                        //            patOrderDetailHistory.MUser = userUID;
+                        //            patOrderDetailHistory.MWhen = now;
+                        //            patOrderDetailHistory.StatusFlag = "A";
+                        //            db.PatientOrderDetailHistory.Add(patOrderDetailHistory);
+
+                        //            db.Stock.Attach(stock);
+                        //            stock.Quantity = stock.Quantity + stockmovement.OutQty;
+                        //            stock.MUser = userUID;
+                        //            stock.MWhen = now;
+                        //            stock.StatusFlag = "A";
+
+
+                        //            StockMovement stockMovement = db.StockMovement.Find(stockmovement.StockmovementUID);
+                        //            db.StockMovement.Attach(stockMovement);
+                        //            stockMovement.MUser = userUID;
+                        //            stockMovement.MWhen = now;
+                        //            stockMovement.Note = "SaleReturn";
+
+
+                        //            db.SaveChanges();
+
+
+
+                        //            SaleReturn saleReturn = new SaleReturn();
+
+
+                        //            db.SaleReturn.Add(saleReturn);
+                        //            saleReturn.ReturnedBy = userUID;
+                        //            saleReturn.ReturnDttm = now;
+                        //            saleReturn.PatientUID = patientBill.PatientUID;
+                        //            saleReturn.PatientVisitUID = patientBill.PatientVisitUID;
+                        //            saleReturn.StoreUID = stockmovement.StoreUID ?? 0;
+                        //            saleReturn.OwnerOrganisationUID = stock.OwnerOrganisationUID;
+                        //            saleReturn.MUser = userUID;
+                        //            saleReturn.MWhen = now;
+                        //            saleReturn.CUser = userUID;
+                        //            saleReturn.CWhen = now;
+                        //            saleReturn.StatusFlag = "A";
+                        //            db.SaveChanges();
+
+                        //            SaleReturnList saleReturnList = new SaleReturnList();
+                        //            saleReturnList.SaleReturnUID = saleReturn.UID;
+                        //            saleReturnList.StockUID = stock.UID;
+                        //            saleReturnList.BatchID = stock.BatchID;
+                        //            saleReturnList.ItemMasterUID = stock.ItemMasterUID;
+                        //            saleReturnList.ItemName = stock.ItemName;
+                        //            saleReturnList.Quantity = stockmovement.OutQty;
+                        //            saleReturnList.IMUOMUID = stock.IMUOMUID;
+                        //            saleReturnList.ItemCost = stock.ItemCost;
+                        //            saleReturnList.DispensedItemUID = stockmovement.RefUID ?? 0;
+                        //            saleReturnList.PatientOrderDetailUID = item.PatientOrderDetailUID;
+                        //            saleReturnList.PatientBilledItemUID = item.UID;
+                        //            saleReturnList.OwnerOrganisationUID = stock.OwnerOrganisationUID;
+                        //            saleReturnList.MUser = userUID;
+                        //            saleReturnList.MWhen = now;
+                        //            saleReturnList.CUser = userUID;
+                        //            saleReturnList.CWhen = now;
+                        //            saleReturnList.StatusFlag = "A";
+                        //            db.SaleReturnList.Add(saleReturnList);
+                        //            db.SaveChanges();
+
+                        //            double totalBalQty = SqlStatement.GetItemTotalQuantity(saleReturnList.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
+                        //            double balQty = stock.Quantity;
+                        //            SqlDirectStore.pInvenInsertStockMovement(saleReturnList.StockUID, stock.StoreUID, null, saleReturnList.ItemMasterUID, saleReturnList.BatchID, now, totalBFQty, bfQty, saleReturnList.Quantity, 0, balQty, totalBalQty, stock.IMUOMUID, stock.ItemCost ?? 0, null, "SaleReturnList", saleReturnList.UID, null, null, userUID);
+
+                        //            SqlDirectStore.pInvenInsertStockBalance(stock.StoreUID, stock.ItemMasterUID, userUID);
+
+                        //        }
+                        //    }
+                        //}
+
+
                     }
 
 
@@ -1143,6 +1583,51 @@ namespace MediTechWebApi.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
+        }
+
+        [Route("CheckPatientBillStatus")]
+        [HttpGet]
+        public string CheckPatientBillStatus(long patientUID,long patientVisitUID)
+        {
+            string isBillComplete = SqlDirectStore.pCheckPatientBillStatus(patientUID, patientVisitUID);
+            return isBillComplete;
+        }
+
+        [Route("GetCompleteBill")]
+        [HttpGet]
+        public string GetCompleteBill(long patientVisitUID)
+        {
+            string isBillComplete = SqlStatement.GetCompleteBill(patientVisitUID);
+            return isBillComplete;
+        }
+
+        [Route("GetPatientPaymentDetailByBillUID")]
+        [HttpGet]
+        public List<PatientPaymentDetailModel> GetPatientPaymentDetailByBillUID(int patientBillUID)
+        {
+            List<PatientPaymentDetailModel> paymentDetails = db.PatientPaymentDetail.Where(p => p.StatusFlag == "A" && p.PatientBillUID == patientBillUID)
+                .Select(p => new PatientPaymentDetailModel
+                {
+                    PatientPaymentDetailUID = p.UID,
+                    PaidDttm = p.PaidDttm,
+                    PatientBillUID = p.PatientBillUID,
+                    PatientUID = p.PatientUID,
+                    AuthorizationNumber = p.AuthorizationNumber,
+                    PatientVisitUID = p.PatientVisitUID,
+                    Amount = p.Amount,
+                    CardNumber = p.CardNumber,
+                    CardExpiryDttm = p.CardExpiryDttm,
+                    CardType = SqlFunction.fGetRfValDescription(p.CRDTYUID ?? 0),
+                    CRDTYUID = p.CRDTYUID,
+                    CURNCUID = p.CURNCUID,
+                    Currency = SqlFunction.fGetRfValDescription(p.CURNCUID ?? 0),
+                    BankName = p.BankName,
+                    PaymentMode = SqlFunction.fGetRfValDescription(p.PAYMDUID),
+                    PAYMDUID = p.PAYMDUID,
+                    BLCATUID = p.BLCATUID      
+                }).ToList();
+
+            return paymentDetails;
         }
 
         [Route("UpdatePaymentMethod")]
@@ -1284,7 +1769,7 @@ namespace MediTechWebApi.Controllers
         #region BillPackage
         [Route("SearchBillPackage")]
         [HttpGet]
-        public List<BillPackageModel> SearchBillPackage(string code, string name,int? orderCategoryUID, int? orderSubCategoryUID)
+        public List<BillPackageModel> SearchBillPackage(string code, string name, int? orderCategoryUID, int? orderSubCategoryUID)
         {
             List<BillPackageModel> data = db.BillPackage.Where(p => p.StatusFlag == "A"
             && (string.IsNullOrEmpty(code) || p.Code.ToLower().Contains(code.ToLower()))

@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,12 +48,16 @@
     <Compile Include="Billing\AgreementAccountDiscountModel.cs" />
     <Compile Include="Billing\AgreementDetailDiscountModel.cs" />
     <Compile Include="Billing\AgreementItemDiscountModel.cs" />
+    <Compile Include="Billing\AllocatedPatBillableItemsSubAccountResultModel.cs" />
+    <Compile Include="Billing\AllocatedPatBillableItemsAccountResultModel.cs" />
     <Compile Include="Billing\AllocatedPatBillableItemsResultModel.cs" />
     <Compile Include="Billing\AllocateSplitItemModel.cs" />
     <Compile Include="Billing\AllocatePatientBillableItemModel.cs" />
     <Compile Include="Billing\BillConfigurationModel.cs" />
     <Compile Include="Billing\BillPackageDetailModel.cs" />
     <Compile Include="Billing\BillPackageModel.cs" />
+    <Compile Include="Billing\GeneratePatientBillModel.cs" />
+    <Compile Include="Billing\PatientPaymentDetailModel.cs" />
     <Compile Include="Billing\PolicyMasterModel.cs" />
     <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />

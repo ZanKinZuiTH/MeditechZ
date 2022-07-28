@@ -154,7 +154,8 @@
                 <TextBlock Name="txtBMI" Margin="5,0,0,0" Style="{StaticResource NormalText}" />
                 <TextBlock Text="แพทย์:" Margin="5,0,0,0" FontWeight="Thin"/>
                 <TextBlock Name="txtCareProvider" Margin="5,0,0,0" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Style="{StaticResource NormalText}" />
-
+                <TextBlock Text="สถานที่/แผนก:" Margin="5,0,0,0" FontWeight="Thin"/>
+                <TextBlock Name="txtLocation" Margin="5,0,0,0" HorizontalAlignment="Center" Grid.Column="1" Grid.Row="1" Style="{StaticResource NormalText}" />
             </StackPanel>
 
             <StackPanel Panel.ZIndex="-1" Orientation="Horizontal" Grid.Column="1" Grid.Row="2" Margin="20,-15,0,0">
