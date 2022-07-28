@@ -280,5 +280,12 @@ namespace MediTech.DataService
         }
         #endregion
 
+        public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID)
+        {
+            string requestApi = string.Format("Api/Pharmacy/GetPatientOrderStanding?wardUID={0}&storeUID={1}", wardUID, storeUID);
+            List<PatientOrderStandingModel> dataRequest = MeditechApiHelper.Get<List<PatientOrderStandingModel>>(requestApi);
+
+            return dataRequest;
+        }
     }
 }

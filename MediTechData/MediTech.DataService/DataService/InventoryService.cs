@@ -813,6 +813,55 @@ namespace MediTech.DataService
 
         #endregion
 
+        #region IPFills
+        public List<IPFillProcessModel> SearchIPFills(DateTime? dateFrom, DateTime? dateTo, int storeUID)
+        {
+            string requestApi = string.Format("Api/Inventory/SearchIPFills?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&storeUID={2}", dateFrom, dateTo, storeUID);
+            List<IPFillProcessModel> returnData = MeditechApiHelper.Get<List<IPFillProcessModel>>(requestApi);
 
+            return returnData;
+        }
+
+        public List<IPFillDetailModel> GetIPFillDetail(long iPFillProcessUID)
+        {
+            string requestApi = string.Format("Api/Inventory/GetIPFillDetail?iPFillProcessUID={0}", iPFillProcessUID);
+            List<IPFillDetailModel> returnData = MeditechApiHelper.Get<List<IPFillDetailModel>>(requestApi);
+
+            return returnData;
+        }
+
+        public bool DispenseIPFills(IPFillProcessModel iPFillProcessModel, int userID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Inventory/DispenseIPFills?userID={0}", userID);
+                MeditechApiHelper.Post(requestApi, iPFillProcessModel);
+                flag = true;
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+            return flag;
+        }
+
+        public bool CancelDispenseIPFills(int ipfillProccessUID, int userUID)
+        {
+            bool flag = false;
+            try
+            {
+                string requestApi = string.Format("Api/Inventory/CancelDispenseIPFills?ipfillProccessUID={0}&userUID={1}", ipfillProccessUID, userUID);
+                MeditechApiHelper.Put(requestApi);
+                flag = true;
+            }
+            catch (Exception)
+            {
+
+                throw;
+            }
+            return flag;
+        }
+        #endregion
     }
 }

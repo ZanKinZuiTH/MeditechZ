@@ -21,10 +21,13 @@ namespace MediTech.Model
         public string StoreName { get; set; }
         public int OwnerOrganisationUID { get; set; }
         public string OwnerOrganisationName { get; set; }
+        public string Comment { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public int FillForDay { get; set; }
+        public List<PatientOrderStandingModel> StandingModels { get; set; }
     }
 }
