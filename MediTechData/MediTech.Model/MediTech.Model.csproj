@@ -81,6 +81,8 @@
     <Compile Include="Inventory\IPFillDetailModel.cs" />
     <Compile Include="Inventory\IPFillProcessModel.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
+    <Compile Include="Inventory\SaleReturnListModel.cs" />
+    <Compile Include="Inventory\SaleReturnModel.cs" />
     <Compile Include="IPD\AdmissionEventModel.cs" />
     <Compile Include="IPD\BedStatusModel.cs" />
     <Compile Include="IPD\DischargeEventModel.cs" />
