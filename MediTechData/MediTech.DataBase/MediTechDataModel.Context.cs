@@ -222,6 +222,7 @@ namespace MediTech.DataBase
         public virtual DbSet<SEQPROID> SEQPROID { get; set; }
         public virtual DbSet<SEQResult> SEQResult { get; set; }
         public virtual DbSet<SEQRISRequest> SEQRISRequest { get; set; }
+        public virtual DbSet<SEQSaleReturn> SEQSaleReturn { get; set; }
         public virtual DbSet<SEQSTAID> SEQSTAID { get; set; }
         public virtual DbSet<SEQTestCodeID> SEQTestCodeID { get; set; }
         public virtual DbSet<SEQVisitID> SEQVisitID { get; set; }
@@ -459,6 +460,15 @@ namespace MediTech.DataBase
                 new ObjectParameter("DateTo", typeof(System.DateTime));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("pMergeBillRecipet", patientVisitUIDParameter, sourcePatientVisitPayorUIDParameter, desPatientVisitPayorUIDParameter, dateFromParameter, dateToParameter);
+        }
+    
+        public virtual ObjectResult<pPrintStatementBill_Result> pPrintStatementBill(Nullable<long> p_PatientBillUID)
+        {
+            var p_PatientBillUIDParameter = p_PatientBillUID.HasValue ?
+                new ObjectParameter("P_PatientBillUID", p_PatientBillUID) :
+                new ObjectParameter("P_PatientBillUID", typeof(long));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<pPrintStatementBill_Result>("pPrintStatementBill", p_PatientBillUIDParameter);
         }
     }
 }

@@ -15,6 +15,9 @@ namespace MediTech.DataBase
     public partial class SaleReturn
     {
         public int UID { get; set; }
+        public Nullable<int> SaleUID { get; set; }
+        public string ReturnID { get; set; }
+        public string IsCancelDispense { get; set; }
         public int ReturnedBy { get; set; }
         public System.DateTime ReturnDttm { get; set; }
         public string Comments { get; set; }

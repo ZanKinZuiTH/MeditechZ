@@ -1064,24 +1064,26 @@ namespace MediTech.ViewModels
             if (SelectProgressNote != null)
             {
                 (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectPatientVisit, SelectProgressNote);
-            }
-            else
-            {
-                if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+                ProgressNoteViewModel result = (ProgressNoteViewModel)LaunchViewDialogNonPermiss(pageview, true);
+                if (result != null)
                 {
-                    WarningDialog("กรุณาเลือก Visit");
-                    return;
+                    if (result.ResultDialog == ActionDialog.Save)
+                        LoadProgressNote();
                 }
-                (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectPatientVisit);
             }
+            //else
+            //{
+            //    if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            //    {
+            //        WarningDialog("กรุณาเลือก Visit");
+            //        return;
+            //    }
+            //    (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectPatientVisit);
+            //}
 
-            ProgressNoteViewModel result = (ProgressNoteViewModel)LaunchViewDialogNonPermiss(pageview, true);
 
-            if (result != null)
-            {
-                if (result.ResultDialog == ActionDialog.Save)
-                    LoadProgressNote();
-            }
+
+
 
         }
 

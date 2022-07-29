@@ -199,7 +199,7 @@
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label=" ">
                             <CheckBox x:Name="chkunderlying" 
-                                      Content="ติดตามอาการ"  
+                                      Content="UNDERLYING"  
                                       FontWeight="Bold" 
                                       IsChecked="{Binding IsUnderline}" VerticalAlignment="Center" ClickMode="Press" />
                         </dxlc:LayoutItem>
@@ -222,7 +222,7 @@
                                 Name="cmbDiagType"
                                 IsTextEditable="False" />
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="วันที่มีอาการ">
+                        <dxlc:LayoutItem Label="วันที่เริ่มต้นการวินิจฉัย">
                             <dxe:DateEdit EditValue="{Binding OnsetDttm}" Name="dteOnset"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="ความรุนแรง">
@@ -236,7 +236,7 @@
                         </dxlc:LayoutItem>
                     </dxlc:LayoutGroup>
                     <dxlc:LayoutGroup Orientation="Horizontal">
-                        <dxlc:LayoutItem Label="ความเชื่อมั่น">
+                        <dxlc:LayoutItem Label="ยืนยันการวินิจฉัย">
                             <dxe:ComboBoxEdit 
                                 Name="cmbAccuracy"
                                 ValueMember="Key"
@@ -268,7 +268,7 @@
                         <dxlc:LayoutItem Label="วันที่ลง">
                             <dxe:DateEdit EditValue="{Binding RecordDttm}" Name="dteRecordDate"/>
                         </dxlc:LayoutItem>
-                        <dxlc:LayoutItem Label="วันที่ปิด">
+                        <dxlc:LayoutItem Label="วันที่สิ้นสุดการวินิจฉัย">
                             <dxe:DateEdit EditValue="{Binding CloseDttm}" Name="dteClostDate"/>
                         </dxlc:LayoutItem>
                         <dxlc:LayoutItem Label="รายละเอียด" VerticalAlignment="Top" LabelVerticalAlignment="Top">
