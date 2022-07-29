@@ -219,8 +219,6 @@ namespace MediTech.ViewModels
 
         public IPDConsultViewModel()
         {
-            //BookingStatus = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST");
-            //var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             cmbConsultType = DataService.Technical.GetReferenceValueMany("CONTYP");
             cmbConsultStatus = DataService.Technical.GetReferenceValueMany("CONSTAT");
@@ -236,7 +234,7 @@ namespace MediTech.ViewModels
 
         void LoadPatientVisitConsult()
         {
-            var patientvisitconsult = DataService.InPatientService.GetPatientVisitConsult(SelectPatientConsult.PatientVisitUID??0);
+           // var patientvisitconsult = DataService.InPatientService.GetPatientVisitConsult(SelectPatientConsult.PatientVisitUID);
             //var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(PatientVisit.PatientVisitUID);
             //PatientInsuranceDetails = patientInsuranceDetails;
             //PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>(patientVisitPayors);
@@ -252,7 +250,16 @@ namespace MediTech.ViewModels
             SelectPatientVisit = model;
             StartDateConsult = DateTime.Today;
             EndDateConsult = DateTime.Today;
-           
+            //int patientUID = Convert.ToInt32(model.PatientUID);
+            //int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
+
+            int patientVisitUID = Convert.ToInt32(model.PatientVisitUID);
+            var listvisitdata = DataService.InPatientService.GetPatientVisitConsult(patientVisitUID);
+             IPDConsultList = new ObservableCollection<IPDConsultModel>(listvisitdata);
+
+
+
+
 
         }
 

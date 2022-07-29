@@ -106,7 +106,6 @@ namespace MediTechWebApi.Controllers
         public HttpResponseMessage test(int userID)
         {
 
-
             return Request.CreateResponse(HttpStatusCode.OK);
         }
 
@@ -191,6 +190,8 @@ namespace MediTechWebApi.Controllers
                                               PatientConsultionUID = pvc.UID,
                                               PatientUID = pvc.PatientUID,
                                               PatientVisitUID = pvc.PatientVisitUID,
+                                              PatientID = SqlFunction.fGetPatientID(pvc.PatientUID),
+                                              VisitID = SqlFunction.fGetVisitID(pvc.PatientVisitUID),
                                               PatientName = SqlFunction.fGetPatientName(pvc.PatientUID),
                                               CareProviderUID = pvc.CareproviderUID,
                                               CareProviderName = SqlFunction.fGetCareProviderName(pvc.CareproviderUID),

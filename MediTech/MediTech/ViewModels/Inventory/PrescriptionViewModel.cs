@@ -7,8 +7,10 @@ using System.Threading.Tasks;
 using MediTech.Model;
 using MediTech.Reports.Operating.Pharmacy;
 using DevExpress.XtraReports.UI;
+using DevExpress.XtraPrinting;
 using System.Collections.ObjectModel;
 using MediTech.Views;
+using MediTech.Reports.Operating.Patient;
 
 namespace MediTech.ViewModels
 {
@@ -16,6 +18,9 @@ namespace MediTech.ViewModels
     {
 
         #region Properties
+        public ReportsModel ReportTemplate { get; set; }
+
+
         private DateTime? _DateFrom;
         public DateTime? DateFrom
         {
@@ -256,6 +261,14 @@ namespace MediTech.ViewModels
             get { return _PrintStickerCommand ?? (_PrintStickerCommand = new RelayCommand(PrintSticker)); }
         }
 
+
+        private RelayCommand _PrintPrescriptionCommand;
+        public RelayCommand PrintPrescriptionCommand
+        {
+            get { return _PrintPrescriptionCommand ?? (_PrintPrescriptionCommand = new RelayCommand(PrintPrescription)); }
+        }
+
+
         #endregion
 
         #region Method
@@ -273,7 +286,9 @@ namespace MediTech.ViewModels
         }
 
 
-        void SearchPrescrition()
+
+
+            void SearchPrescrition()
         {
             long? patientUID = null;
 
@@ -303,6 +318,7 @@ namespace MediTech.ViewModels
             }
 
             Prescriptons = DataService.Pharmacy.Searchprescription(DateFrom, DateTo, statusList, patientUID, PrescriptionNumber, AppUtil.Current.OwnerOrganisationUID);
+           
             int te = Prescriptons.Count;
         }
 
@@ -426,7 +442,37 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void Dispense()
+
+        private void PrintPrescription()
+        {
+            if (SelectPrescription != null)
+            {
+
+                PatientPrescription rpt = new PatientPrescription();
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                rpt.Parameters["prescriptionUID"].Value = SelectPrescription.PrescriptionUID;
+                rpt.Parameters["OrganisationUID"].Value = AppUtil.Current.OwnerOrganisationUID;
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                printTool.ShowPreviewDialog();
+
+                //DrugSticker rpt = new DrugSticker();
+                //ReportPrintTool printTool = new ReportPrintTool(rpt);
+                //rpt.Parameters["OrganisationUID"].Value = item.OwnerOrganisationUID;
+                //rpt.Parameters["PrescriptionItemUID"].Value = item.PrescriptionItemUID;
+                //rpt.Parameters["ExpiryDate"].Value = item.ExpiryDate;
+                //rpt.RequestParameters = false;
+                //rpt.ShowPrintMarginsWarning = false;
+                //printTool.Print(SelectPrinter);
+
+
+
+
+            }
+        }
+
+
+            public void Dispense()
         {
             if (SelectPrescription != null)
             {

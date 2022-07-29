@@ -734,6 +734,88 @@ namespace MediTechWebApi.Controllers
             return data;
         }
 
+        [Route("GetprescriptionList")]
+        [HttpGet]
+        public List<PrescriptionModel> GetprescriptionList(long? prescriptionUID)
+        {
+
+            List<PrescriptionModel> data = (from ps in db.Prescription
+                                            join pa in db.Patient on ps.PatientUID equals pa.UID
+                                            join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
+                                            where ps.StatusFlag == "A" &&  ps.UID  == prescriptionUID
+                                            select new PrescriptionModel
+                                            {
+                                                PrescriptionUID = ps.UID,
+                                                PrescriptionNumber = ps.PrescriptionNumber,
+                                                PrescriptionStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                                PatientID = pa.PatientID,
+                                                PRSTYPUID = ps.PRSTYPUID,
+                                                PrescriptionType = SqlFunction.fGetRfValDescription(ps.PRSTYPUID ?? 0),
+                                                PatientName = SqlFunction.fGetPatientName(ps.PatientUID),
+                                                PatientVisitUID = ps.PatientVisitUID,
+                                                AgeString = pa.DOBDttm.HasValue ? SqlFunction.fGetAgeString(pa.DOBDttm.Value) : "",
+                                                DOBDttm = pa.DOBDttm.HasValue ? pa.DOBDttm : null,
+                                                Gender = SqlFunction.fGetRfValDescription(pa.SEXXXUID ?? 0),
+                                                EncounterType = SqlFunction.fGetRfValDescription(pv.ENTYPUID ?? 0),
+                                                PrescribedDttm = ps.PrescribedDttm,
+                                                IsBilled = pv.IsBillFinalized == null ? "N" : pv.IsBillFinalized,
+                                                LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0),
+                                                OrganisationName = SqlFunction.fGetHealthOrganisationName(ps.OwnerOrganisationUID ?? 0),
+                                                OwnerOrganisationUID = ps.OwnerOrganisationUID
+                                            }).ToList();
+
+
+
+
+            if (data != null)
+            {
+                foreach (var prescription in data)
+                {
+                    var prescriptionItems = db.PrescriptionItem
+                    .Where(p => p.PrescriptionUID == prescription.PrescriptionUID && p.StatusFlag == "A")
+                    .Select(p => new PrescriptionItemModel
+                    {
+                        PrescriptionItemUID = p.UID,
+                        PrescriptionUID = p.PrescriptionUID,
+                        PrestionItemStatus = SqlFunction.fGetRfValDescription(p.ORDSTUID ?? 0),
+                        ORDSTUID = p.ORDSTUID,
+                        ItemCode = p.ItemCode,
+                        ItemName = p.ItemName,
+                        ItemMasterUID = p.ItemMasterUID,
+                        Quantity = p.Quantity,
+                        QuantityUnit = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
+                        IMUOMUID = p.IMUOMUID,
+                        DFORMUID = p.DFORMUID,
+                        DrugForm = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0),
+                        StoreUID = p.StoreUID,
+                        StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
+                        InstructionRoute = SqlFunction.fGetRfValDescription(p.PDSTSUID ?? 0),
+                        Dosage = p.Dosage,
+                        FRQNCUID = p.FRQNCUID,
+                        Frequency = (p.FRQNCUID != null && p.FRQNCUID != 0) ? SqlFunction.fGetFrequencyDescription(p.FRQNCUID ?? 0, "TH") : "",
+                        InstructionText = p.InstructionText,
+                        LocalInstructionText = p.LocalInstructionText,
+                        ClinicalComments = p.ClinicalComments,
+                        DrugType = SqlFunction.fGetRfValDescription(p.DFORMUID ?? 0)
+                    });
+
+                    prescription.PrescriptionItems = new System.Collections.ObjectModel.ObservableCollection<PrescriptionItemModel>(prescriptionItems);
+
+                }
+            }
+
+
+            return data;
+
+
+        }
+
+
+
+
+
+
+
         [Route("UpdatePrescriptionLabelSticker")]
         [HttpPut]
         public HttpResponseMessage UpdatePrescriptionLabelSticker(long prescriptionItemUID, String localInstructionText, int userID)

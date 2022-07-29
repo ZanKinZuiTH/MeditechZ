@@ -182,6 +182,7 @@ namespace MediTech.DataService
             return returnData;
         }
 
+
         public List<PrescriptionItemModel> GetPrescriptionItemByPrescriptionUID(long? prescriptionUID)
         {
             List<PrescriptionItemModel> result;
@@ -196,6 +197,16 @@ namespace MediTech.DataService
                 throw;
             }
             return result;
+        }
+
+
+
+        public List<PrescriptionModel> GetprescriptionList(int prescriptionUID)
+        {
+            string requestApi = string.Format("Api/Pharmacy/GetprescriptionList?prescriptionUID={0}", prescriptionUID);
+            List<PrescriptionModel> returnData = MeditechApiHelper.Get<List<PrescriptionModel>>(requestApi);
+
+            return returnData;
         }
 
         public bool UpdatePrescriptionLabelSticker(long prescriptionItemUID, String localInstructionText, int userUID)
