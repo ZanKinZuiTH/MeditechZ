@@ -752,6 +752,12 @@
     <Compile Include="Reports\Operating\Patient\PatientLargSticker.Designer.cs">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.Designer.cs">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\PatientSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -1429,10 +1435,13 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
     <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListQueryBillsIPViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
     <Compile Include="ViewModels\Billing\MergeBillRecipetPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\PatientBilledIPViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupListReportViewModel.cs" />
     <Compile Include="ViewModels\Checkup\CheckupSummaryViewmodel.cs" />
     <Compile Include="ViewModels\Checkup\EnterFitnessTestResultViewModel.cs" />
@@ -1480,6 +1489,9 @@
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
     <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\IPFillsDetailViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\IPFillsViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\NewIPFillsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\PrintDrugStickerViewModel.cs" />
     <Compile Include="ViewModels\Inventory\ConsumptionStockViewModel.cs" />
     <Compile Include="ViewModels\Inventory\DispenseDrugViewModel.cs" />
@@ -1660,8 +1672,14 @@
     <Compile Include="Views\Billing\AllocateBillPopup.xaml.cs">
       <DependentUpon>AllocateBillPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Billing\BillSettlementIP.xaml.cs">
+      <DependentUpon>BillSettlementIP.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
       <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListQueryBillsIP.xaml.cs">
+      <DependentUpon>ListQueryBillsIP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\ListQueryBillsOP.xaml.cs">
       <DependentUpon>ListQueryBillsOP.xaml</DependentUpon>
@@ -1671,6 +1689,9 @@
     </Compile>
     <Compile Include="Views\Billing\MergeBillRecipetPopup.xaml.cs">
       <DependentUpon>MergeBillRecipetPopup.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\PatientBilledIP.xaml.cs">
+      <DependentUpon>PatientBilledIP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Checkup\CheckupListReport.xaml.cs">
       <DependentUpon>CheckupListReport.xaml</DependentUpon>
@@ -2343,9 +2364,17 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Billing\BillSettlementIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Billing\BillSettlementOP.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListQueryBillsIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Billing\ListQueryBillsOP.xaml">
       <SubType>Designer</SubType>
@@ -2358,6 +2387,10 @@
     <Page Include="Views\Billing\MergeBillRecipetPopup.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\PatientBilledIP.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Checkup\CheckupListReport.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -3426,6 +3459,9 @@
     <EmbeddedResource Include="Reports\Operating\Patient\PatientLargSticker.resx">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientPrescription.resx">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker.resx">
       <DependentUpon>PatientSticker.cs</DependentUpon>
     </EmbeddedResource>
@@ -4046,6 +4082,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\Medicine.png" />
     <Resource Include="Resources\Images\Action\plus.png" />
     <Resource Include="Resources\Images\Menu\DirectAdmit.png" />
     <Resource Include="Resources\Images\Time\FutureAppointment.png" />
