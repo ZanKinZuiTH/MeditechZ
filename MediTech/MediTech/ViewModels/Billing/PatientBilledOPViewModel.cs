@@ -187,7 +187,7 @@ namespace MediTech.ViewModels
                 patientUID = SelectedPateintSearch.PatientUID;
             }
             int? ownerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"N", ownerOrganisationUID));
+            PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"Y", ownerOrganisationUID));
         }
 
         public void ViewBill()

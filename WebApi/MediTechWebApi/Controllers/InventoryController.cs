@@ -1174,7 +1174,7 @@ namespace MediTechWebApi.Controllers
                     var prescriptionItems = db.PrescriptionItem.Where(p => p.ItemMasterUID == itemMasterUID
                     && p.StoreUID == item.StoreUID && p.StatusFlag == "A" && p.ORDSTUID == 2847).ToList();
 
-                    if(prescriptionItems != null && prescriptionItems.Count > 0)
+                    if(prescriptionItems != null && prescriptionItems?.Count > 0)
                     {
                         item.Quantity = item.Quantity - (prescriptionItems.Sum(p => p.Quantity) ?? 0);
                     }
@@ -3144,7 +3144,10 @@ namespace MediTechWebApi.Controllers
                 {
                     foreach(var item in iPFillProcessModel.StandingModels)
                     {
+                        int BSMDDUID = item.BSMDDUID;
+
                         #region PatientOrder
+
                         PatientOrder patientOrder = new PatientOrder();
 
                         int seqPatientOrderID;
@@ -3201,7 +3204,7 @@ namespace MediTechWebApi.Controllers
                         orderDetail.ItemName = item.ItemName;
                         orderDetail.StartDttm = now;
                         orderDetail.EndDttm = now;
-                        orderDetail.ORDSTUID = item.ORDSTUID;
+                        orderDetail.ORDSTUID = 2861;
                         orderDetail.Dosage = item.Dosage;
                         orderDetail.Quantity = item.Quantity;
                         orderDetail.QNUOMUID = item.QNUOMUID;
@@ -3316,6 +3319,10 @@ namespace MediTechWebApi.Controllers
                         db.Prescription.Add(presc);
                         db.SaveChanges();
 
+                        db.PatientOrderDetail.Attach(orderDetail);
+                        orderDetail.IdentifyingUID = presc.UID;
+                        orderDetail.IdentifyingType = "PRESCRIPTIONITEM";
+                        db.SaveChanges();
                         #endregion
 
                         #region PrescriptionItem
@@ -3357,7 +3364,7 @@ namespace MediTechWebApi.Controllers
 
                         PatientOrderDetailHistory patientOrderDetailHistory = new PatientOrderDetailHistory();
                         patientOrderDetailHistory.PatientOrderDetailUID = orderDetail.UID;
-                        patientOrderDetailHistory.ORDSTUID = orderDetail.ORDSTUID;
+                        patientOrderDetailHistory.ORDSTUID = 2861;
                         patientOrderDetailHistory.EditedDttm = now;
                         patientOrderDetailHistory.EditByUserID = userID;
                         patientOrderDetailHistory.CUser = userID;
@@ -3366,6 +3373,47 @@ namespace MediTechWebApi.Controllers
                         patientOrderDetailHistory.MWhen = now;
                         patientOrderDetailHistory.StatusFlag = "A";
                         db.PatientOrderDetailHistory.Add(patientOrderDetailHistory);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        #region PatientBillableItem
+
+                        PatientBillableItem patBillableItem = new PatientBillableItem();
+                        patBillableItem.PatientUID = patientOrder.PatientUID;
+                        patBillableItem.PatientVisitUID = patientOrder.PatientVisitUID;
+                        patBillableItem.BillableItemUID = orderDetail.BillableItemUID;
+                        patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
+                        patBillableItem.IdentifyingType = "STORE";
+                        patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                        patBillableItem.IPFillProcessUID = iPFill.UID;
+                        patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
+                        patBillableItem.BSMDDUID = BSMDDUID;
+                        patBillableItem.ORDSTUID = 2861;
+                        patBillableItem.Amount = orderDetail.UnitPrice;
+                        patBillableItem.Discount = orderDetail.Discount;
+                        patBillableItem.NetAmount = orderDetail.NetAmount;
+                        patBillableItem.ItemMultiplier = orderDetail.Quantity;
+                        patBillableItem.StartDttm = orderDetail.StartDttm;
+                        patBillableItem.EndDttm = orderDetail.EndDttm;
+                        patBillableItem.ItemName = orderDetail.ItemName;
+                        patBillableItem.CareProviderUID = orderDetail.CareproviderUID;
+                        patBillableItem.EventOccuredDttm = orderDetail.StartDttm;
+                        patBillableItem.QNUOMUID = orderDetail.QNUOMUID;
+                        patBillableItem.PayorDetailUID = orderDetail.PayorDetailUID;
+                        patBillableItem.StoreUID = orderDetail.StoreUID;
+                        patBillableItem.BillPackageUID = orderDetail.BillPackageUID;
+                        patBillableItem.PatientOrderDetailUID = orderDetail.UID;
+                        patBillableItem.OrderSetUID = orderDetail.OrderSetUID;
+                        patBillableItem.OrderSetBillableItemUID = orderDetail.OrderSetBillableItemUID;
+                        patBillableItem.PatientFixPriceUID = orderDetail.PatientFixPriceUID;
+                        patBillableItem.CUser = userID;
+                        patBillableItem.CWhen = now;
+                        patBillableItem.MUser = userID;
+                        patBillableItem.MWhen = now;
+                        patBillableItem.StatusFlag = "A";
+                        patBillableItem.OwnerOrganisationUID = orderDetail.OwnerOrganisationUID;
+                        db.PatientBillableItem.Add(patBillableItem);
                         db.SaveChanges();
 
                         #endregion
@@ -3385,23 +3433,13 @@ namespace MediTechWebApi.Controllers
 
         [Route("CancelDispenseIPFills")]
         [HttpPut]
-        public HttpResponseMessage CancelDispenseIPFills(int ipfillProccessUID, int userUID)
+        public HttpResponseMessage CancelDispenseIPFills(int ipfillProccessUID, int ownerOrganisationUID, int userUID)
         {
             try
             {
                 DateTime now = DateTime.Now;
 
-                IPFillProcess fillProcess = db.IPFillProcess.Find(ipfillProccessUID);
-                if (fillProcess != null)
-                {
-                    db.IPFillProcess.Attach(fillProcess);
-                    fillProcess.MUser = userUID;
-                    fillProcess.MWhen = now;
-                    fillProcess.StatusFlag = "D";
-                    db.SaveChanges();
-                }
-
-                List<IPFillDetail> iPFillDetails = db.IPFillDetail.Where(p => p.IPFillProcessUID == ipfillProccessUID).ToList();
+                List<IPFillDetail> iPFillDetails = db.IPFillDetail.Where(p => p.IPFillProcessUID == ipfillProccessUID && p.StatusFlag =="A").ToList();
 
                 if(iPFillDetails != null && iPFillDetails.Count != 0)
                 {
@@ -3411,7 +3449,6 @@ namespace MediTechWebApi.Controllers
                         item.MUser = userUID;
                         item.MWhen = now;
                         item.StatusFlag = "D";
-                        db.SaveChanges();
 
                         var stockmovement = (from pre in db.PrescriptionItem
                                              join dis in db.DispensedItem on pre.UID equals dis.PrescriptionItemUID
@@ -3454,7 +3491,7 @@ namespace MediTechWebApi.Controllers
                             prescriptionItem.MUser = userUID;
                             prescriptionItem.MWhen = now;
                             prescriptionItem.ORDSTUID = 2875;
-                            db.SaveChanges();
+                            
 
                             Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
                             db.Prescription.Attach(prescription);
@@ -3463,24 +3500,22 @@ namespace MediTechWebApi.Controllers
                             prescription.ORDSTUID = 2875;
 
 
-
                             PatientOrderDetail patientOrderDetail = db.PatientOrderDetail.Find(item.PatientOrderDetailUID);
                             db.PatientOrderDetail.Attach(patientOrderDetail);
                             patientOrderDetail.MUser = userUID;
                             patientOrderDetail.MWhen = now;
                             patientOrderDetail.ORDSTUID = 2875;
+                           
 
-                            PatientOrderDetailHistory patOrderDetailHistory = new PatientOrderDetailHistory();
-                            patOrderDetailHistory.PatientOrderDetailUID = patientOrderDetail.UID;
-                            patOrderDetailHistory.ORDSTUID = 2875;
-                            patOrderDetailHistory.EditByUserID = userUID;
-                            patOrderDetailHistory.EditedDttm = now;
-                            patOrderDetailHistory.CUser = userUID;
-                            patOrderDetailHistory.CWhen = now;
-                            patOrderDetailHistory.MUser = userUID;
-                            patOrderDetailHistory.MWhen = now;
-                            patOrderDetailHistory.StatusFlag = "A";
-                            db.PatientOrderDetailHistory.Add(patOrderDetailHistory);
+                            PatientBillableItem patientBillable = db.PatientBillableItem.Where(p => p.PatientOrderDetailUID == item.PatientOrderDetailUID && p.IPFillProcessUID == ipfillProccessUID && p.StatusFlag == "A").FirstOrDefault(); ;
+                            if(patientBillable != null)
+                            {
+                                db.PatientBillableItem.Attach(patientBillable);
+                                patientBillable.MUser = userUID;
+                                patientBillable.MWhen = now;
+                                patientBillable.ORDSTUID = 2875;
+                                patientBillable.StatusFlag = "D";
+                            }
 
                             db.Stock.Attach(stock);
                             stock.Quantity = stock.Quantity + stockmovement.OutQty;
@@ -3495,9 +3530,80 @@ namespace MediTechWebApi.Controllers
                             stockMovement.MWhen = now;
                             stockMovement.Note = "SaleReturn";
 
+                            PatientOrderDetailHistory patOrderDetailHistory = new PatientOrderDetailHistory();
+                            patOrderDetailHistory.PatientOrderDetailUID = patientOrderDetail.UID;
+                            patOrderDetailHistory.ORDSTUID = 2875;
+                            patOrderDetailHistory.EditByUserID = userUID;
+                            patOrderDetailHistory.EditedDttm = now;
+                            patOrderDetailHistory.CUser = userUID;
+                            patOrderDetailHistory.CWhen = now;
+                            patOrderDetailHistory.MUser = userUID;
+                            patOrderDetailHistory.MWhen = now;
+                            patOrderDetailHistory.StatusFlag = "A";
+                            db.PatientOrderDetailHistory.Add(patOrderDetailHistory);
+                            db.SaveChanges();
+
+                            SaleReturn saleReturn = new SaleReturn();
+                            int saleReturnID;
+                            string returnID = SEQHelper.GetSEQIDFormat("SEQSaleReturn", out saleReturnID);
+
+                            if (string.IsNullOrEmpty(returnID))
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQSaleReturn in SEQCONFIGURATION");
+                            }
+
+                            if (saleReturnID == 0)
+                            {
+                                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQSaleReturn is Fail");
+                            }
+                            saleReturn.ReturnID = returnID;
+                            saleReturn.IsCancelDispense = "Y";
+                            saleReturn.ReturnedBy = userUID;
+                            saleReturn.ReturnDttm = now;
+                            saleReturn.OwnerOrganisationUID = ownerOrganisationUID;
+                            saleReturn.PatientUID = item.PatientUID;
+                            saleReturn.PatientVisitUID = item.PatientVisitUID;
+                            saleReturn.StoreUID = patientOrderDetail.StoreUID ?? 0;
+                            saleReturn.CUser = userUID;
+                            saleReturn.CWhen = now;
+                            saleReturn.MUser = userUID;
+                            saleReturn.MWhen = now;
+                            saleReturn.StatusFlag = "A";
+                            db.SaleReturn.Add(saleReturn);
+                            db.SaveChanges();
+
+                            SaleReturnList saleReturnList = new SaleReturnList();
+                            saleReturnList.SaleReturnUID = saleReturn.UID;
+                            saleReturnList.BatchID = stock.BatchID;
+                            saleReturnList.ItemMasterUID = stock.ItemMasterUID;
+                            saleReturnList.ItemName = stock.ItemName;
+                            saleReturnList.Quantity = item.Quantity ?? 0;
+                            saleReturnList.DispensedItemUID = dispensedItem.UID;
+                            saleReturnList.IMUOMUID = stock.IMUOMUID;
+                            saleReturnList.ItemCost = stock.ItemCost;
+                            saleReturnList.StockUID = stock.UID;
+                            saleReturnList.OwnerOrganisationUID = ownerOrganisationUID;
+                            saleReturnList.PatientOrderDetailUID = patientOrderDetail.UID;
+                            saleReturnList.PatientBilledItemUID = patientBillable.UID;
+                            saleReturnList.CUser = userUID;
+                            saleReturnList.CWhen = now;
+                            saleReturnList.MUser = userUID;
+                            saleReturnList.MWhen = now;
+                            saleReturnList.StatusFlag = "A";
+                            db.SaleReturnList.Add(saleReturnList);
                             db.SaveChanges();
                         }
                     }
+                }
+
+                IPFillProcess fillProcess = db.IPFillProcess.Find(ipfillProccessUID);
+                if (fillProcess != null)
+                {
+                    db.IPFillProcess.Attach(fillProcess);
+                    fillProcess.MUser = userUID;
+                    fillProcess.MWhen = now;
+                    fillProcess.StatusFlag = "D";
+                    db.SaveChanges();
                 }
 
                 return Request.CreateResponse(HttpStatusCode.OK);
@@ -3507,7 +3613,63 @@ namespace MediTechWebApi.Controllers
 
                 return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
             }
+        }
 
+        [Route("SearchDispenseReturn")]
+        [HttpGet]
+        public List<SaleReturnModel> SearchDispenseReturn(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? storeUID)
+        {
+            List<SaleReturnModel> data = db.SaleReturn.Where(p => p.StatusFlag == "A"
+             && (dateFrom == null || DbFunctions.TruncateTime(p.ReturnDttm) >= DbFunctions.TruncateTime(dateFrom))
+             && (dateTo == null || DbFunctions.TruncateTime(p.ReturnDttm) <= DbFunctions.TruncateTime(dateTo))
+             && (storeUID == null || p.StoreUID == storeUID)
+             && (patientUID == null || p.PatientUID == patientUID))
+                .Select(p => new SaleReturnModel()
+                 {
+                    SaleReturnUID = p.UID,
+                    StoreUID = p.StoreUID,
+                    StoreName = SqlFunction.fGetStoreName(p.StoreUID),
+                    PatientUID = p.PatientUID ?? 0,
+                    PatientName = SqlFunction.fGetPatientName(p.PatientUID ?? 0),
+                    Comments = p.Comments,
+                    PatientVisitUID =  p.PatientVisitUID ?? 0,
+                    IsCancelDispense = p.IsCancelDispense,
+                    SaleUID = p.SaleUID ?? 0,
+                    OwnerOrganisationUID = p.OwnerOrganisationUID,
+                    ReturnDttm = p.ReturnDttm,
+                    ReturnedBy = p.ReturnedBy,
+                    ReturnedByName = SqlFunction.fGetCareProviderName(p.ReturnedBy),
+                    ReturnID = p.ReturnID
+                 }).OrderByDescending(p => p.ReturnDttm).ToList();
+
+            return data;
+        }
+
+        [Route("GetDispenseReturnList")]
+        [HttpGet]
+        public List<SaleReturnListModel> GetDispenseReturnList(int saleReturnUID)
+        {
+            List<SaleReturnListModel> data = db.SaleReturnList.Where(p => p.StatusFlag == "A" && p.SaleReturnUID == saleReturnUID)
+                .Select(p => new SaleReturnListModel()
+                {
+                    SaleReturnListUID = p.UID,
+                    SaleReturnUID = p.SaleReturnUID,
+                    StockUID = p.StockUID,
+                    BatchID = p.BatchID,
+                    ItemMasterUID = p.ItemMasterUID,
+                    ItemName = p.ItemName,
+                    Quantity = p.Quantity,
+                    IMUOMUID = p.IMUOMUID,
+                    IMUOM = SqlFunction.fGetRfValDescription(p.IMUOMUID),
+                    Comments = p.Comments,
+                    DispensedItemUID = p.DispensedItemUID ?? 0,
+                    PatientBilledItemUID = p.PatientBilledItemUID ?? 0,
+                    PatientOrderDetailUID = p.PatientOrderDetailUID ?? 0,
+                    ItemCost = p.ItemCost ?? 0,
+                    
+                }).ToList();
+
+            return data;
         }
 
         #endregion
