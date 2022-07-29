@@ -388,13 +388,16 @@ namespace MediTech.ViewModels
 
         private void Generatebill()
         {
-            GenerateBill pageview = new GenerateBill();
-            var viewModel = (pageview.DataContext as GenerateBillViewModel);
-            viewModel.AssingGenerateBill(SelectPatientVisit);
-            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, false);
-            if (result != null && result.ResultDialog == ActionDialog.Save)
+            if (SelectPatientVisit != null)
             {
-                ResultDialog = ActionDialog.Save;
+                GenerateBill pageview = new GenerateBill();
+                var viewModel = (pageview.DataContext as GenerateBillViewModel);
+                viewModel.AssingGenerateBill(SelectPatientVisit);
+                GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    ResultDialog = ActionDialog.Save;
+                }
             }
         }
 

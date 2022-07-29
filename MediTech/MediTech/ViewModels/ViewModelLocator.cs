@@ -1018,7 +1018,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public IPFillsDetailViewModel iPFillsDetailViewModel
+        public IPFillsDetailViewModel IPFillsDetailViewModel
         {
             get
             {
@@ -1040,6 +1040,16 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CreateDispenseReturnViewModel createDispenseReturnViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CreateDispenseReturnViewModel>())
+                    SimpleIoc.Default.Register<CreateDispenseReturnViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CreateDispenseReturnViewModel>();
+            }
+        }
         #endregion
 
         #region LIS_RIS Setting

@@ -61,29 +61,29 @@
                                      Height="25" Content="Claer"/>
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxg:GridControl Name="grdItem" ItemsSource="{Binding FillProcess}"
-                                 SelectedItem="{Binding SelectFillProcess}">
+                <dxg:GridControl Name="grdItem" ItemsSource="{Binding SaleReturn}"
+                                 SelectedItem="{Binding SelectSaleReturn}">
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="Return ID" FieldName="IPFillProcessUID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Patient ID" FieldName="FillDttm" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Patient Name" FieldName="FillByUser" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Return ID" FieldName="ReturnID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Patient ID" FieldName="PatientUID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Patient Name" FieldName="PatientName" ReadOnly="True"/>
                         <dxg:GridColumn Header="Store Name" FieldName="StoreName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Return Date" FieldName="WardName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Returned By" FieldName="WardName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Return Date" FieldName="ReturnDttm" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Returned By" FieldName="ReturnedByName" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False"
                                    AllowEditing="False" />
                     </dxg:GridControl.View>
                 </dxg:GridControl>
-                <dxg:GridControl Name="grdItem2" ItemsSource="{Binding FillProcess}"
-                                 SelectedItem="{Binding SelectFillProcess}">
+                <dxg:GridControl Name="grdItem2" ItemsSource="{Binding SaleReturnList}"
+                                 SelectedItem="{Binding SelectSaleReturnList}">
                     <dxg:GridControl.Columns>
-                        <dxg:GridColumn Header="Item Name" FieldName="IPFillProcessUID" ReadOnly="True"/>
-                        <dxg:GridColumn Header="BatchID" FieldName="FillDttm" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Returnrd Qty by" FieldName="FillByUser" ReadOnly="True"/>
-                        <dxg:GridColumn Header="UOM" FieldName="StoreName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="Item Cost" FieldName="WardName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Item Name" FieldName="ItemName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="BatchID" FieldName="BatchID" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Returnrd Qty" FieldName="Quantity" ReadOnly="True"/>
+                        <dxg:GridColumn Header="UOM" FieldName="IMUOM" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Item Cost" FieldName="ItemCost" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
                         <dxg:TableView ShowGroupPanel="False"

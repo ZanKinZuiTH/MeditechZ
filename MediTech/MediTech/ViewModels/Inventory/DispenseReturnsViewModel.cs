@@ -40,6 +40,41 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectStore, value); }
         }
 
+        private List<SaleReturnModel> _SaleReturn;
+        public List<SaleReturnModel> SaleReturn
+        {
+            get { return _SaleReturn; }
+            set { Set(ref _SaleReturn, value); 
+            
+            }
+        }
+
+        private SaleReturnModel _SelectSaleReturn;
+        public SaleReturnModel SelectSaleReturn
+        {
+            get { return _SelectSaleReturn; }
+            set { Set(ref _SelectSaleReturn, value); 
+            if(SelectSaleReturn != null)
+                {
+                    SaleReturnList = DataService.Inventory.GetDispenseReturnList(SelectSaleReturn.SaleReturnUID);
+                }
+            }
+        }
+
+        private List<SaleReturnListModel> _SaleReturnList;
+        public List<SaleReturnListModel> SaleReturnList
+        {
+            get { return _SaleReturnList; }
+            set { Set(ref _SaleReturnList, value); }
+        }
+
+        private SaleReturnListModel _SelectSaleReturnList;
+        public SaleReturnListModel SelectSaleReturnList
+        {
+            get { return _SelectSaleReturnList; }
+            set { Set(ref _SelectSaleReturnList, value); }
+        }
+
         #region PatientSearch
 
         private string _SearchPatientCriteria;
@@ -111,7 +146,10 @@ namespace MediTech.ViewModels
 
         private void Search()
         {
+            long? patientUID = SelectedPateintSearch != null ? SelectedPateintSearch.PatientUID : (long?)null;
+            int? storeUID = SelectStore != null ? SelectStore.StoreUID : (int?)null;
 
+            SaleReturn = DataService.Inventory.SearchDispenseReturn(DateFrom, DateTo, patientUID, storeUID);
         }
 
         private void Clear()
