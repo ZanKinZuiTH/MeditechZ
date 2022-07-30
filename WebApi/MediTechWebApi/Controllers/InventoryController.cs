@@ -3030,6 +3030,486 @@ namespace MediTechWebApi.Controllers
         #endregion
 
 
+        #region IPFills
 
+        [Route("SearchIPFills")]
+        [HttpGet]
+        public List<IPFillProcessModel> SearchIPFills(DateTime? dateFrom, DateTime? dateTo, int storeUID)
+        {
+            List<IPFillProcessModel> data = db.IPFillProcess.Where(p => p.StatusFlag == "A"
+            && (dateFrom == null || DbFunctions.TruncateTime(p.FillDttm) >= DbFunctions.TruncateTime(dateFrom))
+            && (dateTo == null || DbFunctions.TruncateTime(p.FillDttm) <= DbFunctions.TruncateTime(dateTo))
+            && p.StoreUID == storeUID)
+                .Select(p => new IPFillProcessModel()
+                {
+                    IPFillProcessUID = p.UID,
+                    FillID = p.FillID,
+                    StoreUID = p.StoreUID,
+                    StoreName = SqlFunction.fGetStoreName(p.StoreUID ?? 0),
+                    OwnerOrganisationUID = p.OwnerOrganisationUID,
+                    OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                    FillByUserUID = p.FillByUserUID,
+                    FillByUser = SqlFunction.fGetCareProviderName(p.FillByUserUID ?? 0),
+                    FillDttm = p.FillDttm,
+                    ExcludePriorHour = p.ExcludePriorHour,
+                    WardUID = p.WardUID,
+                    WardName = SqlFunction.fGetLocationName(p.WardUID ?? 0),
+                    Comment = p.Comments
+                }).OrderByDescending(p => p.FillDttm).ToList();
+
+            return data;
+        }
+
+        [Route("GetIPFillDetail")]
+        [HttpGet]
+        public List<IPFillDetailModel> GetIPFillDetail(long iPFillProcessUID)
+        {
+            List<IPFillDetailModel> data = (from p in db.IPFillDetail
+                                            join item in db.ItemMaster on p.ItemMasterUID equals item.UID
+                                            where p.StatusFlag == "A" 
+                                            && item.StatusFlag == "A"
+                                            && p.IPFillProcessUID == iPFillProcessUID
+                                            select new IPFillDetailModel()
+                                            {
+                                                IPFillProcessUID = p.IPFillProcessUID,
+                                                IPFillDetailUID = p.UID,
+                                                PatientFillID = p.PatientFillID,
+                                                PatientUID = p.PatientUID,
+                                                PatientID = SqlFunction.fGetPatientID(p.PatientUID),
+                                                PatientName = SqlFunction.fGetPatientName(p.PatientUID),
+                                                StockUID = p.StockUID,
+                                                BatchID = p.BatchID,
+                                                Quantity = p.Quantity,
+                                                IMUOMUID = p.IMUOMUID ?? 0,
+                                                IMUOM = SqlFunction.fGetRfValDescription(p.IMUOMUID ?? 0),
+                                                PatientOrderUID = p.PatientOrderUID ?? 0,
+                                                PatientVisitUID = p.PatientVisitUID ?? 0,
+                                                OwnerOrganisationUID = p.OwnerOrganisationUID,
+                                                OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID),
+                                                PatientOrderDetailUID = p.PatientOrderDetailUID,
+                                                ItemMasterUID = p.ItemMasterUID,
+                                                ItemName = item.Name,
+                                                WardUID = p.WardUID,
+                                                WardName = SqlFunction.fGetLocationName(p.WardUID ?? 0),
+                                                BedUID = p.BedUID,
+                                                BedName = SqlFunction.fGetLocationName(p.BedUID ?? 0),
+                                                ExpiryDttm = p.ExpiryDttm
+                                            }).ToList();
+
+            return data;
+        }
+
+        [Route("DispenseIPFills")]
+        [HttpPost]
+        public HttpResponseMessage DispenseIPFills(IPFillProcessModel iPFillProcessModel, int userID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                IPFillProcess iPFill = new IPFillProcess();
+
+                int iPFillID;
+                string fillID = SEQHelper.GetSEQIDFormat("SEQIPFILLID", out iPFillID);
+
+                if (string.IsNullOrEmpty(fillID))
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQIPFILLID in SEQCONFIGURATION");
+                }
+
+                if (iPFillID == 0)
+                {
+                    return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQIPFILLID is Fail");
+                }
+
+                iPFill.FillID = fillID;
+
+                iPFill.FillDttm = now;
+                iPFill.FillByUserUID = userID;
+                iPFill.FillForDays = iPFillProcessModel.FillForDay;
+                iPFill.ExcludePriorHour = iPFillProcessModel.ExcludePriorHour;
+                iPFill.WardUID = iPFillProcessModel.WardUID;
+                iPFill.StoreUID = iPFillProcessModel.StoreUID;
+                iPFill.OwnerOrganisationUID = iPFillProcessModel.OwnerOrganisationUID;
+                iPFill.MUser = userID;
+                iPFill.MWhen = now;
+                iPFill.CUser = userID;
+                iPFill.CWhen = now;
+                iPFill.StatusFlag = "A";
+
+                db.IPFillProcess.Add(iPFill);
+                db.SaveChanges();
+
+                if(iPFillProcessModel.StandingModels != null && iPFillProcessModel.StandingModels.Count != 0)
+                {
+                    foreach(var item in iPFillProcessModel.StandingModels)
+                    {
+                        #region PatientOrder
+                        PatientOrder patientOrder = new PatientOrder();
+
+                        int seqPatientOrderID;
+                        string patientOrderID = SEQHelper.GetSEQIDFormat("SEQPatientOrder", out seqPatientOrderID);
+
+                        if (string.IsNullOrEmpty(patientOrderID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPatientOrder in SEQCONFIGURATION");
+                        }
+
+                        if (seqPatientOrderID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPatientOrder is Fail");
+                        }
+
+                        patientOrder.OrderNumber = patientOrderID;
+                        patientOrder.ParentUID = item.PatientOrderUID;
+                        patientOrder.PatientUID = item.PatientUID;
+                        patientOrder.StartDttm = now;
+                        patientOrder.EndDttm = now;
+                        patientOrder.PRSTYPUID = item.PRSTYPUID;
+                        patientOrder.PatientVisitUID = item.PatientVisitUID;
+                        patientOrder.OrderRaisedBy = userID;
+                        patientOrder.MUser = userID;
+                        patientOrder.MWhen = now;
+                        patientOrder.CUser = userID;
+                        patientOrder.CWhen = now;
+                        patientOrder.IsContinuous = "Y";
+                        patientOrder.IsIPFill = "Y";
+                        patientOrder.StatusFlag = "A";
+                        patientOrder.OrderLocationUID = item.LocationUID;
+                        patientOrder.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                        patientOrder.IdentifyingType = "PATIENTORDER";
+                        db.PatientOrder.Add(patientOrder);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        #region PatientOrderDetail
+
+                        PatientOrderDetail orderDetail = new PatientOrderDetail();
+
+                        orderDetail.PatientOrderUID = patientOrder.UID;
+                        orderDetail.ParentUID = item.ParentOrderDetalUID;
+                        orderDetail.MUser = userID;
+                        orderDetail.MWhen = now;
+                        orderDetail.CUser = userID;
+                        orderDetail.CWhen = now;
+                        orderDetail.StatusFlag = "A";
+                        orderDetail.IsStandingOrder = "Y";
+                        orderDetail.IsStockItem = "Y";
+                        orderDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                        orderDetail.ItemCode = item.ItemCode;
+                        orderDetail.ItemName = item.ItemName;
+                        orderDetail.StartDttm = now;
+                        orderDetail.EndDttm = now;
+                        orderDetail.ORDSTUID = item.ORDSTUID;
+                        orderDetail.Dosage = item.Dosage;
+                        orderDetail.Quantity = item.Quantity;
+                        orderDetail.QNUOMUID = item.QNUOMUID;
+                        orderDetail.FRQNCUID = item.FRQNCUID;
+                        orderDetail.UnitPrice = item.UnitPrice;
+                        orderDetail.IsPriceOverwrite = item.IsPriceOverwrite;
+                        orderDetail.OverwritePrice = item.OverwritePrice;
+                        orderDetail.OriginalUnitPrice = item.OriginalUnitPrice;
+                        orderDetail.DoctorFee = item.DoctorFee;
+                        orderDetail.CareproviderUID = item.CareproviderUID;
+                        orderDetail.NetAmount = item.NetAmount;
+                        orderDetail.ROUTEUID = item.ROUTEUID;
+                        orderDetail.DFORMUID = item.DFORMUID;
+                        orderDetail.PDSTSUID = item.PDSTSUID;
+                        orderDetail.DrugDuration = item.DrugDuration;
+                        orderDetail.InstructionText = item.InstructionText;
+                        orderDetail.LocalInstructionText = item.LocalInstructionText;
+                        orderDetail.BillableItemUID = item.BillableItemUID;
+                        orderDetail.IsStockItem = item.IsStock;
+                        orderDetail.StoreUID = item.StoreUID;
+                        orderDetail.Comments = item.Comments;
+                        orderDetail.OrderSetUID = item.OrderSetUID;
+                        orderDetail.OrderSetBillableItemUID = item.OrderSetBillableItemUID;
+                        orderDetail.IdentifyingType = "ORDERITEM";
+                        db.PatientOrderDetail.Add(orderDetail);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        #region IpFillDetail
+                        IPFillDetail iPFillDetail = new IPFillDetail();
+
+                        int iPFillDetailID;
+                        string fillDetailID = SEQHelper.GetSEQIDFormat("SEQFILLDETAILID", out iPFillDetailID);
+
+                        if (string.IsNullOrEmpty(fillDetailID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQFILLDETAILID in SEQCONFIGURATION");
+                        }
+
+                        if (iPFillDetailID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQFILLDETAILID is Fail");
+                        }
+
+                        iPFillDetail.PatientUID = item.PatientUID;
+                        iPFillDetail.PatientVisitUID = item.PatientVisitUID;
+                        iPFillDetail.PatientFillID = fillDetailID;
+                        iPFillDetail.IPFillProcessUID = iPFill.UID;
+                        iPFillDetail.PatientOrderUID = patientOrder.UID;
+                        iPFillDetail.PatientOrderDetailUID = orderDetail.UID;
+                        iPFillDetail.ItemMasterUID = item.ItemUID;
+                        iPFillDetail.Quantity = item.Quantity;
+                        iPFillDetail.BatchID = item.BatchID;
+                        iPFillDetail.IMUOMUID = item.QNUOMUID;
+                        iPFillDetail.WardUID = item.WardUID;
+                        iPFillDetail.BedUID = item.BedUID;
+                        iPFillDetail.ExpiryDttm = item.ExpiryDate ?? now;
+                        iPFillDetail.StockUID = item.StockUID;
+                        iPFillDetail.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                        iPFillDetail.MUser = userID;
+                        iPFillDetail.MWhen = now;
+                        iPFillDetail.CUser = userID;
+                        iPFillDetail.CWhen = now;
+                        iPFillDetail.StatusFlag = "A";
+
+                        db.IPFillDetail.Add(iPFillDetail);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        #region Prescription
+
+                        Prescription presc = new Prescription();
+                       
+                        int seqPrescriptionID;
+                        string prescriptionID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionID);
+
+                        if (string.IsNullOrEmpty(prescriptionID))
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "No SEQPrescription in SEQCONFIGURATION");
+                        }
+
+                        if (seqPrescriptionID == 0)
+                        {
+                            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Insert SEQPrescription is Fail");
+                        }
+
+                        if (seqPrescriptionID != 0)
+                        {
+                          prescriptionID = "I" + prescriptionID;
+                        }
+
+                        presc.PrescriptionNumber = prescriptionID;
+                        presc.PrescribedDttm = now;
+                        presc.PrescribedBy = userID;
+                        presc.BSMDDUID = 2826; //Drug;
+                        presc.ORDSTUID = 2861; //Dispensed
+                        presc.DispensedDttm = now;
+                        presc.PatientUID = item.PatientUID;
+                        presc.PatientVisitUID = item.PatientVisitUID;
+                        presc.PRSTYPUID = item.PRSTYPUID;
+                        presc.MUser = userID;
+                        presc.MWhen = now;
+                        presc.PatientOrderUID = patientOrder.UID;
+                        presc.CUser = userID;
+                        presc.CWhen = now;
+                        presc.StatusFlag = "A";
+                        presc.IsIPFill = "Y";
+                        presc.OwnerOrganisationUID = item.OwnerOrganisationUID;
+
+                        db.Prescription.Add(presc);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        #region PrescriptionItem
+
+                        PrescriptionItem prescritem = new PrescriptionItem();
+                        prescritem.StartDttm = item.StartDttm;
+                        prescritem.ORDSTUID = 2861; //Dispensed
+                        prescritem.PrescriptionUID = presc.UID;
+                        prescritem.PatientOrderDetailUID = orderDetail.UID;
+                        prescritem.MUser = userID;
+                        prescritem.MWhen = now;
+                        prescritem.CUser = userID;
+                        prescritem.CWhen = now;
+                        prescritem.StatusFlag = "A";
+                        prescritem.OwnerOrganisationUID = item.OwnerOrganisationUID;
+                        prescritem.ItemCode = item.ItemCode;
+                        prescritem.ItemName = item.ItemName;
+                        prescritem.ROUTEUID = item.ROUTEUID;
+                        prescritem.FRQNCUID = item.FRQNCUID;
+                        prescritem.DFORMUID = item.DFORMUID;
+                        prescritem.DrugDuration = item.DrugDuration;
+                        prescritem.Dosage = item.Dosage;
+                        prescritem.Quantity = item.Quantity;
+                        prescritem.IMUOMUID = item.QNUOMUID;
+                        prescritem.PDSTSUID = item.PDSTSUID;
+                        prescritem.ItemMasterUID = item.ItemUID;
+                        prescritem.BillableItemUID = item.BillableItemUID;
+                        prescritem.StoreUID = item.StoreUID;
+                        prescritem.ClinicalComments = item.ClinicalComments;
+                        prescritem.InstructionText = item.InstructionText;
+                        prescritem.LocalInstructionText = item.LocalInstructionText;
+                        prescritem.Dosage = item.Dosage;
+                        prescritem.Comments = orderDetail.Comments;
+                        db.PrescriptionItem.Add(prescritem);
+                        db.SaveChanges();
+                        #endregion
+
+                        #region SavePatinetOrderDetailHistory
+
+                        PatientOrderDetailHistory patientOrderDetailHistory = new PatientOrderDetailHistory();
+                        patientOrderDetailHistory.PatientOrderDetailUID = orderDetail.UID;
+                        patientOrderDetailHistory.ORDSTUID = orderDetail.ORDSTUID;
+                        patientOrderDetailHistory.EditedDttm = now;
+                        patientOrderDetailHistory.EditByUserID = userID;
+                        patientOrderDetailHistory.CUser = userID;
+                        patientOrderDetailHistory.CWhen = now;
+                        patientOrderDetailHistory.MUser = userID;
+                        patientOrderDetailHistory.MWhen = now;
+                        patientOrderDetailHistory.StatusFlag = "A";
+                        db.PatientOrderDetailHistory.Add(patientOrderDetailHistory);
+                        db.SaveChanges();
+
+                        #endregion
+
+                        DataTable dtStockUsed = SqlDirectStore.pDispensePrescriptionItem(prescritem.UID, userID);
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+        }
+
+        [Route("CancelDispenseIPFills")]
+        [HttpPut]
+        public HttpResponseMessage CancelDispenseIPFills(int ipfillProccessUID, int userUID)
+        {
+            try
+            {
+                DateTime now = DateTime.Now;
+
+                IPFillProcess fillProcess = db.IPFillProcess.Find(ipfillProccessUID);
+                if (fillProcess != null)
+                {
+                    db.IPFillProcess.Attach(fillProcess);
+                    fillProcess.MUser = userUID;
+                    fillProcess.MWhen = now;
+                    fillProcess.StatusFlag = "D";
+                    db.SaveChanges();
+                }
+
+                List<IPFillDetail> iPFillDetails = db.IPFillDetail.Where(p => p.IPFillProcessUID == ipfillProccessUID).ToList();
+
+                if(iPFillDetails != null && iPFillDetails.Count != 0)
+                {
+                    foreach(var item in iPFillDetails)
+                    {
+                        db.IPFillDetail.Attach(item);
+                        item.MUser = userUID;
+                        item.MWhen = now;
+                        item.StatusFlag = "D";
+                        db.SaveChanges();
+
+                        var stockmovement = (from pre in db.PrescriptionItem
+                                             join dis in db.DispensedItem on pre.UID equals dis.PrescriptionItemUID
+                                             join stv in db.StockMovement on new { key1 = dis.UID, key2 = "DispensedItem" } equals new { key1 = stv.RefUID ?? 0, key2 = stv.RefTable }
+                                             where pre.StatusFlag == "A"
+                                             && dis.StatusFlag == "A"
+                                             && stv.StatusFlag == "A"
+                                             && dis.ORDSTUID == 2861 // Dispensed
+                                             && pre.PatientOrderDetailUID == item.PatientOrderDetailUID
+                                             select new
+                                             {
+                                                 StockUID = stv.StockUID,
+                                                 OutQty = stv.OutQty,
+                                                 RefUID = stv.RefUID,
+                                                 StoreUID = stv.StoreUID,
+                                                 StockmovementUID = stv.UID,
+                                                 DispensedItemUID = dis.UID,
+                                                 PresciptionItemUID = pre.UID,
+                                                 PrescriptionUID = pre.PrescriptionUID
+                                             }).FirstOrDefault();
+
+                        if (stockmovement != null)
+                        {
+                            Stock stock = db.Stock.Find(stockmovement.StockUID);
+
+                            double totalBFQty = SqlStatement.GetItemTotalQuantity(stock.ItemMasterUID, stock.StoreUID, stock.OwnerOrganisationUID);
+                            double bfQty = stock.Quantity;
+
+                            //SqlDirectStore.pCancelDispensed(item.PatientOrderDetailUID, userUID);
+
+                            DispensedItem dispensedItem = db.DispensedItem.Find(stockmovement.DispensedItemUID);
+                            db.DispensedItem.Attach(dispensedItem);
+                            dispensedItem.MUser = userUID;
+                            dispensedItem.MWhen = now;
+                            dispensedItem.ORDSTUID = 2875;
+
+
+                            PrescriptionItem prescriptionItem = db.PrescriptionItem.Find(stockmovement.PresciptionItemUID);
+                            db.PrescriptionItem.Attach(prescriptionItem);
+                            prescriptionItem.MUser = userUID;
+                            prescriptionItem.MWhen = now;
+                            prescriptionItem.ORDSTUID = 2875;
+                            db.SaveChanges();
+
+                            Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
+                            db.Prescription.Attach(prescription);
+                            prescription.MUser = userUID;
+                            prescription.MWhen = now;
+                            prescription.ORDSTUID = 2875;
+
+
+
+                            PatientOrderDetail patientOrderDetail = db.PatientOrderDetail.Find(item.PatientOrderDetailUID);
+                            db.PatientOrderDetail.Attach(patientOrderDetail);
+                            patientOrderDetail.MUser = userUID;
+                            patientOrderDetail.MWhen = now;
+                            patientOrderDetail.ORDSTUID = 2875;
+
+                            PatientOrderDetailHistory patOrderDetailHistory = new PatientOrderDetailHistory();
+                            patOrderDetailHistory.PatientOrderDetailUID = patientOrderDetail.UID;
+                            patOrderDetailHistory.ORDSTUID = 2875;
+                            patOrderDetailHistory.EditByUserID = userUID;
+                            patOrderDetailHistory.EditedDttm = now;
+                            patOrderDetailHistory.CUser = userUID;
+                            patOrderDetailHistory.CWhen = now;
+                            patOrderDetailHistory.MUser = userUID;
+                            patOrderDetailHistory.MWhen = now;
+                            patOrderDetailHistory.StatusFlag = "A";
+                            db.PatientOrderDetailHistory.Add(patOrderDetailHistory);
+
+                            db.Stock.Attach(stock);
+                            stock.Quantity = stock.Quantity + stockmovement.OutQty;
+                            stock.MUser = userUID;
+                            stock.MWhen = now;
+                            stock.StatusFlag = "A";
+
+
+                            StockMovement stockMovement = db.StockMovement.Find(stockmovement.StockmovementUID);
+                            db.StockMovement.Attach(stockMovement);
+                            stockMovement.MUser = userUID;
+                            stockMovement.MWhen = now;
+                            stockMovement.Note = "SaleReturn";
+
+                            db.SaveChanges();
+                        }
+                    }
+                }
+
+                return Request.CreateResponse(HttpStatusCode.OK);
+            }
+            catch (Exception ex)
+            {
+
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ex.Message, ex);
+            }
+
+        }
+
+        #endregion
     }
 }

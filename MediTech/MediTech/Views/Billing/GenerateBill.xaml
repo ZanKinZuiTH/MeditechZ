@@ -5,11 +5,39 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
+             xmlns:model="clr-namespace:MediTech.Model;assembly=MediTech.Model"
+             xmlns:my="clr-namespace:MediTech.CustomControl"
              xmlns:local="clr-namespace:MediTech.Views"
              DataContext="{Binding Path=GenerateBillViewModel,Source={StaticResource Locator}}"
+             xmlns:cv="clr-namespace:MediTech.Converter"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
+             d:DesignHeight="800" d:DesignWidth="1020">
+    <UserControl.Resources>
+        <cv:NumericN2Formatter x:Key="NumericN2Formatter" />
+        <HierarchicalDataTemplate DataType="{x:Type model:AllocatedPatBillableItemsSubAccountResultModel}" ItemsSource="{Binding Path = AllocatedPatBillableItems,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+        </HierarchicalDataTemplate>
+        <HierarchicalDataTemplate DataType="{x:Type model:AllocatedPatBillableItemsAccountResultModel}" ItemsSource="{Binding Path = AllocatedPatBillableItemsSubGroups,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+        </HierarchicalDataTemplate>
+        <Style
+			x:Key="ImageButtonStyle"
+			TargetType="{x:Type my:ImageButton}">
+
+            <Setter Property="HorizontalContentAlignment"
+				Value="Center"/>
+            <Setter Property="VerticalContentAlignment"
+				Value="Center"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type my:ImageButton}">
+                        <Grid>
+                            <Image Source="{TemplateBinding Source}" VerticalAlignment="Center"/>
+                        </Grid>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
+    <AdornerDecorator>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem Name="Banner">
                 <uc:PatientBanner PatientVisit="{Binding SelectPateintVisit}"/>
@@ -26,20 +54,26 @@
                 <dxlc:LayoutItem/>
             </dxlc:LayoutGroup>
 
-            <dxg:GridControl>
-                <dxg:GridColumn Header="Name" ReadOnly="True"/>
-                <dxg:GridColumn Header="Qty" ReadOnly="True"/>
-                <dxg:GridColumn Header="Amount" ReadOnly="True"/>
-                <dxg:GridColumn Header="Discount" ReadOnly="True"/>
-                <dxg:GridColumn Header="Net Amount" ReadOnly="True"/>
-                <dxg:GridColumn Header="Payor Office" ReadOnly="True"/>
-                <dxg:GridColumn ReadOnly="True"/>
+            <dxg:GridControl x:Name="gridList" ItemsSource="{Binding Path=PatientBillableItemsAccounts, UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                     Visibility="Visible">
+                <dxg:GridColumn FieldName="SubAccountName" Header="Name" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="Quantity" Header="Qty." ReadOnly="True"/>
+                <dxg:GridColumn FieldName="Amount" Header="Amount" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="Discount" Header="Discount" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="NetAmount" Header="Net Amount" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="PayorName" Header="Payor" ReadOnly="True"/>
+                <dxg:GridColumn FieldName="PackageName" Header="Package" ReadOnly="True"/>
                 <dxg:GridControl.View>
-                    <dxg:TableView ShowGroupPanel="False"/>
+                    <dxg:TreeListView x:Name="treeView" AutoWidth="True"
+                                  ShowNodeImages="False" AutoExpandAllNodes="False" MultiSelectMode="Row"
+                                  TreeDerivationMode="HierarchicalDataTemplate"
+                                  FetchSublevelChildrenOnExpand="False"
+                                  NodeExpanding="view_NodeExpanding">
+                    </dxg:TreeListView>
                 </dxg:GridControl.View>
             </dxg:GridControl>
             <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutGroup Orientation="Vertical">
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Center">
                     <dxlc:LayoutItem Label="หมายเหตุ" LabelVerticalAlignment="Top"  HorizontalAlignment="Right">
                         <dxe:TextEdit Text="{Binding Comments}"
                 TextWrapping="Wrap" Height="50" Width="250"
@@ -48,7 +82,7 @@
                     </dxlc:LayoutItem>
 
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right" Width="320">
+                <dxlc:LayoutGroup Orientation="Vertical" HorizontalAlignment="Right" Width="380">
                     <dxlc:LayoutGroup  Orientation="Vertical">
                         <dxlc:LayoutGroup Orientation="Horizontal">
                             <dxlc:LayoutItem >
@@ -56,13 +90,11 @@
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup>
                                 <dxlc:LayoutItem>
-                                    <dxe:TextEdit x:Name="txtTotalCash" 
-                                          EditValue="{Binding TotalPrice}"
+                                    <dxe:TextEdit x:Name="txtAmount" 
+                                          EditValue="{Binding Amount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
                                           FontWeight="Bold"
                                           AllowNullInput="True"
-                                          DisplayFormatString="#,#.00"
-                                          IsEnabled="False"
-                                          MaskType="Numeric" IsReadOnly="True" 
+                                          IsEnabled="False" IsReadOnly="True" 
                                           ShowBorder="False"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem>
@@ -81,12 +113,10 @@
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem >
                                     <dxe:TextEdit x:Name="txtDiscount" 
-                                          EditValue="{Binding DiscountAmount}"
+                                          EditValue="{Binding DiscountAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
                                           FontWeight="Bold"
                                           AllowNullInput="True"
-                                          DisplayFormatString="#,#.00"
-                                          IsEnabled="False"
-                                          MaskType="Numeric" IsReadOnly="True" 
+                                          IsEnabled="False" IsReadOnly="True" 
                                           ShowBorder="False"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem >
@@ -104,13 +134,93 @@
                             <dxlc:LayoutGroup Orientation="Horizontal">
                                 <dxlc:LayoutItem >
                                     <dxe:TextEdit x:Name="txtTotalAmount"  
-                                                  EditValue="{Binding TotalAmount}"
+                                                  EditValue="{Binding NetAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
                                                   FontWeight="Bold"    
                                                   AllowNullInput="True"
                                                   ShowBorder="False"
-                                                  DisplayFormatString="#,#.00"
-                                                  IsEnabled="False"
-                                                  MaskType="Numeric"/>
+                                                  IsEnabled="False"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="บาท"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal">
+                            <dxlc:LayoutItem >
+                                <TextBlock Text="ยอดวางบิล"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <dxe:TextEdit x:Name="txtPayorAmount"  
+                                                  EditValue="{Binding PayorAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
+                                                  FontWeight="Bold"    
+                                                  AllowNullInput="True"
+                                                  ShowBorder="False"
+                                                  IsEnabled="False"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem >
+                                    <TextBlock Text="บาท"/>
+                                </dxlc:LayoutItem>
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsEnablePayment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                            <dxlc:LayoutItem >
+                                <TextBlock HorizontalAlignment="Left" VerticalAlignment="Center">
+                                <Hyperlink Foreground="Blue" Command="{Binding CallPaymentModeCommand}">
+                                        <TextBlock Text="การชำระเงิน" Foreground="Blue" TextDecorations="None"/>
+                                </Hyperlink>
+                                </TextBlock>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <dxe:TextEdit x:Name="txtPayment"  
+                                                  Mask="n2"
+                                                  MaskType="Numeric"
+                                                  EditValue="{Binding PaymentAmount, UpdateSourceTrigger=LostFocus, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
+                                                  AllowNullInput="True"
+                                                  FontWeight="Bold"/>
+                                </dxlc:LayoutItem>
+
+                                <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem >
+                                        <TextBlock Text="บาท"/>
+                                    </dxlc:LayoutItem>
+                                    <my:ImageButton x:Name="imgCreditOnly" Height="25" Width="25"  Visibility="{Binding IsEnablePaymentOnly,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                Source="pack://application:,,,/MediTech;component/Resources/Images/Fincace/credit.png"
+                                                SelectedSource="pack://application:,,,/MediTech;component/Resources/Images/Fincace/credit.png" 
+                                                HighlightSource="pack://application:,,,/MediTech;component/Resources/Images/Fincace/credit.png" 
+                                        Command="{Binding CreditOnlyCommand}"       
+                                        Style="{DynamicResource ImageButtonStyle}"
+                                       ToolTip="Credit Only" VerticalAlignment="Top" Cursor="Hand">
+                                        <Image Source="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png"/>
+                                    </my:ImageButton>
+                                    <my:ImageButton x:Name="imgCashOnly" Height="25" Width="25" Margin="5,0,0,0"  Visibility="{Binding IsEnablePaymentOnly,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                                Source="pack://application:,,,/MediTech;component/Resources/Images/Menu/CashierWorklist.png"
+                                                SelectedSource="pack://application:,,,/MediTech;component/Resources/Images/Menu/CashierWorklist.png" 
+                                                HighlightSource="pack://application:,,,/MediTech;component/Resources/Images/Menu/CashierWorklist.png" 
+                                        Style="{DynamicResource ImageButtonStyle}"
+                                                    Command="{Binding CashOnlyCommand}"
+                                       ToolTip="Cash Only" VerticalAlignment="Top" Cursor="Hand">
+                                        <Image Source="pack://application:,,,/MediTech;component/Resources/Images/Action/plus.png"/>
+                                    </my:ImageButton>
+                                </dxlc:LayoutGroup>
+
+                            </dxlc:LayoutGroup>
+
+                        </dxlc:LayoutGroup>
+                        <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsEnablePayment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
+                            <dxlc:LayoutItem >
+                                <TextBlock Text="ยอดชำระ"/>
+                            </dxlc:LayoutItem>
+                            <dxlc:LayoutGroup Orientation="Horizontal">
+                                <dxlc:LayoutItem >
+                                    <dxe:TextEdit EditValue="{Binding PaidAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"
+                                                  FontWeight="Bold"    
+                                                  AllowNullInput="True"
+                                                  ShowBorder="False"
+                                                  IsEnabled="False"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem >
                                     <TextBlock Text="บาท"/>
@@ -119,17 +229,16 @@
 
                         </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutGroup Orientation="Horizontal">
+                        <dxlc:LayoutGroup Orientation="Horizontal" Visibility="{Binding IsEnablePayment,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                             <dxlc:LayoutItem >
-                                <TextBlock Text="รับเงิน"/>
+                                <TextBlock Text="ยอดคงเหลือ"/>
                             </dxlc:LayoutItem>
                             <dxlc:LayoutGroup>
                                 <dxlc:LayoutItem >
-                                    <dxe:TextEdit x:Name="txtPayment"  
-                                                  EditValue="{Binding Payment,UpdateSourceTrigger=PropertyChanged}"
+                                    <dxe:TextEdit x:Name="txtBalance"  
+                                                  EditValue="{Binding BalanceAmount,UpdateSourceTrigger=PropertyChanged, Converter={StaticResource NumericN2Formatter}}"
                                                   FontWeight="Bold"
-                                                  DisplayFormatString="#,#.00"
-                                                  AllowNullInput="True"  MaskType="Numeric"/>
+                                                  IsReadOnly="True"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem >
                                     <TextBlock Text="บาท"/>
@@ -139,37 +248,27 @@
 
                         </dxlc:LayoutGroup>
 
-                        <dxlc:LayoutGroup Orientation="Horizontal">
-                            <dxlc:LayoutItem >
-                                <TextBlock Text="เงินทอน"/>
-                            </dxlc:LayoutItem>
-                            <dxlc:LayoutGroup Orientation="Horizontal">
-                                <dxlc:LayoutItem  >
-                                    <dxe:TextEdit x:Name="txtReCash"  
-                                          EditValue="{Binding ReCash}"
-                                          FontWeight="Bold"            
-                                          AllowNullInput="True"  
-                                          MaskType="Numeric"
-                                          DisplayFormatString="#,#.00"
-                                          IsEnabled="False"
-                                          ShowBorder="False"
-                                          IsReadOnly="True"/>
-                                </dxlc:LayoutItem>
-                                <dxlc:LayoutItem >
-                                    <TextBlock Text="บาท"/>
-                                </dxlc:LayoutItem>
-                            </dxlc:LayoutGroup>
 
-
-                        </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
-            <dxlc:LayoutGroup HorizontalAlignment="Right" VerticalAlignment="Bottom">
-                <dx:SimpleButton Content="Settle" Height="25" Width="80"/>
-                <dx:SimpleButton Content="Cancel" Height="25" Width="80"/>
+
+            <dxlc:LayoutGroup  VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="380">
+                <dxlc:LayoutItem  HorizontalAlignment="Left">
+                    <dxe:CheckEdit Content="Print" IsChecked="{Binding IsPrint}"/>
+                </dxlc:LayoutItem>
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+
+                    <dx:SimpleButton Content="Settle" Height="25" Width="80"
+                                 Command="{Binding SaveCommand}"
+                                 />
+                    <dx:SimpleButton Content="Cancel" Height="25" Width="80"
+                                 Command="{Binding CancelCommand}"
+                                 />
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
+
         </dxlc:LayoutControl>
-    </Grid>
+    </AdornerDecorator>
 </UserControl>

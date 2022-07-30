@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Views;
+using MediTech.Views.Billing;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -248,6 +249,27 @@ namespace MediTech.ViewModels
             Reload();
         }
 
+        public void callAllocatedMergeReceipt(long lAllocatedPatBillableItemUID)
+        {
+            AllocatedPatBillableItemsResultModel selectedAllocatedPatBillableItem;
+
+            if (lAllocatedPatBillableItemUID > 0 && AllocatedPatientBillableItems != null && AllocatedPatientBillableItems.Count() > 0
+&& AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID) != null
+&& AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).Count() > 0)
+            {
+
+                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.FirstOrDefault(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID);
+                if (selectedAllocatedPatBillableItem != null && string.IsNullOrEmpty(selectedAllocatedPatBillableItem.PayorName))
+                {
+                    WarningDialog("ไม่มี Payor สำหรับการ Allocate");
+                    return;
+                }
+                MergeBillRecipetPopup mergeBillRecipet = new MergeBillRecipetPopup();
+                ((mergeBillRecipet.DataContext as MergeBillRecipetPopupViewModel)).AssignMergeRecipet(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, selectedAllocatedPatBillableItem, AllocatedPatientBillableItems.ToList(), PatientVisitPayors, DateFrom ?? SelectPatientVisit.StartDttm.Value, DateTo ?? DateTime.Now);
+            MergeBillRecipetPopupViewModel modelResult = (MergeBillRecipetPopupViewModel)LaunchViewDialogNonPermiss(mergeBillRecipet, true);
+            }
+        }
+
         public void CallAllocatedBillableItem(long lAllocatedPatBillableItemUID)
         {
             AllocatedPatBillableItemsResultModel selectedAllocatedPatBillableItem;
@@ -278,7 +300,7 @@ namespace MediTech.ViewModels
 
                 AllocateBillPopup allocatePop = new AllocateBillPopup();
                 (allocatePop.DataContext as AllocateBillPopupViewModel).AssignAllocatedBillableItem(selectedAllocatedPatBillableItem, oSubGroupPatBillableItems, oGroupPatBillableItems
-                    , oBillableItems, PatientVisitPayors, SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, DateFrom, DateTo);
+                    , oBillableItems, PatientVisitPayors, SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, DateFrom ?? SelectPatientVisit.StartDttm.Value, DateTo ?? DateTime.Now);
                 AllocateBillPopupViewModel modelResult = (AllocateBillPopupViewModel)LaunchViewDialogNonPermiss(allocatePop, true);
                 if (modelResult.ResultDialog == ActionDialog.Save)
                 {
@@ -310,10 +332,10 @@ namespace MediTech.ViewModels
 
         private void Reload()
         {
-            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
+            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null
                 , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
                 ));
-            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems.OrderByDescending(p => p.PatientBillableItemUID));
             CollpaseExpand();
         }
         
@@ -367,10 +389,12 @@ namespace MediTech.ViewModels
         private void Generatebill()
         {
             GenerateBill pageview = new GenerateBill();
-            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, true);
+            var viewModel = (pageview.DataContext as GenerateBillViewModel);
+            viewModel.AssingGenerateBill(SelectPatientVisit);
+            GenerateBillViewModel result = (GenerateBillViewModel)LaunchViewDialogNonPermiss(pageview, false);
             if (result != null && result.ResultDialog == ActionDialog.Save)
             {
-                SaveSuccessDialog();
+                ResultDialog = ActionDialog.Save;
             }
         }
 

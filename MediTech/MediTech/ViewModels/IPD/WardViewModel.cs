@@ -217,12 +217,10 @@ namespace MediTech.ViewModels
                     //SearchPatientVisit();
                 }
             }
-
         }
 
         private void Arrived()
         {
-
             if (SelectedBedWardView != null)
             {
              

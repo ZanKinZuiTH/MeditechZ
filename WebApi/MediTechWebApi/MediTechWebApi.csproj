@@ -157,8 +157,8 @@
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\CheckupController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\InPatientController.cs" />
     <Compile Include="Controllers\InventoryController.cs" />
-    <Compile Include="Controllers\IPDController.cs" />
     <Compile Include="Controllers\LabController.cs" />
     <Compile Include="Controllers\MainController.cs" />
     <Compile Include="Controllers\PatientDiagnosticsController.cs" />

@@ -37,7 +37,9 @@ namespace MediTech.Model
         public string PayorName { get; set; }
         public string PayorTINNo { get; set; }
         public string PayorAgreement { get; set; }
+        public string PayorOffice { get; set; }
         public string BillType { get; set; }
+        public string LocationName { get; set; }
         public string CancelReason { get; set; }
         public Nullable<System.DateTime> CancelledDttm { get; set; }
         public bool IsCancel { get; set; }
@@ -56,6 +58,13 @@ namespace MediTech.Model
         public int? PAYMDUID { get; set; }
         public string PaymentMethod { get; set; }
 
+        public int? PBTYPUID { get; set; }
+        public int? BLTYPUID { get; set; }
+        public int? BLCATUID { get; set; }
+
+        public string IsPaymentComplete { get; set; }
+
+        public int? StaffUID { get; set; }
 
         public List<PatientBilledItemModel> PatientBilledItems {get; set;}
 

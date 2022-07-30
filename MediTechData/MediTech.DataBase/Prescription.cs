@@ -33,6 +33,7 @@ namespace MediTech.DataBase
         public int MUser { get; set; }
         public System.DateTime MWhen { get; set; }
         public string StatusFlag { get; set; }
+        public string IsIPFill { get; set; }
         public Nullable<int> OwnerOrganisationUID { get; set; }
         public byte[] TIMESTAMP { get; set; }
     }

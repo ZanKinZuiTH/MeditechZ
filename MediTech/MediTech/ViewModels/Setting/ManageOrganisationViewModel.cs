@@ -365,7 +365,7 @@ namespace MediTech.ViewModels
                 if (_SelectHealthOrganID != null)
                 {
                     IDFormat = SelectHealthOrganID.IDFormat;
-                    SelectBillType = BillTypes.FirstOrDefault(p => p.Key == SelectHealthOrganID.BLTYPUID);
+                    SelectBillType = BillTypes.FirstOrDefault(p => p.Key == SelectHealthOrganID.PBTYPUID);
                     IDLength = SelectHealthOrganID.IDLength;
                     IDNumberValue = SelectHealthOrganID.NumberValue;
                     IDActiveFrom = SelectHealthOrganID.ActiveFrom;
@@ -418,9 +418,9 @@ namespace MediTech.ViewModels
         #region Method
         public ManageOrganisationViewModel()
         {
-            var refValues = DataService.Technical.GetReferenceValueList("HOTYP,BLTYP");
+            var refValues = DataService.Technical.GetReferenceValueList("HOTYP,PBTYP");
             HealthOrganisationTypes = refValues.Where(p => p.DomainCode == "HOTYP").ToList();
-            BillTypes = refValues.Where(p => p.DomainCode == "BLTYP").ToList();
+            BillTypes = refValues.Where(p => p.DomainCode == "PBTYP").ToList();
             ProvinceSource = DataService.Technical.GetProvince();
             IDActiveFrom = DateTime.Now;
         }
@@ -453,7 +453,7 @@ namespace MediTech.ViewModels
             }
 
             if (HealthOrganisationIDs != null
-                && HealthOrganisationIDs.Count(p => p.BLTYPUID == SelectBillType.Key) > 0
+                && HealthOrganisationIDs.Count(p => p.PBTYPUID == SelectBillType.Key) > 0
                 )
             {
                 WarningDialog("ประเภทของ Bill ซ้ำ กรุณาตรวจสอบ");
@@ -461,7 +461,7 @@ namespace MediTech.ViewModels
             }
             HealthOrganisationIDModel newHealthOrgnID = new HealthOrganisationIDModel();
             newHealthOrgnID.IDFormat = IDFormat;
-            newHealthOrgnID.BLTYPUID = SelectBillType.Key;
+            newHealthOrgnID.PBTYPUID = SelectBillType.Key;
             newHealthOrgnID.BillType = SelectBillType.Display;
             newHealthOrgnID.IDLength = IDLength;
             newHealthOrgnID.NumberValue = IDNumberValue;
@@ -499,7 +499,7 @@ namespace MediTech.ViewModels
             }
             if (HealthOrganisationIDs != null 
                 && HealthOrganisationIDs.Count(p => !p.Equals(SelectHealthOrganID) 
-                && p.BLTYPUID == SelectBillType.Key) > 0)
+                && p.PBTYPUID == SelectBillType.Key) > 0)
             {
                 WarningDialog("ประเภทของ Bill ซ้ำ กรุณาตรวจสอบ");
                 return;
@@ -508,7 +508,7 @@ namespace MediTech.ViewModels
             if (SelectHealthOrganID != null)
             {
                 SelectHealthOrganID.IDFormat = IDFormat;
-                SelectHealthOrganID.BLTYPUID = SelectBillType.Key;
+                SelectHealthOrganID.PBTYPUID = SelectBillType.Key;
                 SelectHealthOrganID.BillType = SelectBillType.Display;
                 SelectHealthOrganID.IDLength = IDLength;
                 SelectHealthOrganID.NumberValue = IDNumberValue;

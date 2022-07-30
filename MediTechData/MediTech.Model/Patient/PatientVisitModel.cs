@@ -1,23 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace MediTech.Model
 {
-    public class PatientVisitModel : PatientInformationModel
+    public class PatientVisitModel : PatientInformationModel, INotifyPropertyChanged
     {
         public long PatientVisitUID { get; set; }
         public Nullable<int> CareProviderUID { get; set; }
         public string CareProviderName { get; set; }
         public Nullable<int> ENTYPUID { get; set; }
         public Nullable<int> ENSTAUID { get; set; }
-        public Nullable<int> VISTSUID { get; set; }
+
+        private Nullable<int> _VISTSUID;
+
+        public Nullable<int> VISTSUID
+        {
+            get { return _VISTSUID; }
+            set { _VISTSUID = value; OnPropertyRaised("VISTSUID"); }
+        }
         public Nullable<int> CheckupJobUID { get; set; }
         public string CompanyName { get; set; }
         public string VisitType { get; set; }
-        public string VisitStatus { get; set; }
+
+        private string _VisitStatus;
+
+        public string VisitStatus
+        {
+            get { return _VisitStatus; }
+            set { _VisitStatus = value; OnPropertyRaised("VisitStatus"); }
+        }
+
         public Nullable<int> VISTYUID { get; set; }
         public Nullable<int> PRITYUID { get; set; }
         public Nullable<int> SpecialityUID { get; set; }
@@ -66,6 +82,14 @@ namespace MediTech.Model
         public string BedName { get; set; }
         public List<CareproviderModel> SecondCareprovider { get; set; }
         public AdmissionEventModel AdmissionEvent { get; set; }
-        
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        protected void OnPropertyRaised(string propertyname)
+        {
+            if (PropertyChanged != null)
+            {
+                PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
+            }
+        }
     }
 }

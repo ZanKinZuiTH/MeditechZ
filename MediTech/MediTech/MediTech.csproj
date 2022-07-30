@@ -242,6 +242,7 @@
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Models\UnbilledPatientsResult.cs" />
     <Compile Include="Models\ColumnSource.cs" />
     <Compile Include="Models\EnumerationTypes.cs" />
     <Compile Include="Models\LaunchPageMassage.cs" />
@@ -751,12 +752,6 @@
     </Compile>
     <Compile Include="Reports\Operating\Patient\PatientLargSticker.Designer.cs">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\PatientPrescription.cs">
-      <SubType>Component</SubType>
-    </Compile>
-    <Compile Include="Reports\Operating\Patient\PatientPrescription.Designer.cs">
-      <DependentUpon>PatientPrescription.cs</DependentUpon>
     </Compile>
     <Compile Include="Reports\Operating\Patient\PatientSticker.cs">
       <SubType>Component</SubType>
@@ -1435,8 +1430,11 @@
     <Compile Include="ViewModels\BillingConfiguration\ManagePayorDetailViewModel.cs" />
     <Compile Include="ViewModels\BillingConfiguration\ManagePolicyMasterViewModel.cs" />
     <Compile Include="ViewModels\Billing\AllocateBillPopupViewModel.cs" />
+    <Compile Include="ViewModels\Billing\BillingPaymentModePopUpViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementIPViewModel.cs" />
     <Compile Include="ViewModels\Billing\BillSettlementOPViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListBillPaymentViewModel.cs" />
+    <Compile Include="ViewModels\Billing\ListPaymentDetailsViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsIPViewModel.cs" />
     <Compile Include="ViewModels\Billing\ListQueryBillsOPViewModel.cs" />
     <Compile Include="ViewModels\Billing\GenerateBillViewModel.cs" />
@@ -1672,11 +1670,20 @@
     <Compile Include="Views\Billing\AllocateBillPopup.xaml.cs">
       <DependentUpon>AllocateBillPopup.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Billing\BillingPaymentModePopUp.xaml.cs">
+      <DependentUpon>BillingPaymentModePopUp.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Billing\BillSettlementIP.xaml.cs">
       <DependentUpon>BillSettlementIP.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\BillSettlementOP.xaml.cs">
       <DependentUpon>BillSettlementOP.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListBillPayment.xaml.cs">
+      <DependentUpon>ListBillPayment.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Billing\ListPaymentDetails.xaml.cs">
+      <DependentUpon>ListPaymentDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Billing\ListQueryBillsIP.xaml.cs">
       <DependentUpon>ListQueryBillsIP.xaml</DependentUpon>
@@ -1828,6 +1835,15 @@
     </Compile>
     <Compile Include="Views\Inventory\CancelDispense.xaml.cs">
       <DependentUpon>CancelDispense.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\IPFills.xaml.cs">
+      <DependentUpon>IPFills.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\IPFillsDetail.xaml.cs">
+      <DependentUpon>IPFillsDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Inventory\NewIPFills.xaml.cs">
+      <DependentUpon>NewIPFills.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Inventory\PrintDrugSticker.xaml.cs">
       <DependentUpon>PrintDrugSticker.xaml</DependentUpon>
@@ -2364,11 +2380,23 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Billing\BillingPaymentModePopUp.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Billing\BillSettlementIP.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Billing\BillSettlementOP.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListBillPayment.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Billing\ListPaymentDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -2571,6 +2599,18 @@
     <Page Include="Views\Inventory\CancelDispense.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Inventory\IPFills.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\IPFillsDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\Inventory\NewIPFills.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Inventory\PrintDrugSticker.xaml">
       <SubType>Designer</SubType>
@@ -3459,9 +3499,6 @@
     <EmbeddedResource Include="Reports\Operating\Patient\PatientLargSticker.resx">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="Reports\Operating\Patient\PatientPrescription.resx">
-      <DependentUpon>PatientPrescription.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker.resx">
       <DependentUpon>PatientSticker.cs</DependentUpon>
     </EmbeddedResource>
@@ -4082,6 +4119,12 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Fincace\wallet.png" />
+    <Resource Include="Resources\Images\Fincace\lock.png" />
+    <Resource Include="Resources\Images\Fincace\unlock.png" />
+    <Resource Include="Resources\Images\Fincace\credit.png" />
+    <Resource Include="Resources\Images\Ward\bedArrived.png" />
+    <Resource Include="Resources\Images\Ward\bedDischarge.png" />
     <Resource Include="Resources\Images\Menu\Medicine.png" />
     <Resource Include="Resources\Images\Action\plus.png" />
     <Resource Include="Resources\Images\Menu\DirectAdmit.png" />

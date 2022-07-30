@@ -263,7 +263,7 @@ namespace MediTech.ViewModels
 
                 AllocateBillPopup allocatePop = new AllocateBillPopup();
                 (allocatePop.DataContext as AllocateBillPopupViewModel).AssignAllocatedBillableItem(selectedAllocatedPatBillableItem, oSubGroupPatBillableItems, oGroupPatBillableItems
-                    , oBillableItems, PatientVisitPayors, SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, DateFrom, DateTo);
+                    , oBillableItems, PatientVisitPayors, SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, DateFrom ?? SelectPatientVisit.StartDttm.Value, DateTo ?? DateTime.Now);
                 AllocateBillPopupViewModel modelResult = (AllocateBillPopupViewModel)LaunchViewDialogNonPermiss(allocatePop, true);
                 if (modelResult.ResultDialog == ActionDialog.Save)
                 {
@@ -336,7 +336,7 @@ namespace MediTech.ViewModels
 
         private void Reload()
         {
-            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null, SelectPatientVisit.OwnerOrganisationUID.Value
+            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null
                 , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
                 ));
             AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);

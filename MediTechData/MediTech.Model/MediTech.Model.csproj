@@ -35,6 +35,7 @@
   <ItemGroup>
     <Reference Include="DevExpress.Data.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
     <Reference Include="DevExpress.Xpo.v20.2, Version=20.2.3.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -47,12 +48,16 @@
     <Compile Include="Billing\AgreementAccountDiscountModel.cs" />
     <Compile Include="Billing\AgreementDetailDiscountModel.cs" />
     <Compile Include="Billing\AgreementItemDiscountModel.cs" />
+    <Compile Include="Billing\AllocatedPatBillableItemsSubAccountResultModel.cs" />
+    <Compile Include="Billing\AllocatedPatBillableItemsAccountResultModel.cs" />
     <Compile Include="Billing\AllocatedPatBillableItemsResultModel.cs" />
     <Compile Include="Billing\AllocateSplitItemModel.cs" />
     <Compile Include="Billing\AllocatePatientBillableItemModel.cs" />
     <Compile Include="Billing\BillConfigurationModel.cs" />
     <Compile Include="Billing\BillPackageDetailModel.cs" />
     <Compile Include="Billing\BillPackageModel.cs" />
+    <Compile Include="Billing\GeneratePatientBillModel.cs" />
+    <Compile Include="Billing\PatientPaymentDetailModel.cs" />
     <Compile Include="Billing\PolicyMasterModel.cs" />
     <Compile Include="Checkup\CheckupBranchModel.cs" />
     <Compile Include="Checkup\CheckupJobContactModel.cs" />
@@ -73,10 +78,13 @@
     <Compile Include="Icheckup\ORDER_HC.cs" />
     <Compile Include="Icheckup\VISIT_HC.cs" />
     <Compile Include="Inventory\CanTransactionInven.cs" />
+    <Compile Include="Inventory\IPFillDetailModel.cs" />
+    <Compile Include="Inventory\IPFillProcessModel.cs" />
     <Compile Include="Inventory\ItemAverageCostModel.cs" />
     <Compile Include="IPD\AdmissionEventModel.cs" />
     <Compile Include="IPD\BedStatusModel.cs" />
     <Compile Include="IPD\DischargeEventModel.cs" />
+    <Compile Include="IPD\IPDConsultModel.cs" />
     <Compile Include="IPD\PatientADTEventModel.cs" />
     <Compile Include="Lab\IcheckupModel.cs" />
     <Compile Include="Lab\PatientResultLabModel.cs" />
@@ -127,6 +135,7 @@
     <Compile Include="Inventory\StoreModel.cs" />
     <Compile Include="Inventory\StoreUOMConversionModel.cs" />
     <Compile Include="MasterData\ItemServiceModel.cs" />
+    <Compile Include="OrderProcessing\PatientOrderStandingModel.cs" />
     <Compile Include="PACS\InstancesCopyToModel.cs" />
     <Compile Include="PACS\DataInbound.cs" />
     <Compile Include="PACS\SendDicomFilesModel.cs" />

@@ -13,7 +13,7 @@ namespace MediTech.Model
         public int BillableItemUID { get; set; }
         public string ItemCode { get; set; }
         public string ItemName { get; set; }
-        public double ItemMutiplier { get; set; }
+        public double ItemMultiplier { get; set; }
 
         public string Unit { get; set; }
         public Nullable<double> Amount { get; set; }

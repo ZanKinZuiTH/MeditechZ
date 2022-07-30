@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:cv="clr-namespace:MediTech.Converter"
              Height="180"
-             Width="600"
+             Width="500"
              DataContext="{Binding Path=MergeBillRecipetPopupViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -21,8 +21,8 @@
                 <dxlc:LayoutItem Label="Source Payor" >
                     <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedSourceVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding SourcePayorAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"/>
+                <dxlc:LayoutItem HorizontalAlignment="Right" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding SourcePayorAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" FontWeight="Bold" Foreground="Blue"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
@@ -30,8 +30,8 @@
                 <dxlc:LayoutItem Label="Destination Payor">
                     <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedItem="{Binding Path=SelectedDestinationVisitPayor,UpdateSourceTrigger=PropertyChanged}"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutItem HorizontalAlignment="Right">
-                    <TextBlock Text="{Binding DestinationPayorAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}"/>
+                <dxlc:LayoutItem HorizontalAlignment="Right" Margin="10,0,0,0">
+                    <TextBlock Text="{Binding DestinationPayorAmount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay, Converter={StaticResource NumericN2Formatter}}" FontWeight="Bold" Foreground="Red"/>
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
        

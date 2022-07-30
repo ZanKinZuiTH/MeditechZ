@@ -76,12 +76,21 @@ namespace MediTech.ViewModels
         }
 
 
-        private List<PatientVisitPayorModel> _PatientVisitPayors;
+        private List<PatientVisitPayorModel> _SourceVisitPayors;
 
-        public List<PatientVisitPayorModel> PatientVisitPayors
+        public List<PatientVisitPayorModel> SourceVisitPayors
         {
-            get { return _PatientVisitPayors; }
-            set { Set(ref _PatientVisitPayors, value); }
+            get { return _SourceVisitPayors; }
+            set { Set(ref _SourceVisitPayors, value); }
+        }
+
+
+        private List<PatientVisitPayorModel> _DestinationVisitPayors;
+
+        public List<PatientVisitPayorModel> DestinationVisitPayors
+        {
+            get { return _DestinationVisitPayors; }
+            set { Set(ref _DestinationVisitPayors, value); }
         }
 
         private PatientVisitPayorModel _SelectedModifyPatientVisitPayor;
@@ -672,17 +681,18 @@ namespace MediTech.ViewModels
 
         public void AssignAllocatedBillableItem(AllocatedPatBillableItemsResultModel allocatedItem, List<AllocatedPatBillableItemsResultModel> subGroupItems,
             List<AllocatedPatBillableItemsResultModel> GroupItems, List<AllocatedPatBillableItemsResultModel> BillableItems, List<PatientVisitPayorModel> PatientVisitPayors,
-            long patientUID, long patintVisitUID, DateTime? fromDate, DateTime? toDate
+            long patientUID, long patintVisitUID, DateTime fromDate, DateTime toDate
             )
         {
 
             if (PatientVisitPayors != null && PatientVisitPayors.Count > 0)
             {
-                this.PatientVisitPayors = PatientVisitPayors.Where(p => p.PatientVisitPayorUID != allocatedItem.PatientVisitPayorUID).ToList();
+                this.SourceVisitPayors = PatientVisitPayors;
+                this.DestinationVisitPayors = PatientVisitPayors.Where(p => p.PatientVisitPayorUID != allocatedItem.PatientVisitPayorUID).ToList();
             }
 
             SelectAllocateItem = allocatedItem;
-            SelectedModifyPatientVisitPayor = this.PatientVisitPayors != null ?  this.PatientVisitPayors.OrderBy(p => p.PAYRTPUID).FirstOrDefault() : new PatientVisitPayorModel();
+            SelectedModifyPatientVisitPayor = this.DestinationVisitPayors != null ?  this.DestinationVisitPayors.OrderBy(p => p.PAYRTPUID).FirstOrDefault() : new PatientVisitPayorModel();
 
             PatientUID = patientUID;
             PatientVisitUID = patintVisitUID;
@@ -743,7 +753,7 @@ namespace MediTech.ViewModels
                             userUID = AppUtil.Current.UserID,
                             groupUID = null,
                             subGroupUID = null,
-                            allocatedPatBillableITemUID = SelectAllocateItem.BillableItemUID,
+                            allocatedPatBillableITemUID = SelectAllocateItem.BillableItemUID ?? 0,
                             currentVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
                             isSplit = process,
                             fromDate = FromDttm,

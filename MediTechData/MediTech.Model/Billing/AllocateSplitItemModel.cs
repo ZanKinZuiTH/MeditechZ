@@ -8,7 +8,7 @@ namespace MediTech.Model
 {
     public class AllocateSplitItemModel
     {
-        public long allocatedPatBillableITemUID { get; set; }
+        public int allocatedPatBillableITemUID { get; set; }
         public double amount { get; set; }
         public double discount { get; set; }
         public double netAmount { get; set; }

@@ -2136,7 +2136,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("ChangeVisitStatus")]
         [HttpPut]
-        public HttpResponseMessage ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID, int? AdmissionEventUID, int? ENSTAUID)
+        public HttpResponseMessage ChangeVisitStatus(long patientVisitUID, int VISTSUID, int? careProviderUID, int? locationUID, DateTime? editDttm, int userID, int? AdmissionEventUID = null, int? ENSTAUID=null)
         {
             try
             {
@@ -2571,6 +2571,7 @@ namespace MediTechWebApi.Controllers
         public List<PatientVisitPayorModel> GetPatientVisitPayorByVisitUID(int patientVisitUID)
         {
             List<PatientVisitPayorModel> data = (from pvp in db.PatientVisitPayor
+                                                 join ag in db.PayorAgreement on pvp.PayorAgreementUID equals ag.UID
                                                  where pvp.PatientVisitUID == patientVisitUID
                                                  && pvp.StatusFlag == "A"
                                                  select new PatientVisitPayorModel
@@ -2591,7 +2592,9 @@ namespace MediTechWebApi.Controllers
                                                      PAYRTPUID = pvp.PAYRTPUID,
                                                      Comment = pvp.Comment,
                                                      InsuranceName = pvp.InsuranceCompanyUID.HasValue ? SqlFunction.fGetInsuranceCompanyName(pvp.InsuranceCompanyUID.Value) : "",
-                                                     AgreementName = SqlFunction.fGetPayorAgreementName(pvp.PayorAgreementUID),
+                                                     AgreementName = ag.Name,
+                                                     PBTYPUID = ag.PBTYPUID,
+                                                     BLTYPUID = ag.BLTYPUID,
                                                      PayorName = SqlFunction.fGetPayorName(pvp.PayorDetailUID),
                                                      PolicyName = pvp.PolicyName,
                                                      PayorType = SqlFunction.fGetRfValDescription(pvp.PAYRTPUID ?? 0),

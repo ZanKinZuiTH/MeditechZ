@@ -72,6 +72,26 @@
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
                         <StackPanel Orientation="Vertical">
                             <StackPanel Orientation="Horizontal">
+                                <Image Visibility="{Binding Row.LockVisibility}" Source="/MediTech;component/Resources/Images/Fincace/unlock.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Lock">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.LockCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsOP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
+                                <Image Visibility="{Binding Row.UnlockVisibility}" Source="/MediTech;component/Resources/Images/Fincace/lock.png"
+                                   Width="30" Height="30"
+                                   Cursor="Hand"                                   
+                                   ToolTip="Unlock">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                            <mvvm:EventToCommand Command="{Binding DataContext.UnLockCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:ListQueryBillsOP}}}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </Image>
                                 <Image Source="/MediTech;component/Resources/Images/Fincace/money-bag.png"
                                    Margin="0,0,2,0"
                                    Width="30" Height="30"
@@ -167,8 +187,8 @@
                                      Height="25" Content="Clear"/>
                 </dxlc:LayoutGroup>
             </dxlc:LayoutItem>
-            <dxg:GridControl  x:Name="gPatient" ItemsSource="{Binding PatientVisitList}"
-                                  SelectedItem="{Binding SelectPatientVisit}">
+            <dxg:GridControl  x:Name="gPatient" ItemsSource="{Binding UnBilledPatientLists,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                  SelectedItem="{Binding SelectUnBilledPatient,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                 <dxg:GridControl.View>
                     <dxg:TableView ShowGroupPanel="False" AllowScrollAnimation="True" 
                                    UseLightweightTemplates="None"
@@ -178,8 +198,8 @@
                 <dxg:GridColumn Header="รหัสผู้ป่วย" FieldName="PatientID" ReadOnly="True"/>
                 <dxg:GridColumn Header="ชื่อ-นามสกุล" FieldName="PatientName" ReadOnly="True"/>
                 <dxg:GridColumn Header="VisitID" FieldName="VisitID"  ReadOnly="True"/>
+                <dxg:GridColumn Header="Status" FieldName="VisitStatus"  ReadOnly="True"/>
                 <dxg:GridColumn Header="วันที่ลงทะเบียน" FieldName="StartDttm"  ReadOnly="True"/>
-                <dxg:GridColumn Header="สถานะ" FieldName="VisitStatus"  ReadOnly="True"/>
                 <dxg:GridColumn Header="แผนก" FieldName="LocationName"  ReadOnly="True"/>
                 <dxg:GridColumn Header="DischargeDttm" FieldName="DischargeDttm"  ReadOnly="True">
                     <dxg:GridColumn.EditSettings>

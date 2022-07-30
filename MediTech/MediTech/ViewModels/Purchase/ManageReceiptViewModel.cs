@@ -616,7 +616,7 @@ namespace MediTech.ViewModels
                             PriceUnit = s.FirstOrDefault().Amount,
                             Unit = s.FirstOrDefault().Unit,
                             Discount = s.Sum(p => p.Discount),
-                            Quantity = s.Sum(p => p.ItemMutiplier),
+                            Quantity = s.Sum(p => p.ItemMultiplier),
                             NetAmount = s.Sum(p => p.NetAmount)
                         });
 
