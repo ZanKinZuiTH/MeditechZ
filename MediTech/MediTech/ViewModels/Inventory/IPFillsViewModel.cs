@@ -140,7 +140,7 @@ namespace MediTech.ViewModels
                 if (diagResult == MessageBoxResult.Yes)
                 {
                     int fillId = Convert.ToInt32(SelectFillProcess.IPFillProcessUID);
-                    DataService.Inventory.CancelDispenseIPFills(fillId, AppUtil.Current.UserID);
+                    DataService.Inventory.CancelDispenseIPFills(fillId, AppUtil.Current.OwnerOrganisationUID, AppUtil.Current.UserID);
                     Search();
                 }
             }

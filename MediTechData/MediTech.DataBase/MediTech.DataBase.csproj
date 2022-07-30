@@ -487,6 +487,9 @@
     <Compile Include="PostalCode.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="pPrintStatementBill_Result.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Prescription.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
@@ -666,6 +669,9 @@
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQRISRequest.cs">
+      <DependentUpon>MediTechDataModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="SEQSaleReturn.cs">
       <DependentUpon>MediTechDataModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SEQSTAID.cs">

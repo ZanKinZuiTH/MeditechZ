@@ -12,6 +12,7 @@ namespace MediTech.Model
         public long PatientUID { get; set; }
         public long PatientVisitUID { get; set; }
         public string Note { get; set; }
+        public DateTime? RecordedDttm { get; set; }
         public int CUser { get; set; }
         public System.DateTime CWhen { get; set; }
         public int MUser { get; set; }

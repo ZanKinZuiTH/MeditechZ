@@ -3296,6 +3296,7 @@
           <Property Name="PatientUID" Type="bigint" Nullable="false" />
           <Property Name="PatientVisitUID" Type="bigint" Nullable="false" />
           <Property Name="Note" Type="nvarchar(max)" />
+          <Property Name="RecordedDttm" Type="datetime" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -3894,6 +3895,9 @@
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SaleUID" Type="int" />
+          <Property Name="ReturnID" Type="nvarchar" MaxLength="50" />
+          <Property Name="IsCancelDispense" Type="nvarchar" MaxLength="1" />
           <Property Name="ReturnedBy" Type="int" Nullable="false" />
           <Property Name="ReturnDttm" Type="datetime" Nullable="false" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
@@ -3922,9 +3926,9 @@
           <Property Name="IMUOMUID" Type="int" Nullable="false" />
           <Property Name="ItemCost" Type="float" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
-          <Property Name="DispensedItemUID" Type="bigint" Nullable="false" />
-          <Property Name="PatientBilledItemUID" Type="bigint" Nullable="false" />
-          <Property Name="PatientOrderDetailUID" Type="bigint" Nullable="false" />
+          <Property Name="DispensedItemUID" Type="bigint" />
+          <Property Name="PatientBilledItemUID" Type="bigint" />
+          <Property Name="PatientOrderDetailUID" Type="bigint" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
           <Property Name="MUser" Type="int" Nullable="false" />
@@ -4122,6 +4126,13 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" />
+        </EntityType>
+        <EntityType Name="SEQSaleReturn">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StatusFlag" Type="varchar" MaxLength="1" />
         </EntityType>
         <EntityType Name="SEQSTAID">
           <Key>
@@ -5285,6 +5296,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="pPrintStatementBill" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientBillUID" Type="bigint" Mode="In" />
+        </Function>
         <Function Name="pPrintStrickerDrug" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PrescriptionItemUID" Type="bigint" Mode="In" />
         </Function>
@@ -5535,6 +5549,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_BillNumber" Type="nvarchar" Mode="In" />
           <Parameter Name="P_OwnerOrganisatinUID" Type="int" Mode="In" />
+          <Parameter Name="P_IsIP" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="pSearchPatientCheckup" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -5977,6 +5992,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="SEQPROID" EntityType="Self.SEQPROID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQResult" EntityType="Self.SEQResult" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQRISRequest" EntityType="Self.SEQRISRequest" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SEQSaleReturn" EntityType="Self.SEQSaleReturn" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQSTAID" EntityType="Self.SEQSTAID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQTestCodeID" EntityType="Self.SEQTestCodeID" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SEQVisitID" EntityType="Self.SEQVisitID" Schema="dbo" store:Type="Tables" />
@@ -6336,6 +6352,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="SEQPROID" EntityType="MediTechModel.SEQPROID" />
           <EntitySet Name="SEQResult" EntityType="MediTechModel.SEQResult" />
           <EntitySet Name="SEQRISRequest" EntityType="MediTechModel.SEQRISRequest" />
+          <EntitySet Name="SEQSaleReturn" EntityType="MediTechModel.SEQSaleReturn" />
           <EntitySet Name="SEQSTAID" EntityType="MediTechModel.SEQSTAID" />
           <EntitySet Name="SEQTestCodeID" EntityType="MediTechModel.SEQTestCodeID" />
           <EntitySet Name="SEQVisitID" EntityType="MediTechModel.SEQVisitID" />
@@ -6359,6 +6376,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="vAllBillableItemRates" EntityType="MediTechModel.vAllBillableItemRates" />
           <EntitySet Name="vAllPayorAgreements" EntityType="MediTechModel.vAllPayorAgreements" />
           <EntitySet Name="vAllPayorAgreementsDiscount" EntityType="MediTechModel.vAllPayorAgreementsDiscount" />
+          <FunctionImport Name="pPrintStatementBill" ReturnType="Collection(MediTechModel.pPrintStatementBill_Result)">
+            <Parameter Name="P_PatientBillUID" Mode="In" Type="Int64" />
+          </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pGetPatientBillableItemsAccount_Result">
           <Property Type="String" Name="SubAccountName" Nullable="true" MaxLength="500" />
@@ -9709,6 +9729,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="PatientUID" Type="Int64" Nullable="false" />
           <Property Name="PatientVisitUID" Type="Int64" Nullable="false" />
           <Property Name="Note" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="RecordedDttm" Type="DateTime" Precision="3" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -10307,6 +10328,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
             <PropertyRef Name="UID" />
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SaleUID" Type="Int32" />
+          <Property Name="ReturnID" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IsCancelDispense" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="ReturnedBy" Type="Int32" Nullable="false" />
           <Property Name="ReturnDttm" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
@@ -10335,9 +10359,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="IMUOMUID" Type="Int32" Nullable="false" />
           <Property Name="ItemCost" Type="Double" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
-          <Property Name="DispensedItemUID" Type="Int64" Nullable="false" />
-          <Property Name="PatientBilledItemUID" Type="Int64" Nullable="false" />
-          <Property Name="PatientOrderDetailUID" Type="Int64" Nullable="false" />
+          <Property Name="DispensedItemUID" Type="Int64" />
+          <Property Name="PatientBilledItemUID" Type="Int64" />
+          <Property Name="PatientOrderDetailUID" Type="Int64" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="MUser" Type="Int32" Nullable="false" />
@@ -10535,6 +10559,13 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SEQSaleReturn">
+          <Key>
+            <PropertyRef Name="UID" />
+          </Key>
+          <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StatusFlag" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SEQSTAID">
           <Key>
@@ -10979,6 +11010,30 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="ItemDateFrom" Type="DateTime" Precision="0" />
           <Property Name="ItemDateTo" Type="DateTime" Precision="0" />
         </EntityType>
+        <ComplexType Name="pPrintStatementBill_Result">
+          <Property Type="Int64" Name="PatientBillUID" Nullable="false" />
+          <Property Type="String" Name="PatientID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DOBDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="TotalAmount" Nullable="true" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="VisitDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrganisationTaxID" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="IsCancel" Nullable="true" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1535" />
+          <Property Type="String" Name="BillType" Nullable="true" MaxLength="255" />
+        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -14510,6 +14565,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
+                <ScalarProperty Name="RecordedDttm" ColumnName="RecordedDttm" />
                 <ScalarProperty Name="Note" ColumnName="Note" />
                 <ScalarProperty Name="PatientVisitUID" ColumnName="PatientVisitUID" />
                 <ScalarProperty Name="PatientUID" ColumnName="PatientUID" />
@@ -15149,6 +15205,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="ReturnDttm" ColumnName="ReturnDttm" />
                 <ScalarProperty Name="ReturnedBy" ColumnName="ReturnedBy" />
+                <ScalarProperty Name="IsCancelDispense" ColumnName="IsCancelDispense" />
+                <ScalarProperty Name="ReturnID" ColumnName="ReturnID" />
+                <ScalarProperty Name="SaleUID" ColumnName="SaleUID" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -15388,6 +15447,14 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySetMapping Name="SEQRISRequest">
             <EntityTypeMapping TypeName="MediTechModel.SEQRISRequest">
               <MappingFragment StoreEntitySet="SEQRISRequest">
+                <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
+                <ScalarProperty Name="UID" ColumnName="UID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SEQSaleReturn">
+            <EntityTypeMapping TypeName="MediTechModel.SEQSaleReturn">
+              <MappingFragment StoreEntitySet="SEQSaleReturn">
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="UID" ColumnName="UID" />
               </MappingFragment>
@@ -15845,6 +15912,34 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="pPrintStatementBill" FunctionName="MediTechModel.Store.pPrintStatementBill">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pPrintStatementBill_Result">
+                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
+                <ScalarProperty Name="OrganisationTaxID" ColumnName="OrganisationTaxID" />
+                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -112,6 +112,13 @@ namespace MediTech.ViewModels
             get { return _ViewBillCommand ?? (_ViewBillCommand = new RelayCommand(ViewBill)); }
         }
 
+        private RelayCommand _ViewPaymentCommand;
+
+        public RelayCommand ViewPaymentCommand
+        {
+            get { return _ViewPaymentCommand ?? (_ViewPaymentCommand = new RelayCommand(ViewPayment)); }
+        }
+
         private RelayCommand _CancelBillCommand;
 
         public RelayCommand CancelBillCommand
@@ -169,6 +176,16 @@ namespace MediTech.ViewModels
             PatientBillSource = new ObservableCollection<PatientBillModel>(DataService.Billing.SearchPatientBill(DateFrom, DateTo, patientUID, BillNumber,"Y", ownerOrganisationUID));
         }
 
+        public void ViewPayment()
+        {
+            if (SelectPatientBill != null)
+            {
+                ListPaymentDetails view = new ListPaymentDetails();
+                (view.DataContext as ListPaymentDetailsViewModel).PatientBillUID = SelectPatientBill.PatientBillUID;
+                LaunchViewDialogNonPermiss(view, true);
+            }
+        }
+
         public void ViewBill()
         {
             if (SelectPatientBill != null)
@@ -197,7 +214,7 @@ namespace MediTech.ViewModels
 
                     ErrorDialog(er.Message);
                 }
-            };
+            }
         }
 
         public void CancelBill()
@@ -212,7 +229,7 @@ namespace MediTech.ViewModels
                 try
                 {
                     CancelPopup cancelPopup = new CancelPopup();
-                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILL", true);
+                    CancelPopupViewModel result = (CancelPopupViewModel)LaunchViewDialog(cancelPopup, "CANBILLOP", true);
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
                         if (String.IsNullOrEmpty(result.Comments))
@@ -234,6 +251,7 @@ namespace MediTech.ViewModels
 
             }
         }
+        
 
         public void UpdatePatientBill(long patientBillUID, int PAYMDUID)
         {
@@ -310,7 +328,7 @@ namespace MediTech.ViewModels
                     string fileName = ShowSaveFileDialog("Microsoft Excel Document", "Microsoft Excel|*.xlsx");
                     if (fileName != "")
                     {
-                        PatientBilledOP view = (PatientBilledOP)this.View;
+                        PatientBilledIP view = (PatientBilledIP)this.View;
                         view.gvPatBill.ExportToXlsx(fileName);
                         OpenFile(fileName);
                     }
@@ -323,8 +341,6 @@ namespace MediTech.ViewModels
             }
 
         }
-
-
         #endregion
     }
 }

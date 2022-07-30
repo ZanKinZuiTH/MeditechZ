@@ -564,6 +564,7 @@ namespace MediTechWebApi.Controllers
                                     ProgressNoteUID = pn.UID,
                                     PatientUID = pn.PatientUID,
                                     PatientVisitUID = pn.PatientVisitUID,
+                                    RecordedDttm = pn.RecordedDttm,
                                     Note = pn.Note,
                                     CUser = pn.CUser,
                                     CWhen = pn.CWhen,
@@ -585,6 +586,7 @@ namespace MediTechWebApi.Controllers
                     ProgressNoteUID = p.UID,
                     PatientUID = p.PatientUID,
                     PatientVisitUID = p.PatientVisitUID,
+                    RecordedDttm = p.RecordedDttm,
                     Note = p.Note,
                     CUser = p.CUser,
                     CWhen = p.CWhen,
@@ -609,6 +611,7 @@ namespace MediTechWebApi.Controllers
                 returnData.Note = progressNote.Note;
                 returnData.PatientUID = progressNote.PatientUID;
                 returnData.PatientVisitUID = progressNote.PatientVisitUID;
+                returnData.RecordedDttm = progressNote.RecordedDttm;
                 returnData.CUser = progressNote.CUser;
                 returnData.CWhen = progressNote.CWhen;
                 returnData.MUser = progressNote.MUser;
@@ -639,6 +642,7 @@ namespace MediTechWebApi.Controllers
                 pe.PatientUID = model.PatientUID;
                 pe.PatientVisitUID = model.PatientVisitUID;
                 pe.Note = model.Note;
+                pe.RecordedDttm = model.RecordedDttm;
                 db.ProgressNote.AddOrUpdate(pe);
                 db.SaveChanges();
 

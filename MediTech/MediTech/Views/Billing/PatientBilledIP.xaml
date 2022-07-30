@@ -71,6 +71,16 @@
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
                             </Image>
+                            <Image Source="/MediTech;component/Resources/Images/Fincace/wallet.png" 
+                                   Width="30" Height="30"
+                                   Cursor="Hand"
+                                   ToolTip="วิธีการชำระเงิน">
+                                <i:Interaction.Triggers>
+                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                        <mvvm:EventToCommand Command="{Binding Path=DataContext.ViewPaymentCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilledIP}}}" />
+                                    </i:EventTrigger>
+                                </i:Interaction.Triggers>
+                            </Image>
                             <Image Source="/MediTech;component/Resources/Images/Document/document cancel.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
@@ -169,19 +179,11 @@
                         <dxg:GridColumn Header="ยอดค่ารักษาพยาบาล" FieldName="TotalAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ยอดส่วนลด" FieldName="DiscountAmount" ReadOnly="True"/>
                         <dxg:GridColumn Header="ราคาขายสุทธิ" FieldName="NetAmount" ReadOnly="True"/>
-                        <dxg:GridColumn Header="วิธีการชำระเงิน" FieldName="PAYMDUID" ReadOnly="False">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:ComboBoxEditSettings ItemsSource="{Binding Path=DataContext.PaymentMethods
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilledOP}}}"
-                                    NullValueButtonPlacement="EditBox" AllowSpinOnMouseWheel="False"
-                                    ValueMember="Key"  
-                                    DisplayMember="AlternateName">
-                                </dxe:ComboBoxEditSettings>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
                         <dxg:GridColumn Header="Note Cashier" FieldName="Comments" ReadOnly="True"/>
                         <dxg:GridColumn Header="Payor" FieldName="PayorName" ReadOnly="True"/>
-                        <dxg:GridColumn Header="สถานประกอบการ" FieldName="OrganisationName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Office Name" FieldName="PayorOffice" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Payor Agreement" FieldName="PayorAgreement" ReadOnly="True"/>
+                        <dxg:GridColumn Header="แผนก" FieldName="LocationName" ReadOnly="True"/>
                         <dxg:GridColumn Header="เหตุผลในการยกเลิกบิล" FieldName="CancelReason" ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>
@@ -191,7 +193,7 @@
                                        DataRowTemplate="{StaticResource expandableRowDetailTemplate}" CellValueChanged="view_CellValueChanged">
                             <dxg:TableView.ColumnMenuCustomizations>
                                 <dxb:BarButtonItem Name="exportItem1" Content="Export To Excel"
-                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilledOP}}}"
+                                                   Command="{Binding DataContext.ExportToExcelCommand,RelativeSource={RelativeSource AncestorType={x:Type local:PatientBilledIP}}}"
                                                    Glyph="{dx:DXImage SvgImages/Export/ExportToXLSX.svg}" 
                                                    dxb:BarItemLinkActionBase.ItemLinkIndex="0" />
                                 <dxb:BarItemLinkSeparator dxb:BarItemLinkActionBase.ItemLinkIndex="1" />

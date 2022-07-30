@@ -34,7 +34,21 @@ namespace MediTech.ViewModels
             set { Set(ref _Note , value); }
         }
 
+        private DateTime? _RecordDate;
 
+        public DateTime? RecordDate
+        {
+            get { return _RecordDate; }
+            set { Set(ref _RecordDate, value); }
+        }
+
+        private DateTime? _RecordTime;
+
+        public DateTime? RecordTime
+        {
+            get { return _RecordTime; }
+            set { Set(ref _RecordTime, value); }
+        }
         #endregion
 
         #region Command
@@ -57,7 +71,11 @@ namespace MediTech.ViewModels
 
 
         #region Method
-
+        public ProgressNoteViewModel()
+        {
+            RecordDate = DateTime.Now;
+            RecordTime = RecordDate;
+        }
         private void Save()
         {
             try
@@ -94,7 +112,7 @@ namespace MediTech.ViewModels
 
 
             Model.Note = Note.Trim();
-            Model.PatientUID = SelectPatientVisit.PatientUID;
+            Model.RecordedDttm = DateTime.Parse(RecordDate?.ToString("dd/MM/yyyy") + " " + RecordTime?.ToString("HH:mm"));
             Model.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
         }
         public void AssignModelToProperties(PatientVisitModel visitModel,ProgressNoteModel progressNote = null)
@@ -103,6 +121,8 @@ namespace MediTech.ViewModels
             if (progressNote != null)
             {
                 Model = progressNote;
+                RecordDate = progressNote.RecordedDttm;
+                RecordTime = progressNote.RecordedDttm;
                 Note = Model.Note;
             }
 

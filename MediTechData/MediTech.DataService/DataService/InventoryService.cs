@@ -846,12 +846,12 @@ namespace MediTech.DataService
             return flag;
         }
 
-        public bool CancelDispenseIPFills(int ipfillProccessUID, int userUID)
+        public bool CancelDispenseIPFills(int ipfillProccessUID, int ownerOrganisationUID, int userUID)
         {
             bool flag = false;
             try
             {
-                string requestApi = string.Format("Api/Inventory/CancelDispenseIPFills?ipfillProccessUID={0}&userUID={1}", ipfillProccessUID, userUID);
+                string requestApi = string.Format("Api/Inventory/CancelDispenseIPFills?ipfillProccessUID={0}&ownerOrganisationUID={1}&userUID={2}", ipfillProccessUID, ownerOrganisationUID, userUID);
                 MeditechApiHelper.Put(requestApi);
                 flag = true;
             }
@@ -862,6 +862,23 @@ namespace MediTech.DataService
             }
             return flag;
         }
+
+        public List<SaleReturnModel> SearchDispenseReturn(DateTime? dateFrom, DateTime? dateTo, long? patientUID, int? storeUID)
+        {
+            string requestApi = string.Format("Api/Inventory/SearchDispenseReturn?dateFrom={0:MM/dd/yyyy}&dateTo={1:MM/dd/yyyy}&patientUID={2}&storeUID={3}", dateFrom, dateTo, patientUID, storeUID);
+            List<SaleReturnModel> returnData = MeditechApiHelper.Get<List<SaleReturnModel>>(requestApi);
+
+            return returnData;
+        }
+
+        public List<SaleReturnListModel> GetDispenseReturnList(int saleReturnUID)
+        {
+            string requestApi = string.Format("Api/Inventory/GetDispenseReturnList?saleReturnUID={0}", saleReturnUID);
+            List<SaleReturnListModel> returnData = MeditechApiHelper.Get<List<SaleReturnListModel>>(requestApi);
+
+            return returnData;
+        }
+
         #endregion
     }
 }

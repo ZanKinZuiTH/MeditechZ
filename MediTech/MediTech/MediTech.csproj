@@ -1487,6 +1487,8 @@
     <Compile Include="ViewModels\EMRView\VitalSignsChartViewModel.cs" />
     <Compile Include="ViewModels\EMRView\WellnessDataViewModel.cs" />
     <Compile Include="ViewModels\Inventory\CancelDispenseViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\CreateDispenseReturnViewModel.cs" />
+    <Compile Include="ViewModels\Inventory\DispenseReturnsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\IPFillsDetailViewModel.cs" />
     <Compile Include="ViewModels\Inventory\IPFillsViewModel.cs" />
     <Compile Include="ViewModels\Inventory\NewIPFillsViewModel.cs" />
@@ -4119,6 +4121,7 @@
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <Resource Include="Resources\Images\Menu\ProductReturn.png" />
     <Resource Include="Resources\Images\Fincace\wallet.png" />
     <Resource Include="Resources\Images\Fincace\lock.png" />
     <Resource Include="Resources\Images\Fincace\unlock.png" />

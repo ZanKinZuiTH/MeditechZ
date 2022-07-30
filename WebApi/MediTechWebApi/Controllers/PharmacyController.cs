@@ -1135,6 +1135,7 @@ namespace MediTechWebApi.Controllers
                                                       ItemUID = b.ItemUID,
                                                       Dosage = ptod.Dosage,
                                                       DrugDuration = ptod.DrugDuration,
+                                                      BSMDDUID = b.BSMDDUID,
                                                       DFORMUID = ptod.DFORMUID,
                                                       PDSTSUID = ptod.PDSTSUID,
                                                       FRQNCUID = ptod.FRQNCUID,
