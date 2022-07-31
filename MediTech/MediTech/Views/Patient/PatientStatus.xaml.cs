@@ -1,4 +1,5 @@
-﻿using MediTech.DataService;
+﻿using DevExpress.Xpf.Core;
+using MediTech.DataService;
 using MediTech.Model;
 using MediTech.ViewModels;
 using System;
@@ -20,7 +21,7 @@ namespace MediTech.Views
     /// <summary>
     /// Interaction logic for SendToDoctor.xaml
     /// </summary>
-    public partial class PatientStatus : Window
+    public partial class PatientStatus : DXWindow
     {
 
         public ActionDialog ResultDialog = ActionDialog.Cancel;

@@ -1,4 +1,5 @@
-﻿using DevExpress.XtraReports.UI;
+﻿using DevExpress.Xpf.Core;
+using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
 using MediTech.Helpers;
 using MediTech.Model;
@@ -229,7 +230,7 @@ namespace MediTech.ViewModels
                     pacsViewModel.IsCheckedPeriod = true;
                     pacsViewModel.Modality = PatientRequest.Modality;
                     pacsViewModel.StudiesList = StudiesList;
-                    System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                    DXWindow owner = (DXWindow)(this.View as RDUReviewResult).Parent;
                     LaunchViewShow(pacs, owner, "PACS", false, true);
                 }
                 else
@@ -254,7 +255,7 @@ namespace MediTech.ViewModels
                         pacsViewModel.IsCheckedPeriod = true;
                         pacsViewModel.Modality = PatientRequest.Modality;
                         pacsViewModel.StudiesList = StudiesList;
-                        System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                        DXWindow owner = (DXWindow)(this.View as RDUReviewResult).Parent;
                         LaunchViewShow(pacs, owner, "PACS", false, true);
                     }
                     else
@@ -273,7 +274,7 @@ namespace MediTech.ViewModels
                         pacsViewModel.Modality = PatientRequest.Modality;
                         pacsViewModel.StudiesList = StudiesList;
                         pacsViewModel.IsOpenFromExam = true;
-                        System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                        DXWindow owner = (DXWindow)(this.View as RDUReviewResult).Parent;
                         LaunchViewShow(pacs, owner, "PACS", false, true);
                     }
                 }
@@ -520,7 +521,7 @@ IMPRESSION:
                 pacsViewModel.DateTo = SelectPreviousResult.PreparedDttm != null ? SelectPreviousResult.PreparedDttm : SelectPreviousResult.RequestedDttm;
                 pacsViewModel.Modality = SelectPreviousResult.Modality;
                 pacsViewModel.IsOpenFromExam = true;
-                System.Windows.Window owner = (System.Windows.Window)(this.View as RDUReviewResult).Parent;
+                DXWindow owner = (DXWindow)(this.View as RDUReviewResult).Parent;
                 LaunchViewShow(pacs, owner, "PACS", false, true);
             }
 

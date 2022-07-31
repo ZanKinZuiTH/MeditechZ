@@ -29,7 +29,11 @@
 
     </UserControl.Resources>
     <UserControl.Background>
-        <SolidColorBrush Color="#FFF0F0F8"/>
+        <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+            <GradientStop Color="#FFCEE7F3" Offset="0"/>
+            <GradientStop Color="#FFCBD4EB" Offset="0.49"/>
+            <GradientStop Color="#FFDDFAFF" Offset="1"/>
+        </LinearGradientBrush>
     </UserControl.Background>
     <ScrollViewer  ScrollViewer.HorizontalScrollBarVisibility="Auto" 
                    ScrollViewer.VerticalScrollBarVisibility="Auto" >
