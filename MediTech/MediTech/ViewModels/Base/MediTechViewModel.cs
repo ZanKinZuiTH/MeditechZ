@@ -492,6 +492,14 @@ namespace MediTech.ViewModels
                         ViewModelLocator.Cleanup();
                         (parent as System.Windows.Window).Close();
                     }
+                    else
+                    {
+                        var viewUserControl = (View as System.Windows.Controls.UserControl);
+                        if (viewUserControl.Tag != null && viewUserControl.Tag is MediTech.Views.EMRView)
+                        {
+                            (viewUserControl.Tag as MediTech.Views.EMRView).DefaultPage();
+                        }
+                    }
                 }
             }
         }

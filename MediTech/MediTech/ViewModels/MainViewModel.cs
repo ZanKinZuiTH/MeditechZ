@@ -165,7 +165,7 @@ namespace MediTech.ViewModels
                     EMRView pageview = new EMRView();
                     PatientVisitModel visitModel = new PatientVisitModel();
                     visitModel.PatientUID = SelectedPateintSearch.PatientUID;
-                    (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(visitModel);
+                    (pageview.DataContext as EMRViewViewModel).AssignPatientVisit(visitModel);
                     EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
 
                     SearchPatientCriteria = "";

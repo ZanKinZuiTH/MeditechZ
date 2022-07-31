@@ -13,9 +13,10 @@
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
              DataContext="{Binding Path=SummeryViewViewModel,Source={StaticResource Locator}}"
              helper:OptimizationHelper.DisableOptimizedMode="True"
-             xmlns:cv="clr-namespace:MediTech.Converter"
-             d:DesignHeight="800" d:DesignWidth="1200">
+             xmlns:cv="clr-namespace:MediTech.Converter" xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion"
+             d:DesignWidth="1200">
     <UserControl.Resources>
+        <cv:PercentageConverter x:Key="PercentageConverter"/>
         <HierarchicalDataTemplate x:Name="ResultTemplate" DataType="{x:Type model:RequestDetailItemModel}"
                                 ItemsSource = "{Binding Path=ResultComponents}">
             <dxlc:LayoutControl Orientation="Horizontal">
@@ -215,8 +216,8 @@
             </Grid>
         </DataTemplate>
     </UserControl.Resources>
-    <dxlc:LayoutControl Padding="0">
-        <dxlc:FlowLayoutControl Padding="0"
+
+    <dxlc:FlowLayoutControl x:Name="parentLayout" dxlc:DockLayoutControl.Dock="Client" Padding="0"
                                 Orientation="Horizontal"
                                 AllowItemMoving="True"
                                 AnimateItemMaximization="True"
@@ -224,83 +225,83 @@
                                 ScrollViewer.VerticalScrollBarVisibility="Auto"
                                 ItemSpace="10" LayerSpace="5" Background="Transparent">
 
-            <dxlc:GroupBox Width="350" Padding="0" Height="250" MaximizeElementVisibility="Visible"
+        <dxlc:GroupBox Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Padding="0" Height="200" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="CC / HPI"/>
-                            <Image x:Name="addPhysicalExam" Width="20"
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="CC / HPI"/>
+                        <Image x:Name="addPhysicalExam" Width="20"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.CCHPICommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
+
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <dxg:GridControl ItemsSource="{Binding DataContext.ListCCHPI,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
+                                         SelectedItem="{Binding DataContext.SelectCCHPI,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
+                        <dxg:GridColumn FieldName="DisplayComplaint" Width="200" Header="Complaint" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="Presentillness" Width="320" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings TextWrapping="Wrap" AcceptsReturn="True"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="CWhen" Header="RecordDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RecordBy" ReadOnly="True"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False">
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.CCHPICommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                    <i:EventTrigger  EventName="RowDoubleClick">
+                                        <mvvm:EventToCommand Command="{Binding DataContext.EditCCHPICommand
+                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <dxg:GridControl ItemsSource="{Binding DataContext.ListCCHPI,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
-                                         SelectedItem="{Binding DataContext.SelectCCHPI,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                            <dxg:GridColumn FieldName="DisplayComplaint" Width="250" Header="Complaint" ReadOnly="True"/>
-                            <dxg:GridColumn FieldName="Presentillness" Width="320" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings TextWrapping="Wrap" AcceptsReturn="True"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="CWhen" Header="RecordDttm" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="RecordBy" ReadOnly="True"/>
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="RowDoubleClick">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.EditCCHPICommand
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </dxg:TableView>
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <Grid>
-                    <dxe:ListBoxEdit x:Name="listCCHPI"
-                                     ItemsSource="{Binding ListCCHPI}"
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <Grid>
+                <dxe:ListBoxEdit x:Name="listCCHPI"
+                                     ItemsSource="{Binding ListCCHPI,UpdateSourceTrigger=PropertyChanged}"
                                      SelectedItem="{Binding SelectCCHPI}"
                                      HorizontalContentAlignment="Stretch"
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                        <i:Interaction.Triggers>
-                            <i:EventTrigger  EventName="MouseDoubleClick">
-                                <mvvm:EventToCommand Command="{Binding DataContext.EditCCHPICommand
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger  EventName="MouseDoubleClick">
+                            <mvvm:EventToCommand Command="{Binding DataContext.EditCCHPICommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                            </i:EventTrigger>
-                        </i:Interaction.Triggers>
-                        <dxe:ListBoxEdit.ItemTemplate>
-                            <DataTemplate>
-                                <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,0,0,3">
-                                    <Grid>
-                                        <StackPanel Orientation="Vertical">
-                                            <TextBlock Margin="5,1,0,0"
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                    <dxe:ListBoxEdit.ItemTemplate>
+                        <DataTemplate>
+                            <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,0,0,3">
+                                <Grid>
+                                    <StackPanel Orientation="Vertical">
+                                        <TextBlock Margin="5,1,0,0"
                                            FontSize="13"
                                            FontWeight="Bold"
                                            TextWrapping="NoWrap" 
@@ -308,7 +309,7 @@
                                            Text="{Binding DisplayComplaint}"
                                            Visibility="Visible" />
 
-                                            <TextBlock Margin="5,1,0,0"
+                                        <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                TextTrimming="CharacterEllipsis"
                                                FontStyle="Italic"
@@ -317,219 +318,219 @@
                                                ToolTip="{Binding Presentillness}"
                                                Text="{Binding Presentillness}" />
 
-                                            <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                                                <TextBlock Margin="5,1,0,0"
+                                        <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                                            <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                FontWeight="Thin"
                                                Text="Author :" />
-                                                <TextBlock Margin="5,1,0,0"
+                                            <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                FontWeight="Thin"
                                                Foreground="#FF057BF9"
                                                Text="{Binding RecordBy}" />
-                                            </StackPanel>
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Margin="5,1,0,0"
+                                        </StackPanel>
+                                        <StackPanel Orientation="Horizontal">
+                                            <TextBlock Margin="5,1,0,0"
                                                FontSize="10"
                                                FontWeight="Thin"
                                                Text="Record Dttm :" />
-                                                <TextBlock Margin="5,1,0,0"
+                                            <TextBlock Margin="5,1,0,0"
                                                FontSize="10"
                                                FontWeight="Bold"
                                                Text="{Binding CWhen,StringFormat=dd/MM/yyyy HH:mm}" />
-                                            </StackPanel>
                                         </StackPanel>
-                                    </Grid>
-                                </Border>
-                            </DataTemplate>
-                        </dxe:ListBoxEdit.ItemTemplate>
-                    </dxe:ListBoxEdit>
-                </Grid>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Padding="0" Height="250" MaximizeElementVisibility="Visible"
+                                    </StackPanel>
+                                </Grid>
+                            </Border>
+                        </DataTemplate>
+                    </dxe:ListBoxEdit.ItemTemplate>
+                </dxe:ListBoxEdit>
+            </Grid>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Padding="0" Height="200" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="ตรวจร่างกาย"/>
-                            <Image x:Name="addPhysicalExam" Width="20"
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="ตรวจร่างกาย"/>
+                        <Image x:Name="addPhysicalExam" Width="20"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.PhysicalCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
+
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <dxg:GridControl ItemsSource="{Binding DataContext.ListPhysicalExam,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
+                                         SelectedItem="{Binding DataContext.SelectPhysicalExam,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
+                        <dxg:GridColumn FieldName="Value" Width="320">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <helper:RichTextBoxEx BorderThickness="0" RtfText="{Binding Path=Value}" IsReadOnly="True"
+                                                 HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" />
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="CWhen" Header="RecordDttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RecordBy" ReadOnly="True"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False">
                                 <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.PhysicalCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                    <i:EventTrigger  EventName="RowDoubleClick">
+                                        <mvvm:EventToCommand Command="{Binding DataContext.EditPhysicalCommand
+                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
                                     </i:EventTrigger>
                                 </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <dxg:GridControl ItemsSource="{Binding DataContext.ListPhysicalExam,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
-                                         SelectedItem="{Binding DataContext.SelectPhysicalExam,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                            <dxg:GridColumn FieldName="Value" Width="320">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <helper:RichTextBoxEx BorderThickness="0" RtfText="{Binding Path=Value}" IsReadOnly="True"
-                                                 HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Visible" />
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="CWhen" Header="RecordDttm" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="RecordBy" ReadOnly="True"/>
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="RowDoubleClick">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.EditPhysicalCommand
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </dxg:TableView>
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxe:ListBoxEdit x:Name="listPE"
-                                 ItemsSource="{Binding ListPhysicalExam}"
+                            </dxg:TableView>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxe:ListBoxEdit x:Name="listPE"
+                                 ItemsSource="{Binding ListPhysicalExam,UpdateSourceTrigger=PropertyChanged}"
                                  SelectedItem="{Binding SelectPhysicalExam}"
                                  HorizontalContentAlignment="Stretch" 
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger  EventName="MouseDoubleClick">
-                            <mvvm:EventToCommand Command="{Binding DataContext.EditPhysicalCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding DataContext.EditPhysicalCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dxe:ListBoxEdit.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxe:ListBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel VerticalAlignment="Top" Orientation="Horizontal">
 
-                                <Image Width="35" Source="/MediTech;component/Resources/Images/Medical/Treatment.png" />
-                                <StackPanel Orientation="Vertical">
+                            <Image Width="35" Source="/MediTech;component/Resources/Images/Medical/Treatment.png" />
+                            <StackPanel Orientation="Vertical">
 
-                                    <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
-                                        <TextBlock Margin="5,1,0,0"
+                                <StackPanel Margin="0,5,0,0" Orientation="Horizontal">
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="15"
                                                FontWeight="Thin"
                                                Text="Record By :" />
-                                        <TextBlock Margin="5,1,0,0"
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="15"
                                                FontWeight="Thin"
                                                Foreground="#FF057BF9"
                                                Text="{Binding RecordBy}" />
-                                    </StackPanel>
-                                    <StackPanel Orientation="Horizontal">
-                                        <TextBlock Margin="5,1,0,0"
+                                </StackPanel>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="15"
                                                FontWeight="Thin"
                                                Text="Record Dttm :" />
-                                        <TextBlock Margin="5,1,0,0"
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="15"
                                                FontWeight="Bold"
                                                Text="{Binding CWhen,StringFormat=dd/MM/yyyy HH:mm}" />
-                                    </StackPanel>
                                 </StackPanel>
                             </StackPanel>
-                        </DataTemplate>
-                    </dxe:ListBoxEdit.ItemTemplate>
-                </dxe:ListBoxEdit>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Padding="0" Width="350" 
+                        </StackPanel>
+                    </DataTemplate>
+                </dxe:ListBoxEdit.ItemTemplate>
+            </dxe:ListBoxEdit>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox Padding="0" Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}"
                            MaximizeElementVisibility="Visible"
-                           Height="250">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="การวินิจฉัยโรค"/>
-                            <Image  Width="20"
+                           Height="200">
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="การวินิจฉัยโรค"/>
+                        <Image  Width="20"
 								x:Name="addDiagnosis"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png" >
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.DiagnosisCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.DiagnosisCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <dxg:GridControl ItemsSource="{Binding DataContext.ListDiagnosis,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                            <dxg:GridColumn FieldName="ProblemCode"/>
-                            <dxg:GridColumn FieldName="ProblemName" Width="*"/>
-                            <dxg:GridColumn FieldName="RecordedDttm"/>
-                            <dxg:GridColumn FieldName="BodyLocation"/>
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl ShowBorder="False"
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <dxg:GridControl ItemsSource="{Binding DataContext.ListDiagnosis,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
+                        <dxg:GridColumn FieldName="ProblemCode"/>
+                        <dxg:GridColumn FieldName="ProblemName" Width="*"/>
+                        <dxg:GridColumn FieldName="RecordedDttm"/>
+                        <dxg:GridColumn FieldName="BodyLocation"/>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl ShowBorder="False"
                                  ItemsSource="{Binding ListDiagnosis}"
                                  Name="ListDiagnosis" >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger  EventName="MouseDoubleClick">
-                            <mvvm:EventToCommand Command="{Binding DataContext.DiagnosisCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding DataContext.DiagnosisCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="ProblemCode" Width="45" >
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RowData.Row.ProblemCode}" Margin="2"
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ProblemCode" Width="45" >
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.Row.ProblemCode}" Margin="2"
                                                FontWeight="Bold" />
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="ProblemName" Width="200">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings AcceptsReturn="True"
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ProblemName" Width="200">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings AcceptsReturn="True"
                                                       VerticalContentAlignment="Top"
                                                       TextWrapping="Wrap" />
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="RecordedDttm">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView  ShowGroupPanel="False"
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="RecordedDttm">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False"
                                         ShowIndicator="False"
                                         ShowColumnHeaders="False"
                                         ShowVerticalLines="False"
@@ -539,100 +540,100 @@
                                         HorizontalScrollbarVisibility="Hidden"
                                         RowStyle="{StaticResource RowUnFocused}"
                                         BorderThickness="0"/>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Padding="0" Height="250"
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox  Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Padding="0" Height="200"
                            MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Progress notes"/>
-                            <Image x:Name="addPhysicalExam" Width="20"
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Progress notes"/>
+                        <Image x:Name="addPhysicalExam" Width="20"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.ProgressNoteCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.ProgressNoteCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <dxg:GridControl ItemsSource="{Binding DataContext.ListNote,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <dxg:GridControl ItemsSource="{Binding DataContext.ListNote,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                           SelectedItem="{Binding DataContext.SelectProgressNote
                             ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                          AutoExpandAllGroups="True">
-                            <i:Interaction.Triggers>
-                                <i:EventTrigger  EventName="MouseDoubleClick">
-                                    <mvvm:EventToCommand Command="{Binding DataContext.EditProgressNoteCommand
+                        <i:Interaction.Triggers>
+                            <i:EventTrigger  EventName="MouseDoubleClick">
+                                <mvvm:EventToCommand Command="{Binding DataContext.EditProgressNoteCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                </i:EventTrigger>
-                            </i:Interaction.Triggers>
-                            <dxg:GridColumn Width="Auto"
+                            </i:EventTrigger>
+                        </i:Interaction.Triggers>
+                        <dxg:GridColumn Width="Auto"
                                         FieldName="RecordedDttm"
                                         GroupIndex="1"
                                         ShowGroupedColumn="False"
                                         GroupInterval="Date"
                                         SortOrder="Descending" />
-                            <dxg:GridColumn FieldName="Note" Width="*" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings  AcceptsReturn="True" TextWrapping="Wrap" />
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="RecordBy" Header="Record By" ReadOnly="True"/>
-                            <dxg:GridColumn Header="Record Time" FieldName="RecordedDttm"  ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextSettings DisplayFormat="HH:mm" HorizontalContentAlignment="Center"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Width="50">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image
+                        <dxg:GridColumn FieldName="Note" Width="*" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings  AcceptsReturn="True" TextWrapping="Wrap" />
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RecordBy" Header="Record By" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Record Time" FieldName="RecordedDttm"  ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextSettings DisplayFormat="HH:mm" HorizontalContentAlignment="Center"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Width="50">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image
                            HorizontalAlignment="Center"
                            VerticalAlignment="Center"
                            Width="18" Height="18" Stretch="UniformToFill"                       
                                    Cursor="Hand"
                                    ToolTip="ลบข้อมูล"
                                    Source="/MediTech;component/Resources/Images/Action/trash.png">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                    <mvvm:EventToCommand CommandParameter="{Binding Row.ProgressNoteUID}" Command="{Binding DataContext.DeleteProgressNoteCommand
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                <mvvm:EventToCommand CommandParameter="{Binding Row.ProgressNoteUID}" Command="{Binding DataContext.DeleteProgressNoteCommand
                                                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <Image.Style>
-                                                <Style TargetType="{x:Type Image}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="OpacityMask" Value="#A2000000"/>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridControl.View>
-                                <dxg:TableView GroupRowTemplate="{StaticResource GroupRowHeaderTemplate}"
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridControl.View>
+                            <dxg:TableView GroupRowTemplate="{StaticResource GroupRowHeaderTemplate}"
                                        HeaderPosition="CompactPanel"
                                        CompactPanelShowMode="Never"
                                        CompactSortElementShowMode ="Never"
@@ -645,34 +646,34 @@
                                        ShowIndicator="False"
                                        IsGroupRowMenuEnabled ="False"
                                        NavigationStyle="Row"/>
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl x:Name="grdProgressNotes"
-                                 ItemsSource="{Binding ListNote}"
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl x:Name="grdProgressNotes"
+                                 ItemsSource="{Binding ListNote,UpdateSourceTrigger=PropertyChanged}"
                                  SelectedItem="{Binding SelectProgressNote}"
                                  AutoExpandAllGroups="True"
                                  HorizontalAlignment="Stretch"
                                  ShowBorder="True"
                                  dx:ScrollBarExtensions.ScrollBarMode="TouchOverlap"
                                   >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger  EventName="MouseDoubleClick">
-                            <mvvm:EventToCommand Command="{Binding DataContext.EditProgressNoteCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding DataContext.EditProgressNoteCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn Width="Auto"
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn Width="Auto"
                                         FieldName="RecordedDttm"
                                         GroupIndex="1"
                                         ShowGroupedColumn="False"
                                         GroupInterval="Date"
                                         SortOrder="Descending" />
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView  x:Name="tableView"
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView  x:Name="tableView"
                                        RowDetailsVisibilityMode="Visible"
                                        RowDetailsTemplate="{StaticResource DetailNoteRowTemplate}"
                                        GroupRowTemplate="{StaticResource GroupRowHeaderTemplate}"
@@ -690,198 +691,72 @@
                                        ShowVerticalLines="False"
                                        IsGroupRowMenuEnabled ="False"
                                        NavigationStyle="Row">
-                        </dxg:TableView>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Padding="0" Width="350" Height="250" MaximizeElementVisibility="Visible">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Orders"/>
-                            <Image  Width="20" x:Name="addOrder"
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox Padding="0" Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Height="200" MaximizeElementVisibility="Visible">
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Orders"/>
+                        <Image  Width="20" x:Name="addOrder"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromOrderDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToOrderDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromOrderDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToOrderDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
                                 Command="{Binding DataContext.SearchOrderDetailsCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                            </Grid>
-                            <dxg:GridControl Grid.Row="1" ShowBorder="False"
+                        </Grid>
+                        <dxg:GridControl Grid.Row="1" ShowBorder="False"
                                  ItemsSource="{Binding DataContext.ListOrderMaximized,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                  Name="ListOrderDetail" >
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseDoubleClick">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseDoubleClick">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                    <i:EventTrigger  EventName="Loaded">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.LoadOrderMaximizedCommand
+                                </i:EventTrigger>
+                                <i:EventTrigger  EventName="Loaded">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.LoadOrderMaximizedCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <dxg:GridControl.Columns>
-                                    <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
-                                        <dxg:GridColumn.CellTemplate>
-                                            <DataTemplate>
-                                                <TextBlock Text="{Binding RowData.Row.ItemCode}" Margin="2"
-                                               FontWeight="Bold" />
-                                            </DataTemplate>
-                                        </dxg:GridColumn.CellTemplate>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
-                                    <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
-                                        <dxg:GridColumn.EditSettings>
-                                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
-                                        </dxg:GridColumn.EditSettings>
-                                    </dxg:GridColumn>
-                                    <dxg:GridColumn FieldName="Comments" Header="Comments"/>
-                                    <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
-                                    <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
-                                    <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
-                                    <dxg:GridColumn FieldName="OrderNumber"/>
-                                    <dxg:GridColumn FieldName="CareproviderName" Header="แพทย์" ReadOnly="True"/>
-                                    <dxg:GridColumn FieldName="NetAmount" Header="ราคา"/>
-                                    <dxg:GridColumn FieldName="OrderSetName" Header="OrderSet"/>
-                                    <dxg:GridColumn FieldName="OwnerOrganisationName" Header="Order จาก"/>
-                                    <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
-                                </dxg:GridControl.Columns>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView  ShowGroupPanel="False"
-                                        ShowIndicator="False"
-                                        ShowVerticalLines="False"
-                                        ShowHorizontalLines="False"
-                                        NavigationStyle="Row"
-                                        VerticalScrollbarVisibility="Auto"
-                                        HorizontalScrollbarVisibility="Auto"
-                                        BorderThickness="0"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl ShowBorder="False"
-                                 ItemsSource="{Binding ListOrder}"
-                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
-                                 Name="ListOrderDetail" >
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger  EventName="MouseDoubleClick">
-                            <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RowData.Row.ItemCode}" Margin="2"
-                                               FontWeight="Bold" />
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
-                        <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView  ShowGroupPanel="False"
-                                        ShowIndicator="False"
-                                        ShowVerticalLines="False"
-                                        ShowHorizontalLines="False"
-                                        NavigationStyle="Row"
-                                        VerticalScrollbarVisibility="Auto"
-                                        HorizontalScrollbarVisibility="Auto"
-                                        BorderThickness="0"/>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" MaximizeElementVisibility="Visible"
-                           Height="250" 
-                           Padding="0">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Drug Profile"/>
-                        </StackPanel>
-
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromDrugProfile,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToDrugProfile,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
-                                Command="{Binding DataContext.SearchDrugProfileCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                            </Grid>
-                            <dxg:GridControl Grid.Row="1" ItemsSource="{Binding DataContext.ListDrugProfileMaximized,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="Loaded">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.LoadDrugProfileMaximizedCommand
-                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <dxg:GridControl.Columns>
                                 <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
                                     <dxg:GridColumn.CellTemplate>
                                         <DataTemplate>
@@ -890,52 +765,178 @@
                                         </DataTemplate>
                                     </dxg:GridColumn.CellTemplate>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="250">
+                                <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
                                     <dxg:GridColumn.EditSettings>
                                         <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="Dosage" Header="ปริมาณยาที่กิน"/>
-                                <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
-                                <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
-                                <dxg:GridColumn FieldName="DrugFrequency" Header="Frequency"/>
-                                <dxg:GridColumn Header="วิธีใช้" FieldName="InstructionRoute"/>
+                                <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
                                 <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
                                     <dxg:GridColumn.EditSettings>
-                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
                                     </dxg:GridColumn.EditSettings>
                                 </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="DrugDuration"/>
+                                <dxg:GridColumn FieldName="Comments" Header="Comments"/>
                                 <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
-                                <dxg:GridColumn Header="คำแนะนำ" FieldName="LocalInstructionText"/>
-                                <dxg:GridColumn Header="Note" FieldName="ClinicalComments"/>
+                                <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
+                                <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
                                 <dxg:GridColumn FieldName="OrderNumber"/>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
+                                <dxg:GridColumn FieldName="CareproviderName" Header="แพทย์" ReadOnly="True"/>
+                                <dxg:GridColumn FieldName="NetAmount" Header="ราคา"/>
+                                <dxg:GridColumn FieldName="OrderSetName" Header="OrderSet"/>
+                                <dxg:GridColumn FieldName="OwnerOrganisationName" Header="Order จาก"/>
+                                <dxg:GridColumn FieldName="PaymentStatus" Header="สถานะการชำระเงิน"/>
+                            </dxg:GridControl.Columns>
+                            <dxg:GridControl.View>
+                                <dxg:TableView  ShowGroupPanel="False"
+                                        ShowIndicator="False"
+                                        ShowVerticalLines="False"
+                                        ShowHorizontalLines="False"
+                                        NavigationStyle="Row"
+                                        VerticalScrollbarVisibility="Auto"
+                                        HorizontalScrollbarVisibility="Auto"
+                                        BorderThickness="0"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </Grid>
+
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl ShowBorder="False"
+                                 ItemsSource="{Binding ListOrder,UpdateSourceTrigger=PropertyChanged}"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Auto"
+                                 Name="ListOrderDetail" >
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding DataContext.OrderCommand
+                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.Row.ItemCode}" Margin="2"
+                                               FontWeight="Bold" />
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="BillingService" Header="หมวดหมู่"/>
+                    <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False"
+                                        ShowIndicator="False"
+                                        ShowVerticalLines="False"
+                                        ShowHorizontalLines="False"
+                                        NavigationStyle="Row"
+                                        VerticalScrollbarVisibility="Auto"
+                                        HorizontalScrollbarVisibility="Auto"
+                                        BorderThickness="0"/>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+
+        </dxlc:GroupBox>
+        <dxlc:GroupBox  Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" MaximizeElementVisibility="Visible"
+                           Height="200" 
+                           Padding="0">
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Drug Profile"/>
+                    </StackPanel>
+
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromDrugProfile,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToDrugProfile,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
+                                Command="{Binding DataContext.SearchDrugProfileCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
                         </Grid>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl ShowBorder="False"
+                        <dxg:GridControl Grid.Row="1" ItemsSource="{Binding DataContext.ListDrugProfileMaximized,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="Loaded">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.LoadDrugProfileMaximizedCommand
+                                    ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <dxg:GridColumn FieldName="ItemCode" Width="50" Header="รหัส">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding RowData.Row.ItemCode}" Margin="2"
+                                               FontWeight="Bold" />
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="ItemName" Header="ชื่อ" Width="200">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings AcceptsReturn="True" TextWrapping="Wrap"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="Dosage" Header="ปริมาณยาที่กิน"/>
+                            <dxg:GridColumn FieldName="Quantity" Header="จำนวน"/>
+                            <dxg:GridColumn FieldName="QuantityUnit" Header="หน่วย"/>
+                            <dxg:GridColumn FieldName="DrugFrequency" Header="Frequency"/>
+                            <dxg:GridColumn Header="วิธีใช้" FieldName="InstructionRoute"/>
+                            <dxg:GridColumn FieldName="StartDttm" Header="วันที่">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="DrugDuration"/>
+                            <dxg:GridColumn FieldName="OrderDetailStatus" Header="สถานะ"/>
+                            <dxg:GridColumn Header="คำแนะนำ" FieldName="LocalInstructionText"/>
+                            <dxg:GridColumn Header="Note" FieldName="ClinicalComments"/>
+                            <dxg:GridColumn FieldName="OrderNumber"/>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" AllowEditing="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </Grid>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl ShowBorder="False"
                                  ItemsSource="{Binding ListDrugProfile}"
                                   ScrollViewer.HorizontalScrollBarVisibility="Auto"
                                  Name="listDrugProfile" >
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="ItemName" Header="ชื่อยา" Width="160">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings TextWrapping="Wrap" AcceptsReturn="True"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="Quantity" Header="จำนวน"  Width="35"/>
-                        <dxg:GridColumn FieldName="CWhen" Header="วันที่" Width="60">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView  ShowGroupPanel="False"  
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ItemName" Header="ชื่อยา" Width="160">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings TextWrapping="Wrap" AcceptsReturn="True"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="Quantity" Header="จำนวน"  Width="35"/>
+                    <dxg:GridColumn FieldName="CWhen" Header="วันที่" Width="60">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyy"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False"  
                                         AutoWidth="True"
                                         ShowIndicator="False"
                                         ShowVerticalLines="False"
@@ -945,137 +946,137 @@
                                         RowStyle="{StaticResource RowUnFocused}"
                                         CellStyle="{StaticResource CellNoBorder}"
                                         BorderThickness="0"/>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Height="250" Padding="0" MaximizeElementVisibility="Visible">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Radiology Result"/>
-                        </StackPanel>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox  Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Height="200" Padding="0" MaximizeElementVisibility="Visible">
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Radiology Result"/>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromRadiologyResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToRadiologyResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromRadiologyResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToRadiologyResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
                                                  Command="{Binding DataContext.SearchRadiologyResultCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                            </Grid>
+                        </Grid>
 
-                            <dxg:GridControl Grid.Row="1" 
+                        <dxg:GridControl Grid.Row="1" 
                                  ItemsSource="{Binding DataContext.ListRadiologyResultMaximized,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                  SelectedItem="{Binding DataContext.SelectRadiologyResult,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="Loaded">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.LoadRadiologyResultMaximizedCommand
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="Loaded">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.LoadRadiologyResultMaximizedCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80" ReadOnly="True">
-                                    <dxg:GridColumn.EditSettings>
-                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                                    </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="*" ReadOnly="True"/>
-                                <dxg:GridColumn FieldName="ResultStatus"  Header="สถานะ" ReadOnly="True"/>
-                                <dxg:GridColumn FieldName="Radiologist" Header="รังสีแพทย์" ReadOnly="True"/>
-                                <dxg:GridColumn Width="70">
-                                    <dxg:GridColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <dxe:HyperlinkEdit EditValue="View Result">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger  EventName="RequestNavigation">
-                                                        <mvvm:EventToCommand Command="{Binding DataContext.RadiologyViewCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </dxe:HyperlinkEdit>
-                                        </DataTemplate>
-                                    </dxg:GridColumn.CellTemplate>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn Width="40">
-                                    <dxg:GridColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <dxe:HyperlinkEdit EditValue="Image">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger  EventName="RequestNavigation">
-                                                        <mvvm:EventToCommand Command="{Binding DataContext.RadiologyImageCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </dxe:HyperlinkEdit>
-                                        </DataTemplate>
-                                    </dxg:GridColumn.CellTemplate>
-                                </dxg:GridColumn>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView ShowGroupPanel="False"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl ShowBorder="False"
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80" ReadOnly="True">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="*" ReadOnly="True"/>
+                            <dxg:GridColumn FieldName="ResultStatus"  Header="สถานะ" ReadOnly="True"/>
+                            <dxg:GridColumn FieldName="Radiologist" Header="รังสีแพทย์" ReadOnly="True"/>
+                            <dxg:GridColumn Width="70">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <dxe:HyperlinkEdit EditValue="View Result">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="RequestNavigation">
+                                                    <mvvm:EventToCommand Command="{Binding DataContext.RadiologyViewCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxe:HyperlinkEdit>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn Width="40">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <dxe:HyperlinkEdit EditValue="Image">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="RequestNavigation">
+                                                    <mvvm:EventToCommand Command="{Binding DataContext.RadiologyImageCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxe:HyperlinkEdit>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False"/>
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </Grid>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl ShowBorder="False"
                                  ItemsSource="{Binding ListRadiologyResult}"
                                  SelectedItem="{Binding SelectRadiologyResult}"
                                  Name="listRadiologyResult" >
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RowData.Row.RequestItemName}"
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.Row.RequestItemName}"
                                                ToolTip="{Binding RowData.Row.RequestItemName}"
                                                VerticalAlignment="Center"
                                                TextTrimming="CharacterEllipsis"
                                                FontWeight="Bold" />
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn Width="70">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <dxe:HyperlinkEdit EditValue="View Result">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger  EventName="RequestNavigation">
-                                                <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyViewCommand}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </dxe:HyperlinkEdit>
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn Width="40">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <dxe:HyperlinkEdit EditValue="Image">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger  EventName="RequestNavigation">
-                                                <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyImageCommand}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </dxe:HyperlinkEdit>
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                    </dxg:GridControl.Columns>
-                    <dxg:GridControl.View>
-                        <dxg:TableView  ShowGroupPanel="False" 
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Width="70">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:HyperlinkEdit EditValue="View Result">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="RequestNavigation">
+                                            <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyViewCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dxe:HyperlinkEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Width="40">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:HyperlinkEdit EditValue="Image">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="RequestNavigation">
+                                            <mvvm:EventToCommand Command="{Binding View.DataContext.RadiologyImageCommand}" />
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dxe:HyperlinkEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                </dxg:GridControl.Columns>
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False" 
                                         AllowEditing="False"
                                         ShowIndicator="False"
                                         AllowMasterDetail="False"
@@ -1085,121 +1086,121 @@
                                         VerticalScrollbarVisibility="Auto"
                                         HorizontalScrollbarVisibility="Auto"
                                         BorderThickness="0">
-                        </dxg:TableView>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
+                    </dxg:TableView>
+                </dxg:GridControl.View>
+            </dxg:GridControl>
 
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Height="250" 
+        </dxlc:GroupBox>
+        <dxlc:GroupBox  Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Height="200" 
                            Padding="0" MaximizeElementVisibility="Visible" >
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Lab Result"/>
-                        </StackPanel>
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Lab Result"/>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto"/>
-                                <RowDefinition Height="*"/>
-                            </Grid.RowDefinitions>
-                            <Grid Grid.Row="0" >
-                                <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*" />
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="Auto"/>
-                                </Grid.ColumnDefinitions>
-                                <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromLabResultDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToLabResultDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                                <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid Grid.Row="0" >
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*"/>
+                                <ColumnDefinition Width="Auto"/>
+                            </Grid.ColumnDefinitions>
+                            <dxe:DateEdit Grid.Column="0" Margin="5" Height="25" EditValue="{Binding DataContext.DateFromLabResultDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dxe:DateEdit Grid.Column="1" Margin="5" Height="25" EditValue="{Binding DataContext.DateToLabResultDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
+                            <dx:SimpleButton Grid.Column="2" Margin="5" Content="Search"  Width="80" Height="25" 
                                                  Command="{Binding DataContext.SearchLabResultDetailsCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"/>
-                            </Grid>
-                            <dxg:GridControl Grid.Row="1" Name="listLabResultGroupLabNumber"
+                        </Grid>
+                        <dxg:GridControl Grid.Row="1" Name="listLabResultGroupLabNumber"
                                              ItemsSource="{Binding DataContext.LabResultDetails,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                              SelectedItem="{Binding DataContext.SelectLabResultDetail,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="Loaded">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.LoadLabResultDetailsCommand
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="Loaded">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.LoadLabResultDetailsCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <dxg:GridColumn FieldName="LabNumber"/>
-                                <dxg:GridColumn FieldName="RequestedDttm">
-                                    <dxg:GridColumn.EditSettings>
-                                        <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
-                                    </dxg:GridColumn.EditSettings>
-                                </dxg:GridColumn>
-                                <dxg:GridColumn FieldName="PatientID"/>
-                                <dxg:GridColumn FieldName="PatientName"/>
-                                <dxg:GridColumn FieldName="OrderStatus"/>
-                                <dxg:GridColumn FieldName="ReviewedBy"/>
-                                <dxg:GridColumn Width="70">
-                                    <dxg:GridColumn.CellTemplate>
-                                        <DataTemplate>
-                                            <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger  EventName="RequestNavigation">
-                                                        <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}" Command="{Binding DataContext.LabViewCommand
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <dxg:GridColumn FieldName="LabNumber"/>
+                            <dxg:GridColumn FieldName="RequestedDttm">
+                                <dxg:GridColumn.EditSettings>
+                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyy HH:mm"/>
+                                </dxg:GridColumn.EditSettings>
+                            </dxg:GridColumn>
+                            <dxg:GridColumn FieldName="PatientID"/>
+                            <dxg:GridColumn FieldName="PatientName"/>
+                            <dxg:GridColumn FieldName="OrderStatus"/>
+                            <dxg:GridColumn FieldName="ReviewedBy"/>
+                            <dxg:GridColumn Width="70">
+                                <dxg:GridColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
+                                            <i:Interaction.Triggers>
+                                                <i:EventTrigger  EventName="RequestNavigation">
+                                                    <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}" Command="{Binding DataContext.LabViewCommand
                                                             ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                            </dxe:HyperlinkEdit>
-                                        </DataTemplate>
-                                    </dxg:GridColumn.CellTemplate>
-                                </dxg:GridColumn>
-                                <dxg:GridControl.View>
-                                    <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row" AllowEditing="False" AllowScrollAnimation="True" 
+                                                </i:EventTrigger>
+                                            </i:Interaction.Triggers>
+                                        </dxe:HyperlinkEdit>
+                                    </DataTemplate>
+                                </dxg:GridColumn.CellTemplate>
+                            </dxg:GridColumn>
+                            <dxg:GridControl.View>
+                                <dxg:TableView ShowGroupPanel="False" NavigationStyle="Row" AllowEditing="False" AllowScrollAnimation="True" 
                                        UseLightweightTemplates="None" DataRowTemplate="{StaticResource expandableRowDetailTemplate}"/>
-                                </dxg:GridControl.View>
-                            </dxg:GridControl>
-                        </Grid>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxg:GridControl ShowBorder="False"
-                                 ItemsSource="{Binding ListLabsResult}"
+                            </dxg:GridControl.View>
+                        </dxg:GridControl>
+                    </Grid>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxg:GridControl ShowBorder="False"
+                                 ItemsSource="{Binding ListLabsResult,UpdateSourceTrigger=PropertyChanged}"
                                  SelectedItem="{Binding SelectLabResult}"                 
                                  Name="ListLabsResult" >
-                    <dxg:GridControl.Columns>
-                        <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
-                            <dxg:GridColumn.EditSettings>
-                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
-                            </dxg:GridColumn.EditSettings>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <TextBlock Text="{Binding RowData.Row.RequestItemName}" 
+                <dxg:GridControl.Columns>
+                    <dxg:GridColumn FieldName="ResultEnteredDttm" Header="วันที่" Width="80">
+                        <dxg:GridColumn.EditSettings>
+                            <dxe:TextEditSettings DisplayFormat="dd/MM/yyy" VerticalContentAlignment="Top"/>
+                        </dxg:GridColumn.EditSettings>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="RequestItemName" Header="ชื่อ" Width="160">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding RowData.Row.RequestItemName}" 
                                                            ToolTip="{Binding RowData.Row.RequestItemName}"
                                                            VerticalAlignment="Center"
                                                            TextWrapping="NoWrap"
                                                            TextTrimming="CharacterEllipsis" FontWeight="Bold" />
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn Width="70">
-                            <dxg:GridColumn.CellTemplate>
-                                <DataTemplate>
-                                    <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
-                                        <i:Interaction.Triggers>
-                                            <i:EventTrigger  EventName="RequestNavigation">
-                                                <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}"  
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn Width="70">
+                        <dxg:GridColumn.CellTemplate>
+                            <DataTemplate>
+                                <dxe:HyperlinkEdit EditValue="View Result" VerticalContentAlignment="Top">
+                                    <i:Interaction.Triggers>
+                                        <i:EventTrigger  EventName="RequestNavigation">
+                                            <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.LabNumber}"  
                                                                                  Command="{Binding DataContext.LabViewCommand
                                                                 ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                            </i:EventTrigger>
-                                        </i:Interaction.Triggers>
-                                    </dxe:HyperlinkEdit>
-                                </DataTemplate>
-                            </dxg:GridColumn.CellTemplate>
-                        </dxg:GridColumn>
-                        <dxg:GridColumn FieldName="LabNumber" Width="Auto" />
-                    </dxg:GridControl.Columns>
+                                        </i:EventTrigger>
+                                    </i:Interaction.Triggers>
+                                </dxe:HyperlinkEdit>
+                            </DataTemplate>
+                        </dxg:GridColumn.CellTemplate>
+                    </dxg:GridColumn>
+                    <dxg:GridColumn FieldName="LabNumber" Width="Auto" />
+                </dxg:GridControl.Columns>
 
-                    <dxg:GridControl.View>
-                        <dxg:TableView  ShowGroupPanel="False"
+                <dxg:GridControl.View>
+                    <dxg:TableView  ShowGroupPanel="False"
                                         NavigationStyle="Row"
                                         ShowIndicator="False"
                                         ShowVerticalLines="False"
@@ -1207,47 +1208,47 @@
                                         VerticalScrollbarVisibility="Auto"
                                         HorizontalScrollbarVisibility="Auto"
                                         BorderThickness="0"/>
-                    </dxg:GridControl.View>
-                </dxg:GridControl>
-            </dxlc:GroupBox>
-            <dxlc:GroupBox Width="350" Padding="0" Height="250" MaximizeElementVisibility="Visible"
+                </dxg:GridControl.View>
+            </dxg:GridControl>
+        </dxlc:GroupBox>
+        <dxlc:GroupBox  Width="{Binding Path=ActualWidth, ElementName=parentLayout, Converter={StaticResource PercentageConverter}, ConverterParameter='0.31'}" Padding="0" Height="200" MaximizeElementVisibility="Visible"
                            ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                <dxlc:GroupBox.HeaderTemplate>
-                    <DataTemplate>
-                        <StackPanel Orientation="Horizontal">
-                            <TextBlock Text="Wellness Book"/>
-                            <Image x:Name="addPhysicalExam" Width="20"
+            <dxlc:GroupBox.HeaderTemplate>
+                <DataTemplate>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Wellness Book"/>
+                        <Image x:Name="addPhysicalExam" Width="20"
 								Margin="10,0,0,0"
 								Cursor="Hand"
 								Height="20"
 								Source="/MediTech;component/Resources/Images/Action/Add.png">
-                                <i:Interaction.Triggers>
-                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                        <mvvm:EventToCommand Command="{Binding DataContext.WellnessDataCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                    </i:EventTrigger>
-                                </i:Interaction.Triggers>
-                                <Image.Style>
-                                    <Style TargetType="{x:Type Image}">
-                                        <Style.Triggers>
-                                            <Trigger Property="IsMouseOver" Value="True">
-                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                            </Trigger>
-                                        </Style.Triggers>
-                                    </Style>
-                                </Image.Style>
-                            </Image>
-                        </StackPanel>
+                            <i:Interaction.Triggers>
+                                <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                    <mvvm:EventToCommand Command="{Binding DataContext.WellnessDataCommand,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                </i:EventTrigger>
+                            </i:Interaction.Triggers>
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <Trigger Property="IsMouseOver" Value="True">
+                                            <Setter Property="OpacityMask" Value="#A2000000"/>
+                                        </Trigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                    </StackPanel>
 
-                    </DataTemplate>
-                </dxlc:GroupBox.HeaderTemplate>
-                <dxlc:GroupBox.MaximizedContentTemplate>
-                    <DataTemplate>
-                        <dxg:GridControl  ItemsSource="{Binding DataContext.ListWellnessData,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
+                </DataTemplate>
+            </dxlc:GroupBox.HeaderTemplate>
+            <dxlc:GroupBox.MaximizedContentTemplate>
+                <DataTemplate>
+                    <dxg:GridControl  ItemsSource="{Binding DataContext.ListWellnessData,UpdateSourceTrigger=PropertyChanged,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}"
                                      SelectedItem="{Binding DataContext.SelectWellnessData,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}">
-                            <dxg:GridColumn FieldName="WellnessResult" Width="*" ReadOnly="True">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <TextBlock Margin="5,1,0,0"
+                        <dxg:GridColumn FieldName="WellnessResult" Width="*" ReadOnly="True">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                FontStyle="Italic"
                                                FontWeight="Regular"
@@ -1256,86 +1257,86 @@
                                                TextTrimming="CharacterEllipsis"
                                                ToolTip="{Binding RowData.Row.WellnessResult}"
                                                Text="{Binding RowData.Row.WellnessResult}" />
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn FieldName="RecordBy" Header="Record By" ReadOnly="True"/>
-                            <dxg:GridColumn FieldName="MWhen" Header="Record Dttm" ReadOnly="True">
-                                <dxg:GridColumn.EditSettings>
-                                    <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
-                                </dxg:GridColumn.EditSettings>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn Width="70">
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <dxe:HyperlinkEdit EditValue="View Book">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger  EventName="RequestNavigation">
-                                                    <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.WellnessDataUID}"  Command="{Binding DataContext.PreviewWellnessBookCommand
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn FieldName="RecordBy" Header="Record By" ReadOnly="True"/>
+                        <dxg:GridColumn FieldName="MWhen" Header="Record Dttm" ReadOnly="True">
+                            <dxg:GridColumn.EditSettings>
+                                <dxe:TextEditSettings DisplayFormat="dd/MM/yyyy HH:mm"/>
+                            </dxg:GridColumn.EditSettings>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn Width="70">
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <dxe:HyperlinkEdit EditValue="View Book">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="RequestNavigation">
+                                                <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.WellnessDataUID}"  Command="{Binding DataContext.PreviewWellnessBookCommand
                                                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                        </dxe:HyperlinkEdit>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridColumn>
-                                <dxg:GridColumn.CellTemplate>
-                                    <DataTemplate>
-                                        <Image Grid.Column="1" Width="25" Height="25" Stretch="UniformToFill" VerticalAlignment="Center"                        
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                    </dxe:HyperlinkEdit>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridColumn>
+                            <dxg:GridColumn.CellTemplate>
+                                <DataTemplate>
+                                    <Image Grid.Column="1" Width="25" Height="25" Stretch="UniformToFill" VerticalAlignment="Center"                        
                                    Cursor="Hand"
                                    ToolTip="ลบข้อมูล"
                                    Source="/MediTech;component/Resources/Images/Action/trash.png">
-                                            <i:Interaction.Triggers>
-                                                <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                    <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                <mvvm:EventToCommand CommandParameter="{Binding RowData.Row.WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
                                                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                </i:EventTrigger>
-                                            </i:Interaction.Triggers>
-                                            <Image.Style>
-                                                <Style TargetType="{x:Type Image}">
-                                                    <Style.Triggers>
-                                                        <Trigger Property="IsMouseOver" Value="True">
-                                                            <Setter Property="OpacityMask" Value="#A2000000"/>
-                                                        </Trigger>
-                                                    </Style.Triggers>
-                                                </Style>
-                                            </Image.Style>
-                                        </Image>
-                                    </DataTemplate>
-                                </dxg:GridColumn.CellTemplate>
-                            </dxg:GridColumn>
-                            <dxg:GridControl.View>
-                                <dxg:TableView ShowGroupPanel="False"/>
-                            </dxg:GridControl.View>
-                        </dxg:GridControl>
-                    </DataTemplate>
-                </dxlc:GroupBox.MaximizedContentTemplate>
-                <dxe:ListBoxEdit x:Name="listWellNess"
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                </DataTemplate>
+                            </dxg:GridColumn.CellTemplate>
+                        </dxg:GridColumn>
+                        <dxg:GridControl.View>
+                            <dxg:TableView ShowGroupPanel="False"/>
+                        </dxg:GridControl.View>
+                    </dxg:GridControl>
+                </DataTemplate>
+            </dxlc:GroupBox.MaximizedContentTemplate>
+            <dxe:ListBoxEdit x:Name="listWellNess"
                                      ItemsSource="{Binding ListWellnessData}"
                                      SelectedItem="{Binding SelectWellnessData}"
                                      HorizontalContentAlignment="Stretch" 
                          ScrollViewer.HorizontalScrollBarVisibility="Disabled">
-                    <i:Interaction.Triggers>
-                        <i:EventTrigger  EventName="MouseDoubleClick">
-                            <mvvm:EventToCommand Command="{Binding DataContext.EditWellnessDataCommand
+                <i:Interaction.Triggers>
+                    <i:EventTrigger  EventName="MouseDoubleClick">
+                        <mvvm:EventToCommand Command="{Binding DataContext.EditWellnessDataCommand
                                     ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                        </i:EventTrigger>
-                    </i:Interaction.Triggers>
-                    <dxe:ListBoxEdit.ItemTemplate>
-                        <DataTemplate>
-                            <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,0,0,3">
-                                <Grid>
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition MaxHeight="134"/>
-                                        <RowDefinition Height="Auto"/>
-                                    </Grid.RowDefinitions>
+                    </i:EventTrigger>
+                </i:Interaction.Triggers>
+                <dxe:ListBoxEdit.ItemTemplate>
+                    <DataTemplate>
+                        <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="0,0,0,3">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition MaxHeight="134"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
 
-                                    <Grid Grid.Row="0" >
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="*"/>
-                                        </Grid.RowDefinitions>
-                                        <TextBlock Margin="5,1,0,0"
+                                <Grid Grid.Row="0" >
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="*"/>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Margin="5,1,0,0"
                                                FontSize="12"
                                                FontStyle="Italic"
                                                FontWeight="Regular"
@@ -1344,23 +1345,74 @@
                                                TextTrimming="CharacterEllipsis"
                                                ToolTip="{Binding WellnessResult}"
                                                Text="{Binding WellnessResult}" />
-                                    </Grid>
-                                    <Grid Grid.Row="1" Margin="0,5,0,0">
-                                        <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="Auto"/>
-                                            <ColumnDefinition Width="*"/>
-                                        </Grid.ColumnDefinitions>
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto"/>
-                                            <RowDefinition Height="Auto"/>
-                                        </Grid.RowDefinitions>
-                                        <Image Width="45" Height="45" Grid.RowSpan="2" Stretch="UniformToFill"
+                                </Grid>
+                                <Grid Grid.Row="1" Margin="0,5,0,0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
+                                    <Image Width="45" Height="45" Grid.RowSpan="2" Stretch="UniformToFill"
                                            Cursor="Hand" ToolTip="Preview Book"
                                            VerticalAlignment="Top" HorizontalAlignment="Left"
                                            Source="/MediTech;component/Resources/Images/Other/Healthbook.png">
+                                        <i:Interaction.Triggers>
+                                            <i:EventTrigger  EventName="MouseLeftButtonDown">
+                                                <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.PreviewWellnessBookCommand
+                                                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
+                                            </i:EventTrigger>
+                                        </i:Interaction.Triggers>
+                                        <Image.Style>
+                                            <Style TargetType="{x:Type Image}">
+                                                <Style.Triggers>
+                                                    <Trigger Property="IsMouseOver" Value="True">
+                                                        <Setter Property="OpacityMask" Value="#A2000000"/>
+                                                    </Trigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Image.Style>
+                                    </Image>
+                                    <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                                        <TextBlock Margin="5,1,0,0"
+                                               FontSize="12"
+                                               FontWeight="Thin"
+                                               VerticalAlignment="Center"
+                                               Text="Record By :" />
+                                        <TextBlock Margin="5,1,0,0"
+                                               FontSize="12"
+                                               FontWeight="Thin"
+                                               Foreground="#FF057BF9"
+                                              VerticalAlignment="Center"
+                                               Text="{Binding RecordBy}" />
+                                    </StackPanel>
+                                    <Grid Grid.Row="1" Grid.Column="1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
+                                            <TextBlock Margin="5,1,0,0"
+                                               FontSize="10"
+                                               FontWeight="Thin"
+                                               Text="Record Dttm :" />
+                                            <TextBlock Margin="5,1,0,0"
+                                               FontSize="10"
+                                               FontWeight="Bold"
+                                               Text="{Binding MWhen,StringFormat=dd/MM/yyyy HH:mm}" />
+
+                                        </StackPanel>
+
+                                        <Image Grid.Column="1" Width="18" Height="18" Stretch="UniformToFill"                            
+                                   Cursor="Hand"
+                                   ToolTip="ลบข้อมูล"
+                                   Source="/MediTech;component/Resources/Images/Action/trash.png">
                                             <i:Interaction.Triggers>
                                                 <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                    <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.PreviewWellnessBookCommand
+                                                    <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
                                                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
                                                 </i:EventTrigger>
                                             </i:Interaction.Triggers>
@@ -1374,65 +1426,14 @@
                                                 </Style>
                                             </Image.Style>
                                         </Image>
-                                        <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
-                                            <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontWeight="Thin"
-                                               VerticalAlignment="Center"
-                                               Text="Record By :" />
-                                            <TextBlock Margin="5,1,0,0"
-                                               FontSize="12"
-                                               FontWeight="Thin"
-                                               Foreground="#FF057BF9"
-                                              VerticalAlignment="Center"
-                                               Text="{Binding RecordBy}" />
-                                        </StackPanel>
-                                        <Grid Grid.Row="1" Grid.Column="1">
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="Auto"/>
-                                                <ColumnDefinition Width="*" />
-                                            </Grid.ColumnDefinitions>
-
-                                            <StackPanel Grid.Column="0" Orientation="Horizontal" VerticalAlignment="Center">
-                                                <TextBlock Margin="5,1,0,0"
-                                               FontSize="10"
-                                               FontWeight="Thin"
-                                               Text="Record Dttm :" />
-                                                <TextBlock Margin="5,1,0,0"
-                                               FontSize="10"
-                                               FontWeight="Bold"
-                                               Text="{Binding MWhen,StringFormat=dd/MM/yyyy HH:mm}" />
-
-                                            </StackPanel>
-
-                                            <Image Grid.Column="1" Width="18" Height="18" Stretch="UniformToFill"                            
-                                   Cursor="Hand"
-                                   ToolTip="ลบข้อมูล"
-                                   Source="/MediTech;component/Resources/Images/Action/trash.png">
-                                                <i:Interaction.Triggers>
-                                                    <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                                        <mvvm:EventToCommand CommandParameter="{Binding WellnessDataUID}" Command="{Binding DataContext.DeleteWellnessCommand
-                                                        ,RelativeSource={RelativeSource AncestorType={x:Type vm:SummeryView}}}" />
-                                                    </i:EventTrigger>
-                                                </i:Interaction.Triggers>
-                                                <Image.Style>
-                                                    <Style TargetType="{x:Type Image}">
-                                                        <Style.Triggers>
-                                                            <Trigger Property="IsMouseOver" Value="True">
-                                                                <Setter Property="OpacityMask" Value="#A2000000"/>
-                                                            </Trigger>
-                                                        </Style.Triggers>
-                                                    </Style>
-                                                </Image.Style>
-                                            </Image>
-                                        </Grid>
                                     </Grid>
                                 </Grid>
-                            </Border>
-                        </DataTemplate>
-                    </dxe:ListBoxEdit.ItemTemplate>
-                </dxe:ListBoxEdit>
-            </dxlc:GroupBox>
-        </dxlc:FlowLayoutControl>
-    </dxlc:LayoutControl>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </dxe:ListBoxEdit.ItemTemplate>
+            </dxe:ListBoxEdit>
+        </dxlc:GroupBox>
+    </dxlc:FlowLayoutControl>
+
 </UserControl>

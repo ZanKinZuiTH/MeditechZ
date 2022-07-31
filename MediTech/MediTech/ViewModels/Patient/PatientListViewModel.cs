@@ -295,11 +295,6 @@ namespace MediTech.ViewModels
             get { return _ExportToExcelCommand ?? (_ExportToExcelCommand = new RelayCommand(ExportToExcel)); }
         }
 
-        private RelayCommand _AdmissionRequestCommand;
-        public RelayCommand AdmissionRequestCommand
-        {
-            get { return _AdmissionRequestCommand ?? (_AdmissionRequestCommand = new RelayCommand(AdmissionRequest)); }
-        }
         
         private RelayCommand _PatientTrackingCommand;
         public RelayCommand PatientTrackingCommand
@@ -312,21 +307,7 @@ namespace MediTech.ViewModels
         {
             get { return _ModifyVisitPayorCommand ?? (_ModifyVisitPayorCommand = new RelayCommand(ModifyVisitPayor)); }
         }
-        
-        private RelayCommand _ConsultCommand;
-        public RelayCommand ConsultCommand
-        {
-            get { return _ConsultCommand ?? (_ConsultCommand = new RelayCommand(Consult)); }
-        }
-
-
-        private RelayCommand _testConsultCommand;
-        public RelayCommand testConsultCommand
-        {
-            get { return _testConsultCommand ?? (_testConsultCommand = new RelayCommand(ConsultIPD)); }
-        }
-
-
+ 
 
 
         private RelayCommand _ArrivedCommand;
@@ -607,7 +588,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 EMRView pageview = new EMRView();
-                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as EMRViewViewModel).AssignPatientVisit(SelectPatientVisit);
                 EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
             }
         }
@@ -629,69 +610,6 @@ namespace MediTech.ViewModels
                     SearchPatientVisit();
                 }
             }
-        }
-        private void AdmissionRequest()
-        {
-            if(SelectPatientVisit != null)
-            {
-                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    return;
-                }
-                AdmissionRequest pageview = new AdmissionRequest();
-                (pageview.DataContext as AdmissionRequestViewModel).AssingModel(SelectPatientVisit);
-                AdmissionRequestViewModel result = (AdmissionRequestViewModel)LaunchViewDialog(pageview, "ADRQST", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-            
-        }
-        private void Consult()
-        {
-            if (SelectPatientVisit != null)
-            {
-                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    return;
-                }
-                SendConsult pageview = new SendConsult();
-                (pageview.DataContext as SendConsultViewModel).AssignData(SelectPatientVisit);
-                SendConsultViewModel result = (SendConsultViewModel)LaunchViewDialog(pageview, "CONSLTR", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-                    SearchPatientVisit();
-                }
-            }
-
-        }
-
-
-        private void ConsultIPD()
-        {
-            if (SelectPatientVisit != null)
-            {
-                if (SelectPatientVisit.VISTSUID == CHKOUT || SelectPatientVisit.VISTSUID == FINDIS || SelectPatientVisit.VISTSUID == CANCEL)
-                {
-                    WarningDialog("ไม่สามารถดำเนินการได้ เนื่องจากสถานะของ Visit ปัจจุบัน");
-                    return;
-                }
-                IPDConsult pageview = new IPDConsult();
-                (pageview.DataContext as IPDConsultViewModel).AssignData(SelectPatientVisit);
-                IPDConsultViewModel result = (IPDConsultViewModel)LaunchViewDialog(pageview, "IPDCON", false);
-                if (result != null && result.ResultDialog == ActionDialog.Save)
-                {
-                    SaveSuccessDialog();
-
-                }
-            }
-
-
         }
 
 

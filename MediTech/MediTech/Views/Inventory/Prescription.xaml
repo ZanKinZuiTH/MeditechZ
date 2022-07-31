@@ -210,7 +210,7 @@
                                 <Image Source="/MediTech;component/Resources/Images/Other/PatientRecords.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"
-                                   ToolTip="ประวัติผู้ป่วย">
+                                   ToolTip="ข้อมูลผู้ป่วย">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:Prescription}}}" />

@@ -66,7 +66,7 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <dxlc:LayoutControl Orientation="Vertical"
-                                MaxWidth="250"
+                                MaxWidth="230"
                                 Padding="0">
                 <dxlc:LayoutGroup Orientation="Vertical" Padding="-5"
                                   View="GroupBox" Header="ค้นหา">
@@ -176,7 +176,6 @@
                 </dxlc:GroupBox>
 
             </dxlc:LayoutControl>
-
         </Grid>
         <Grid Grid.Column="1" IsEnabled="{Binding IsEnableControl}">
             <Grid.RowDefinitions>
@@ -539,8 +538,10 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutControl>
             <dxlc:LayoutControl Padding="10,0" Grid.Row="1">
-                <vm:SummeryView  x:Name="summeryView" Height="Auto"
+                <vm:EMRView  x:Name="summeryView" Height="Auto"
+                        PatientBannerVisibility="Collapsed"
                         PatientVisit="{Binding Path=DataContext.SelectVisitMedical
+                    ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay
                         ,RelativeSource={RelativeSource AncestorType={x:Type vm:DoctorRoom}}}"/>
             </dxlc:LayoutControl>
         </Grid>

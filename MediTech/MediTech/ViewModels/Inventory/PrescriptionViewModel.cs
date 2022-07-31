@@ -333,7 +333,7 @@ namespace MediTech.ViewModels
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectPrescription.PatientVisitUID);
                 EMRView pageview = new EMRView();
-                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(patientVisit);
+                (pageview.DataContext as EMRViewViewModel).AssignPatientVisit(patientVisit);
                 LaunchViewDialog(pageview, "EMRVE", false, true);
             }
         }

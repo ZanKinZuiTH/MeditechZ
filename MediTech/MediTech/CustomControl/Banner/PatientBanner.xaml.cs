@@ -50,7 +50,11 @@ namespace MediTech.CustomControl.Banner
         {
             if (source != null)
             {
-                SetPatientBanner(source.PatientUID, source.PatientVisitUID);
+                if (this.Visibility == Visibility.Visible)
+                {
+                    SetPatientBanner(source.PatientUID, source.PatientVisitUID);
+                }
+
             }
             else
             {
@@ -106,7 +110,7 @@ namespace MediTech.CustomControl.Banner
             patientImage.Source = image;
             patientImageTootip.Source = image;
             txtVisitID.Text = "";
-            txtPastVisits.Text = "";
+            //txtPastVisits.Text = "";
         }
 
         public void SetPatientBanner(long patientUID, long patientVisitUID)
@@ -129,7 +133,7 @@ namespace MediTech.CustomControl.Banner
                 txtMobile.Text = patientVisit.MobilePhone;
                 txtPhone.Text = patientVisit.SecondPhone;
                 txtVisitID.Text = patientVisit.VisitID?.ToString();
-                txtPastVisits.Text = (patientVisit.VisitCount?.ToString() != "0" && patientVisit.VisitCount?.ToString() != "") ? "Past Vists : " + patientVisit.VisitCount.ToString() ?? "" : "";
+                //txtPastVisits.Text = (patientVisit.VisitCount?.ToString() != "0" && patientVisit.VisitCount?.ToString() != "") ? "Past Vists : " + patientVisit.VisitCount.ToString() ?? "" : "";
 
                 if (patientVisit.IsAllergy)
                 {

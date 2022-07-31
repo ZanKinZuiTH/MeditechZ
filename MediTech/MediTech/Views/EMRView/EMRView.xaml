@@ -7,18 +7,33 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
              xmlns:mvvm="clr-namespace:GalaSoft.MvvmLight.Command;assembly=GalaSoft.MvvmLight.Platform"
-             xmlns:local="clr-namespace:MediTech.Views"
-             mc:Ignorable="d" 
+             xmlns:local="clr-namespace:MediTech.Views" xmlns:dxa="http://schemas.devexpress.com/winfx/2008/xaml/accordion" xmlns:dxwui="http://schemas.devexpress.com/winfx/2008/xaml/windowsui"
+             mc:Ignorable="d"
+             xmlns:model="clr-namespace:MediTech.Model;assembly=MediTech.Model"
              DataContext="{Binding Path=EMRViewViewModel,Source={StaticResource Locator}}"
              d:DesignHeight="600" d:DesignWidth="900">
+    <UserControl.Resources>
+        <DataTemplate  DataType="{x:Type model:PageViewModuleModel}">
+            <ContentControl>
+                <TextBlock Text="{Binding ModuleName}" TextTrimming="CharacterEllipsis" />
+            </ContentControl>
+        </DataTemplate>
+        <DataTemplate DataType="{x:Type model:PageViewModel}" >
+            <ContentControl>
+                <TextBlock Text="{Binding Name}" Foreground="Blue" TextTrimming="CharacterEllipsis"  TextDecorations="Underline"/>
+            </ContentControl>
+        </DataTemplate>
+    </UserControl.Resources>
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical">
             <dxlc:LayoutItem >
-                <uc:PatientBanner x:Name="PatientBanner" 
-                                  PatientVisit="{Binding PatientBanner}"/>
+                <uc:PatientBanner x:Name="PatientBanner"
+PatientVisit="{Binding Path=DataContext.SelectedPatientVisit,UpdateSourceTrigger=PropertyChanged
+                        ,RelativeSource={RelativeSource AncestorType={x:Type local:EMRView}}}"
+                                  Visibility="Collapsed"/>
             </dxlc:LayoutItem>
-            <dxlc:LayoutGroup Orientation="Horizontal">
-                <dxlc:LayoutItem Label="Select Visit"
+            <dxlc:LayoutGroup x:Name="layoutVisit" Orientation="Horizontal" Visibility="Collapsed">
+                <dxlc:LayoutItem x:Name="layVisit" Label="Select Visit" 
                              HorizontalAlignment="Left">
 
                     <dxe:ComboBoxEdit x:Name="cmbVisit" Width="270" 
@@ -26,7 +41,7 @@
                                   ValueMember="PatientVisitUID"
                                   IsTextEditable="False"
                                   ItemsSource="{Binding PatientVisitLists}"
-                                  SelectedItem="{Binding SelectPatientVisit}" >
+                                  SelectedItem="{Binding SelectedPatientVisit}" >
                         <dxe:ComboBoxEdit.StyleSettings>
                             <dxe:ComboBoxStyleSettings />
                         </dxe:ComboBoxEdit.StyleSettings>
@@ -62,9 +77,27 @@
                 </dxlc:LayoutItem>
             </dxlc:LayoutGroup>
 
-            <local:SummeryView  x:Name="summeryView" Height="Auto"
-                        PatientVisit="{Binding Path=DataContext.SelectPatientVisit
-                        ,RelativeSource={RelativeSource AncestorType={x:Type local:EMRView}}}"/>
+            <dxlc:DockLayoutControl>
+                <dxwui:NavigationFrame dxlc:DockLayoutControl.Dock="Client"  x:Name="documentFrame" >
+                    <local:SummeryView  x:Name="summeryView" Height="Auto"
+                        PatientVisit="{Binding Path=DataContext.SelectedPatientVisit
+                            ,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay
+                        ,RelativeSource={RelativeSource Mode=FindAncestor,  AncestorType={x:Type local:EMRView}}}"/>
+                </dxwui:NavigationFrame>
+
+                <dxa:AccordionControl dxlc:DockLayoutControl.Dock="Right" x:Name="accordion" Width="170"
+                                  HorizontalAlignment="Stretch"
+                                  ExpandMode="SingleOrNone"
+                                  SelectedItem="{Binding SelectedPage,UpdateSourceTrigger=PropertyChanged}"
+                                  SelectionUnit="SubItem"
+                                  ItemsSource="{Binding PageViewModule,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                                  ChildrenPath="PageViews"
+                                  ShowSearchControl="False"
+                                  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+                                  VerticalAlignment="Top">
+                </dxa:AccordionControl>
+            </dxlc:DockLayoutControl>
+
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

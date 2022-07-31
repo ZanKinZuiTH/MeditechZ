@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Interface;
 using MediTech.Model;
 using MediTech.Views;
 using System;
@@ -9,16 +10,16 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class AdmissionRequestViewModel : MediTechViewModelBase
+    public class AdmissionRequestViewModel : MediTechViewModelBase, IPatientVisitViewModel
     {
         #region Properties
         public IPBookingModel iPBooking;
 
-        private PatientVisitModel _SelectPatientVisit;
-        public PatientVisitModel SelectPatientVisit
+        private PatientVisitModel _SelectedPatientVisit;
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
+            get { return _SelectedPatientVisit; }
+            set { Set(ref _SelectedPatientVisit, value); }
         }
 
         private List<LocationModel> _ListWard;
@@ -161,6 +162,7 @@ namespace MediTech.ViewModels
             get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
 
+       
         #endregion
 
         #region Method
@@ -235,15 +237,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void AssingModel(PatientVisitModel patientVisit)
-        {
-            iPBooking = new IPBookingModel();
-            iPBooking.PatientUID = patientVisit.PatientUID;
-            iPBooking.PatientVisitUID = patientVisit.PatientVisitUID;
-            iPBooking.VISTYUID = patientVisit.VISTYUID ?? 0;
-            //AssingModelProperties();
-            SelectPatientVisit = patientVisit;
-        }
+
 
         public void AssingPropertiesToModel()
         {
@@ -280,6 +274,16 @@ namespace MediTech.ViewModels
                     return false;
             }
             return true;
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            iPBooking = new IPBookingModel();
+            iPBooking.PatientUID = patVisitData.PatientUID;
+            iPBooking.PatientVisitUID = patVisitData.PatientVisitUID;
+            iPBooking.VISTYUID = patVisitData.VISTYUID ?? 0;
+            //AssingModelProperties();
+            SelectedPatientVisit = patVisitData;
         }
 
         #endregion

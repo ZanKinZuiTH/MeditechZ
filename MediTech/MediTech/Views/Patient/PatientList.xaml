@@ -80,8 +80,8 @@
 
 
                     <Grid Grid.Column="2" HorizontalAlignment="Right">
-                        <StackPanel Orientation="Vertical">
-                            <StackPanel Orientation="Horizontal">
+                        <StackPanel Orientation="Vertical" >
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
                                 <Image Source="/MediTech;component/Resources/Images/Action/AssignTo.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -152,6 +152,9 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
+
+                            </StackPanel>
+                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0" HorizontalAlignment="Right">
                                 <Image Source="/MediTech;component/Resources/Images/Print/PrintVisitSlip.png"
                                    Width="30" Height="30"
                                    Cursor="Hand"                                   
@@ -162,8 +165,6 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                            </StackPanel>
-                            <StackPanel Orientation="Horizontal" Margin="0,5,0,0">
                                 <Image Source="/MediTech;component/Resources/Images/Document/EditProperty.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -187,20 +188,10 @@
                                 <Image Source="/MediTech;component/Resources/Images/Other/PatientRecords.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
-                                   ToolTip="ประวัติผู้ป่วย">
+                                   ToolTip="ข้อมูลผู้ป่วย">
                                     <i:Interaction.Triggers>
                                         <i:EventTrigger  EventName="MouseLeftButtonDown">
                                             <mvvm:EventToCommand Command="{Binding DataContext.PatientRecordsCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Other/PatientListIcon.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="Admission Request">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.AdmissionRequestCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
@@ -214,16 +205,6 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>
-                                <Image Source="/MediTech;component/Resources/Images/Other/sendRefer.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="Consult">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.ConsultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
                                 <!--<Image Source="/MediTech;component/Resources/Images/Menu/ViewSales.png" 
                                    Width="30" Height="30"
                                    Cursor="Hand"
@@ -234,18 +215,6 @@
                                         </i:EventTrigger>
                                     </i:Interaction.Triggers>
                                 </Image>-->
-
-
-                                <Image Source="/MediTech;component/Resources/Images/Other/sendRefer.png" 
-                                   Width="30" Height="30"
-                                   Cursor="Hand"
-                                   ToolTip="testConsult">
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="MouseLeftButtonDown">
-                                            <mvvm:EventToCommand Command="{Binding DataContext.testConsultCommand, RelativeSource={RelativeSource AncestorType={x:Type vm:PatientList}}}" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </Image>
                             </StackPanel>
                         </StackPanel>
                     </Grid>
