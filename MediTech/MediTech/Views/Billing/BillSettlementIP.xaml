@@ -91,6 +91,7 @@
                     <dxe:ComboBoxEdit 
                         ItemsSource="{Binding PatientVisitPayors}" 
                         SelectedItem="{Binding SelectPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"
+                        NullValueButtonPlacement="EditBox"
                         ValueMember="PatientVisitPayorUID"
                         DisplayMember="Description"
                         />

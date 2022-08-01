@@ -514,14 +514,17 @@ namespace MediTech.ViewModels
         int SNDDOC = 419;
         int FINDIS = 421;
         int CANCEL = 410;
+        List<LookupReferenceValueModel> OrderTypes;
 
         public PatientVisitMassViewModel()
         {
             Doctors = DataService.UserManage.GetCareproviderDoctor();
-            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP");
+            var refVal = DataService.Technical.GetReferenceValueList("VISTS,ENTYP,PRSTYP");
             VisitStatus = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "VISTS"));
             EncounterType = new ObservableCollection<LookupReferenceValueModel>(refVal.Where(p => p.DomainCode == "ENTYP"));
             SelectEncounterType.Add(EncounterType.FirstOrDefault(p => p.ValueCode == "OUPAT").Key);
+
+            OrderTypes = refVal.Where(p => p.DomainCode == "PRSTYP").ToList();
             foreach (var item in VisitStatus)
             {
                 if (item.Key == REGST || item.Key == CHKOUT)
@@ -1029,6 +1032,9 @@ namespace MediTech.ViewModels
                             newOrder.BillingService = billItem.BillingServiceMetaData;
                             newOrder.UnitPrice = item.Price;
                             newOrder.DisplayPrice = item.Price;
+
+                            newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
+                            newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
 
                             newOrder.FRQNCUID = item.FRQNCUID;
                             newOrder.Quantity = item.Quantity;

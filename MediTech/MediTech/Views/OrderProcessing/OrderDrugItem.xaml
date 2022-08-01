@@ -303,7 +303,7 @@
             </dxlc:LayoutGroup>
             <dxlc:LayoutGroup HorizontalAlignment="Right" 
                                   VerticalAlignment="Bottom" >
-                <dx:SimpleButton Width="80" Command="{Binding AddCommand}" IsEnabled="{Binding IsEnableOrderDrugItem}"
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
                                      Height="25" Content="เพิ่ม"/>
                 <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
                                      Height="25" Content="ยกเลิก"/>

@@ -175,7 +175,7 @@
                                        FontSize="16" FontWeight="Bold"/>
                         </dxlc:LayoutItem>
 
-                        <dxwui:NavigationFrame  x:Name="documentFrame" AnimationType="SlideHorizontal"/>
+                        <dxwui:NavigationFrame  x:Name="documentFrame" AnimationType="None"/>
                     </dxlc:LayoutGroup>
                 </dxdo:LayoutPanel>
             </dxdo:LayoutGroup>

@@ -182,7 +182,7 @@ namespace MediTech.DataService
 
         public List<AllocatedPatBillableItemsAccountResultModel> GetPatientBillableItemsAccount(long patientUID, long patientVisitUID, int? packageUID, long? patientVisitPayorUID, DateTime startDate, DateTime endDate, int? accountUID, int? subAccountUID, int? locationUID)
         {
-            string requestApi = string.Format(@"Api/Billing/GetPatientBillableItemsAccount?patientUID={0}&patientVisitUID={1}&packageUID={2}&patientVisitPayorUID={3}&startDate={4:MM/dd/yyyy}&endDate={5:MM/dd/yyyy}&accountUID={6}&subAccountUID={7}&locationUID={8}", patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, accountUID, subAccountUID, locationUID);
+            string requestApi = string.Format(@"Api/Billing/GetPatientBillableItemsAccount?patientUID={0}&patientVisitUID={1}&packageUID={2}&patientVisitPayorUID={3}&startDate={4:MM/dd/yyyy HH:MM}&endDate={5:MM/dd/yyyy HH:MM}&accountUID={6}&subAccountUID={7}&locationUID={8}", patientUID, patientVisitUID, packageUID, patientVisitPayorUID, startDate, endDate, accountUID, subAccountUID, locationUID);
             List<AllocatedPatBillableItemsAccountResultModel> listPatBill = MeditechApiHelper.Get<List<AllocatedPatBillableItemsAccountResultModel>>(requestApi);
 
             return listPatBill;

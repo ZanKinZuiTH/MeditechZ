@@ -1,8 +1,10 @@
 ﻿using DevExpress.Xpf.Core;
 using DevExpress.Xpf.Editors;
+using DevExpress.Xpf.PivotGrid.Internal;
 using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -35,11 +37,12 @@ namespace MediTech.Views
 
         private void Image_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
-            Calculator calculator = new Calculator() { ShowBorder = false, Width = 220 };
-            FloatingContainer container = FloatingContainer.ShowDialog(calculator, this, new Size(1, 1), new FloatingContainerParameters() { Title = "Calculator" });
-            container.SizeToContent = SizeToContent.WidthAndHeight;
-            container.ContainerStartupLocation = WindowStartupLocation.CenterOwner;
-            calculator.Focus();
+            //Calculator calculator = new Calculator() { ShowBorder = false, Width = 220 };
+            //FloatingContainer container = FloatingContainer.ShowDialog(calculator, this, new Size(1, 1), new FloatingContainerParameters() { Title = "Calculator" });
+            //container.SizeToContent = SizeToContent.WidthAndHeight;
+            //container.ContainerStartupLocation = WindowStartupLocation.CenterOwner;
+            //calculator.Focus();
+            Process.Start("calc");
         }
         public void Collapse()
         {
@@ -53,10 +56,18 @@ namespace MediTech.Views
         private void imgAllocate_Click(object sender, RoutedEventArgs e)
         {
             Button bt = sender as Button;
+
             if (bt != null && bt.CommandParameter != null)
             {
+                if (((CellsAreaItem)((Button)sender).DataContext).Item.IsGrandTotalAppearance)
+                {
+                    viewModel.callAllocatedMergeReceipt(long.Parse(bt.CommandParameter.ToString()));
+                }
+                else
+                {
+                    viewModel.CallAllocatedBillableItem(long.Parse(bt.CommandParameter.ToString()));
+                }
 
-                viewModel.CallAllocatedBillableItem(long.Parse(bt.CommandParameter.ToString()));
             }
         }
     }

@@ -653,7 +653,7 @@ namespace MediTech.ViewModels
             {
                 if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key) != null && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key).Count() > 0)
                 {
-                    WarningDialog("PayorType ซ้ำ กรุณาตรวจสอบ");
+                    WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
                     return;
                 }
             }
