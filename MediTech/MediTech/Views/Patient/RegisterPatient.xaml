@@ -84,6 +84,8 @@
                                      Height="25" Content="ลงทะเบียน" Command="{Binding Path=DataContext.RegisterCommand,Source={StaticResource ManagePatient}}"/>
                                 <dxco:WizardButton Name="btnNext" Width="80"
                                      Height="25" Content="ถัดไป &gt;" Command="{Binding NextCommand}"/>
+                                <dxco:WizardButton Name="btnPrintVisit" Width="110"
+                                     Height="25" Content="สร้างและปริ้น Visit" Command="{Binding Path=DataContext.SaveAndPrintCommand,Source={StaticResource CreateVisit}}"/>
                                 <dxco:WizardButton Name="btnVisit" Width="80"
                                      Height="25" Content="สร้าง Visit" Command="{Binding Path=DataContext.SaveCommand,Source={StaticResource CreateVisit}}"/>
                             </StackPanel>
@@ -97,6 +99,7 @@
                             <Setter Property="Visibility" TargetName="btnSave" Value="Collapsed"/>
                             <Setter Property="Visibility" TargetName="btnBack" Value="Collapsed"/>
                             <Setter Property="Visibility" TargetName="btnVisit" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnPrintVisit" Value="Collapsed"/>
                         </DataTrigger>
                         <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="1">
                             <Setter Property="Visibility" TargetName="btnReadCard" Value="Visible"/>
@@ -105,6 +108,7 @@
                             <Setter Property="Visibility" TargetName="btnSave" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnBack" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnVisit" Value="Collapsed"/>
+                            <Setter Property="Visibility" TargetName="btnPrintVisit" Value="Collapsed"/>
                         </DataTrigger>
 
                         <DataTrigger Binding="{Binding Path=DataContext.SelectPageIndex,Mode=TwoWay,RelativeSource={RelativeSource AncestorType={x:Type vm:RegisterPatient}}}" Value="2">
@@ -114,6 +118,7 @@
                             <Setter Property="Visibility" TargetName="btnSave" Value="Collapsed"/>
                             <Setter Property="Visibility" TargetName="btnBack" Value="Visible"/>
                             <Setter Property="Visibility" TargetName="btnVisit" Value="Visible"/>
+                            <Setter Property="Visibility" TargetName="btnPrintVisit" Value="Visible"/>
                         </DataTrigger>
                     </DataTemplate.Triggers>
                 </DataTemplate>

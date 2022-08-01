@@ -175,7 +175,7 @@
                     </dx:DXTabItem>
 
                 </dx:DXTabControl>
-                <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
                     <dx:SimpleButton Width="80" 
                                      HorizontalAlignment="Right"
                                      Command="{Binding AddCommand}"

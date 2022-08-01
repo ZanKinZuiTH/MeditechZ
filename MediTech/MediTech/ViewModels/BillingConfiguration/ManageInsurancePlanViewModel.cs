@@ -81,31 +81,25 @@ namespace MediTech.ViewModels
                 {
                     if(SelectAgreement.PolicyMasterUID != null)
                     {
-                        SelectPolicy = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
+                        PolicyName = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0).PolicyName;
                     }
                     else
                     {
-                        SelectPolicy = null;
+                        PolicyName = null;
                     }
 
                 }   
             }
         }
+  
 
-
-        private List<PolicyMasterModel> _PolicySource;
-        public List<PolicyMasterModel> PolicySource
+        private string _PolicyName;
+        public string PolicyName
         {
-            get { return _PolicySource; }
-            set { Set(ref _PolicySource, value); }
+            get { return _PolicyName; }
+            set { Set(ref _PolicyName, value); }
         }
 
-        private PolicyMasterModel _SelectPolicy;
-        public PolicyMasterModel SelectPolicy
-        {
-            get { return _SelectPolicy; }
-            set { Set(ref _SelectPolicy, value); }
-        }
         #endregion
 
         #region Command
@@ -134,8 +128,8 @@ namespace MediTech.ViewModels
         InsurancePlanModel InsurancePlan;
         public ManageInsurancePlanViewModel()
         {
-            //AgreementSource = DataService.MasterData.SearchPayorAgreementByINCO("",InsuranceCompanyID);
-            //PayorOfficeSource = DataService.MasterData.SearchPayorDetailByINCO("",InsuranceCompanyID);
+            //AgreementSource = DataService.MasterData.SearchPayorAgreementByINCO("", InsuranceCompanyID);
+            //PayorOfficeSource = DataService.MasterData.SearchPayorDetailByINCO("", InsuranceCompanyID);
             //PolicySource = DataService.Billing.GetPolicyMasterAll();
         }
 
@@ -176,7 +170,7 @@ namespace MediTech.ViewModels
 
             InsurancePlan.PayorAgreementUID = SelectAgreement != null ? SelectAgreement.PayorAgreementUID : 0;
             InsurancePlan.PayorDetailUID = SelectPayorOffice != null ? SelectPayorOffice.PayorDetailUID : 0;
-            InsurancePlan.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : 0;
+            //InsurancePlan.PolicyMasterUID = SelectPolicy != null ? SelectPolicy.PolicyMasterUID : 0;
             InsurancePlan.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             InsurancePlan.ActiveFrom = ActiveFrom;
             InsurancePlan.ActiveTo = ActiveTo;
@@ -186,8 +180,6 @@ namespace MediTech.ViewModels
         private void AssignModelToProperties(InsurancePlanModel model)
         {
             SelectAgreement = AgreementSource.FirstOrDefault(p => p.PayorAgreementUID == model.PayorAgreementUID);
-            if(model.PolicyMasterUID != 0)
-            SelectPolicy = PolicySource.FirstOrDefault(p => p.PolicyMasterUID == model.PolicyMasterUID);
             if (model.PayorDetailUID != 0)
             SelectPayorOffice = PayorOfficeSource.FirstOrDefault(p => p.PayorDetailUID == model.PayorDetailUID);
             ActiveFrom = model.ActiveFrom;
