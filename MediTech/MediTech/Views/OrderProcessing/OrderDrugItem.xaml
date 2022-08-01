@@ -10,10 +10,10 @@
              xmlns:uc="clr-namespace:MediTech.CustomControl.Banner"
              x:Name="OrderDrugView"
              DataContext="{Binding Path=OrderDrugItemViewModel,Source={StaticResource Locator}}"
-             Width="800"
-             d:DesignHeight="450" d:DesignWidth="800">
+             Width="900"
+             d:DesignHeight="450" d:DesignWidth="900">
     <Grid>
-        <dxlc:LayoutControl Orientation="Vertical">
+        <dxlc:LayoutControl Orientation="Vertical" IsEnabled="{Binding IsEnableOrderDrugItem}">
             <dxlc:LayoutItem>
                 <TextBlock Text="{Binding TypeOrder}" FontSize="14"/>
             </dxlc:LayoutItem>
@@ -287,13 +287,6 @@
                     </dxlc:LayoutItem.Label>
                     <dxe:TextEdit Text="{Binding NoteToPharmacy}" TextWrapping="Wrap" Height="50" VerticalContentAlignment="Top"/>
                 </dxlc:LayoutItem>
-                <dxlc:LayoutGroup HorizontalAlignment="Right" 
-                                  VerticalAlignment="Bottom" >
-                    <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
-                                     Height="25" Content="เพิ่ม"/>
-                    <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
-                                     Height="25" Content="ยกเลิก"/>
-                </dxlc:LayoutGroup>
 
                 <dxlc:LayoutItem Label="Patient Instruction" LabelHorizontalAlignment="Right">
                     <TextBlock Text="{Binding PatientInstruction}"/>
@@ -305,8 +298,16 @@
                                  LabelHorizontalAlignment="Right">
                     <TextBlock Text="{Binding Comment}"/>
                 </dxlc:LayoutItem>
+                
+                
             </dxlc:LayoutGroup>
-
+            <dxlc:LayoutGroup HorizontalAlignment="Right" 
+                                  VerticalAlignment="Bottom" >
+                <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                                     Height="25" Content="เพิ่ม"/>
+                <dx:SimpleButton Width="85" Command="{Binding CancelCommand}"
+                                     Height="25" Content="ยกเลิก"/>
+            </dxlc:LayoutGroup>
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

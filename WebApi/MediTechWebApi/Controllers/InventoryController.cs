@@ -1,16 +1,16 @@
 ﻿using MediTech.DataBase;
 using MediTech.Model;
+using ShareLibrary;
 using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Migrations;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Data;
-using System.Data.Entity.Migrations;
 using System.Transactions;
 using System.Web.Http;
-using ShareLibrary;
-using System.Data.Entity;
 
 namespace MediTechWebApi.Controllers
 {
@@ -1174,7 +1174,7 @@ namespace MediTechWebApi.Controllers
                     var prescriptionItems = db.PrescriptionItem.Where(p => p.ItemMasterUID == itemMasterUID
                     && p.StoreUID == item.StoreUID && p.StatusFlag == "A" && p.ORDSTUID == 2847).ToList();
 
-                    if(prescriptionItems != null && prescriptionItems?.Count > 0)
+                    if (prescriptionItems != null && prescriptionItems?.Count > 0)
                     {
                         item.Quantity = item.Quantity - (prescriptionItems.Sum(p => p.Quantity) ?? 0);
                     }
@@ -1261,7 +1261,7 @@ namespace MediTechWebApi.Controllers
 
         [Route("SearchStockWorkList")]
         [HttpGet]
-        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID,int? locationUID)
+        public List<StockWorkListModel> SearchStockWorkList(DateTime? dateFrom, DateTime? dateTo, int? organisationUID, int? locationUID)
         {
             DataTable data = SqlDirectStore.pSearchStockWorkList(dateFrom, dateTo, organisationUID, locationUID);
             List<StockWorkListModel> returnData = data.ToList<StockWorkListModel>();
@@ -2681,7 +2681,7 @@ namespace MediTechWebApi.Controllers
 
         #region ItemReceive
         [HttpGet]
-        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID,int? locationIssueUID, int? organisationReceiveUID,int? locationReceiveUID)
+        public List<ItemReceiveModel> SearchItemReceive(DateTime? dateFrom, DateTime? dateTo, string receiveID, int? organisationIssueUID, int? locationIssueUID, int? organisationReceiveUID, int? locationReceiveUID)
         {
             List<ItemReceiveModel> data = (from j in db.ItemReceive
                                            where j.StatusFlag == "A"
@@ -3066,7 +3066,7 @@ namespace MediTechWebApi.Controllers
         {
             List<IPFillDetailModel> data = (from p in db.IPFillDetail
                                             join item in db.ItemMaster on p.ItemMasterUID equals item.UID
-                                            where p.StatusFlag == "A" 
+                                            where p.StatusFlag == "A"
                                             && item.StatusFlag == "A"
                                             && p.IPFillProcessUID == iPFillProcessUID
                                             select new IPFillDetailModel()
@@ -3140,9 +3140,9 @@ namespace MediTechWebApi.Controllers
                 db.IPFillProcess.Add(iPFill);
                 db.SaveChanges();
 
-                if(iPFillProcessModel.StandingModels != null && iPFillProcessModel.StandingModels.Count != 0)
+                if (iPFillProcessModel.StandingModels != null && iPFillProcessModel.StandingModels.Count != 0)
                 {
-                    foreach(var item in iPFillProcessModel.StandingModels)
+                    foreach (var item in iPFillProcessModel.StandingModels)
                     {
                         int BSMDDUID = item.BSMDDUID;
 
@@ -3279,7 +3279,7 @@ namespace MediTechWebApi.Controllers
                         #region Prescription
 
                         Prescription presc = new Prescription();
-                       
+
                         int seqPrescriptionID;
                         string prescriptionID = SEQHelper.GetSEQIDFormat("SEQPrescription", out seqPrescriptionID);
 
@@ -3295,7 +3295,7 @@ namespace MediTechWebApi.Controllers
 
                         if (seqPrescriptionID != 0)
                         {
-                          prescriptionID = "I" + prescriptionID;
+                            prescriptionID = "I" + prescriptionID;
                         }
 
                         presc.PrescriptionNumber = prescriptionID;
@@ -3439,11 +3439,11 @@ namespace MediTechWebApi.Controllers
             {
                 DateTime now = DateTime.Now;
 
-                List<IPFillDetail> iPFillDetails = db.IPFillDetail.Where(p => p.IPFillProcessUID == ipfillProccessUID && p.StatusFlag =="A").ToList();
+                List<IPFillDetail> iPFillDetails = db.IPFillDetail.Where(p => p.IPFillProcessUID == ipfillProccessUID && p.StatusFlag == "A").ToList();
 
-                if(iPFillDetails != null && iPFillDetails.Count != 0)
+                if (iPFillDetails != null && iPFillDetails.Count != 0)
                 {
-                    foreach(var item in iPFillDetails)
+                    foreach (var item in iPFillDetails)
                     {
                         db.IPFillDetail.Attach(item);
                         item.MUser = userUID;
@@ -3491,7 +3491,7 @@ namespace MediTechWebApi.Controllers
                             prescriptionItem.MUser = userUID;
                             prescriptionItem.MWhen = now;
                             prescriptionItem.ORDSTUID = 2875;
-                            
+
 
                             Prescription prescription = db.Prescription.Find(stockmovement.PrescriptionUID);
                             db.Prescription.Attach(prescription);
@@ -3505,10 +3505,10 @@ namespace MediTechWebApi.Controllers
                             patientOrderDetail.MUser = userUID;
                             patientOrderDetail.MWhen = now;
                             patientOrderDetail.ORDSTUID = 2875;
-                           
+
 
                             PatientBillableItem patientBillable = db.PatientBillableItem.Where(p => p.PatientOrderDetailUID == item.PatientOrderDetailUID && p.IPFillProcessUID == ipfillProccessUID && p.StatusFlag == "A").FirstOrDefault(); ;
-                            if(patientBillable != null)
+                            if (patientBillable != null)
                             {
                                 db.PatientBillableItem.Attach(patientBillable);
                                 patientBillable.MUser = userUID;
@@ -3625,14 +3625,14 @@ namespace MediTechWebApi.Controllers
              && (storeUID == null || p.StoreUID == storeUID)
              && (patientUID == null || p.PatientUID == patientUID))
                 .Select(p => new SaleReturnModel()
-                 {
+                {
                     SaleReturnUID = p.UID,
                     StoreUID = p.StoreUID,
                     StoreName = SqlFunction.fGetStoreName(p.StoreUID),
                     PatientUID = p.PatientUID ?? 0,
                     PatientName = SqlFunction.fGetPatientName(p.PatientUID ?? 0),
                     Comments = p.Comments,
-                    PatientVisitUID =  p.PatientVisitUID ?? 0,
+                    PatientVisitUID = p.PatientVisitUID ?? 0,
                     IsCancelDispense = p.IsCancelDispense,
                     SaleUID = p.SaleUID ?? 0,
                     OwnerOrganisationUID = p.OwnerOrganisationUID,
@@ -3640,7 +3640,7 @@ namespace MediTechWebApi.Controllers
                     ReturnedBy = p.ReturnedBy,
                     ReturnedByName = SqlFunction.fGetCareProviderName(p.ReturnedBy),
                     ReturnID = p.ReturnID
-                 }).OrderByDescending(p => p.ReturnDttm).ToList();
+                }).OrderByDescending(p => p.ReturnDttm).ToList();
 
             return data;
         }
@@ -3666,12 +3666,74 @@ namespace MediTechWebApi.Controllers
                     PatientBilledItemUID = p.PatientBilledItemUID ?? 0,
                     PatientOrderDetailUID = p.PatientOrderDetailUID ?? 0,
                     ItemCost = p.ItemCost ?? 0,
-                    
+
                 }).ToList();
 
             return data;
         }
 
+        [Route("GetPrescriptionDispenseReturn")]
+        [HttpGet]
+        public List<PrescriptionItemModel> GetPrescriptionDispenseReturn(long? patientUID, int? storeUID)
+        {
+            List<PrescriptionItemModel> data = (from ps in db.Prescription
+                                                join pst in db.PrescriptionItem on ps.UID equals pst.PrescriptionUID
+                                                join pa in db.Patient on ps.PatientUID equals pa.UID
+                                                join pv in db.PatientVisit on ps.PatientVisitUID equals pv.UID
+                                                where ps.StatusFlag == "A"
+                                                select new PrescriptionItemModel
+                                                {
+                                                    PrescriptionItemUID = pst.UID,
+                                                    PrescriptionUID = ps.UID,
+                                                    PrestionItemStatus = SqlFunction.fGetRfValDescription(ps.ORDSTUID ?? 0),
+                                                    ORDSTUID = ps.ORDSTUID,
+                                                    ItemCode = pst.ItemCode,
+                                                    ItemName = pst.ItemName,
+                                                    ItemMasterUID = pst.ItemMasterUID,
+                                                    Quantity = pst.Quantity,
+                                                    QuantityUnit = SqlFunction.fGetRfValDescription(pst.IMUOMUID ?? 0),
+                                                    IMUOMUID = pst.IMUOMUID,
+                                                    DFORMUID = pst.DFORMUID,
+                                                    DrugForm = SqlFunction.fGetRfValDescription(pst.DFORMUID ?? 0),
+                                                    StoreUID = pst.StoreUID,
+                                                    StoreName = SqlFunction.fGetStoreName(pst.StoreUID ?? 0),
+                                                    InstructionRoute = SqlFunction.fGetRfValDescription(pst.PDSTSUID ?? 0),
+                                                    Dosage = pst.Dosage,
+                                                    FRQNCUID = pst.FRQNCUID,
+                                                    Frequency = SqlFunction.fGetFrequencyDescription(pst.FRQNCUID ?? 0, "TH"),
+                                                    InstructionText = pst.InstructionText,
+                                                    LocalInstructionText = pst.LocalInstructionText,
+                                                    ClinicalComments = pst.ClinicalComments,
+                                                    DrugType = SqlFunction.fGetRfValDescription(pst.DFORMUID ?? 0)
+                                                }).ToList();
+
+            //foreach (var item in data)
+            //{
+
+            //    IEnumerable<Stock> stockItem = db.Stock
+            //    .Where(p => p.StatusFlag == "A"
+            //    && p.ItemMasterUID == item.ItemMasterUID
+            //    && p.StoreUID == item.StoreUID && p.Quantity > 0);
+            //    if (stockItem != null && stockItem.Count() > 0)
+            //    {
+            //        Store store = db.Store.Find(item.StoreUID);
+            //        if (store.STDTPUID == 2901)
+            //            stockItem = stockItem.OrderBy(p => p.ExpiryDttm).ThenBy(p => p.CWhen);
+            //        else if (store.STDTPUID == 2902)
+            //            stockItem = stockItem.OrderBy(p => p.CWhen).ThenBy(p => p.ExpiryDttm);
+
+            //        item.ExpiryDate = stockItem.FirstOrDefault().ExpiryDttm;
+
+            //    }
+
+            //    if (item.FRQNCUID != null && item.FRQNCUID != 0)
+            //    {
+            //        item.Frequency = db.FrequencyDefinition.Find(item.FRQNCUID).Comments;
+            //    }
+            //}
+            return data;
+
+        }
         #endregion
     }
 }

@@ -15,6 +15,8 @@ using MediTech.Helpers;
 using MediTech.Views;
 using System.Drawing;
 using System.Collections.ObjectModel;
+using DevExpress.XtraReports.UI;
+using MediTech.Reports.Operating.Patient;
 
 namespace MediTech.ViewModels
 {
@@ -479,6 +481,13 @@ namespace MediTech.ViewModels
             get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(SavePatientVisit)); }
         }
 
+        private RelayCommand _SaveAndPrintCommand;
+
+        public RelayCommand SaveAndPrintCommand
+        {
+            get { return _SaveAndPrintCommand ?? (_SaveAndPrintCommand = new RelayCommand(SaveAndPrintPatientVisit)); }
+        }
+
         private RelayCommand _CancelCommand;
 
         public RelayCommand CancelCommand
@@ -653,7 +662,7 @@ namespace MediTech.ViewModels
             {
                 if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key) != null && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key).Count() > 0)
                 {
-                    WarningDialog("PayorType ซ้ำ กรุณาตรวจสอบ");
+                    WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
                     return;
                 }
             }
@@ -889,6 +898,103 @@ namespace MediTech.ViewModels
             }
         }
 
+        void SaveAndPrintPatientVisit()
+        {
+            if (ValidateVisitData())
+            {
+                return;
+            }
+
+            PatientVisitModel visitInfo = new PatientVisitModel();
+            visitInfo.StartDttm = DateTime.Parse(StartDate.ToString("dd/MM/yyyy") + " " + StartTime.ToString("HH:mm"));
+            visitInfo.PatientUID = Patient.PatientUID;
+            visitInfo.VISTYUID = SelectedVisitType.Key;
+            switch (SelectedVisitType.ValueCode)
+            {
+                case "HLPRO":
+                case "MBCHK":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "HEAL").Key;
+                    break;
+                case "EMR":
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "AEPAT").Key;
+                    break;
+                default:
+                    visitInfo.ENTYPUID = EncouterTypeSource.FirstOrDefault(p => p.ValueCode == "OUPAT").Key;
+                    break;
+            }
+            visitInfo.VISTSUID = 417;
+            visitInfo.PRITYUID = SelectedPriority.Key;
+            visitInfo.Comments = CommentDoctor;
+            visitInfo.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            visitInfo.CheckupJobUID = SelectedCheckupJob != null ? SelectedCheckupJob.CheckupJobContactUID : (int?)null;
+            if (SelectedCareprovider != null)
+                visitInfo.CareProviderUID = SelectedCareprovider.CareproviderUID;
+            visitInfo.LocationUID = SelectLocation != null ? SelectLocation.LocationUID : (int?)null;
+            visitInfo.PatientVisitPayors = PatientVisitPayorList.ToList();
+            if (!IsMassRegister)
+            {
+
+
+                if (UseReadCard && Booking == null && Patient.PatientUID != 0)
+                {
+                    var Bookings = DataService.PatientIdentity.SearchBookingNotExistsVisit(DateTime.Now, DateTime.Now, null, Patient.PatientUID, 2944, null, AppUtil.Current.OwnerOrganisationUID);
+                    if (Bookings != null && Bookings.Count > 0)
+                    {
+                        string reminderMessage = Bookings.FirstOrDefault().PatientReminderMessage;
+                        MessageBoxResult result = QuestionDialog("ผู้ป่วยมีนัด " + reminderMessage + " วันนี้ คุณต้องการดึงนัดมาลงทะเบียน หรือไม่?");
+                        if (result == MessageBoxResult.Yes)
+                        {
+                            Booking = Bookings.FirstOrDefault();
+                        }
+                    }
+                }
+
+                if (Booking != null)
+                    visitInfo.BookingUID = Booking.BookingUID; //Appointment
+
+                PatientVisitModel returnData = DataService.PatientIdentity.SavePatientVisit(visitInfo, AppUtil.Current.UserID);
+                if (string.IsNullOrEmpty(returnData.VisitID))
+                {
+                    ErrorDialog("ไม่สามารถบันทึกข้อมูล Visit คนไข้ได้ ติดต่อ Admin");
+                    return;
+                }
+                else
+                {
+                    var PateintVisitPayorDatas = PatientVisitPayorList.ToList();
+                    if (_deletedVisitPayorList != null)
+                        PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                    DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
+                    if (Booking != null)
+                    {
+                        DataService.PatientIdentity.UpdateBookingArrive(Booking.BookingUID, AppUtil.Current.UserID);
+                    }
+                }
+
+                PatientVisitSlip rpt = new PatientVisitSlip();
+                ReportPrintTool printTool = new ReportPrintTool(rpt);
+                rpt.Parameters["OrganisationUID"].Value = returnData.OwnerOrganisationUID;
+                rpt.Parameters["PatientUID"].Value = returnData.PatientUID;
+                rpt.Parameters["PatientVisitUID"].Value = returnData.PatientVisitUID;
+                rpt.RequestParameters = false;
+                rpt.ShowPrintMarginsWarning = false;
+                printTool.ShowPreviewDialog(); ;
+            }
+            else
+            {
+                PatientVisitInfo = visitInfo;
+            }
+
+            var parent = ((System.Windows.Controls.UserControl)this.View).Parent;
+            if (parent != null && parent is System.Windows.Window)
+            {
+                CloseViewDialog(ActionDialog.Save);
+            }
+            else
+            {
+                PatientList list = new PatientList();
+                ChangeViewPermission(list);
+            }
+        }
         string GetInsuranceComapnyName(int insuranceComapnyUID)
         {
             string name = string.Empty;

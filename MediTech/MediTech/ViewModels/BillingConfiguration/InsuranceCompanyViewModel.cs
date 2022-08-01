@@ -58,6 +58,14 @@ namespace MediTech.ViewModels
                 else
                 {
                     IsSelectInsuranceCompany = false;
+                    PayorDetails = null;
+                    SelectPayorDetail = null;
+
+                    PayorAgreement = null;
+                    SelectPayorAgreement = null;
+
+                    InsurancePlan = null;
+                    SelectInsurancePlan = null;
                 }
             }
         }
@@ -315,7 +323,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         PayorDetails = DataService.Billing.SearchPayorDetailByINCO("", SelectInsranceCompany.InsuranceCompanyUID);
                         SelectPayorDetail = null;
                     }
@@ -332,7 +339,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         PayorAgreement = DataService.Billing.SearchPayorAgreementByINCO("", SelectInsranceCompany.InsuranceCompanyUID);
 
                     }
@@ -350,7 +356,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         InsurancePlan = DataService.Billing.SearchInsurancePlaneByINCO(SelectInsranceCompany.InsuranceCompanyUID);
                     }
                 }
@@ -372,7 +377,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         PayorDetails = DataService.Billing.SearchPayorDetailByINCO("", SelectInsranceCompany.InsuranceCompanyUID);
                     }
                 
@@ -391,7 +395,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         PayorAgreement = DataService.Billing.SearchPayorAgreementByINCO("", SelectInsranceCompany.InsuranceCompanyUID);
                     }
                 
@@ -410,7 +413,6 @@ namespace MediTech.ViewModels
 
                     if (result != null && result.ResultDialog == ActionDialog.Save)
                     {
-                        SaveSuccessDialog();
                         InsurancePlan = DataService.Billing.SearchInsurancePlaneByINCO(SelectInsranceCompany.InsuranceCompanyUID);
                     }
 

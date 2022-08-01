@@ -161,7 +161,7 @@
                                     <dxg:GridControl.Columns>
                                         <dxg:GridColumn Header="Agreement Name" FieldName="PayorAgreementName" Width="200"/>
                                         <dxg:GridColumn Header="Description" FieldName="InsuranceCompanyName" Width="100"/>
-                                        <dxg:GridColumn Header="Payor Office" FieldName="PayorOfficeName" Width="100"/>
+                                        <dxg:GridColumn Header="Payor Office" FieldName="PayorName" Width="100"/>
                                         <dxg:GridColumn Header="Policy" FieldName="PolicyName" Width="100"/>
                                         <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
                                         <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
@@ -175,7 +175,7 @@
                     </dx:DXTabItem>
 
                 </dx:DXTabControl>
-                <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
                     <dx:SimpleButton Width="80" 
                                      HorizontalAlignment="Right"
                                      Command="{Binding AddCommand}"

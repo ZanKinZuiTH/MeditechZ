@@ -252,7 +252,7 @@ namespace MediTech.ViewModels
             iPBooking.AdmissionDttm = (DateTime)(ExpectedAdmission != null ? ExpectedAdmission : date);
             iPBooking.ExpectedDischargeDttm = (DateTime)(DischargeDate != null ? DischargeDate : date);
             iPBooking.ExpectedLengthofStay = LenghtofDay != null ? Int32.Parse(LenghtofDay) : (int?)null;
-            iPBooking.CareproviderUID = SelectRequestedDoctor.CareproviderUID != 0 ? SelectRequestedDoctor.CareproviderUID : 0;
+            iPBooking.CareproviderUID = SelectRequestedDoctor != null ? SelectRequestedDoctor.CareproviderUID : 0;
             iPBooking.SpecialityUID = SelectSpeciality != null ? SelectSpeciality.SpecialityUID : (int?)null;
             iPBooking.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
             iPBooking.LocationUID = SelectedWard != null ? SelectedWard.LocationUID : (int?)null;

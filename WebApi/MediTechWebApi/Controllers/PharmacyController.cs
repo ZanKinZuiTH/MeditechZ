@@ -1104,6 +1104,8 @@ namespace MediTechWebApi.Controllers
         [HttpGet]
         public List<PatientOrderStandingModel> GetPatientOrderStanding(int? wardUID, int storeUID)
         {
+            DateTime now = DateTime.Now.Date;
+
             List<PatientOrderStandingModel> data = (from ptod in db.PatientOrderDetail
                                                   join pto in db.PatientOrder on ptod.PatientOrderUID equals pto.UID
                                                   join pv in db.PatientVisit on pto.PatientVisitUID equals pv.UID
@@ -1120,7 +1122,7 @@ namespace MediTechWebApi.Controllers
                                                   && ptod.ORDSTUID != 2845 //complete
                                                   && ptod.IsStandingOrder == "Y"
                                                   && pto.IsContinuous == "Y"
-                                                  && ptod.EndDttm == null
+                                                  && (ptod.EndDttm == null || now <= DbFunctions.TruncateTime(ptod.EndDttm))
                                                   && ptod.StoreUID == storeUID
                                                   && ( wardUID == null || pv.LocationUID == wardUID)
                                                   select new PatientOrderStandingModel
@@ -1162,7 +1164,7 @@ namespace MediTechWebApi.Controllers
 
             if (data.Count != 0)
             {
-                DateTime now = DateTime.Now.Date;
+                //DateTime now = DateTime.Now.Date;
                 //DateTime now = DateTime.Parse("2022-07-29");
                 foreach (var item in data.ToList())
                 {

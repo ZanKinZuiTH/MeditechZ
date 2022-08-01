@@ -14,6 +14,7 @@ namespace MediTech.Model
         public string VisitStatus { get; set; }
         public DateTime VisitDate { get; set; }
         public string CareproviderName { get; set; }
+        public string LocationName { get; set; }
         public bool IsAllergy { get; set; }
         public int? VisitCount { get; set; }
     }

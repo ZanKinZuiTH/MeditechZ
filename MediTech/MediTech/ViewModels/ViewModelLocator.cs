@@ -1749,6 +1749,17 @@ namespace MediTech.ViewModels
             }
         }
 
+        public CloseOrderPopUpViewModel CloseOrderPopUpViewModel
+        {
+            get
+            {
+                if (!SimpleIoc.Default.ContainsCreated<CloseOrderPopUpViewModel>())
+                    SimpleIoc.Default.Register<CloseOrderPopUpViewModel>();
+
+                return ServiceLocator.Current.GetInstance<CloseOrderPopUpViewModel>();
+            }
+        }
+
         #endregion
 
         #region Patient

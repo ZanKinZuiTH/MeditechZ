@@ -1,5 +1,6 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
+using MediTech.Views;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -122,10 +123,21 @@ namespace MediTech.ViewModels
         }
 
         private RelayCommand _ClearCommand;
-
         public RelayCommand ClearCommand
         {
             get { return _ClearCommand ?? (_ClearCommand = new RelayCommand(Clear)); }
+        }
+
+        private RelayCommand _CreateDispenseCommand;
+        public RelayCommand CreateDispenseCommand
+        {
+            get { return _CreateDispenseCommand ?? (_CreateDispenseCommand = new RelayCommand(CreateDispense)); }
+        }
+
+        private RelayCommand _CancelCommand;
+        public RelayCommand CancelCommand
+        {
+            get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
 
         private RelayCommand _PatientSearchCommand;
@@ -158,6 +170,17 @@ namespace MediTech.ViewModels
             DateTo = null;
             SelectedPateintSearch = null;
             SelectStore = null;
+        }
+
+        private void CreateDispense()
+        {
+            CreateDispenseReturn createDispense = new CreateDispenseReturn();
+            ChangeViewPermission(createDispense);
+        }
+
+        private void Cancel()
+        {
+            
         }
 
         public void PatientSearch()

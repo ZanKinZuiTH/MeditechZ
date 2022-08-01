@@ -88,7 +88,8 @@
                 </dxlc:LayoutItem>
                 <dxlc:LayoutItem Label="Payor Name">
                     <dxe:ComboBoxEdit 
-                        ItemsSource="{Binding PatientVisitPayors}" 
+                        ItemsSource="{Binding PatientVisitPayors}"
+                        NullValueButtonPlacement="EditBox"
                         SelectedItem="{Binding SelectPatientVisitPayor,UpdateSourceTrigger=PropertyChanged}"
                         ValueMember="PatientVisitPayorUID"
                         DisplayMember="Description"

@@ -186,6 +186,8 @@ namespace MediTech.ViewModels
                 newPatient.VisitStatus = patVisit.VisitStatus;
                 newPatient.LocationUID = patVisit.LocationUID;
                 newPatient.LocationName = patVisit.LocationName;
+                newPatient.VISTSUID = patVisit.VISTSUID;
+                newPatient.ENTYPUID = patVisit.ENTYPUID; ;
                 newPatient.DischargeDttm = patVisit.DischargeDttm;
                 newPatient.DischargedUser = patVisit.DischargedUser;
                 newPatient.Gender = patVisit.Gender;
@@ -200,7 +202,7 @@ namespace MediTech.ViewModels
 
                 UnBilledPatientLists.Add(newPatient);
             }
-         }
+        }
 
         void Clean()
         {
@@ -303,7 +305,7 @@ namespace MediTech.ViewModels
                 }
             }
         }
-        
+
 
         public void PatientSearch()
         {

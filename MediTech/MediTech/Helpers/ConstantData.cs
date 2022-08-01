@@ -14,6 +14,7 @@ namespace MediTech.Helpers
             List<ReportsModel>  ListPatientReports = new List<ReportsModel>();
             ListPatientReports.Add(new ReportsModel { Name = "OPD Card", NamespaceName = "MediTech.Reports.Operating.Patient.OPDCard" });
             ListPatientReports.Add(new ReportsModel { Name = "OPD กายภาพ", NamespaceName = "MediTech.Reports.Operating.Patient.RehabPhysical" });
+            ListPatientReports.Add(new ReportsModel { Name = "Visit Slip", NamespaceName = "MediTech.Reports.Operating.Patient.PatientVisitSlip" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบ Request Order", NamespaceName = "MediTech.Reports.Operating.Patient.OrderRequest" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCertificate" });
             ListPatientReports.Add(new ReportsModel { Name = "ใบรับรองแพทย์ 5 โรค", NamespaceName = "MediTech.Reports.Operating.Patient.MedicalCouncil5" });

@@ -6,6 +6,7 @@ using System.Data;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.Serialization.Formatters.Binary;
 using System.Text;
 
 namespace ShareLibrary
@@ -231,6 +232,44 @@ namespace ShareLibrary
             }
             table.TableName = tableName;
             return table;
+        }
+
+        public static object CloneObject(this object objSource)
+        {
+            //ดึง Type ของ Object ออกมา และสร้าง Object ใหม่ โดยใช้ Activator.CreateInstance
+            Type typeSource = objSource.GetType();
+            object objTarget = Activator.CreateInstance(typeSource);
+
+            //List Property ของ Object ต้นทางมาให้หมด
+            PropertyInfo[] propertyInfo = typeSource.GetProperties(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+
+            //Loop ยัดค่าลงไป
+            foreach (PropertyInfo property in propertyInfo)
+            {
+                //ตรวจสอบก่อนว่า Property สามารถเขียนได้ หรือไม่
+                if (property.CanWrite)
+                {
+                    //ตรวจสอบ Type ถ้าเป็น Enum หรือ String ก็ยัดข้อมูลงไปได้
+                    if (property.PropertyType.IsValueType || property.PropertyType.IsEnum || property.PropertyType.Equals(typeof(System.String)))
+                    {
+                        property.SetValue(objTarget, property.GetValue(objSource, null), null);
+                    }
+                    //ถ้าไม่ใช้เงื่อนไขข้างต้น ต้อง Recursive เพราะเป็น Property ที่มีเงื่อนไขซับซ้อน
+                    else
+                    {
+                        object objPropertyValue = property.GetValue(objSource, null);
+                        if (objPropertyValue == null)
+                        {
+                            property.SetValue(objTarget, null, null);
+                        }
+                        else
+                        {
+                            property.SetValue(objTarget, objPropertyValue.CloneObject(), null);
+                        }
+                    }
+                }
+            }
+            return objTarget;
         }
 
     }

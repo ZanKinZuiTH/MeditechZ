@@ -1,6 +1,7 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using MediTech.Model;
 using MediTech.Views;
+using MediTech.Views.Billing;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -246,6 +247,32 @@ namespace MediTech.ViewModels
             CallAllocation("F", allocatedVisitPayorUID: -1);
             Reload();
         }
+
+        public void callAllocatedMergeReceipt(long lAllocatedPatBillableItemUID)
+        {
+            AllocatedPatBillableItemsResultModel selectedAllocatedPatBillableItem;
+
+            if (lAllocatedPatBillableItemUID > 0 && AllocatedPatientBillableItems != null && AllocatedPatientBillableItems.Count() > 0
+&& AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID) != null
+&& AllocatedPatientBillableItems.Where(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID).Count() > 0)
+            {
+
+                selectedAllocatedPatBillableItem = AllocatedPatientBillableItems.FirstOrDefault(p => p.PatientBillableItemUID == lAllocatedPatBillableItemUID);
+                if (selectedAllocatedPatBillableItem != null && string.IsNullOrEmpty(selectedAllocatedPatBillableItem.PayorName))
+                {
+                    WarningDialog("ไม่มี Payor สำหรับการ Allocate");
+                    return;
+                }
+                MergeBillRecipetPopup mergeBillRecipet = new MergeBillRecipetPopup();
+                ((mergeBillRecipet.DataContext as MergeBillRecipetPopupViewModel)).AssignMergeRecipet(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, selectedAllocatedPatBillableItem, AllocatedPatientBillableItems.ToList(), PatientVisitPayors, DateFrom ?? SelectPatientVisit.StartDttm.Value, DateTo ?? DateTime.Now);
+                MergeBillRecipetPopupViewModel modelResult = (MergeBillRecipetPopupViewModel)LaunchViewDialogNonPermiss(mergeBillRecipet, true);
+                if (modelResult.ResultDialog == ActionDialog.Save)
+                {
+                    Reload();
+                }
+            }
+        }
+
         public void CallAllocatedBillableItem(long lAllocatedPatBillableItemUID)
         {
             AllocatedPatBillableItemsResultModel selectedAllocatedPatBillableItem;
@@ -298,6 +325,28 @@ namespace MediTech.ViewModels
             DataService.Billing.AllocatePatientBillableItem(allocateModel);
         }
 
+
+        private void Reload()
+        {
+            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null
+                , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
+                ));
+            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
+            CollpaseExpand();
+        }
+
+        private void GetVisitPayors(long patientVisitUID)
+        {
+            PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(patientVisitUID);
+        }
+
+        public void AssingPatientVisit(PatientVisitModel patientVisit)
+        {
+            SelectPatientVisit = patientVisit;
+            IsPatientSearchEnabled = Visibility.Collapsed;
+            GetVisitPayors(SelectPatientVisit.PatientVisitUID);
+        }
+
         private void CreateOrder()
         {
             if (SelectPatientVisit != null)
@@ -322,31 +371,13 @@ namespace MediTech.ViewModels
                 }
             }
         }
+
         private void Search()
         {
             Reload();
         }
 
-        public void AssingPatientVisit(PatientVisitModel patientVisit)
-        {
-            SelectPatientVisit = patientVisit;
-            IsPatientSearchEnabled = Visibility.Collapsed;
-            GetVisitPayors(SelectPatientVisit.PatientVisitUID);
-        }
 
-        private void GetVisitPayors(long patientVisitUID)
-        {
-            PatientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(patientVisitUID);
-        }
-
-        private void Reload()
-        {
-            var allocatedBillableItems = (DataService.Billing.GetAllocatedPatBillableItemsPalm(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, null, null
-                , null, null, DateFrom ?? DateTime.Now, DateTo ?? DateTime.Now
-                ));
-            AllocatedPatientBillableItems = new ObservableCollection<AllocatedPatBillableItemsResultModel>(allocatedBillableItems);
-            CollpaseExpand();
-        }
 
         public void PatientSearch()
         {

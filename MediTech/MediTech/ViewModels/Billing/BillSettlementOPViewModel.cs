@@ -267,6 +267,10 @@ namespace MediTech.ViewModels
                 MergeBillRecipetPopup mergeBillRecipet = new MergeBillRecipetPopup();
                 ((mergeBillRecipet.DataContext as MergeBillRecipetPopupViewModel)).AssignMergeRecipet(SelectPatientVisit.PatientUID, SelectPatientVisit.PatientVisitUID, selectedAllocatedPatBillableItem, AllocatedPatientBillableItems.ToList(), PatientVisitPayors, DateFrom ?? SelectPatientVisit.StartDttm.Value, DateTo ?? DateTime.Now);
             MergeBillRecipetPopupViewModel modelResult = (MergeBillRecipetPopupViewModel)LaunchViewDialogNonPermiss(mergeBillRecipet, true);
+                if (modelResult.ResultDialog == ActionDialog.Save)
+                {
+                    Reload();
+                }
             }
         }
 

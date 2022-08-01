@@ -188,7 +188,16 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectPrescriptionType
         {
             get { return _SelectPrescriptionType; }
-            set { Set(ref _SelectPrescriptionType, value); }
+            set { Set(ref _SelectPrescriptionType, value);
+                if (_SelectPrescriptionType != null)
+                {
+                    if (_SelectPrescriptionType.ValueCode == "STORD")
+                    {
+                        EndDate = null;
+                        EndTime = null;
+                    }
+                }
+            }
         }
 
         private List<LookupReferenceValueModel> _DrugLabel;
@@ -388,6 +397,25 @@ namespace MediTech.ViewModels
             set { Set(ref _Comment, value); }
         }
 
+        private string _IsStandingOrder;
+
+        public string IsStandingOrder
+        {
+            get { return _IsStandingOrder; }
+            set { _IsStandingOrder = value; }
+        }
+
+        private bool _IsEnableOrderDrugItem = true;
+
+        public bool IsEnableOrderDrugItem
+        {
+            get { return _IsEnableOrderDrugItem; }
+            set { Set(ref _IsEnableOrderDrugItem, value); }
+        }
+
+
+        public int EncounterTypeUID { get; set; }
+
         #endregion
 
         #region Command
@@ -476,8 +504,20 @@ namespace MediTech.ViewModels
         private void BindingData()
         {
 
-            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP");
-            PrescriptionTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+            var refVale = DataService.Technical.GetReferenceValueList("PDSTS,FORMM,ROUTE,PRSTYP,ENTYP");
+
+            var EncounterTypeList = refVale.Where(p => p.DomainCode == "ENTYP").ToList();
+
+            var inPatient = EncounterTypeList.FirstOrDefault(p => p.ValueCode == "INPAT");
+
+            PrescriptionTypes = refVale.Where(p => p.DomainCode == "PRSTYP" && (p.ValueCode != "STORD" && p.ValueCode != "DCHADV")).ToList();
+            if (EncounterTypeUID == inPatient.Key)
+            {
+                PrescriptionTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+            }
+
+
+ 
             DrugFORM = refVale.Where(p => p.DomainCode == "FORMM").ToList();
             DrugLabel = refVale.Where(p => p.DomainCode == "PDSTS").ToList();
             DrugRoute = refVale.Where(p => p.DomainCode == "ROUTE").ToList();
@@ -524,6 +564,7 @@ namespace MediTech.ViewModels
 
             OrderInstruction = ItemMaster.OrderInstruction;
             Comment = ItemMaster.Comments;
+
 
             EndDate = StartDate.AddDays(1).Date;
             EndTime = EndDate?.Add(StartTime.TimeOfDay);
@@ -583,6 +624,8 @@ namespace MediTech.ViewModels
             OrderInstruction = ItemMaster.OrderInstruction;
             LabelSticker = PatientOrderDetail.LocalInstructionText;
             NoteToPharmacy = PatientOrderDetail.ClinicalComments;
+
+            IsEnableOrderDrugItem = PatientOrderDetail.IsStandingOrder == "Y" ? false : true;
         }
         private void Add()
         {
@@ -689,6 +732,12 @@ namespace MediTech.ViewModels
                 PatientOrderDetail.StoreUID = SelectStore.StoreUID;
                 PatientOrderDetail.PRSTYPUID = SelectPrescriptionType.Key;
                 PatientOrderDetail.OrderType = SelectPrescriptionType.Display;
+
+                if (SelectPrescriptionType.ValueCode == "STORD")
+                {
+                    PatientOrderDetail.IsStandingOrder = "Y";
+                }
+
                 if (OverwritePrice != null)
                 {
                     PatientOrderDetail.UnitPrice = OverwritePrice;

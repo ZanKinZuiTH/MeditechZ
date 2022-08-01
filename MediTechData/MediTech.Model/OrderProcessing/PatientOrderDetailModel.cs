@@ -95,7 +95,6 @@ namespace MediTech.Model
 
         public bool IsWithoutStock { get; set; }
         public bool IsExpired { get; set; }
-
-
+        public string IsStandingOrder { get; set; }
     }
 }

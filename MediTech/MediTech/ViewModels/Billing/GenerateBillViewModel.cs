@@ -60,7 +60,7 @@ namespace MediTech.ViewModels
                     BalanceAmount = null;
 
                     var patBillableItems = DataService.Billing.GetPatientBillableItemsAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, _SelectPatientVisitPayor.PatientVisitPayorUID
-                        , SelectPateintVisit.StartDttm.Value, DateTime.Now, null, null, null);
+                        , SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, null, null, null);
                     PatientBillableItemsAccounts = new ObservableCollection<AllocatedPatBillableItemsAccountResultModel>(patBillableItems);
 
                     if (PatientBillableItemsAccounts != null && PatientBillableItemsAccounts.Count > 0)
@@ -282,12 +282,12 @@ namespace MediTech.ViewModels
 
         public List<AllocatedPatBillableItemsSubAccountResultModel> LoadPatientBillableItemsSubGroups(int accountUID, long patientVisitPayorUID,string IsPackage)
         {
-            return DataService.Billing.GetPatientBillableItemsSubAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value, DateTime.Now, IsPackage, accountUID, null, null);
+            return DataService.Billing.GetPatientBillableItemsSubAccount(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, IsPackage, accountUID, null, null);
         }
 
         public List<AllocatedPatBillableItemsResultModel> LoadPatientBillableItems(long patientVisitPayorUID,int? accountUID, int? subAccountUID, int? careproviderUID, string IsPackage)
         {
-            return DataService.Billing.GetPatientBillableItemsBySA(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, careproviderUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value, DateTime.Now, IsPackage, accountUID, subAccountUID, null);
+            return DataService.Billing.GetPatientBillableItemsBySA(SelectPateintVisit.PatientUID, SelectPateintVisit.PatientVisitUID, null, careproviderUID, null, patientVisitPayorUID, SelectPateintVisit.StartDttm.Value.Date, DateTime.Now.Date, IsPackage, accountUID, subAccountUID, null);
         }
 
         public override void OnLoaded()
@@ -371,7 +371,7 @@ namespace MediTech.ViewModels
         void calculateBalance()
         {
             PaidAmount = (PaymentAmount ?? 0) + PaymentDetailsList?.Sum(p => p.Amount);
-            BalanceAmount = NetAmount - (PaidAmount ?? 0);
+            BalanceAmount = Math.Round(((NetAmount ?? 0) - (PaidAmount ?? 0)),2);
         }
 
         void Save()
@@ -382,7 +382,7 @@ namespace MediTech.ViewModels
                 {
                     return;
                 }
-                if (BalanceAmount < 0)
+                if (BalanceAmount != 0)
                 {
                     WarningDialog("ยอดไม่ถูกต้อง กรุณาตรวจสอบ");
                     return;

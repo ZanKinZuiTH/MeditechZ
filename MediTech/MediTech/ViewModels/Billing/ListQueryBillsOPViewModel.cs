@@ -201,6 +201,8 @@ namespace MediTech.ViewModels
                 newPatient.StartDttm = patVisit.StartDttm;
                 newPatient.VisitStatus = patVisit.VisitStatus;
                 newPatient.LocationUID = patVisit.LocationUID;
+                newPatient.VISTSUID = patVisit.VISTSUID;
+                newPatient.ENTYPUID = patVisit.ENTYPUID;
                 newPatient.LocationName = patVisit.LocationName;
                 newPatient.DischargeDttm = patVisit.DischargeDttm;
                 newPatient.DischargedUser = patVisit.DischargedUser;

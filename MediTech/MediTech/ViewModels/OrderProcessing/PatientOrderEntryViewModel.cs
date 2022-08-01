@@ -10,6 +10,7 @@ using System.Windows;
 using MediTech.DataService;
 using MediTech.Views;
 using System.Windows.Forms;
+using ShareLibrary;
 
 namespace MediTech.ViewModels
 {
@@ -146,7 +147,9 @@ namespace MediTech.ViewModels
         public ObservableCollection<PatientOrderDetailModel> PatientOrders
         {
             get { return _PatientOrders ?? (_PatientOrders = new ObservableCollection<PatientOrderDetailModel>()); }
-            set { Set(ref _PatientOrders, value);
+            set
+            {
+                Set(ref _PatientOrders, value);
                 IsEnableOrderFrom = true;
                 if (_PatientOrders != null || _PatientOrders.Count > 0)
                 {
@@ -367,10 +370,18 @@ namespace MediTech.ViewModels
 
         bool IsOneceLoad = false;
 
+        List<LookupReferenceValueModel> OrderTypes;
+
         #endregion
 
         #region Method
 
+
+        public PatientOrderEntryViewModel()
+        {
+            var refVale = DataService.Technical.GetReferenceValueList("PRSTYP");
+            OrderTypes = refVale.Where(p => p.DomainCode == "PRSTYP").ToList();
+        }
 
         public override void OnLoaded()
         {
@@ -653,7 +664,7 @@ namespace MediTech.ViewModels
 
 
                                 newOrder.IsStock = itemMaster.IsStock;
-                                newOrder.StoreUID = stores.FirstOrDefault(p => p.Quantity > item.Quantity).StoreUID;
+                                newOrder.StoreUID = stores.FirstOrDefault(p => p.Quantity > item.Quantity) != null ? stores.FirstOrDefault(p => p.Quantity > item.Quantity).StoreUID : (int?)null;
                                 newOrder.DFORMUID = itemMaster.FORMMUID;
                                 newOrder.PDSTSUID = itemMaster.PDSTSUID;
                                 newOrder.QNUOMUID = itemMaster.BaseUOM;
@@ -669,6 +680,9 @@ namespace MediTech.ViewModels
                             newOrder.ItemCode = billItem.Code;
                             newOrder.BillingService = billItem.BillingServiceMetaData;
                             newOrder.UnitPrice = item.Price;
+
+                            newOrder.PRSTYPUID = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Key;
+                            newOrder.OrderType = OrderTypes.FirstOrDefault(p => p.ValueCode == "ROMED").Display;
 
                             newOrder.DisplayPrice = item.Price;
 
@@ -795,14 +809,28 @@ namespace MediTech.ViewModels
                             }
                             break;
                         case "Drug":
-                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID,startDttm: startDttm);
+                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID, PatientVisit.ENTYPUID ?? 0, startDttm: startDttm);
                             OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
                             if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
                             {
                                 if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
                                     resultDrug.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+                                if (resultDrug.PatientOrderDetail.IsStandingOrder == "Y")
+                                {
 
-                                PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
+
+
+                                    var orderNoContinuous = (PatientOrderDetailModel)resultDrug.PatientOrderDetail.CloneObject();
+                                    orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86399);
+                                    PatientOrders.Add(orderNoContinuous);
+
+                                }
+                                else
+                                {
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                }
+
                                 OnUpdateEvent();
                             }
                             break;
