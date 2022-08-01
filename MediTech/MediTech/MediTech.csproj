@@ -753,6 +753,12 @@
     <Compile Include="Reports\Operating\Patient\PatientLargSticker.Designer.cs">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
     </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Reports\Operating\Patient\PatientPrescription.Designer.cs">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
+    </Compile>
     <Compile Include="Reports\Operating\Patient\PatientSticker.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -3500,6 +3506,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientLargSticker.resx">
       <DependentUpon>PatientLargSticker.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Reports\Operating\Patient\PatientPrescription.resx">
+      <DependentUpon>PatientPrescription.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Reports\Operating\Patient\PatientSticker.resx">
       <DependentUpon>PatientSticker.cs</DependentUpon>
