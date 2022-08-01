@@ -47,7 +47,6 @@ namespace MediTech.Reports.Operating.Patient
             this.lbAddress = new DevExpress.XtraReports.UI.XRLabel();
             this.lbOrganisation = new DevExpress.XtraReports.UI.XRLabel();
             this.logo1 = new DevExpress.XtraReports.UI.XRPictureBox();
-            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel10 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel11 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbTaxNo = new DevExpress.XtraReports.UI.XRLabel();
@@ -67,18 +66,19 @@ namespace MediTech.Reports.Operating.Patient
             this.logo2 = new DevExpress.XtraReports.UI.XRPictureBox();
             this.lbOrganisationCopy = new DevExpress.XtraReports.UI.XRLabel();
             this.lbAddressCopy = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel34 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel35 = new DevExpress.XtraReports.UI.XRLabel();
             this.lbTaxNoCopy = new DevExpress.XtraReports.UI.XRLabel();
             this.txtheader2 = new DevExpress.XtraReports.UI.XRLabel();
             this.BottomMargin = new DevExpress.XtraReports.UI.BottomMarginBand();
             this.Detail = new DevExpress.XtraReports.UI.DetailBand();
-            this.xrLabel41 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLine9 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine8 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine7 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLine6 = new DevExpress.XtraReports.UI.XRLine();
             this.xrLabel40 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel13 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel16 = new DevExpress.XtraReports.UI.XRLabel();
-            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel18 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel1 = new DevExpress.XtraReports.UI.XRLabel();
             this.xrLabel12 = new DevExpress.XtraReports.UI.XRLabel();
@@ -111,10 +111,10 @@ namespace MediTech.Reports.Operating.Patient
             this.prescriptionUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.OrganisationUID = new DevExpress.XtraReports.Parameters.Parameter();
             this.objectDataSource2 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
-            this.xrLine6 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLine7 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLine8 = new DevExpress.XtraReports.UI.XRLine();
-            this.xrLine9 = new DevExpress.XtraReports.UI.XRLine();
+            this.xrLabel28 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel14 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel17 = new DevExpress.XtraReports.UI.XRLabel();
+            this.xrLabel41 = new DevExpress.XtraReports.UI.XRLabel();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.objectDataSource2)).BeginInit();
@@ -125,7 +125,7 @@ namespace MediTech.Reports.Operating.Patient
             this.TopMargin.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
             this.xrPanel1,
             this.xrPanel2});
-            this.TopMargin.HeightF = 201.1666F;
+            this.TopMargin.HeightF = 212.8333F;
             this.TopMargin.Name = "TopMargin";
             // 
             // xrPanel1
@@ -147,24 +147,25 @@ namespace MediTech.Reports.Operating.Patient
             this.lbAddress,
             this.lbOrganisation,
             this.logo1,
-            this.xrLabel14,
             this.xrLabel10,
             this.xrLabel11,
             this.lbTaxNo,
             this.txtheader1});
             this.xrPanel1.LocationFloat = new DevExpress.Utils.PointFloat(10F, 13F);
             this.xrPanel1.Name = "xrPanel1";
-            this.xrPanel1.SizeF = new System.Drawing.SizeF(558.0557F, 184.8333F);
+            this.xrPanel1.SizeF = new System.Drawing.SizeF(558.0557F, 196.7917F);
             // 
             // xrLabel38
             // 
             this.xrLabel38.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DOBDttm")});
-            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(38.92046F, 146.7467F);
+            this.xrLabel38.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel38.LocationFloat = new DevExpress.Utils.PointFloat(38.92046F, 148.7467F);
             this.xrLabel38.Multiline = true;
             this.xrLabel38.Name = "xrLabel38";
             this.xrLabel38.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel38.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel38.StylePriority.UseFont = false;
             this.xrLabel38.Text = "xrLabel38";
             this.xrLabel38.TextFormatString = "{0:dd/MM/yyyy}";
             // 
@@ -313,7 +314,7 @@ namespace MediTech.Reports.Operating.Patient
             this.lbAddress.Multiline = true;
             this.lbAddress.Name = "lbAddress";
             this.lbAddress.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbAddress.SizeF = new System.Drawing.SizeF(235.6125F, 17.99999F);
+            this.lbAddress.SizeF = new System.Drawing.SizeF(301.067F, 17.99999F);
             this.lbAddress.StylePriority.UseFont = false;
             // 
             // lbOrganisation
@@ -333,19 +334,6 @@ namespace MediTech.Reports.Operating.Patient
             this.logo1.Name = "logo1";
             this.logo1.SizeF = new System.Drawing.SizeF(100.625F, 65.79163F);
             this.logo1.Sizing = DevExpress.XtraPrinting.ImageSizeMode.Squeeze;
-            // 
-            // xrLabel14
-            // 
-            this.xrLabel14.CanGrow = false;
-            this.xrLabel14.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(390.6919F, 102.2467F);
-            this.xrLabel14.Name = "xrLabel14";
-            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel14.SizeF = new System.Drawing.SizeF(63.24319F, 22.5F);
-            this.xrLabel14.StylePriority.UseFont = false;
-            this.xrLabel14.StylePriority.UseTextAlignment = false;
-            this.xrLabel14.Text = "เลขที่ :";
-            this.xrLabel14.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel10
             // 
@@ -418,24 +406,25 @@ namespace MediTech.Reports.Operating.Patient
             this.logo2,
             this.lbOrganisationCopy,
             this.lbAddressCopy,
-            this.xrLabel28,
             this.xrLabel34,
             this.xrLabel35,
             this.lbTaxNoCopy,
             this.txtheader2});
-            this.xrPanel2.LocationFloat = new DevExpress.Utils.PointFloat(589.0548F, 13F);
+            this.xrPanel2.LocationFloat = new DevExpress.Utils.PointFloat(589.0549F, 13F);
             this.xrPanel2.Name = "xrPanel2";
-            this.xrPanel2.SizeF = new System.Drawing.SizeF(552.9452F, 184.8333F);
+            this.xrPanel2.SizeF = new System.Drawing.SizeF(552.9453F, 196.7917F);
             // 
             // xrLabel39
             // 
             this.xrLabel39.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "DOBDttm")});
-            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(38.58716F, 146.7467F);
+            this.xrLabel39.Font = new System.Drawing.Font("Angsana New", 10F, System.Drawing.FontStyle.Bold);
+            this.xrLabel39.LocationFloat = new DevExpress.Utils.PointFloat(38.58716F, 148.7467F);
             this.xrLabel39.Multiline = true;
             this.xrLabel39.Name = "xrLabel39";
             this.xrLabel39.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
             this.xrLabel39.SizeF = new System.Drawing.SizeF(100F, 23F);
+            this.xrLabel39.StylePriority.UseFont = false;
             this.xrLabel39.Text = "xrLabel39";
             this.xrLabel39.TextFormatString = "{0:dd/MM/yyyy}";
             // 
@@ -595,21 +584,8 @@ namespace MediTech.Reports.Operating.Patient
             this.lbAddressCopy.Multiline = true;
             this.lbAddressCopy.Name = "lbAddressCopy";
             this.lbAddressCopy.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.lbAddressCopy.SizeF = new System.Drawing.SizeF(238.7161F, 18F);
+            this.lbAddressCopy.SizeF = new System.Drawing.SizeF(300.8197F, 18F);
             this.lbAddressCopy.StylePriority.UseFont = false;
-            // 
-            // xrLabel28
-            // 
-            this.xrLabel28.CanGrow = false;
-            this.xrLabel28.Font = new System.Drawing.Font("Angsana New", 12F);
-            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(410.4446F, 102.2467F);
-            this.xrLabel28.Name = "xrLabel28";
-            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel28.SizeF = new System.Drawing.SizeF(41.01425F, 22.49999F);
-            this.xrLabel28.StylePriority.UseFont = false;
-            this.xrLabel28.StylePriority.UseTextAlignment = false;
-            this.xrLabel28.Text = "เลขที่ :";
-            this.xrLabel28.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             // 
             // xrLabel34
             // 
@@ -674,15 +650,17 @@ namespace MediTech.Reports.Operating.Patient
             // Detail
             // 
             this.Detail.Controls.AddRange(new DevExpress.XtraReports.UI.XRControl[] {
+            this.xrLabel14,
+            this.xrLabel17,
+            this.xrLabel41,
+            this.xrLabel28,
             this.xrLine9,
             this.xrLine8,
             this.xrLine7,
             this.xrLine6,
-            this.xrLabel41,
             this.xrLabel40,
             this.xrLabel13,
             this.xrLabel16,
-            this.xrLabel17,
             this.xrLabel18,
             this.xrLabel1,
             this.xrLabel12,
@@ -691,29 +669,60 @@ namespace MediTech.Reports.Operating.Patient
             this.Detail.HeightF = 419.8567F;
             this.Detail.Name = "Detail";
             // 
-            // xrLabel41
+            // xrLine9
             // 
-            this.xrLabel41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.Frequency")});
-            this.xrLabel41.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(905.4152F, 25.71574F);
-            this.xrLabel41.Multiline = true;
-            this.xrLabel41.Name = "xrLabel41";
-            this.xrLabel41.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel41.SizeF = new System.Drawing.SizeF(236.5847F, 23F);
-            this.xrLabel41.StylePriority.UseFont = false;
-            this.xrLabel41.Text = "xrLabel40";
+            this.xrLine9.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine9.ForeColor = System.Drawing.Color.Black;
+            this.xrLine9.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine9.LocationFloat = new DevExpress.Utils.PointFloat(1142F, 0F);
+            this.xrLine9.Name = "xrLine9";
+            this.xrLine9.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
+            this.xrLine9.StylePriority.UseBorders = false;
+            this.xrLine9.StylePriority.UseForeColor = false;
+            // 
+            // xrLine8
+            // 
+            this.xrLine8.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine8.ForeColor = System.Drawing.Color.Black;
+            this.xrLine8.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine8.LocationFloat = new DevExpress.Utils.PointFloat(591.0138F, 0F);
+            this.xrLine8.Name = "xrLine8";
+            this.xrLine8.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
+            this.xrLine8.StylePriority.UseBorders = false;
+            this.xrLine8.StylePriority.UseForeColor = false;
+            // 
+            // xrLine7
+            // 
+            this.xrLine7.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine7.ForeColor = System.Drawing.Color.Black;
+            this.xrLine7.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine7.LocationFloat = new DevExpress.Utils.PointFloat(566.0557F, 0F);
+            this.xrLine7.Name = "xrLine7";
+            this.xrLine7.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
+            this.xrLine7.StylePriority.UseBorders = false;
+            this.xrLine7.StylePriority.UseForeColor = false;
+            // 
+            // xrLine6
+            // 
+            this.xrLine6.Borders = DevExpress.XtraPrinting.BorderSide.None;
+            this.xrLine6.ForeColor = System.Drawing.Color.Black;
+            this.xrLine6.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
+            this.xrLine6.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
+            this.xrLine6.Name = "xrLine6";
+            this.xrLine6.SizeF = new System.Drawing.SizeF(2F, 417.141F);
+            this.xrLine6.StylePriority.UseBorders = false;
+            this.xrLine6.StylePriority.UseForeColor = false;
             // 
             // xrLabel40
             // 
             this.xrLabel40.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.Frequency")});
             this.xrLabel40.Font = new System.Drawing.Font("Angsana New", 10F);
-            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(328.3179F, 22.99998F);
+            this.xrLabel40.LocationFloat = new DevExpress.Utils.PointFloat(314.7374F, 45.99996F);
             this.xrLabel40.Multiline = true;
             this.xrLabel40.Name = "xrLabel40";
             this.xrLabel40.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel40.SizeF = new System.Drawing.SizeF(225.8627F, 23F);
+            this.xrLabel40.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
             this.xrLabel40.StylePriority.UseFont = false;
             this.xrLabel40.Text = "xrLabel40";
             // 
@@ -742,19 +751,6 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel16.SizeF = new System.Drawing.SizeF(70.75218F, 23F);
             this.xrLabel16.StylePriority.UseFont = false;
             this.xrLabel16.Text = "xrLabel5";
-            // 
-            // xrLabel17
-            // 
-            this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
-            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.InstructionText")});
-            this.xrLabel17.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(905.4152F, 2.715759F);
-            this.xrLabel17.Multiline = true;
-            this.xrLabel17.Name = "xrLabel17";
-            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel17.SizeF = new System.Drawing.SizeF(236.5848F, 23F);
-            this.xrLabel17.StylePriority.UseFont = false;
-            this.xrLabel17.Text = "xrLabel12";
             // 
             // xrLabel18
             // 
@@ -787,11 +783,11 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLabel12.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
             new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.InstructionText")});
             this.xrLabel12.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(328.3179F, 0F);
+            this.xrLabel12.LocationFloat = new DevExpress.Utils.PointFloat(314.7374F, 22.99998F);
             this.xrLabel12.Multiline = true;
             this.xrLabel12.Name = "xrLabel12";
             this.xrLabel12.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
-            this.xrLabel12.SizeF = new System.Drawing.SizeF(225.8627F, 23F);
+            this.xrLabel12.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
             this.xrLabel12.StylePriority.UseFont = false;
             this.xrLabel12.Text = "xrLabel12";
             // 
@@ -965,7 +961,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLine2,
             this.xrLabel2,
             this.xrLabel15});
-            this.xrPanel4.LocationFloat = new DevExpress.Utils.PointFloat(33.63871F, 10F);
+            this.xrPanel4.LocationFloat = new DevExpress.Utils.PointFloat(33.63871F, 7F);
             this.xrPanel4.Name = "xrPanel4";
             this.xrPanel4.SizeF = new System.Drawing.SizeF(536.3751F, 122.7917F);
             // 
@@ -1013,7 +1009,7 @@ namespace MediTech.Reports.Operating.Patient
             this.xrLine4,
             this.xrLabel23,
             this.xrLabel24});
-            this.xrPanel3.LocationFloat = new DevExpress.Utils.PointFloat(591.0138F, 10F);
+            this.xrPanel3.LocationFloat = new DevExpress.Utils.PointFloat(591.0138F, 6F);
             this.xrPanel3.Name = "xrPanel3";
             this.xrPanel3.SizeF = new System.Drawing.SizeF(537.4999F, 122.7917F);
             // 
@@ -1074,49 +1070,57 @@ namespace MediTech.Reports.Operating.Patient
             this.objectDataSource2.DataSource = typeof(MediTech.Model.PrescriptionModel);
             this.objectDataSource2.Name = "objectDataSource2";
             // 
-            // xrLine6
+            // xrLabel28
             // 
-            this.xrLine6.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLine6.ForeColor = System.Drawing.Color.Black;
-            this.xrLine6.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
-            this.xrLine6.LocationFloat = new DevExpress.Utils.PointFloat(10F, 0F);
-            this.xrLine6.Name = "xrLine6";
-            this.xrLine6.SizeF = new System.Drawing.SizeF(2F, 417.141F);
-            this.xrLine6.StylePriority.UseBorders = false;
-            this.xrLine6.StylePriority.UseForeColor = false;
+            this.xrLabel28.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.LocalInstructionText")});
+            this.xrLabel28.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel28.LocationFloat = new DevExpress.Utils.PointFloat(314.7374F, 0F);
+            this.xrLabel28.Multiline = true;
+            this.xrLabel28.Name = "xrLabel28";
+            this.xrLabel28.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 96F);
+            this.xrLabel28.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
+            this.xrLabel28.StylePriority.UseFont = false;
+            this.xrLabel28.Text = "xrLabel28";
             // 
-            // xrLine7
+            // xrLabel14
             // 
-            this.xrLine7.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLine7.ForeColor = System.Drawing.Color.Black;
-            this.xrLine7.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
-            this.xrLine7.LocationFloat = new DevExpress.Utils.PointFloat(566.0557F, 0F);
-            this.xrLine7.Name = "xrLine7";
-            this.xrLine7.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
-            this.xrLine7.StylePriority.UseBorders = false;
-            this.xrLine7.StylePriority.UseForeColor = false;
+            this.xrLabel14.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.InstructionText")});
+            this.xrLabel14.Font = new System.Drawing.Font("Angsana New", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.xrLabel14.LocationFloat = new DevExpress.Utils.PointFloat(896.1372F, 25.71574F);
+            this.xrLabel14.Multiline = true;
+            this.xrLabel14.Name = "xrLabel14";
+            this.xrLabel14.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel14.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
+            this.xrLabel14.StylePriority.UseFont = false;
+            this.xrLabel14.Text = "xrLabel12";
             // 
-            // xrLine8
+            // xrLabel17
             // 
-            this.xrLine8.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLine8.ForeColor = System.Drawing.Color.Black;
-            this.xrLine8.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
-            this.xrLine8.LocationFloat = new DevExpress.Utils.PointFloat(591.0138F, 0F);
-            this.xrLine8.Name = "xrLine8";
-            this.xrLine8.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
-            this.xrLine8.StylePriority.UseBorders = false;
-            this.xrLine8.StylePriority.UseForeColor = false;
+            this.xrLabel17.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.Frequency")});
+            this.xrLabel17.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel17.LocationFloat = new DevExpress.Utils.PointFloat(896.1372F, 48.71572F);
+            this.xrLabel17.Multiline = true;
+            this.xrLabel17.Name = "xrLabel17";
+            this.xrLabel17.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel17.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
+            this.xrLabel17.StylePriority.UseFont = false;
+            this.xrLabel17.Text = "xrLabel40";
             // 
-            // xrLine9
+            // xrLabel41
             // 
-            this.xrLine9.Borders = DevExpress.XtraPrinting.BorderSide.None;
-            this.xrLine9.ForeColor = System.Drawing.Color.Black;
-            this.xrLine9.LineDirection = DevExpress.XtraReports.UI.LineDirection.Vertical;
-            this.xrLine9.LocationFloat = new DevExpress.Utils.PointFloat(1142F, 0F);
-            this.xrLine9.Name = "xrLine9";
-            this.xrLine9.SizeF = new System.Drawing.SizeF(2F, 419.8567F);
-            this.xrLine9.StylePriority.UseBorders = false;
-            this.xrLine9.StylePriority.UseForeColor = false;
+            this.xrLabel41.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
+            new DevExpress.XtraReports.UI.XRBinding("Text", null, "PrescriptionItems.LocalInstructionText")});
+            this.xrLabel41.Font = new System.Drawing.Font("Angsana New", 10F);
+            this.xrLabel41.LocationFloat = new DevExpress.Utils.PointFloat(896.1372F, 2.715759F);
+            this.xrLabel41.Multiline = true;
+            this.xrLabel41.Name = "xrLabel41";
+            this.xrLabel41.Padding = new DevExpress.XtraPrinting.PaddingInfo(2, 2, 0, 0, 100F);
+            this.xrLabel41.SizeF = new System.Drawing.SizeF(240.8627F, 23F);
+            this.xrLabel41.StylePriority.UseFont = false;
+            this.xrLabel41.Text = "xrLabel28";
             // 
             // PatientPrescription
             // 
@@ -1131,7 +1135,7 @@ namespace MediTech.Reports.Operating.Patient
             this.DataSource = this.objectDataSource2;
             this.Font = new System.Drawing.Font("Arial", 9.75F);
             this.Landscape = true;
-            this.Margins = new System.Drawing.Printing.Margins(7, 10, 201, 0);
+            this.Margins = new System.Drawing.Printing.Margins(7, 10, 213, 0);
             this.PageHeight = 827;
             this.PageWidth = 1169;
             this.PaperKind = System.Drawing.Printing.PaperKind.A4;
@@ -1165,7 +1169,6 @@ namespace MediTech.Reports.Operating.Patient
         private DevExpress.XtraReports.UI.XRLabel lbAddress;
         private DevExpress.XtraReports.UI.XRLabel lbOrganisation;
         private DevExpress.XtraReports.UI.XRPictureBox logo1;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
         private DevExpress.XtraReports.UI.XRLabel xrLabel10;
         private DevExpress.XtraReports.UI.XRLabel xrLabel11;
         private DevExpress.XtraReports.UI.XRLabel lbTaxNo;
@@ -1181,7 +1184,6 @@ namespace MediTech.Reports.Operating.Patient
         private DevExpress.XtraReports.UI.XRPictureBox logo2;
         private DevExpress.XtraReports.UI.XRLabel lbOrganisationCopy;
         private DevExpress.XtraReports.UI.XRLabel lbAddressCopy;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel28;
         private DevExpress.XtraReports.UI.XRLabel xrLabel34;
         private DevExpress.XtraReports.UI.XRLabel xrLabel35;
         private DevExpress.XtraReports.UI.XRLabel lbTaxNoCopy;
@@ -1215,7 +1217,6 @@ namespace MediTech.Reports.Operating.Patient
         private DevExpress.XtraReports.UI.XRLabel xrLabel1;
         private DevExpress.XtraReports.UI.XRLabel xrLabel13;
         private DevExpress.XtraReports.UI.XRLabel xrLabel16;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel17;
         private DevExpress.XtraReports.UI.XRLabel xrLabel18;
         private DevExpress.XtraReports.Parameters.Parameter OrganisationUID;
         private DevExpress.XtraReports.UI.XRLine xrLine5;
@@ -1227,11 +1228,14 @@ namespace MediTech.Reports.Operating.Patient
         private DevExpress.XtraReports.UI.XRLabel xrLabel25;
         private DevExpress.XtraReports.UI.XRLabel xrLabel22;
         private DevExpress.XtraReports.UI.XRLabel xrLabel19;
-        private DevExpress.XtraReports.UI.XRLabel xrLabel41;
         private DevExpress.XtraReports.UI.XRLabel xrLabel40;
         private DevExpress.XtraReports.UI.XRLine xrLine6;
         private DevExpress.XtraReports.UI.XRLine xrLine7;
         private DevExpress.XtraReports.UI.XRLine xrLine9;
         private DevExpress.XtraReports.UI.XRLine xrLine8;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel14;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel17;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel41;
+        private DevExpress.XtraReports.UI.XRLabel xrLabel28;
     }
 }
