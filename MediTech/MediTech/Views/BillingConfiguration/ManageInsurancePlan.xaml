@@ -44,13 +44,9 @@
                                                       ValueMember="PayorDetailUID"/>
 
                     </dxlc:LayoutItem>
-
+                    
                     <dxlc:LayoutItem Margin="5" Label="Policy Name">
-                        <dxe:ComboBoxEdit ItemsSource="{Binding PolicySource}"
-                                                      IsEnabled="False"
-                                                      SelectedItem="{Binding SelectPolicy}"
-                                                      DisplayMember="PolicyName"
-                                                      ValueMember="PolicyMasterUID"/>
+                        <dxe:TextEdit Text="{Binding PolicyName}" IsEnabled="False"/>
                     </dxlc:LayoutItem>
 
                     <dxlc:LayoutItem Margin="5" Label="เปิดใช้งาน">
