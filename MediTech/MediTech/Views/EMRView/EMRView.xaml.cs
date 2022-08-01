@@ -105,7 +105,7 @@ namespace MediTech.Views
 
         public void DefaultPage()
         {
-            documentFrame.Source = null;
+            (this.DataContext as EMRViewViewModel).SelectedPage = null;
             documentFrame.Navigate(summeryView);
         }
     }

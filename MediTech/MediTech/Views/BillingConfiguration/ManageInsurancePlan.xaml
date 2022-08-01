@@ -47,7 +47,7 @@
 
                     <dxlc:LayoutItem Margin="5" Label="Policy Name">
                         <dxe:ComboBoxEdit ItemsSource="{Binding PolicySource}"
-                                                      IsEnabled="True"
+                                                      IsEnabled="False"
                                                       SelectedItem="{Binding SelectPolicy}"
                                                       DisplayMember="PolicyName"
                                                       ValueMember="PolicyMasterUID"/>

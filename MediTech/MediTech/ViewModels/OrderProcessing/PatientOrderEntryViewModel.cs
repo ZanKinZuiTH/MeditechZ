@@ -10,6 +10,7 @@ using System.Windows;
 using MediTech.DataService;
 using MediTech.Views;
 using System.Windows.Forms;
+using ShareLibrary;
 
 namespace MediTech.ViewModels
 {
@@ -795,14 +796,28 @@ namespace MediTech.ViewModels
                             }
                             break;
                         case "Drug":
-                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID,startDttm: startDttm);
+                            OrderDrugItem ordDrug = new OrderDrugItem(billItem, ownerUID,PatientVisit.ENTYPUID ?? 0,startDttm: startDttm);
                             OrderDrugItemViewModel resultDrug = (OrderDrugItemViewModel)LaunchViewDialog(ordDrug, "ORDDRG", true);
                             if (resultDrug != null && resultDrug.ResultDialog == ActionDialog.Save)
                             {
                                 if (PatientOrderAlerts != null && PatientOrderAlerts.Count() > 0)
                                     resultDrug.PatientOrderDetail.PatientOrderAlert = PatientOrderAlerts;
+                                if (resultDrug.PatientOrderDetail.IsStandingOrder == "Y")
+                                {
 
-                                PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
+
+
+                                    var orderNoContinuous = resultDrug.PatientOrderDetail.DeepClone();
+                                    orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86399);
+                                    PatientOrders.Add(orderNoContinuous);
+
+                                }
+                                else
+                                {
+                                    PatientOrders.Add(resultDrug.PatientOrderDetail);
+                                }
+                         
                                 OnUpdateEvent();
                             }
                             break;

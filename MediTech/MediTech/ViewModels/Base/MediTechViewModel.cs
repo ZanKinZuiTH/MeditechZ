@@ -182,7 +182,7 @@ namespace MediTech.ViewModels
 
                 usercontrol.Loaded += usercontrol_Loaded;
 
-                System.Windows.Window window = new System.Windows.Window();
+                DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
                 (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
@@ -333,7 +333,7 @@ namespace MediTech.ViewModels
 
                 usercontrol.Loaded += usercontrol_Loaded;
 
-                System.Windows.Window window = new System.Windows.Window();
+                DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
                 (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
@@ -372,7 +372,7 @@ namespace MediTech.ViewModels
 
                 usercontrol.Loaded += usercontrol_Loaded;
 
-                System.Windows.Window window = new System.Windows.Window();
+                DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
                 usercontrol.DataContext = viewModel;

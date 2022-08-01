@@ -125,7 +125,7 @@ namespace MediTech.CustomControl.Banner
                 txtGender.Text = patientVisit.Gender;
                 txtBloodGroup.Text = patientVisit.BloodGroup;
                 txtCareProvider.Text = patientVisit.CareproviderName;
-                txtLocation.Text = PatientVisit.LocationName;
+                txtLocation.Text = patientVisit.LocationName;
                 txtAddress.Text = patientVisit.PatientAddress;
                 txtWgt.Text = patientVisit.Weight.ToString() ?? "";
                 txtHgt.Text = patientVisit.Height.ToString() ?? "";

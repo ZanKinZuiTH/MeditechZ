@@ -58,6 +58,14 @@ namespace MediTech.ViewModels
                 else
                 {
                     IsSelectInsuranceCompany = false;
+                    PayorDetails = null;
+                    SelectPayorDetail = null;
+
+                    PayorAgreement = null;
+                    SelectPayorAgreement = null;
+
+                    InsurancePlan = null;
+                    SelectInsurancePlan = null;
                 }
             }
         }

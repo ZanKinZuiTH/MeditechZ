@@ -83,7 +83,11 @@ namespace MediTech.ViewModels
                     {
                         SelectPolicy = DataService.Billing.GetPolicyMasterByUID(SelectAgreement.PolicyMasterUID ?? 0);
                     }
-                    SelectPolicy = null;
+                    else
+                    {
+                        SelectPolicy = null;
+                    }
+
                 }   
             }
         }
@@ -132,7 +136,7 @@ namespace MediTech.ViewModels
         {
             //AgreementSource = DataService.MasterData.SearchPayorAgreementByINCO("",InsuranceCompanyID);
             //PayorOfficeSource = DataService.MasterData.SearchPayorDetailByINCO("",InsuranceCompanyID);
-            PolicySource = DataService.Billing.GetPolicyMasterAll();
+            //PolicySource = DataService.Billing.GetPolicyMasterAll();
         }
 
         private void Save()

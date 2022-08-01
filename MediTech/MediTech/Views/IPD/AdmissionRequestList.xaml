@@ -74,6 +74,7 @@
                 <dxg:GridControl x:Name="grdAdmissionRequest" ItemsSource="{Binding IPBookingSource}"
                              SelectedItem="{Binding SelectedIPBooking}">
                     <dxg:GridControl.Columns>
+                        <dxg:GridColumn Header="Status" FieldName="BedBookingRequest"  ReadOnly="True"/>
                         <dxg:GridColumn Header="HN" FieldName="PatientID" ReadOnly="True"/>
                         <dxg:GridColumn Header="Name" FieldName="PatientName"  ReadOnly="True" Width="200"/>
                         <dxg:GridColumn Header="เพศ" FieldName="Gender"  ReadOnly="True"/>
@@ -89,7 +90,6 @@
                         <dxg:GridColumn Header="Requested By Location" FieldName="RequestedLocationName"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Phone Number" FieldName="MobilePhone"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Comment" FieldName="Comments"  ReadOnly="True"/>
-                        <dxg:GridColumn Header="Status" FieldName="BedBookingRequest"  ReadOnly="True"/>
                         <dxg:GridColumn Header="Admited By" FieldName="Amount"  ReadOnly="True"/>
                     </dxg:GridControl.Columns>
                     <dxg:GridControl.View>

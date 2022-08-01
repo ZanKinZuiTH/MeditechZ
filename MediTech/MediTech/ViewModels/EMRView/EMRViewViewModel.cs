@@ -139,7 +139,11 @@ namespace MediTech.ViewModels
         }
 
 
-
+        public void DefaultPage()
+        {
+            (this.View as EMRView).documentFrame.Navigate((this.View as EMRView).summeryView);
+            SelectedPage = null;
+        }
         public void ChangeView(PageViewModel pageView)
         {
             object viewSource;

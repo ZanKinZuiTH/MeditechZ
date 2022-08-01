@@ -1863,6 +1863,7 @@ namespace MediTechWebApi.Controllers
                             VisitID = p.VisitID,
                             PRITYUID = p.PRITYUID,
                             ENSTAUID = p.ENSTAUID ?? 0,
+                            ENTYPUID = p.ENTYPUID,
                             BedUID = p.BedUID,
                             BedName = SqlFunction.fGetLocationName(p.BedUID ?? 0),
                             OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
@@ -1899,6 +1900,7 @@ namespace MediTechWebApi.Controllers
                                                         VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
                                                         VisitID = p.VisitID,
                                                         PRITYUID = p.PRITYUID,
+                                                        ENTYPUID = p.ENTYPUID,
                                                         OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
                                                         OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
                                                         LocationUID = p.LocationUID,
@@ -1973,9 +1975,7 @@ namespace MediTechWebApi.Controllers
         {
             List<PatientVisitModel> visitData = null;
             visitData = (from pv in db.PatientVisit
-                         join pvp in db.PatientVisitPayor on pv.UID equals pvp.PatientVisitUID
                          where pv.StatusFlag == "A"
-                         && pvp.StatusFlag == "A"
                          && pv.PatientUID == patientUID
                          && pv.VISTSUID != 410
                          select new PatientVisitModel
@@ -1989,13 +1989,13 @@ namespace MediTechWebApi.Controllers
                              Comments = pv.Comments,
                              VISTYUID = pv.VISTYUID,
                              VISTSUID = pv.VISTSUID,
+                             ENTYPUID = pv.ENTYPUID,
                              IsBillFinalized = pv.IsBillFinalized,
                              VisitStatus = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
                              VisitType = SqlFunction.fGetRfValDescription(pv.VISTYUID ?? 0),
                              OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(pv.OwnerOrganisationUID ?? 0),
                              VisitID = pv.VisitID,
                              PRITYUID = pv.PRITYUID,
-                             PayorDetailUID = pvp.PayorDetailUID,
                              OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
                          }).ToList();
 
@@ -2021,6 +2021,7 @@ namespace MediTechWebApi.Controllers
                         Comments = p.Comments,
                         VISTYUID = p.VISTYUID,
                         VISTSUID = p.VISTSUID,
+                        ENTYPUID = p.ENTYPUID,
                         StartDttm = p.StartDttm,
                         IsBillFinalized = p.IsBillFinalized,
                         VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
@@ -2053,6 +2054,7 @@ namespace MediTechWebApi.Controllers
                             Comments = p.Comments,
                             VISTYUID = p.VISTYUID,
                             VISTSUID = p.VISTSUID,
+                            ENTYPUID = p.ENTYPUID,
                             IsBillFinalized = p.IsBillFinalized,
                             VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
                             VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
@@ -2088,6 +2090,7 @@ namespace MediTechWebApi.Controllers
                             Comments = p.Comments,
                             VISTYUID = p.VISTYUID,
                             VISTSUID = p.VISTSUID,
+                            ENTYPUID = p.ENTYPUID,
                             IsBillFinalized = p.IsBillFinalized,
                             VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
                             VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
@@ -2121,6 +2124,7 @@ namespace MediTechWebApi.Controllers
                             Comments = p.Comments,
                             VISTYUID = p.VISTYUID,
                             VISTSUID = p.VISTSUID,
+                            ENTYPUID = p.ENTYPUID,
                             IsBillFinalized = p.IsBillFinalized,
                             VisitStatus = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
                             VisitType = SqlFunction.fGetRfValDescription(p.VISTYUID ?? 0),
