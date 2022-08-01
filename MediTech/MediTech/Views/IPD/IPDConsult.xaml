@@ -100,9 +100,9 @@
                     <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right">
                         <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
                                      Height="25" Content="Add"/>
-                        <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                        <dx:SimpleButton Width="80" Command="{Binding UpdateConsultCommand}"
                                      Height="25" Content="Update"/>
-                        <dx:SimpleButton Width="80" Command="{Binding AddCommand}"
+                        <dx:SimpleButton Width="80" Command="{Binding DeleteConsultCommand}"
                                      Height="25" Content="Delete"/>
                     </dxlc:LayoutGroup>
 

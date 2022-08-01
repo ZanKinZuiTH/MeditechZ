@@ -52,15 +52,23 @@ namespace MediTech.Reports.Operating.Patient
                 //var SelectOrganisation = (new MasterDataService()).GetHealthOrganisationByUID(logoType);
                 this.lbOrganisation.Text = SelectOrganisation.Description?.ToString();
                 this.lbOrganisationCopy.Text = lbOrganisation.Text;
-                string License = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
-                //lbFooterOrganisation.Text = OrganisationBRXG.Description?.ToString() + " " + License;
 
-                string mobile1 = SelectOrganisation.MobileNo != null ? "โทรศัพท์ " + SelectOrganisation.MobileNo.ToString() : "";
-                string mobile2 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
-                string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
+                string mobile = SelectOrganisation.MobileNo != null ? "โทร " + SelectOrganisation.MobileNo?.ToString() : "";
+                string address = SelectOrganisation.Address?.ToString();
+
+                string License = SelectOrganisation.LicenseNo != null ? "ใบอนุญาตเลขที่ " + SelectOrganisation.LicenseNo.ToString() : "";
+                //string mobile2 = SelectOrganisation.MobileNo != null ? "Tel. " + SelectOrganisation.MobileNo.ToString() : "";
+                //string email = SelectOrganisation.Email != null ? "e-mail:" + SelectOrganisation.Email.ToString() : "";
+
+
+                lbAddress.Text = address + mobile;
+                lbAddressCopy.Text = address + mobile;
+                lbTaxNo.Text = License;
+                lbTaxNoCopy.Text = License;
+              
 
                 //lbAddress1.Text = SelectOrganisation.Address?.ToString() + " " + mobile1 + " " + email;
-               // lbAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
+                // lbAddress2.Text = SelectOrganisation.Address2?.ToString() + " " + mobile2 + " " + email;
 
                 if (SelectOrganisation.LogoImage != null)
                 {

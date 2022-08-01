@@ -203,12 +203,20 @@ namespace MediTech.ViewModels
         }
 
 
-        //private RelayCommand _UpdateConsultCommand;
+        private RelayCommand _UpdateConsultCommand;
 
-        //public RelayCommand UpdateConsultCommand
-        //{
-        //    get { return _AddCommand ?? (_AddCommand = new RelayCommand(UpdateVisitConsult)); }
-        //}
+        public RelayCommand UpdateConsultCommand
+        {
+            get { return _UpdateConsultCommand ?? (_UpdateConsultCommand = new RelayCommand(UpdateVisitConsult)); }
+        }
+
+        private RelayCommand _DeleteConsultCommand;
+
+        public RelayCommand DeleteConsultCommand
+        {
+            get { return _DeleteConsultCommand ?? (_DeleteConsultCommand = new RelayCommand(DeleteVisitConsult)); }
+        }
+
 
 
         private RelayCommand _SaveCommand;
@@ -261,7 +269,7 @@ namespace MediTech.ViewModels
         {
 
            
-            SelectPatientVisit = model;
+            SelectedPatientVisit = model;
             StartDateConsult = DateTime.Today;
             EndDateConsult = DateTime.Today;
             //int patientUID = Convert.ToInt32(model.PatientUID);
@@ -276,6 +284,9 @@ namespace MediTech.ViewModels
 
 
         }
+
+
+
 
         private void Add()
         {
@@ -329,11 +340,10 @@ namespace MediTech.ViewModels
             }
         }
 
-        void UpdateVisitPayor()
+        void UpdateVisitConsult()
         {
             if (SelectPatientConsult != null)
             {
-
                 SelectPatientConsult.CareProviderUID = SelectDoctor.CareproviderUID;
                 SelectPatientConsult.CareProviderName = SelectDoctor.FullName;
                 SelectPatientConsult.CONSTSUID = SelectConsultStatus.Key;
@@ -345,12 +355,10 @@ namespace MediTech.ViewModels
                 SelectPatientConsult.CUser = AppUtil.Current.UserID;
                 SelectPatientConsult.MUser = AppUtil.Current.UserID;
                 SelectPatientConsult.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
-               // ClearControl();
-               // SelectedPatientVisitPayor = null;
             }
         }
 
-        void DeleteVisitPayor()
+        void DeleteVisitConsult()
         {
             if (SelectPatientConsult != null)
             {
@@ -379,7 +387,6 @@ namespace MediTech.ViewModels
 
                 DataService.InPatientService.InsertPatientConsult(listconsultdata, AppUtil.Current.UserID);
                 //DataService.InPatientService.InsertPatientConsult(listconsultdata, AppUtil.Current.UserID);
-              
 
                // DataService.PatientIdentity.ManagePatientInsuranceDetail(PateintVisitPayorDatas, AppUtil.Current.UserID);
                 CloseViewDialog(ActionDialog.Save);
@@ -396,6 +403,9 @@ namespace MediTech.ViewModels
         {
             CloseViewDialog(ActionDialog.Cancel);
         }
+
+
+      
 
         private void AssignToGrid()
         {
