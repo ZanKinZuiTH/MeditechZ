@@ -10,10 +10,11 @@ using System.Windows;
 using MediTech.DataService;
 using MediTech.Views;
 using System.Windows.Forms;
+using MediTech.Interface;
 
 namespace MediTech.ViewModels
 {
-    public class PatientDiagnosisViewModel : MediTechViewModelBase
+    public class PatientDiagnosisViewModel : MediTechViewModelBase,IPatientVisitViewModel
     {
 
         #region Properties
@@ -26,17 +27,17 @@ namespace MediTech.ViewModels
             set { Set(ref _IsBanner, value); }
         }
 
-        private PatientVisitModel _SelectPatientVisit;
+        private PatientVisitModel _SelectedPatientVisit;
 
-        public PatientVisitModel SelectPatientVisit
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
+            get { return _SelectedPatientVisit; }
             set
             {
-                Set(ref _SelectPatientVisit, value);
-                if (SelectPatientVisit != null)
+                Set(ref _SelectedPatientVisit, value);
+                if (SelectedPatientVisit != null)
                 {
-                    List<PatientProblemModel> data = DataService.PatientDiagnosis.GetPatientProblemByVisitUID(SelectPatientVisit.PatientVisitUID);
+                    List<PatientProblemModel> data = DataService.PatientDiagnosis.GetPatientProblemByVisitUID(SelectedPatientVisit.PatientVisitUID);
                     AssignModel(data);
                 }
                 else
@@ -410,10 +411,7 @@ namespace MediTech.ViewModels
             LoadPatientHistoryProblem();
             AutoSelectPrincipaltype();
         }
-        public void AssingPatientVisit(PatientVisitModel visitModel)
-        {
-            SelectPatientVisit = visitModel;
-        }
+ 
 
         private void SearchProblemDoubleClick()
         {
@@ -481,9 +479,9 @@ namespace MediTech.ViewModels
 
         private void LoadPatientHistoryProblem()
         {
-            DiagnosisHistory = DataService.PatientDiagnosis.GetPatientProblemByPatientUID(SelectPatientVisit.PatientUID);
+            DiagnosisHistory = DataService.PatientDiagnosis.GetPatientProblemByPatientUID(SelectedPatientVisit.PatientUID);
             DiagnosisHistory = DiagnosisHistory
-                .Where(p => p.PatientVisitUID != SelectPatientVisit.PatientVisitUID)
+                .Where(p => p.PatientVisitUID != SelectedPatientVisit.PatientVisitUID)
                 .OrderByDescending(p => p.PatientProblemUID).ToList();
             if (SelectIndexDiasHis == 1)
             {
@@ -590,7 +588,7 @@ namespace MediTech.ViewModels
 
         private void AddProblem()
         {
-            if (SelectPatientVisit == null)
+            if (SelectedPatientVisit == null)
             {
                 WarningDialog("กรุณาเลือกผู้ป่วย");
                 return;
@@ -624,8 +622,8 @@ namespace MediTech.ViewModels
             //}
 
             PatientProblemModel patProblem = new PatientProblemModel();
-            patProblem.PatientUID = SelectPatientVisit.PatientUID;
-            patProblem.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+            patProblem.PatientUID = SelectedPatientVisit.PatientUID;
+            patProblem.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
             patProblem.ProblemUID = SelectedProblem.ProblemUID;
             patProblem.ProblemCode = SelectedProblem.Code;
             patProblem.ProblemName = SelectedProblem.Name;
@@ -654,7 +652,7 @@ namespace MediTech.ViewModels
 
         private void EditProblem()
         {
-            if (SelectPatientVisit == null)
+            if (SelectedPatientVisit == null)
             {
                 WarningDialog("กรุณาเลือกผู้ป่วย");
                 return;
@@ -730,7 +728,7 @@ namespace MediTech.ViewModels
         {
             try
             {
-                if (SelectPatientVisit != null)
+                if (SelectedPatientVisit != null)
                 {
                     if (PatientProblemList == null || PatientProblemList.Count <= 0)
                     {
@@ -741,7 +739,7 @@ namespace MediTech.ViewModels
                         }
                     }
                     AssignPropertiesModel();
-                    DataService.PatientDiagnosis.ManagePatientProblem(model, SelectPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
+                    DataService.PatientDiagnosis.ManagePatientProblem(model, SelectedPatientVisit.PatientVisitUID, AppUtil.Current.UserID);
                     SaveSuccessDialog();
                     CloseViewDialog(ActionDialog.Save);
 
@@ -813,6 +811,11 @@ namespace MediTech.ViewModels
             {
                 PatientProblemList.Add(item);
             }
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            SelectedPatientVisit = patVisitData;
         }
 
         #endregion

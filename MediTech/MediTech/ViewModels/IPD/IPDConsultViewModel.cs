@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Interface;
 using MediTech.Model;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 namespace MediTech.ViewModels
 {
-   public class IPDConsultViewModel : MediTechViewModelBase
+   public class IPDConsultViewModel : MediTechViewModelBase,IPatientVisitViewModel
     {
 
         #region Properties
@@ -21,15 +22,22 @@ namespace MediTech.ViewModels
 
         #endregion
 
-        private PatientVisitModel _SelectPatientVisit;
-        public PatientVisitModel SelectPatientVisit
+        private PatientVisitModel _SelectedPatientVisit;
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
+            get { return _SelectedPatientVisit; }
+            set { Set(ref _SelectedPatientVisit, value); }
         }
 
 
-        private List<IPDConsultModel> _deletedConsultlist;
+        private List<IPDConsultModel> _DeletedConsultlist;
+
+        public List<IPDConsultModel> DeletedConsultlist
+        {
+            get { return _DeletedConsultlist ?? (_DeletedConsultlist = new List<IPDConsultModel>()); }
+            set { _DeletedConsultlist = value; }
+        }
+
 
 
         private DateTime? _StartDateConsult;
@@ -210,6 +218,12 @@ namespace MediTech.ViewModels
             get { return _SaveCommand ?? (_SaveCommand = new RelayCommand(Save)); }
         }
 
+        private RelayCommand _CancelCommand;
+
+        public RelayCommand CancelCommand
+        {
+            get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
+        }
 
         #endregion
 
@@ -315,9 +329,6 @@ namespace MediTech.ViewModels
             }
         }
 
-
-
-
         void UpdateVisitPayor()
         {
             if (SelectPatientConsult != null)
@@ -339,21 +350,16 @@ namespace MediTech.ViewModels
             }
         }
 
-
-
-
         void DeleteVisitPayor()
         {
             if (SelectPatientConsult != null)
             {
                 SelectPatientConsult.StatusFlag = "D";
-                _deletedConsultlist.Add(SelectPatientConsult);
+                DeletedConsultlist.Add(SelectPatientConsult);
                 IPDConsultList.Remove(SelectPatientConsult);
 
             }
         }
-
-
 
         private void Save()
         {
@@ -368,6 +374,9 @@ namespace MediTech.ViewModels
                 var listconsultdata = IPDConsultList.ToList();
                 //if (_deletedVisitPayorList != null)
                 //PateintVisitPayorDatas.AddRange(_deletedVisitPayorList);
+                if (DeletedConsultlist != null)
+                    listconsultdata.AddRange(DeletedConsultlist);
+
                 DataService.InPatientService.InsertPatientConsult(listconsultdata, AppUtil.Current.UserID);
                 //DataService.InPatientService.InsertPatientConsult(listconsultdata, AppUtil.Current.UserID);
               
@@ -383,8 +392,10 @@ namespace MediTech.ViewModels
 
         }
 
-
-
+        private void Cancel()
+        {
+            CloseViewDialog(ActionDialog.Cancel);
+        }
 
         private void AssignToGrid()
         {
@@ -399,12 +410,12 @@ namespace MediTech.ViewModels
             consultDetail.ConultTypeStr = SelectConsultType.Display;
             consultDetail.Note = Comments;
 
-            consultDetail.PatientUID = SelectPatientVisit.PatientUID;
-            consultDetail.VISTSUID = SelectPatientVisit.VISTSUID;
-            consultDetail.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
-            consultDetail.PatientName = SelectPatientVisit.PatientName;
-            consultDetail.PatientID = SelectPatientVisit.PatientID;
-            consultDetail.VisitID = SelectPatientVisit.VisitID;
+            consultDetail.PatientUID = SelectedPatientVisit.PatientUID;
+            consultDetail.VISTSUID = SelectedPatientVisit.VISTSUID;
+            consultDetail.PatientVisitUID = SelectedPatientVisit.PatientVisitUID;
+            consultDetail.PatientName = SelectedPatientVisit.PatientName;
+            consultDetail.PatientID = SelectedPatientVisit.PatientID;
+            consultDetail.VisitID = SelectedPatientVisit.VisitID;
 
             consultDetail.CareProviderUID = SelectDoctor != null ? SelectDoctor.CareproviderUID : (int?)null;
              consultDetail.CareProviderName = SelectDoctor != null ? Doctors.FirstOrDefault(p => p.CareproviderUID == SelectDoctor.CareproviderUID).FullName : null;
@@ -413,6 +424,13 @@ namespace MediTech.ViewModels
               consultDetail.StatusFlag = "A";
               consultDetail.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
 
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            SelectedPatientVisit = patVisitData;
+            StartDateConsult = DateTime.Today;
+            EndDateConsult = DateTime.Today;
         }
         #endregion
     }

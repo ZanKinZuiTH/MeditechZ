@@ -192,7 +192,7 @@ namespace MediTech.ViewModels
             {
                 var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(SelectedBedWardView.PatientVisitUID ?? 0);
                 EMRView pageview = new EMRView();
-                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(patientVisit);
+                (pageview.DataContext as EMRViewViewModel).AssignPatientVisit(patientVisit);
                 EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
             }
         }

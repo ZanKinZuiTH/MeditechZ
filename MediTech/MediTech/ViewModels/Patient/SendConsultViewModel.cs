@@ -1,4 +1,5 @@
 ﻿using GalaSoft.MvvmLight.Command;
+using MediTech.Interface;
 using MediTech.Model;
 using System;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MediTech.ViewModels
 {
-    public class SendConsultViewModel : MediTechViewModelBase
+    public class SendConsultViewModel : MediTechViewModelBase,IPatientVisitViewModel
     {
         #region Properties
 
@@ -20,11 +21,11 @@ namespace MediTech.ViewModels
 
         #endregion
 
-        private PatientVisitModel _SelectPatientVisit;
-        public PatientVisitModel SelectPatientVisit
+        private PatientVisitModel _SelectedPatientVisit;
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
-            set { Set(ref _SelectPatientVisit, value); }
+            get { return _SelectedPatientVisit; }
+            set { Set(ref _SelectedPatientVisit, value); }
         }
 
         private DateTime _AppointmentDate;
@@ -131,6 +132,7 @@ namespace MediTech.ViewModels
         {
             get { return _CancelCommand ?? (_CancelCommand = new RelayCommand(Cancel)); }
         }
+
         #endregion
 
         #region Method
@@ -184,17 +186,6 @@ namespace MediTech.ViewModels
             }
         }
 
-        public void AssignData(PatientVisitModel model)
-        {
-            SelectPatientVisit = model;
-            patientVisitModel = model;
-            int patientUID = Convert.ToInt32(model.PatientUID);
-            int patientVisitUID = Convert.ToInt32(model.PatientVisitUID);
-            int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
-
-            var requestData = DataService.PatientIdentity.GetAppointmentRequestbyUID(patientUID, patientVisitUID, bkstsUID);
-            AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(requestData);
-        }
 
         private void AssignToGrid()
         {
@@ -296,6 +287,18 @@ namespace MediTech.ViewModels
         private void Cancel()
         {
             CloseViewDialog(ActionDialog.Cancel);
+        }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            SelectedPatientVisit = patVisitData;
+            patientVisitModel = patVisitData;
+            int patientUID = Convert.ToInt32(patVisitData.PatientUID);
+            int patientVisitUID = Convert.ToInt32(patVisitData.PatientVisitUID);
+            int bkstsUID = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST").Key ?? 0;
+
+            var requestData = DataService.PatientIdentity.GetAppointmentRequestbyUID(patientUID, patientVisitUID, bkstsUID);
+            AppointmentRequest = new ObservableCollection<AppointmentRequestModel>(requestData);
         }
 
         #endregion

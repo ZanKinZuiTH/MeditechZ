@@ -1,4 +1,5 @@
 ﻿using DevExpress.Xpf.Editors;
+using MediTech.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace MediTech.Views
             InitializeComponent();
             cmbDoctor.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
             cmbStatus.PreviewKeyDown += ComboBoxEdit_PreviewKeyDown;
-
+            (summeryView.DataContext as EMRViewViewModel).View = summeryView;
         }
 
         private void ComboBoxEdit_PreviewKeyDown(object sender, KeyEventArgs e)

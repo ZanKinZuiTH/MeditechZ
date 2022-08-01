@@ -1,5 +1,6 @@
 ﻿using DevExpress.XtraReports.UI;
 using GalaSoft.MvvmLight.Command;
+using MediTech.Interface;
 using MediTech.Model;
 using MediTech.Reports.Operating.Checkup.CheckupBookReport;
 using MediTech.Reports.Operating.Lab;
@@ -18,7 +19,7 @@ using System.Windows.Forms;
 
 namespace MediTech.ViewModels
 {
-    public class SummeryViewViewModel : MediTechViewModelBase
+    public class SummeryViewViewModel : MediTechViewModelBase, IPatientVisitViewModel
     {
         #region Properties
 
@@ -209,15 +210,15 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectRadiologyResult, value); }
         }
 
-        private PatientVisitModel _SelectPatientVisit;
+        private PatientVisitModel _SelectedPatientVisit;
 
-        public PatientVisitModel SelectPatientVisit
+        public PatientVisitModel SelectedPatientVisit
         {
-            get { return _SelectPatientVisit; }
+            get { return _SelectedPatientVisit; }
             set
             {
-                Set(ref _SelectPatientVisit, value);
-                if (SelectPatientVisit != null)
+                Set(ref _SelectedPatientVisit, value);
+                if (SelectedPatientVisit != null)
                 {
                     LoadCCHPI();
                     LoadPhyPE();
@@ -530,20 +531,16 @@ namespace MediTech.ViewModels
         int FINDIS = 421;
 
 
-        public void AssingPatientVisit(PatientVisitModel visitModel)
-        {
-            SelectPatientVisit = visitModel;
-        }
 
         public void LoadCCHPI()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListCCHPI = new ObservableCollection<CCHPIModel>(DataService.PatientHistory.GetCCHPIByPatientUID(SelectPatientVisit.PatientUID));
+                ListCCHPI = new ObservableCollection<CCHPIModel>(DataService.PatientHistory.GetCCHPIByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListCCHPI = new ObservableCollection<CCHPIModel>(DataService.PatientHistory.GetCCHPIByVisit(SelectPatientVisit.PatientVisitUID));
+                ListCCHPI = new ObservableCollection<CCHPIModel>(DataService.PatientHistory.GetCCHPIByVisit(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListCCHPI != null)
@@ -571,13 +568,13 @@ namespace MediTech.ViewModels
 
         public void LoadProgressNote()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListNote = new ObservableCollection<ProgressNoteModel>(DataService.PatientHistory.GetProgressNoteByPatientUID(SelectPatientVisit.PatientUID));
+                ListNote = new ObservableCollection<ProgressNoteModel>(DataService.PatientHistory.GetProgressNoteByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListNote = new ObservableCollection<ProgressNoteModel>(DataService.PatientHistory.GetProgressNoteByVisit(SelectPatientVisit.PatientVisitUID));
+                ListNote = new ObservableCollection<ProgressNoteModel>(DataService.PatientHistory.GetProgressNoteByVisit(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListNote != null)
@@ -598,13 +595,13 @@ namespace MediTech.ViewModels
 
         public void LoadPhyPE()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListPhysicalExam = new ObservableCollection<PhysicalExamModel>(DataService.PatientHistory.GetPhysicalExamByPatientUID(SelectPatientVisit.PatientUID));
+                ListPhysicalExam = new ObservableCollection<PhysicalExamModel>(DataService.PatientHistory.GetPhysicalExamByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListPhysicalExam = new ObservableCollection<PhysicalExamModel>(DataService.PatientHistory.GetPhysicalExamByVisit(SelectPatientVisit.PatientVisitUID));
+                ListPhysicalExam = new ObservableCollection<PhysicalExamModel>(DataService.PatientHistory.GetPhysicalExamByVisit(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListPhysicalExam != null)
@@ -615,13 +612,13 @@ namespace MediTech.ViewModels
 
         public void LoadWellnessData()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListWellnessData = new ObservableCollection<WellnessDataModel>(DataService.PatientHistory.GetWellnessDataByPatient(SelectPatientVisit.PatientUID));
+                ListWellnessData = new ObservableCollection<WellnessDataModel>(DataService.PatientHistory.GetWellnessDataByPatient(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListWellnessData = new ObservableCollection<WellnessDataModel>(DataService.PatientHistory.GetWellnessDataByVisit(SelectPatientVisit.PatientVisitUID));
+                ListWellnessData = new ObservableCollection<WellnessDataModel>(DataService.PatientHistory.GetWellnessDataByVisit(SelectedPatientVisit.PatientVisitUID));
             }
         }
 
@@ -649,13 +646,13 @@ namespace MediTech.ViewModels
 
         public void LoadDianosis()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListDiagnosis = new ObservableCollection<PatientProblemModel>(DataService.PatientDiagnosis.GetPatientProblemByPatientUID(SelectPatientVisit.PatientUID));
+                ListDiagnosis = new ObservableCollection<PatientProblemModel>(DataService.PatientDiagnosis.GetPatientProblemByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListDiagnosis = new ObservableCollection<PatientProblemModel>(DataService.PatientDiagnosis.GetPatientProblemByVisitUID(SelectPatientVisit.PatientVisitUID));
+                ListDiagnosis = new ObservableCollection<PatientProblemModel>(DataService.PatientDiagnosis.GetPatientProblemByVisitUID(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListDiagnosis != null)
@@ -665,13 +662,13 @@ namespace MediTech.ViewModels
         }
         public void LoadPatientOrder()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListOrder = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByPatientUID(SelectPatientVisit.PatientUID));
+                ListOrder = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListOrder = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectPatientVisit.PatientVisitUID));
+                ListOrder = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByVisitUID(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListOrder != null)
@@ -681,10 +678,10 @@ namespace MediTech.ViewModels
                 ListDrugProfile = new ObservableCollection<PatientOrderDetailModel>(ListOrder.Where(p => p.BSMDDUID == 2826 && p.ORDSTUID == 2861));
             }
 
-            DateFromOrderDetail = SelectPatientVisit.StartDttm;
+            DateFromOrderDetail = SelectedPatientVisit.StartDttm;
             DateToOrderDetail = null;
 
-            DateFromDrugProfile = SelectPatientVisit.StartDttm;
+            DateFromDrugProfile = SelectedPatientVisit.StartDttm;
             DateToDrugProfile = null;
 
             ListOrderMaximized = ListOrder;
@@ -695,7 +692,7 @@ namespace MediTech.ViewModels
         {
             if (ListOrderMaximized == null || ListOrderMaximized.Count <= 0)
             {
-                DateFromOrderDetail = SelectPatientVisit.StartDttm;
+                DateFromOrderDetail = SelectedPatientVisit.StartDttm;
                 DateToOrderDetail = null;
                 ListOrderMaximized = ListOrder;
             }
@@ -703,7 +700,7 @@ namespace MediTech.ViewModels
 
         private void SearchOrderDetails()
         {
-            ListOrderMaximized = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByPatientUID(SelectPatientVisit.PatientUID, DateFromOrderDetail, DateToOrderDetail));
+            ListOrderMaximized = new ObservableCollection<PatientOrderDetailModel>(DataService.OrderProcessing.GetOrderAllByPatientUID(SelectedPatientVisit.PatientUID, DateFromOrderDetail, DateToOrderDetail));
             if (ListOrderMaximized != null && ListOrderMaximized.Count > 0)
             {
                 ListOrderMaximized = new ObservableCollection<PatientOrderDetailModel>(ListOrderMaximized.OrderByDescending(p => p.StartDttm));
@@ -714,7 +711,7 @@ namespace MediTech.ViewModels
         {
             if (ListDrugProfileMaximized == null || ListDrugProfileMaximized.Count <= 0)
             {
-                DateFromDrugProfile = SelectPatientVisit.StartDttm;
+                DateFromDrugProfile = SelectedPatientVisit.StartDttm;
                 DateToDrugProfile = null;
                 ListDrugProfileMaximized = ListDrugProfile;
             }
@@ -723,7 +720,7 @@ namespace MediTech.ViewModels
         private void SearchDrugProfile()
         {
             ListDrugProfileMaximized = null;
-            var drugData = DataService.OrderProcessing.GetOrderDrugByPatientUID(SelectPatientVisit.PatientUID, DateFromDrugProfile, DateToDrugProfile);
+            var drugData = DataService.OrderProcessing.GetOrderDrugByPatientUID(SelectedPatientVisit.PatientUID, DateFromDrugProfile, DateToDrugProfile);
             if (drugData != null && drugData.PatientOrderDetail != null && drugData.PatientOrderDetail.Count > 0)
             {
                 ListDrugProfileMaximized = new ObservableCollection<PatientOrderDetailModel>(drugData.PatientOrderDetail);
@@ -736,13 +733,13 @@ namespace MediTech.ViewModels
 
         public void LoadRaiologyResult()
         {
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                ListRadiologyResult = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByPatientUID(SelectPatientVisit.PatientUID));
+                ListRadiologyResult = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByPatientUID(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                ListRadiologyResult = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByVisitUID(SelectPatientVisit.PatientVisitUID));
+                ListRadiologyResult = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByVisitUID(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (ListRadiologyResult != null)
@@ -750,7 +747,7 @@ namespace MediTech.ViewModels
                 ListRadiologyResult = new ObservableCollection<ResultRadiologyModel>(ListRadiologyResult.OrderByDescending(p => p.ResultEnteredDttm));
             }
 
-            DateFromRadiologyResult = SelectPatientVisit.StartDttm;
+            DateFromRadiologyResult = SelectedPatientVisit.StartDttm;
             DateToRadiologyResult = null;
             ListRadiologyResultMaximized = ListRadiologyResult;
         }
@@ -759,14 +756,14 @@ namespace MediTech.ViewModels
         {
             if (ListRadiologyResultMaximized == null || ListRadiologyResultMaximized.Count <= 0)
             {
-                DateFromRadiologyResult = SelectPatientVisit.StartDttm;
+                DateFromRadiologyResult = SelectedPatientVisit.StartDttm;
                 DateToRadiologyResult = null;
                 ListRadiologyResultMaximized = ListRadiologyResult;
             }
         }
         private void SearchRadiologyResult()
         {
-            ListRadiologyResultMaximized = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByPatientUID(SelectPatientVisit.PatientUID, DateFromRadiologyResult, DateToRadiologyResult));
+            ListRadiologyResultMaximized = new ObservableCollection<ResultRadiologyModel>(DataService.Radiology.GetResultRadiologyByPatientUID(SelectedPatientVisit.PatientUID, DateFromRadiologyResult, DateToRadiologyResult));
             if (ListRadiologyResultMaximized != null && ListRadiologyResultMaximized.Count > 0)
             {
                 ListRadiologyResultMaximized = new ObservableCollection<ResultRadiologyModel>(ListRadiologyResultMaximized.OrderByDescending(p => p.ResultEnteredDttm));
@@ -776,13 +773,13 @@ namespace MediTech.ViewModels
         public void LoadLabResult()
         {
             ListLabsResult = new ObservableCollection<ResultModel>();
-            if (SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit.PatientVisitUID == 0)
             {
-                LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByPatient(SelectPatientVisit.PatientUID));
+                LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByPatient(SelectedPatientVisit.PatientUID));
             }
             else
             {
-                LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByVisit(SelectPatientVisit.PatientVisitUID));
+                LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByVisit(SelectedPatientVisit.PatientVisitUID));
             }
 
             if (LabResultDetails != null)
@@ -807,7 +804,7 @@ namespace MediTech.ViewModels
                 }
             }
 
-            DateFromLabResultDetail = SelectPatientVisit.StartDttm;
+            DateFromLabResultDetail = SelectedPatientVisit.StartDttm;
             DateToLabResultDetail = null;
             //ListLabsResult = DataService.Lab.GetResultLabByPatientVisitUID(SelectPatientVisit.PatientVisitUID);
         }
@@ -818,7 +815,7 @@ namespace MediTech.ViewModels
         {
             if (LabResultDetails == null || LabResultDetails.Count <= 0)
             {
-                DateFromLabResultDetail = SelectPatientVisit.StartDttm;
+                DateFromLabResultDetail = SelectedPatientVisit.StartDttm;
                 DateToLabResultDetail = null;
                 SearchLabResultDetails();
             }
@@ -827,7 +824,7 @@ namespace MediTech.ViewModels
 
         private void SearchLabResultDetails()
         {
-            LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByPatient(SelectPatientVisit.PatientUID, DateFromLabResultDetail, DateToLabResultDetail));
+            LabResultDetails = new ObservableCollection<RequestLabModel>(DataService.Lab.GetResultLabGroupRequestNumberByPatient(SelectedPatientVisit.PatientUID, DateFromLabResultDetail, DateToLabResultDetail));
             if (LabResultDetails != null && LabResultDetails.Count > 0)
             {
                 LabResultDetails = new ObservableCollection<RequestLabModel>(LabResultDetails.OrderByDescending(p => p.RequestedDttm));
@@ -873,13 +870,13 @@ namespace MediTech.ViewModels
 
         private void OpenOrder()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             PatientOrderEntry pageview = new PatientOrderEntry();
-            (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectPatientVisit);
+            (pageview.DataContext as PatientOrderEntryViewModel).AssingPatientVisit(SelectedPatientVisit);
             PatientOrderEntryViewModel result = (PatientOrderEntryViewModel)LaunchViewDialog(pageview, "ORDITM", false, true);
 
             if (result != null)
@@ -892,13 +889,13 @@ namespace MediTech.ViewModels
 
         private void OpenDiagnosis()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             PatientDiagnosis pageview = new PatientDiagnosis();
-            (pageview.DataContext as PatientDiagnosisViewModel).AssingPatientVisit(SelectPatientVisit);
+            (pageview.DataContext as PatientDiagnosisViewModel).AssignPatientVisit(SelectedPatientVisit);
             PatientDiagnosisViewModel result = (PatientDiagnosisViewModel)LaunchViewDialog(pageview, "PATDIAG", false);
 
             if (result != null)
@@ -911,13 +908,13 @@ namespace MediTech.ViewModels
 
         private void OpenPhysical()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             PhysicalExam pageview = new PhysicalExam();
-            (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectPatientVisit);
+            (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectedPatientVisit);
             PhysicalExamViewModel result = (PhysicalExamViewModel)LaunchViewDialog(pageview, "PHYEXAM", false);
 
             if (result != null)
@@ -933,16 +930,16 @@ namespace MediTech.ViewModels
             PhysicalExam pageview = new PhysicalExam();
             if (SelectPhysicalExam != null)
             {
-                (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectPatientVisit, SelectPhysicalExam);
+                (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectedPatientVisit, SelectPhysicalExam);
             }
             else
             {
-                if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+                if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Visit");
                     return;
                 }
-                (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as PhysicalExamViewModel).AssingPatientVisit(SelectedPatientVisit);
             }
             PhysicalExamViewModel result = (PhysicalExamViewModel)LaunchViewDialog(pageview, "PHYEXAM", false);
 
@@ -955,13 +952,13 @@ namespace MediTech.ViewModels
 
         private void OpenCCHPI()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             CCHPI pageview = new CCHPI();
-            (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectPatientVisit);
+            (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectedPatientVisit);
             CCHPIViewModel result = (CCHPIViewModel)LaunchViewDialog(pageview, "CCHPI", true);
 
             if (result != null)
@@ -976,17 +973,17 @@ namespace MediTech.ViewModels
             CCHPI pageview = new CCHPI();
             if (SelectCCHPI != null)
             {
-                (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectPatientVisit, SelectCCHPI);
+                (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectedPatientVisit, SelectCCHPI);
             }
             else
             {
-                if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+                if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Visit");
                     return;
                 }
 
-                (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as CCHPIViewModel).AssingPatientVisit(SelectedPatientVisit);
             }
             CCHPIViewModel result = (CCHPIViewModel)LaunchViewDialog(pageview, "CCHPI", true);
             if (result != null)
@@ -998,13 +995,13 @@ namespace MediTech.ViewModels
 
         private void OpenWellnessData()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             WellnessData pageview = new WellnessData();
-            (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectPatientVisit);
+            (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectedPatientVisit);
             WellnessDataViewModel result = (WellnessDataViewModel)LaunchViewDialog(pageview, "WELLNE", true);
 
             if (result != null)
@@ -1019,16 +1016,16 @@ namespace MediTech.ViewModels
             WellnessData pageview = new WellnessData();
             if (SelectWellnessData != null)
             {
-                (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectPatientVisit, SelectWellnessData);
+                (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectedPatientVisit, SelectWellnessData);
             }
             else
             {
-                if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+                if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
                 {
                     WarningDialog("กรุณาเลือก Visit");
                     return;
                 }
-                (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as WellnessDataViewModel).AssingPatientVisit(SelectedPatientVisit);
             }
 
             WellnessDataViewModel result = (WellnessDataViewModel)LaunchViewDialog(pageview, "WELLNE", true);
@@ -1041,13 +1038,13 @@ namespace MediTech.ViewModels
         }
         private void ProgressNote()
         {
-            if (SelectPatientVisit == null || SelectPatientVisit.PatientVisitUID == 0)
+            if (SelectedPatientVisit == null || SelectedPatientVisit.PatientVisitUID == 0)
             {
                 WarningDialog("กรุณาเลือก Visit");
                 return;
             }
             ProgressNote pageview = new ProgressNote();
-            (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectPatientVisit);
+            (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectedPatientVisit);
             ProgressNoteViewModel result = (ProgressNoteViewModel)LaunchViewDialogNonPermiss(pageview, true);
 
             if (result != null)
@@ -1063,7 +1060,7 @@ namespace MediTech.ViewModels
             ProgressNote pageview = new ProgressNote();
             if (SelectProgressNote != null)
             {
-                (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectPatientVisit, SelectProgressNote);
+                (pageview.DataContext as ProgressNoteViewModel).AssignModelToProperties(SelectedPatientVisit, SelectProgressNote);
                 ProgressNoteViewModel result = (ProgressNoteViewModel)LaunchViewDialogNonPermiss(pageview, true);
                 if (result != null)
                 {
@@ -1147,6 +1144,13 @@ namespace MediTech.ViewModels
             rpt.ShowPrintMarginsWarning = false;
             printTool.ShowPreviewDialog();
         }
+
+        public void AssignPatientVisit(PatientVisitModel patVisitData)
+        {
+            SelectedPatientVisit = patVisitData;
+        }
+
+
         #endregion
     }
 }

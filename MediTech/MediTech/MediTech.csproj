@@ -178,6 +178,7 @@
     </ApplicationDefinition>
     <Compile Include="AppUtil.cs" />
     <Compile Include="Converter\BitmapToBitmapImage.cs" />
+    <Compile Include="Converter\PercentageConverter.cs" />
     <Compile Include="Converter\IndexConverter.cs" />
     <Compile Include="Converter\DateConverter.cs" />
     <Compile Include="Converter\DiscRecorderValueConverter.cs" />
@@ -239,6 +240,7 @@
     <Compile Include="Helpers\GridControlFitBehavior.cs" />
     <Compile Include="Helpers\LimitedListCollectionView.cs" />
     <Compile Include="Helpers\MemoryManagement.cs" />
+    <Compile Include="Interface\IPatientVisitViewModel.cs" />
     <Compile Include="LoginScreen.xaml.cs">
       <DependentUpon>LoginScreen.xaml</DependentUpon>
     </Compile>

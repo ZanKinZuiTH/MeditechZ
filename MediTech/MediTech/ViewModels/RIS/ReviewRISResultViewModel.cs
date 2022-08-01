@@ -16,6 +16,7 @@ using System.Windows.Media.Imaging;
 using MediTech.Helpers;
 using System.IO;
 using DevExpress.XtraRichEdit;
+using DevExpress.Xpf.Core;
 
 namespace MediTech.ViewModels
 {
@@ -780,7 +781,7 @@ namespace MediTech.ViewModels
                 pacsViewModel.DateTo = SelectPreviousResult.PreparedDttm != null ? SelectPreviousResult.PreparedDttm : SelectPreviousResult.RequestedDttm;
                 pacsViewModel.Modality = SelectPreviousResult.Modality;
                 pacsViewModel.IsOpenFromExam = true;
-                System.Windows.Window owner = (System.Windows.Window)(this.View as ReviewRISResult).Parent;
+                DXWindow owner = (DXWindow)(this.View as ReviewRISResult).Parent;
                 LaunchViewShow(pacs, owner, "PACS", false, true);
             }
 
@@ -823,7 +824,7 @@ namespace MediTech.ViewModels
                 pacsViewModel.IsCheckedPeriod = true;
                 pacsViewModel.Modality = PatientRequest.Modality;
                 pacsViewModel.StudiesList = StudiesList;
-                System.Windows.Window owner = (System.Windows.Window)(this.View as ReviewRISResult).Parent;
+                DXWindow owner = (DXWindow)(this.View as ReviewRISResult).Parent;
                 LaunchViewShow(pacs, owner, "PACS", false, true);
             }
             else
@@ -848,7 +849,7 @@ namespace MediTech.ViewModels
                     pacsViewModel.IsCheckedPeriod = true;
                     pacsViewModel.Modality = PatientRequest.Modality;
                     pacsViewModel.StudiesList = StudiesList;
-                    System.Windows.Window owner = (System.Windows.Window)(this.View as ReviewRISResult).Parent;
+                    DXWindow owner = (DXWindow)(this.View as ReviewRISResult).Parent;
                     LaunchViewShow(pacs, owner, "PACS", false, true);
                 }
                 else
@@ -866,7 +867,7 @@ namespace MediTech.ViewModels
                     pacsViewModel.IsCheckedPeriod = true;
                     pacsViewModel.Modality = PatientRequest.Modality;
                     pacsViewModel.StudiesList = StudiesList;
-                    System.Windows.Window owner = (System.Windows.Window)(this.View as ReviewRISResult).Parent;
+                    DXWindow owner = (DXWindow)(this.View as ReviewRISResult).Parent;
                     LaunchViewShow(pacs, owner, "PACS", false, true);
                 }
             }

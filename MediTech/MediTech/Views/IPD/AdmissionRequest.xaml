@@ -14,11 +14,11 @@
              d:DesignHeight="500" d:DesignWidth="700">
     <Grid>
         <dxlc:LayoutControl Orientation="Vertical" Margin="20">
-            <dxlc:LayoutGroup Orientation="Horizontal">
+            <!--<dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutItem Name="Banner" Visibility="{Binding IsBanner}">
                     <uc:PatientBanner PatientVisit="{Binding SelectPatientVisit}"/>
                 </dxlc:LayoutItem>
-            </dxlc:LayoutGroup>
+            </dxlc:LayoutGroup>-->
             <dxlc:LayoutGroup Orientation="Horizontal">
                 <dxlc:LayoutGroup Orientation="Vertical">
                     <dxlc:LayoutItem Label="Ward">

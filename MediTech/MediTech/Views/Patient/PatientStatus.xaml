@@ -1,4 +1,4 @@
-﻿<Window  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
+﻿<dx:DXWindow  xmlns:dxe="http://schemas.devexpress.com/winfx/2008/xaml/editors" xmlns:dx="http://schemas.devexpress.com/winfx/2008/xaml/core"  
         xmlns:dxg="http://schemas.devexpress.com/winfx/2008/xaml/grid"  xmlns:dxlc="http://schemas.devexpress.com/winfx/2008/xaml/layoutcontrol" x:Class="MediTech.Views.PatientStatus"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
@@ -24,7 +24,7 @@
                 <dxlc:LayoutItem Label="แผนก : " Name="GroupWardLocation">
                     <TextBlock x:Name="cmbWardLocation" Text=""/>
                 </dxlc:LayoutItem>
-                
+
                 <dxlc:LayoutGroup Name="GroupWard">
                     <dxlc:LayoutItem Label="Ward : ">
                         <TextBlock x:Name="cmbWard" Text=""/>
@@ -41,7 +41,7 @@
                 <dxlc:LayoutItem Label="หมอ : " Name="GroupWardDoctor">
                     <TextBlock x:Name="cmbWardDoctor" Text=""/>
                 </dxlc:LayoutItem>
-                
+
                 <dxlc:LayoutItem Label="สถานะ" Name="lytStatus">
                     <dxe:ComboBoxEdit x:Name="cmbStatus"
                                   IsEnabled="True"
@@ -74,7 +74,7 @@
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem />
                 </dxlc:LayoutGroup>
-                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom"> 
+                <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Bottom">
 
                     <dx:SimpleButton Name="btnSave" 
                             Height="25" Width="80" Content="บันทึก"/>
@@ -86,4 +86,4 @@
         </dxlc:LayoutControl>
 
     </Grid>
-</Window>
+</dx:DXWindow>

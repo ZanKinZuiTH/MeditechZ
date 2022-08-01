@@ -458,7 +458,7 @@ namespace MediTech.ViewModels
             if (SelectPatientVisit != null)
             {
                 EMRView pageview = new EMRView();
-                (pageview.DataContext as EMRViewViewModel).AssingPatientVisit(SelectPatientVisit);
+                (pageview.DataContext as EMRViewViewModel).AssignPatientVisit(SelectPatientVisit);
                 EMRViewViewModel result = (EMRViewViewModel)LaunchViewDialog(pageview, "EMRVE", false, true);
             }
         }

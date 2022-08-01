@@ -17,7 +17,7 @@ namespace MediTech.ViewModels
     public class MediTechViewModelBase : ViewModelBase
     {
         #region StaticVariable
-        public static System.Windows.Window MainWindow { get; set; }
+        public static DXWindow MainWindow { get; set; }
 
         #endregion
 
@@ -231,7 +231,7 @@ namespace MediTech.ViewModels
 
                 usercontrol.Loaded += usercontrol_Loaded;
 
-                System.Windows.Window window = new System.Windows.Window();
+                DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
                 (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
@@ -282,7 +282,7 @@ namespace MediTech.ViewModels
 
                 usercontrol.Loaded += usercontrol_Loaded;
 
-                System.Windows.Window window = new System.Windows.Window();
+                DXWindow window = new DXWindow();
                 window.Closed += window_Closed;
 
                 (usercontrol.DataContext as MediTechViewModelBase).View = pageView;
@@ -314,7 +314,7 @@ namespace MediTech.ViewModels
             }
         }
 
-        public object LaunchViewShow(object pageView, System.Windows.Window owner, string viewCode, bool IsSizeToContent, bool IsMaximized = false)
+        public object LaunchViewShow(object pageView, DXWindow owner, string viewCode, bool IsSizeToContent, bool IsMaximized = false)
         {
             try
             {
@@ -486,11 +486,19 @@ namespace MediTech.ViewModels
                 {
                     var parent = ((System.Windows.Controls.UserControl)View).Parent;
 
-                    if (parent is System.Windows.Window)
+                    if (parent is DXWindow)
                     {
                         ResultDialog = status;
                         ViewModelLocator.Cleanup();
-                        (parent as System.Windows.Window).Close();
+                        (parent as DXWindow).Close();
+                    }
+                    else
+                    {
+                        var viewUserControl = (View as System.Windows.Controls.UserControl);
+                        if (viewUserControl.Tag != null && viewUserControl.Tag is MediTech.Views.EMRView)
+                        {
+                            (viewUserControl.Tag as MediTech.Views.EMRView).DefaultPage();
+                        }
                     }
                 }
             }
@@ -512,7 +520,7 @@ namespace MediTech.ViewModels
                 }
 
             }
-            else if (parent is System.Windows.Window)
+            else if (parent is DXWindow)
             {
                 CloseViewDialog(actionStatus);
             }

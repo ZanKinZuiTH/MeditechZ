@@ -45,7 +45,7 @@ namespace MediTech.Views
         {
             if (this.DataContext is SummeryViewViewModel)
             {
-                (this.DataContext as SummeryViewViewModel).AssingPatientVisit(source);
+                (this.DataContext as SummeryViewViewModel).AssignPatientVisit(source);
             }
         }
 
@@ -53,6 +53,15 @@ namespace MediTech.Views
         public SummeryView()
         {
             InitializeComponent();
+        }
+
+        public void RefershData()
+        {
+            if (this.DataContext is SummeryViewViewModel)
+            {
+                (this.DataContext as SummeryViewViewModel).LoadLabResult();
+                (this.DataContext as SummeryViewViewModel).LoadRaiologyResult();
+            }
         }
 
         //private void listLabResultGroupLabNumber_Loaded(object sender, RoutedEventArgs e)

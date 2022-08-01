@@ -101,7 +101,6 @@ namespace MediTech.ViewModels
                     IsEnableControl = false;
                     ClearLastVistalSign();
                 }
-
             }
         }
 
@@ -679,9 +678,8 @@ namespace MediTech.ViewModels
             if (SelectVisitMedical != null)
             {
                 var view = (this.View as DoctorRoom);
-                var summeryViewModel = (view.summeryView.DataContext as SummeryViewViewModel);
-                summeryViewModel.LoadLabResult();
-                summeryViewModel.LoadRaiologyResult();
+                var summeryViewModel = (view.summeryView.DataContext as EMRViewViewModel);
+                (summeryViewModel.View as EMRView).summeryView.RefershData();
                 GetLastVitalSign();
             }
         }
@@ -992,7 +990,7 @@ namespace MediTech.ViewModels
                     {
                         PatientDiagnosis pageDiag = new PatientDiagnosis();
                         PatientDiagnosisViewModel viewModelDiag = (pageDiag.DataContext as PatientDiagnosisViewModel);
-                        viewModelDiag.AssingPatientVisit(SelectVisitMedical);
+                        viewModelDiag.AssignPatientVisit(SelectVisitMedical);
                         List<PatientProblemModel> listReDiagnosis = result.ListDiagnosis;
                         if (viewModelDiag.PatientProblemList != null && viewModelDiag.PatientProblemList.Count > 0)
                         {
