@@ -109,6 +109,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTable2});
             this.GroupHeader1.HeightF = 75F;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             // 
             // xrTable2
             // 
