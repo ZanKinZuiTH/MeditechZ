@@ -804,7 +804,7 @@ namespace MediTech.ViewModels
                 PatientVisitModel visitInfo = new PatientVisitModel();
                 visitInfo.StartDttm = DateTime.Parse(EmergencyStartDate.ToString("dd/MM/yyyy") + " " + EmergencyStartTime.ToString("HH:mm"));
                 visitInfo.PatientUID = resultPatient.PatientUID;
-
+                visitInfo.PatientID = resultPatient.PatientID;
                 visitInfo.VISTYUID = DataService.Technical.GetReferenceValueByCode("VISTY", "EMR").Key; ; //visit type EMR
                 
                 visitInfo.VISTSUID = 417; //Registered
@@ -833,7 +833,7 @@ namespace MediTech.ViewModels
                     return;
                 }
 
-                SaveSuccessDialog("HN : " + returnData.PatientID + "Emergency Admitted Successfully");
+                SaveSuccessDialog("HN : " + returnData.PatientID + "\r\nEmergency Admitted Successfully");
 
                 var patientVisitPayors = DataService.PatientIdentity.GetPatientVisitPayorByVisitUID(returnData.PatientVisitUID);
                 if (patientVisitPayors.Count == 0)

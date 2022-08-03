@@ -2000,6 +2000,8 @@ namespace MediTechWebApi.Controllers
                              VisitID = pv.VisitID,
                              PRITYUID = pv.PRITYUID,
                              OwnerOrganisationUID = pv.OwnerOrganisationUID ?? 0,
+                             LocationUID = pv.LocationUID,
+                             LocationName = SqlFunction.fGetLocationName(pv.LocationUID ?? 0)
                          }).ToList();
 
             return visitData;
@@ -3816,7 +3818,6 @@ namespace MediTechWebApi.Controllers
                         detail.RequestedBy = request.RequestedBy;
                         detail.RequestedDate = request.RequestedDate;
                         detail.Comments = request.Comments;
-                        detail.CareproviderUID = request.CareProviderUID;
                         detail.LocationUID = request.LocationUID;
                         detail.OwnerOrganisationUID = request.OwnerOrganisationUID;
                         detail.MUser = userUID;
@@ -3857,6 +3858,7 @@ namespace MediTechWebApi.Controllers
                                                      && (bookStatus == null || app.BKSTSUID == bookStatus)
                                                      && (ownerOrganisationUID == null || app.OwnerOrganisationUID == ownerOrganisationUID)
                                                      && (locationUID == null || app.LocationUID == locationUID)
+                                                     && (p.LocationUID != locationUID)
                                                   select new AppointmentRequestModel
                                                   {
                                                       AppointmentRequestUID = app.UID,
@@ -3873,7 +3875,7 @@ namespace MediTechWebApi.Controllers
                                                       OwnerOrganisationName = SqlFunction.fGetHealthOrganisationName(app.OwnerOrganisationUID),
                                                       LocationUID = app.LocationUID ?? 0,
                                                       LocationName = SqlFunction.fGetLocationName(app.LocationUID ?? 0),
-                                                      IsCheckin = p != null ? true : false
+                                                      IsCheckin = (p != null && p.LocationUID == locationUID) ? true : false
                                                   }).ToList();
 
             return data;
