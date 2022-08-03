@@ -438,6 +438,8 @@ namespace MediTech.ViewModels
                     Cost = _SelectBillableItemDetail.Cost;
                     ActiveFrom2 = _SelectBillableItemDetail.ActiveFrom;
                     ActiveTo2 = _SelectBillableItemDetail.ActiveTo;
+                    //PBLCTUID = _SelectTariff.Key;
+                    //Tariff = Tariff.FirstOrDefault(p => p.Key == _SelectBillableItemDetail.PBLCTUID);
                     SelectOrganisation = Organisations.FirstOrDefault(p => p.HealthOrganisationUID == _SelectBillableItemDetail.OwnerOrganisationUID);
                     SelectUnit = Units.FirstOrDefault(p => p.Key == _SelectBillableItemDetail.CURNCUID);
                 }
@@ -650,6 +652,17 @@ namespace MediTech.ViewModels
                 if (SelectBillingSubGroup == null)
                 {
                     WarningDialog("กรุณาเลือก Billing Sub-Group");
+                    return;
+                }
+
+                if (Category == null)
+                {
+                    WarningDialog("กรุณาเลือก Order Category");
+                    return;
+                }
+                if (OrderSubCategory == null)
+                {
+                    WarningDialog("กรุณาเลือก Order SubCategory");
                     return;
                 }
 
@@ -868,7 +881,7 @@ namespace MediTech.ViewModels
             model.BillableItemDetails = BillableItemDetail.ToList();
             model.OrderCategoryUID = SelectCategory.OrderCategoryUID;
             model.OrderSubCategoryUID = SelectOrderSubCategory.OrderSubCategoryUID;
-
+            
         }
 
         #endregion

@@ -1534,6 +1534,7 @@ namespace MediTechWebApi.Controllers
 
                     patientVisitInfo.VisitID = erseqVisitID;
                     patientVisitInfo.PatientVisitUID = patientVisit.UID;
+                    patientVisitInfo.PatientID = patient.PatientID;
                     tran.Complete();
                 }
                 return Request.CreateResponse(HttpStatusCode.OK, patientVisitInfo);
@@ -1869,7 +1870,9 @@ namespace MediTechWebApi.Controllers
                             OwnerOrganisationUID = p.OwnerOrganisationUID ?? 0,
                             OwnerOrganisation = SqlFunction.fGetHealthOrganisationName(p.OwnerOrganisationUID ?? 0),
                             LocationUID = p.LocationUID,
-                            LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0)
+                            LocationName = SqlFunction.fGetLocationName(p.LocationUID ?? 0),
+                            CUser = p.CUser,
+                            CreateBy = SqlFunction.fGetCareProviderName(p.CUser)
                         }).FirstOrDefault();
 
             return visitData;

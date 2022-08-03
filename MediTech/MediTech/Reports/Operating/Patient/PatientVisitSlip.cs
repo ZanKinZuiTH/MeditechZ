@@ -31,17 +31,15 @@ namespace MediTech.Reports.Operating.Patient
             int OrganisationUID = int.Parse(this.Parameters["OrganisationUID"].Value.ToString());
             int PatientVisitUID = int.Parse(this.Parameters["PatientVisitUID"].Value.ToString());
             int PatientUID = int.Parse(this.Parameters["PatientUID"].Value.ToString());
-            var dataSource = (new PatientIdentityService()).GetPatientVisitByUID( PatientVisitUID);
+            var dataSource = (new PatientIdentityService()).GetPatientVisitByUID(PatientVisitUID);
             var patient = (new PatientIdentityService()).GetPatientByUID(PatientUID);
 
             patientId.Text = patient.PatientID;
             age.Text = patient.AgeString;
             gender.Text = patient.Gender;
             birthDate.Text = patient.BirthDttmString;
-            Department.Text = AppUtil.Current.OwnerOrganisationName;
-            RegisterBy.Text = AppUtil.Current.UserName;
             var data = (new PatientIdentityService()).GetPatientAllergyByPatientUID(PatientUID);
-            if(data != null)
+            if (data != null)
             {
                 var myList = new List<string>();
 
@@ -53,7 +51,7 @@ namespace MediTech.Reports.Operating.Patient
 
                 Allergytxt.Text = result;
             }
-           
+
             int logoType = Convert.ToInt32(this.Parameters["LogoType"].Value.ToString());
             var OrganisationBRXG = (new MasterDataService()).GetHealthOrganisationByUID(17);
             if (logoType == 0)

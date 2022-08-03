@@ -153,11 +153,12 @@ namespace MediTech.ViewModels
             set { Set(ref _IsWardView, value); }
         }
 
-        private List<LocationModel> _ListWard;
-        public List<LocationModel> ListWard
+        private ObservableCollection<LocationModel> _ListWard;
+        public ObservableCollection<LocationModel> ListWard
         {
             get { return _ListWard; }
-            set { Set(ref _ListWard, value); }
+            set { Set(ref _ListWard, value); 
+            }
         }
 
         private LocationModel _SelectedListBed;
@@ -230,7 +231,8 @@ namespace MediTech.ViewModels
                 Set(ref _SelectWard, value);
                 if (_SelectWard != null)
                 {
-                    ListWard = DataService.PatientIdentity.GetBedLocation(SelectWard.LocationUID, null).Where(p => p.BedIsUse == "N").ToList();
+                    var wradData = DataService.PatientIdentity.GetBedLocation(SelectWard.LocationUID, null).Where(p => p.BedIsUse == "N").ToList();
+                    ListWard = new ObservableCollection<LocationModel>(wradData);
                 }
             }
         }
@@ -609,7 +611,7 @@ namespace MediTech.ViewModels
         {
             IsRequestAdmit = true;
             IpBookingUID = datarequest.IPBookingUID;
-            if (datarequest.LocationUID != null)
+            if (datarequest != null)
             {
                 SelectPatientVisit = DataService.PatientIdentity.GetPatientVisitByUID(datarequest.PatientVisitUID ?? 0);
                 visitModel = SelectPatientVisit;
@@ -619,13 +621,18 @@ namespace MediTech.ViewModels
 
         public void AssignModelToProperties(IPBookingModel iPBooking)
         {
-            SelectWard = iPBooking.LocationUID != null ? Ward.FirstOrDefault(p => p.LocationUID == iPBooking.LocationUID) : null;
-            LenghtofDay = iPBooking.ExpectedLengthofStay ?? 1;
+            SelectWard = (iPBooking.LocationUID != null && iPBooking.LocationUID != 0) ? Ward.FirstOrDefault(p => p.LocationUID == iPBooking.LocationUID) : null;
+            if(iPBooking.ExpectedLengthofStay == 0 || iPBooking.ExpectedLengthofStay == null)
+                LenghtofDay =  1;
             ExpectedAdmission = iPBooking.AdmissionDttm;
             DischargeDate = iPBooking.ExpectedDischargeDttm;
             SelectDoctor =  Doctors.FirstOrDefault(p => p.CareproviderUID == iPBooking.CareproviderUID);
-            SelectSpeciality = iPBooking.SpecialityUID != null ? SpecialitySource.FirstOrDefault(p => p.SpecialityUID == iPBooking.SpecialityUID) : null;
-            SelectedListBed = iPBooking.BedUID != null ? ListWard.FirstOrDefault(p => p.LocationUID == iPBooking.BedUID) : null;
+
+            if(iPBooking.SpecialityUID != null)
+                SelectSpeciality = SpecialitySource.FirstOrDefault(p => p.SpecialityUID == iPBooking.SpecialityUID);
+
+            if(iPBooking.BedUID != null && iPBooking.BedUID != 0)
+                SelectedListBed = ListWard.FirstOrDefault(p => p.LocationUID == iPBooking.BedUID);
         }
 
         public void SendbedWard(BedStatusModel bedModel)

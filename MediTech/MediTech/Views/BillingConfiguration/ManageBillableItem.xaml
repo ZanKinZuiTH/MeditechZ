@@ -241,7 +241,7 @@
                         <dxg:GridColumn Header="เปิดใช้งาน" FieldName="ActiveFrom" ReadOnly="True"/>
                         <dxg:GridColumn Header="ปิดใช้งาน" FieldName="ActiveTo" ReadOnly="True"/>
                         <dxg:GridColumn Header="สถานประกอบการ" FieldName="OwnerOrganisationName" GroupIndex="0" ReadOnly="True" />
-                        <dxg:GridColumn Header="Triff" FieldName="Triff" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Triff" FieldName="Tariff" ReadOnly="True"/>
                         <dxg:GridColumn Header="ราคา" FieldName="Price" ReadOnly="True">
                             <dxg:GridColumn.EditSettings>
                                 <dxe:TextEditSettings DisplayFormat="#,#.00"/>
