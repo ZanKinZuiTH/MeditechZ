@@ -2036,7 +2036,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126") != null)
                     {
-                        page7.RowCholinesteraseBlood.Visible = false;
+                        page7.RowCholinesteraseBlood.Visible = true;
                         page7.CholinesterasebloodRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126")?.ReferenceRange;
                         page7.Cholinesteraseblood1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year1)?.ResultValue;
                         page7.Cholinesteraseblood2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR126" && p.Year == year2)?.ResultValue;
@@ -2049,7 +2049,7 @@ namespace MediTech.Reports.Operating.Checkup.CheckupBookA5
 
                     if (labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285") != null)
                     {
-                        page7.RowThinnerUrine.Visible = false;
+                        page7.RowThinnerUrine.Visible = true;
                         page7.ThinnerUrineRange.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285")?.ReferenceRange;
                         page7.ThinnerUrine1.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year1)?.ResultValue;
                         page7.ThinnerUrine2.Text = labTestSet.FirstOrDefault(p => p.ResultItemCode == "PAR1285" && p.Year == year2)?.ResultValue;

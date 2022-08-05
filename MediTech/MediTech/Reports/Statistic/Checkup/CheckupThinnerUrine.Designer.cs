@@ -68,12 +68,12 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell19 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell2 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell3 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.H = new DevExpress.XtraReports.UI.FormattingRule();
+            this.L = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell4 = new DevExpress.XtraReports.UI.XRTableCell();
+            this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
             this.xrTableCell5 = new DevExpress.XtraReports.UI.XRTableCell();
             this.xrTableCell41 = new DevExpress.XtraReports.UI.XRTableCell();
-            this.Abnormal = new DevExpress.XtraReports.UI.FormattingRule();
-            this.L = new DevExpress.XtraReports.UI.FormattingRule();
-            this.H = new DevExpress.XtraReports.UI.FormattingRule();
             this.objectDataSource1 = new DevExpress.DataAccess.ObjectBinding.ObjectDataSource(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.xrTable2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xrTable1)).BeginInit();
@@ -110,6 +110,7 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTable2});
             this.GroupHeader1.HeightF = 75F;
             this.GroupHeader1.Name = "GroupHeader1";
+            this.GroupHeader1.RepeatEveryPage = true;
             // 
             // xrTable2
             // 
@@ -445,6 +446,18 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell3.StylePriority.UseFont = false;
             this.xrTableCell3.Weight = 1.6897848408708494D;
             // 
+            // H
+            // 
+            this.H.Condition = "EndsWith(Trim([PAR1285]), \'H\')";
+            this.H.Formatting.ForeColor = System.Drawing.Color.Red;
+            this.H.Name = "H";
+            // 
+            // L
+            // 
+            this.L.Condition = "EndsWith(Trim([PAR1285]), \'L\')";
+            this.L.Formatting.ForeColor = System.Drawing.Color.Blue;
+            this.L.Name = "L";
+            // 
             // xrTableCell4
             // 
             this.xrTableCell4.DataBindings.AddRange(new DevExpress.XtraReports.UI.XRBinding[] {
@@ -458,6 +471,12 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell4.StylePriority.UseTextAlignment = false;
             this.xrTableCell4.TextAlignment = DevExpress.XtraPrinting.TextAlignment.MiddleLeft;
             this.xrTableCell4.Weight = 3.7101554268602341D;
+            // 
+            // Abnormal
+            // 
+            this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
+            this.Abnormal.Formatting.ForeColor = System.Drawing.Color.Red;
+            this.Abnormal.Name = "Abnormal";
             // 
             // xrTableCell5
             // 
@@ -479,24 +498,6 @@ namespace MediTech.Reports.Statistic.Checkup
             this.xrTableCell41.StylePriority.UseFont = false;
             this.xrTableCell41.TextFormatString = "{0:dd/MM/yyyy}";
             this.xrTableCell41.Weight = 0.5624626777920555D;
-            // 
-            // Abnormal
-            // 
-            this.Abnormal.Condition = "[ResultStatus]=\'ผิดปกติ\'";
-            this.Abnormal.Formatting.ForeColor = System.Drawing.Color.Red;
-            this.Abnormal.Name = "Abnormal";
-            // 
-            // L
-            // 
-            this.L.Condition = "EndsWith(Trim([PAR1285]), \'L\')";
-            this.L.Formatting.ForeColor = System.Drawing.Color.Blue;
-            this.L.Name = "L";
-            // 
-            // H
-            // 
-            this.H.Condition = "EndsWith(Trim([PAR1285]), \'H\')";
-            this.H.Formatting.ForeColor = System.Drawing.Color.Red;
-            this.H.Name = "H";
             // 
             // objectDataSource1
             // 
