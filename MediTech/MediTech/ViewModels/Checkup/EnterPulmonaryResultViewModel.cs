@@ -48,6 +48,15 @@ namespace MediTech.ViewModels
         }
 
 
+        public RelayCommand ViewVitalSignCommand
+        {
+            get
+            {
+                return _SaveCommand
+                    ?? (_SaveCommand = new RelayCommand(Viewvitalsign));
+            }
+        }
+
         private RelayCommand _CloseCommand;
 
         public RelayCommand CloseCommand
@@ -99,6 +108,23 @@ namespace MediTech.ViewModels
                 List<int> gprsts = new List<int>();
                 gprsts.Add(3208);// SPIRORULE
                 dataCheckupRule = DataService.Checkup.GetCheckupRuleGroupList(gprsts);
+            }
+        }
+
+
+        public void Viewvitalsign()
+        {
+            if ( RequestModel != null)
+            {
+                var patientVisit = DataService.PatientIdentity.GetPatientVisitByUID(RequestModel.PatientVisitUID);
+                PatientVitalSign pageview = new PatientVitalSign();
+                (pageview.DataContext as PatientVitalSignViewModel).AssingPatientVisit(patientVisit);
+                PatientVitalSignViewModel result = (PatientVitalSignViewModel)LaunchViewDialog(pageview, "PTVAT", false);
+                if (result != null && result.ResultDialog == ActionDialog.Save)
+                {
+                    SaveSuccessDialog();
+             
+                }
             }
         }
 

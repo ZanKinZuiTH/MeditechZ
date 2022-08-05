@@ -72,10 +72,17 @@
                     </dxg:TableView>
                 </dxg:GridControl.View>
             </dxg:GridControl>
-            <dxlc:LayoutGroup HorizontalAlignment="Right">
-                <dx:SimpleButton Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
-                <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
+
+            <dxlc:LayoutGroup>
+                <dxlc:LayoutGroup HorizontalAlignment="Left">
+                    <dx:SimpleButton Name="btnViewVatalSign" Content="View VitalSign" Command="{Binding ViewVitalSignCommand}" Width="120" Height="25"/>
+                </dxlc:LayoutGroup>
+                <dxlc:LayoutGroup HorizontalAlignment="Right">
+                    <dx:SimpleButton Name="btnSave" Content="Save" Command="{Binding SaveCommand}" Width="80" Height="25"/>
+                    <dx:SimpleButton Content="Cancel" Command="{Binding CloseCommand}" Width="80" Height="25"/>
+                </dxlc:LayoutGroup>
             </dxlc:LayoutGroup>
+
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>
