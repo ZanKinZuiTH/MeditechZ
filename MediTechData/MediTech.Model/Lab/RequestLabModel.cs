@@ -67,6 +67,6 @@ namespace MediTech.Model
                 PropertyChanged(this, new PropertyChangedEventArgs(propertyname));
             }
         }
-
+        public string IsConfidential { get; set; }
     }
 }

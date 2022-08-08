@@ -60,7 +60,12 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectResultComponent, value); }
         }
 
-
+        private bool _Permission;
+        public bool Permission
+        {
+            get { return _Permission; }
+            set { Set(ref _Permission, value); }
+        }
         #endregion
 
         #region Command
@@ -167,7 +172,7 @@ namespace MediTech.ViewModels
         {
             ResultItemRanges = DataService.Technical.GetReferenceValueMany("LABRAM");
             SelectResultItemRange = ResultItemRanges.FirstOrDefault();
-
+            Permission = RoleIsConfidential();
         }
 
         private  void SaveLabResult()
@@ -200,10 +205,25 @@ namespace MediTech.ViewModels
         public void AssignModel(RequestLabModel requestLab)
         {
             this.RequestLab = requestLab;
+
             RequestDetailLabs = DataService.Lab.GetResultLabByRequestUID(RequestLab.RequestUID);
             if (RequestDetailLabs != null && RequestDetailLabs.Count > 0)
             {
                 RequestDetailLabs = RequestDetailLabs.Where(p => p.OrderStatus != "Cancelled").OrderBy(p => p.RequestItemName).ToList();
+                
+                if(RequestDetailLabs.FirstOrDefault(p => p.IsConfidential == "Y") != null)
+                {
+                    if(Permission != true)
+                    {
+                        foreach(var item in RequestDetailLabs.ToList())
+                        {
+                            if(item.IsConfidential == "Y")
+                            {
+                                RequestDetailLabs.Remove(item);
+                            }
+                        }
+                    }
+                }
             }
         }
         private void GetRange()

@@ -9,7 +9,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Windows;
 
-namespace MediTech.Reports.Operating.Lab
+namespace MediTech.Reports.Operating.Lab 
 {
     public partial class LabResultReport : DevExpress.XtraReports.UI.XtraReport
     {
@@ -27,7 +27,22 @@ namespace MediTech.Reports.Operating.Lab
                 long patientVisitUID = Convert.ToInt64(this.Parameters["PatientVisitUID"].Value.ToString());
                 string requestNumber = this.Parameters["RequestNumber"].Value.ToString();
                 var labResults = (new ReportsService()).GetLabResultByRequestNumber(patientVisitUID, requestNumber);
+                var permission = new ViewModels.MediTechViewModelBase().RoleIsConfidential();
 
+                if (labResults.FirstOrDefault(p => p.IsConfidential == "Y") != null)
+                {
+                    if (permission != true)
+                    {
+                        foreach (var item in labResults.ToList())
+                        {
+                            if (item.IsConfidential == "Y")
+                            {
+                                labResults.Remove(item);
+                                
+                            }
+                        }
+                    }
+                }
 
                 if (labResults != null && labResults.Count > 0)
                 {

@@ -139,7 +139,7 @@ namespace MediTech.ViewModels
 
         public SendConsultViewModel()
         {
-            BookingStatus = DataService.Technical.GetReferenceValueByCode("VISTS", "REGST");
+            BookingStatus = DataService.Technical.GetReferenceValueByCode("BKSTS", "REQTED");
             Doctors = DataService.UserManage.GetCareproviderDoctor();
             var org = GetLocatioinRole(AppUtil.Current.OwnerOrganisationUID);
             Locations = org.Where(p => p.IsRegistrationAllowed == "Y").ToList();

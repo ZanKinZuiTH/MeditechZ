@@ -40,6 +40,7 @@ namespace MediTechWebApi.Controllers
                 CWhen = p.CWhen,
                 MUser = p.MUser,
                 MWhen = p.MWhen,
+                IsConfidential = p.IsConfidential,
                 StatusFlag = p.StatusFlag
             }).ToList();
 
@@ -71,6 +72,7 @@ namespace MediTechWebApi.Controllers
                 CWhen = p.CWhen,
                 MUser = p.MUser,
                 MWhen = p.MWhen,
+                IsConfidential = p.IsConfidential,
                 StatusFlag = p.StatusFlag
             }).ToList();
 
@@ -111,6 +113,7 @@ namespace MediTechWebApi.Controllers
                                          EffectiveFrom = re.EffectiveFrom,
                                          TestType = SqlFunction.fGetRfValDescription(re.TSTTPUID ?? 0),
                                          EffectiveTo = re.EffectiveTo,
+                                         IsConfidential = re.IsConfidential,
                                          ItemName = re.ItemName
                                      }).FirstOrDefault();
 
@@ -174,6 +177,7 @@ namespace MediTechWebApi.Controllers
                                          RIMTYPUID = re.RIMTYPUID,
                                          EffectiveFrom = re.EffectiveFrom,
                                          EffectiveTo = re.EffectiveTo,
+                                         IsConfidential = re.IsConfidential,
                                          ItemName = re.ItemName
                                      }).FirstOrDefault();
 
@@ -230,6 +234,7 @@ namespace MediTechWebApi.Controllers
                     requestItem.Description = requestItemModel.Description;
                     requestItem.EffectiveFrom = requestItemModel.EffectiveFrom;
                     requestItem.EffectiveTo = requestItemModel.EffectiveTo;
+                    requestItem.IsConfidential = requestItemModel.IsConfidential;
                     if (requestItemModel.TSTTPUID != null && requestItemModel.TSTTPUID != 0)
                     {
                         requestItem.TSTTPUID = requestItemModel.TSTTPUID;

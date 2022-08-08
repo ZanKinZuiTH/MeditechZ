@@ -114,10 +114,10 @@
                                      Height="25" Content="Checkin">
                     <dx:SimpleButton.Style>
                         <Style TargetType="dx:SimpleButton">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsRequest}" Value="True">
-                                    <Setter Property="IsEnabled" Value="false"/>
+                                <DataTrigger Binding="{Binding IsRequest}" Value="false">
+                                    <Setter Property="IsEnabled" Value="True"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -127,10 +127,10 @@
                                      Height="25" Content="Drop">
                     <dx:SimpleButton.Style>
                         <Style TargetType="dx:SimpleButton">
-                            <Setter Property="IsEnabled" Value="True"/>
+                            <Setter Property="IsEnabled" Value="False"/>
                             <Style.Triggers>
-                                <DataTrigger Binding="{Binding IsRequest}" Value="True">
-                                    <Setter Property="IsEnabled" Value="false"/>
+                                <DataTrigger Binding="{Binding IsRequest}" Value="false">
+                                    <Setter Property="IsEnabled" Value="True"/>
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>

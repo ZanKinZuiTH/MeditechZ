@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace MediTech.ViewModels
 {
@@ -26,7 +27,16 @@ namespace MediTech.ViewModels
         public LookupReferenceValueModel SelectStatus
         {
             get { return _SelectStatus; }
-            set { Set(ref _SelectStatus, value); }
+            set { Set(ref _SelectStatus, value); 
+            if(SelectStatus.ValueCode == "SNDDOC")
+                {
+                    VisibiltyDoctor = Visibility.Visible;
+                }
+                else
+                {
+                    VisibiltyDoctor = Visibility.Collapsed;
+                }
+            }
         }
 
         private DateTime? _StartTime;
@@ -71,6 +81,13 @@ namespace MediTech.ViewModels
             set { Set(ref _SelectLocations, value); }
         }
 
+        private Visibility _VisibiltyDoctor = Visibility.Collapsed;
+        public Visibility VisibiltyDoctor
+        {
+            get { return _VisibiltyDoctor; }
+            set { Set(ref _VisibiltyDoctor, value); }
+        }
+
         #endregion
 
         #region Command
@@ -108,8 +125,13 @@ namespace MediTech.ViewModels
         {
             PatientName = model.PatientName;
             appointmentRequest = model;
-            
-            SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
+
+            if (model.CareProviderUID != null)
+            {
+                SelectStatus = StatusSource.FirstOrDefault(p => p.ValueCode == "SNDDOC");
+                SelectDoctor = Doctors.FirstOrDefault(p => p.CareproviderUID == model.CareProviderUID);
+            }
+
             SelectLocations = Locations.FirstOrDefault(p => p.LocationUID == model.LocationUID);
         }
 

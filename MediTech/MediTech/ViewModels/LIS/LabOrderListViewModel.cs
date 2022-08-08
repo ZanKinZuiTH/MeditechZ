@@ -179,6 +179,20 @@ namespace MediTech.ViewModels
                 if (SelectRequestLab != null)
                 {
                     RequestDetailLabs = DataService.Lab.GetRequesDetailLabByRequestUID(SelectRequestLab.RequestUID);
+                    if (RequestDetailLabs.Count > 1)
+                    {
+                        foreach (var detail in RequestDetailLabs.ToList())
+                        {
+                            if(detail.IsConfidential == "Y")
+                            {
+                                if (Permission != true)
+                                {
+                                    RequestDetailLabs.Remove(detail);
+                                }
+                            }
+                        }
+                    }
+
                     if (RequestDetailLabs != null)
                         RequestDetailLabs = RequestDetailLabs.OrderBy(p => p.RequestItemName).ToList();
                 }
@@ -248,6 +262,12 @@ namespace MediTech.ViewModels
             }
         }
 
+        private bool _Permission;
+        public bool Permission
+        {
+            get { return _Permission; }
+            set { Set(ref _Permission, value); }
+        }
 
         #endregion
 
@@ -481,6 +501,7 @@ namespace MediTech.ViewModels
             DateFrom = DateTime.Now;
             DateTo = DateTime.Now;
 
+            Permission = RoleIsConfidential();
             var refValue = DataService.Technical.GetReferenceValueMany("ORDST");
             RequesItems = DataService.MasterData.GetRequestItemByCategory("LAB");
 
@@ -533,10 +554,35 @@ namespace MediTech.ViewModels
 
             if (RequestLabs != null && RequestLabs.Count > 0)
             {
+                if (RequestLabs.FirstOrDefault(p => p.IsConfidential == "Y") != null)
+                {
+                    if (Permission != true)
+                    {
+                        foreach (var item in RequestLabs.ToList())
+                        {
+                            if (item.IsConfidential == "Y")
+                            {
+                                var requestDetail = DataService.Lab.GetRequesDetailLabByRequestUID(item.RequestUID);
+                                if (requestDetail.Count == 1)
+                                {
+                                    RequestLabs.Remove(item);
+                                }
+                            }
+                        }
+                    }
+                }
+
                 int i = 1;
                 RequestLabs.ForEach(p => p.No = i++);
 
             }
+
+            //if (RequestLabs != null && RequestLabs.Count > 0)
+            //{
+            //    int i = 1;
+            //    RequestLabs.ForEach(p => p.No = i++);
+            //}
+
             RequestDetailLabs = null;
         }
 

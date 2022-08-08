@@ -46,7 +46,7 @@
                                         <StackPanel Orientation="Horizontal">
                                             <Label Content="*" FontSize="15" Margin="0,-10,0,0"
                                            Foreground="Red"/>
-                                            <TextBlock Text="หมวยหมู่" />
+                                            <TextBlock Text="หมวดหมู่" />
                                         </StackPanel>
                                     </dxlc:LayoutItem.Label>
                                     <dxe:ComboBoxEdit ItemsSource="{Binding Category}"
@@ -78,10 +78,13 @@
                                           SelectedItem="{Binding SelectImageType}"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="เปิดใช้งาน">
-                                    <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
-                                </dxlc:LayoutItem>
+                                        <dxe:DateEdit EditValue="{Binding ActiveFrom}"/>
+                                    </dxlc:LayoutItem>
                                 <dxlc:LayoutItem Label="ปิดการใช้งาน">
                                     <dxe:DateEdit EditValue="{Binding ActiveTo}"/>
+                                </dxlc:LayoutItem>
+                                <dxlc:LayoutItem Label="เป็นความลับ">
+                                    <dxe:CheckEdit EditValue="{Binding IsConfidential}"/>
                                 </dxlc:LayoutItem>
                             </dxlc:LayoutGroup>
                         </dxlc:LayoutGroup>
