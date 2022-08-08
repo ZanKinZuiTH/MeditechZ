@@ -27,6 +27,7 @@ namespace MediTech.DataBase
         public Nullable<System.DateTime> LicenseIssueDttm { get; set; }
         public Nullable<System.DateTime> LicenseExpiryDttm { get; set; }
         public Nullable<System.DateTime> DOBDttm { get; set; }
+        public Nullable<int> CPTYPUID { get; set; }
         public Nullable<bool> IsDoctor { get; set; }
         public Nullable<bool> IsRadiologist { get; set; }
         public Nullable<bool> IsAdminRadiologist { get; set; }

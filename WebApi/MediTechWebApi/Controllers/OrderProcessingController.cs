@@ -211,9 +211,9 @@ namespace MediTechWebApi.Controllers
                         dataOrderDetail.CancelledByUserUID = userUID;
                         dataOrderDetail.CancelledDttm = now;
                         dataOrderDetail.CancelledReason = cancelReason;
-                        if (dataOrderDetail.IdentifyingType == "PRESCRIPTIONITEM")
+                        if (dataOrderDetail.IdentifyingType == "DRUG" || dataOrderDetail.IdentifyingType == "MEDICALSUPPLIES" || dataOrderDetail.IdentifyingType == "SUPPLY")
                         {
-                            var dataPrescriptionItem = db.PrescriptionItem.Find(dataOrderDetail.IdentifyingUID);
+                            var dataPrescriptionItem = db.PrescriptionItem.FirstOrDefault(p => p.PatientOrderDetailUID == dataOrderDetail.UID && p.StatusFlag == "A");
                             if (dataPrescriptionItem != null)
                             {
                                 db.PrescriptionItem.Attach(dataPrescriptionItem);
@@ -224,9 +224,9 @@ namespace MediTechWebApi.Controllers
                             }
                         }
 
-                        if (dataOrderDetail.IdentifyingType == "REQUESTDETAIL")
+                        if (dataOrderDetail.IdentifyingType == "REQUESTITEM")
                         {
-                            var dataRequestDetail = db.RequestDetail.Find(dataOrderDetail.IdentifyingUID);
+                            var dataRequestDetail = db.RequestDetail.FirstOrDefault(p => p.PatientOrderDetailUID == dataOrderDetail.UID && p.StatusFlag == "A");
 
                             if (dataRequestDetail != null)
                             {
@@ -299,7 +299,7 @@ namespace MediTechWebApi.Controllers
                         foreach (var item in listpatBillableItem)
                         {
                             db.PatientBillableItem.Attach(item);
-                            item.ORDSTUID = 2848;
+                            //item.ORDSTUID = 2848;
                             item.MUser = userUID;
                             item.MWhen = now;
                             item.StatusFlag = "D";
@@ -427,7 +427,7 @@ namespace MediTechWebApi.Controllers
                 int RAISEDUID = 2847;
                 int REGISTUID = 2869;
 
-                var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BSMDD" || p.DomainCode == "ENTYP")&& p.StatusFlag == "A");
+                var refValue = db.ReferenceValue.Where(p => (p.DomainCode == "BSMDD" || p.DomainCode == "ENTYP" || p.DomainCode == "PRSTYP") && p.StatusFlag == "A");
 
                 int BSMDD_LAB = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "LABBB").UID;
                 int BSMDD_RADIO = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "RADIO").UID;
@@ -438,6 +438,8 @@ namespace MediTechWebApi.Controllers
                 int BSMDD_SULPY = refValue.FirstOrDefault(p => p.DomainCode == "BSMDD" && p.ValueCode == "SUPLY").UID;
 
                 int ENTYP_INPAT = refValue.FirstOrDefault(p => p.DomainCode == "ENTYP" && p.ValueCode == "INPAT").UID;
+
+                int PRST_STAN = refValue.FirstOrDefault(p => p.DomainCode == "PRSTYP" && p.ValueCode == "STORD").UID;
 
                 int RQPRTUID = 440; //Priority Normal
                 int statusOrder;
@@ -566,7 +568,7 @@ namespace MediTechWebApi.Controllers
                                 #endregion
 
                                 #region Store
-                                if (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY)
+                                if ((BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY) )
                                 {
                                     MediTech.DataBase.Prescription presc = new MediTech.DataBase.Prescription();
                                     presc.CUser = userUID;
@@ -690,8 +692,6 @@ namespace MediTechWebApi.Controllers
 
                                     #endregion
 
-
-
                                     #region SaveOrderAlert
 
                                     if (item.PatientOrderAlert != null)
@@ -721,6 +721,7 @@ namespace MediTechWebApi.Controllers
 
                                     #region RequestDetail
 
+                                    long? requestDetailUID = null;
                                     if (BSMDDUID == BSMDD_LAB || BSMDDUID == BSMDD_RADIO || BSMDDUID == BSMDD_MBCUP)
                                     {
                                         MediTech.DataBase.RequestItem requestItem = db.RequestItem.Find(item.ItemUID ?? 0);
@@ -762,19 +763,22 @@ namespace MediTechWebApi.Controllers
                                         db.SaveChanges();
 
                                         db.PatientOrderDetail.Attach(orderDetail);
-                                        orderDetail.IdentifyingType = "REQUESTDETAIL";
-                                        orderDetail.IdentifyingUID = requestDetail.UID;
+                                        orderDetail.IdentifyingType = "REQUESTITEM";
+                                        orderDetail.IdentifyingUID = requestItem.UID;
                                         db.SaveChanges();
+
+                                        requestDetailUID = requestDetail.UID;
                                     }
 
                                     #endregion
 
-
                                     #region PrescrtionItem
 
-
+                                    long? prescrtionItemUID = null;
                                     if (BSMDDUID == BSMDD_STORE || BSMDDUID == BSMDD_MDSLP || BSMDDUID == BSMDD_SULPY)
                                     {
+                                        string identifyingType = BSMDDUID == BSMDD_STORE ? "DRUG" : BSMDDUID == BSMDD_MDSLP ? "MEDICALSUPPLIES" : BSMDDUID == BSMDD_SULPY ? "SUPPLY" : "ORDERITEM";
+
                                         PrescriptionItem prescritem = new PrescriptionItem();
                                         prescritem.CUser = userUID;
                                         prescritem.CWhen = now;
@@ -809,13 +813,14 @@ namespace MediTechWebApi.Controllers
                                         db.SaveChanges();
 
                                         db.PatientOrderDetail.Attach(orderDetail);
-                                        orderDetail.IdentifyingUID = prescritem.UID;
-                                        orderDetail.IdentifyingType = "PRESCRIPTIONITEM";
+                                        orderDetail.IdentifyingUID = item.ItemUID;
+                                        orderDetail.IdentifyingType = identifyingType;
                                         db.SaveChanges();
+
+                                        prescrtionItemUID = prescritem.UID;
                                     }
 
                                     #endregion
-
 
                                     #region SavePatientBillableItem
 
@@ -826,14 +831,10 @@ namespace MediTechWebApi.Controllers
                                     patBillableItem.IdentifyingUID = orderDetail.IdentifyingUID ?? 0;
                                     switch (orderDetail.IdentifyingType)
                                     {
-                                        case "ORDERITEM":
-                                            patBillableItem.IdentifyingType = "ORDERITEM";
-                                            break;
-                                        case "PRESCRIPTIONITEM":
+                                        case "DRUG":
+                                        case "MEDICALSUPPLIES":
+                                        case "SUPPLY":
                                             patBillableItem.IdentifyingType = "STORE";
-                                            break;
-                                        case "REQUESTDETAIL":
-                                            patBillableItem.IdentifyingType = "REQUESTITEM";
                                             break;
                                         default:
                                             patBillableItem.IdentifyingType = orderDetail.IdentifyingType;
@@ -845,21 +846,27 @@ namespace MediTechWebApi.Controllers
                                     {
                                         case "ORDERITEM":
                                             patBillableItem.OrderType = "PATIENTORDER";
+                                            patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
                                             break;
-                                        case "PRESCRIPTIONITEM":
+                                        case "DRUG":
+                                        case "MEDICALSUPPLIES":
+                                        case "SUPPLY":
                                             patBillableItem.OrderType = "PRESCRIPTIONITEM";
+                                            patBillableItem.OrderTypeUID = prescrtionItemUID;
                                             break;
-                                        case "REQUESTDETAIL":
-                                            patBillableItem.OrderType = "REQUEST";
+                                        case "REQUESTITEM":
+                                            patBillableItem.OrderType = "REQUESTDETAIL";
+                                            patBillableItem.OrderTypeUID = requestDetailUID;
                                             break;
                                         default:
                                             patBillableItem.OrderType = "PATIENTORDER";
+                                            patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
                                             break;
 
                                     }
-                                    patBillableItem.OrderTypeUID = orderDetail.PatientOrderUID;
+
                                     patBillableItem.BSMDDUID = BSMDDUID;
-                                    patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
+                                    //patBillableItem.ORDSTUID = orderDetail.ORDSTUID;
                                     patBillableItem.Amount = orderDetail.UnitPrice;
                                     patBillableItem.Discount = orderDetail.Discount;
                                     patBillableItem.NetAmount = orderDetail.NetAmount;

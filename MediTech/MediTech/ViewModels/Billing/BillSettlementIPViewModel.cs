@@ -309,19 +309,18 @@ namespace MediTech.ViewModels
             int? groupUID = null, string canKeepDiscount = null)
         {
             AllocatePatientBillableItemModel allocateModel = new AllocatePatientBillableItemModel();
-            allocateModel.patientUID = SelectPatientVisit.PatientUID;
-            allocateModel.patientVisitUID = SelectPatientVisit.PatientVisitUID;
-            allocateModel.ownerOrganisationUID = SelectPatientVisit.OwnerOrganisationUID.Value;
-            allocateModel.isAutoAllocate = cAllocationType;
-            allocateModel.patientVisitPayorUID = patientVisitPayorUID;
-            allocateModel.payorAgreementUID = payorAgreementUID;
-            allocateModel.userUID = AppUtil.Current.UserID;
-            allocateModel.allocatedVisitPayorUID = allocatedVisitPayorUID;
-            allocateModel.patientBillableItemUID = patientBillableItemUID;
-            allocateModel.groupUID = groupUID;
-            allocateModel.canKeepDiscount = canKeepDiscount;
-            allocateModel.startDate = DateFrom ?? SelectPatientVisit.StartDttm.Value;
-            allocateModel.endDate = DateTo ?? DateTime.Now;
+            allocateModel.PatientUID = SelectPatientVisit.PatientUID;
+            allocateModel.PatientVisitUID = SelectPatientVisit.PatientVisitUID;
+            allocateModel.IsAutoAllocate = cAllocationType;
+            allocateModel.PatientVisitPayorUID = patientVisitPayorUID;
+            allocateModel.PayorAgreementUID = payorAgreementUID;
+            allocateModel.UserUID = AppUtil.Current.UserID;
+            allocateModel.AllocatedVisitPayorUID = allocatedVisitPayorUID;
+            allocateModel.PatientBillableItemUID = patientBillableItemUID;
+            allocateModel.GroupUID = groupUID;
+            allocateModel.CanKeepDiscount = canKeepDiscount;
+            allocateModel.StartDate = DateFrom ?? SelectPatientVisit.StartDttm.Value;
+            allocateModel.EndDate = DateTo ?? DateTime.Now;
             DataService.Billing.AllocatePatientBillableItem(allocateModel);
         }
 
@@ -367,7 +366,7 @@ namespace MediTech.ViewModels
                 ModifyVisitPayorViewModel result = (ModifyVisitPayorViewModel)LaunchViewDialog(pageview, "MODPAY", true);
                 if (result != null && result.ResultDialog == ActionDialog.Save)
                 {
-                    SaveSuccessDialog();
+                    GetVisitPayors(SelectPatientVisit.PatientVisitUID);
                 }
             }
         }

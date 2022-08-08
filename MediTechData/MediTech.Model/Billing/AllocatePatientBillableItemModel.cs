@@ -9,32 +9,31 @@ namespace MediTech.Model
     public class AllocatePatientBillableItemModel
     {
 
-        public long patientUID { get; set; }
+        public long PatientUID { get; set; }
 
-        public long patientVisitUID { get; set; }
+        public long PatientVisitUID { get; set; }
 
-        public int ownerOrganisationUID { get; set; }
-        public int userUID { get; set; }
+        public int UserUID { get; set; }
 
-        public string isAutoAllocate { get; set; }
+        public string IsAutoAllocate { get; set; }
 
-        public int? groupUID { get; set; }
+        public int? GroupUID { get; set; }
 
-        public int? subGroupUID { get; set; }
+        public int? SubGroupUID { get; set; }
 
-        public long? patientVisitPayorUID { get; set; }
+        public long? PatientVisitPayorUID { get; set; }
 
-        public int? payorAgreementUID { get; set; }
+        public int? PayorAgreementUID { get; set; }
 
-        public long? allocatedVisitPayorUID { get; set; }
+        public long? AllocatedVisitPayorUID { get; set; }
 
-        public long? patientBillableItemUID { get; set; }
+        public long? PatientBillableItemUID { get; set; }
 
-        public string canKeepDiscount { get; set; }
+        public string CanKeepDiscount { get; set; }
 
 
-        public DateTime? startDate { get; set; }
+        public DateTime? StartDate { get; set; }
 
-        public DateTime? endDate { get; set; }
+        public DateTime? EndDate { get; set; }
     }
 }

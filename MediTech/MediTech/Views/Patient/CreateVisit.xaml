@@ -261,16 +261,15 @@
                     </dxlc:LayoutGroup>
                     <dxg:GridControl x:Name="grdVisitPayor" ItemsSource="{Binding Path=PatientVisitPayorList,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"                                    
                                      SelectedItem="{Binding Path=SelectedPatientVisitPayor,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}">
-                        <dxg:GridColumn Header="Payor" FieldName="InsuranceName"/>
-                        <dxg:GridColumn Header="Agreement" FieldName="AgreementName"/>
-                        <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
-                        <dxg:GridColumn Header="Policy" FieldName="PolicyName"/>
-                        <dxg:GridColumn Header="Rank" FieldName="PayorType"/>
-                        <dxg:GridColumn Header="Claim Perc." FieldName="ClaimPercentage"/>
-                        <dxg:GridColumn Header="Comments" FieldName="Comments"/>
-                        <dxg:GridColumn Header="Fixed Copay" FieldName="FixedCopayAmount"/>
-                        <dxg:GridColumn Header="Active From" FieldName="ActiveFrom"/>
-                        <dxg:GridColumn Header="Active To" FieldName="ActiveTo"/>
+                        <dxg:GridColumn Header="Rank" FieldName="PayorType" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Payor" FieldName="InsuranceName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Agreement" FieldName="AgreementName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Payor Office" FieldName="PayorName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Policy" FieldName="PolicyName" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Claim Perc." FieldName="ClaimPercentage" ReadOnly="True"/>
+                        <dxg:GridColumn Header="CreatedBy" FieldName="CreatedBy" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Comments" FieldName="Comments" ReadOnly="True"/>
+                        <dxg:GridColumn Header="Eligibile Amount" FieldName="EligibileAmount" ReadOnly="True"/>
                         <dxg:GridControl.View>
                             <dxg:TableView ShowGroupPanel="False"
                                            RowStyle="{Binding BackgroundExpireStyle}"

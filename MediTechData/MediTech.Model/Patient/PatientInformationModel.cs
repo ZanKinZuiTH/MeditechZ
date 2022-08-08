@@ -79,5 +79,7 @@ namespace MediTech.Model
 
         public string Department { get; set; }
         public string Position { get; set; }
+
+        public List<PatientInsuranceDetailModel> PatientInsuranceDetails { get; set; }
     }
 }

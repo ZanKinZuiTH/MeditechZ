@@ -19,7 +19,7 @@ namespace MediTech.Model
         public string PolicyName { get; set; }
         public Nullable<int> InsuranceCompanyUID { get; set; }
         public string InsuranceName { get; set; }
-        public Nullable<double> EligibileAmount { get; set; }
+        public Nullable<double> EligibleAmount { get; set; }
         public Nullable<int> PAYRTPUID { get; set; }
 
         public int? PBTYPUID { get; set; }
@@ -56,6 +56,8 @@ namespace MediTech.Model
         }
 
         public string Description { get; set; }
+
+        public string CreatedBy { get; set; }
 
     }
 }

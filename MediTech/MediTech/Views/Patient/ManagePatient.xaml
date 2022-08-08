@@ -389,20 +389,7 @@
                                    Source="{Binding PatientImage,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
                                    Width="210" />
                             </dxlc:LayoutItem>
-                            <dxlc:LayoutItem VerticalAlignment="Bottom">
-                                <dx:SimpleButton Name="btnSavePatient" Content="บันทึก"
-                                     Command="{Binding SaveCommand}"
-                                     HorizontalAlignment="Right"
-                                     Visibility="Visible"
-                                     Width="80"
-                                     Height="25"  >
-                                    <i:Interaction.Triggers>
-                                        <i:EventTrigger  EventName="Next">
-                                            <mvvm:EventToCommand Command="{Binding NextCommand}" PassEventArgsToCommand="True" />
-                                        </i:EventTrigger>
-                                    </i:Interaction.Triggers>
-                                </dx:SimpleButton>
-                            </dxlc:LayoutItem>
+
                         </dxlc:LayoutGroup>
 
                     </dxlc:LayoutGroup>
@@ -460,24 +447,11 @@
                                         </dxg:LookUpEdit.StyleSettings>
                                     </dxg:LookUpEdit>
                                 </dxlc:LayoutItem>
-                                
-                                <dxlc:LayoutItem>
-                                    <dxlc:LayoutItem.Label>
-                                        <StackPanel Orientation="Horizontal">
-                                            <Label Content="*" FontSize="15" Margin="0,-10,0,0"
-                                           Foreground="Red"/>
-                                            <TextBlock Text="Payor Office" />
-                                        </StackPanel>
-                                    </dxlc:LayoutItem.Label>
-                                    <dxe:ComboBoxEdit ItemsSource="{Binding PayorDetailSource}"
-                                                      SelectedItem="{Binding SelectPayorDetail}"
-                                                      DisplayMember="PayorName"
-                                                      ValueMember="PayorDetailUID"/>
 
+                                <dxlc:LayoutItem Label="Payor Office">
+                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.PayorName}" IsReadOnly="True"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="Eligible Amount" >
-                                    <dxe:TextEdit EditValue="{Binding EligibleAmount}"/>
-                                </dxlc:LayoutItem>
+
                                 <dxlc:LayoutItem Label="เปิดใช้งาน">
                                     <dxe:DateEdit EditValue="{Binding PayorDetailActiveFrom}"/>
                                 </dxlc:LayoutItem>
@@ -494,31 +468,30 @@
                                             <TextBlock Text="Agreement Name" />
                                         </StackPanel>
                                     </dxlc:LayoutItem.Label>
-                                    <dxe:ComboBoxEdit ItemsSource="{Binding AgreementSource}"
-                                                      SelectedItem="{Binding SelectAgreement}"
-                                                      DisplayMember="PayorAgreementName"
-                                                      ValueMember="PayorAgreementUID"/>
+                                    <dxe:ComboBoxEdit DisplayMember="PayorAgreementName" 
+                                      ValueMember="PayorAgreementUID"
+                                      ItemsSource="{Binding InsurancePlans}"
+                                      SelectedItem="{Binding SelectInsurancePlan}"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem  Label="Policy">
-                                    <dxe:ComboBoxEdit ItemsSource="{Binding PolicySource}"
-                                                      IsEnabled="True"
-                                                      SelectedItem="{Binding SelectPolicy}"
-                                                      DisplayMember="PolicyName"
-                                                      ValueMember="PolicyMasterUID"/>
+                                <dxlc:LayoutItem Label="Policy">
+                                    <dxe:TextEdit Text="{Binding SelectInsurancePlan.PolicyName}" IsReadOnly="True"/>
                                 </dxlc:LayoutItem>
-                                <dxlc:LayoutItem Label="Credit Term">
+                                <dxlc:LayoutItem Label="Rank">
                                     <dxe:ComboBoxEdit ItemsSource="{Binding PayorType}"
                                                       SelectedItem="{Binding SelectPayorType}"
                                                       DisplayMember="Display"
                                                       ValueMember="Key"/>
                                 </dxlc:LayoutItem>
                                 <dxlc:LayoutGroup Orientation="Horizontal">
+                                    <dxlc:LayoutItem Label="Eligible Amount" >
+                                        <dxe:TextEdit EditValue="{Binding EligibleAmount}"/>
+                                    </dxlc:LayoutItem>
                                     <dxlc:LayoutItem Label="Claim Percentage">
                                         <dxe:TextEdit EditValue="{Binding ClaimPercentage}" AllowNullInput="True"/>
                                     </dxlc:LayoutItem>
-                                    <dxlc:LayoutItem Label="Fixed Copay Amount">
+                                    <!--<dxlc:LayoutItem Label="Fixed Copay Amount">
                                         <dxe:TextEdit EditValue="{Binding FixedCopayAmount}" AllowNullInput="True"/>
-                                    </dxlc:LayoutItem>
+                                    </dxlc:LayoutItem>-->
                                 </dxlc:LayoutGroup>
                                 <dxlc:LayoutItem Label="Comment" >
                                     <dxe:TextEdit  Name="txtComment" Text="{Binding Comment}"/>
@@ -537,14 +510,14 @@
                                      Height="25" Content="clear"/>
                         </dxlc:LayoutGroup>
                         <dxlc:LayoutGroup Orientation="Vertical">
-                            <dxg:GridControl x:Name="grdUsers" ItemsSource="{Binding Path=PatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged}"
-                             SelectedItem="{Binding Path=SelectPatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged}">
+                            <dxg:GridControl x:Name="grdUsers" ItemsSource="{Binding Path=PatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}"
+                             SelectedItem="{Binding Path=SelectPatientInsuranceDetail,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
                                 <dxg:GridControl.Columns>
                                     <dxg:GridColumn Header="Payor" FieldName="InsuranceCompanyName"/>
                                     <dxg:GridColumn Header="Agreemant" FieldName="PayorAgreementName"/>
                                     <dxg:GridColumn Header="Payor Office" FieldName="PayorName"/>
                                     <dxg:GridColumn Header="Policy Name" FieldName="PolicyName"/>
-                                    <dxg:GridColumn Header="Type" FieldName="Type"/>
+                                    <dxg:GridColumn Header="Type" FieldName="PayorType"/>
                                     <dxg:GridColumn Header="Comment" FieldName="Comments"/>
                                     <dxg:GridColumn Header="เปิดใช้งาน" FieldName="StartDttm"/>
                                     <dxg:GridColumn Header="ปิดใช้งาน" FieldName="EndDttm"/>
@@ -555,12 +528,12 @@
                                 </dxg:GridControl.View>
                             </dxg:GridControl>
                         </dxlc:LayoutGroup>
-                        <dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
+                        <!--<dxlc:LayoutGroup Orientation="Horizontal" HorizontalAlignment="Right" >
                             <dx:SimpleButton Width="80" Command="{Binding SavePayorDetailCommand}"
                                      Height="25" Content="Save"/>
                             <dx:SimpleButton Width="80" Command="{Binding CancelPayorDetailCommand}"
                                      Height="25" Content="Cancel"/>
-                        </dxlc:LayoutGroup>
+                        </dxlc:LayoutGroup>-->
                     </dxlc:LayoutControl>
                     
                     
@@ -585,6 +558,20 @@
                     </dxlc:LayoutControl>
                 </dx:DXTabItem>
             </dx:DXTabControl>
+            <dxlc:LayoutItem VerticalAlignment="Bottom" Margin="0,20,0,0">
+                <dx:SimpleButton Name="btnSavePatient" Content="บันทึก"
+                                     Command="{Binding SaveCommand}"
+                                     HorizontalAlignment="Right"
+                                     Visibility="Visible"
+                                     Width="80"
+                                     Height="25"  >
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger  EventName="Next">
+                            <mvvm:EventToCommand Command="{Binding NextCommand}" PassEventArgsToCommand="True" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </dx:SimpleButton>
+            </dxlc:LayoutItem>
         </dxlc:LayoutControl>
     </Grid>
 </UserControl>

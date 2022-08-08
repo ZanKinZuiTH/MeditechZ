@@ -20,6 +20,7 @@ namespace MediTech.DataBase
         public string Description { get; set; }
         public Nullable<System.DateTime> EffectiveFrom { get; set; }
         public Nullable<System.DateTime> EffectiveTo { get; set; }
+        public string IsConfidential { get; set; }
         public Nullable<int> PRTGPUID { get; set; }
         public Nullable<int> TSTTPUID { get; set; }
         public Nullable<int> RIMTYPUID { get; set; }

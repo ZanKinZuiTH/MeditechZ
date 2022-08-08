@@ -84,7 +84,6 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="PBLCTUID" Type="int" />
           <Property Name="ALLDIUID" Type="int" />
@@ -106,7 +105,6 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="PBLCTUID" Type="int" />
           <Property Name="ALLDIUID" Type="int" />
@@ -128,7 +126,6 @@
           <Property Name="MUser" Type="int" Nullable="false" />
           <Property Name="MWhen" Type="datetime" Nullable="false" />
           <Property Name="StatusFlag" Type="nvarchar" MaxLength="1" Nullable="false" />
-          <Property Name="OwnerOrganisationUID" Type="int" Nullable="false" />
           <Property Name="TIMESTAMP" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
           <Property Name="IsPackage" Type="nvarchar" MaxLength="1" />
           <Property Name="PBLCTUID" Type="int" />
@@ -374,6 +371,7 @@
           <Property Name="TotalAmount" Type="float" Nullable="false" />
           <Property Name="CURNCUID" Type="int" Nullable="false" />
           <Property Name="PBLCTUID" Type="int" />
+          <Property Name="ENTYPUID" Type="int" />
           <Property Name="MaxValue" Type="float" />
           <Property Name="MinValue" Type="float" />
           <Property Name="ActiveFrom" Type="datetime" Nullable="false" />
@@ -381,6 +379,7 @@
           <Property Name="OrderCategoryUID" Type="int" />
           <Property Name="OrderSubCategoryUID" Type="int" />
           <Property Name="AllowOverridePrice" Type="nvarchar" MaxLength="1" />
+          <Property Name="SecondRoomBillPackageUID" Type="int" />
           <Property Name="Code" Type="nvarchar" MaxLength="100" Nullable="false" />
           <Property Name="CUser" Type="int" Nullable="false" />
           <Property Name="CWhen" Type="datetime" Nullable="false" />
@@ -471,6 +470,7 @@
           <Property Name="LicenseIssueDttm" Type="datetime" />
           <Property Name="LicenseExpiryDttm" Type="datetime" />
           <Property Name="DOBDttm" Type="datetime" />
+          <Property Name="CPTYPUID" Type="int" />
           <Property Name="IsDoctor" Type="bit" />
           <Property Name="IsRadiologist" Type="bit" />
           <Property Name="IsAdminRadiologist" Type="bit" />
@@ -1331,7 +1331,7 @@
           </Key>
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="Code" Type="nvarchar" MaxLength="200" />
-          <Property Name="Name" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="Name" Type="nvarchar" MaxLength="1500" Nullable="false" />
           <Property Name="Description" Type="nvarchar" MaxLength="255" />
           <Property Name="ITMTYPUID" Type="int" Nullable="false" />
           <Property Name="ActiveFrom" Type="datetime" />
@@ -1815,6 +1815,7 @@
           <Property Name="DOBDttm" Type="datetime" />
           <Property Name="DOBComputed" Type="bit" Nullable="false" />
           <Property Name="BLOODUID" Type="int" />
+          <Property Name="PATTPUID" Type="int" />
           <Property Name="IsVIP" Type="bit" />
           <Property Name="IDCard" Type="nvarchar" MaxLength="13" />
           <Property Name="RELGNUID" Type="int" />
@@ -3597,6 +3598,7 @@
           <Property Name="Description" Type="nvarchar" MaxLength="400" />
           <Property Name="EffectiveFrom" Type="datetime" />
           <Property Name="EffectiveTo" Type="datetime" />
+          <Property Name="IsConfidential" Type="nvarchar" MaxLength="1" />
           <Property Name="PRTGPUID" Type="int" />
           <Property Name="TSTTPUID" Type="int" />
           <Property Name="RIMTYPUID" Type="int" />
@@ -3926,6 +3928,7 @@
           <Property Name="IMUOMUID" Type="int" Nullable="false" />
           <Property Name="ItemCost" Type="float" />
           <Property Name="Comments" Type="nvarchar" MaxLength="500" />
+          <Property Name="PatientBillableitemUID" Type="bigint" />
           <Property Name="DispensedItemUID" Type="bigint" />
           <Property Name="PatientBilledItemUID" Type="bigint" />
           <Property Name="PatientOrderDetailUID" Type="bigint" />
@@ -4248,7 +4251,7 @@
           <Property Name="UID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="StoreUID" Type="int" Nullable="false" />
           <Property Name="ItemMasterUID" Type="int" Nullable="false" />
-          <Property Name="ItemName" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="ItemName" Type="nvarchar" MaxLength="500" Nullable="false" />
           <Property Name="VendorDetailUID" Type="int" />
           <Property Name="ManufacturerUID" Type="int" />
           <Property Name="Quantity" Type="float" Nullable="false" />
@@ -4814,6 +4817,10 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
         <Function Name="fGetPolicyName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_PolicyUID" Type="int" Mode="In" />
         </Function>
+        <Function Name="fgetPriceAmountinFixPrice" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="FirstTariff" Type="int" Mode="In" />
+          <Parameter Name="patientBDMSFixPriceUID" Type="int" Mode="In" />
+        </Function>
         <Function Name="fGetProvinceName" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="P_ProvinceUID" Type="int" Mode="In" />
         </Function>
@@ -4841,6 +4848,11 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
         </Function>
         <Function Name="fGetRfValUIDByDescription" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
           <Parameter Name="P_RFDESC" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="fGetRooomChrageless1Day" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int">
+          <Parameter Name="PatientVisitUID" Type="int" Mode="In" />
+          <Parameter Name="Hoursetting" Type="int" Mode="In" />
+          <Parameter Name="RoomChargeBillUID" Type="int" Mode="In" />
         </Function>
         <Function Name="fGetSEQPayorBillNumber" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="nvarchar">
           <Parameter Name="IDFormat" Type="nvarchar" Mode="In" />
@@ -4873,7 +4885,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
         <Function Name="pAllocatePatientBillableItem" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
-          <Parameter Name="P_OwnerOrganisationUID" Type="int" Mode="In" />
           <Parameter Name="P_IsAutoAllocate" Type="nvarchar" Mode="In" />
           <Parameter Name="P_SubGroupUID" Type="int" Mode="In" />
           <Parameter Name="P_PatientVisitPayorUID" Type="bigint" Mode="In" />
@@ -4900,6 +4911,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_PatientVisitUID" Type="bigint" Mode="In" />
         </Function>
+        <Function Name="pClearRoomUNBILLED" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="pCOVERPERDAY" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="patientvisituid" Type="int" Mode="In" />
           <Parameter Name="SetAmount" Type="decimal" Mode="In" />
@@ -4917,6 +4929,10 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Parameter Name="P_MinorPatientUID" Type="bigint" Mode="In" />
           <Parameter Name="P_MinorVisitUIDS" Type="nvarchar" Mode="In" />
           <Parameter Name="P_UserID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="pFixPatientVisitPayorPayerofficeExpire" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="P_PatientVisitiUID" Type="int" Mode="In" />
+          <Parameter Name="P_PatientUID" Type="int" Mode="In" />
         </Function>
         <Function Name="pGetAllocatedPatBillableItemsPalm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="P_PatientUID" Type="bigint" Mode="In" />
@@ -6157,6 +6173,9 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
             <Parameter Name="DateFrom" Mode="In" Type="DateTime" />
             <Parameter Name="DateTo" Mode="In" Type="DateTime" />
           </FunctionImport>
+          <FunctionImport Name="pPrintStatementBill" ReturnType="Collection(MediTechModel.pPrintStatementBill_Result)">
+          <Parameter Name="P_PatientBillUID" Mode="In" Type="Int64" />
+          </FunctionImport>
           <EntitySet Name="AdmissionEvent" EntityType="MediTechModel.AdmissionEvent" />
           <EntitySet Name="ADTEventStatus" EntityType="MediTechModel.ADTEventStatus" />
           <EntitySet Name="AEDischargeEvent" EntityType="MediTechModel.AEDischargeEvent" />
@@ -6376,8 +6395,10 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <EntitySet Name="vAllBillableItemRates" EntityType="MediTechModel.vAllBillableItemRates" />
           <EntitySet Name="vAllPayorAgreements" EntityType="MediTechModel.vAllPayorAgreements" />
           <EntitySet Name="vAllPayorAgreementsDiscount" EntityType="MediTechModel.vAllPayorAgreementsDiscount" />
-          <FunctionImport Name="pPrintStatementBill" ReturnType="Collection(MediTechModel.pPrintStatementBill_Result)">
-            <Parameter Name="P_PatientBillUID" Mode="In" Type="Int64" />
+          <FunctionImport Name="pClearRoomUNBILLED" />
+          <FunctionImport Name="pFixPatientVisitPayorPayerofficeExpire">
+            <Parameter Name="P_PatientVisitiUID" Mode="In" Type="Int32" />
+            <Parameter Name="P_PatientUID" Mode="In" Type="Int32" />
           </FunctionImport>
           </EntityContainer>
         <ComplexType Name="pGetPatientBillableItemsAccount_Result">
@@ -6437,6 +6458,30 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Type="String" Name="CanGiveDiscount" Nullable="false" MaxLength="1" />
           <Property Type="Double" Name="NetForDiscount" Nullable="true" />
           <Property Type="String" Name="IsPackage" Nullable="false" MaxLength="1" />
+        </ComplexType>
+        <ComplexType Name="pPrintStatementBill_Result">
+          <Property Type="Int64" Name="PatientBillUID" Nullable="false" />
+          <Property Type="String" Name="PatientID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
+          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
+          <Property Type="DateTime" Name="DOBDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
+          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
+          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" Precision="23" />
+          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
+          <Property Type="Double" Name="TotalAmount" Nullable="true" />
+          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="100" />
+          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="VisitDttm" Nullable="true" Precision="23" />
+          <Property Type="String" Name="OrganisationTaxID" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="IsCancel" Nullable="true" />
+          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1535" />
+          <Property Type="String" Name="BillType" Nullable="true" MaxLength="255" />
         </ComplexType>
         <EntityType Name="AdmissionEvent">
           <Key>
@@ -6517,7 +6562,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="PBLCTUID" Type="Int32" />
           <Property Name="ALLDIUID" Type="Int32" />
@@ -6539,7 +6583,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="PBLCTUID" Type="Int32" />
           <Property Name="ALLDIUID" Type="Int32" />
@@ -6561,7 +6604,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="MUser" Type="Int32" Nullable="false" />
           <Property Name="MWhen" Type="DateTime" Nullable="false" Precision="3" />
           <Property Name="StatusFlag" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="true" />
-          <Property Name="OwnerOrganisationUID" Type="Int32" Nullable="false" />
           <Property Name="TIMESTAMP" Type="Binary" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
           <Property Name="IsPackage" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="PBLCTUID" Type="Int32" />
@@ -6807,6 +6849,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="TotalAmount" Type="Double" Nullable="false" />
           <Property Name="CURNCUID" Type="Int32" Nullable="false" />
           <Property Name="PBLCTUID" Type="Int32" />
+          <Property Name="ENTYPUID" Type="Int32" />
           <Property Name="MaxValue" Type="Double" />
           <Property Name="MinValue" Type="Double" />
           <Property Name="ActiveFrom" Type="DateTime" Nullable="false" Precision="3" />
@@ -6814,6 +6857,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="OrderCategoryUID" Type="Int32" />
           <Property Name="OrderSubCategoryUID" Type="Int32" />
           <Property Name="AllowOverridePrice" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
+          <Property Name="SecondRoomBillPackageUID" Type="Int32" />
           <Property Name="Code" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CUser" Type="Int32" Nullable="false" />
           <Property Name="CWhen" Type="DateTime" Nullable="false" Precision="3" />
@@ -6904,6 +6948,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="LicenseIssueDttm" Type="DateTime" Precision="3" />
           <Property Name="LicenseExpiryDttm" Type="DateTime" Precision="3" />
           <Property Name="DOBDttm" Type="DateTime" Precision="3" />
+          <Property Name="CPTYPUID" Type="Int32" />
           <Property Name="IsDoctor" Type="Boolean" />
           <Property Name="IsRadiologist" Type="Boolean" />
           <Property Name="IsAdminRadiologist" Type="Boolean" />
@@ -7764,7 +7809,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           </Key>
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Code" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="1500" FixedLength="false" Unicode="true" />
           <Property Name="Description" Type="String" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Name="ITMTYPUID" Type="Int32" Nullable="false" />
           <Property Name="ActiveFrom" Type="DateTime" Precision="3" />
@@ -8248,6 +8293,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="DOBDttm" Type="DateTime" Precision="3" />
           <Property Name="DOBComputed" Type="Boolean" Nullable="false" />
           <Property Name="BLOODUID" Type="Int32" />
+          <Property Name="PATTPUID" Type="Int32" />
           <Property Name="IsVIP" Type="Boolean" />
           <Property Name="IDCard" Type="String" MaxLength="13" FixedLength="false" Unicode="true" />
           <Property Name="RELGNUID" Type="Int32" />
@@ -10030,6 +10076,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="Description" Type="String" MaxLength="400" FixedLength="false" Unicode="true" />
           <Property Name="EffectiveFrom" Type="DateTime" Precision="3" />
           <Property Name="EffectiveTo" Type="DateTime" Precision="3" />
+          <Property Name="IsConfidential" Type="String" MaxLength="1" FixedLength="false" Unicode="true" />
           <Property Name="PRTGPUID" Type="Int32" />
           <Property Name="TSTTPUID" Type="Int32" />
           <Property Name="RIMTYPUID" Type="Int32" />
@@ -10359,6 +10406,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="IMUOMUID" Type="Int32" Nullable="false" />
           <Property Name="ItemCost" Type="Double" />
           <Property Name="Comments" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="PatientBillableitemUID" Type="Int64" />
           <Property Name="DispensedItemUID" Type="Int64" />
           <Property Name="PatientBilledItemUID" Type="Int64" />
           <Property Name="PatientOrderDetailUID" Type="Int64" />
@@ -10681,7 +10729,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="UID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="StoreUID" Type="Int32" Nullable="false" />
           <Property Name="ItemMasterUID" Type="Int32" Nullable="false" />
-          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="ItemName" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
           <Property Name="VendorDetailUID" Type="Int32" />
           <Property Name="ManufacturerUID" Type="Int32" />
           <Property Name="Quantity" Type="Double" Nullable="false" />
@@ -11010,30 +11058,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
           <Property Name="ItemDateFrom" Type="DateTime" Precision="0" />
           <Property Name="ItemDateTo" Type="DateTime" Precision="0" />
         </EntityType>
-        <ComplexType Name="pPrintStatementBill_Result">
-          <Property Type="Int64" Name="PatientBillUID" Nullable="false" />
-          <Property Type="String" Name="PatientID" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="PatientName" Nullable="true" MaxLength="100" />
-          <Property Type="String" Name="PatientAddress" Nullable="true" MaxLength="1000" />
-          <Property Type="DateTime" Name="DOBDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="Age" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="Gender" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="SecondPhone" Nullable="true" MaxLength="12" />
-          <Property Type="String" Name="MobilePhone" Nullable="true" MaxLength="12" />
-          <Property Type="String" Name="VisitID" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="BillNumber" Nullable="true" MaxLength="50" />
-          <Property Type="DateTime" Name="BillGeneratedDttm" Nullable="true" Precision="23" />
-          <Property Type="Double" Name="DiscountAmount" Nullable="true" />
-          <Property Type="Double" Name="TotalAmount" Nullable="true" />
-          <Property Type="String" Name="Comments" Nullable="true" MaxLength="200" />
-          <Property Type="String" Name="CancelReason" Nullable="true" MaxLength="100" />
-          <Property Type="DateTime" Name="CancelledDttm" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="VisitDttm" Nullable="true" Precision="23" />
-          <Property Type="String" Name="OrganisationTaxID" Nullable="true" MaxLength="20" />
-          <Property Type="Boolean" Name="IsCancel" Nullable="true" />
-          <Property Type="String" Name="PayorName" Nullable="true" MaxLength="1535" />
-          <Property Type="String" Name="BillType" Nullable="true" MaxLength="255" />
-        </ComplexType>
         </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -11135,6 +11159,34 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="pMergeBillRecipet" FunctionName="MediTechModel.Store.pMergeBillRecipet" />
+          <FunctionImportMapping FunctionImportName="pPrintStatementBill" FunctionName="MediTechModel.Store.pPrintStatementBill">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="MediTechModel.pPrintStatementBill_Result">
+                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
+                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
+                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
+                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
+                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
+                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
+                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
+                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
+                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
+                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
+                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
+                <ScalarProperty Name="OrganisationTaxID" ColumnName="OrganisationTaxID" />
+                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
+                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
+                <ScalarProperty Name="BillType" ColumnName="BillType" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           <EntitySetMapping Name="AdmissionEvent">
             <EntityTypeMapping TypeName="MediTechModel.AdmissionEvent">
               <MappingFragment StoreEntitySet="AdmissionEvent">
@@ -11211,7 +11263,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="ALLDIUID" ColumnName="ALLDIUID" />
                 <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
@@ -11233,7 +11284,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="ALLDIUID" ColumnName="ALLDIUID" />
                 <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
@@ -11257,7 +11307,6 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
                 <ScalarProperty Name="IsPackage" ColumnName="IsPackage" />
                 <ScalarProperty Name="TIMESTAMP" ColumnName="TIMESTAMP" />
-                <ScalarProperty Name="OwnerOrganisationUID" ColumnName="OwnerOrganisationUID" />
                 <ScalarProperty Name="StatusFlag" ColumnName="StatusFlag" />
                 <ScalarProperty Name="MWhen" ColumnName="MWhen" />
                 <ScalarProperty Name="MUser" ColumnName="MUser" />
@@ -11517,6 +11566,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="CWhen" ColumnName="CWhen" />
                 <ScalarProperty Name="CUser" ColumnName="CUser" />
                 <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="SecondRoomBillPackageUID" ColumnName="SecondRoomBillPackageUID" />
                 <ScalarProperty Name="AllowOverridePrice" ColumnName="AllowOverridePrice" />
                 <ScalarProperty Name="OrderSubCategoryUID" ColumnName="OrderSubCategoryUID" />
                 <ScalarProperty Name="OrderCategoryUID" ColumnName="OrderCategoryUID" />
@@ -11524,6 +11574,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="ActiveFrom" ColumnName="ActiveFrom" />
                 <ScalarProperty Name="MinValue" ColumnName="MinValue" />
                 <ScalarProperty Name="MaxValue" ColumnName="MaxValue" />
+                <ScalarProperty Name="ENTYPUID" ColumnName="ENTYPUID" />
                 <ScalarProperty Name="PBLCTUID" ColumnName="PBLCTUID" />
                 <ScalarProperty Name="CURNCUID" ColumnName="CURNCUID" />
                 <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
@@ -11620,6 +11671,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="IsAdminRadiologist" ColumnName="IsAdminRadiologist" />
                 <ScalarProperty Name="IsRadiologist" ColumnName="IsRadiologist" />
                 <ScalarProperty Name="IsDoctor" ColumnName="IsDoctor" />
+                <ScalarProperty Name="CPTYPUID" ColumnName="CPTYPUID" />
                 <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
                 <ScalarProperty Name="LicenseExpiryDttm" ColumnName="LicenseExpiryDttm" />
                 <ScalarProperty Name="LicenseIssueDttm" ColumnName="LicenseIssueDttm" />
@@ -13041,6 +13093,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="RELGNUID" ColumnName="RELGNUID" />
                 <ScalarProperty Name="IDCard" ColumnName="IDCard" />
                 <ScalarProperty Name="IsVIP" ColumnName="IsVIP" />
+                <ScalarProperty Name="PATTPUID" ColumnName="PATTPUID" />
                 <ScalarProperty Name="BLOODUID" ColumnName="BLOODUID" />
                 <ScalarProperty Name="DOBComputed" ColumnName="DOBComputed" />
                 <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
@@ -14881,6 +14934,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="RIMTYPUID" ColumnName="RIMTYPUID" />
                 <ScalarProperty Name="TSTTPUID" ColumnName="TSTTPUID" />
                 <ScalarProperty Name="PRTGPUID" ColumnName="PRTGPUID" />
+                <ScalarProperty Name="IsConfidential" ColumnName="IsConfidential" />
                 <ScalarProperty Name="EffectiveTo" ColumnName="EffectiveTo" />
                 <ScalarProperty Name="EffectiveFrom" ColumnName="EffectiveFrom" />
                 <ScalarProperty Name="Description" ColumnName="Description" />
@@ -15225,6 +15279,7 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
                 <ScalarProperty Name="PatientOrderDetailUID" ColumnName="PatientOrderDetailUID" />
                 <ScalarProperty Name="PatientBilledItemUID" ColumnName="PatientBilledItemUID" />
                 <ScalarProperty Name="DispensedItemUID" ColumnName="DispensedItemUID" />
+                <ScalarProperty Name="PatientBillableitemUID" ColumnName="PatientBillableitemUID" />
                 <ScalarProperty Name="Comments" ColumnName="Comments" />
                 <ScalarProperty Name="ItemCost" ColumnName="ItemCost" />
                 <ScalarProperty Name="IMUOMUID" ColumnName="IMUOMUID" />
@@ -15912,34 +15967,8 @@ warning 6002: The table/view 'meditechtestpatch.dbo.vAllPayorAgreementsDiscount'
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="pPrintStatementBill" FunctionName="MediTechModel.Store.pPrintStatementBill">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="MediTechModel.pPrintStatementBill_Result">
-                <ScalarProperty Name="PatientBillUID" ColumnName="PatientBillUID" />
-                <ScalarProperty Name="PatientID" ColumnName="PatientID" />
-                <ScalarProperty Name="PatientName" ColumnName="PatientName" />
-                <ScalarProperty Name="PatientAddress" ColumnName="PatientAddress" />
-                <ScalarProperty Name="DOBDttm" ColumnName="DOBDttm" />
-                <ScalarProperty Name="Age" ColumnName="Age" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="SecondPhone" ColumnName="SecondPhone" />
-                <ScalarProperty Name="MobilePhone" ColumnName="MobilePhone" />
-                <ScalarProperty Name="VisitID" ColumnName="VisitID" />
-                <ScalarProperty Name="BillNumber" ColumnName="BillNumber" />
-                <ScalarProperty Name="BillGeneratedDttm" ColumnName="BillGeneratedDttm" />
-                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
-                <ScalarProperty Name="TotalAmount" ColumnName="TotalAmount" />
-                <ScalarProperty Name="Comments" ColumnName="Comments" />
-                <ScalarProperty Name="CancelReason" ColumnName="CancelReason" />
-                <ScalarProperty Name="CancelledDttm" ColumnName="CancelledDttm" />
-                <ScalarProperty Name="VisitDttm" ColumnName="VisitDttm" />
-                <ScalarProperty Name="OrganisationTaxID" ColumnName="OrganisationTaxID" />
-                <ScalarProperty Name="IsCancel" ColumnName="IsCancel" />
-                <ScalarProperty Name="PayorName" ColumnName="PayorName" />
-                <ScalarProperty Name="BillType" ColumnName="BillType" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="pClearRoomUNBILLED" FunctionName="MediTechModel.Store.pClearRoomUNBILLED" />
+          <FunctionImportMapping FunctionImportName="pFixPatientVisitPayorPayerofficeExpire" FunctionName="MediTechModel.Store.pFixPatientVisitPayorPayerofficeExpire" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

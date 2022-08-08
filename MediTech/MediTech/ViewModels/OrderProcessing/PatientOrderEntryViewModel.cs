@@ -822,6 +822,7 @@ namespace MediTech.ViewModels
 
 
                                     var orderNoContinuous = (PatientOrderDetailModel)resultDrug.PatientOrderDetail.CloneObject();
+                                    orderNoContinuous.StartDttm = DateTime.Now;
                                     orderNoContinuous.EndDttm = StartDate.Date.AddSeconds(86399);
                                     PatientOrders.Add(orderNoContinuous);
 

@@ -262,13 +262,13 @@ namespace MediTech.ViewModels
             get { return _SelectedPatientVisitPayor; }
             set
             {
-                _SelectedPatientVisitPayor = value;
+                Set(ref _SelectedPatientVisitPayor, value);
                 if (_SelectedPatientVisitPayor != null)
                 {
                     SelectedPayorType = PayorTypes.FirstOrDefault(p => p.Key == _SelectedPatientVisitPayor.PAYRTPUID);
                     SelectInsuranceCompany = InsuranceCompanys.FirstOrDefault(p => p.InsuranceCompanyUID == _SelectedPatientVisitPayor.InsuranceCompanyUID);
                     SelectInsurancePlan = InsurancePlans.FirstOrDefault(p => p.PayorAgreementUID == _SelectedPatientVisitPayor.PayorAgreementUID);
-                    OPDCoverPerDay = _SelectedPatientVisitPayor.EligibileAmount;
+                    OPDCoverPerDay = _SelectedPatientVisitPayor.EligibleAmount;
                     ClaimPercentage = _SelectedPatientVisitPayor.ClaimPercentage;
                     FixedCopayAmount = _SelectedPatientVisitPayor.FixedCopayAmount;
                     ActiveFrom = _SelectedPatientVisitPayor.ActiveFrom;
@@ -581,8 +581,8 @@ namespace MediTech.ViewModels
                         aPayor.InsuranceCompanyUID = aIns.InsuranceCompanyUID;
                         aPayor.InsuranceName = GetInsuranceComapnyName(aIns.InsuranceCompanyUID);
                         aPayor.PAYRTPUID = aIns.PAYRTPUID;
-                        aPayor.PayorType = PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID).Display;
-                        aPayor.EligibileAmount = aIns.EligibleAmount;
+                        aPayor.PayorType = PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID) != null ? PayorTypes.FirstOrDefault(p => p.Key == aIns.PAYRTPUID).Display : "";
+                        aPayor.EligibleAmount = aIns.EligibleAmount;
                         aPayor.ActiveFrom = aIns.StartDttm;
                         aPayor.ActiveTo = aIns.EndDttm;
                         aPayor.ClaimPercentage = aIns.ClaimPercentage;
@@ -692,13 +692,14 @@ namespace MediTech.ViewModels
             newPatientVisitPayor.Comment = Comments;
             newPatientVisitPayor.ClaimPercentage = ClaimPercentage;
             newPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
-            newPatientVisitPayor.EligibileAmount = OPDCoverPerDay;
+            newPatientVisitPayor.EligibleAmount = OPDCoverPerDay;
             newPatientVisitPayor.ActiveFrom = ActiveFrom;
             newPatientVisitPayor.ActiveTo = ActiveTo;
             newPatientVisitPayor.StatusFlag = "A";
             newPatientVisitPayor.CUser = AppUtil.Current.UserID;
             newPatientVisitPayor.MUser = AppUtil.Current.UserID;
             newPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+            newPatientVisitPayor.CreatedBy = AppUtil.Current.UserName;
             PatientVisitPayorList.Add(newPatientVisitPayor);
             ClearControl();
         }
@@ -727,7 +728,7 @@ namespace MediTech.ViewModels
                     if (PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)) != null
                         && PatientVisitPayorList.Where(i => i.PAYRTPUID == SelectedPayorType.Key && !i.Equals(SelectedPatientVisitPayor)).Count() > 0)
                     {
-                        WarningDialog("PayorType ซ้ำ กรุณาตรวจสอบ");
+                        WarningDialog("Rank ซ้ำ กรุณาตรวจสอบ");
                         return;
                     }
                 }
@@ -764,13 +765,14 @@ namespace MediTech.ViewModels
                 SelectedPatientVisitPayor.Comment = Comments;
                 SelectedPatientVisitPayor.ClaimPercentage = ClaimPercentage;
                 SelectedPatientVisitPayor.FixedCopayAmount = FixedCopayAmount;
-                SelectedPatientVisitPayor.EligibileAmount = OPDCoverPerDay;
+                SelectedPatientVisitPayor.EligibleAmount = OPDCoverPerDay;
                 SelectedPatientVisitPayor.ActiveFrom = ActiveFrom;
                 SelectedPatientVisitPayor.ActiveTo = ActiveTo;
                 SelectedPatientVisitPayor.StatusFlag = "A";
                 SelectedPatientVisitPayor.CUser = AppUtil.Current.UserID;
                 SelectedPatientVisitPayor.MUser = AppUtil.Current.UserID;
                 SelectedPatientVisitPayor.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
+                SelectedPatientVisitPayor.CreatedBy = AppUtil.Current.UserName;
                 ClearControl();
             }
         }
@@ -789,9 +791,14 @@ namespace MediTech.ViewModels
         void ClearControl()
         {
             if (PatientVisitPayorList != null && PatientVisitPayorList.Count() > 0 && PayorTypes != null)
+            {
                 SelectedPayorType = (from p in PayorTypes where (!(from q in PatientVisitPayorList select q.PAYRTPUID).Contains(p.Key)) select p).FirstOrDefault();
+                PatientVisitPayorList = new ObservableCollection<PatientVisitPayorModel>(PatientVisitPayorList.OrderBy(p => Convert.ToInt32(p.PayorType)));
+            }
             else
+            {
                 SelectedPayorType = PayorTypes.FirstOrDefault(p => p.ValueCode == "PRIMARY");
+            }
 
             SelectInsuranceCompany = null;
             SelectInsurancePlan = null;

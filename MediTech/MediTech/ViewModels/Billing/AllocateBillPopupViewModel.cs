@@ -130,6 +130,14 @@ namespace MediTech.ViewModels
             set
             {
                 Set(ref _IsItemSplit, value);
+                if(_IsItemSplit)
+                {
+                    SplitPayorUID = DestinationVisitPayors != null ? DestinationVisitPayors.FirstOrDefault().PatientVisitPayorUID : (long?)null;
+                }
+                else
+                {
+                    SplitPayorUID = null;
+                }
             }
         }
 
@@ -641,8 +649,8 @@ namespace MediTech.ViewModels
             }
         }
 
-        private long _splitPayorUID;
-        public long SplitPayorUID
+        private long? _splitPayorUID;
+        public long? SplitPayorUID
         {
             get
             {
@@ -692,7 +700,7 @@ namespace MediTech.ViewModels
             }
 
             SelectAllocateItem = allocatedItem;
-            SelectedModifyPatientVisitPayor = this.DestinationVisitPayors != null ?  this.DestinationVisitPayors.OrderBy(p => p.PAYRTPUID).FirstOrDefault() : new PatientVisitPayorModel();
+            SelectedModifyPatientVisitPayor = this.DestinationVisitPayors != null ? this.DestinationVisitPayors.OrderBy(p => p.PAYRTPUID).FirstOrDefault() : new PatientVisitPayorModel();
 
             PatientUID = patientUID;
             PatientVisitUID = patintVisitUID;
@@ -725,13 +733,13 @@ namespace MediTech.ViewModels
                 if (!IsItemSplit && (SelectAllocateItem.PatientVisitPayorUID == SelectedModifyPatientVisitPayor.PatientVisitPayorUID || SelectedModifyPatientVisitPayor.PatientVisitPayorUID == 0))
                 {
 
-                    WarningDialog("CannotAllocateTo");
+                    WarningDialog("Cannot AllocateTo");
                     return;
                 }
                 //
                 if (IsItemSplit && SplitPayorUID == 0)
                 {
-                    WarningDialog("ChooseAPayor");
+                    WarningDialog("Choose Payor");
                     return;
                 }
 
@@ -765,36 +773,36 @@ namespace MediTech.ViewModels
 
                         DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                         {
-                            patientUID = PatientUID,
-                            patientVisitUID = PatientVisitUID,
-                            isAutoAllocate = process,
-                            patientVisitPayorUID = SplitPayorUID,
-                            payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                            allocatedVisitPayorUID = null,
-                            patientBillableItemUID = SelectAllocateItem.BillableItemUID,
-                            subGroupUID = SelectAllocateItem.SubAccountUID,
-                            groupUID = SelectAllocateItem.GroupUID,
-                            canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                            startDate = FromDttm,
-                            endDate = ToDttm
+                            PatientUID = PatientUID,
+                            PatientVisitUID = PatientVisitUID,
+                            IsAutoAllocate = process,
+                            PatientVisitPayorUID = SplitPayorUID,
+                            PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                            AllocatedVisitPayorUID = null,
+                            PatientBillableItemUID = SelectAllocateItem.BillableItemUID,
+                            SubGroupUID = SelectAllocateItem.SubAccountUID,
+                            GroupUID = SelectAllocateItem.GroupUID,
+                            CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                            StartDate = FromDttm,
+                            EndDate = ToDttm
                         });
                     }
                     else
                     {
                         DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                         {
-                            patientUID = PatientUID,
-                            patientVisitUID = PatientVisitUID,
-                            isAutoAllocate = process,
-                            patientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitUID,
-                            payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                            allocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
-                            patientBillableItemUID = SelectAllocateItem.BillableItemUID,
-                            subGroupUID = SelectAllocateItem.SubAccountUID,
-                            groupUID = SelectAllocateItem.GroupUID,
-                            canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                            startDate = FromDttm,
-                            endDate = ToDttm
+                            PatientUID = PatientUID,
+                            PatientVisitUID = PatientVisitUID,
+                            IsAutoAllocate = process,
+                            PatientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitPayorUID,
+                            PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                            AllocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
+                            PatientBillableItemUID = SelectAllocateItem.BillableItemUID,
+                            SubGroupUID = SelectAllocateItem.SubAccountUID,
+                            GroupUID = SelectAllocateItem.GroupUID,
+                            CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                            StartDate = FromDttm,
+                            EndDate = ToDttm
                         });
                     }
                 }
@@ -829,18 +837,18 @@ namespace MediTech.ViewModels
 
                             DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                             {
-                                patientUID = PatientUID,
-                                patientVisitUID = PatientVisitUID,
-                                isAutoAllocate = process,
-                                patientVisitPayorUID = SplitPayorUID,
-                                payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                                allocatedVisitPayorUID = null,
-                                patientBillableItemUID = null,
-                                subGroupUID = SelectAllocateItem.SubAccountUID,
-                                groupUID = null,
-                                canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                                startDate = FromDttm,
-                                endDate = ToDttm
+                                PatientUID = PatientUID,
+                                PatientVisitUID = PatientVisitUID,
+                                IsAutoAllocate = process,
+                                PatientVisitPayorUID = SplitPayorUID,
+                                PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                                AllocatedVisitPayorUID = null,
+                                PatientBillableItemUID = null,
+                                SubGroupUID = SelectAllocateItem.SubAccountUID,
+                                GroupUID = null,
+                                CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                                StartDate = FromDttm,
+                                EndDate = ToDttm
                             });
                         }
                     }
@@ -848,18 +856,18 @@ namespace MediTech.ViewModels
                     {
                         DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                         {
-                            patientUID = PatientUID,
-                            patientVisitUID = PatientVisitUID,
-                            isAutoAllocate = process,
-                            patientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitUID,
-                            payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                            allocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
-                            patientBillableItemUID = null,
-                            subGroupUID = SelectAllocateItem.SubAccountUID,
-                            groupUID = SelectAllocateItem.GroupUID,
-                            canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                            startDate = FromDttm,
-                            endDate = ToDttm
+                            PatientUID = PatientUID,
+                            PatientVisitUID = PatientVisitUID,
+                            IsAutoAllocate = process,
+                            PatientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitPayorUID,
+                            PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                            AllocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
+                            PatientBillableItemUID = null,
+                            SubGroupUID = SelectAllocateItem.SubAccountUID,
+                            GroupUID = SelectAllocateItem.GroupUID,
+                            CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                            StartDate = FromDttm,
+                            EndDate = ToDttm
                         });
                     }
                 }
@@ -892,18 +900,18 @@ namespace MediTech.ViewModels
 
                             DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                             {
-                                patientUID = PatientUID,
-                                patientVisitUID = PatientVisitUID,
-                                isAutoAllocate = process,
-                                patientVisitPayorUID = SplitPayorUID,
-                                payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                                allocatedVisitPayorUID = null,
-                                patientBillableItemUID = null,
-                                subGroupUID = null,
-                                groupUID = SelectAllocateItem.GroupUID,
-                                canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                                startDate = FromDttm,
-                                endDate = ToDttm
+                                PatientUID = PatientUID,
+                                PatientVisitUID = PatientVisitUID,
+                                IsAutoAllocate = process,
+                                PatientVisitPayorUID = SplitPayorUID,
+                                PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                                AllocatedVisitPayorUID = null,
+                                PatientBillableItemUID = null,
+                                SubGroupUID = null,
+                                GroupUID = SelectAllocateItem.GroupUID,
+                                CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                                StartDate = FromDttm,
+                                EndDate = ToDttm
                             });
                         }
                     }
@@ -911,18 +919,18 @@ namespace MediTech.ViewModels
                     {
                         DataService.Billing.AllocatePatientBillableItem(new AllocatePatientBillableItemModel()
                         {
-                            patientUID = PatientUID,
-                            patientVisitUID = PatientVisitUID,
-                            isAutoAllocate = process,
-                            patientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitUID,
-                            payorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
-                            allocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
-                            patientBillableItemUID = null,
-                            subGroupUID = null,
-                            groupUID = SelectAllocateItem.GroupUID,
-                            canKeepDiscount = CanKeepDiscount ? "Y" : "N",
-                            startDate = FromDttm,
-                            endDate = ToDttm
+                            PatientUID = PatientUID,
+                            PatientVisitUID = PatientVisitUID,
+                            IsAutoAllocate = process,
+                            PatientVisitPayorUID = SelectedModifyPatientVisitPayor.PatientVisitPayorUID,
+                            PayorAgreementUID = SelectedModifyPatientVisitPayor.PayorAgreementUID,
+                            AllocatedVisitPayorUID = SelectAllocateItem.PatientVisitPayorUID ?? 0,
+                            PatientBillableItemUID = null,
+                            SubGroupUID = null,
+                            GroupUID = SelectAllocateItem.GroupUID,
+                            CanKeepDiscount = CanKeepDiscount ? "Y" : "N",
+                            StartDate = FromDttm,
+                            EndDate = ToDttm
                         });
                     }
                 }

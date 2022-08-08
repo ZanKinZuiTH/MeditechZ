@@ -24,6 +24,7 @@ namespace MediTech.DataBase
         public int IMUOMUID { get; set; }
         public Nullable<double> ItemCost { get; set; }
         public string Comments { get; set; }
+        public Nullable<long> PatientBillableitemUID { get; set; }
         public Nullable<long> DispensedItemUID { get; set; }
         public Nullable<long> PatientBilledItemUID { get; set; }
         public Nullable<long> PatientOrderDetailUID { get; set; }

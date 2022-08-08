@@ -191,7 +191,7 @@
                 </TabControl>
                 <dxlc:LayoutGroup>
                     <dxlc:LayoutItem Label="SplitPayor" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}">
-                        <ComboBox ItemsSource="{Binding Path= PatientVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SplitPayorUID,UpdateSourceTrigger=PropertyChanged}"/>
+                        <ComboBox ItemsSource="{Binding Path= DestinationVisitPayors,UpdateSourceTrigger=PropertyChanged}" DisplayMemberPath="PayorName" SelectedValuePath="PatientVisitPayorUID" SelectedValue="{Binding Path=SplitPayorUID,UpdateSourceTrigger=PropertyChanged}"/>
                     </dxlc:LayoutItem>
                     <dxlc:LayoutItem Label="KeepDiscount" IsEnabled="{Binding Path=IsItemSplit,UpdateSourceTrigger=PropertyChanged,Mode=TwoWay}" >
                         <CheckBox IsChecked="{Binding Path=CanKeepDiscount, UpdateSourceTrigger=PropertyChanged, Mode=TwoWay}" VerticalAlignment="Center"/>

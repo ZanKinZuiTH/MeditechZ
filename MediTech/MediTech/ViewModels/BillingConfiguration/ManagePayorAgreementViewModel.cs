@@ -967,7 +967,6 @@ namespace MediTech.ViewModels
                     data.ServiceName = SelectGroupName.Description;
                     data.Discount = GroupDiscount ?? 0;
                     data.IsPercentage = GroupIsPer == true ? "Y" : "N";
-                    data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                     data.PBLCTUID = SelectTariff.Key ?? 0;
                     data.ALLDIUID = SelectGroupAllowDiscount.Key ?? 0;
                     data.AllowDiscount = SelectGroupAllowDiscount.Display;
@@ -997,7 +996,6 @@ namespace MediTech.ViewModels
                 data.ServiceName = SelectGroupName.Description;
                 data.Discount = GroupDiscount ?? 0;
                 data.IsPercentage = GroupIsPer == true ? "Y" : "N";
-                data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                 data.PBLCTUID = SelectTariff.Key ?? 0;
                 data.ALLDIUID = SelectGroupAllowDiscount.Key ?? 0;
                 data.AllowDiscount = SelectGroupAllowDiscount.Display;
@@ -1103,7 +1101,6 @@ namespace MediTech.ViewModels
                     data.ServiceName = SelectSubGroupName.Description;
                     data.Discount = SubGroupDiscount ?? 0;
                     data.IsPercentage = SubGroupIsPer == true ? "Y" : "N";
-                    data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                     data.PBLCTUID = SelectTariff.Key ?? 0;
                     data.ALLDIUID = SelectSubGroupAllowDiscount.Key ?? 0;
                     data.AllowDiscount = SelectSubGroupAllowDiscount.Display;
@@ -1135,7 +1132,6 @@ namespace MediTech.ViewModels
                 data.ServiceName = SelectSubGroupName.Description;
                 data.Discount = SubGroupDiscount ?? 0;
                 data.IsPercentage = SubGroupIsPer == true ? "Y" : "N";
-                data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                 data.PBLCTUID = SelectTariff.Key ?? 0;
                 data.ALLDIUID = SelectSubGroupAllowDiscount.Key ?? 0;
                 data.AllowDiscount = SelectSubGroupAllowDiscount.Display;
@@ -1220,7 +1216,6 @@ namespace MediTech.ViewModels
                     data.BillableItemName = SelectItemName.ItemName;
                     data.Discount = ItemDiscount ?? 0;
                     data.IsPercentage = ItemIsPer == true ? "Y" : "N";
-                    data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                     data.PBLCTUID = SelectTariff.Key ?? 0;
                     data.ALLDIUID = SelectItemAllowDiscount.Key ?? 0;
                     data.AllowDiscount = SelectItemAllowDiscount.Display;
@@ -1250,7 +1245,6 @@ namespace MediTech.ViewModels
                 data.BillableItemName = SelectItemName.ItemName;
                 data.Discount = ItemDiscount ?? 0;
                 data.IsPercentage = ItemIsPer == true ? "Y" : "N";
-                data.OwnerOrganisationUID = AppUtil.Current.OwnerOrganisationUID;
                 data.PBLCTUID = SelectTariff.Key ?? 0;
                 data.ALLDIUID = SelectItemAllowDiscount.Key ?? 0;
                 data.AllowDiscount = SelectItemAllowDiscount.Display;
